@@ -5,10 +5,16 @@ module Peddler
         def self.new: (?next_page_token: String?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusPaginatedResponse
                     | (String?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusPaginatedResponse
 
+        def self.[]: (?next_page_token: String?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusPaginatedResponse
+                   | (String?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusPaginatedResponse
+
+        def self.members: () -> [ :next_page_token, :warnings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::AplusPaginatedResponse
 
         attr_reader next_page_token: String?
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :next_page_token, :warnings ]
 
         def to_h: () -> { next_page_token: String?, warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
@@ -17,9 +23,15 @@ module Peddler
         def self.new: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusResponse
                     | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusResponse
 
+        def self.[]: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusResponse
+                   | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusResponse
+
+        def self.members: () -> [ :warnings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::AplusResponse
 
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :warnings ]
 
         def to_h: () -> { warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
@@ -32,6 +44,11 @@ module Peddler
         def self.new: (asin: String?, ?badge_set: Array[untyped]?, ?content_reference_key_set: Array[untyped]?, ?image_url: String?, ?parent: String?, ?title: String?) -> Peddler::Types::AplusContent20201101::AsinMetadata
                     | (String?, Array[untyped]?, Array[untyped]?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::AsinMetadata
 
+        def self.[]: (asin: String?, ?badge_set: Array[untyped]?, ?content_reference_key_set: Array[untyped]?, ?image_url: String?, ?parent: String?, ?title: String?) -> Peddler::Types::AplusContent20201101::AsinMetadata
+                   | (String?, Array[untyped]?, Array[untyped]?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::AsinMetadata
+
+        def self.members: () -> [ :asin, :badge_set, :content_reference_key_set, :image_url, :parent, :title ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::AsinMetadata
 
         attr_reader asin: String?
@@ -40,6 +57,7 @@ module Peddler
         attr_reader image_url: String?
         attr_reader parent: String?
         attr_reader title: String?
+        def members: () -> [ :asin, :badge_set, :content_reference_key_set, :image_url, :parent, :title ]
 
         def to_h: () -> { asin: String?, badge_set: Array[untyped]?, content_reference_key_set: Array[untyped]?, image_url: String?, parent: String?, title: String? }
       end
@@ -60,14 +78,19 @@ module Peddler
         def self.new: (content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?, content_type: String?, locale: String?, name: String?, ?content_sub_type: String?) -> Peddler::Types::AplusContent20201101::ContentDocument
                     | (Array[Peddler::Types::AplusContent20201101::ContentModule]?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::ContentDocument
 
+        def self.[]: (content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?, content_type: String?, locale: String?, name: String?, ?content_sub_type: String?) -> Peddler::Types::AplusContent20201101::ContentDocument
+                   | (Array[Peddler::Types::AplusContent20201101::ContentModule]?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::ContentDocument
+
+        def self.members: () -> [ :content_module_list, :content_type, :locale, :name, :content_sub_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ContentDocument
 
         attr_reader content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?
-
         attr_reader content_sub_type: String?
         attr_reader content_type: String?
         attr_reader locale: String?
         attr_reader name: String?
+        def members: () -> [ :content_module_list, :content_type, :locale, :name, :content_sub_type ]
 
         def to_h: () -> { content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?, content_type: String?, locale: String?, name: String?, content_sub_type: String? }
       end
@@ -76,6 +99,11 @@ module Peddler
         def self.new: (badge_set: Array[untyped]?, marketplace_id: String?, name: String?, status: String?, update_time: String?) -> Peddler::Types::AplusContent20201101::ContentMetadata
                     | (Array[untyped]?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::ContentMetadata
 
+        def self.[]: (badge_set: Array[untyped]?, marketplace_id: String?, name: String?, status: String?, update_time: String?) -> Peddler::Types::AplusContent20201101::ContentMetadata
+                   | (Array[untyped]?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::ContentMetadata
+
+        def self.members: () -> [ :badge_set, :marketplace_id, :name, :status, :update_time ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ContentMetadata
 
         attr_reader badge_set: Array[untyped]?
@@ -83,6 +111,7 @@ module Peddler
         attr_reader name: String?
         attr_reader status: String?
         attr_reader update_time: String?
+        def members: () -> [ :badge_set, :marketplace_id, :name, :status, :update_time ]
 
         def to_h: () -> { badge_set: Array[untyped]?, marketplace_id: String?, name: String?, status: String?, update_time: String? }
       end
@@ -91,10 +120,16 @@ module Peddler
         def self.new: (content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?, content_reference_key: String?) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
                     | (Peddler::Types::AplusContent20201101::ContentMetadata?, String?) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
 
+        def self.[]: (content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?, content_reference_key: String?) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
+                   | (Peddler::Types::AplusContent20201101::ContentMetadata?, String?) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
+
+        def self.members: () -> [ :content_metadata, :content_reference_key ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
 
         attr_reader content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?
         attr_reader content_reference_key: String?
+        def members: () -> [ :content_metadata, :content_reference_key ]
 
         def to_h: () -> { content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?, content_reference_key: String? }
       end
@@ -106,6 +141,11 @@ module Peddler
       class ContentModule < Data
         def self.new: (content_module_type: String?, ?standard_company_logo: Peddler::Types::AplusContent20201101::StandardCompanyLogoModule?, ?standard_comparison_table: Peddler::Types::AplusContent20201101::StandardComparisonTableModule?, ?standard_four_image_text: Peddler::Types::AplusContent20201101::StandardFourImageTextModule?, ?standard_four_image_text_quadrant: Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule?, ?standard_header_image_text: Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule?, ?standard_image_sidebar: Peddler::Types::AplusContent20201101::StandardImageSidebarModule?, ?standard_image_text_overlay: Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule?, ?standard_multiple_image_text: Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule?, ?standard_product_description: Peddler::Types::AplusContent20201101::StandardProductDescriptionModule?, ?standard_single_image_highlights: Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule?, ?standard_single_image_specs_detail: Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule?, ?standard_single_side_image: Peddler::Types::AplusContent20201101::StandardSingleSideImageModule?, ?standard_tech_specs: Peddler::Types::AplusContent20201101::StandardTechSpecsModule?, ?standard_text: Peddler::Types::AplusContent20201101::StandardTextModule?, ?standard_three_image_text: Peddler::Types::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::Types::AplusContent20201101::ContentModule
                     | (String?, Peddler::Types::AplusContent20201101::StandardCompanyLogoModule?, Peddler::Types::AplusContent20201101::StandardComparisonTableModule?, Peddler::Types::AplusContent20201101::StandardFourImageTextModule?, Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule?, Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule?, Peddler::Types::AplusContent20201101::StandardImageSidebarModule?, Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule?, Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule?, Peddler::Types::AplusContent20201101::StandardProductDescriptionModule?, Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule?, Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule?, Peddler::Types::AplusContent20201101::StandardSingleSideImageModule?, Peddler::Types::AplusContent20201101::StandardTechSpecsModule?, Peddler::Types::AplusContent20201101::StandardTextModule?, Peddler::Types::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::Types::AplusContent20201101::ContentModule
+
+        def self.[]: (content_module_type: String?, ?standard_company_logo: Peddler::Types::AplusContent20201101::StandardCompanyLogoModule?, ?standard_comparison_table: Peddler::Types::AplusContent20201101::StandardComparisonTableModule?, ?standard_four_image_text: Peddler::Types::AplusContent20201101::StandardFourImageTextModule?, ?standard_four_image_text_quadrant: Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule?, ?standard_header_image_text: Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule?, ?standard_image_sidebar: Peddler::Types::AplusContent20201101::StandardImageSidebarModule?, ?standard_image_text_overlay: Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule?, ?standard_multiple_image_text: Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule?, ?standard_product_description: Peddler::Types::AplusContent20201101::StandardProductDescriptionModule?, ?standard_single_image_highlights: Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule?, ?standard_single_image_specs_detail: Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule?, ?standard_single_side_image: Peddler::Types::AplusContent20201101::StandardSingleSideImageModule?, ?standard_tech_specs: Peddler::Types::AplusContent20201101::StandardTechSpecsModule?, ?standard_text: Peddler::Types::AplusContent20201101::StandardTextModule?, ?standard_three_image_text: Peddler::Types::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::Types::AplusContent20201101::ContentModule
+                   | (String?, Peddler::Types::AplusContent20201101::StandardCompanyLogoModule?, Peddler::Types::AplusContent20201101::StandardComparisonTableModule?, Peddler::Types::AplusContent20201101::StandardFourImageTextModule?, Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule?, Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule?, Peddler::Types::AplusContent20201101::StandardImageSidebarModule?, Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule?, Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule?, Peddler::Types::AplusContent20201101::StandardProductDescriptionModule?, Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule?, Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule?, Peddler::Types::AplusContent20201101::StandardSingleSideImageModule?, Peddler::Types::AplusContent20201101::StandardTechSpecsModule?, Peddler::Types::AplusContent20201101::StandardTextModule?, Peddler::Types::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::Types::AplusContent20201101::ContentModule
+
+        def self.members: () -> [ :content_module_type, :standard_company_logo, :standard_comparison_table, :standard_four_image_text, :standard_four_image_text_quadrant, :standard_header_image_text, :standard_image_sidebar, :standard_image_text_overlay, :standard_multiple_image_text, :standard_product_description, :standard_single_image_highlights, :standard_single_image_specs_detail, :standard_single_side_image, :standard_tech_specs, :standard_text, :standard_three_image_text ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ContentModule
 
@@ -125,6 +165,7 @@ module Peddler
         attr_reader standard_tech_specs: Peddler::Types::AplusContent20201101::StandardTechSpecsModule?
         attr_reader standard_text: Peddler::Types::AplusContent20201101::StandardTextModule?
         attr_reader standard_three_image_text: Peddler::Types::AplusContent20201101::StandardThreeImageTextModule?
+        def members: () -> [ :content_module_type, :standard_company_logo, :standard_comparison_table, :standard_four_image_text, :standard_four_image_text_quadrant, :standard_header_image_text, :standard_image_sidebar, :standard_image_text_overlay, :standard_multiple_image_text, :standard_product_description, :standard_single_image_highlights, :standard_single_image_specs_detail, :standard_single_side_image, :standard_tech_specs, :standard_text, :standard_three_image_text ]
 
         def to_h: () -> { content_module_type: String?, standard_company_logo: Peddler::Types::AplusContent20201101::StandardCompanyLogoModule?, standard_comparison_table: Peddler::Types::AplusContent20201101::StandardComparisonTableModule?, standard_four_image_text: Peddler::Types::AplusContent20201101::StandardFourImageTextModule?, standard_four_image_text_quadrant: Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule?, standard_header_image_text: Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule?, standard_image_sidebar: Peddler::Types::AplusContent20201101::StandardImageSidebarModule?, standard_image_text_overlay: Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule?, standard_multiple_image_text: Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule?, standard_product_description: Peddler::Types::AplusContent20201101::StandardProductDescriptionModule?, standard_single_image_highlights: Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule?, standard_single_image_specs_detail: Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule?, standard_single_side_image: Peddler::Types::AplusContent20201101::StandardSingleSideImageModule?, standard_tech_specs: Peddler::Types::AplusContent20201101::StandardTechSpecsModule?, standard_text: Peddler::Types::AplusContent20201101::StandardTextModule?, standard_three_image_text: Peddler::Types::AplusContent20201101::StandardThreeImageTextModule? }
       end
@@ -137,11 +178,17 @@ module Peddler
         def self.new: (content_reference_key: String?, ?content_document: Peddler::Types::AplusContent20201101::ContentDocument?, ?content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?) -> Peddler::Types::AplusContent20201101::ContentRecord
                     | (String?, Peddler::Types::AplusContent20201101::ContentDocument?, Peddler::Types::AplusContent20201101::ContentMetadata?) -> Peddler::Types::AplusContent20201101::ContentRecord
 
+        def self.[]: (content_reference_key: String?, ?content_document: Peddler::Types::AplusContent20201101::ContentDocument?, ?content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?) -> Peddler::Types::AplusContent20201101::ContentRecord
+                   | (String?, Peddler::Types::AplusContent20201101::ContentDocument?, Peddler::Types::AplusContent20201101::ContentMetadata?) -> Peddler::Types::AplusContent20201101::ContentRecord
+
+        def self.members: () -> [ :content_reference_key, :content_document, :content_metadata ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ContentRecord
 
         attr_reader content_document: Peddler::Types::AplusContent20201101::ContentDocument?
         attr_reader content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?
         attr_reader content_reference_key: String?
+        def members: () -> [ :content_reference_key, :content_document, :content_metadata ]
 
         def to_h: () -> { content_reference_key: String?, content_document: Peddler::Types::AplusContent20201101::ContentDocument?, content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata? }
       end
@@ -154,12 +201,18 @@ module Peddler
         def self.new: (?depth: Integer?, ?length: Integer?, ?offset: Integer?, ?type: String?) -> Peddler::Types::AplusContent20201101::Decorator
                     | (Integer?, Integer?, Integer?, String?) -> Peddler::Types::AplusContent20201101::Decorator
 
+        def self.[]: (?depth: Integer?, ?length: Integer?, ?offset: Integer?, ?type: String?) -> Peddler::Types::AplusContent20201101::Decorator
+                   | (Integer?, Integer?, Integer?, String?) -> Peddler::Types::AplusContent20201101::Decorator
+
+        def self.members: () -> [ :depth, :length, :offset, :type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::Decorator
 
         attr_reader depth: Integer?
         attr_reader length: Integer?
         attr_reader offset: Integer?
         attr_reader type: String?
+        def members: () -> [ :depth, :length, :offset, :type ]
 
         def to_h: () -> { depth: Integer?, length: Integer?, offset: Integer?, type: String? }
       end
@@ -172,12 +225,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::AplusContent20201101::Error
                     | (String?, String?, String?) -> Peddler::Types::AplusContent20201101::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::AplusContent20201101::Error
+                   | (String?, String?, String?) -> Peddler::Types::AplusContent20201101::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -186,9 +244,15 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ErrorList
                     | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ErrorList
 
+        def self.[]: (errors: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ErrorList
+                   | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ErrorList
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ErrorList
 
         attr_reader errors: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
@@ -197,10 +261,16 @@ module Peddler
         def self.new: (content_record: Peddler::Types::AplusContent20201101::ContentRecord?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::GetContentDocumentResponse
                     | (Peddler::Types::AplusContent20201101::ContentRecord?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::GetContentDocumentResponse
 
+        def self.[]: (content_record: Peddler::Types::AplusContent20201101::ContentRecord?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::GetContentDocumentResponse
+                   | (Peddler::Types::AplusContent20201101::ContentRecord?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::GetContentDocumentResponse
+
+        def self.members: () -> [ :content_record, :warnings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::GetContentDocumentResponse
 
         attr_reader content_record: Peddler::Types::AplusContent20201101::ContentRecord?
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :content_record, :warnings ]
 
         def to_h: () -> { content_record: Peddler::Types::AplusContent20201101::ContentRecord?, warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
@@ -209,11 +279,17 @@ module Peddler
         def self.new: (alt_text: String?, image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?, upload_destination_id: String?) -> Peddler::Types::AplusContent20201101::ImageComponent
                     | (String?, Peddler::Types::AplusContent20201101::ImageCropSpecification?, String?) -> Peddler::Types::AplusContent20201101::ImageComponent
 
+        def self.[]: (alt_text: String?, image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?, upload_destination_id: String?) -> Peddler::Types::AplusContent20201101::ImageComponent
+                   | (String?, Peddler::Types::AplusContent20201101::ImageCropSpecification?, String?) -> Peddler::Types::AplusContent20201101::ImageComponent
+
+        def self.members: () -> [ :alt_text, :image_crop_specification, :upload_destination_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ImageComponent
 
         attr_reader alt_text: String?
         attr_reader image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?
         attr_reader upload_destination_id: String?
+        def members: () -> [ :alt_text, :image_crop_specification, :upload_destination_id ]
 
         def to_h: () -> { alt_text: String?, image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?, upload_destination_id: String? }
       end
@@ -222,10 +298,16 @@ module Peddler
         def self.new: (size: Peddler::Types::AplusContent20201101::ImageDimensions?, ?offset: Peddler::Types::AplusContent20201101::ImageOffsets?) -> Peddler::Types::AplusContent20201101::ImageCropSpecification
                     | (Peddler::Types::AplusContent20201101::ImageDimensions?, Peddler::Types::AplusContent20201101::ImageOffsets?) -> Peddler::Types::AplusContent20201101::ImageCropSpecification
 
+        def self.[]: (size: Peddler::Types::AplusContent20201101::ImageDimensions?, ?offset: Peddler::Types::AplusContent20201101::ImageOffsets?) -> Peddler::Types::AplusContent20201101::ImageCropSpecification
+                   | (Peddler::Types::AplusContent20201101::ImageDimensions?, Peddler::Types::AplusContent20201101::ImageOffsets?) -> Peddler::Types::AplusContent20201101::ImageCropSpecification
+
+        def self.members: () -> [ :size, :offset ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ImageCropSpecification
 
         attr_reader offset: Peddler::Types::AplusContent20201101::ImageOffsets?
         attr_reader size: Peddler::Types::AplusContent20201101::ImageDimensions?
+        def members: () -> [ :size, :offset ]
 
         def to_h: () -> { size: Peddler::Types::AplusContent20201101::ImageDimensions?, offset: Peddler::Types::AplusContent20201101::ImageOffsets? }
       end
@@ -234,10 +316,16 @@ module Peddler
         def self.new: (height: Peddler::Types::AplusContent20201101::IntegerWithUnits?, width: Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageDimensions
                     | (Peddler::Types::AplusContent20201101::IntegerWithUnits?, Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageDimensions
 
+        def self.[]: (height: Peddler::Types::AplusContent20201101::IntegerWithUnits?, width: Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageDimensions
+                   | (Peddler::Types::AplusContent20201101::IntegerWithUnits?, Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageDimensions
+
+        def self.members: () -> [ :height, :width ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ImageDimensions
 
         attr_reader height: Peddler::Types::AplusContent20201101::IntegerWithUnits?
         attr_reader width: Peddler::Types::AplusContent20201101::IntegerWithUnits?
+        def members: () -> [ :height, :width ]
 
         def to_h: () -> { height: Peddler::Types::AplusContent20201101::IntegerWithUnits?, width: Peddler::Types::AplusContent20201101::IntegerWithUnits? }
       end
@@ -246,10 +334,16 @@ module Peddler
         def self.new: (x: Peddler::Types::AplusContent20201101::IntegerWithUnits?, y: Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageOffsets
                     | (Peddler::Types::AplusContent20201101::IntegerWithUnits?, Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageOffsets
 
+        def self.[]: (x: Peddler::Types::AplusContent20201101::IntegerWithUnits?, y: Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageOffsets
+                   | (Peddler::Types::AplusContent20201101::IntegerWithUnits?, Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageOffsets
+
+        def self.members: () -> [ :x, :y ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ImageOffsets
 
         attr_reader x: Peddler::Types::AplusContent20201101::IntegerWithUnits?
         attr_reader y: Peddler::Types::AplusContent20201101::IntegerWithUnits?
+        def members: () -> [ :x, :y ]
 
         def to_h: () -> { x: Peddler::Types::AplusContent20201101::IntegerWithUnits?, y: Peddler::Types::AplusContent20201101::IntegerWithUnits? }
       end
@@ -258,10 +352,16 @@ module Peddler
         def self.new: (units: String?, value: Integer?) -> Peddler::Types::AplusContent20201101::IntegerWithUnits
                     | (String?, Integer?) -> Peddler::Types::AplusContent20201101::IntegerWithUnits
 
+        def self.[]: (units: String?, value: Integer?) -> Peddler::Types::AplusContent20201101::IntegerWithUnits
+                   | (String?, Integer?) -> Peddler::Types::AplusContent20201101::IntegerWithUnits
+
+        def self.members: () -> [ :units, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::IntegerWithUnits
 
         attr_reader units: String?
         attr_reader value: Integer?
+        def members: () -> [ :units, :value ]
 
         def to_h: () -> { units: String?, value: Integer? }
       end
@@ -270,9 +370,15 @@ module Peddler
         def self.new: (asin_metadata_set: Array[Peddler::Types::AplusContent20201101::AsinMetadata]?) -> Peddler::Types::AplusContent20201101::ListContentDocumentAsinRelationsResponse
                     | (Array[Peddler::Types::AplusContent20201101::AsinMetadata]?) -> Peddler::Types::AplusContent20201101::ListContentDocumentAsinRelationsResponse
 
+        def self.[]: (asin_metadata_set: Array[Peddler::Types::AplusContent20201101::AsinMetadata]?) -> Peddler::Types::AplusContent20201101::ListContentDocumentAsinRelationsResponse
+                   | (Array[Peddler::Types::AplusContent20201101::AsinMetadata]?) -> Peddler::Types::AplusContent20201101::ListContentDocumentAsinRelationsResponse
+
+        def self.members: () -> [ :asin_metadata_set ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ListContentDocumentAsinRelationsResponse
 
         attr_reader asin_metadata_set: Array[Peddler::Types::AplusContent20201101::AsinMetadata]?
+        def members: () -> [ :asin_metadata_set ]
 
         def to_h: () -> { asin_metadata_set: Array[Peddler::Types::AplusContent20201101::AsinMetadata]? }
       end
@@ -285,9 +391,15 @@ module Peddler
         def self.new: (text_list: Array[Peddler::Types::AplusContent20201101::TextComponent]?) -> Peddler::Types::AplusContent20201101::ParagraphComponent
                     | (Array[Peddler::Types::AplusContent20201101::TextComponent]?) -> Peddler::Types::AplusContent20201101::ParagraphComponent
 
+        def self.[]: (text_list: Array[Peddler::Types::AplusContent20201101::TextComponent]?) -> Peddler::Types::AplusContent20201101::ParagraphComponent
+                   | (Array[Peddler::Types::AplusContent20201101::TextComponent]?) -> Peddler::Types::AplusContent20201101::ParagraphComponent
+
+        def self.members: () -> [ :text_list ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ParagraphComponent
 
         attr_reader text_list: Array[Peddler::Types::AplusContent20201101::TextComponent]?
+        def members: () -> [ :text_list ]
 
         def to_h: () -> { text_list: Array[Peddler::Types::AplusContent20201101::TextComponent]? }
       end
@@ -296,10 +408,16 @@ module Peddler
         def self.new: (position: Integer?, value: String?) -> Peddler::Types::AplusContent20201101::PlainTextItem
                     | (Integer?, String?) -> Peddler::Types::AplusContent20201101::PlainTextItem
 
+        def self.[]: (position: Integer?, value: String?) -> Peddler::Types::AplusContent20201101::PlainTextItem
+                   | (Integer?, String?) -> Peddler::Types::AplusContent20201101::PlainTextItem
+
+        def self.members: () -> [ :position, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PlainTextItem
 
         attr_reader position: Integer?
         attr_reader value: String?
+        def members: () -> [ :position, :value ]
 
         def to_h: () -> { position: Integer?, value: String? }
       end
@@ -308,9 +426,15 @@ module Peddler
         def self.new: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentApprovalSubmissionResponse
                     | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentApprovalSubmissionResponse
 
+        def self.[]: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentApprovalSubmissionResponse
+                   | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentApprovalSubmissionResponse
+
+        def self.members: () -> [ :warnings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PostContentDocumentApprovalSubmissionResponse
 
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :warnings ]
 
         def to_h: () -> { warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
@@ -319,9 +443,15 @@ module Peddler
         def self.new: (asin_set: Array[untyped]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsRequest
                     | (Array[untyped]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsRequest
 
+        def self.[]: (asin_set: Array[untyped]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsRequest
+                   | (Array[untyped]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsRequest
+
+        def self.members: () -> [ :asin_set ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsRequest
 
         attr_reader asin_set: Array[untyped]?
+        def members: () -> [ :asin_set ]
 
         def to_h: () -> { asin_set: Array[untyped]? }
       end
@@ -330,9 +460,15 @@ module Peddler
         def self.new: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsResponse
                     | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsResponse
 
+        def self.[]: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsResponse
+                   | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsResponse
+
+        def self.members: () -> [ :warnings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsResponse
 
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :warnings ]
 
         def to_h: () -> { warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
@@ -341,9 +477,15 @@ module Peddler
         def self.new: (content_document: Peddler::Types::AplusContent20201101::ContentDocument?) -> Peddler::Types::AplusContent20201101::PostContentDocumentRequest
                     | (Peddler::Types::AplusContent20201101::ContentDocument?) -> Peddler::Types::AplusContent20201101::PostContentDocumentRequest
 
+        def self.[]: (content_document: Peddler::Types::AplusContent20201101::ContentDocument?) -> Peddler::Types::AplusContent20201101::PostContentDocumentRequest
+                   | (Peddler::Types::AplusContent20201101::ContentDocument?) -> Peddler::Types::AplusContent20201101::PostContentDocumentRequest
+
+        def self.members: () -> [ :content_document ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PostContentDocumentRequest
 
         attr_reader content_document: Peddler::Types::AplusContent20201101::ContentDocument?
+        def members: () -> [ :content_document ]
 
         def to_h: () -> { content_document: Peddler::Types::AplusContent20201101::ContentDocument? }
       end
@@ -352,10 +494,16 @@ module Peddler
         def self.new: (content_reference_key: String?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
                     | (String?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
 
+        def self.[]: (content_reference_key: String?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
+                   | (String?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
+
+        def self.members: () -> [ :content_reference_key, :warnings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
 
         attr_reader content_reference_key: String?
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :content_reference_key, :warnings ]
 
         def to_h: () -> { content_reference_key: String?, warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
@@ -364,9 +512,15 @@ module Peddler
         def self.new: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
                     | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
 
+        def self.[]: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
+                   | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
+
+        def self.members: () -> [ :warnings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
 
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :warnings ]
 
         def to_h: () -> { warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
@@ -375,15 +529,20 @@ module Peddler
         def self.new: (asin: String?, content_reference_key: String?, content_type: String?, locale: String?, marketplace_id: String?, ?content_sub_type: String?) -> Peddler::Types::AplusContent20201101::PublishRecord
                     | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::PublishRecord
 
+        def self.[]: (asin: String?, content_reference_key: String?, content_type: String?, locale: String?, marketplace_id: String?, ?content_sub_type: String?) -> Peddler::Types::AplusContent20201101::PublishRecord
+                   | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::PublishRecord
+
+        def self.members: () -> [ :asin, :content_reference_key, :content_type, :locale, :marketplace_id, :content_sub_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PublishRecord
 
         attr_reader asin: String?
         attr_reader content_reference_key: String?
-
         attr_reader content_sub_type: String?
         attr_reader content_type: String?
         attr_reader locale: String?
         attr_reader marketplace_id: String?
+        def members: () -> [ :asin, :content_reference_key, :content_type, :locale, :marketplace_id, :content_sub_type ]
 
         def to_h: () -> { asin: String?, content_reference_key: String?, content_type: String?, locale: String?, marketplace_id: String?, content_sub_type: String? }
       end
@@ -396,9 +555,15 @@ module Peddler
         def self.new: (content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
                     | (Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
 
+        def self.[]: (content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
+                   | (Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
+
+        def self.members: () -> [ :content_metadata_records ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
 
         attr_reader content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?
+        def members: () -> [ :content_metadata_records ]
 
         def to_h: () -> { content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]? }
       end
@@ -407,9 +572,15 @@ module Peddler
         def self.new: (publish_record_list: Array[Peddler::Types::AplusContent20201101::PublishRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse
                     | (Array[Peddler::Types::AplusContent20201101::PublishRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse
 
+        def self.[]: (publish_record_list: Array[Peddler::Types::AplusContent20201101::PublishRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse
+                   | (Array[Peddler::Types::AplusContent20201101::PublishRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse
+
+        def self.members: () -> [ :publish_record_list ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse
 
         attr_reader publish_record_list: Array[Peddler::Types::AplusContent20201101::PublishRecord]?
+        def members: () -> [ :publish_record_list ]
 
         def to_h: () -> { publish_record_list: Array[Peddler::Types::AplusContent20201101::PublishRecord]? }
       end
@@ -418,9 +589,15 @@ module Peddler
         def self.new: (company_logo: Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardCompanyLogoModule
                     | (Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardCompanyLogoModule
 
+        def self.[]: (company_logo: Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardCompanyLogoModule
+                   | (Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardCompanyLogoModule
+
+        def self.members: () -> [ :company_logo ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardCompanyLogoModule
 
         attr_reader company_logo: Peddler::Types::AplusContent20201101::ImageComponent?
+        def members: () -> [ :company_logo ]
 
         def to_h: () -> { company_logo: Peddler::Types::AplusContent20201101::ImageComponent? }
       end
@@ -429,6 +606,11 @@ module Peddler
         def self.new: (position: Integer?, ?asin: String?, ?highlight: bool?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, ?title: String?) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
                     | (Integer?, String?, bool?, Peddler::Types::AplusContent20201101::ImageComponent?, Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, String?) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
 
+        def self.[]: (position: Integer?, ?asin: String?, ?highlight: bool?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, ?title: String?) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
+                   | (Integer?, String?, bool?, Peddler::Types::AplusContent20201101::ImageComponent?, Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, String?) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
+
+        def self.members: () -> [ :position, :asin, :highlight, :image, :metrics, :title ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
 
         attr_reader asin: String?
@@ -436,10 +618,11 @@ module Peddler
         attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
         attr_reader metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?
         attr_reader position: Integer?
-
         attr_reader title: String?
 
         def highlight?: () -> bool
+        def members: () -> [ :position, :asin, :highlight, :image, :metrics, :title ]
+
         def to_h: () -> { position: Integer?, asin: String?, highlight: bool?, image: Peddler::Types::AplusContent20201101::ImageComponent?, metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, title: String? }
       end
 
@@ -447,10 +630,16 @@ module Peddler
         def self.new: (?metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, ?product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
                     | (Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
 
+        def self.[]: (?metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, ?product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
+                   | (Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
+
+        def self.members: () -> [ :metric_row_labels, :product_columns ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
 
         attr_reader metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?
         attr_reader product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?
+        def members: () -> [ :metric_row_labels, :product_columns ]
 
         def to_h: () -> { metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]? }
       end
@@ -459,6 +648,11 @@ module Peddler
         def self.new: (?block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextModule
                     | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextModule
 
+        def self.[]: (?block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextModule
+                   | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextModule
+
+        def self.members: () -> [ :block1, :block2, :block3, :block4, :headline ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardFourImageTextModule
 
         attr_reader block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
@@ -466,6 +660,7 @@ module Peddler
         attr_reader block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :block1, :block2, :block3, :block4, :headline ]
 
         def to_h: () -> { block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, headline: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -474,12 +669,18 @@ module Peddler
         def self.new: (block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
                     | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
 
+        def self.[]: (block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
+                   | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
+
+        def self.members: () -> [ :block1, :block2, :block3, :block4 ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
 
         attr_reader block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
+        def members: () -> [ :block1, :block2, :block3, :block4 ]
 
         def to_h: () -> { block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock? }
       end
@@ -488,10 +689,16 @@ module Peddler
         def self.new: (?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule
                     | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule
 
+        def self.[]: (?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule
+                   | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule
+
+        def self.members: () -> [ :block, :headline ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule
 
         attr_reader block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :block, :headline ]
 
         def to_h: () -> { block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, headline: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -500,10 +707,16 @@ module Peddler
         def self.new: (?block: Peddler::Types::AplusContent20201101::StandardTextListBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock
                     | (Peddler::Types::AplusContent20201101::StandardTextListBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock
 
+        def self.[]: (?block: Peddler::Types::AplusContent20201101::StandardTextListBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock
+                   | (Peddler::Types::AplusContent20201101::StandardTextListBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock
+
+        def self.members: () -> [ :block, :headline ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock
 
         attr_reader block: Peddler::Types::AplusContent20201101::StandardTextListBlock?
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :block, :headline ]
 
         def to_h: () -> { block: Peddler::Types::AplusContent20201101::StandardTextListBlock?, headline: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -512,10 +725,16 @@ module Peddler
         def self.new: (?caption: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
                     | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
 
+        def self.[]: (?caption: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
+                   | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
+
+        def self.members: () -> [ :caption, :image ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
 
         attr_reader caption: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
+        def members: () -> [ :caption, :image ]
 
         def to_h: () -> { caption: Peddler::Types::AplusContent20201101::TextComponent?, image: Peddler::Types::AplusContent20201101::ImageComponent? }
       end
@@ -523,6 +742,11 @@ module Peddler
       class StandardImageSidebarModule < Data
         def self.new: (?description_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?, ?description_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image_caption_block: Peddler::Types::AplusContent20201101::StandardImageCaptionBlock?, ?sidebar_image_text_block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?sidebar_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
                     | (Peddler::Types::AplusContent20201101::StandardTextListBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardImageCaptionBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardTextListBlock?) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
+
+        def self.[]: (?description_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?, ?description_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image_caption_block: Peddler::Types::AplusContent20201101::StandardImageCaptionBlock?, ?sidebar_image_text_block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?sidebar_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
+                   | (Peddler::Types::AplusContent20201101::StandardTextListBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardImageCaptionBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardTextListBlock?) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
+
+        def self.members: () -> [ :description_list_block, :description_text_block, :headline, :image_caption_block, :sidebar_image_text_block, :sidebar_list_block ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
 
@@ -532,6 +756,7 @@ module Peddler
         attr_reader image_caption_block: Peddler::Types::AplusContent20201101::StandardImageCaptionBlock?
         attr_reader sidebar_image_text_block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader sidebar_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?
+        def members: () -> [ :description_list_block, :description_text_block, :headline, :image_caption_block, :sidebar_image_text_block, :sidebar_list_block ]
 
         def to_h: () -> { description_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?, description_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?, headline: Peddler::Types::AplusContent20201101::TextComponent?, image_caption_block: Peddler::Types::AplusContent20201101::StandardImageCaptionBlock?, sidebar_image_text_block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, sidebar_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock? }
       end
@@ -540,11 +765,17 @@ module Peddler
         def self.new: (?body: Peddler::Types::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageTextBlock
                     | (Peddler::Types::AplusContent20201101::ParagraphComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageTextBlock
 
+        def self.[]: (?body: Peddler::Types::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageTextBlock
+                   | (Peddler::Types::AplusContent20201101::ParagraphComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageTextBlock
+
+        def self.members: () -> [ :body, :headline, :image ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardImageTextBlock
 
         attr_reader body: Peddler::Types::AplusContent20201101::ParagraphComponent?
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
+        def members: () -> [ :body, :headline, :image ]
 
         def to_h: () -> { body: Peddler::Types::AplusContent20201101::ParagraphComponent?, headline: Peddler::Types::AplusContent20201101::TextComponent?, image: Peddler::Types::AplusContent20201101::ImageComponent? }
       end
@@ -553,10 +784,16 @@ module Peddler
         def self.new: (?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?caption: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock
                     | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock
 
+        def self.[]: (?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?caption: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock
+                   | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock
+
+        def self.members: () -> [ :block, :caption ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock
 
         attr_reader block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader caption: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :block, :caption ]
 
         def to_h: () -> { block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, caption: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -565,10 +802,16 @@ module Peddler
         def self.new: (overlay_color_type: String?, ?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule
                     | (String?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule
 
+        def self.[]: (overlay_color_type: String?, ?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule
+                   | (String?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule
+
+        def self.members: () -> [ :overlay_color_type, :block ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule
 
         attr_reader block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader overlay_color_type: String?
+        def members: () -> [ :overlay_color_type, :block ]
 
         def to_h: () -> { overlay_color_type: String?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock? }
       end
@@ -577,9 +820,15 @@ module Peddler
         def self.new: (?blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule
                     | (Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule
 
+        def self.[]: (?blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule
+                   | (Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule
+
+        def self.members: () -> [ :blocks ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule
 
         attr_reader blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?
+        def members: () -> [ :blocks ]
 
         def to_h: () -> { blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]? }
       end
@@ -588,9 +837,15 @@ module Peddler
         def self.new: (body: Peddler::Types::AplusContent20201101::ParagraphComponent?) -> Peddler::Types::AplusContent20201101::StandardProductDescriptionModule
                     | (Peddler::Types::AplusContent20201101::ParagraphComponent?) -> Peddler::Types::AplusContent20201101::StandardProductDescriptionModule
 
+        def self.[]: (body: Peddler::Types::AplusContent20201101::ParagraphComponent?) -> Peddler::Types::AplusContent20201101::StandardProductDescriptionModule
+                   | (Peddler::Types::AplusContent20201101::ParagraphComponent?) -> Peddler::Types::AplusContent20201101::StandardProductDescriptionModule
+
+        def self.members: () -> [ :body ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardProductDescriptionModule
 
         attr_reader body: Peddler::Types::AplusContent20201101::ParagraphComponent?
+        def members: () -> [ :body ]
 
         def to_h: () -> { body: Peddler::Types::AplusContent20201101::ParagraphComponent? }
       end
@@ -598,6 +853,11 @@ module Peddler
       class StandardSingleImageHighlightsModule < Data
         def self.new: (?bulleted_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?text_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?text_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?text_block3: Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule
                     | (Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule
+
+        def self.[]: (?bulleted_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?text_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?text_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?text_block3: Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule
+                   | (Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule
+
+        def self.members: () -> [ :bulleted_list_block, :headline, :image, :text_block1, :text_block2, :text_block3 ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardSingleImageHighlightsModule
 
@@ -607,6 +867,7 @@ module Peddler
         attr_reader text_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?
         attr_reader text_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?
         attr_reader text_block3: Peddler::Types::AplusContent20201101::StandardTextBlock?
+        def members: () -> [ :bulleted_list_block, :headline, :image, :text_block1, :text_block2, :text_block3 ]
 
         def to_h: () -> { bulleted_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, headline: Peddler::Types::AplusContent20201101::TextComponent?, image: Peddler::Types::AplusContent20201101::ImageComponent?, text_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, text_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, text_block3: Peddler::Types::AplusContent20201101::StandardTextBlock? }
       end
@@ -614,6 +875,11 @@ module Peddler
       class StandardSingleImageSpecsDetailModule < Data
         def self.new: (?description_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?description_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?description_headline: Peddler::Types::AplusContent20201101::TextComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?specification_headline: Peddler::Types::AplusContent20201101::TextComponent?, ?specification_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, ?specification_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
                     | (Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
+
+        def self.[]: (?description_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?description_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?description_headline: Peddler::Types::AplusContent20201101::TextComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?specification_headline: Peddler::Types::AplusContent20201101::TextComponent?, ?specification_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, ?specification_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
+                   | (Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
+
+        def self.members: () -> [ :description_block1, :description_block2, :description_headline, :headline, :image, :specification_headline, :specification_list_block, :specification_text_block ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
 
@@ -625,6 +891,7 @@ module Peddler
         attr_reader specification_headline: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader specification_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?
         attr_reader specification_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?
+        def members: () -> [ :description_block1, :description_block2, :description_headline, :headline, :image, :specification_headline, :specification_list_block, :specification_text_block ]
 
         def to_h: () -> { description_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, description_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, description_headline: Peddler::Types::AplusContent20201101::TextComponent?, headline: Peddler::Types::AplusContent20201101::TextComponent?, image: Peddler::Types::AplusContent20201101::ImageComponent?, specification_headline: Peddler::Types::AplusContent20201101::TextComponent?, specification_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, specification_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock? }
       end
@@ -633,10 +900,16 @@ module Peddler
         def self.new: (image_position_type: String?, ?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule
                     | (String?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule
 
+        def self.[]: (image_position_type: String?, ?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule
+                   | (String?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule
+
+        def self.members: () -> [ :image_position_type, :block ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule
 
         attr_reader block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader image_position_type: String?
+        def members: () -> [ :image_position_type, :block ]
 
         def to_h: () -> { image_position_type: String?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock? }
       end
@@ -645,12 +918,17 @@ module Peddler
         def self.new: (specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?table_count: Integer?) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule
                     | (Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, Peddler::Types::AplusContent20201101::TextComponent?, Integer?) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule
 
+        def self.[]: (specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?table_count: Integer?) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule
+                   | (Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, Peddler::Types::AplusContent20201101::TextComponent?, Integer?) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule
+
+        def self.members: () -> [ :specification_list, :headline, :table_count ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule
 
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?
-
         attr_reader table_count: Integer?
+        def members: () -> [ :specification_list, :headline, :table_count ]
 
         def to_h: () -> { specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, headline: Peddler::Types::AplusContent20201101::TextComponent?, table_count: Integer? }
       end
@@ -659,10 +937,16 @@ module Peddler
         def self.new: (?body: Peddler::Types::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextBlock
                     | (Peddler::Types::AplusContent20201101::ParagraphComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextBlock
 
+        def self.[]: (?body: Peddler::Types::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextBlock
+                   | (Peddler::Types::AplusContent20201101::ParagraphComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextBlock
+
+        def self.members: () -> [ :body, :headline ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardTextBlock
 
         attr_reader body: Peddler::Types::AplusContent20201101::ParagraphComponent?
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :body, :headline ]
 
         def to_h: () -> { body: Peddler::Types::AplusContent20201101::ParagraphComponent?, headline: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -671,9 +955,15 @@ module Peddler
         def self.new: (text_list: Array[Peddler::Types::AplusContent20201101::TextItem]?) -> Peddler::Types::AplusContent20201101::StandardTextListBlock
                     | (Array[Peddler::Types::AplusContent20201101::TextItem]?) -> Peddler::Types::AplusContent20201101::StandardTextListBlock
 
+        def self.[]: (text_list: Array[Peddler::Types::AplusContent20201101::TextItem]?) -> Peddler::Types::AplusContent20201101::StandardTextListBlock
+                   | (Array[Peddler::Types::AplusContent20201101::TextItem]?) -> Peddler::Types::AplusContent20201101::StandardTextListBlock
+
+        def self.members: () -> [ :text_list ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardTextListBlock
 
         attr_reader text_list: Array[Peddler::Types::AplusContent20201101::TextItem]?
+        def members: () -> [ :text_list ]
 
         def to_h: () -> { text_list: Array[Peddler::Types::AplusContent20201101::TextItem]? }
       end
@@ -682,10 +972,16 @@ module Peddler
         def self.new: (body: Peddler::Types::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
                     | (Peddler::Types::AplusContent20201101::ParagraphComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
 
+        def self.[]: (body: Peddler::Types::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
+                   | (Peddler::Types::AplusContent20201101::ParagraphComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
+
+        def self.members: () -> [ :body, :headline ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardTextModule
 
         attr_reader body: Peddler::Types::AplusContent20201101::ParagraphComponent?
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :body, :headline ]
 
         def to_h: () -> { body: Peddler::Types::AplusContent20201101::ParagraphComponent?, headline: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -694,10 +990,16 @@ module Peddler
         def self.new: (?description: Peddler::Types::AplusContent20201101::TextComponent?, ?label: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
                     | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
 
+        def self.[]: (?description: Peddler::Types::AplusContent20201101::TextComponent?, ?label: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
+                   | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
+
+        def self.members: () -> [ :description, :label ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
 
         attr_reader description: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader label: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :description, :label ]
 
         def to_h: () -> { description: Peddler::Types::AplusContent20201101::TextComponent?, label: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -706,12 +1008,18 @@ module Peddler
         def self.new: (?block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardThreeImageTextModule
                     | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardThreeImageTextModule
 
+        def self.[]: (?block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardThreeImageTextModule
+                   | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardThreeImageTextModule
+
+        def self.members: () -> [ :block1, :block2, :block3, :headline ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardThreeImageTextModule
 
         attr_reader block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :block1, :block2, :block3, :headline ]
 
         def to_h: () -> { block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, headline: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -720,10 +1028,16 @@ module Peddler
         def self.new: (value: String?, ?decorator_set: Array[Peddler::Types::AplusContent20201101::Decorator]?) -> Peddler::Types::AplusContent20201101::TextComponent
                     | (String?, Array[Peddler::Types::AplusContent20201101::Decorator]?) -> Peddler::Types::AplusContent20201101::TextComponent
 
+        def self.[]: (value: String?, ?decorator_set: Array[Peddler::Types::AplusContent20201101::Decorator]?) -> Peddler::Types::AplusContent20201101::TextComponent
+                   | (String?, Array[Peddler::Types::AplusContent20201101::Decorator]?) -> Peddler::Types::AplusContent20201101::TextComponent
+
+        def self.members: () -> [ :value, :decorator_set ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::TextComponent
 
         attr_reader decorator_set: Array[Peddler::Types::AplusContent20201101::Decorator]?
         attr_reader value: String?
+        def members: () -> [ :value, :decorator_set ]
 
         def to_h: () -> { value: String?, decorator_set: Array[Peddler::Types::AplusContent20201101::Decorator]? }
       end
@@ -732,10 +1046,16 @@ module Peddler
         def self.new: (position: Integer?, text: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::TextItem
                     | (Integer?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::TextItem
 
+        def self.[]: (position: Integer?, text: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::TextItem
+                   | (Integer?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::TextItem
+
+        def self.members: () -> [ :position, :text ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::TextItem
 
         attr_reader position: Integer?
         attr_reader text: Peddler::Types::AplusContent20201101::TextComponent?
+        def members: () -> [ :position, :text ]
 
         def to_h: () -> { position: Integer?, text: Peddler::Types::AplusContent20201101::TextComponent? }
       end
@@ -744,10 +1064,16 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::AplusContent20201101::Error]?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
                     | (Array[Peddler::Types::AplusContent20201101::Error]?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
 
+        def self.[]: (errors: Array[Peddler::Types::AplusContent20201101::Error]?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
+                   | (Array[Peddler::Types::AplusContent20201101::Error]?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
+
+        def self.members: () -> [ :errors, :warnings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
 
         attr_reader errors: Array[Peddler::Types::AplusContent20201101::Error]?
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        def members: () -> [ :errors, :warnings ]
 
         def to_h: () -> { errors: Array[Peddler::Types::AplusContent20201101::Error]?, warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end

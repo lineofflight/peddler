@@ -5,12 +5,18 @@ module Peddler
         def self.new: (?posted_date: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_id: String?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::AdhocDisbursementEvent
                     | (String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::AdhocDisbursementEvent
 
+        def self.[]: (?posted_date: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_id: String?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::AdhocDisbursementEvent
+                   | (String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::AdhocDisbursementEvent
+
+        def self.members: () -> [ :posted_date, :transaction_amount, :transaction_id, :transaction_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::AdhocDisbursementEvent
 
         attr_reader posted_date: String?
         attr_reader transaction_amount: Peddler::Types::Money?
         attr_reader transaction_id: String?
         attr_reader transaction_type: String?
+        def members: () -> [ :posted_date, :transaction_amount, :transaction_id, :transaction_type ]
 
         def to_h: () -> { posted_date: String?, transaction_amount: Peddler::Types::Money?, transaction_id: String?, transaction_type: String? }
       end
@@ -23,6 +29,11 @@ module Peddler
         def self.new: (?adjustment_amount: Peddler::Types::Money?, ?adjustment_item_list: Array[Peddler::Types::FinancesV0::AdjustmentItem]?, ?adjustment_type: String?, ?posted_date: String?, ?store_name: String?) -> Peddler::Types::FinancesV0::AdjustmentEvent
                     | (Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::AdjustmentItem]?, String?, String?, String?) -> Peddler::Types::FinancesV0::AdjustmentEvent
 
+        def self.[]: (?adjustment_amount: Peddler::Types::Money?, ?adjustment_item_list: Array[Peddler::Types::FinancesV0::AdjustmentItem]?, ?adjustment_type: String?, ?posted_date: String?, ?store_name: String?) -> Peddler::Types::FinancesV0::AdjustmentEvent
+                   | (Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::AdjustmentItem]?, String?, String?, String?) -> Peddler::Types::FinancesV0::AdjustmentEvent
+
+        def self.members: () -> [ :adjustment_amount, :adjustment_item_list, :adjustment_type, :posted_date, :store_name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::AdjustmentEvent
 
         attr_reader adjustment_amount: Peddler::Types::Money?
@@ -30,6 +41,7 @@ module Peddler
         attr_reader adjustment_type: String?
         attr_reader posted_date: String?
         attr_reader store_name: String?
+        def members: () -> [ :adjustment_amount, :adjustment_item_list, :adjustment_type, :posted_date, :store_name ]
 
         def to_h: () -> { adjustment_amount: Peddler::Types::Money?, adjustment_item_list: Array[Peddler::Types::FinancesV0::AdjustmentItem]?, adjustment_type: String?, posted_date: String?, store_name: String? }
       end
@@ -42,6 +54,11 @@ module Peddler
         def self.new: (?asin: String?, ?fn_sku: String?, ?per_unit_amount: Peddler::Types::Money?, ?product_description: String?, ?quantity: String?, ?seller_sku: String?, ?total_amount: Peddler::Types::Money?, ?transaction_number: String?) -> Peddler::Types::FinancesV0::AdjustmentItem
                     | (String?, String?, Peddler::Types::Money?, String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::AdjustmentItem
 
+        def self.[]: (?asin: String?, ?fn_sku: String?, ?per_unit_amount: Peddler::Types::Money?, ?product_description: String?, ?quantity: String?, ?seller_sku: String?, ?total_amount: Peddler::Types::Money?, ?transaction_number: String?) -> Peddler::Types::FinancesV0::AdjustmentItem
+                   | (String?, String?, Peddler::Types::Money?, String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::AdjustmentItem
+
+        def self.members: () -> [ :asin, :fn_sku, :per_unit_amount, :product_description, :quantity, :seller_sku, :total_amount, :transaction_number ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::AdjustmentItem
 
         attr_reader asin: String?
@@ -52,6 +69,7 @@ module Peddler
         attr_reader seller_sku: String?
         attr_reader total_amount: Peddler::Types::Money?
         attr_reader transaction_number: String?
+        def members: () -> [ :asin, :fn_sku, :per_unit_amount, :product_description, :quantity, :seller_sku, :total_amount, :transaction_number ]
 
         def to_h: () -> { asin: String?, fn_sku: String?, per_unit_amount: Peddler::Types::Money?, product_description: String?, quantity: String?, seller_sku: String?, total_amount: Peddler::Types::Money?, transaction_number: String? }
       end
@@ -64,6 +82,11 @@ module Peddler
         def self.new: (tax_type_cgst: Peddler::Types::Money?, tax_type_igst: Peddler::Types::Money?, tax_type_sgst: Peddler::Types::Money?, ?amazon_order_id: String?, ?base_expense: Peddler::Types::Money?, ?marketplace_id: String?, ?posted_date: String?, ?total_expense: Peddler::Types::Money?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::AffordabilityExpenseEvent
                     | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::AffordabilityExpenseEvent
 
+        def self.[]: (tax_type_cgst: Peddler::Types::Money?, tax_type_igst: Peddler::Types::Money?, tax_type_sgst: Peddler::Types::Money?, ?amazon_order_id: String?, ?base_expense: Peddler::Types::Money?, ?marketplace_id: String?, ?posted_date: String?, ?total_expense: Peddler::Types::Money?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::AffordabilityExpenseEvent
+                   | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::AffordabilityExpenseEvent
+
+        def self.members: () -> [ :tax_type_cgst, :tax_type_igst, :tax_type_sgst, :amazon_order_id, :base_expense, :marketplace_id, :posted_date, :total_expense, :transaction_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::AffordabilityExpenseEvent
 
         attr_reader amazon_order_id: String?
@@ -73,9 +96,9 @@ module Peddler
         attr_reader tax_type_cgst: Peddler::Types::Money?
         attr_reader tax_type_igst: Peddler::Types::Money?
         attr_reader tax_type_sgst: Peddler::Types::Money?
-
         attr_reader total_expense: Peddler::Types::Money?
         attr_reader transaction_type: String?
+        def members: () -> [ :tax_type_cgst, :tax_type_igst, :tax_type_sgst, :amazon_order_id, :base_expense, :marketplace_id, :posted_date, :total_expense, :transaction_type ]
 
         def to_h: () -> { tax_type_cgst: Peddler::Types::Money?, tax_type_igst: Peddler::Types::Money?, tax_type_sgst: Peddler::Types::Money?, amazon_order_id: String?, base_expense: Peddler::Types::Money?, marketplace_id: String?, posted_date: String?, total_expense: Peddler::Types::Money?, transaction_type: String? }
       end
@@ -88,12 +111,18 @@ module Peddler
         def self.new: (?description: String?, ?posted_date: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::CapacityReservationBillingEvent
                     | (String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::CapacityReservationBillingEvent
 
+        def self.[]: (?description: String?, ?posted_date: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::CapacityReservationBillingEvent
+                   | (String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::CapacityReservationBillingEvent
+
+        def self.members: () -> [ :description, :posted_date, :transaction_amount, :transaction_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::CapacityReservationBillingEvent
 
         attr_reader description: String?
         attr_reader posted_date: String?
         attr_reader transaction_amount: Peddler::Types::Money?
         attr_reader transaction_type: String?
+        def members: () -> [ :description, :posted_date, :transaction_amount, :transaction_type ]
 
         def to_h: () -> { description: String?, posted_date: String?, transaction_amount: Peddler::Types::Money?, transaction_type: String? }
       end
@@ -106,10 +135,16 @@ module Peddler
         def self.new: (?charge_amount: Peddler::Types::Money?, ?charge_type: String?) -> Peddler::Types::FinancesV0::ChargeComponent
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::ChargeComponent
 
+        def self.[]: (?charge_amount: Peddler::Types::Money?, ?charge_type: String?) -> Peddler::Types::FinancesV0::ChargeComponent
+                   | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::ChargeComponent
+
+        def self.members: () -> [ :charge_amount, :charge_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ChargeComponent
 
         attr_reader charge_amount: Peddler::Types::Money?
         attr_reader charge_type: String?
+        def members: () -> [ :charge_amount, :charge_type ]
 
         def to_h: () -> { charge_amount: Peddler::Types::Money?, charge_type: String? }
       end
@@ -122,11 +157,17 @@ module Peddler
         def self.new: (?amount: Peddler::Types::Money?, ?description: String?, ?tail: String?) -> Peddler::Types::FinancesV0::ChargeInstrument
                     | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::ChargeInstrument
 
+        def self.[]: (?amount: Peddler::Types::Money?, ?description: String?, ?tail: String?) -> Peddler::Types::FinancesV0::ChargeInstrument
+                   | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::ChargeInstrument
+
+        def self.members: () -> [ :amount, :description, :tail ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ChargeInstrument
 
         attr_reader amount: Peddler::Types::Money?
         attr_reader description: String?
         attr_reader tail: String?
+        def members: () -> [ :amount, :description, :tail ]
 
         def to_h: () -> { amount: Peddler::Types::Money?, description: String?, tail: String? }
       end
@@ -139,12 +180,18 @@ module Peddler
         def self.new: (?charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?, ?posted_date: String?, ?reason_code: String?, ?reason_code_description: String?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
                     | (Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?, String?, String?, String?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
 
+        def self.[]: (?charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?, ?posted_date: String?, ?reason_code: String?, ?reason_code_description: String?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
+                   | (Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?, String?, String?, String?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
+
+        def self.members: () -> [ :charge_refund_transactions, :posted_date, :reason_code, :reason_code_description ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ChargeRefundEvent
 
         attr_reader charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?
         attr_reader posted_date: String?
         attr_reader reason_code: String?
         attr_reader reason_code_description: String?
+        def members: () -> [ :charge_refund_transactions, :posted_date, :reason_code, :reason_code_description ]
 
         def to_h: () -> { charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?, posted_date: String?, reason_code: String?, reason_code_description: String? }
       end
@@ -157,10 +204,16 @@ module Peddler
         def self.new: (?charge_amount: Peddler::Types::Money?, ?charge_type: String?) -> Peddler::Types::FinancesV0::ChargeRefundTransaction
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::ChargeRefundTransaction
 
+        def self.[]: (?charge_amount: Peddler::Types::Money?, ?charge_type: String?) -> Peddler::Types::FinancesV0::ChargeRefundTransaction
+                   | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::ChargeRefundTransaction
+
+        def self.members: () -> [ :charge_amount, :charge_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ChargeRefundTransaction
 
         attr_reader charge_amount: Peddler::Types::Money?
         attr_reader charge_type: String?
+        def members: () -> [ :charge_amount, :charge_type ]
 
         def to_h: () -> { charge_amount: Peddler::Types::Money?, charge_type: String? }
       end
@@ -173,6 +226,11 @@ module Peddler
         def self.new: (?charge_component: Peddler::Types::FinancesV0::ChargeComponent?, ?clip_or_redemption_count: Integer?, ?coupon_id: String?, ?fee_component: Peddler::Types::FinancesV0::FeeComponent?, ?payment_event_id: String?, ?posted_date: String?, ?seller_coupon_description: String?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
                     | (Peddler::Types::FinancesV0::ChargeComponent?, Integer?, String?, Peddler::Types::FinancesV0::FeeComponent?, String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
 
+        def self.[]: (?charge_component: Peddler::Types::FinancesV0::ChargeComponent?, ?clip_or_redemption_count: Integer?, ?coupon_id: String?, ?fee_component: Peddler::Types::FinancesV0::FeeComponent?, ?payment_event_id: String?, ?posted_date: String?, ?seller_coupon_description: String?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
+                   | (Peddler::Types::FinancesV0::ChargeComponent?, Integer?, String?, Peddler::Types::FinancesV0::FeeComponent?, String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
+
+        def self.members: () -> [ :charge_component, :clip_or_redemption_count, :coupon_id, :fee_component, :payment_event_id, :posted_date, :seller_coupon_description, :total_amount ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::CouponPaymentEvent
 
         attr_reader charge_component: Peddler::Types::FinancesV0::ChargeComponent?
@@ -183,6 +241,7 @@ module Peddler
         attr_reader posted_date: String?
         attr_reader seller_coupon_description: String?
         attr_reader total_amount: Peddler::Types::Money?
+        def members: () -> [ :charge_component, :clip_or_redemption_count, :coupon_id, :fee_component, :payment_event_id, :posted_date, :seller_coupon_description, :total_amount ]
 
         def to_h: () -> { charge_component: Peddler::Types::FinancesV0::ChargeComponent?, clip_or_redemption_count: Integer?, coupon_id: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, payment_event_id: String?, posted_date: String?, seller_coupon_description: String?, total_amount: Peddler::Types::Money? }
       end
@@ -195,6 +254,11 @@ module Peddler
         def self.new: (?charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?, ?debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, ?debt_recovery_type: String?, ?over_payment_credit: Peddler::Types::Money?, ?recovery_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
                     | (Array[Peddler::Types::FinancesV0::ChargeInstrument]?, Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
 
+        def self.[]: (?charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?, ?debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, ?debt_recovery_type: String?, ?over_payment_credit: Peddler::Types::Money?, ?recovery_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
+                   | (Array[Peddler::Types::FinancesV0::ChargeInstrument]?, Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
+
+        def self.members: () -> [ :charge_instrument_list, :debt_recovery_item_list, :debt_recovery_type, :over_payment_credit, :recovery_amount ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
 
         attr_reader charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?
@@ -202,6 +266,7 @@ module Peddler
         attr_reader debt_recovery_type: String?
         attr_reader over_payment_credit: Peddler::Types::Money?
         attr_reader recovery_amount: Peddler::Types::Money?
+        def members: () -> [ :charge_instrument_list, :debt_recovery_item_list, :debt_recovery_type, :over_payment_credit, :recovery_amount ]
 
         def to_h: () -> { charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?, debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, debt_recovery_type: String?, over_payment_credit: Peddler::Types::Money?, recovery_amount: Peddler::Types::Money? }
       end
@@ -214,12 +279,18 @@ module Peddler
         def self.new: (?group_begin_date: String?, ?group_end_date: String?, ?original_amount: Peddler::Types::Money?, ?recovery_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
                     | (String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
 
+        def self.[]: (?group_begin_date: String?, ?group_end_date: String?, ?original_amount: Peddler::Types::Money?, ?recovery_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
+                   | (String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
+
+        def self.members: () -> [ :group_begin_date, :group_end_date, :original_amount, :recovery_amount ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::DebtRecoveryItem
 
         attr_reader group_begin_date: String?
         attr_reader group_end_date: String?
         attr_reader original_amount: Peddler::Types::Money?
         attr_reader recovery_amount: Peddler::Types::Money?
+        def members: () -> [ :group_begin_date, :group_end_date, :original_amount, :recovery_amount ]
 
         def to_h: () -> { group_begin_date: String?, group_end_date: String?, original_amount: Peddler::Types::Money?, recovery_amount: Peddler::Types::Money? }
       end
@@ -232,10 +303,16 @@ module Peddler
         def self.new: (?direct_payment_amount: Peddler::Types::Money?, ?direct_payment_type: String?) -> Peddler::Types::FinancesV0::DirectPayment
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::DirectPayment
 
+        def self.[]: (?direct_payment_amount: Peddler::Types::Money?, ?direct_payment_type: String?) -> Peddler::Types::FinancesV0::DirectPayment
+                   | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::DirectPayment
+
+        def self.members: () -> [ :direct_payment_amount, :direct_payment_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::DirectPayment
 
         attr_reader direct_payment_amount: Peddler::Types::Money?
         attr_reader direct_payment_type: String?
+        def members: () -> [ :direct_payment_amount, :direct_payment_type ]
 
         def to_h: () -> { direct_payment_amount: Peddler::Types::Money?, direct_payment_type: String? }
       end
@@ -248,12 +325,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::FinancesV0::Error
                     | (String?, String?, String?) -> Peddler::Types::FinancesV0::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::FinancesV0::Error
+                   | (String?, String?, String?) -> Peddler::Types::FinancesV0::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -266,12 +348,18 @@ module Peddler
         def self.new: (?liquidation_fee_amount: Peddler::Types::Money?, ?liquidation_proceeds_amount: Peddler::Types::Money?, ?original_removal_order_id: String?, ?posted_date: String?) -> Peddler::Types::FinancesV0::FBALiquidationEvent
                     | (Peddler::Types::Money?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::FBALiquidationEvent
 
+        def self.[]: (?liquidation_fee_amount: Peddler::Types::Money?, ?liquidation_proceeds_amount: Peddler::Types::Money?, ?original_removal_order_id: String?, ?posted_date: String?) -> Peddler::Types::FinancesV0::FBALiquidationEvent
+                   | (Peddler::Types::Money?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::FBALiquidationEvent
+
+        def self.members: () -> [ :liquidation_fee_amount, :liquidation_proceeds_amount, :original_removal_order_id, :posted_date ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::FBALiquidationEvent
 
         attr_reader liquidation_fee_amount: Peddler::Types::Money?
         attr_reader liquidation_proceeds_amount: Peddler::Types::Money?
         attr_reader original_removal_order_id: String?
         attr_reader posted_date: String?
+        def members: () -> [ :liquidation_fee_amount, :liquidation_proceeds_amount, :original_removal_order_id, :posted_date ]
 
         def to_h: () -> { liquidation_fee_amount: Peddler::Types::Money?, liquidation_proceeds_amount: Peddler::Types::Money?, original_removal_order_id: String?, posted_date: String? }
       end
@@ -284,6 +372,11 @@ module Peddler
         def self.new: (?disbursement_id: String?, ?funds_transfers_type: String?, ?payment_disbursement_type: String?, ?posted_date: String?, ?status: String?, ?transfer_amount: Peddler::Types::Money?, ?transfer_id: String?) -> Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent
                     | (String?, String?, String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent
 
+        def self.[]: (?disbursement_id: String?, ?funds_transfers_type: String?, ?payment_disbursement_type: String?, ?posted_date: String?, ?status: String?, ?transfer_amount: Peddler::Types::Money?, ?transfer_id: String?) -> Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent
+                   | (String?, String?, String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent
+
+        def self.members: () -> [ :disbursement_id, :funds_transfers_type, :payment_disbursement_type, :posted_date, :status, :transfer_amount, :transfer_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent
 
         attr_reader disbursement_id: String?
@@ -293,6 +386,7 @@ module Peddler
         attr_reader status: String?
         attr_reader transfer_amount: Peddler::Types::Money?
         attr_reader transfer_id: String?
+        def members: () -> [ :disbursement_id, :funds_transfers_type, :payment_disbursement_type, :posted_date, :status, :transfer_amount, :transfer_id ]
 
         def to_h: () -> { disbursement_id: String?, funds_transfers_type: String?, payment_disbursement_type: String?, posted_date: String?, status: String?, transfer_amount: Peddler::Types::Money?, transfer_id: String? }
       end
@@ -305,10 +399,16 @@ module Peddler
         def self.new: (?fee_amount: Peddler::Types::Money?, ?fee_type: String?) -> Peddler::Types::FinancesV0::FeeComponent
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::FeeComponent
 
+        def self.[]: (?fee_amount: Peddler::Types::Money?, ?fee_type: String?) -> Peddler::Types::FinancesV0::FeeComponent
+                   | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::FeeComponent
+
+        def self.members: () -> [ :fee_amount, :fee_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::FeeComponent
 
         attr_reader fee_amount: Peddler::Types::Money?
         attr_reader fee_type: String?
+        def members: () -> [ :fee_amount, :fee_type ]
 
         def to_h: () -> { fee_amount: Peddler::Types::Money?, fee_type: String? }
       end
@@ -320,6 +420,11 @@ module Peddler
       class FinancialEventGroup < Data
         def self.new: (?account_tail: String?, ?beginning_balance: Peddler::Types::Money?, ?converted_total: Peddler::Types::Money?, ?financial_event_group_end: String?, ?financial_event_group_id: String?, ?financial_event_group_start: String?, ?fund_transfer_date: String?, ?fund_transfer_status: String?, ?original_total: Peddler::Types::Money?, ?processing_status: String?, ?trace_id: String?) -> Peddler::Types::FinancesV0::FinancialEventGroup
                     | (String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?, String?, String?, String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::FinancialEventGroup
+
+        def self.[]: (?account_tail: String?, ?beginning_balance: Peddler::Types::Money?, ?converted_total: Peddler::Types::Money?, ?financial_event_group_end: String?, ?financial_event_group_id: String?, ?financial_event_group_start: String?, ?fund_transfer_date: String?, ?fund_transfer_status: String?, ?original_total: Peddler::Types::Money?, ?processing_status: String?, ?trace_id: String?) -> Peddler::Types::FinancesV0::FinancialEventGroup
+                   | (String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?, String?, String?, String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::FinancialEventGroup
+
+        def self.members: () -> [ :account_tail, :beginning_balance, :converted_total, :financial_event_group_end, :financial_event_group_id, :financial_event_group_start, :fund_transfer_date, :fund_transfer_status, :original_total, :processing_status, :trace_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::FinancialEventGroup
 
@@ -334,6 +439,7 @@ module Peddler
         attr_reader original_total: Peddler::Types::Money?
         attr_reader processing_status: String?
         attr_reader trace_id: String?
+        def members: () -> [ :account_tail, :beginning_balance, :converted_total, :financial_event_group_end, :financial_event_group_id, :financial_event_group_start, :fund_transfer_date, :fund_transfer_status, :original_total, :processing_status, :trace_id ]
 
         def to_h: () -> { account_tail: String?, beginning_balance: Peddler::Types::Money?, converted_total: Peddler::Types::Money?, financial_event_group_end: String?, financial_event_group_id: String?, financial_event_group_start: String?, fund_transfer_date: String?, fund_transfer_status: String?, original_total: Peddler::Types::Money?, processing_status: String?, trace_id: String? }
       end
@@ -346,6 +452,11 @@ module Peddler
         def self.new: (?adhoc_disbursement_event_list: Array[Peddler::Types::FinancesV0::AdhocDisbursementEvent]?, ?adjustment_event_list: Array[Peddler::Types::FinancesV0::AdjustmentEvent]?, ?affordability_expense_event_list: Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, ?affordability_expense_reversal_event_list: Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, ?capacity_reservation_billing_event_list: Array[Peddler::Types::FinancesV0::CapacityReservationBillingEvent]?, ?charge_refund_event_list: Array[Peddler::Types::FinancesV0::ChargeRefundEvent]?, ?chargeback_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?coupon_payment_event_list: Array[Peddler::Types::FinancesV0::CouponPaymentEvent]?, ?debt_recovery_event_list: Array[Peddler::Types::FinancesV0::DebtRecoveryEvent]?, ?fba_liquidation_event_list: Array[Peddler::Types::FinancesV0::FBALiquidationEvent]?, ?failed_adhoc_disbursement_event_list: Array[Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent]?, ?guarantee_claim_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?imaging_services_fee_event_list: Array[Peddler::Types::FinancesV0::ImagingServicesFeeEvent]?, ?loan_servicing_event_list: Array[Peddler::Types::FinancesV0::LoanServicingEvent]?, ?network_commingling_transaction_event_list: Array[Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent]?, ?pay_with_amazon_event_list: Array[Peddler::Types::FinancesV0::PayWithAmazonEvent]?, ?product_ads_payment_event_list: Array[Peddler::Types::FinancesV0::ProductAdsPaymentEvent]?, ?refund_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?removal_shipment_adjustment_event_list: Array[Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent]?, ?removal_shipment_event_list: Array[Peddler::Types::FinancesV0::RemovalShipmentEvent]?, ?rental_transaction_event_list: Array[Peddler::Types::FinancesV0::RentalTransactionEvent]?, ?retrocharge_event_list: Array[Peddler::Types::FinancesV0::RetrochargeEvent]?, ?safet_reimbursement_event_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementEvent]?, ?seller_deal_payment_event_list: Array[Peddler::Types::FinancesV0::SellerDealPaymentEvent]?, ?seller_review_enrollment_payment_event_list: Array[Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent]?, ?service_fee_event_list: Array[Peddler::Types::FinancesV0::ServiceFeeEvent]?, ?service_provider_credit_event_list: Array[Peddler::Types::FinancesV0::SolutionProviderCreditEvent]?, ?shipment_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?shipment_settle_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?tds_reimbursement_event_list: Array[Peddler::Types::FinancesV0::TDSReimbursementEvent]?, ?tax_withholding_event_list: Array[Peddler::Types::FinancesV0::TaxWithholdingEvent]?, ?trial_shipment_event_list: Array[Peddler::Types::FinancesV0::TrialShipmentEvent]?, ?value_added_service_charge_event_list: Array[Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent]?) -> Peddler::Types::FinancesV0::FinancialEvents
                     | (Array[Peddler::Types::FinancesV0::AdhocDisbursementEvent]?, Array[Peddler::Types::FinancesV0::AdjustmentEvent]?, Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, Array[Peddler::Types::FinancesV0::CapacityReservationBillingEvent]?, Array[Peddler::Types::FinancesV0::ChargeRefundEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::CouponPaymentEvent]?, Array[Peddler::Types::FinancesV0::DebtRecoveryEvent]?, Array[Peddler::Types::FinancesV0::FBALiquidationEvent]?, Array[Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::ImagingServicesFeeEvent]?, Array[Peddler::Types::FinancesV0::LoanServicingEvent]?, Array[Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent]?, Array[Peddler::Types::FinancesV0::PayWithAmazonEvent]?, Array[Peddler::Types::FinancesV0::ProductAdsPaymentEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent]?, Array[Peddler::Types::FinancesV0::RemovalShipmentEvent]?, Array[Peddler::Types::FinancesV0::RentalTransactionEvent]?, Array[Peddler::Types::FinancesV0::RetrochargeEvent]?, Array[Peddler::Types::FinancesV0::SAFETReimbursementEvent]?, Array[Peddler::Types::FinancesV0::SellerDealPaymentEvent]?, Array[Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent]?, Array[Peddler::Types::FinancesV0::ServiceFeeEvent]?, Array[Peddler::Types::FinancesV0::SolutionProviderCreditEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::TDSReimbursementEvent]?, Array[Peddler::Types::FinancesV0::TaxWithholdingEvent]?, Array[Peddler::Types::FinancesV0::TrialShipmentEvent]?, Array[Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent]?) -> Peddler::Types::FinancesV0::FinancialEvents
 
+        def self.[]: (?adhoc_disbursement_event_list: Array[Peddler::Types::FinancesV0::AdhocDisbursementEvent]?, ?adjustment_event_list: Array[Peddler::Types::FinancesV0::AdjustmentEvent]?, ?affordability_expense_event_list: Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, ?affordability_expense_reversal_event_list: Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, ?capacity_reservation_billing_event_list: Array[Peddler::Types::FinancesV0::CapacityReservationBillingEvent]?, ?charge_refund_event_list: Array[Peddler::Types::FinancesV0::ChargeRefundEvent]?, ?chargeback_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?coupon_payment_event_list: Array[Peddler::Types::FinancesV0::CouponPaymentEvent]?, ?debt_recovery_event_list: Array[Peddler::Types::FinancesV0::DebtRecoveryEvent]?, ?fba_liquidation_event_list: Array[Peddler::Types::FinancesV0::FBALiquidationEvent]?, ?failed_adhoc_disbursement_event_list: Array[Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent]?, ?guarantee_claim_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?imaging_services_fee_event_list: Array[Peddler::Types::FinancesV0::ImagingServicesFeeEvent]?, ?loan_servicing_event_list: Array[Peddler::Types::FinancesV0::LoanServicingEvent]?, ?network_commingling_transaction_event_list: Array[Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent]?, ?pay_with_amazon_event_list: Array[Peddler::Types::FinancesV0::PayWithAmazonEvent]?, ?product_ads_payment_event_list: Array[Peddler::Types::FinancesV0::ProductAdsPaymentEvent]?, ?refund_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?removal_shipment_adjustment_event_list: Array[Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent]?, ?removal_shipment_event_list: Array[Peddler::Types::FinancesV0::RemovalShipmentEvent]?, ?rental_transaction_event_list: Array[Peddler::Types::FinancesV0::RentalTransactionEvent]?, ?retrocharge_event_list: Array[Peddler::Types::FinancesV0::RetrochargeEvent]?, ?safet_reimbursement_event_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementEvent]?, ?seller_deal_payment_event_list: Array[Peddler::Types::FinancesV0::SellerDealPaymentEvent]?, ?seller_review_enrollment_payment_event_list: Array[Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent]?, ?service_fee_event_list: Array[Peddler::Types::FinancesV0::ServiceFeeEvent]?, ?service_provider_credit_event_list: Array[Peddler::Types::FinancesV0::SolutionProviderCreditEvent]?, ?shipment_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?shipment_settle_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, ?tds_reimbursement_event_list: Array[Peddler::Types::FinancesV0::TDSReimbursementEvent]?, ?tax_withholding_event_list: Array[Peddler::Types::FinancesV0::TaxWithholdingEvent]?, ?trial_shipment_event_list: Array[Peddler::Types::FinancesV0::TrialShipmentEvent]?, ?value_added_service_charge_event_list: Array[Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent]?) -> Peddler::Types::FinancesV0::FinancialEvents
+                   | (Array[Peddler::Types::FinancesV0::AdhocDisbursementEvent]?, Array[Peddler::Types::FinancesV0::AdjustmentEvent]?, Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, Array[Peddler::Types::FinancesV0::CapacityReservationBillingEvent]?, Array[Peddler::Types::FinancesV0::ChargeRefundEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::CouponPaymentEvent]?, Array[Peddler::Types::FinancesV0::DebtRecoveryEvent]?, Array[Peddler::Types::FinancesV0::FBALiquidationEvent]?, Array[Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::ImagingServicesFeeEvent]?, Array[Peddler::Types::FinancesV0::LoanServicingEvent]?, Array[Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent]?, Array[Peddler::Types::FinancesV0::PayWithAmazonEvent]?, Array[Peddler::Types::FinancesV0::ProductAdsPaymentEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent]?, Array[Peddler::Types::FinancesV0::RemovalShipmentEvent]?, Array[Peddler::Types::FinancesV0::RentalTransactionEvent]?, Array[Peddler::Types::FinancesV0::RetrochargeEvent]?, Array[Peddler::Types::FinancesV0::SAFETReimbursementEvent]?, Array[Peddler::Types::FinancesV0::SellerDealPaymentEvent]?, Array[Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent]?, Array[Peddler::Types::FinancesV0::ServiceFeeEvent]?, Array[Peddler::Types::FinancesV0::SolutionProviderCreditEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::ShipmentEvent]?, Array[Peddler::Types::FinancesV0::TDSReimbursementEvent]?, Array[Peddler::Types::FinancesV0::TaxWithholdingEvent]?, Array[Peddler::Types::FinancesV0::TrialShipmentEvent]?, Array[Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent]?) -> Peddler::Types::FinancesV0::FinancialEvents
+
+        def self.members: () -> [ :adhoc_disbursement_event_list, :adjustment_event_list, :affordability_expense_event_list, :affordability_expense_reversal_event_list, :capacity_reservation_billing_event_list, :charge_refund_event_list, :chargeback_event_list, :coupon_payment_event_list, :debt_recovery_event_list, :fba_liquidation_event_list, :failed_adhoc_disbursement_event_list, :guarantee_claim_event_list, :imaging_services_fee_event_list, :loan_servicing_event_list, :network_commingling_transaction_event_list, :pay_with_amazon_event_list, :product_ads_payment_event_list, :refund_event_list, :removal_shipment_adjustment_event_list, :removal_shipment_event_list, :rental_transaction_event_list, :retrocharge_event_list, :safet_reimbursement_event_list, :seller_deal_payment_event_list, :seller_review_enrollment_payment_event_list, :service_fee_event_list, :service_provider_credit_event_list, :shipment_event_list, :shipment_settle_event_list, :tds_reimbursement_event_list, :tax_withholding_event_list, :trial_shipment_event_list, :value_added_service_charge_event_list ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::FinancialEvents
 
         attr_reader adhoc_disbursement_event_list: Array[Peddler::Types::FinancesV0::AdhocDisbursementEvent]?
@@ -357,10 +468,8 @@ module Peddler
         attr_reader chargeback_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?
         attr_reader coupon_payment_event_list: Array[Peddler::Types::FinancesV0::CouponPaymentEvent]?
         attr_reader debt_recovery_event_list: Array[Peddler::Types::FinancesV0::DebtRecoveryEvent]?
-
         attr_reader failed_adhoc_disbursement_event_list: Array[Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent]?
         attr_reader fba_liquidation_event_list: Array[Peddler::Types::FinancesV0::FBALiquidationEvent]?
-
         attr_reader guarantee_claim_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?
         attr_reader imaging_services_fee_event_list: Array[Peddler::Types::FinancesV0::ImagingServicesFeeEvent]?
         attr_reader loan_servicing_event_list: Array[Peddler::Types::FinancesV0::LoanServicingEvent]?
@@ -379,12 +488,11 @@ module Peddler
         attr_reader service_provider_credit_event_list: Array[Peddler::Types::FinancesV0::SolutionProviderCreditEvent]?
         attr_reader shipment_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?
         attr_reader shipment_settle_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?
-
         attr_reader tax_withholding_event_list: Array[Peddler::Types::FinancesV0::TaxWithholdingEvent]?
         attr_reader tds_reimbursement_event_list: Array[Peddler::Types::FinancesV0::TDSReimbursementEvent]?
-
         attr_reader trial_shipment_event_list: Array[Peddler::Types::FinancesV0::TrialShipmentEvent]?
         attr_reader value_added_service_charge_event_list: Array[Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent]?
+        def members: () -> [ :adhoc_disbursement_event_list, :adjustment_event_list, :affordability_expense_event_list, :affordability_expense_reversal_event_list, :capacity_reservation_billing_event_list, :charge_refund_event_list, :chargeback_event_list, :coupon_payment_event_list, :debt_recovery_event_list, :fba_liquidation_event_list, :failed_adhoc_disbursement_event_list, :guarantee_claim_event_list, :imaging_services_fee_event_list, :loan_servicing_event_list, :network_commingling_transaction_event_list, :pay_with_amazon_event_list, :product_ads_payment_event_list, :refund_event_list, :removal_shipment_adjustment_event_list, :removal_shipment_event_list, :rental_transaction_event_list, :retrocharge_event_list, :safet_reimbursement_event_list, :seller_deal_payment_event_list, :seller_review_enrollment_payment_event_list, :service_fee_event_list, :service_provider_credit_event_list, :shipment_event_list, :shipment_settle_event_list, :tds_reimbursement_event_list, :tax_withholding_event_list, :trial_shipment_event_list, :value_added_service_charge_event_list ]
 
         def to_h: () -> { adhoc_disbursement_event_list: Array[Peddler::Types::FinancesV0::AdhocDisbursementEvent]?, adjustment_event_list: Array[Peddler::Types::FinancesV0::AdjustmentEvent]?, affordability_expense_event_list: Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, affordability_expense_reversal_event_list: Array[Peddler::Types::FinancesV0::AffordabilityExpenseEvent]?, capacity_reservation_billing_event_list: Array[Peddler::Types::FinancesV0::CapacityReservationBillingEvent]?, charge_refund_event_list: Array[Peddler::Types::FinancesV0::ChargeRefundEvent]?, chargeback_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, coupon_payment_event_list: Array[Peddler::Types::FinancesV0::CouponPaymentEvent]?, debt_recovery_event_list: Array[Peddler::Types::FinancesV0::DebtRecoveryEvent]?, fba_liquidation_event_list: Array[Peddler::Types::FinancesV0::FBALiquidationEvent]?, failed_adhoc_disbursement_event_list: Array[Peddler::Types::FinancesV0::FailedAdhocDisbursementEvent]?, guarantee_claim_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, imaging_services_fee_event_list: Array[Peddler::Types::FinancesV0::ImagingServicesFeeEvent]?, loan_servicing_event_list: Array[Peddler::Types::FinancesV0::LoanServicingEvent]?, network_commingling_transaction_event_list: Array[Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent]?, pay_with_amazon_event_list: Array[Peddler::Types::FinancesV0::PayWithAmazonEvent]?, product_ads_payment_event_list: Array[Peddler::Types::FinancesV0::ProductAdsPaymentEvent]?, refund_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, removal_shipment_adjustment_event_list: Array[Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent]?, removal_shipment_event_list: Array[Peddler::Types::FinancesV0::RemovalShipmentEvent]?, rental_transaction_event_list: Array[Peddler::Types::FinancesV0::RentalTransactionEvent]?, retrocharge_event_list: Array[Peddler::Types::FinancesV0::RetrochargeEvent]?, safet_reimbursement_event_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementEvent]?, seller_deal_payment_event_list: Array[Peddler::Types::FinancesV0::SellerDealPaymentEvent]?, seller_review_enrollment_payment_event_list: Array[Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent]?, service_fee_event_list: Array[Peddler::Types::FinancesV0::ServiceFeeEvent]?, service_provider_credit_event_list: Array[Peddler::Types::FinancesV0::SolutionProviderCreditEvent]?, shipment_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, shipment_settle_event_list: Array[Peddler::Types::FinancesV0::ShipmentEvent]?, tds_reimbursement_event_list: Array[Peddler::Types::FinancesV0::TDSReimbursementEvent]?, tax_withholding_event_list: Array[Peddler::Types::FinancesV0::TaxWithholdingEvent]?, trial_shipment_event_list: Array[Peddler::Types::FinancesV0::TrialShipmentEvent]?, value_added_service_charge_event_list: Array[Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent]? }
       end
@@ -393,12 +501,18 @@ module Peddler
         def self.new: (?asin: String?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?imaging_request_billing_item_id: String?, ?posted_date: String?) -> Peddler::Types::FinancesV0::ImagingServicesFeeEvent
                     | (String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?) -> Peddler::Types::FinancesV0::ImagingServicesFeeEvent
 
+        def self.[]: (?asin: String?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?imaging_request_billing_item_id: String?, ?posted_date: String?) -> Peddler::Types::FinancesV0::ImagingServicesFeeEvent
+                   | (String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?) -> Peddler::Types::FinancesV0::ImagingServicesFeeEvent
+
+        def self.members: () -> [ :asin, :fee_list, :imaging_request_billing_item_id, :posted_date ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ImagingServicesFeeEvent
 
         attr_reader asin: String?
         attr_reader fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
         attr_reader imaging_request_billing_item_id: String?
         attr_reader posted_date: String?
+        def members: () -> [ :asin, :fee_list, :imaging_request_billing_item_id, :posted_date ]
 
         def to_h: () -> { asin: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, imaging_request_billing_item_id: String?, posted_date: String? }
       end
@@ -411,10 +525,16 @@ module Peddler
         def self.new: (?financial_event_group_list: Array[Peddler::Types::FinancesV0::FinancialEventGroup]?, ?next_token: String?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload
                     | (Array[Peddler::Types::FinancesV0::FinancialEventGroup]?, String?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload
 
+        def self.[]: (?financial_event_group_list: Array[Peddler::Types::FinancesV0::FinancialEventGroup]?, ?next_token: String?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload
+                   | (Array[Peddler::Types::FinancesV0::FinancialEventGroup]?, String?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload
+
+        def self.members: () -> [ :financial_event_group_list, :next_token ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload
 
         attr_reader financial_event_group_list: Array[Peddler::Types::FinancesV0::FinancialEventGroup]?
         attr_reader next_token: String?
+        def members: () -> [ :financial_event_group_list, :next_token ]
 
         def to_h: () -> { financial_event_group_list: Array[Peddler::Types::FinancesV0::FinancialEventGroup]?, next_token: String? }
       end
@@ -423,10 +543,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::FinancesV0::Error]?, ?payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
                     | (Array[Peddler::Types::FinancesV0::Error]?, Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::FinancesV0::Error]?, ?payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
+                   | (Array[Peddler::Types::FinancesV0::Error]?, Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
 
         attr_reader errors: Array[Peddler::Types::FinancesV0::Error]?
         attr_reader payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::FinancesV0::Error]?, payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload? }
       end
@@ -435,10 +561,16 @@ module Peddler
         def self.new: (?financial_events: Peddler::Types::FinancesV0::FinancialEvents?, ?next_token: String?) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload
                     | (Peddler::Types::FinancesV0::FinancialEvents?, String?) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload
 
+        def self.[]: (?financial_events: Peddler::Types::FinancesV0::FinancialEvents?, ?next_token: String?) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload
+                   | (Peddler::Types::FinancesV0::FinancialEvents?, String?) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload
+
+        def self.members: () -> [ :financial_events, :next_token ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload
 
         attr_reader financial_events: Peddler::Types::FinancesV0::FinancialEvents?
         attr_reader next_token: String?
+        def members: () -> [ :financial_events, :next_token ]
 
         def to_h: () -> { financial_events: Peddler::Types::FinancesV0::FinancialEvents?, next_token: String? }
       end
@@ -447,10 +579,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::FinancesV0::Error]?, ?payload: Peddler::Types::FinancesV0::ListFinancialEventsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse
                     | (Array[Peddler::Types::FinancesV0::Error]?, Peddler::Types::FinancesV0::ListFinancialEventsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::FinancesV0::Error]?, ?payload: Peddler::Types::FinancesV0::ListFinancialEventsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse
+                   | (Array[Peddler::Types::FinancesV0::Error]?, Peddler::Types::FinancesV0::ListFinancialEventsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse
 
         attr_reader errors: Array[Peddler::Types::FinancesV0::Error]?
         attr_reader payload: Peddler::Types::FinancesV0::ListFinancialEventsPayload?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::FinancesV0::Error]?, payload: Peddler::Types::FinancesV0::ListFinancialEventsPayload? }
       end
@@ -459,10 +597,16 @@ module Peddler
         def self.new: (?loan_amount: Peddler::Types::Money?, ?source_business_event_type: String?) -> Peddler::Types::FinancesV0::LoanServicingEvent
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::LoanServicingEvent
 
+        def self.[]: (?loan_amount: Peddler::Types::Money?, ?source_business_event_type: String?) -> Peddler::Types::FinancesV0::LoanServicingEvent
+                   | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::LoanServicingEvent
+
+        def self.members: () -> [ :loan_amount, :source_business_event_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::LoanServicingEvent
 
         attr_reader loan_amount: Peddler::Types::Money?
         attr_reader source_business_event_type: String?
+        def members: () -> [ :loan_amount, :source_business_event_type ]
 
         def to_h: () -> { loan_amount: Peddler::Types::Money?, source_business_event_type: String? }
       end
@@ -475,6 +619,11 @@ module Peddler
         def self.new: (?asin: String?, ?marketplace_id: String?, ?net_co_transaction_id: String?, ?posted_date: String?, ?swap_reason: String?, ?tax_amount: Peddler::Types::Money?, ?tax_exclusive_amount: Peddler::Types::Money?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent
                     | (String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent
 
+        def self.[]: (?asin: String?, ?marketplace_id: String?, ?net_co_transaction_id: String?, ?posted_date: String?, ?swap_reason: String?, ?tax_amount: Peddler::Types::Money?, ?tax_exclusive_amount: Peddler::Types::Money?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent
+                   | (String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent
+
+        def self.members: () -> [ :asin, :marketplace_id, :net_co_transaction_id, :posted_date, :swap_reason, :tax_amount, :tax_exclusive_amount, :transaction_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::NetworkComminglingTransactionEvent
 
         attr_reader asin: String?
@@ -485,6 +634,7 @@ module Peddler
         attr_reader tax_amount: Peddler::Types::Money?
         attr_reader tax_exclusive_amount: Peddler::Types::Money?
         attr_reader transaction_type: String?
+        def members: () -> [ :asin, :marketplace_id, :net_co_transaction_id, :posted_date, :swap_reason, :tax_amount, :tax_exclusive_amount, :transaction_type ]
 
         def to_h: () -> { asin: String?, marketplace_id: String?, net_co_transaction_id: String?, posted_date: String?, swap_reason: String?, tax_amount: Peddler::Types::Money?, tax_exclusive_amount: Peddler::Types::Money?, transaction_type: String? }
       end
@@ -496,6 +646,11 @@ module Peddler
       class PayWithAmazonEvent < Data
         def self.new: (?amount_description: String?, ?business_object_type: String?, ?charge: Peddler::Types::FinancesV0::ChargeComponent?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?fulfillment_channel: String?, ?payment_amount_type: String?, ?sales_channel: String?, ?seller_order_id: String?, ?store_name: String?, ?transaction_posted_date: String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
                     | (String?, String?, Peddler::Types::FinancesV0::ChargeComponent?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
+
+        def self.[]: (?amount_description: String?, ?business_object_type: String?, ?charge: Peddler::Types::FinancesV0::ChargeComponent?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?fulfillment_channel: String?, ?payment_amount_type: String?, ?sales_channel: String?, ?seller_order_id: String?, ?store_name: String?, ?transaction_posted_date: String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
+                   | (String?, String?, Peddler::Types::FinancesV0::ChargeComponent?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
+
+        def self.members: () -> [ :amount_description, :business_object_type, :charge, :fee_list, :fulfillment_channel, :payment_amount_type, :sales_channel, :seller_order_id, :store_name, :transaction_posted_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
 
@@ -509,6 +664,7 @@ module Peddler
         attr_reader seller_order_id: String?
         attr_reader store_name: String?
         attr_reader transaction_posted_date: String?
+        def members: () -> [ :amount_description, :business_object_type, :charge, :fee_list, :fulfillment_channel, :payment_amount_type, :sales_channel, :seller_order_id, :store_name, :transaction_posted_date ]
 
         def to_h: () -> { amount_description: String?, business_object_type: String?, charge: Peddler::Types::FinancesV0::ChargeComponent?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, fulfillment_channel: String?, payment_amount_type: String?, sales_channel: String?, seller_order_id: String?, store_name: String?, transaction_posted_date: String? }
       end
@@ -521,6 +677,11 @@ module Peddler
         def self.new: (?base_value: Peddler::Types::Money?, ?invoice_id: String?, ?posted_date: String?, ?tax_value: Peddler::Types::Money?, ?transaction_type: String?, ?transaction_value: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::ProductAdsPaymentEvent
                     | (Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::ProductAdsPaymentEvent
 
+        def self.[]: (?base_value: Peddler::Types::Money?, ?invoice_id: String?, ?posted_date: String?, ?tax_value: Peddler::Types::Money?, ?transaction_type: String?, ?transaction_value: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::ProductAdsPaymentEvent
+                   | (Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::ProductAdsPaymentEvent
+
+        def self.members: () -> [ :base_value, :invoice_id, :posted_date, :tax_value, :transaction_type, :transaction_value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ProductAdsPaymentEvent
 
         attr_reader base_value: Peddler::Types::Money?
@@ -529,6 +690,7 @@ module Peddler
         attr_reader tax_value: Peddler::Types::Money?
         attr_reader transaction_type: String?
         attr_reader transaction_value: Peddler::Types::Money?
+        def members: () -> [ :base_value, :invoice_id, :posted_date, :tax_value, :transaction_type, :transaction_value ]
 
         def to_h: () -> { base_value: Peddler::Types::Money?, invoice_id: String?, posted_date: String?, tax_value: Peddler::Types::Money?, transaction_type: String?, transaction_value: Peddler::Types::Money? }
       end
@@ -541,11 +703,17 @@ module Peddler
         def self.new: (?promotion_amount: Peddler::Types::Money?, ?promotion_id: String?, ?promotion_type: String?) -> Peddler::Types::FinancesV0::Promotion
                     | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::Promotion
 
+        def self.[]: (?promotion_amount: Peddler::Types::Money?, ?promotion_id: String?, ?promotion_type: String?) -> Peddler::Types::FinancesV0::Promotion
+                   | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::Promotion
+
+        def self.members: () -> [ :promotion_amount, :promotion_id, :promotion_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::Promotion
 
         attr_reader promotion_amount: Peddler::Types::Money?
         attr_reader promotion_id: String?
         attr_reader promotion_type: String?
+        def members: () -> [ :promotion_amount, :promotion_id, :promotion_type ]
 
         def to_h: () -> { promotion_amount: Peddler::Types::Money?, promotion_id: String?, promotion_type: String? }
       end
@@ -558,6 +726,11 @@ module Peddler
         def self.new: (?adjustment_event_id: String?, ?merchant_order_id: String?, ?order_id: String?, ?posted_date: String?, ?removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
                     | (String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?, String?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
 
+        def self.[]: (?adjustment_event_id: String?, ?merchant_order_id: String?, ?order_id: String?, ?posted_date: String?, ?removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
+                   | (String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?, String?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
+
+        def self.members: () -> [ :adjustment_event_id, :merchant_order_id, :order_id, :posted_date, :removal_shipment_item_adjustment_list, :transaction_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
 
         attr_reader adjustment_event_id: String?
@@ -566,6 +739,7 @@ module Peddler
         attr_reader posted_date: String?
         attr_reader removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?
         attr_reader transaction_type: String?
+        def members: () -> [ :adjustment_event_id, :merchant_order_id, :order_id, :posted_date, :removal_shipment_item_adjustment_list, :transaction_type ]
 
         def to_h: () -> { adjustment_event_id: String?, merchant_order_id: String?, order_id: String?, posted_date: String?, removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?, transaction_type: String? }
       end
@@ -578,6 +752,11 @@ module Peddler
         def self.new: (?merchant_order_id: String?, ?order_id: String?, ?posted_date: String?, ?removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?, ?store_name: String?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::RemovalShipmentEvent
                     | (String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?, String?, String?) -> Peddler::Types::FinancesV0::RemovalShipmentEvent
 
+        def self.[]: (?merchant_order_id: String?, ?order_id: String?, ?posted_date: String?, ?removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?, ?store_name: String?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::RemovalShipmentEvent
+                   | (String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?, String?, String?) -> Peddler::Types::FinancesV0::RemovalShipmentEvent
+
+        def self.members: () -> [ :merchant_order_id, :order_id, :posted_date, :removal_shipment_item_list, :store_name, :transaction_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentEvent
 
         attr_reader merchant_order_id: String?
@@ -586,6 +765,7 @@ module Peddler
         attr_reader removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?
         attr_reader store_name: String?
         attr_reader transaction_type: String?
+        def members: () -> [ :merchant_order_id, :order_id, :posted_date, :removal_shipment_item_list, :store_name, :transaction_type ]
 
         def to_h: () -> { merchant_order_id: String?, order_id: String?, posted_date: String?, removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?, store_name: String?, transaction_type: String? }
       end
@@ -598,6 +778,11 @@ module Peddler
         def self.new: (?fee_amount: Peddler::Types::Money?, ?fulfillment_network_sku: String?, ?quantity: Integer?, ?removal_shipment_item_id: String?, ?revenue: Peddler::Types::Money?, ?tax_amount: Peddler::Types::Money?, ?tax_collection_model: String?, ?tax_withheld: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItem
                     | (Peddler::Types::Money?, String?, Integer?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItem
 
+        def self.[]: (?fee_amount: Peddler::Types::Money?, ?fulfillment_network_sku: String?, ?quantity: Integer?, ?removal_shipment_item_id: String?, ?revenue: Peddler::Types::Money?, ?tax_amount: Peddler::Types::Money?, ?tax_collection_model: String?, ?tax_withheld: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItem
+                   | (Peddler::Types::Money?, String?, Integer?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItem
+
+        def self.members: () -> [ :fee_amount, :fulfillment_network_sku, :quantity, :removal_shipment_item_id, :revenue, :tax_amount, :tax_collection_model, :tax_withheld ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentItem
 
         attr_reader fee_amount: Peddler::Types::Money?
@@ -608,6 +793,7 @@ module Peddler
         attr_reader tax_amount: Peddler::Types::Money?
         attr_reader tax_collection_model: String?
         attr_reader tax_withheld: Peddler::Types::Money?
+        def members: () -> [ :fee_amount, :fulfillment_network_sku, :quantity, :removal_shipment_item_id, :revenue, :tax_amount, :tax_collection_model, :tax_withheld ]
 
         def to_h: () -> { fee_amount: Peddler::Types::Money?, fulfillment_network_sku: String?, quantity: Integer?, removal_shipment_item_id: String?, revenue: Peddler::Types::Money?, tax_amount: Peddler::Types::Money?, tax_collection_model: String?, tax_withheld: Peddler::Types::Money? }
       end
@@ -615,6 +801,11 @@ module Peddler
       class RemovalShipmentItemAdjustment < Data
         def self.new: (?adjusted_quantity: Integer?, ?fulfillment_network_sku: String?, ?removal_shipment_item_id: String?, ?revenue_adjustment: Peddler::Types::Money?, ?tax_amount_adjustment: Peddler::Types::Money?, ?tax_collection_model: String?, ?tax_withheld_adjustment: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
                     | (Integer?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
+
+        def self.[]: (?adjusted_quantity: Integer?, ?fulfillment_network_sku: String?, ?removal_shipment_item_id: String?, ?revenue_adjustment: Peddler::Types::Money?, ?tax_amount_adjustment: Peddler::Types::Money?, ?tax_collection_model: String?, ?tax_withheld_adjustment: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
+                   | (Integer?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
+
+        def self.members: () -> [ :adjusted_quantity, :fulfillment_network_sku, :removal_shipment_item_id, :revenue_adjustment, :tax_amount_adjustment, :tax_collection_model, :tax_withheld_adjustment ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
 
@@ -625,6 +816,7 @@ module Peddler
         attr_reader tax_amount_adjustment: Peddler::Types::Money?
         attr_reader tax_collection_model: String?
         attr_reader tax_withheld_adjustment: Peddler::Types::Money?
+        def members: () -> [ :adjusted_quantity, :fulfillment_network_sku, :removal_shipment_item_id, :revenue_adjustment, :tax_amount_adjustment, :tax_collection_model, :tax_withheld_adjustment ]
 
         def to_h: () -> { adjusted_quantity: Integer?, fulfillment_network_sku: String?, removal_shipment_item_id: String?, revenue_adjustment: Peddler::Types::Money?, tax_amount_adjustment: Peddler::Types::Money?, tax_collection_model: String?, tax_withheld_adjustment: Peddler::Types::Money? }
       end
@@ -636,6 +828,11 @@ module Peddler
       class RentalTransactionEvent < Data
         def self.new: (?amazon_order_id: String?, ?extension_length: Integer?, ?marketplace_name: String?, ?posted_date: String?, ?rental_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?rental_event_type: String?, ?rental_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?rental_initial_value: Peddler::Types::Money?, ?rental_reimbursement: Peddler::Types::Money?, ?rental_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RentalTransactionEvent
                     | (String?, Integer?, String?, String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RentalTransactionEvent
+
+        def self.[]: (?amazon_order_id: String?, ?extension_length: Integer?, ?marketplace_name: String?, ?posted_date: String?, ?rental_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?rental_event_type: String?, ?rental_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?rental_initial_value: Peddler::Types::Money?, ?rental_reimbursement: Peddler::Types::Money?, ?rental_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RentalTransactionEvent
+                   | (String?, Integer?, String?, String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RentalTransactionEvent
+
+        def self.members: () -> [ :amazon_order_id, :extension_length, :marketplace_name, :posted_date, :rental_charge_list, :rental_event_type, :rental_fee_list, :rental_initial_value, :rental_reimbursement, :rental_tax_withheld_list ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::RentalTransactionEvent
 
@@ -649,6 +846,7 @@ module Peddler
         attr_reader rental_initial_value: Peddler::Types::Money?
         attr_reader rental_reimbursement: Peddler::Types::Money?
         attr_reader rental_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?
+        def members: () -> [ :amazon_order_id, :extension_length, :marketplace_name, :posted_date, :rental_charge_list, :rental_event_type, :rental_fee_list, :rental_initial_value, :rental_reimbursement, :rental_tax_withheld_list ]
 
         def to_h: () -> { amazon_order_id: String?, extension_length: Integer?, marketplace_name: String?, posted_date: String?, rental_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, rental_event_type: String?, rental_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, rental_initial_value: Peddler::Types::Money?, rental_reimbursement: Peddler::Types::Money?, rental_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]? }
       end
@@ -661,6 +859,11 @@ module Peddler
         def self.new: (?amazon_order_id: String?, ?base_tax: Peddler::Types::Money?, ?marketplace_name: String?, ?posted_date: String?, ?retrocharge_event_type: String?, ?retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, ?shipping_tax: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RetrochargeEvent
                     | (String?, Peddler::Types::Money?, String?, String?, String?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RetrochargeEvent
 
+        def self.[]: (?amazon_order_id: String?, ?base_tax: Peddler::Types::Money?, ?marketplace_name: String?, ?posted_date: String?, ?retrocharge_event_type: String?, ?retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, ?shipping_tax: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RetrochargeEvent
+                   | (String?, Peddler::Types::Money?, String?, String?, String?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RetrochargeEvent
+
+        def self.members: () -> [ :amazon_order_id, :base_tax, :marketplace_name, :posted_date, :retrocharge_event_type, :retrocharge_tax_withheld_list, :shipping_tax ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::RetrochargeEvent
 
         attr_reader amazon_order_id: String?
@@ -670,6 +873,7 @@ module Peddler
         attr_reader retrocharge_event_type: String?
         attr_reader retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?
         attr_reader shipping_tax: Peddler::Types::Money?
+        def members: () -> [ :amazon_order_id, :base_tax, :marketplace_name, :posted_date, :retrocharge_event_type, :retrocharge_tax_withheld_list, :shipping_tax ]
 
         def to_h: () -> { amazon_order_id: String?, base_tax: Peddler::Types::Money?, marketplace_name: String?, posted_date: String?, retrocharge_event_type: String?, retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, shipping_tax: Peddler::Types::Money? }
       end
@@ -682,6 +886,11 @@ module Peddler
         def self.new: (?posted_date: String?, ?reason_code: String?, ?reimbursed_amount: Peddler::Types::Money?, ?safet_claim_id: String?, ?safet_reimbursement_item_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]?) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent
                     | (String?, String?, Peddler::Types::Money?, String?, Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]?) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent
 
+        def self.[]: (?posted_date: String?, ?reason_code: String?, ?reimbursed_amount: Peddler::Types::Money?, ?safet_claim_id: String?, ?safet_reimbursement_item_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]?) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent
+                   | (String?, String?, Peddler::Types::Money?, String?, Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]?) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent
+
+        def self.members: () -> [ :posted_date, :reason_code, :reimbursed_amount, :safet_claim_id, :safet_reimbursement_item_list ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent
 
         attr_reader posted_date: String?
@@ -689,6 +898,7 @@ module Peddler
         attr_reader reimbursed_amount: Peddler::Types::Money?
         attr_reader safet_claim_id: String?
         attr_reader safet_reimbursement_item_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]?
+        def members: () -> [ :posted_date, :reason_code, :reimbursed_amount, :safet_claim_id, :safet_reimbursement_item_list ]
 
         def to_h: () -> { posted_date: String?, reason_code: String?, reimbursed_amount: Peddler::Types::Money?, safet_claim_id: String?, safet_reimbursement_item_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]? }
       end
@@ -701,11 +911,17 @@ module Peddler
         def self.new: (?item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?product_description: String?, ?quantity: String?) -> Peddler::Types::FinancesV0::SAFETReimbursementItem
                     | (Array[Peddler::Types::FinancesV0::ChargeComponent]?, String?, String?) -> Peddler::Types::FinancesV0::SAFETReimbursementItem
 
+        def self.[]: (?item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?product_description: String?, ?quantity: String?) -> Peddler::Types::FinancesV0::SAFETReimbursementItem
+                   | (Array[Peddler::Types::FinancesV0::ChargeComponent]?, String?, String?) -> Peddler::Types::FinancesV0::SAFETReimbursementItem
+
+        def self.members: () -> [ :item_charge_list, :product_description, :quantity ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::SAFETReimbursementItem
 
         attr_reader item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?
         attr_reader product_description: String?
         attr_reader quantity: String?
+        def members: () -> [ :item_charge_list, :product_description, :quantity ]
 
         def to_h: () -> { item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, product_description: String?, quantity: String? }
       end
@@ -718,6 +934,11 @@ module Peddler
         def self.new: (?deal_description: String?, ?deal_id: String?, ?event_type: String?, ?fee_amount: Peddler::Types::Money?, ?fee_type: String?, ?posted_date: String?, ?tax_amount: Peddler::Types::Money?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
                     | (String?, String?, String?, Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
 
+        def self.[]: (?deal_description: String?, ?deal_id: String?, ?event_type: String?, ?fee_amount: Peddler::Types::Money?, ?fee_type: String?, ?posted_date: String?, ?tax_amount: Peddler::Types::Money?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
+                   | (String?, String?, String?, Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
+
+        def self.members: () -> [ :deal_description, :deal_id, :event_type, :fee_amount, :fee_type, :posted_date, :tax_amount, :total_amount ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
 
         attr_reader deal_description: String?
@@ -728,6 +949,7 @@ module Peddler
         attr_reader posted_date: String?
         attr_reader tax_amount: Peddler::Types::Money?
         attr_reader total_amount: Peddler::Types::Money?
+        def members: () -> [ :deal_description, :deal_id, :event_type, :fee_amount, :fee_type, :posted_date, :tax_amount, :total_amount ]
 
         def to_h: () -> { deal_description: String?, deal_id: String?, event_type: String?, fee_amount: Peddler::Types::Money?, fee_type: String?, posted_date: String?, tax_amount: Peddler::Types::Money?, total_amount: Peddler::Types::Money? }
       end
@@ -740,6 +962,11 @@ module Peddler
         def self.new: (?charge_component: Peddler::Types::FinancesV0::ChargeComponent?, ?enrollment_id: String?, ?fee_component: Peddler::Types::FinancesV0::FeeComponent?, ?parent_asin: String?, ?posted_date: String?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent
                     | (Peddler::Types::FinancesV0::ChargeComponent?, String?, Peddler::Types::FinancesV0::FeeComponent?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent
 
+        def self.[]: (?charge_component: Peddler::Types::FinancesV0::ChargeComponent?, ?enrollment_id: String?, ?fee_component: Peddler::Types::FinancesV0::FeeComponent?, ?parent_asin: String?, ?posted_date: String?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent
+                   | (Peddler::Types::FinancesV0::ChargeComponent?, String?, Peddler::Types::FinancesV0::FeeComponent?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent
+
+        def self.members: () -> [ :charge_component, :enrollment_id, :fee_component, :parent_asin, :posted_date, :total_amount ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent
 
         attr_reader charge_component: Peddler::Types::FinancesV0::ChargeComponent?
@@ -748,6 +975,7 @@ module Peddler
         attr_reader parent_asin: String?
         attr_reader posted_date: String?
         attr_reader total_amount: Peddler::Types::Money?
+        def members: () -> [ :charge_component, :enrollment_id, :fee_component, :parent_asin, :posted_date, :total_amount ]
 
         def to_h: () -> { charge_component: Peddler::Types::FinancesV0::ChargeComponent?, enrollment_id: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, parent_asin: String?, posted_date: String?, total_amount: Peddler::Types::Money? }
       end
@@ -760,17 +988,22 @@ module Peddler
         def self.new: (?asin: String?, ?amazon_order_id: String?, ?fee_description: String?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?fee_reason: String?, ?fn_sku: String?, ?seller_sku: String?, ?store_name: String?) -> Peddler::Types::FinancesV0::ServiceFeeEvent
                     | (String?, String?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?, String?) -> Peddler::Types::FinancesV0::ServiceFeeEvent
 
+        def self.[]: (?asin: String?, ?amazon_order_id: String?, ?fee_description: String?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?fee_reason: String?, ?fn_sku: String?, ?seller_sku: String?, ?store_name: String?) -> Peddler::Types::FinancesV0::ServiceFeeEvent
+                   | (String?, String?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?, String?) -> Peddler::Types::FinancesV0::ServiceFeeEvent
+
+        def self.members: () -> [ :asin, :amazon_order_id, :fee_description, :fee_list, :fee_reason, :fn_sku, :seller_sku, :store_name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ServiceFeeEvent
 
         attr_reader amazon_order_id: String?
         attr_reader asin: String?
-
         attr_reader fee_description: String?
         attr_reader fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
         attr_reader fee_reason: String?
         attr_reader fn_sku: String?
         attr_reader seller_sku: String?
         attr_reader store_name: String?
+        def members: () -> [ :asin, :amazon_order_id, :fee_description, :fee_list, :fee_reason, :fn_sku, :seller_sku, :store_name ]
 
         def to_h: () -> { asin: String?, amazon_order_id: String?, fee_description: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, fee_reason: String?, fn_sku: String?, seller_sku: String?, store_name: String? }
       end
@@ -782,6 +1015,11 @@ module Peddler
       class ShipmentEvent < Data
         def self.new: (?amazon_order_id: String?, ?direct_payment_list: Array[Peddler::Types::FinancesV0::DirectPayment]?, ?marketplace_name: String?, ?order_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?order_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?order_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?order_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?posted_date: String?, ?seller_order_id: String?, ?shipment_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?shipment_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::ShipmentItem]?, ?shipment_item_list: Array[Peddler::Types::FinancesV0::ShipmentItem]?, ?store_name: String?) -> Peddler::Types::FinancesV0::ShipmentEvent
                     | (String?, Array[Peddler::Types::FinancesV0::DirectPayment]?, String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::ShipmentItem]?, Array[Peddler::Types::FinancesV0::ShipmentItem]?, String?) -> Peddler::Types::FinancesV0::ShipmentEvent
+
+        def self.[]: (?amazon_order_id: String?, ?direct_payment_list: Array[Peddler::Types::FinancesV0::DirectPayment]?, ?marketplace_name: String?, ?order_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?order_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?order_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?order_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?posted_date: String?, ?seller_order_id: String?, ?shipment_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?shipment_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::ShipmentItem]?, ?shipment_item_list: Array[Peddler::Types::FinancesV0::ShipmentItem]?, ?store_name: String?) -> Peddler::Types::FinancesV0::ShipmentEvent
+                   | (String?, Array[Peddler::Types::FinancesV0::DirectPayment]?, String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::ShipmentItem]?, Array[Peddler::Types::FinancesV0::ShipmentItem]?, String?) -> Peddler::Types::FinancesV0::ShipmentEvent
+
+        def self.members: () -> [ :amazon_order_id, :direct_payment_list, :marketplace_name, :order_charge_adjustment_list, :order_charge_list, :order_fee_adjustment_list, :order_fee_list, :posted_date, :seller_order_id, :shipment_fee_adjustment_list, :shipment_fee_list, :shipment_item_adjustment_list, :shipment_item_list, :store_name ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ShipmentEvent
 
@@ -799,6 +1037,7 @@ module Peddler
         attr_reader shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::ShipmentItem]?
         attr_reader shipment_item_list: Array[Peddler::Types::FinancesV0::ShipmentItem]?
         attr_reader store_name: String?
+        def members: () -> [ :amazon_order_id, :direct_payment_list, :marketplace_name, :order_charge_adjustment_list, :order_charge_list, :order_fee_adjustment_list, :order_fee_list, :posted_date, :seller_order_id, :shipment_fee_adjustment_list, :shipment_fee_list, :shipment_item_adjustment_list, :shipment_item_list, :store_name ]
 
         def to_h: () -> { amazon_order_id: String?, direct_payment_list: Array[Peddler::Types::FinancesV0::DirectPayment]?, marketplace_name: String?, order_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, order_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, order_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, order_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, posted_date: String?, seller_order_id: String?, shipment_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, shipment_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::ShipmentItem]?, shipment_item_list: Array[Peddler::Types::FinancesV0::ShipmentItem]?, store_name: String? }
       end
@@ -810,6 +1049,11 @@ module Peddler
       class ShipmentItem < Data
         def self.new: (?cost_of_points_granted: Peddler::Types::Money?, ?cost_of_points_returned: Peddler::Types::Money?, ?item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, ?order_adjustment_item_id: String?, ?order_item_id: String?, ?promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?, ?promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?, ?quantity_shipped: Integer?, ?seller_sku: String?) -> Peddler::Types::FinancesV0::ShipmentItem
                     | (Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, String?, String?, Array[Peddler::Types::FinancesV0::Promotion]?, Array[Peddler::Types::FinancesV0::Promotion]?, Integer?, String?) -> Peddler::Types::FinancesV0::ShipmentItem
+
+        def self.[]: (?cost_of_points_granted: Peddler::Types::Money?, ?cost_of_points_returned: Peddler::Types::Money?, ?item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, ?order_adjustment_item_id: String?, ?order_item_id: String?, ?promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?, ?promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?, ?quantity_shipped: Integer?, ?seller_sku: String?) -> Peddler::Types::FinancesV0::ShipmentItem
+                   | (Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, String?, String?, Array[Peddler::Types::FinancesV0::Promotion]?, Array[Peddler::Types::FinancesV0::Promotion]?, Integer?, String?) -> Peddler::Types::FinancesV0::ShipmentItem
+
+        def self.members: () -> [ :cost_of_points_granted, :cost_of_points_returned, :item_charge_adjustment_list, :item_charge_list, :item_fee_adjustment_list, :item_fee_list, :item_tax_withheld_list, :order_adjustment_item_id, :order_item_id, :promotion_adjustment_list, :promotion_list, :quantity_shipped, :seller_sku ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ShipmentItem
 
@@ -826,6 +1070,7 @@ module Peddler
         attr_reader promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?
         attr_reader quantity_shipped: Integer?
         attr_reader seller_sku: String?
+        def members: () -> [ :cost_of_points_granted, :cost_of_points_returned, :item_charge_adjustment_list, :item_charge_list, :item_fee_adjustment_list, :item_fee_list, :item_tax_withheld_list, :order_adjustment_item_id, :order_item_id, :promotion_adjustment_list, :promotion_list, :quantity_shipped, :seller_sku ]
 
         def to_h: () -> { cost_of_points_granted: Peddler::Types::Money?, cost_of_points_returned: Peddler::Types::Money?, item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, order_adjustment_item_id: String?, order_item_id: String?, promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?, promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?, quantity_shipped: Integer?, seller_sku: String? }
       end
@@ -842,6 +1087,11 @@ module Peddler
         def self.new: (?marketplace_country_code: String?, ?marketplace_id: String?, ?provider_id: String?, ?provider_store_name: String?, ?provider_transaction_type: String?, ?seller_id: String?, ?seller_order_id: String?, ?seller_store_name: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_creation_date: String?) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
                     | (String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
 
+        def self.[]: (?marketplace_country_code: String?, ?marketplace_id: String?, ?provider_id: String?, ?provider_store_name: String?, ?provider_transaction_type: String?, ?seller_id: String?, ?seller_order_id: String?, ?seller_store_name: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_creation_date: String?) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
+
+        def self.members: () -> [ :marketplace_country_code, :marketplace_id, :provider_id, :provider_store_name, :provider_transaction_type, :seller_id, :seller_order_id, :seller_store_name, :transaction_amount, :transaction_creation_date ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
 
         attr_reader marketplace_country_code: String?
@@ -854,6 +1104,7 @@ module Peddler
         attr_reader seller_store_name: String?
         attr_reader transaction_amount: Peddler::Types::Money?
         attr_reader transaction_creation_date: String?
+        def members: () -> [ :marketplace_country_code, :marketplace_id, :provider_id, :provider_store_name, :provider_transaction_type, :seller_id, :seller_order_id, :seller_store_name, :transaction_amount, :transaction_creation_date ]
 
         def to_h: () -> { marketplace_country_code: String?, marketplace_id: String?, provider_id: String?, provider_store_name: String?, provider_transaction_type: String?, seller_id: String?, seller_order_id: String?, seller_store_name: String?, transaction_amount: Peddler::Types::Money?, transaction_creation_date: String? }
       end
@@ -866,11 +1117,17 @@ module Peddler
         def self.new: (?posted_date: String?, ?reimbursed_amount: Peddler::Types::Money?, ?tds_order_id: String?) -> Peddler::Types::FinancesV0::TDSReimbursementEvent
                     | (String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::TDSReimbursementEvent
 
+        def self.[]: (?posted_date: String?, ?reimbursed_amount: Peddler::Types::Money?, ?tds_order_id: String?) -> Peddler::Types::FinancesV0::TDSReimbursementEvent
+                   | (String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::TDSReimbursementEvent
+
+        def self.members: () -> [ :posted_date, :reimbursed_amount, :tds_order_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::TDSReimbursementEvent
 
         attr_reader posted_date: String?
         attr_reader reimbursed_amount: Peddler::Types::Money?
         attr_reader tds_order_id: String?
+        def members: () -> [ :posted_date, :reimbursed_amount, :tds_order_id ]
 
         def to_h: () -> { posted_date: String?, reimbursed_amount: Peddler::Types::Money?, tds_order_id: String? }
       end
@@ -883,10 +1140,16 @@ module Peddler
         def self.new: (?tax_collection_model: String?, ?taxes_withheld: Array[Peddler::Types::FinancesV0::ChargeComponent]?) -> Peddler::Types::FinancesV0::TaxWithheldComponent
                     | (String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?) -> Peddler::Types::FinancesV0::TaxWithheldComponent
 
+        def self.[]: (?tax_collection_model: String?, ?taxes_withheld: Array[Peddler::Types::FinancesV0::ChargeComponent]?) -> Peddler::Types::FinancesV0::TaxWithheldComponent
+                   | (String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?) -> Peddler::Types::FinancesV0::TaxWithheldComponent
+
+        def self.members: () -> [ :tax_collection_model, :taxes_withheld ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::TaxWithheldComponent
 
         attr_reader tax_collection_model: String?
         attr_reader taxes_withheld: Array[Peddler::Types::FinancesV0::ChargeComponent]?
+        def members: () -> [ :tax_collection_model, :taxes_withheld ]
 
         def to_h: () -> { tax_collection_model: String?, taxes_withheld: Array[Peddler::Types::FinancesV0::ChargeComponent]? }
       end
@@ -899,12 +1162,18 @@ module Peddler
         def self.new: (?base_amount: Peddler::Types::Money?, ?posted_date: String?, ?tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod?, ?withheld_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
                     | (Peddler::Types::Money?, String?, Peddler::Types::FinancesV0::TaxWithholdingPeriod?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
 
+        def self.[]: (?base_amount: Peddler::Types::Money?, ?posted_date: String?, ?tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod?, ?withheld_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
+                   | (Peddler::Types::Money?, String?, Peddler::Types::FinancesV0::TaxWithholdingPeriod?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
+
+        def self.members: () -> [ :base_amount, :posted_date, :tax_withholding_period, :withheld_amount ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
 
         attr_reader base_amount: Peddler::Types::Money?
         attr_reader posted_date: String?
         attr_reader tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod?
         attr_reader withheld_amount: Peddler::Types::Money?
+        def members: () -> [ :base_amount, :posted_date, :tax_withholding_period, :withheld_amount ]
 
         def to_h: () -> { base_amount: Peddler::Types::Money?, posted_date: String?, tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod?, withheld_amount: Peddler::Types::Money? }
       end
@@ -917,10 +1186,16 @@ module Peddler
         def self.new: (?end_date: String?, ?start_date: String?) -> Peddler::Types::FinancesV0::TaxWithholdingPeriod
                     | (String?, String?) -> Peddler::Types::FinancesV0::TaxWithholdingPeriod
 
+        def self.[]: (?end_date: String?, ?start_date: String?) -> Peddler::Types::FinancesV0::TaxWithholdingPeriod
+                   | (String?, String?) -> Peddler::Types::FinancesV0::TaxWithholdingPeriod
+
+        def self.members: () -> [ :end_date, :start_date ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::TaxWithholdingPeriod
 
         attr_reader end_date: String?
         attr_reader start_date: String?
+        def members: () -> [ :end_date, :start_date ]
 
         def to_h: () -> { end_date: String?, start_date: String? }
       end
@@ -929,6 +1204,11 @@ module Peddler
         def self.new: (?amazon_order_id: String?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?financial_event_group_id: String?, ?posted_date: String?, ?sku: String?) -> Peddler::Types::FinancesV0::TrialShipmentEvent
                     | (String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?) -> Peddler::Types::FinancesV0::TrialShipmentEvent
 
+        def self.[]: (?amazon_order_id: String?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?financial_event_group_id: String?, ?posted_date: String?, ?sku: String?) -> Peddler::Types::FinancesV0::TrialShipmentEvent
+                   | (String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?) -> Peddler::Types::FinancesV0::TrialShipmentEvent
+
+        def self.members: () -> [ :amazon_order_id, :fee_list, :financial_event_group_id, :posted_date, :sku ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::TrialShipmentEvent
 
         attr_reader amazon_order_id: String?
@@ -936,6 +1216,7 @@ module Peddler
         attr_reader financial_event_group_id: String?
         attr_reader posted_date: String?
         attr_reader sku: String?
+        def members: () -> [ :amazon_order_id, :fee_list, :financial_event_group_id, :posted_date, :sku ]
 
         def to_h: () -> { amazon_order_id: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, financial_event_group_id: String?, posted_date: String?, sku: String? }
       end
@@ -948,12 +1229,18 @@ module Peddler
         def self.new: (?description: String?, ?posted_date: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent
                     | (String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent
 
+        def self.[]: (?description: String?, ?posted_date: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent
+                   | (String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent
+
+        def self.members: () -> [ :description, :posted_date, :transaction_amount, :transaction_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::ValueAddedServiceChargeEvent
 
         attr_reader description: String?
         attr_reader posted_date: String?
         attr_reader transaction_amount: Peddler::Types::Money?
         attr_reader transaction_type: String?
+        def members: () -> [ :description, :posted_date, :transaction_amount, :transaction_type ]
 
         def to_h: () -> { description: String?, posted_date: String?, transaction_amount: Peddler::Types::Money?, transaction_type: String? }
       end

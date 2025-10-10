@@ -5,10 +5,16 @@ module Peddler
         def self.new: (?additional_input_field_name: String?, ?seller_input_definition: Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalInputs
                     | (String?, Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalInputs
 
+        def self.[]: (?additional_input_field_name: String?, ?seller_input_definition: Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalInputs
+                   | (String?, Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalInputs
+
+        def self.members: () -> [ :additional_input_field_name, :seller_input_definition ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::AdditionalInputs
 
         attr_reader additional_input_field_name: String?
         attr_reader seller_input_definition: Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition?
+        def members: () -> [ :additional_input_field_name, :seller_input_definition ]
 
         def to_h: () -> { additional_input_field_name: String?, seller_input_definition: Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition? }
       end
@@ -20,6 +26,11 @@ module Peddler
       class AdditionalSellerInput < Data
         def self.new: (?data_type: String?, ?value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, ?value_as_boolean: bool?, ?value_as_currency: Peddler::Types::Money?, ?value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, ?value_as_integer: Integer?, ?value_as_string: String?, ?value_as_timestamp: String?, ?value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
                     | (String?, Peddler::Types::MerchantFulfillmentV0::Address?, bool?, Peddler::Types::Money?, Peddler::Types::MerchantFulfillmentV0::Length?, Integer?, String?, String?, Peddler::Types::MerchantFulfillmentV0::Weight?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
+
+        def self.[]: (?data_type: String?, ?value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, ?value_as_boolean: bool?, ?value_as_currency: Peddler::Types::Money?, ?value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, ?value_as_integer: Integer?, ?value_as_string: String?, ?value_as_timestamp: String?, ?value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
+                   | (String?, Peddler::Types::MerchantFulfillmentV0::Address?, bool?, Peddler::Types::Money?, Peddler::Types::MerchantFulfillmentV0::Length?, Integer?, String?, String?, Peddler::Types::MerchantFulfillmentV0::Weight?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
+
+        def self.members: () -> [ :data_type, :value_as_address, :value_as_boolean, :value_as_currency, :value_as_dimension, :value_as_integer, :value_as_string, :value_as_timestamp, :value_as_weight ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
 
@@ -33,6 +44,8 @@ module Peddler
         attr_reader value_as_timestamp: String?
         attr_reader value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?
 
+        def members: () -> [ :data_type, :value_as_address, :value_as_boolean, :value_as_currency, :value_as_dimension, :value_as_integer, :value_as_string, :value_as_timestamp, :value_as_weight ]
+
         def to_h: () -> { data_type: String?, value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, value_as_boolean: bool?, value_as_currency: Peddler::Types::Money?, value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, value_as_integer: Integer?, value_as_string: String?, value_as_timestamp: String?, value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight? }
         def value_as_boolean?: () -> bool
       end
@@ -41,10 +54,16 @@ module Peddler
         def self.new: (additional_input_field_name: String?, additional_seller_input: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs
                     | (String?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs
 
+        def self.[]: (additional_input_field_name: String?, additional_seller_input: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs
+                   | (String?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs
+
+        def self.members: () -> [ :additional_input_field_name, :additional_seller_input ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs
 
         attr_reader additional_input_field_name: String?
         attr_reader additional_seller_input: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?
+        def members: () -> [ :additional_input_field_name, :additional_seller_input ]
 
         def to_h: () -> { additional_input_field_name: String?, additional_seller_input: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput? }
       end
@@ -57,22 +76,25 @@ module Peddler
         def self.new: (address_line1: String?, city: String?, country_code: String?, email: String?, name: String?, phone: String?, postal_code: String?, ?address_line2: String?, ?address_line3: String?, ?district_or_county: String?, ?state_or_province_code: String?) -> Peddler::Types::MerchantFulfillmentV0::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Address
 
+        def self.[]: (address_line1: String?, city: String?, country_code: String?, email: String?, name: String?, phone: String?, postal_code: String?, ?address_line2: String?, ?address_line3: String?, ?district_or_county: String?, ?state_or_province_code: String?) -> Peddler::Types::MerchantFulfillmentV0::Address
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Address
+
+        def self.members: () -> [ :address_line1, :city, :country_code, :email, :name, :phone, :postal_code, :address_line2, :address_line3, :district_or_county, :state_or_province_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Address
 
         attr_reader address_line1: String?
-
         attr_reader address_line2: String?
         attr_reader address_line3: String?
         attr_reader city: String?
         attr_reader country_code: String?
-
         attr_reader district_or_county: String?
         attr_reader email: String?
         attr_reader name: String?
         attr_reader phone: String?
         attr_reader postal_code: String?
-
         attr_reader state_or_province_code: String?
+        def members: () -> [ :address_line1, :city, :country_code, :email, :name, :phone, :postal_code, :address_line2, :address_line3, :district_or_county, :state_or_province_code ]
 
         def to_h: () -> { address_line1: String?, city: String?, country_code: String?, email: String?, name: String?, phone: String?, postal_code: String?, address_line2: String?, address_line3: String?, district_or_county: String?, state_or_province_code: String? }
       end
@@ -85,10 +107,16 @@ module Peddler
         def self.new: (carrier_will_pick_up_option: String?, charge: Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption
                     | (String?, Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption
 
+        def self.[]: (carrier_will_pick_up_option: String?, charge: Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption
+                   | (String?, Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption
+
+        def self.members: () -> [ :carrier_will_pick_up_option, :charge ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption
 
         attr_reader carrier_will_pick_up_option: String?
         attr_reader charge: Peddler::Types::Money?
+        def members: () -> [ :carrier_will_pick_up_option, :charge ]
 
         def to_h: () -> { carrier_will_pick_up_option: String?, charge: Peddler::Types::Money? }
       end
@@ -101,10 +129,16 @@ module Peddler
         def self.new: (charge: Peddler::Types::Money?, delivery_experience_option: String?) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
 
+        def self.[]: (charge: Peddler::Types::Money?, delivery_experience_option: String?) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
+                   | (Peddler::Types::Money?, String?) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
+
+        def self.members: () -> [ :charge, :delivery_experience_option ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
 
         attr_reader charge: Peddler::Types::Money?
         attr_reader delivery_experience_option: String?
+        def members: () -> [ :charge, :delivery_experience_option ]
 
         def to_h: () -> { charge: Peddler::Types::Money?, delivery_experience_option: String? }
       end
@@ -125,10 +159,16 @@ module Peddler
         def self.new: (available_carrier_will_pick_up_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?, available_delivery_experience_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]?) -> Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions
                     | (Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?, Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]?) -> Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions
 
+        def self.[]: (available_carrier_will_pick_up_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?, available_delivery_experience_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]?) -> Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?, Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]?) -> Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions
+
+        def self.members: () -> [ :available_carrier_will_pick_up_options, :available_delivery_experience_options ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions
 
         attr_reader available_carrier_will_pick_up_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?
         attr_reader available_delivery_experience_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]?
+        def members: () -> [ :available_carrier_will_pick_up_options, :available_delivery_experience_options ]
 
         def to_h: () -> { available_carrier_will_pick_up_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?, available_delivery_experience_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]? }
       end
@@ -137,10 +177,16 @@ module Peddler
         def self.new: (?excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?, ?included_benefits: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::Benefits
                     | (Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::Benefits
 
+        def self.[]: (?excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?, ?included_benefits: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::Benefits
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::Benefits
+
+        def self.members: () -> [ :excluded_benefits, :included_benefits ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Benefits
 
         attr_reader excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?
         attr_reader included_benefits: Array[String]?
+        def members: () -> [ :excluded_benefits, :included_benefits ]
 
         def to_h: () -> { excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?, included_benefits: Array[String]? }
       end
@@ -149,10 +195,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse
                     | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse
 
         attr_reader errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?
         attr_reader payload: Peddler::Types::MerchantFulfillmentV0::Shipment?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, payload: Peddler::Types::MerchantFulfillmentV0::Shipment? }
       end
@@ -161,10 +213,16 @@ module Peddler
         def self.new: (validation_string: String?, ?validation_reg_ex: String?) -> Peddler::Types::MerchantFulfillmentV0::Constraint
                     | (String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Constraint
 
+        def self.[]: (validation_string: String?, ?validation_reg_ex: String?) -> Peddler::Types::MerchantFulfillmentV0::Constraint
+                   | (String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Constraint
+
+        def self.members: () -> [ :validation_string, :validation_reg_ex ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Constraint
 
         attr_reader validation_reg_ex: String?
         attr_reader validation_string: String?
+        def members: () -> [ :validation_string, :validation_reg_ex ]
 
         def to_h: () -> { validation_string: String?, validation_reg_ex: String? }
       end
@@ -177,6 +235,11 @@ module Peddler
         def self.new: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, ?hazmat_type: String?, ?label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, ?shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, ?shipping_service_offer_id: String?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
                     | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, String?, String?, Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, String?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
 
+        def self.[]: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, ?hazmat_type: String?, ?label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, ?shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, ?shipping_service_offer_id: String?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
+                   | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, String?, String?, Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, String?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
+
+        def self.members: () -> [ :shipment_request_details, :shipping_service_id, :hazmat_type, :label_format_option, :shipment_level_seller_inputs_list, :shipping_service_offer_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
 
         attr_reader hazmat_type: String?
@@ -184,8 +247,8 @@ module Peddler
         attr_reader shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?
         attr_reader shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?
         attr_reader shipping_service_id: String?
-
         attr_reader shipping_service_offer_id: String?
+        def members: () -> [ :shipment_request_details, :shipping_service_id, :hazmat_type, :label_format_option, :shipment_level_seller_inputs_list, :shipping_service_offer_id ]
 
         def to_h: () -> { shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, hazmat_type: String?, label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, shipping_service_offer_id: String? }
       end
@@ -194,10 +257,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentResponse
                     | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentResponse
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentResponse
 
         attr_reader errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?
         attr_reader payload: Peddler::Types::MerchantFulfillmentV0::Shipment?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, payload: Peddler::Types::MerchantFulfillmentV0::Shipment? }
       end
@@ -206,12 +275,18 @@ module Peddler
         def self.new: (?packing_group: String?, ?packing_instruction: String?, ?transportation_regulatory_class: String?, ?united_nations_regulatory_id: String?) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
                     | (String?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
 
+        def self.[]: (?packing_group: String?, ?packing_instruction: String?, ?transportation_regulatory_class: String?, ?united_nations_regulatory_id: String?) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
+                   | (String?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
+
+        def self.members: () -> [ :packing_group, :packing_instruction, :transportation_regulatory_class, :united_nations_regulatory_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
 
         attr_reader packing_group: String?
         attr_reader packing_instruction: String?
         attr_reader transportation_regulatory_class: String?
         attr_reader united_nations_regulatory_id: String?
+        def members: () -> [ :packing_group, :packing_instruction, :transportation_regulatory_class, :united_nations_regulatory_id ]
 
         def to_h: () -> { packing_group: String?, packing_instruction: String?, transportation_regulatory_class: String?, united_nations_regulatory_id: String? }
       end
@@ -220,12 +295,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::MerchantFulfillmentV0::Error
                     | (String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::MerchantFulfillmentV0::Error
+                   | (String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -238,10 +318,16 @@ module Peddler
         def self.new: (?benefit: String?, ?reason_codes: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit
                     | (String?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit
 
+        def self.[]: (?benefit: String?, ?reason_codes: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit
+                   | (String?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit
+
+        def self.members: () -> [ :benefit, :reason_codes ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit
 
         attr_reader benefit: String?
         attr_reader reason_codes: Array[String]?
+        def members: () -> [ :benefit, :reason_codes ]
 
         def to_h: () -> { benefit: String?, reason_codes: Array[String]? }
       end
@@ -258,11 +344,17 @@ module Peddler
         def self.new: (checksum: String?, contents: String?, file_type: String?) -> Peddler::Types::MerchantFulfillmentV0::FileContents
                     | (String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::FileContents
 
+        def self.[]: (checksum: String?, contents: String?, file_type: String?) -> Peddler::Types::MerchantFulfillmentV0::FileContents
+                   | (String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::FileContents
+
+        def self.members: () -> [ :checksum, :contents, :file_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::FileContents
 
         attr_reader checksum: String?
         attr_reader contents: String?
         attr_reader file_type: String?
+        def members: () -> [ :checksum, :contents, :file_type ]
 
         def to_h: () -> { checksum: String?, contents: String?, file_type: String? }
       end
@@ -271,11 +363,17 @@ module Peddler
         def self.new: (order_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_id: String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
                     | (String?, Peddler::Types::MerchantFulfillmentV0::Address?, String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
 
+        def self.[]: (order_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_id: String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
+                   | (String?, Peddler::Types::MerchantFulfillmentV0::Address?, String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
+
+        def self.members: () -> [ :order_id, :ship_from_address, :shipping_service_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
 
         attr_reader order_id: String?
         attr_reader ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?
         attr_reader shipping_service_id: String?
+        def members: () -> [ :order_id, :ship_from_address, :shipping_service_id ]
 
         def to_h: () -> { order_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_id: String? }
       end
@@ -284,10 +382,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse
                     | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse
 
         attr_reader errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?
         attr_reader payload: Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, payload: Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult? }
       end
@@ -296,10 +400,16 @@ module Peddler
         def self.new: (?item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?, ?shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
                     | (Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
 
+        def self.[]: (?item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?, ?shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
+
+        def self.members: () -> [ :item_level_fields_list, :shipment_level_fields ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
 
         attr_reader item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?
         attr_reader shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?
+        def members: () -> [ :item_level_fields_list, :shipment_level_fields ]
 
         def to_h: () -> { item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?, shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]? }
       end
@@ -308,10 +418,16 @@ module Peddler
         def self.new: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, ?shipping_offering_filter: Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesRequest
                     | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesRequest
 
+        def self.[]: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, ?shipping_offering_filter: Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesRequest
+                   | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesRequest
+
+        def self.members: () -> [ :shipment_request_details, :shipping_offering_filter ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesRequest
 
         attr_reader shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?
         attr_reader shipping_offering_filter: Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter?
+        def members: () -> [ :shipment_request_details, :shipping_offering_filter ]
 
         def to_h: () -> { shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_offering_filter: Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter? }
       end
@@ -320,10 +436,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
                     | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
 
         attr_reader errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?
         attr_reader payload: Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, payload: Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult? }
       end
@@ -332,13 +454,18 @@ module Peddler
         def self.new: (shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, ?rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, ?temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, ?terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult
                     | (Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult
 
+        def self.[]: (shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, ?rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, ?temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, ?terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult
+
+        def self.members: () -> [ :shipping_service_list, :rejected_shipping_service_list, :temporarily_unavailable_carrier_list, :terms_and_conditions_not_accepted_carrier_list ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult
 
         attr_reader rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?
         attr_reader shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?
-
         attr_reader temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?
         attr_reader terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?
+        def members: () -> [ :shipping_service_list, :rejected_shipping_service_list, :temporarily_unavailable_carrier_list, :terms_and_conditions_not_accepted_carrier_list ]
 
         def to_h: () -> { shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]? }
       end
@@ -347,10 +474,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
                     | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
 
         attr_reader errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?
         attr_reader payload: Peddler::Types::MerchantFulfillmentV0::Shipment?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, payload: Peddler::Types::MerchantFulfillmentV0::Shipment? }
       end
@@ -363,6 +496,11 @@ module Peddler
         def self.new: (order_item_id: String?, quantity: Integer?, ?dangerous_goods_details: Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?, ?hazmat: bool?, ?item_description: String?, ?item_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, ?item_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?liquid_volume: Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, ?transparency_code_list: Array[untyped]?) -> Peddler::Types::MerchantFulfillmentV0::Item
                     | (String?, Integer?, Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?, bool?, String?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, Peddler::Types::MerchantFulfillmentV0::Weight?, Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, Array[untyped]?) -> Peddler::Types::MerchantFulfillmentV0::Item
 
+        def self.[]: (order_item_id: String?, quantity: Integer?, ?dangerous_goods_details: Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?, ?hazmat: bool?, ?item_description: String?, ?item_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, ?item_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?liquid_volume: Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, ?transparency_code_list: Array[untyped]?) -> Peddler::Types::MerchantFulfillmentV0::Item
+                   | (String?, Integer?, Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?, bool?, String?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, Peddler::Types::MerchantFulfillmentV0::Weight?, Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, Array[untyped]?) -> Peddler::Types::MerchantFulfillmentV0::Item
+
+        def self.members: () -> [ :order_item_id, :quantity, :dangerous_goods_details, :hazmat, :item_description, :item_level_seller_inputs_list, :item_weight, :liquid_volume, :transparency_code_list ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Item
 
         attr_reader dangerous_goods_details: Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?
@@ -373,10 +511,11 @@ module Peddler
         attr_reader liquid_volume: Peddler::Types::MerchantFulfillmentV0::LiquidVolume?
         attr_reader order_item_id: String?
         attr_reader quantity: Integer?
-
         attr_reader transparency_code_list: Array[untyped]?
 
         def hazmat?: () -> bool
+        def members: () -> [ :order_item_id, :quantity, :dangerous_goods_details, :hazmat, :item_description, :item_level_seller_inputs_list, :item_weight, :liquid_volume, :transparency_code_list ]
+
         def to_h: () -> { order_item_id: String?, quantity: Integer?, dangerous_goods_details: Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?, hazmat: bool?, item_description: String?, item_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, item_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, liquid_volume: Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, transparency_code_list: Array[untyped]? }
       end
 
@@ -384,10 +523,16 @@ module Peddler
         def self.new: (additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, asin: String?) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
                     | (Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, String?) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
 
+        def self.[]: (additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, asin: String?) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, String?) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
+
+        def self.members: () -> [ :additional_inputs, :asin ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
 
         attr_reader additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?
         attr_reader asin: String?
+        def members: () -> [ :additional_inputs, :asin ]
 
         def to_h: () -> { additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, asin: String? }
       end
@@ -404,14 +549,19 @@ module Peddler
         def self.new: (dimensions: Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, file_contents: Peddler::Types::MerchantFulfillmentV0::FileContents?, ?custom_text_for_label: String?, ?label_format: String?, ?standard_id_for_label: String?) -> Peddler::Types::MerchantFulfillmentV0::Label
                     | (Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, Peddler::Types::MerchantFulfillmentV0::FileContents?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Label
 
+        def self.[]: (dimensions: Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, file_contents: Peddler::Types::MerchantFulfillmentV0::FileContents?, ?custom_text_for_label: String?, ?label_format: String?, ?standard_id_for_label: String?) -> Peddler::Types::MerchantFulfillmentV0::Label
+                   | (Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, Peddler::Types::MerchantFulfillmentV0::FileContents?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Label
+
+        def self.members: () -> [ :dimensions, :file_contents, :custom_text_for_label, :label_format, :standard_id_for_label ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Label
 
         attr_reader custom_text_for_label: String?
         attr_reader dimensions: Peddler::Types::MerchantFulfillmentV0::LabelDimensions?
         attr_reader file_contents: Peddler::Types::MerchantFulfillmentV0::FileContents?
-
         attr_reader label_format: String?
         attr_reader standard_id_for_label: String?
+        def members: () -> [ :dimensions, :file_contents, :custom_text_for_label, :label_format, :standard_id_for_label ]
 
         def to_h: () -> { dimensions: Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, file_contents: Peddler::Types::MerchantFulfillmentV0::FileContents?, custom_text_for_label: String?, label_format: String?, standard_id_for_label: String? }
       end
@@ -420,10 +570,16 @@ module Peddler
         def self.new: (?custom_text_for_label: String?, ?standard_id_for_label: String?) -> Peddler::Types::MerchantFulfillmentV0::LabelCustomization
                     | (String?, String?) -> Peddler::Types::MerchantFulfillmentV0::LabelCustomization
 
+        def self.[]: (?custom_text_for_label: String?, ?standard_id_for_label: String?) -> Peddler::Types::MerchantFulfillmentV0::LabelCustomization
+                   | (String?, String?) -> Peddler::Types::MerchantFulfillmentV0::LabelCustomization
+
+        def self.members: () -> [ :custom_text_for_label, :standard_id_for_label ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::LabelCustomization
 
         attr_reader custom_text_for_label: String?
         attr_reader standard_id_for_label: String?
+        def members: () -> [ :custom_text_for_label, :standard_id_for_label ]
 
         def to_h: () -> { custom_text_for_label: String?, standard_id_for_label: String? }
       end
@@ -432,11 +588,17 @@ module Peddler
         def self.new: (length: Float?, unit: String?, width: Float?) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
                     | (Float?, String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
 
+        def self.[]: (length: Float?, unit: String?, width: Float?) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
+                   | (Float?, String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
+
+        def self.members: () -> [ :length, :unit, :width ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
 
         attr_reader length: Float?
         attr_reader unit: String?
         attr_reader width: Float?
+        def members: () -> [ :length, :unit, :width ]
 
         def to_h: () -> { length: Float?, unit: String?, width: Float? }
       end
@@ -449,12 +611,19 @@ module Peddler
         def self.new: (?include_packing_slip_with_label: bool?, ?label_format: String?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOption
                     | (bool?, String?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOption
 
+        def self.[]: (?include_packing_slip_with_label: bool?, ?label_format: String?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOption
+                   | (bool?, String?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOption
+
+        def self.members: () -> [ :include_packing_slip_with_label, :label_format ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOption
 
         attr_reader include_packing_slip_with_label: bool?
         attr_reader label_format: String?
 
         def include_packing_slip_with_label?: () -> bool
+        def members: () -> [ :include_packing_slip_with_label, :label_format ]
+
         def to_h: () -> { include_packing_slip_with_label: bool?, label_format: String? }
       end
 
@@ -462,11 +631,18 @@ module Peddler
         def self.new: (?include_packing_slip_with_label: bool?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest
                     | (bool?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest
 
+        def self.[]: (?include_packing_slip_with_label: bool?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest
+                   | (bool?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest
+
+        def self.members: () -> [ :include_packing_slip_with_label ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest
 
         attr_reader include_packing_slip_with_label: bool?
 
         def include_packing_slip_with_label?: () -> bool
+        def members: () -> [ :include_packing_slip_with_label ]
+
         def to_h: () -> { include_packing_slip_with_label: bool? }
       end
 
@@ -474,10 +650,16 @@ module Peddler
         def self.new: (?unit: String?, ?value: Float?) -> Peddler::Types::MerchantFulfillmentV0::Length
                     | (String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::Length
 
+        def self.[]: (?unit: String?, ?value: Float?) -> Peddler::Types::MerchantFulfillmentV0::Length
+                   | (String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::Length
+
+        def self.members: () -> [ :unit, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Length
 
         attr_reader unit: String?
         attr_reader value: Float?
+        def members: () -> [ :unit, :value ]
 
         def to_h: () -> { unit: String?, value: Float? }
       end
@@ -486,10 +668,16 @@ module Peddler
         def self.new: (unit: String?, value: Float?) -> Peddler::Types::MerchantFulfillmentV0::LiquidVolume
                     | (String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::LiquidVolume
 
+        def self.[]: (unit: String?, value: Float?) -> Peddler::Types::MerchantFulfillmentV0::LiquidVolume
+                   | (String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::LiquidVolume
+
+        def self.members: () -> [ :unit, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::LiquidVolume
 
         attr_reader unit: String?
         attr_reader value: Float?
+        def members: () -> [ :unit, :value ]
 
         def to_h: () -> { unit: String?, value: Float? }
       end
@@ -498,6 +686,11 @@ module Peddler
         def self.new: (?height: Float?, ?length: Float?, ?predefined_package_dimensions: String?, ?unit: String?, ?width: Float?) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions
                     | (Float?, Float?, String?, String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions
 
+        def self.[]: (?height: Float?, ?length: Float?, ?predefined_package_dimensions: String?, ?unit: String?, ?width: Float?) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions
+                   | (Float?, Float?, String?, String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions
+
+        def self.members: () -> [ :height, :length, :predefined_package_dimensions, :unit, :width ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions
 
         attr_reader height: Float?
@@ -505,6 +698,7 @@ module Peddler
         attr_reader predefined_package_dimensions: String?
         attr_reader unit: String?
         attr_reader width: Float?
+        def members: () -> [ :height, :length, :predefined_package_dimensions, :unit, :width ]
 
         def to_h: () -> { height: Float?, length: Float?, predefined_package_dimensions: String?, unit: String?, width: Float? }
       end
@@ -513,13 +707,18 @@ module Peddler
         def self.new: (rate_item_id: String?, ?rate_item_charge: Peddler::Types::Money?, ?rate_item_name_localization: String?, ?rate_item_type: String?) -> Peddler::Types::MerchantFulfillmentV0::RateItem
                     | (String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::RateItem
 
+        def self.[]: (rate_item_id: String?, ?rate_item_charge: Peddler::Types::Money?, ?rate_item_name_localization: String?, ?rate_item_type: String?) -> Peddler::Types::MerchantFulfillmentV0::RateItem
+                   | (String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::RateItem
+
+        def self.members: () -> [ :rate_item_id, :rate_item_charge, :rate_item_name_localization, :rate_item_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::RateItem
 
         attr_reader rate_item_charge: Peddler::Types::Money?
         attr_reader rate_item_id: String?
-
         attr_reader rate_item_name_localization: String?
         attr_reader rate_item_type: String?
+        def members: () -> [ :rate_item_id, :rate_item_charge, :rate_item_name_localization, :rate_item_type ]
 
         def to_h: () -> { rate_item_id: String?, rate_item_charge: Peddler::Types::Money?, rate_item_name_localization: String?, rate_item_type: String? }
       end
@@ -528,14 +727,19 @@ module Peddler
         def self.new: (carrier_name: String?, rejection_reason_code: String?, shipping_service_id: String?, shipping_service_name: String?, ?rejection_reason_message: String?) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
 
+        def self.[]: (carrier_name: String?, rejection_reason_code: String?, shipping_service_id: String?, shipping_service_name: String?, ?rejection_reason_message: String?) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
+                   | (String?, String?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
+
+        def self.members: () -> [ :carrier_name, :rejection_reason_code, :shipping_service_id, :shipping_service_name, :rejection_reason_message ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
 
         attr_reader carrier_name: String?
         attr_reader rejection_reason_code: String?
-
         attr_reader rejection_reason_message: String?
         attr_reader shipping_service_id: String?
         attr_reader shipping_service_name: String?
+        def members: () -> [ :carrier_name, :rejection_reason_code, :shipping_service_id, :shipping_service_name, :rejection_reason_message ]
 
         def to_h: () -> { carrier_name: String?, rejection_reason_code: String?, shipping_service_id: String?, shipping_service_name: String?, rejection_reason_message: String? }
       end
@@ -552,25 +756,35 @@ module Peddler
         def self.new: (constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, data_type: String?, input_display_text: String?, required: bool?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, ?input_target: String?, ?restricted_set_values: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
                     | (Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, String?, String?, bool?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, String?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
 
+        def self.[]: (constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, data_type: String?, input_display_text: String?, required: bool?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, ?input_target: String?, ?restricted_set_values: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
+                   | (Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, String?, String?, bool?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, String?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
+
+        def self.members: () -> [ :constraints, :data_type, :input_display_text, :required, :stored_value, :input_target, :restricted_set_values ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
 
         attr_reader constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?
         attr_reader data_type: String?
         attr_reader input_display_text: String?
-
         attr_reader input_target: String?
         attr_reader required: bool?
-
         attr_reader restricted_set_values: Array[String]?
         attr_reader stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?
 
+        def members: () -> [ :constraints, :data_type, :input_display_text, :required, :stored_value, :input_target, :restricted_set_values ]
         def required?: () -> bool
+
         def to_h: () -> { constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, data_type: String?, input_display_text: String?, required: bool?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, input_target: String?, restricted_set_values: Array[String]? }
       end
 
       class Shipment < Data
         def self.new: (amazon_order_id: String?, created_date: String?, insurance: Peddler::Types::Money?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, label: Peddler::Types::MerchantFulfillmentV0::Label?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, ship_to_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipment_id: String?, shipping_service: Peddler::Types::MerchantFulfillmentV0::ShippingService?, status: String?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?last_updated_date: String?, ?seller_order_id: String?, ?tracking_id: String?) -> Peddler::Types::MerchantFulfillmentV0::Shipment
                     | (String?, String?, Peddler::Types::Money?, Array[Peddler::Types::MerchantFulfillmentV0::Item]?, Peddler::Types::MerchantFulfillmentV0::Label?, Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::Address?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingService?, String?, Peddler::Types::MerchantFulfillmentV0::Weight?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Shipment
+
+        def self.[]: (amazon_order_id: String?, created_date: String?, insurance: Peddler::Types::Money?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, label: Peddler::Types::MerchantFulfillmentV0::Label?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, ship_to_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipment_id: String?, shipping_service: Peddler::Types::MerchantFulfillmentV0::ShippingService?, status: String?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?last_updated_date: String?, ?seller_order_id: String?, ?tracking_id: String?) -> Peddler::Types::MerchantFulfillmentV0::Shipment
+                   | (String?, String?, Peddler::Types::Money?, Array[Peddler::Types::MerchantFulfillmentV0::Item]?, Peddler::Types::MerchantFulfillmentV0::Label?, Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::Address?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingService?, String?, Peddler::Types::MerchantFulfillmentV0::Weight?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Shipment
+
+        def self.members: () -> [ :amazon_order_id, :created_date, :insurance, :item_list, :label, :package_dimensions, :ship_from_address, :ship_to_address, :shipment_id, :shipping_service, :status, :weight, :last_updated_date, :seller_order_id, :tracking_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Shipment
 
@@ -579,19 +793,17 @@ module Peddler
         attr_reader insurance: Peddler::Types::Money?
         attr_reader item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?
         attr_reader label: Peddler::Types::MerchantFulfillmentV0::Label?
-
         attr_reader last_updated_date: String?
         attr_reader package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?
-
         attr_reader seller_order_id: String?
         attr_reader ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?
         attr_reader ship_to_address: Peddler::Types::MerchantFulfillmentV0::Address?
         attr_reader shipment_id: String?
         attr_reader shipping_service: Peddler::Types::MerchantFulfillmentV0::ShippingService?
         attr_reader status: String?
-
         attr_reader tracking_id: String?
         attr_reader weight: Peddler::Types::MerchantFulfillmentV0::Weight?
+        def members: () -> [ :amazon_order_id, :created_date, :insurance, :item_list, :label, :package_dimensions, :ship_from_address, :ship_to_address, :shipment_id, :shipping_service, :status, :weight, :last_updated_date, :seller_order_id, :tracking_id ]
 
         def to_h: () -> { amazon_order_id: String?, created_date: String?, insurance: Peddler::Types::Money?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, label: Peddler::Types::MerchantFulfillmentV0::Label?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, ship_to_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipment_id: String?, shipping_service: Peddler::Types::MerchantFulfillmentV0::ShippingService?, status: String?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, last_updated_date: String?, seller_order_id: String?, tracking_id: String? }
       end
@@ -600,20 +812,24 @@ module Peddler
         def self.new: (amazon_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?, ?must_arrive_by_date: String?, ?seller_order_id: String?, ?ship_date: String?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
                     | (String?, Array[Peddler::Types::MerchantFulfillmentV0::Item]?, Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::Weight?, Peddler::Types::MerchantFulfillmentV0::LabelCustomization?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
 
+        def self.[]: (amazon_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?, ?must_arrive_by_date: String?, ?seller_order_id: String?, ?ship_date: String?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
+                   | (String?, Array[Peddler::Types::MerchantFulfillmentV0::Item]?, Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::Weight?, Peddler::Types::MerchantFulfillmentV0::LabelCustomization?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
+
+        def self.members: () -> [ :amazon_order_id, :item_list, :package_dimensions, :ship_from_address, :shipping_service_options, :weight, :label_customization, :must_arrive_by_date, :seller_order_id, :ship_date ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
 
         attr_reader amazon_order_id: String?
         attr_reader item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?
-
         attr_reader label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?
         attr_reader must_arrive_by_date: String?
         attr_reader package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?
-
         attr_reader seller_order_id: String?
         attr_reader ship_date: String?
         attr_reader ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?
         attr_reader shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?
         attr_reader weight: Peddler::Types::MerchantFulfillmentV0::Weight?
+        def members: () -> [ :amazon_order_id, :item_list, :package_dimensions, :ship_from_address, :shipping_service_options, :weight, :label_customization, :must_arrive_by_date, :seller_order_id, :ship_date ]
 
         def to_h: () -> { amazon_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?, must_arrive_by_date: String?, seller_order_id: String?, ship_date: String? }
       end
@@ -621,6 +837,11 @@ module Peddler
       class ShippingOfferingFilter < Data
         def self.new: (?carrier_will_pick_up: String?, ?delivery_experience: String?, ?include_complex_shipping_options: bool?, ?include_packing_slip_with_label: bool?) -> Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter
                     | (String?, String?, bool?, bool?) -> Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter
+
+        def self.[]: (?carrier_will_pick_up: String?, ?delivery_experience: String?, ?include_complex_shipping_options: bool?, ?include_packing_slip_with_label: bool?) -> Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter
+                   | (String?, String?, bool?, bool?) -> Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter
+
+        def self.members: () -> [ :carrier_will_pick_up, :delivery_experience, :include_complex_shipping_options, :include_packing_slip_with_label ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter
 
@@ -631,12 +852,19 @@ module Peddler
 
         def include_complex_shipping_options?: () -> bool
         def include_packing_slip_with_label?: () -> bool
+        def members: () -> [ :carrier_will_pick_up, :delivery_experience, :include_complex_shipping_options, :include_packing_slip_with_label ]
+
         def to_h: () -> { carrier_will_pick_up: String?, delivery_experience: String?, include_complex_shipping_options: bool?, include_packing_slip_with_label: bool? }
       end
 
       class ShippingService < Data
         def self.new: (carrier_name: String?, rate: Peddler::Types::Money?, rate_with_adjustments: Peddler::Types::Money?, requires_additional_seller_inputs: bool?, ship_date: String?, shipping_service_id: String?, shipping_service_name: String?, shipping_service_offer_id: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, ?adjustment_item_list: Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?, ?available_format_options_for_label: Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, ?available_label_formats: Array[untyped]?, ?available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, ?benefits: Peddler::Types::MerchantFulfillmentV0::Benefits?, ?earliest_estimated_delivery_date: String?, ?latest_estimated_delivery_date: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
                     | (String?, Peddler::Types::Money?, Peddler::Types::Money?, bool?, String?, String?, String?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?, Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, Array[untyped]?, Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::Benefits?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
+
+        def self.[]: (carrier_name: String?, rate: Peddler::Types::Money?, rate_with_adjustments: Peddler::Types::Money?, requires_additional_seller_inputs: bool?, ship_date: String?, shipping_service_id: String?, shipping_service_name: String?, shipping_service_offer_id: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, ?adjustment_item_list: Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?, ?available_format_options_for_label: Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, ?available_label_formats: Array[untyped]?, ?available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, ?benefits: Peddler::Types::MerchantFulfillmentV0::Benefits?, ?earliest_estimated_delivery_date: String?, ?latest_estimated_delivery_date: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
+                   | (String?, Peddler::Types::Money?, Peddler::Types::Money?, bool?, String?, String?, String?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?, Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, Array[untyped]?, Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::Benefits?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
+
+        def self.members: () -> [ :carrier_name, :rate, :rate_with_adjustments, :requires_additional_seller_inputs, :ship_date, :shipping_service_id, :shipping_service_name, :shipping_service_offer_id, :shipping_service_options, :adjustment_item_list, :available_format_options_for_label, :available_label_formats, :available_shipping_service_options, :benefits, :earliest_estimated_delivery_date, :latest_estimated_delivery_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
 
@@ -646,7 +874,6 @@ module Peddler
         attr_reader available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?
         attr_reader benefits: Peddler::Types::MerchantFulfillmentV0::Benefits?
         attr_reader carrier_name: String?
-
         attr_reader earliest_estimated_delivery_date: String?
         attr_reader latest_estimated_delivery_date: String?
         attr_reader rate: Peddler::Types::Money?
@@ -658,7 +885,9 @@ module Peddler
         attr_reader shipping_service_offer_id: String?
         attr_reader shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?
 
+        def members: () -> [ :carrier_name, :rate, :rate_with_adjustments, :requires_additional_seller_inputs, :ship_date, :shipping_service_id, :shipping_service_name, :shipping_service_offer_id, :shipping_service_options, :adjustment_item_list, :available_format_options_for_label, :available_label_formats, :available_shipping_service_options, :benefits, :earliest_estimated_delivery_date, :latest_estimated_delivery_date ]
         def requires_additional_seller_inputs?: () -> bool
+
         def to_h: () -> { carrier_name: String?, rate: Peddler::Types::Money?, rate_with_adjustments: Peddler::Types::Money?, requires_additional_seller_inputs: bool?, ship_date: String?, shipping_service_id: String?, shipping_service_name: String?, shipping_service_offer_id: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, adjustment_item_list: Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?, available_format_options_for_label: Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, available_label_formats: Array[untyped]?, available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, benefits: Peddler::Types::MerchantFulfillmentV0::Benefits?, earliest_estimated_delivery_date: String?, latest_estimated_delivery_date: String? }
       end
 
@@ -670,17 +899,22 @@ module Peddler
         def self.new: (carrier_will_pick_up: bool?, delivery_experience: String?, ?carrier_will_pick_up_option: String?, ?declared_value: Peddler::Types::Money?, ?label_format: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
                     | (bool?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
 
+        def self.[]: (carrier_will_pick_up: bool?, delivery_experience: String?, ?carrier_will_pick_up_option: String?, ?declared_value: Peddler::Types::Money?, ?label_format: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
+                   | (bool?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
+
+        def self.members: () -> [ :carrier_will_pick_up, :delivery_experience, :carrier_will_pick_up_option, :declared_value, :label_format ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
 
         attr_reader carrier_will_pick_up: bool?
-
         attr_reader carrier_will_pick_up_option: String?
         attr_reader declared_value: Peddler::Types::Money?
         attr_reader delivery_experience: String?
-
         attr_reader label_format: String?
 
         def carrier_will_pick_up?: () -> bool
+        def members: () -> [ :carrier_will_pick_up, :delivery_experience, :carrier_will_pick_up_option, :declared_value, :label_format ]
+
         def to_h: () -> { carrier_will_pick_up: bool?, delivery_experience: String?, carrier_will_pick_up_option: String?, declared_value: Peddler::Types::Money?, label_format: String? }
       end
 
@@ -688,9 +922,15 @@ module Peddler
         def self.new: (carrier_name: String?) -> Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier
                     | (String?) -> Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier
 
+        def self.[]: (carrier_name: String?) -> Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier
+                   | (String?) -> Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier
+
+        def self.members: () -> [ :carrier_name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier
 
         attr_reader carrier_name: String?
+        def members: () -> [ :carrier_name ]
 
         def to_h: () -> { carrier_name: String? }
       end
@@ -703,9 +943,15 @@ module Peddler
         def self.new: (carrier_name: String?) -> Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier
                     | (String?) -> Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier
 
+        def self.[]: (carrier_name: String?) -> Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier
+                   | (String?) -> Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier
+
+        def self.members: () -> [ :carrier_name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier
 
         attr_reader carrier_name: String?
+        def members: () -> [ :carrier_name ]
 
         def to_h: () -> { carrier_name: String? }
       end
@@ -722,10 +968,16 @@ module Peddler
         def self.new: (unit: String?, value: Float?) -> Peddler::Types::MerchantFulfillmentV0::Weight
                     | (String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::Weight
 
+        def self.[]: (unit: String?, value: Float?) -> Peddler::Types::MerchantFulfillmentV0::Weight
+                   | (String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::Weight
+
+        def self.members: () -> [ :unit, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Weight
 
         attr_reader unit: String?
         attr_reader value: Float?
+        def members: () -> [ :unit, :value ]
 
         def to_h: () -> { unit: String?, value: Float? }
       end

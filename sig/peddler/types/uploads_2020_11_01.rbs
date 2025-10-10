@@ -5,10 +5,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::Uploads20201101::Error]?, ?payload: Peddler::Types::Uploads20201101::UploadDestination?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
                     | (Array[Peddler::Types::Uploads20201101::Error]?, Peddler::Types::Uploads20201101::UploadDestination?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::Uploads20201101::Error]?, ?payload: Peddler::Types::Uploads20201101::UploadDestination?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
+                   | (Array[Peddler::Types::Uploads20201101::Error]?, Peddler::Types::Uploads20201101::UploadDestination?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
 
         attr_reader errors: Array[Peddler::Types::Uploads20201101::Error]?
         attr_reader payload: Peddler::Types::Uploads20201101::UploadDestination?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::Uploads20201101::Error]?, payload: Peddler::Types::Uploads20201101::UploadDestination? }
       end
@@ -17,12 +23,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Uploads20201101::Error
                     | (String?, String?, String?) -> Peddler::Types::Uploads20201101::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Uploads20201101::Error
+                   | (String?, String?, String?) -> Peddler::Types::Uploads20201101::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Uploads20201101::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -35,11 +46,17 @@ module Peddler
         def self.new: (?headers: Hash[untyped, untyped]?, ?upload_destination_id: String?, ?url: String?) -> Peddler::Types::Uploads20201101::UploadDestination
                     | (Hash[untyped, untyped]?, String?, String?) -> Peddler::Types::Uploads20201101::UploadDestination
 
+        def self.[]: (?headers: Hash[untyped, untyped]?, ?upload_destination_id: String?, ?url: String?) -> Peddler::Types::Uploads20201101::UploadDestination
+                   | (Hash[untyped, untyped]?, String?, String?) -> Peddler::Types::Uploads20201101::UploadDestination
+
+        def self.members: () -> [ :headers, :upload_destination_id, :url ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Uploads20201101::UploadDestination
 
         attr_reader headers: Hash[untyped, untyped]?
         attr_reader upload_destination_id: String?
         attr_reader url: String?
+        def members: () -> [ :headers, :upload_destination_id, :url ]
 
         def to_h: () -> { headers: Hash[untyped, untyped]?, upload_destination_id: String?, url: String? }
       end

@@ -5,6 +5,11 @@ module Peddler
         def self.new: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?name: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::ShipmentInvoicingV0::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::ShipmentInvoicingV0::Address
 
+        def self.[]: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?name: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::ShipmentInvoicingV0::Address
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::ShipmentInvoicingV0::Address
+
+        def self.members: () -> [ :address_line1, :address_line2, :address_line3, :address_type, :city, :country_code, :county, :district, :name, :phone, :postal_code, :state_or_region ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::Address
 
         attr_reader address_line1: String?
@@ -19,6 +24,7 @@ module Peddler
         attr_reader phone: String?
         attr_reader postal_code: String?
         attr_reader state_or_region: String?
+        def members: () -> [ :address_line1, :address_line2, :address_line3, :address_type, :city, :country_code, :county, :district, :name, :phone, :postal_code, :state_or_region ]
 
         def to_h: () -> { address_line1: String?, address_line2: String?, address_line3: String?, address_type: String?, city: String?, country_code: String?, county: String?, district: String?, name: String?, phone: String?, postal_code: String?, state_or_region: String? }
       end
@@ -27,11 +33,17 @@ module Peddler
         def self.new: (?company_legal_name: String?, ?tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, ?taxing_region: String?) -> Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo
                     | (String?, Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, String?) -> Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo
 
+        def self.[]: (?company_legal_name: String?, ?tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, ?taxing_region: String?) -> Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo
+                   | (String?, Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, String?) -> Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo
+
+        def self.members: () -> [ :company_legal_name, :tax_classifications, :taxing_region ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo
 
         attr_reader company_legal_name: String?
         attr_reader tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?
         attr_reader taxing_region: String?
+        def members: () -> [ :company_legal_name, :tax_classifications, :taxing_region ]
 
         def to_h: () -> { company_legal_name: String?, tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, taxing_region: String? }
       end
@@ -40,12 +52,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ShipmentInvoicingV0::Error
                     | (String?, String?, String?) -> Peddler::Types::ShipmentInvoicingV0::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ShipmentInvoicingV0::Error
+                   | (String?, String?, String?) -> Peddler::Types::ShipmentInvoicingV0::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -58,10 +75,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?, ?payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
                     | (Array[Peddler::Types::ShipmentInvoicingV0::Error]?, Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?, ?payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
+                   | (Array[Peddler::Types::ShipmentInvoicingV0::Error]?, Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
 
         attr_reader errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?
         attr_reader payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?, payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse? }
       end
@@ -70,10 +93,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?, ?payload: Peddler::Types::ShipmentInvoicingV0::ShipmentDetail?) -> Peddler::Types::ShipmentInvoicingV0::GetShipmentDetailsResponse
                     | (Array[Peddler::Types::ShipmentInvoicingV0::Error]?, Peddler::Types::ShipmentInvoicingV0::ShipmentDetail?) -> Peddler::Types::ShipmentInvoicingV0::GetShipmentDetailsResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?, ?payload: Peddler::Types::ShipmentInvoicingV0::ShipmentDetail?) -> Peddler::Types::ShipmentInvoicingV0::GetShipmentDetailsResponse
+                   | (Array[Peddler::Types::ShipmentInvoicingV0::Error]?, Peddler::Types::ShipmentInvoicingV0::ShipmentDetail?) -> Peddler::Types::ShipmentInvoicingV0::GetShipmentDetailsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::GetShipmentDetailsResponse
 
         attr_reader errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?
         attr_reader payload: Peddler::Types::ShipmentInvoicingV0::ShipmentDetail?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?, payload: Peddler::Types::ShipmentInvoicingV0::ShipmentDetail? }
       end
@@ -82,11 +111,17 @@ module Peddler
         def self.new: (?company_legal_name: String?, ?tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, ?taxing_region: String?) -> Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo
                     | (String?, Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, String?) -> Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo
 
+        def self.[]: (?company_legal_name: String?, ?tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, ?taxing_region: String?) -> Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo
+                   | (String?, Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, String?) -> Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo
+
+        def self.members: () -> [ :company_legal_name, :tax_classifications, :taxing_region ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo
 
         attr_reader company_legal_name: String?
         attr_reader tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?
         attr_reader taxing_region: String?
+        def members: () -> [ :company_legal_name, :tax_classifications, :taxing_region ]
 
         def to_h: () -> { company_legal_name: String?, tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?, taxing_region: String? }
       end
@@ -95,6 +130,11 @@ module Peddler
         def self.new: (?acquirer_id: String?, ?authorization_code: String?, ?card_brand: String?, ?payment_method: String?, ?payment_value: Peddler::Types::Money?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
                     | (String?, String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
 
+        def self.[]: (?acquirer_id: String?, ?authorization_code: String?, ?card_brand: String?, ?payment_method: String?, ?payment_value: Peddler::Types::Money?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
+                   | (String?, String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
+
+        def self.members: () -> [ :acquirer_id, :authorization_code, :card_brand, :payment_method, :payment_value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
 
         attr_reader acquirer_id: String?
@@ -102,6 +142,7 @@ module Peddler
         attr_reader card_brand: String?
         attr_reader payment_method: String?
         attr_reader payment_value: Peddler::Types::Money?
+        def members: () -> [ :acquirer_id, :authorization_code, :card_brand, :payment_method, :payment_value ]
 
         def to_h: () -> { acquirer_id: String?, authorization_code: String?, card_brand: String?, payment_method: String?, payment_value: Peddler::Types::Money? }
       end
@@ -122,6 +163,11 @@ module Peddler
         def self.new: (?amazon_order_id: String?, ?amazon_shipment_id: String?, ?buyer_county: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?, ?marketplace_id: String?, ?marketplace_tax_info: Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?, ?payment_method_details: Array[String]?, ?payments: Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?, ?purchase_date: String?, ?seller_display_name: String?, ?seller_id: String?, ?shipment_items: Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?, ?shipping_address: Peddler::Types::ShipmentInvoicingV0::Address?, ?warehouse_id: String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentDetail
                     | (String?, String?, String?, String?, Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?, String?, Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?, Array[String]?, Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?, String?, String?, String?, Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?, Peddler::Types::ShipmentInvoicingV0::Address?, String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentDetail
 
+        def self.[]: (?amazon_order_id: String?, ?amazon_shipment_id: String?, ?buyer_county: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?, ?marketplace_id: String?, ?marketplace_tax_info: Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?, ?payment_method_details: Array[String]?, ?payments: Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?, ?purchase_date: String?, ?seller_display_name: String?, ?seller_id: String?, ?shipment_items: Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?, ?shipping_address: Peddler::Types::ShipmentInvoicingV0::Address?, ?warehouse_id: String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentDetail
+                   | (String?, String?, String?, String?, Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?, String?, Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?, Array[String]?, Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?, String?, String?, String?, Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?, Peddler::Types::ShipmentInvoicingV0::Address?, String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentDetail
+
+        def self.members: () -> [ :amazon_order_id, :amazon_shipment_id, :buyer_county, :buyer_name, :buyer_tax_info, :marketplace_id, :marketplace_tax_info, :payment_method_details, :payments, :purchase_date, :seller_display_name, :seller_id, :shipment_items, :shipping_address, :warehouse_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::ShipmentDetail
 
         attr_reader amazon_order_id: String?
@@ -139,6 +185,7 @@ module Peddler
         attr_reader shipment_items: Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?
         attr_reader shipping_address: Peddler::Types::ShipmentInvoicingV0::Address?
         attr_reader warehouse_id: String?
+        def members: () -> [ :amazon_order_id, :amazon_shipment_id, :buyer_county, :buyer_name, :buyer_tax_info, :marketplace_id, :marketplace_tax_info, :payment_method_details, :payments, :purchase_date, :seller_display_name, :seller_id, :shipment_items, :shipping_address, :warehouse_id ]
 
         def to_h: () -> { amazon_order_id: String?, amazon_shipment_id: String?, buyer_county: String?, buyer_name: String?, buyer_tax_info: Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?, marketplace_id: String?, marketplace_tax_info: Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?, payment_method_details: Array[String]?, payments: Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?, purchase_date: String?, seller_display_name: String?, seller_id: String?, shipment_items: Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?, shipping_address: Peddler::Types::ShipmentInvoicingV0::Address?, warehouse_id: String? }
       end
@@ -147,10 +194,16 @@ module Peddler
         def self.new: (?amazon_shipment_id: String?, ?invoice_status: String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo
                     | (String?, String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo
 
+        def self.[]: (?amazon_shipment_id: String?, ?invoice_status: String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo
+                   | (String?, String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo
+
+        def self.members: () -> [ :amazon_shipment_id, :invoice_status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo
 
         attr_reader amazon_shipment_id: String?
         attr_reader invoice_status: String?
+        def members: () -> [ :amazon_shipment_id, :invoice_status ]
 
         def to_h: () -> { amazon_shipment_id: String?, invoice_status: String? }
       end
@@ -159,9 +212,15 @@ module Peddler
         def self.new: (?shipments: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse
                     | (Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse
 
+        def self.[]: (?shipments: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse
+                   | (Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse
+
+        def self.members: () -> [ :shipments ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse
 
         attr_reader shipments: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?
+        def members: () -> [ :shipments ]
 
         def to_h: () -> { shipments: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo? }
       end
@@ -169,6 +228,11 @@ module Peddler
       class ShipmentItem < Data
         def self.new: (?asin: String?, ?gift_wrap_price: Peddler::Types::Money?, ?item_price: Peddler::Types::Money?, ?order_item_id: String?, ?promotion_discount: Peddler::Types::Money?, ?quantity_ordered: Float?, ?seller_sku: String?, ?serial_numbers: Array[String]?, ?shipping_discount: Peddler::Types::Money?, ?shipping_price: Peddler::Types::Money?, ?title: String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
                     | (String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?, Float?, String?, Array[String]?, Peddler::Types::Money?, Peddler::Types::Money?, String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
+
+        def self.[]: (?asin: String?, ?gift_wrap_price: Peddler::Types::Money?, ?item_price: Peddler::Types::Money?, ?order_item_id: String?, ?promotion_discount: Peddler::Types::Money?, ?quantity_ordered: Float?, ?seller_sku: String?, ?serial_numbers: Array[String]?, ?shipping_discount: Peddler::Types::Money?, ?shipping_price: Peddler::Types::Money?, ?title: String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
+                   | (String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?, Float?, String?, Array[String]?, Peddler::Types::Money?, Peddler::Types::Money?, String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
+
+        def self.members: () -> [ :asin, :gift_wrap_price, :item_price, :order_item_id, :promotion_discount, :quantity_ordered, :seller_sku, :serial_numbers, :shipping_discount, :shipping_price, :title ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
 
@@ -183,6 +247,7 @@ module Peddler
         attr_reader shipping_discount: Peddler::Types::Money?
         attr_reader shipping_price: Peddler::Types::Money?
         attr_reader title: String?
+        def members: () -> [ :asin, :gift_wrap_price, :item_price, :order_item_id, :promotion_discount, :quantity_ordered, :seller_sku, :serial_numbers, :shipping_discount, :shipping_price, :title ]
 
         def to_h: () -> { asin: String?, gift_wrap_price: Peddler::Types::Money?, item_price: Peddler::Types::Money?, order_item_id: String?, promotion_discount: Peddler::Types::Money?, quantity_ordered: Float?, seller_sku: String?, serial_numbers: Array[String]?, shipping_discount: Peddler::Types::Money?, shipping_price: Peddler::Types::Money?, title: String? }
       end
@@ -195,11 +260,17 @@ module Peddler
         def self.new: (content_md5_value: String?, invoice_content: String?, ?marketplace_id: String?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceRequest
                     | (String?, String?, String?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceRequest
 
+        def self.[]: (content_md5_value: String?, invoice_content: String?, ?marketplace_id: String?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceRequest
+                   | (String?, String?, String?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceRequest
+
+        def self.members: () -> [ :content_md5_value, :invoice_content, :marketplace_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceRequest
 
         attr_reader content_md5_value: String?
         attr_reader invoice_content: String?
         attr_reader marketplace_id: String?
+        def members: () -> [ :content_md5_value, :invoice_content, :marketplace_id ]
 
         def to_h: () -> { content_md5_value: String?, invoice_content: String?, marketplace_id: String? }
       end
@@ -208,9 +279,15 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse
                     | (Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse
+                   | (Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse
 
         attr_reader errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]? }
       end
@@ -219,10 +296,16 @@ module Peddler
         def self.new: (?name: String?, ?value: String?) -> Peddler::Types::ShipmentInvoicingV0::TaxClassification
                     | (String?, String?) -> Peddler::Types::ShipmentInvoicingV0::TaxClassification
 
+        def self.[]: (?name: String?, ?value: String?) -> Peddler::Types::ShipmentInvoicingV0::TaxClassification
+                   | (String?, String?) -> Peddler::Types::ShipmentInvoicingV0::TaxClassification
+
+        def self.members: () -> [ :name, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::TaxClassification
 
         attr_reader name: String?
         attr_reader value: String?
+        def members: () -> [ :name, :value ]
 
         def to_h: () -> { name: String?, value: String? }
       end

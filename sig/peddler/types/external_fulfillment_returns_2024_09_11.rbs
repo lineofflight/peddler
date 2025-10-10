@@ -5,12 +5,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Error
                     | (String?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Error
+                   | (String?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -19,9 +24,15 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ErrorList
                     | (Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ErrorList
 
+        def self.[]: (errors: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ErrorList
+                   | (Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ErrorList
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ErrorList
 
         attr_reader errors: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]? }
       end
@@ -30,9 +41,15 @@ module Peddler
         def self.new: (id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation
                     | (String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation
 
+        def self.[]: (id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation
+                   | (String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation
+
+        def self.members: () -> [ :id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation
 
         attr_reader id: String?
+        def members: () -> [ :id ]
 
         def to_h: () -> { id: String? }
       end
@@ -41,10 +58,16 @@ module Peddler
         def self.new: (?channel_name: String?, ?marketplace_name: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
                     | (String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
 
+        def self.[]: (?channel_name: String?, ?marketplace_name: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
+                   | (String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
+
+        def self.members: () -> [ :channel_name, :marketplace_name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
 
         attr_reader channel_name: String?
         attr_reader marketplace_name: String?
+        def members: () -> [ :channel_name, :marketplace_name ]
 
         def to_h: () -> { channel_name: String?, marketplace_name: String? }
       end
@@ -52,6 +75,11 @@ module Peddler
       class MarketplaceChannelDetails < Data
         def self.new: (?channel_sku: String?, ?customer_order_id: String?, ?exchange_order_id: String?, ?marketplace_channel: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?, ?merchant_id: String?, ?return_location_id: String?, ?shipment_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails
                     | (String?, String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?, String?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails
+
+        def self.[]: (?channel_sku: String?, ?customer_order_id: String?, ?exchange_order_id: String?, ?marketplace_channel: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?, ?merchant_id: String?, ?return_location_id: String?, ?shipment_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails
+                   | (String?, String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?, String?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails
+
+        def self.members: () -> [ :channel_sku, :customer_order_id, :exchange_order_id, :marketplace_channel, :merchant_id, :return_location_id, :shipment_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails
 
@@ -62,6 +90,7 @@ module Peddler
         attr_reader merchant_id: String?
         attr_reader return_location_id: String?
         attr_reader shipment_id: String?
+        def members: () -> [ :channel_sku, :customer_order_id, :exchange_order_id, :marketplace_channel, :merchant_id, :return_location_id, :shipment_id ]
 
         def to_h: () -> { channel_sku: String?, customer_order_id: String?, exchange_order_id: String?, marketplace_channel: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?, merchant_id: String?, return_location_id: String?, shipment_id: String? }
       end
@@ -70,10 +99,16 @@ module Peddler
         def self.new: (otp: String?, valid_till: Integer?) -> Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails
                     | (String?, Integer?) -> Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails
 
+        def self.[]: (otp: String?, valid_till: Integer?) -> Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails
+                   | (String?, Integer?) -> Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails
+
+        def self.members: () -> [ :otp, :valid_till ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails
 
         attr_reader otp: String?
         attr_reader valid_till: Integer?
+        def members: () -> [ :otp, :valid_till ]
 
         def to_h: () -> { otp: String?, valid_till: Integer? }
       end
@@ -82,9 +117,15 @@ module Peddler
         def self.new: (?previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
                     | (Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
 
+        def self.[]: (?previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
+                   | (Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
+
+        def self.members: () -> [ :previous_tracking_info ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
 
         attr_reader previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?
+        def members: () -> [ :previous_tracking_info ]
 
         def to_h: () -> { previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]? }
       end
@@ -93,6 +134,11 @@ module Peddler
         def self.new: (fulfillment_location_id: String?, id: String?, last_updated_date_time: String?, marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, return_type: String?, status: String?, ?creation_date_time: String?, ?merchant_sku: String?, ?number_of_units: Integer?, ?otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, ?package_delivery_mode: String?, ?replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, ?return_location_id: String?, ?return_sub_type: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
                     | (String?, String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, String?, String?, String?, String?, Integer?, Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
 
+        def self.[]: (fulfillment_location_id: String?, id: String?, last_updated_date_time: String?, marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, return_type: String?, status: String?, ?creation_date_time: String?, ?merchant_sku: String?, ?number_of_units: Integer?, ?otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, ?package_delivery_mode: String?, ?replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, ?return_location_id: String?, ?return_sub_type: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
+                   | (String?, String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, String?, String?, String?, String?, Integer?, Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
+
+        def self.members: () -> [ :fulfillment_location_id, :id, :last_updated_date_time, :marketplace_channel_details, :return_metadata, :return_shipping_info, :return_type, :status, :creation_date_time, :merchant_sku, :number_of_units, :otp_details, :package_delivery_mode, :replanning_details, :return_location_id, :return_sub_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
 
         attr_reader creation_date_time: String?
@@ -100,7 +146,6 @@ module Peddler
         attr_reader id: String?
         attr_reader last_updated_date_time: String?
         attr_reader marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?
-
         attr_reader merchant_sku: String?
         attr_reader number_of_units: Integer?
         attr_reader otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?
@@ -109,10 +154,10 @@ module Peddler
         attr_reader return_location_id: String?
         attr_reader return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?
         attr_reader return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?
-
         attr_reader return_sub_type: String?
         attr_reader return_type: String?
         attr_reader status: String?
+        def members: () -> [ :fulfillment_location_id, :id, :last_updated_date_time, :marketplace_channel_details, :return_metadata, :return_shipping_info, :return_type, :status, :creation_date_time, :merchant_sku, :number_of_units, :otp_details, :package_delivery_mode, :replanning_details, :return_location_id, :return_sub_type ]
 
         def to_h: () -> { fulfillment_location_id: String?, id: String?, last_updated_date_time: String?, marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, return_type: String?, status: String?, creation_date_time: String?, merchant_sku: String?, number_of_units: Integer?, otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, package_delivery_mode: String?, replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, return_location_id: String?, return_sub_type: String? }
       end
@@ -121,13 +166,18 @@ module Peddler
         def self.new: (return_reason: String?, ?fulfillment_order_id: String?, ?invoice_information: Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?, ?rma_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata
                     | (String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata
 
+        def self.[]: (return_reason: String?, ?fulfillment_order_id: String?, ?invoice_information: Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?, ?rma_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata
+                   | (String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata
+
+        def self.members: () -> [ :return_reason, :fulfillment_order_id, :invoice_information, :rma_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata
 
         attr_reader fulfillment_order_id: String?
         attr_reader invoice_information: Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?
         attr_reader return_reason: String?
-
         attr_reader rma_id: String?
+        def members: () -> [ :return_reason, :fulfillment_order_id, :invoice_information, :rma_id ]
 
         def to_h: () -> { return_reason: String?, fulfillment_order_id: String?, invoice_information: Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?, rma_id: String? }
       end
@@ -136,12 +186,18 @@ module Peddler
         def self.new: (?delivery_date_time: String?, ?forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, ?pickup_date_time: String?, ?reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
                     | (String?, Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
 
+        def self.[]: (?delivery_date_time: String?, ?forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, ?pickup_date_time: String?, ?reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
+                   | (String?, Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
+
+        def self.members: () -> [ :delivery_date_time, :forward_tracking_info, :pickup_date_time, :reverse_tracking_info ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
 
         attr_reader delivery_date_time: String?
         attr_reader forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?
         attr_reader pickup_date_time: String?
         attr_reader reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?
+        def members: () -> [ :delivery_date_time, :forward_tracking_info, :pickup_date_time, :reverse_tracking_info ]
 
         def to_h: () -> { delivery_date_time: String?, forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, pickup_date_time: String?, reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo? }
       end
@@ -150,10 +206,16 @@ module Peddler
         def self.new: (?next_token: String?, ?returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
                     | (String?, Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
 
+        def self.[]: (?next_token: String?, ?returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+                   | (String?, Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+
+        def self.members: () -> [ :next_token, :returns ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
 
         attr_reader next_token: String?
         attr_reader returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?
+        def members: () -> [ :next_token, :returns ]
 
         def to_h: () -> { next_token: String?, returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]? }
       end
@@ -162,10 +224,16 @@ module Peddler
         def self.new: (carrier_name: String?, tracking_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
                     | (String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
 
+        def self.[]: (carrier_name: String?, tracking_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
+                   | (String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
+
+        def self.members: () -> [ :carrier_name, :tracking_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
 
         attr_reader carrier_name: String?
         attr_reader tracking_id: String?
+        def members: () -> [ :carrier_name, :tracking_id ]
 
         def to_h: () -> { carrier_name: String?, tracking_id: String? }
       end
