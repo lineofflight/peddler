@@ -5,9 +5,15 @@ module Peddler
         def self.new: (query_id: String?) -> Peddler::Types::DataKiosk20231115::CreateQueryResponse
                     | (String?) -> Peddler::Types::DataKiosk20231115::CreateQueryResponse
 
+        def self.[]: (query_id: String?) -> Peddler::Types::DataKiosk20231115::CreateQueryResponse
+                   | (String?) -> Peddler::Types::DataKiosk20231115::CreateQueryResponse
+
+        def self.members: () -> [ :query_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::DataKiosk20231115::CreateQueryResponse
 
         attr_reader query_id: String?
+        def members: () -> [ :query_id ]
 
         def to_h: () -> { query_id: String? }
       end
@@ -16,10 +22,16 @@ module Peddler
         def self.new: (query: String?, ?pagination_token: String?) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification
                     | (String?, String?) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification
 
+        def self.[]: (query: String?, ?pagination_token: String?) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification
+                   | (String?, String?) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification
+
+        def self.members: () -> [ :query, :pagination_token ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification
 
         attr_reader pagination_token: String?
         attr_reader query: String?
+        def members: () -> [ :query, :pagination_token ]
 
         def to_h: () -> { query: String?, pagination_token: String? }
       end
@@ -28,12 +40,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::DataKiosk20231115::Error
                     | (String?, String?, String?) -> Peddler::Types::DataKiosk20231115::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::DataKiosk20231115::Error
+                   | (String?, String?, String?) -> Peddler::Types::DataKiosk20231115::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::DataKiosk20231115::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -42,9 +59,15 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::DataKiosk20231115::Error]?) -> Peddler::Types::DataKiosk20231115::ErrorList
                     | (Array[Peddler::Types::DataKiosk20231115::Error]?) -> Peddler::Types::DataKiosk20231115::ErrorList
 
+        def self.[]: (errors: Array[Peddler::Types::DataKiosk20231115::Error]?) -> Peddler::Types::DataKiosk20231115::ErrorList
+                   | (Array[Peddler::Types::DataKiosk20231115::Error]?) -> Peddler::Types::DataKiosk20231115::ErrorList
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::DataKiosk20231115::ErrorList
 
         attr_reader errors: Array[Peddler::Types::DataKiosk20231115::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::DataKiosk20231115::Error]? }
       end
@@ -53,10 +76,16 @@ module Peddler
         def self.new: (document_id: String?, document_url: String?) -> Peddler::Types::DataKiosk20231115::GetDocumentResponse
                     | (String?, String?) -> Peddler::Types::DataKiosk20231115::GetDocumentResponse
 
+        def self.[]: (document_id: String?, document_url: String?) -> Peddler::Types::DataKiosk20231115::GetDocumentResponse
+                   | (String?, String?) -> Peddler::Types::DataKiosk20231115::GetDocumentResponse
+
+        def self.members: () -> [ :document_id, :document_url ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::DataKiosk20231115::GetDocumentResponse
 
         attr_reader document_id: String?
         attr_reader document_url: String?
+        def members: () -> [ :document_id, :document_url ]
 
         def to_h: () -> { document_id: String?, document_url: String? }
       end
@@ -65,10 +94,16 @@ module Peddler
         def self.new: (queries: Array[Peddler::Types::DataKiosk20231115::Query]?, ?pagination: Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
                     | (Array[Peddler::Types::DataKiosk20231115::Query]?, Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
 
+        def self.[]: (queries: Array[Peddler::Types::DataKiosk20231115::Query]?, ?pagination: Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
+                   | (Array[Peddler::Types::DataKiosk20231115::Query]?, Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
+
+        def self.members: () -> [ :queries, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
 
         attr_reader pagination: Hash[untyped, untyped]?
         attr_reader queries: Array[Peddler::Types::DataKiosk20231115::Query]?
+        def members: () -> [ :queries, :pagination ]
 
         def to_h: () -> { queries: Array[Peddler::Types::DataKiosk20231115::Query]?, pagination: Hash[untyped, untyped]? }
       end
@@ -77,10 +112,14 @@ module Peddler
         def self.new: (created_time: String?, processing_status: String?, query: String?, query_id: String?, ?data_document_id: String?, ?error_document_id: String?, ?pagination: Hash[untyped, untyped]?, ?processing_end_time: String?, ?processing_start_time: String?) -> Peddler::Types::DataKiosk20231115::Query
                     | (String?, String?, String?, String?, String?, String?, Hash[untyped, untyped]?, String?, String?) -> Peddler::Types::DataKiosk20231115::Query
 
+        def self.[]: (created_time: String?, processing_status: String?, query: String?, query_id: String?, ?data_document_id: String?, ?error_document_id: String?, ?pagination: Hash[untyped, untyped]?, ?processing_end_time: String?, ?processing_start_time: String?) -> Peddler::Types::DataKiosk20231115::Query
+                   | (String?, String?, String?, String?, String?, String?, Hash[untyped, untyped]?, String?, String?) -> Peddler::Types::DataKiosk20231115::Query
+
+        def self.members: () -> [ :created_time, :processing_status, :query, :query_id, :data_document_id, :error_document_id, :pagination, :processing_end_time, :processing_start_time ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::DataKiosk20231115::Query
 
         attr_reader created_time: String?
-
         attr_reader data_document_id: String?
         attr_reader error_document_id: String?
         attr_reader pagination: Hash[untyped, untyped]?
@@ -89,6 +128,7 @@ module Peddler
         attr_reader processing_status: String?
         attr_reader query: String?
         attr_reader query_id: String?
+        def members: () -> [ :created_time, :processing_status, :query, :query_id, :data_document_id, :error_document_id, :pagination, :processing_end_time, :processing_start_time ]
 
         def to_h: () -> { created_time: String?, processing_status: String?, query: String?, query_id: String?, data_document_id: String?, error_document_id: String?, pagination: Hash[untyped, untyped]?, processing_end_time: String?, processing_start_time: String? }
       end

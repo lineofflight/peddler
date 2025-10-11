@@ -5,9 +5,15 @@ module Peddler
         def self.new: (?percentage: Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
                     | (Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
 
+        def self.[]: (?percentage: Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
+                   | (Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
+
+        def self.members: () -> [ :percentage ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::DiscountFunding
 
         attr_reader percentage: Array[Float]?
+        def members: () -> [ :percentage ]
 
         def to_h: () -> { percentage: Array[Float]? }
       end
@@ -16,12 +22,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Replenishment20221107::Error
                     | (String?, String?, String?) -> Peddler::Types::Replenishment20221107::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Replenishment20221107::Error
+                   | (String?, String?, String?) -> Peddler::Types::Replenishment20221107::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -30,9 +41,15 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::Replenishment20221107::Error]?) -> Peddler::Types::Replenishment20221107::ErrorList
                     | (Array[Peddler::Types::Replenishment20221107::Error]?) -> Peddler::Types::Replenishment20221107::ErrorList
 
+        def self.[]: (errors: Array[Peddler::Types::Replenishment20221107::Error]?) -> Peddler::Types::Replenishment20221107::ErrorList
+                   | (Array[Peddler::Types::Replenishment20221107::Error]?) -> Peddler::Types::Replenishment20221107::ErrorList
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ErrorList
 
         attr_reader errors: Array[Peddler::Types::Replenishment20221107::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::Replenishment20221107::Error]? }
       end
@@ -41,15 +58,20 @@ module Peddler
         def self.new: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
                     | (String?, Array[untyped]?, Peddler::Types::Replenishment20221107::TimeInterval?, String?, String?, Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
 
+        def self.[]: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
+                   | (String?, Array[untyped]?, Peddler::Types::Replenishment20221107::TimeInterval?, String?, String?, Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
+
+        def self.members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :metrics ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
 
         attr_reader aggregation_frequency: String?
         attr_reader marketplace_id: String?
-
         attr_reader metrics: Array[untyped]?
         attr_reader program_types: Array[untyped]?
         attr_reader time_interval: Peddler::Types::Replenishment20221107::TimeInterval?
         attr_reader time_period_type: String?
+        def members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :metrics ]
 
         def to_h: () -> { marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, aggregation_frequency: String?, metrics: Array[untyped]? }
       end
@@ -58,9 +80,15 @@ module Peddler
         def self.new: (?metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
                     | (Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
 
+        def self.[]: (?metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
+                   | (Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
+
+        def self.members: () -> [ :metrics ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
 
         attr_reader metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?
+        def members: () -> [ :metrics ]
 
         def to_h: () -> { metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]? }
       end
@@ -68,6 +96,11 @@ module Peddler
       class GetSellingPartnerMetricsResponseMetric < Data
         def self.new: (?active_subscriptions: Float?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?lost_revenue_due_to_oos: Float?, ?non_subscriber_average_reorders: Float?, ?non_subscriber_average_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?revenue_from_active_subscriptions_with_single_delivery: Float?, ?revenue_from_cancelled_subscriptions_after_single_delivery: Float?, ?revenue_from_subscriptions_with_multiple_deliveries: Float?, ?revenue_penetration_for0_percent_seller_funding: Float?, ?revenue_penetration_for10_percent_seller_funding: Float?, ?revenue_penetration_for5_percent_seller_funding: Float?, ?revenue_penetration_for5_plus_percent_seller_funding: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?subscriber_average_reorders: Float?, ?subscriber_average_revenue: Float?, ?subscriber_retention_for30_days: Float?, ?subscriber_retention_for90_days: Float?, ?time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric
                     | (Float?, Float?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Peddler::Types::Replenishment20221107::TimeInterval?, Float?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric
+
+        def self.[]: (?active_subscriptions: Float?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?lost_revenue_due_to_oos: Float?, ?non_subscriber_average_reorders: Float?, ?non_subscriber_average_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?revenue_from_active_subscriptions_with_single_delivery: Float?, ?revenue_from_cancelled_subscriptions_after_single_delivery: Float?, ?revenue_from_subscriptions_with_multiple_deliveries: Float?, ?revenue_penetration_for0_percent_seller_funding: Float?, ?revenue_penetration_for10_percent_seller_funding: Float?, ?revenue_penetration_for5_percent_seller_funding: Float?, ?revenue_penetration_for5_plus_percent_seller_funding: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?subscriber_average_reorders: Float?, ?subscriber_average_revenue: Float?, ?subscriber_retention_for30_days: Float?, ?subscriber_retention_for90_days: Float?, ?time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric
+                   | (Float?, Float?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Peddler::Types::Replenishment20221107::TimeInterval?, Float?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric
+
+        def self.members: () -> [ :active_subscriptions, :coupons_revenue_penetration, :currency_code, :lost_revenue_due_to_oos, :non_subscriber_average_reorders, :non_subscriber_average_revenue, :not_delivered_due_to_oos, :revenue_from_active_subscriptions_with_single_delivery, :revenue_from_cancelled_subscriptions_after_single_delivery, :revenue_from_subscriptions_with_multiple_deliveries, :revenue_penetration_for0_percent_seller_funding, :revenue_penetration_for10_percent_seller_funding, :revenue_penetration_for5_percent_seller_funding, :revenue_penetration_for5_plus_percent_seller_funding, :share_of_coupon_subscriptions, :shipped_subscription_units, :subscriber_average_reorders, :subscriber_average_revenue, :subscriber_retention_for30_days, :subscriber_retention_for90_days, :time_interval, :total_subscriptions_revenue ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric
 
@@ -93,6 +126,7 @@ module Peddler
         attr_reader subscriber_retention_for90_days: Float?
         attr_reader time_interval: Peddler::Types::Replenishment20221107::TimeInterval?
         attr_reader total_subscriptions_revenue: Float?
+        def members: () -> [ :active_subscriptions, :coupons_revenue_penetration, :currency_code, :lost_revenue_due_to_oos, :non_subscriber_average_reorders, :non_subscriber_average_revenue, :not_delivered_due_to_oos, :revenue_from_active_subscriptions_with_single_delivery, :revenue_from_cancelled_subscriptions_after_single_delivery, :revenue_from_subscriptions_with_multiple_deliveries, :revenue_penetration_for0_percent_seller_funding, :revenue_penetration_for10_percent_seller_funding, :revenue_penetration_for5_percent_seller_funding, :revenue_penetration_for5_plus_percent_seller_funding, :share_of_coupon_subscriptions, :shipped_subscription_units, :subscriber_average_reorders, :subscriber_average_revenue, :subscriber_retention_for30_days, :subscriber_retention_for90_days, :time_interval, :total_subscriptions_revenue ]
 
         def to_h: () -> { active_subscriptions: Float?, coupons_revenue_penetration: Float?, currency_code: String?, lost_revenue_due_to_oos: Float?, non_subscriber_average_reorders: Float?, non_subscriber_average_revenue: Float?, not_delivered_due_to_oos: Float?, revenue_from_active_subscriptions_with_single_delivery: Float?, revenue_from_cancelled_subscriptions_after_single_delivery: Float?, revenue_from_subscriptions_with_multiple_deliveries: Float?, revenue_penetration_for0_percent_seller_funding: Float?, revenue_penetration_for10_percent_seller_funding: Float?, revenue_penetration_for5_percent_seller_funding: Float?, revenue_penetration_for5_plus_percent_seller_funding: Float?, share_of_coupon_subscriptions: Float?, shipped_subscription_units: Float?, subscriber_average_reorders: Float?, subscriber_average_revenue: Float?, subscriber_retention_for30_days: Float?, subscriber_retention_for90_days: Float?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, total_subscriptions_revenue: Float? }
       end
@@ -101,11 +135,17 @@ module Peddler
         def self.new: (filters: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, ?sort: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
                     | (Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?, Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
 
+        def self.[]: (filters: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, ?sort: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
+                   | (Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?, Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
+
+        def self.members: () -> [ :filters, :pagination, :sort ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
 
         attr_reader filters: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?
         attr_reader pagination: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?
         attr_reader sort: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?
+        def members: () -> [ :filters, :pagination, :sort ]
 
         def to_h: () -> { filters: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, sort: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort? }
       end
@@ -113,6 +153,11 @@ module Peddler
       class ListOfferMetricsRequestFilters < Data
         def self.new: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?asins: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters
                     | (String?, Array[untyped]?, Peddler::Types::Replenishment20221107::TimeInterval?, String?, String?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters
+
+        def self.[]: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?asins: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters
+                   | (String?, Array[untyped]?, Peddler::Types::Replenishment20221107::TimeInterval?, String?, String?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters
+
+        def self.members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :asins ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters
 
@@ -122,6 +167,7 @@ module Peddler
         attr_reader program_types: Array[untyped]?
         attr_reader time_interval: Peddler::Types::Replenishment20221107::TimeInterval?
         attr_reader time_period_type: String?
+        def members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :asins ]
 
         def to_h: () -> { marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, aggregation_frequency: String?, asins: Array[String]? }
       end
@@ -130,10 +176,16 @@ module Peddler
         def self.new: (limit: Integer?, offset: Integer?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination
                     | (Integer?, Integer?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination
 
+        def self.[]: (limit: Integer?, offset: Integer?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination
+                   | (Integer?, Integer?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination
+
+        def self.members: () -> [ :limit, :offset ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination
 
         attr_reader limit: Integer?
         attr_reader offset: Integer?
+        def members: () -> [ :limit, :offset ]
 
         def to_h: () -> { limit: Integer?, offset: Integer? }
       end
@@ -142,10 +194,16 @@ module Peddler
         def self.new: (key: String?, order: String?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
                     | (String?, String?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
 
+        def self.[]: (key: String?, order: String?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
+                   | (String?, String?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
+
+        def self.members: () -> [ :key, :order ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
 
         attr_reader key: String?
         attr_reader order: String?
+        def members: () -> [ :key, :order ]
 
         def to_h: () -> { key: String?, order: String? }
       end
@@ -154,10 +212,16 @@ module Peddler
         def self.new: (?offers: Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, ?pagination: Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponse
                     | (Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponse
 
+        def self.[]: (?offers: Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, ?pagination: Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponse
+                   | (Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponse
+
+        def self.members: () -> [ :offers, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponse
 
         attr_reader offers: Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?
         attr_reader pagination: Peddler::Types::Replenishment20221107::PaginationResponse?
+        def members: () -> [ :offers, :pagination ]
 
         def to_h: () -> { offers: Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, pagination: Peddler::Types::Replenishment20221107::PaginationResponse? }
       end
@@ -165,6 +229,11 @@ module Peddler
       class ListOfferMetricsResponseOffer < Data
         def self.new: (?active_subscriptions: Float?, ?asin: String?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?lost_revenue_due_to_oos: Float?, ?next30_day_shipped_subscription_units: Float?, ?next30_day_total_subscriptions_revenue: Float?, ?next60_day_shipped_subscription_units: Float?, ?next60_day_total_subscriptions_revenue: Float?, ?next90_day_shipped_subscription_units: Float?, ?next90_day_total_subscriptions_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?revenue_penetration: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
                     | (Float?, String?, Float?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Peddler::Types::Replenishment20221107::TimeInterval?, Float?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
+
+        def self.[]: (?active_subscriptions: Float?, ?asin: String?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?lost_revenue_due_to_oos: Float?, ?next30_day_shipped_subscription_units: Float?, ?next30_day_total_subscriptions_revenue: Float?, ?next60_day_shipped_subscription_units: Float?, ?next60_day_total_subscriptions_revenue: Float?, ?next90_day_shipped_subscription_units: Float?, ?next90_day_total_subscriptions_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?revenue_penetration: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
+                   | (Float?, String?, Float?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Peddler::Types::Replenishment20221107::TimeInterval?, Float?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
+
+        def self.members: () -> [ :active_subscriptions, :asin, :coupons_revenue_penetration, :currency_code, :lost_revenue_due_to_oos, :next30_day_shipped_subscription_units, :next30_day_total_subscriptions_revenue, :next60_day_shipped_subscription_units, :next60_day_total_subscriptions_revenue, :next90_day_shipped_subscription_units, :next90_day_total_subscriptions_revenue, :not_delivered_due_to_oos, :revenue_penetration, :share_of_coupon_subscriptions, :shipped_subscription_units, :time_interval, :total_subscriptions_revenue ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
 
@@ -185,6 +254,7 @@ module Peddler
         attr_reader shipped_subscription_units: Float?
         attr_reader time_interval: Peddler::Types::Replenishment20221107::TimeInterval?
         attr_reader total_subscriptions_revenue: Float?
+        def members: () -> [ :active_subscriptions, :asin, :coupons_revenue_penetration, :currency_code, :lost_revenue_due_to_oos, :next30_day_shipped_subscription_units, :next30_day_total_subscriptions_revenue, :next60_day_shipped_subscription_units, :next60_day_total_subscriptions_revenue, :next90_day_shipped_subscription_units, :next90_day_total_subscriptions_revenue, :not_delivered_due_to_oos, :revenue_penetration, :share_of_coupon_subscriptions, :shipped_subscription_units, :time_interval, :total_subscriptions_revenue ]
 
         def to_h: () -> { active_subscriptions: Float?, asin: String?, coupons_revenue_penetration: Float?, currency_code: String?, lost_revenue_due_to_oos: Float?, next30_day_shipped_subscription_units: Float?, next30_day_total_subscriptions_revenue: Float?, next60_day_shipped_subscription_units: Float?, next60_day_total_subscriptions_revenue: Float?, next90_day_shipped_subscription_units: Float?, next90_day_total_subscriptions_revenue: Float?, not_delivered_due_to_oos: Float?, revenue_penetration: Float?, share_of_coupon_subscriptions: Float?, shipped_subscription_units: Float?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, total_subscriptions_revenue: Float? }
       end
@@ -193,11 +263,17 @@ module Peddler
         def self.new: (filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, ?sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort?) -> Peddler::Types::Replenishment20221107::ListOffersRequest
                     | (Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, Peddler::Types::Replenishment20221107::ListOffersRequestSort?) -> Peddler::Types::Replenishment20221107::ListOffersRequest
 
+        def self.[]: (filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, ?sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort?) -> Peddler::Types::Replenishment20221107::ListOffersRequest
+                   | (Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, Peddler::Types::Replenishment20221107::ListOffersRequestSort?) -> Peddler::Types::Replenishment20221107::ListOffersRequest
+
+        def self.members: () -> [ :filters, :pagination, :sort ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOffersRequest
 
         attr_reader filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?
         attr_reader pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?
         attr_reader sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort?
+        def members: () -> [ :filters, :pagination, :sort ]
 
         def to_h: () -> { filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort? }
       end
@@ -206,17 +282,21 @@ module Peddler
         def self.new: (marketplace_id: String?, program_types: Array[untyped]?, ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::Types::Replenishment20221107::Preference?, ?promotions: Peddler::Types::Replenishment20221107::Promotion?, ?skus: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
                     | (String?, Array[untyped]?, Array[String]?, Array[untyped]?, Peddler::Types::Replenishment20221107::Preference?, Peddler::Types::Replenishment20221107::Promotion?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
 
+        def self.[]: (marketplace_id: String?, program_types: Array[untyped]?, ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::Types::Replenishment20221107::Preference?, ?promotions: Peddler::Types::Replenishment20221107::Promotion?, ?skus: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
+                   | (String?, Array[untyped]?, Array[String]?, Array[untyped]?, Peddler::Types::Replenishment20221107::Preference?, Peddler::Types::Replenishment20221107::Promotion?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
+
+        def self.members: () -> [ :marketplace_id, :program_types, :asins, :eligibilities, :preferences, :promotions, :skus ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
 
         attr_reader asins: Array[String]?
         attr_reader eligibilities: Array[untyped]?
         attr_reader marketplace_id: String?
-
         attr_reader preferences: Peddler::Types::Replenishment20221107::Preference?
         attr_reader program_types: Array[untyped]?
-
         attr_reader promotions: Peddler::Types::Replenishment20221107::Promotion?
         attr_reader skus: Array[String]?
+        def members: () -> [ :marketplace_id, :program_types, :asins, :eligibilities, :preferences, :promotions, :skus ]
 
         def to_h: () -> { marketplace_id: String?, program_types: Array[untyped]?, asins: Array[String]?, eligibilities: Array[untyped]?, preferences: Peddler::Types::Replenishment20221107::Preference?, promotions: Peddler::Types::Replenishment20221107::Promotion?, skus: Array[String]? }
       end
@@ -225,10 +305,16 @@ module Peddler
         def self.new: (limit: Integer?, offset: Integer?) -> Peddler::Types::Replenishment20221107::ListOffersRequestPagination
                     | (Integer?, Integer?) -> Peddler::Types::Replenishment20221107::ListOffersRequestPagination
 
+        def self.[]: (limit: Integer?, offset: Integer?) -> Peddler::Types::Replenishment20221107::ListOffersRequestPagination
+                   | (Integer?, Integer?) -> Peddler::Types::Replenishment20221107::ListOffersRequestPagination
+
+        def self.members: () -> [ :limit, :offset ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOffersRequestPagination
 
         attr_reader limit: Integer?
         attr_reader offset: Integer?
+        def members: () -> [ :limit, :offset ]
 
         def to_h: () -> { limit: Integer?, offset: Integer? }
       end
@@ -237,10 +323,16 @@ module Peddler
         def self.new: (key: String?, order: String?) -> Peddler::Types::Replenishment20221107::ListOffersRequestSort
                     | (String?, String?) -> Peddler::Types::Replenishment20221107::ListOffersRequestSort
 
+        def self.[]: (key: String?, order: String?) -> Peddler::Types::Replenishment20221107::ListOffersRequestSort
+                   | (String?, String?) -> Peddler::Types::Replenishment20221107::ListOffersRequestSort
+
+        def self.members: () -> [ :key, :order ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOffersRequestSort
 
         attr_reader key: String?
         attr_reader order: String?
+        def members: () -> [ :key, :order ]
 
         def to_h: () -> { key: String?, order: String? }
       end
@@ -249,10 +341,16 @@ module Peddler
         def self.new: (?offers: Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?, ?pagination: Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOffersResponse
                     | (Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?, Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOffersResponse
 
+        def self.[]: (?offers: Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?, ?pagination: Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOffersResponse
+                   | (Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?, Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOffersResponse
+
+        def self.members: () -> [ :offers, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOffersResponse
 
         attr_reader offers: Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?
         attr_reader pagination: Peddler::Types::Replenishment20221107::PaginationResponse?
+        def members: () -> [ :offers, :pagination ]
 
         def to_h: () -> { offers: Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?, pagination: Peddler::Types::Replenishment20221107::PaginationResponse? }
       end
@@ -260,6 +358,11 @@ module Peddler
       class ListOffersResponseOffer < Data
         def self.new: (?asin: String?, ?eligibility: String?, ?marketplace_id: String?, ?offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, ?program_type: String?, ?sku: String?, ?vendor_codes: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
                     | (String?, String?, String?, Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, String?, String?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
+
+        def self.[]: (?asin: String?, ?eligibility: String?, ?marketplace_id: String?, ?offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, ?program_type: String?, ?sku: String?, ?vendor_codes: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
+                   | (String?, String?, String?, Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, String?, String?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
+
+        def self.members: () -> [ :asin, :eligibility, :marketplace_id, :offer_program_configuration, :program_type, :sku, :vendor_codes ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
 
@@ -270,6 +373,7 @@ module Peddler
         attr_reader program_type: String?
         attr_reader sku: String?
         attr_reader vendor_codes: Array[String]?
+        def members: () -> [ :asin, :eligibility, :marketplace_id, :offer_program_configuration, :program_type, :sku, :vendor_codes ]
 
         def to_h: () -> { asin: String?, eligibility: String?, marketplace_id: String?, offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, program_type: String?, sku: String?, vendor_codes: Array[String]? }
       end
@@ -278,11 +382,17 @@ module Peddler
         def self.new: (?enrollment_method: String?, ?preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, ?promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
                     | (String?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
 
+        def self.[]: (?enrollment_method: String?, ?preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, ?promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
+                   | (String?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
+
+        def self.members: () -> [ :enrollment_method, :preferences, :promotions ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
 
         attr_reader enrollment_method: String?
         attr_reader preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?
         attr_reader promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?
+        def members: () -> [ :enrollment_method, :preferences, :promotions ]
 
         def to_h: () -> { enrollment_method: String?, preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions? }
       end
@@ -291,9 +401,15 @@ module Peddler
         def self.new: (?auto_enrollment: String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences
                     | (String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences
 
+        def self.[]: (?auto_enrollment: String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences
+                   | (String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences
+
+        def self.members: () -> [ :auto_enrollment ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences
 
         attr_reader auto_enrollment: String?
+        def members: () -> [ :auto_enrollment ]
 
         def to_h: () -> { auto_enrollment: String? }
       end
@@ -302,12 +418,18 @@ module Peddler
         def self.new: (?amazon_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
                     | (Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
 
+        def self.[]: (?amazon_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
+                   | (Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
+
+        def self.members: () -> [ :amazon_funded_base_discount, :amazon_funded_tiered_discount, :selling_partner_funded_base_discount, :selling_partner_funded_tiered_discount ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
 
         attr_reader amazon_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?
         attr_reader amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?
         attr_reader selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?
         attr_reader selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?
+        def members: () -> [ :amazon_funded_base_discount, :amazon_funded_tiered_discount, :selling_partner_funded_base_discount, :selling_partner_funded_tiered_discount ]
 
         def to_h: () -> { amazon_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding? }
       end
@@ -316,9 +438,15 @@ module Peddler
         def self.new: (?percentage: Float?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding
                     | (Float?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding
 
+        def self.[]: (?percentage: Float?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding
+                   | (Float?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding
+
+        def self.members: () -> [ :percentage ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding
 
         attr_reader percentage: Float?
+        def members: () -> [ :percentage ]
 
         def to_h: () -> { percentage: Float? }
       end
@@ -327,9 +455,15 @@ module Peddler
         def self.new: (?total_results: Integer?) -> Peddler::Types::Replenishment20221107::PaginationResponse
                     | (Integer?) -> Peddler::Types::Replenishment20221107::PaginationResponse
 
+        def self.[]: (?total_results: Integer?) -> Peddler::Types::Replenishment20221107::PaginationResponse
+                   | (Integer?) -> Peddler::Types::Replenishment20221107::PaginationResponse
+
+        def self.members: () -> [ :total_results ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::PaginationResponse
 
         attr_reader total_results: Integer?
+        def members: () -> [ :total_results ]
 
         def to_h: () -> { total_results: Integer? }
       end
@@ -338,9 +472,15 @@ module Peddler
         def self.new: (?auto_enrollment: Array[untyped]?) -> Peddler::Types::Replenishment20221107::Preference
                     | (Array[untyped]?) -> Peddler::Types::Replenishment20221107::Preference
 
+        def self.[]: (?auto_enrollment: Array[untyped]?) -> Peddler::Types::Replenishment20221107::Preference
+                   | (Array[untyped]?) -> Peddler::Types::Replenishment20221107::Preference
+
+        def self.members: () -> [ :auto_enrollment ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::Preference
 
         attr_reader auto_enrollment: Array[untyped]?
+        def members: () -> [ :auto_enrollment ]
 
         def to_h: () -> { auto_enrollment: Array[untyped]? }
       end
@@ -353,12 +493,18 @@ module Peddler
         def self.new: (?amazon_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, ?amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, ?selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, ?selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?) -> Peddler::Types::Replenishment20221107::Promotion
                     | (Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?) -> Peddler::Types::Replenishment20221107::Promotion
 
+        def self.[]: (?amazon_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, ?amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, ?selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, ?selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?) -> Peddler::Types::Replenishment20221107::Promotion
+                   | (Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?) -> Peddler::Types::Replenishment20221107::Promotion
+
+        def self.members: () -> [ :amazon_funded_base_discount, :amazon_funded_tiered_discount, :selling_partner_funded_base_discount, :selling_partner_funded_tiered_discount ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::Promotion
 
         attr_reader amazon_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?
         attr_reader amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?
         attr_reader selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?
         attr_reader selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?
+        def members: () -> [ :amazon_funded_base_discount, :amazon_funded_tiered_discount, :selling_partner_funded_base_discount, :selling_partner_funded_tiered_discount ]
 
         def to_h: () -> { amazon_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding? }
       end
@@ -367,10 +513,16 @@ module Peddler
         def self.new: (end_date: String?, start_date: String?) -> Peddler::Types::Replenishment20221107::TimeInterval
                     | (String?, String?) -> Peddler::Types::Replenishment20221107::TimeInterval
 
+        def self.[]: (end_date: String?, start_date: String?) -> Peddler::Types::Replenishment20221107::TimeInterval
+                   | (String?, String?) -> Peddler::Types::Replenishment20221107::TimeInterval
+
+        def self.members: () -> [ :end_date, :start_date ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::TimeInterval
 
         attr_reader end_date: String?
         attr_reader start_date: String?
+        def members: () -> [ :end_date, :start_date ]
 
         def to_h: () -> { end_date: String?, start_date: String? }
       end

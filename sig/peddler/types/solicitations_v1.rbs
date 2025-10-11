@@ -5,9 +5,15 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
                     | (Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
+                   | (Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
 
         attr_reader errors: Array[Peddler::Types::SolicitationsV1::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::SolicitationsV1::Error]? }
       end
@@ -16,12 +22,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::SolicitationsV1::Error
                     | (String?, String?, String?) -> Peddler::Types::SolicitationsV1::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::SolicitationsV1::Error
+                   | (String?, String?, String?) -> Peddler::Types::SolicitationsV1::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SolicitationsV1::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -34,11 +45,17 @@ module Peddler
         def self.new: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?, ?payload: Hash[untyped, untyped]?) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
                     | (Hash[untyped, untyped]?, Array[Peddler::Types::SolicitationsV1::Error]?, Hash[untyped, untyped]?) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
 
+        def self.[]: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?, ?payload: Hash[untyped, untyped]?) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
+                   | (Hash[untyped, untyped]?, Array[Peddler::Types::SolicitationsV1::Error]?, Hash[untyped, untyped]?) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
+
+        def self.members: () -> [ :_links, :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
 
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::Types::SolicitationsV1::Error]?
         attr_reader payload: Hash[untyped, untyped]?
+        def members: () -> [ :_links, :errors, :payload ]
 
         def to_h: () -> { _links: Hash[untyped, untyped]?, errors: Array[Peddler::Types::SolicitationsV1::Error]?, payload: Hash[untyped, untyped]? }
       end
@@ -47,12 +64,18 @@ module Peddler
         def self.new: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?, ?payload: Peddler::Types::SolicitationsV1::SolicitationsAction?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::Types::SolicitationsV1::Error]?, Peddler::Types::SolicitationsV1::SolicitationsAction?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionResponse
 
+        def self.[]: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?, ?payload: Peddler::Types::SolicitationsV1::SolicitationsAction?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionResponse
+                   | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::Types::SolicitationsV1::Error]?, Peddler::Types::SolicitationsV1::SolicitationsAction?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionResponse
+
+        def self.members: () -> [ :_embedded, :_links, :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SolicitationsV1::GetSolicitationActionResponse
 
         attr_reader _embedded: Hash[untyped, untyped]?
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::Types::SolicitationsV1::Error]?
         attr_reader payload: Peddler::Types::SolicitationsV1::SolicitationsAction?
+        def members: () -> [ :_embedded, :_links, :errors, :payload ]
 
         def to_h: () -> { _embedded: Hash[untyped, untyped]?, _links: Hash[untyped, untyped]?, errors: Array[Peddler::Types::SolicitationsV1::Error]?, payload: Peddler::Types::SolicitationsV1::SolicitationsAction? }
       end
@@ -61,11 +84,17 @@ module Peddler
         def self.new: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
 
+        def self.[]: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
+                   | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
+
+        def self.members: () -> [ :_embedded, :_links, :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
 
         attr_reader _embedded: Hash[untyped, untyped]?
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::Types::SolicitationsV1::Error]?
+        def members: () -> [ :_embedded, :_links, :errors ]
 
         def to_h: () -> { _embedded: Hash[untyped, untyped]?, _links: Hash[untyped, untyped]?, errors: Array[Peddler::Types::SolicitationsV1::Error]? }
       end
@@ -74,10 +103,16 @@ module Peddler
         def self.new: (href: String?, ?name: String?) -> Peddler::Types::SolicitationsV1::LinkObject
                     | (String?, String?) -> Peddler::Types::SolicitationsV1::LinkObject
 
+        def self.[]: (href: String?, ?name: String?) -> Peddler::Types::SolicitationsV1::LinkObject
+                   | (String?, String?) -> Peddler::Types::SolicitationsV1::LinkObject
+
+        def self.members: () -> [ :href, :name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SolicitationsV1::LinkObject
 
         attr_reader href: String?
         attr_reader name: String?
+        def members: () -> [ :href, :name ]
 
         def to_h: () -> { href: String?, name: String? }
       end
@@ -86,9 +121,15 @@ module Peddler
         def self.new: (name: String?) -> Peddler::Types::SolicitationsV1::SolicitationsAction
                     | (String?) -> Peddler::Types::SolicitationsV1::SolicitationsAction
 
+        def self.[]: (name: String?) -> Peddler::Types::SolicitationsV1::SolicitationsAction
+                   | (String?) -> Peddler::Types::SolicitationsV1::SolicitationsAction
+
+        def self.members: () -> [ :name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SolicitationsV1::SolicitationsAction
 
         attr_reader name: String?
+        def members: () -> [ :name ]
 
         def to_h: () -> { name: String? }
       end

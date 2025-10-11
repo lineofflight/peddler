@@ -5,14 +5,19 @@ module Peddler
         def self.new: (business_type: String?, marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, selling_plan: String?, ?business: Peddler::Types::SellersV1::Business?, ?primary_contact: Peddler::Types::SellersV1::PrimaryContact?) -> Peddler::Types::SellersV1::Account
                     | (String?, Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, String?, Peddler::Types::SellersV1::Business?, Peddler::Types::SellersV1::PrimaryContact?) -> Peddler::Types::SellersV1::Account
 
+        def self.[]: (business_type: String?, marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, selling_plan: String?, ?business: Peddler::Types::SellersV1::Business?, ?primary_contact: Peddler::Types::SellersV1::PrimaryContact?) -> Peddler::Types::SellersV1::Account
+                   | (String?, Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, String?, Peddler::Types::SellersV1::Business?, Peddler::Types::SellersV1::PrimaryContact?) -> Peddler::Types::SellersV1::Account
+
+        def self.members: () -> [ :business_type, :marketplace_participation_list, :selling_plan, :business, :primary_contact ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::Account
 
         attr_reader business: Peddler::Types::SellersV1::Business?
         attr_reader business_type: String?
         attr_reader marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?
-
         attr_reader primary_contact: Peddler::Types::SellersV1::PrimaryContact?
         attr_reader selling_plan: String?
+        def members: () -> [ :business_type, :marketplace_participation_list, :selling_plan, :business, :primary_contact ]
 
         def to_h: () -> { business_type: String?, marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, selling_plan: String?, business: Peddler::Types::SellersV1::Business?, primary_contact: Peddler::Types::SellersV1::PrimaryContact? }
       end
@@ -21,16 +26,20 @@ module Peddler
         def self.new: (address_line1: String?, country_code: String?, ?address_line2: String?, ?city: String?, ?postal_code: String?, ?state_or_province_code: String?) -> Peddler::Types::SellersV1::Address
                     | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellersV1::Address
 
+        def self.[]: (address_line1: String?, country_code: String?, ?address_line2: String?, ?city: String?, ?postal_code: String?, ?state_or_province_code: String?) -> Peddler::Types::SellersV1::Address
+                   | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellersV1::Address
+
+        def self.members: () -> [ :address_line1, :country_code, :address_line2, :city, :postal_code, :state_or_province_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::Address
 
         attr_reader address_line1: String?
-
         attr_reader address_line2: String?
         attr_reader city: String?
         attr_reader country_code: String?
-
         attr_reader postal_code: String?
         attr_reader state_or_province_code: String?
+        def members: () -> [ :address_line1, :country_code, :address_line2, :city, :postal_code, :state_or_province_code ]
 
         def to_h: () -> { address_line1: String?, country_code: String?, address_line2: String?, city: String?, postal_code: String?, state_or_province_code: String? }
       end
@@ -39,14 +48,19 @@ module Peddler
         def self.new: (name: String?, registered_business_address: Peddler::Types::SellersV1::Address?, ?company_registration_number: String?, ?company_tax_identification_number: String?, ?non_latin_name: String?) -> Peddler::Types::SellersV1::Business
                     | (String?, Peddler::Types::SellersV1::Address?, String?, String?, String?) -> Peddler::Types::SellersV1::Business
 
+        def self.[]: (name: String?, registered_business_address: Peddler::Types::SellersV1::Address?, ?company_registration_number: String?, ?company_tax_identification_number: String?, ?non_latin_name: String?) -> Peddler::Types::SellersV1::Business
+                   | (String?, Peddler::Types::SellersV1::Address?, String?, String?, String?) -> Peddler::Types::SellersV1::Business
+
+        def self.members: () -> [ :name, :registered_business_address, :company_registration_number, :company_tax_identification_number, :non_latin_name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::Business
 
         attr_reader company_registration_number: String?
         attr_reader company_tax_identification_number: String?
         attr_reader name: String?
-
         attr_reader non_latin_name: String?
         attr_reader registered_business_address: Peddler::Types::SellersV1::Address?
+        def members: () -> [ :name, :registered_business_address, :company_registration_number, :company_tax_identification_number, :non_latin_name ]
 
         def to_h: () -> { name: String?, registered_business_address: Peddler::Types::SellersV1::Address?, company_registration_number: String?, company_tax_identification_number: String?, non_latin_name: String? }
       end
@@ -55,12 +69,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::SellersV1::Error
                     | (String?, String?, String?) -> Peddler::Types::SellersV1::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::SellersV1::Error
+                   | (String?, String?, String?) -> Peddler::Types::SellersV1::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -73,10 +92,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::SellersV1::Error]?, ?payload: Peddler::Types::SellersV1::Account?) -> Peddler::Types::SellersV1::GetAccountResponse
                     | (Array[Peddler::Types::SellersV1::Error]?, Peddler::Types::SellersV1::Account?) -> Peddler::Types::SellersV1::GetAccountResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::SellersV1::Error]?, ?payload: Peddler::Types::SellersV1::Account?) -> Peddler::Types::SellersV1::GetAccountResponse
+                   | (Array[Peddler::Types::SellersV1::Error]?, Peddler::Types::SellersV1::Account?) -> Peddler::Types::SellersV1::GetAccountResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::GetAccountResponse
 
         attr_reader errors: Array[Peddler::Types::SellersV1::Error]?
         attr_reader payload: Peddler::Types::SellersV1::Account?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::SellersV1::Error]?, payload: Peddler::Types::SellersV1::Account? }
       end
@@ -85,10 +110,16 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::SellersV1::Error]?, ?payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
                     | (Array[Peddler::Types::SellersV1::Error]?, Array[Peddler::Types::SellersV1::MarketplaceParticipation]?) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
 
+        def self.[]: (?errors: Array[Peddler::Types::SellersV1::Error]?, ?payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
+                   | (Array[Peddler::Types::SellersV1::Error]?, Array[Peddler::Types::SellersV1::MarketplaceParticipation]?) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
 
         attr_reader errors: Array[Peddler::Types::SellersV1::Error]?
         attr_reader payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?
+        def members: () -> [ :errors, :payload ]
 
         def to_h: () -> { errors: Array[Peddler::Types::SellersV1::Error]?, payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]? }
       end
@@ -96,6 +127,11 @@ module Peddler
       class Marketplace < Data
         def self.new: (country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?, id: String?, name: String?) -> Peddler::Types::SellersV1::Marketplace
                     | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellersV1::Marketplace
+
+        def self.[]: (country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?, id: String?, name: String?) -> Peddler::Types::SellersV1::Marketplace
+                   | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellersV1::Marketplace
+
+        def self.members: () -> [ :country_code, :default_currency_code, :default_language_code, :domain_name, :id, :name ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::Marketplace
 
@@ -105,6 +141,7 @@ module Peddler
         attr_reader domain_name: String?
         attr_reader id: String?
         attr_reader name: String?
+        def members: () -> [ :country_code, :default_currency_code, :default_language_code, :domain_name, :id, :name ]
 
         def to_h: () -> { country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?, id: String?, name: String? }
       end
@@ -113,11 +150,17 @@ module Peddler
         def self.new: (marketplace: Peddler::Types::SellersV1::Marketplace?, participation: Peddler::Types::SellersV1::Participation?, store_name: String?) -> Peddler::Types::SellersV1::MarketplaceParticipation
                     | (Peddler::Types::SellersV1::Marketplace?, Peddler::Types::SellersV1::Participation?, String?) -> Peddler::Types::SellersV1::MarketplaceParticipation
 
+        def self.[]: (marketplace: Peddler::Types::SellersV1::Marketplace?, participation: Peddler::Types::SellersV1::Participation?, store_name: String?) -> Peddler::Types::SellersV1::MarketplaceParticipation
+                   | (Peddler::Types::SellersV1::Marketplace?, Peddler::Types::SellersV1::Participation?, String?) -> Peddler::Types::SellersV1::MarketplaceParticipation
+
+        def self.members: () -> [ :marketplace, :participation, :store_name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::MarketplaceParticipation
 
         attr_reader marketplace: Peddler::Types::SellersV1::Marketplace?
         attr_reader participation: Peddler::Types::SellersV1::Participation?
         attr_reader store_name: String?
+        def members: () -> [ :marketplace, :participation, :store_name ]
 
         def to_h: () -> { marketplace: Peddler::Types::SellersV1::Marketplace?, participation: Peddler::Types::SellersV1::Participation?, store_name: String? }
       end
@@ -130,13 +173,21 @@ module Peddler
         def self.new: (has_suspended_listings: bool?, participating: bool?) -> Peddler::Types::SellersV1::Participation
                     | (bool?, bool?) -> Peddler::Types::SellersV1::Participation
 
+        def self.[]: (has_suspended_listings: bool?, participating: bool?) -> Peddler::Types::SellersV1::Participation
+                   | (bool?, bool?) -> Peddler::Types::SellersV1::Participation
+
+        def self.members: () -> [ :has_suspended_listings, :participating ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::Participation
 
         attr_reader has_suspended_listings: bool?
         attr_reader participating: bool?
 
         def has_suspended_listings?: () -> bool
+
+        def members: () -> [ :has_suspended_listings, :participating ]
         def participating?: () -> bool
+
         def to_h: () -> { has_suspended_listings: bool?, participating: bool? }
       end
 
@@ -144,11 +195,17 @@ module Peddler
         def self.new: (address: Peddler::Types::SellersV1::Address?, name: String?, ?non_latin_name: String?) -> Peddler::Types::SellersV1::PrimaryContact
                     | (Peddler::Types::SellersV1::Address?, String?, String?) -> Peddler::Types::SellersV1::PrimaryContact
 
+        def self.[]: (address: Peddler::Types::SellersV1::Address?, name: String?, ?non_latin_name: String?) -> Peddler::Types::SellersV1::PrimaryContact
+                   | (Peddler::Types::SellersV1::Address?, String?, String?) -> Peddler::Types::SellersV1::PrimaryContact
+
+        def self.members: () -> [ :address, :name, :non_latin_name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::PrimaryContact
 
         attr_reader address: Peddler::Types::SellersV1::Address?
         attr_reader name: String?
         attr_reader non_latin_name: String?
+        def members: () -> [ :address, :name, :non_latin_name ]
 
         def to_h: () -> { address: Peddler::Types::SellersV1::Address?, name: String?, non_latin_name: String? }
       end

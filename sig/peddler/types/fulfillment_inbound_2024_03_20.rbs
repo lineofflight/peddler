@@ -5,24 +5,25 @@ module Peddler
         def self.new: (address_line1: String?, city: String?, country_code: String?, name: String?, postal_code: String?, ?address_line2: String?, ?company_name: String?, ?district_or_county: String?, ?email: String?, ?phone_number: String?, ?state_or_province_code: String?) -> Peddler::Types::FulfillmentInbound20240320::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Address
 
+        def self.[]: (address_line1: String?, city: String?, country_code: String?, name: String?, postal_code: String?, ?address_line2: String?, ?company_name: String?, ?district_or_county: String?, ?email: String?, ?phone_number: String?, ?state_or_province_code: String?) -> Peddler::Types::FulfillmentInbound20240320::Address
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Address
+
+        def self.members: () -> [ :address_line1, :city, :country_code, :name, :postal_code, :address_line2, :company_name, :district_or_county, :email, :phone_number, :state_or_province_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Address
 
         attr_reader address_line1: String?
-
         attr_reader address_line2: String?
         attr_reader city: String?
-
         attr_reader company_name: String?
         attr_reader country_code: String?
-
         attr_reader district_or_county: String?
         attr_reader email: String?
         attr_reader name: String?
-
         attr_reader phone_number: String?
         attr_reader postal_code: String?
-
         attr_reader state_or_province_code: String?
+        def members: () -> [ :address_line1, :city, :country_code, :name, :postal_code, :address_line2, :company_name, :district_or_county, :email, :phone_number, :state_or_province_code ]
 
         def to_h: () -> { address_line1: String?, city: String?, country_code: String?, name: String?, postal_code: String?, address_line2: String?, company_name: String?, district_or_county: String?, email: String?, phone_number: String?, state_or_province_code: String? }
       end
@@ -31,23 +32,25 @@ module Peddler
         def self.new: (address_line1: String?, city: String?, country_code: String?, name: String?, phone_number: String?, postal_code: String?, ?address_line2: String?, ?company_name: String?, ?district_or_county: String?, ?email: String?, ?state_or_province_code: String?) -> Peddler::Types::FulfillmentInbound20240320::AddressInput
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::AddressInput
 
+        def self.[]: (address_line1: String?, city: String?, country_code: String?, name: String?, phone_number: String?, postal_code: String?, ?address_line2: String?, ?company_name: String?, ?district_or_county: String?, ?email: String?, ?state_or_province_code: String?) -> Peddler::Types::FulfillmentInbound20240320::AddressInput
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::AddressInput
+
+        def self.members: () -> [ :address_line1, :city, :country_code, :name, :phone_number, :postal_code, :address_line2, :company_name, :district_or_county, :email, :state_or_province_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::AddressInput
 
         attr_reader address_line1: String?
-
         attr_reader address_line2: String?
         attr_reader city: String?
-
         attr_reader company_name: String?
         attr_reader country_code: String?
-
         attr_reader district_or_county: String?
         attr_reader email: String?
         attr_reader name: String?
         attr_reader phone_number: String?
         attr_reader postal_code: String?
-
         attr_reader state_or_province_code: String?
+        def members: () -> [ :address_line1, :city, :country_code, :name, :phone_number, :postal_code, :address_line2, :company_name, :district_or_county, :email, :state_or_province_code ]
 
         def to_h: () -> { address_line1: String?, city: String?, country_code: String?, name: String?, phone_number: String?, postal_code: String?, address_line2: String?, company_name: String?, district_or_county: String?, email: String?, state_or_province_code: String? }
       end
@@ -56,10 +59,16 @@ module Peddler
         def self.new: (slot_id: String?, slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
                     | (String?, Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
 
+        def self.[]: (slot_id: String?, slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
+                   | (String?, Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
+
+        def self.members: () -> [ :slot_id, :slot_time ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
 
         attr_reader slot_id: String?
         attr_reader slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?
+        def members: () -> [ :slot_id, :slot_time ]
 
         def to_h: () -> { slot_id: String?, slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime? }
       end
@@ -68,10 +77,16 @@ module Peddler
         def self.new: (end_time: String?, start_time: String?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime
 
+        def self.[]: (end_time: String?, start_time: String?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime
+
+        def self.members: () -> [ :end_time, :start_time ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime
 
         attr_reader end_time: String?
         attr_reader start_time: String?
+        def members: () -> [ :end_time, :start_time ]
 
         def to_h: () -> { end_time: String?, start_time: String? }
       end
@@ -79,6 +94,11 @@ module Peddler
       class Box < Data
         def self.new: (package_id: String?, ?box_id: String?, ?content_information_source: String?, ?destination_region: Peddler::Types::FulfillmentInbound20240320::Region?, ?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, ?external_container_identifier: String?, ?external_container_identifier_type: String?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?quantity: Integer?, ?template_name: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Box
                     | (String?, String?, String?, Peddler::Types::FulfillmentInbound20240320::Region?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Integer?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Box
+
+        def self.[]: (package_id: String?, ?box_id: String?, ?content_information_source: String?, ?destination_region: Peddler::Types::FulfillmentInbound20240320::Region?, ?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, ?external_container_identifier: String?, ?external_container_identifier_type: String?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?quantity: Integer?, ?template_name: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Box
+                   | (String?, String?, String?, Peddler::Types::FulfillmentInbound20240320::Region?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Integer?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Box
+
+        def self.members: () -> [ :package_id, :box_id, :content_information_source, :destination_region, :dimensions, :external_container_identifier, :external_container_identifier_type, :items, :quantity, :template_name, :weight ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Box
 
@@ -90,10 +110,10 @@ module Peddler
         attr_reader external_container_identifier_type: String?
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?
         attr_reader package_id: String?
-
         attr_reader quantity: Integer?
         attr_reader template_name: String?
         attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
+        def members: () -> [ :package_id, :box_id, :content_information_source, :destination_region, :dimensions, :external_container_identifier, :external_container_identifier_type, :items, :quantity, :template_name, :weight ]
 
         def to_h: () -> { package_id: String?, box_id: String?, content_information_source: String?, destination_region: Peddler::Types::FulfillmentInbound20240320::Region?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, external_container_identifier: String?, external_container_identifier_type: String?, items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, quantity: Integer?, template_name: String?, weight: Peddler::Types::FulfillmentInbound20240320::Weight? }
       end
@@ -102,14 +122,19 @@ module Peddler
         def self.new: (content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::BoxInput
                     | (String?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, Integer?, Peddler::Types::FulfillmentInbound20240320::Weight?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::BoxInput
 
+        def self.[]: (content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::BoxInput
+                   | (String?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, Integer?, Peddler::Types::FulfillmentInbound20240320::Weight?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::BoxInput
+
+        def self.members: () -> [ :content_information_source, :dimensions, :quantity, :weight, :items ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::BoxInput
 
         attr_reader content_information_source: String?
         attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
-
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
         attr_reader quantity: Integer?
         attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
+        def members: () -> [ :content_information_source, :dimensions, :quantity, :weight, :items ]
 
         def to_h: () -> { content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]? }
       end
@@ -118,9 +143,15 @@ module Peddler
         def self.new: (weight: Peddler::Types::FulfillmentInbound20240320::WeightRange?) -> Peddler::Types::FulfillmentInbound20240320::BoxRequirements
                     | (Peddler::Types::FulfillmentInbound20240320::WeightRange?) -> Peddler::Types::FulfillmentInbound20240320::BoxRequirements
 
+        def self.[]: (weight: Peddler::Types::FulfillmentInbound20240320::WeightRange?) -> Peddler::Types::FulfillmentInbound20240320::BoxRequirements
+                   | (Peddler::Types::FulfillmentInbound20240320::WeightRange?) -> Peddler::Types::FulfillmentInbound20240320::BoxRequirements
+
+        def self.members: () -> [ :weight ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::BoxRequirements
 
         attr_reader weight: Peddler::Types::FulfillmentInbound20240320::WeightRange?
+        def members: () -> [ :weight ]
 
         def to_h: () -> { weight: Peddler::Types::FulfillmentInbound20240320::WeightRange? }
       end
@@ -129,15 +160,20 @@ module Peddler
         def self.new: (content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, ?package_id: String?) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
                     | (String?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, Integer?, Peddler::Types::FulfillmentInbound20240320::Weight?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
 
+        def self.[]: (content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, ?package_id: String?) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
+                   | (String?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, Integer?, Peddler::Types::FulfillmentInbound20240320::Weight?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
+
+        def self.members: () -> [ :content_information_source, :dimensions, :quantity, :weight, :items, :package_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
 
         attr_reader content_information_source: String?
         attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
-
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
         attr_reader package_id: String?
         attr_reader quantity: Integer?
         attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
+        def members: () -> [ :content_information_source, :dimensions, :quantity, :weight, :items, :package_id ]
 
         def to_h: () -> { content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, package_id: String? }
       end
@@ -146,9 +182,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CancelInboundPlanResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::CancelInboundPlanResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CancelInboundPlanResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::CancelInboundPlanResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CancelInboundPlanResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -157,9 +199,15 @@ module Peddler
         def self.new: (?reason_comment: String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
 
+        def self.[]: (?reason_comment: String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
+
+        def self.members: () -> [ :reason_comment ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
 
         attr_reader reason_comment: String?
+        def members: () -> [ :reason_comment ]
 
         def to_h: () -> { reason_comment: String? }
       end
@@ -168,9 +216,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -179,10 +233,16 @@ module Peddler
         def self.new: (?alpha_code: String?, ?name: String?) -> Peddler::Types::FulfillmentInbound20240320::Carrier
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Carrier
 
+        def self.[]: (?alpha_code: String?, ?name: String?) -> Peddler::Types::FulfillmentInbound20240320::Carrier
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Carrier
+
+        def self.members: () -> [ :alpha_code, :name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Carrier
 
         attr_reader alpha_code: String?
         attr_reader name: String?
+        def members: () -> [ :alpha_code, :name ]
 
         def to_h: () -> { alpha_code: String?, name: String? }
       end
@@ -191,10 +251,16 @@ module Peddler
         def self.new: (end_time: String?, start_time: String?) -> Peddler::Types::FulfillmentInbound20240320::CarrierAppointment
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::CarrierAppointment
 
+        def self.[]: (end_time: String?, start_time: String?) -> Peddler::Types::FulfillmentInbound20240320::CarrierAppointment
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::CarrierAppointment
+
+        def self.members: () -> [ :end_time, :start_time ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CarrierAppointment
 
         attr_reader end_time: String?
         attr_reader start_time: String?
+        def members: () -> [ :end_time, :start_time ]
 
         def to_h: () -> { end_time: String?, start_time: String? }
       end
@@ -203,12 +269,18 @@ module Peddler
         def self.new: (?asin: String?, ?fnsku: String?, ?msku: String?, ?tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail
                     | (String?, String?, String?, Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail
 
+        def self.[]: (?asin: String?, ?fnsku: String?, ?msku: String?, ?tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail
+                   | (String?, String?, String?, Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail
+
+        def self.members: () -> [ :asin, :fnsku, :msku, :tax_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail
 
         attr_reader asin: String?
         attr_reader fnsku: String?
         attr_reader msku: String?
         attr_reader tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails?
+        def members: () -> [ :asin, :fnsku, :msku, :tax_details ]
 
         def to_h: () -> { asin: String?, fnsku: String?, msku: String?, tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails? }
       end
@@ -217,9 +289,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmDeliveryWindowOptionsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmDeliveryWindowOptionsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmDeliveryWindowOptionsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmDeliveryWindowOptionsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ConfirmDeliveryWindowOptionsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -228,9 +306,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPackingOptionResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPackingOptionResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPackingOptionResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPackingOptionResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPackingOptionResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -239,9 +323,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPlacementOptionResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPlacementOptionResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPlacementOptionResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPlacementOptionResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ConfirmPlacementOptionResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -250,9 +340,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmShipmentContentUpdatePreviewResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmShipmentContentUpdatePreviewResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmShipmentContentUpdatePreviewResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmShipmentContentUpdatePreviewResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ConfirmShipmentContentUpdatePreviewResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -261,9 +357,15 @@ module Peddler
         def self.new: (transportation_selections: Array[Peddler::Types::FulfillmentInbound20240320::TransportationSelection]?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsRequest
                     | (Array[Peddler::Types::FulfillmentInbound20240320::TransportationSelection]?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsRequest
 
+        def self.[]: (transportation_selections: Array[Peddler::Types::FulfillmentInbound20240320::TransportationSelection]?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsRequest
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::TransportationSelection]?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsRequest
+
+        def self.members: () -> [ :transportation_selections ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsRequest
 
         attr_reader transportation_selections: Array[Peddler::Types::FulfillmentInbound20240320::TransportationSelection]?
+        def members: () -> [ :transportation_selections ]
 
         def to_h: () -> { transportation_selections: Array[Peddler::Types::FulfillmentInbound20240320::TransportationSelection]? }
       end
@@ -272,9 +374,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -283,11 +391,17 @@ module Peddler
         def self.new: (name: String?, phone_number: String?, ?email: String?) -> Peddler::Types::FulfillmentInbound20240320::ContactInformation
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ContactInformation
 
+        def self.[]: (name: String?, phone_number: String?, ?email: String?) -> Peddler::Types::FulfillmentInbound20240320::ContactInformation
+                   | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ContactInformation
+
+        def self.members: () -> [ :name, :phone_number, :email ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ContactInformation
 
         attr_reader email: String?
         attr_reader name: String?
         attr_reader phone_number: String?
+        def members: () -> [ :name, :phone_number, :email ]
 
         def to_h: () -> { name: String?, phone_number: String?, email: String? }
       end
@@ -296,12 +410,18 @@ module Peddler
         def self.new: (content_update_preview_id: String?, expiration: String?, requested_updates: Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, transportation_option: Peddler::Types::FulfillmentInbound20240320::TransportationOption?) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
                     | (String?, String?, Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, Peddler::Types::FulfillmentInbound20240320::TransportationOption?) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
 
+        def self.[]: (content_update_preview_id: String?, expiration: String?, requested_updates: Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, transportation_option: Peddler::Types::FulfillmentInbound20240320::TransportationOption?) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
+                   | (String?, String?, Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, Peddler::Types::FulfillmentInbound20240320::TransportationOption?) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
+
+        def self.members: () -> [ :content_update_preview_id, :expiration, :requested_updates, :transportation_option ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
 
         attr_reader content_update_preview_id: String?
         attr_reader expiration: String?
         attr_reader requested_updates: Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?
         attr_reader transportation_option: Peddler::Types::FulfillmentInbound20240320::TransportationOption?
+        def members: () -> [ :content_update_preview_id, :expiration, :requested_updates, :transportation_option ]
 
         def to_h: () -> { content_update_preview_id: String?, expiration: String?, requested_updates: Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, transportation_option: Peddler::Types::FulfillmentInbound20240320::TransportationOption? }
       end
@@ -310,13 +430,18 @@ module Peddler
         def self.new: (destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?, ?name: String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
                     | (Array[String]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, Peddler::Types::FulfillmentInbound20240320::AddressInput?, String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
 
+        def self.[]: (destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?, ?name: String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
+                   | (Array[String]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, Peddler::Types::FulfillmentInbound20240320::AddressInput?, String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
+
+        def self.members: () -> [ :destination_marketplaces, :items, :source_address, :name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
 
         attr_reader destination_marketplaces: Array[String]?
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
-
         attr_reader name: String?
         attr_reader source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?
+        def members: () -> [ :destination_marketplaces, :items, :source_address, :name ]
 
         def to_h: () -> { destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?, name: String? }
       end
@@ -325,10 +450,16 @@ module Peddler
         def self.new: (inbound_plan_id: String?, operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanResponse
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanResponse
 
+        def self.[]: (inbound_plan_id: String?, operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanResponse
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanResponse
+
+        def self.members: () -> [ :inbound_plan_id, :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanResponse
 
         attr_reader inbound_plan_id: String?
         attr_reader operation_id: String?
+        def members: () -> [ :inbound_plan_id, :operation_id ]
 
         def to_h: () -> { inbound_plan_id: String?, operation_id: String? }
       end
@@ -337,17 +468,21 @@ module Peddler
         def self.new: (label_type: String?, marketplace_id: String?, msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, ?height: Float?, ?locale_code: String?, ?page_type: String?, ?width: Float?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
                     | (String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, Float?, String?, String?, Float?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
 
+        def self.[]: (label_type: String?, marketplace_id: String?, msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, ?height: Float?, ?locale_code: String?, ?page_type: String?, ?width: Float?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
+                   | (String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, Float?, String?, String?, Float?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
+
+        def self.members: () -> [ :label_type, :marketplace_id, :msku_quantities, :height, :locale_code, :page_type, :width ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
 
         attr_reader height: Float?
         attr_reader label_type: String?
-
         attr_reader locale_code: String?
         attr_reader marketplace_id: String?
         attr_reader msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?
-
         attr_reader page_type: String?
         attr_reader width: Float?
+        def members: () -> [ :label_type, :marketplace_id, :msku_quantities, :height, :locale_code, :page_type, :width ]
 
         def to_h: () -> { label_type: String?, marketplace_id: String?, msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, height: Float?, locale_code: String?, page_type: String?, width: Float? }
       end
@@ -356,9 +491,15 @@ module Peddler
         def self.new: (document_downloads: Array[Peddler::Types::FulfillmentInbound20240320::DocumentDownload]?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::DocumentDownload]?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsResponse
 
+        def self.[]: (document_downloads: Array[Peddler::Types::FulfillmentInbound20240320::DocumentDownload]?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::DocumentDownload]?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsResponse
+
+        def self.members: () -> [ :document_downloads ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsResponse
 
         attr_reader document_downloads: Array[Peddler::Types::FulfillmentInbound20240320::DocumentDownload]?
+        def members: () -> [ :document_downloads ]
 
         def to_h: () -> { document_downloads: Array[Peddler::Types::FulfillmentInbound20240320::DocumentDownload]? }
       end
@@ -367,10 +508,16 @@ module Peddler
         def self.new: (items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput
                     | (Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?) -> Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput
 
+        def self.[]: (items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?) -> Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput
+
+        def self.members: () -> [ :items, :warehouse_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput
 
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
         attr_reader warehouse_id: String?
+        def members: () -> [ :items, :warehouse_id ]
 
         def to_h: () -> { items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, warehouse_id: String? }
       end
@@ -379,9 +526,15 @@ module Peddler
         def self.new: (?ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window?) -> Peddler::Types::FulfillmentInbound20240320::Dates
                     | (Peddler::Types::FulfillmentInbound20240320::Window?) -> Peddler::Types::FulfillmentInbound20240320::Dates
 
+        def self.[]: (?ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window?) -> Peddler::Types::FulfillmentInbound20240320::Dates
+                   | (Peddler::Types::FulfillmentInbound20240320::Window?) -> Peddler::Types::FulfillmentInbound20240320::Dates
+
+        def self.members: () -> [ :ready_to_ship_window ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Dates
 
         attr_reader ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window?
+        def members: () -> [ :ready_to_ship_window ]
 
         def to_h: () -> { ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window? }
       end
@@ -390,6 +543,11 @@ module Peddler
         def self.new: (availability_type: String?, delivery_window_option_id: String?, end_date: String?, start_date: String?, valid_until: String?) -> Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption
 
+        def self.[]: (availability_type: String?, delivery_window_option_id: String?, end_date: String?, start_date: String?, valid_until: String?) -> Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption
+                   | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption
+
+        def self.members: () -> [ :availability_type, :delivery_window_option_id, :end_date, :start_date, :valid_until ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption
 
         attr_reader availability_type: String?
@@ -397,6 +555,7 @@ module Peddler
         attr_reader end_date: String?
         attr_reader start_date: String?
         attr_reader valid_until: String?
+        def members: () -> [ :availability_type, :delivery_window_option_id, :end_date, :start_date, :valid_until ]
 
         def to_h: () -> { availability_type: String?, delivery_window_option_id: String?, end_date: String?, start_date: String?, valid_until: String? }
       end
@@ -405,12 +564,18 @@ module Peddler
         def self.new: (height: Float?, length: Float?, unit_of_measurement: String?, width: Float?) -> Peddler::Types::FulfillmentInbound20240320::Dimensions
                     | (Float?, Float?, String?, Float?) -> Peddler::Types::FulfillmentInbound20240320::Dimensions
 
+        def self.[]: (height: Float?, length: Float?, unit_of_measurement: String?, width: Float?) -> Peddler::Types::FulfillmentInbound20240320::Dimensions
+                   | (Float?, Float?, String?, Float?) -> Peddler::Types::FulfillmentInbound20240320::Dimensions
+
+        def self.members: () -> [ :height, :length, :unit_of_measurement, :width ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Dimensions
 
         attr_reader height: Float?
         attr_reader length: Float?
         attr_reader unit_of_measurement: String?
         attr_reader width: Float?
+        def members: () -> [ :height, :length, :unit_of_measurement, :width ]
 
         def to_h: () -> { height: Float?, length: Float?, unit_of_measurement: String?, width: Float? }
       end
@@ -419,12 +584,17 @@ module Peddler
         def self.new: (download_type: String?, uri: String?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
 
+        def self.[]: (download_type: String?, uri: String?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
+                   | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
+
+        def self.members: () -> [ :download_type, :uri, :expiration ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
 
         attr_reader download_type: String?
-
         attr_reader expiration: String?
         attr_reader uri: String?
+        def members: () -> [ :download_type, :uri, :expiration ]
 
         def to_h: () -> { download_type: String?, uri: String?, expiration: String? }
       end
@@ -433,12 +603,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::FulfillmentInbound20240320::Error
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::FulfillmentInbound20240320::Error
+                   | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -447,9 +622,15 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::FulfillmentInbound20240320::Error]?) -> Peddler::Types::FulfillmentInbound20240320::ErrorList
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Error]?) -> Peddler::Types::FulfillmentInbound20240320::ErrorList
 
+        def self.[]: (errors: Array[Peddler::Types::FulfillmentInbound20240320::Error]?) -> Peddler::Types::FulfillmentInbound20240320::ErrorList
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Error]?) -> Peddler::Types::FulfillmentInbound20240320::ErrorList
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ErrorList
 
         attr_reader errors: Array[Peddler::Types::FulfillmentInbound20240320::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::FulfillmentInbound20240320::Error]? }
       end
@@ -458,10 +639,16 @@ module Peddler
         def self.new: (?declared_value: Peddler::Types::Money?, ?freight_class: String?) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation
 
+        def self.[]: (?declared_value: Peddler::Types::Money?, ?freight_class: String?) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation
+                   | (Peddler::Types::Money?, String?) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation
+
+        def self.members: () -> [ :declared_value, :freight_class ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation
 
         attr_reader declared_value: Peddler::Types::Money?
         attr_reader freight_class: String?
+        def members: () -> [ :declared_value, :freight_class ]
 
         def to_h: () -> { declared_value: Peddler::Types::Money?, freight_class: String? }
       end
@@ -470,9 +657,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateDeliveryWindowOptionsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateDeliveryWindowOptionsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateDeliveryWindowOptionsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateDeliveryWindowOptionsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GenerateDeliveryWindowOptionsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -481,9 +674,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePackingOptionsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePackingOptionsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePackingOptionsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePackingOptionsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GeneratePackingOptionsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -492,9 +691,15 @@ module Peddler
         def self.new: (?custom_placement: Array[Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput]?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsRequest
                     | (Array[Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput]?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsRequest
 
+        def self.[]: (?custom_placement: Array[Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput]?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsRequest
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput]?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsRequest
+
+        def self.members: () -> [ :custom_placement ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsRequest
 
         attr_reader custom_placement: Array[Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput]?
+        def members: () -> [ :custom_placement ]
 
         def to_h: () -> { custom_placement: Array[Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput]? }
       end
@@ -503,9 +708,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GeneratePlacementOptionsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -514,10 +725,16 @@ module Peddler
         def self.new: (?desired_end_date: String?, ?desired_start_date: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsRequest
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsRequest
 
+        def self.[]: (?desired_end_date: String?, ?desired_start_date: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsRequest
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsRequest
+
+        def self.members: () -> [ :desired_end_date, :desired_start_date ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsRequest
 
         attr_reader desired_end_date: String?
         attr_reader desired_start_date: String?
+        def members: () -> [ :desired_end_date, :desired_start_date ]
 
         def to_h: () -> { desired_end_date: String?, desired_start_date: String? }
       end
@@ -526,9 +743,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GenerateSelfShipAppointmentSlotsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -537,10 +760,16 @@ module Peddler
         def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsRequest
                     | (Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsRequest
 
+        def self.[]: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsRequest
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsRequest
+
+        def self.members: () -> [ :boxes, :items ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsRequest
 
         attr_reader boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
+        def members: () -> [ :boxes, :items ]
 
         def to_h: () -> { boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]? }
       end
@@ -549,9 +778,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GenerateShipmentContentUpdatePreviewsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -560,10 +795,16 @@ module Peddler
         def self.new: (placement_option_id: String?, shipment_transportation_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsRequest
                     | (String?, Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsRequest
 
+        def self.[]: (placement_option_id: String?, shipment_transportation_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsRequest
+                   | (String?, Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsRequest
+
+        def self.members: () -> [ :placement_option_id, :shipment_transportation_configurations ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsRequest
 
         attr_reader placement_option_id: String?
         attr_reader shipment_transportation_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?
+        def members: () -> [ :placement_option_id, :shipment_transportation_configurations ]
 
         def to_h: () -> { placement_option_id: String?, shipment_transportation_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]? }
       end
@@ -572,9 +813,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -583,9 +830,15 @@ module Peddler
         def self.new: (document_download: Peddler::Types::FulfillmentInbound20240320::DocumentDownload?) -> Peddler::Types::FulfillmentInbound20240320::GetDeliveryChallanDocumentResponse
                     | (Peddler::Types::FulfillmentInbound20240320::DocumentDownload?) -> Peddler::Types::FulfillmentInbound20240320::GetDeliveryChallanDocumentResponse
 
+        def self.[]: (document_download: Peddler::Types::FulfillmentInbound20240320::DocumentDownload?) -> Peddler::Types::FulfillmentInbound20240320::GetDeliveryChallanDocumentResponse
+                   | (Peddler::Types::FulfillmentInbound20240320::DocumentDownload?) -> Peddler::Types::FulfillmentInbound20240320::GetDeliveryChallanDocumentResponse
+
+        def self.members: () -> [ :document_download ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GetDeliveryChallanDocumentResponse
 
         attr_reader document_download: Peddler::Types::FulfillmentInbound20240320::DocumentDownload?
+        def members: () -> [ :document_download ]
 
         def to_h: () -> { document_download: Peddler::Types::FulfillmentInbound20240320::DocumentDownload? }
       end
@@ -594,10 +847,16 @@ module Peddler
         def self.new: (self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
                     | (Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
 
+        def self.[]: (self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
+                   | (Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
+
+        def self.members: () -> [ :self_ship_appointment_slots_availability, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
 
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
         attr_reader self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?
+        def members: () -> [ :self_ship_appointment_slots_availability, :pagination ]
 
         def to_h: () -> { self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -606,12 +865,18 @@ module Peddler
         def self.new: (operation: String?, operation_id: String?, operation_problems: Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, operation_status: String?) -> Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus
                     | (String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, String?) -> Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus
 
+        def self.[]: (operation: String?, operation_id: String?, operation_problems: Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, operation_status: String?) -> Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus
+                   | (String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, String?) -> Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus
+
+        def self.members: () -> [ :operation, :operation_id, :operation_problems, :operation_status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus
 
         attr_reader operation: String?
         attr_reader operation_id: String?
         attr_reader operation_problems: Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?
         attr_reader operation_status: String?
+        def members: () -> [ :operation, :operation_id, :operation_problems, :operation_status ]
 
         def to_h: () -> { operation: String?, operation_id: String?, operation_problems: Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, operation_status: String? }
       end
@@ -620,6 +885,11 @@ module Peddler
         def self.new: (created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String?, ?packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?, ?placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?, ?shipments: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan
                     | (String?, String?, String?, Array[String]?, String?, Peddler::Types::FulfillmentInbound20240320::Address?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?, Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?, Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan
 
+        def self.[]: (created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String?, ?packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?, ?placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?, ?shipments: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan
+                   | (String?, String?, String?, Array[String]?, String?, Peddler::Types::FulfillmentInbound20240320::Address?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?, Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?, Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan
+
+        def self.members: () -> [ :created_at, :inbound_plan_id, :last_updated_at, :marketplace_ids, :name, :source_address, :status, :packing_options, :placement_options, :shipments ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan
 
         attr_reader created_at: String?
@@ -627,12 +897,12 @@ module Peddler
         attr_reader last_updated_at: String?
         attr_reader marketplace_ids: Array[String]?
         attr_reader name: String?
-
         attr_reader packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?
         attr_reader placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?
         attr_reader shipments: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]?
         attr_reader source_address: Peddler::Types::FulfillmentInbound20240320::Address?
         attr_reader status: String?
+        def members: () -> [ :created_at, :inbound_plan_id, :last_updated_at, :marketplace_ids, :name, :source_address, :status, :packing_options, :placement_options, :shipments ]
 
         def to_h: () -> { created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String?, packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?, placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?, shipments: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]? }
       end
@@ -640,6 +910,11 @@ module Peddler
       class InboundPlanSummary < Data
         def self.new: (created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary
                     | (String?, String?, String?, Array[String]?, String?, Peddler::Types::FulfillmentInbound20240320::Address?, String?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary
+
+        def self.[]: (created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary
+                   | (String?, String?, String?, Array[String]?, String?, Peddler::Types::FulfillmentInbound20240320::Address?, String?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary
+
+        def self.members: () -> [ :created_at, :inbound_plan_id, :last_updated_at, :marketplace_ids, :name, :source_address, :status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary
 
@@ -650,6 +925,7 @@ module Peddler
         attr_reader name: String?
         attr_reader source_address: Peddler::Types::FulfillmentInbound20240320::Address?
         attr_reader status: String?
+        def members: () -> [ :created_at, :inbound_plan_id, :last_updated_at, :marketplace_ids, :name, :source_address, :status ]
 
         def to_h: () -> { created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String? }
       end
@@ -658,12 +934,18 @@ module Peddler
         def self.new: (description: String?, target: String?, type: String?, value: Peddler::Types::Money?) -> Peddler::Types::FulfillmentInbound20240320::Incentive
                     | (String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentInbound20240320::Incentive
 
+        def self.[]: (description: String?, target: String?, type: String?, value: Peddler::Types::Money?) -> Peddler::Types::FulfillmentInbound20240320::Incentive
+                   | (String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentInbound20240320::Incentive
+
+        def self.members: () -> [ :description, :target, :type, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Incentive
 
         attr_reader description: String?
         attr_reader target: String?
         attr_reader type: String?
         attr_reader value: Peddler::Types::Money?
+        def members: () -> [ :description, :target, :type, :value ]
 
         def to_h: () -> { description: String?, target: String?, type: String?, value: Peddler::Types::Money? }
       end
@@ -672,18 +954,22 @@ module Peddler
         def self.new: (asin: String?, fnsku: String?, label_owner: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer?, ?expiration: String?, ?manufacturing_lot_code: String?) -> Peddler::Types::FulfillmentInbound20240320::Item
                     | (String?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, Integer?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Item
 
+        def self.[]: (asin: String?, fnsku: String?, label_owner: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer?, ?expiration: String?, ?manufacturing_lot_code: String?) -> Peddler::Types::FulfillmentInbound20240320::Item
+                   | (String?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, Integer?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Item
+
+        def self.members: () -> [ :asin, :fnsku, :label_owner, :msku, :prep_instructions, :quantity, :expiration, :manufacturing_lot_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Item
 
         attr_reader asin: String?
-
         attr_reader expiration: String?
         attr_reader fnsku: String?
         attr_reader label_owner: String?
-
         attr_reader manufacturing_lot_code: String?
         attr_reader msku: String?
         attr_reader prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?
         attr_reader quantity: Integer?
+        def members: () -> [ :asin, :fnsku, :label_owner, :msku, :prep_instructions, :quantity, :expiration, :manufacturing_lot_code ]
 
         def to_h: () -> { asin: String?, fnsku: String?, label_owner: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer?, expiration: String?, manufacturing_lot_code: String? }
       end
@@ -692,15 +978,20 @@ module Peddler
         def self.new: (label_owner: String?, msku: String?, prep_owner: String?, quantity: Integer?, ?expiration: String?, ?manufacturing_lot_code: String?) -> Peddler::Types::FulfillmentInbound20240320::ItemInput
                     | (String?, String?, String?, Integer?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ItemInput
 
+        def self.[]: (label_owner: String?, msku: String?, prep_owner: String?, quantity: Integer?, ?expiration: String?, ?manufacturing_lot_code: String?) -> Peddler::Types::FulfillmentInbound20240320::ItemInput
+                   | (String?, String?, String?, Integer?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ItemInput
+
+        def self.members: () -> [ :label_owner, :msku, :prep_owner, :quantity, :expiration, :manufacturing_lot_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ItemInput
 
         attr_reader expiration: String?
         attr_reader label_owner: String?
-
         attr_reader manufacturing_lot_code: String?
         attr_reader msku: String?
         attr_reader prep_owner: String?
         attr_reader quantity: Integer?
+        def members: () -> [ :label_owner, :msku, :prep_owner, :quantity, :expiration, :manufacturing_lot_code ]
 
         def to_h: () -> { label_owner: String?, msku: String?, prep_owner: String?, quantity: Integer?, expiration: String?, manufacturing_lot_code: String? }
       end
@@ -709,10 +1000,16 @@ module Peddler
         def self.new: (delivery_window_options: Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListDeliveryWindowOptionsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListDeliveryWindowOptionsResponse
 
+        def self.[]: (delivery_window_options: Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListDeliveryWindowOptionsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListDeliveryWindowOptionsResponse
+
+        def self.members: () -> [ :delivery_window_options, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListDeliveryWindowOptionsResponse
 
         attr_reader delivery_window_options: Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :delivery_window_options, :pagination ]
 
         def to_h: () -> { delivery_window_options: Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -721,10 +1018,16 @@ module Peddler
         def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Box]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse
 
+        def self.[]: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Box]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse
+
+        def self.members: () -> [ :boxes, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse
 
         attr_reader boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :boxes, :pagination ]
 
         def to_h: () -> { boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -733,10 +1036,16 @@ module Peddler
         def self.new: (items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanItemsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanItemsResponse
 
+        def self.[]: (items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanItemsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanItemsResponse
+
+        def self.members: () -> [ :items, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanItemsResponse
 
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :items, :pagination ]
 
         def to_h: () -> { items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -745,10 +1054,16 @@ module Peddler
         def self.new: (pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanPalletsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanPalletsResponse
 
+        def self.[]: (pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanPalletsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanPalletsResponse
+
+        def self.members: () -> [ :pallets, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanPalletsResponse
 
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
         attr_reader pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?
+        def members: () -> [ :pallets, :pagination ]
 
         def to_h: () -> { pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -757,10 +1072,16 @@ module Peddler
         def self.new: (?inbound_plans: Array[Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlansResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlansResponse
 
+        def self.[]: (?inbound_plans: Array[Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlansResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlansResponse
+
+        def self.members: () -> [ :inbound_plans, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlansResponse
 
         attr_reader inbound_plans: Array[Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :inbound_plans, :pagination ]
 
         def to_h: () -> { inbound_plans: Array[Peddler::Types::FulfillmentInbound20240320::InboundPlanSummary]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -769,9 +1090,15 @@ module Peddler
         def self.new: (?compliance_details: Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse
 
+        def self.[]: (?compliance_details: Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse
+
+        def self.members: () -> [ :compliance_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse
 
         attr_reader compliance_details: Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]?
+        def members: () -> [ :compliance_details ]
 
         def to_h: () -> { compliance_details: Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]? }
       end
@@ -780,10 +1107,16 @@ module Peddler
         def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupBoxesResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Box]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupBoxesResponse
 
+        def self.[]: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupBoxesResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Box]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupBoxesResponse
+
+        def self.members: () -> [ :boxes, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupBoxesResponse
 
         attr_reader boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :boxes, :pagination ]
 
         def to_h: () -> { boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -792,10 +1125,16 @@ module Peddler
         def self.new: (items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupItemsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupItemsResponse
 
+        def self.[]: (items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupItemsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupItemsResponse
+
+        def self.members: () -> [ :items, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListPackingGroupItemsResponse
 
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :items, :pagination ]
 
         def to_h: () -> { items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -804,10 +1143,16 @@ module Peddler
         def self.new: (packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
 
+        def self.[]: (packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
+
+        def self.members: () -> [ :packing_options, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
 
         attr_reader packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :packing_options, :pagination ]
 
         def to_h: () -> { packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -816,10 +1161,16 @@ module Peddler
         def self.new: (placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPlacementOptionsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::PlacementOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPlacementOptionsResponse
 
+        def self.[]: (placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPlacementOptionsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::PlacementOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPlacementOptionsResponse
+
+        def self.members: () -> [ :placement_options, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListPlacementOptionsResponse
 
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
         attr_reader placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOption]?
+        def members: () -> [ :placement_options, :pagination ]
 
         def to_h: () -> { placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOption]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -828,9 +1179,15 @@ module Peddler
         def self.new: (msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListPrepDetailsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListPrepDetailsResponse
 
+        def self.[]: (msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListPrepDetailsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListPrepDetailsResponse
+
+        def self.members: () -> [ :msku_prep_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListPrepDetailsResponse
 
         attr_reader msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]?
+        def members: () -> [ :msku_prep_details ]
 
         def to_h: () -> { msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]? }
       end
@@ -839,10 +1196,16 @@ module Peddler
         def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentBoxesResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Box]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentBoxesResponse
 
+        def self.[]: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentBoxesResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Box]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentBoxesResponse
+
+        def self.members: () -> [ :boxes, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentBoxesResponse
 
         attr_reader boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :boxes, :pagination ]
 
         def to_h: () -> { boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -851,10 +1214,16 @@ module Peddler
         def self.new: (content_update_previews: Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentContentUpdatePreviewsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentContentUpdatePreviewsResponse
 
+        def self.[]: (content_update_previews: Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentContentUpdatePreviewsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentContentUpdatePreviewsResponse
+
+        def self.members: () -> [ :content_update_previews, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentContentUpdatePreviewsResponse
 
         attr_reader content_update_previews: Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :content_update_previews, :pagination ]
 
         def to_h: () -> { content_update_previews: Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -863,10 +1232,16 @@ module Peddler
         def self.new: (items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse
 
+        def self.[]: (items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse
+
+        def self.members: () -> [ :items, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse
 
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        def members: () -> [ :items, :pagination ]
 
         def to_h: () -> { items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -875,10 +1250,16 @@ module Peddler
         def self.new: (pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentPalletsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentPalletsResponse
 
+        def self.[]: (pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentPalletsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentPalletsResponse
+
+        def self.members: () -> [ :pallets, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentPalletsResponse
 
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
         attr_reader pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?
+        def members: () -> [ :pallets, :pagination ]
 
         def to_h: () -> { pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -887,10 +1268,16 @@ module Peddler
         def self.new: (transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
 
+        def self.[]: (transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
+
+        def self.members: () -> [ :transportation_options, :pagination ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
 
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
         attr_reader transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?
+        def members: () -> [ :transportation_options, :pagination ]
 
         def to_h: () -> { transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
@@ -899,10 +1286,16 @@ module Peddler
         def self.new: (?bill_of_lading_number: String?, ?freight_bill_number: Array[String]?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail
                     | (String?, Array[String]?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail
 
+        def self.[]: (?bill_of_lading_number: String?, ?freight_bill_number: Array[String]?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail
+                   | (String?, Array[String]?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail
+
+        def self.members: () -> [ :bill_of_lading_number, :freight_bill_number ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail
 
         attr_reader bill_of_lading_number: String?
         attr_reader freight_bill_number: Array[String]?
+        def members: () -> [ :bill_of_lading_number, :freight_bill_number ]
 
         def to_h: () -> { bill_of_lading_number: String?, freight_bill_number: Array[String]? }
       end
@@ -911,10 +1304,16 @@ module Peddler
         def self.new: (freight_bill_number: Array[String]?, ?bill_of_lading_number: String?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
                     | (Array[String]?, String?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
 
+        def self.[]: (freight_bill_number: Array[String]?, ?bill_of_lading_number: String?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
+                   | (Array[String]?, String?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
+
+        def self.members: () -> [ :freight_bill_number, :bill_of_lading_number ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
 
         attr_reader bill_of_lading_number: String?
         attr_reader freight_bill_number: Array[String]?
+        def members: () -> [ :freight_bill_number, :bill_of_lading_number ]
 
         def to_h: () -> { freight_bill_number: Array[String]?, bill_of_lading_number: String? }
       end
@@ -923,15 +1322,20 @@ module Peddler
         def self.new: (msku: String?, prep_category: String?, prep_types: Array[untyped]?, ?all_owners_constraint: String?, ?label_owner_constraint: String?, ?prep_owner_constraint: String?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
                     | (String?, String?, Array[untyped]?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
 
+        def self.[]: (msku: String?, prep_category: String?, prep_types: Array[untyped]?, ?all_owners_constraint: String?, ?label_owner_constraint: String?, ?prep_owner_constraint: String?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
+                   | (String?, String?, Array[untyped]?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
+
+        def self.members: () -> [ :msku, :prep_category, :prep_types, :all_owners_constraint, :label_owner_constraint, :prep_owner_constraint ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
 
         attr_reader all_owners_constraint: String?
         attr_reader label_owner_constraint: String?
         attr_reader msku: String?
         attr_reader prep_category: String?
-
         attr_reader prep_owner_constraint: String?
         attr_reader prep_types: Array[untyped]?
+        def members: () -> [ :msku, :prep_category, :prep_types, :all_owners_constraint, :label_owner_constraint, :prep_owner_constraint ]
 
         def to_h: () -> { msku: String?, prep_category: String?, prep_types: Array[untyped]?, all_owners_constraint: String?, label_owner_constraint: String?, prep_owner_constraint: String? }
       end
@@ -940,11 +1344,17 @@ module Peddler
         def self.new: (msku: String?, prep_category: String?, prep_types: Array[untyped]?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput
                     | (String?, String?, Array[untyped]?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput
 
+        def self.[]: (msku: String?, prep_category: String?, prep_types: Array[untyped]?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput
+                   | (String?, String?, Array[untyped]?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput
+
+        def self.members: () -> [ :msku, :prep_category, :prep_types ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput
 
         attr_reader msku: String?
         attr_reader prep_category: String?
         attr_reader prep_types: Array[untyped]?
+        def members: () -> [ :msku, :prep_category, :prep_types ]
 
         def to_h: () -> { msku: String?, prep_category: String?, prep_types: Array[untyped]? }
       end
@@ -953,10 +1363,16 @@ module Peddler
         def self.new: (msku: String?, quantity: Integer?) -> Peddler::Types::FulfillmentInbound20240320::MskuQuantity
                     | (String?, Integer?) -> Peddler::Types::FulfillmentInbound20240320::MskuQuantity
 
+        def self.[]: (msku: String?, quantity: Integer?) -> Peddler::Types::FulfillmentInbound20240320::MskuQuantity
+                   | (String?, Integer?) -> Peddler::Types::FulfillmentInbound20240320::MskuQuantity
+
+        def self.members: () -> [ :msku, :quantity ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::MskuQuantity
 
         attr_reader msku: String?
         attr_reader quantity: Integer?
+        def members: () -> [ :msku, :quantity ]
 
         def to_h: () -> { msku: String?, quantity: Integer? }
       end
@@ -965,13 +1381,18 @@ module Peddler
         def self.new: (code: String?, message: String?, severity: String?, ?details: String?) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
                     | (String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
 
+        def self.[]: (code: String?, message: String?, severity: String?, ?details: String?) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
+                   | (String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
+
+        def self.members: () -> [ :code, :message, :severity, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
         attr_reader severity: String?
+        def members: () -> [ :code, :message, :severity, :details ]
 
         def to_h: () -> { code: String?, message: String?, severity: String?, details: String? }
       end
@@ -980,11 +1401,17 @@ module Peddler
         def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, ?packing_group_id: String?, ?shipment_id: String?) -> Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput
                     | (Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput
 
+        def self.[]: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, ?packing_group_id: String?, ?shipment_id: String?) -> Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput
+
+        def self.members: () -> [ :boxes, :packing_group_id, :shipment_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput
 
         attr_reader boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?
         attr_reader packing_group_id: String?
         attr_reader shipment_id: String?
+        def members: () -> [ :boxes, :packing_group_id, :shipment_id ]
 
         def to_h: () -> { boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, packing_group_id: String?, shipment_id: String? }
       end
@@ -993,11 +1420,17 @@ module Peddler
         def self.new: (?box_packing_methods: Array[untyped]?, ?box_requirements: Peddler::Types::FulfillmentInbound20240320::BoxRequirements?, ?shipping_requirements: Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]?) -> Peddler::Types::FulfillmentInbound20240320::PackingConfiguration
                     | (Array[untyped]?, Peddler::Types::FulfillmentInbound20240320::BoxRequirements?, Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]?) -> Peddler::Types::FulfillmentInbound20240320::PackingConfiguration
 
+        def self.[]: (?box_packing_methods: Array[untyped]?, ?box_requirements: Peddler::Types::FulfillmentInbound20240320::BoxRequirements?, ?shipping_requirements: Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]?) -> Peddler::Types::FulfillmentInbound20240320::PackingConfiguration
+                   | (Array[untyped]?, Peddler::Types::FulfillmentInbound20240320::BoxRequirements?, Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]?) -> Peddler::Types::FulfillmentInbound20240320::PackingConfiguration
+
+        def self.members: () -> [ :box_packing_methods, :box_requirements, :shipping_requirements ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::PackingConfiguration
 
         attr_reader box_packing_methods: Array[untyped]?
         attr_reader box_requirements: Peddler::Types::FulfillmentInbound20240320::BoxRequirements?
         attr_reader shipping_requirements: Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]?
+        def members: () -> [ :box_packing_methods, :box_requirements, :shipping_requirements ]
 
         def to_h: () -> { box_packing_methods: Array[untyped]?, box_requirements: Peddler::Types::FulfillmentInbound20240320::BoxRequirements?, shipping_requirements: Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]? }
       end
@@ -1006,10 +1439,14 @@ module Peddler
         def self.new: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[String]?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?, String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
 
+        def self.[]: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[String]?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?, String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
+
+        def self.members: () -> [ :discounts, :fees, :packing_groups, :packing_option_id, :status, :supported_configurations, :supported_shipping_configurations, :expiration ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
 
         attr_reader discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
-
         attr_reader expiration: String?
         attr_reader fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
         attr_reader packing_groups: Array[String]?
@@ -1017,6 +1454,7 @@ module Peddler
         attr_reader status: String?
         attr_reader supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?
         attr_reader supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?
+        def members: () -> [ :discounts, :fees, :packing_groups, :packing_option_id, :status, :supported_configurations, :supported_shipping_configurations, :expiration ]
 
         def to_h: () -> { discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?, expiration: String? }
       end
@@ -1025,10 +1463,16 @@ module Peddler
         def self.new: (packing_option_id: String?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary
 
+        def self.[]: (packing_option_id: String?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary
+
+        def self.members: () -> [ :packing_option_id, :status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary
 
         attr_reader packing_option_id: String?
         attr_reader status: String?
+        def members: () -> [ :packing_option_id, :status ]
 
         def to_h: () -> { packing_option_id: String?, status: String? }
       end
@@ -1037,9 +1481,15 @@ module Peddler
         def self.new: (?next_token: String?) -> Peddler::Types::FulfillmentInbound20240320::Pagination
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::Pagination
 
+        def self.[]: (?next_token: String?) -> Peddler::Types::FulfillmentInbound20240320::Pagination
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::Pagination
+
+        def self.members: () -> [ :next_token ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Pagination
 
         attr_reader next_token: String?
+        def members: () -> [ :next_token ]
 
         def to_h: () -> { next_token: String? }
       end
@@ -1048,14 +1498,19 @@ module Peddler
         def self.new: (package_id: String?, ?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, ?quantity: Integer?, ?stackability: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Pallet
                     | (String?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, Integer?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Pallet
 
+        def self.[]: (package_id: String?, ?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, ?quantity: Integer?, ?stackability: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Pallet
+                   | (String?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, Integer?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Pallet
+
+        def self.members: () -> [ :package_id, :dimensions, :quantity, :stackability, :weight ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Pallet
 
         attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
         attr_reader package_id: String?
-
         attr_reader quantity: Integer?
         attr_reader stackability: String?
         attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
+        def members: () -> [ :package_id, :dimensions, :quantity, :stackability, :weight ]
 
         def to_h: () -> { package_id: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, stackability: String?, weight: Peddler::Types::FulfillmentInbound20240320::Weight? }
       end
@@ -1064,13 +1519,18 @@ module Peddler
         def self.new: (quantity: Integer?, ?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, ?stackability: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
                     | (Integer?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
 
+        def self.[]: (quantity: Integer?, ?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, ?stackability: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
+                   | (Integer?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
+
+        def self.members: () -> [ :quantity, :dimensions, :stackability, :weight ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
 
         attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
         attr_reader quantity: Integer?
-
         attr_reader stackability: String?
         attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
+        def members: () -> [ :quantity, :dimensions, :stackability, :weight ]
 
         def to_h: () -> { quantity: Integer?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, stackability: String?, weight: Peddler::Types::FulfillmentInbound20240320::Weight? }
       end
@@ -1079,15 +1539,20 @@ module Peddler
         def self.new: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[String]?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
 
+        def self.[]: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[String]?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
+
+        def self.members: () -> [ :discounts, :fees, :placement_option_id, :shipment_ids, :status, :expiration ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
 
         attr_reader discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
-
         attr_reader expiration: String?
         attr_reader fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
         attr_reader placement_option_id: String?
         attr_reader shipment_ids: Array[String]?
         attr_reader status: String?
+        def members: () -> [ :discounts, :fees, :placement_option_id, :shipment_ids, :status, :expiration ]
 
         def to_h: () -> { discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String?, expiration: String? }
       end
@@ -1096,10 +1561,16 @@ module Peddler
         def self.new: (placement_option_id: String?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary
 
+        def self.[]: (placement_option_id: String?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary
+
+        def self.members: () -> [ :placement_option_id, :status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary
 
         attr_reader placement_option_id: String?
         attr_reader status: String?
+        def members: () -> [ :placement_option_id, :status ]
 
         def to_h: () -> { placement_option_id: String?, status: String? }
       end
@@ -1108,11 +1579,17 @@ module Peddler
         def self.new: (?fee: Peddler::Types::Money?, ?prep_owner: String?, ?prep_type: String?) -> Peddler::Types::FulfillmentInbound20240320::PrepInstruction
                     | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PrepInstruction
 
+        def self.[]: (?fee: Peddler::Types::Money?, ?prep_owner: String?, ?prep_type: String?) -> Peddler::Types::FulfillmentInbound20240320::PrepInstruction
+                   | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PrepInstruction
+
+        def self.members: () -> [ :fee, :prep_owner, :prep_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::PrepInstruction
 
         attr_reader fee: Peddler::Types::Money?
         attr_reader prep_owner: String?
         attr_reader prep_type: String?
+        def members: () -> [ :fee, :prep_owner, :prep_type ]
 
         def to_h: () -> { fee: Peddler::Types::Money?, prep_owner: String?, prep_type: String? }
       end
@@ -1121,11 +1598,17 @@ module Peddler
         def self.new: (cost: Peddler::Types::Money?, ?expiration: String?, ?voidable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::Quote
                     | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Quote
 
+        def self.[]: (cost: Peddler::Types::Money?, ?expiration: String?, ?voidable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::Quote
+                   | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Quote
+
+        def self.members: () -> [ :cost, :expiration, :voidable_until ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Quote
 
         attr_reader cost: Peddler::Types::Money?
         attr_reader expiration: String?
         attr_reader voidable_until: String?
+        def members: () -> [ :cost, :expiration, :voidable_until ]
 
         def to_h: () -> { cost: Peddler::Types::Money?, expiration: String?, voidable_until: String? }
       end
@@ -1134,11 +1617,17 @@ module Peddler
         def self.new: (?country_code: String?, ?state: String?, ?warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::Region
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Region
 
+        def self.[]: (?country_code: String?, ?state: String?, ?warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::Region
+                   | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Region
+
+        def self.members: () -> [ :country_code, :state, :warehouse_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Region
 
         attr_reader country_code: String?
         attr_reader state: String?
         attr_reader warehouse_id: String?
+        def members: () -> [ :country_code, :state, :warehouse_id ]
 
         def to_h: () -> { country_code: String?, state: String?, warehouse_id: String? }
       end
@@ -1147,10 +1636,16 @@ module Peddler
         def self.new: (?boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::RequestedUpdates
                     | (Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::RequestedUpdates
 
+        def self.[]: (?boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::RequestedUpdates
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::RequestedUpdates
+
+        def self.members: () -> [ :boxes, :items ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::RequestedUpdates
 
         attr_reader boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
+        def members: () -> [ :boxes, :items ]
 
         def to_h: () -> { boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]? }
       end
@@ -1159,9 +1654,15 @@ module Peddler
         def self.new: (?reason_comment: String?) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentRequest
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentRequest
 
+        def self.[]: (?reason_comment: String?) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentRequest
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentRequest
+
+        def self.members: () -> [ :reason_comment ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentRequest
 
         attr_reader reason_comment: String?
+        def members: () -> [ :reason_comment ]
 
         def to_h: () -> { reason_comment: String? }
       end
@@ -1170,9 +1671,15 @@ module Peddler
         def self.new: (self_ship_appointment_details: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails?) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentResponse
                     | (Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails?) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentResponse
 
+        def self.[]: (self_ship_appointment_details: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails?) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentResponse
+                   | (Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails?) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentResponse
+
+        def self.members: () -> [ :self_ship_appointment_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ScheduleSelfShipAppointmentResponse
 
         attr_reader self_ship_appointment_details: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails?
+        def members: () -> [ :self_ship_appointment_details ]
 
         def to_h: () -> { self_ship_appointment_details: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails? }
       end
@@ -1181,14 +1688,19 @@ module Peddler
         def self.new: (availability_type: String?, delivery_window_option_id: String?, end_date: String?, start_date: String?, ?editable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow
 
+        def self.[]: (availability_type: String?, delivery_window_option_id: String?, end_date: String?, start_date: String?, ?editable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow
+                   | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow
+
+        def self.members: () -> [ :availability_type, :delivery_window_option_id, :end_date, :start_date, :editable_until ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow
 
         attr_reader availability_type: String?
         attr_reader delivery_window_option_id: String?
-
         attr_reader editable_until: String?
         attr_reader end_date: String?
         attr_reader start_date: String?
+        def members: () -> [ :availability_type, :delivery_window_option_id, :end_date, :start_date, :editable_until ]
 
         def to_h: () -> { availability_type: String?, delivery_window_option_id: String?, end_date: String?, start_date: String?, editable_until: String? }
       end
@@ -1197,11 +1709,17 @@ module Peddler
         def self.new: (?appointment_id: Float?, ?appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, ?appointment_status: String?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails
                     | (Float?, Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, String?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails
 
+        def self.[]: (?appointment_id: Float?, ?appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, ?appointment_status: String?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails
+                   | (Float?, Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, String?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails
+
+        def self.members: () -> [ :appointment_id, :appointment_slot_time, :appointment_status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails
 
         attr_reader appointment_id: Float?
         attr_reader appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?
         attr_reader appointment_status: String?
+        def members: () -> [ :appointment_id, :appointment_slot_time, :appointment_status ]
 
         def to_h: () -> { appointment_id: Float?, appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, appointment_status: String? }
       end
@@ -1210,10 +1728,16 @@ module Peddler
         def self.new: (?expires_at: String?, ?slots: Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability
                     | (String?, Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability
 
+        def self.[]: (?expires_at: String?, ?slots: Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability
+                   | (String?, Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability
+
+        def self.members: () -> [ :expires_at, :slots ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability
 
         attr_reader expires_at: String?
         attr_reader slots: Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?
+        def members: () -> [ :expires_at, :slots ]
 
         def to_h: () -> { expires_at: String?, slots: Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]? }
       end
@@ -1222,9 +1746,15 @@ module Peddler
         def self.new: (package_groupings: Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationRequest
                     | (Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationRequest
 
+        def self.[]: (package_groupings: Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationRequest
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationRequest
+
+        def self.members: () -> [ :package_groupings ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationRequest
 
         attr_reader package_groupings: Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?
+        def members: () -> [ :package_groupings ]
 
         def to_h: () -> { package_groupings: Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]? }
       end
@@ -1233,9 +1763,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -1244,10 +1780,16 @@ module Peddler
         def self.new: (marketplace_id: String?, msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsRequest
                     | (String?, Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsRequest
 
+        def self.[]: (marketplace_id: String?, msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsRequest
+                   | (String?, Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsRequest
+
+        def self.members: () -> [ :marketplace_id, :msku_prep_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsRequest
 
         attr_reader marketplace_id: String?
         attr_reader msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput]?
+        def members: () -> [ :marketplace_id, :msku_prep_details ]
 
         def to_h: () -> { marketplace_id: String?, msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput]? }
       end
@@ -1256,9 +1798,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SetPrepDetailsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -1267,26 +1815,29 @@ module Peddler
         def self.new: (destination: Peddler::Types::FulfillmentInbound20240320::ShipmentDestination?, placement_option_id: String?, shipment_id: String?, source: Peddler::Types::FulfillmentInbound20240320::ShipmentSource?, ?amazon_reference_id: String?, ?contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, ?dates: Peddler::Types::FulfillmentInbound20240320::Dates?, ?freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?, ?name: String?, ?selected_delivery_window: Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow?, ?selected_transportation_option_id: String?, ?self_ship_appointment_details: Array[Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails]?, ?shipment_confirmation_id: String?, ?status: String?, ?tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetails?) -> Peddler::Types::FulfillmentInbound20240320::Shipment
                     | (Peddler::Types::FulfillmentInbound20240320::ShipmentDestination?, String?, String?, Peddler::Types::FulfillmentInbound20240320::ShipmentSource?, String?, Peddler::Types::FulfillmentInbound20240320::ContactInformation?, Peddler::Types::FulfillmentInbound20240320::Dates?, Peddler::Types::FulfillmentInbound20240320::FreightInformation?, String?, Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow?, String?, Array[Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails]?, String?, String?, Peddler::Types::FulfillmentInbound20240320::TrackingDetails?) -> Peddler::Types::FulfillmentInbound20240320::Shipment
 
+        def self.[]: (destination: Peddler::Types::FulfillmentInbound20240320::ShipmentDestination?, placement_option_id: String?, shipment_id: String?, source: Peddler::Types::FulfillmentInbound20240320::ShipmentSource?, ?amazon_reference_id: String?, ?contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, ?dates: Peddler::Types::FulfillmentInbound20240320::Dates?, ?freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?, ?name: String?, ?selected_delivery_window: Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow?, ?selected_transportation_option_id: String?, ?self_ship_appointment_details: Array[Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails]?, ?shipment_confirmation_id: String?, ?status: String?, ?tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetails?) -> Peddler::Types::FulfillmentInbound20240320::Shipment
+                   | (Peddler::Types::FulfillmentInbound20240320::ShipmentDestination?, String?, String?, Peddler::Types::FulfillmentInbound20240320::ShipmentSource?, String?, Peddler::Types::FulfillmentInbound20240320::ContactInformation?, Peddler::Types::FulfillmentInbound20240320::Dates?, Peddler::Types::FulfillmentInbound20240320::FreightInformation?, String?, Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow?, String?, Array[Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails]?, String?, String?, Peddler::Types::FulfillmentInbound20240320::TrackingDetails?) -> Peddler::Types::FulfillmentInbound20240320::Shipment
+
+        def self.members: () -> [ :destination, :placement_option_id, :shipment_id, :source, :amazon_reference_id, :contact_information, :dates, :freight_information, :name, :selected_delivery_window, :selected_transportation_option_id, :self_ship_appointment_details, :shipment_confirmation_id, :status, :tracking_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Shipment
 
         attr_reader amazon_reference_id: String?
         attr_reader contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?
         attr_reader dates: Peddler::Types::FulfillmentInbound20240320::Dates?
         attr_reader destination: Peddler::Types::FulfillmentInbound20240320::ShipmentDestination?
-
         attr_reader freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?
         attr_reader name: String?
         attr_reader placement_option_id: String?
-
         attr_reader selected_delivery_window: Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow?
         attr_reader selected_transportation_option_id: String?
         attr_reader self_ship_appointment_details: Array[Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails]?
         attr_reader shipment_confirmation_id: String?
         attr_reader shipment_id: String?
         attr_reader source: Peddler::Types::FulfillmentInbound20240320::ShipmentSource?
-
         attr_reader status: String?
         attr_reader tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetails?
+        def members: () -> [ :destination, :placement_option_id, :shipment_id, :source, :amazon_reference_id, :contact_information, :dates, :freight_information, :name, :selected_delivery_window, :selected_transportation_option_id, :self_ship_appointment_details, :shipment_confirmation_id, :status, :tracking_details ]
 
         def to_h: () -> { destination: Peddler::Types::FulfillmentInbound20240320::ShipmentDestination?, placement_option_id: String?, shipment_id: String?, source: Peddler::Types::FulfillmentInbound20240320::ShipmentSource?, amazon_reference_id: String?, contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, dates: Peddler::Types::FulfillmentInbound20240320::Dates?, freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?, name: String?, selected_delivery_window: Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow?, selected_transportation_option_id: String?, self_ship_appointment_details: Array[Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails]?, shipment_confirmation_id: String?, status: String?, tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetails? }
       end
@@ -1295,12 +1846,17 @@ module Peddler
         def self.new: (destination_type: String?, ?address: Peddler::Types::FulfillmentInbound20240320::Address?, ?warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
                     | (String?, Peddler::Types::FulfillmentInbound20240320::Address?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
 
+        def self.[]: (destination_type: String?, ?address: Peddler::Types::FulfillmentInbound20240320::Address?, ?warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
+                   | (String?, Peddler::Types::FulfillmentInbound20240320::Address?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
+
+        def self.members: () -> [ :destination_type, :address, :warehouse_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
 
         attr_reader address: Peddler::Types::FulfillmentInbound20240320::Address?
         attr_reader destination_type: String?
-
         attr_reader warehouse_id: String?
+        def members: () -> [ :destination_type, :address, :warehouse_id ]
 
         def to_h: () -> { destination_type: String?, address: Peddler::Types::FulfillmentInbound20240320::Address?, warehouse_id: String? }
       end
@@ -1309,10 +1865,16 @@ module Peddler
         def self.new: (source_type: String?, ?address: Peddler::Types::FulfillmentInbound20240320::Address?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
                     | (String?, Peddler::Types::FulfillmentInbound20240320::Address?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
 
+        def self.[]: (source_type: String?, ?address: Peddler::Types::FulfillmentInbound20240320::Address?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
+                   | (String?, Peddler::Types::FulfillmentInbound20240320::Address?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
+
+        def self.members: () -> [ :source_type, :address ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
 
         attr_reader address: Peddler::Types::FulfillmentInbound20240320::Address?
         attr_reader source_type: String?
+        def members: () -> [ :source_type, :address ]
 
         def to_h: () -> { source_type: String?, address: Peddler::Types::FulfillmentInbound20240320::Address? }
       end
@@ -1321,10 +1883,16 @@ module Peddler
         def self.new: (shipment_id: String?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSummary
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSummary
 
+        def self.[]: (shipment_id: String?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSummary
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSummary
+
+        def self.members: () -> [ :shipment_id, :status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSummary
 
         attr_reader shipment_id: String?
         attr_reader status: String?
+        def members: () -> [ :shipment_id, :status ]
 
         def to_h: () -> { shipment_id: String?, status: String? }
       end
@@ -1333,6 +1901,11 @@ module Peddler
         def self.new: (ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::WindowInput?, shipment_id: String?, ?contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, ?freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?, ?pallets: Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration
                     | (Peddler::Types::FulfillmentInbound20240320::WindowInput?, String?, Peddler::Types::FulfillmentInbound20240320::ContactInformation?, Peddler::Types::FulfillmentInbound20240320::FreightInformation?, Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration
 
+        def self.[]: (ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::WindowInput?, shipment_id: String?, ?contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, ?freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?, ?pallets: Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration
+                   | (Peddler::Types::FulfillmentInbound20240320::WindowInput?, String?, Peddler::Types::FulfillmentInbound20240320::ContactInformation?, Peddler::Types::FulfillmentInbound20240320::FreightInformation?, Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration
+
+        def self.members: () -> [ :ready_to_ship_window, :shipment_id, :contact_information, :freight_information, :pallets ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration
 
         attr_reader contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?
@@ -1340,6 +1913,7 @@ module Peddler
         attr_reader pallets: Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]?
         attr_reader ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::WindowInput?
         attr_reader shipment_id: String?
+        def members: () -> [ :ready_to_ship_window, :shipment_id, :contact_information, :freight_information, :pallets ]
 
         def to_h: () -> { ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::WindowInput?, shipment_id: String?, contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?, pallets: Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]? }
       end
@@ -1348,10 +1922,16 @@ module Peddler
         def self.new: (?shipping_mode: String?, ?shipping_solution: String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration
 
+        def self.[]: (?shipping_mode: String?, ?shipping_solution: String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration
+
+        def self.members: () -> [ :shipping_mode, :shipping_solution ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration
 
         attr_reader shipping_mode: String?
         attr_reader shipping_solution: String?
+        def members: () -> [ :shipping_mode, :shipping_solution ]
 
         def to_h: () -> { shipping_mode: String?, shipping_solution: String? }
       end
@@ -1360,10 +1940,16 @@ module Peddler
         def self.new: (modes: Array[String]?, solution: String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingRequirements
                     | (Array[String]?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingRequirements
 
+        def self.[]: (modes: Array[String]?, solution: String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingRequirements
+                   | (Array[String]?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingRequirements
+
+        def self.members: () -> [ :modes, :solution ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShippingRequirements
 
         attr_reader modes: Array[String]?
         attr_reader solution: String?
+        def members: () -> [ :modes, :solution ]
 
         def to_h: () -> { modes: Array[String]?, solution: String? }
       end
@@ -1372,9 +1958,15 @@ module Peddler
         def self.new: (?spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail
                     | (Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail
 
+        def self.[]: (?spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail
+
+        def self.members: () -> [ :spd_tracking_items ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail
 
         attr_reader spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]?
+        def members: () -> [ :spd_tracking_items ]
 
         def to_h: () -> { spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]? }
       end
@@ -1383,9 +1975,15 @@ module Peddler
         def self.new: (spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput
                     | (Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput
 
+        def self.[]: (spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput
+                   | (Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput
+
+        def self.members: () -> [ :spd_tracking_items ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput
 
         attr_reader spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?
+        def members: () -> [ :spd_tracking_items ]
 
         def to_h: () -> { spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]? }
       end
@@ -1394,11 +1992,17 @@ module Peddler
         def self.new: (?box_id: String?, ?tracking_id: String?, ?tracking_number_validation_status: String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem
 
+        def self.[]: (?box_id: String?, ?tracking_id: String?, ?tracking_number_validation_status: String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem
+                   | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem
+
+        def self.members: () -> [ :box_id, :tracking_id, :tracking_number_validation_status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem
 
         attr_reader box_id: String?
         attr_reader tracking_id: String?
         attr_reader tracking_number_validation_status: String?
+        def members: () -> [ :box_id, :tracking_id, :tracking_number_validation_status ]
 
         def to_h: () -> { box_id: String?, tracking_id: String?, tracking_number_validation_status: String? }
       end
@@ -1407,10 +2011,16 @@ module Peddler
         def self.new: (box_id: String?, tracking_id: String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput
                     | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput
 
+        def self.[]: (box_id: String?, tracking_id: String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput
+                   | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput
+
+        def self.members: () -> [ :box_id, :tracking_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput
 
         attr_reader box_id: String?
         attr_reader tracking_id: String?
+        def members: () -> [ :box_id, :tracking_id ]
 
         def to_h: () -> { box_id: String?, tracking_id: String? }
       end
@@ -1419,11 +2029,17 @@ module Peddler
         def self.new: (?declared_value: Peddler::Types::Money?, ?hsn_code: String?, ?tax_rates: Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]?) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails
                     | (Peddler::Types::Money?, String?, Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]?) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails
 
+        def self.[]: (?declared_value: Peddler::Types::Money?, ?hsn_code: String?, ?tax_rates: Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]?) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails
+                   | (Peddler::Types::Money?, String?, Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]?) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails
+
+        def self.members: () -> [ :declared_value, :hsn_code, :tax_rates ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails
 
         attr_reader declared_value: Peddler::Types::Money?
         attr_reader hsn_code: String?
         attr_reader tax_rates: Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]?
+        def members: () -> [ :declared_value, :hsn_code, :tax_rates ]
 
         def to_h: () -> { declared_value: Peddler::Types::Money?, hsn_code: String?, tax_rates: Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]? }
       end
@@ -1432,11 +2048,17 @@ module Peddler
         def self.new: (?cess_rate: Float?, ?gst_rate: Float?, ?tax_type: String?) -> Peddler::Types::FulfillmentInbound20240320::TaxRate
                     | (Float?, Float?, String?) -> Peddler::Types::FulfillmentInbound20240320::TaxRate
 
+        def self.[]: (?cess_rate: Float?, ?gst_rate: Float?, ?tax_type: String?) -> Peddler::Types::FulfillmentInbound20240320::TaxRate
+                   | (Float?, Float?, String?) -> Peddler::Types::FulfillmentInbound20240320::TaxRate
+
+        def self.members: () -> [ :cess_rate, :gst_rate, :tax_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::TaxRate
 
         attr_reader cess_rate: Float?
         attr_reader gst_rate: Float?
         attr_reader tax_type: String?
+        def members: () -> [ :cess_rate, :gst_rate, :tax_type ]
 
         def to_h: () -> { cess_rate: Float?, gst_rate: Float?, tax_type: String? }
       end
@@ -1445,10 +2067,16 @@ module Peddler
         def self.new: (?ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?, ?spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails
                     | (Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?, Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails
 
+        def self.[]: (?ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?, ?spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails
+                   | (Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?, Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails
+
+        def self.members: () -> [ :ltl_tracking_detail, :spd_tracking_detail ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails
 
         attr_reader ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?
         attr_reader spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail?
+        def members: () -> [ :ltl_tracking_detail, :spd_tracking_detail ]
 
         def to_h: () -> { ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?, spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail? }
       end
@@ -1457,10 +2085,16 @@ module Peddler
         def self.new: (?ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?, ?spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput
                     | (Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?, Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput
 
+        def self.[]: (?ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?, ?spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput
+                   | (Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?, Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput
+
+        def self.members: () -> [ :ltl_tracking_detail, :spd_tracking_detail ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput
 
         attr_reader ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?
         attr_reader spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput?
+        def members: () -> [ :ltl_tracking_detail, :spd_tracking_detail ]
 
         def to_h: () -> { ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?, spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput? }
       end
@@ -1469,18 +2103,22 @@ module Peddler
         def self.new: (carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, preconditions: Array[String]?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String?, ?carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, ?quote: Peddler::Types::FulfillmentInbound20240320::Quote?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
                     | (Peddler::Types::FulfillmentInbound20240320::Carrier?, Array[String]?, String?, String?, String?, String?, Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, Peddler::Types::FulfillmentInbound20240320::Quote?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
 
+        def self.[]: (carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, preconditions: Array[String]?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String?, ?carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, ?quote: Peddler::Types::FulfillmentInbound20240320::Quote?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
+                   | (Peddler::Types::FulfillmentInbound20240320::Carrier?, Array[String]?, String?, String?, String?, String?, Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, Peddler::Types::FulfillmentInbound20240320::Quote?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
+
+        def self.members: () -> [ :carrier, :preconditions, :shipment_id, :shipping_mode, :shipping_solution, :transportation_option_id, :carrier_appointment, :quote ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
 
         attr_reader carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?
-
         attr_reader carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?
         attr_reader preconditions: Array[String]?
-
         attr_reader quote: Peddler::Types::FulfillmentInbound20240320::Quote?
         attr_reader shipment_id: String?
         attr_reader shipping_mode: String?
         attr_reader shipping_solution: String?
         attr_reader transportation_option_id: String?
+        def members: () -> [ :carrier, :preconditions, :shipment_id, :shipping_mode, :shipping_solution, :transportation_option_id, :carrier_appointment, :quote ]
 
         def to_h: () -> { carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, preconditions: Array[String]?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String?, carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, quote: Peddler::Types::FulfillmentInbound20240320::Quote? }
       end
@@ -1489,11 +2127,17 @@ module Peddler
         def self.new: (shipment_id: String?, transportation_option_id: String?, ?contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?) -> Peddler::Types::FulfillmentInbound20240320::TransportationSelection
                     | (String?, String?, Peddler::Types::FulfillmentInbound20240320::ContactInformation?) -> Peddler::Types::FulfillmentInbound20240320::TransportationSelection
 
+        def self.[]: (shipment_id: String?, transportation_option_id: String?, ?contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?) -> Peddler::Types::FulfillmentInbound20240320::TransportationSelection
+                   | (String?, String?, Peddler::Types::FulfillmentInbound20240320::ContactInformation?) -> Peddler::Types::FulfillmentInbound20240320::TransportationSelection
+
+        def self.members: () -> [ :shipment_id, :transportation_option_id, :contact_information ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::TransportationSelection
 
         attr_reader contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?
         attr_reader shipment_id: String?
         attr_reader transportation_option_id: String?
+        def members: () -> [ :shipment_id, :transportation_option_id, :contact_information ]
 
         def to_h: () -> { shipment_id: String?, transportation_option_id: String?, contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation? }
       end
@@ -1502,9 +2146,15 @@ module Peddler
         def self.new: (name: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateInboundPlanNameRequest
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateInboundPlanNameRequest
 
+        def self.[]: (name: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateInboundPlanNameRequest
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateInboundPlanNameRequest
+
+        def self.members: () -> [ :name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateInboundPlanNameRequest
 
         attr_reader name: String?
+        def members: () -> [ :name ]
 
         def to_h: () -> { name: String? }
       end
@@ -1513,10 +2163,16 @@ module Peddler
         def self.new: (msku: String?, tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsRequest
                     | (String?, Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsRequest
 
+        def self.[]: (msku: String?, tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsRequest
+                   | (String?, Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsRequest
+
+        def self.members: () -> [ :msku, :tax_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsRequest
 
         attr_reader msku: String?
         attr_reader tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails?
+        def members: () -> [ :msku, :tax_details ]
 
         def to_h: () -> { msku: String?, tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails? }
       end
@@ -1525,9 +2181,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateItemComplianceDetailsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -1536,9 +2198,15 @@ module Peddler
         def self.new: (name: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentNameRequest
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentNameRequest
 
+        def self.[]: (name: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentNameRequest
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentNameRequest
+
+        def self.members: () -> [ :name ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentNameRequest
 
         attr_reader name: String?
+        def members: () -> [ :name ]
 
         def to_h: () -> { name: String? }
       end
@@ -1547,9 +2215,15 @@ module Peddler
         def self.new: (address: Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressRequest
                     | (Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressRequest
 
+        def self.[]: (address: Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressRequest
+                   | (Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressRequest
+
+        def self.members: () -> [ :address ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressRequest
 
         attr_reader address: Peddler::Types::FulfillmentInbound20240320::AddressInput?
+        def members: () -> [ :address ]
 
         def to_h: () -> { address: Peddler::Types::FulfillmentInbound20240320::AddressInput? }
       end
@@ -1558,9 +2232,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -1569,9 +2249,15 @@ module Peddler
         def self.new: (tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
                     | (Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
 
+        def self.[]: (tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
+                   | (Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
+
+        def self.members: () -> [ :tracking_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
 
         attr_reader tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?
+        def members: () -> [ :tracking_details ]
 
         def to_h: () -> { tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput? }
       end
@@ -1580,9 +2266,15 @@ module Peddler
         def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsResponse
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsResponse
 
+        def self.[]: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsResponse
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsResponse
+
+        def self.members: () -> [ :operation_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsResponse
 
         attr_reader operation_id: String?
+        def members: () -> [ :operation_id ]
 
         def to_h: () -> { operation_id: String? }
       end
@@ -1591,10 +2283,16 @@ module Peddler
         def self.new: (unit: String?, value: Float?) -> Peddler::Types::FulfillmentInbound20240320::Weight
                     | (String?, Float?) -> Peddler::Types::FulfillmentInbound20240320::Weight
 
+        def self.[]: (unit: String?, value: Float?) -> Peddler::Types::FulfillmentInbound20240320::Weight
+                   | (String?, Float?) -> Peddler::Types::FulfillmentInbound20240320::Weight
+
+        def self.members: () -> [ :unit, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Weight
 
         attr_reader unit: String?
         attr_reader value: Float?
+        def members: () -> [ :unit, :value ]
 
         def to_h: () -> { unit: String?, value: Float? }
       end
@@ -1603,11 +2301,17 @@ module Peddler
         def self.new: (maximum: Float?, minimum: Float?, unit: String?) -> Peddler::Types::FulfillmentInbound20240320::WeightRange
                     | (Float?, Float?, String?) -> Peddler::Types::FulfillmentInbound20240320::WeightRange
 
+        def self.[]: (maximum: Float?, minimum: Float?, unit: String?) -> Peddler::Types::FulfillmentInbound20240320::WeightRange
+                   | (Float?, Float?, String?) -> Peddler::Types::FulfillmentInbound20240320::WeightRange
+
+        def self.members: () -> [ :maximum, :minimum, :unit ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::WeightRange
 
         attr_reader maximum: Float?
         attr_reader minimum: Float?
         attr_reader unit: String?
+        def members: () -> [ :maximum, :minimum, :unit ]
 
         def to_h: () -> { maximum: Float?, minimum: Float?, unit: String? }
       end
@@ -1616,11 +2320,17 @@ module Peddler
         def self.new: (end: String?, start: String?, ?editable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::Window
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Window
 
+        def self.[]: (end: String?, start: String?, ?editable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::Window
+                   | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Window
+
+        def self.members: () -> [ :end, :start, :editable_until ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Window
 
         attr_reader editable_until: String?
         attr_reader end: String?
         attr_reader start: String?
+        def members: () -> [ :end, :start, :editable_until ]
 
         def to_h: () -> { end: String?, start: String?, editable_until: String? }
       end
@@ -1629,9 +2339,15 @@ module Peddler
         def self.new: (start: String?) -> Peddler::Types::FulfillmentInbound20240320::WindowInput
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::WindowInput
 
+        def self.[]: (start: String?) -> Peddler::Types::FulfillmentInbound20240320::WindowInput
+                   | (String?) -> Peddler::Types::FulfillmentInbound20240320::WindowInput
+
+        def self.members: () -> [ :start ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::WindowInput
 
         attr_reader start: String?
+        def members: () -> [ :start ]
 
         def to_h: () -> { start: String? }
       end

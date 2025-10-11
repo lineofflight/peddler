@@ -5,9 +5,15 @@ module Peddler
         def self.new: (report_id: String?) -> Peddler::Types::Reports20210630::CreateReportResponse
                     | (String?) -> Peddler::Types::Reports20210630::CreateReportResponse
 
+        def self.[]: (report_id: String?) -> Peddler::Types::Reports20210630::CreateReportResponse
+                   | (String?) -> Peddler::Types::Reports20210630::CreateReportResponse
+
+        def self.members: () -> [ :report_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::CreateReportResponse
 
         attr_reader report_id: String?
+        def members: () -> [ :report_id ]
 
         def to_h: () -> { report_id: String? }
       end
@@ -16,9 +22,15 @@ module Peddler
         def self.new: (report_schedule_id: String?) -> Peddler::Types::Reports20210630::CreateReportScheduleResponse
                     | (String?) -> Peddler::Types::Reports20210630::CreateReportScheduleResponse
 
+        def self.[]: (report_schedule_id: String?) -> Peddler::Types::Reports20210630::CreateReportScheduleResponse
+                   | (String?) -> Peddler::Types::Reports20210630::CreateReportScheduleResponse
+
+        def self.members: () -> [ :report_schedule_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::CreateReportScheduleResponse
 
         attr_reader report_schedule_id: String?
+        def members: () -> [ :report_schedule_id ]
 
         def to_h: () -> { report_schedule_id: String? }
       end
@@ -27,15 +39,19 @@ module Peddler
         def self.new: (marketplace_ids: Array[String]?, period: String?, report_type: String?, ?next_report_creation_time: String?, ?report_options: Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportScheduleSpecification
                     | (Array[String]?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportScheduleSpecification
 
+        def self.[]: (marketplace_ids: Array[String]?, period: String?, report_type: String?, ?next_report_creation_time: String?, ?report_options: Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportScheduleSpecification
+                   | (Array[String]?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportScheduleSpecification
+
+        def self.members: () -> [ :marketplace_ids, :period, :report_type, :next_report_creation_time, :report_options ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::CreateReportScheduleSpecification
 
         attr_reader marketplace_ids: Array[String]?
-
         attr_reader next_report_creation_time: String?
         attr_reader period: String?
-
         attr_reader report_options: Hash[untyped, untyped]?
         attr_reader report_type: String?
+        def members: () -> [ :marketplace_ids, :period, :report_type, :next_report_creation_time, :report_options ]
 
         def to_h: () -> { marketplace_ids: Array[String]?, period: String?, report_type: String?, next_report_creation_time: String?, report_options: Hash[untyped, untyped]? }
       end
@@ -44,14 +60,19 @@ module Peddler
         def self.new: (marketplace_ids: Array[String]?, report_type: String?, ?data_end_time: String?, ?data_start_time: String?, ?report_options: Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
                     | (Array[String]?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
 
+        def self.[]: (marketplace_ids: Array[String]?, report_type: String?, ?data_end_time: String?, ?data_start_time: String?, ?report_options: Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
+                   | (Array[String]?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
+
+        def self.members: () -> [ :marketplace_ids, :report_type, :data_end_time, :data_start_time, :report_options ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::CreateReportSpecification
 
         attr_reader data_end_time: String?
         attr_reader data_start_time: String?
         attr_reader marketplace_ids: Array[String]?
-
         attr_reader report_options: Hash[untyped, untyped]?
         attr_reader report_type: String?
+        def members: () -> [ :marketplace_ids, :report_type, :data_end_time, :data_start_time, :report_options ]
 
         def to_h: () -> { marketplace_ids: Array[String]?, report_type: String?, data_end_time: String?, data_start_time: String?, report_options: Hash[untyped, untyped]? }
       end
@@ -60,12 +81,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Reports20210630::Error
                     | (String?, String?, String?) -> Peddler::Types::Reports20210630::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Reports20210630::Error
+                   | (String?, String?, String?) -> Peddler::Types::Reports20210630::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -74,9 +100,15 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::Reports20210630::Error]?) -> Peddler::Types::Reports20210630::ErrorList
                     | (Array[Peddler::Types::Reports20210630::Error]?) -> Peddler::Types::Reports20210630::ErrorList
 
+        def self.[]: (errors: Array[Peddler::Types::Reports20210630::Error]?) -> Peddler::Types::Reports20210630::ErrorList
+                   | (Array[Peddler::Types::Reports20210630::Error]?) -> Peddler::Types::Reports20210630::ErrorList
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::ErrorList
 
         attr_reader errors: Array[Peddler::Types::Reports20210630::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::Reports20210630::Error]? }
       end
@@ -85,10 +117,16 @@ module Peddler
         def self.new: (reports: Array[Peddler::Types::Reports20210630::Report]?, ?next_token: String?) -> Peddler::Types::Reports20210630::GetReportsResponse
                     | (Array[Peddler::Types::Reports20210630::Report]?, String?) -> Peddler::Types::Reports20210630::GetReportsResponse
 
+        def self.[]: (reports: Array[Peddler::Types::Reports20210630::Report]?, ?next_token: String?) -> Peddler::Types::Reports20210630::GetReportsResponse
+                   | (Array[Peddler::Types::Reports20210630::Report]?, String?) -> Peddler::Types::Reports20210630::GetReportsResponse
+
+        def self.members: () -> [ :reports, :next_token ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::GetReportsResponse
 
         attr_reader next_token: String?
         attr_reader reports: Array[Peddler::Types::Reports20210630::Report]?
+        def members: () -> [ :reports, :next_token ]
 
         def to_h: () -> { reports: Array[Peddler::Types::Reports20210630::Report]?, next_token: String? }
       end
@@ -97,22 +135,25 @@ module Peddler
         def self.new: (created_time: String?, processing_status: String?, report_id: String?, report_type: String?, ?data_end_time: String?, ?data_start_time: String?, ?marketplace_ids: Array[String]?, ?processing_end_time: String?, ?processing_start_time: String?, ?report_document_id: String?, ?report_schedule_id: String?) -> Peddler::Types::Reports20210630::Report
                     | (String?, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?) -> Peddler::Types::Reports20210630::Report
 
+        def self.[]: (created_time: String?, processing_status: String?, report_id: String?, report_type: String?, ?data_end_time: String?, ?data_start_time: String?, ?marketplace_ids: Array[String]?, ?processing_end_time: String?, ?processing_start_time: String?, ?report_document_id: String?, ?report_schedule_id: String?) -> Peddler::Types::Reports20210630::Report
+                   | (String?, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?) -> Peddler::Types::Reports20210630::Report
+
+        def self.members: () -> [ :created_time, :processing_status, :report_id, :report_type, :data_end_time, :data_start_time, :marketplace_ids, :processing_end_time, :processing_start_time, :report_document_id, :report_schedule_id ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::Report
 
         attr_reader created_time: String?
-
         attr_reader data_end_time: String?
         attr_reader data_start_time: String?
         attr_reader marketplace_ids: Array[String]?
         attr_reader processing_end_time: String?
         attr_reader processing_start_time: String?
         attr_reader processing_status: String?
-
         attr_reader report_document_id: String?
         attr_reader report_id: String?
-
         attr_reader report_schedule_id: String?
         attr_reader report_type: String?
+        def members: () -> [ :created_time, :processing_status, :report_id, :report_type, :data_end_time, :data_start_time, :marketplace_ids, :processing_end_time, :processing_start_time, :report_document_id, :report_schedule_id ]
 
         def to_h: () -> { created_time: String?, processing_status: String?, report_id: String?, report_type: String?, data_end_time: String?, data_start_time: String?, marketplace_ids: Array[String]?, processing_end_time: String?, processing_start_time: String?, report_document_id: String?, report_schedule_id: String? }
       end
@@ -121,11 +162,17 @@ module Peddler
         def self.new: (report_document_id: String?, url: String?, ?compression_algorithm: String?) -> Peddler::Types::Reports20210630::ReportDocument
                     | (String?, String?, String?) -> Peddler::Types::Reports20210630::ReportDocument
 
+        def self.[]: (report_document_id: String?, url: String?, ?compression_algorithm: String?) -> Peddler::Types::Reports20210630::ReportDocument
+                   | (String?, String?, String?) -> Peddler::Types::Reports20210630::ReportDocument
+
+        def self.members: () -> [ :report_document_id, :url, :compression_algorithm ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::ReportDocument
 
         attr_reader compression_algorithm: String?
         attr_reader report_document_id: String?
         attr_reader url: String?
+        def members: () -> [ :report_document_id, :url, :compression_algorithm ]
 
         def to_h: () -> { report_document_id: String?, url: String?, compression_algorithm: String? }
       end
@@ -138,15 +185,20 @@ module Peddler
         def self.new: (period: String?, report_schedule_id: String?, report_type: String?, ?marketplace_ids: Array[String]?, ?next_report_creation_time: String?, ?report_options: Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::ReportSchedule
                     | (String?, String?, String?, Array[String]?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::ReportSchedule
 
+        def self.[]: (period: String?, report_schedule_id: String?, report_type: String?, ?marketplace_ids: Array[String]?, ?next_report_creation_time: String?, ?report_options: Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::ReportSchedule
+                   | (String?, String?, String?, Array[String]?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::ReportSchedule
+
+        def self.members: () -> [ :period, :report_schedule_id, :report_type, :marketplace_ids, :next_report_creation_time, :report_options ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::ReportSchedule
 
         attr_reader marketplace_ids: Array[String]?
         attr_reader next_report_creation_time: String?
         attr_reader period: String?
-
         attr_reader report_options: Hash[untyped, untyped]?
         attr_reader report_schedule_id: String?
         attr_reader report_type: String?
+        def members: () -> [ :period, :report_schedule_id, :report_type, :marketplace_ids, :next_report_creation_time, :report_options ]
 
         def to_h: () -> { period: String?, report_schedule_id: String?, report_type: String?, marketplace_ids: Array[String]?, next_report_creation_time: String?, report_options: Hash[untyped, untyped]? }
       end
@@ -155,9 +207,15 @@ module Peddler
         def self.new: (report_schedules: Array[Peddler::Types::Reports20210630::ReportSchedule]?) -> Peddler::Types::Reports20210630::ReportScheduleList
                     | (Array[Peddler::Types::Reports20210630::ReportSchedule]?) -> Peddler::Types::Reports20210630::ReportScheduleList
 
+        def self.[]: (report_schedules: Array[Peddler::Types::Reports20210630::ReportSchedule]?) -> Peddler::Types::Reports20210630::ReportScheduleList
+                   | (Array[Peddler::Types::Reports20210630::ReportSchedule]?) -> Peddler::Types::Reports20210630::ReportScheduleList
+
+        def self.members: () -> [ :report_schedules ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::ReportScheduleList
 
         attr_reader report_schedules: Array[Peddler::Types::Reports20210630::ReportSchedule]?
+        def members: () -> [ :report_schedules ]
 
         def to_h: () -> { report_schedules: Array[Peddler::Types::Reports20210630::ReportSchedule]? }
       end

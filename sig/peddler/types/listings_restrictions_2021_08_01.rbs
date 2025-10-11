@@ -5,12 +5,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ListingsRestrictions20210801::Error
                     | (String?, String?, String?) -> Peddler::Types::ListingsRestrictions20210801::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ListingsRestrictions20210801::Error
+                   | (String?, String?, String?) -> Peddler::Types::ListingsRestrictions20210801::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsRestrictions20210801::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -23,13 +28,18 @@ module Peddler
         def self.new: (resource: String?, verb: String?, ?title: String?, ?type: String?) -> Peddler::Types::ListingsRestrictions20210801::Link
                     | (String?, String?, String?, String?) -> Peddler::Types::ListingsRestrictions20210801::Link
 
+        def self.[]: (resource: String?, verb: String?, ?title: String?, ?type: String?) -> Peddler::Types::ListingsRestrictions20210801::Link
+                   | (String?, String?, String?, String?) -> Peddler::Types::ListingsRestrictions20210801::Link
+
+        def self.members: () -> [ :resource, :verb, :title, :type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsRestrictions20210801::Link
 
         attr_reader resource: String?
-
         attr_reader title: String?
         attr_reader type: String?
         attr_reader verb: String?
+        def members: () -> [ :resource, :verb, :title, :type ]
 
         def to_h: () -> { resource: String?, verb: String?, title: String?, type: String? }
       end
@@ -38,12 +48,17 @@ module Peddler
         def self.new: (message: String?, ?links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?, ?reason_code: String?) -> Peddler::Types::ListingsRestrictions20210801::Reason
                     | (String?, Array[Peddler::Types::ListingsRestrictions20210801::Link]?, String?) -> Peddler::Types::ListingsRestrictions20210801::Reason
 
+        def self.[]: (message: String?, ?links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?, ?reason_code: String?) -> Peddler::Types::ListingsRestrictions20210801::Reason
+                   | (String?, Array[Peddler::Types::ListingsRestrictions20210801::Link]?, String?) -> Peddler::Types::ListingsRestrictions20210801::Reason
+
+        def self.members: () -> [ :message, :links, :reason_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsRestrictions20210801::Reason
 
         attr_reader links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?
         attr_reader message: String?
-
         attr_reader reason_code: String?
+        def members: () -> [ :message, :links, :reason_code ]
 
         def to_h: () -> { message: String?, links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?, reason_code: String? }
       end
@@ -52,12 +67,17 @@ module Peddler
         def self.new: (marketplace_id: String?, ?condition_type: String?, ?reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]?) -> Peddler::Types::ListingsRestrictions20210801::Restriction
                     | (String?, String?, Array[Peddler::Types::ListingsRestrictions20210801::Reason]?) -> Peddler::Types::ListingsRestrictions20210801::Restriction
 
+        def self.[]: (marketplace_id: String?, ?condition_type: String?, ?reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]?) -> Peddler::Types::ListingsRestrictions20210801::Restriction
+                   | (String?, String?, Array[Peddler::Types::ListingsRestrictions20210801::Reason]?) -> Peddler::Types::ListingsRestrictions20210801::Restriction
+
+        def self.members: () -> [ :marketplace_id, :condition_type, :reasons ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsRestrictions20210801::Restriction
 
         attr_reader condition_type: String?
         attr_reader marketplace_id: String?
-
         attr_reader reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]?
+        def members: () -> [ :marketplace_id, :condition_type, :reasons ]
 
         def to_h: () -> { marketplace_id: String?, condition_type: String?, reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]? }
       end
@@ -66,9 +86,15 @@ module Peddler
         def self.new: (restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
                     | (Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
 
+        def self.[]: (restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
+                   | (Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
+
+        def self.members: () -> [ :restrictions ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
 
         attr_reader restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?
+        def members: () -> [ :restrictions ]
 
         def to_h: () -> { restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]? }
       end

@@ -5,10 +5,16 @@ module Peddler
         def self.new: (restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?, ?target_application: String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
                     | (Array[Peddler::Types::Tokens20210301::RestrictedResource]?, String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
 
+        def self.[]: (restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?, ?target_application: String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
+                   | (Array[Peddler::Types::Tokens20210301::RestrictedResource]?, String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
+
+        def self.members: () -> [ :restricted_resources, :target_application ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
 
         attr_reader restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?
         attr_reader target_application: String?
+        def members: () -> [ :restricted_resources, :target_application ]
 
         def to_h: () -> { restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?, target_application: String? }
       end
@@ -17,10 +23,16 @@ module Peddler
         def self.new: (?expires_in: Integer?, ?restricted_data_token: String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
                     | (Integer?, String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
 
+        def self.[]: (?expires_in: Integer?, ?restricted_data_token: String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
+                   | (Integer?, String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
+
+        def self.members: () -> [ :expires_in, :restricted_data_token ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
 
         attr_reader expires_in: Integer?
         attr_reader restricted_data_token: String?
+        def members: () -> [ :expires_in, :restricted_data_token ]
 
         def to_h: () -> { expires_in: Integer?, restricted_data_token: String? }
       end
@@ -29,12 +41,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Tokens20210301::Error
                     | (String?, String?, String?) -> Peddler::Types::Tokens20210301::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Tokens20210301::Error
+                   | (String?, String?, String?) -> Peddler::Types::Tokens20210301::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -43,9 +60,15 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::Tokens20210301::Error]?) -> Peddler::Types::Tokens20210301::ErrorList
                     | (Array[Peddler::Types::Tokens20210301::Error]?) -> Peddler::Types::Tokens20210301::ErrorList
 
+        def self.[]: (?errors: Array[Peddler::Types::Tokens20210301::Error]?) -> Peddler::Types::Tokens20210301::ErrorList
+                   | (Array[Peddler::Types::Tokens20210301::Error]?) -> Peddler::Types::Tokens20210301::ErrorList
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::ErrorList
 
         attr_reader errors: Array[Peddler::Types::Tokens20210301::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::Tokens20210301::Error]? }
       end
@@ -54,11 +77,17 @@ module Peddler
         def self.new: (method: String?, path: String?, ?data_elements: Array[String]?) -> Peddler::Types::Tokens20210301::RestrictedResource
                     | (String?, String?, Array[String]?) -> Peddler::Types::Tokens20210301::RestrictedResource
 
+        def self.[]: (method: String?, path: String?, ?data_elements: Array[String]?) -> Peddler::Types::Tokens20210301::RestrictedResource
+                   | (String?, String?, Array[String]?) -> Peddler::Types::Tokens20210301::RestrictedResource
+
+        def self.members: () -> [ :method, :path, :data_elements ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::RestrictedResource
 
         attr_reader data_elements: Array[String]?
         attr_reader method: String?
         attr_reader path: String?
+        def members: () -> [ :method, :path, :data_elements ]
 
         def to_h: () -> { method: String?, path: String?, data_elements: Array[String]? }
       end

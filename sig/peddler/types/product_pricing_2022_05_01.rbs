@@ -5,12 +5,18 @@ module Peddler
         def self.new: (method: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::ProductPricing20220501::BatchRequest
                     | (String?, String?, Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::Types::ProductPricing20220501::BatchRequest
 
+        def self.[]: (method: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::ProductPricing20220501::BatchRequest
+                   | (String?, String?, Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::Types::ProductPricing20220501::BatchRequest
+
+        def self.members: () -> [ :method, :uri, :body, :headers ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::BatchRequest
 
         attr_reader body: Hash[untyped, untyped]?
         attr_reader headers: Hash[untyped, untyped]?
         attr_reader method: String?
         attr_reader uri: String?
+        def members: () -> [ :method, :uri, :body, :headers ]
 
         def to_h: () -> { method: String?, uri: String?, body: Hash[untyped, untyped]?, headers: Hash[untyped, untyped]? }
       end
@@ -19,10 +25,16 @@ module Peddler
         def self.new: (headers: Hash[untyped, untyped]?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::BatchResponse
                     | (Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::BatchResponse
 
+        def self.[]: (headers: Hash[untyped, untyped]?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::BatchResponse
+                   | (Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::BatchResponse
+
+        def self.members: () -> [ :headers, :status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::BatchResponse
 
         attr_reader headers: Hash[untyped, untyped]?
         attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
+        def members: () -> [ :headers, :status ]
 
         def to_h: () -> { headers: Hash[untyped, untyped]?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine? }
       end
@@ -31,9 +43,15 @@ module Peddler
         def self.new: (requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchRequest
                     | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchRequest
 
+        def self.[]: (requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchRequest
+                   | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchRequest
+
+        def self.members: () -> [ :requests ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchRequest
 
         attr_reader requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?
+        def members: () -> [ :requests ]
 
         def to_h: () -> { requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]? }
       end
@@ -42,9 +60,15 @@ module Peddler
         def self.new: (responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
                     | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
 
+        def self.[]: (responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
+                   | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
+
+        def self.members: () -> [ :responses ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
 
         attr_reader responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?
+        def members: () -> [ :responses ]
 
         def to_h: () -> { responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]? }
       end
@@ -53,15 +77,20 @@ module Peddler
         def self.new: (asin: String?, included_data: Array[untyped]?, marketplace_id: String?, method: String?, uri: String?, ?lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest
                     | (String?, Array[untyped]?, String?, String?, String?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest
 
+        def self.[]: (asin: String?, included_data: Array[untyped]?, marketplace_id: String?, method: String?, uri: String?, ?lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest
+                   | (String?, Array[untyped]?, String?, String?, String?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest
+
+        def self.members: () -> [ :asin, :included_data, :marketplace_id, :method, :uri, :lowest_priced_offers_inputs ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest
 
         attr_reader asin: String?
         attr_reader included_data: Array[untyped]?
-
         attr_reader lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?
         attr_reader marketplace_id: String?
         attr_reader method: String?
         attr_reader uri: String?
+        def members: () -> [ :asin, :included_data, :marketplace_id, :method, :uri, :lowest_priced_offers_inputs ]
 
         def to_h: () -> { asin: String?, included_data: Array[untyped]?, marketplace_id: String?, method: String?, uri: String?, lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]? }
       end
@@ -74,10 +103,16 @@ module Peddler
         def self.new: (body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
                     | (Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
 
+        def self.[]: (body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
+                   | (Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
+
+        def self.members: () -> [ :body, :status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
 
         attr_reader body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?
         attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
+        def members: () -> [ :body, :status ]
 
         def to_h: () -> { body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine? }
       end
@@ -86,16 +121,20 @@ module Peddler
         def self.new: (asin: String?, marketplace_id: String?, ?errors: Array[Peddler::Types::ProductPricing20220501::Error]?, ?featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, ?lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, ?reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
                     | (String?, String?, Array[Peddler::Types::ProductPricing20220501::Error]?, Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
 
+        def self.[]: (asin: String?, marketplace_id: String?, ?errors: Array[Peddler::Types::ProductPricing20220501::Error]?, ?featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, ?lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, ?reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
+                   | (String?, String?, Array[Peddler::Types::ProductPricing20220501::Error]?, Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
+
+        def self.members: () -> [ :asin, :marketplace_id, :errors, :featured_buying_options, :lowest_priced_offers, :reference_prices ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
 
         attr_reader asin: String?
-
         attr_reader errors: Array[Peddler::Types::ProductPricing20220501::Error]?
         attr_reader featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?
         attr_reader lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?
         attr_reader marketplace_id: String?
-
         attr_reader reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?
+        def members: () -> [ :asin, :marketplace_id, :errors, :featured_buying_options, :lowest_priced_offers, :reference_prices ]
 
         def to_h: () -> { asin: String?, marketplace_id: String?, errors: Array[Peddler::Types::ProductPricing20220501::Error]?, featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]? }
       end
@@ -108,12 +147,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ProductPricing20220501::Error
                     | (String?, String?, String?) -> Peddler::Types::ProductPricing20220501::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ProductPricing20220501::Error
+                   | (String?, String?, String?) -> Peddler::Types::ProductPricing20220501::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -126,9 +170,15 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::Errors
                     | (Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::Errors
 
+        def self.[]: (errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::Errors
+                   | (Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::Errors
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Errors
 
         attr_reader errors: Array[Peddler::Types::ProductPricing20220501::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::ProductPricing20220501::Error]? }
       end
@@ -137,10 +187,16 @@ module Peddler
         def self.new: (buying_option_type: String?, segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
                     | (String?, Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
 
+        def self.[]: (buying_option_type: String?, segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
+                   | (String?, Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
+
+        def self.members: () -> [ :buying_option_type, :segmented_featured_offers ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
 
         attr_reader buying_option_type: String?
         attr_reader segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?
+        def members: () -> [ :buying_option_type, :segmented_featured_offers ]
 
         def to_h: () -> { buying_option_type: String?, segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]? }
       end
@@ -149,12 +205,17 @@ module Peddler
         def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, ?condition: String?, ?price: Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
                     | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, String?, Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
 
+        def self.[]: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, ?condition: String?, ?price: Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
+                   | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, String?, Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
+
+        def self.members: () -> [ :offer_identifier, :condition, :price ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
 
         attr_reader condition: String?
         attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
-
         attr_reader price: Peddler::Types::ProductPricing20220501::Price?
+        def members: () -> [ :offer_identifier, :condition, :price ]
 
         def to_h: () -> { offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, condition: String?, price: Peddler::Types::ProductPricing20220501::Price? }
       end
@@ -163,10 +224,16 @@ module Peddler
         def self.new: (listing_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
                     | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
 
+        def self.[]: (listing_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
+                   | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
+
+        def self.members: () -> [ :listing_price, :points ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
 
         attr_reader listing_price: Peddler::Types::Money?
         attr_reader points: Peddler::Types::ProductPricing20220501::Points?
+        def members: () -> [ :listing_price, :points ]
 
         def to_h: () -> { listing_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricing20220501::Points? }
       end
@@ -175,16 +242,21 @@ module Peddler
         def self.new: (marketplace_id: String?, method: String?, sku: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
                     | (String?, String?, String?, String?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
 
+        def self.[]: (marketplace_id: String?, method: String?, sku: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
+                   | (String?, String?, String?, String?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
+
+        def self.members: () -> [ :marketplace_id, :method, :sku, :uri, :body, :headers, :segment ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
 
         attr_reader body: Hash[untyped, untyped]?
         attr_reader headers: Hash[untyped, untyped]?
         attr_reader marketplace_id: String?
         attr_reader method: String?
-
         attr_reader segment: Peddler::Types::ProductPricing20220501::Segment?
         attr_reader sku: String?
         attr_reader uri: String?
+        def members: () -> [ :marketplace_id, :method, :sku, :uri, :body, :headers, :segment ]
 
         def to_h: () -> { marketplace_id: String?, method: String?, sku: String?, uri: String?, body: Hash[untyped, untyped]?, headers: Hash[untyped, untyped]?, segment: Peddler::Types::ProductPricing20220501::Segment? }
       end
@@ -197,12 +269,17 @@ module Peddler
         def self.new: (marketplace_id: String?, sku: String?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
                     | (String?, String?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
 
+        def self.[]: (marketplace_id: String?, sku: String?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
+                   | (String?, String?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
+
+        def self.members: () -> [ :marketplace_id, :sku, :segment ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
 
         attr_reader marketplace_id: String?
-
         attr_reader segment: Peddler::Types::ProductPricing20220501::Segment?
         attr_reader sku: String?
+        def members: () -> [ :marketplace_id, :sku, :segment ]
 
         def to_h: () -> { marketplace_id: String?, sku: String?, segment: Peddler::Types::ProductPricing20220501::Segment? }
       end
@@ -211,12 +288,18 @@ module Peddler
         def self.new: (headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, ?body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
                     | (Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, Peddler::Types::ProductPricing20220501::HttpStatusLine?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
 
+        def self.[]: (headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, ?body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
+                   | (Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, Peddler::Types::ProductPricing20220501::HttpStatusLine?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
+
+        def self.members: () -> [ :headers, :request, :status, :body ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
 
         attr_reader body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?
         attr_reader headers: Hash[untyped, untyped]?
         attr_reader request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?
         attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
+        def members: () -> [ :headers, :request, :status, :body ]
 
         def to_h: () -> { headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody? }
       end
@@ -225,11 +308,17 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::ProductPricing20220501::Error]?, ?featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, ?offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
                     | (Array[Peddler::Types::ProductPricing20220501::Error]?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, Peddler::Types::ProductPricing20220501::OfferIdentifier?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
 
+        def self.[]: (?errors: Array[Peddler::Types::ProductPricing20220501::Error]?, ?featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, ?offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
+                   | (Array[Peddler::Types::ProductPricing20220501::Error]?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, Peddler::Types::ProductPricing20220501::OfferIdentifier?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
+
+        def self.members: () -> [ :errors, :featured_offer_expected_price_results, :offer_identifier ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
 
         attr_reader errors: Array[Peddler::Types::ProductPricing20220501::Error]?
         attr_reader featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?
         attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
+        def members: () -> [ :errors, :featured_offer_expected_price_results, :offer_identifier ]
 
         def to_h: () -> { errors: Array[Peddler::Types::ProductPricing20220501::Error]?, featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier? }
       end
@@ -242,12 +331,18 @@ module Peddler
         def self.new: (result_status: String?, ?competing_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, ?current_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, ?featured_offer_expected_price: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult
                     | (String?, Peddler::Types::ProductPricing20220501::FeaturedOffer?, Peddler::Types::ProductPricing20220501::FeaturedOffer?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult
 
+        def self.[]: (result_status: String?, ?competing_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, ?current_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, ?featured_offer_expected_price: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult
+                   | (String?, Peddler::Types::ProductPricing20220501::FeaturedOffer?, Peddler::Types::ProductPricing20220501::FeaturedOffer?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult
+
+        def self.members: () -> [ :result_status, :competing_featured_offer, :current_featured_offer, :featured_offer_expected_price ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult
 
         attr_reader competing_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?
         attr_reader current_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?
         attr_reader featured_offer_expected_price: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice?
         attr_reader result_status: String?
+        def members: () -> [ :result_status, :competing_featured_offer, :current_featured_offer, :featured_offer_expected_price ]
 
         def to_h: () -> { result_status: String?, competing_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, current_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, featured_offer_expected_price: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice? }
       end
@@ -260,10 +355,16 @@ module Peddler
         def self.new: (customer_membership: String?, segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferSegment
                     | (String?, Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferSegment
 
+        def self.[]: (customer_membership: String?, segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferSegment
+                   | (String?, Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferSegment
+
+        def self.members: () -> [ :customer_membership, :segment_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferSegment
 
         attr_reader customer_membership: String?
         attr_reader segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?
+        def members: () -> [ :customer_membership, :segment_details ]
 
         def to_h: () -> { customer_membership: String?, segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails? }
       end
@@ -272,9 +373,15 @@ module Peddler
         def self.new: (?requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
                     | (Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
 
+        def self.[]: (?requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
+                   | (Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
+
+        def self.members: () -> [ :requests ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
 
         attr_reader requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?
+        def members: () -> [ :requests ]
 
         def to_h: () -> { requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]? }
       end
@@ -283,9 +390,15 @@ module Peddler
         def self.new: (?responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
                     | (Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
 
+        def self.[]: (?responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
+                   | (Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
+
+        def self.members: () -> [ :responses ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
 
         attr_reader responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?
+        def members: () -> [ :responses ]
 
         def to_h: () -> { responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]? }
       end
@@ -294,10 +407,16 @@ module Peddler
         def self.new: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
                     | (String?, Integer?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
 
+        def self.[]: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
+                   | (String?, Integer?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
+
+        def self.members: () -> [ :reason_phrase, :status_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
 
         attr_reader reason_phrase: String?
         attr_reader status_code: Integer?
+        def members: () -> [ :reason_phrase, :status_code ]
 
         def to_h: () -> { reason_phrase: String?, status_code: Integer? }
       end
@@ -306,10 +425,16 @@ module Peddler
         def self.new: (lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, offers: Array[Peddler::Types::ProductPricing20220501::Offer]?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
                     | (Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, Array[Peddler::Types::ProductPricing20220501::Offer]?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
 
+        def self.[]: (lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, offers: Array[Peddler::Types::ProductPricing20220501::Offer]?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
+                   | (Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, Array[Peddler::Types::ProductPricing20220501::Offer]?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
+
+        def self.members: () -> [ :lowest_priced_offers_input, :offers ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
 
         attr_reader lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?
         attr_reader offers: Array[Peddler::Types::ProductPricing20220501::Offer]?
+        def members: () -> [ :lowest_priced_offers_input, :offers ]
 
         def to_h: () -> { lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, offers: Array[Peddler::Types::ProductPricing20220501::Offer]? }
       end
@@ -318,10 +443,16 @@ module Peddler
         def self.new: (item_condition: String?, offer_type: String?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffersInput
                     | (String?, String?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffersInput
 
+        def self.[]: (item_condition: String?, offer_type: String?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffersInput
+                   | (String?, String?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffersInput
+
+        def self.members: () -> [ :item_condition, :offer_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::LowestPricedOffersInput
 
         attr_reader item_condition: String?
         attr_reader offer_type: String?
+        def members: () -> [ :item_condition, :offer_type ]
 
         def to_h: () -> { item_condition: String?, offer_type: String? }
       end
@@ -330,18 +461,22 @@ module Peddler
         def self.new: (condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::Types::ProductPricing20220501::Offer
                     | (String?, String?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::Types::ProductPricing20220501::Offer
 
+        def self.[]: (condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::Types::ProductPricing20220501::Offer
+                   | (String?, String?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::Types::ProductPricing20220501::Offer
+
+        def self.members: () -> [ :condition, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :shipping_options, :sub_condition ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Offer
 
         attr_reader condition: String?
         attr_reader fulfillment_type: String?
         attr_reader listing_price: Peddler::Types::Money?
-
         attr_reader points: Peddler::Types::ProductPricing20220501::Points?
         attr_reader prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?
         attr_reader seller_id: String?
-
         attr_reader shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?
         attr_reader sub_condition: String?
+        def members: () -> [ :condition, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :shipping_options, :sub_condition ]
 
         def to_h: () -> { condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
       end
@@ -350,15 +485,19 @@ module Peddler
         def self.new: (asin: String?, marketplace_id: String?, ?fulfillment_type: String?, ?seller_id: String?, ?sku: String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
 
+        def self.[]: (asin: String?, marketplace_id: String?, ?fulfillment_type: String?, ?seller_id: String?, ?sku: String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
+                   | (String?, String?, String?, String?, String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
+
+        def self.members: () -> [ :asin, :marketplace_id, :fulfillment_type, :seller_id, :sku ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
 
         attr_reader asin: String?
-
         attr_reader fulfillment_type: String?
         attr_reader marketplace_id: String?
-
         attr_reader seller_id: String?
         attr_reader sku: String?
+        def members: () -> [ :asin, :marketplace_id, :fulfillment_type, :seller_id, :sku ]
 
         def to_h: () -> { asin: String?, marketplace_id: String?, fulfillment_type: String?, seller_id: String?, sku: String? }
       end
@@ -367,10 +506,16 @@ module Peddler
         def self.new: (?points_monetary_value: Peddler::Types::Money?, ?points_number: Integer?) -> Peddler::Types::ProductPricing20220501::Points
                     | (Peddler::Types::Money?, Integer?) -> Peddler::Types::ProductPricing20220501::Points
 
+        def self.[]: (?points_monetary_value: Peddler::Types::Money?, ?points_number: Integer?) -> Peddler::Types::ProductPricing20220501::Points
+                   | (Peddler::Types::Money?, Integer?) -> Peddler::Types::ProductPricing20220501::Points
+
+        def self.members: () -> [ :points_monetary_value, :points_number ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Points
 
         attr_reader points_monetary_value: Peddler::Types::Money?
         attr_reader points_number: Integer?
+        def members: () -> [ :points_monetary_value, :points_number ]
 
         def to_h: () -> { points_monetary_value: Peddler::Types::Money?, points_number: Integer? }
       end
@@ -379,10 +524,16 @@ module Peddler
         def self.new: (?country_code: String?, ?value: String?) -> Peddler::Types::ProductPricing20220501::PostalCode
                     | (String?, String?) -> Peddler::Types::ProductPricing20220501::PostalCode
 
+        def self.[]: (?country_code: String?, ?value: String?) -> Peddler::Types::ProductPricing20220501::PostalCode
+                   | (String?, String?) -> Peddler::Types::ProductPricing20220501::PostalCode
+
+        def self.members: () -> [ :country_code, :value ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::PostalCode
 
         attr_reader country_code: String?
         attr_reader value: String?
+        def members: () -> [ :country_code, :value ]
 
         def to_h: () -> { country_code: String?, value: String? }
       end
@@ -391,11 +542,17 @@ module Peddler
         def self.new: (listing_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?shipping_price: Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::Price
                     | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::Price
 
+        def self.[]: (listing_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?shipping_price: Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::Price
+                   | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::Price
+
+        def self.members: () -> [ :listing_price, :points, :shipping_price ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Price
 
         attr_reader listing_price: Peddler::Types::Money?
         attr_reader points: Peddler::Types::ProductPricing20220501::Points?
         attr_reader shipping_price: Peddler::Types::Money?
+        def members: () -> [ :listing_price, :points, :shipping_price ]
 
         def to_h: () -> { listing_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricing20220501::Points?, shipping_price: Peddler::Types::Money? }
       end
@@ -404,9 +561,15 @@ module Peddler
         def self.new: (eligibility: String?) -> Peddler::Types::ProductPricing20220501::PrimeDetails
                     | (String?) -> Peddler::Types::ProductPricing20220501::PrimeDetails
 
+        def self.[]: (eligibility: String?) -> Peddler::Types::ProductPricing20220501::PrimeDetails
+                   | (String?) -> Peddler::Types::ProductPricing20220501::PrimeDetails
+
+        def self.members: () -> [ :eligibility ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::PrimeDetails
 
         attr_reader eligibility: String?
+        def members: () -> [ :eligibility ]
 
         def to_h: () -> { eligibility: String? }
       end
@@ -415,10 +578,16 @@ module Peddler
         def self.new: (name: String?, price: Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::ReferencePrice
                     | (String?, Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::ReferencePrice
 
+        def self.[]: (name: String?, price: Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::ReferencePrice
+                   | (String?, Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::ReferencePrice
+
+        def self.members: () -> [ :name, :price ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::ReferencePrice
 
         attr_reader name: String?
         attr_reader price: Peddler::Types::Money?
+        def members: () -> [ :name, :price ]
 
         def to_h: () -> { name: String?, price: Peddler::Types::Money? }
       end
@@ -427,9 +596,15 @@ module Peddler
         def self.new: (?postal_code: Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
                     | (Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
 
+        def self.[]: (?postal_code: Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
+                   | (Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
+
+        def self.members: () -> [ :postal_code ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::SampleLocation
 
         attr_reader postal_code: Peddler::Types::ProductPricing20220501::PostalCode?
+        def members: () -> [ :postal_code ]
 
         def to_h: () -> { postal_code: Peddler::Types::ProductPricing20220501::PostalCode? }
       end
@@ -438,9 +613,15 @@ module Peddler
         def self.new: (?segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
                     | (Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
 
+        def self.[]: (?segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
+                   | (Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
+
+        def self.members: () -> [ :segment_details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Segment
 
         attr_reader segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?
+        def members: () -> [ :segment_details ]
 
         def to_h: () -> { segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails? }
       end
@@ -449,10 +630,16 @@ module Peddler
         def self.new: (?glance_view_weight_percentage: Float?, ?sample_location: Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
                     | (Float?, Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
 
+        def self.[]: (?glance_view_weight_percentage: Float?, ?sample_location: Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
+                   | (Float?, Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
+
+        def self.members: () -> [ :glance_view_weight_percentage, :sample_location ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::SegmentDetails
 
         attr_reader glance_view_weight_percentage: Float?
         attr_reader sample_location: Peddler::Types::ProductPricing20220501::SampleLocation?
+        def members: () -> [ :glance_view_weight_percentage, :sample_location ]
 
         def to_h: () -> { glance_view_weight_percentage: Float?, sample_location: Peddler::Types::ProductPricing20220501::SampleLocation? }
       end
@@ -461,19 +648,23 @@ module Peddler
         def self.new: (condition: String?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
                     | (String?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, String?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
 
+        def self.[]: (condition: String?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
+                   | (String?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, String?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
+
+        def self.members: () -> [ :condition, :featured_offer_segments, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :shipping_options, :sub_condition ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
 
         attr_reader condition: String?
         attr_reader featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?
         attr_reader fulfillment_type: String?
         attr_reader listing_price: Peddler::Types::Money?
-
         attr_reader points: Peddler::Types::ProductPricing20220501::Points?
         attr_reader prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?
         attr_reader seller_id: String?
-
         attr_reader shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?
         attr_reader sub_condition: String?
+        def members: () -> [ :condition, :featured_offer_segments, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :shipping_options, :sub_condition ]
 
         def to_h: () -> { condition: String?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
       end
@@ -482,10 +673,16 @@ module Peddler
         def self.new: (price: Peddler::Types::Money?, shipping_option_type: String?) -> Peddler::Types::ProductPricing20220501::ShippingOption
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::ProductPricing20220501::ShippingOption
 
+        def self.[]: (price: Peddler::Types::Money?, shipping_option_type: String?) -> Peddler::Types::ProductPricing20220501::ShippingOption
+                   | (Peddler::Types::Money?, String?) -> Peddler::Types::ProductPricing20220501::ShippingOption
+
+        def self.members: () -> [ :price, :shipping_option_type ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::ShippingOption
 
         attr_reader price: Peddler::Types::Money?
         attr_reader shipping_option_type: String?
+        def members: () -> [ :price, :shipping_option_type ]
 
         def to_h: () -> { price: Peddler::Types::Money?, shipping_option_type: String? }
       end

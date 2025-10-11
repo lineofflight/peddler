@@ -5,12 +5,17 @@ module Peddler
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error
                     | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error
 
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error
+                   | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error
 
         attr_reader code: String?
-
         attr_reader details: String?
         attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
 
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
@@ -19,9 +24,15 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error]?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList
                     | (Array[Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error]?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList
 
+        def self.[]: (errors: Array[Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error]?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList
+                   | (Array[Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error]?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList
+
+        def self.members: () -> [ :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList
 
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error]?
+        def members: () -> [ :errors ]
 
         def to_h: () -> { errors: Array[Peddler::Types::VendorDirectFulfillmentTransactions20211228::Error]? }
       end
@@ -30,11 +41,17 @@ module Peddler
         def self.new: (status: String?, transaction_id: String?, ?errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
                     | (String?, String?, Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
 
+        def self.[]: (status: String?, transaction_id: String?, ?errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
+                   | (String?, String?, Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
+
+        def self.members: () -> [ :status, :transaction_id, :errors ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
 
         attr_reader errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?
         attr_reader status: String?
         attr_reader transaction_id: String?
+        def members: () -> [ :status, :transaction_id, :errors ]
 
         def to_h: () -> { status: String?, transaction_id: String?, errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList? }
       end
@@ -43,9 +60,15 @@ module Peddler
         def self.new: (?transaction_status: Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::TransactionStatus
                     | (Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::TransactionStatus
 
+        def self.[]: (?transaction_status: Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::TransactionStatus
+                   | (Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::TransactionStatus
+
+        def self.members: () -> [ :transaction_status ]
+
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::TransactionStatus
 
         attr_reader transaction_status: Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction?
+        def members: () -> [ :transaction_status ]
 
         def to_h: () -> { transaction_status: Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction? }
       end
