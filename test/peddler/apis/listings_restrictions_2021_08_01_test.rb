@@ -2,8 +2,6 @@
 
 require "helper"
 
-require "peddler/apis/listings_restrictions_2021_08_01"
-
 module Peddler
   module APIs
     class ListingsRestrictions20210801Test < Minitest::Test

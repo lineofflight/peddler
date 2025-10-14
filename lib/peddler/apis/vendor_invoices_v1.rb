@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def vendor_invoices_v1
-      APIs::VendorInvoicesV1
-    end
-  end
-
   module APIs
     # Selling Partner API for Retail Procurement Payments
     #
@@ -26,10 +18,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_invoices(body, rate_limit: 10.0)
         path = "/vendor/payments/v1/invoices"
-        parser = -> {
-          require "peddler/types/vendor_invoices_v1"
-          Types::VendorInvoicesV1::SubmitInvoicesResponse
-        }
+        parser = -> { SubmitInvoicesResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require "erb"
-require "generator/config"
-require "generator/version_selector"
+require_relative "../config"
+require_relative "../support/file_writer"
+require_relative "../resolvers/version_selector"
 
 module Generator
   module RBS
     class Entrypoint
+      include FileWriter
+
       attr_reader :apis
 
       def initialize(apis)
@@ -14,7 +17,7 @@ module Generator
       end
 
       def generate
-        File.write(file_path, render_template)
+        write_file(file_path, render_template)
       end
 
       def api_methods

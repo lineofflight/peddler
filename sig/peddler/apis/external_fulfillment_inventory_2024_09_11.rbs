@@ -1,6 +1,217 @@
 module Peddler
   module APIs
     class ExternalFulfillmentInventory20240911 < API
+      class ActionableError < Data
+        def self.new: (?error_sub_type: String?, ?error_type: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError
+
+        def self.[]: (?error_sub_type: String?, ?error_type: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError
+
+        def self.members: () -> [ :error_sub_type, :error_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError
+
+        attr_reader error_sub_type: String?
+        attr_reader error_type: String?
+        def members: () -> [ :error_sub_type, :error_type ]
+
+        def to_h: () -> { error_sub_type: String?, error_type: String? }
+      end
+
+      class BatchInventoryRequest < Data
+        def self.new: (?requests: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryRequest
+                    | (Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryRequest
+
+        def self.[]: (?requests: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryRequest
+                   | (Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryRequest
+
+        def self.members: () -> [ :requests ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryRequest
+
+        attr_reader requests: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest]?
+        def members: () -> [ :requests ]
+
+        def to_h: () -> { requests: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest]? }
+      end
+
+      class BatchInventoryRequestList < Array[InventoryRequest]
+        def self.parse: (Array[untyped]) -> BatchInventoryRequestList
+      end
+
+      class BatchInventoryResponse < Data
+        def self.new: (?responses: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryResponse
+                    | (Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryResponse
+
+        def self.[]: (?responses: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryResponse
+                   | (Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryResponse
+
+        def self.members: () -> [ :responses ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::BatchInventoryResponse
+
+        attr_reader responses: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse]?
+        def members: () -> [ :responses ]
+
+        def to_h: () -> { responses: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse]? }
+      end
+
+      class BatchInventoryResponseList < Array[InventoryResponse]
+        def self.parse: (Array[untyped]) -> BatchInventoryResponseList
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::Error
+                    | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::Error
+
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::Error
+                   | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::Error
+
+        attr_reader code: String?
+        attr_reader details: String?
+        attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::Error]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ErrorList
+                    | (Array[Peddler::APIs::ExternalFulfillmentInventory20240911::Error]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ErrorList
+
+        def self.[]: (errors: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::Error]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ErrorList
+                   | (Array[Peddler::APIs::ExternalFulfillmentInventory20240911::Error]?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::Error]?
+        def members: () -> [ :errors ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::Error]? }
+      end
+
+      class HttpStatusLine < Data
+        def self.new: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine
+                    | (String?, Integer?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine
+
+        def self.[]: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine
+                   | (String?, Integer?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine
+
+        def self.members: () -> [ :reason_phrase, :status_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine
+
+        attr_reader reason_phrase: String?
+        attr_reader status_code: Integer?
+        def members: () -> [ :reason_phrase, :status_code ]
+
+        def to_h: () -> { reason_phrase: String?, status_code: Integer? }
+      end
+
+      class InventoryRequest < Data
+        def self.new: (method: String?, uri: String?, ?body: Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest
+                    | (String?, String?, Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest
+
+        def self.[]: (method: String?, uri: String?, ?body: Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest
+                   | (String?, String?, Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest
+
+        def self.members: () -> [ :method, :uri, :body ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequest
+
+        attr_reader body: Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams?
+        attr_reader method: String?
+        attr_reader uri: String?
+        def members: () -> [ :method, :uri, :body ]
+
+        def to_h: () -> { method: String?, uri: String?, body: Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams? }
+      end
+
+      class InventoryRequestParams < Data
+        def self.new: (?client_sequence_number: Integer?, ?marketplace_attributes: Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, ?quantity: Integer?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams
+                    | (Integer?, Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, Integer?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams
+
+        def self.[]: (?client_sequence_number: Integer?, ?marketplace_attributes: Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, ?quantity: Integer?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams
+                   | (Integer?, Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, Integer?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams
+
+        def self.members: () -> [ :client_sequence_number, :marketplace_attributes, :quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryRequestParams
+
+        attr_reader client_sequence_number: Integer?
+        attr_reader marketplace_attributes: Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?
+        attr_reader quantity: Integer?
+        def members: () -> [ :client_sequence_number, :marketplace_attributes, :quantity ]
+
+        def to_h: () -> { client_sequence_number: Integer?, marketplace_attributes: Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, quantity: Integer? }
+      end
+
+      class InventoryResponse < Data
+        def self.new: (body: Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody?, status: Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse
+                    | (Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody?, Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse
+
+        def self.[]: (body: Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody?, status: Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse
+                   | (Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody?, Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse
+
+        def self.members: () -> [ :body, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponse
+
+        attr_reader body: Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody?
+        attr_reader status: Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine?
+        def members: () -> [ :body, :status ]
+
+        def to_h: () -> { body: Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody?, status: Peddler::APIs::ExternalFulfillmentInventory20240911::HttpStatusLine? }
+      end
+
+      class InventoryResponseBody < Data
+        def self.new: (?actionable_errors: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError]?, ?client_sequence_number: Integer?, ?location_id: String?, ?marketplace_attributes: Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, ?reserved_quantity: Integer?, ?sellable_quantity: Integer?, ?sku_id: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody
+                    | (Array[Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError]?, Integer?, String?, Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, Integer?, Integer?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody
+
+        def self.[]: (?actionable_errors: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError]?, ?client_sequence_number: Integer?, ?location_id: String?, ?marketplace_attributes: Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, ?reserved_quantity: Integer?, ?sellable_quantity: Integer?, ?sku_id: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody
+                   | (Array[Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError]?, Integer?, String?, Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, Integer?, Integer?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody
+
+        def self.members: () -> [ :actionable_errors, :client_sequence_number, :location_id, :marketplace_attributes, :reserved_quantity, :sellable_quantity, :sku_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::InventoryResponseBody
+
+        attr_reader actionable_errors: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError]?
+        attr_reader client_sequence_number: Integer?
+        attr_reader location_id: String?
+        attr_reader marketplace_attributes: Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?
+        attr_reader reserved_quantity: Integer?
+        attr_reader sellable_quantity: Integer?
+        attr_reader sku_id: String?
+        def members: () -> [ :actionable_errors, :client_sequence_number, :location_id, :marketplace_attributes, :reserved_quantity, :sellable_quantity, :sku_id ]
+
+        def to_h: () -> { actionable_errors: Array[Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError]?, client_sequence_number: Integer?, location_id: String?, marketplace_attributes: Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, reserved_quantity: Integer?, sellable_quantity: Integer?, sku_id: String? }
+      end
+
+      class MarketplaceAttributes < Data
+        def self.new: (?channel_name: String?, ?marketplace_id: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes
+
+        def self.[]: (?channel_name: String?, ?marketplace_id: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes
+
+        def self.members: () -> [ :channel_name, :marketplace_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentInventory20240911::MarketplaceAttributes
+
+        attr_reader channel_name: String?
+        attr_reader marketplace_id: String?
+        def members: () -> [ :channel_name, :marketplace_id ]
+
+        def to_h: () -> { channel_name: String?, marketplace_id: String? }
+      end
+
       def batch_inventory: (Hash[untyped, untyped]) -> Peddler::Response
     end
   end

@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/types/orders_v0"
-require "peddler/types/catalog_items_2022_04_01"
-require "peddler/types/feeds_2021_06_30"
-require "peddler/types/finances_v0"
 
 module Peddler
   class TypesIntegrationTest < Minitest::Test
     def test_orders_response_parsing
       result = parse_orders_response
 
-      assert_instance_of(Types::OrdersV0::GetOrdersResponse, result)
-      assert_instance_of(Types::OrdersV0::OrdersList, result.payload)
+      assert_instance_of(APIs::OrdersV0::GetOrdersResponse, result)
+      assert_instance_of(APIs::OrdersV0::OrdersList, result.payload)
       assert_equal(1, result.payload.orders.length)
     end
 
@@ -20,7 +16,7 @@ module Peddler
       result = parse_orders_response
       order = result.payload.orders.first
 
-      assert_instance_of(Types::OrdersV0::Order, order)
+      assert_instance_of(APIs::OrdersV0::Order, order)
       assert_equal("123-4567890-1234567", order.amazon_order_id)
       assert_equal("Shipped", order.order_status)
     end
@@ -38,7 +34,7 @@ module Peddler
       result = parse_orders_response
       order = result.payload.orders.first
 
-      assert_instance_of(Peddler::Types::Money, order.order_total)
+      assert_instance_of(Peddler::Money, order.order_total)
       assert_equal("99.99", order.order_total.amount)
       assert_equal("USD", order.order_total.currency_code)
     end
@@ -46,25 +42,25 @@ module Peddler
     def test_feeds_response_structure
       result = parse_feeds_response
 
-      assert_instance_of(Types::Feeds20210630::GetFeedsResponse, result)
+      assert_instance_of(APIs::Feeds20210630::GetFeedsResponse, result)
       assert_equal(1, result.feeds.length)
-      assert_instance_of(Types::Feeds20210630::Feed, result.feeds.first)
+      assert_instance_of(APIs::Feeds20210630::Feed, result.feeds.first)
     end
 
-    def test_feeds_datetime_as_string
+    def test_feeds_datetime_as_time
       result = parse_feeds_response
       feed = result.feeds.first
 
-      assert_instance_of(String, feed.created_time)
-      assert_equal("2024-01-15T14:30:00.000Z", feed.created_time)
+      assert_instance_of(Time, feed.created_time)
+      assert_equal(Time.parse("2024-01-15T14:30:00.000Z"), feed.created_time)
     end
 
     def test_finances_response_hierarchy
       result = parse_finances_response
 
-      assert_instance_of(Types::FinancesV0::ListFinancialEventsResponse, result)
-      assert_instance_of(Types::FinancesV0::FinancialEvents, result.payload.financial_events)
-      assert_instance_of(Types::FinancesV0::ShipmentEvent, result.payload.financial_events.shipment_event_list.first)
+      assert_instance_of(APIs::FinancesV0::ListFinancialEventsResponse, result)
+      assert_instance_of(APIs::FinancesV0::FinancialEvents, result.payload.financial_events)
+      assert_instance_of(APIs::FinancesV0::ShipmentEvent, result.payload.financial_events.shipment_event_list.first)
     end
 
     def test_finances_shipment_items
@@ -72,7 +68,7 @@ module Peddler
       shipment = result.payload.financial_events.shipment_event_list.first
       item = shipment.shipment_item_list.first
 
-      assert_instance_of(Types::FinancesV0::ShipmentItem, item)
+      assert_instance_of(APIs::FinancesV0::ShipmentItem, item)
       assert_equal("SKU123", item.seller_sku)
       assert_equal(1, item.quantity_shipped)
     end
@@ -82,7 +78,7 @@ module Peddler
       shipment = result.payload.financial_events.shipment_event_list.first
       charge = shipment.shipment_item_list.first.item_charge_list.first
 
-      assert_instance_of(Types::Money, charge.charge_amount)
+      assert_instance_of(Peddler::Money, charge.charge_amount)
       assert_equal("EUR", charge.charge_amount.currency_code)
       assert_equal("49.99", charge.charge_amount.amount)
     end
@@ -90,7 +86,7 @@ module Peddler
     def test_catalog_items_search_results
       result = parse_catalog_items_response
 
-      assert_instance_of(Types::CatalogItems20220401::ItemSearchResults, result)
+      assert_instance_of(APIs::CatalogItems20220401::ItemSearchResults, result)
       assert_equal(2, result.number_of_results)
       assert_equal(2, result.items.length)
     end
@@ -99,7 +95,7 @@ module Peddler
       result = parse_catalog_items_response
       first_item = result.items.first
 
-      assert_instance_of(Types::CatalogItems20220401::Item, first_item)
+      assert_instance_of(APIs::CatalogItems20220401::Item, first_item)
       assert_equal("B001234567", first_item.asin)
     end
 
@@ -107,7 +103,7 @@ module Peddler
       result = parse_catalog_items_response
       marketplace_identifiers = result.items.first.identifiers.first
 
-      assert_instance_of(Types::CatalogItems20220401::ItemIdentifiersByMarketplace, marketplace_identifiers)
+      assert_instance_of(APIs::CatalogItems20220401::ItemIdentifiersByMarketplace, marketplace_identifiers)
       assert_equal("ATVPDKIKX0DER", marketplace_identifiers.marketplace_id)
       assert_equal(2, marketplace_identifiers.identifiers.length)
     end
@@ -124,7 +120,7 @@ module Peddler
     def test_error_response_structure
       result = parse_error_response
 
-      assert_instance_of(Types::OrdersV0::GetOrdersResponse, result)
+      assert_instance_of(APIs::OrdersV0::GetOrdersResponse, result)
       assert_nil(result.payload)
       assert_equal(2, result.errors.length)
     end
@@ -133,7 +129,7 @@ module Peddler
       result = parse_error_response
       first_error = result.errors.first
 
-      assert_instance_of(Types::OrdersV0::Error, first_error)
+      assert_instance_of(APIs::OrdersV0::Error, first_error)
       assert_equal("InvalidInput", first_error.code)
       assert_equal("Invalid marketplace ID", first_error.message)
     end
@@ -148,7 +144,7 @@ module Peddler
     def test_address_payload_parsing
       result = parse_address_response
 
-      assert_instance_of(Types::OrdersV0::Address, result)
+      assert_instance_of(APIs::OrdersV0::Address, result)
       assert_equal("John Doe", result.name)
       assert_equal("Seattle", result.city)
     end
@@ -181,31 +177,31 @@ module Peddler
     private
 
     def parse_orders_response
-      Types::OrdersV0::GetOrdersResponse.parse(orders_response_data)
+      APIs::OrdersV0::GetOrdersResponse.parse(orders_response_data)
     end
 
     def parse_feeds_response
-      Types::Feeds20210630::GetFeedsResponse.parse(feeds_response_data)
+      APIs::Feeds20210630::GetFeedsResponse.parse(feeds_response_data)
     end
 
     def parse_finances_response
-      Types::FinancesV0::ListFinancialEventsResponse.parse(finances_response_data)
+      APIs::FinancesV0::ListFinancialEventsResponse.parse(finances_response_data)
     end
 
     def parse_catalog_items_response
-      Types::CatalogItems20220401::ItemSearchResults.parse(catalog_items_response_data)
+      APIs::CatalogItems20220401::ItemSearchResults.parse(catalog_items_response_data)
     end
 
     def parse_error_response
-      Types::OrdersV0::GetOrdersResponse.parse(error_response_data)
+      APIs::OrdersV0::GetOrdersResponse.parse(error_response_data)
     end
 
     def parse_address_response
-      Types::OrdersV0::Address.parse(address_response_data)
+      APIs::OrdersV0::Address.parse(address_response_data)
     end
 
     def parse_optional_fields_response
-      Types::OrdersV0::GetOrdersResponse.parse(optional_fields_response_data)
+      APIs::OrdersV0::GetOrdersResponse.parse(optional_fields_response_data)
     end
 
     def orders_response_data

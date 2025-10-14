@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "minitest/autorun"
+require "helper"
 require "generator/operation"
-require "generator/path"
+require "generator/parsers/path"
 
 module Generator
   class OperationRenderTest < Minitest::Test
@@ -74,7 +74,7 @@ module Generator
       assert_includes(result, '"createdAfter" => created_after')
     end
 
-    def test_renders_operation_with_typed_response # rubocop:disable Minitest/MultipleAssertions
+    def test_renders_operation_with_typed_response
       operation_data = {
         "operationId" => "getOrder",
         "description" => "Get an order",
@@ -93,10 +93,7 @@ module Generator
         def <%= method_definition %>
           path = "<%= path %>"
           <% if has_typed_response? -%>
-          parser = -> {
-            require "peddler/types/<%= api_name_with_version %>"
-            Types::<%= parser_class_name %>
-          }
+          parser = -> { <%= parser_class_name %> }
           <% end -%>
           get(path<% if has_typed_response? -%>, parser:<% end -%>)
         end
@@ -106,8 +103,7 @@ module Generator
       result = operation.render
 
       assert_includes(result, "def get_order(order_id)")
-      assert_includes(result, 'require "peddler/types/orders_v0"')
-      assert_includes(result, "Types::OrdersV0::GetOrderResponse")
+      assert_includes(result, "parser = -> { GetOrderResponse }")
       assert_includes(result, "get(path, parser:)")
     end
 

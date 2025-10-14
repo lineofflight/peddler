@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def messaging_v1
-      APIs::MessagingV1
-    end
-  end
-
   module APIs
     # Selling Partner API for Messaging
     #
@@ -27,9 +19,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which you want a list
-      #   of available message types.
+      # of available message types.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_messaging_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
@@ -37,10 +29,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::GetMessagingActionsForOrderResponse
-        }
+        parser = -> { GetMessagingActionsForOrderResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -49,9 +38,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -60,10 +49,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateConfirmCustomizationDetailsResponse
-        }
+        parser = -> { CreateConfirmCustomizationDetailsResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -71,9 +57,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -82,10 +68,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateConfirmDeliveryDetailsResponse
-        }
+        parser = -> { CreateConfirmDeliveryDetailsResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -94,9 +77,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -105,10 +88,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateLegalDisclosureResponse
-        }
+        parser = -> { CreateLegalDisclosureResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -116,9 +96,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -127,10 +107,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateConfirmOrderDetailsResponse
-        }
+        parser = -> { CreateConfirmOrderDetailsResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -139,9 +116,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -150,10 +127,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateConfirmServiceDetailsResponse
-        }
+        parser = -> { CreateConfirmServiceDetailsResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -162,9 +136,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -173,10 +147,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateAmazonMotorsResponse
-        }
+        parser = -> { CreateAmazonMotorsResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -184,9 +155,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -195,10 +166,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateWarrantyResponse
-        }
+        parser = -> { CreateWarrantyResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -206,9 +174,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_attributes(amazon_order_id, marketplace_ids, rate_limit: 1.0)
@@ -216,10 +184,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::GetAttributesResponse
-        }
+        parser = -> { GetAttributesResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -228,9 +193,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -239,10 +204,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateDigitalAccessKeyResponse
-        }
+        parser = -> { CreateDigitalAccessKeyResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -251,9 +213,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -262,10 +224,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::CreateUnexpectedProblemResponse
-        }
+        parser = -> { CreateUnexpectedProblemResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -273,9 +232,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
+      # sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
+      # order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @return [Peddler::Response] The API response
       def send_invoice(amazon_order_id, marketplace_ids, body)
@@ -283,10 +242,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/messaging_v1"
-          Types::MessagingV1::InvoiceResponse
-        }
+        parser = -> { InvoiceResponse }
         post(path, body:, params:, parser:)
       end
     end

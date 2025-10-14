@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def application_management_2023_11_30
-      APIs::ApplicationManagement20231130
-    end
-  end
-
   module APIs
     # Selling Partner API for Application Management
     #

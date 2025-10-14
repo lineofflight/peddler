@@ -1,6 +1,73 @@
 module Peddler
   module APIs
     class SalesV1 < API
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SalesV1::Error
+                    | (String?, String?, String?) -> Peddler::APIs::SalesV1::Error
+
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SalesV1::Error
+                   | (String?, String?, String?) -> Peddler::APIs::SalesV1::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SalesV1::Error
+
+        attr_reader code: String?
+        attr_reader details: String?
+        attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class GetOrderMetricsResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::SalesV1::Error]?, ?payload: Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
+                    | (Array[Peddler::APIs::SalesV1::Error]?, Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
+
+        def self.[]: (?errors: Array[Peddler::APIs::SalesV1::Error]?, ?payload: Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
+                   | (Array[Peddler::APIs::SalesV1::Error]?, Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
+
+        attr_reader errors: Array[Peddler::APIs::SalesV1::Error]?
+        attr_reader payload: Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?
+        def members: () -> [ :errors, :payload ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::SalesV1::Error]?, payload: Array[Peddler::APIs::SalesV1::OrderMetricsInterval]? }
+      end
+
+      class OrderMetricsInterval < Data
+        def self.new: (average_unit_price: Peddler::Money?, interval: String?, order_count: Integer?, order_item_count: Integer?, total_sales: Peddler::Money?, unit_count: Integer?) -> Peddler::APIs::SalesV1::OrderMetricsInterval
+                    | (Peddler::Money?, String?, Integer?, Integer?, Peddler::Money?, Integer?) -> Peddler::APIs::SalesV1::OrderMetricsInterval
+
+        def self.[]: (average_unit_price: Peddler::Money?, interval: String?, order_count: Integer?, order_item_count: Integer?, total_sales: Peddler::Money?, unit_count: Integer?) -> Peddler::APIs::SalesV1::OrderMetricsInterval
+                   | (Peddler::Money?, String?, Integer?, Integer?, Peddler::Money?, Integer?) -> Peddler::APIs::SalesV1::OrderMetricsInterval
+
+        def self.members: () -> [ :average_unit_price, :interval, :order_count, :order_item_count, :total_sales, :unit_count ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SalesV1::OrderMetricsInterval
+
+        attr_reader average_unit_price: Peddler::Money?
+        attr_reader interval: String?
+        attr_reader order_count: Integer?
+        attr_reader order_item_count: Integer?
+        attr_reader total_sales: Peddler::Money?
+        attr_reader unit_count: Integer?
+        def members: () -> [ :average_unit_price, :interval, :order_count, :order_item_count, :total_sales, :unit_count ]
+
+        def to_h: () -> { average_unit_price: Peddler::Money?, interval: String?, order_count: Integer?, order_item_count: Integer?, total_sales: Peddler::Money?, unit_count: Integer? }
+      end
+
+      class OrderMetricsList < Array[OrderMetricsInterval]
+        def self.parse: (Array[untyped]) -> OrderMetricsList
+      end
+
       def get_order_metrics: (Array[String], String, String, ?granularity_time_zone: String?, ?buyer_type: String?, ?fulfillment_network: String?, ?first_day_of_week: String?, ?asin: String?, ?sku: String?, ?amazon_program: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end

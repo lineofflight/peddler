@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def sellers_v1
-      APIs::SellersV1
-    end
-  end
-
   module APIs
     # The Selling Partner API for Sellers
     #
@@ -34,10 +26,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_marketplace_participations(rate_limit: 0.016)
         path = "/sellers/v1/marketplaceParticipations"
-        parser = -> {
-          require "peddler/types/sellers_v1"
-          Types::SellersV1::GetMarketplaceParticipationsResponse
-        }
+        parser = -> { GetMarketplaceParticipationsResponse }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -48,10 +37,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_account(rate_limit: 0.016)
         path = "/sellers/v1/account"
-        parser = -> {
-          require "peddler/types/sellers_v1"
-          Types::SellersV1::GetAccountResponse
-        }
+        parser = -> { GetAccountResponse }
         meter(rate_limit).get(path, parser:)
       end
     end

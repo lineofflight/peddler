@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def finances_v0
-      APIs::FinancesV0
-    end
-  end
-
   module APIs
     # Selling Partner API for Finances
     #
@@ -25,16 +17,16 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
-      #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
+      # the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
       # @param financial_event_group_started_before [String] A date used for selecting financial event groups that
-      #   opened before (but not at) a specified date and time, in [ISO
-      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be later than
-      #   FinancialEventGroupStartedAfter and no later than two minutes before the request was submitted. If
-      #   FinancialEventGroupStartedAfter and FinancialEventGroupStartedBefore are more than 180 days apart, no
-      #   financial event groups are returned.
+      # opened before (but not at) a specified date and time, in [ISO
+      # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be later than
+      # FinancialEventGroupStartedAfter and no later than two minutes before the request was submitted. If
+      # FinancialEventGroupStartedAfter and FinancialEventGroupStartedBefore are more than 180 days apart, no financial
+      # event groups are returned.
       # @param financial_event_group_started_after [String] A date used for selecting financial event groups that opened
-      #   after (or at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
-      #   format. The date-time must be no later than two minutes before the request was submitted.
+      # after (or at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
+      # format. The date-time must be no later than two minutes before the request was submitted.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -47,10 +39,7 @@ module Peddler
           "FinancialEventGroupStartedAfter" => financial_event_group_started_after,
           "NextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/finances_v0"
-          Types::FinancesV0::ListFinancialEventGroupsResponse
-        }
+        parser = -> { ListFinancialEventGroupsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -62,16 +51,15 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
-      #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
+      # the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
       # @param posted_after [String] A date used for selecting financial events posted after (or at) a specified time.
-      #   The date-time **must** be more than two minutes before the time of the request, in [ISO
-      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+      # The date-time **must** be more than two minutes before the time of the request, in [ISO
+      # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
       # @param posted_before [String] A date used for selecting financial events posted before (but not at) a specified
-      #   time. The date-time must be later than `PostedAfter` and no later than two minutes before the request was
-      #   submitted, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. If
-      #   `PostedAfter` and `PostedBefore` are more than 180 days apart, no financial events are returned. You must
-      #   specify the `PostedAfter` parameter if you specify the `PostedBefore` parameter. Default: Now minus two
-      #   minutes.
+      # time. The date-time must be later than `PostedAfter` and no later than two minutes before the request was
+      # submitted, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. If
+      # `PostedAfter` and `PostedBefore` are more than 180 days apart, no financial events are returned. You must
+      # specify the `PostedAfter` parameter if you specify the `PostedBefore` parameter. Default: Now minus two minutes.
       # @param event_group_id [String] The identifier of the financial event group to which the events belong.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
@@ -85,10 +73,7 @@ module Peddler
           "PostedBefore" => posted_before,
           "NextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/finances_v0"
-          Types::FinancesV0::ListFinancialEventsResponse
-        }
+        parser = -> { ListFinancialEventsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -98,7 +83,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
-      #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
+      # the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -108,10 +93,7 @@ module Peddler
           "MaxResultsPerPage" => max_results_per_page,
           "NextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/finances_v0"
-          Types::FinancesV0::ListFinancialEventsResponse
-        }
+        parser = -> { ListFinancialEventsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -122,15 +104,15 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
-      #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
+      # the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
       # @param posted_after [String] A date used for selecting financial events posted after (or at) a specified time.
-      #   The date-time must be no later than two minutes before the request was submitted, in [ISO
-      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+      # The date-time must be no later than two minutes before the request was submitted, in [ISO
+      # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
       # @param posted_before [String] A date used for selecting financial events posted before (but not at) a specified
-      #   time. The date-time must be later than PostedAfter and no later than two minutes before the request was
-      #   submitted, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. If
-      #   PostedAfter and PostedBefore are more than 180 days apart, no financial events are returned. You must specify
-      #   the PostedAfter parameter if you specify the PostedBefore parameter. Default: Now minus two minutes.
+      # time. The date-time must be later than PostedAfter and no later than two minutes before the request was
+      # submitted, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. If
+      # PostedAfter and PostedBefore are more than 180 days apart, no financial events are returned. You must specify
+      # the PostedAfter parameter if you specify the PostedBefore parameter. Default: Now minus two minutes.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -143,10 +125,7 @@ module Peddler
           "PostedBefore" => posted_before,
           "NextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/finances_v0"
-          Types::FinancesV0::ListFinancialEventsResponse
-        }
+        parser = -> { ListFinancialEventsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

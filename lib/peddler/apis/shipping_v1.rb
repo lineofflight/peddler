@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def shipping_v1
-      APIs::ShippingV1
-    end
-  end
-
   module APIs
     # Selling Partner API for Shipping
     #
@@ -30,10 +22,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/shipments"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::CreateShipmentResponse
-        }
+        parser = -> { CreateShipmentResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -45,10 +34,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::GetShipmentResponse
-        }
+        parser = -> { GetShipmentResponse }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -60,10 +46,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/cancel"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::CancelShipmentResponse
-        }
+        parser = -> { CancelShipmentResponse }
         meter(rate_limit).post(path, parser:)
       end
 
@@ -76,10 +59,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def purchase_labels(shipment_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/purchaseLabels"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::PurchaseLabelsResponse
-        }
+        parser = -> { PurchaseLabelsResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -93,10 +73,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/containers/#{percent_encode(tracking_id)}/label"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::RetrieveShippingLabelResponse
-        }
+        parser = -> { RetrieveShippingLabelResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -108,10 +85,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def purchase_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/purchaseShipment"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::PurchaseShipmentResponse
-        }
+        parser = -> { PurchaseShipmentResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -123,10 +97,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_rates(body, rate_limit: 5.0)
         path = "/shipping/v1/rates"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::GetRatesResponse
-        }
+        parser = -> { GetRatesResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -137,10 +108,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_account(rate_limit: 5.0)
         path = "/shipping/v1/account"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::GetAccountResponse
-        }
+        parser = -> { GetAccountResponse }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -152,10 +120,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_tracking_information(tracking_id, rate_limit: 1.0)
         path = "/shipping/v1/tracking/#{percent_encode(tracking_id)}"
-        parser = -> {
-          require "peddler/types/shipping_v1"
-          Types::ShippingV1::GetTrackingInformationResponse
-        }
+        parser = -> { GetTrackingInformationResponse }
         meter(rate_limit).get(path, parser:)
       end
     end

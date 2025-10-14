@@ -1,0 +1,13 @@
+module Peddler
+  module Acronyms
+    MAP: Hash[String, String]
+
+    def self.apply: (String word) -> String
+
+    def self.values: () -> Array[String]
+
+    def apply: (String word) -> String
+
+    def values: () -> Array[String]
+  end
+end

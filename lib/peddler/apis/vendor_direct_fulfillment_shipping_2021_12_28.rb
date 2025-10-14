@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def vendor_direct_fulfillment_shipping_2021_12_28
-      APIs::VendorDirectFulfillmentShipping20211228
-    end
-  end
-
   module APIs
     # Selling Partner API for Direct Fulfillment Shipping
     #
@@ -24,17 +16,17 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param ship_from_party_id [String] The vendor `warehouseId` for order fulfillment. If not specified, the result
-      #   contains orders for all warehouses.
+      # contains orders for all warehouses.
       # @param limit [Integer] The limit to the number of records returned.
       # @param created_after [String] Shipping labels that became available after this date and time will be included in
-      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param created_before [String] Shipping labels that became available before this date and time will be included
-      #   in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
-      #   format.
+      # in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
+      # format.
       # @param sort_order [String] The sort order creation date. You can choose between ascending (`ASC`) or descending
-      #   (`DESC`) sort order.
+      # (`DESC`) sort order.
       # @param next_token [String] Used for pagination when there are more ship labels than the specified result size
-      #   limit. The token value is returned in the previous API call.
+      # limit. The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC",
@@ -48,10 +40,7 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList
-        }
+        parser = -> { ShippingLabelList }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -63,10 +52,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::TransactionReference
-        }
+        parser = -> { TransactionReference }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -74,15 +60,12 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
-      #   It should be the same `purchaseOrderNumber` that you received in the order.
+      # It should be the same `purchaseOrderNumber` that you received in the order.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/#{percent_encode(purchase_order_number)}"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
-        }
+        parser = -> { ShippingLabel }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -90,16 +73,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping
-      #   labels. It should be the same number as the `purchaseOrderNumber` in the order.
+      # labels. It should be the same number as the `purchaseOrderNumber` in the order.
       # @param body [Hash] The request payload that contains the parameters for creating shipping labels.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_shipping_labels(purchase_order_number, body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/#{percent_encode(purchase_order_number)}"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
-        }
+        parser = -> { ShippingLabel }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -111,10 +91,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shipmentConfirmations"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::TransactionReference
-        }
+        parser = -> { TransactionReference }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -128,10 +105,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_status_updates(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shipmentStatusUpdates"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::TransactionReference
-        }
+        parser = -> { TransactionReference }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -141,15 +115,15 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param ship_from_party_id [String] The vendor warehouseId for order fulfillment. If not specified, the result
-      #   will contain orders for all warehouses.
+      # will contain orders for all warehouses.
       # @param limit [Integer] The limit to the number of records returned
       # @param created_after [String] Orders that became available after this date and time will be included in the
-      #   result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param created_before [String] Orders that became available before this date and time will be included in the
-      #   result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param sort_order [String] Sort ASC or DESC by order creation date.
       # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
-      #   The token value is returned in the previous API call.
+      # The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
@@ -163,10 +137,7 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::CustomerInvoiceList
-        }
+        parser = -> { CustomerInvoiceList }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -178,10 +149,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices/#{percent_encode(purchase_order_number)}"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice
-        }
+        parser = -> { CustomerInvoice }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -190,15 +158,15 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param ship_from_party_id [String] The vendor `warehouseId` for order fulfillment. If not specified, the result
-      #   contains orders for all warehouses.
+      # contains orders for all warehouses.
       # @param limit [Integer] The maximum number of records to return.
       # @param created_after [String] Packing slips that become available after this date and time will be included in
-      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param created_before [String] Packing slips that became available before this date and time will be included in
-      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param sort_order [String] The packing slip creation dates, which are sorted by ascending or descending order.
       # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
-      #   limit. The token value is returned in the previous API call.
+      # limit. The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC",
@@ -212,10 +180,7 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
-        }
+        parser = -> { PackingSlipList }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -227,10 +192,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/packingSlips/#{percent_encode(purchase_order_number)}"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::PackingSlip
-        }
+        parser = -> { PackingSlip }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -242,10 +204,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_container_label(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/containerLabel"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
-          Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse
-        }
+        parser = -> { CreateContainerLabelResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

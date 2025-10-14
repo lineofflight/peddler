@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def services_v1
-      APIs::ServicesV1
-    end
-  end
-
   module APIs
     # Selling Partner API for Services
     #
@@ -27,10 +19,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}"
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::GetServiceJobByServiceJobIdResponse
-        }
+        parser = -> { GetServiceJobByServiceJobIdResponse }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -39,7 +28,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param cancellation_reason_code [String] A cancel reason code that specifies the reason for cancelling a service
-      #   job.
+      # job.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code, rate_limit: 5.0)
@@ -47,10 +36,7 @@ module Peddler
         params = {
           "cancellationReasonCode" => cancellation_reason_code,
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::CancelServiceJobByServiceJobIdResponse
-        }
+        parser = -> { CancelServiceJobByServiceJobIdResponse }
         meter(rate_limit).put(path, params:, parser:)
       end
 
@@ -62,10 +48,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/completions"
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::CompleteServiceJobByServiceJobIdResponse
-        }
+        parser = -> { CompleteServiceJobByServiceJobIdResponse }
         meter(rate_limit).put(path, parser:)
       end
 
@@ -73,35 +56,35 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param service_order_ids [Array<String>] List of service order ids for the query you want to perform.Max values
-      #   supported 20.
+      # supported 20.
       # @param service_job_status [Array<String>] A list of one or more job status by which to filter the list of jobs.
       # @param page_token [String] String returned in the response of your previous request.
       # @param page_size [Integer] A non-negative integer that indicates the maximum number of jobs to return in the
-      #   list, Value must be 1 - 20. Default 20.
+      # list, Value must be 1 - 20. Default 20.
       # @param sort_field [String] Sort fields on which you want to sort the output.
       # @param sort_order [String] Sort order for the query you want to perform.
       # @param created_after [String] A date used for selecting jobs created at or after a specified time. Must be in
-      #   ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and
-      #   `LastUpdatedAfter` returns an error.
+      # ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and
+      # `LastUpdatedAfter` returns an error.
       # @param created_before [String] A date used for selecting jobs created at or before a specified time. Must be in
-      #   ISO 8601 format.
+      # ISO 8601 format.
       # @param last_updated_after [String] A date used for selecting jobs updated at or after a specified time. Must be
-      #   in ISO 8601 format. Required if `createdAfter` is not specified. Specifying both `CreatedAfter` and
-      #   `LastUpdatedAfter` returns an error.
+      # in ISO 8601 format. Required if `createdAfter` is not specified. Specifying both `CreatedAfter` and
+      # `LastUpdatedAfter` returns an error.
       # @param last_updated_before [String] A date used for selecting jobs updated at or before a specified time. Must
-      #   be in ISO 8601 format.
+      # be in ISO 8601 format.
       # @param schedule_start_date [String] A date used for filtering jobs schedules at or after a specified time. Must
-      #   be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
+      # be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
       # @param schedule_end_date [String] A date used for filtering jobs schedules at or before a specified time. Must
-      #   be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
+      # be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
       # @param marketplace_ids [Array<String>] Used to select jobs that were placed in the specified marketplaces.
       # @param asins [Array<String>] List of Amazon Standard Identification Numbers (ASIN) of the items. Max values
-      #   supported is 20.
+      # supported is 20.
       # @param required_skills [Array<String>] A defined set of related knowledge, skills, experience, tools, materials,
-      #   and work processes common to service delivery for a set of products and/or service scenarios. Max values
-      #   supported is 20.
+      # and work processes common to service delivery for a set of products and/or service scenarios. Max values
+      # supported is 20.
       # @param store_ids [Array<String>] List of Amazon-defined identifiers for the region scope. Max values supported
-      #   is 50.
+      # is 50.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_service_jobs(marketplace_ids, service_order_ids: nil, service_job_status: nil, page_token: nil,
@@ -127,10 +110,7 @@ module Peddler
           "requiredSkills" => stringify_array(required_skills),
           "storeIds" => stringify_array(store_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::GetServiceJobsResponse
-        }
+        parser = -> { GetServiceJobsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -143,10 +123,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments"
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::SetAppointmentResponse
-        }
+        parser = -> { SetAppointmentResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -161,10 +138,7 @@ module Peddler
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body,
         rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}"
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::SetAppointmentResponse
-        }
+        parser = -> { SetAppointmentResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -172,17 +146,14 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
-      #   `getServiceJobs` operation of the Services API.
+      # `getServiceJobs` operation of the Services API.
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}/resources"
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::AssignAppointmentResourcesResponse
-        }
+        parser = -> { AssignAppointmentResourcesResponse }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -190,7 +161,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
-      #   `getServiceJobs` operation of the Services API.
+      # `getServiceJobs` operation of the Services API.
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
       # @param body [Hash] Appointment fulfillment data collection details.
       # @param rate_limit [Float] Requests per second
@@ -215,10 +186,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "nextPageToken" => next_page_token,
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::RangeSlotCapacity
-        }
+        parser = -> { RangeSlotCapacity }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -237,10 +205,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "nextPageToken" => next_page_token,
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::FixedSlotCapacity
-        }
+        parser = -> { FixedSlotCapacity }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -257,10 +222,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::UpdateScheduleResponse
-        }
+        parser = -> { UpdateScheduleResponse }
         meter(rate_limit).put(path, body:, params:, parser:)
       end
 
@@ -276,10 +238,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::CreateReservationResponse
-        }
+        parser = -> { CreateReservationResponse }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -296,10 +255,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::UpdateReservationResponse
-        }
+        parser = -> { UpdateReservationResponse }
         meter(rate_limit).put(path, body:, params:, parser:)
       end
 
@@ -315,10 +271,7 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::CancelReservationResponse
-        }
+        parser = -> { CancelReservationResponse }
         meter(rate_limit).delete(path, params:, parser:)
       end
 
@@ -328,11 +281,11 @@ module Peddler
       # @param service_job_id [String] A service job identifier to retrive appointment slots for associated service.
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param start_time [String] A time from which the appointment slots will be retrieved. The specified time must be
-      #   in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
-      #   business configuration.
+      # in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
+      # business configuration.
       # @param end_time [String] A time up to which the appointment slots will be retrieved. The specified time must be
-      #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
-      #   business configuration. Maximum range of appointment slots can be 90 days.
+      # in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
+      # business configuration. Maximum range of appointment slots can be 90 days.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil,
@@ -343,10 +296,7 @@ module Peddler
           "startTime" => start_time,
           "endTime" => end_time,
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::GetAppointmentSlotsResponse
-        }
+        parser = -> { GetAppointmentSlotsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -357,11 +307,11 @@ module Peddler
       # @param store_id [String] Store identifier defining the region scope to retrive appointment slots.
       # @param marketplace_ids [Array<String>] An identifier for the marketplace for which appointment slots are queried
       # @param start_time [String] A time from which the appointment slots will be retrieved. The specified time must be
-      #   in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
-      #   business configuration.
+      # in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
+      # business configuration.
       # @param end_time [String] A time up to which the appointment slots will be retrieved. The specified time must be
-      #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
-      #   business configuration. Maximum range of appointment slots can be 90 days.
+      # in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
+      # business configuration. Maximum range of appointment slots can be 90 days.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil, rate_limit: 20.0)
@@ -373,10 +323,7 @@ module Peddler
           "startTime" => start_time,
           "endTime" => end_time,
         }.compact
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::GetAppointmentSlotsResponse
-        }
+        parser = -> { GetAppointmentSlotsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -388,10 +335,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_service_document_upload_destination(body, rate_limit: 5.0)
         path = "/service/v1/documents"
-        parser = -> {
-          require "peddler/types/services_v1"
-          Types::ServicesV1::CreateServiceDocumentUploadDestination
-        }
+        parser = -> { CreateServiceDocumentUploadDestination }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

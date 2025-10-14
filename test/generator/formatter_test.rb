@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "minitest/autorun"
-require "generator/formatter"
+require "helper"
+require "generator/support/formatter"
 
 module Generator
   class FormatterTest < Minitest::Test
@@ -68,6 +68,34 @@ module Generator
     def test_convert_html_links_to_yard_with_unquoted_href
       text = "Validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>."
       expected = "Validated against {http://json-schema.org/draft-04/schema http://json-schema.org/draft-04/schema}."
+
+      assert_equal(expected, convert_html_links_to_yard(text))
+    end
+
+    def test_normalizes_markdown_bold_underscores_to_asterisks
+      text = "__Note__: This is a test."
+      expected = "**Note**: This is a test."
+
+      assert_equal(expected, convert_html_links_to_yard(text))
+    end
+
+    def test_preserves_markdown_bold_with_asterisks
+      text = "**Note**: This is a test."
+      expected = "**Note**: This is a test."
+
+      assert_equal(expected, convert_html_links_to_yard(text))
+    end
+
+    def test_normalizes_multiple_markdown_bold_patterns
+      text = "__Note__ and **Warning** both appear here."
+      expected = "**Note** and **Warning** both appear here."
+
+      assert_equal(expected, convert_html_links_to_yard(text))
+    end
+
+    def test_converts_links_and_normalizes_markdown_bold
+      text = "__Note__: See <a href='https://example.com'>docs</a> for details."
+      expected = "**Note**: See {https://example.com docs} for details."
 
       assert_equal(expected, convert_html_links_to_yard(text))
     end

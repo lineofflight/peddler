@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 require "erb"
-require "fileutils"
-require "generator/config"
-require "generator/formatter"
-require "generator/type_resolver"
+require_relative "config"
+require_relative "support/file_writer"
+require_relative "resolvers/type_resolver"
+require_relative "support/schema_helpers"
 require "structure/rbs"
 
 module Generator
   class Type
-    include Formatter
+    include FileWriter
+    include SchemaHelpers
 
     attr_reader :name, :definition, :api_name, :specification
     attr_accessor :circular_dependencies, :cycle_edges
@@ -22,14 +23,14 @@ module Generator
     end
 
     def generate
-      # Ensure directory exists before writing
-      FileUtils.mkdir_p(File.dirname(file_path))
-      File.write(file_path, render)
+      write_file(file_path, render)
     end
 
     def class_name
-      # Use ActiveSupport's camelize to properly handle class names
-      name.camelize
+      # Use ActiveSupport's camelize and apply Peddler inflector acronyms
+      camelized = name.camelize
+      # Apply the same acronym rules as Peddler::Inflector
+      Peddler::Acronyms.apply(camelized)
     end
 
     def properties
@@ -52,11 +53,20 @@ module Generator
     end
 
     def library_name
-      "peddler/types/#{api_name}/#{name.underscore}"
+      # Use the acronym-transformed class name for filename to match Zeitwerk expectations
+      # This ensures filenames like "claim_proof_urls.rb" instead of "claim_proof_ur_ls.rb"
+      filename = class_name.underscore
+
+      # For notification, report, and feed nested types, use peddler/notifications, peddler/reports, or peddler/feeds
+      if api_name.start_with?("notifications/", "reports/", "feeds/")
+        "peddler/#{api_name}/#{filename}"
+      else
+        "peddler/apis/#{api_name}/#{filename}"
+      end
     end
 
-    def ruby_type_for(prop_def, for_comment: false, for_rbs: false)
-      resolved_type = type_resolver.resolve(prop_def, for_comment: for_comment, for_rbs: for_rbs)
+    def ruby_type_for(prop_def, for_comment: false, for_rbs: false, prop_name: nil)
+      resolved_type = type_resolver.resolve(prop_def, for_comment: for_comment, for_rbs: for_rbs, prop_name: prop_name)
 
       # Handle self-references properly
       return resolved_type if resolved_type == ":self"
@@ -90,7 +100,7 @@ module Generator
     end
 
     def type_dependencies
-      dependencies = [] #: Array[String]
+      dependencies = []
       properties.each do |_prop_name, prop_def|
         dependencies.concat(extract_dependencies_from_property(prop_def))
       end
@@ -144,16 +154,6 @@ module Generator
       end
     end
 
-    def attribute_name_for(prop_name, prop_def)
-      underscored = prop_name.underscore
-      # For boolean attributes, strip is_ prefix for more idiomatic Ruby
-      if prop_def["type"] == "boolean"
-        underscored.sub(/^is_/, "")
-      else
-        underscored
-      end
-    end
-
     # Returns just the class definition without module wrapping
     # Used for consolidated RBS generation
     def rbs_class_definition
@@ -175,32 +175,32 @@ module Generator
 
     def merge_from_all_of(field_name)
       if field_name == "properties"
-        result = {} #: Hash[String, untyped]
+        result = {}
         definition["allOf"].each do |schema|
           if schema["$ref"]
             ref_name = schema["$ref"].split("/").last
             ref_def = specification&.dig("definitions", ref_name)
             if ref_def && ref_def[field_name]
-              value = yield(ref_def[field_name]) #: untyped
+              value = yield(ref_def[field_name])
               result.merge!(value) if value.is_a?(Hash)
             end
           elsif schema[field_name]
-            value = yield(schema[field_name]) #: untyped
+            value = yield(schema[field_name])
             result.merge!(value) if value.is_a?(Hash)
           end
         end
       else
-        result = [] #: Array[String]
+        result = []
         definition["allOf"].each do |schema|
           if schema["$ref"]
             ref_name = schema["$ref"].split("/").last
             ref_def = specification&.dig("definitions", ref_name)
             if ref_def && ref_def[field_name]
-              value = yield(ref_def[field_name]) #: untyped
+              value = yield(ref_def[field_name])
               result.concat(value) if value.is_a?(Array)
             end
           elsif schema[field_name]
-            value = yield(schema[field_name]) #: untyped
+            value = yield(schema[field_name])
             result.concat(value) if value.is_a?(Array)
           end
         end
@@ -209,7 +209,8 @@ module Generator
     end
 
     def extract_dependencies_from_property(prop_def)
-      dependencies = [] #: Array[String]
+      dependencies = []
+      return dependencies unless prop_def.is_a?(Hash)
 
       if prop_def["$ref"]
         # Extract type name from $ref like "#/definitions/LowestPricedOffersInput"
@@ -217,7 +218,7 @@ module Generator
         dependencies << type_name
       end
       # Extract dependencies from array items
-      if prop_def["type"] == "array" && prop_def["items"] && prop_def["items"]["$ref"]
+      if prop_def["type"] == "array" && prop_def["items"].is_a?(Hash) && prop_def["items"]["$ref"]
         item_type = prop_def["items"]["$ref"].split("/").last
         dependencies << item_type
       end
@@ -225,7 +226,7 @@ module Generator
       # If a $ref points to an array type, also extract its item dependencies
       if prop_def["$ref"]
         ref_def = specification&.dig("definitions", prop_def["$ref"].split("/").last)
-        if ref_def && ref_def["type"] == "array" && ref_def["items"] && ref_def["items"]["$ref"]
+        if ref_def && ref_def["type"] == "array" && ref_def["items"].is_a?(Hash) && ref_def["items"]["$ref"]
           item_type = ref_def["items"]["$ref"].split("/").last
           dependencies << item_type
         end
@@ -239,7 +240,7 @@ module Generator
     end
 
     def type_resolver
-      @type_resolver ||= TypeResolver.new(name, specification)
+      @type_resolver ||= TypeResolver.new(name, specification, api_name)
     end
 
     def file_path
@@ -248,7 +249,7 @@ module Generator
 
     def format_property_comment(prop_def)
       return_type = ruby_type_for(prop_def, for_comment: true)
-      if prop_def["description"]
+      if prop_def["description"] && !generic_placeholder?(prop_def["description"])
         description = convert_html_links_to_yard(prop_def["description"])
         description = convert_doc_links_to_full_url(description)
         split_long_comment_line("@return [#{return_type}] #{description}", base_indent: 8)
@@ -259,6 +260,7 @@ module Generator
 
     def class_description
       return unless definition["description"]
+      return if generic_placeholder?(definition["description"])
 
       description = convert_html_links_to_yard(definition["description"])
       description = convert_doc_links_to_full_url(description)
@@ -277,6 +279,14 @@ module Generator
       end
     end
 
+    # Check if any property uses Time or Date types (requires 'time' library)
+    def uses_time_types?
+      properties.any? do |_name, prop_def|
+        type = ruby_type_for(prop_def)
+        type == "Time" || type == "Date" || type.to_s.include?("Time") || type.to_s.include?("Date")
+      end
+    end
+
     def array_type?
       definition["type"] == "array"
     end
@@ -287,14 +297,31 @@ module Generator
       definition["items"]["$ref"]&.split("/")&.last
     end
 
+    def array_item_type_class_name
+      item_type = array_item_type
+      return unless item_type
+
+      Peddler::Acronyms.apply(item_type.camelize)
+    end
+
     def array_template
       File.read(Config.template_path("array"))
     end
 
     def structure_rbs_class_definition
-      # Load the specific type
-      require library_name
-      klass = Peddler::Types.const_get(api_name.camelize).const_get(class_name)
+      # Get the constant - Zeitwerk will autoload it
+      if api_name.start_with?("notifications/")
+        notification_name = api_name.sub("notifications/", "").camelize
+        klass = Peddler::Notifications.const_get(notification_name).const_get(class_name)
+      elsif api_name.start_with?("reports/")
+        report_name = api_name.sub("reports/", "").camelize
+        klass = Peddler::Reports.const_get(report_name).const_get(class_name)
+      elsif api_name.start_with?("feeds/")
+        feed_name = api_name.sub("feeds/", "").camelize
+        klass = Peddler::Feeds.const_get(feed_name).const_get(class_name)
+      else
+        klass = Peddler::APIs.const_get(api_name.camelize).const_get(class_name)
+      end
 
       # Generate RBS using Structure::RBS
       rbs_content = Structure::RBS.emit(klass)
@@ -312,8 +339,10 @@ module Generator
       # Generate the array class definition inline (no template needed)
       item_type = array_item_type
       if item_type && generated_type?(item_type)
+        # Apply acronym transformations to item type
+        item_class_name = Peddler::Acronyms.apply(item_type.camelize)
         <<~RBS
-          class #{class_name} < Array[#{item_type.camelize}]
+          class #{class_name} < Array[#{item_class_name}]
             def self.parse: (Array[untyped]) -> #{class_name}
           end
         RBS

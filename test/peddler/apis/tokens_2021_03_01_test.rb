@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/apis/tokens_2021_03_01"
 
 module Peddler
   module APIs

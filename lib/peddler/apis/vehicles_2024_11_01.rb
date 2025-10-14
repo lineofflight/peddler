@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def vehicles_2024_11_01
-      APIs::Vehicles20241101
-    end
-  end
-
   module APIs
     # The Selling Partner API for Automotive.
     #
@@ -26,7 +18,7 @@ module Peddler
       # @param marketplace_id [String] An identifier for the marketplace in which the resource operates.
       # @param vehicle_type [String] An identifier for vehicle type.
       # @param updated_after [String] Date in ISO 8601 format, if provided only vehicles which are modified/added to
-      #   Amazon's catalog after this date will be returned.
+      # Amazon's catalog after this date will be returned.
       # @return [Peddler::Response] The API response
       def get_vehicles(marketplace_id, vehicle_type, page_token: nil, updated_after: nil)
         path = "/catalog/2024-11-01/automotive/vehicles"
@@ -36,10 +28,7 @@ module Peddler
           "vehicleType" => vehicle_type,
           "updatedAfter" => updated_after,
         }.compact
-        parser = -> {
-          require "peddler/types/vehicles_2024_11_01"
-          Types::Vehicles20241101::VehiclesResponse
-        }
+        parser = -> { VehiclesResponse }
         get(path, params:, parser:)
       end
     end

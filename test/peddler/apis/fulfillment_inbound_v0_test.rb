@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/apis/fulfillment_inbound_v0"
 
 module Peddler
   module APIs

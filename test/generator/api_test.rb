@@ -185,11 +185,16 @@ module Generator
 
       api = API.new(temp_file.path)
 
+      # Suppress logger output during this test
+      old_level = Generator.logger.level
+      Generator.logger.level = Logger::ERROR
+
       # Should raise an error for unhandled duplicates
       assert_raises(RuntimeError) do
         api.operations
       end
-
+    ensure
+      Generator.logger.level = old_level
       temp_file.close
       temp_file.unlink
     end

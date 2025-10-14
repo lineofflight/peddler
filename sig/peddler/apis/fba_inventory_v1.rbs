@@ -1,6 +1,342 @@
 module Peddler
   module APIs
     class FBAInventoryV1 < API
+      class AddInventoryRequest < Data
+        def self.new: (?inventory_items: Array[Peddler::APIs::FBAInventoryV1::InventoryItem]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryRequest
+                    | (Array[Peddler::APIs::FBAInventoryV1::InventoryItem]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryRequest
+
+        def self.[]: (?inventory_items: Array[Peddler::APIs::FBAInventoryV1::InventoryItem]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryRequest
+                   | (Array[Peddler::APIs::FBAInventoryV1::InventoryItem]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryRequest
+
+        def self.members: () -> [ :inventory_items ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::AddInventoryRequest
+
+        attr_reader inventory_items: Array[Peddler::APIs::FBAInventoryV1::InventoryItem]?
+        def members: () -> [ :inventory_items ]
+
+        def to_h: () -> { inventory_items: Array[Peddler::APIs::FBAInventoryV1::InventoryItem]? }
+      end
+
+      class AddInventoryResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryResponse
+                    | (Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryResponse
+
+        def self.[]: (?errors: Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryResponse
+                   | (Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryResponse
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::AddInventoryResponse
+
+        attr_reader errors: Array[Peddler::APIs::FBAInventoryV1::Error]?
+        def members: () -> [ :errors ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::FBAInventoryV1::Error]? }
+      end
+
+      class CreateInventoryItemRequest < Data
+        def self.new: (marketplace_id: String?, product_name: String?, seller_sku: String?) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemRequest
+                    | (String?, String?, String?) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemRequest
+
+        def self.[]: (marketplace_id: String?, product_name: String?, seller_sku: String?) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemRequest
+                   | (String?, String?, String?) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemRequest
+
+        def self.members: () -> [ :marketplace_id, :product_name, :seller_sku ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemRequest
+
+        attr_reader marketplace_id: String?
+        attr_reader product_name: String?
+        attr_reader seller_sku: String?
+        def members: () -> [ :marketplace_id, :product_name, :seller_sku ]
+
+        def to_h: () -> { marketplace_id: String?, product_name: String?, seller_sku: String? }
+      end
+
+      class CreateInventoryItemResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemResponse
+                    | (Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemResponse
+
+        def self.[]: (?errors: Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemResponse
+                   | (Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemResponse
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::CreateInventoryItemResponse
+
+        attr_reader errors: Array[Peddler::APIs::FBAInventoryV1::Error]?
+        def members: () -> [ :errors ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::FBAInventoryV1::Error]? }
+      end
+
+      class DeleteInventoryItemResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::DeleteInventoryItemResponse
+                    | (Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::DeleteInventoryItemResponse
+
+        def self.[]: (?errors: Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::DeleteInventoryItemResponse
+                   | (Array[Peddler::APIs::FBAInventoryV1::Error]?) -> Peddler::APIs::FBAInventoryV1::DeleteInventoryItemResponse
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::DeleteInventoryItemResponse
+
+        attr_reader errors: Array[Peddler::APIs::FBAInventoryV1::Error]?
+        def members: () -> [ :errors ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::FBAInventoryV1::Error]? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, ?details: String?, ?message: String?) -> Peddler::APIs::FBAInventoryV1::Error
+                    | (String?, String?, String?) -> Peddler::APIs::FBAInventoryV1::Error
+
+        def self.[]: (code: String?, ?details: String?, ?message: String?) -> Peddler::APIs::FBAInventoryV1::Error
+                   | (String?, String?, String?) -> Peddler::APIs::FBAInventoryV1::Error
+
+        def self.members: () -> [ :code, :details, :message ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::Error
+
+        attr_reader code: String?
+        attr_reader details: String?
+        attr_reader message: String?
+        def members: () -> [ :code, :details, :message ]
+
+        def to_h: () -> { code: String?, details: String?, message: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class GetInventorySummariesResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::FBAInventoryV1::Error]?, ?pagination: Peddler::APIs::FBAInventoryV1::Pagination?, ?payload: Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult?) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResponse
+                    | (Array[Peddler::APIs::FBAInventoryV1::Error]?, Peddler::APIs::FBAInventoryV1::Pagination?, Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult?) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResponse
+
+        def self.[]: (?errors: Array[Peddler::APIs::FBAInventoryV1::Error]?, ?pagination: Peddler::APIs::FBAInventoryV1::Pagination?, ?payload: Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult?) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResponse
+                   | (Array[Peddler::APIs::FBAInventoryV1::Error]?, Peddler::APIs::FBAInventoryV1::Pagination?, Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult?) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResponse
+
+        def self.members: () -> [ :errors, :pagination, :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResponse
+
+        attr_reader errors: Array[Peddler::APIs::FBAInventoryV1::Error]?
+        attr_reader pagination: Peddler::APIs::FBAInventoryV1::Pagination?
+        attr_reader payload: Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult?
+        def members: () -> [ :errors, :pagination, :payload ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::FBAInventoryV1::Error]?, pagination: Peddler::APIs::FBAInventoryV1::Pagination?, payload: Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult? }
+      end
+
+      class GetInventorySummariesResult < Data
+        def self.new: (granularity: Peddler::APIs::FBAInventoryV1::Granularity?, inventory_summaries: Array[Peddler::APIs::FBAInventoryV1::InventorySummary]?) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult
+                    | (Peddler::APIs::FBAInventoryV1::Granularity?, Array[Peddler::APIs::FBAInventoryV1::InventorySummary]?) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult
+
+        def self.[]: (granularity: Peddler::APIs::FBAInventoryV1::Granularity?, inventory_summaries: Array[Peddler::APIs::FBAInventoryV1::InventorySummary]?) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult
+                   | (Peddler::APIs::FBAInventoryV1::Granularity?, Array[Peddler::APIs::FBAInventoryV1::InventorySummary]?) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult
+
+        def self.members: () -> [ :granularity, :inventory_summaries ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::GetInventorySummariesResult
+
+        attr_reader granularity: Peddler::APIs::FBAInventoryV1::Granularity?
+        attr_reader inventory_summaries: Array[Peddler::APIs::FBAInventoryV1::InventorySummary]?
+        def members: () -> [ :granularity, :inventory_summaries ]
+
+        def to_h: () -> { granularity: Peddler::APIs::FBAInventoryV1::Granularity?, inventory_summaries: Array[Peddler::APIs::FBAInventoryV1::InventorySummary]? }
+      end
+
+      class Granularity < Data
+        def self.new: (?granularity_id: String?, ?granularity_type: String?) -> Peddler::APIs::FBAInventoryV1::Granularity
+                    | (String?, String?) -> Peddler::APIs::FBAInventoryV1::Granularity
+
+        def self.[]: (?granularity_id: String?, ?granularity_type: String?) -> Peddler::APIs::FBAInventoryV1::Granularity
+                   | (String?, String?) -> Peddler::APIs::FBAInventoryV1::Granularity
+
+        def self.members: () -> [ :granularity_id, :granularity_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::Granularity
+
+        attr_reader granularity_id: String?
+        attr_reader granularity_type: String?
+        def members: () -> [ :granularity_id, :granularity_type ]
+
+        def to_h: () -> { granularity_id: String?, granularity_type: String? }
+      end
+
+      class InventoryDetails < Data
+        def self.new: (?fulfillable_quantity: Integer?, ?inbound_receiving_quantity: Integer?, ?inbound_shipped_quantity: Integer?, ?inbound_working_quantity: Integer?, ?researching_quantity: Peddler::APIs::FBAInventoryV1::ResearchingQuantity?, ?reserved_quantity: Peddler::APIs::FBAInventoryV1::ReservedQuantity?, ?unfulfillable_quantity: Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity?) -> Peddler::APIs::FBAInventoryV1::InventoryDetails
+                    | (Integer?, Integer?, Integer?, Integer?, Peddler::APIs::FBAInventoryV1::ResearchingQuantity?, Peddler::APIs::FBAInventoryV1::ReservedQuantity?, Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity?) -> Peddler::APIs::FBAInventoryV1::InventoryDetails
+
+        def self.[]: (?fulfillable_quantity: Integer?, ?inbound_receiving_quantity: Integer?, ?inbound_shipped_quantity: Integer?, ?inbound_working_quantity: Integer?, ?researching_quantity: Peddler::APIs::FBAInventoryV1::ResearchingQuantity?, ?reserved_quantity: Peddler::APIs::FBAInventoryV1::ReservedQuantity?, ?unfulfillable_quantity: Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity?) -> Peddler::APIs::FBAInventoryV1::InventoryDetails
+                   | (Integer?, Integer?, Integer?, Integer?, Peddler::APIs::FBAInventoryV1::ResearchingQuantity?, Peddler::APIs::FBAInventoryV1::ReservedQuantity?, Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity?) -> Peddler::APIs::FBAInventoryV1::InventoryDetails
+
+        def self.members: () -> [ :fulfillable_quantity, :inbound_receiving_quantity, :inbound_shipped_quantity, :inbound_working_quantity, :researching_quantity, :reserved_quantity, :unfulfillable_quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::InventoryDetails
+
+        attr_reader fulfillable_quantity: Integer?
+        attr_reader inbound_receiving_quantity: Integer?
+        attr_reader inbound_shipped_quantity: Integer?
+        attr_reader inbound_working_quantity: Integer?
+        attr_reader researching_quantity: Peddler::APIs::FBAInventoryV1::ResearchingQuantity?
+        attr_reader reserved_quantity: Peddler::APIs::FBAInventoryV1::ReservedQuantity?
+        attr_reader unfulfillable_quantity: Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity?
+        def members: () -> [ :fulfillable_quantity, :inbound_receiving_quantity, :inbound_shipped_quantity, :inbound_working_quantity, :researching_quantity, :reserved_quantity, :unfulfillable_quantity ]
+
+        def to_h: () -> { fulfillable_quantity: Integer?, inbound_receiving_quantity: Integer?, inbound_shipped_quantity: Integer?, inbound_working_quantity: Integer?, researching_quantity: Peddler::APIs::FBAInventoryV1::ResearchingQuantity?, reserved_quantity: Peddler::APIs::FBAInventoryV1::ReservedQuantity?, unfulfillable_quantity: Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity? }
+      end
+
+      class InventoryItem < Data
+        def self.new: (marketplace_id: String?, quantity: Integer?, seller_sku: String?) -> Peddler::APIs::FBAInventoryV1::InventoryItem
+                    | (String?, Integer?, String?) -> Peddler::APIs::FBAInventoryV1::InventoryItem
+
+        def self.[]: (marketplace_id: String?, quantity: Integer?, seller_sku: String?) -> Peddler::APIs::FBAInventoryV1::InventoryItem
+                   | (String?, Integer?, String?) -> Peddler::APIs::FBAInventoryV1::InventoryItem
+
+        def self.members: () -> [ :marketplace_id, :quantity, :seller_sku ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::InventoryItem
+
+        attr_reader marketplace_id: String?
+        attr_reader quantity: Integer?
+        attr_reader seller_sku: String?
+        def members: () -> [ :marketplace_id, :quantity, :seller_sku ]
+
+        def to_h: () -> { marketplace_id: String?, quantity: Integer?, seller_sku: String? }
+      end
+
+      class InventoryItems < Array[InventoryItem]
+        def self.parse: (Array[untyped]) -> InventoryItems
+      end
+
+      class InventorySummaries < Array[InventorySummary]
+        def self.parse: (Array[untyped]) -> InventorySummaries
+      end
+
+      class InventorySummary < Data
+        def self.new: (?asin: String?, ?condition: String?, ?fn_sku: String?, ?inventory_details: Peddler::APIs::FBAInventoryV1::InventoryDetails?, ?last_updated_time: Time?, ?product_name: String?, ?seller_sku: String?, ?stores: Array[String]?, ?total_quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::InventorySummary
+                    | (String?, String?, String?, Peddler::APIs::FBAInventoryV1::InventoryDetails?, Time?, String?, String?, Array[String]?, Integer?) -> Peddler::APIs::FBAInventoryV1::InventorySummary
+
+        def self.[]: (?asin: String?, ?condition: String?, ?fn_sku: String?, ?inventory_details: Peddler::APIs::FBAInventoryV1::InventoryDetails?, ?last_updated_time: Time?, ?product_name: String?, ?seller_sku: String?, ?stores: Array[String]?, ?total_quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::InventorySummary
+                   | (String?, String?, String?, Peddler::APIs::FBAInventoryV1::InventoryDetails?, Time?, String?, String?, Array[String]?, Integer?) -> Peddler::APIs::FBAInventoryV1::InventorySummary
+
+        def self.members: () -> [ :asin, :condition, :fn_sku, :inventory_details, :last_updated_time, :product_name, :seller_sku, :stores, :total_quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::InventorySummary
+
+        attr_reader asin: String?
+        attr_reader condition: String?
+        attr_reader fn_sku: String?
+        attr_reader inventory_details: Peddler::APIs::FBAInventoryV1::InventoryDetails?
+        attr_reader last_updated_time: Time?
+        attr_reader product_name: String?
+        attr_reader seller_sku: String?
+        attr_reader stores: Array[String]?
+        attr_reader total_quantity: Integer?
+        def members: () -> [ :asin, :condition, :fn_sku, :inventory_details, :last_updated_time, :product_name, :seller_sku, :stores, :total_quantity ]
+
+        def to_h: () -> { asin: String?, condition: String?, fn_sku: String?, inventory_details: Peddler::APIs::FBAInventoryV1::InventoryDetails?, last_updated_time: Time?, product_name: String?, seller_sku: String?, stores: Array[String]?, total_quantity: Integer? }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?) -> Peddler::APIs::FBAInventoryV1::Pagination
+                    | (String?) -> Peddler::APIs::FBAInventoryV1::Pagination
+
+        def self.[]: (?next_token: String?) -> Peddler::APIs::FBAInventoryV1::Pagination
+                   | (String?) -> Peddler::APIs::FBAInventoryV1::Pagination
+
+        def self.members: () -> [ :next_token ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::Pagination
+
+        attr_reader next_token: String?
+        def members: () -> [ :next_token ]
+
+        def to_h: () -> { next_token: String? }
+      end
+
+      class ResearchingQuantity < Data
+        def self.new: (?researching_quantity_breakdown: Array[Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry]?, ?total_researching_quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantity
+                    | (Array[Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry]?, Integer?) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantity
+
+        def self.[]: (?researching_quantity_breakdown: Array[Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry]?, ?total_researching_quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantity
+                   | (Array[Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry]?, Integer?) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantity
+
+        def self.members: () -> [ :researching_quantity_breakdown, :total_researching_quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantity
+
+        attr_reader researching_quantity_breakdown: Array[Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry]?
+        attr_reader total_researching_quantity: Integer?
+        def members: () -> [ :researching_quantity_breakdown, :total_researching_quantity ]
+
+        def to_h: () -> { researching_quantity_breakdown: Array[Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry]?, total_researching_quantity: Integer? }
+      end
+
+      class ResearchingQuantityEntry < Data
+        def self.new: (name: String?, quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry
+                    | (String?, Integer?) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry
+
+        def self.[]: (name: String?, quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry
+                   | (String?, Integer?) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry
+
+        def self.members: () -> [ :name, :quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::ResearchingQuantityEntry
+
+        attr_reader name: String?
+        attr_reader quantity: Integer?
+        def members: () -> [ :name, :quantity ]
+
+        def to_h: () -> { name: String?, quantity: Integer? }
+      end
+
+      class ReservedQuantity < Data
+        def self.new: (?fc_processing_quantity: Integer?, ?pending_customer_order_quantity: Integer?, ?pending_transshipment_quantity: Integer?, ?total_reserved_quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::ReservedQuantity
+                    | (Integer?, Integer?, Integer?, Integer?) -> Peddler::APIs::FBAInventoryV1::ReservedQuantity
+
+        def self.[]: (?fc_processing_quantity: Integer?, ?pending_customer_order_quantity: Integer?, ?pending_transshipment_quantity: Integer?, ?total_reserved_quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::ReservedQuantity
+                   | (Integer?, Integer?, Integer?, Integer?) -> Peddler::APIs::FBAInventoryV1::ReservedQuantity
+
+        def self.members: () -> [ :fc_processing_quantity, :pending_customer_order_quantity, :pending_transshipment_quantity, :total_reserved_quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::ReservedQuantity
+
+        attr_reader fc_processing_quantity: Integer?
+        attr_reader pending_customer_order_quantity: Integer?
+        attr_reader pending_transshipment_quantity: Integer?
+        attr_reader total_reserved_quantity: Integer?
+        def members: () -> [ :fc_processing_quantity, :pending_customer_order_quantity, :pending_transshipment_quantity, :total_reserved_quantity ]
+
+        def to_h: () -> { fc_processing_quantity: Integer?, pending_customer_order_quantity: Integer?, pending_transshipment_quantity: Integer?, total_reserved_quantity: Integer? }
+      end
+
+      class UnfulfillableQuantity < Data
+        def self.new: (?carrier_damaged_quantity: Integer?, ?customer_damaged_quantity: Integer?, ?defective_quantity: Integer?, ?distributor_damaged_quantity: Integer?, ?expired_quantity: Integer?, ?total_unfulfillable_quantity: Integer?, ?warehouse_damaged_quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity
+                    | (Integer?, Integer?, Integer?, Integer?, Integer?, Integer?, Integer?) -> Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity
+
+        def self.[]: (?carrier_damaged_quantity: Integer?, ?customer_damaged_quantity: Integer?, ?defective_quantity: Integer?, ?distributor_damaged_quantity: Integer?, ?expired_quantity: Integer?, ?total_unfulfillable_quantity: Integer?, ?warehouse_damaged_quantity: Integer?) -> Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity
+                   | (Integer?, Integer?, Integer?, Integer?, Integer?, Integer?, Integer?) -> Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity
+
+        def self.members: () -> [ :carrier_damaged_quantity, :customer_damaged_quantity, :defective_quantity, :distributor_damaged_quantity, :expired_quantity, :total_unfulfillable_quantity, :warehouse_damaged_quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInventoryV1::UnfulfillableQuantity
+
+        attr_reader carrier_damaged_quantity: Integer?
+        attr_reader customer_damaged_quantity: Integer?
+        attr_reader defective_quantity: Integer?
+        attr_reader distributor_damaged_quantity: Integer?
+        attr_reader expired_quantity: Integer?
+        attr_reader total_unfulfillable_quantity: Integer?
+        attr_reader warehouse_damaged_quantity: Integer?
+        def members: () -> [ :carrier_damaged_quantity, :customer_damaged_quantity, :defective_quantity, :distributor_damaged_quantity, :expired_quantity, :total_unfulfillable_quantity, :warehouse_damaged_quantity ]
+
+        def to_h: () -> { carrier_damaged_quantity: Integer?, customer_damaged_quantity: Integer?, defective_quantity: Integer?, distributor_damaged_quantity: Integer?, expired_quantity: Integer?, total_unfulfillable_quantity: Integer?, warehouse_damaged_quantity: Integer? }
+      end
+
       def add_inventory: (String, Hash[untyped, untyped]) -> Peddler::Response
       def create_inventory_item: (Hash[untyped, untyped]) -> Peddler::Response
       def delete_inventory_item: (String, String) -> Peddler::Response

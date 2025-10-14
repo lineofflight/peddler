@@ -1,9 +1,0 @@
-module Generator
-  class RateLimitParser
-    attr_reader operation: Hash[String, untyped]
-
-    def initialize: (Hash[String, untyped] operation) -> void
-
-    def parse: () -> (Float | :unknown | nil)
-  end
-end

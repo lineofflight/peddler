@@ -1,7 +1,0 @@
-module Generator
-  module Logger
-    @logger: ::Logger?
-
-    def logger: () -> ::Logger
-  end
-end

@@ -1,0 +1,15 @@
+{
+  "header": {
+    "sellerId": "AXXXXXXXXXXXX",
+    "version": "2.0",
+    "feedId": "1234567890"
+  },
+  "issues": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "messagesProcessed": 1,
+    "messagesAccepted": 1,
+    "messagesInvalid": 0
+  }
+}

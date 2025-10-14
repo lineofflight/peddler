@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def product_pricing_2022_05_01
-      APIs::ProductPricing20220501
-    end
-  end
-
   module APIs
     # Selling Partner API for Pricing
     #
@@ -31,17 +23,14 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param get_featured_offer_expected_price_batch_request_body [Hash] The batch of `getFeaturedOfferExpectedPrice`
-      #   requests.
+      # requests.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body,
         rate_limit: 0.033)
         path = "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
         body = get_featured_offer_expected_price_batch_request_body
-        parser = -> {
-          require "peddler/types/product_pricing_2022_05_01"
-          Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
-        }
+        parser = -> { GetFeaturedOfferExpectedPriceBatchResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -55,10 +44,7 @@ module Peddler
       def get_competitive_summary(requests, rate_limit: 0.033)
         path = "/batches/products/pricing/2022-05-01/items/competitiveSummary"
         body = requests
-        parser = -> {
-          require "peddler/types/product_pricing_2022_05_01"
-          Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
-        }
+        parser = -> { CompetitiveSummaryBatchResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

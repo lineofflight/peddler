@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
-D = Steep::Diagnostic
-
 target :lib do
   signature "sig"
   check "lib"
 
+  ignore "lib/generator.rb"
+  ignore "lib/generator"
+
   library(
     "json",
-    "open3",
-    "rbs",
     "socket",
     "time",
     "uri",

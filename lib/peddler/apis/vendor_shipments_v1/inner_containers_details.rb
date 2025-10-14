@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+# This file is generated. Do not edit.
+
+require "structure"
+
+module Peddler
+  module APIs
+    class VendorShipmentsV1
+      # Details of the innerContainersDetails.
+      InnerContainersDetails = Structure.new do
+        # @return [Integer] Total containers as part of the shipment
+        attribute?(:container_count, Integer, from: "containerCount")
+
+        # @return [Array<ContainerSequenceNumbers>] Container sequence numbers that are involved in this shipment.
+        attribute?(:container_sequence_numbers, [ContainerSequenceNumbers], from: "containerSequenceNumbers")
+      end
+    end
+  end
+end

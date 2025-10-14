@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+# This file is generated. Do not edit.
+
+module Peddler
+  module Notifications
+    #
+    #
+    # The root schema comprises the entire JSON document.
+    module FBAOutboundShipmentStatus
+      class << self
+        def parse(hash)
+          Notification.parse(hash)
+        end
+      end
+    end
+  end
+end

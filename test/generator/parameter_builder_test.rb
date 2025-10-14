@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "helper"
-require "generator/parameter_builder"
+require "generator/builders/parameter_builder"
 
 module Generator
   class ParameterBuilderTest < Minitest::Test

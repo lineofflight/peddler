@@ -2,14 +2,23 @@
 
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
-<% required_libraries.each do |required_library| -%>
-  require "<%= required_library %>"
-<% end -%>
+require "zeitwerk"
+require "peddler/inflector"
+
+loader = Zeitwerk::Loader.for_gem
+loader.inflector = Peddler::Inflector.new(__FILE__)
+loader.ignore("#{__dir__}/generator")
+loader.ignore("#{__dir__}/generator.rb")
+loader.setup
 
 module Peddler
   class << self
-    <% apis_with_latest_version.each do |api_name, api| -%>
-      alias_method :<%= api_name %>, :<%= api.name_with_version %>
-    <% end -%>
+<% API.apis.each do |api| -%>
+    def <%= api.name_with_version %> = APIs::<%= api.class_name %>
+<% end -%>
+
+<% apis_with_latest_version.each do |api_name, api| -%>
+    alias <%= api_name %> <%= api.name_with_version %>
+<% end -%>
   end
 end

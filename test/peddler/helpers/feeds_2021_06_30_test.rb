@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/apis/feeds_2021_06_30"
-require "peddler/marketplace"
 
 module Peddler
   module Helpers

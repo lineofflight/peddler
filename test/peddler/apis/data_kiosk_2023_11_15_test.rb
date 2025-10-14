@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/apis/data_kiosk_2023_11_15"
 
 module Peddler
   module APIs

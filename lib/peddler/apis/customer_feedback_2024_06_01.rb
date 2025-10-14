@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def customer_feedback_2024_06_01
-      APIs::CustomerFeedback20240601
-    end
-  end
-
   module APIs
     # The Selling Partner API for CustomerFeedback
     #
@@ -23,9 +15,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
-      #   within a marketplace. The value must be a child ASIN.
+      # within a marketplace. The value must be a child ASIN.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
-      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
       # @param sort_by [String] The metric by which to sort data in the response.
       # @return [Peddler::Response] The API response
       def get_item_review_topics(asin, marketplace_id, sort_by)
@@ -34,10 +26,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "sortBy" => sort_by,
         }.compact
-        parser = -> {
-          require "peddler/types/customer_feedback_2024_06_01"
-          Types::CustomerFeedback20240601::ItemReviewTopicsResponse
-        }
+        parser = -> { ItemReviewTopicsResponse }
         get(path, params:, parser:)
       end
 
@@ -46,19 +35,16 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
-      #   within a marketplace.
+      # within a marketplace.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
-      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
       # @return [Peddler::Response] The API response
       def get_item_browse_node(asin, marketplace_id)
         path = "/customerFeedback/2024-06-01/items/#{percent_encode(asin)}/browseNode"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/customer_feedback_2024_06_01"
-          Types::CustomerFeedback20240601::BrowseNodeResponse
-        }
+        parser = -> { BrowseNodeResponse }
         get(path, params:, parser:)
       end
 
@@ -66,9 +52,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param browse_node_id [String] The ID of a browse node. A browse node is a named location in a browse tree that
-      #   is used for navigation, product classification, and website content.
+      # is used for navigation, product classification, and website content.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
-      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
       # @param sort_by [String] The metric by which to sort the data in the response.
       # @return [Peddler::Response] The API response
       def get_browse_node_review_topics(browse_node_id, marketplace_id, sort_by)
@@ -77,10 +63,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "sortBy" => sort_by,
         }.compact
-        parser = -> {
-          require "peddler/types/customer_feedback_2024_06_01"
-          Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
-        }
+        parser = -> { BrowseNodeReviewTopicsResponse }
         get(path, params:, parser:)
       end
 
@@ -88,19 +71,16 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
-      #   within a marketplace. This API takes child ASIN as an input.
+      # within a marketplace. This API takes child ASIN as an input.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
-      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
       # @return [Peddler::Response] The API response
       def get_item_review_trends(asin, marketplace_id)
         path = "/customerFeedback/2024-06-01/items/#{percent_encode(asin)}/reviews/trends"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/customer_feedback_2024_06_01"
-          Types::CustomerFeedback20240601::ItemReviewTrendsResponse
-        }
+        parser = -> { ItemReviewTrendsResponse }
         get(path, params:, parser:)
       end
 
@@ -108,19 +88,16 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param browse_node_id [String] A browse node ID is a unique identifier of a browse node. A browse node is a
-      #   named location in a browse tree that is used for navigation, product classification, and website content.
+      # named location in a browse tree that is used for navigation, product classification, and website content.
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. For more
-      #   information, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # information, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def get_browse_node_review_trends(browse_node_id, marketplace_id)
         path = "/customerFeedback/2024-06-01/browseNodes/#{percent_encode(browse_node_id)}/reviews/trends"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/customer_feedback_2024_06_01"
-          Types::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
-        }
+        parser = -> { BrowseNodeReviewTrendsResponse }
         get(path, params:, parser:)
       end
 
@@ -128,19 +105,16 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param browse_node_id [String] A browse node ID is a unique identifier for a browse node. A browse node is a
-      #   named location in a browse tree that is used for navigation, product classification, and website content.
+      # named location in a browse tree that is used for navigation, product classification, and website content.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
-      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
       # @return [Peddler::Response] The API response
       def get_browse_node_return_topics(browse_node_id, marketplace_id)
         path = "/customerFeedback/2024-06-01/browseNodes/#{percent_encode(browse_node_id)}/returns/topics"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/customer_feedback_2024_06_01"
-          Types::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
-        }
+        parser = -> { BrowseNodeReturnTopicsResponse }
         get(path, params:, parser:)
       end
 
@@ -148,19 +122,16 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param browse_node_id [String] A browse node ID is a unique identifier of a browse node. A browse node is a
-      #   named location in a browse tree that is used for navigation, product classification, and website content.
+      # named location in a browse tree that is used for navigation, product classification, and website content.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
-      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
       # @return [Peddler::Response] The API response
       def get_browse_node_return_trends(browse_node_id, marketplace_id)
         path = "/customerFeedback/2024-06-01/browseNodes/#{percent_encode(browse_node_id)}/returns/trends"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/customer_feedback_2024_06_01"
-          Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
-        }
+        parser = -> { BrowseNodeReturnTrendsResponse }
         get(path, params:, parser:)
       end
     end

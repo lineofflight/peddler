@@ -1,0 +1,115 @@
+module Peddler
+  module Reports
+    module SellerCoupon
+      class ASINDetails < Data
+        def self.new: (asin: String?) -> Peddler::Reports::SellerCoupon::ASINDetails
+                    | (String?) -> Peddler::Reports::SellerCoupon::ASINDetails
+
+        def self.[]: (asin: String?) -> Peddler::Reports::SellerCoupon::ASINDetails
+                   | (String?) -> Peddler::Reports::SellerCoupon::ASINDetails
+
+        def self.members: () -> [ :asin ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellerCoupon::ASINDetails
+
+        attr_reader asin: String?
+        def members: () -> [ :asin ]
+
+        def to_h: () -> { asin: String? }
+      end
+
+      class CouponDetails < Data
+        def self.new: (asins: Array[Peddler::Reports::SellerCoupon::ASINDetails]?, budget_percentage_used: Float?, budget_spent: Float?, clips: Integer?, coupon_id: String?, currency_code: String?, customer_segment: String?, end_date_time: Time?, marketplace_id: String?, merchant_id: String?, redemptions: Integer?, start_date_time: Time?, total_discount: Float?, ?budget: Float?, ?budget_remaining: Float?, ?discount_amount: Float?, ?discount_type: String?, ?name: String?, ?sales: Float?, ?website_message: String?) -> Peddler::Reports::SellerCoupon::CouponDetails
+                    | (Array[Peddler::Reports::SellerCoupon::ASINDetails]?, Float?, Float?, Integer?, String?, String?, String?, Time?, String?, String?, Integer?, Time?, Float?, Float?, Float?, Float?, String?, String?, Float?, String?) -> Peddler::Reports::SellerCoupon::CouponDetails
+
+        def self.[]: (asins: Array[Peddler::Reports::SellerCoupon::ASINDetails]?, budget_percentage_used: Float?, budget_spent: Float?, clips: Integer?, coupon_id: String?, currency_code: String?, customer_segment: String?, end_date_time: Time?, marketplace_id: String?, merchant_id: String?, redemptions: Integer?, start_date_time: Time?, total_discount: Float?, ?budget: Float?, ?budget_remaining: Float?, ?discount_amount: Float?, ?discount_type: String?, ?name: String?, ?sales: Float?, ?website_message: String?) -> Peddler::Reports::SellerCoupon::CouponDetails
+                   | (Array[Peddler::Reports::SellerCoupon::ASINDetails]?, Float?, Float?, Integer?, String?, String?, String?, Time?, String?, String?, Integer?, Time?, Float?, Float?, Float?, Float?, String?, String?, Float?, String?) -> Peddler::Reports::SellerCoupon::CouponDetails
+
+        def self.members: () -> [ :asins, :budget_percentage_used, :budget_spent, :clips, :coupon_id, :currency_code, :customer_segment, :end_date_time, :marketplace_id, :merchant_id, :redemptions, :start_date_time, :total_discount, :budget, :budget_remaining, :discount_amount, :discount_type, :name, :sales, :website_message ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellerCoupon::CouponDetails
+
+        attr_reader asins: Array[Peddler::Reports::SellerCoupon::ASINDetails]?
+        attr_reader budget: Float?
+        attr_reader budget_percentage_used: Float?
+        attr_reader budget_remaining: Float?
+        attr_reader budget_spent: Float?
+        attr_reader clips: Integer?
+        attr_reader coupon_id: String?
+        attr_reader currency_code: String?
+        attr_reader customer_segment: String?
+        attr_reader discount_amount: Float?
+        attr_reader discount_type: String?
+        attr_reader end_date_time: Time?
+        attr_reader marketplace_id: String?
+        attr_reader merchant_id: String?
+        attr_reader name: String?
+        attr_reader redemptions: Integer?
+        attr_reader sales: Float?
+        attr_reader start_date_time: Time?
+        attr_reader total_discount: Float?
+        attr_reader website_message: String?
+        def members: () -> [ :asins, :budget_percentage_used, :budget_spent, :clips, :coupon_id, :currency_code, :customer_segment, :end_date_time, :marketplace_id, :merchant_id, :redemptions, :start_date_time, :total_discount, :budget, :budget_remaining, :discount_amount, :discount_type, :name, :sales, :website_message ]
+
+        def to_h: () -> { asins: Array[Peddler::Reports::SellerCoupon::ASINDetails]?, budget_percentage_used: Float?, budget_spent: Float?, clips: Integer?, coupon_id: String?, currency_code: String?, customer_segment: String?, end_date_time: Time?, marketplace_id: String?, merchant_id: String?, redemptions: Integer?, start_date_time: Time?, total_discount: Float?, budget: Float?, budget_remaining: Float?, discount_amount: Float?, discount_type: String?, name: String?, sales: Float?, website_message: String? }
+      end
+
+      class Report < Data
+        def self.new: (coupons: Array[Peddler::Reports::SellerCoupon::CouponDetails]?, report_specification: Peddler::Reports::SellerCoupon::ReportSpecification?) -> Peddler::Reports::SellerCoupon::Report
+                    | (Array[Peddler::Reports::SellerCoupon::CouponDetails]?, Peddler::Reports::SellerCoupon::ReportSpecification?) -> Peddler::Reports::SellerCoupon::Report
+
+        def self.[]: (coupons: Array[Peddler::Reports::SellerCoupon::CouponDetails]?, report_specification: Peddler::Reports::SellerCoupon::ReportSpecification?) -> Peddler::Reports::SellerCoupon::Report
+                   | (Array[Peddler::Reports::SellerCoupon::CouponDetails]?, Peddler::Reports::SellerCoupon::ReportSpecification?) -> Peddler::Reports::SellerCoupon::Report
+
+        def self.members: () -> [ :coupons, :report_specification ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellerCoupon::Report
+
+        attr_reader coupons: Array[Peddler::Reports::SellerCoupon::CouponDetails]?
+        attr_reader report_specification: Peddler::Reports::SellerCoupon::ReportSpecification?
+        def members: () -> [ :coupons, :report_specification ]
+
+        def to_h: () -> { coupons: Array[Peddler::Reports::SellerCoupon::CouponDetails]?, report_specification: Peddler::Reports::SellerCoupon::ReportSpecification? }
+      end
+
+      class ReportOptions < Data
+        def self.new: (coupon_start_date_from: Time?, coupon_start_date_to: Time?) -> Peddler::Reports::SellerCoupon::ReportOptions
+                    | (Time?, Time?) -> Peddler::Reports::SellerCoupon::ReportOptions
+
+        def self.[]: (coupon_start_date_from: Time?, coupon_start_date_to: Time?) -> Peddler::Reports::SellerCoupon::ReportOptions
+                   | (Time?, Time?) -> Peddler::Reports::SellerCoupon::ReportOptions
+
+        def self.members: () -> [ :coupon_start_date_from, :coupon_start_date_to ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellerCoupon::ReportOptions
+
+        attr_reader coupon_start_date_from: Time?
+        attr_reader coupon_start_date_to: Time?
+        def members: () -> [ :coupon_start_date_from, :coupon_start_date_to ]
+
+        def to_h: () -> { coupon_start_date_from: Time?, coupon_start_date_to: Time? }
+      end
+
+      class ReportSpecification < Data
+        def self.new: (marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellerCoupon::ReportOptions?, report_type: String?) -> Peddler::Reports::SellerCoupon::ReportSpecification
+                    | (Array[String]?, Peddler::Reports::SellerCoupon::ReportOptions?, String?) -> Peddler::Reports::SellerCoupon::ReportSpecification
+
+        def self.[]: (marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellerCoupon::ReportOptions?, report_type: String?) -> Peddler::Reports::SellerCoupon::ReportSpecification
+                   | (Array[String]?, Peddler::Reports::SellerCoupon::ReportOptions?, String?) -> Peddler::Reports::SellerCoupon::ReportSpecification
+
+        def self.members: () -> [ :marketplace_ids, :report_options, :report_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellerCoupon::ReportSpecification
+
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader report_options: Peddler::Reports::SellerCoupon::ReportOptions?
+        attr_reader report_type: String?
+        def members: () -> [ :marketplace_ids, :report_options, :report_type ]
+
+        def to_h: () -> { marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellerCoupon::ReportOptions?, report_type: String? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::SellerCoupon::Report
+    end
+  end
+end

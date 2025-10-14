@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def fba_inbound_eligibility_v1
-      APIs::FBAInboundEligibilityV1
-    end
-  end
-
   module APIs
     # Selling Partner API for FBA Inbound Eligibilty
     #
@@ -28,7 +20,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_ids [Array<String>] The identifier for the marketplace in which you want to determine
-      #   eligibility. Required only when program=INBOUND.
+      # eligibility. Required only when program=INBOUND.
       # @param asin [String] The ASIN of the item for which you want an eligibility preview.
       # @param program [String] The program that you want to check eligibility against.
       # @param rate_limit [Float] Requests per second
@@ -40,10 +32,7 @@ module Peddler
           "asin" => asin,
           "program" => program,
         }.compact
-        parser = -> {
-          require "peddler/types/fba_inbound_eligibility_v1"
-          Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
-        }
+        parser = -> { GetItemEligibilityPreviewResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

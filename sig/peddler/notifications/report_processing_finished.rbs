@@ -1,0 +1,68 @@
+module Peddler
+  module Notifications
+    module ReportProcessingFinished
+      class Notification < Data
+        def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ReportProcessingFinished::Payload?, payload_version: String?) -> Peddler::Notifications::ReportProcessingFinished::Notification
+                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::ReportProcessingFinished::Payload?, String?) -> Peddler::Notifications::ReportProcessingFinished::Notification
+
+        def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ReportProcessingFinished::Payload?, payload_version: String?) -> Peddler::Notifications::ReportProcessingFinished::Notification
+                   | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::ReportProcessingFinished::Payload?, String?) -> Peddler::Notifications::ReportProcessingFinished::Notification
+
+        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ReportProcessingFinished::Notification
+
+        attr_reader event_time: String?
+        attr_reader notification_metadata: Hash[untyped, untyped]?
+        attr_reader notification_type: String?
+        attr_reader notification_version: String?
+        attr_reader payload: Peddler::Notifications::ReportProcessingFinished::Payload?
+        attr_reader payload_version: String?
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ReportProcessingFinished::Payload?, payload_version: String? }
+      end
+
+      class Payload < Data
+        def self.new: (report_processing_finished_notification: Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification?) -> Peddler::Notifications::ReportProcessingFinished::Payload
+                    | (Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification?) -> Peddler::Notifications::ReportProcessingFinished::Payload
+
+        def self.[]: (report_processing_finished_notification: Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification?) -> Peddler::Notifications::ReportProcessingFinished::Payload
+                   | (Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification?) -> Peddler::Notifications::ReportProcessingFinished::Payload
+
+        def self.members: () -> [ :report_processing_finished_notification ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ReportProcessingFinished::Payload
+
+        attr_reader report_processing_finished_notification: Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification?
+        def members: () -> [ :report_processing_finished_notification ]
+
+        def to_h: () -> { report_processing_finished_notification: Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification? }
+      end
+
+      class ReportProcessingFinishedNotification < Data
+        def self.new: (account_id: String?, processing_status: String?, report_id: String?, report_type: String?, ?report_document_id: String?, ?seller_id: String?) -> Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification
+                    | (String?, String?, String?, String?, String?, String?) -> Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification
+
+        def self.[]: (account_id: String?, processing_status: String?, report_id: String?, report_type: String?, ?report_document_id: String?, ?seller_id: String?) -> Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification
+                   | (String?, String?, String?, String?, String?, String?) -> Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification
+
+        def self.members: () -> [ :account_id, :processing_status, :report_id, :report_type, :report_document_id, :seller_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ReportProcessingFinished::ReportProcessingFinishedNotification
+
+        attr_reader account_id: String?
+        attr_reader processing_status: String?
+        attr_reader report_document_id: String?
+        attr_reader report_id: String?
+        attr_reader report_type: String?
+        attr_reader seller_id: String?
+        def members: () -> [ :account_id, :processing_status, :report_id, :report_type, :report_document_id, :seller_id ]
+
+        def to_h: () -> { account_id: String?, processing_status: String?, report_id: String?, report_type: String?, report_document_id: String?, seller_id: String? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::ReportProcessingFinished::Notification
+    end
+  end
+end

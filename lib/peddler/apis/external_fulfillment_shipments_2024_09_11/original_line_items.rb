@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module APIs
+    class ExternalFulfillmentShipments20240911
+      # The line items from the original shipment that corresponds to this shipment.
+      class OriginalLineItems < Array
+        class << self
+          def parse(array)
+            new(array.map { |item| OriginalLineItem.parse(item) })
+          end
+        end
+      end
+    end
+  end
+end

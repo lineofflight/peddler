@@ -4,9 +4,7 @@ require "minitest/autorun"
 require "vcr"
 require "webmock/minitest"
 
-# Silence generator logger warnings during tests
-require "generator/logger"
-Generator.logger.level = Logger::ERROR
+require "peddler"
 
 VCR.configure do |c|
   c.hook_into(:webmock)
@@ -78,6 +76,13 @@ module Recordable
   end
 end
 
+module FixtureHelpers
+  def load_fixture(path)
+    fixture_path = File.expand_path("fixtures/#{path}", __dir__)
+    JSON.parse(File.read(fixture_path))
+  end
+end
+
 module FeatureHelpers
   include Configurable, Recordable
 
@@ -95,8 +100,6 @@ module FeatureHelpers
   end
 
   def request_access_token(grantless:)
-    require "peddler/lwa"
-
     payload = if grantless
       scope = "sellingpartnerapi::notifications"
       Peddler::LWA.request(client_id: client_id, client_secret: client_secret, scope: scope)

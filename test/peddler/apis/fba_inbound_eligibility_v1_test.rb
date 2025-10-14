@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/apis/fba_inbound_eligibility_v1"
 
 module Peddler
   module APIs

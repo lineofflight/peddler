@@ -2,8 +2,6 @@
 
 require "http"
 
-require "peddler/response"
-
 module Peddler
   module Helpers
     module Reports20210630

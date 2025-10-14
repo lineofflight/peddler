@@ -2,16 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-require "peddler/helpers/feeds_2021_06_30"
-
 module Peddler
-  class << self
-    def feeds_2021_06_30
-      APIs::Feeds20210630
-    end
-  end
-
   module APIs
     # Selling Partner API for Feeds
     #
@@ -25,20 +16,20 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param feed_types [Array<String>] A list of feed types used to filter feeds. When feedTypes is provided, the
-      #   other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also
-      #   be provided. Either feedTypes or nextToken is required.
+      # other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also
+      # be provided. Either feedTypes or nextToken is required.
       # @param marketplace_ids [Array<String>] A list of marketplace identifiers used to filter feeds. The feeds
-      #   returned will match at least one of the marketplaces that you specify.
+      # returned will match at least one of the marketplaces that you specify.
       # @param page_size [Integer] The maximum number of feeds to return in a single call.
       # @param processing_statuses [Array<String>] A list of processing statuses used to filter feeds.
       # @param created_since [String] The earliest feed creation date and time for feeds included in the response, in
-      #   ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
+      # ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
       # @param created_until [String] The latest feed creation date and time for feeds included in the response, in ISO
-      #   8601 format. The default is now.
+      # 8601 format. The default is now.
       # @param next_token [String] A string token returned in the response to your previous request. nextToken is
-      #   returned when the number of results exceeds the specified pageSize value. To get the next page of results,
-      #   call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other
-      #   parameters will cause the request to fail.
+      # returned when the number of results exceeds the specified pageSize value. To get the next page of results, call
+      # the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other
+      # parameters will cause the request to fail.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil,
@@ -53,10 +44,7 @@ module Peddler
           "createdUntil" => created_until,
           "nextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/feeds_2021_06_30"
-          Types::Feeds20210630::GetFeedsResponse
-        }
+        parser = -> { GetFeedsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -68,10 +56,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_feed(body, rate_limit: 0.0083)
         path = "/feeds/2021-06-30/feeds"
-        parser = -> {
-          require "peddler/types/feeds_2021_06_30"
-          Types::Feeds20210630::CreateFeedResponse
-        }
+        parser = -> { CreateFeedResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -81,7 +66,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
-      #   ID.
+      # ID.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_feed(feed_id, rate_limit: 2.0)
@@ -93,15 +78,12 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
-      #   ID.
+      # ID.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feed(feed_id, rate_limit: 2.0)
         path = "/feeds/2021-06-30/feeds/#{percent_encode(feed_id)}"
-        parser = -> {
-          require "peddler/types/feeds_2021_06_30"
-          Types::Feeds20210630::Feed
-        }
+        parser = -> { Feed }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -115,10 +97,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_feed_document(body, rate_limit: 0.5)
         path = "/feeds/2021-06-30/documents"
-        parser = -> {
-          require "peddler/types/feeds_2021_06_30"
-          Types::Feeds20210630::CreateFeedDocumentResponse
-        }
+        parser = -> { CreateFeedDocumentResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -130,10 +109,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_feed_document(feed_document_id, rate_limit: 0.0222)
         path = "/feeds/2021-06-30/documents/#{percent_encode(feed_document_id)}"
-        parser = -> {
-          require "peddler/types/feeds_2021_06_30"
-          Types::Feeds20210630::FeedDocument
-        }
+        parser = -> { FeedDocument }
         meter(rate_limit).get(path, parser:)
       end
     end

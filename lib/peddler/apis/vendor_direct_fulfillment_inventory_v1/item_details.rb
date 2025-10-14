@@ -1,0 +1,28 @@
+# frozen_string_literal: true
+
+# This file is generated. Do not edit.
+
+require "structure"
+
+module Peddler
+  module APIs
+    class VendorDirectFulfillmentInventoryV1
+      # Updated inventory details for an item.
+      ItemDetails = Structure.new do
+        # @return [ItemQuantity] Total item quantity available in the warehouse.
+        attribute(:available_quantity, ItemQuantity, from: "availableQuantity")
+
+        # @return [String] The buyer selected product identification of the item. Either buyerProductIdentifier or
+        # vendorProductIdentifier should be submitted.
+        attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
+
+        # @return [:boolean] When true, the item is permanently unavailable.
+        attribute?(:obsolete, :boolean, from: "isObsolete")
+
+        # @return [String] The vendor selected product identification of the item. Either buyerProductIdentifier or
+        # vendorProductIdentifier should be submitted.
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+      end
+    end
+  end
+end

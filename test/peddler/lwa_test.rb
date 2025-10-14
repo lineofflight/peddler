@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/lwa"
 
 module Peddler
   class LWATest < Minitest::Test
@@ -11,7 +10,7 @@ module Peddler
       response = LWA.request(client_id:, client_secret:, refresh_token: refresh_token)
       parsed = response.parse
 
-      assert_instance_of(Types::LWAToken, parsed)
+      assert_instance_of(Peddler::LWAToken, parsed)
       assert(parsed.access_token)
     end
 
@@ -31,7 +30,7 @@ module Peddler
       response = LWA.request(client_id:, client_secret:, scope: scope)
       parsed = response.parse
 
-      assert_instance_of(Types::LWAToken, parsed)
+      assert_instance_of(Peddler::LWAToken, parsed)
       assert(parsed.access_token)
     end
 
@@ -42,7 +41,7 @@ module Peddler
     end
 
     def test_token_error
-      error = assert_raises(Errors::UnsupportedGrantType) do
+      error = assert_raises(Peddler::Errors::UnsupportedGrantType) do
         LWA.request(client_id:, client_secret:)
       end
 

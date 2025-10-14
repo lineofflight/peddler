@@ -19,10 +19,7 @@
   }.compact
   <% end -%>
   <% if has_typed_response? -%>
-  parser = -> {
-    require "peddler/types/<%= api_name_with_version %>"
-    Types::<%= parser_class_name %>
-  }
+  parser = -> { <%= parser_class_name %> }
   <% end -%>
   <% if rate_limit -%>
   meter(rate_limit).<%= verb %>(<%= request_args.join(", ") %><% if has_typed_response? -%>, parser:<% end -%>)

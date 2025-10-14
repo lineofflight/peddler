@@ -1,0 +1,52 @@
+module Peddler
+  module Notifications
+    module DataKioskQueryProcessingFinished
+      class Notification < Data
+        def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::DataKioskQueryProcessingFinished::Payload?, payload_version: String?) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Notification
+                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::DataKioskQueryProcessingFinished::Payload?, String?) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Notification
+
+        def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::DataKioskQueryProcessingFinished::Payload?, payload_version: String?) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Notification
+                   | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::DataKioskQueryProcessingFinished::Payload?, String?) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Notification
+
+        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Notification
+
+        attr_reader event_time: String?
+        attr_reader notification_metadata: Hash[untyped, untyped]?
+        attr_reader notification_type: String?
+        attr_reader notification_version: String?
+        attr_reader payload: Peddler::Notifications::DataKioskQueryProcessingFinished::Payload?
+        attr_reader payload_version: String?
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::DataKioskQueryProcessingFinished::Payload?, payload_version: String? }
+      end
+
+      class Payload < Data
+        def self.new: (account_id: String?, processing_status: String?, query: String?, query_id: String?, ?data_document_id: String?, ?error_document_id: String?, ?pagination: Hash[untyped, untyped]?) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Payload
+                    | (String?, String?, String?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Payload
+
+        def self.[]: (account_id: String?, processing_status: String?, query: String?, query_id: String?, ?data_document_id: String?, ?error_document_id: String?, ?pagination: Hash[untyped, untyped]?) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Payload
+                   | (String?, String?, String?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Payload
+
+        def self.members: () -> [ :account_id, :processing_status, :query, :query_id, :data_document_id, :error_document_id, :pagination ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Payload
+
+        attr_reader account_id: String?
+        attr_reader data_document_id: String?
+        attr_reader error_document_id: String?
+        attr_reader pagination: Hash[untyped, untyped]?
+        attr_reader processing_status: String?
+        attr_reader query: String?
+        attr_reader query_id: String?
+        def members: () -> [ :account_id, :processing_status, :query, :query_id, :data_document_id, :error_document_id, :pagination ]
+
+        def to_h: () -> { account_id: String?, processing_status: String?, query: String?, query_id: String?, data_document_id: String?, error_document_id: String?, pagination: Hash[untyped, untyped]? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::DataKioskQueryProcessingFinished::Notification
+    end
+  end
+end

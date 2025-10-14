@@ -2,8 +2,6 @@
 
 require "helper"
 
-require "peddler/apis/product_type_definitions_2020_09_01"
-
 module Peddler
   module APIs
     class ProductTypeDefinitions20200901Test < Minitest::Test

@@ -28,9 +28,9 @@ task "rbs:sort" do
 end
 
 desc "Generate API classes from OpenAPI specs"
-task :generate, [:api_filter] do |_t, args|
+task :generate do
   require_relative "lib/generator"
-  Generator.generate(api_filter: args[:api_filter])
+  Generator.generate
   puts "\nCode generation completed successfully."
 end
 

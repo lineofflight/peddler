@@ -1,0 +1,15 @@
+# Minimal Zeitwerk type stubs for Peddler's usage
+module Zeitwerk
+  class Loader
+    def self.for_gem: () -> Loader
+
+    attr_accessor inflector: Inflector
+
+    def ignore: (String) -> void
+    def setup: () -> void
+  end
+
+  class Inflector
+    def camelize: (String basename, String? abspath) -> String
+  end
+end

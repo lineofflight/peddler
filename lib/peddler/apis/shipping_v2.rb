@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def shipping_v2
-      APIs::ShippingV2
-    end
-  end
-
   module APIs
     # Amazon Shipping API
     #
@@ -25,15 +17,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetRatesRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_rates(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/rates"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetRatesResponse
-        }
+        parser = -> { GetRatesResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -43,21 +32,18 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] DirectPurchaseRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
-      #   the same request.
+      # the same request.
       # @param locale [String] The IETF Language Tag. Note that this only supports the primary language subtag with one
-      #   secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional
-      #   designation. This does not support additional subtags beyond the primary and secondary language subtags.
+      # secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional
+      # designation. This does not support additional subtags beyond the primary and secondary language subtags.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
         path = "/shipping/v2/shipments/directPurchase"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::DirectPurchaseResponse
-        }
+        parser = -> { DirectPurchaseResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -70,17 +56,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] PurchaseShipmentRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
-      #   the same request.
+      # the same request.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::PurchaseShipmentResponse
-        }
+        parser = -> { PurchaseShipmentResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -89,15 +72,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] OneClickShipmentRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def one_click_shipment(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/oneClickShipment"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::OneClickShipmentResponse
-        }
+        parser = -> { OneClickShipmentResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -105,11 +85,11 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param tracking_id [String] A carrier-generated tracking identifier originally returned by the purchaseShipment
-      #   operation.
+      # operation.
       # @param carrier_id [String] A carrier identifier originally returned by the getRates operation for the selected
-      #   rate.
+      # rate.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_tracking(tracking_id, carrier_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -118,10 +98,7 @@ module Peddler
           "trackingId" => tracking_id,
           "carrierId" => carrier_id,
         }.compact
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetTrackingResponse
-        }
+        parser = -> { GetTrackingResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -130,13 +107,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The shipment identifier originally returned by the purchaseShipment operation.
       # @param package_client_reference_id [String] The package client reference identifier originally provided in the
-      #   request body parameter for the getRates operation.
+      # request body parameter for the getRates operation.
       # @param format [String] The file format of the document. Must be one of the supported formats returned by the
-      #   getRates operation.
+      # getRates operation.
       # @param dpi [Number] The resolution of the document (for example, 300 means 300 dots per inch). Must be one of
-      #   the supported resolutions returned in the response to the getRates operation.
+      # the supported resolutions returned in the response to the getRates operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil,
@@ -147,10 +124,7 @@ module Peddler
           "format" => format,
           "dpi" => dpi,
         }.compact
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetShipmentDocumentsResponse
-        }
+        parser = -> { GetShipmentDocumentsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -159,15 +133,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The shipment identifier originally returned by the purchaseShipment operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/#{percent_encode(shipment_id)}/cancel"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::CancelShipmentResponse
-        }
+        parser = -> { CancelShipmentResponse }
         meter(rate_limit).put(path, parser:)
       end
 
@@ -178,9 +149,9 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param request_token [String] The request token returned in the response to the getRates operation.
       # @param rate_id [String] The rate identifier for the shipping offering (rate) returned in the response to the
-      #   getRates operation.
+      # getRates operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -189,27 +160,21 @@ module Peddler
           "requestToken" => request_token,
           "rateId" => rate_id,
         }.compact
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetAdditionalInputsResponse
-        }
+        parser = -> { GetAdditionalInputsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
       # This API will return a list of input schema required to register a shipper account with the carrier.
       #
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
         path = "/shipping/v2/carrierAccountFormInputs"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetCarrierAccountFormInputsResponse
-        }
+        parser = -> { GetCarrierAccountFormInputsResponse }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -217,17 +182,14 @@ module Peddler
       #
       # @param body [Hash] GetCarrierAccountsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
         path = "/shipping/v2/carrierAccounts"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetCarrierAccountsResponse
-        }
+        parser = -> { GetCarrierAccountsResponse }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -237,15 +199,12 @@ module Peddler
       # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
       # @param body [Hash] LinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::LinkCarrierAccountResponse
-        }
+        parser = -> { LinkCarrierAccountResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -254,17 +213,14 @@ module Peddler
       # @param carrier_id [String] carrier Id to unlink with merchant.
       # @param body [Hash] UnlinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}/unlink"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::UnlinkCarrierAccountResponse
-        }
+        parser = -> { UnlinkCarrierAccountResponse }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -272,9 +228,9 @@ module Peddler
       #
       # @param body [Hash] GenerateCollectionFormRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
-      #   the same request.
+      # the same request.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil,
@@ -282,10 +238,7 @@ module Peddler
         cannot_sandbox!
 
         path = "/shipping/v2/collectionForms"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GenerateCollectionFormResponse
-        }
+        parser = -> { GenerateCollectionFormResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -293,17 +246,14 @@ module Peddler
       #
       # @param body [Hash] GetCollectionFormHistoryRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
         path = "/shipping/v2/collectionForms/history"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetCollectionFormHistoryResponse
-        }
+        parser = -> { GetCollectionFormHistoryResponse }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -312,17 +262,14 @@ module Peddler
       #
       # @param body [Hash] GetUmanifestedShipmentsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
         path = "/shipping/v2/unmanifestedShipments"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetUnmanifestedShipmentsResponse
-        }
+        parser = -> { GetUnmanifestedShipmentsResponse }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -330,17 +277,14 @@ module Peddler
       #
       # @param collection_form_id [String] collection form Id to reprint a collection.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
         path = "/shipping/v2/collectionForms/#{percent_encode(collection_form_id)}"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetCollectionFormResponse
-        }
+        parser = -> { GetCollectionFormResponse }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -351,7 +295,7 @@ module Peddler
       # @param country_code [String] Country code for access point
       # @param postal_code [String] postal code for access point
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_access_points(access_point_types, country_code, postal_code, x_amzn_shipping_business_id: nil,
@@ -362,10 +306,7 @@ module Peddler
           "countryCode" => country_code,
           "postalCode" => postal_code,
         }.compact
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::GetAccessPointsResponse
-        }
+        parser = -> { GetAccessPointsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -374,7 +315,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body for ndrFeedback operation
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -387,15 +328,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body for the createClaim operation
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      # AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_claim(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/claims"
-        parser = -> {
-          require "peddler/types/shipping_v2"
-          Types::ShippingV2::CreateClaimResponse
-        }
+        parser = -> { CreateClaimResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

@@ -2,84 +2,113 @@
 
 require "helper"
 
-require "peddler/apis/orders_v0"
-
 module Peddler
   module APIs
     class OrdersV0Test < Minitest::Test
-      include FeatureHelpers
-
-      def test_get_orders
-        res = api.sandbox.get_orders(["ATVPDKIKX0DER"], created_after: "TEST_CASE_200")
-
-        assert_predicate(res.status, :success?)
-      end
-
-      def test_get_order
-        res = api.sandbox.get_order("TEST_CASE_200")
-
-        assert_predicate(res.status, :success?)
-      end
-
-      def test_get_order_buyer_info
-        res = api.sandbox.get_order_buyer_info("TEST_CASE_200")
-
-        assert_predicate(res.status, :success?)
-      end
-
-      def test_get_order_address
-        res = api.sandbox.get_order_address("TEST_CASE_200")
-
-        assert_predicate(res.status, :success?)
-      end
-
-      def test_get_order_items
-        res = api.sandbox.get_order_items("TEST_CASE_200")
-
-        assert_predicate(res.status, :success?)
-      end
-
-      def test_get_order_items_buyer_info
-        res = api.sandbox.get_order_items_buyer_info("TEST_CASE_200")
-
-        assert_predicate(res.status, :success?)
-      end
-
-      def test_update_shipment_status
-        payload = {
-          marketplaceId: "ATVPDKIKX0DER",
-          shipmentStatus: "ReadyForPickup",
+      def test_order_boolean_predicates
+        data = {
+          "AmazonOrderId" => "123",
+          "PurchaseDate" => "2025-01-01",
+          "LastUpdateDate" => "2025-01-01",
+          "OrderStatus" => "Pending",
+          "IsPrime" => true,
+          "IsBusinessOrder" => false,
+          "IsReplacementOrder" => false,
         }
-        res = api.sandbox.update_shipment_status("TEST_CASE_200", payload)
+        order = OrdersV0::Order.parse(data)
 
-        assert_predicate(res.status, :success?)
+        assert_predicate(order, :prime?)
+        refute_predicate(order, :business_order?)
+        refute_predicate(order, :replacement_order?)
       end
 
-      def test_confirm_shipment
-        payload = {
-          "marketplaceId" => "ATVPDKIKX0DER",
-          "packageDetail" => {
-            "packageReferenceId" => "1",
-            "carrierCode" => "FedEx",
-            "carrierName" => "FedEx",
-            "shippingMethod" => "FedEx Ground",
-            "trackingNumber" => "112345678",
-            "shipDate" => "2022-02-11T01:00:00.000Z",
-            "shipFromSupplySourceId" => "057d3fcc-b750-419f-bbcd-4d340c60c430",
-            "orderItems" => [
-              {
-                "orderItemId" => "79039765272157",
-                "quantity" => 1,
-                "transparencyCodes" => [
-                  "09876543211234567890",
-                ],
-              },
-            ],
+      def test_order_money_type
+        data = {
+          "AmazonOrderId" => "123",
+          "PurchaseDate" => "2025-01-01",
+          "LastUpdateDate" => "2025-01-01",
+          "OrderStatus" => "Pending",
+          "OrderTotal" => {
+            "CurrencyCode" => "USD",
+            "Amount" => "99.99",
           },
         }
-        res = api.sandbox.confirm_shipment("902-1106328-1059050", payload)
+        order = OrdersV0::Order.parse(data)
 
-        assert_predicate(res.status, :success?)
+        assert_instance_of(Peddler::Money, order.order_total)
+        assert_equal("99.99", order.order_total.amount)
+        assert_equal("USD", order.order_total.currency_code)
+      end
+
+      def test_order_optional_attributes_nil
+        data = {
+          "AmazonOrderId" => "123",
+          "PurchaseDate" => "2025-01-01",
+          "LastUpdateDate" => "2025-01-01",
+          "OrderStatus" => "Pending",
+        }
+        order = OrdersV0::Order.parse(data)
+
+        assert_nil(order.seller_order_id)
+        assert_nil(order.order_total)
+        assert_nil(order.ship_service_level)
+      end
+
+      def test_address_optional_fields
+        data = {
+          "Name" => "John Doe",
+          "AddressLine1" => "123 Main St",
+          "City" => "Seattle",
+        }
+        address = OrdersV0::Address.parse(data)
+
+        assert_equal("John Doe", address.name)
+        assert_nil(address.address_line3)
+        assert_nil(address.municipality)
+      end
+
+      def test_get_orders_response_array_structure
+        data = {
+          "payload" => {
+            "Orders" => [
+              {
+                "AmazonOrderId" => "123",
+                "PurchaseDate" => "2025-01-01",
+                "LastUpdateDate" => "2025-01-01",
+                "OrderStatus" => "Pending",
+              },
+              {
+                "AmazonOrderId" => "456",
+                "PurchaseDate" => "2025-01-01",
+                "LastUpdateDate" => "2025-01-01",
+                "OrderStatus" => "Pending",
+              },
+            ],
+            "NextToken" => "token123",
+          },
+        }
+        response = OrdersV0::GetOrdersResponse.parse(data)
+
+        assert_instance_of(OrdersV0::OrdersList, response.payload)
+        assert_equal(2, response.payload.orders.length)
+        assert_instance_of(OrdersV0::Order, response.payload.orders.first)
+      end
+
+      def test_error_response_structure
+        data = {
+          "errors" => [
+            {
+              "code" => "InvalidInput",
+              "message" => "Invalid marketplace ID",
+              "details" => "The marketplace ID provided is not valid",
+            },
+          ],
+        }
+        response = OrdersV0::GetOrdersResponse.parse(data)
+
+        assert_nil(response.payload)
+        assert_equal(1, response.errors.length)
+        assert_instance_of(OrdersV0::Error, response.errors.first)
       end
     end
   end

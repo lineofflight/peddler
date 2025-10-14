@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def data_kiosk_2023_11_15
-      APIs::DataKiosk20231115
-    end
-  end
-
   module APIs
     # Selling Partner API for Data Kiosk
     #
@@ -26,14 +18,14 @@ module Peddler
       # @param processing_statuses [Array<String>] A list of processing statuses used to filter queries.
       # @param page_size [Integer] The maximum number of queries to return in a single call.
       # @param created_since [String] The earliest query creation date and time for queries to include in the response,
-      #   in ISO 8601 date time format. The default is 90 days ago.
+      # in ISO 8601 date time format. The default is 90 days ago.
       # @param created_until [String] The latest query creation date and time for queries to include in the response, in
-      #   ISO 8601 date time format. The default is the time of the `getQueries` request.
+      # ISO 8601 date time format. The default is the time of the `getQueries` request.
       # @param pagination_token [String] A token to fetch a certain page of results when there are multiple pages of
-      #   results available. The value of this token is fetched from the `pagination.nextToken` field returned in the
-      #   `GetQueriesResponse` object. All other parameters must be provided with the same values that were provided
-      #   with the request that generated this token, with the exception of `pageSize` which can be modified between
-      #   calls to `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
+      # results available. The value of this token is fetched from the `pagination.nextToken` field returned in the
+      # `GetQueriesResponse` object. All other parameters must be provided with the same values that were provided with
+      # the request that generated this token, with the exception of `pageSize` which can be modified between calls to
+      # `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil,
@@ -46,10 +38,7 @@ module Peddler
           "createdUntil" => created_until,
           "paginationToken" => pagination_token,
         }.compact
-        parser = -> {
-          require "peddler/types/data_kiosk_2023_11_15"
-          Types::DataKiosk20231115::GetQueriesResponse
-        }
+        parser = -> { GetQueriesResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -66,10 +55,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_query(body, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/queries"
-        parser = -> {
-          require "peddler/types/data_kiosk_2023_11_15"
-          Types::DataKiosk20231115::CreateQueryResponse
-        }
+        parser = -> { CreateQueryResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -80,7 +66,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param query_id [String] The identifier for the query. This identifier is unique only in combination with a
-      #   selling partner account ID.
+      # selling partner account ID.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_query(query_id, rate_limit: 0.0222)
@@ -97,10 +83,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_query(query_id, rate_limit: 2.0)
         path = "/dataKiosk/2023-11-15/queries/#{percent_encode(query_id)}"
-        parser = -> {
-          require "peddler/types/data_kiosk_2023_11_15"
-          Types::DataKiosk20231115::Query
-        }
+        parser = -> { Query }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -113,10 +96,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_document(document_id, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/documents/#{percent_encode(document_id)}"
-        parser = -> {
-          require "peddler/types/data_kiosk_2023_11_15"
-          Types::DataKiosk20231115::GetDocumentResponse
-        }
+        parser = -> { GetDocumentResponse }
         meter(rate_limit).get(path, parser:)
       end
     end

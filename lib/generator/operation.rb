@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require "erb"
-require "generator/config"
-require "generator/formatter"
-require "generator/parameter_builder"
-require "generator/response_model"
-require "generator/rate_limit_parser"
+require_relative "config"
+require_relative "support/formatter"
+require_relative "builders/parameter_builder"
+require_relative "builders/response_model"
+require_relative "parsers/rate_limit_parser"
+require "peddler/acronyms"
 
 module Generator
   class Operation
@@ -44,7 +45,8 @@ module Generator
       description = lines.join("\n").strip
 
       # Ensure **Note:** and **Examples:** start on new lines with blank lines before them
-      description = description.gsub(/(\S)\s*(\*\*(Note|Examples?):\*\*)/, "\\1\n\n\\2")
+      # Handle both **Note:** and __Note__: formats (will be normalized to ** later)
+      description = description.gsub(/(\S)\s*((\*\*|__)(Note|Examples?):(\*\*|__))/, "\\1\n\n\\2")
 
       description = convert_html_links_to_yard(description)
       description = convert_doc_links_to_full_url(description)
@@ -78,7 +80,7 @@ module Generator
       output.map do |line|
         line = convert_html_links_to_yard(line)
         line = convert_doc_links_to_full_url(line)
-        split_long_comment_line(line, base_indent: 6, wrap_indent: 2)
+        split_long_comment_line(line, base_indent: 6)
       end
     end
 
@@ -123,7 +125,7 @@ module Generator
     end
 
     def query_params
-      hash = {} #: Hash[String, String]
+      hash = {}
       parameters.select { |p| p["in"] == "query" }.each do |p|
         param_name = p["name"].underscore
         value = param_name
@@ -167,7 +169,8 @@ module Generator
     def parser_class_name
       return unless has_typed_response?
 
-      "#{api_name_with_version.camelize}::#{response_model[:model]}"
+      # Apply acronym transformations to match the generated constant name
+      Peddler::Acronyms.apply(response_model[:model])
     end
 
     def name

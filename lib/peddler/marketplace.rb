@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "peddler/endpoint"
-
 module Peddler
   # @see https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
   MARKETPLACE_IDS = {

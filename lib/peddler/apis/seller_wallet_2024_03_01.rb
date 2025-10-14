@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def seller_wallet_2024_03_01
-      APIs::SellerWallet20240301
-    end
-  end
-
   module APIs
     # The Selling Partner API for Amazon Seller Wallet Open Banking API Spec.
     #
@@ -33,10 +25,7 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::BankAccountListing
-        }
+        parser = -> { BankAccountListing }
         get(path, params:, parser:)
       end
 
@@ -45,18 +34,15 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param account_id [String] ID of the Amazon SW account
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def get_account(account_id, marketplace_id)
         path = "/finances/transfers/wallet/2024-03-01/accounts/#{percent_encode(account_id)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::BankAccount
-        }
+        parser = -> { BankAccount }
         get(path, params:, parser:)
       end
 
@@ -65,18 +51,15 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param account_id [String] ID of the Amazon SW account
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def list_account_balances(account_id, marketplace_id)
         path = "/finances/transfers/wallet/2024-03-01/accounts/#{percent_encode(account_id)}/balance"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::BalanceListing
-        }
+        parser = -> { BalanceListing }
         get(path, params:, parser:)
       end
 
@@ -84,18 +67,18 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param source_country_code [String] Represents 2 character country code of source transaction account in ISO
-      #   3166 standard format.
+      # 3166 standard format.
       # @param source_currency_code [String] Represents 3 letter currency code in ISO 4217 standard format of the source
-      #   transaction country.
+      # transaction country.
       # @param destination_country_code [String] Represents 2 character country code of destination transaction account
-      #   in ISO 3166 standard format.
+      # in ISO 3166 standard format.
       # @param destination_currency_code [String] Represents 3 letter currency code in ISO 4217 standard format of the
-      #   destination transaction country.
+      # destination transaction country.
       # @param base_amount [Number] Represents the base transaction amount without any markup fees, rates that will be
-      #   used to get the transfer preview.
+      # used to get the transfer preview.
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def get_transfer_preview(source_country_code, source_currency_code, destination_country_code,
         destination_currency_code, base_amount, marketplace_id)
@@ -108,10 +91,7 @@ module Peddler
           "baseAmount" => base_amount,
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::TransferRatePreview
-        }
+        parser = -> { TransferRatePreview }
         get(path, params:, parser:)
       end
 
@@ -121,8 +101,8 @@ module Peddler
       # @param account_id [String] ID of the Amazon SW account
       # @param next_page_token [String] Pagination token to retrieve a specific page of results.
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def list_account_transactions(account_id, marketplace_id, next_page_token: nil)
         path = "/finances/transfers/wallet/2024-03-01/transactions"
@@ -131,10 +111,7 @@ module Peddler
           "nextPageToken" => next_page_token,
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::TransactionListing
-        }
+        parser = -> { TransactionListing }
         get(path, params:, parser:)
       end
 
@@ -145,18 +122,15 @@ module Peddler
       # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
       # @param amount_digital_signature [String] Digital signature for the source currency transaction amount.
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def create_transaction(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
         path = "/finances/transfers/wallet/2024-03-01/transactions"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::CreateTransactionResponse
-        }
+        parser = -> { CreateTransactionResponse }
         post(path, body:, params:, parser:)
       end
 
@@ -165,18 +139,15 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param transaction_id [String] ID of the Amazon SW transaction
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def get_transaction(transaction_id, marketplace_id)
         path = "/finances/transfers/wallet/2024-03-01/transactions/#{percent_encode(transaction_id)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::Transaction
-        }
+        parser = -> { Transaction }
         get(path, params:, parser:)
       end
 
@@ -185,8 +156,8 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param account_id [String] ID of the Amazon SW account
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param next_page_token [String] Pagination token to retrieve a specific page of results.
       # @return [Peddler::Response] The API response
       def list_transfer_schedules(account_id, marketplace_id, next_page_token: nil)
@@ -196,10 +167,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "nextPageToken" => next_page_token,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::TransferScheduleListing
-        }
+        parser = -> { TransferScheduleListing }
         get(path, params:, parser:)
       end
 
@@ -210,18 +178,15 @@ module Peddler
       # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
       # @param amount_digital_signature [String] Digital signature for the source currency transaction amount.
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def create_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
         path = "/finances/transfers/wallet/2024-03-01/transferSchedules"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::TransferSchedule
-        }
+        parser = -> { TransferSchedule }
         post(path, body:, params:, parser:)
       end
 
@@ -232,18 +197,15 @@ module Peddler
       # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
       # @param amount_digital_signature [String] Digital signature for the source currency transaction amount.
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def update_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
         path = "/finances/transfers/wallet/2024-03-01/transferSchedules"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::TransferSchedule
-        }
+        parser = -> { TransferSchedule }
         put(path, body:, params:, parser:)
       end
 
@@ -252,18 +214,15 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param transfer_schedule_id [String] The schedule ID of the Amazon Seller Wallet transfer.
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def get_transfer_schedule(transfer_schedule_id, marketplace_id)
         path = "/finances/transfers/wallet/2024-03-01/transferSchedules/#{percent_encode(transfer_schedule_id)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::TransferSchedule
-        }
+        parser = -> { TransferSchedule }
         get(path, params:, parser:)
       end
 
@@ -273,18 +232,15 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param transfer_schedule_id [String] A unique reference ID for a scheduled transfer.
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
-      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @return [Peddler::Response] The API response
       def delete_schedule_transaction(transfer_schedule_id, marketplace_id)
         path = "/finances/transfers/wallet/2024-03-01/transferSchedules/#{percent_encode(transfer_schedule_id)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/seller_wallet_2024_03_01"
-          Types::SellerWallet20240301::DeleteTransferSchedule
-        }
+        parser = -> { DeleteTransferSchedule }
         delete(path, params:, parser:)
       end
     end

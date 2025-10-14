@@ -3,12 +3,6 @@
 require "http"
 require "uri"
 
-require "peddler/endpoint"
-require "peddler/error"
-require "peddler/marketplace"
-require "peddler/response"
-require "peddler/version"
-
 module Peddler
   # Wraps an Amazon Selling Partner API (SP-API)
   class API

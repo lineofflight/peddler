@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def fulfillment_outbound_2020_07_01
-      APIs::FulfillmentOutbound20200701
-    end
-  end
-
   module APIs
     # Selling Partner APIs for Fulfillment Outbound
     #
@@ -28,10 +20,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_fulfillment_preview(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
-        }
+        parser = -> { GetFulfillmentPreviewResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -44,10 +33,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delivery_offers(body, rate_limit: 5.0)
         path = "/fba/outbound/2020-07-01/deliveryOffers"
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse
-        }
+        parser = -> { GetDeliveryOffersResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -56,8 +42,8 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param query_start_date [String] A date used to select fulfillment orders that were last updated after (or at) a
-      #   specified time. An update is defined as any change in fulfillment order status, including the creation of a
-      #   new fulfillment order.
+      # specified time. An update is defined as any change in fulfillment order status, including the creation of a new
+      # fulfillment order.
       # @param next_token [String] A string token returned in the response to your previous request.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -67,10 +53,7 @@ module Peddler
           "queryStartDate" => query_start_date,
           "nextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
-        }
+        parser = -> { ListAllFulfillmentOrdersResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -83,10 +66,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_fulfillment_order(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::CreateFulfillmentOrderResponse
-        }
+        parser = -> { CreateFulfillmentOrderResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -95,9 +75,9 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param package_number [Integer] The unencrypted package identifier. You can obtain this value from the
-      #   `getFulfillmentOrder` operation.
+      # `getFulfillmentOrder` operation.
       # @param amazon_fulfillment_tracking_number [String] The Amazon fulfillment tracking number. You can obtain this
-      #   value from the `getFulfillmentOrder` operation.
+      # value from the `getFulfillmentOrder` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_package_tracking_details(package_number: nil, amazon_fulfillment_tracking_number: nil, rate_limit: 2.0)
@@ -106,10 +86,7 @@ module Peddler
           "packageNumber" => package_number,
           "amazonFulfillmentTrackingNumber" => amazon_fulfillment_tracking_number,
         }.compact
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse
-        }
+        parser = -> { GetPackageTrackingDetailsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -121,10 +98,10 @@ module Peddler
       # @param seller_sku [String] The seller SKU for which return reason codes are required.
       # @param marketplace_id [String] The marketplace for which the seller wants return reason codes.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      #   fulfillment order was created. The service uses this value to determine the marketplace for which the seller
-      #   wants return reason codes.
+      # fulfillment order was created. The service uses this value to determine the marketplace for which the seller
+      # wants return reason codes.
       # @param language [String] The language that the `TranslatedDescription` property of the `ReasonCodeDetails`
-      #   response object should be translated into.
+      # response object should be translated into.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_return_reason_codes(seller_sku, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil,
@@ -136,10 +113,7 @@ module Peddler
           "sellerFulfillmentOrderId" => seller_fulfillment_order_id,
           "language" => language,
         }.compact
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::ListReturnReasonCodesResponse
-        }
+        parser = -> { ListReturnReasonCodesResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -148,16 +122,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request body of the `createFulfillmentReturn` operation.
       # @param seller_fulfillment_order_id [String] An identifier the seller assigns to the fulfillment order at the
-      #   time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value
-      #   based on the buyer's request to return items.
+      # time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value
+      # based on the buyer's request to return items.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/return"
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse
-        }
+        parser = -> { CreateFulfillmentReturnResponse }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -165,15 +136,12 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      #   fulfillment order was created.
+      # fulfillment order was created.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::GetFulfillmentOrderResponse
-        }
+        parser = -> { GetFulfillmentOrderResponse }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -182,15 +150,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request body of the `updateFulfillmentOrder` operation.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      #   fulfillment order was created.
+      # fulfillment order was created.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderResponse
-        }
+        parser = -> { UpdateFulfillmentOrderResponse }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -199,15 +164,12 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      #   fulfillment order was created.
+      # fulfillment order was created.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/cancel"
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::CancelFulfillmentOrderResponse
-        }
+        parser = -> { CancelFulfillmentOrderResponse }
         meter(rate_limit).put(path, parser:)
       end
 
@@ -219,17 +181,14 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      #   fulfillment order was created.
+      # fulfillment order was created.
       # @param body [Hash] The identifier assigned to the item by the seller when the fulfillment order was created.
       # @return [Peddler::Response] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
         must_sandbox!
 
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/status"
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse
-        }
+        parser = -> { SubmitFulfillmentOrderStatusUpdateResponse }
         put(path, body:, parser:)
       end
 
@@ -245,10 +204,7 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::GetFeaturesResponse
-        }
+        parser = -> { GetFeaturesResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -256,13 +212,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return a list of the inventory that is eligible for
-      #   the specified feature.
+      # the specified feature.
       # @param feature_name [String] The name of the feature for which to return a list of eligible inventory.
       # @param next_token [String] A string token returned in the response to your previous request that is used to
-      #   return the next response page. A value of `null` will return the first page.
+      # return the next response page. A value of `null` will return the first page.
       # @param query_start_date [String] A date that you can use to select inventory that has been updated since a
-      #   specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
-      #   in the format `yyyy-MM-ddTHH:mm:ss.sssZ`
+      # specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
+      # in the format `yyyy-MM-ddTHH:mm:ss.sssZ`
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
@@ -272,10 +228,7 @@ module Peddler
           "nextToken" => next_token,
           "queryStartDate" => query_start_date,
         }.compact
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::GetFeatureInventoryResponse
-        }
+        parser = -> { GetFeatureInventoryResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -288,7 +241,7 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which to return the count.
       # @param feature_name [String] The name of the feature.
       # @param seller_sku [String] Used to identify an item in the given marketplace. `sellerSku` is qualified by the
-      #   seller's `sellerId`, which is included with every operation that you submit.
+      # seller's `sellerId`, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feature_sku(marketplace_id, feature_name, seller_sku, rate_limit: 2.0)
@@ -296,10 +249,7 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/fulfillment_outbound_2020_07_01"
-          Types::FulfillmentOutbound20200701::GetFeatureSkuResponse
-        }
+        parser = -> { GetFeatureSKUResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

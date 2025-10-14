@@ -1,6 +1,83 @@
 module Peddler
   module APIs
     class VendorDirectFulfillmentTransactionsV1 < API
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error
+                    | (String?, String?, String?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error
+
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error
+                   | (String?, String?, String?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error
+
+        attr_reader code: String?
+        attr_reader details: String?
+        attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class GetTransactionResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?, ?payload: Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::GetTransactionResponse
+                    | (Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?, Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::GetTransactionResponse
+
+        def self.[]: (?errors: Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?, ?payload: Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::GetTransactionResponse
+                   | (Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?, Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::GetTransactionResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::GetTransactionResponse
+
+        attr_reader errors: Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?
+        attr_reader payload: Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus?
+        def members: () -> [ :errors, :payload ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?, payload: Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus? }
+      end
+
+      class Transaction < Data
+        def self.new: (status: String?, transaction_id: String?, ?errors: Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction
+                    | (String?, String?, Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction
+
+        def self.[]: (status: String?, transaction_id: String?, ?errors: Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction
+                   | (String?, String?, Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction
+
+        def self.members: () -> [ :status, :transaction_id, :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction
+
+        attr_reader errors: Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]?
+        attr_reader status: String?
+        attr_reader transaction_id: String?
+        def members: () -> [ :status, :transaction_id, :errors ]
+
+        def to_h: () -> { status: String?, transaction_id: String?, errors: Array[Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Error]? }
+      end
+
+      class TransactionStatus < Data
+        def self.new: (?transaction_status: Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus
+                    | (Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus
+
+        def self.[]: (?transaction_status: Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus
+                   | (Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction?) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus
+
+        def self.members: () -> [ :transaction_status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentTransactionsV1::TransactionStatus
+
+        attr_reader transaction_status: Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction?
+        def members: () -> [ :transaction_status ]
+
+        def to_h: () -> { transaction_status: Peddler::APIs::VendorDirectFulfillmentTransactionsV1::Transaction? }
+      end
+
       def get_transaction_status: (String, ?rate_limit: Float) -> Peddler::Response
     end
   end

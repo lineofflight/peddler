@@ -1,0 +1,32 @@
+{
+  "header": {
+    "sellerId": "AXXXXXXXXXXXX",
+    "version": "2.0",
+    "feedId": "1234567890",
+    "report": {
+      "includedData": ["summaries"],
+      "apiVersion": "2021-08-01"
+    }
+  },
+  "issues": [
+    {
+      "messageId": 4,
+      "code": "90220",
+      "severity": "ERROR",
+      "message": "'[batteries_required]' is required but not supplied."
+    }
+  ],
+  "summary": {
+    "errors": 3,
+    "warnings": 0,
+    "messagesProcessed": 4,
+    "messagesAccepted": 2,
+    "messagesInvalid": 2,
+    "itemSummary": {
+      "items": 10,
+      "errors": 1,
+      "warnings": 2
+    }
+  },
+  "items": []
+}

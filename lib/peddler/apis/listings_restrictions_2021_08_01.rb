@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def listings_restrictions_2021_08_01
-      APIs::ListingsRestrictions20210801
-    end
-  end
-
   module APIs
     # Selling Partner API for Listings Restrictions
     #
@@ -31,8 +23,8 @@ module Peddler
       # @param seller_id [String] A selling partner identifier, such as a merchant account.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
       # @param reason_locale [String] A locale for reason text localization. When not provided, the default language
-      #   code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to
-      #   "en_US" when a localization is not available in the specified locale.
+      # code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to
+      # "en_US" when a localization is not available in the specified locale.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_listings_restrictions(asin, seller_id, marketplace_ids, condition_type: nil, reason_locale: nil,
@@ -45,10 +37,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "reasonLocale" => reason_locale,
         }.compact
-        parser = -> {
-          require "peddler/types/listings_restrictions_2021_08_01"
-          Types::ListingsRestrictions20210801::RestrictionList
-        }
+        parser = -> { RestrictionList }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

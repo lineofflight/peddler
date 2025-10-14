@@ -5,11 +5,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Parse SP-API feed schemas with type-safe data structures
+- Parse SP-API report schemas with type-safe data structures
+- Integrate Zeitwerk for autoloading (improves startup time)
+
+### Changed
+
+- Move API typed parsers from `Peddler::Types::*` to `Peddler::APIs::*` namespace
+
+## [5.0.0.pre.3] - 2025-10-07
+
+### Added
+
+- Parse SP-API notifications
+
 ## [5.0.0.pre.2] - 2025-10-06
 
 ### Added
 
-- Add typed `Peddler::Types::LWAToken` response for `Peddler::LWA.request`
+- Add typed response for `Peddler::LWA.request`
 
 ### Changed
 
@@ -34,34 +50,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Separate colliding APIs in external-fulfillment and finances directories into distinct API classes
-
-### Migration Guide
-
-#### Error Handling
-
-**Before (v4.x):**
-```ruby
-# 5xx errors returned response objects
-response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
-if response.status >= 500
-  # Handle error
-end
-
-# Or opt-in to v5 behavior
-Peddler.configure do |config|
-  config.raise_on_server_errors = true
-end
-```
-
-**After (v5.0):**
-```ruby
-# All errors now raise exceptions
-begin
-  response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
-rescue Peddler::Error => e
-  # Handle error: e.status, e.response
-end
-```
 
 ## [4.9.0] - 2025-10-01
 

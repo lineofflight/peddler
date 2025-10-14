@@ -1,8 +1,6 @@
 module Peddler
-  # Aliased API methods (latest versions)
   def self.amazon_warehousing_and_distribution: () -> singleton(APIs::AmazonWarehousingAndDistribution20240509)
 
-  # API method declarations
   def self.amazon_warehousing_and_distribution_2024_05_09: () -> singleton(APIs::AmazonWarehousingAndDistribution20240509)
 
   def self.aplus_content: () -> singleton(APIs::AplusContent20201101)

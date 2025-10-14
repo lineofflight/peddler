@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/marketplace"
 
 module Peddler
   class MarketplaceTest < Minitest::Test

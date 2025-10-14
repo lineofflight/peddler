@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def product_pricing_v0
-      APIs::ProductPricingV0
-    end
-  end
-
   module APIs
     # Selling Partner API for Pricing
     #
@@ -27,19 +19,19 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
-      #   returned.
+      # returned.
       # @param asins [Array<String>] A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
-      #   identify items in the given marketplace.
+      # identify items in the given marketplace.
       # @param skus [Array<String>] A list of up to twenty seller SKU values used to identify items in the given
-      #   marketplace.
+      # marketplace.
       # @param item_type [String] Indicates whether ASIN values or seller SKU values are used to identify items. If you
-      #   specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins
-      #   parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you
-      #   provide in the Skus parameter.
+      # specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins
+      # parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide
+      # in the Skus parameter.
       # @param item_condition [String] Filters the offer listings based on item condition. Possible values: New, Used,
-      #   Collectible, Refurbished, Club.
+      # Collectible, Refurbished, Club.
       # @param offer_type [String] Indicates whether to request pricing information for the seller's B2C or B2B offers.
-      #   Default is B2C.
+      # Default is B2C.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil,
@@ -53,10 +45,7 @@ module Peddler
           "ItemCondition" => item_condition,
           "OfferType" => offer_type,
         }.compact
-        parser = -> {
-          require "peddler/types/product_pricing_v0"
-          Types::ProductPricingV0::GetPricingResponse
-        }
+        parser = -> { GetPricingResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -68,17 +57,17 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
-      #   returned.
+      # returned.
       # @param asins [Array<String>] A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
-      #   identify items in the given marketplace.
+      # identify items in the given marketplace.
       # @param skus [Array<String>] A list of up to twenty seller SKU values used to identify items in the given
-      #   marketplace.
+      # marketplace.
       # @param item_type [String] Indicates whether ASIN values or seller SKU values are used to identify items. If you
-      #   specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins
-      #   parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you
-      #   provide in the Skus parameter. Possible values: Asin, Sku.
+      # specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins
+      # parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide
+      # in the Skus parameter. Possible values: Asin, Sku.
       # @param customer_type [String] Indicates whether to request pricing information from the point of view of
-      #   Consumer or Business buyers. Default is Consumer.
+      # Consumer or Business buyers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil, rate_limit: 0.5)
@@ -90,10 +79,7 @@ module Peddler
           "ItemType" => item_type,
           "CustomerType" => customer_type,
         }.compact
-        parser = -> {
-          require "peddler/types/product_pricing_v0"
-          Types::ProductPricingV0::GetPricingResponse
-        }
+        parser = -> { GetPricingResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -105,11 +91,11 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
-      #   returned.
+      # returned.
       # @param item_condition [String] Filters the offer listings based on item condition. Possible values: New, Used,
-      #   Collectible, Refurbished, Club.
+      # Collectible, Refurbished, Club.
       # @param seller_sku [String] Identifies an item in the given marketplace. SellerSKU is qualified by the seller's
-      #   SellerId, which is included with every operation that you submit.
+      # SellerId, which is included with every operation that you submit.
       # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -120,10 +106,7 @@ module Peddler
           "ItemCondition" => item_condition,
           "CustomerType" => customer_type,
         }.compact
-        parser = -> {
-          require "peddler/types/product_pricing_v0"
-          Types::ProductPricingV0::GetOffersResponse
-        }
+        parser = -> { GetOffersResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -131,9 +114,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
-      #   returned.
+      # returned.
       # @param item_condition [String] Filters the offer listings to be considered based on item condition. Possible
-      #   values: New, Used, Collectible, Refurbished, Club.
+      # values: New, Used, Collectible, Refurbished, Club.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
@@ -145,10 +128,7 @@ module Peddler
           "ItemCondition" => item_condition,
           "CustomerType" => customer_type,
         }.compact
-        parser = -> {
-          require "peddler/types/product_pricing_v0"
-          Types::ProductPricingV0::GetOffersResponse
-        }
+        parser = -> { GetOffersResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -161,10 +141,7 @@ module Peddler
       def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
-        parser = -> {
-          require "peddler/types/product_pricing_v0"
-          Types::ProductPricingV0::GetItemOffersBatchResponse
-        }
+        parser = -> { GetItemOffersBatchResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -172,16 +149,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param get_listing_offers_batch_request_body [Hash] The request associated with the `getListingOffersBatch` API
-      #   call.
+      # call.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body
-        parser = -> {
-          require "peddler/types/product_pricing_v0"
-          Types::ProductPricingV0::GetListingOffersBatchResponse
-        }
+        parser = -> { GetListingOffersBatchResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

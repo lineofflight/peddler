@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def product_fees_v0
-      APIs::ProductFeesV0
-    end
-  end
-
   module APIs
     # Selling Partner API for Product Fees
     #
@@ -41,15 +33,12 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body schema for the getMyFeesEstimates operation
       # @param seller_sku [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the
-      #   seller's SellerId, which is included with every operation that you submit.
+      # seller's SellerId, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
         path = "/products/fees/v0/listings/#{percent_encode(seller_sku)}/feesEstimate"
-        parser = -> {
-          require "peddler/types/product_fees_v0"
-          Types::ProductFeesV0::GetMyFeesEstimateResponse
-        }
+        parser = -> { GetMyFeesEstimateResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -76,10 +65,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
         path = "/products/fees/v0/items/#{percent_encode(asin)}/feesEstimate"
-        parser = -> {
-          require "peddler/types/product_fees_v0"
-          Types::ProductFeesV0::GetMyFeesEstimateResponse
-        }
+        parser = -> { GetMyFeesEstimateResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -91,10 +77,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimates(body, rate_limit: 0.5)
         path = "/products/fees/v0/feesEstimate"
-        parser = -> {
-          require "peddler/types/product_fees_v0"
-          Types::ProductFeesV0::GetMyFeesEstimatesResponse
-        }
+        parser = -> { GetMyFeesEstimatesResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

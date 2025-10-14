@@ -36,3 +36,6 @@ gem "cgi" if RUBY_VERSION >= "3.5"
 
 # For exploratory code
 gem "csv"
+gem "parallel"
+
+gem "rubocop-on-rbs", "~> 1.8", group: :development

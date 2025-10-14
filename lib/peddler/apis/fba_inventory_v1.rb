@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def fba_inventory_v1
-      APIs::FBAInventoryV1
-    end
-  end
-
   module APIs
     # Selling Partner API for FBA Inventory
     #
@@ -39,20 +31,20 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param details [Boolean] true to return inventory summaries with additional summarized inventory details and
-      #   quantities. Otherwise, returns inventory summaries only (default value).
+      # quantities. Otherwise, returns inventory summaries only (default value).
       # @param granularity_type [String] The granularity type for the inventory aggregation level.
       # @param granularity_id [String] The granularity ID for the inventory aggregation level.
       # @param start_date_time [String] A start date and time in ISO8601 format. If specified, all inventory summaries
-      #   that have changed since then are returned. You must specify a date and time that is no earlier than 18 months
-      #   prior to the date and time when you call the API. Note: Changes in inboundWorkingQuantity,
-      #   inboundShippedQuantity and inboundReceivingQuantity are not detected.
+      # that have changed since then are returned. You must specify a date and time that is no earlier than 18 months
+      # prior to the date and time when you call the API. Note: Changes in inboundWorkingQuantity,
+      # inboundShippedQuantity and inboundReceivingQuantity are not detected.
       # @param seller_skus [Array<String>] A list of seller SKUs for which to return inventory summaries. You may
-      #   specify up to 50 SKUs.
+      # specify up to 50 SKUs.
       # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @param next_token [String] String token returned in the response of your previous request. The string token will
-      #   expire 30 seconds after being created.
+      # expire 30 seconds after being created.
       # @param marketplace_ids [Array<String>] The marketplace ID for the marketplace for which to return inventory
-      #   summaries.
+      # summaries.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil,
@@ -68,10 +60,7 @@ module Peddler
           "nextToken" => next_token,
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = -> {
-          require "peddler/types/fba_inventory_v1"
-          Types::FBAInventoryV1::GetInventorySummariesResponse
-        }
+        parser = -> { GetInventorySummariesResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -87,10 +76,7 @@ module Peddler
 
         path = "/fba/inventory/v1/items"
         body = create_inventory_item_request_body
-        parser = -> {
-          require "peddler/types/fba_inventory_v1"
-          Types::FBAInventoryV1::CreateInventoryItemResponse
-        }
+        parser = -> { CreateInventoryItemResponse }
         post(path, body:, parser:)
       end
 
@@ -109,10 +95,7 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/fba_inventory_v1"
-          Types::FBAInventoryV1::DeleteInventoryItemResponse
-        }
+        parser = -> { DeleteInventoryItemResponse }
         delete(path, params:, parser:)
       end
 
@@ -130,10 +113,7 @@ module Peddler
 
         path = "/fba/inventory/v1/items/inventory"
         body = add_inventory_request_body
-        parser = -> {
-          require "peddler/types/fba_inventory_v1"
-          Types::FBAInventoryV1::AddInventoryResponse
-        }
+        parser = -> { AddInventoryResponse }
         post(path, body:, parser:)
       end
     end

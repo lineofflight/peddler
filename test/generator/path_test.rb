@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "minitest/autorun"
-require "generator/path"
+require "helper"
+require "generator/parsers/path"
 
 module Generator
   class PathTest < Minitest::Test

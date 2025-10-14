@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def vendor_direct_fulfillment_transactions_2021_12_28
-      APIs::VendorDirectFulfillmentTransactions20211228
-    end
-  end
-
   module APIs
     # Selling Partner API for Direct Fulfillment Transaction Status
     #
@@ -23,15 +15,12 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param transaction_id [String] Previously returned in the response to the POST request of a specific
-      #   transaction.
+      # transaction.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/transactions/2021-12-28/transactions/#{percent_encode(transaction_id)}"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_transactions_2021_12_28"
-          Types::VendorDirectFulfillmentTransactions20211228::TransactionStatus
-        }
+        parser = -> { TransactionStatus }
         meter(rate_limit).get(path, parser:)
       end
     end

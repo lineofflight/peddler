@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/apis/product_fees_v0"
 
 module Peddler
   module APIs

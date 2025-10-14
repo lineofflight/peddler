@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "active_support/inflector"
+require_relative "../peddler/acronyms"
 
 module Generator
   module Config
@@ -9,7 +10,7 @@ module Generator
 
     # Configure ActiveSupport::Inflector with Amazon SP-API acronyms
     ActiveSupport::Inflector.inflections do |inflect|
-      ["FBA", "SKU", "ASIN", "URL", "TDS", "SAFET", "CGST", "SGST", "IGST"].each do |acronym|
+      Peddler::Acronyms.values.each do |acronym|
         inflect.acronym(acronym)
       end
     end

@@ -2,23 +2,44 @@
 
 require "erb"
 
-require "generator/config"
-require "generator/version_selector"
+require_relative "logger"
+require_relative "api"
+require_relative "config"
+require_relative "support/file_writer"
+require_relative "resolvers/version_selector"
+require_relative "rbs/entrypoint"
 
 module Generator
   class Entrypoint
+    include FileWriter
+
     attr_reader :apis
+
+    class << self
+      def generate
+        new(API.apis).generate
+        Generator.logger.info("Generated entry point")
+      end
+    end
 
     def initialize(apis)
       @apis = apis
     end
 
     def generate
-      File.write(file_path, render_template)
+      written_files = []
+
+      # Generate main entrypoint file
+      written_files << write_file(file_path, render_template)
+
+      # Generate entrypoint signature
+      written_files << RBS::Entrypoint.new(apis).generate
+
+      format_files(written_files)
     end
 
     def required_libraries
-      apis.map(&:library_name).append("peddler/token").sort
+      apis.map(&:library_name).append("peddler/lwa").sort
     end
 
     def apis_with_latest_version

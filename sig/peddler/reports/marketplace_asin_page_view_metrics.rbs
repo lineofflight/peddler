@@ -1,0 +1,84 @@
+module Peddler
+  module Reports
+    module MarketplaceASINPageViewMetrics
+      class MarketplaceASINPageViewMetrics < Data
+        def self.new: (asin: String?, end_time: Time?, marketplace_id: String?, page_views: Integer?, start_time: Time?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics
+                    | (String?, Time?, String?, Integer?, Time?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics
+
+        def self.[]: (asin: String?, end_time: Time?, marketplace_id: String?, page_views: Integer?, start_time: Time?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics
+                   | (String?, Time?, String?, Integer?, Time?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics
+
+        def self.members: () -> [ :asin, :end_time, :marketplace_id, :page_views, :start_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics
+
+        attr_reader asin: String?
+        attr_reader end_time: Time?
+        attr_reader marketplace_id: String?
+        attr_reader page_views: Integer?
+        attr_reader start_time: Time?
+        def members: () -> [ :asin, :end_time, :marketplace_id, :page_views, :start_time ]
+
+        def to_h: () -> { asin: String?, end_time: Time?, marketplace_id: String?, page_views: Integer?, start_time: Time? }
+      end
+
+      class Report < Data
+        def self.new: (marketplace_asin_page_view_metrics: Array[Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics]?, report_specification: Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::Report
+                    | (Array[Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics]?, Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::Report
+
+        def self.[]: (marketplace_asin_page_view_metrics: Array[Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics]?, report_specification: Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::Report
+                   | (Array[Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics]?, Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::Report
+
+        def self.members: () -> [ :marketplace_asin_page_view_metrics, :report_specification ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::MarketplaceASINPageViewMetrics::Report
+
+        attr_reader marketplace_asin_page_view_metrics: Array[Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics]?
+        attr_reader report_specification: Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification?
+        def members: () -> [ :marketplace_asin_page_view_metrics, :report_specification ]
+
+        def to_h: () -> { marketplace_asin_page_view_metrics: Array[Peddler::Reports::MarketplaceASINPageViewMetrics::MarketplaceASINPageViewMetrics]?, report_specification: Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification? }
+      end
+
+      class ReportOptions < Data
+        def self.new: (product_type: String?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions
+                    | (String?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions
+
+        def self.[]: (product_type: String?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions
+                   | (String?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions
+
+        def self.members: () -> [ :product_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions
+
+        attr_reader product_type: String?
+        def members: () -> [ :product_type ]
+
+        def to_h: () -> { product_type: String? }
+      end
+
+      class ReportSpecification < Data
+        def self.new: (marketplace_ids: Array[String]?, report_options: Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions?, report_type: String?, ?data_end_time: Date?, ?data_start_time: Date?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification
+                    | (Array[String]?, Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions?, String?, Date?, Date?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification
+
+        def self.[]: (marketplace_ids: Array[String]?, report_options: Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions?, report_type: String?, ?data_end_time: Date?, ?data_start_time: Date?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification
+                   | (Array[String]?, Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions?, String?, Date?, Date?) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification
+
+        def self.members: () -> [ :marketplace_ids, :report_options, :report_type, :data_end_time, :data_start_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::MarketplaceASINPageViewMetrics::ReportSpecification
+
+        attr_reader data_end_time: Date?
+        attr_reader data_start_time: Date?
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader report_options: Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions?
+        attr_reader report_type: String?
+        def members: () -> [ :marketplace_ids, :report_options, :report_type, :data_end_time, :data_start_time ]
+
+        def to_h: () -> { marketplace_ids: Array[String]?, report_options: Peddler::Reports::MarketplaceASINPageViewMetrics::ReportOptions?, report_type: String?, data_end_time: Date?, data_start_time: Date? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::MarketplaceASINPageViewMetrics::Report
+    end
+  end
+end

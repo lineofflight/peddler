@@ -1,9 +1,8 @@
 module Peddler
-  ENDPOINTS: Hash[String, Hash[Symbol, String]]
-
   class Endpoint
     def self.new: (aws_region: String, selling_region: String, host: String) -> Endpoint
                 | (**String) -> Endpoint
+    def self.all: () -> Array[Endpoint]
     def self.find: (String aws_region) -> Endpoint
     def self.find_by_selling_region: (String selling_region) -> Endpoint
     attr_reader aws_region: String

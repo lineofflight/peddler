@@ -1,0 +1,84 @@
+module Peddler
+  module Reports
+    module VendorRealTimeSales
+      class Report < Data
+        def self.new: (report_data: Array[untyped]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
+                    | (Array[untyped]?, Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
+
+        def self.[]: (report_data: Array[untyped]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
+                   | (Array[untyped]?, Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
+
+        def self.members: () -> [ :report_data, :report_specification ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorRealTimeSales::Report
+
+        attr_reader report_data: Array[untyped]?
+        attr_reader report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification?
+        def members: () -> [ :report_data, :report_specification ]
+
+        def to_h: () -> { report_data: Array[untyped]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification? }
+      end
+
+      class ReportData < Data
+        def self.new: (asin: String?, end_time: Time?, ordered_revenue: Float?, ordered_units: Integer?, start_time: Time?) -> Peddler::Reports::VendorRealTimeSales::ReportData
+                    | (String?, Time?, Float?, Integer?, Time?) -> Peddler::Reports::VendorRealTimeSales::ReportData
+
+        def self.[]: (asin: String?, end_time: Time?, ordered_revenue: Float?, ordered_units: Integer?, start_time: Time?) -> Peddler::Reports::VendorRealTimeSales::ReportData
+                   | (String?, Time?, Float?, Integer?, Time?) -> Peddler::Reports::VendorRealTimeSales::ReportData
+
+        def self.members: () -> [ :asin, :end_time, :ordered_revenue, :ordered_units, :start_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorRealTimeSales::ReportData
+
+        attr_reader asin: String?
+        attr_reader end_time: Time?
+        attr_reader ordered_revenue: Float?
+        attr_reader ordered_units: Integer?
+        attr_reader start_time: Time?
+        def members: () -> [ :asin, :end_time, :ordered_revenue, :ordered_units, :start_time ]
+
+        def to_h: () -> { asin: String?, end_time: Time?, ordered_revenue: Float?, ordered_units: Integer?, start_time: Time? }
+      end
+
+      class ReportOptions < Data
+        def self.new: (currency_code: String?) -> Peddler::Reports::VendorRealTimeSales::ReportOptions
+                    | (String?) -> Peddler::Reports::VendorRealTimeSales::ReportOptions
+
+        def self.[]: (currency_code: String?) -> Peddler::Reports::VendorRealTimeSales::ReportOptions
+                   | (String?) -> Peddler::Reports::VendorRealTimeSales::ReportOptions
+
+        def self.members: () -> [ :currency_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorRealTimeSales::ReportOptions
+
+        attr_reader currency_code: String?
+        def members: () -> [ :currency_code ]
+
+        def to_h: () -> { currency_code: String? }
+      end
+
+      class ReportSpecification < Data
+        def self.new: (data_end_time: Time?, data_start_time: Time?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorRealTimeSales::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorRealTimeSales::ReportSpecification
+                    | (Time?, Time?, Array[String]?, Peddler::Reports::VendorRealTimeSales::ReportOptions?, String?) -> Peddler::Reports::VendorRealTimeSales::ReportSpecification
+
+        def self.[]: (data_end_time: Time?, data_start_time: Time?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorRealTimeSales::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorRealTimeSales::ReportSpecification
+                   | (Time?, Time?, Array[String]?, Peddler::Reports::VendorRealTimeSales::ReportOptions?, String?) -> Peddler::Reports::VendorRealTimeSales::ReportSpecification
+
+        def self.members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorRealTimeSales::ReportSpecification
+
+        attr_reader data_end_time: Time?
+        attr_reader data_start_time: Time?
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader report_options: Peddler::Reports::VendorRealTimeSales::ReportOptions?
+        attr_reader report_type: String?
+        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
+
+        def to_h: () -> { data_end_time: Time?, data_start_time: Time?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorRealTimeSales::ReportOptions?, report_type: String? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::VendorRealTimeSales::Report
+    end
+  end
+end

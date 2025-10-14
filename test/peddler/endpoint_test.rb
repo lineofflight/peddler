@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/endpoint"
 
 module Peddler
   class EndpointTest < Minitest::Test
     def setup
-      aws_region = ENDPOINTS.keys.sample
-      @endpoint = Endpoint.find(aws_region)
+      @endpoint = Endpoint.all.sample
     end
 
     def test_selling_region

@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def merchant_fulfillment_v0
-      APIs::MerchantFulfillmentV0
-    end
-  end
-
   module APIs
     # Selling Partner API for Merchant Fulfillment
     #
@@ -27,10 +19,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_eligible_shipment_services(body, rate_limit: 6.0)
         path = "/mfn/v0/eligibleShippingServices"
-        parser = -> {
-          require "peddler/types/merchant_fulfillment_v0"
-          Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
-        }
+        parser = -> { GetEligibleShipmentServicesResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -42,10 +31,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
-        parser = -> {
-          require "peddler/types/merchant_fulfillment_v0"
-          Types::MerchantFulfillmentV0::GetShipmentResponse
-        }
+        parser = -> { GetShipmentResponse }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -57,10 +43,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
-        parser = -> {
-          require "peddler/types/merchant_fulfillment_v0"
-          Types::MerchantFulfillmentV0::CancelShipmentResponse
-        }
+        parser = -> { CancelShipmentResponse }
         meter(rate_limit).delete(path, parser:)
       end
 
@@ -72,10 +55,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_shipment(body, rate_limit: 2.0)
         path = "/mfn/v0/shipments"
-        parser = -> {
-          require "peddler/types/merchant_fulfillment_v0"
-          Types::MerchantFulfillmentV0::CreateShipmentResponse
-        }
+        parser = -> { CreateShipmentResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -88,10 +68,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_additional_seller_inputs(body, rate_limit: 1.0)
         path = "/mfn/v0/additionalSellerInputs"
-        parser = -> {
-          require "peddler/types/merchant_fulfillment_v0"
-          Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse
-        }
+        parser = -> { GetAdditionalSellerInputsResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

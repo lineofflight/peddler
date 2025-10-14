@@ -1,0 +1,22 @@
+module Peddler
+  class Money < Data
+    def self.new: (amount: String, currency_code: String) -> Money
+                | (String, String) -> Money
+
+    def self.[]: (amount: String, currency_code: String) -> Money
+               | (String, String) -> Money
+
+    def self.members: () -> [ :amount, :currency_code ]
+
+    def self.parse: (untyped value) -> Money?
+
+    attr_reader amount: String
+    attr_reader currency_code: String
+
+    def members: () -> [ :amount, :currency_code ]
+
+    def to_h: () -> { amount: String, currency_code: String }
+
+    def to_d: () -> BigDecimal
+  end
+end

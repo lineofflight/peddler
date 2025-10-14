@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def external_fulfillment_inventory_2024_09_11
-      APIs::ExternalFulfillmentInventory20240911
-    end
-  end
-
   module APIs
     # The Selling Partner API for External Fulfillment Inventory Management
     #

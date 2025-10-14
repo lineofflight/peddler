@@ -1,5 +1,6 @@
 plugins:
   - rubocop-minitest
+  - rubocop-on-rbs
   - rubocop-performance
   - rubocop-rake
 inherit_gem:
@@ -7,7 +8,8 @@ inherit_gem:
 inherit_from: ".rubocop_todo.yml"
 
 AllCops:
-  Exclude:
-    - "gemfiles/**/*"
   NewCops: enable
   TargetRubyVersion: 3.2
+
+RBS:
+  Enabled: true

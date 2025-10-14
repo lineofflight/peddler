@@ -1,0 +1,12 @@
+# RBS patches for Zeitwerk gem
+
+module Zeitwerk
+  class Inflector
+    def inflect: (Hash[String, String] inflections) -> void
+  end
+
+  class GemInflector < Inflector
+    def initialize: (String root_file) -> void
+    def camelize: (String basename, String abspath) -> String
+  end
+end

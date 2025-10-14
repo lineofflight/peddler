@@ -2,10 +2,6 @@
 
 require "http"
 
-require "peddler/error"
-require "peddler/response"
-require "peddler/types/lwa_token"
-
 module Peddler
   # Requests Login with Amazon (LWA) access tokens that authorize your application to make SP-API requests.
   #
@@ -34,7 +30,7 @@ module Peddler
 
     def request
       http_response = HTTP.post(URL, form: params)
-      Response.wrap(http_response, parser: -> { Types::LWAToken })
+      Response.wrap(http_response, parser: -> { LWAToken })
     end
 
     def grant_type

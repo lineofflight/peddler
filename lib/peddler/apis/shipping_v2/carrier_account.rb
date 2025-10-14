@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+# This file is generated. Do not edit.
+
+require "structure"
+
+module Peddler
+  module APIs
+    class ShippingV2
+      # Carrier Account details used to fetch rates.
+      CarrierAccount = Structure.new do
+        # @return [String]
+        attribute(:carrier_account_id, String, from: "carrierAccountId")
+
+        # @return [String]
+        attribute(:carrier_id, String, from: "carrierId")
+      end
+    end
+  end
+end

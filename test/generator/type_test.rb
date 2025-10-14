@@ -50,44 +50,26 @@ module Generator
       assert_includes(type.properties.keys, "count")
     end
 
-    def test_ruby_type_for_string
+    def test_ruby_type_for_primitive_types
       definition = { "type" => "object", "properties" => {} }
       specification = { "definitions" => {} }
       type = Type.new("SimpleType", definition, API_NAME, specification)
 
-      assert_equal("String", type.ruby_type_for({ "type" => "string" }))
-    end
+      test_cases = {
+        "string" => "String",
+        "integer" => "Integer",
+        "number" => "Float",
+        "boolean" => ":boolean",
+        "object" => "Hash",
+      }
 
-    def test_ruby_type_for_integer
-      definition = { "type" => "object", "properties" => {} }
-      specification = { "definitions" => {} }
-      type = Type.new("SimpleType", definition, API_NAME, specification)
-
-      assert_equal("Integer", type.ruby_type_for({ "type" => "integer" }))
-    end
-
-    def test_ruby_type_for_number
-      definition = { "type" => "object", "properties" => {} }
-      specification = { "definitions" => {} }
-      type = Type.new("SimpleType", definition, API_NAME, specification)
-
-      assert_equal("Float", type.ruby_type_for({ "type" => "number" }))
-    end
-
-    def test_ruby_type_for_boolean
-      definition = { "type" => "object", "properties" => {} }
-      specification = { "definitions" => {} }
-      type = Type.new("SimpleType", definition, API_NAME, specification)
-
-      assert_equal(":boolean", type.ruby_type_for({ "type" => "boolean" }))
-    end
-
-    def test_ruby_type_for_object
-      definition = { "type" => "object", "properties" => {} }
-      specification = { "definitions" => {} }
-      type = Type.new("SimpleType", definition, API_NAME, specification)
-
-      assert_equal("Hash", type.ruby_type_for({ "type" => "object" }))
+      test_cases.each do |json_type, expected_ruby_type|
+        assert_equal(
+          expected_ruby_type,
+          type.ruby_type_for({ "type" => json_type }),
+          "Expected #{json_type} to map to #{expected_ruby_type}",
+        )
+      end
     end
 
     def test_ruby_type_for_array_of_objects
@@ -351,7 +333,7 @@ module Generator
       specification = { "definitions" => {} }
       type = Type.new("SimpleType", definition, API_NAME, specification)
 
-      assert_equal("peddler/types/test_api/simple_type", type.library_name)
+      assert_equal("peddler/apis/test_api/simple_type", type.library_name)
     end
 
     def test_handle_ref_with_string_enum

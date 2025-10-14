@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def vendor_direct_fulfillment_inventory_v1
-      APIs::VendorDirectFulfillmentInventoryV1
-    end
-  end
-
   module APIs
     # Selling Partner API for Direct Fulfillment Inventory Updates
     #
@@ -28,10 +20,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_inventory_update(body, warehouse_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{percent_encode(warehouse_id)}/items"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_inventory_v1"
-          Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
-        }
+        parser = -> { SubmitInventoryUpdateResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

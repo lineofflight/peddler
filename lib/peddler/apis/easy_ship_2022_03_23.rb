@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def easy_ship_2022_03_23
-      APIs::EasyShip20220323
-    end
-  end
-
   module APIs
     # Selling Partner API for Easy Ship
     #
@@ -42,10 +34,7 @@ module Peddler
       def list_handover_slots(list_handover_slots_request: nil, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
-        parser = -> {
-          require "peddler/types/easy_ship_2022_03_23"
-          Types::EasyShip20220323::ListHandoverSlotsResponse
-        }
+        parser = -> { ListHandoverSlotsResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -54,7 +43,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon-defined order identifier. Identifies the order that the seller wants
-      #   to deliver using Amazon Easy Ship.
+      # to deliver using Amazon Easy Ship.
       # @param marketplace_id [String] An identifier for the marketplace in which the seller is selling.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -64,10 +53,7 @@ module Peddler
           "amazonOrderId" => amazon_order_id,
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = -> {
-          require "peddler/types/easy_ship_2022_03_23"
-          Types::EasyShip20220323::Package
-        }
+        parser = -> { Package }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -98,10 +84,7 @@ module Peddler
       def create_scheduled_package(create_scheduled_package_request, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
-        parser = -> {
-          require "peddler/types/easy_ship_2022_03_23"
-          Types::EasyShip20220323::Package
-        }
+        parser = -> { Package }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -120,10 +103,7 @@ module Peddler
       def update_scheduled_packages(update_scheduled_packages_request: nil, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
-        parser = -> {
-          require "peddler/types/easy_ship_2022_03_23"
-          Types::EasyShip20220323::Packages
-        }
+        parser = -> { Packages }
         meter(rate_limit).patch(path, body:, parser:)
       end
 
@@ -150,16 +130,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_packages_request [Hash] The request schema for the `createScheduledPackageBulk`
-      #   operation.
+      # operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
-        parser = -> {
-          require "peddler/types/easy_ship_2022_03_23"
-          Types::EasyShip20220323::CreateScheduledPackagesResponse
-        }
+        parser = -> { CreateScheduledPackagesResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

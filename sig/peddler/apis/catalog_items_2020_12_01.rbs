@@ -1,6 +1,385 @@
 module Peddler
   module APIs
     class CatalogItems20201201 < API
+      class BrandRefinement < Data
+        def self.new: (brand_name: String?, number_of_results: Integer?) -> Peddler::APIs::CatalogItems20201201::BrandRefinement
+                    | (String?, Integer?) -> Peddler::APIs::CatalogItems20201201::BrandRefinement
+
+        def self.[]: (brand_name: String?, number_of_results: Integer?) -> Peddler::APIs::CatalogItems20201201::BrandRefinement
+                   | (String?, Integer?) -> Peddler::APIs::CatalogItems20201201::BrandRefinement
+
+        def self.members: () -> [ :brand_name, :number_of_results ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::BrandRefinement
+
+        attr_reader brand_name: String?
+        attr_reader number_of_results: Integer?
+        def members: () -> [ :brand_name, :number_of_results ]
+
+        def to_h: () -> { brand_name: String?, number_of_results: Integer? }
+      end
+
+      class ClassificationRefinement < Data
+        def self.new: (classification_id: String?, display_name: String?, number_of_results: Integer?) -> Peddler::APIs::CatalogItems20201201::ClassificationRefinement
+                    | (String?, String?, Integer?) -> Peddler::APIs::CatalogItems20201201::ClassificationRefinement
+
+        def self.[]: (classification_id: String?, display_name: String?, number_of_results: Integer?) -> Peddler::APIs::CatalogItems20201201::ClassificationRefinement
+                   | (String?, String?, Integer?) -> Peddler::APIs::CatalogItems20201201::ClassificationRefinement
+
+        def self.members: () -> [ :classification_id, :display_name, :number_of_results ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ClassificationRefinement
+
+        attr_reader classification_id: String?
+        attr_reader display_name: String?
+        attr_reader number_of_results: Integer?
+        def members: () -> [ :classification_id, :display_name, :number_of_results ]
+
+        def to_h: () -> { classification_id: String?, display_name: String?, number_of_results: Integer? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::CatalogItems20201201::Error
+                    | (String?, String?, String?) -> Peddler::APIs::CatalogItems20201201::Error
+
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::CatalogItems20201201::Error
+                   | (String?, String?, String?) -> Peddler::APIs::CatalogItems20201201::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::Error
+
+        attr_reader code: String?
+        attr_reader details: String?
+        attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::CatalogItems20201201::Error]?) -> Peddler::APIs::CatalogItems20201201::ErrorList
+                    | (Array[Peddler::APIs::CatalogItems20201201::Error]?) -> Peddler::APIs::CatalogItems20201201::ErrorList
+
+        def self.[]: (errors: Array[Peddler::APIs::CatalogItems20201201::Error]?) -> Peddler::APIs::CatalogItems20201201::ErrorList
+                   | (Array[Peddler::APIs::CatalogItems20201201::Error]?) -> Peddler::APIs::CatalogItems20201201::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::CatalogItems20201201::Error]?
+        def members: () -> [ :errors ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::CatalogItems20201201::Error]? }
+      end
+
+      class Item < Data
+        def self.new: (asin: String?, ?attributes: Hash[untyped, untyped]?, ?identifiers: Array[Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace]?, ?images: Array[Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace]?, ?product_types: Array[Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace]?, ?sales_ranks: Array[Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace]?, ?summaries: Array[Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace]?, ?variations: Array[Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace]?, ?vendor_details: Array[Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace]?) -> Peddler::APIs::CatalogItems20201201::Item
+                    | (String?, Hash[untyped, untyped]?, Array[Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace]?) -> Peddler::APIs::CatalogItems20201201::Item
+
+        def self.[]: (asin: String?, ?attributes: Hash[untyped, untyped]?, ?identifiers: Array[Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace]?, ?images: Array[Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace]?, ?product_types: Array[Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace]?, ?sales_ranks: Array[Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace]?, ?summaries: Array[Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace]?, ?variations: Array[Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace]?, ?vendor_details: Array[Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace]?) -> Peddler::APIs::CatalogItems20201201::Item
+                   | (String?, Hash[untyped, untyped]?, Array[Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace]?, Array[Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace]?) -> Peddler::APIs::CatalogItems20201201::Item
+
+        def self.members: () -> [ :asin, :attributes, :identifiers, :images, :product_types, :sales_ranks, :summaries, :variations, :vendor_details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::Item
+
+        attr_reader asin: String?
+        attr_reader attributes: Hash[untyped, untyped]?
+        attr_reader identifiers: Array[Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace]?
+        attr_reader images: Array[Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace]?
+        attr_reader product_types: Array[Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace]?
+        attr_reader sales_ranks: Array[Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace]?
+        attr_reader summaries: Array[Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace]?
+        attr_reader variations: Array[Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace]?
+        attr_reader vendor_details: Array[Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace]?
+        def members: () -> [ :asin, :attributes, :identifiers, :images, :product_types, :sales_ranks, :summaries, :variations, :vendor_details ]
+
+        def to_h: () -> { asin: String?, attributes: Hash[untyped, untyped]?, identifiers: Array[Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace]?, images: Array[Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace]?, product_types: Array[Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace]?, sales_ranks: Array[Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace]?, summaries: Array[Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace]?, variations: Array[Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace]?, vendor_details: Array[Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace]? }
+      end
+
+      class ItemIdentifier < Data
+        def self.new: (identifier: String?, identifier_type: String?) -> Peddler::APIs::CatalogItems20201201::ItemIdentifier
+                    | (String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemIdentifier
+
+        def self.[]: (identifier: String?, identifier_type: String?) -> Peddler::APIs::CatalogItems20201201::ItemIdentifier
+                   | (String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemIdentifier
+
+        def self.members: () -> [ :identifier, :identifier_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemIdentifier
+
+        attr_reader identifier: String?
+        attr_reader identifier_type: String?
+        def members: () -> [ :identifier, :identifier_type ]
+
+        def to_h: () -> { identifier: String?, identifier_type: String? }
+      end
+
+      class ItemIdentifiers < Array[ItemIdentifiersByMarketplace]
+        def self.parse: (Array[untyped]) -> ItemIdentifiers
+      end
+
+      class ItemIdentifiersByMarketplace < Data
+        def self.new: (identifiers: Array[Peddler::APIs::CatalogItems20201201::ItemIdentifier]?, marketplace_id: String?) -> Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace
+                    | (Array[Peddler::APIs::CatalogItems20201201::ItemIdentifier]?, String?) -> Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace
+
+        def self.[]: (identifiers: Array[Peddler::APIs::CatalogItems20201201::ItemIdentifier]?, marketplace_id: String?) -> Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace
+                   | (Array[Peddler::APIs::CatalogItems20201201::ItemIdentifier]?, String?) -> Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace
+
+        def self.members: () -> [ :identifiers, :marketplace_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemIdentifiersByMarketplace
+
+        attr_reader identifiers: Array[Peddler::APIs::CatalogItems20201201::ItemIdentifier]?
+        attr_reader marketplace_id: String?
+        def members: () -> [ :identifiers, :marketplace_id ]
+
+        def to_h: () -> { identifiers: Array[Peddler::APIs::CatalogItems20201201::ItemIdentifier]?, marketplace_id: String? }
+      end
+
+      class ItemImage < Data
+        def self.new: (height: Integer?, link: String?, variant: String?, width: Integer?) -> Peddler::APIs::CatalogItems20201201::ItemImage
+                    | (Integer?, String?, String?, Integer?) -> Peddler::APIs::CatalogItems20201201::ItemImage
+
+        def self.[]: (height: Integer?, link: String?, variant: String?, width: Integer?) -> Peddler::APIs::CatalogItems20201201::ItemImage
+                   | (Integer?, String?, String?, Integer?) -> Peddler::APIs::CatalogItems20201201::ItemImage
+
+        def self.members: () -> [ :height, :link, :variant, :width ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemImage
+
+        attr_reader height: Integer?
+        attr_reader link: String?
+        attr_reader variant: String?
+        attr_reader width: Integer?
+        def members: () -> [ :height, :link, :variant, :width ]
+
+        def to_h: () -> { height: Integer?, link: String?, variant: String?, width: Integer? }
+      end
+
+      class ItemImages < Array[ItemImagesByMarketplace]
+        def self.parse: (Array[untyped]) -> ItemImages
+      end
+
+      class ItemImagesByMarketplace < Data
+        def self.new: (images: Array[Peddler::APIs::CatalogItems20201201::ItemImage]?, marketplace_id: String?) -> Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace
+                    | (Array[Peddler::APIs::CatalogItems20201201::ItemImage]?, String?) -> Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace
+
+        def self.[]: (images: Array[Peddler::APIs::CatalogItems20201201::ItemImage]?, marketplace_id: String?) -> Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace
+                   | (Array[Peddler::APIs::CatalogItems20201201::ItemImage]?, String?) -> Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace
+
+        def self.members: () -> [ :images, :marketplace_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemImagesByMarketplace
+
+        attr_reader images: Array[Peddler::APIs::CatalogItems20201201::ItemImage]?
+        attr_reader marketplace_id: String?
+        def members: () -> [ :images, :marketplace_id ]
+
+        def to_h: () -> { images: Array[Peddler::APIs::CatalogItems20201201::ItemImage]?, marketplace_id: String? }
+      end
+
+      class ItemProductTypeByMarketplace < Data
+        def self.new: (?marketplace_id: String?, ?product_type: String?) -> Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace
+                    | (String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace
+
+        def self.[]: (?marketplace_id: String?, ?product_type: String?) -> Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace
+                   | (String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace
+
+        def self.members: () -> [ :marketplace_id, :product_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemProductTypeByMarketplace
+
+        attr_reader marketplace_id: String?
+        attr_reader product_type: String?
+        def members: () -> [ :marketplace_id, :product_type ]
+
+        def to_h: () -> { marketplace_id: String?, product_type: String? }
+      end
+
+      class ItemProductTypes < Array[ItemProductTypeByMarketplace]
+        def self.parse: (Array[untyped]) -> ItemProductTypes
+      end
+
+      class ItemSalesRank < Data
+        def self.new: (rank: Integer?, title: String?, ?link: String?) -> Peddler::APIs::CatalogItems20201201::ItemSalesRank
+                    | (Integer?, String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemSalesRank
+
+        def self.[]: (rank: Integer?, title: String?, ?link: String?) -> Peddler::APIs::CatalogItems20201201::ItemSalesRank
+                   | (Integer?, String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemSalesRank
+
+        def self.members: () -> [ :rank, :title, :link ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemSalesRank
+
+        attr_reader link: String?
+        attr_reader rank: Integer?
+        attr_reader title: String?
+        def members: () -> [ :rank, :title, :link ]
+
+        def to_h: () -> { rank: Integer?, title: String?, link: String? }
+      end
+
+      class ItemSalesRanks < Array[ItemSalesRanksByMarketplace]
+        def self.parse: (Array[untyped]) -> ItemSalesRanks
+      end
+
+      class ItemSalesRanksByMarketplace < Data
+        def self.new: (marketplace_id: String?, ranks: Array[Peddler::APIs::CatalogItems20201201::ItemSalesRank]?) -> Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace
+                    | (String?, Array[Peddler::APIs::CatalogItems20201201::ItemSalesRank]?) -> Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace
+
+        def self.[]: (marketplace_id: String?, ranks: Array[Peddler::APIs::CatalogItems20201201::ItemSalesRank]?) -> Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace
+                   | (String?, Array[Peddler::APIs::CatalogItems20201201::ItemSalesRank]?) -> Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace
+
+        def self.members: () -> [ :marketplace_id, :ranks ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemSalesRanksByMarketplace
+
+        attr_reader marketplace_id: String?
+        attr_reader ranks: Array[Peddler::APIs::CatalogItems20201201::ItemSalesRank]?
+        def members: () -> [ :marketplace_id, :ranks ]
+
+        def to_h: () -> { marketplace_id: String?, ranks: Array[Peddler::APIs::CatalogItems20201201::ItemSalesRank]? }
+      end
+
+      class ItemSearchResults < Data
+        def self.new: (items: Array[Peddler::APIs::CatalogItems20201201::Item]?, number_of_results: Integer?, pagination: Peddler::APIs::CatalogItems20201201::Pagination?, refinements: Peddler::APIs::CatalogItems20201201::Refinements?) -> Peddler::APIs::CatalogItems20201201::ItemSearchResults
+                    | (Array[Peddler::APIs::CatalogItems20201201::Item]?, Integer?, Peddler::APIs::CatalogItems20201201::Pagination?, Peddler::APIs::CatalogItems20201201::Refinements?) -> Peddler::APIs::CatalogItems20201201::ItemSearchResults
+
+        def self.[]: (items: Array[Peddler::APIs::CatalogItems20201201::Item]?, number_of_results: Integer?, pagination: Peddler::APIs::CatalogItems20201201::Pagination?, refinements: Peddler::APIs::CatalogItems20201201::Refinements?) -> Peddler::APIs::CatalogItems20201201::ItemSearchResults
+                   | (Array[Peddler::APIs::CatalogItems20201201::Item]?, Integer?, Peddler::APIs::CatalogItems20201201::Pagination?, Peddler::APIs::CatalogItems20201201::Refinements?) -> Peddler::APIs::CatalogItems20201201::ItemSearchResults
+
+        def self.members: () -> [ :items, :number_of_results, :pagination, :refinements ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemSearchResults
+
+        attr_reader items: Array[Peddler::APIs::CatalogItems20201201::Item]?
+        attr_reader number_of_results: Integer?
+        attr_reader pagination: Peddler::APIs::CatalogItems20201201::Pagination?
+        attr_reader refinements: Peddler::APIs::CatalogItems20201201::Refinements?
+        def members: () -> [ :items, :number_of_results, :pagination, :refinements ]
+
+        def to_h: () -> { items: Array[Peddler::APIs::CatalogItems20201201::Item]?, number_of_results: Integer?, pagination: Peddler::APIs::CatalogItems20201201::Pagination?, refinements: Peddler::APIs::CatalogItems20201201::Refinements? }
+      end
+
+      class ItemSummaries < Array[ItemSummaryByMarketplace]
+        def self.parse: (Array[untyped]) -> ItemSummaries
+      end
+
+      class ItemSummaryByMarketplace < Data
+        def self.new: (marketplace_id: String?, ?brand_name: String?, ?browse_node: String?, ?color_name: String?, ?item_name: String?, ?manufacturer: String?, ?model_number: String?, ?size_name: String?, ?style_name: String?) -> Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace
+
+        def self.[]: (marketplace_id: String?, ?brand_name: String?, ?browse_node: String?, ?color_name: String?, ?item_name: String?, ?manufacturer: String?, ?model_number: String?, ?size_name: String?, ?style_name: String?) -> Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace
+
+        def self.members: () -> [ :marketplace_id, :brand_name, :browse_node, :color_name, :item_name, :manufacturer, :model_number, :size_name, :style_name ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemSummaryByMarketplace
+
+        attr_reader brand_name: String?
+        attr_reader browse_node: String?
+        attr_reader color_name: String?
+        attr_reader item_name: String?
+        attr_reader manufacturer: String?
+        attr_reader marketplace_id: String?
+        attr_reader model_number: String?
+        attr_reader size_name: String?
+        attr_reader style_name: String?
+        def members: () -> [ :marketplace_id, :brand_name, :browse_node, :color_name, :item_name, :manufacturer, :model_number, :size_name, :style_name ]
+
+        def to_h: () -> { marketplace_id: String?, brand_name: String?, browse_node: String?, color_name: String?, item_name: String?, manufacturer: String?, model_number: String?, size_name: String?, style_name: String? }
+      end
+
+      class ItemVariations < Array[ItemVariationsByMarketplace]
+        def self.parse: (Array[untyped]) -> ItemVariations
+      end
+
+      class ItemVariationsByMarketplace < Data
+        def self.new: (asins: Array[String]?, marketplace_id: String?, variation_type: String?) -> Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace
+                    | (Array[String]?, String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace
+
+        def self.[]: (asins: Array[String]?, marketplace_id: String?, variation_type: String?) -> Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace
+                   | (Array[String]?, String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace
+
+        def self.members: () -> [ :asins, :marketplace_id, :variation_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemVariationsByMarketplace
+
+        attr_reader asins: Array[String]?
+        attr_reader marketplace_id: String?
+        attr_reader variation_type: String?
+        def members: () -> [ :asins, :marketplace_id, :variation_type ]
+
+        def to_h: () -> { asins: Array[String]?, marketplace_id: String?, variation_type: String? }
+      end
+
+      class ItemVendorDetails < Array[ItemVendorDetailsByMarketplace]
+        def self.parse: (Array[untyped]) -> ItemVendorDetails
+      end
+
+      class ItemVendorDetailsByMarketplace < Data
+        def self.new: (marketplace_id: String?, ?brand_code: String?, ?category_code: String?, ?manufacturer_code: String?, ?manufacturer_code_parent: String?, ?product_group: String?, ?replenishment_category: String?, ?subcategory_code: String?) -> Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace
+                    | (String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace
+
+        def self.[]: (marketplace_id: String?, ?brand_code: String?, ?category_code: String?, ?manufacturer_code: String?, ?manufacturer_code_parent: String?, ?product_group: String?, ?replenishment_category: String?, ?subcategory_code: String?) -> Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace
+                   | (String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace
+
+        def self.members: () -> [ :marketplace_id, :brand_code, :category_code, :manufacturer_code, :manufacturer_code_parent, :product_group, :replenishment_category, :subcategory_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::ItemVendorDetailsByMarketplace
+
+        attr_reader brand_code: String?
+        attr_reader category_code: String?
+        attr_reader manufacturer_code: String?
+        attr_reader manufacturer_code_parent: String?
+        attr_reader marketplace_id: String?
+        attr_reader product_group: String?
+        attr_reader replenishment_category: String?
+        attr_reader subcategory_code: String?
+        def members: () -> [ :marketplace_id, :brand_code, :category_code, :manufacturer_code, :manufacturer_code_parent, :product_group, :replenishment_category, :subcategory_code ]
+
+        def to_h: () -> { marketplace_id: String?, brand_code: String?, category_code: String?, manufacturer_code: String?, manufacturer_code_parent: String?, product_group: String?, replenishment_category: String?, subcategory_code: String? }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?, ?previous_token: String?) -> Peddler::APIs::CatalogItems20201201::Pagination
+                    | (String?, String?) -> Peddler::APIs::CatalogItems20201201::Pagination
+
+        def self.[]: (?next_token: String?, ?previous_token: String?) -> Peddler::APIs::CatalogItems20201201::Pagination
+                   | (String?, String?) -> Peddler::APIs::CatalogItems20201201::Pagination
+
+        def self.members: () -> [ :next_token, :previous_token ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::Pagination
+
+        attr_reader next_token: String?
+        attr_reader previous_token: String?
+        def members: () -> [ :next_token, :previous_token ]
+
+        def to_h: () -> { next_token: String?, previous_token: String? }
+      end
+
+      class Refinements < Data
+        def self.new: (brands: Array[Peddler::APIs::CatalogItems20201201::BrandRefinement]?, classifications: Array[Peddler::APIs::CatalogItems20201201::ClassificationRefinement]?) -> Peddler::APIs::CatalogItems20201201::Refinements
+                    | (Array[Peddler::APIs::CatalogItems20201201::BrandRefinement]?, Array[Peddler::APIs::CatalogItems20201201::ClassificationRefinement]?) -> Peddler::APIs::CatalogItems20201201::Refinements
+
+        def self.[]: (brands: Array[Peddler::APIs::CatalogItems20201201::BrandRefinement]?, classifications: Array[Peddler::APIs::CatalogItems20201201::ClassificationRefinement]?) -> Peddler::APIs::CatalogItems20201201::Refinements
+                   | (Array[Peddler::APIs::CatalogItems20201201::BrandRefinement]?, Array[Peddler::APIs::CatalogItems20201201::ClassificationRefinement]?) -> Peddler::APIs::CatalogItems20201201::Refinements
+
+        def self.members: () -> [ :brands, :classifications ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CatalogItems20201201::Refinements
+
+        attr_reader brands: Array[Peddler::APIs::CatalogItems20201201::BrandRefinement]?
+        attr_reader classifications: Array[Peddler::APIs::CatalogItems20201201::ClassificationRefinement]?
+        def members: () -> [ :brands, :classifications ]
+
+        def to_h: () -> { brands: Array[Peddler::APIs::CatalogItems20201201::BrandRefinement]?, classifications: Array[Peddler::APIs::CatalogItems20201201::ClassificationRefinement]? }
+      end
+
       def get_catalog_item: (String, Array[String], ?included_data: Array[String]?, ?locale: String?, ?rate_limit: Float) -> Peddler::Response
       def search_catalog_items: (Array[String], Array[String], ?included_data: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?locale: String?, ?rate_limit: Float) -> Peddler::Response
     end

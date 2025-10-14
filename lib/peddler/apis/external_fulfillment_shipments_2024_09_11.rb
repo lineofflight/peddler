@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def external_fulfillment_shipments_2024_09_11
-      APIs::ExternalFulfillmentShipments20240911
-    end
-  end
-
   module APIs
     # The Selling Partner API for Amazon External Fulfillment Shipments Processing
     #
@@ -26,19 +18,19 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param location_id [String] The Amazon channel location identifier for the shipments you want to retrieve.
       # @param marketplace_id [String] The marketplace ID associated with the location. To find the ID for your
-      #   marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param channel_name [String] The channel name associated with the location.
       # @param status [String] The status of shipment you want to include in the response. To retrieve all new
-      #   shipments, set this value to `ACCEPTED`.
+      # shipments, set this value to `ACCEPTED`.
       # @param last_updated_after [String] The response includes shipments whose latest update is after the specified
-      #   time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param last_updated_before [String] The response includes shipments whose latest update is before the specified
-      #   time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param max_results [Integer] The maximum number of shipments to include in the response.
       # @param pagination_token [String] A token that you use to retrieve the next page of results. The response
-      #   includes `nextToken` when there are multiple pages of results. To get the next page of results, call the
-      #   operation with this token and include the same arguments as the call that produced the token. To get a
-      #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+      # includes `nextToken` when there are multiple pages of results. To get the next page of results, call the
+      # operation with this token and include the same arguments as the call that produced the token. To get a complete
+      # list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # @return [Peddler::Response] The API response
       def get_shipments(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil,
         last_updated_before: nil, max_results: nil, pagination_token: nil)
@@ -53,10 +45,7 @@ module Peddler
           "maxResults" => max_results,
           "paginationToken" => pagination_token,
         }.compact
-        parser = -> {
-          require "peddler/types/external_fulfillment_shipments_2024_09_11"
-          Types::ExternalFulfillmentShipments20240911::ShipmentsResponse
-        }
+        parser = -> { ShipmentsResponse }
         get(path, params:, parser:)
       end
 
@@ -67,10 +56,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
         path = "/externalFulfillment/2024-09-11/shipments/#{percent_encode(shipment_id)}"
-        parser = -> {
-          require "peddler/types/external_fulfillment_shipments_2024_09_11"
-          Types::ExternalFulfillmentShipments20240911::Shipment
-        }
+        parser = -> { Shipment }
         get(path, parser:)
       end
 
@@ -140,10 +126,7 @@ module Peddler
         params = {
           "packageId" => package_id,
         }.compact
-        parser = -> {
-          require "peddler/types/external_fulfillment_shipments_2024_09_11"
-          Types::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
-        }
+        parser = -> { ShippingOptionsResponse }
         get(path, params:, parser:)
       end
 
@@ -154,10 +137,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_invoice(shipment_id)
         path = "/externalFulfillment/2024-09-11/shipments/#{percent_encode(shipment_id)}/invoice"
-        parser = -> {
-          require "peddler/types/external_fulfillment_shipments_2024_09_11"
-          Types::ExternalFulfillmentShipments20240911::InvoiceResponse
-        }
+        parser = -> { InvoiceResponse }
         post(path, parser:)
       end
 
@@ -168,10 +148,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def retrieve_invoice(shipment_id)
         path = "/externalFulfillment/2024-09-11/shipments/#{percent_encode(shipment_id)}/invoice"
-        parser = -> {
-          require "peddler/types/external_fulfillment_shipments_2024_09_11"
-          Types::ExternalFulfillmentShipments20240911::InvoiceResponse
-        }
+        parser = -> { InvoiceResponse }
         get(path, parser:)
       end
 
@@ -189,10 +166,7 @@ module Peddler
           "shippingOptionId" => shipping_option_id,
           "operation" => operation,
         }.compact
-        parser = -> {
-          require "peddler/types/external_fulfillment_shipments_2024_09_11"
-          Types::ExternalFulfillmentShipments20240911::ShipLabelsResponse
-        }
+        parser = -> { ShipLabelsResponse }
         put(path, body:, params:, parser:)
       end
     end

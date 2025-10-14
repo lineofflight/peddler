@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/apis/catalog_items_2022_04_01"
 
 module Peddler
   module APIs

@@ -1,0 +1,49 @@
+module Peddler
+  module Feeds
+    module ListingsFeedMessageSchema
+      class Feed < Data
+        def self.new: (message_id: Integer?, operation_type: String?, sku: String?, ?attributes: Hash[untyped, untyped]?, ?patches: Array[Peddler::Feeds::ListingsFeedMessageSchema::Patch]?, ?product_type: String?, ?requirements: String?) -> Peddler::Feeds::ListingsFeedMessageSchema::Feed
+                    | (Integer?, String?, String?, Hash[untyped, untyped]?, Array[Peddler::Feeds::ListingsFeedMessageSchema::Patch]?, String?, String?) -> Peddler::Feeds::ListingsFeedMessageSchema::Feed
+
+        def self.[]: (message_id: Integer?, operation_type: String?, sku: String?, ?attributes: Hash[untyped, untyped]?, ?patches: Array[Peddler::Feeds::ListingsFeedMessageSchema::Patch]?, ?product_type: String?, ?requirements: String?) -> Peddler::Feeds::ListingsFeedMessageSchema::Feed
+                   | (Integer?, String?, String?, Hash[untyped, untyped]?, Array[Peddler::Feeds::ListingsFeedMessageSchema::Patch]?, String?, String?) -> Peddler::Feeds::ListingsFeedMessageSchema::Feed
+
+        def self.members: () -> [ :message_id, :operation_type, :sku, :attributes, :patches, :product_type, :requirements ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Feeds::ListingsFeedMessageSchema::Feed
+
+        attr_reader attributes: Hash[untyped, untyped]?
+        attr_reader message_id: Integer?
+        attr_reader operation_type: String?
+        attr_reader patches: Array[Peddler::Feeds::ListingsFeedMessageSchema::Patch]?
+        attr_reader product_type: String?
+        attr_reader requirements: String?
+        attr_reader sku: String?
+        def members: () -> [ :message_id, :operation_type, :sku, :attributes, :patches, :product_type, :requirements ]
+
+        def to_h: () -> { message_id: Integer?, operation_type: String?, sku: String?, attributes: Hash[untyped, untyped]?, patches: Array[Peddler::Feeds::ListingsFeedMessageSchema::Patch]?, product_type: String?, requirements: String? }
+      end
+
+      class Patch < Data
+        def self.new: (op: String?, path: String?, ?value: Array[untyped]?) -> Peddler::Feeds::ListingsFeedMessageSchema::Patch
+                    | (String?, String?, Array[untyped]?) -> Peddler::Feeds::ListingsFeedMessageSchema::Patch
+
+        def self.[]: (op: String?, path: String?, ?value: Array[untyped]?) -> Peddler::Feeds::ListingsFeedMessageSchema::Patch
+                   | (String?, String?, Array[untyped]?) -> Peddler::Feeds::ListingsFeedMessageSchema::Patch
+
+        def self.members: () -> [ :op, :path, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Feeds::ListingsFeedMessageSchema::Patch
+
+        attr_reader op: String?
+        attr_reader path: String?
+        attr_reader value: Array[untyped]?
+        def members: () -> [ :op, :path, :value ]
+
+        def to_h: () -> { op: String?, path: String?, value: Array[untyped]? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Feeds::ListingsFeedMessageSchema::Feed
+    end
+  end
+end

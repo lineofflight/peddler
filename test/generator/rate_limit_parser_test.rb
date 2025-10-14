@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "minitest/autorun"
-require "generator/rate_limit_parser"
+require "helper"
+require "generator/parsers/rate_limit_parser"
 
 module Generator
   class RateLimitParserTest < Minitest::Test

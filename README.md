@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/lineofflight/peddler/actions/workflows/ci.yml/badge.svg)][build]
 
-> **IMPORTANT:** This README is for the v5.0.0.pre.1 pre-release. For the latest stable version, see the [v4.9.0 README](https://github.com/hakanensari/peddler/blob/v4.9.0/README.md).
+> **IMPORTANT:** This README is for the v5 pre-release. For the latest stable version, see the [v4.9.0 README](https://github.com/hakanensari/peddler/blob/v4.9.0/README.md).
 
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
@@ -20,7 +20,7 @@ To begin using the Amazon SP-API, you must [register as a developer][register-as
 Add this line to your Gemfile.
 
 ```ruby
-gem "peddler", "~> 5.0.0.pre.1"
+gem "peddler", "~> 5.0.0.pre.2"
 ```
 
 And then execute:
@@ -399,6 +399,41 @@ json_feed_content = JSON.generate({
 api.upload_feed_document(json_document.dig("url"), json_feed_content, "application/json; charset=UTF-8")
 ```
 
+**Parsing Feed Results:**
+
+After feed processing completes, parse the result document with type-safe data classes:
+
+```ruby
+# Get feed processing result document
+result_document = api.get_feed_document(result_feed_document_id)
+result_content = HTTP.get(result_document.dig("url")).to_s
+
+# Handle compression if needed
+if result_document.dig("compressionAlgorithm") == "GZIP"
+  require "zlib"
+  result_content = Zlib::GzipReader.new(StringIO.new(result_content)).read
+end
+
+# Parse with type safety
+result_json = JSON.parse(result_content)
+report = Peddler::Feeds::ListingsFeedProcessingReportSchema.parse(result_json)
+
+# Access structured processing results
+puts "Messages Processed: #{report.summary.messages_processed}"
+puts "Messages Accepted: #{report.summary.messages_accepted}"
+puts "Messages with Errors: #{report.summary.messages_with_error}"
+puts "Messages with Warnings: #{report.summary.messages_with_warning}"
+
+# Iterate through issues with type-safe access
+report.issues.each do |issue|
+  puts "\nIssue in message #{issue.message_id}:"
+  puts "  Severity: #{issue.severity}"
+  puts "  Code: #{issue.code}"
+  puts "  Message: #{issue.message}"
+  puts "  SKU: #{issue.sku}" if issue.sku
+end
+```
+
 #### Communication and Customer Management APIs
 
 - **Customer Feedback API (2024-06-01)**: Analyze customer reviews and returns data at item and browse node levels
@@ -456,6 +491,28 @@ destinations = sandbox_api.get_destinations
 
 # Get specific subscription
 subscription = sandbox_api.get_subscription("LISTINGS_ITEM_ISSUES_CHANGE")
+```
+
+**Parsing Notifications:**
+
+Once you receive notifications (via SQS or EventBridge), parse them with type-safe data classes:
+
+```ruby
+# Parse notification from SQS message
+notification_json = JSON.parse(sqs_message.body)
+notification = Peddler::Notifications::AnyOfferChanged.parse(notification_json)
+
+# Type-safe access to notification data
+notification.notification_version  # => "1.0"
+notification.notification_type     # => "ANY_OFFER_CHANGED"
+
+# Access payload with autocomplete
+notification.payload.offers.each do |offer|
+  puts "Seller: #{offer.seller_id}"
+  puts "Price: #{offer.listing_price.amount} #{offer.listing_price.currency_code}"
+  puts "Condition: #{offer.item_condition}"
+  puts "Prime: #{offer.is_prime?}" if offer.respond_to?(:is_prime?)
+end
 ```
 
 #### Vendor APIs
@@ -653,6 +710,94 @@ reports = api.get_reports(report_types: ["GET_MERCHANTS_LISTINGS_FYP_REPORT"])
 response = api.download_report_document("DOCUMENT_ID")
 # Process the downloaded report content from response.body...
 ```
+
+#### Understanding Report Types
+
+SP-API provides two different types of reports with different formats and APIs:
+
+**1. Modern JSON-Based Reports** (Recommended)
+
+These are structured analytics reports that return JSON data with defined schemas. Peddler provides type-safe data classes for these reports using the Structure gem.
+
+Examples:
+- Vendor Real-Time Inventory Report
+- Seller Sales and Traffic Report
+- Account Health Report
+- Vendor Forecasting Report
+- Customer Feedback Reports
+
+Location in Peddler: `lib/peddler/reports/` with generated Structure-based classes
+
+```ruby
+# Example: Request and parse a vendor real-time inventory report
+api = Peddler.reports.new(aws_region, access_token)
+
+# Create report request
+report_response = api.create_report({
+  "reportType" => "GET_VENDOR_REAL_TIME_INVENTORY_REPORT",
+  "marketplaceIds" => [Marketplace.id("US")],
+  "reportOptions" => {
+    "reportPeriod" => "WEEK",
+    "distributorView" => "MANUFACTURING",
+    "sellingProgram" => "RETAIL",
+    "startDate" => "2024-01-01",
+    "endDate" => "2024-01-07"
+  }
+})
+
+# Wait for report to be ready, then download
+report_id = report_response.dig("reportId")
+# ... check status until DONE ...
+document_id = api.get_report(report_id).dig("reportDocumentId")
+
+# Download and parse JSON report
+document = api.get_report_document(document_id)
+report_json = HTTP.get(document.dig("url")).parse(:json)
+
+# Use typed data classes
+report = Peddler::Reports::VendorRealTimeInventory::Report.new(report_json)
+report.report_data.each do |data|
+  puts "ASIN: #{data.asin}, Inventory: #{data.highly_available_inventory}"
+end
+```
+
+**2. Legacy Flat-File Reports** (Tab-Delimited)
+
+These are older reports that return tab-delimited text files (TSV format), often GZIP compressed. These require manual CSV parsing and do NOT have Structure-based data classes.
+
+Examples:
+- `GET_MERCHANT_LISTINGS_ALL_DATA`
+- `GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA`
+- `GET_FLAT_FILE_ALL_ORDERS_DATA_BY_LAST_UPDATE_GENERAL`
+
+These must be parsed manually using Ruby's CSV library:
+
+```ruby
+# Download flat-file report
+document = api.get_report_document(document_id)
+response = HTTP.get(document.dig("url"))
+
+# Handle GZIP compression if needed
+body = if document.dig("compressionAlgorithm") == "GZIP"
+         Zlib::GzipReader.new(StringIO.new(response.body.to_s)).read
+       else
+         response.body.to_s
+       end
+
+# Parse tab-delimited data
+csv_options = {
+  col_sep: "\t",
+  headers: true,
+  quote_char: "\x00",
+  encoding: "UTF-8"
+}
+CSV.parse(body, **csv_options) do |row|
+  # Process each row as a hash
+  puts "SKU: #{row['sku']}, ASIN: #{row['asin']}, Quantity: #{row['quantity']}"
+end
+```
+
+For a complete list of report types and their formats, see the [Report Type Values documentation](https://developer-docs.amazon.com/sp-api/docs/report-type-values).
 
 #### Sellers API
 

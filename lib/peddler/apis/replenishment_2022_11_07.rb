@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def replenishment_2022_11_07
-      APIs::Replenishment20221107
-    end
-  end
-
   module APIs
     # Selling Partner API for Replenishment
     #
@@ -31,10 +23,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_selling_partner_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
-        parser = -> {
-          require "peddler/types/replenishment_2022_11_07"
-          Types::Replenishment20221107::GetSellingPartnerMetricsResponse
-        }
+        parser = -> { GetSellingPartnerMetricsResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -46,10 +35,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_offer_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/metrics/search"
-        parser = -> {
-          require "peddler/types/replenishment_2022_11_07"
-          Types::Replenishment20221107::ListOfferMetricsResponse
-        }
+        parser = -> { ListOfferMetricsResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -61,10 +47,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_offers(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/search"
-        parser = -> {
-          require "peddler/types/replenishment_2022_11_07"
-          Types::Replenishment20221107::ListOffersResponse
-        }
+        parser = -> { ListOffersResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

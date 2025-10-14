@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def catalog_items_2020_12_01
-      APIs::CatalogItems20201201
-    end
-  end
-
   module APIs
     # Selling Partner API for Catalog Items
     #
@@ -27,19 +19,19 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param keywords [Array<String>] A comma-delimited list of words or item identifiers to search the Amazon catalog
-      #   for.
+      # for.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
-      #   summaries.
+      # summaries.
       # @param brand_names [Array<String>] A comma-delimited list of brand names to limit the search to.
       # @param classification_ids [Array<String>] A comma-delimited list of classification identifiers to limit the
-      #   search to.
+      # search to.
       # @param page_size [Integer] Number of results to be returned per page.
       # @param page_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       # @param keywords_locale [String] The language the keywords are provided in. Defaults to the primary locale of the
-      #   marketplace.
+      # marketplace.
       # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
-      #   marketplace.
+      # marketplace.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_catalog_items(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil,
@@ -56,10 +48,7 @@ module Peddler
           "keywordsLocale" => keywords_locale,
           "locale" => locale,
         }.compact
-        parser = -> {
-          require "peddler/types/catalog_items_2020_12_01"
-          Types::CatalogItems20201201::ItemSearchResults
-        }
+        parser = -> { ItemSearchResults }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -68,11 +57,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers. Data sets in
-      #   the response contain data only for the specified marketplaces.
+      # the response contain data only for the specified marketplaces.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
-      #   summaries.
+      # summaries.
       # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
-      #   marketplace.
+      # marketplace.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 2.0)
@@ -82,10 +71,7 @@ module Peddler
           "includedData" => stringify_array(included_data),
           "locale" => locale,
         }.compact
-        parser = -> {
-          require "peddler/types/catalog_items_2020_12_01"
-          Types::CatalogItems20201201::Item
-        }
+        parser = -> { Item }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

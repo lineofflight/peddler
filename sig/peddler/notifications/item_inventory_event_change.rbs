@@ -1,0 +1,92 @@
+module Peddler
+  module Notifications
+    module ItemInventoryEventChange
+      class ItemInventoryEventChange < Data
+        def self.new: (account_id: String?, asin: String?, end_time: Time?, highly_available_inventory: Integer?, marketplace_id: String?, start_time: Time?) -> Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange
+                    | (String?, String?, Time?, Integer?, String?, Time?) -> Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange
+
+        def self.[]: (account_id: String?, asin: String?, end_time: Time?, highly_available_inventory: Integer?, marketplace_id: String?, start_time: Time?) -> Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange
+                   | (String?, String?, Time?, Integer?, String?, Time?) -> Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange
+
+        def self.members: () -> [ :account_id, :asin, :end_time, :highly_available_inventory, :marketplace_id, :start_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange
+
+        attr_reader account_id: String?
+        attr_reader asin: String?
+        attr_reader end_time: Time?
+        attr_reader highly_available_inventory: Integer?
+        attr_reader marketplace_id: String?
+        attr_reader start_time: Time?
+        def members: () -> [ :account_id, :asin, :end_time, :highly_available_inventory, :marketplace_id, :start_time ]
+
+        def to_h: () -> { account_id: String?, asin: String?, end_time: Time?, highly_available_inventory: Integer?, marketplace_id: String?, start_time: Time? }
+      end
+
+      class ItemInventoryEventChanges < Array[ItemInventoryEventChange]
+        def self.parse: (Array[untyped]) -> ItemInventoryEventChanges
+      end
+
+      class Notification < Data
+        def self.new: (event_time: String?, notification_metadata: String?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ItemInventoryEventChange::Payload?, payload_version: String?) -> Peddler::Notifications::ItemInventoryEventChange::Notification
+                    | (String?, String?, String?, String?, Peddler::Notifications::ItemInventoryEventChange::Payload?, String?) -> Peddler::Notifications::ItemInventoryEventChange::Notification
+
+        def self.[]: (event_time: String?, notification_metadata: String?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ItemInventoryEventChange::Payload?, payload_version: String?) -> Peddler::Notifications::ItemInventoryEventChange::Notification
+                   | (String?, String?, String?, String?, Peddler::Notifications::ItemInventoryEventChange::Payload?, String?) -> Peddler::Notifications::ItemInventoryEventChange::Notification
+
+        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ItemInventoryEventChange::Notification
+
+        attr_reader event_time: String?
+        attr_reader notification_metadata: String?
+        attr_reader notification_type: String?
+        attr_reader notification_version: String?
+        attr_reader payload: Peddler::Notifications::ItemInventoryEventChange::Payload?
+        attr_reader payload_version: String?
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def to_h: () -> { event_time: String?, notification_metadata: String?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ItemInventoryEventChange::Payload?, payload_version: String? }
+      end
+
+      class NotificationMetadata < Data
+        def self.new: (application_id: String?, notification_id: String?, publish_time: String?, subscription_id: String?) -> Peddler::Notifications::ItemInventoryEventChange::NotificationMetadata
+                    | (String?, String?, String?, String?) -> Peddler::Notifications::ItemInventoryEventChange::NotificationMetadata
+
+        def self.[]: (application_id: String?, notification_id: String?, publish_time: String?, subscription_id: String?) -> Peddler::Notifications::ItemInventoryEventChange::NotificationMetadata
+                   | (String?, String?, String?, String?) -> Peddler::Notifications::ItemInventoryEventChange::NotificationMetadata
+
+        def self.members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ItemInventoryEventChange::NotificationMetadata
+
+        attr_reader application_id: String?
+        attr_reader notification_id: String?
+        attr_reader publish_time: String?
+        attr_reader subscription_id: String?
+        def members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
+
+        def to_h: () -> { application_id: String?, notification_id: String?, publish_time: String?, subscription_id: String? }
+      end
+
+      class Payload < Data
+        def self.new: (item_inventory_event_changes: Array[Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange]?) -> Peddler::Notifications::ItemInventoryEventChange::Payload
+                    | (Array[Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange]?) -> Peddler::Notifications::ItemInventoryEventChange::Payload
+
+        def self.[]: (item_inventory_event_changes: Array[Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange]?) -> Peddler::Notifications::ItemInventoryEventChange::Payload
+                   | (Array[Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange]?) -> Peddler::Notifications::ItemInventoryEventChange::Payload
+
+        def self.members: () -> [ :item_inventory_event_changes ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ItemInventoryEventChange::Payload
+
+        attr_reader item_inventory_event_changes: Array[Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange]?
+        def members: () -> [ :item_inventory_event_changes ]
+
+        def to_h: () -> { item_inventory_event_changes: Array[Peddler::Notifications::ItemInventoryEventChange::ItemInventoryEventChange]? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::ItemInventoryEventChange::Notification
+    end
+  end
+end

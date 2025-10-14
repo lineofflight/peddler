@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+# <%= Generator::Config::GENERATED_FILE_NOTICE %>
+
+module Peddler
+  module Reports
+<% if schema["title"] || schema["description"] -%>
+    # <%= schema["title"] %>
+    #
+<%= split_long_comment_line(schema["description"], base_indent: 4) %>
+<% end -%>
+    module <%= class_name %>
+      class << self
+        def parse(hash)
+          Report.parse(hash)
+        end
+      end
+    end
+  end
+end

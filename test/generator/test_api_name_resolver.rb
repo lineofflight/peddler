@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "helper"
-require "generator/api_name_resolver"
+require "generator/resolvers/api_name_resolver"
 
 module Generator
   class TestAPINameResolver < Minitest::Test

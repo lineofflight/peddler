@@ -2,27 +2,114 @@
 
 require "json"
 require "erb"
+require "parallel"
 
-require "generator/config"
-require "generator/logger"
-require "generator/formatter"
-require "generator/path"
-require "generator/type_resolver"
-require "generator/api_name_resolver"
+require_relative "logger"
+require_relative "config"
+require_relative "support/formatter"
+require_relative "support/file_writer"
+require_relative "support/introspection_loader"
+require_relative "parsers/path"
+require_relative "resolvers/type_resolver"
+require_relative "resolvers/api_name_resolver"
+require_relative "type"
+require_relative "analyzers/circular_dependency_detector"
+require_relative "rbs/unified"
 
 module Generator
   class API
+    include FileWriter
     include Formatter
-    include Logger
 
     attr_reader :file
 
+    class << self
+      def generate
+        cleanup!
+
+        # Generate each API in parallel
+        Parallel.each(apis, &:generate)
+      end
+
+      def apis
+        api_models = Dir.glob(File.join(Config::BASE_PATH, "selling-partner-api-models/models/**/*.json"))
+        APINameResolver.validate_no_unmapped_collisions!(api_models)
+
+        api_models.map { |file| new(file) }
+      end
+
+      def cleanup!
+        ["lib", "sig"].each do |base|
+          apis_path = File.join(Config::BASE_PATH, base, "peddler/apis")
+          FileUtils.mkdir_p(apis_path)
+          # Delete only generated API subdirectories, preserve all files (money.rb, etc.)
+          Dir.glob(File.join(apis_path, "*")).select { |p| File.directory?(p) }.each do |dir|
+            FileUtils.rm_rf(dir)
+          end
+        end
+      end
+    end
+
     def initialize(file)
       @file = file
+      @written_files = []
     end
 
     def generate
-      File.write(file_path, render)
+      generate_api_class!
+      generate_types!
+
+      # Reload to pick up newly generated files for RBS introspection
+      IntrospectionLoader.reload
+      generate_rbs!
+      format_files(@written_files)
+
+      Generator.logger.info("Generated #{name_with_version}")
+    end
+
+    def generate_api_class!
+      @written_files << write_file(file_path, render)
+    end
+
+    def generate_types!
+      api_types = types
+      return [] if api_types.empty?
+
+      # Detect circular dependencies across all types for this API
+      detector = CircularDependencyDetector.new(api_types)
+      detector.detect
+      api_types.each do |type|
+        type.circular_dependencies = detector.circular_deps
+        type.cycle_edges = detector.cycle_edges
+      end
+
+      # Generate each type Ruby file
+      api_types.each do |type|
+        @written_files << type.generate
+      end
+
+      # Store types for RBS generation
+      @api_types = api_types
+    end
+
+    def generate_rbs!
+      # Generate unified RBS file with both API operations and type definitions
+      @written_files << RBS::Unified.new(self, name_with_version, @api_types || []).generate
+    end
+
+    def types
+      arr = []
+      openapi_spec["definitions"].each do |name, definition|
+        # Skip non-object definitions but allow allOf compositions and arrays
+        next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
+        # Skip Money types as we use the custom Money type for these
+        next if TypeResolver.money?(name)
+        # Skip types with ONLY additionalProperties (no defined properties) - they'll be referenced as Hash
+        next if definition["additionalProperties"] && !definition["properties"] && !definition["allOf"]
+
+        arr << Type.new(name, definition, name_with_version, openapi_spec)
+      end
+      arr
     end
 
     def title
@@ -69,6 +156,16 @@ module Generator
       [name, version].join("_")
     end
 
+    def latest_version?
+      all_apis = self.class.apis.select { |api| api.name == name }
+      latest_version = VersionSelector.find_latest_version(all_apis.map(&:version))
+      version == latest_version
+    end
+
+    def convenience_method_name
+      name
+    end
+
     def operations
       @operations ||= begin
         ops = paths.flat_map { |path| path.operations(name_with_version) }.compact
@@ -112,7 +209,7 @@ module Generator
       if duplicates.any?
         duplicates.each do |method_name, ops|
           verbs = ops.map(&:verb).join(", ")
-          logger.warn("Found duplicate operation in #{name_with_version}: #{method_name} (#{verbs})")
+          Generator.logger.warn("Found duplicate operation in #{name_with_version}: #{method_name} (#{verbs})")
         end
       end
 

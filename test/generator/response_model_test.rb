@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "minitest/autorun"
-require "generator/response_model"
+require "helper"
+require "generator/builders/response_model"
 
 module Generator
   class ResponseModelTest < Minitest::Test

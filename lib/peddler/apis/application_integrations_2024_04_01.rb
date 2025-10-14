@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def application_integrations_2024_04_01
-      APIs::ApplicationIntegrations20240401
-    end
-  end
-
   module APIs
     # The Selling Partner API for third party application integrations.
     #
@@ -27,10 +19,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_notification(body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications"
-        parser = -> {
-          require "peddler/types/application_integrations_2024_04_01"
-          Types::ApplicationIntegrations20240401::CreateNotificationResponse
-        }
+        parser = -> { CreateNotificationResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 

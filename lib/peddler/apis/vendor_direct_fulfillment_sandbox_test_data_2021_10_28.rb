@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def vendor_direct_fulfillment_sandbox_test_data_2021_10_28
-      APIs::VendorDirectFulfillmentSandboxTestData20211028
-    end
-  end
-
   module APIs
     # Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data
     #
@@ -28,10 +20,7 @@ module Peddler
         must_sandbox!
 
         path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_sandbox_test_data_2021_10_28"
-          Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionReference
-        }
+        parser = -> { TransactionReference }
         post(path, body:, parser:)
       end
 
@@ -40,16 +29,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
-      #   operation.
+      # operation.
       # @return [Peddler::Response] The API response
       def get_order_scenarios(transaction_id)
         must_sandbox!
 
         path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{percent_encode(transaction_id)}"
-        parser = -> {
-          require "peddler/types/vendor_direct_fulfillment_sandbox_test_data_2021_10_28"
-          Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus
-        }
+        parser = -> { TransactionStatus }
         get(path, parser:)
       end
     end

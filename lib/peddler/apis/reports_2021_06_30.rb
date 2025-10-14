@@ -2,16 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-require "peddler/helpers/reports_2021_06_30"
-
 module Peddler
-  class << self
-    def reports_2021_06_30
-      APIs::Reports20210630
-    end
-  end
-
   module APIs
     # Selling Partner API for Reports
     #
@@ -26,22 +17,22 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param report_types [Array<String>] A list of report types used to filter reports. Refer to [Report Type
-      #   Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When
-      #   reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince,
-      #   createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
+      # Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When reportTypes
+      # is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and
+      # pageSize may also be provided. Either reportTypes or nextToken is required.
       # @param processing_statuses [Array<String>] A list of processing statuses used to filter reports.
       # @param marketplace_ids [Array<String>] A list of marketplace identifiers used to filter reports. The reports
-      #   returned will match at least one of the marketplaces that you specify.
+      # returned will match at least one of the marketplaces that you specify.
       # @param page_size [Integer] The maximum number of reports to return in a single call.
       # @param created_since [String] The earliest report creation date and time for reports to include in the response,
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is 90 days
-      #   ago. Reports are retained for a maximum of 90 days.
+      # in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is 90 days
+      # ago. Reports are retained for a maximum of 90 days.
       # @param created_until [String] The latest report creation date and time for reports to include in the response,
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is now.
+      # in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is now.
       # @param next_token [String] A string token returned in the response to your previous request. `nextToken` is
-      #   returned when the number of results exceeds the specified `pageSize` value. To get the next page of results,
-      #   call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any
-      #   other parameters will cause the request to fail.
+      # returned when the number of results exceeds the specified `pageSize` value. To get the next page of results,
+      # call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any
+      # other parameters will cause the request to fail.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10,
@@ -56,10 +47,7 @@ module Peddler
           "createdUntil" => created_until,
           "nextToken" => next_token,
         }.compact
-        parser = -> {
-          require "peddler/types/reports_2021_06_30"
-          Types::Reports20210630::GetReportsResponse
-        }
+        parser = -> { GetReportsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -71,10 +59,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_report(body, rate_limit: 0.0167)
         path = "/reports/2021-06-30/reports"
-        parser = -> {
-          require "peddler/types/reports_2021_06_30"
-          Types::Reports20210630::CreateReportResponse
-        }
+        parser = -> { CreateReportResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -83,7 +68,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
-      #   seller ID.
+      # seller ID.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_report(report_id, rate_limit: 0.0222)
@@ -95,15 +80,12 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
-      #   seller ID.
+      # seller ID.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_report(report_id, rate_limit: 2.0)
         path = "/reports/2021-06-30/reports/#{percent_encode(report_id)}"
-        parser = -> {
-          require "peddler/types/reports_2021_06_30"
-          Types::Reports20210630::Report
-        }
+        parser = -> { Report }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -111,7 +93,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param report_types [Array<String>] A list of report types used to filter report schedules. Refer to [Report
-      #   Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+      # Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_report_schedules(report_types, rate_limit: 0.0222)
@@ -119,10 +101,7 @@ module Peddler
         params = {
           "reportTypes" => stringify_array(report_types),
         }.compact
-        parser = -> {
-          require "peddler/types/reports_2021_06_30"
-          Types::Reports20210630::ReportScheduleList
-        }
+        parser = -> { ReportScheduleList }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -135,10 +114,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_report_schedule(body, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules"
-        parser = -> {
-          require "peddler/types/reports_2021_06_30"
-          Types::Reports20210630::CreateReportScheduleResponse
-        }
+        parser = -> { CreateReportScheduleResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -146,7 +122,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
-      #   combination with a seller ID.
+      # combination with a seller ID.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_report_schedule(report_schedule_id, rate_limit: 0.0222)
@@ -158,15 +134,12 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
-      #   combination with a seller ID.
+      # combination with a seller ID.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_report_schedule(report_schedule_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules/#{percent_encode(report_schedule_id)}"
-        parser = -> {
-          require "peddler/types/reports_2021_06_30"
-          Types::Reports20210630::ReportSchedule
-        }
+        parser = -> { ReportSchedule }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -178,10 +151,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report_document(report_document_id, rate_limit: 0.0167)
         path = "/reports/2021-06-30/documents/#{percent_encode(report_document_id)}"
-        parser = -> {
-          require "peddler/types/reports_2021_06_30"
-          Types::Reports20210630::ReportDocument
-        }
+        parser = -> { ReportDocument }
         meter(rate_limit).get(path, parser:)
       end
     end

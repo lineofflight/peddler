@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def vendor_shipments_v1
-      APIs::VendorShipmentsV1
-    end
-  end
-
   module APIs
     # Selling Partner API for Retail Procurement Shipments
     #
@@ -27,10 +19,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/shipping/v1/shipmentConfirmations"
-        parser = -> {
-          require "peddler/types/vendor_shipments_v1"
-          Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
-        }
+        parser = -> { SubmitShipmentConfirmationsResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -43,10 +32,7 @@ module Peddler
         cannot_sandbox!
 
         path = "/vendor/shipping/v1/shipments"
-        parser = -> {
-          require "peddler/types/vendor_shipments_v1"
-          Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
-        }
+        parser = -> { SubmitShipmentConfirmationsResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -56,46 +42,46 @@ module Peddler
       # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
       # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
       # @param next_token [String] Used for pagination when there are more shipments than the specified result size
-      #   limit.
+      # limit.
       # @param created_after [String] Get Shipment Details that became available after this timestamp will be included
-      #   in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param created_before [String] Get Shipment Details that became available before this timestamp will be included
-      #   in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param shipment_confirmed_before [String] Get Shipment Details by passing Shipment confirmed create Date Before.
-      #   Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param shipment_confirmed_after [String] Get Shipment Details by passing Shipment confirmed create Date After.
-      #   Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param package_label_created_before [String] Get Shipment Details by passing Package label create Date by buyer.
-      #   Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param package_label_created_after [String] Get Shipment Details by passing Package label create Date After by
-      #   buyer. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # buyer. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param shipped_before [String] Get Shipment Details by passing Shipped Date Before. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param shipped_after [String] Get Shipment Details by passing Shipped Date After. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param estimated_delivery_before [String] Get Shipment Details by passing Estimated Delivery Date Before. Must
-      #   be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param estimated_delivery_after [String] Get Shipment Details by passing Estimated Delivery Date Before. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param shipment_delivery_before [String] Get Shipment Details by passing Shipment Delivery Date Before. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param shipment_delivery_after [String] Get Shipment Details by passing Shipment Delivery Date After. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param requested_pick_up_before [String] Get Shipment Details by passing Before Requested pickup date. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param requested_pick_up_after [String] Get Shipment Details by passing After Requested pickup date. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param scheduled_pick_up_before [String] Get Shipment Details by passing Before scheduled pickup date. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param scheduled_pick_up_after [String] Get Shipment Details by passing After Scheduled pickup date. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param current_shipment_status [String] Get Shipment Details by passing Current shipment status.
       # @param vendor_shipment_identifier [String] Get Shipment Details by passing Vendor Shipment ID
       # @param buyer_reference_number [String] Get Shipment Details by passing buyer Reference ID
       # @param buyer_warehouse_code [String] Get Shipping Details based on buyer warehouse code. This value should be
-      #   same as 'shipToParty.partyId' in the Shipment.
+      # same as 'shipToParty.partyId' in the Shipment.
       # @param seller_warehouse_code [String] Get Shipping Details based on vendor warehouse code. This value should be
-      #   same as 'sellingParty.partyId' in the Shipment.
+      # same as 'sellingParty.partyId' in the Shipment.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil,
@@ -134,10 +120,7 @@ module Peddler
           "buyerWarehouseCode" => buyer_warehouse_code,
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
-        parser = -> {
-          require "peddler/types/vendor_shipments_v1"
-          Types::VendorShipmentsV1::GetShipmentDetailsResponse
-        }
+        parser = -> { GetShipmentDetailsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -146,18 +129,17 @@ module Peddler
       # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
       # @param sort_order [String] Sort the list by shipment label creation date in ascending or descending order.
       # @param next_token [String] A token that you use to retrieve the next page of results. The response includes
-      #   `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of
-      #   results, call the operation with this token and include the same arguments as the call that produced the
-      #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
-      #   return empty pages.
+      # `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results,
+      # call the operation with this token and include the same arguments as the call that produced the token. To get a
+      # complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # @param label_created_after [String] Shipment labels created after this time will be included in the result. This
-      #   field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
+      # field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
       # @param label_created_before [String] Shipment labels created before this time will be included in the result.
-      #   This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
+      # This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
       # @param buyer_reference_number [String] Get Shipment labels by passing buyer reference number.
       # @param vendor_shipment_identifier [String] Get Shipment labels by passing vendor shipment identifier.
       # @param seller_warehouse_code [String] Get Shipping labels based on vendor warehouse code. This value must be
-      #   same as the `sellingParty.partyId` in the shipment.
+      # same as the `sellingParty.partyId` in the shipment.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil,
@@ -176,10 +158,7 @@ module Peddler
           "vendorShipmentIdentifier" => vendor_shipment_identifier,
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
-        parser = -> {
-          require "peddler/types/vendor_shipments_v1"
-          Types::VendorShipmentsV1::GetShipmentLabels
-        }
+        parser = -> { GetShipmentLabels }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

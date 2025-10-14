@@ -1,6 +1,1010 @@
 module Peddler
   module APIs
     class ExternalFulfillmentShipments20240911 < API
+      class Address < Data
+        def self.new: (postal_code: String?, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?copy_emails: Array[String]?, ?country_code: String?, ?district: String?, ?email: String?, ?municipality: String?, ?name: String?, ?phone_number: String?, ?state: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+                    | (String?, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+
+        def self.[]: (postal_code: String?, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?copy_emails: Array[String]?, ?country_code: String?, ?district: String?, ?email: String?, ?municipality: String?, ?name: String?, ?phone_number: String?, ?state: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+                   | (String?, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+
+        def self.members: () -> [ :postal_code, :address_line1, :address_line2, :address_line3, :address_type, :city, :copy_emails, :country_code, :district, :email, :municipality, :name, :phone_number, :state ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+
+        attr_reader address_line1: String?
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader address_type: String?
+        attr_reader city: String?
+        attr_reader copy_emails: Array[String]?
+        attr_reader country_code: String?
+        attr_reader district: String?
+        attr_reader email: String?
+        attr_reader municipality: String?
+        attr_reader name: String?
+        attr_reader phone_number: String?
+        attr_reader postal_code: String?
+        attr_reader state: String?
+        def members: () -> [ :postal_code, :address_line1, :address_line2, :address_line3, :address_type, :city, :copy_emails, :country_code, :district, :email, :municipality, :name, :phone_number, :state ]
+
+        def to_h: () -> { postal_code: String?, address_line1: String?, address_line2: String?, address_line3: String?, address_type: String?, city: String?, copy_emails: Array[String]?, country_code: String?, district: String?, email: String?, municipality: String?, name: String?, phone_number: String?, state: String? }
+      end
+
+      class Amount < Data
+        def self.new: (currency_code: String?, value: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Amount
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Amount
+
+        def self.[]: (currency_code: String?, value: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Amount
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Amount
+
+        def self.members: () -> [ :currency_code, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Amount
+
+        attr_reader currency_code: String?
+        attr_reader value: String?
+        def members: () -> [ :currency_code, :value ]
+
+        def to_h: () -> { currency_code: String?, value: String? }
+      end
+
+      class Cancellation < Data
+        def self.new: (cancellation_type: String?, cancelled_quantity: Integer?, cancelled_timestamp: String?, ?cancellation_reason: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation
+                    | (String?, Integer?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation
+
+        def self.[]: (cancellation_type: String?, cancelled_quantity: Integer?, cancelled_timestamp: String?, ?cancellation_reason: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation
+                   | (String?, Integer?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation
+
+        def self.members: () -> [ :cancellation_type, :cancelled_quantity, :cancelled_timestamp, :cancellation_reason ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation
+
+        attr_reader cancellation_reason: String?
+        attr_reader cancellation_type: String?
+        attr_reader cancelled_quantity: Integer?
+        attr_reader cancelled_timestamp: String?
+        def members: () -> [ :cancellation_type, :cancelled_quantity, :cancelled_timestamp, :cancellation_reason ]
+
+        def to_h: () -> { cancellation_type: String?, cancelled_quantity: Integer?, cancelled_timestamp: String?, cancellation_reason: String? }
+      end
+
+      class Cancellations < Array[Cancellation]
+        def self.parse: (Array[untyped]) -> Cancellations
+      end
+
+      class Charge < Data
+        def self.new: (base_charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, charge_type: String?, total_charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, total_tax: Peddler::APIs::ExternalFulfillmentShipments20240911::Tax?, ?tax_breakup: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Tax]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Charge
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, Peddler::APIs::ExternalFulfillmentShipments20240911::Tax?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Tax]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Charge
+
+        def self.[]: (base_charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, charge_type: String?, total_charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, total_tax: Peddler::APIs::ExternalFulfillmentShipments20240911::Tax?, ?tax_breakup: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Tax]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Charge
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, Peddler::APIs::ExternalFulfillmentShipments20240911::Tax?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Tax]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Charge
+
+        def self.members: () -> [ :base_charge, :charge_type, :total_charge, :total_tax, :tax_breakup ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Charge
+
+        attr_reader base_charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?
+        attr_reader charge_type: String?
+        attr_reader tax_breakup: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Tax]?
+        attr_reader total_charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?
+        attr_reader total_tax: Peddler::APIs::ExternalFulfillmentShipments20240911::Tax?
+        def members: () -> [ :base_charge, :charge_type, :total_charge, :total_tax, :tax_breakup ]
+
+        def to_h: () -> { base_charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, charge_type: String?, total_charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, total_tax: Peddler::APIs::ExternalFulfillmentShipments20240911::Tax?, tax_breakup: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Tax]? }
+      end
+
+      class ChargeBreakup < Data
+        def self.new: (base_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, discount_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, net_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup
+
+        def self.[]: (base_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, discount_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, net_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup
+
+        def self.members: () -> [ :base_amount, :discount_amount, :net_amount ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup
+
+        attr_reader base_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?
+        attr_reader discount_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?
+        attr_reader net_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?
+        def members: () -> [ :base_amount, :discount_amount, :net_amount ]
+
+        def to_h: () -> { base_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, discount_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, net_amount: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount? }
+      end
+
+      class Charges < Array[Charge]
+        def self.parse: (Array[untyped]) -> Charges
+      end
+
+      class ComplianceAttributes < Data
+        def self.new: (country_of_origin_requirement: String?, hazmat_labels_requirement: String?, item_value_requirement: String?, serial_number_requirement: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes
+                    | (String?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes
+
+        def self.[]: (country_of_origin_requirement: String?, hazmat_labels_requirement: String?, item_value_requirement: String?, serial_number_requirement: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes
+                   | (String?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes
+
+        def self.members: () -> [ :country_of_origin_requirement, :hazmat_labels_requirement, :item_value_requirement, :serial_number_requirement ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes
+
+        attr_reader country_of_origin_requirement: String?
+        attr_reader hazmat_labels_requirement: String?
+        attr_reader item_value_requirement: String?
+        attr_reader serial_number_requirement: String?
+        def members: () -> [ :country_of_origin_requirement, :hazmat_labels_requirement, :item_value_requirement, :serial_number_requirement ]
+
+        def to_h: () -> { country_of_origin_requirement: String?, hazmat_labels_requirement: String?, item_value_requirement: String?, serial_number_requirement: String? }
+      end
+
+      class CourierSupportedAttributes < Data
+        def self.new: (carrier_name: String?, tracking_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes
+
+        def self.[]: (carrier_name: String?, tracking_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes
+
+        def self.members: () -> [ :carrier_name, :tracking_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes
+
+        attr_reader carrier_name: String?
+        attr_reader tracking_id: String?
+        def members: () -> [ :carrier_name, :tracking_id ]
+
+        def to_h: () -> { carrier_name: String?, tracking_id: String? }
+      end
+
+      class CustomAttribute < Data
+        def self.new: (?key: String?, ?type: String?, ?value: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute
+                    | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute
+
+        def self.[]: (?key: String?, ?type: String?, ?value: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute
+                   | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute
+
+        def self.members: () -> [ :key, :type, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute
+
+        attr_reader key: String?
+        attr_reader type: String?
+        attr_reader value: String?
+        def members: () -> [ :key, :type, :value ]
+
+        def to_h: () -> { key: String?, type: String?, value: String? }
+      end
+
+      class CustomChannelAttribute < Array[untyped]
+        def self.parse: (Array[untyped]) -> CustomChannelAttribute
+      end
+
+      class Dimension < Data
+        def self.new: (dimension_unit: String?, value: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension
+
+        def self.[]: (dimension_unit: String?, value: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension
+
+        def self.members: () -> [ :dimension_unit, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension
+
+        attr_reader dimension_unit: String?
+        attr_reader value: String?
+        def members: () -> [ :dimension_unit, :value ]
+
+        def to_h: () -> { dimension_unit: String?, value: String? }
+      end
+
+      class Document < Data
+        def self.new: (?content: String?, ?format: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Document
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Document
+
+        def self.[]: (?content: String?, ?format: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Document
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Document
+
+        def self.members: () -> [ :content, :format ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Document
+
+        attr_reader content: String?
+        attr_reader format: String?
+        def members: () -> [ :content, :format ]
+
+        def to_h: () -> { content: String?, format: String? }
+      end
+
+      class DocumentV2 < Data
+        def self.new: (url: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2
+                    | (String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2
+
+        def self.[]: (url: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2
+                   | (String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2
+
+        def self.members: () -> [ :url ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2
+
+        attr_reader url: String?
+        def members: () -> [ :url ]
+
+        def to_h: () -> { url: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Error
+                    | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Error
+
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Error
+                   | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Error
+
+        attr_reader code: String?
+        attr_reader details: String?
+        attr_reader message: String?
+        def members: () -> [ :code, :message, :details ]
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Error]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ErrorList
+                    | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Error]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ErrorList
+
+        def self.[]: (errors: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Error]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ErrorList
+                   | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Error]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Error]?
+        def members: () -> [ :errors ]
+
+        def to_h: () -> { errors: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Error]? }
+      end
+
+      class GiftAttributes < Data
+        def self.new: (gift_message_presence: String?, gift_wrap_requirement: String?, ?gift_message: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?, ?gift_wrap_label: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes
+                    | (String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Document?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes
+
+        def self.[]: (gift_message_presence: String?, gift_wrap_requirement: String?, ?gift_message: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?, ?gift_wrap_label: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes
+                   | (String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Document?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes
+
+        def self.members: () -> [ :gift_message_presence, :gift_wrap_requirement, :gift_message, :gift_wrap_label ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes
+
+        attr_reader gift_message: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?
+        attr_reader gift_message_presence: String?
+        attr_reader gift_wrap_label: String?
+        attr_reader gift_wrap_requirement: String?
+        def members: () -> [ :gift_message_presence, :gift_wrap_requirement, :gift_message, :gift_wrap_label ]
+
+        def to_h: () -> { gift_message_presence: String?, gift_wrap_requirement: String?, gift_message: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?, gift_wrap_label: String? }
+      end
+
+      class InvoiceInfo < Data
+        def self.new: (creation_date_time: String?, invoice_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo
+
+        def self.[]: (creation_date_time: String?, invoice_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo
+
+        def self.members: () -> [ :creation_date_time, :invoice_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo
+
+        attr_reader creation_date_time: String?
+        attr_reader invoice_id: String?
+        def members: () -> [ :creation_date_time, :invoice_id ]
+
+        def to_h: () -> { creation_date_time: String?, invoice_id: String? }
+      end
+
+      class InvoiceRequirement < Data
+        def self.new: (?requirement: String?, ?status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement
+
+        def self.[]: (?requirement: String?, ?status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement
+
+        def self.members: () -> [ :requirement, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement
+
+        attr_reader requirement: String?
+        attr_reader status: String?
+        def members: () -> [ :requirement, :status ]
+
+        def to_h: () -> { requirement: String?, status: String? }
+      end
+
+      class InvoiceResponse < Data
+        def self.new: (document: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceResponse
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::Document?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceResponse
+
+        def self.[]: (document: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceResponse
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::Document?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceResponse
+
+        def self.members: () -> [ :document ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceResponse
+
+        attr_reader document: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?
+        def members: () -> [ :document ]
+
+        def to_h: () -> { document: Peddler::APIs::ExternalFulfillmentShipments20240911::Document? }
+      end
+
+      class LineItem < Data
+        def self.new: (id: String?, ?quantity: Integer?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem
+                    | (String?, Integer?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem
+
+        def self.[]: (id: String?, ?quantity: Integer?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem
+                   | (String?, Integer?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem
+
+        def self.members: () -> [ :id, :quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem
+
+        attr_reader id: String?
+        attr_reader quantity: Integer?
+        def members: () -> [ :id, :quantity ]
+
+        def to_h: () -> { id: String?, quantity: Integer? }
+      end
+
+      class LineItemWithReason < Data
+        def self.new: (line_item: Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem?, ?reason: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason
+
+        def self.[]: (line_item: Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem?, ?reason: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason
+
+        def self.members: () -> [ :line_item, :reason ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason
+
+        attr_reader line_item: Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem?
+        attr_reader reason: String?
+        def members: () -> [ :line_item, :reason ]
+
+        def to_h: () -> { line_item: Peddler::APIs::ExternalFulfillmentShipments20240911::LineItem?, reason: String? }
+      end
+
+      class MarketplaceAttributes < Data
+        def self.new: (channel_name: String?, marketplace_id: String?, ?custom_attributes: Array[String]?, ?merchant_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes
+                    | (String?, String?, Array[String]?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes
+
+        def self.[]: (channel_name: String?, marketplace_id: String?, ?custom_attributes: Array[String]?, ?merchant_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes
+                   | (String?, String?, Array[String]?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes
+
+        def self.members: () -> [ :channel_name, :marketplace_id, :custom_attributes, :merchant_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes
+
+        attr_reader channel_name: String?
+        attr_reader custom_attributes: Array[String]?
+        attr_reader marketplace_id: String?
+        attr_reader merchant_id: String?
+        def members: () -> [ :channel_name, :marketplace_id, :custom_attributes, :merchant_id ]
+
+        def to_h: () -> { channel_name: String?, marketplace_id: String?, custom_attributes: Array[String]?, merchant_id: String? }
+      end
+
+      class OriginalLineItem < Data
+        def self.new: (charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, original_sku: String?, replacing_sku: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem
+                    | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem
+
+        def self.[]: (charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, original_sku: String?, replacing_sku: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem
+                   | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem
+
+        def self.members: () -> [ :charges, :original_sku, :replacing_sku ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem
+
+        attr_reader charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?
+        attr_reader original_sku: String?
+        attr_reader replacing_sku: String?
+        def members: () -> [ :charges, :original_sku, :replacing_sku ]
+
+        def to_h: () -> { charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, original_sku: String?, replacing_sku: String? }
+      end
+
+      class OriginalLineItems < Array[OriginalLineItem]
+        def self.parse: (Array[untyped]) -> OriginalLineItems
+      end
+
+      class Package < Data
+        def self.new: (dimensions: Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, id: String?, package_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem]?, weight: Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?, ?hazmat_labels: Array[String]?, ?package_handling_requirements: String?, ?status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Package
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem]?, Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?, Array[String]?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Package
+
+        def self.[]: (dimensions: Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, id: String?, package_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem]?, weight: Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?, ?hazmat_labels: Array[String]?, ?package_handling_requirements: String?, ?status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Package
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem]?, Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?, Array[String]?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Package
+
+        def self.members: () -> [ :dimensions, :id, :package_line_items, :weight, :hazmat_labels, :package_handling_requirements, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Package
+
+        attr_reader dimensions: Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?
+        attr_reader hazmat_labels: Array[String]?
+        attr_reader id: String?
+        attr_reader package_handling_requirements: String?
+        attr_reader package_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem]?
+        attr_reader status: String?
+        attr_reader weight: Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?
+        def members: () -> [ :dimensions, :id, :package_line_items, :weight, :hazmat_labels, :package_handling_requirements, :status ]
+
+        def to_h: () -> { dimensions: Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, id: String?, package_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem]?, weight: Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?, hazmat_labels: Array[String]?, package_handling_requirements: String?, status: String? }
+      end
+
+      class PackageDeliveryStatus < Data
+        def self.new: (?reason: String?, ?status: String?, ?sub_status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDeliveryStatus
+                    | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDeliveryStatus
+
+        def self.[]: (?reason: String?, ?status: String?, ?sub_status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDeliveryStatus
+                   | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDeliveryStatus
+
+        def self.members: () -> [ :reason, :status, :sub_status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDeliveryStatus
+
+        attr_reader reason: String?
+        attr_reader status: String?
+        attr_reader sub_status: String?
+        def members: () -> [ :reason, :status, :sub_status ]
+
+        def to_h: () -> { reason: String?, status: String?, sub_status: String? }
+      end
+
+      class PackageDimensions < Data
+        def self.new: (height: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, length: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, width: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions
+
+        def self.[]: (height: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, length: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, width: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions
+
+        def self.members: () -> [ :height, :length, :width ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions
+
+        attr_reader height: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?
+        attr_reader length: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?
+        attr_reader width: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?
+        def members: () -> [ :height, :length, :width ]
+
+        def to_h: () -> { height: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, length: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension?, width: Peddler::APIs::ExternalFulfillmentShipments20240911::Dimension? }
+      end
+
+      class PackageLineItem < Data
+        def self.new: (package_line_item_id: String?, quantity: Integer?, ?country_of_origin: String?, ?item_value: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, ?pieces: Integer?, ?serial_numbers: Array[untyped]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem
+                    | (String?, Integer?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, Integer?, Array[untyped]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem
+
+        def self.[]: (package_line_item_id: String?, quantity: Integer?, ?country_of_origin: String?, ?item_value: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, ?pieces: Integer?, ?serial_numbers: Array[untyped]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem
+                   | (String?, Integer?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, Integer?, Array[untyped]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem
+
+        def self.members: () -> [ :package_line_item_id, :quantity, :country_of_origin, :item_value, :pieces, :serial_numbers ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageLineItem
+
+        attr_reader country_of_origin: String?
+        attr_reader item_value: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?
+        attr_reader package_line_item_id: String?
+        attr_reader pieces: Integer?
+        attr_reader quantity: Integer?
+        attr_reader serial_numbers: Array[untyped]?
+        def members: () -> [ :package_line_item_id, :quantity, :country_of_origin, :item_value, :pieces, :serial_numbers ]
+
+        def to_h: () -> { package_line_item_id: String?, quantity: Integer?, country_of_origin: String?, item_value: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, pieces: Integer?, serial_numbers: Array[untyped]? }
+      end
+
+      class PackageLineItems < Array[PackageLineItem]
+        def self.parse: (Array[untyped]) -> PackageLineItems
+      end
+
+      class PackageShipLabel < Data
+        def self.new: (?error_details: Peddler::APIs::ExternalFulfillmentShipments20240911::Error?, ?file_data: Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2?, ?package_id: String?, ?ship_label_metadata: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata?, ?status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::Error?, Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel
+
+        def self.[]: (?error_details: Peddler::APIs::ExternalFulfillmentShipments20240911::Error?, ?file_data: Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2?, ?package_id: String?, ?ship_label_metadata: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata?, ?status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::Error?, Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel
+
+        def self.members: () -> [ :error_details, :file_data, :package_id, :ship_label_metadata, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel
+
+        attr_reader error_details: Peddler::APIs::ExternalFulfillmentShipments20240911::Error?
+        attr_reader file_data: Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2?
+        attr_reader package_id: String?
+        attr_reader ship_label_metadata: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata?
+        attr_reader status: String?
+        def members: () -> [ :error_details, :file_data, :package_id, :ship_label_metadata, :status ]
+
+        def to_h: () -> { error_details: Peddler::APIs::ExternalFulfillmentShipments20240911::Error?, file_data: Peddler::APIs::ExternalFulfillmentShipments20240911::DocumentV2?, package_id: String?, ship_label_metadata: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata?, status: String? }
+      end
+
+      class PackageShipLabelList < Array[PackageShipLabel]
+        def self.parse: (Array[untyped]) -> PackageShipLabelList
+      end
+
+      class Packages < Data
+        def self.new: (packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Packages
+                    | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Packages
+
+        def self.[]: (packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Packages
+                   | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Packages
+
+        def self.members: () -> [ :packages ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Packages
+
+        attr_reader packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?
+        def members: () -> [ :packages ]
+
+        def to_h: () -> { packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]? }
+      end
+
+      class PackingSlipRequirement < Data
+        def self.new: (?requirement: String?, ?status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement
+
+        def self.[]: (?requirement: String?, ?status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement
+
+        def self.members: () -> [ :requirement, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement
+
+        attr_reader requirement: String?
+        attr_reader status: String?
+        def members: () -> [ :requirement, :status ]
+
+        def to_h: () -> { requirement: String?, status: String? }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination
+                    | (String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination
+
+        def self.[]: (?next_token: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination
+                   | (String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination
+
+        def self.members: () -> [ :next_token ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination
+
+        attr_reader next_token: String?
+        def members: () -> [ :next_token ]
+
+        def to_h: () -> { next_token: String? }
+      end
+
+      class PartyIdentificationInfo < Data
+        def self.new: (party_id: String?, party_type: String?, ?address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, ?tax_info: Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo
+                    | (String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo
+
+        def self.[]: (party_id: String?, party_type: String?, ?address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, ?tax_info: Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo
+                   | (String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo
+
+        def self.members: () -> [ :party_id, :party_type, :address, :tax_info ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo
+
+        attr_reader address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?
+        attr_reader party_id: String?
+        attr_reader party_type: String?
+        attr_reader tax_info: Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo?
+        def members: () -> [ :party_id, :party_type, :address, :tax_info ]
+
+        def to_h: () -> { party_id: String?, party_type: String?, address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, tax_info: Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo? }
+      end
+
+      class PartyIdentificationInfoList < Array[PartyIdentificationInfo]
+        def self.parse: (Array[untyped]) -> PartyIdentificationInfoList
+      end
+
+      class RecommendedPackage < Data
+        def self.new: (dimensions: Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem]?, weight: Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem]?, Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage
+
+        def self.[]: (dimensions: Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem]?, weight: Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem]?, Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage
+
+        def self.members: () -> [ :dimensions, :line_items, :weight ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage
+
+        attr_reader dimensions: Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?
+        attr_reader line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem]?
+        attr_reader weight: Peddler::APIs::ExternalFulfillmentShipments20240911::Weight?
+        def members: () -> [ :dimensions, :line_items, :weight ]
+
+        def to_h: () -> { dimensions: Peddler::APIs::ExternalFulfillmentShipments20240911::PackageDimensions?, line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem]?, weight: Peddler::APIs::ExternalFulfillmentShipments20240911::Weight? }
+      end
+
+      class RecommendedPackageLineItem < Data
+        def self.new: (line_item_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem
+                    | (String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem
+
+        def self.[]: (line_item_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem
+                   | (String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem
+
+        def self.members: () -> [ :line_item_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackageLineItem
+
+        attr_reader line_item_id: String?
+        def members: () -> [ :line_item_id ]
+
+        def to_h: () -> { line_item_id: String? }
+      end
+
+      class RecommendedPackageLineItems < Array[RecommendedPackageLineItem]
+        def self.parse: (Array[untyped]) -> RecommendedPackageLineItems
+      end
+
+      class RecommendedPackages < Array[RecommendedPackage]
+        def self.parse: (Array[untyped]) -> RecommendedPackages
+      end
+
+      class ReplacedShipmentInfo < Data
+        def self.new: (id: String?, location_id: String?, marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, ?original_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo
+                    | (String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo
+
+        def self.[]: (id: String?, location_id: String?, marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, ?original_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo
+                   | (String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo
+
+        def self.members: () -> [ :id, :location_id, :marketplace_attributes, :original_line_items ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo
+
+        attr_reader id: String?
+        attr_reader location_id: String?
+        attr_reader marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?
+        attr_reader original_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem]?
+        def members: () -> [ :id, :location_id, :marketplace_attributes, :original_line_items ]
+
+        def to_h: () -> { id: String?, location_id: String?, marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, original_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem]? }
+      end
+
+      class ShipLabelMetadata < Data
+        def self.new: (carrier_name: String?, tracking_id: String?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?shipping_option_id: String?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+                    | (String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+
+        def self.[]: (carrier_name: String?, tracking_id: String?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?shipping_option_id: String?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+                   | (String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+
+        def self.members: () -> [ :carrier_name, :tracking_id, :pickup_window, :shipping_option_id, :time_slot ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+
+        attr_reader carrier_name: String?
+        attr_reader pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?
+        attr_reader shipping_option_id: String?
+        attr_reader time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?
+        attr_reader tracking_id: String?
+        def members: () -> [ :carrier_name, :tracking_id, :pickup_window, :shipping_option_id, :time_slot ]
+
+        def to_h: () -> { carrier_name: String?, tracking_id: String?, pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, shipping_option_id: String?, time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow? }
+      end
+
+      class ShipLabelsInput < Data
+        def self.new: (package_ids: Array[String]?, ?courier_supported_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsInput
+                    | (Array[String]?, Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsInput
+
+        def self.[]: (package_ids: Array[String]?, ?courier_supported_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsInput
+                   | (Array[String]?, Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsInput
+
+        def self.members: () -> [ :package_ids, :courier_supported_attributes ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsInput
+
+        attr_reader courier_supported_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes?
+        attr_reader package_ids: Array[String]?
+        def members: () -> [ :package_ids, :courier_supported_attributes ]
+
+        def to_h: () -> { package_ids: Array[String]?, courier_supported_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::CourierSupportedAttributes? }
+      end
+
+      class ShipLabelsResponse < Data
+        def self.new: (package_ship_label_list: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsResponse
+                    | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsResponse
+
+        def self.[]: (package_ship_label_list: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsResponse
+                   | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsResponse
+
+        def self.members: () -> [ :package_ship_label_list ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelsResponse
+
+        attr_reader package_ship_label_list: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel]?
+        def members: () -> [ :package_ship_label_list ]
+
+        def to_h: () -> { package_ship_label_list: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PackageShipLabel]? }
+      end
+
+      class Shipment < Data
+        def self.new: (charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, creation_date_time: String?, id: String?, last_updated_date_time: String?, line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem]?, location_id: String?, marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo?, shipment_requirements: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements?, shipping_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo?, status: String?, ?earliest_pack_date_time: String?, ?invoice_info: Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo?, ?packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?, ?party_info_list: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?, ?sub_status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment
+                    | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, String?, String?, String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem]?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo?, Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements?, Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo?, String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment
+
+        def self.[]: (charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, creation_date_time: String?, id: String?, last_updated_date_time: String?, line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem]?, location_id: String?, marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo?, shipment_requirements: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements?, shipping_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo?, status: String?, ?earliest_pack_date_time: String?, ?invoice_info: Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo?, ?packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?, ?party_info_list: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?, ?sub_status: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment
+                   | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, String?, String?, String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem]?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo?, Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements?, Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo?, String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment
+
+        def self.members: () -> [ :charges, :creation_date_time, :id, :last_updated_date_time, :line_items, :location_id, :marketplace_attributes, :shipment_info, :shipment_requirements, :shipping_info, :status, :earliest_pack_date_time, :invoice_info, :packages, :party_info_list, :sub_status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment
+
+        attr_reader charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?
+        attr_reader creation_date_time: String?
+        attr_reader earliest_pack_date_time: String?
+        attr_reader id: String?
+        attr_reader invoice_info: Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo?
+        attr_reader last_updated_date_time: String?
+        attr_reader line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem]?
+        attr_reader location_id: String?
+        attr_reader marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?
+        attr_reader packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?
+        attr_reader party_info_list: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?
+        attr_reader shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo?
+        attr_reader shipment_requirements: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements?
+        attr_reader shipping_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo?
+        attr_reader status: String?
+        attr_reader sub_status: String?
+        def members: () -> [ :charges, :creation_date_time, :id, :last_updated_date_time, :line_items, :location_id, :marketplace_attributes, :shipment_info, :shipment_requirements, :shipping_info, :status, :earliest_pack_date_time, :invoice_info, :packages, :party_info_list, :sub_status ]
+
+        def to_h: () -> { charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, creation_date_time: String?, id: String?, last_updated_date_time: String?, line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem]?, location_id: String?, marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo?, shipment_requirements: Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements?, shipping_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo?, status: String?, earliest_pack_date_time: String?, invoice_info: Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceInfo?, packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Package]?, party_info_list: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?, sub_status: String? }
+      end
+
+      class ShipmentAcknowledgementRequest < Data
+        def self.new: (line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason]?, ?reference_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentAcknowledgementRequest
+                    | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason]?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentAcknowledgementRequest
+
+        def self.[]: (line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason]?, ?reference_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentAcknowledgementRequest
+                   | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason]?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentAcknowledgementRequest
+
+        def self.members: () -> [ :line_items, :reference_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentAcknowledgementRequest
+
+        attr_reader line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason]?
+        attr_reader reference_id: String?
+        def members: () -> [ :line_items, :reference_id ]
+
+        def to_h: () -> { line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::LineItemWithReason]?, reference_id: String? }
+      end
+
+      class ShipmentInfo < Data
+        def self.new: (buyer_order_id: String?, number_of_units: Integer?, priority: String?, shipment_type: String?, ?order_placed_timestamp: String?, ?order_states_eligible_for_rejection: Array[String]?, ?original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, ?processing_source: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+                    | (String?, Integer?, String?, String?, String?, Array[String]?, Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+
+        def self.[]: (buyer_order_id: String?, number_of_units: Integer?, priority: String?, shipment_type: String?, ?order_placed_timestamp: String?, ?order_states_eligible_for_rejection: Array[String]?, ?original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, ?processing_source: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+                   | (String?, Integer?, String?, String?, String?, Array[String]?, Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+
+        def self.members: () -> [ :buyer_order_id, :number_of_units, :priority, :shipment_type, :order_placed_timestamp, :order_states_eligible_for_rejection, :original_shipment_info, :processing_source ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+
+        attr_reader buyer_order_id: String?
+        attr_reader number_of_units: Integer?
+        attr_reader order_placed_timestamp: String?
+        attr_reader order_states_eligible_for_rejection: Array[String]?
+        attr_reader original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?
+        attr_reader priority: String?
+        attr_reader processing_source: String?
+        attr_reader shipment_type: String?
+        def members: () -> [ :buyer_order_id, :number_of_units, :priority, :shipment_type, :order_placed_timestamp, :order_states_eligible_for_rejection, :original_shipment_info, :processing_source ]
+
+        def to_h: () -> { buyer_order_id: String?, number_of_units: Integer?, priority: String?, shipment_type: String?, order_placed_timestamp: String?, order_states_eligible_for_rejection: Array[String]?, original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, processing_source: String? }
+      end
+
+      class ShipmentLineItem < Data
+        def self.new: (charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, compliance_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes?, merchant_sku: String?, number_of_units: Integer?, shipment_line_item_id: String?, ?cancellations: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation]?, ?country_of_origin: String?, ?custom_attributes: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute]?, ?gift_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes?, ?hazmat_labels: Array[String]?, ?hsn_code: String?, ?item_value: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, ?piece_type: String?, ?recommended_country_of_origin: String?, ?recommended_currency_code: String?, ?serial_numbers: Array[untyped]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem
+                    | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes?, String?, Integer?, String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation]?, String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute]?, Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes?, Array[String]?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, String?, String?, String?, Array[untyped]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem
+
+        def self.[]: (charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, compliance_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes?, merchant_sku: String?, number_of_units: Integer?, shipment_line_item_id: String?, ?cancellations: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation]?, ?country_of_origin: String?, ?custom_attributes: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute]?, ?gift_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes?, ?hazmat_labels: Array[String]?, ?hsn_code: String?, ?item_value: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, ?piece_type: String?, ?recommended_country_of_origin: String?, ?recommended_currency_code: String?, ?serial_numbers: Array[untyped]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem
+                   | (Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes?, String?, Integer?, String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation]?, String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute]?, Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes?, Array[String]?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, String?, String?, String?, Array[untyped]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem
+
+        def self.members: () -> [ :charges, :compliance_attributes, :merchant_sku, :number_of_units, :shipment_line_item_id, :cancellations, :country_of_origin, :custom_attributes, :gift_attributes, :hazmat_labels, :hsn_code, :item_value, :piece_type, :recommended_country_of_origin, :recommended_currency_code, :serial_numbers ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentLineItem
+
+        attr_reader cancellations: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation]?
+        attr_reader charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?
+        attr_reader compliance_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes?
+        attr_reader country_of_origin: String?
+        attr_reader custom_attributes: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute]?
+        attr_reader gift_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes?
+        attr_reader hazmat_labels: Array[String]?
+        attr_reader hsn_code: String?
+        attr_reader item_value: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?
+        attr_reader merchant_sku: String?
+        attr_reader number_of_units: Integer?
+        attr_reader piece_type: String?
+        attr_reader recommended_country_of_origin: String?
+        attr_reader recommended_currency_code: String?
+        attr_reader serial_numbers: Array[untyped]?
+        attr_reader shipment_line_item_id: String?
+        def members: () -> [ :charges, :compliance_attributes, :merchant_sku, :number_of_units, :shipment_line_item_id, :cancellations, :country_of_origin, :custom_attributes, :gift_attributes, :hazmat_labels, :hsn_code, :item_value, :piece_type, :recommended_country_of_origin, :recommended_currency_code, :serial_numbers ]
+
+        def to_h: () -> { charges: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Charge]?, compliance_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::ComplianceAttributes?, merchant_sku: String?, number_of_units: Integer?, shipment_line_item_id: String?, cancellations: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Cancellation]?, country_of_origin: String?, custom_attributes: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute]?, gift_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes?, hazmat_labels: Array[String]?, hsn_code: String?, item_value: Peddler::APIs::ExternalFulfillmentShipments20240911::Amount?, piece_type: String?, recommended_country_of_origin: String?, recommended_currency_code: String?, serial_numbers: Array[untyped]? }
+      end
+
+      class ShipmentRequirements < Data
+        def self.new: (invoice: Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement?, p_slip: Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement?, Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements
+
+        def self.[]: (invoice: Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement?, p_slip: Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement?, Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements
+
+        def self.members: () -> [ :invoice, :p_slip ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentRequirements
+
+        attr_reader invoice: Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement?
+        attr_reader p_slip: Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement?
+        def members: () -> [ :invoice, :p_slip ]
+
+        def to_h: () -> { invoice: Peddler::APIs::ExternalFulfillmentShipments20240911::InvoiceRequirement?, p_slip: Peddler::APIs::ExternalFulfillmentShipments20240911::PackingSlipRequirement? }
+      end
+
+      class ShipmentsResponse < Data
+        def self.new: (?pagination: Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination?, ?shipments: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentsResponse
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentsResponse
+
+        def self.[]: (?pagination: Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination?, ?shipments: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentsResponse
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentsResponse
+
+        def self.members: () -> [ :pagination, :shipments ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentsResponse
+
+        attr_reader pagination: Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination?
+        attr_reader shipments: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment]?
+        def members: () -> [ :pagination, :shipments ]
+
+        def to_h: () -> { pagination: Peddler::APIs::ExternalFulfillmentShipments20240911::Pagination?, shipments: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Shipment]? }
+      end
+
+      class ShippingInfo < Data
+        def self.new: (expected_shipping_date_time_in_utc: String?, ?recommended_packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage]?, ?recommended_ship_method: String?, ?ship_to_address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, ?shipping_type: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo
+                    | (String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage]?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo
+
+        def self.[]: (expected_shipping_date_time_in_utc: String?, ?recommended_packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage]?, ?recommended_ship_method: String?, ?ship_to_address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, ?shipping_type: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo
+                   | (String?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage]?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo
+
+        def self.members: () -> [ :expected_shipping_date_time_in_utc, :recommended_packages, :recommended_ship_method, :ship_to_address, :shipping_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingInfo
+
+        attr_reader expected_shipping_date_time_in_utc: String?
+        attr_reader recommended_packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage]?
+        attr_reader recommended_ship_method: String?
+        attr_reader ship_to_address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?
+        attr_reader shipping_type: String?
+        def members: () -> [ :expected_shipping_date_time_in_utc, :recommended_packages, :recommended_ship_method, :ship_to_address, :shipping_type ]
+
+        def to_h: () -> { expected_shipping_date_time_in_utc: String?, recommended_packages: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::RecommendedPackage]?, recommended_ship_method: String?, ship_to_address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, shipping_type: String? }
+      end
+
+      class ShippingOptions < Data
+        def self.new: (ship_by: String?, shipping_option_id: String?, ?carrier_name: String?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+                    | (String?, String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+
+        def self.[]: (ship_by: String?, shipping_option_id: String?, ?carrier_name: String?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+                   | (String?, String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+
+        def self.members: () -> [ :ship_by, :shipping_option_id, :carrier_name, :pickup_window, :time_slot ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+
+        attr_reader carrier_name: String?
+        attr_reader pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?
+        attr_reader ship_by: String?
+        attr_reader shipping_option_id: String?
+        attr_reader time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?
+        def members: () -> [ :ship_by, :shipping_option_id, :carrier_name, :pickup_window, :time_slot ]
+
+        def to_h: () -> { ship_by: String?, shipping_option_id: String?, carrier_name: String?, pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow? }
+      end
+
+      class ShippingOptionsResponse < Data
+        def self.new: (?recommended_shipping_option: Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions?, ?shipping_options: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
+
+        def self.[]: (?recommended_shipping_option: Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions?, ?shipping_options: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions?, Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions]?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
+
+        def self.members: () -> [ :recommended_shipping_option, :shipping_options ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
+
+        attr_reader recommended_shipping_option: Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions?
+        attr_reader shipping_options: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions]?
+        def members: () -> [ :recommended_shipping_option, :shipping_options ]
+
+        def to_h: () -> { recommended_shipping_option: Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions?, shipping_options: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions]? }
+      end
+
+      class Tax < Data
+        def self.new: (charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, ?rate: String?, ?type: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Tax
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Tax
+
+        def self.[]: (charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, ?rate: String?, ?type: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Tax
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Tax
+
+        def self.members: () -> [ :charge, :rate, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Tax
+
+        attr_reader charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?
+        attr_reader rate: String?
+        attr_reader type: String?
+        def members: () -> [ :charge, :rate, :type ]
+
+        def to_h: () -> { charge: Peddler::APIs::ExternalFulfillmentShipments20240911::ChargeBreakup?, rate: String?, type: String? }
+      end
+
+      class TaxRegistrationInfo < Data
+        def self.new: (?address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, ?messages: String?, ?number: String?, ?type: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo
+
+        def self.[]: (?address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, ?messages: String?, ?number: String?, ?type: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo
+
+        def self.members: () -> [ :address, :messages, :number, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TaxRegistrationInfo
+
+        attr_reader address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?
+        attr_reader messages: String?
+        attr_reader number: String?
+        attr_reader type: String?
+        def members: () -> [ :address, :messages, :number, :type ]
+
+        def to_h: () -> { address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, messages: String?, number: String?, type: String? }
+      end
+
+      class TimeWindow < Data
+        def self.new: (end_time: Integer?, start_time: Integer?, ?handover_method: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow
+                    | (Integer?, Integer?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow
+
+        def self.[]: (end_time: Integer?, start_time: Integer?, ?handover_method: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow
+                   | (Integer?, Integer?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow
+
+        def self.members: () -> [ :end_time, :start_time, :handover_method ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow
+
+        attr_reader end_time: Integer?
+        attr_reader handover_method: String?
+        attr_reader start_time: Integer?
+        def members: () -> [ :end_time, :start_time, :handover_method ]
+
+        def to_h: () -> { end_time: Integer?, start_time: Integer?, handover_method: String? }
+      end
+
+      class Weight < Data
+        def self.new: (value: String?, weight_unit: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Weight
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Weight
+
+        def self.[]: (value: String?, weight_unit: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Weight
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Weight
+
+        def self.members: () -> [ :value, :weight_unit ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Weight
+
+        attr_reader value: String?
+        attr_reader weight_unit: String?
+        def members: () -> [ :value, :weight_unit ]
+
+        def to_h: () -> { value: String?, weight_unit: String? }
+      end
+
       def create_packages: (String, Hash[untyped, untyped]) -> Peddler::Response
 
       def generate_invoice: (String) -> Peddler::Response

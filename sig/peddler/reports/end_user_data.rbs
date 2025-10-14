@@ -1,0 +1,106 @@
+module Peddler
+  module Reports
+    module EndUserData
+      class ASINMetrics < Data
+        def self.new: (asin: String?, end_date: Date?, marketplace_id: String?, start_date: Date?, ?currency_code: String?, ?gms: Float?, ?page_views: Integer?) -> Peddler::Reports::EndUserData::ASINMetrics
+                    | (String?, Date?, String?, Date?, String?, Float?, Integer?) -> Peddler::Reports::EndUserData::ASINMetrics
+
+        def self.[]: (asin: String?, end_date: Date?, marketplace_id: String?, start_date: Date?, ?currency_code: String?, ?gms: Float?, ?page_views: Integer?) -> Peddler::Reports::EndUserData::ASINMetrics
+                   | (String?, Date?, String?, Date?, String?, Float?, Integer?) -> Peddler::Reports::EndUserData::ASINMetrics
+
+        def self.members: () -> [ :asin, :end_date, :marketplace_id, :start_date, :currency_code, :gms, :page_views ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::EndUserData::ASINMetrics
+
+        attr_reader asin: String?
+        attr_reader currency_code: String?
+        attr_reader end_date: Date?
+        attr_reader gms: Float?
+        attr_reader marketplace_id: String?
+        attr_reader page_views: Integer?
+        attr_reader start_date: Date?
+        def members: () -> [ :asin, :end_date, :marketplace_id, :start_date, :currency_code, :gms, :page_views ]
+
+        def to_h: () -> { asin: String?, end_date: Date?, marketplace_id: String?, start_date: Date?, currency_code: String?, gms: Float?, page_views: Integer? }
+      end
+
+      class EndUserData < Data
+        def self.new: (asin_metrics: Array[Peddler::Reports::EndUserData::ASINMetrics]?, full_name: String?, mailing_address: Hash[untyped, untyped]?, primary_email: String?) -> Peddler::Reports::EndUserData::EndUserData
+                    | (Array[Peddler::Reports::EndUserData::ASINMetrics]?, String?, Hash[untyped, untyped]?, String?) -> Peddler::Reports::EndUserData::EndUserData
+
+        def self.[]: (asin_metrics: Array[Peddler::Reports::EndUserData::ASINMetrics]?, full_name: String?, mailing_address: Hash[untyped, untyped]?, primary_email: String?) -> Peddler::Reports::EndUserData::EndUserData
+                   | (Array[Peddler::Reports::EndUserData::ASINMetrics]?, String?, Hash[untyped, untyped]?, String?) -> Peddler::Reports::EndUserData::EndUserData
+
+        def self.members: () -> [ :asin_metrics, :full_name, :mailing_address, :primary_email ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::EndUserData::EndUserData
+
+        attr_reader asin_metrics: Array[Peddler::Reports::EndUserData::ASINMetrics]?
+        attr_reader full_name: String?
+        attr_reader mailing_address: Hash[untyped, untyped]?
+        attr_reader primary_email: String?
+        def members: () -> [ :asin_metrics, :full_name, :mailing_address, :primary_email ]
+
+        def to_h: () -> { asin_metrics: Array[Peddler::Reports::EndUserData::ASINMetrics]?, full_name: String?, mailing_address: Hash[untyped, untyped]?, primary_email: String? }
+      end
+
+      class Report < Data
+        def self.new: (end_user_data: Array[Peddler::Reports::EndUserData::EndUserData]?, report_specification: Peddler::Reports::EndUserData::ReportSpecification?) -> Peddler::Reports::EndUserData::Report
+                    | (Array[Peddler::Reports::EndUserData::EndUserData]?, Peddler::Reports::EndUserData::ReportSpecification?) -> Peddler::Reports::EndUserData::Report
+
+        def self.[]: (end_user_data: Array[Peddler::Reports::EndUserData::EndUserData]?, report_specification: Peddler::Reports::EndUserData::ReportSpecification?) -> Peddler::Reports::EndUserData::Report
+                   | (Array[Peddler::Reports::EndUserData::EndUserData]?, Peddler::Reports::EndUserData::ReportSpecification?) -> Peddler::Reports::EndUserData::Report
+
+        def self.members: () -> [ :end_user_data, :report_specification ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::EndUserData::Report
+
+        attr_reader end_user_data: Array[Peddler::Reports::EndUserData::EndUserData]?
+        attr_reader report_specification: Peddler::Reports::EndUserData::ReportSpecification?
+        def members: () -> [ :end_user_data, :report_specification ]
+
+        def to_h: () -> { end_user_data: Array[Peddler::Reports::EndUserData::EndUserData]?, report_specification: Peddler::Reports::EndUserData::ReportSpecification? }
+      end
+
+      class ReportOptions < Data
+        def self.new: (?report_period: String?) -> Peddler::Reports::EndUserData::ReportOptions
+                    | (String?) -> Peddler::Reports::EndUserData::ReportOptions
+
+        def self.[]: (?report_period: String?) -> Peddler::Reports::EndUserData::ReportOptions
+                   | (String?) -> Peddler::Reports::EndUserData::ReportOptions
+
+        def self.members: () -> [ :report_period ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::EndUserData::ReportOptions
+
+        attr_reader report_period: String?
+        def members: () -> [ :report_period ]
+
+        def to_h: () -> { report_period: String? }
+      end
+
+      class ReportSpecification < Data
+        def self.new: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_type: String?, ?report_options: Peddler::Reports::EndUserData::ReportOptions?) -> Peddler::Reports::EndUserData::ReportSpecification
+                    | (Date?, Date?, Array[String]?, String?, Peddler::Reports::EndUserData::ReportOptions?) -> Peddler::Reports::EndUserData::ReportSpecification
+
+        def self.[]: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_type: String?, ?report_options: Peddler::Reports::EndUserData::ReportOptions?) -> Peddler::Reports::EndUserData::ReportSpecification
+                   | (Date?, Date?, Array[String]?, String?, Peddler::Reports::EndUserData::ReportOptions?) -> Peddler::Reports::EndUserData::ReportSpecification
+
+        def self.members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_type, :report_options ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::EndUserData::ReportSpecification
+
+        attr_reader data_end_time: Date?
+        attr_reader data_start_time: Date?
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader report_options: Peddler::Reports::EndUserData::ReportOptions?
+        attr_reader report_type: String?
+        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_type, :report_options ]
+
+        def to_h: () -> { data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_type: String?, report_options: Peddler::Reports::EndUserData::ReportOptions? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::EndUserData::Report
+    end
+  end
+end

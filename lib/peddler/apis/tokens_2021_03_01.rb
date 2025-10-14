@@ -2,15 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/api"
-
 module Peddler
-  class << self
-    def tokens_2021_03_01
-      APIs::Tokens20210301
-    end
-  end
-
   module APIs
     # Selling Partner API for Tokens
     #
@@ -36,10 +28,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_restricted_data_token(body, rate_limit: 1.0)
         path = "/tokens/2021-03-01/restrictedDataToken"
-        parser = -> {
-          require "peddler/types/tokens_2021_03_01"
-          Types::Tokens20210301::CreateRestrictedDataTokenResponse
-        }
+        parser = -> { CreateRestrictedDataTokenResponse }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

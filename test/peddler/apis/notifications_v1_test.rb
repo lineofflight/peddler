@@ -2,8 +2,6 @@
 
 require "helper"
 
-require "peddler/apis/notifications_v1"
-
 module Peddler
   module APIs
     class NotificationsV1Test < Minitest::Test

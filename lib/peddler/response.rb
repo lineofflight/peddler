@@ -3,8 +3,6 @@
 require "delegate"
 require "forwardable"
 
-require "peddler/error"
-
 module Peddler
   # Wraps HTTP::Response to allow custom parsing
   #

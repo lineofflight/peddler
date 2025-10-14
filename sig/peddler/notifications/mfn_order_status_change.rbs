@@ -1,0 +1,46 @@
+module Peddler
+  module Notifications
+    module MfnOrderStatusChange
+      class Notification < Data
+        def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::MfnOrderStatusChange::Payload?, payload_version: String?) -> Peddler::Notifications::MfnOrderStatusChange::Notification
+                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::MfnOrderStatusChange::Payload?, String?) -> Peddler::Notifications::MfnOrderStatusChange::Notification
+
+        def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::MfnOrderStatusChange::Payload?, payload_version: String?) -> Peddler::Notifications::MfnOrderStatusChange::Notification
+                   | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::MfnOrderStatusChange::Payload?, String?) -> Peddler::Notifications::MfnOrderStatusChange::Notification
+
+        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::MfnOrderStatusChange::Notification
+
+        attr_reader event_time: String?
+        attr_reader notification_metadata: Hash[untyped, untyped]?
+        attr_reader notification_type: String?
+        attr_reader notification_version: String?
+        attr_reader payload: Peddler::Notifications::MfnOrderStatusChange::Payload?
+        attr_reader payload_version: String?
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::MfnOrderStatusChange::Payload?, payload_version: String? }
+      end
+
+      class Payload < Data
+        def self.new: (mfn_order_status_change_notification: Hash[untyped, untyped]?) -> Peddler::Notifications::MfnOrderStatusChange::Payload
+                    | (Hash[untyped, untyped]?) -> Peddler::Notifications::MfnOrderStatusChange::Payload
+
+        def self.[]: (mfn_order_status_change_notification: Hash[untyped, untyped]?) -> Peddler::Notifications::MfnOrderStatusChange::Payload
+                   | (Hash[untyped, untyped]?) -> Peddler::Notifications::MfnOrderStatusChange::Payload
+
+        def self.members: () -> [ :mfn_order_status_change_notification ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::MfnOrderStatusChange::Payload
+
+        attr_reader mfn_order_status_change_notification: Hash[untyped, untyped]?
+        def members: () -> [ :mfn_order_status_change_notification ]
+
+        def to_h: () -> { mfn_order_status_change_notification: Hash[untyped, untyped]? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::MfnOrderStatusChange::Notification
+    end
+  end
+end

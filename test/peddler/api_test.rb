@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/api"
 
 module Peddler
   class APITest < Minitest::Test

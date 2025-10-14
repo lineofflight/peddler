@@ -2,18 +2,7 @@
 
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
-require "peddler/api"
-<% if has_helper? -%>
-  require "<%= helper_library_name %>"
-<% end -%>
-
 module Peddler
-  class << self
-    def <%= name_with_version %>
-      APIs::<%= class_name %>
-    end
-  end
-
   module APIs
     <%= title %>
     #
