@@ -5,8 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0.pre.3] - 2025-10-15
+
 ### Added
 
+- Parse SP-API notifications
 - Parse SP-API feed schemas with type-safe data structures
 - Parse SP-API report schemas with type-safe data structures
 - Integrate Zeitwerk for autoloading (improves startup time)
@@ -14,12 +17,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Move API typed parsers from `Peddler::Types::*` to `Peddler::APIs::*` namespace
-
-## [5.0.0.pre.3] - 2025-10-07
-
-### Added
-
-- Parse SP-API notifications
 
 ## [5.0.0.pre.2] - 2025-10-06
 
@@ -543,7 +540,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.1...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.3...HEAD
+[5.0.0.pre.3]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.2...v5.0.0.pre.3
+[5.0.0.pre.2]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.1...v5.0.0.pre.2
 [5.0.0.pre.1]: https://github.com/hakanensari/peddler/compare/v4.9.0...v5.0.0.pre.1
 [4.9.0]: https://github.com/hakanensari/peddler/compare/v4.8.0...v4.9.0
 [4.8.0]: https://github.com/hakanensari/peddler/compare/v4.7.0...v4.8.0
