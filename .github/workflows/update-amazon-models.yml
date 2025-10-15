@@ -18,7 +18,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0 # Full history for proper commit messages
 
@@ -32,7 +32,7 @@ jobs:
         run: bundle install
 
       - name: Generate code from API models
-        run: bin/generate-code
+        run: bundle exec rake generate
 
       - name: Create Pull Request
         uses: actions/github-script@v7
