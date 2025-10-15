@@ -800,7 +800,7 @@ api = Peddler.sellers.new(aws_region, access_token)
 participations = api.get_marketplace_participations
 ```
 
-For a complete list of available APIs and their detailed documentation, refer to the [API models repository](https://github.com/amzn/selling-partner-swagger-models).
+For a complete list of available APIs and their detailed documentation, refer to the [API models repository][swagger-models].
 
 ## Development
 
@@ -826,7 +826,7 @@ bundle exec steep check --severity-level=hint
 [api-docs]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
-[swagger-models]: https://github.com/amzn/selling-partner-swagger-models
+[swagger-models]: https://github.com/amzn/selling-partner-api-models
 [api-samples]: https://github.com/amzn/selling-partner-api-samples
 [view-credentials]: https://developer-docs.amazon.com/sp-api/docs/viewing-your-application-information-and-credentials
 [authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
