@@ -4,13 +4,14 @@
 
 > **IMPORTANT:** This README is for the v5 pre-release. For the latest stable version, see the [v4.9.0 README](https://github.com/hakanensari/peddler/blob/v4.9.0/README.md).
 
-**Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
+**Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][api-docs]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
 Peddler is automatically generated from the latest Open API models provided by Amazon.
 
 To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials][view-credentials] to access your own or other selling partners' data.
 
-- [API models][api-models]
+- [API docs][api-docs]
+- [Swagger models][swagger-models]
 - [API samples][api-samples]
 
 <img src="https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 830px" />
@@ -20,7 +21,7 @@ To begin using the Amazon SP-API, you must [register as a developer][register-as
 Add this line to your Gemfile.
 
 ```ruby
-gem "peddler", "~> 5.0.0.pre.2"
+gem "peddler", "~> 5.0.0.pre.3"
 ```
 
 And then execute:
@@ -44,46 +45,44 @@ Require the library.
 require "peddler"
 ```
 
-You can also require individual API libraries to reduce load time:
-
-```ruby
-require "peddler/apis/orders_v0"
-```
-
 ### Authorization
 
 A seller or vendor [provides you a refresh token][authorization] to access their data on Amazon.
 
 ```ruby
-refresh_token = Peddler::LWA.request(
+response = Peddler::LWA.request(
   code: "<AUTHORIZATION_CODE>"
-).parse.refresh_token
+)
+refresh_token = response.parse.refresh_token
 ```
 
 You use this to generate a temporary access token to authenticate individual API requests.
 
 ```ruby
-access_token = Peddler::LWA.request(
+response = Peddler::LWA.request(
   refresh_token: "<REFRESH_TOKEN>",
-).parse.access_token
+)
+access_token = response.parse.access_token
 ```
 
 Similarly, you can request a token for grantless operations.
 
 ```ruby
-access_token = Peddler::LWA.request(
+response = Peddler::LWA.request(
   scope: "sellingpartnerapi::notifications",
-).parse.access_token
+)
+access_token = response.parse.access_token
 ```
 
 If you haven't set your LWA credentials as environment variables, pass them directly when requesting the token.
 
 ```ruby
-access_token = Peddler::LWA.request(
+response = Peddler::LWA.request(
   client_id: "<YOUR_CLIENT_ID>",
   client_secret: "<YOUR_CLIENT_SECRET>",
   refresh_token: "<REFRESH_TOKEN>",
-).parse.access_token
+)
+access_token = response.parse.access_token
 ```
 
 Access tokens are valid for one hour. To optimize performance, cache the token and reuse across calls.
@@ -92,13 +91,11 @@ In Rails, if you're storing a refresh token in a model representing a selling pa
 
 ```ruby
 class Seller
-  "..."
+  attr_reader :refresh_token
 
   def access_token
     Rails.cache.fetch("#{cache_key}/access_key", expires_in: 1.hour) do
-      Peddler::LWA.request(
-        refresh_token:,
-      ).parse.access_token
+      Peddler::LWA.request(refresh_token:).parse.access_token
     end
   end
 end
@@ -207,19 +204,14 @@ response = api.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "2023-01-01T00:00:00Z"
 )
+orders = response.parse.payload.orders
+order_id = orders.first.amazon_order_id
 
-# Use the `dig` method to safely navigate through nested response data
-# This returns nil instead of raising an error if any key in the path doesn't exist
+# Or use .to_h or .dig to parse response as a hash
 orders = response.dig("payload", "orders")
-
-# You can chain multiple keys to access deeply nested data
-first_order_id = response.dig("payload", "orders", 0, "amazonOrderId")
-
-# This is safer than using chain indexing which would raise an error if any part is missing:
-# response.parse["payload"]["orders"][0]["amazonOrderId"]  # Error prone!
+order_id = response.dig("payload", "orders", 0, "amazonOrderId")
 
 # For sandbox testing
-api = Peddler.orders.new(aws_region, access_token)
 api.sandbox.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "TEST_CASE_200"
@@ -242,7 +234,7 @@ response = api.get_catalog_item(
   marketplaceIds: ["ATVPDKIKX0DER"],
   asin: "B08N5WRWNW"
 )
-item_details = response.dig("payload")
+response.parse.payload.asin # => "B08N5WRWNW"
 
 # Search catalog items by identifier
 response = api.search_catalog_items(
@@ -808,7 +800,7 @@ api = Peddler.sellers.new(aws_region, access_token)
 participations = api.get_marketplace_participations
 ```
 
-For a complete list of available APIs and their detailed documentation, refer to the [API models repository](https://github.com/amzn/selling-partner-api-models).
+For a complete list of available APIs and their detailed documentation, refer to the [API models repository](https://github.com/amzn/selling-partner-swagger-models).
 
 ## Development
 
@@ -831,10 +823,10 @@ bundle exec steep check --severity-level=hint
 ```
 
 [build]: https://github.com/lineofflight/peddler/actions
-[docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
+[api-docs]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
-[api-models]: https://github.com/amzn/selling-partner-api-models
+[swagger-models]: https://github.com/amzn/selling-partner-swagger-models
 [api-samples]: https://github.com/amzn/selling-partner-api-samples
 [view-credentials]: https://developer-docs.amazon.com/sp-api/docs/viewing-your-application-information-and-credentials
 [authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
