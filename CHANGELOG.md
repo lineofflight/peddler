@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Add Data Kiosk API support with four schema versions (SalesAndTraffic20231115, SalesAndTraffic20240424, Economics20240315, VendorAnalytics20240930)
+- Type-safe parsing for Data Kiosk GraphQL responses using Structure classes
+- Optional graphql-client integration for schema validation
+- Helper method for downloading query documents
+
 ## [5.0.0.pre.3] - 2025-10-15
 
 ### Added

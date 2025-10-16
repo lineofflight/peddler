@@ -1,0 +1,2585 @@
+{
+  "data": {
+    "__schema": {
+      "queryType": {
+        "name": "Query"
+      },
+      "mutationType": null,
+      "subscriptionType": null,
+      "types": [
+        {
+          "kind": "OBJECT",
+          "name": "AdSummary",
+          "description": "The advertisements spend data summary for the seller's account aggregated by transaction event type: charge.",
+          "fields": [
+            {
+              "name": "adTypeName",
+              "description": "Advertisement type name, for example: \"Sponsored Products charge\".",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "charge",
+              "description": "Charge aggregated detail for an advertisement type.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AggregatedDetail",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AggregatedDetail",
+          "description": "The aggregated transaction detail for the seller's account aggregated by\ntransaction event type and transaction type, for example: charge and\n\"fbaFulfillmentFee\".",
+          "fields": [
+            {
+              "name": "amount",
+              "description": "Amount calculated by rate card.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "amountPerUnit",
+              "description": "Final charge amount per unit after promotion and tax are considered. This\nvalue is calculated by dividing totalAmount by quantity. This value will be\nnull when quantity is null.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "amountPerUnitDelta",
+              "description": "The per unit amount delta is calculated by subtracting the previous\namountPerUnit from the current amountPerUnit. This value is mainly used to\nindicate the change in amountPerUnit before and after an Amazon fee change.\nThis value will be null if there are no Amazon fee change in the selected time\nrange or if the previous amountPerUnit is null.\nExample: if the previous amountPerUnit is $5 and the current amountPerUnit is $7, the amountPerUnitDelta would be $2.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionAmount",
+              "description": "The promotion amount associated with this transaction type. This value is deducted from amount when computing totalAmount.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "quantity",
+              "description": "Charged quantity for a given product in the seller's account. When the fee is\nnot charged on a per unit basis, this value may be null or may not be an integer.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "taxAmount",
+              "description": "The tax amount associated with this transaction type. This value is added to amount when computing totalAmount.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalAmount",
+              "description": "Final charge amount after promotion and tax are considered. This value is\ncalculated as amount - promotionAmount + taxAmount.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Amount",
+          "description": "Monetary amount with the corresponding currency code.",
+          "fields": [
+            {
+              "name": "amount",
+              "description": "The amount.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "currencyCode",
+              "description": "Currency code of the amount in ISO 4217 format.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Analytics_Economics_2024_03_15",
+          "description": "A root type for seller economics queries version 2024_03_15.",
+          "fields": [
+            {
+              "name": "economics",
+              "description": "A query to retrieve seller economics data for the seller's account aggregated\nby date and product identifier. The seller economics data consists of\naggregated sales, fees, and cost for selected period. The data sets are\nrefreshed daily with the latest sales, fees, and cost data. The supported fee\ntypes and advertisement charge types can be found\n[here](https://sellercentral.amazon.com/gp/help/GZ8Y22NL2FSRY8M5).",
+              "args": [
+                {
+                  "name": "aggregateBy",
+                  "description": "Determines how the seller economics data should be aggregated. By default it's aggregated by MSKU and DAY.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "EconomicsAggregation",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "endDate",
+                  "description": "The end date of the seller economics data to retrieve. If the provided end\ndate occurs mid-week or mid-month in UTC+0 timezone, the preceding Saturday\nfor WEEK date granularity or the last day of the previous month for MONTH\ndate granularity will be used instead.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Date",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "includeComponentsForFeeTypes",
+                  "description": "Specifies which fee types to breakdown into individual components.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "FeeType",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "marketplaceIds",
+                  "description": "The marketplace identifiers to retrieve seller economics data for.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "LIST",
+                      "name": null,
+                      "ofType": {
+                        "kind": "NON_NULL",
+                        "name": null,
+                        "ofType": {
+                          "kind": "SCALAR",
+                          "name": "String",
+                          "ofType": null
+                        }
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "startDate",
+                  "description": "The start date of the seller economics data to retrieve. The start date must\nbe no more than two years ago. If the provided start date occurs mid-week or\nmid-month in UTC+0 timezone, the following Sunday for WEEK date granularity\nor the first day of the next month for MONTH date granularity will be used instead.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Date",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Economics",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "economicsPreview",
+              "description": "A query to preview seller economics data for the seller's account aggregated\nby date range specified by startDate and endDate. The seller preview economics\ndata consists of aggregated estimated sales, fees, and cost for selected\nperiod. The data sets are refreshed daily with the latest estimated sales,\nfees, and cost data. The supported fee types and advertisement charge types can be found\n[here](https://sellercentral.amazon.com/help/hub/reference/GQNVDV46U9JQ25HY).",
+              "args": [
+                {
+                  "name": "aggregateBy",
+                  "description": "This determines how the seller economics data should be aggregated. For\neconomics preview, the currently supported product identifier and date\naggregation level are MSKU and RANGE respectively.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "EconomicsPreviewAggregation",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "endDate",
+                  "description": "The end date of the seller economics preview data to retrieve. The end date must be no more than 30 days after today.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Date",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "feeTypes",
+                  "description": "Specifies which fee types to preview. Supported fee types can be found [here](https://sellercentral.amazon.com/help/hub/reference/GQNVDV46U9JQ25HY).",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "LIST",
+                      "name": null,
+                      "ofType": {
+                        "kind": "NON_NULL",
+                        "name": null,
+                        "ofType": {
+                          "kind": "ENUM",
+                          "name": "PreviewFeeType",
+                          "ofType": null
+                        }
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "marketplaceIds",
+                  "description": "The marketplace identifiers to retrieve seller preview economics data for.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "LIST",
+                      "name": null,
+                      "ofType": {
+                        "kind": "NON_NULL",
+                        "name": null,
+                        "ofType": {
+                          "kind": "SCALAR",
+                          "name": "String",
+                          "ofType": null
+                        }
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "startDate",
+                  "description": "The start date of the seller preview economics data to retrieve. The start date must be not earlier than today.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Date",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Economics",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Boolean",
+          "description": "Represents `true` or `false` values.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Date",
+          "description": "An RFC-3339 compliant Full Date Scalar. Example: \"2024-03-15\"",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "DateGranularity",
+          "description": "The date granularity used in aggregation.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "DAY",
+              "description": "Seller economics data is aggregated by day against marketplace local time.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MONTH",
+              "description": "Seller economics data is aggregated by month against marketplace local time.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "RANGE",
+              "description": "Seller economics data is aggregated by the entire date range specified by startDate and endDate.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "WEEK",
+              "description": "Seller economics data is aggregated by week against marketplace local time, Sunday is the first day of the week.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Economics",
+          "description": "The seller economics data for a given product in the seller's account.",
+          "fields": [
+            {
+              "name": "ads",
+              "description": "The advertising spend data for the product within the specified date range.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AdSummary",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "childAsin",
+              "description": "The Amazon Standard Identification Number of the child product. Child products\nare unique, sellable products that are related in our catalog to a single,\nnon-sellable parent product. Note: This field is only present when product\naggregation is CHILD_ASIN, FNSKU or MSKU.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cost",
+              "description": "The off Amazon cost provided by the seller for this product (per unit). The\noff Amazon cost can be provided on [SKU\nCentral](https://sellercentral.amazon.com/skucentral?mSku=xxx) and [Revenue\nCalculator](https://sellercentral.amazon.com/revcal).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PerUnitCost",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "endDate",
+              "description": "The end date of the seller economics data. Note that this date may be adjusted to the end of DateGranularity.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Date",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fees",
+              "description": "The fees applied to the product within the specified date range.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "FeeSummary",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fnsku",
+              "description": "The Fulfillment Network Stock Keeping Unit (FNSKU) of the product. Note: This\nfield is only present when product aggregation is FNSKU or MSKU. This field\nmay be null when product aggregation is MSKU and the row is associated with\nmore than one FNSKU.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "marketplaceId",
+              "description": "The marketplace identifier of the seller economics data.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "msku",
+              "description": "The Merchant Stock Keeping Unit (MSKU) of the product. Note: This field is\nonly present when product aggregation is FNSKU or MSKU. This field may be null\nwhen product aggregation is FNSKU and the row is associated with more than one MSKU.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "netProceeds",
+              "description": "The net proceeds for this product within the specified date range. The value\nremains unchanged regardless of whether sales, fees, ads, or cost are selected in the query.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "NetProceeds",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "parentAsin",
+              "description": "The Amazon Standard Identification Number of the parent product. A parent\nproduct appears in our catalog as a non-buyable, generic identifier for a\nproduct that has buyable variations (child products).",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sales",
+              "description": "The sales data for the product within the specified date range.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Sales",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "startDate",
+              "description": "The start date of the seller economics data. Note that this date may be adjusted to the start of DateGranularity.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Date",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "EconomicsAggregation",
+          "description": "Defines how the seller economics data will be aggregated.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "date",
+              "description": "The date granularity used in aggregation. By default the results will be aggregated by DAY.",
+              "type": {
+                "kind": "ENUM",
+                "name": "DateGranularity",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "productId",
+              "description": "The product identifier granularity used in aggregation. By default the results will be aggregated by MSKU.",
+              "type": {
+                "kind": "ENUM",
+                "name": "ProductIdentifierGranularity",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "EconomicsPreviewAggregation",
+          "description": "Defines how the seller economics preview data will be aggregated.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "date",
+              "description": "The date granularity used in aggregation. By default the results will be aggregated by RANGE.",
+              "type": {
+                "kind": "ENUM",
+                "name": "EconomicsPreviewDateGranularity",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "productId",
+              "description": "The product identifier granularity used in aggregation. By default the results will be aggregated by MSKU.",
+              "type": {
+                "kind": "ENUM",
+                "name": "EconomicsPreviewProductIdentifierGranularity",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "EconomicsPreviewDateGranularity",
+          "description": "The date granularity used in economics preview aggregation.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "RANGE",
+              "description": "Seller economics preview data is aggregated by the entire date range specified by startDate and endDate.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "EconomicsPreviewProductIdentifierGranularity",
+          "description": "The product identifier granularity used in economics preview aggregation.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "MSKU",
+              "description": "Seller Economics preview data is aggregated by merchant sku.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EconomicsProperty",
+          "description": "The properties used in economics calculation.",
+          "fields": [
+            {
+              "name": "propertyName",
+              "description": "Property name",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "propertyValue",
+              "description": "Property value",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FbaPerUnitCost",
+          "description": "The item level per unit cost provided by the seller and applicable to\nFulfillment by Amazon (FBA) products. Fields in this type will be null if not\nprovided by the seller.",
+          "fields": [
+            {
+              "name": "shippingToAmazonCost",
+              "description": "Cost of shipping the Fulfillment by Amazon (FBA) item to an Amazon fulfillment\ncenter. This value is provided by the seller and applicable to Fulfillment by\nAmazon (FBA) products.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Fee",
+          "description": "A fee applied to a given product in the seller's account within a given date\nrange. Fee information can be found\n[here](https://sellercentral.amazon.com/gp/help/GZ8Y22NL2FSRY8M5).",
+          "fields": [
+            {
+              "name": "aggregatedDetail",
+              "description": "Fee aggregated transaction detail.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AggregatedDetail",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "components",
+              "description": "A breakdown of the fee into individual components. This field will be null for\nfee types that cannot be divided into individual components.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "FeeComponent",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "endDate",
+              "description": "The end date of the seller economics data for current fee. In most cases, this\nvalue is the same as the request 'endDate'. However, when the request date\nrange includes the Amazon fee change date, in order to better show the impact\nof the Amazon fee changes before and after the fee change date, the response\nwill split the request date range and display the fee separately. This will\ncause the 'endDate' in 'Fee' to be different than the request 'endDate'.\nExample: If the request date range is [2024-07-01, 2024-07-30] and the Amazon\nfee change date is 2024-07-15, then the request date range will be split into\n[2024-07-01, 2024-07-14], [2024-07-15, 2024-07-30].",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Date",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "identifier",
+              "description": "A unique identifier used to track this fee",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "properties",
+              "description": "The properties used to calculate the 'aggregatedDetail' value in 'Fee'.\nExample: Product Size Tier, an important property that determines the\namountPerUnit of FBA_FULFILLMENT_FEE.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "EconomicsProperty",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "startDate",
+              "description": "The start date of the seller economics data for current fee. In most cases,\nthis value is the same as the request 'startDate'. However, when the request\ndate range includes the Amazon fee change date, in order to better show the\nimpact of the Amazon fee changes before and after the fee change date, the\nresponse will split the request date range and display the fee separately.\nThis will cause the 'startDate' in 'Fee' to be different than the request 'startDate'.\nExample: If the request date range is [2024-07-01, 2024-07-30] and the Amazon\nfee change date is 2024-07-15, then the request date range will be split into\n[2024-07-01, 2024-07-14], [2024-07-15, 2024-07-30].",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Date",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FeeComponent",
+          "description": "The fee component data applied to a given product in the seller's account within\na given date range. It's breakdown of parent fee.",
+          "fields": [
+            {
+              "name": "aggregatedDetail",
+              "description": "Fee component aggregated detail.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AggregatedDetail",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": "Fee component name, for example: \"Base fulfillment fee\".",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "properties",
+              "description": "The properties used to calculate the 'aggregatedDetail' value in\n'FeeComponent'. Example: Product Size Tier, an important property that\ndetermines the amountPerUnit of FBA_FULFILLMENT_FEE component.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "EconomicsProperty",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FeeSummary",
+          "description": "The fees data summary for the seller's account aggregated by transaction event type: charge.",
+          "fields": [
+            {
+              "name": "charge",
+              "description": "Charge summary for a fee type.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Fee",
+                "ofType": null
+              },
+              "isDeprecated": true,
+              "deprecationReason": "No longer recommended. Use the `charges` field to retrieve the charge summary."
+            },
+            {
+              "name": "charges",
+              "description": "Charge summary for a fee type.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Fee",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "feeTypeName",
+              "description": "Fee type name, for example: \"FBA fulfillment fees\"",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "FeeType",
+          "description": "The fee type used in filter fee components generation.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "FBA_FULFILLMENT_FEE",
+              "description": "Fulfillment by Amazon (FBA) Fulfillment Fees, including base rate and surcharges.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FBA_STORAGE_FEE",
+              "description": "Fulfillment by Amazon (FBA) Monthly Inventory Storage Fee, including base rate and surcharges.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Float",
+          "description": "Represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Long",
+          "description": "A Scalar for the primitive long type.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "MfnPerUnitCost",
+          "description": "The item level per unit cost provided by the seller and applicable to Merchant\nFulfilled Network (MFN) products. Fields in this type will be null if not\nprovided by the seller.",
+          "fields": [
+            {
+              "name": "fulfillmentCost",
+              "description": "Cost of fulfilling an order containing the product, including labor, packing\nmaterial, shipping to customer, customer service etc. This value is provided\nby the seller and applicable to Merchant Fulfilled Network (MFN) products.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "storageCost",
+              "description": "Cost to store a single unit of the product per month. This value is provided\nby the seller and applicable to Merchant Fulfilled Network (MFN) products.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "NetProceeds",
+          "description": "The net proceeds for a given product in the seller's account for a given time\nrange. These fields are calculated as sales.netProductSales - sum of\nfees.charge.totalAmount - sum of ads.charge.totalAmount - (cost of Merchant\nFulfilled Network (MFN) products or cost of Fulfillment by Amazon (FBA)\nproducts) * sales.netUnitsSold.",
+          "fields": [
+            {
+              "name": "perUnit",
+              "description": "Net proceeds per unit for a given product in the seller's account for a given\ntime range. This value is calculated by dividing total by sales.netUnitsSold.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "total",
+              "description": "\"Total net proceeds for a given product in the seller's account for a given time range.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PerUnitCost",
+          "description": "The item level per unit cost provided by seller. Fields in this type will be null if not provided by the seller.",
+          "fields": [
+            {
+              "name": "costOfGoodsSold",
+              "description": "Cost to manufacture or acquire the product. This value is provided by the\nseller and is applicable to both Fulfillment by Amazon (FBA) and Merchant\nFulfilled Network (MFN) products.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fbaCost",
+              "description": "The item level per unit cost provided by the seller and applicable to Fulfillment by Amazon (FBA) products.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FbaPerUnitCost",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mfnCost",
+              "description": "The item level per unit cost provided by the seller and applicable to Merchant Fulfilled Network (MFN) products.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MfnPerUnitCost",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "miscellaneousCost",
+              "description": "Miscellaneous costs not related to this specific product, ex: overhead, etc.\nThis value is provided by the seller and applicable to both Fulfillment by\nAmazon (FBA) and Merchant Fulfilled Network (MFN) products.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "PreviewFeeType",
+          "description": "The fee types supported in economics preview.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "AGED_INVENTORY_SURCHARGE",
+              "description": "Aged Inventory Surcharge, previously known as the Long-term Storage Fee. For\ndetails about this fee, refer to [Aged inventory surcharge](https://sellercentral.amazon.com/help/hub/reference/external/GJQNPA23YWVA4SBD).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "BASE_FBA_FULFILLMENT_FEE",
+              "description": "Fulfillment by Amazon (FBA) Fulfillment Fee, base fee. For details about this\nfee, refer to [FBA base fee](https://sellercentral.amazon.com/help/hub/reference/external/GPDC3KPYAGDTVDJP).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "BASE_MONTHLY_STORAGE_FEE",
+              "description": "Monthly Inventory Storage Fee, base fee. For details about this fee, refer to\n[Monthly inventory storage fee](https://sellercentral.amazon.com/help/hub/reference/external/G3EDYEF6KUCFQTNM).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CLOSING_FEES",
+              "description": "Closing Fees, also know as Variable Closing Fees. For details about this fee,\nrefer to [Closing fees](https://sellercentral.amazon.com/help/hub/reference/external/GKD9U5REK5DKB38Y).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DIGITAL_SERVICES_FEE_FBA",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DIGITAL_SERVICES_FEE_SOA",
+              "description": "Digital Services Fees. For details about these fees, refer to [Digital services fees](https://sellercentral.amazon.com/help/hub/reference/external/GMVQXVHHG8Q8KN7L).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FBA_FULFILLMENT_FEES",
+              "description": "Fulfillment by Amazon (FBA) Fulfillment Fees, including base rate and surcharges.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FBA_INBOUND_PLACEMENT_SERVICE_FEE",
+              "description": "FBA Inbound Placement Service Fee. For details about this fee, refer to [FBA\ninbound placement service fee](https://sellercentral.amazon.com/help/hub/reference/external/GC3Q44PBK8BXQW3Z).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "HIGH_RETURN_RATE_FEE",
+              "description": "High Return Rate Fee, also know as Returns Processing Fee for Non-apparel and\nNon-shoes. For details about this fee, refer to [High return rate fee](https://sellercentral.amazon.com/help/hub/reference/external/G64LS955WNFT6EDP).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "LOW_INVENTORY_LEVEL_FEE",
+              "description": "Fulfillment by Amazon (FBA) Fulfillment Fee Low Level Inventory Surcharge. For\ndetails about this fee, refer to [FBA low level inventory surcharge](https://sellercentral.amazon.com/help/hub/reference/external/GV43F6S76Y9DHYRH).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MONTHLY_INVENTORY_STORAGE_FEES",
+              "description": "Monthly Inventory Storage Fees, including base rate and surcharges.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PAN_EU_OVERSIZE_FEE",
+              "description": "Fulfillment by Amazon (FBA) Fulfillment Fee Pan-EU Oversize Surcharge. For\ndetails about this fee, refer to [Pan-EU FBA oversize surcharge](https://sellercentral-europe.amazon.com/help/hub/reference/external/GQP742SNPWTVNGVA).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PER_ITEM_SELLING_FEES",
+              "description": "Per-item Selling Fees, also know as Fixed Closing Fee. For details about this\nfee, refer to [Per-item selling fees](https://sellercentral.amazon.com/help/hub/reference/external/G8TPCFJRDFPKAZ6M).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REFERRAL_FEES",
+              "description": "Referral Fees. For details about this fee, refer to [Referral fees](https://sellercentral.amazom.com/help/hub/reference/external/GTG4BAWSY39Z98Z3).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "RETURN_PROCESSING_FEE",
+              "description": "Return Processing Fee, also know as Returns Processing Fee for apparel and\nshoes. For details about this fee, refer to [Return processing fee](https://sellercentral.amazon.com/help/hub/reference/external/G64LS955WNFT6EDP).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SPONSORED_PRODUCTS_CHARGES",
+              "description": "Sponsored Products Charges. For details about this fee, refer to [Sponsored\nproduct charges](https://advertising.amazon.com/help/GY3YNTWRZYVPLADL).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "STORAGE_UTILIZATION_SURCHARGE",
+              "description": "Monthly Inventory Storage Fee Storage Utilization Surcharge. For details about\nthis fee, refer to [Monthly inventory storage - storage utilization surcharge](https://sellercentral.amazon.com/help/hub/reference/external/G3EDYEF6KUCFQTNM).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "ProductIdentifierGranularity",
+          "description": "The product identifier granularity used in aggregation.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "CHILD_ASIN",
+              "description": "Seller Economics data is aggregated by child ASIN.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FNSKU",
+              "description": "Seller Economics data is aggregated by fulfillment network sku.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MSKU",
+              "description": "Seller Economics data is aggregated by merchant sku.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PARENT_ASIN",
+              "description": "Seller Economics data is aggregated by parent ASIN.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Query",
+          "description": "A root type for queries",
+          "fields": [
+            {
+              "name": "analytics_economics_2024_03_15",
+              "description": "Seller economics queries version 2024_03_15.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Analytics_Economics_2024_03_15",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Sales",
+          "description": "The sales data for a given product in the seller's account within a given date range.",
+          "fields": [
+            {
+              "name": "averageSellingPrice",
+              "description": "The average price of the units sold in the selected time period, calculated by\ndividing the orderedProductSales by unitsOrdered for the selected time period.\nThis field will be null when unitsOrdered is 0.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "netProductSales",
+              "description": "The amount of net product sales, calculated by orderedProductSales - refundedProductSales.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "netUnitsSold",
+              "description": "The number of net units sold for the selected time period, calculated by unitsOrdered - unitsRefunded.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Long",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "orderedProductSales",
+              "description": "The amount of ordered product sales, calculated by multiplying the price of\nproducts and the number of units sold for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "refundedProductSales",
+              "description": "The amount of refunded product sales for the selected time period, it's counted by refund request time.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsOrdered",
+              "description": "The number of units ordered for the selected time period. Example: For an\norder containing 2 copies of book A and 3 copies of book B, the number of\norders is 1, the number of order items is 2 (book A and book B), and the\nnumber of units is 5 (2 + 3).",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Long",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsRefunded",
+              "description": "The number of units refunded in the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Long",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "String",
+          "description": "Represents textual data as UTF-8 character sequences. This type is most often used by GraphQL to represent free-form human-readable text.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Directive",
+          "description": "A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\n\nIn some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.",
+          "fields": [
+            {
+              "name": "args",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__InputValue",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isRepeatable",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "locations",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "__DirectiveLocation",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "onField",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "Use `locations`."
+            },
+            {
+              "name": "onFragment",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "Use `locations`."
+            },
+            {
+              "name": "onOperation",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "Use `locations`."
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "__DirectiveLocation",
+          "description": "A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "QUERY",
+              "description": "Location adjacent to a query operation.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MUTATION",
+              "description": "Location adjacent to a mutation operation.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBSCRIPTION",
+              "description": "Location adjacent to a subscription operation.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FIELD",
+              "description": "Location adjacent to a field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FRAGMENT_DEFINITION",
+              "description": "Location adjacent to a fragment definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FRAGMENT_SPREAD",
+              "description": "Location adjacent to a fragment spread.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INLINE_FRAGMENT",
+              "description": "Location adjacent to an inline fragment.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SCHEMA",
+              "description": "Location adjacent to a schema definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SCALAR",
+              "description": "Location adjacent to a scalar definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OBJECT",
+              "description": "Location adjacent to an object type definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FIELD_DEFINITION",
+              "description": "Location adjacent to a field definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ARGUMENT_DEFINITION",
+              "description": "Location adjacent to an argument definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INTERFACE",
+              "description": "Location adjacent to an interface definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNION",
+              "description": "Location adjacent to a union definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENUM",
+              "description": "Location adjacent to an enum definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENUM_VALUE",
+              "description": "Location adjacent to an enum value definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INPUT_OBJECT",
+              "description": "Location adjacent to an input object type definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INPUT_FIELD_DEFINITION",
+              "description": "Location adjacent to an input object field definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VARIABLE_DEFINITION",
+              "description": "Location adjacent to a variable definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__EnumValue",
+          "description": "One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.",
+          "fields": [
+            {
+              "name": "deprecationReason",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isDeprecated",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Field",
+          "description": "Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.",
+          "fields": [
+            {
+              "name": "args",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__InputValue",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deprecationReason",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isDeprecated",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "type",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__InputValue",
+          "description": "Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.",
+          "fields": [
+            {
+              "name": "defaultValue",
+              "description": "A GraphQL-formatted string representing the default value for this input value.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deprecationReason",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isDeprecated",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "type",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Schema",
+          "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+          "fields": [
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "directives",
+              "description": "A list of all directives supported by this server.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__Directive",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mutationType",
+              "description": "If this server supports mutation, the type that mutation operations will be rooted at.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "queryType",
+              "description": "The type that query operations will be rooted at.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "subscriptionType",
+              "description": "If this server support subscription, the type that subscription operations will be rooted at.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "types",
+              "description": "A list of all types supported by this server.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__Type",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Type",
+          "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name and description, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+          "fields": [
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "enumValues",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__EnumValue",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fields",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Field",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "inputFields",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__InputValue",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "interfaces",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Type",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isOneOf",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "kind",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "__TypeKind",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ofType",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "possibleTypes",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Type",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "specifiedByURL",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "__TypeKind",
+          "description": "An enum describing what kind of type a given `__Type` is.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "SCALAR",
+              "description": "Indicates this type is a scalar.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OBJECT",
+              "description": "Indicates this type is an object. `fields` and `interfaces` are valid fields.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INTERFACE",
+              "description": "Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNION",
+              "description": "Indicates this type is a union. `possibleTypes` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENUM",
+              "description": "Indicates this type is an enum. `enumValues` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INPUT_OBJECT",
+              "description": "Indicates this type is an input object. `inputFields` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "LIST",
+              "description": "Indicates this type is a list. `ofType` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NON_NULL",
+              "description": "Indicates this type is a non-null. `ofType` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        }
+      ],
+      "directives": [
+        {
+          "name": "deprecated",
+          "description": "Marks an element of a GraphQL schema as no longer supported.",
+          "locations": [
+            "FIELD_DEFINITION",
+            "ENUM_VALUE",
+            "ARGUMENT_DEFINITION",
+            "INPUT_FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "reason",
+              "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted in [Markdown](https://daringfireball.net/projects/markdown/).",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": "\"No longer supported\""
+            }
+          ]
+        },
+        {
+          "name": "include",
+          "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
+          "locations": [
+            "FIELD",
+            "FRAGMENT_SPREAD",
+            "INLINE_FRAGMENT"
+          ],
+          "args": [
+            {
+              "name": "if",
+              "description": "Included when true.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "oneOf",
+          "description": "Requires that exactly one field must be supplied and that field must not be `null`.",
+          "locations": [
+            "INPUT_OBJECT"
+          ],
+          "args": []
+        },
+        {
+          "name": "resultRetention",
+          "description": "This directive specifies the retention duration of a query containing a\nparticular field. When a query contains multiple fields with different\nretentions, the shortest (minimum) retention is applied to the query. The\nretention of a query's resulting documents always matches the retention of the query.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "duration",
+              "description": "An ISO 8601 duration.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "skip",
+          "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
+          "locations": [
+            "FIELD",
+            "FRAGMENT_SPREAD",
+            "INLINE_FRAGMENT"
+          ],
+          "args": [
+            {
+              "name": "if",
+              "description": "Skipped when true.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "specifiedBy",
+          "description": "Exposes a URL that specifies the behavior of this scalar.",
+          "locations": [
+            "SCALAR"
+          ],
+          "args": [
+            {
+              "name": "url",
+              "description": "The URL that specifies the behavior of this scalar.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

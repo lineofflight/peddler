@@ -65,7 +65,7 @@ module Generator
       # Batch format all written files
       format_files(written_files)
 
-      Generator.logger.info("Generated #{notification_name}")
+      Generator.logger.info("Generated notification #{notification_name.underscore}")
     end
 
     # Extract notification name from filename (e.g., "AnyOfferChangedNotification.json" => "AnyOfferChanged")

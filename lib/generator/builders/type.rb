@@ -57,8 +57,8 @@ module Generator
       # This ensures filenames like "claim_proof_urls.rb" instead of "claim_proof_ur_ls.rb"
       filename = class_name.underscore
 
-      # For notification, report, and feed nested types, use peddler/notifications, peddler/reports, or peddler/feeds
-      if api_name.start_with?("notifications/", "reports/", "feeds/")
+      # For notification, report, feed, and data_kiosk nested types, use peddler/...
+      if api_name.start_with?("notifications/", "reports/", "feeds/", "data_kiosk/")
         "peddler/#{api_name}/#{filename}"
       else
         "peddler/apis/#{api_name}/#{filename}"
@@ -319,6 +319,9 @@ module Generator
       elsif api_name.start_with?("feeds/")
         feed_name = api_name.sub("feeds/", "").camelize
         klass = Peddler::Feeds.const_get(feed_name).const_get(class_name)
+      elsif api_name.start_with?("data_kiosk/")
+        data_kiosk_name = api_name.sub("data_kiosk/", "").camelize
+        klass = Peddler::DataKiosk.const_get(data_kiosk_name).const_get(class_name)
       else
         klass = Peddler::APIs.const_get(api_name.camelize).const_get(class_name)
       end

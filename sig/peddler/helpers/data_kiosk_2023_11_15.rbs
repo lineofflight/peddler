@@ -1,0 +1,13 @@
+module Peddler
+  module Helpers
+    module DataKiosk20231115
+      def download_query_document: (String document_id_or_url) -> Peddler::Response
+
+      private
+
+      def download_query_document_from_url: (String download_url) -> Peddler::Response
+
+      def get_document: (String) -> Peddler::Response
+    end
+  end
+end

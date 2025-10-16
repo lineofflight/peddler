@@ -21,7 +21,7 @@ To begin using the Amazon SP-API, you must [register as a developer][register-as
 Add this line to your Gemfile.
 
 ```ruby
-gem "peddler", "~> 5.0.0.pre.3"
+gem "peddler", "~> 5.0.0.pre.4"
 ```
 
 And then execute:
@@ -292,7 +292,7 @@ api.create_fulfillment_order(
 - **Feeds API (2021-06-30)**: Upload data to Amazon to update listings, prices, inventory, and more
 - **Reports API (2021-06-30)**: Request and download reports about orders, inventory, fulfillment, and more
 - **Uploads API (2020-11-01)**: Upload files for various SP-API operations
-- **Data Kiosk API (2023-11-15)**: Access and manage analytical data
+- **Data Kiosk API (2023-11-15, 2024-03-15, 2024-04-24, 2024-09-30)**: Access and manage analytical data with GraphQL queries
 
 ```ruby
 api = Peddler.feeds.new(aws_region, access_token)
@@ -424,6 +424,187 @@ report.issues.each do |issue|
   puts "  Message: #{issue.message}"
   puts "  SKU: #{issue.sku}" if issue.sku
 end
+```
+
+#### Data Kiosk API
+
+The Data Kiosk API provides access to Amazon's analytical data through GraphQL queries. Peddler supports four Data Kiosk schema versions, each with type-safe Structure classes for parsing responses.
+
+**Available Schemas:**
+
+- **SalesAndTraffic20231115**: Sales and traffic metrics by ASIN and date
+- **SalesAndTraffic20240424**: Enhanced sales and traffic data (2024)
+- **Economics20240315**: Economics and profitability data
+- **VendorAnalytics20240930**: Vendor-specific analytics and forecasting data
+
+**Basic Example:**
+
+```ruby
+api = Peddler.data_kiosk.new(aws_region, access_token)
+
+# Create a Data Kiosk query request
+response = api.create_query({
+  query: """
+    query {
+      salesAndTrafficByDate(
+        startDate: "2024-01-01",
+        endDate: "2024-01-31",
+        marketplaceIds: ["ATVPDKIKX0DER"]
+      ) {
+        data {
+          date
+          orderItems
+          sales
+          pageViews
+          sessions
+        }
+      }
+    }
+  """
+})
+
+# Get the query ID
+query_id = response.dig("payload", "queryId")
+
+# Poll for query completion
+loop do
+  status = api.get_query(query_id)
+  processing_status = status.dig("payload", "processingStatus")
+  break if ["DONE", "FATAL"].include?(processing_status)
+  sleep 2
+end
+
+# Download the report document
+result_document_id = status.dig("payload", "reportDocumentId")
+document = api.get_report_document(result_document_id)
+report_url = document.dig("url")
+
+# Parse the response
+require "net/http"
+http_response = HTTP.get(report_url)
+parsed_data = JSON.parse(http_response.to_s)
+
+# Use type-safe parsing with Peddler's Structure classes
+sales_data = Peddler::DataKiosk::SalesAndTraffic20231115.parse(parsed_data)
+```
+
+**Query Document Management (Optional):**
+
+Peddler provides a helper method for downloading query documents. Enable this by adding the graphql gem to your Gemfile (optional, only needed for schema validation):
+
+```ruby
+gem "graphql", "~> 2.0"
+```
+
+Then use the helper method:
+
+```ruby
+api = Peddler.data_kiosk.new(aws_region, access_token)
+
+# Download a query document by ID (v2023-11-15 schemas)
+document = api.download_query_document("amzn1.tortuga.3.abc123...")
+
+# Or pass a full URL
+document = api.download_query_document("https://...")
+```
+
+**Type-Safe Response Parsing:**
+
+Each Data Kiosk schema version includes type-safe Structure classes that match the GraphQL response structure:
+
+```ruby
+# Parse economics data
+response_data = JSON.parse(query_response_body)
+analytics = Peddler::DataKiosk::Economics20240315.parse(response_data)
+
+# Access typed attributes
+analytics.analytics_economics_2024_03_15.each do |record|
+  puts "Sales: #{record.sales}"
+  puts "Fees: #{record.fees}"
+  puts "Net Proceeds: #{record.net_proceeds}"
+  puts "Date Range: #{record.start_date} to #{record.end_date}"
+end
+```
+
+**Query Examples by Schema:**
+
+```ruby
+# Sales and Traffic by ASIN (2023-11-15)
+query_sales_asin = """
+  query {
+    salesAndTrafficByAsin(
+      startDate: "2024-01-01",
+      endDate: "2024-01-31",
+      marketplaceIds: ["ATVPDKIKX0DER"]
+    ) {
+      data {
+        startDate
+        endDate
+        parentAsin
+        childAsin
+        sku
+        sales {
+          orderedProductSales
+          totalOrderItems
+          unitsOrdered
+        }
+        traffic {
+          pageViews
+          pageViewsPercentage
+          sessions
+          sessionPercentage
+          unitSessionPercentage
+        }
+      }
+    }
+  }
+"""
+
+# Economics data (2024-03-15)
+query_economics = """
+  query {
+    analytics {
+      economics {
+        data {
+          endDate
+          startDate
+          parentAsin
+          sales {
+            orderedProductSales
+            netProductSales
+          }
+          fees {
+            feeType
+            chargeAmount
+          }
+          netProceeds {
+            total
+            perUnit
+          }
+        }
+      }
+    }
+  }
+"""
+
+# Vendor analytics (2024-09-30)
+query_vendor = """
+  query {
+    analytics {
+      vendoranalytics {
+        manufacturingView {
+          startDate
+          endDate
+          metrics {
+            costs
+            traffic
+            orders
+          }
+        }
+      }
+    }
+  }
+"""
 ```
 
 #### Communication and Customer Management APIs

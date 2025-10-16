@@ -64,7 +64,7 @@ module Generator
       # Batch format all written files
       format_files(written_files)
 
-      Generator.logger.info("Generated #{feed_name}")
+      Generator.logger.info("Generated feed #{feed_name.underscore}")
     end
 
     # Extract feed name from filename

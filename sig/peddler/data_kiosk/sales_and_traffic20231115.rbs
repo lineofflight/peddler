@@ -1,0 +1,228 @@
+module Peddler
+  module DataKiosk
+    module SalesAndTraffic20231115
+      class Amount < Data
+        def self.new: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::Amount
+                    | (Float?, String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::Amount
+
+        def self.[]: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::Amount
+                   | (Float?, String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::Amount
+
+        def self.members: () -> [ :amount, :currency_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SalesAndTraffic20231115::Amount
+
+        attr_reader amount: Float?
+        attr_reader currency_code: String?
+        def members: () -> [ :amount, :currency_code ]
+
+        def to_h: () -> { amount: Float?, currency_code: String? }
+      end
+
+      class AnalyticsSalesandtraffic20231115 < Data
+        def self.new: (?sales_and_traffic_by_asin: Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN]?, ?sales_and_traffic_by_date: Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate]?) -> Peddler::DataKiosk::SalesAndTraffic20231115::AnalyticsSalesandtraffic20231115
+                    | (Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN]?, Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate]?) -> Peddler::DataKiosk::SalesAndTraffic20231115::AnalyticsSalesandtraffic20231115
+
+        def self.[]: (?sales_and_traffic_by_asin: Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN]?, ?sales_and_traffic_by_date: Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate]?) -> Peddler::DataKiosk::SalesAndTraffic20231115::AnalyticsSalesandtraffic20231115
+                   | (Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN]?, Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate]?) -> Peddler::DataKiosk::SalesAndTraffic20231115::AnalyticsSalesandtraffic20231115
+
+        def self.members: () -> [ :sales_and_traffic_by_asin, :sales_and_traffic_by_date ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SalesAndTraffic20231115::AnalyticsSalesandtraffic20231115
+
+        attr_reader sales_and_traffic_by_asin: Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN]?
+        attr_reader sales_and_traffic_by_date: Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate]?
+        def members: () -> [ :sales_and_traffic_by_asin, :sales_and_traffic_by_date ]
+
+        def to_h: () -> { sales_and_traffic_by_asin: Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN]?, sales_and_traffic_by_date: Array[Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate]? }
+      end
+
+      class ByASINSales < Data
+        def self.new: (?ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?total_order_items: String?, ?total_order_items_b2b: String?, ?units_ordered: String?, ?units_ordered_b2b: String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales
+                    | (Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, String?, String?, String?, String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales
+
+        def self.[]: (?ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?total_order_items: String?, ?total_order_items_b2b: String?, ?units_ordered: String?, ?units_ordered_b2b: String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales
+                   | (Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, String?, String?, String?, String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales
+
+        def self.members: () -> [ :ordered_product_sales, :ordered_product_sales_b2b, :total_order_items, :total_order_items_b2b, :units_ordered, :units_ordered_b2b ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales
+
+        attr_reader ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader total_order_items: String?
+        attr_reader total_order_items_b2b: String?
+        attr_reader units_ordered: String?
+        attr_reader units_ordered_b2b: String?
+        def members: () -> [ :ordered_product_sales, :ordered_product_sales_b2b, :total_order_items, :total_order_items_b2b, :units_ordered, :units_ordered_b2b ]
+
+        def to_h: () -> { ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, total_order_items: String?, total_order_items_b2b: String?, units_ordered: String?, units_ordered_b2b: String? }
+      end
+
+      class ByASINTraffic < Data
+        def self.new: (?browser_page_views: String?, ?browser_page_views_b2b: String?, ?browser_page_views_percentage: Float?, ?browser_page_views_percentage_b2b: Float?, ?browser_session_percentage: Float?, ?browser_session_percentage_b2b: Float?, ?browser_sessions: String?, ?browser_sessions_b2b: String?, ?buy_box_percentage: Float?, ?buy_box_percentage_b2b: Float?, ?mobile_app_page_views: String?, ?mobile_app_page_views_b2b: String?, ?mobile_app_page_views_percentage: Float?, ?mobile_app_page_views_percentage_b2b: Float?, ?mobile_app_session_percentage: Float?, ?mobile_app_session_percentage_b2b: Float?, ?mobile_app_sessions: String?, ?mobile_app_sessions_b2b: String?, ?page_views: String?, ?page_views_b2b: String?, ?page_views_percentage: Float?, ?page_views_percentage_b2b: Float?, ?session_percentage: Float?, ?session_percentage_b2b: Float?, ?sessions: String?, ?sessions_b2b: String?, ?unit_session_percentage: Float?, ?unit_session_percentage_b2b: Float?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic
+                    | (String?, String?, Float?, Float?, Float?, Float?, String?, String?, Float?, Float?, String?, String?, Float?, Float?, Float?, Float?, String?, String?, String?, String?, Float?, Float?, Float?, Float?, String?, String?, Float?, Float?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic
+
+        def self.[]: (?browser_page_views: String?, ?browser_page_views_b2b: String?, ?browser_page_views_percentage: Float?, ?browser_page_views_percentage_b2b: Float?, ?browser_session_percentage: Float?, ?browser_session_percentage_b2b: Float?, ?browser_sessions: String?, ?browser_sessions_b2b: String?, ?buy_box_percentage: Float?, ?buy_box_percentage_b2b: Float?, ?mobile_app_page_views: String?, ?mobile_app_page_views_b2b: String?, ?mobile_app_page_views_percentage: Float?, ?mobile_app_page_views_percentage_b2b: Float?, ?mobile_app_session_percentage: Float?, ?mobile_app_session_percentage_b2b: Float?, ?mobile_app_sessions: String?, ?mobile_app_sessions_b2b: String?, ?page_views: String?, ?page_views_b2b: String?, ?page_views_percentage: Float?, ?page_views_percentage_b2b: Float?, ?session_percentage: Float?, ?session_percentage_b2b: Float?, ?sessions: String?, ?sessions_b2b: String?, ?unit_session_percentage: Float?, ?unit_session_percentage_b2b: Float?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic
+                   | (String?, String?, Float?, Float?, Float?, Float?, String?, String?, Float?, Float?, String?, String?, Float?, Float?, Float?, Float?, String?, String?, String?, String?, Float?, Float?, Float?, Float?, String?, String?, Float?, Float?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic
+
+        def self.members: () -> [ :browser_page_views, :browser_page_views_b2b, :browser_page_views_percentage, :browser_page_views_percentage_b2b, :browser_session_percentage, :browser_session_percentage_b2b, :browser_sessions, :browser_sessions_b2b, :buy_box_percentage, :buy_box_percentage_b2b, :mobile_app_page_views, :mobile_app_page_views_b2b, :mobile_app_page_views_percentage, :mobile_app_page_views_percentage_b2b, :mobile_app_session_percentage, :mobile_app_session_percentage_b2b, :mobile_app_sessions, :mobile_app_sessions_b2b, :page_views, :page_views_b2b, :page_views_percentage, :page_views_percentage_b2b, :session_percentage, :session_percentage_b2b, :sessions, :sessions_b2b, :unit_session_percentage, :unit_session_percentage_b2b ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic
+
+        attr_reader browser_page_views: String?
+        attr_reader browser_page_views_b2b: String?
+        attr_reader browser_page_views_percentage: Float?
+        attr_reader browser_page_views_percentage_b2b: Float?
+        attr_reader browser_session_percentage: Float?
+        attr_reader browser_session_percentage_b2b: Float?
+        attr_reader browser_sessions: String?
+        attr_reader browser_sessions_b2b: String?
+        attr_reader buy_box_percentage: Float?
+        attr_reader buy_box_percentage_b2b: Float?
+        attr_reader mobile_app_page_views: String?
+        attr_reader mobile_app_page_views_b2b: String?
+        attr_reader mobile_app_page_views_percentage: Float?
+        attr_reader mobile_app_page_views_percentage_b2b: Float?
+        attr_reader mobile_app_session_percentage: Float?
+        attr_reader mobile_app_session_percentage_b2b: Float?
+        attr_reader mobile_app_sessions: String?
+        attr_reader mobile_app_sessions_b2b: String?
+        attr_reader page_views: String?
+        attr_reader page_views_b2b: String?
+        attr_reader page_views_percentage: Float?
+        attr_reader page_views_percentage_b2b: Float?
+        attr_reader session_percentage: Float?
+        attr_reader session_percentage_b2b: Float?
+        attr_reader sessions: String?
+        attr_reader sessions_b2b: String?
+        attr_reader unit_session_percentage: Float?
+        attr_reader unit_session_percentage_b2b: Float?
+        def members: () -> [ :browser_page_views, :browser_page_views_b2b, :browser_page_views_percentage, :browser_page_views_percentage_b2b, :browser_session_percentage, :browser_session_percentage_b2b, :browser_sessions, :browser_sessions_b2b, :buy_box_percentage, :buy_box_percentage_b2b, :mobile_app_page_views, :mobile_app_page_views_b2b, :mobile_app_page_views_percentage, :mobile_app_page_views_percentage_b2b, :mobile_app_session_percentage, :mobile_app_session_percentage_b2b, :mobile_app_sessions, :mobile_app_sessions_b2b, :page_views, :page_views_b2b, :page_views_percentage, :page_views_percentage_b2b, :session_percentage, :session_percentage_b2b, :sessions, :sessions_b2b, :unit_session_percentage, :unit_session_percentage_b2b ]
+
+        def to_h: () -> { browser_page_views: String?, browser_page_views_b2b: String?, browser_page_views_percentage: Float?, browser_page_views_percentage_b2b: Float?, browser_session_percentage: Float?, browser_session_percentage_b2b: Float?, browser_sessions: String?, browser_sessions_b2b: String?, buy_box_percentage: Float?, buy_box_percentage_b2b: Float?, mobile_app_page_views: String?, mobile_app_page_views_b2b: String?, mobile_app_page_views_percentage: Float?, mobile_app_page_views_percentage_b2b: Float?, mobile_app_session_percentage: Float?, mobile_app_session_percentage_b2b: Float?, mobile_app_sessions: String?, mobile_app_sessions_b2b: String?, page_views: String?, page_views_b2b: String?, page_views_percentage: Float?, page_views_percentage_b2b: Float?, session_percentage: Float?, session_percentage_b2b: Float?, sessions: String?, sessions_b2b: String?, unit_session_percentage: Float?, unit_session_percentage_b2b: Float? }
+      end
+
+      class ByDateSales < Data
+        def self.new: (?average_sales_per_order_item: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?average_sales_per_order_item_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?average_selling_price: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?average_selling_price_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?average_units_per_order_item: Float?, ?average_units_per_order_item_b2b: Float?, ?claims_amount: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?claims_granted: String?, ?ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?orders_shipped: String?, ?refund_rate: Float?, ?shipped_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?total_order_items: String?, ?total_order_items_b2b: String?, ?units_ordered: String?, ?units_ordered_b2b: String?, ?units_refunded: String?, ?units_shipped: String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales
+                    | (Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Float?, Float?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, String?, Float?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales
+
+        def self.[]: (?average_sales_per_order_item: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?average_sales_per_order_item_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?average_selling_price: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?average_selling_price_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?average_units_per_order_item: Float?, ?average_units_per_order_item_b2b: Float?, ?claims_amount: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?claims_granted: String?, ?ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?orders_shipped: String?, ?refund_rate: Float?, ?shipped_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ?total_order_items: String?, ?total_order_items_b2b: String?, ?units_ordered: String?, ?units_ordered_b2b: String?, ?units_refunded: String?, ?units_shipped: String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales
+                   | (Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Float?, Float?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, String?, Float?, Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales
+
+        def self.members: () -> [ :average_sales_per_order_item, :average_sales_per_order_item_b2b, :average_selling_price, :average_selling_price_b2b, :average_units_per_order_item, :average_units_per_order_item_b2b, :claims_amount, :claims_granted, :ordered_product_sales, :ordered_product_sales_b2b, :orders_shipped, :refund_rate, :shipped_product_sales, :total_order_items, :total_order_items_b2b, :units_ordered, :units_ordered_b2b, :units_refunded, :units_shipped ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales
+
+        attr_reader average_sales_per_order_item: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader average_sales_per_order_item_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader average_selling_price: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader average_selling_price_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader average_units_per_order_item: Float?
+        attr_reader average_units_per_order_item_b2b: Float?
+        attr_reader claims_amount: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader claims_granted: String?
+        attr_reader ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader orders_shipped: String?
+        attr_reader refund_rate: Float?
+        attr_reader shipped_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?
+        attr_reader total_order_items: String?
+        attr_reader total_order_items_b2b: String?
+        attr_reader units_ordered: String?
+        attr_reader units_ordered_b2b: String?
+        attr_reader units_refunded: String?
+        attr_reader units_shipped: String?
+        def members: () -> [ :average_sales_per_order_item, :average_sales_per_order_item_b2b, :average_selling_price, :average_selling_price_b2b, :average_units_per_order_item, :average_units_per_order_item_b2b, :claims_amount, :claims_granted, :ordered_product_sales, :ordered_product_sales_b2b, :orders_shipped, :refund_rate, :shipped_product_sales, :total_order_items, :total_order_items_b2b, :units_ordered, :units_ordered_b2b, :units_refunded, :units_shipped ]
+
+        def to_h: () -> { average_sales_per_order_item: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, average_sales_per_order_item_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, average_selling_price: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, average_selling_price_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, average_units_per_order_item: Float?, average_units_per_order_item_b2b: Float?, claims_amount: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, claims_granted: String?, ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, orders_shipped: String?, refund_rate: Float?, shipped_product_sales: Peddler::DataKiosk::SalesAndTraffic20231115::Amount?, total_order_items: String?, total_order_items_b2b: String?, units_ordered: String?, units_ordered_b2b: String?, units_refunded: String?, units_shipped: String? }
+      end
+
+      class ByDateTraffic < Data
+        def self.new: (?average_offer_count: String?, ?average_parent_items: String?, ?browser_page_views: String?, ?browser_page_views_b2b: String?, ?browser_sessions: String?, ?browser_sessions_b2b: String?, ?buy_box_percentage: Float?, ?buy_box_percentage_b2b: Float?, ?feedback_received: String?, ?mobile_app_page_views: String?, ?mobile_app_page_views_b2b: String?, ?mobile_app_sessions: String?, ?mobile_app_sessions_b2b: String?, ?negative_feedback_received: String?, ?order_item_session_percentage: Float?, ?order_item_session_percentage_b2b: Float?, ?page_views: String?, ?page_views_b2b: String?, ?received_negative_feedback_rate: Float?, ?sessions: String?, ?sessions_b2b: String?, ?unit_session_percentage: Float?, ?unit_session_percentage_b2b: Float?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic
+                    | (String?, String?, String?, String?, String?, String?, Float?, Float?, String?, String?, String?, String?, String?, String?, Float?, Float?, String?, String?, Float?, String?, String?, Float?, Float?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic
+
+        def self.[]: (?average_offer_count: String?, ?average_parent_items: String?, ?browser_page_views: String?, ?browser_page_views_b2b: String?, ?browser_sessions: String?, ?browser_sessions_b2b: String?, ?buy_box_percentage: Float?, ?buy_box_percentage_b2b: Float?, ?feedback_received: String?, ?mobile_app_page_views: String?, ?mobile_app_page_views_b2b: String?, ?mobile_app_sessions: String?, ?mobile_app_sessions_b2b: String?, ?negative_feedback_received: String?, ?order_item_session_percentage: Float?, ?order_item_session_percentage_b2b: Float?, ?page_views: String?, ?page_views_b2b: String?, ?received_negative_feedback_rate: Float?, ?sessions: String?, ?sessions_b2b: String?, ?unit_session_percentage: Float?, ?unit_session_percentage_b2b: Float?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic
+                   | (String?, String?, String?, String?, String?, String?, Float?, Float?, String?, String?, String?, String?, String?, String?, Float?, Float?, String?, String?, Float?, String?, String?, Float?, Float?) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic
+
+        def self.members: () -> [ :average_offer_count, :average_parent_items, :browser_page_views, :browser_page_views_b2b, :browser_sessions, :browser_sessions_b2b, :buy_box_percentage, :buy_box_percentage_b2b, :feedback_received, :mobile_app_page_views, :mobile_app_page_views_b2b, :mobile_app_sessions, :mobile_app_sessions_b2b, :negative_feedback_received, :order_item_session_percentage, :order_item_session_percentage_b2b, :page_views, :page_views_b2b, :received_negative_feedback_rate, :sessions, :sessions_b2b, :unit_session_percentage, :unit_session_percentage_b2b ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic
+
+        attr_reader average_offer_count: String?
+        attr_reader average_parent_items: String?
+        attr_reader browser_page_views: String?
+        attr_reader browser_page_views_b2b: String?
+        attr_reader browser_sessions: String?
+        attr_reader browser_sessions_b2b: String?
+        attr_reader buy_box_percentage: Float?
+        attr_reader buy_box_percentage_b2b: Float?
+        attr_reader feedback_received: String?
+        attr_reader mobile_app_page_views: String?
+        attr_reader mobile_app_page_views_b2b: String?
+        attr_reader mobile_app_sessions: String?
+        attr_reader mobile_app_sessions_b2b: String?
+        attr_reader negative_feedback_received: String?
+        attr_reader order_item_session_percentage: Float?
+        attr_reader order_item_session_percentage_b2b: Float?
+        attr_reader page_views: String?
+        attr_reader page_views_b2b: String?
+        attr_reader received_negative_feedback_rate: Float?
+        attr_reader sessions: String?
+        attr_reader sessions_b2b: String?
+        attr_reader unit_session_percentage: Float?
+        attr_reader unit_session_percentage_b2b: Float?
+        def members: () -> [ :average_offer_count, :average_parent_items, :browser_page_views, :browser_page_views_b2b, :browser_sessions, :browser_sessions_b2b, :buy_box_percentage, :buy_box_percentage_b2b, :feedback_received, :mobile_app_page_views, :mobile_app_page_views_b2b, :mobile_app_sessions, :mobile_app_sessions_b2b, :negative_feedback_received, :order_item_session_percentage, :order_item_session_percentage_b2b, :page_views, :page_views_b2b, :received_negative_feedback_rate, :sessions, :sessions_b2b, :unit_session_percentage, :unit_session_percentage_b2b ]
+
+        def to_h: () -> { average_offer_count: String?, average_parent_items: String?, browser_page_views: String?, browser_page_views_b2b: String?, browser_sessions: String?, browser_sessions_b2b: String?, buy_box_percentage: Float?, buy_box_percentage_b2b: Float?, feedback_received: String?, mobile_app_page_views: String?, mobile_app_page_views_b2b: String?, mobile_app_sessions: String?, mobile_app_sessions_b2b: String?, negative_feedback_received: String?, order_item_session_percentage: Float?, order_item_session_percentage_b2b: Float?, page_views: String?, page_views_b2b: String?, received_negative_feedback_rate: Float?, sessions: String?, sessions_b2b: String?, unit_session_percentage: Float?, unit_session_percentage_b2b: Float? }
+      end
+
+      class SalesAndTrafficByASIN < Data
+        def self.new: (?child_asin: String?, ?end_date: String?, ?marketplace_id: String?, ?parent_asin: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales?, ?sku: String?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN
+                    | (String?, String?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN
+
+        def self.[]: (?child_asin: String?, ?end_date: String?, ?marketplace_id: String?, ?parent_asin: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales?, ?sku: String?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN
+                   | (String?, String?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN
+
+        def self.members: () -> [ :child_asin, :end_date, :marketplace_id, :parent_asin, :sales, :sku, :start_date, :traffic ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByASIN
+
+        attr_reader child_asin: String?
+        attr_reader end_date: String?
+        attr_reader marketplace_id: String?
+        attr_reader parent_asin: String?
+        attr_reader sales: Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales?
+        attr_reader sku: String?
+        attr_reader start_date: String?
+        attr_reader traffic: Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic?
+        def members: () -> [ :child_asin, :end_date, :marketplace_id, :parent_asin, :sales, :sku, :start_date, :traffic ]
+
+        def to_h: () -> { child_asin: String?, end_date: String?, marketplace_id: String?, parent_asin: String?, sales: Peddler::DataKiosk::SalesAndTraffic20231115::ByASINSales?, sku: String?, start_date: String?, traffic: Peddler::DataKiosk::SalesAndTraffic20231115::ByASINTraffic? }
+      end
+
+      class SalesAndTrafficByDate < Data
+        def self.new: (?end_date: String?, ?marketplace_id: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate
+                    | (String?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate
+
+        def self.[]: (?end_date: String?, ?marketplace_id: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate
+                   | (String?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales?, String?, Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate
+
+        def self.members: () -> [ :end_date, :marketplace_id, :sales, :start_date, :traffic ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SalesAndTraffic20231115::SalesAndTrafficByDate
+
+        attr_reader end_date: String?
+        attr_reader marketplace_id: String?
+        attr_reader sales: Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales?
+        attr_reader start_date: String?
+        attr_reader traffic: Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic?
+        def members: () -> [ :end_date, :marketplace_id, :sales, :start_date, :traffic ]
+
+        def to_h: () -> { end_date: String?, marketplace_id: String?, sales: Peddler::DataKiosk::SalesAndTraffic20231115::ByDateSales?, start_date: String?, traffic: Peddler::DataKiosk::SalesAndTraffic20231115::ByDateTraffic? }
+      end
+
+      def self.schema: () -> Hash[String, untyped]
+    end
+  end
+end

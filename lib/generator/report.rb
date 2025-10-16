@@ -59,7 +59,7 @@ module Generator
       # Batch format all written files
       format_files(written_files)
 
-      Generator.logger.info("Generated #{report_name}")
+      Generator.logger.info("Generated report #{report_name.underscore}")
     end
 
     # Extract report name from filename

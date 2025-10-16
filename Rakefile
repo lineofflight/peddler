@@ -25,10 +25,48 @@ task "rbs:sort" do
   end
 end
 
-desc "Generate API classes from OpenAPI specs"
+desc "Generate all code from specs"
 task :generate do
   require_relative "lib/generator"
   Generator.generate
+end
+
+namespace :generate do
+  desc "Setup generator and sync specs"
+  task :setup do
+    require_relative "lib/generator"
+    Generator.setup
+  end
+
+  desc "Generate API classes"
+  task apis: :setup do
+    Generator.generate_apis
+  end
+
+  desc "Generate notification types"
+  task notifications: :setup do
+    Generator.generate_notifications
+  end
+
+  desc "Generate report types"
+  task reports: :setup do
+    Generator.generate_reports
+  end
+
+  desc "Generate feed types"
+  task feeds: :setup do
+    Generator.generate_feeds
+  end
+
+  desc "Generate Data Kiosk types"
+  task data_kiosk: :setup do
+    Generator.generate_data_kiosk
+  end
+
+  desc "Generate entrypoints"
+  task entrypoints: :setup do
+    Generator.generate_entrypoints
+  end
 end
 
 task default: [:rubocop, :test, :steep]

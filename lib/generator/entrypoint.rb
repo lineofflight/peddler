@@ -18,7 +18,7 @@ module Generator
     class << self
       def generate
         new(API.apis).generate
-        Generator.logger.info("Generated entry point")
+        Generator.logger.info("Generated entrypoint peddler")
       end
     end
 

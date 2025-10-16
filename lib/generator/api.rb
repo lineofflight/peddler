@@ -64,7 +64,7 @@ module Generator
       generate_rbs!
       format_files(@written_files)
 
-      Generator.logger.info("Generated #{name_with_version}")
+      Generator.logger.info("Generated api #{name_with_version}")
     end
 
     def generate_api_class!

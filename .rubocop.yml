@@ -1,4 +1,5 @@
 plugins:
+  - rubocop-graphql
   - rubocop-minitest
   - rubocop-on-rbs
   - rubocop-performance

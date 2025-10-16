@@ -7,76 +7,29 @@ require "structure"
 require "time"
 <% end -%>
 
-<% if api_name.start_with?("notifications/") -%>
-<% notification_name = api_name.sub("notifications/", "").camelize -%>
-module Peddler
-  module Notifications
-    module <%= notification_name %>
-<% if class_description -%>
-
-      <%= class_description %>
-<% end -%>
-      <%= class_name %> = Structure.new do
-<% properties.each_with_index do |(prop_name, prop_def), index| -%>
-<%= "\n" if index > 0 -%>
-        <%= format_property_comment(prop_def) %>
-<% if required_properties.include?(prop_name) -%>
-        attribute(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% else -%>
-        attribute?(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% end -%>
-<% end -%>
-      end
-    end
+<%
+  # Determine module hierarchy based on api_name
+  if api_name.start_with?("notifications/")
+    namespace_name = api_name.sub("notifications/", "").camelize
+    namespace = "Notifications"
+  elsif api_name.start_with?("reports/")
+    namespace_name = api_name.sub("reports/", "").camelize
+    namespace = "Reports"
+  elsif api_name.start_with?("feeds/")
+    namespace_name = api_name.sub("feeds/", "").camelize
+    namespace = "Feeds"
+  elsif api_name.start_with?("data_kiosk/")
+    namespace_name = api_name.sub("data_kiosk/", "").camelize
+    namespace = "DataKiosk"
+  else
+    namespace_name = nil
+    namespace = nil
   end
-end
-<% elsif api_name.start_with?("reports/") -%>
-<% report_name = api_name.sub("reports/", "").camelize -%>
-module Peddler
-  module Reports
-    module <%= report_name %>
-<% if class_description -%>
 
-      <%= class_description %>
-<% end -%>
-      <%= class_name %> = Structure.new do
-<% properties.each_with_index do |(prop_name, prop_def), index| -%>
-<%= "\n" if index > 0 -%>
-        <%= format_property_comment(prop_def) %>
-<% if required_properties.include?(prop_name) -%>
-        attribute(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% else -%>
-        attribute?(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% end -%>
-<% end -%>
-      end
-    end
-  end
-end
-<% elsif api_name.start_with?("feeds/") -%>
-<% feed_name = api_name.sub("feeds/", "").camelize -%>
-module Peddler
-  module Feeds
-    module <%= feed_name %>
-<% if class_description -%>
+  is_api = namespace.nil?
+-%>
 
-      <%= class_description %>
-<% end -%>
-      <%= class_name %> = Structure.new do
-<% properties.each_with_index do |(prop_name, prop_def), index| -%>
-<%= "\n" if index > 0 -%>
-        <%= format_property_comment(prop_def) %>
-<% if required_properties.include?(prop_name) -%>
-        attribute(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% else -%>
-        attribute?(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% end -%>
-<% end -%>
-      end
-    end
-  end
-end
-<% else -%>
+<% if is_api -%>
 module Peddler
   module APIs
     class <%= api_name.camelize %>
@@ -93,6 +46,28 @@ module Peddler
           attribute?(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
           <% end -%>
         <% end -%>
+      end
+    end
+  end
+end
+<% else -%>
+module Peddler
+  module <%= namespace %>
+    module <%= namespace_name %>
+<% if class_description -%>
+
+      <%= class_description %>
+<% end -%>
+      <%= class_name %> = Structure.new do
+<% properties.each_with_index do |(prop_name, prop_def), index| -%>
+<%= "\n" if index > 0 -%>
+        <%= format_property_comment(prop_def) %>
+<% if required_properties.include?(prop_name) -%>
+        attribute(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
+<% else -%>
+        attribute?(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
+<% end -%>
+<% end -%>
       end
     end
   end

@@ -25,10 +25,11 @@ module Generator
         lines << ""
         lines << "module Peddler"
 
-        # Determine if this is a notification, report, feed, or regular type
+        # Determine if this is a notification, report, feed, data_kiosk, or regular type
         is_notification = @api_name.start_with?("notifications/")
         is_report = @api_name.start_with?("reports/")
         is_feed = @api_name.start_with?("feeds/")
+        is_data_kiosk = @api_name.start_with?("data_kiosk/")
 
         if is_notification
           notification_name = @api_name.sub("notifications/", "").camelize
@@ -42,8 +43,12 @@ module Generator
           feed_name = @api_name.sub("feeds/", "").camelize
           lines << "  module Feeds"
           lines << "    module #{feed_name}"
+        elsif is_data_kiosk
+          data_kiosk_name = @api_name.sub("data_kiosk/", "").camelize
+          lines << "  module DataKiosk"
+          lines << "    module #{data_kiosk_name}"
         else
-          raise "RBS::Types should only be used for notifications, reports, or feeds. Got: #{@api_name}"
+          raise "RBS::Types should only be used for notifications, reports, feeds, or data_kiosk. Got: #{@api_name}"
         end
 
         # Sort types alphabetically by class name for consistent output
@@ -58,7 +63,7 @@ module Generator
           lines << "" # Add blank line between classes
         end
 
-        # For notifications, reports, and feeds, add module-level parse method
+        # For notifications, reports, feeds, and data_kiosk, add module-level parse method
         if is_notification
           # Find the Notification type to get its fully qualified name
           notification_type = sorted_types.find { |t| t.class_name == "Notification" }
@@ -83,6 +88,10 @@ module Generator
             lines << "      def self.parse: (Hash[String | Symbol, untyped]) -> #{full_type_name}"
             lines << ""
           end
+        elsif is_data_kiosk
+          # Add schema class method for data kiosk modules
+          lines << "      def self.schema: () -> Hash[String, untyped]"
+          lines << ""
         end
 
         # Remove trailing blank line
@@ -103,7 +112,7 @@ module Generator
       end
 
       def rbs_file_path
-        # Determine the right path based on whether this is a notification, report, or feed
+        # Determine the right path based on whether this is a notification, report, feed, or data_kiosk
         if @api_name.start_with?("notifications/")
           # For notifications, remove "notifications/" prefix and put in sig/peddler/notifications/
           notification_path = @api_name.sub("notifications/", "")
@@ -116,8 +125,12 @@ module Generator
           # For feeds, remove "feeds/" prefix and put in sig/peddler/feeds/
           feed_path = @api_name.sub("feeds/", "")
           File.join(Config::BASE_PATH, "sig/peddler/feeds/#{feed_path}.rbs")
+        elsif @api_name.start_with?("data_kiosk/")
+          # For data_kiosk, remove "data_kiosk/" prefix and put in sig/peddler/data_kiosk/
+          data_kiosk_path = @api_name.sub("data_kiosk/", "")
+          File.join(Config::BASE_PATH, "sig/peddler/data_kiosk/#{data_kiosk_path}.rbs")
         else
-          raise "RBS::Types should only be used for notifications, reports, or feeds. Got: #{@api_name}"
+          raise "RBS::Types should only be used for notifications, reports, feeds, or data_kiosk. Got: #{@api_name}"
         end
       end
     end
