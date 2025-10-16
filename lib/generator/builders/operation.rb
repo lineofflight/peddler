@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require "erb"
-require_relative "config"
-require_relative "support/formatter"
-require_relative "builders/parameter_builder"
-require_relative "builders/response_model"
-require_relative "parsers/rate_limit_parser"
+require_relative "../support/config"
+require_relative "../support/formatter"
+require_relative "parameter_builder"
+require_relative "response_model"
+require_relative "../parsers/rate_limit_parser"
 require "peddler/acronyms"
 
 module Generator

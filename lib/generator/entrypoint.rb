@@ -2,9 +2,9 @@
 
 require "erb"
 
-require_relative "logger"
+require_relative "support/logger"
 require_relative "api"
-require_relative "config"
+require_relative "support/config"
 require_relative "support/file_writer"
 require_relative "resolvers/version_selector"
 require_relative "rbs/entrypoint"

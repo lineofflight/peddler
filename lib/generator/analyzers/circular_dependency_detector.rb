@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "set"
-require_relative "../logger"
+require_relative "../support/logger"
 
 module Generator
   class CircularDependencyDetector

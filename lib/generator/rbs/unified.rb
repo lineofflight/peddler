@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "erb"
-require_relative "../config"
+require_relative "../support/config"
 require_relative "../support/formatter"
 require_relative "../support/file_writer"
 require_relative "../builders/parameter_builder"

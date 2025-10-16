@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "open3"
-require_relative "logger"
-require_relative "config"
+require_relative "support/logger"
+require_relative "support/config"
 
 module Generator
   class Specs

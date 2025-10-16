@@ -2,7 +2,7 @@
 
 require "helper"
 require "generator/rbs/types"
-require "generator/type"
+require "generator/builders/type"
 
 module Generator
   module RBS

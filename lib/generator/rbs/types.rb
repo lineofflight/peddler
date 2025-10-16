@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../config"
+require_relative "../support/config"
 require_relative "../support/file_writer"
 
 module Generator

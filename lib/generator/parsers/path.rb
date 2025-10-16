@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../operation"
+require_relative "../builders/operation"
 
 module Generator
   class Path

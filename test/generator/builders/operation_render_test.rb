@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "helper"
-require "generator/operation"
+require "generator/builders/operation"
 require "generator/parsers/path"
 
 module Generator

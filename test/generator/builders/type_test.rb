@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "helper"
-require "generator/type"
+require "generator/builders/type"
 
 module Generator
   class TypeTest < Minitest::Test

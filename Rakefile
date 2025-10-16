@@ -9,8 +9,6 @@ require "rubocop/rake_task"
 require "steep/rake_task"
 require "yard"
 
-require "generator/config"
-
 Minitest::TestTask.create do |t|
   t.libs << "test"
   t.test_globs = ["test/**/*_test.rb"]
@@ -31,7 +29,6 @@ desc "Generate API classes from OpenAPI specs"
 task :generate do
   require_relative "lib/generator"
   Generator.generate
-  puts "\nCode generation completed successfully."
 end
 
 task default: [:rubocop, :test, :steep]
