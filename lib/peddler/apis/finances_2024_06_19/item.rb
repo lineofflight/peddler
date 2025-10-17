@@ -10,7 +10,7 @@ module Peddler
       # Additional information about the items in Transaction.
       Item = Structure.new do
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
-        # transaction.
+        #   transaction.
         attribute?(:breakdowns, [Breakdown])
 
         # @return [Array<Context>] Additional Information about the item.

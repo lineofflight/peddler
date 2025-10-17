@@ -13,11 +13,11 @@ module Peddler
         attribute(:status, String)
 
         # @return [String] The unique identifier sent in the 'transactionId' field in response to the post request of a
-        # specific transaction.
+        #   specific transaction.
         attribute(:transaction_id, String, from: "transactionId")
 
         # @return [ErrorList] Error code and message for the failed transaction. Only available when transaction status
-        # is 'Failure'.
+        #   is 'Failure'.
         attribute?(:errors, ErrorList)
       end
     end

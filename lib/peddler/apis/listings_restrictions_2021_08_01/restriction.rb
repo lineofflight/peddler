@@ -10,7 +10,7 @@ module Peddler
       # A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
       Restriction = Structure.new do
         # @return [String] A marketplace identifier. Identifies the Amazon marketplace where the restriction is
-        # enforced.
+        #   enforced.
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The condition that applies to the restriction.

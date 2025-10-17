@@ -10,7 +10,7 @@ module Peddler
       # The vendor details that are associated with an Amazon catalog item for the specified `marketplaceId`.
       ItemVendorDetailsByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier. To find the ID for your marketplace, refer to [Marketplace
-        # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The brand code that is associated with an Amazon catalog item.

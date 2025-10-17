@@ -16,7 +16,7 @@ module Peddler
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] Type of variation relationship of the Amazon catalog item in the request to the related
-        # item(s): "PARENT" or "CHILD".
+        #   item(s): "PARENT" or "CHILD".
         attribute(:variation_type, String, from: "variationType")
       end
     end

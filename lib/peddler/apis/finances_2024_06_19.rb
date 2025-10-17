@@ -16,20 +16,20 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param posted_after [String] The response includes financial events posted on or after this date. This date must
-      # be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be
-      # more than two minutes before the time of the request.
+      #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must
+      #   be more than two minutes before the time of the request.
       # @param posted_before [String] A date used for selecting transactions posted before (but not at) a specified
-      # time. The date-time must be later than PostedAfter and no later than two minutes before the request was
-      # submitted, in ISO 8601 date time format. If PostedAfter and PostedBefore are more than 180 days apart, no
-      # transactions are returned. You must specify the PostedAfter parameter if you specify the PostedBefore parameter.
-      # Default: Now minus two minutes.
+      #   time. The date-time must be later than PostedAfter and no later than two minutes before the request was
+      #   submitted, in ISO 8601 date time format. If PostedAfter and PostedBefore are more than 180 days apart, no
+      #   transactions are returned. You must specify the PostedAfter parameter if you specify the PostedBefore
+      #   parameter. Default: Now minus two minutes.
       # @param marketplace_id [String] The identifier of the marketplace from which you want to retrieve transactions.
-      # The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace,
-      # refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace,
+      #   refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param transaction_status [String] The status of the transaction. **Possible values:** * `DEFERRED`: the
-      # transaction is currently deferred. * `RELEASED`: the transaction is currently released. * `DEFERRED_RELEASED`:
-      # the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated
-      # to `DEFERRED_RELEASED` when the transaction is released.
+      #   transaction is currently deferred. * `RELEASED`: the transaction is currently released. * `DEFERRED_RELEASED`:
+      #   the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated
+      #   to `DEFERRED_RELEASED` when the transaction is released.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response

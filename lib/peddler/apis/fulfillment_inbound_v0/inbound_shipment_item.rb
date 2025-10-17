@@ -23,10 +23,10 @@ module Peddler
         attribute?(:prep_details_list, [PrepDetails], from: "PrepDetailsList")
 
         # @return [Integer] The item quantity in each case, for case-packed items. Note that QuantityInCase multiplied
-        # by the number of boxes in the inbound shipment equals QuantityShipped. Also note that all of the boxes of an
-        # inbound shipment must either be case packed or individually packed. For that reason, when you submit the
-        # createInboundShipment or the updateInboundShipment operation, the value of QuantityInCase must be provided for
-        # every item in the shipment or for none of the items in the shipment.
+        #   by the number of boxes in the inbound shipment equals QuantityShipped. Also note that all of the boxes of an
+        #   inbound shipment must either be case packed or individually packed. For that reason, when you submit the
+        #   createInboundShipment or the updateInboundShipment operation, the value of QuantityInCase must be provided
+        #   for every item in the shipment or for none of the items in the shipment.
         attribute?(:quantity_in_case, Integer, from: "QuantityInCase")
 
         # @return [Integer] The item quantity that has been received at an Amazon fulfillment center.

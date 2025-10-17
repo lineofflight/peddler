@@ -13,7 +13,7 @@ module Peddler
         attribute(:base_rate, Float, from: "baseRate")
 
         # @return [Float] Displays the foreign exchange rate which will be all rates and fees baked in (i.e; markup
-        # fees), example: market fx rate and international transaction fee.
+        #   fees), example: market fx rate and international transaction fee.
         attribute(:effective_fx_rate, Float, from: "effectiveFxRate")
 
         # @return [String] Unique identifier assigned to the fees/foreign exchange Rate of a transaction.

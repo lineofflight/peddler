@@ -11,7 +11,7 @@ module Peddler
       # Seller's pre-fulfillment cancellation rate within a given reporting date range for 1 requested marketplace.
       PreFulfillmentCancellationRate = Structure.new do
         # @return [Integer] The number of seller faulted cancelled orders within a given reporting date range for 1
-        # requested marketplace.
+        #   requested marketplace.
         attribute(:cancellation_count, Integer, from: "cancellationCount")
 
         # @return [String]

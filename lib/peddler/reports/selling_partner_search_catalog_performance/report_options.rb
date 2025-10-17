@@ -13,8 +13,8 @@ module Peddler
         attribute(:report_period, String, from: "reportPeriod")
 
         # @return [String] A space-separated list of Amazon Standard Identification Number (ASINs) for which you can
-        # request the report. If you do not provide ASINs, the report returns search catalog performance data for all
-        # ASINs for which you are a brand owner. There is a 200-character limit.
+        #   request the report. If you do not provide ASINs, the report returns search catalog performance data for all
+        #   ASINs for which you are a brand owner. There is a 200-character limit.
         attribute?(:asins, String)
       end
     end

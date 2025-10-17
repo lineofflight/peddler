@@ -11,11 +11,11 @@ module Peddler
       # in the JP marketplace.
       DeliveryWindow = Structure.new do
         # @return [String] The date and time of the end of the Scheduled Delivery window. Must be in
-        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute(:end_date, String, from: "endDate")
 
         # @return [String] The date and time of the start of the Scheduled Delivery window. Must be in
-        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute(:start_date, String, from: "startDate")
       end
     end

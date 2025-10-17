@@ -17,7 +17,7 @@ module Peddler
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for the item.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param seller_sku [String] Used to identify items in the given marketplace. SellerSKU is qualified by the
-      # seller's SellerId, which is included with every operation that you submit.
+      #   seller's SellerId, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil, rate_limit: 1.0)

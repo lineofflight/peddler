@@ -22,13 +22,14 @@ module Peddler
         attribute?(:amazon_programs, AmazonPrograms, from: "AmazonPrograms")
 
         # @return [Array<AssociatedItem>] A list of associated items that a customer has purchased with a product. For
-        # example, a tire installation service purchased with tires.
+        #   example, a tire installation service purchased with tires.
         attribute?(:associated_items, [AssociatedItem], from: "AssociatedItems")
 
         # @return [ItemBuyerInfo] A single item's buyer information.
         #
         # **Note**: The `BuyerInfo` contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS
-        # roles to access the restricted data in `BuyerInfo`. For example, `BuyerCustomizedInfo` and `GiftMessageText`.
+        #   roles to access the restricted data in `BuyerInfo`. For example, `BuyerCustomizedInfo` and
+        #   `GiftMessageText`.
         attribute?(:buyer_info, ItemBuyerInfo, from: "BuyerInfo")
 
         # @return [BuyerRequestedCancel] Information about whether or not a buyer requested cancellation.
@@ -51,15 +52,15 @@ module Peddler
         # @return [String] The subcondition of the item.
         #
         # **Possible values**: `New`, `Mint`, `Very Good`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`,
-        # `Refurbished Warranty`, `Refurbished`, `Open Box`, `Any`, and `Other`.
+        #   `Refurbished Warranty`, `Refurbished`, `Open Box`, `Any`, and `Other`.
         attribute?(:condition_subtype_id, String, from: "ConditionSubtypeId")
 
         # @return [String] The category of deemed reseller. This applies to selling partners that are not based in the
-        # EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK.
+        #   EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK.
         attribute?(:deemed_reseller_category, String, from: "DeemedResellerCategory")
 
         # @return [String] The IOSS number of the marketplace. Sellers shipping to the EU from outside the EU must
-        # provide this IOSS number to their carrier when Amazon has collected the VAT on the sale.
+        #   provide this IOSS number to their carrier when Amazon has collected the VAT on the sale.
         attribute?(:ioss_number, String, from: "IossNumber")
 
         # @return [String] Indicates whether the item is a gift.
@@ -68,18 +69,18 @@ module Peddler
         attribute?(:is_gift, String, from: "IsGift")
 
         # @return [:boolean] When true, the ASIN is enrolled in Transparency. The Transparency serial number that you
-        # must submit is determined by:
+        #   must submit is determined by:
         #
         # **1D or 2D Barcode:** This has a **T** logo. Submit either the 29-character alpha-numeric identifier beginning
-        # with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).
+        #   with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).
         # **2D Barcode SN:** Submit the 7- to 20-character serial number barcode, which likely has the prefix **SN**.
-        # The serial number is applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
+        #   The serial number is applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
         # **QR code SN:** Submit the URL that the QR code generates.
         attribute?(:transparency, :boolean, from: "IsTransparency")
 
         # @return [Money] The selling price of the order item. Note that an order item is an item and a quantity. This
-        # means that the value of `ItemPrice` is equal to the selling price of the item multiplied by the quantity
-        # ordered. `ItemPrice` excludes `ShippingPrice` and GiftWrapPrice.
+        #   means that the value of `ItemPrice` is equal to the selling price of the item multiplied by the quantity
+        #   ordered. `ItemPrice` excludes `ShippingPrice` and GiftWrapPrice.
         attribute?(:item_price, Money, from: "ItemPrice")
 
         # @return [Money] The tax on the item price.
@@ -92,8 +93,8 @@ module Peddler
         attribute?(:points_granted, PointsGrantedDetail, from: "PointsGranted")
 
         # @return [String] Indicates that the selling price is a special price that is only available for Amazon
-        # Business orders. For more information about the Amazon Business Seller Program, refer to the [Amazon Business
-        # website](https://www.amazon.com/b2b/info/amazon-business).
+        #   Business orders. For more information about the Amazon Business Seller Program, refer to the [Amazon
+        #   Business website](https://www.amazon.com/b2b/info/amazon-business).
         #
         # **Possible values**: `BusinessPrice`
         attribute?(:price_designation, String, from: "PriceDesignation")
@@ -114,11 +115,11 @@ module Peddler
         attribute?(:quantity_shipped, Integer, from: "QuantityShipped")
 
         # @return [String] The end date of the scheduled delivery window in the time zone for the order destination. In
-        # [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+        #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
         attribute?(:scheduled_delivery_end_date, String, from: "ScheduledDeliveryEndDate")
 
         # @return [String] The start date of the scheduled delivery window in the time zone for the order destination.
-        # In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+        #   In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
         attribute?(:scheduled_delivery_start_date, String, from: "ScheduledDeliveryStartDate")
 
         # @return [String] The item's seller stock keeping unit (SKU).
@@ -130,7 +131,7 @@ module Peddler
         attribute?(:serial_number_required, :boolean, from: "SerialNumberRequired")
 
         # @return [Array<String>] A list of serial numbers for electronic products that are shipped to customers.
-        # Returned for FBA orders only.
+        #   Returned for FBA orders only.
         attribute?(:serial_numbers, [String], from: "SerialNumbers")
 
         # @return [ShippingConstraints] Shipping constraints applicable to this order.
@@ -152,7 +153,7 @@ module Peddler
         attribute?(:store_chain_store_id, String, from: "StoreChainStoreId")
 
         # @return [SubstitutionPreferences] Substitution preferences for the order item. This is an optional field that
-        # is only present if a seller supports substitutions, as is the case with some grocery sellers.
+        #   is only present if a seller supports substitutions, as is the case with some grocery sellers.
         attribute?(:substitution_preferences, SubstitutionPreferences, from: "SubstitutionPreferences")
 
         # @return [TaxCollection] Information about withheld taxes.

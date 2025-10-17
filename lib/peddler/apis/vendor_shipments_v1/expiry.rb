@@ -15,11 +15,11 @@ module Peddler
         attribute?(:expiry_after_duration, Duration, from: "expiryAfterDuration")
 
         # @return [Time] The date that determines the limit of consumption or use of a product. Its meaning is
-        # determined based on the trade item context.
+        #   determined based on the trade item context.
         attribute?(:expiry_date, Time, from: "expiryDate")
 
         # @return [Time] Production, packaging or assembly date determined by the manufacturer. Its meaning is
-        # determined based on the trade item context.
+        #   determined based on the trade item context.
         attribute?(:manufacturer_date, Time, from: "manufacturerDate")
       end
     end

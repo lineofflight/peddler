@@ -12,12 +12,12 @@ module Peddler
       # operation.
       Attachment = Structure.new do
         # @return [String] The name of the file, including the extension. This is the file name that will appear in the
-        # message. This does not need to match the file name of the file that you uploaded.
+        #   message. This does not need to match the file name of the file that you uploaded.
         attribute(:file_name, String, from: "fileName")
 
         # @return [String] The identifier for the upload destination. To retrieve this value, call the Uploads API
-        # [`createUploadDestinationForResource`](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource)
-        # operation.
+        #   [`createUploadDestinationForResource`](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource)
+        #   operation.
         attribute(:upload_destination_id, String, from: "uploadDestinationId")
       end
     end

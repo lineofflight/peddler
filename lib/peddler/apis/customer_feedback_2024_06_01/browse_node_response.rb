@@ -10,7 +10,7 @@ module Peddler
       # The response for the `getItemBrowseNode` operation.
       BrowseNodeResponse = Structure.new do
         # @return [String] A browse node id is the unique identifier of a given browse node. A browse node is a location
-        # in a browse tree that is used for navigation, product classification, and website content.
+        #   in a browse tree that is used for navigation, product classification, and website content.
         attribute(:browse_node_id, String, from: "browseNodeId")
 
         # @return [String] The display name of the browse node as visible on the Amazon retail website.

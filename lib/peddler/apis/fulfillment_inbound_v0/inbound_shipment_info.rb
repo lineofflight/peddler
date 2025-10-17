@@ -10,7 +10,7 @@ module Peddler
       # Information about the seller's inbound shipments. Returned by the listInboundShipments operation.
       InboundShipmentInfo = Structure.new do
         # @return [:boolean] Indicates whether or not an inbound shipment contains case-packed boxes. When
-        # AreCasesRequired = true for an inbound shipment, all items in the inbound shipment must be case packed.
+        #   AreCasesRequired = true for an inbound shipment, all items in the inbound shipment must be case packed.
         attribute(:are_cases_required, :boolean, from: "AreCasesRequired")
 
         # @return [Address] The return address.
@@ -20,14 +20,14 @@ module Peddler
         attribute?(:box_contents_source, String, from: "BoxContentsSource")
 
         # @return [String] Date by which the shipment must arrive at the Amazon fulfillment center to avoid delivery
-        # promise breaks for pre-ordered items.
+        #   promise breaks for pre-ordered items.
         attribute?(:confirmed_need_by_date, String, from: "ConfirmedNeedByDate")
 
         # @return [String] An Amazon fulfillment center identifier created by Amazon.
         attribute?(:destination_fulfillment_center_id, String, from: "DestinationFulfillmentCenterId")
 
         # @return [BoxContentsFeeDetails] An estimate of the manual processing fee charged by Amazon for boxes without
-        # box content information. This is only returned when BoxContentsSource is NONE.
+        #   box content information. This is only returned when BoxContentsSource is NONE.
         attribute?(:estimated_box_contents_fee, BoxContentsFeeDetails, from: "EstimatedBoxContentsFee")
 
         # @return [String]

@@ -12,7 +12,7 @@ module Peddler
         attribute(:offer_change_trigger, String, from: "offerChangeTrigger")
 
         # @return [Array<Offer>] The top 20 competitive B2B offers for the item and condition that triggered the
-        # notification.
+        #   notification.
         attribute(:offers, [Offer])
 
         # @return [String] The seller identifier for the offer.

@@ -14,7 +14,7 @@ module Peddler
         attribute(:last_update_date, Time, from: "lastUpdateDate")
 
         # @return [String] A description of the transaction that the requester provides when they initiate the
-        # transaction.
+        #   transaction.
         attribute(:transaction_description, String, from: "transactionDescription")
 
         # @return [TransactionAccount] Destination bank account details in the transaction
@@ -30,7 +30,7 @@ module Peddler
         attribute(:transaction_request_date, Time, from: "transactionRequestDate")
 
         # @return [String] The transaction initiation source. This value is either the Amazon portal or PISP name that
-        # the customer used to start the transaction.
+        #   the customer used to start the transaction.
         attribute(:transaction_requester_source, String, from: "transactionRequesterSource")
 
         # @return [TransactionAccount] Source bank account details in the transaction
@@ -46,7 +46,7 @@ module Peddler
         attribute(:transfer_rate_details, TransferRatePreview, from: "transferRateDetails")
 
         # @return [Time] Expected completion date of a transaction, for existing active Payees (Trusted Beneficiaries)
-        # it will be 24 hours but for new destination bank accounts the value could go up to 5 days
+        #   it will be 24 hours but for new destination bank accounts the value could go up to 5 days
         attribute?(:expected_completion_date, Time, from: "expectedCompletionDate")
 
         # @return [String] Amazon SW customer who requested the transaction
@@ -59,7 +59,7 @@ module Peddler
         attribute?(:transaction_failure_reason, String, from: "transactionFailureReason")
 
         # @return [Money] Specifies the amount of completed transaction in the destination account currency, this will
-        # be populated only for international transactions
+        #   be populated only for international transactions
         attribute?(:transaction_final_amount, Money, from: "transactionFinalAmount")
       end
     end

@@ -15,32 +15,27 @@ module Peddler
         # @return [String] The sub-payment method for an order.
         #
         # **Possible values**:
-        # * `COD`: Cash on delivery
-        # * `GC`: Gift card
-        # * `PointsAccount`: Amazon Points
-        # * `Invoice`: Invoice
-        # * `CreditCard`: Credit card
-        # * `Pix`: Pix
-        # * `Other`: Other.
+        # * `COD`: Cash on delivery * `GC`: Gift card * `PointsAccount`: Amazon Points * `Invoice`: Invoice *
+        #   `CreditCard`: Credit card * `Pix`: Pix * `Other`: Other.
         attribute(:payment_method, String, from: "PaymentMethod")
 
         # @return [String] The Brazilian Taxpayer Identifier (CNPJ) of the payment processor or acquiring bank that
-        # authorizes the payment.
+        #   authorizes the payment.
         #
         # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
-        # is `CreditCard` or `Pix`.
+        #   is `CreditCard` or `Pix`.
         attribute?(:acquirer_id, String, from: "AcquirerId")
 
         # @return [String] The unique code that confirms the payment authorization.
         #
         # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
-        # is `CreditCard` or `Pix`.
+        #   is `CreditCard` or `Pix`.
         attribute?(:authorization_code, String, from: "AuthorizationCode")
 
         # @return [String] The card network or brand used in the payment transaction (for example, Visa or Mastercard).
         #
         # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
-        # is `CreditCard`.
+        #   is `CreditCard`.
         attribute?(:card_brand, String, from: "CardBrand")
       end
     end

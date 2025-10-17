@@ -16,7 +16,7 @@ module Peddler
         attribute?(:shipment_weight, Weight, from: "shipmentWeight")
 
         # @return [Integer] Total number of cartons present in the shipment. Provide the cartonCount only for
-        # non-palletized shipments.
+        #   non-palletized shipments.
         attribute?(:total_carton_count, Integer, from: "totalCartonCount")
 
         # @return [Integer] Total number of Non Stackable Pallets present in the shipment.

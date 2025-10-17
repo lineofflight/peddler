@@ -13,7 +13,7 @@ module Peddler
         attribute(:headers, Hash)
 
         # @return [FeaturedOfferExpectedPriceRequestParams] Use these request parameters to map the response back to the
-        # request.
+        #   request.
         attribute(:request, FeaturedOfferExpectedPriceRequestParams)
 
         # @return [HttpStatusLine]

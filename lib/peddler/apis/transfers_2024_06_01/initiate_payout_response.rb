@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the `initiatePayout` operation.
       InitiatePayoutResponse = Structure.new do
         # @return [String] The financial event group ID for a successfully initiated payout. You can use this ID to
-        # track payout information.
+        #   track payout information.
         attribute(:payout_reference_id, String, from: "payoutReferenceId")
       end
     end

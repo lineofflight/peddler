@@ -13,7 +13,7 @@ module Peddler
         attribute?(:errors, [Error])
 
         # @return [UpdateReservationRecord] `UpdateReservationRecord` contains only the new `reservationId` if the
-        # operation was successful. Otherwise it will contain the reservation entity with warnings/errors.
+        #   operation was successful. Otherwise it will contain the reservation entity with warnings/errors.
         attribute?(:payload, UpdateReservationRecord)
       end
     end

@@ -7,21 +7,72 @@ module Generator
     def split_long_comment_line(line, base_indent: 0, wrap_indent: 0, max_line_length: MAX_LINE_LENGTH)
       max_width = max_line_length - base_indent - 2 # Account for the space and `#`
 
-      # Handle multi-line input by processing each line separately
+      # Split into lines and process them intelligently:
+      # - Preserve blank lines (paragraph breaks)
+      # - Join lines that are mid-sentence continuations
+      # - Keep lines that end complete sentences separate
+      # - Add blank lines before special sections (**Note:**, etc.)
       input_lines = line.split("\n")
-      all_lines = []
+      paragraphs = []
+      current_paragraph = []
 
       input_lines.each do |input_line|
-        # Preserve blank lines
-        if input_line.strip.empty?
+        stripped = input_line.strip
+
+        # Empty line = paragraph break
+        if stripped.empty?
+          if current_paragraph.any?
+            paragraphs << current_paragraph.join(" ")
+            current_paragraph = []
+          end
+          paragraphs << "" # blank line
+          next
+        end
+
+        # Check if this starts a special section
+        if stripped.match?(/^\*\*(?:Note|Warning|Important|Example|Examples|Usage)/)
+          # Finish current paragraph
+          if current_paragraph.any?
+            paragraphs << current_paragraph.join(" ")
+            current_paragraph = []
+          end
+          # Add blank line before special section (unless we just had one)
+          paragraphs << "" if paragraphs.any? && paragraphs.last != ""
+          # Start new paragraph with this line
+          current_paragraph = [stripped]
+        else
+          # Add to current paragraph
+          current_paragraph << stripped
+
+          # If ends with sentence punctuation, finish paragraph
+          if stripped.match?(/[.!?:]$/)
+            paragraphs << current_paragraph.join(" ")
+            current_paragraph = []
+          end
+        end
+      end
+
+      # Finish last paragraph
+      if current_paragraph.any?
+        paragraphs << current_paragraph.join(" ")
+      end
+
+      # Now wrap each paragraph
+      all_lines = []
+      paragraphs.each do |paragraph|
+        if paragraph.empty?
           all_lines << " " * base_indent + "#"
           next
         end
 
+        # Remove any remaining comment markers
+        paragraph = paragraph.sub(/^\s*#\s*/, "")
+
+        # Word wrap this paragraph
         current_line = []
         lines = []
         first_line = true
-        input_line.sub(/^\s*#\s*/, "").split.each do |word|
+        paragraph.split.each do |word|
           if first_line && (current_line + [word]).join(" ").size <= max_width
             current_line << word
           elsif !first_line && (current_line + [word]).join(" ").size <= max_width - wrap_indent

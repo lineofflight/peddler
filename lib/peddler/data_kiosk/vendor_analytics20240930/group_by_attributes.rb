@@ -10,7 +10,7 @@ module Peddler
       # Group by attributes, essentially catalog attributes, some of which can be null, e.g., group by brand.
       GroupByAttributes = Structure.new do
         # @return [String] Amazon Standard Identification Number, used to uniquely identify products in Amazon's
-        # catalog.
+        #   catalog.
         attribute?(:asin, String)
 
         # @return [String] The format or type of the item, such as Hardcover, T-Shirt, or DVD-Audio.
@@ -26,14 +26,14 @@ module Peddler
         attribute?(:color, String)
 
         # @return [String] European Article Number. A 13-digit product identifier, often represented on products as a
-        # barcode.
+        #   barcode.
         attribute?(:ean, String)
 
         # @return [String] 13-digit International Standard Book Number.
         attribute?(:isbn13, String)
 
         # @return [String] Code used to identify the manufacturer, an entity who makes the products that are sold on
-        # Amazon.
+        #   Amazon.
         attribute?(:manufacturer_code, String, from: "manufacturerCode")
 
         # @return [String] The model or style number of the product.
@@ -42,20 +42,19 @@ module Peddler
         # @return [Amount] The manufacturer's suggested retail price (MSRP) of the item. Also known as the list price.
         attribute?(:msrp, Amount)
 
-        # @return [String] Products with variations (size, color, etc.) have a Parent ASIN and Child
-        # ASINs. The Parent ASIN represents the generic overall product
-        # (non-purchasable).
+        # @return [String] Products with variations (size, color, etc.) have a Parent ASIN and Child ASINs. The Parent
+        #   ASIN represents the generic overall product (non-purchasable).
         attribute?(:parent_asin, String, from: "parentAsin")
 
         # @return [String] Which type of prep instructions are required, e.g., ASIN stickering, Boxing, Bubble wrapping,
-        # Shrinkwrap, Cap Sealing.
+        #   Shrinkwrap, Cap Sealing.
         attribute?(:prep_instructions, String, from: "prepInstructions")
 
         # @return [String] Differentiates if the prep instructions required will be performed by Amazon or the vendor.
         attribute?(:prep_instructions_performed_by, String, from: "prepInstructionsPerformedBy")
 
-        # @return [String] The product group which describes the business group, as defined by the Amazon
-        # catalog, e.g., PC, Wireless, Major Appliances.
+        # @return [String] The product group which describes the business group, as defined by the Amazon catalog, e.g.,
+        #   PC, Wireless, Major Appliances.
         attribute?(:product_group, String, from: "productGroup")
 
         # @return [String] Product name.
@@ -82,11 +81,10 @@ module Peddler
         # @return [String] The Universal Product Code (UPC) used for retail packaging scanning at the point of sale.
         attribute?(:upc, String)
 
-        # @return [String] The hierarchy of vendor codes (parent-child relationships) plays an important
-        # role in the storage and retrieval of vendor item information, for example,
-        # cost (VCS) and external IDs (VXPS).
-        # Child codes are generally assumed to be ordering codes that are for the same
-        # vendor, represented by the parent vendor code.
+        # @return [String] The hierarchy of vendor codes (parent-child relationships) plays an important role in the
+        #   storage and retrieval of vendor item information, for example, cost (VCS) and external IDs (VXPS).
+        # Child codes are generally assumed to be ordering codes that are for the same vendor, represented by the parent
+        #   vendor code.
         attribute?(:vendor_code, String, from: "vendorCode")
       end
     end

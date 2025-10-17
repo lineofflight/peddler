@@ -13,7 +13,7 @@ module Peddler
         attribute(:name, String)
 
         # @return [DestinationResourceSpecification] The information required to create a destination resource.
-        # Applications should use one resource type (sqs or eventBridge) per destination.
+        #   Applications should use one resource type (sqs or eventBridge) per destination.
         attribute(:resource_specification, DestinationResourceSpecification, from: "resourceSpecification")
       end
     end

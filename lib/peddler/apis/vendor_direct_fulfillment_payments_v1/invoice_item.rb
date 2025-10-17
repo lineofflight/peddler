@@ -13,7 +13,7 @@ module Peddler
         attribute(:invoiced_quantity, ItemQuantity, from: "invoicedQuantity")
 
         # @return [String] Numbering of the item on the purchase order. The first item will be 1, the second 2, and so
-        # on.
+        #   on.
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [Money] Net price (before tax) to vendor with currency details.

@@ -10,7 +10,7 @@ module Peddler
       # Result for the get shipments operation
       GetShipmentsResult = Structure.new do
         # @return [String] When present and not empty, pass this string token in the next request to return the next
-        # response page.
+        #   response page.
         attribute?(:next_token, String, from: "NextToken")
 
         # @return [Array<InboundShipmentInfo>] Information about your inbound shipments.

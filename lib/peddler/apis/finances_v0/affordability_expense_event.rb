@@ -31,7 +31,7 @@ module Peddler
         attribute?(:posted_date, String, from: "PostedDate")
 
         # @return [Money] The total amount charged to the seller. TotalExpense = BaseExpense + TaxTypeIGST + TaxTypeCGST
-        # + TaxTypeSGST.
+        #   + TaxTypeSGST.
         attribute?(:total_expense, Money, from: "TotalExpense")
 
         # @return [String] Indicates the type of transaction.

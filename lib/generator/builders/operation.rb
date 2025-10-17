@@ -80,7 +80,7 @@ module Generator
       output.map do |line|
         line = convert_html_links_to_yard(line)
         line = convert_doc_links_to_full_url(line)
-        split_long_comment_line(line, base_indent: 6)
+        split_long_comment_line(line, base_indent: 6, wrap_indent: 2)
       end
     end
 

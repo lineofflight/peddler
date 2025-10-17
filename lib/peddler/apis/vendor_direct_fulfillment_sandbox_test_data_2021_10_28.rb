@@ -29,7 +29,7 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
-      # operation.
+      #   operation.
       # @return [Peddler::Response] The API response
       def get_order_scenarios(transaction_id)
         must_sandbox!

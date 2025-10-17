@@ -11,16 +11,16 @@ module Peddler
       # A light-weight inbound plan.
       InboundPlanSummary = Structure.new do
         # @return [Time] The time at which the inbound plan was created. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
-        # `yyyy-MM-ddTHH:mm:ssZ`.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
+        #   `yyyy-MM-ddTHH:mm:ssZ`.
         attribute(:created_at, Time, from: "createdAt")
 
         # @return [String] Identifier of an inbound plan.
         attribute(:inbound_plan_id, String, from: "inboundPlanId")
 
         # @return [Time] The time at which the inbound plan was last updated. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
-        # `yyyy-MM-ddTHH:mm:ssZ`.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
+        #   `yyyy-MM-ddTHH:mm:ssZ`.
         attribute(:last_updated_at, Time, from: "lastUpdatedAt")
 
         # @return [Array<String>] A list of marketplace IDs.
@@ -33,7 +33,7 @@ module Peddler
         attribute(:source_address, Address, from: "sourceAddress")
 
         # @return [String] The current status of the inbound plan. Possible values: `ACTIVE`, `VOIDED`, `SHIPPED`,
-        # `ERRORED`.
+        #   `ERRORED`.
         attribute(:status, String)
       end
     end

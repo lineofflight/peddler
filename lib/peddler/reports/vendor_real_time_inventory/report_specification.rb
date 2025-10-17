@@ -11,11 +11,11 @@ module Peddler
       # Summarizes the original report request.
       ReportSpecification = Structure.new do
         # @return [Time] The end of a date-time range in UTC used to determine hours to report on. Output will include
-        # all full hours that fall within the range. End time should not be more than 24 hours from the start time.
+        #   all full hours that fall within the range. End time should not be more than 24 hours from the start time.
         attribute(:data_end_time, Time, from: "dataEndTime")
 
         # @return [Time] The start of a date-time range in UTC used to determine hours to report on. Output will include
-        # all full hours that fall within the range. Start time can be up to 168 hours before the time of the request.
+        #   all full hours that fall within the range. Start time can be up to 168 hours before the time of the request.
         attribute(:data_start_time, Time, from: "dataStartTime")
 
         # @return [Array<String>] Marketplace IDs as specified in the report request.

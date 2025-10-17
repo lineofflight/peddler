@@ -16,7 +16,7 @@ module Peddler
         attribute(:quantity, Integer)
 
         # @return [String] A fulfillment order item identifier submitted with a call to the `createFulfillmentOrder`
-        # operation.
+        #   operation.
         attribute(:seller_fulfillment_order_item_id, String, from: "sellerFulfillmentOrderItemId")
 
         # @return [String] The seller SKU of the item.
@@ -26,17 +26,17 @@ module Peddler
         attribute(:unfulfillable_quantity, Integer, from: "unfulfillableQuantity")
 
         # @return [String] Item-specific text that displays in recipient-facing materials such as the outbound shipment
-        # packing slip.
+        #   packing slip.
         attribute?(:displayable_comment, String, from: "displayableComment")
 
         # @return [String] The estimated arrival date and time of the item quantity. Note that this value can change
-        # over time. If the shipment that contains the item quantity is cancelled, `estimatedArrivalDate` is not
-        # returned.
+        #   over time. If the shipment that contains the item quantity is cancelled, `estimatedArrivalDate` is not
+        #   returned.
         attribute?(:estimated_arrival_date, String, from: "estimatedArrivalDate")
 
         # @return [String] The estimated date and time that the item quantity is scheduled to ship from the fulfillment
-        # center. Note that this value can change over time. If the shipment that contains the item quantity is
-        # cancelled, `estimatedShipDate` is not returned.
+        #   center. Note that this value can change over time. If the shipment that contains the item quantity is
+        #   cancelled, `estimatedShipDate` is not returned.
         attribute?(:estimated_ship_date, String, from: "estimatedShipDate")
 
         # @return [String] Amazon's fulfillment network SKU of the item.
@@ -49,14 +49,14 @@ module Peddler
         attribute?(:order_item_disposition, String, from: "orderItemDisposition")
 
         # @return [Money] The monetary value assigned by the seller to this item. This is a required field for India MCF
-        # orders.
+        #   orders.
         attribute?(:per_unit_declared_value, Money, from: "perUnitDeclaredValue")
 
         # @return [Money] The amount to be collected from the recipient for this item in a COD (Cash On Delivery) order.
         attribute?(:per_unit_price, Money, from: "perUnitPrice")
 
         # @return [Money] The tax on the amount to be collected from the recipient for this item in a COD (Cash On
-        # Delivery) order.
+        #   Delivery) order.
         attribute?(:per_unit_tax, Money, from: "perUnitTax")
       end
     end

@@ -4,7 +4,6 @@ module Peddler
       class Report < Data
         def self.new: (report_specification: Peddler::Reports::SellerSalesAndTraffic::ReportSpecification?, sales_and_traffic_by_asin: Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN]?, sales_and_traffic_by_date: Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate]?) -> Peddler::Reports::SellerSalesAndTraffic::Report
                     | (Peddler::Reports::SellerSalesAndTraffic::ReportSpecification?, Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN]?, Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate]?) -> Peddler::Reports::SellerSalesAndTraffic::Report
-
         def self.[]: (report_specification: Peddler::Reports::SellerSalesAndTraffic::ReportSpecification?, sales_and_traffic_by_asin: Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN]?, sales_and_traffic_by_date: Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate]?) -> Peddler::Reports::SellerSalesAndTraffic::Report
                    | (Peddler::Reports::SellerSalesAndTraffic::ReportSpecification?, Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN]?, Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate]?) -> Peddler::Reports::SellerSalesAndTraffic::Report
 
@@ -15,15 +14,14 @@ module Peddler
         attr_reader report_specification: Peddler::Reports::SellerSalesAndTraffic::ReportSpecification?
         attr_reader sales_and_traffic_by_asin: Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN]?
         attr_reader sales_and_traffic_by_date: Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate]?
-        def members: () -> [ :report_specification, :sales_and_traffic_by_asin, :sales_and_traffic_by_date ]
 
+        def members: () -> [ :report_specification, :sales_and_traffic_by_asin, :sales_and_traffic_by_date ]
         def to_h: () -> { report_specification: Peddler::Reports::SellerSalesAndTraffic::ReportSpecification?, sales_and_traffic_by_asin: Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN]?, sales_and_traffic_by_date: Array[Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate]? }
       end
 
       class ReportOptions < Data
         def self.new: (?asin_granularity: String?, ?date_granularity: String?) -> Peddler::Reports::SellerSalesAndTraffic::ReportOptions
                     | (String?, String?) -> Peddler::Reports::SellerSalesAndTraffic::ReportOptions
-
         def self.[]: (?asin_granularity: String?, ?date_granularity: String?) -> Peddler::Reports::SellerSalesAndTraffic::ReportOptions
                    | (String?, String?) -> Peddler::Reports::SellerSalesAndTraffic::ReportOptions
 
@@ -33,15 +31,14 @@ module Peddler
 
         attr_reader asin_granularity: String?
         attr_reader date_granularity: String?
-        def members: () -> [ :asin_granularity, :date_granularity ]
 
+        def members: () -> [ :asin_granularity, :date_granularity ]
         def to_h: () -> { asin_granularity: String?, date_granularity: String? }
       end
 
       class ReportSpecification < Data
         def self.new: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellerSalesAndTraffic::ReportOptions?, report_type: String?) -> Peddler::Reports::SellerSalesAndTraffic::ReportSpecification
                     | (Date?, Date?, Array[String]?, Peddler::Reports::SellerSalesAndTraffic::ReportOptions?, String?) -> Peddler::Reports::SellerSalesAndTraffic::ReportSpecification
-
         def self.[]: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellerSalesAndTraffic::ReportOptions?, report_type: String?) -> Peddler::Reports::SellerSalesAndTraffic::ReportSpecification
                    | (Date?, Date?, Array[String]?, Peddler::Reports::SellerSalesAndTraffic::ReportOptions?, String?) -> Peddler::Reports::SellerSalesAndTraffic::ReportSpecification
 
@@ -54,15 +51,14 @@ module Peddler
         attr_reader marketplace_ids: Array[String]?
         attr_reader report_options: Peddler::Reports::SellerSalesAndTraffic::ReportOptions?
         attr_reader report_type: String?
-        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
 
+        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
         def to_h: () -> { data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellerSalesAndTraffic::ReportOptions?, report_type: String? }
       end
 
       class SalesAndTrafficByASIN < Data
         def self.new: (parent_asin: String?, sales_by_asin: Peddler::Reports::SellerSalesAndTraffic::SalesByASIN?, traffic_by_asin: Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN?, ?child_asin: String?, ?sku: String?) -> Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN
                     | (String?, Peddler::Reports::SellerSalesAndTraffic::SalesByASIN?, Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN?, String?, String?) -> Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN
-
         def self.[]: (parent_asin: String?, sales_by_asin: Peddler::Reports::SellerSalesAndTraffic::SalesByASIN?, traffic_by_asin: Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN?, ?child_asin: String?, ?sku: String?) -> Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN
                    | (String?, Peddler::Reports::SellerSalesAndTraffic::SalesByASIN?, Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN?, String?, String?) -> Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByASIN
 
@@ -75,15 +71,14 @@ module Peddler
         attr_reader sales_by_asin: Peddler::Reports::SellerSalesAndTraffic::SalesByASIN?
         attr_reader sku: String?
         attr_reader traffic_by_asin: Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN?
-        def members: () -> [ :parent_asin, :sales_by_asin, :traffic_by_asin, :child_asin, :sku ]
 
+        def members: () -> [ :parent_asin, :sales_by_asin, :traffic_by_asin, :child_asin, :sku ]
         def to_h: () -> { parent_asin: String?, sales_by_asin: Peddler::Reports::SellerSalesAndTraffic::SalesByASIN?, traffic_by_asin: Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN?, child_asin: String?, sku: String? }
       end
 
       class SalesAndTrafficByDate < Data
         def self.new: (date: Date?, sales_by_date: Peddler::Reports::SellerSalesAndTraffic::SalesByDate?, traffic_by_date: Peddler::Reports::SellerSalesAndTraffic::TrafficByDate?) -> Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate
                     | (Date?, Peddler::Reports::SellerSalesAndTraffic::SalesByDate?, Peddler::Reports::SellerSalesAndTraffic::TrafficByDate?) -> Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate
-
         def self.[]: (date: Date?, sales_by_date: Peddler::Reports::SellerSalesAndTraffic::SalesByDate?, traffic_by_date: Peddler::Reports::SellerSalesAndTraffic::TrafficByDate?) -> Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate
                    | (Date?, Peddler::Reports::SellerSalesAndTraffic::SalesByDate?, Peddler::Reports::SellerSalesAndTraffic::TrafficByDate?) -> Peddler::Reports::SellerSalesAndTraffic::SalesAndTrafficByDate
 
@@ -94,15 +89,14 @@ module Peddler
         attr_reader date: Date?
         attr_reader sales_by_date: Peddler::Reports::SellerSalesAndTraffic::SalesByDate?
         attr_reader traffic_by_date: Peddler::Reports::SellerSalesAndTraffic::TrafficByDate?
-        def members: () -> [ :date, :sales_by_date, :traffic_by_date ]
 
+        def members: () -> [ :date, :sales_by_date, :traffic_by_date ]
         def to_h: () -> { date: Date?, sales_by_date: Peddler::Reports::SellerSalesAndTraffic::SalesByDate?, traffic_by_date: Peddler::Reports::SellerSalesAndTraffic::TrafficByDate? }
       end
 
       class SalesByASIN < Data
         def self.new: (ordered_product_sales: Peddler::Money?, total_order_items: Integer?, units_ordered: Integer?, ?ordered_product_sales_b2b: Peddler::Money?, ?total_order_items_b2b: Integer?, ?units_ordered_b2b: Integer?) -> Peddler::Reports::SellerSalesAndTraffic::SalesByASIN
                     | (Peddler::Money?, Integer?, Integer?, Peddler::Money?, Integer?, Integer?) -> Peddler::Reports::SellerSalesAndTraffic::SalesByASIN
-
         def self.[]: (ordered_product_sales: Peddler::Money?, total_order_items: Integer?, units_ordered: Integer?, ?ordered_product_sales_b2b: Peddler::Money?, ?total_order_items_b2b: Integer?, ?units_ordered_b2b: Integer?) -> Peddler::Reports::SellerSalesAndTraffic::SalesByASIN
                    | (Peddler::Money?, Integer?, Integer?, Peddler::Money?, Integer?, Integer?) -> Peddler::Reports::SellerSalesAndTraffic::SalesByASIN
 
@@ -116,15 +110,14 @@ module Peddler
         attr_reader total_order_items_b2b: Integer?
         attr_reader units_ordered: Integer?
         attr_reader units_ordered_b2b: Integer?
-        def members: () -> [ :ordered_product_sales, :total_order_items, :units_ordered, :ordered_product_sales_b2b, :total_order_items_b2b, :units_ordered_b2b ]
 
+        def members: () -> [ :ordered_product_sales, :total_order_items, :units_ordered, :ordered_product_sales_b2b, :total_order_items_b2b, :units_ordered_b2b ]
         def to_h: () -> { ordered_product_sales: Peddler::Money?, total_order_items: Integer?, units_ordered: Integer?, ordered_product_sales_b2b: Peddler::Money?, total_order_items_b2b: Integer?, units_ordered_b2b: Integer? }
       end
 
       class SalesByDate < Data
         def self.new: (average_sales_per_order_item: Peddler::Money?, average_selling_price: Peddler::Money?, average_units_per_order_item: Float?, claims_amount: Peddler::Money?, claims_granted: Integer?, ordered_product_sales: Peddler::Money?, orders_shipped: Integer?, refund_rate: Float?, shipped_product_sales: Peddler::Money?, total_order_items: Integer?, units_ordered: Integer?, units_refunded: Integer?, units_shipped: Integer?, ?average_sales_per_order_item_b2b: Peddler::Money?, ?average_selling_price_b2b: Peddler::Money?, ?average_units_per_order_item_b2b: Float?, ?ordered_product_sales_b2b: Peddler::Money?, ?total_order_items_b2b: Integer?, ?units_ordered_b2b: Integer?) -> Peddler::Reports::SellerSalesAndTraffic::SalesByDate
                     | (Peddler::Money?, Peddler::Money?, Float?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?, Peddler::Money?, Integer?, Integer?, Integer?, Integer?, Peddler::Money?, Peddler::Money?, Float?, Peddler::Money?, Integer?, Integer?) -> Peddler::Reports::SellerSalesAndTraffic::SalesByDate
-
         def self.[]: (average_sales_per_order_item: Peddler::Money?, average_selling_price: Peddler::Money?, average_units_per_order_item: Float?, claims_amount: Peddler::Money?, claims_granted: Integer?, ordered_product_sales: Peddler::Money?, orders_shipped: Integer?, refund_rate: Float?, shipped_product_sales: Peddler::Money?, total_order_items: Integer?, units_ordered: Integer?, units_refunded: Integer?, units_shipped: Integer?, ?average_sales_per_order_item_b2b: Peddler::Money?, ?average_selling_price_b2b: Peddler::Money?, ?average_units_per_order_item_b2b: Float?, ?ordered_product_sales_b2b: Peddler::Money?, ?total_order_items_b2b: Integer?, ?units_ordered_b2b: Integer?) -> Peddler::Reports::SellerSalesAndTraffic::SalesByDate
                    | (Peddler::Money?, Peddler::Money?, Float?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?, Peddler::Money?, Integer?, Integer?, Integer?, Integer?, Peddler::Money?, Peddler::Money?, Float?, Peddler::Money?, Integer?, Integer?) -> Peddler::Reports::SellerSalesAndTraffic::SalesByDate
 
@@ -151,15 +144,14 @@ module Peddler
         attr_reader units_ordered_b2b: Integer?
         attr_reader units_refunded: Integer?
         attr_reader units_shipped: Integer?
-        def members: () -> [ :average_sales_per_order_item, :average_selling_price, :average_units_per_order_item, :claims_amount, :claims_granted, :ordered_product_sales, :orders_shipped, :refund_rate, :shipped_product_sales, :total_order_items, :units_ordered, :units_refunded, :units_shipped, :average_sales_per_order_item_b2b, :average_selling_price_b2b, :average_units_per_order_item_b2b, :ordered_product_sales_b2b, :total_order_items_b2b, :units_ordered_b2b ]
 
+        def members: () -> [ :average_sales_per_order_item, :average_selling_price, :average_units_per_order_item, :claims_amount, :claims_granted, :ordered_product_sales, :orders_shipped, :refund_rate, :shipped_product_sales, :total_order_items, :units_ordered, :units_refunded, :units_shipped, :average_sales_per_order_item_b2b, :average_selling_price_b2b, :average_units_per_order_item_b2b, :ordered_product_sales_b2b, :total_order_items_b2b, :units_ordered_b2b ]
         def to_h: () -> { average_sales_per_order_item: Peddler::Money?, average_selling_price: Peddler::Money?, average_units_per_order_item: Float?, claims_amount: Peddler::Money?, claims_granted: Integer?, ordered_product_sales: Peddler::Money?, orders_shipped: Integer?, refund_rate: Float?, shipped_product_sales: Peddler::Money?, total_order_items: Integer?, units_ordered: Integer?, units_refunded: Integer?, units_shipped: Integer?, average_sales_per_order_item_b2b: Peddler::Money?, average_selling_price_b2b: Peddler::Money?, average_units_per_order_item_b2b: Float?, ordered_product_sales_b2b: Peddler::Money?, total_order_items_b2b: Integer?, units_ordered_b2b: Integer? }
       end
 
       class TrafficByASIN < Data
         def self.new: (browser_page_views: Integer?, browser_page_views_percentage: Float?, browser_session_percentage: Float?, browser_sessions: Integer?, buy_box_percentage: Float?, mobile_app_page_views: Integer?, mobile_app_page_views_percentage: Float?, mobile_app_session_percentage: Float?, mobile_app_sessions: Integer?, page_views: Integer?, page_views_percentage: Float?, session_percentage: Float?, sessions: Integer?, unit_session_percentage: Float?, ?browser_page_views_b2b: Integer?, ?browser_page_views_percentage_b2b: Float?, ?browser_session_percentage_b2b: Float?, ?browser_sessions_b2b: Integer?, ?buy_box_percentage_b2b: Float?, ?mobile_app_page_views_b2b: Integer?, ?mobile_app_page_views_percentage_b2b: Float?, ?mobile_app_session_percentage_b2b: Float?, ?mobile_app_sessions_b2b: Integer?, ?page_views_b2b: Integer?, ?page_views_percentage_b2b: Float?, ?session_percentage_b2b: Float?, ?sessions_b2b: Integer?, ?unit_session_percentage_b2b: Float?) -> Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN
                     | (Integer?, Float?, Float?, Integer?, Float?, Integer?, Float?, Float?, Integer?, Integer?, Float?, Float?, Integer?, Float?, Integer?, Float?, Float?, Integer?, Float?, Integer?, Float?, Float?, Integer?, Integer?, Float?, Float?, Integer?, Float?) -> Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN
-
         def self.[]: (browser_page_views: Integer?, browser_page_views_percentage: Float?, browser_session_percentage: Float?, browser_sessions: Integer?, buy_box_percentage: Float?, mobile_app_page_views: Integer?, mobile_app_page_views_percentage: Float?, mobile_app_session_percentage: Float?, mobile_app_sessions: Integer?, page_views: Integer?, page_views_percentage: Float?, session_percentage: Float?, sessions: Integer?, unit_session_percentage: Float?, ?browser_page_views_b2b: Integer?, ?browser_page_views_percentage_b2b: Float?, ?browser_session_percentage_b2b: Float?, ?browser_sessions_b2b: Integer?, ?buy_box_percentage_b2b: Float?, ?mobile_app_page_views_b2b: Integer?, ?mobile_app_page_views_percentage_b2b: Float?, ?mobile_app_session_percentage_b2b: Float?, ?mobile_app_sessions_b2b: Integer?, ?page_views_b2b: Integer?, ?page_views_percentage_b2b: Float?, ?session_percentage_b2b: Float?, ?sessions_b2b: Integer?, ?unit_session_percentage_b2b: Float?) -> Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN
                    | (Integer?, Float?, Float?, Integer?, Float?, Integer?, Float?, Float?, Integer?, Integer?, Float?, Float?, Integer?, Float?, Integer?, Float?, Float?, Integer?, Float?, Integer?, Float?, Float?, Integer?, Integer?, Float?, Float?, Integer?, Float?) -> Peddler::Reports::SellerSalesAndTraffic::TrafficByASIN
 
@@ -195,15 +187,14 @@ module Peddler
         attr_reader sessions_b2b: Integer?
         attr_reader unit_session_percentage: Float?
         attr_reader unit_session_percentage_b2b: Float?
-        def members: () -> [ :browser_page_views, :browser_page_views_percentage, :browser_session_percentage, :browser_sessions, :buy_box_percentage, :mobile_app_page_views, :mobile_app_page_views_percentage, :mobile_app_session_percentage, :mobile_app_sessions, :page_views, :page_views_percentage, :session_percentage, :sessions, :unit_session_percentage, :browser_page_views_b2b, :browser_page_views_percentage_b2b, :browser_session_percentage_b2b, :browser_sessions_b2b, :buy_box_percentage_b2b, :mobile_app_page_views_b2b, :mobile_app_page_views_percentage_b2b, :mobile_app_session_percentage_b2b, :mobile_app_sessions_b2b, :page_views_b2b, :page_views_percentage_b2b, :session_percentage_b2b, :sessions_b2b, :unit_session_percentage_b2b ]
 
+        def members: () -> [ :browser_page_views, :browser_page_views_percentage, :browser_session_percentage, :browser_sessions, :buy_box_percentage, :mobile_app_page_views, :mobile_app_page_views_percentage, :mobile_app_session_percentage, :mobile_app_sessions, :page_views, :page_views_percentage, :session_percentage, :sessions, :unit_session_percentage, :browser_page_views_b2b, :browser_page_views_percentage_b2b, :browser_session_percentage_b2b, :browser_sessions_b2b, :buy_box_percentage_b2b, :mobile_app_page_views_b2b, :mobile_app_page_views_percentage_b2b, :mobile_app_session_percentage_b2b, :mobile_app_sessions_b2b, :page_views_b2b, :page_views_percentage_b2b, :session_percentage_b2b, :sessions_b2b, :unit_session_percentage_b2b ]
         def to_h: () -> { browser_page_views: Integer?, browser_page_views_percentage: Float?, browser_session_percentage: Float?, browser_sessions: Integer?, buy_box_percentage: Float?, mobile_app_page_views: Integer?, mobile_app_page_views_percentage: Float?, mobile_app_session_percentage: Float?, mobile_app_sessions: Integer?, page_views: Integer?, page_views_percentage: Float?, session_percentage: Float?, sessions: Integer?, unit_session_percentage: Float?, browser_page_views_b2b: Integer?, browser_page_views_percentage_b2b: Float?, browser_session_percentage_b2b: Float?, browser_sessions_b2b: Integer?, buy_box_percentage_b2b: Float?, mobile_app_page_views_b2b: Integer?, mobile_app_page_views_percentage_b2b: Float?, mobile_app_session_percentage_b2b: Float?, mobile_app_sessions_b2b: Integer?, page_views_b2b: Integer?, page_views_percentage_b2b: Float?, session_percentage_b2b: Float?, sessions_b2b: Integer?, unit_session_percentage_b2b: Float? }
       end
 
       class TrafficByDate < Data
         def self.new: (average_offer_count: Integer?, average_parent_items: Integer?, browser_page_views: Integer?, browser_sessions: Integer?, buy_box_percentage: Float?, feedback_received: Integer?, mobile_app_page_views: Integer?, mobile_app_sessions: Integer?, negative_feedback_received: Integer?, order_item_session_percentage: Float?, page_views: Integer?, received_negative_feedback_rate: Float?, sessions: Integer?, unit_session_percentage: Float?, ?browser_page_views_b2b: Integer?, ?browser_sessions_b2b: Integer?, ?buy_box_percentage_b2b: Float?, ?mobile_app_page_views_b2b: Integer?, ?mobile_app_sessions_b2b: Integer?, ?order_item_session_percentage_b2b: Float?, ?page_views_b2b: Integer?, ?sessions_b2b: Integer?, ?unit_session_percentage_b2b: Float?) -> Peddler::Reports::SellerSalesAndTraffic::TrafficByDate
                     | (Integer?, Integer?, Integer?, Integer?, Float?, Integer?, Integer?, Integer?, Integer?, Float?, Integer?, Float?, Integer?, Float?, Integer?, Integer?, Float?, Integer?, Integer?, Float?, Integer?, Integer?, Float?) -> Peddler::Reports::SellerSalesAndTraffic::TrafficByDate
-
         def self.[]: (average_offer_count: Integer?, average_parent_items: Integer?, browser_page_views: Integer?, browser_sessions: Integer?, buy_box_percentage: Float?, feedback_received: Integer?, mobile_app_page_views: Integer?, mobile_app_sessions: Integer?, negative_feedback_received: Integer?, order_item_session_percentage: Float?, page_views: Integer?, received_negative_feedback_rate: Float?, sessions: Integer?, unit_session_percentage: Float?, ?browser_page_views_b2b: Integer?, ?browser_sessions_b2b: Integer?, ?buy_box_percentage_b2b: Float?, ?mobile_app_page_views_b2b: Integer?, ?mobile_app_sessions_b2b: Integer?, ?order_item_session_percentage_b2b: Float?, ?page_views_b2b: Integer?, ?sessions_b2b: Integer?, ?unit_session_percentage_b2b: Float?) -> Peddler::Reports::SellerSalesAndTraffic::TrafficByDate
                    | (Integer?, Integer?, Integer?, Integer?, Float?, Integer?, Integer?, Integer?, Integer?, Float?, Integer?, Float?, Integer?, Float?, Integer?, Integer?, Float?, Integer?, Integer?, Float?, Integer?, Integer?, Float?) -> Peddler::Reports::SellerSalesAndTraffic::TrafficByDate
 
@@ -234,8 +225,8 @@ module Peddler
         attr_reader sessions_b2b: Integer?
         attr_reader unit_session_percentage: Float?
         attr_reader unit_session_percentage_b2b: Float?
-        def members: () -> [ :average_offer_count, :average_parent_items, :browser_page_views, :browser_sessions, :buy_box_percentage, :feedback_received, :mobile_app_page_views, :mobile_app_sessions, :negative_feedback_received, :order_item_session_percentage, :page_views, :received_negative_feedback_rate, :sessions, :unit_session_percentage, :browser_page_views_b2b, :browser_sessions_b2b, :buy_box_percentage_b2b, :mobile_app_page_views_b2b, :mobile_app_sessions_b2b, :order_item_session_percentage_b2b, :page_views_b2b, :sessions_b2b, :unit_session_percentage_b2b ]
 
+        def members: () -> [ :average_offer_count, :average_parent_items, :browser_page_views, :browser_sessions, :buy_box_percentage, :feedback_received, :mobile_app_page_views, :mobile_app_sessions, :negative_feedback_received, :order_item_session_percentage, :page_views, :received_negative_feedback_rate, :sessions, :unit_session_percentage, :browser_page_views_b2b, :browser_sessions_b2b, :buy_box_percentage_b2b, :mobile_app_page_views_b2b, :mobile_app_sessions_b2b, :order_item_session_percentage_b2b, :page_views_b2b, :sessions_b2b, :unit_session_percentage_b2b ]
         def to_h: () -> { average_offer_count: Integer?, average_parent_items: Integer?, browser_page_views: Integer?, browser_sessions: Integer?, buy_box_percentage: Float?, feedback_received: Integer?, mobile_app_page_views: Integer?, mobile_app_sessions: Integer?, negative_feedback_received: Integer?, order_item_session_percentage: Float?, page_views: Integer?, received_negative_feedback_rate: Float?, sessions: Integer?, unit_session_percentage: Float?, browser_page_views_b2b: Integer?, browser_sessions_b2b: Integer?, buy_box_percentage_b2b: Float?, mobile_app_page_views_b2b: Integer?, mobile_app_sessions_b2b: Integer?, order_item_session_percentage_b2b: Float?, page_views_b2b: Integer?, sessions_b2b: Integer?, unit_session_percentage_b2b: Float? }
       end
 

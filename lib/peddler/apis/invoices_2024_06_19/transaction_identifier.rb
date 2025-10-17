@@ -13,7 +13,7 @@ module Peddler
         attribute?(:id, String)
 
         # @return [String] The transaction identifier name. Use the `getInvoicesAttributes` operation to check
-        # `transactionIdentifierName` options.
+        #   `transactionIdentifierName` options.
         attribute?(:name, String)
       end
     end

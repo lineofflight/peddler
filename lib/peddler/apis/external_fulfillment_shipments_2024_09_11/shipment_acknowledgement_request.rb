@@ -10,7 +10,7 @@ module Peddler
       # Information about the shipment and its line items, used to confirm or reject line items.
       ShipmentAcknowledgementRequest = Structure.new do
         # @return [Array<LineItemWithReason>] Details about the line items from the shipment that are being confirmed or
-        # rejected by the seller.
+        #   rejected by the seller.
         attribute(:line_items, [LineItemWithReason], from: "lineItems")
 
         # @return [String] A unique identifier for every shipment rejection.

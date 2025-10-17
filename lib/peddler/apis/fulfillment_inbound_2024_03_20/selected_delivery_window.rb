@@ -14,7 +14,7 @@ module Peddler
         attribute(:availability_type, String, from: "availabilityType")
 
         # @return [String] Identifier of a delivery window option. A delivery window option represent one option for
-        # when a shipment is expected to be delivered.
+        #   when a shipment is expected to be delivered.
         attribute(:delivery_window_option_id, String, from: "deliveryWindowOptionId")
 
         # @return [Time] The end timestamp of the window.

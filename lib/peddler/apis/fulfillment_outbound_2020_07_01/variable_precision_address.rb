@@ -26,7 +26,7 @@ module Peddler
         attribute?(:address_line3, String, from: "addressLine3")
 
         # @return [String] The city where the person, business, or institution is located. This property should not be
-        # used in Japan.
+        #   used in Japan.
         attribute?(:city, String)
 
         # @return [String] The district or county where the person, business, or institution is located.

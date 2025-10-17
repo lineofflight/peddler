@@ -19,7 +19,7 @@ module Peddler
         attribute(:name, String)
 
         # @return [String] State or region where this address is located. Note that this is contextual to the specified
-        # country code.
+        #   country code.
         attribute(:state_or_region, String, from: "stateOrRegion")
 
         # @return [String] Optional second line of the address text.

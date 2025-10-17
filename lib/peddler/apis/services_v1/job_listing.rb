@@ -13,11 +13,11 @@ module Peddler
         attribute?(:jobs, [ServiceJob])
 
         # @return [String] A generated string used to pass information to your next request. If `nextPageToken` is
-        # returned, pass the value of `nextPageToken` to the `pageToken` to get next results.
+        #   returned, pass the value of `nextPageToken` to the `pageToken` to get next results.
         attribute?(:next_page_token, String, from: "nextPageToken")
 
         # @return [String] A generated string used to pass information to your next request. If `previousPageToken` is
-        # returned, pass the value of `previousPageToken` to the `pageToken` to get previous page results.
+        #   returned, pass the value of `previousPageToken` to the `pageToken` to get previous page results.
         attribute?(:previous_page_token, String, from: "previousPageToken")
 
         # @return [Integer] Total result size of the query result.

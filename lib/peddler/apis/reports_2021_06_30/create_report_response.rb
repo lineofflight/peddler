@@ -10,7 +10,7 @@ module Peddler
       # The response schema.
       CreateReportResponse = Structure.new do
         # @return [String] The identifier for the report. This identifier is unique only in combination with a seller
-        # ID.
+        #   ID.
         attribute(:report_id, String, from: "reportId")
       end
     end

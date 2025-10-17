@@ -10,7 +10,7 @@ module Peddler
       # The `setPrepDetails` request.
       SetPrepDetailsRequest = Structure.new do
         # @return [String] The marketplace ID. For a list of possible values, refer to [Marketplace
-        # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Array<MskuPrepDetailInput>] A list of MSKUs and related prep details.

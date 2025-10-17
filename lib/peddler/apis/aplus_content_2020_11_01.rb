@@ -16,10 +16,10 @@ module Peddler
       # the actual contents of the A+ Content documents, call the `getContentDocument` operation.
       #
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param page_token [String] A token that you use to fetch a specific page when there are multiple pages of
-      # results.
+      #   results.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_content_documents(marketplace_id, page_token: nil, rate_limit: 10.0)
@@ -37,8 +37,8 @@ module Peddler
       # Creates a new A+ Content document.
       #
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -57,11 +57,11 @@ module Peddler
       # Returns an A+ Content document, if available.
       #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
-      # key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
-      # any A+ Content identifier.
+      #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -80,11 +80,11 @@ module Peddler
       # Updates an existing A+ Content document.
       #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
-      # key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
-      # any A+ Content identifier.
+      #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -105,16 +105,16 @@ module Peddler
       # include the `asinSet` parameter, this operation returns all ASINs related to the content document.
       #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
-      # key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
-      # any A+ Content identifier.
+      #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response. If you
-      # don't include this parameter, the operation returns the related ASINs without metadata.
+      #   don't include this parameter, the operation returns the related ASINs without metadata.
       # @param asin_set [Array<String>] The set of ASINs.
       # @param page_token [String] A token that you use to fetch a specific page when there are multiple pages of
-      # results.
+      #   results.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil,
@@ -137,13 +137,13 @@ module Peddler
       # that ASIN.
       #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
-      # key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
-      # any A+ content identifier.
+      #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
+      #   any A+ content identifier.
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param post_content_document_asin_relations_request [Hash] The request details for the content document ASIN
-      # relations.
+      #   relations.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id,
@@ -162,8 +162,8 @@ module Peddler
       # Checks if the A+ Content document is valid for use on a set of ASINs.
       #
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param asin_set [Array<String>] The set of ASINs.
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
@@ -185,12 +185,12 @@ module Peddler
       # Searches for A+ Content publishing records, if available.
       #
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param asin [String] The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
-      # within a marketplace.
+      #   within a marketplace.
       # @param page_token [String] A token that you use to fetch a specific page when there are multiple pages of
-      # results.
+      #   results.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_content_publish_records(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
@@ -209,11 +209,11 @@ module Peddler
       # Submits an A+ Content document for review, approval, and publishing.
       #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
-      # key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
-      # any A+ content identifier.
+      #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
+      #   any A+ content identifier.
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
@@ -230,11 +230,11 @@ module Peddler
       # Submits a request to suspend visible A+ Content. This doesn't delete the content document or the ASIN relations.
       #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
-      # key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
-      # any A+ content identifier.
+      #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
+      #   any A+ content identifier.
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
-      # the ID for your marketplace, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0)

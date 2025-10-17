@@ -18,11 +18,11 @@ module Peddler
         attribute(:start_date_time, Time, from: "startDateTime")
 
         # @return [Array<CapacityType>] An array of capacity types which are being requested. Default value is
-        # `[SCHEDULED_CAPACITY]`.
+        #   `[SCHEDULED_CAPACITY]`.
         attribute?(:capacity_types, Array, from: "capacityTypes")
 
         # @return [Float] Size in which slots are being requested. This value should be a multiple of 5 and fall in the
-        # range: 5 <= `slotDuration` <= 360.
+        #   range: 5 <= `slotDuration` <= 360.
         attribute?(:slot_duration, Float, from: "slotDuration")
       end
     end

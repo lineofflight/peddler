@@ -30,7 +30,7 @@ module Peddler
         attribute(:total_unit_count, Integer, from: "totalUnitCount")
 
         # @return [Integer] The on-time delivery unit count within a reporting date range for one marketplace that you
-        # specify.
+        #   specify.
         attribute(:unit_on_time_delivery_count, Integer, from: "unitOnTimeDeliveryCount")
       end
     end

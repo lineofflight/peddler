@@ -19,7 +19,7 @@ module Peddler
         attribute?(:parent_asins, [String], from: "parentAsins")
 
         # @return [ItemVariationTheme] For `VARIATION` relationships, the variation theme indicates the combination of
-        # Amazon catalog item attributes that define the variation family.
+        #   Amazon catalog item attributes that define the variation family.
         attribute?(:variation_theme, ItemVariationTheme, from: "variationTheme")
       end
     end

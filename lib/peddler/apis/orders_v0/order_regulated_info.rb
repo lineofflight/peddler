@@ -13,7 +13,7 @@ module Peddler
         attribute(:amazon_order_id, String, from: "AmazonOrderId")
 
         # @return [RegulatedInformation] The regulated information collected during purchase and used to verify the
-        # order.
+        #   order.
         attribute(:regulated_information, RegulatedInformation, from: "RegulatedInformation")
 
         # @return [RegulatedOrderVerificationStatus] The order's verification status.

@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency("http", "~> 5.3")
   gem.add_dependency("nokogiri", "~> 1.0")
-  gem.add_dependency("structure", "~> 4.1")
+  gem.add_dependency("structure", "~> 4.2")
   gem.add_dependency("zeitwerk", "~> 2.6")
   gem.required_ruby_version = ">= 3.2"
 

@@ -16,7 +16,7 @@ module Peddler
         attribute(:display_name, String, from: "displayName")
 
         # @return [Integer] The estimated number of results that would be returned if you refine your search by the
-        # specified `classificationId`.
+        #   specified `classificationId`.
         attribute(:number_of_results, Integer, from: "numberOfResults")
       end
     end

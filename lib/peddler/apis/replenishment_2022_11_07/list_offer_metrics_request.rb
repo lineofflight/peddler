@@ -10,8 +10,8 @@ module Peddler
       # The request body for the `listOfferMetrics` operation.
       ListOfferMetricsRequest = Structure.new do
         # @return [ListOfferMetricsRequestFilters] Use these parameters to filter results. Any result must match all
-        # provided parameters. For any parameter that is an array, the result must match at least one element in the
-        # provided array.
+        #   provided parameters. For any parameter that is an array, the result must match at least one element in the
+        #   provided array.
         attribute(:filters, ListOfferMetricsRequestFilters)
 
         # @return [ListOfferMetricsRequestPagination] Use these parameters to paginate through the response.

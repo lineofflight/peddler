@@ -14,13 +14,13 @@ module Peddler
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Date] The latest invoice creation date for invoices that you want to include in the response. Dates
-        # are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is the
-        # time of the request.
+        #   are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is
+        #   the time of the request.
         attribute?(:date_end, Date, from: "dateEnd")
 
         # @return [Date] The earliest invoice creation date for invoices that you want to include in the response. Dates
-        # are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is 24
-        # hours prior to the time of the request.
+        #   are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is
+        #   24 hours prior to the time of the request.
         attribute?(:date_start, Date, from: "dateStart")
 
         # @return [String] The external ID of the invoices you want included in the response.
@@ -30,14 +30,14 @@ module Peddler
         attribute?(:file_format, String, from: "fileFormat")
 
         # @return [String] The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes`
-        # operation to check `invoiceType` options.
+        #   operation to check `invoiceType` options.
         attribute?(:invoice_type, String, from: "invoiceType")
 
         # @return [String] The series number of the invoices you want included in the response.
         attribute?(:series, String)
 
         # @return [Array<String>] A list of statuses that you can use to filter invoices. Use the
-        # `getInvoicesAttributes` operation to check invoice status options.
+        #   `getInvoicesAttributes` operation to check invoice status options.
         #
         # Min count: 1
         attribute?(:statuses, [String])
@@ -46,7 +46,7 @@ module Peddler
         attribute?(:transaction_identifier, TransactionIdentifier, from: "transactionIdentifier")
 
         # @return [String] The marketplace-specific classification of the transaction type for which the invoice was
-        # created. Use the `getInvoicesAttributes` operation to check `transactionType` options
+        #   created. Use the `getInvoicesAttributes` operation to check `transactionType` options
         attribute?(:transaction_type, String, from: "transactionType")
       end
     end

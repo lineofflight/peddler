@@ -10,8 +10,8 @@ module Peddler
       # Information about the marketplace where the transaction occurred.
       MarketplaceDetails = Structure.new do
         # @return [String] The identifier of the marketplace where the transaction occurred. The marketplace ID is the
-        # globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
-        # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        #   globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+        #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute?(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The name of the marketplace where the transaction occurred.

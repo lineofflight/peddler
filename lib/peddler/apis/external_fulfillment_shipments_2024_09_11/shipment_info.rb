@@ -25,12 +25,12 @@ module Peddler
         attribute?(:order_placed_timestamp, String, from: "orderPlacedTimestamp")
 
         # @return [Array<String>] A list of order statuses for which the marketplace allows order rejection (seller
-        # cancellation). If the order has a status that does not belong to this list, then seller cancellation is not
-        # possible.
+        #   cancellation). If the order has a status that does not belong to this list, then seller cancellation is not
+        #   possible.
         attribute?(:order_states_eligible_for_rejection, [String], from: "orderStatesEligibleForRejection")
 
         # @return [ReplacedShipmentInfo] This field contains details of the original shipment if `shipmentType` is
-        # either `REPLACEMENT` or `EXCHANGE`.
+        #   either `REPLACEMENT` or `EXCHANGE`.
         attribute?(:original_shipment_info, ReplacedShipmentInfo, from: "originalShipmentInfo")
 
         # @return [String] The source of the order operation.

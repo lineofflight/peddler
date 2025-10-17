@@ -22,7 +22,7 @@ module Peddler
         attribute(:weight, Weight)
 
         # @return [Array<ItemInput>] The items and their quantity in the box. This must be empty if the box
-        # `contentInformationSource` is `BARCODE_2D` or `MANUAL_PROCESS`.
+        #   `contentInformationSource` is `BARCODE_2D` or `MANUAL_PROCESS`.
         attribute?(:items, [ItemInput])
       end
     end

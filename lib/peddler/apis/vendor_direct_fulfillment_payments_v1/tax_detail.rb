@@ -19,7 +19,7 @@ module Peddler
         attribute?(:tax_rate, String, from: "taxRate")
 
         # @return [Money] This field will contain the invoice amount that is taxable at the rate specified in the tax
-        # rate field.
+        #   rate field.
         attribute?(:taxable_amount, Money, from: "taxableAmount")
       end
     end

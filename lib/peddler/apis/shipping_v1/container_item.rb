@@ -16,11 +16,11 @@ module Peddler
         attribute(:title, String)
 
         # @return [Money] The unit price of an item of this type (the total value of this item type in the container is
-        # unitPrice x quantity).
+        #   unitPrice x quantity).
         attribute(:unit_price, Money, from: "unitPrice")
 
         # @return [Weight] The unit weight of an item of this type (the total weight of this item type in the container
-        # is unitWeight x quantity).
+        #   is unitWeight x quantity).
         attribute(:unit_weight, Weight, from: "unitWeight")
       end
     end

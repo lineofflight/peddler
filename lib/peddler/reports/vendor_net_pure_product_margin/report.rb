@@ -19,7 +19,7 @@ module Peddler
         attribute(:net_pure_product_margin_by_asin, [NetPureProductMarginDetailsByASIN], from: "netPureProductMarginByAsin")
 
         # @return [Hash] The report summary including the specified reporting date range and the last updated date in
-        # the input.
+        #   the input.
         attribute(:report_specification, ReportSpecification, from: "reportSpecification")
       end
     end

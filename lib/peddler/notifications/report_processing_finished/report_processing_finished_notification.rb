@@ -10,7 +10,7 @@ module Peddler
       # Nested notification data
       ReportProcessingFinishedNotification = Structure.new do
         # @return [String] The merchant customer identifier or vendor group identifier of the selling partner account on
-        # whose behalf the report was submitted.
+        #   whose behalf the report was submitted.
         attribute(:account_id, String, from: "accountId")
 
         # @return [String] The processing status of the report.
@@ -23,11 +23,11 @@ module Peddler
         attribute(:report_type, String, from: "reportType")
 
         # @return [String] The report document identifier. This identifier is unique only in combination with a seller
-        # ID.
+        #   ID.
         attribute?(:report_document_id, String, from: "reportDocumentId")
 
         # @return [String] The merchant customer identifier of the selling partner account on whose behalf the report
-        # was submitted. This field will be null when the report was submitted on behalf of a vendor group identifier.
+        #   was submitted. This field will be null when the report was submitted on behalf of a vendor group identifier.
         attribute?(:seller_id, String, from: "sellerId")
       end
     end

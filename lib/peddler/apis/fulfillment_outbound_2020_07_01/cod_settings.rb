@@ -22,7 +22,7 @@ module Peddler
         attribute?(:shipping_charge, Money, from: "shippingCharge")
 
         # @return [Money] The amount of the tax on the shipping charge to be collected from the recipient for a COD
-        # order.
+        #   order.
         attribute?(:shipping_charge_tax, Money, from: "shippingChargeTax")
       end
     end

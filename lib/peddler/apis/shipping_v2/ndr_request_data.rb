@@ -16,7 +16,7 @@ module Peddler
         attribute?(:additional_address_notes, String, from: "additionalAddressNotes")
 
         # @return [Time] The date on which the Seller wants to reschedule shipment delivery, in ISO-8601 date/time
-        # format
+        #   format
         attribute?(:reschedule_date, Time, from: "rescheduleDate")
       end
     end

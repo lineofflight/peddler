@@ -56,16 +56,16 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The returned exports match the specified marketplace.
       # @param date_start [String] The earliest export creation date and time for exports that you want to include in
-      # the response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-      # The default is 30 days ago.
+      #   the response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
+      #   format. The default is 30 days ago.
       # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
-      # `pageSize` value. To get the next page of results, call the operation with this token and include the same
-      # arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is
-      # null. Note that this operation can return empty pages.
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
       # @param page_size [Integer] The maximum number of invoices to return in a single call. Minimum: 1 Maximum: 100
       # @param date_end [String] The latest export creation date and time for exports that you want to include in the
-      # response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The
-      # default value is the time of the request.
+      #   response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      #   The default value is the time of the request.
       # @param status [String] Return exports matching the status specified.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -100,33 +100,33 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param transaction_identifier_name [String] The name of the transaction identifier filter. If you provide a
-      # value for this field, you must also provide a value for the `transactionIdentifierId` field.Use the
-      # `getInvoicesAttributes` operation to check `transactionIdentifierName` options.
+      #   value for this field, you must also provide a value for the `transactionIdentifierId` field.Use the
+      #   `getInvoicesAttributes` operation to check `transactionIdentifierName` options.
       # @param page_size [Integer] The maximum number of invoices you want to return in a single call. Minimum: 1
-      # Maximum: 200
+      #   Maximum: 200
       # @param date_end [String] The latest invoice creation date for invoices that you want to include in the response.
-      # Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is
-      # the current date-time.
+      #   Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default
+      #   is the current date-time.
       # @param marketplace_id [String] The response includes only the invoices that match the specified marketplace.
       # @param transaction_type [String] The marketplace-specific classification of the transaction type for which the
-      # invoice was created. Use the `getInvoicesAttributes` operation to check `transactionType` options.
+      #   invoice was created. Use the `getInvoicesAttributes` operation to check `transactionType` options.
       # @param transaction_identifier_id [String] The ID of the transaction identifier filter. If you provide a value
-      # for this field, you must also provide a value for the `transactionIdentifierName` field.
+      #   for this field, you must also provide a value for the `transactionIdentifierName` field.
       # @param date_start [String] The earliest invoice creation date for invoices that you want to include in the
-      # response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The
-      # default is 24 hours prior to the time of the request.
+      #   response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      #   The default is 24 hours prior to the time of the request.
       # @param series [String] Return invoices with the specified series number.
       # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
-      # `pageSize` value. To get the next page of results, call the operation with this token and include the same
-      # arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is
-      # null. Note that this operation can return empty pages.
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
       # @param sort_order [String] Sort the invoices in the response in ascending or descending order.
       # @param invoice_type [String] The marketplace-specific classification of the invoice type. Use the
-      # `getInvoicesAttributes` operation to check `invoiceType` options.
+      #   `getInvoicesAttributes` operation to check `invoiceType` options.
       # @param statuses [Array<String>] A list of statuses that you can use to filter invoices. Use the
-      # `getInvoicesAttributes` operation to check invoice status options. Min count: 1
+      #   `getInvoicesAttributes` operation to check invoice status options. Min count: 1
       # @param external_invoice_id [String] Return invoices that match this external ID. This is typically the
-      # Government Invoice ID.
+      #   Government Invoice ID.
       # @param sort_by [String] The attribute by which you want to sort the invoices in the response.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response

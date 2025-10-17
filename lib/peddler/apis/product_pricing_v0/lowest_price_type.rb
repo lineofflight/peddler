@@ -13,7 +13,7 @@ module Peddler
         attribute(:listing_price, Money, from: "ListingPrice")
 
         # @return [String] Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or
-        # Club.
+        #   Club.
         attribute(:condition, String)
 
         # @return [String] Indicates whether the item is fulfilled by Amazon or by the seller.

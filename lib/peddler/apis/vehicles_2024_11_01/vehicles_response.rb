@@ -13,7 +13,7 @@ module Peddler
         attribute(:vehicles, [Vehicle])
 
         # @return [Pagination] If available, the `nextToken` and/or `previousToken` values required to return paginated
-        # results.
+        #   results.
         attribute?(:pagination, Pagination)
       end
     end

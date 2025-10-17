@@ -10,7 +10,7 @@ module Peddler
       # A credit given to a solution provider.
       SolutionProviderCreditEvent = Structure.new do
         # @return [String] The two-letter country code of the country associated with the marketplace where the order
-        # was placed.
+        #   was placed.
         attribute?(:marketplace_country_code, String, from: "MarketplaceCountryCode")
 
         # @return [String] The identifier of the marketplace where the order was placed.
@@ -38,7 +38,7 @@ module Peddler
         attribute?(:transaction_amount, Money, from: "TransactionAmount")
 
         # @return [String] The date and time that the credit transaction was created, in [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
         attribute?(:transaction_creation_date, String, from: "TransactionCreationDate")
       end
     end

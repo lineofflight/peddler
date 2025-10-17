@@ -13,7 +13,7 @@ module Peddler
         attribute(:asin, String)
 
         # @return [Array<CompetitiveSummaryIncludedData>] The list of requested competitive pricing data for the
-        # product.
+        #   product.
         attribute(:included_data, Array, from: "includedData")
 
         # @return [String] A marketplace identifier.
@@ -23,12 +23,12 @@ module Peddler
         attribute(:method, String)
 
         # @return [String] The URI associated with the individual APIs that are called as part of the batch request. For
-        # `getCompetitiveSummary`, this is `/products/pricing/2022-05-01/items/competitiveSummary`.
+        #   `getCompetitiveSummary`, this is `/products/pricing/2022-05-01/items/competitiveSummary`.
         attribute(:uri, String)
 
         # @return [Array<LowestPricedOffersInput>] The list of `lowestPricedOffersInput` parameters that are used to
-        # build `lowestPricedOffers` in the response. This attribute is only valid if `lowestPricedOffers` is requested
-        # in `includedData`
+        #   build `lowestPricedOffers` in the response. This attribute is only valid if `lowestPricedOffers` is
+        #   requested in `includedData`
         attribute?(:lowest_priced_offers_inputs, [LowestPricedOffersInput], from: "lowestPricedOffersInputs")
       end
     end

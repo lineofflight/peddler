@@ -33,7 +33,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body schema for the getMyFeesEstimates operation
       # @param seller_sku [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the
-      # seller's SellerId, which is included with every operation that you submit.
+      #   seller's SellerId, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)

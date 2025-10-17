@@ -10,7 +10,7 @@ module Peddler
       # Represents the current status of an order item, including acknowledgement and receiving details.
       OrderItemStatus = Structure.new do
         # @return [String] Numbering of the item on the purchase order. The first item will be 1, the second 2, and so
-        # on.
+        #   on.
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [Hash] Acknowledgement status information.

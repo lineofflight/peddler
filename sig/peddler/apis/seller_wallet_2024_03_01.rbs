@@ -4,7 +4,6 @@ module Peddler
       class AccountHolderAddress < Data
         def self.new: (address_line1: String?, city: String?, country_code: String?, postal_code: String?, state: String?, ?address_line2: String?, ?country: String?) -> Peddler::APIs::SellerWallet20240301::AccountHolderAddress
                     | (String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::AccountHolderAddress
-
         def self.[]: (address_line1: String?, city: String?, country_code: String?, postal_code: String?, state: String?, ?address_line2: String?, ?country: String?) -> Peddler::APIs::SellerWallet20240301::AccountHolderAddress
                    | (String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::AccountHolderAddress
 
@@ -19,15 +18,14 @@ module Peddler
         attr_reader country_code: String?
         attr_reader postal_code: String?
         attr_reader state: String?
-        def members: () -> [ :address_line1, :city, :country_code, :postal_code, :state, :address_line2, :country ]
 
+        def members: () -> [ :address_line1, :city, :country_code, :postal_code, :state, :address_line2, :country ]
         def to_h: () -> { address_line1: String?, city: String?, country_code: String?, postal_code: String?, state: String?, address_line2: String?, country: String? }
       end
 
       class Balance < Data
         def self.new: (account_id: String?, balance_amount: Float?, balance_currency: String?, last_update_date: Time?, ?balance_type: String?) -> Peddler::APIs::SellerWallet20240301::Balance
                     | (String?, Float?, String?, Time?, String?) -> Peddler::APIs::SellerWallet20240301::Balance
-
         def self.[]: (account_id: String?, balance_amount: Float?, balance_currency: String?, last_update_date: Time?, ?balance_type: String?) -> Peddler::APIs::SellerWallet20240301::Balance
                    | (String?, Float?, String?, Time?, String?) -> Peddler::APIs::SellerWallet20240301::Balance
 
@@ -40,15 +38,14 @@ module Peddler
         attr_reader balance_currency: String?
         attr_reader balance_type: String?
         attr_reader last_update_date: Time?
-        def members: () -> [ :account_id, :balance_amount, :balance_currency, :last_update_date, :balance_type ]
 
+        def members: () -> [ :account_id, :balance_amount, :balance_currency, :last_update_date, :balance_type ]
         def to_h: () -> { account_id: String?, balance_amount: Float?, balance_currency: String?, last_update_date: Time?, balance_type: String? }
       end
 
       class BalanceListing < Data
         def self.new: (?balances: Array[Peddler::APIs::SellerWallet20240301::Balance]?) -> Peddler::APIs::SellerWallet20240301::BalanceListing
                     | (Array[Peddler::APIs::SellerWallet20240301::Balance]?) -> Peddler::APIs::SellerWallet20240301::BalanceListing
-
         def self.[]: (?balances: Array[Peddler::APIs::SellerWallet20240301::Balance]?) -> Peddler::APIs::SellerWallet20240301::BalanceListing
                    | (Array[Peddler::APIs::SellerWallet20240301::Balance]?) -> Peddler::APIs::SellerWallet20240301::BalanceListing
 
@@ -57,15 +54,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SellerWallet20240301::BalanceListing
 
         attr_reader balances: Array[Peddler::APIs::SellerWallet20240301::Balance]?
-        def members: () -> [ :balances ]
 
+        def members: () -> [ :balances ]
         def to_h: () -> { balances: Array[Peddler::APIs::SellerWallet20240301::Balance]? }
       end
 
       class BankAccount < Data
         def self.new: (account_country_code: String?, account_currency: String?, bank_account_number_format: String?, bank_account_number_tail: String?, bank_account_ownership_type: String?, bank_number_format: String?, routing_number: String?, ?account_holder_name: String?, ?account_id: String?, ?bank_account_holder_status: String?, ?bank_name: String?) -> Peddler::APIs::SellerWallet20240301::BankAccount
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::BankAccount
-
         def self.[]: (account_country_code: String?, account_currency: String?, bank_account_number_format: String?, bank_account_number_tail: String?, bank_account_ownership_type: String?, bank_number_format: String?, routing_number: String?, ?account_holder_name: String?, ?account_id: String?, ?bank_account_holder_status: String?, ?bank_name: String?) -> Peddler::APIs::SellerWallet20240301::BankAccount
                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::BankAccount
 
@@ -84,15 +80,14 @@ module Peddler
         attr_reader bank_name: String?
         attr_reader bank_number_format: String?
         attr_reader routing_number: String?
-        def members: () -> [ :account_country_code, :account_currency, :bank_account_number_format, :bank_account_number_tail, :bank_account_ownership_type, :bank_number_format, :routing_number, :account_holder_name, :account_id, :bank_account_holder_status, :bank_name ]
 
+        def members: () -> [ :account_country_code, :account_currency, :bank_account_number_format, :bank_account_number_tail, :bank_account_ownership_type, :bank_number_format, :routing_number, :account_holder_name, :account_id, :bank_account_holder_status, :bank_name ]
         def to_h: () -> { account_country_code: String?, account_currency: String?, bank_account_number_format: String?, bank_account_number_tail: String?, bank_account_ownership_type: String?, bank_number_format: String?, routing_number: String?, account_holder_name: String?, account_id: String?, bank_account_holder_status: String?, bank_name: String? }
       end
 
       class BankAccountListing < Data
         def self.new: (accounts: Array[Peddler::APIs::SellerWallet20240301::BankAccount]?) -> Peddler::APIs::SellerWallet20240301::BankAccountListing
                     | (Array[Peddler::APIs::SellerWallet20240301::BankAccount]?) -> Peddler::APIs::SellerWallet20240301::BankAccountListing
-
         def self.[]: (accounts: Array[Peddler::APIs::SellerWallet20240301::BankAccount]?) -> Peddler::APIs::SellerWallet20240301::BankAccountListing
                    | (Array[Peddler::APIs::SellerWallet20240301::BankAccount]?) -> Peddler::APIs::SellerWallet20240301::BankAccountListing
 
@@ -101,15 +96,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SellerWallet20240301::BankAccountListing
 
         attr_reader accounts: Array[Peddler::APIs::SellerWallet20240301::BankAccount]?
-        def members: () -> [ :accounts ]
 
+        def members: () -> [ :accounts ]
         def to_h: () -> { accounts: Array[Peddler::APIs::SellerWallet20240301::BankAccount]? }
       end
 
       class CreateTransactionResponse < Data
         def self.new: (call_back_url: String?, transaction: Peddler::APIs::SellerWallet20240301::Transaction?) -> Peddler::APIs::SellerWallet20240301::CreateTransactionResponse
                     | (String?, Peddler::APIs::SellerWallet20240301::Transaction?) -> Peddler::APIs::SellerWallet20240301::CreateTransactionResponse
-
         def self.[]: (call_back_url: String?, transaction: Peddler::APIs::SellerWallet20240301::Transaction?) -> Peddler::APIs::SellerWallet20240301::CreateTransactionResponse
                    | (String?, Peddler::APIs::SellerWallet20240301::Transaction?) -> Peddler::APIs::SellerWallet20240301::CreateTransactionResponse
 
@@ -119,15 +113,14 @@ module Peddler
 
         attr_reader call_back_url: String?
         attr_reader transaction: Peddler::APIs::SellerWallet20240301::Transaction?
-        def members: () -> [ :call_back_url, :transaction ]
 
+        def members: () -> [ :call_back_url, :transaction ]
         def to_h: () -> { call_back_url: String?, transaction: Peddler::APIs::SellerWallet20240301::Transaction? }
       end
 
       class DeleteTransferSchedule < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SellerWallet20240301::DeleteTransferSchedule
                     | (String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::DeleteTransferSchedule
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SellerWallet20240301::DeleteTransferSchedule
                    | (String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::DeleteTransferSchedule
 
@@ -138,15 +131,14 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SellerWallet20240301::Error
                     | (String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SellerWallet20240301::Error
                    | (String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::Error
 
@@ -157,15 +149,14 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
       class ErrorList < Data
         def self.new: (errors: Array[Peddler::APIs::SellerWallet20240301::Error]?) -> Peddler::APIs::SellerWallet20240301::ErrorList
                     | (Array[Peddler::APIs::SellerWallet20240301::Error]?) -> Peddler::APIs::SellerWallet20240301::ErrorList
-
         def self.[]: (errors: Array[Peddler::APIs::SellerWallet20240301::Error]?) -> Peddler::APIs::SellerWallet20240301::ErrorList
                    | (Array[Peddler::APIs::SellerWallet20240301::Error]?) -> Peddler::APIs::SellerWallet20240301::ErrorList
 
@@ -174,15 +165,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SellerWallet20240301::ErrorList
 
         attr_reader errors: Array[Peddler::APIs::SellerWallet20240301::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::SellerWallet20240301::Error]? }
       end
 
       class Fee < Data
         def self.new: (fee_amount: Peddler::Money?, fee_id: String?, fee_rate_value: String?, fee_type: String?) -> Peddler::APIs::SellerWallet20240301::Fee
                     | (Peddler::Money?, String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::Fee
-
         def self.[]: (fee_amount: Peddler::Money?, fee_id: String?, fee_rate_value: String?, fee_type: String?) -> Peddler::APIs::SellerWallet20240301::Fee
                    | (Peddler::Money?, String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::Fee
 
@@ -194,15 +184,14 @@ module Peddler
         attr_reader fee_id: String?
         attr_reader fee_rate_value: String?
         attr_reader fee_type: String?
-        def members: () -> [ :fee_amount, :fee_id, :fee_rate_value, :fee_type ]
 
+        def members: () -> [ :fee_amount, :fee_id, :fee_rate_value, :fee_type ]
         def to_h: () -> { fee_amount: Peddler::Money?, fee_id: String?, fee_rate_value: String?, fee_type: String? }
       end
 
       class FxRateDetails < Data
         def self.new: (base_rate: Float?, effective_fx_rate: Float?, fx_rate_id: String?, rate_direction: String?) -> Peddler::APIs::SellerWallet20240301::FxRateDetails
                     | (Float?, Float?, String?, String?) -> Peddler::APIs::SellerWallet20240301::FxRateDetails
-
         def self.[]: (base_rate: Float?, effective_fx_rate: Float?, fx_rate_id: String?, rate_direction: String?) -> Peddler::APIs::SellerWallet20240301::FxRateDetails
                    | (Float?, Float?, String?, String?) -> Peddler::APIs::SellerWallet20240301::FxRateDetails
 
@@ -214,15 +203,14 @@ module Peddler
         attr_reader effective_fx_rate: Float?
         attr_reader fx_rate_id: String?
         attr_reader rate_direction: String?
-        def members: () -> [ :base_rate, :effective_fx_rate, :fx_rate_id, :rate_direction ]
 
+        def members: () -> [ :base_rate, :effective_fx_rate, :fx_rate_id, :rate_direction ]
         def to_h: () -> { base_rate: Float?, effective_fx_rate: Float?, fx_rate_id: String?, rate_direction: String? }
       end
 
       class PaymentPreference < Data
         def self.new: (payment_preference_payment_type: String?, value: Float?) -> Peddler::APIs::SellerWallet20240301::PaymentPreference
                     | (String?, Float?) -> Peddler::APIs::SellerWallet20240301::PaymentPreference
-
         def self.[]: (payment_preference_payment_type: String?, value: Float?) -> Peddler::APIs::SellerWallet20240301::PaymentPreference
                    | (String?, Float?) -> Peddler::APIs::SellerWallet20240301::PaymentPreference
 
@@ -232,15 +220,14 @@ module Peddler
 
         attr_reader payment_preference_payment_type: String?
         attr_reader value: Float?
-        def members: () -> [ :payment_preference_payment_type, :value ]
 
+        def members: () -> [ :payment_preference_payment_type, :value ]
         def to_h: () -> { payment_preference_payment_type: String?, value: Float? }
       end
 
       class ScheduleExpression < Data
         def self.new: (schedule_expression_type: String?, ?recurring_frequency: String?) -> Peddler::APIs::SellerWallet20240301::ScheduleExpression
                     | (String?, String?) -> Peddler::APIs::SellerWallet20240301::ScheduleExpression
-
         def self.[]: (schedule_expression_type: String?, ?recurring_frequency: String?) -> Peddler::APIs::SellerWallet20240301::ScheduleExpression
                    | (String?, String?) -> Peddler::APIs::SellerWallet20240301::ScheduleExpression
 
@@ -250,15 +237,14 @@ module Peddler
 
         attr_reader recurring_frequency: String?
         attr_reader schedule_expression_type: String?
-        def members: () -> [ :schedule_expression_type, :recurring_frequency ]
 
+        def members: () -> [ :schedule_expression_type, :recurring_frequency ]
         def to_h: () -> { schedule_expression_type: String?, recurring_frequency: String? }
       end
 
       class Transaction < Data
         def self.new: (last_update_date: Time?, transaction_description: String?, transaction_destination_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_id: String?, transaction_request_amount: Peddler::Money?, transaction_request_date: Time?, transaction_requester_source: String?, transaction_source_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_status: String?, transaction_type: String?, transfer_rate_details: Peddler::APIs::SellerWallet20240301::TransferRatePreview?, ?expected_completion_date: Time?, ?requester_name: String?, ?transaction_actual_completion_date: Time?, ?transaction_failure_reason: String?, ?transaction_final_amount: Peddler::Money?) -> Peddler::APIs::SellerWallet20240301::Transaction
                     | (Time?, String?, Peddler::APIs::SellerWallet20240301::TransactionAccount?, String?, Peddler::Money?, Time?, String?, Peddler::APIs::SellerWallet20240301::TransactionAccount?, String?, String?, Peddler::APIs::SellerWallet20240301::TransferRatePreview?, Time?, String?, Time?, String?, Peddler::Money?) -> Peddler::APIs::SellerWallet20240301::Transaction
-
         def self.[]: (last_update_date: Time?, transaction_description: String?, transaction_destination_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_id: String?, transaction_request_amount: Peddler::Money?, transaction_request_date: Time?, transaction_requester_source: String?, transaction_source_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_status: String?, transaction_type: String?, transfer_rate_details: Peddler::APIs::SellerWallet20240301::TransferRatePreview?, ?expected_completion_date: Time?, ?requester_name: String?, ?transaction_actual_completion_date: Time?, ?transaction_failure_reason: String?, ?transaction_final_amount: Peddler::Money?) -> Peddler::APIs::SellerWallet20240301::Transaction
                    | (Time?, String?, Peddler::APIs::SellerWallet20240301::TransactionAccount?, String?, Peddler::Money?, Time?, String?, Peddler::APIs::SellerWallet20240301::TransactionAccount?, String?, String?, Peddler::APIs::SellerWallet20240301::TransferRatePreview?, Time?, String?, Time?, String?, Peddler::Money?) -> Peddler::APIs::SellerWallet20240301::Transaction
 
@@ -282,15 +268,14 @@ module Peddler
         attr_reader transaction_status: String?
         attr_reader transaction_type: String?
         attr_reader transfer_rate_details: Peddler::APIs::SellerWallet20240301::TransferRatePreview?
-        def members: () -> [ :last_update_date, :transaction_description, :transaction_destination_account, :transaction_id, :transaction_request_amount, :transaction_request_date, :transaction_requester_source, :transaction_source_account, :transaction_status, :transaction_type, :transfer_rate_details, :expected_completion_date, :requester_name, :transaction_actual_completion_date, :transaction_failure_reason, :transaction_final_amount ]
 
+        def members: () -> [ :last_update_date, :transaction_description, :transaction_destination_account, :transaction_id, :transaction_request_amount, :transaction_request_date, :transaction_requester_source, :transaction_source_account, :transaction_status, :transaction_type, :transfer_rate_details, :expected_completion_date, :requester_name, :transaction_actual_completion_date, :transaction_failure_reason, :transaction_final_amount ]
         def to_h: () -> { last_update_date: Time?, transaction_description: String?, transaction_destination_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_id: String?, transaction_request_amount: Peddler::Money?, transaction_request_date: Time?, transaction_requester_source: String?, transaction_source_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_status: String?, transaction_type: String?, transfer_rate_details: Peddler::APIs::SellerWallet20240301::TransferRatePreview?, expected_completion_date: Time?, requester_name: String?, transaction_actual_completion_date: Time?, transaction_failure_reason: String?, transaction_final_amount: Peddler::Money? }
       end
 
       class TransactionAccount < Data
         def self.new: (bank_account_currency: String?, bank_account_number_format: String?, bank_name: String?, ?account_id: String?, ?bank_account_country_code: String?, ?bank_account_holder_name: String?, ?bank_account_number_tail: String?) -> Peddler::APIs::SellerWallet20240301::TransactionAccount
                     | (String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::TransactionAccount
-
         def self.[]: (bank_account_currency: String?, bank_account_number_format: String?, bank_name: String?, ?account_id: String?, ?bank_account_country_code: String?, ?bank_account_holder_name: String?, ?bank_account_number_tail: String?) -> Peddler::APIs::SellerWallet20240301::TransactionAccount
                    | (String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SellerWallet20240301::TransactionAccount
 
@@ -305,15 +290,14 @@ module Peddler
         attr_reader bank_account_number_format: String?
         attr_reader bank_account_number_tail: String?
         attr_reader bank_name: String?
-        def members: () -> [ :bank_account_currency, :bank_account_number_format, :bank_name, :account_id, :bank_account_country_code, :bank_account_holder_name, :bank_account_number_tail ]
 
+        def members: () -> [ :bank_account_currency, :bank_account_number_format, :bank_name, :account_id, :bank_account_country_code, :bank_account_holder_name, :bank_account_number_tail ]
         def to_h: () -> { bank_account_currency: String?, bank_account_number_format: String?, bank_name: String?, account_id: String?, bank_account_country_code: String?, bank_account_holder_name: String?, bank_account_number_tail: String? }
       end
 
       class TransactionInitiationRequest < Data
         def self.new: (destination_transaction_instrument: Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, request_time: Time?, source_account_id: String?, source_amount: Peddler::Money?, ?customer_payment_reference: String?, ?destination_account_holder_address: Peddler::APIs::SellerWallet20240301::AccountHolderAddress?, ?destination_account_id: String?, ?transaction_description: String?, ?transfer_rate_details: Peddler::APIs::SellerWallet20240301::TransferRatePreview?) -> Peddler::APIs::SellerWallet20240301::TransactionInitiationRequest
                     | (Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, Time?, String?, Peddler::Money?, String?, Peddler::APIs::SellerWallet20240301::AccountHolderAddress?, String?, String?, Peddler::APIs::SellerWallet20240301::TransferRatePreview?) -> Peddler::APIs::SellerWallet20240301::TransactionInitiationRequest
-
         def self.[]: (destination_transaction_instrument: Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, request_time: Time?, source_account_id: String?, source_amount: Peddler::Money?, ?customer_payment_reference: String?, ?destination_account_holder_address: Peddler::APIs::SellerWallet20240301::AccountHolderAddress?, ?destination_account_id: String?, ?transaction_description: String?, ?transfer_rate_details: Peddler::APIs::SellerWallet20240301::TransferRatePreview?) -> Peddler::APIs::SellerWallet20240301::TransactionInitiationRequest
                    | (Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, Time?, String?, Peddler::Money?, String?, Peddler::APIs::SellerWallet20240301::AccountHolderAddress?, String?, String?, Peddler::APIs::SellerWallet20240301::TransferRatePreview?) -> Peddler::APIs::SellerWallet20240301::TransactionInitiationRequest
 
@@ -330,15 +314,14 @@ module Peddler
         attr_reader source_amount: Peddler::Money?
         attr_reader transaction_description: String?
         attr_reader transfer_rate_details: Peddler::APIs::SellerWallet20240301::TransferRatePreview?
-        def members: () -> [ :destination_transaction_instrument, :request_time, :source_account_id, :source_amount, :customer_payment_reference, :destination_account_holder_address, :destination_account_id, :transaction_description, :transfer_rate_details ]
 
+        def members: () -> [ :destination_transaction_instrument, :request_time, :source_account_id, :source_amount, :customer_payment_reference, :destination_account_holder_address, :destination_account_id, :transaction_description, :transfer_rate_details ]
         def to_h: () -> { destination_transaction_instrument: Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, request_time: Time?, source_account_id: String?, source_amount: Peddler::Money?, customer_payment_reference: String?, destination_account_holder_address: Peddler::APIs::SellerWallet20240301::AccountHolderAddress?, destination_account_id: String?, transaction_description: String?, transfer_rate_details: Peddler::APIs::SellerWallet20240301::TransferRatePreview? }
       end
 
       class TransactionInstrumentDetails < Data
         def self.new: (account_holder_name: String?, bank_account: Peddler::APIs::SellerWallet20240301::BankAccount?, bank_account_number: String?) -> Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails
                     | (String?, Peddler::APIs::SellerWallet20240301::BankAccount?, String?) -> Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails
-
         def self.[]: (account_holder_name: String?, bank_account: Peddler::APIs::SellerWallet20240301::BankAccount?, bank_account_number: String?) -> Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails
                    | (String?, Peddler::APIs::SellerWallet20240301::BankAccount?, String?) -> Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails
 
@@ -349,15 +332,14 @@ module Peddler
         attr_reader account_holder_name: String?
         attr_reader bank_account: Peddler::APIs::SellerWallet20240301::BankAccount?
         attr_reader bank_account_number: String?
-        def members: () -> [ :account_holder_name, :bank_account, :bank_account_number ]
 
+        def members: () -> [ :account_holder_name, :bank_account, :bank_account_number ]
         def to_h: () -> { account_holder_name: String?, bank_account: Peddler::APIs::SellerWallet20240301::BankAccount?, bank_account_number: String? }
       end
 
       class TransactionListing < Data
         def self.new: (transactions: Array[Peddler::APIs::SellerWallet20240301::Transaction]?, ?next_page_token: String?) -> Peddler::APIs::SellerWallet20240301::TransactionListing
                     | (Array[Peddler::APIs::SellerWallet20240301::Transaction]?, String?) -> Peddler::APIs::SellerWallet20240301::TransactionListing
-
         def self.[]: (transactions: Array[Peddler::APIs::SellerWallet20240301::Transaction]?, ?next_page_token: String?) -> Peddler::APIs::SellerWallet20240301::TransactionListing
                    | (Array[Peddler::APIs::SellerWallet20240301::Transaction]?, String?) -> Peddler::APIs::SellerWallet20240301::TransactionListing
 
@@ -367,15 +349,14 @@ module Peddler
 
         attr_reader next_page_token: String?
         attr_reader transactions: Array[Peddler::APIs::SellerWallet20240301::Transaction]?
-        def members: () -> [ :transactions, :next_page_token ]
 
+        def members: () -> [ :transactions, :next_page_token ]
         def to_h: () -> { transactions: Array[Peddler::APIs::SellerWallet20240301::Transaction]?, next_page_token: String? }
       end
 
       class TransferRatePreview < Data
         def self.new: (base_amount: Peddler::Money?, fees: Array[Peddler::APIs::SellerWallet20240301::Fee]?, fx_rate_details: Peddler::APIs::SellerWallet20240301::FxRateDetails?, transfer_amount: Peddler::Money?) -> Peddler::APIs::SellerWallet20240301::TransferRatePreview
                     | (Peddler::Money?, Array[Peddler::APIs::SellerWallet20240301::Fee]?, Peddler::APIs::SellerWallet20240301::FxRateDetails?, Peddler::Money?) -> Peddler::APIs::SellerWallet20240301::TransferRatePreview
-
         def self.[]: (base_amount: Peddler::Money?, fees: Array[Peddler::APIs::SellerWallet20240301::Fee]?, fx_rate_details: Peddler::APIs::SellerWallet20240301::FxRateDetails?, transfer_amount: Peddler::Money?) -> Peddler::APIs::SellerWallet20240301::TransferRatePreview
                    | (Peddler::Money?, Array[Peddler::APIs::SellerWallet20240301::Fee]?, Peddler::APIs::SellerWallet20240301::FxRateDetails?, Peddler::Money?) -> Peddler::APIs::SellerWallet20240301::TransferRatePreview
 
@@ -387,15 +368,14 @@ module Peddler
         attr_reader fees: Array[Peddler::APIs::SellerWallet20240301::Fee]?
         attr_reader fx_rate_details: Peddler::APIs::SellerWallet20240301::FxRateDetails?
         attr_reader transfer_amount: Peddler::Money?
-        def members: () -> [ :base_amount, :fees, :fx_rate_details, :transfer_amount ]
 
+        def members: () -> [ :base_amount, :fees, :fx_rate_details, :transfer_amount ]
         def to_h: () -> { base_amount: Peddler::Money?, fees: Array[Peddler::APIs::SellerWallet20240301::Fee]?, fx_rate_details: Peddler::APIs::SellerWallet20240301::FxRateDetails?, transfer_amount: Peddler::Money? }
       end
 
       class TransferSchedule < Data
         def self.new: (transaction_destination_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_type: String?, transfer_schedule_failures: Array[Peddler::APIs::SellerWallet20240301::TransferScheduleFailures]?, transfer_schedule_id: String?, transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, transfer_schedule_status: String?, ?payment_preference: Peddler::APIs::SellerWallet20240301::PaymentPreference?, ?transaction_source_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?) -> Peddler::APIs::SellerWallet20240301::TransferSchedule
                     | (Peddler::APIs::SellerWallet20240301::TransactionAccount?, String?, Array[Peddler::APIs::SellerWallet20240301::TransferScheduleFailures]?, String?, Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, String?, Peddler::APIs::SellerWallet20240301::PaymentPreference?, Peddler::APIs::SellerWallet20240301::TransactionAccount?) -> Peddler::APIs::SellerWallet20240301::TransferSchedule
-
         def self.[]: (transaction_destination_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_type: String?, transfer_schedule_failures: Array[Peddler::APIs::SellerWallet20240301::TransferScheduleFailures]?, transfer_schedule_id: String?, transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, transfer_schedule_status: String?, ?payment_preference: Peddler::APIs::SellerWallet20240301::PaymentPreference?, ?transaction_source_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?) -> Peddler::APIs::SellerWallet20240301::TransferSchedule
                    | (Peddler::APIs::SellerWallet20240301::TransactionAccount?, String?, Array[Peddler::APIs::SellerWallet20240301::TransferScheduleFailures]?, String?, Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, String?, Peddler::APIs::SellerWallet20240301::PaymentPreference?, Peddler::APIs::SellerWallet20240301::TransactionAccount?) -> Peddler::APIs::SellerWallet20240301::TransferSchedule
 
@@ -411,15 +391,14 @@ module Peddler
         attr_reader transfer_schedule_id: String?
         attr_reader transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?
         attr_reader transfer_schedule_status: String?
-        def members: () -> [ :transaction_destination_account, :transaction_type, :transfer_schedule_failures, :transfer_schedule_id, :transfer_schedule_information, :transfer_schedule_status, :payment_preference, :transaction_source_account ]
 
+        def members: () -> [ :transaction_destination_account, :transaction_type, :transfer_schedule_failures, :transfer_schedule_id, :transfer_schedule_information, :transfer_schedule_status, :payment_preference, :transaction_source_account ]
         def to_h: () -> { transaction_destination_account: Peddler::APIs::SellerWallet20240301::TransactionAccount?, transaction_type: String?, transfer_schedule_failures: Array[Peddler::APIs::SellerWallet20240301::TransferScheduleFailures]?, transfer_schedule_id: String?, transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, transfer_schedule_status: String?, payment_preference: Peddler::APIs::SellerWallet20240301::PaymentPreference?, transaction_source_account: Peddler::APIs::SellerWallet20240301::TransactionAccount? }
       end
 
       class TransferScheduleFailures < Data
         def self.new: (transfer_schedule_failure_date: Time?, transfer_schedule_failure_reason: String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleFailures
                     | (Time?, String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleFailures
-
         def self.[]: (transfer_schedule_failure_date: Time?, transfer_schedule_failure_reason: String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleFailures
                    | (Time?, String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleFailures
 
@@ -429,15 +408,14 @@ module Peddler
 
         attr_reader transfer_schedule_failure_date: Time?
         attr_reader transfer_schedule_failure_reason: String?
-        def members: () -> [ :transfer_schedule_failure_date, :transfer_schedule_failure_reason ]
 
+        def members: () -> [ :transfer_schedule_failure_date, :transfer_schedule_failure_reason ]
         def to_h: () -> { transfer_schedule_failure_date: Time?, transfer_schedule_failure_reason: String? }
       end
 
       class TransferScheduleInformation < Data
         def self.new: (?schedule_end_date: Time?, ?schedule_expression: Peddler::APIs::SellerWallet20240301::ScheduleExpression?, ?schedule_start_date: Time?, ?schedule_type: String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleInformation
                     | (Time?, Peddler::APIs::SellerWallet20240301::ScheduleExpression?, Time?, String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleInformation
-
         def self.[]: (?schedule_end_date: Time?, ?schedule_expression: Peddler::APIs::SellerWallet20240301::ScheduleExpression?, ?schedule_start_date: Time?, ?schedule_type: String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleInformation
                    | (Time?, Peddler::APIs::SellerWallet20240301::ScheduleExpression?, Time?, String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleInformation
 
@@ -449,15 +427,14 @@ module Peddler
         attr_reader schedule_expression: Peddler::APIs::SellerWallet20240301::ScheduleExpression?
         attr_reader schedule_start_date: Time?
         attr_reader schedule_type: String?
-        def members: () -> [ :schedule_end_date, :schedule_expression, :schedule_start_date, :schedule_type ]
 
+        def members: () -> [ :schedule_end_date, :schedule_expression, :schedule_start_date, :schedule_type ]
         def to_h: () -> { schedule_end_date: Time?, schedule_expression: Peddler::APIs::SellerWallet20240301::ScheduleExpression?, schedule_start_date: Time?, schedule_type: String? }
       end
 
       class TransferScheduleListing < Data
         def self.new: (transfer_schedules: Array[Peddler::APIs::SellerWallet20240301::TransferSchedule]?, ?next_page_token: String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleListing
                     | (Array[Peddler::APIs::SellerWallet20240301::TransferSchedule]?, String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleListing
-
         def self.[]: (transfer_schedules: Array[Peddler::APIs::SellerWallet20240301::TransferSchedule]?, ?next_page_token: String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleListing
                    | (Array[Peddler::APIs::SellerWallet20240301::TransferSchedule]?, String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleListing
 
@@ -467,15 +444,14 @@ module Peddler
 
         attr_reader next_page_token: String?
         attr_reader transfer_schedules: Array[Peddler::APIs::SellerWallet20240301::TransferSchedule]?
-        def members: () -> [ :transfer_schedules, :next_page_token ]
 
+        def members: () -> [ :transfer_schedules, :next_page_token ]
         def to_h: () -> { transfer_schedules: Array[Peddler::APIs::SellerWallet20240301::TransferSchedule]?, next_page_token: String? }
       end
 
       class TransferScheduleRequest < Data
         def self.new: (destination_account_id: String?, destination_transaction_instrument: Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, payment_preference: Peddler::APIs::SellerWallet20240301::PaymentPreference?, source_account_id: String?, source_currency_code: String?, transaction_type: String?, transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, ?transfer_schedule_status: String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleRequest
                     | (String?, Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, Peddler::APIs::SellerWallet20240301::PaymentPreference?, String?, String?, String?, Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleRequest
-
         def self.[]: (destination_account_id: String?, destination_transaction_instrument: Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, payment_preference: Peddler::APIs::SellerWallet20240301::PaymentPreference?, source_account_id: String?, source_currency_code: String?, transaction_type: String?, transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, ?transfer_schedule_status: String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleRequest
                    | (String?, Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, Peddler::APIs::SellerWallet20240301::PaymentPreference?, String?, String?, String?, Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, String?) -> Peddler::APIs::SellerWallet20240301::TransferScheduleRequest
 
@@ -491,8 +467,8 @@ module Peddler
         attr_reader transaction_type: String?
         attr_reader transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?
         attr_reader transfer_schedule_status: String?
-        def members: () -> [ :destination_account_id, :destination_transaction_instrument, :payment_preference, :source_account_id, :source_currency_code, :transaction_type, :transfer_schedule_information, :transfer_schedule_status ]
 
+        def members: () -> [ :destination_account_id, :destination_transaction_instrument, :payment_preference, :source_account_id, :source_currency_code, :transaction_type, :transfer_schedule_information, :transfer_schedule_status ]
         def to_h: () -> { destination_account_id: String?, destination_transaction_instrument: Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails?, payment_preference: Peddler::APIs::SellerWallet20240301::PaymentPreference?, source_account_id: String?, source_currency_code: String?, transaction_type: String?, transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation?, transfer_schedule_status: String? }
       end
 

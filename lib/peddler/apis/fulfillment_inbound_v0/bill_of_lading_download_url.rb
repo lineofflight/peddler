@@ -10,7 +10,7 @@ module Peddler
       # Download URL for the bill of lading.
       BillOfLadingDownloadURL = Structure.new do
         # @return [String] URL to download the bill of lading for the package. Note: The URL will only be valid for 15
-        # seconds
+        #   seconds
         attribute?(:download_url, String, from: "DownloadURL")
       end
     end

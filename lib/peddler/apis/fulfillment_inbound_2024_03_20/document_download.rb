@@ -17,8 +17,8 @@ module Peddler
         attribute(:uri, String)
 
         # @return [Time] The URI's expiration time. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
-        # `yyyy-MM-ddTHH:mm:ss.sssZ`.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
+        #   `yyyy-MM-ddTHH:mm:ss.sssZ`.
         attribute?(:expiration, Time)
       end
     end

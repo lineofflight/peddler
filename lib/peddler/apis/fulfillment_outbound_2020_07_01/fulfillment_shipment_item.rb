@@ -13,7 +13,7 @@ module Peddler
         attribute(:quantity, Integer)
 
         # @return [String] The fulfillment order item identifier that the seller created and submitted with a call to
-        # the `createFulfillmentOrder` operation.
+        #   the `createFulfillmentOrder` operation.
         attribute(:seller_fulfillment_order_item_id, String, from: "sellerFulfillmentOrderItemId")
 
         # @return [String] The seller SKU of the item.

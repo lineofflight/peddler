@@ -28,7 +28,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param cancellation_reason_code [String] A cancel reason code that specifies the reason for cancelling a service
-      # job.
+      #   job.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code, rate_limit: 5.0)
@@ -56,35 +56,35 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param service_order_ids [Array<String>] List of service order ids for the query you want to perform.Max values
-      # supported 20.
+      #   supported 20.
       # @param service_job_status [Array<String>] A list of one or more job status by which to filter the list of jobs.
       # @param page_token [String] String returned in the response of your previous request.
       # @param page_size [Integer] A non-negative integer that indicates the maximum number of jobs to return in the
-      # list, Value must be 1 - 20. Default 20.
+      #   list, Value must be 1 - 20. Default 20.
       # @param sort_field [String] Sort fields on which you want to sort the output.
       # @param sort_order [String] Sort order for the query you want to perform.
       # @param created_after [String] A date used for selecting jobs created at or after a specified time. Must be in
-      # ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and
-      # `LastUpdatedAfter` returns an error.
+      #   ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and
+      #   `LastUpdatedAfter` returns an error.
       # @param created_before [String] A date used for selecting jobs created at or before a specified time. Must be in
-      # ISO 8601 format.
+      #   ISO 8601 format.
       # @param last_updated_after [String] A date used for selecting jobs updated at or after a specified time. Must be
-      # in ISO 8601 format. Required if `createdAfter` is not specified. Specifying both `CreatedAfter` and
-      # `LastUpdatedAfter` returns an error.
+      #   in ISO 8601 format. Required if `createdAfter` is not specified. Specifying both `CreatedAfter` and
+      #   `LastUpdatedAfter` returns an error.
       # @param last_updated_before [String] A date used for selecting jobs updated at or before a specified time. Must
-      # be in ISO 8601 format.
+      #   be in ISO 8601 format.
       # @param schedule_start_date [String] A date used for filtering jobs schedules at or after a specified time. Must
-      # be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
+      #   be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
       # @param schedule_end_date [String] A date used for filtering jobs schedules at or before a specified time. Must
-      # be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
+      #   be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
       # @param marketplace_ids [Array<String>] Used to select jobs that were placed in the specified marketplaces.
       # @param asins [Array<String>] List of Amazon Standard Identification Numbers (ASIN) of the items. Max values
-      # supported is 20.
+      #   supported is 20.
       # @param required_skills [Array<String>] A defined set of related knowledge, skills, experience, tools, materials,
-      # and work processes common to service delivery for a set of products and/or service scenarios. Max values
-      # supported is 20.
+      #   and work processes common to service delivery for a set of products and/or service scenarios. Max values
+      #   supported is 20.
       # @param store_ids [Array<String>] List of Amazon-defined identifiers for the region scope. Max values supported
-      # is 50.
+      #   is 50.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_service_jobs(marketplace_ids, service_order_ids: nil, service_job_status: nil, page_token: nil,
@@ -146,7 +146,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
-      # `getServiceJobs` operation of the Services API.
+      #   `getServiceJobs` operation of the Services API.
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
@@ -161,7 +161,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
-      # `getServiceJobs` operation of the Services API.
+      #   `getServiceJobs` operation of the Services API.
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
       # @param body [Hash] Appointment fulfillment data collection details.
       # @param rate_limit [Float] Requests per second
@@ -281,11 +281,11 @@ module Peddler
       # @param service_job_id [String] A service job identifier to retrive appointment slots for associated service.
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param start_time [String] A time from which the appointment slots will be retrieved. The specified time must be
-      # in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
-      # business configuration.
+      #   in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
+      #   business configuration.
       # @param end_time [String] A time up to which the appointment slots will be retrieved. The specified time must be
-      # in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
-      # business configuration. Maximum range of appointment slots can be 90 days.
+      #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
+      #   business configuration. Maximum range of appointment slots can be 90 days.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil,
@@ -307,11 +307,11 @@ module Peddler
       # @param store_id [String] Store identifier defining the region scope to retrive appointment slots.
       # @param marketplace_ids [Array<String>] An identifier for the marketplace for which appointment slots are queried
       # @param start_time [String] A time from which the appointment slots will be retrieved. The specified time must be
-      # in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
-      # business configuration.
+      #   in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
+      #   business configuration.
       # @param end_time [String] A time up to which the appointment slots will be retrieved. The specified time must be
-      # in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
-      # business configuration. Maximum range of appointment slots can be 90 days.
+      #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
+      #   business configuration. Maximum range of appointment slots can be 90 days.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil, rate_limit: 20.0)

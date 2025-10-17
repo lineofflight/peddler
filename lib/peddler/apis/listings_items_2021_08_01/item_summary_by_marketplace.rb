@@ -32,7 +32,7 @@ module Peddler
         attribute?(:condition_type, String, from: "conditionType")
 
         # @return [String] The fulfillment network stock keeping unit is an identifier used by Amazon fulfillment
-        # centers to identify each unique item.
+        #   centers to identify each unique item.
         attribute?(:fn_sku, String, from: "fnSku")
 
         # @return [String] The name or title associated with an Amazon catalog item.

@@ -10,11 +10,11 @@ module Peddler
       # The variation theme is a list of Amazon catalog item attributes that define the variation family.
       ItemVariationTheme = Structure.new do
         # @return [Array<String>] Names of the Amazon catalog item attributes that are associated with the variation
-        # theme.
+        #   theme.
         attribute?(:attributes, [String])
 
         # @return [String] Variation theme that indicates the combination of Amazon catalog item attributes that define
-        # the variation family.
+        #   the variation family.
         attribute?(:theme, String)
       end
     end

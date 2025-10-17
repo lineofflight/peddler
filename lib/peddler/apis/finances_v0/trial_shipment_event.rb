@@ -22,7 +22,7 @@ module Peddler
         attribute?(:posted_date, String, from: "PostedDate")
 
         # @return [String] The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is
-        # included with every call to the Selling Partner API.
+        #   included with every call to the Selling Partner API.
         attribute?(:sku, String, from: "SKU")
       end
     end

@@ -25,7 +25,7 @@ module Peddler
         attribute?(:carrier, String)
 
         # @return [Integer] An integer that must be submitted for multi-box shipments only, where one item may come in
-        # separate packages.
+        #   separate packages.
         attribute?(:container_sequence_number, Integer, from: "containerSequenceNumber")
 
         # @return [Dimensions]
@@ -41,7 +41,7 @@ module Peddler
         attribute?(:scac_code, String, from: "scacCode")
 
         # @return [String] The shipment method. This property is required when calling the `submitShipmentConfirmations`
-        # operation, and optional otherwise.
+        #   operation, and optional otherwise.
         attribute?(:ship_method, String, from: "shipMethod")
 
         # @return [String] The tracking number.

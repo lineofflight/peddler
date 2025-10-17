@@ -13,8 +13,8 @@ module Peddler
         attribute?(:prep_owner, String, from: "prepOwner")
 
         # @return [String] The type of preparation to be done. For more information about preparing items, refer to
-        # [Prep guidance](https://sellercentral.amazon.com/help/hub/reference/external/GF4G7547KSLDX2KC) on Seller
-        # Central.
+        #   [Prep guidance](https://sellercentral.amazon.com/help/hub/reference/external/GF4G7547KSLDX2KC) on Seller
+        #   Central.
         attribute?(:prep_type, String, from: "prepType")
       end
     end

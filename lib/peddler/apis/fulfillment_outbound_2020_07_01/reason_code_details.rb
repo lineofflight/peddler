@@ -16,7 +16,7 @@ module Peddler
         attribute(:return_reason_code, String, from: "returnReasonCode")
 
         # @return [String] A translation of the description. The translation is in the language specified in the
-        # `language` request parameter.
+        #   `language` request parameter.
         attribute?(:translated_description, String, from: "translatedDescription")
       end
     end

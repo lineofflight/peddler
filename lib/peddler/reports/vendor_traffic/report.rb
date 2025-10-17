@@ -12,7 +12,7 @@ module Peddler
       # date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
       Report = Structure.new do
         # @return [Hash] The report summary including the specified reporting date range and the last updated date in
-        # the input.
+        #   the input.
         attribute(:report_specification, ReportSpecification, from: "reportSpecification")
 
         # @return [Array<TrafficAggregate>]

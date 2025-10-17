@@ -27,8 +27,8 @@ module Peddler
       # @param sku [String] A selling partner provided identifier for an Amazon listing.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      # of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
-      # when a localization is not available in the specified locale.
+      #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
+      #   when a localization is not available in the specified locale.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
@@ -53,8 +53,8 @@ module Peddler
       # @param sku [String] A selling partner provided identifier for an Amazon listing.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      # of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
-      # when a localization is not available in the specified locale.
+      #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
+      #   when a localization is not available in the specified locale.
       # @param body [Hash] The request body schema for the patchListingsItem operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -79,8 +79,8 @@ module Peddler
       # @param sku [String] A selling partner provided identifier for an Amazon listing.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      # of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
-      # when a localization is not available in the specified locale.
+      #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
+      #   when a localization is not available in the specified locale.
       # @param body [Hash] The request body schema for the putListingsItem operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response

@@ -16,7 +16,7 @@ module Peddler
         attribute(:seller_id, String, from: "sellerId")
 
         # @return [String] Version of the JSON Selling Partner Listings Feeds specification used for the feed
-        # submission.
+        #   submission.
         attribute(:version, String)
 
         # @return [Report] The report information for the feed submission.

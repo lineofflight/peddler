@@ -14,14 +14,15 @@ module Peddler
         attribute(:shipment_status, String, from: "shipmentStatus")
 
         # @return [Time] The date of the shipment's departure from vendor's location. Vendors send ASNs within 30
-        # minutes of departure from their warehouse/distribution center or six hours prior to the appointment time at
-        # the Amazon destination warehouse. The shipped date mentioned in the shipment confirmation cannot be in the
-        # future.
+        #   minutes of departure from their warehouse/distribution center or six hours prior to the appointment time at
+        #   the Amazon destination warehouse. The shipped date mentioned in the shipment confirmation cannot be in the
+        #   future.
         attribute(:shipped_date, Time, from: "shippedDate")
 
         # @return [Time] The date on which the shipment is expected to reach the buyer's warehouse. The date is
-        # estimated based on the average transit time between the ship-from location and the destination. Usually, the
-        # exact appointment time is unknown when creating the shipment confirmation and is later provided by the buyer.
+        #   estimated based on the average transit time between the ship-from location and the destination. Usually, the
+        #   exact appointment time is unknown when creating the shipment confirmation and is later provided by the
+        #   buyer.
         attribute?(:estimated_delivery_date, Time, from: "estimatedDeliveryDate")
 
         # @return [:boolean] Provide the priority of the shipment.

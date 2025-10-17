@@ -13,7 +13,7 @@ module Peddler
         attribute?(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")
 
         # @return [String] Please see RFC 6557, should be a canonical time zone ID as listed here:
-        # https://www.joda.org/joda-time/timezones.html.
+        #   https://www.joda.org/joda-time/timezones.html.
         attribute?(:timezone, String)
       end
     end

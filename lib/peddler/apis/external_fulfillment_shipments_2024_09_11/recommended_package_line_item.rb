@@ -11,7 +11,7 @@ module Peddler
       # a specific recommendation of line-item distribution within the package recommendations.
       RecommendedPackageLineItem = Structure.new do
         # @return [String] An ID for a line item in an order. The line item should be present in the recommended
-        # package. This identifier has the same value as the ID of the line item present in the order.
+        #   package. This identifier has the same value as the ID of the line item present in the order.
         attribute(:line_item_id, String, from: "lineItemId")
       end
     end

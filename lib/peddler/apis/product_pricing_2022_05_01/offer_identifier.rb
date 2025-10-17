@@ -22,7 +22,7 @@ module Peddler
         attribute?(:seller_id, String, from: "sellerId")
 
         # @return [String] The seller SKU of the item. This will only be present for the target offer, which belongs to
-        # the requesting seller.
+        #   the requesting seller.
         attribute?(:sku, String)
       end
     end

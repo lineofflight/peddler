@@ -16,7 +16,7 @@ module Peddler
         attribute?(:gift_wrap_price, Money, from: "GiftWrapPrice")
 
         # @return [Money] The selling price of the item multiplied by the quantity ordered. Note that ItemPrice excludes
-        # ShippingPrice and GiftWrapPrice.
+        #   ShippingPrice and GiftWrapPrice.
         attribute?(:item_price, Money, from: "ItemPrice")
 
         # @return [String] The Amazon-defined identifier for the order item.

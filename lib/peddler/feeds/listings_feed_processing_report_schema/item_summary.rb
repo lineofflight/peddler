@@ -14,7 +14,7 @@ module Peddler
         attribute(:errors, Integer)
 
         # @return [Integer] Number of listing items created or updated by this feed submission and included in the Items
-        # section of this report.
+        #   section of this report.
         attribute(:items, Integer)
 
         # @return [Integer] Number of warnings across all listing items created or updated by this feed submission.

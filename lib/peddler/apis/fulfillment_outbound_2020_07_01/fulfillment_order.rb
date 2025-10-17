@@ -13,15 +13,15 @@ module Peddler
         attribute(:destination_address, Address, from: "destinationAddress")
 
         # @return [String] A text block submitted with the `createFulfillmentOrder` operation. Displays in
-        # recipient-facing materials such as the packing slip.
+        #   recipient-facing materials such as the packing slip.
         attribute(:displayable_order_comment, String, from: "displayableOrderComment")
 
         # @return [String] A date and time submitted with the `createFulfillmentOrder` operation. Displays as the order
-        # date in recipient-facing materials such as the packing slip.
+        #   date in recipient-facing materials such as the packing slip.
         attribute(:displayable_order_date, String, from: "displayableOrderDate")
 
         # @return [String] A fulfillment order identifier submitted with the `createFulfillmentOrder` operation.
-        # Displays as the order identifier in recipient-facing materials such as the packing slip.
+        #   Displays as the order identifier in recipient-facing materials such as the packing slip.
         attribute(:displayable_order_id, String, from: "displayableOrderId")
 
         # @return [String]
@@ -40,7 +40,7 @@ module Peddler
         attribute(:shipping_speed_category, String, from: "shippingSpeedCategory")
 
         # @return [String] The date and time that the status of the fulfillment order last changed. Must be in
-        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute(:status_updated_date, String, from: "statusUpdatedDate")
 
         # @return [CODSettings]

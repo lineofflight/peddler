@@ -10,7 +10,7 @@ module Peddler
       # Report options specifying parameters such as reportPeriod.
       ReportOptions = Structure.new do
         # @return [String] Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK,
-        # MONTH, QUARTER.
+        #   MONTH, QUARTER.
         attribute(:report_period, String, from: "reportPeriod")
       end
     end

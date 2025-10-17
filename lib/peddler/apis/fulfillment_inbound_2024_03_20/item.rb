@@ -13,7 +13,7 @@ module Peddler
         attribute(:asin, String)
 
         # @return [String] A unique identifier assigned by Amazon to products stored in and fulfilled from an Amazon
-        # fulfillment center.
+        #   fulfillment center.
         attribute(:fnsku, String)
 
         # @return [String] Specifies who will label the items. Options include `AMAZON`, `SELLER`, and `NONE`.
@@ -29,8 +29,8 @@ module Peddler
         attribute(:quantity, Integer)
 
         # @return [String] The expiration date of the MSKU. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern`YYYY-MM-DD`. The
-        # same MSKU with different expiration dates cannot go into the same box.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern`YYYY-MM-DD`. The
+        #   same MSKU with different expiration dates cannot go into the same box.
         attribute?(:expiration, String)
 
         # @return [String] The manufacturing lot code.

@@ -26,7 +26,7 @@ module Peddler
         # * 'MISSING_PRICE' - Pointing out the absence of a price attribute in the listing.
         #
         # * 'DUPLICATE' - Identifying listings with potential duplicate problems, such as this ASIN potentially being a
-        # duplicate of another ASIN.
+        #   duplicate of another ASIN.
         #
         # * 'QUALIFICATION_REQUIRED' - Indicating that the listing requires qualification-related approval.
         attribute(:categories, [String])
@@ -44,7 +44,7 @@ module Peddler
         attribute?(:attribute_names, [String], from: "attributeNames")
 
         # @return [IssueEnforcements] This field provides information about the enforcement actions taken by Amazon that
-        # affect the publishing or status of a listing. It also includes details about any associated exemptions.
+        #   affect the publishing or status of a listing. It also includes details about any associated exemptions.
         attribute?(:enforcements, IssueEnforcements)
       end
     end

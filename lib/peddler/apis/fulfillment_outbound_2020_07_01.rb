@@ -42,8 +42,8 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param query_start_date [String] A date used to select fulfillment orders that were last updated after (or at) a
-      # specified time. An update is defined as any change in fulfillment order status, including the creation of a new
-      # fulfillment order.
+      #   specified time. An update is defined as any change in fulfillment order status, including the creation of a
+      #   new fulfillment order.
       # @param next_token [String] A string token returned in the response to your previous request.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -75,9 +75,9 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param package_number [Integer] The unencrypted package identifier. You can obtain this value from the
-      # `getFulfillmentOrder` operation.
+      #   `getFulfillmentOrder` operation.
       # @param amazon_fulfillment_tracking_number [String] The Amazon fulfillment tracking number. You can obtain this
-      # value from the `getFulfillmentOrder` operation.
+      #   value from the `getFulfillmentOrder` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_package_tracking_details(package_number: nil, amazon_fulfillment_tracking_number: nil, rate_limit: 2.0)
@@ -98,10 +98,10 @@ module Peddler
       # @param seller_sku [String] The seller SKU for which return reason codes are required.
       # @param marketplace_id [String] The marketplace for which the seller wants return reason codes.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      # fulfillment order was created. The service uses this value to determine the marketplace for which the seller
-      # wants return reason codes.
+      #   fulfillment order was created. The service uses this value to determine the marketplace for which the seller
+      #   wants return reason codes.
       # @param language [String] The language that the `TranslatedDescription` property of the `ReasonCodeDetails`
-      # response object should be translated into.
+      #   response object should be translated into.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_return_reason_codes(seller_sku, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil,
@@ -122,8 +122,8 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request body of the `createFulfillmentReturn` operation.
       # @param seller_fulfillment_order_id [String] An identifier the seller assigns to the fulfillment order at the
-      # time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value
-      # based on the buyer's request to return items.
+      #   time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value
+      #   based on the buyer's request to return items.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
@@ -136,7 +136,7 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      # fulfillment order was created.
+      #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
@@ -150,7 +150,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request body of the `updateFulfillmentOrder` operation.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      # fulfillment order was created.
+      #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
@@ -164,7 +164,7 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      # fulfillment order was created.
+      #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
@@ -181,7 +181,7 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
-      # fulfillment order was created.
+      #   fulfillment order was created.
       # @param body [Hash] The identifier assigned to the item by the seller when the fulfillment order was created.
       # @return [Peddler::Response] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
@@ -212,13 +212,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return a list of the inventory that is eligible for
-      # the specified feature.
+      #   the specified feature.
       # @param feature_name [String] The name of the feature for which to return a list of eligible inventory.
       # @param next_token [String] A string token returned in the response to your previous request that is used to
-      # return the next response page. A value of `null` will return the first page.
+      #   return the next response page. A value of `null` will return the first page.
       # @param query_start_date [String] A date that you can use to select inventory that has been updated since a
-      # specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
-      # in the format `yyyy-MM-ddTHH:mm:ss.sssZ`
+      #   specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
+      #   in the format `yyyy-MM-ddTHH:mm:ss.sssZ`
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
@@ -241,7 +241,7 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which to return the count.
       # @param feature_name [String] The name of the feature.
       # @param seller_sku [String] Used to identify an item in the given marketplace. `sellerSku` is qualified by the
-      # seller's `sellerId`, which is included with every operation that you submit.
+      #   seller's `sellerId`, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feature_sku(marketplace_id, feature_name, seller_sku, rate_limit: 2.0)

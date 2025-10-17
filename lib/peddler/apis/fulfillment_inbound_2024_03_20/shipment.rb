@@ -14,7 +14,7 @@ module Peddler
         attribute(:destination, ShipmentDestination)
 
         # @return [String] The identifier of a placement option. A placement option represents the shipment splits and
-        # destinations of SKUs.
+        #   destinations of SKUs.
         attribute(:placement_option_id, String, from: "placementOptionId")
 
         # @return [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
@@ -24,7 +24,7 @@ module Peddler
         attribute(:source, ShipmentSource)
 
         # @return [String] A unique identifier created by Amazon that identifies this Amazon-partnered, Less Than
-        # Truckload/Full Truckload (LTL/FTL) shipment.
+        #   Truckload/Full Truckload (LTL/FTL) shipment.
         attribute?(:amazon_reference_id, String, from: "amazonReferenceId")
 
         # @return [ContactInformation]
@@ -43,7 +43,7 @@ module Peddler
         attribute?(:selected_delivery_window, SelectedDeliveryWindow, from: "selectedDeliveryWindow")
 
         # @return [String] Identifier of a transportation option. A transportation option represent one option for how
-        # to send a shipment.
+        #   to send a shipment.
         attribute?(:selected_transportation_option_id, String, from: "selectedTransportationOptionId")
 
         # @return [Array<SelfShipAppointmentDetails>] List of self ship appointment details.
@@ -53,11 +53,11 @@ module Peddler
         attribute?(:shipment_confirmation_id, String, from: "shipmentConfirmationId")
 
         # @return [String] The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`,
-        # then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once
-        # labels are generated.
+        #   then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once
+        #   labels are generated.
         #
         # Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`,
-        # `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`
+        #   `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`
         attribute?(:status, String)
 
         # @return [TrackingDetails]

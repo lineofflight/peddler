@@ -25,7 +25,7 @@ module Peddler
         attribute(:order_item_id, String, from: "OrderItemId")
 
         # @return [String] The current order status. The possible values include UpComing, Pending, Unshipped,
-        # PartiallyShipped, PendingAvailability, Canceled, InvoiceUnconfirmed, Shipped, and Unfulfillable.
+        #   PartiallyShipped, PendingAvailability, Canceled, InvoiceUnconfirmed, Shipped, and Unfulfillable.
         attribute(:order_status, String, from: "OrderStatus")
 
         # @return [String] The purchase date of the order in Epoch time.

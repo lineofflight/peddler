@@ -13,26 +13,26 @@ module Peddler
         attribute?(:amazon_order_id, String, from: "AmazonOrderId")
 
         # @return [Array<DirectPayment>] A list of transactions where buyers pay Amazon through one of the credit cards
-        # offered by Amazon or where buyers pay a seller directly through COD.
+        #   offered by Amazon or where buyers pay a seller directly through COD.
         attribute?(:direct_payment_list, [DirectPayment], from: "DirectPaymentList")
 
         # @return [String] The name of the marketplace where the event occurred.
         attribute?(:marketplace_name, String, from: "MarketplaceName")
 
         # @return [Array<ChargeComponent>] A list of order-level charge adjustments. These adjustments are applicable to
-        # Multi-Channel Fulfillment COD orders.
+        #   Multi-Channel Fulfillment COD orders.
         attribute?(:order_charge_adjustment_list, [ChargeComponent], from: "OrderChargeAdjustmentList")
 
         # @return [Array<ChargeComponent>] A list of order-level charges. These charges are applicable to Multi-Channel
-        # Fulfillment COD orders.
+        #   Fulfillment COD orders.
         attribute?(:order_charge_list, [ChargeComponent], from: "OrderChargeList")
 
         # @return [Array<FeeComponent>] A list of order-level fee adjustments. These adjustments are applicable to
-        # Multi-Channel Fulfillment orders.
+        #   Multi-Channel Fulfillment orders.
         attribute?(:order_fee_adjustment_list, [FeeComponent], from: "OrderFeeAdjustmentList")
 
         # @return [Array<FeeComponent>] A list of order-level fees. These charges are applicable to Multi-Channel
-        # Fulfillment orders.
+        #   Fulfillment orders.
         attribute?(:order_fee_list, [FeeComponent], from: "OrderFeeList")
 
         # @return [String] The date and time when the financial event was posted.

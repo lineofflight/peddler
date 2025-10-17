@@ -10,7 +10,7 @@ module Peddler
       # Contains all information related to the transaction.
       Transaction = Structure.new do
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
-        # transaction.
+        #   transaction.
         attribute?(:breakdowns, [Breakdown])
 
         # @return [Array<Context>] Additional Information about the transaction.
@@ -49,7 +49,7 @@ module Peddler
         # * `DEFERRED`: the transaction is currently deferred.
         # * `RELEASED`: the transaction is currently released.
         # * `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred
-        # transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
+        #   transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
         attribute?(:transaction_status, String, from: "transactionStatus")
 
         # @return [String] The type of transaction.

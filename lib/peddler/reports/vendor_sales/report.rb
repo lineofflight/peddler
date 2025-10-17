@@ -12,7 +12,7 @@ module Peddler
       # levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
       Report = Structure.new do
         # @return [Hash] The report summary including reporting date range, distributor view, selling program, and last
-        # updated date in the input.
+        #   updated date in the input.
         attribute(:report_specification, ReportSpecification, from: "reportSpecification")
 
         # @return [Array<SalesAggregate>]

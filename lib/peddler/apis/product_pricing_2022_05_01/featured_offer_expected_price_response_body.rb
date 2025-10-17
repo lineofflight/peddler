@@ -16,7 +16,7 @@ module Peddler
         attribute?(:featured_offer_expected_price_results, [FeaturedOfferExpectedPriceResult], from: "featuredOfferExpectedPriceResults")
 
         # @return [OfferIdentifier] Metadata that identifies the target offer for which the FOEP result data was
-        # computed.
+        #   computed.
         attribute?(:offer_identifier, OfferIdentifier, from: "offerIdentifier")
       end
     end

@@ -14,12 +14,12 @@ module Peddler
         attribute?(:account_holder_name, String, from: "accountHolderName")
 
         # @return [String] The payment method assignment type, whether it is assigned as default to the given
-        # marketplace or not.
+        #   marketplace or not.
         attribute?(:assignment_type, String, from: "assignmentType")
 
         # @return [String] The two-letter country code in ISO 3166-1 alpha-2 format. For payment methods in the `card`
-        # category, the code is for the country where the card was issued. For payment methods in the `bank account`
-        # category, the code is for the country where the account is located.
+        #   category, the code is for the country where the card was issued. For payment methods in the `bank account`
+        #   category, the code is for the country where the account is located.
         attribute?(:country_code, String, from: "countryCode")
 
         # @return [ExpiryDate] The expiration date of the card used for payment.

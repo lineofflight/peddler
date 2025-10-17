@@ -10,7 +10,7 @@ module Peddler
       # List of request parameters can be accepted by `ItemOffersRequests` operation
       ItemOffersRequest = Structure.new do
         # @return [String] Filters the offer listings to be considered based on item condition. Possible values: New,
-        # Used, Collectible, Refurbished, Club.
+        #   Used, Collectible, Refurbished, Club.
         attribute(:item_condition, String, from: "ItemCondition")
 
         # @return [String]

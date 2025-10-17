@@ -10,7 +10,7 @@ module Peddler
     module DetailPageTrafficEvent
       DetailPageTrafficEvent = Structure.new do
         # @return [String] The merchant customer ID or vendor group ID of the partner account this notification is sent
-        # to.
+        #   to.
         attribute(:account_id, String, from: "accountId")
 
         # @return [String] The Amazon Standard Identification Number of the product.

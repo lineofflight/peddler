@@ -11,11 +11,11 @@ module Peddler
       # eventBridge) per destination.
       DestinationResourceSpecification = Structure.new do
         # @return [EventBridgeResourceSpecification] The information required to create an Amazon EventBridge
-        # destination.
+        #   destination.
         attribute?(:event_bridge, EventBridgeResourceSpecification, from: "eventBridge")
 
         # @return [SqsResource] The information required to create an Amazon Simple Queue Service (SQS) queue
-        # destination.
+        #   destination.
         attribute?(:sqs, SqsResource)
       end
     end

@@ -25,7 +25,7 @@ module Peddler
         attribute?(:item_description, String, from: "ItemDescription")
 
         # @return [Array<AdditionalSellerInputs>] A list of additional seller inputs required to ship this item using
-        # the chosen shipping service.
+        #   the chosen shipping service.
         attribute?(:item_level_seller_inputs_list, [AdditionalSellerInputs], from: "ItemLevelSellerInputsList")
 
         # @return [Weight]

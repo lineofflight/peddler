@@ -16,7 +16,7 @@ module Peddler
         attribute?(:charges, [Fee])
 
         # @return [String] Fee type name, for example: "FBA fulfillment fees"
-        attribute?(:fee_type_name, String, from: "feeTypeName")
+        attribute?(:fee_type_name, String, null: false, from: "feeTypeName")
       end
     end
   end

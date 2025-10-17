@@ -39,7 +39,7 @@ module Peddler
         attribute?(:district, String, from: "District")
 
         # @return [AddressExtendedFields] The container for address extended fields. For example, street name or street
-        # number.
+        #   number.
         #
         # **Note**: This attribute is currently only available with Brazil shipping addresses.
         attribute?(:extended_fields, AddressExtendedFields, from: "ExtendedFields")
@@ -52,12 +52,11 @@ module Peddler
 
         # @return [String] The phone number of the buyer.
         #
-        # **Note**:
-        # 1. This attribute is only available for shipping address.
+        # **Note**: 1. This attribute is only available for shipping address.
         # 2. In some cases, the buyer phone number is suppressed:
         # a. Phone is suppressed for all `AFN` (fulfilled by Amazon) orders.
         # b. Phone is suppressed for the shipped `MFN` (fulfilled by seller) order when the current date is past the
-        # Latest Delivery Date.
+        #   Latest Delivery Date.
         attribute?(:phone, String, from: "Phone")
 
         # @return [String] The postal code.

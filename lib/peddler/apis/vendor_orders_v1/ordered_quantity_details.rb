@@ -17,7 +17,7 @@ module Peddler
         attribute?(:ordered_quantity, ItemQuantity, from: "orderedQuantity")
 
         # @return [Time] The date when the line item quantity was updated by buyer. Must be in ISO-8601 date/time
-        # format.
+        #   format.
         attribute?(:updated_date, Time, from: "updatedDate")
       end
     end

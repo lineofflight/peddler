@@ -20,7 +20,7 @@ module Peddler
         attribute(:status, String)
 
         # @return [Array<OrderIneligibilityReason>] If there are order level eligibility issues, then this list will
-        # contain those error codes and descriptions.
+        #   contain those error codes and descriptions.
         attribute?(:ineligibility_reasons, [OrderIneligibilityReason], from: "ineligibilityReasons")
       end
     end

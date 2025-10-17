@@ -10,7 +10,7 @@ module Peddler
     module ItemSalesEventChange
       ItemSalesEventChange = Structure.new do
         # @return [String] The merchant customer ID or vendor group ID of the partner account this notification is sent
-        # to.
+        #   to.
         attribute(:account_id, String, from: "accountId")
 
         # @return [String] The Amazon Standard Identification Number of the product.
@@ -29,7 +29,7 @@ module Peddler
         attribute(:ordered_revenue, Float, from: "orderedRevenue")
 
         # @return [Integer] The number of units ordered by Amazon customers in the specified time frame. This number can
-        # be negative if there are more cancellations than orders.
+        #   be negative if there are more cancellations than orders.
         attribute(:ordered_units, Integer, from: "orderedUnits")
 
         # @return [Time] The start of the date-time range of the sales data in ISO 8601 format in UTC time.

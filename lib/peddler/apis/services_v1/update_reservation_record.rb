@@ -14,7 +14,7 @@ module Peddler
         attribute?(:errors, [Error])
 
         # @return [Reservation] Reservation record if the operation failed. It will only contain the new `reservationId`
-        # if the operation is successful.
+        #   if the operation is successful.
         attribute?(:reservation, Reservation)
 
         # @return [Array<Warning>] Warnings encountered, if any.

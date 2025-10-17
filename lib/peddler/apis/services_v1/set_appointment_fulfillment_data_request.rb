@@ -14,7 +14,7 @@ module Peddler
         attribute?(:appointment_resources, [AppointmentResource], from: "appointmentResources")
 
         # @return [DateTimeRange] The range of time when the technician is expected to arrive at the fulfillment
-        # location.
+        #   location.
         attribute?(:estimated_arrival_time, DateTimeRange, from: "estimatedArrivalTime")
 
         # @return [Array<FulfillmentDocument>] Documents specific to appointment fulfillment.

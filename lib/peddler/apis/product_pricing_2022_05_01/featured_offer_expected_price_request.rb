@@ -19,7 +19,7 @@ module Peddler
         attribute(:sku, String)
 
         # @return [String] The URI associated with an individual request within a batch. For
-        # `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
+        #   `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
         attribute(:uri, String)
 
         # @return [Hash]

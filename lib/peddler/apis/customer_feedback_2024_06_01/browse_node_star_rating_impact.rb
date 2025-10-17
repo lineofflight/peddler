@@ -10,7 +10,7 @@ module Peddler
       # The effects of a topic on a browse node's star rating.
       BrowseNodeStarRatingImpact = Structure.new do
         # @return [Float] The effect of the topic on the star rating for all products in this browse node. This value
-        # can be positive or negative.
+        #   can be positive or negative.
         attribute(:all_products, Float, from: "allProducts")
       end
     end

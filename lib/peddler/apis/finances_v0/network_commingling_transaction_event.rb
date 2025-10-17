@@ -37,7 +37,7 @@ module Peddler
         # * NetCo - A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
         #
         # * ComminglingVAT - A commingling VAT transaction. Available only in the UK, Spain, France, Germany, and Italy
-        # marketplaces.
+        #   marketplaces.
         attribute?(:transaction_type, String, from: "TransactionType")
       end
     end

@@ -4,7 +4,6 @@ module Peddler
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SalesV1::Error
                     | (String?, String?, String?) -> Peddler::APIs::SalesV1::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SalesV1::Error
                    | (String?, String?, String?) -> Peddler::APIs::SalesV1::Error
 
@@ -15,8 +14,8 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
@@ -27,7 +26,6 @@ module Peddler
       class GetOrderMetricsResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::SalesV1::Error]?, ?payload: Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
                     | (Array[Peddler::APIs::SalesV1::Error]?, Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::SalesV1::Error]?, ?payload: Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
                    | (Array[Peddler::APIs::SalesV1::Error]?, Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?) -> Peddler::APIs::SalesV1::GetOrderMetricsResponse
 
@@ -37,15 +35,14 @@ module Peddler
 
         attr_reader errors: Array[Peddler::APIs::SalesV1::Error]?
         attr_reader payload: Array[Peddler::APIs::SalesV1::OrderMetricsInterval]?
-        def members: () -> [ :errors, :payload ]
 
+        def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::SalesV1::Error]?, payload: Array[Peddler::APIs::SalesV1::OrderMetricsInterval]? }
       end
 
       class OrderMetricsInterval < Data
         def self.new: (average_unit_price: Peddler::Money?, interval: String?, order_count: Integer?, order_item_count: Integer?, total_sales: Peddler::Money?, unit_count: Integer?) -> Peddler::APIs::SalesV1::OrderMetricsInterval
                     | (Peddler::Money?, String?, Integer?, Integer?, Peddler::Money?, Integer?) -> Peddler::APIs::SalesV1::OrderMetricsInterval
-
         def self.[]: (average_unit_price: Peddler::Money?, interval: String?, order_count: Integer?, order_item_count: Integer?, total_sales: Peddler::Money?, unit_count: Integer?) -> Peddler::APIs::SalesV1::OrderMetricsInterval
                    | (Peddler::Money?, String?, Integer?, Integer?, Peddler::Money?, Integer?) -> Peddler::APIs::SalesV1::OrderMetricsInterval
 
@@ -59,8 +56,8 @@ module Peddler
         attr_reader order_item_count: Integer?
         attr_reader total_sales: Peddler::Money?
         attr_reader unit_count: Integer?
-        def members: () -> [ :average_unit_price, :interval, :order_count, :order_item_count, :total_sales, :unit_count ]
 
+        def members: () -> [ :average_unit_price, :interval, :order_count, :order_item_count, :total_sales, :unit_count ]
         def to_h: () -> { average_unit_price: Peddler::Money?, interval: String?, order_count: Integer?, order_item_count: Integer?, total_sales: Peddler::Money?, unit_count: Integer? }
       end
 

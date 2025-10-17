@@ -32,7 +32,7 @@ module Peddler
         attribute?(:processing_start_time, Time, from: "processingStartTime")
 
         # @return [String] The identifier for the feed document. This identifier is unique only in combination with a
-        # seller ID.
+        #   seller ID.
         attribute?(:result_feed_document_id, String, from: "resultFeedDocumentId")
       end
     end

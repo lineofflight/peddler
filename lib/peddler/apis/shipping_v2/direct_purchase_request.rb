@@ -14,8 +14,8 @@ module Peddler
         attribute(:channel_details, ChannelDetails, from: "channelDetails")
 
         # @return [RequestedDocumentSpecification] The document (label) specifications requested. The default label
-        # returned is PNG DPI 203 4x6 if no label specification is provided. Requesting an invalid file format results
-        # in a failure.
+        #   returned is PNG DPI 203 4x6 if no label specification is provided. Requesting an invalid file format results
+        #   in a failure.
         attribute?(:label_specifications, RequestedDocumentSpecification, from: "labelSpecifications")
 
         # @return [Array<Package>]
@@ -28,7 +28,7 @@ module Peddler
         attribute?(:ship_from, Address, from: "shipFrom")
 
         # @return [Address] The address where the shipment will be delivered. For vendor orders, shipTo information is
-        # pulled directly from the Amazon order.
+        #   pulled directly from the Amazon order.
         attribute?(:ship_to, Address, from: "shipTo")
       end
     end

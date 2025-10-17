@@ -10,7 +10,7 @@ module Peddler
       # The address.
       Address = Structure.new do
         # @return [String] The postal code of the address. It contains a series of letters or digits or both, sometimes
-        # including spaces or punctuation.
+        #   including spaces or punctuation.
         attribute(:postal_code, String, from: "postalCode")
 
         # @return [String] The first line of the address.

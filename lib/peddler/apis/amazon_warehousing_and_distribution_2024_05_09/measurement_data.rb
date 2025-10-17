@@ -13,7 +13,7 @@ module Peddler
         attribute(:weight, PackageWeight)
 
         # @return [PackageDimensions] Dimensions of the package. Dimensions are required when creating an inbound or
-        # outbound order.
+        #   outbound order.
         attribute?(:dimensions, PackageDimensions)
 
         # @return [PackageVolume] Volume of the package.

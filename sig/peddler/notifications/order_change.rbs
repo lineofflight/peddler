@@ -4,7 +4,6 @@ module Peddler
       class Notification < Data
         def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::OrderChange::Payload?, payload_version: String?) -> Peddler::Notifications::OrderChange::Notification
                     | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::OrderChange::Payload?, String?) -> Peddler::Notifications::OrderChange::Notification
-
         def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::OrderChange::Payload?, payload_version: String?) -> Peddler::Notifications::OrderChange::Notification
                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::OrderChange::Payload?, String?) -> Peddler::Notifications::OrderChange::Notification
 
@@ -18,15 +17,14 @@ module Peddler
         attr_reader notification_version: String?
         attr_reader payload: Peddler::Notifications::OrderChange::Payload?
         attr_reader payload_version: String?
-        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
         def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::OrderChange::Payload?, payload_version: String? }
       end
 
       class OrderChangeNotification < Data
         def self.new: (amazon_order_id: String?, notification_level: String?, order_change_trigger: Peddler::Notifications::OrderChange::OrderChangeTrigger?, order_change_type: String?, seller_id: String?, summary: Peddler::Notifications::OrderChange::Summary?) -> Peddler::Notifications::OrderChange::OrderChangeNotification
                     | (String?, String?, Peddler::Notifications::OrderChange::OrderChangeTrigger?, String?, String?, Peddler::Notifications::OrderChange::Summary?) -> Peddler::Notifications::OrderChange::OrderChangeNotification
-
         def self.[]: (amazon_order_id: String?, notification_level: String?, order_change_trigger: Peddler::Notifications::OrderChange::OrderChangeTrigger?, order_change_type: String?, seller_id: String?, summary: Peddler::Notifications::OrderChange::Summary?) -> Peddler::Notifications::OrderChange::OrderChangeNotification
                    | (String?, String?, Peddler::Notifications::OrderChange::OrderChangeTrigger?, String?, String?, Peddler::Notifications::OrderChange::Summary?) -> Peddler::Notifications::OrderChange::OrderChangeNotification
 
@@ -40,15 +38,14 @@ module Peddler
         attr_reader order_change_type: String?
         attr_reader seller_id: String?
         attr_reader summary: Peddler::Notifications::OrderChange::Summary?
-        def members: () -> [ :amazon_order_id, :notification_level, :order_change_trigger, :order_change_type, :seller_id, :summary ]
 
+        def members: () -> [ :amazon_order_id, :notification_level, :order_change_trigger, :order_change_type, :seller_id, :summary ]
         def to_h: () -> { amazon_order_id: String?, notification_level: String?, order_change_trigger: Peddler::Notifications::OrderChange::OrderChangeTrigger?, order_change_type: String?, seller_id: String?, summary: Peddler::Notifications::OrderChange::Summary? }
       end
 
       class OrderChangeTrigger < Data
         def self.new: (change_reason: String?, time_of_order_change: String?) -> Peddler::Notifications::OrderChange::OrderChangeTrigger
                     | (String?, String?) -> Peddler::Notifications::OrderChange::OrderChangeTrigger
-
         def self.[]: (change_reason: String?, time_of_order_change: String?) -> Peddler::Notifications::OrderChange::OrderChangeTrigger
                    | (String?, String?) -> Peddler::Notifications::OrderChange::OrderChangeTrigger
 
@@ -58,15 +55,14 @@ module Peddler
 
         attr_reader change_reason: String?
         attr_reader time_of_order_change: String?
-        def members: () -> [ :change_reason, :time_of_order_change ]
 
+        def members: () -> [ :change_reason, :time_of_order_change ]
         def to_h: () -> { change_reason: String?, time_of_order_change: String? }
       end
 
       class OrderItem < Data
         def self.new: (order_item_id: String?, quantity: Integer?, seller_sku: String?, supply_source_id: String?, ?buyer_requested_cancel: bool?, ?item_earliest_delivery_date: String?, ?item_latest_delivery_date: String?, ?order_item_status: String?, ?quantity_shipped: Integer?) -> Peddler::Notifications::OrderChange::OrderItem
                     | (String?, Integer?, String?, String?, bool?, String?, String?, String?, Integer?) -> Peddler::Notifications::OrderChange::OrderItem
-
         def self.[]: (order_item_id: String?, quantity: Integer?, seller_sku: String?, supply_source_id: String?, ?buyer_requested_cancel: bool?, ?item_earliest_delivery_date: String?, ?item_latest_delivery_date: String?, ?order_item_status: String?, ?quantity_shipped: Integer?) -> Peddler::Notifications::OrderChange::OrderItem
                    | (String?, Integer?, String?, String?, bool?, String?, String?, String?, Integer?) -> Peddler::Notifications::OrderChange::OrderItem
 
@@ -86,14 +82,12 @@ module Peddler
 
         def buyer_requested_cancel?: () -> bool
         def members: () -> [ :order_item_id, :quantity, :seller_sku, :supply_source_id, :buyer_requested_cancel, :item_earliest_delivery_date, :item_latest_delivery_date, :order_item_status, :quantity_shipped ]
-
         def to_h: () -> { order_item_id: String?, quantity: Integer?, seller_sku: String?, supply_source_id: String?, buyer_requested_cancel: bool?, item_earliest_delivery_date: String?, item_latest_delivery_date: String?, order_item_status: String?, quantity_shipped: Integer? }
       end
 
       class Payload < Data
         def self.new: (order_change_notification: Peddler::Notifications::OrderChange::OrderChangeNotification?) -> Peddler::Notifications::OrderChange::Payload
                     | (Peddler::Notifications::OrderChange::OrderChangeNotification?) -> Peddler::Notifications::OrderChange::Payload
-
         def self.[]: (order_change_notification: Peddler::Notifications::OrderChange::OrderChangeNotification?) -> Peddler::Notifications::OrderChange::Payload
                    | (Peddler::Notifications::OrderChange::OrderChangeNotification?) -> Peddler::Notifications::OrderChange::Payload
 
@@ -102,15 +96,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::OrderChange::Payload
 
         attr_reader order_change_notification: Peddler::Notifications::OrderChange::OrderChangeNotification?
-        def members: () -> [ :order_change_notification ]
 
+        def members: () -> [ :order_change_notification ]
         def to_h: () -> { order_change_notification: Peddler::Notifications::OrderChange::OrderChangeNotification? }
       end
 
       class Summary < Data
         def self.new: (destination_postal_code: String?, fulfillment_type: String?, marketplace_id: String?, order_items: Array[Peddler::Notifications::OrderChange::OrderItem]?, order_status: String?, order_type: String?, purchase_date: String?, ?cancel_notify_date: String?, ?earliest_delivery_date: String?, ?earliest_ship_date: String?, ?easy_ship_shipment_status: String?, ?electronic_invoice_status: String?, ?latest_delivery_date: String?, ?latest_ship_date: String?, ?number_of_items_shipped: Integer?, ?number_of_items_unshipped: Integer?, ?order_programs: Array[String]?, ?shipping_programs: Array[String]?) -> Peddler::Notifications::OrderChange::Summary
                     | (String?, String?, String?, Array[Peddler::Notifications::OrderChange::OrderItem]?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Integer?, Integer?, Array[String]?, Array[String]?) -> Peddler::Notifications::OrderChange::Summary
-
         def self.[]: (destination_postal_code: String?, fulfillment_type: String?, marketplace_id: String?, order_items: Array[Peddler::Notifications::OrderChange::OrderItem]?, order_status: String?, order_type: String?, purchase_date: String?, ?cancel_notify_date: String?, ?earliest_delivery_date: String?, ?earliest_ship_date: String?, ?easy_ship_shipment_status: String?, ?electronic_invoice_status: String?, ?latest_delivery_date: String?, ?latest_ship_date: String?, ?number_of_items_shipped: Integer?, ?number_of_items_unshipped: Integer?, ?order_programs: Array[String]?, ?shipping_programs: Array[String]?) -> Peddler::Notifications::OrderChange::Summary
                    | (String?, String?, String?, Array[Peddler::Notifications::OrderChange::OrderItem]?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Integer?, Integer?, Array[String]?, Array[String]?) -> Peddler::Notifications::OrderChange::Summary
 
@@ -136,8 +129,8 @@ module Peddler
         attr_reader order_type: String?
         attr_reader purchase_date: String?
         attr_reader shipping_programs: Array[String]?
-        def members: () -> [ :destination_postal_code, :fulfillment_type, :marketplace_id, :order_items, :order_status, :order_type, :purchase_date, :cancel_notify_date, :earliest_delivery_date, :earliest_ship_date, :easy_ship_shipment_status, :electronic_invoice_status, :latest_delivery_date, :latest_ship_date, :number_of_items_shipped, :number_of_items_unshipped, :order_programs, :shipping_programs ]
 
+        def members: () -> [ :destination_postal_code, :fulfillment_type, :marketplace_id, :order_items, :order_status, :order_type, :purchase_date, :cancel_notify_date, :earliest_delivery_date, :earliest_ship_date, :easy_ship_shipment_status, :electronic_invoice_status, :latest_delivery_date, :latest_ship_date, :number_of_items_shipped, :number_of_items_unshipped, :order_programs, :shipping_programs ]
         def to_h: () -> { destination_postal_code: String?, fulfillment_type: String?, marketplace_id: String?, order_items: Array[Peddler::Notifications::OrderChange::OrderItem]?, order_status: String?, order_type: String?, purchase_date: String?, cancel_notify_date: String?, earliest_delivery_date: String?, earliest_ship_date: String?, easy_ship_shipment_status: String?, electronic_invoice_status: String?, latest_delivery_date: String?, latest_ship_date: String?, number_of_items_shipped: Integer?, number_of_items_unshipped: Integer?, order_programs: Array[String]?, shipping_programs: Array[String]? }
       end
 

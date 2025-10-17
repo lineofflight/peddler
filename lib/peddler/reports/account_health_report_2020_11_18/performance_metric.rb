@@ -11,7 +11,7 @@ module Peddler
       # Report data for the program.
       PerformanceMetric = Structure.new do
         # @return [AccountHealthRating] Seller's account health rating within a given reporting date range for 1
-        # requested marketplace.
+        #   requested marketplace.
         attribute(:account_health_rating, AccountHealthRating, from: "accountHealthRating")
 
         # @return [ListingLevelViolation]
@@ -21,11 +21,11 @@ module Peddler
         attribute(:food_and_product_safety_issues, ListingLevelViolation, from: "foodAndProductSafetyIssues")
 
         # @return [InvoiceDefectRate] Seller's invoice defect rate within a given reporting date range for 1 requested
-        # marketplace.
+        #   marketplace.
         attribute(:invoice_defect_rate, InvoiceDefectRate, from: "invoiceDefectRate")
 
         # @return [LateShipmentRate] Seller's late shipment rate within a given reporting date range for 1 requested
-        # marketplace.
+        #   marketplace.
         attribute(:late_shipment_rate, LateShipmentRate, from: "lateShipmentRate")
 
         # @return [ListingLevelViolation]
@@ -35,18 +35,18 @@ module Peddler
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [OnTimeDeliveryRate] Seller's on-time delivery rate within a given reporting date range for 1
-        # requested marketplace.
+        #   requested marketplace.
         attribute(:on_time_delivery_rate, OnTimeDeliveryRate, from: "onTimeDeliveryRate")
 
         # @return [OrderDefectRate] Seller's MFN/AFN order defect rate within a given reporting date range for 1
-        # requested marketplace.
+        #   requested marketplace.
         attribute(:order_defect_rate, OrderDefectRate, from: "orderDefectRate")
 
         # @return [ListingLevelViolation]
         attribute(:other_policy_violations, ListingLevelViolation, from: "otherPolicyViolations")
 
         # @return [PreFulfillmentCancellationRate] Seller's pre-fulfillment cancellation rate within a given reporting
-        # date range for 1 requested marketplace.
+        #   date range for 1 requested marketplace.
         attribute(:pre_fulfillment_cancellation_rate, PreFulfillmentCancellationRate, from: "preFulfillmentCancellationRate")
 
         # @return [ListingLevelViolation]
@@ -68,11 +68,11 @@ module Peddler
         attribute(:suspected_intellectual_property_violations, ListingLevelViolation, from: "suspectedIntellectualPropertyViolations")
 
         # @return [UnitOnTimeDeliveryRate] The seller's on-time delivery rate at a unit level within a reporting date
-        # range for one marketplace that you specify. This metric is only available in the US marketplace.
+        #   range for one marketplace that you specify. This metric is only available in the US marketplace.
         attribute(:unit_on_time_delivery_rate, UnitOnTimeDeliveryRate, from: "unitOnTimeDeliveryRate")
 
         # @return [ValidTrackingRate] Seller's valid tracking rate within a given reporting date range for 1 requested
-        # marketplace.
+        #   marketplace.
         attribute(:valid_tracking_rate, ValidTrackingRate, from: "validTrackingRate")
 
         # @return [Array<WarningState>] A list of seller warning states for 1 requested marketplace.

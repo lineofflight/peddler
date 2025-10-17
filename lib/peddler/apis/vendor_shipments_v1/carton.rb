@@ -10,7 +10,7 @@ module Peddler
       # Details of the carton/package being shipped.
       Carton = Structure.new do
         # @return [String] Carton sequence number for the carton. The first carton will be 001, the second 002, and so
-        # on. This number is used as a reference to refer to this carton from the pallet level.
+        #   on. This number is used as a reference to refer to this carton from the pallet level.
         attribute(:carton_sequence_number, String, from: "cartonSequenceNumber")
 
         # @return [Array<ContainerItem>] A list of container item details.

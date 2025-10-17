@@ -16,14 +16,14 @@ module Peddler
         attribute(:fulfillment_center_id, String, from: "fulfillmentCenterId")
 
         # @return [String] An identifier for the return authorization. This identifier associates return items with the
-        # return authorization used to return them.
+        #   return authorization used to return them.
         attribute(:return_authorization_id, String, from: "returnAuthorizationId")
 
         # @return [Address] The address of the Amazon fulfillment center that the return items should be sent to.
         attribute(:return_to_address, Address, from: "returnToAddress")
 
         # @return [String] A URL for a web page that contains the return authorization barcode and the mailing label.
-        # This does not include pre-paid shipping.
+        #   This does not include pre-paid shipping.
         attribute(:rma_page_url, String, from: "rmaPageURL")
       end
     end

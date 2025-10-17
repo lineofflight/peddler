@@ -18,7 +18,7 @@ module Peddler
         attribute(:start_date_time, Time, from: "startDateTime")
 
         # @return [Array<CapacityType>] An array of capacity types which are being requested. Default value is
-        # `[SCHEDULED_CAPACITY]`.
+        #   `[SCHEDULED_CAPACITY]`.
         attribute?(:capacity_types, Array, from: "capacityTypes")
       end
     end

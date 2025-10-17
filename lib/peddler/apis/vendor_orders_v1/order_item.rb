@@ -14,7 +14,7 @@ module Peddler
         attribute(:back_order_allowed, :boolean, from: "isBackOrderAllowed")
 
         # @return [String] Numbering of the item on the purchase order. The first item will be 1, the second 2, and so
-        # on.
+        #   on.
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [ItemQuantity] Item quantity ordered.

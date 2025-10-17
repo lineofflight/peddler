@@ -16,7 +16,7 @@ module Peddler
         attribute(:product_name, String, from: "productName")
 
         # @return [Float] The total revenue generated at the ASIN level. For sellers, this is equivalent to "sales" in
-        # the Seller Central UI.
+        #   the Seller Central UI.
         attribute(:product_revenue, Float, from: "productRevenue")
 
         # @return [String] ISO 4217 currency code of productRevenue.

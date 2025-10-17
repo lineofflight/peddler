@@ -22,7 +22,7 @@ module Peddler
         attribute?(:account_id, String, from: "accountId")
 
         # @return [String] The two digit country code, in ISO 3166 format. This field is OPTIONAL for
-        # transactionSourceAccount object but is MANDATORY field for transactionDestinationAccount
+        #   transactionSourceAccount object but is MANDATORY field for transactionDestinationAccount
         attribute?(:bank_account_country_code, String, from: "bankAccountCountryCode")
 
         # @return [String] BankAccount holder's name

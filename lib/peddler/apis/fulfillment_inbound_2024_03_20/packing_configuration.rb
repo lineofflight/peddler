@@ -17,7 +17,7 @@ module Peddler
         attribute?(:box_requirements, BoxRequirements, from: "boxRequirements")
 
         # @return [Array<ShippingRequirements>] A list of supported shipping requirements for this packing
-        # configuration.
+        #   configuration.
         attribute?(:shipping_requirements, [ShippingRequirements], from: "shippingRequirements")
       end
     end

@@ -13,7 +13,7 @@ module Peddler
         attribute(:status, String)
 
         # @return [String] The unique identifier returned in the 'transactionId' field in response to the post request
-        # of a specific transaction.
+        #   of a specific transaction.
         attribute(:transaction_id, String, from: "transactionId")
 
         # @return [Array<Error>]

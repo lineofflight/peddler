@@ -10,7 +10,7 @@ module Peddler
       # The seller owning the goods before handing them over to the carrier
       GoodsOwner = Structure.new do
         # @return [String] The Amazon Merchant Identifier (merchantId) of the seller owning the goods before handing
-        # them over to the carrier
+        #   them over to the carrier
         attribute(:merchant_id, String, from: "merchantId")
       end
     end

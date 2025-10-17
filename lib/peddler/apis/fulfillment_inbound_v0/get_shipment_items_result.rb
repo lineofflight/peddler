@@ -13,7 +13,7 @@ module Peddler
         attribute?(:item_data, [InboundShipmentItem], from: "ItemData")
 
         # @return [String] When present and not empty, pass this string token in the next request to return the next
-        # response page.
+        #   response page.
         attribute?(:next_token, String, from: "NextToken")
       end
     end

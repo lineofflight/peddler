@@ -14,7 +14,7 @@ module Peddler
         attribute?(:schedule_end_date, Time, from: "scheduleEndDate")
 
         # @return [ScheduleExpression] Field to specify expression for how often the schedule transfer repeats. Refer to
-        # this documentation: https://docs.aws.amazon.com/scheduler/latest/APIReference/API_CreateSchedule.html
+        #   this documentation: https://docs.aws.amazon.com/scheduler/latest/APIReference/API_CreateSchedule.html
         attribute?(:schedule_expression, ScheduleExpression, from: "scheduleExpression")
 
         # @return [Time] Field to specify start date of the scheduled transfer

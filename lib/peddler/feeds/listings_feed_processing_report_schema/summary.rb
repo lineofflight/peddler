@@ -27,7 +27,7 @@ module Peddler
         attribute(:warnings, Integer)
 
         # @return [ItemSummary] Aggregate counts of items, errors, and warnings related to the listing items created or
-        # updated by this feed submission and included in the Items section of this report.
+        #   updated by this feed submission and included in the Items section of this report.
         attribute?(:item_summary, ItemSummary, from: "itemSummary")
       end
     end

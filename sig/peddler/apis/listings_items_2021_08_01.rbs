@@ -4,7 +4,6 @@ module Peddler
       class Audience < Data
         def self.new: (?display_name: String?, ?value: String?) -> Peddler::APIs::ListingsItems20210801::Audience
                     | (String?, String?) -> Peddler::APIs::ListingsItems20210801::Audience
-
         def self.[]: (?display_name: String?, ?value: String?) -> Peddler::APIs::ListingsItems20210801::Audience
                    | (String?, String?) -> Peddler::APIs::ListingsItems20210801::Audience
 
@@ -14,15 +13,14 @@ module Peddler
 
         attr_reader display_name: String?
         attr_reader value: String?
-        def members: () -> [ :display_name, :value ]
 
+        def members: () -> [ :display_name, :value ]
         def to_h: () -> { display_name: String?, value: String? }
       end
 
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ListingsItems20210801::Error
                     | (String?, String?, String?) -> Peddler::APIs::ListingsItems20210801::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ListingsItems20210801::Error
                    | (String?, String?, String?) -> Peddler::APIs::ListingsItems20210801::Error
 
@@ -33,15 +31,14 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
       class ErrorList < Data
         def self.new: (errors: Array[Peddler::APIs::ListingsItems20210801::Error]?) -> Peddler::APIs::ListingsItems20210801::ErrorList
                     | (Array[Peddler::APIs::ListingsItems20210801::Error]?) -> Peddler::APIs::ListingsItems20210801::ErrorList
-
         def self.[]: (errors: Array[Peddler::APIs::ListingsItems20210801::Error]?) -> Peddler::APIs::ListingsItems20210801::ErrorList
                    | (Array[Peddler::APIs::ListingsItems20210801::Error]?) -> Peddler::APIs::ListingsItems20210801::ErrorList
 
@@ -50,15 +47,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20210801::ErrorList
 
         attr_reader errors: Array[Peddler::APIs::ListingsItems20210801::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::ListingsItems20210801::Error]? }
       end
 
       class FulfillmentAvailability < Data
         def self.new: (fulfillment_channel_code: String?, ?quantity: Integer?) -> Peddler::APIs::ListingsItems20210801::FulfillmentAvailability
                     | (String?, Integer?) -> Peddler::APIs::ListingsItems20210801::FulfillmentAvailability
-
         def self.[]: (fulfillment_channel_code: String?, ?quantity: Integer?) -> Peddler::APIs::ListingsItems20210801::FulfillmentAvailability
                    | (String?, Integer?) -> Peddler::APIs::ListingsItems20210801::FulfillmentAvailability
 
@@ -68,15 +64,14 @@ module Peddler
 
         attr_reader fulfillment_channel_code: String?
         attr_reader quantity: Integer?
-        def members: () -> [ :fulfillment_channel_code, :quantity ]
 
+        def members: () -> [ :fulfillment_channel_code, :quantity ]
         def to_h: () -> { fulfillment_channel_code: String?, quantity: Integer? }
       end
 
       class Issue < Data
         def self.new: (categories: Array[String]?, code: String?, message: String?, severity: String?, ?attribute_names: Array[String]?, ?enforcements: Peddler::APIs::ListingsItems20210801::IssueEnforcements?) -> Peddler::APIs::ListingsItems20210801::Issue
                     | (Array[String]?, String?, String?, String?, Array[String]?, Peddler::APIs::ListingsItems20210801::IssueEnforcements?) -> Peddler::APIs::ListingsItems20210801::Issue
-
         def self.[]: (categories: Array[String]?, code: String?, message: String?, severity: String?, ?attribute_names: Array[String]?, ?enforcements: Peddler::APIs::ListingsItems20210801::IssueEnforcements?) -> Peddler::APIs::ListingsItems20210801::Issue
                    | (Array[String]?, String?, String?, String?, Array[String]?, Peddler::APIs::ListingsItems20210801::IssueEnforcements?) -> Peddler::APIs::ListingsItems20210801::Issue
 
@@ -90,15 +85,14 @@ module Peddler
         attr_reader enforcements: Peddler::APIs::ListingsItems20210801::IssueEnforcements?
         attr_reader message: String?
         attr_reader severity: String?
-        def members: () -> [ :categories, :code, :message, :severity, :attribute_names, :enforcements ]
 
+        def members: () -> [ :categories, :code, :message, :severity, :attribute_names, :enforcements ]
         def to_h: () -> { categories: Array[String]?, code: String?, message: String?, severity: String?, attribute_names: Array[String]?, enforcements: Peddler::APIs::ListingsItems20210801::IssueEnforcements? }
       end
 
       class IssueEnforcementAction < Data
         def self.new: (action: String?) -> Peddler::APIs::ListingsItems20210801::IssueEnforcementAction
                     | (String?) -> Peddler::APIs::ListingsItems20210801::IssueEnforcementAction
-
         def self.[]: (action: String?) -> Peddler::APIs::ListingsItems20210801::IssueEnforcementAction
                    | (String?) -> Peddler::APIs::ListingsItems20210801::IssueEnforcementAction
 
@@ -107,15 +101,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20210801::IssueEnforcementAction
 
         attr_reader action: String?
-        def members: () -> [ :action ]
 
+        def members: () -> [ :action ]
         def to_h: () -> { action: String? }
       end
 
       class IssueEnforcements < Data
         def self.new: (actions: Array[Peddler::APIs::ListingsItems20210801::IssueEnforcementAction]?, exemption: Peddler::APIs::ListingsItems20210801::IssueExemption?) -> Peddler::APIs::ListingsItems20210801::IssueEnforcements
                     | (Array[Peddler::APIs::ListingsItems20210801::IssueEnforcementAction]?, Peddler::APIs::ListingsItems20210801::IssueExemption?) -> Peddler::APIs::ListingsItems20210801::IssueEnforcements
-
         def self.[]: (actions: Array[Peddler::APIs::ListingsItems20210801::IssueEnforcementAction]?, exemption: Peddler::APIs::ListingsItems20210801::IssueExemption?) -> Peddler::APIs::ListingsItems20210801::IssueEnforcements
                    | (Array[Peddler::APIs::ListingsItems20210801::IssueEnforcementAction]?, Peddler::APIs::ListingsItems20210801::IssueExemption?) -> Peddler::APIs::ListingsItems20210801::IssueEnforcements
 
@@ -125,15 +118,14 @@ module Peddler
 
         attr_reader actions: Array[Peddler::APIs::ListingsItems20210801::IssueEnforcementAction]?
         attr_reader exemption: Peddler::APIs::ListingsItems20210801::IssueExemption?
-        def members: () -> [ :actions, :exemption ]
 
+        def members: () -> [ :actions, :exemption ]
         def to_h: () -> { actions: Array[Peddler::APIs::ListingsItems20210801::IssueEnforcementAction]?, exemption: Peddler::APIs::ListingsItems20210801::IssueExemption? }
       end
 
       class IssueExemption < Data
         def self.new: (status: String?, ?expiry_date: Time?) -> Peddler::APIs::ListingsItems20210801::IssueExemption
                     | (String?, Time?) -> Peddler::APIs::ListingsItems20210801::IssueExemption
-
         def self.[]: (status: String?, ?expiry_date: Time?) -> Peddler::APIs::ListingsItems20210801::IssueExemption
                    | (String?, Time?) -> Peddler::APIs::ListingsItems20210801::IssueExemption
 
@@ -143,15 +135,14 @@ module Peddler
 
         attr_reader expiry_date: Time?
         attr_reader status: String?
-        def members: () -> [ :status, :expiry_date ]
 
+        def members: () -> [ :status, :expiry_date ]
         def to_h: () -> { status: String?, expiry_date: Time? }
       end
 
       class Item < Data
         def self.new: (sku: String?, ?attributes: Hash[untyped, untyped]?, ?fulfillment_availability: Array[Peddler::APIs::ListingsItems20210801::FulfillmentAvailability]?, ?issues: Array[Peddler::APIs::ListingsItems20210801::Issue]?, ?offers: Array[Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace]?, ?procurement: Array[Peddler::APIs::ListingsItems20210801::ItemProcurement]?, ?product_types: Array[Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace]?, ?relationships: Array[Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace]?, ?summaries: Array[Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace]?) -> Peddler::APIs::ListingsItems20210801::Item
                     | (String?, Hash[untyped, untyped]?, Array[Peddler::APIs::ListingsItems20210801::FulfillmentAvailability]?, Array[Peddler::APIs::ListingsItems20210801::Issue]?, Array[Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace]?, Array[Peddler::APIs::ListingsItems20210801::ItemProcurement]?, Array[Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace]?, Array[Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace]?, Array[Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace]?) -> Peddler::APIs::ListingsItems20210801::Item
-
         def self.[]: (sku: String?, ?attributes: Hash[untyped, untyped]?, ?fulfillment_availability: Array[Peddler::APIs::ListingsItems20210801::FulfillmentAvailability]?, ?issues: Array[Peddler::APIs::ListingsItems20210801::Issue]?, ?offers: Array[Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace]?, ?procurement: Array[Peddler::APIs::ListingsItems20210801::ItemProcurement]?, ?product_types: Array[Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace]?, ?relationships: Array[Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace]?, ?summaries: Array[Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace]?) -> Peddler::APIs::ListingsItems20210801::Item
                    | (String?, Hash[untyped, untyped]?, Array[Peddler::APIs::ListingsItems20210801::FulfillmentAvailability]?, Array[Peddler::APIs::ListingsItems20210801::Issue]?, Array[Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace]?, Array[Peddler::APIs::ListingsItems20210801::ItemProcurement]?, Array[Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace]?, Array[Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace]?, Array[Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace]?) -> Peddler::APIs::ListingsItems20210801::Item
 
@@ -168,8 +159,8 @@ module Peddler
         attr_reader relationships: Array[Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace]?
         attr_reader sku: String?
         attr_reader summaries: Array[Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace]?
-        def members: () -> [ :sku, :attributes, :fulfillment_availability, :issues, :offers, :procurement, :product_types, :relationships, :summaries ]
 
+        def members: () -> [ :sku, :attributes, :fulfillment_availability, :issues, :offers, :procurement, :product_types, :relationships, :summaries ]
         def to_h: () -> { sku: String?, attributes: Hash[untyped, untyped]?, fulfillment_availability: Array[Peddler::APIs::ListingsItems20210801::FulfillmentAvailability]?, issues: Array[Peddler::APIs::ListingsItems20210801::Issue]?, offers: Array[Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace]?, procurement: Array[Peddler::APIs::ListingsItems20210801::ItemProcurement]?, product_types: Array[Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace]?, relationships: Array[Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace]?, summaries: Array[Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace]? }
       end
 
@@ -180,7 +171,6 @@ module Peddler
       class ItemIdentifiersByMarketplace < Data
         def self.new: (?asin: String?, ?marketplace_id: String?) -> Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace
                     | (String?, String?) -> Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace
-
         def self.[]: (?asin: String?, ?marketplace_id: String?) -> Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace
                    | (String?, String?) -> Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace
 
@@ -190,15 +180,14 @@ module Peddler
 
         attr_reader asin: String?
         attr_reader marketplace_id: String?
-        def members: () -> [ :asin, :marketplace_id ]
 
+        def members: () -> [ :asin, :marketplace_id ]
         def to_h: () -> { asin: String?, marketplace_id: String? }
       end
 
       class ItemImage < Data
         def self.new: (height: Integer?, link: String?, width: Integer?) -> Peddler::APIs::ListingsItems20210801::ItemImage
                     | (Integer?, String?, Integer?) -> Peddler::APIs::ListingsItems20210801::ItemImage
-
         def self.[]: (height: Integer?, link: String?, width: Integer?) -> Peddler::APIs::ListingsItems20210801::ItemImage
                    | (Integer?, String?, Integer?) -> Peddler::APIs::ListingsItems20210801::ItemImage
 
@@ -209,8 +198,8 @@ module Peddler
         attr_reader height: Integer?
         attr_reader link: String?
         attr_reader width: Integer?
-        def members: () -> [ :height, :link, :width ]
 
+        def members: () -> [ :height, :link, :width ]
         def to_h: () -> { height: Integer?, link: String?, width: Integer? }
       end
 
@@ -221,7 +210,6 @@ module Peddler
       class ItemOfferByMarketplace < Data
         def self.new: (marketplace_id: String?, offer_type: String?, price: Peddler::Money?, ?audience: Peddler::APIs::ListingsItems20210801::Audience?, ?points: Peddler::APIs::ListingsItems20210801::Points?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
                     | (String?, String?, Peddler::Money?, Peddler::APIs::ListingsItems20210801::Audience?, Peddler::APIs::ListingsItems20210801::Points?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
-
         def self.[]: (marketplace_id: String?, offer_type: String?, price: Peddler::Money?, ?audience: Peddler::APIs::ListingsItems20210801::Audience?, ?points: Peddler::APIs::ListingsItems20210801::Points?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
                    | (String?, String?, Peddler::Money?, Peddler::APIs::ListingsItems20210801::Audience?, Peddler::APIs::ListingsItems20210801::Points?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
 
@@ -234,8 +222,8 @@ module Peddler
         attr_reader offer_type: String?
         attr_reader points: Peddler::APIs::ListingsItems20210801::Points?
         attr_reader price: Peddler::Money?
-        def members: () -> [ :marketplace_id, :offer_type, :price, :audience, :points ]
 
+        def members: () -> [ :marketplace_id, :offer_type, :price, :audience, :points ]
         def to_h: () -> { marketplace_id: String?, offer_type: String?, price: Peddler::Money?, audience: Peddler::APIs::ListingsItems20210801::Audience?, points: Peddler::APIs::ListingsItems20210801::Points? }
       end
 
@@ -246,7 +234,6 @@ module Peddler
       class ItemProcurement < Data
         def self.new: (cost_price: Peddler::Money?) -> Peddler::APIs::ListingsItems20210801::ItemProcurement
                     | (Peddler::Money?) -> Peddler::APIs::ListingsItems20210801::ItemProcurement
-
         def self.[]: (cost_price: Peddler::Money?) -> Peddler::APIs::ListingsItems20210801::ItemProcurement
                    | (Peddler::Money?) -> Peddler::APIs::ListingsItems20210801::ItemProcurement
 
@@ -255,15 +242,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20210801::ItemProcurement
 
         attr_reader cost_price: Peddler::Money?
-        def members: () -> [ :cost_price ]
 
+        def members: () -> [ :cost_price ]
         def to_h: () -> { cost_price: Peddler::Money? }
       end
 
       class ItemProductTypeByMarketplace < Data
         def self.new: (marketplace_id: String?, product_type: String?) -> Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace
                     | (String?, String?) -> Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace
-
         def self.[]: (marketplace_id: String?, product_type: String?) -> Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace
                    | (String?, String?) -> Peddler::APIs::ListingsItems20210801::ItemProductTypeByMarketplace
 
@@ -273,8 +259,8 @@ module Peddler
 
         attr_reader marketplace_id: String?
         attr_reader product_type: String?
-        def members: () -> [ :marketplace_id, :product_type ]
 
+        def members: () -> [ :marketplace_id, :product_type ]
         def to_h: () -> { marketplace_id: String?, product_type: String? }
       end
 
@@ -285,7 +271,6 @@ module Peddler
       class ItemRelationship < Data
         def self.new: (type: String?, ?child_skus: Array[String]?, ?parent_skus: Array[String]?, ?variation_theme: Peddler::APIs::ListingsItems20210801::ItemVariationTheme?) -> Peddler::APIs::ListingsItems20210801::ItemRelationship
                     | (String?, Array[String]?, Array[String]?, Peddler::APIs::ListingsItems20210801::ItemVariationTheme?) -> Peddler::APIs::ListingsItems20210801::ItemRelationship
-
         def self.[]: (type: String?, ?child_skus: Array[String]?, ?parent_skus: Array[String]?, ?variation_theme: Peddler::APIs::ListingsItems20210801::ItemVariationTheme?) -> Peddler::APIs::ListingsItems20210801::ItemRelationship
                    | (String?, Array[String]?, Array[String]?, Peddler::APIs::ListingsItems20210801::ItemVariationTheme?) -> Peddler::APIs::ListingsItems20210801::ItemRelationship
 
@@ -297,8 +282,8 @@ module Peddler
         attr_reader parent_skus: Array[String]?
         attr_reader type: String?
         attr_reader variation_theme: Peddler::APIs::ListingsItems20210801::ItemVariationTheme?
-        def members: () -> [ :type, :child_skus, :parent_skus, :variation_theme ]
 
+        def members: () -> [ :type, :child_skus, :parent_skus, :variation_theme ]
         def to_h: () -> { type: String?, child_skus: Array[String]?, parent_skus: Array[String]?, variation_theme: Peddler::APIs::ListingsItems20210801::ItemVariationTheme? }
       end
 
@@ -309,7 +294,6 @@ module Peddler
       class ItemRelationshipsByMarketplace < Data
         def self.new: (marketplace_id: String?, relationships: Array[Peddler::APIs::ListingsItems20210801::ItemRelationship]?) -> Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace
                     | (String?, Array[Peddler::APIs::ListingsItems20210801::ItemRelationship]?) -> Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace
-
         def self.[]: (marketplace_id: String?, relationships: Array[Peddler::APIs::ListingsItems20210801::ItemRelationship]?) -> Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace
                    | (String?, Array[Peddler::APIs::ListingsItems20210801::ItemRelationship]?) -> Peddler::APIs::ListingsItems20210801::ItemRelationshipsByMarketplace
 
@@ -319,15 +303,14 @@ module Peddler
 
         attr_reader marketplace_id: String?
         attr_reader relationships: Array[Peddler::APIs::ListingsItems20210801::ItemRelationship]?
-        def members: () -> [ :marketplace_id, :relationships ]
 
+        def members: () -> [ :marketplace_id, :relationships ]
         def to_h: () -> { marketplace_id: String?, relationships: Array[Peddler::APIs::ListingsItems20210801::ItemRelationship]? }
       end
 
       class ItemSearchResults < Data
         def self.new: (items: Array[Peddler::APIs::ListingsItems20210801::Item]?, number_of_results: Integer?, ?pagination: Peddler::APIs::ListingsItems20210801::Pagination?) -> Peddler::APIs::ListingsItems20210801::ItemSearchResults
                     | (Array[Peddler::APIs::ListingsItems20210801::Item]?, Integer?, Peddler::APIs::ListingsItems20210801::Pagination?) -> Peddler::APIs::ListingsItems20210801::ItemSearchResults
-
         def self.[]: (items: Array[Peddler::APIs::ListingsItems20210801::Item]?, number_of_results: Integer?, ?pagination: Peddler::APIs::ListingsItems20210801::Pagination?) -> Peddler::APIs::ListingsItems20210801::ItemSearchResults
                    | (Array[Peddler::APIs::ListingsItems20210801::Item]?, Integer?, Peddler::APIs::ListingsItems20210801::Pagination?) -> Peddler::APIs::ListingsItems20210801::ItemSearchResults
 
@@ -338,8 +321,8 @@ module Peddler
         attr_reader items: Array[Peddler::APIs::ListingsItems20210801::Item]?
         attr_reader number_of_results: Integer?
         attr_reader pagination: Peddler::APIs::ListingsItems20210801::Pagination?
-        def members: () -> [ :items, :number_of_results, :pagination ]
 
+        def members: () -> [ :items, :number_of_results, :pagination ]
         def to_h: () -> { items: Array[Peddler::APIs::ListingsItems20210801::Item]?, number_of_results: Integer?, pagination: Peddler::APIs::ListingsItems20210801::Pagination? }
       end
 
@@ -350,7 +333,6 @@ module Peddler
       class ItemSummaryByMarketplace < Data
         def self.new: (created_date: Time?, last_updated_date: Time?, marketplace_id: String?, product_type: String?, status: Array[String]?, ?asin: String?, ?condition_type: String?, ?fn_sku: String?, ?item_name: String?, ?main_image: Peddler::APIs::ListingsItems20210801::ItemImage?) -> Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace
                     | (Time?, Time?, String?, String?, Array[String]?, String?, String?, String?, String?, Peddler::APIs::ListingsItems20210801::ItemImage?) -> Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace
-
         def self.[]: (created_date: Time?, last_updated_date: Time?, marketplace_id: String?, product_type: String?, status: Array[String]?, ?asin: String?, ?condition_type: String?, ?fn_sku: String?, ?item_name: String?, ?main_image: Peddler::APIs::ListingsItems20210801::ItemImage?) -> Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace
                    | (Time?, Time?, String?, String?, Array[String]?, String?, String?, String?, String?, Peddler::APIs::ListingsItems20210801::ItemImage?) -> Peddler::APIs::ListingsItems20210801::ItemSummaryByMarketplace
 
@@ -368,15 +350,14 @@ module Peddler
         attr_reader marketplace_id: String?
         attr_reader product_type: String?
         attr_reader status: Array[String]?
-        def members: () -> [ :created_date, :last_updated_date, :marketplace_id, :product_type, :status, :asin, :condition_type, :fn_sku, :item_name, :main_image ]
 
+        def members: () -> [ :created_date, :last_updated_date, :marketplace_id, :product_type, :status, :asin, :condition_type, :fn_sku, :item_name, :main_image ]
         def to_h: () -> { created_date: Time?, last_updated_date: Time?, marketplace_id: String?, product_type: String?, status: Array[String]?, asin: String?, condition_type: String?, fn_sku: String?, item_name: String?, main_image: Peddler::APIs::ListingsItems20210801::ItemImage? }
       end
 
       class ItemVariationTheme < Data
         def self.new: (attributes: Array[String]?, theme: String?) -> Peddler::APIs::ListingsItems20210801::ItemVariationTheme
                     | (Array[String]?, String?) -> Peddler::APIs::ListingsItems20210801::ItemVariationTheme
-
         def self.[]: (attributes: Array[String]?, theme: String?) -> Peddler::APIs::ListingsItems20210801::ItemVariationTheme
                    | (Array[String]?, String?) -> Peddler::APIs::ListingsItems20210801::ItemVariationTheme
 
@@ -386,15 +367,14 @@ module Peddler
 
         attr_reader attributes: Array[String]?
         attr_reader theme: String?
-        def members: () -> [ :attributes, :theme ]
 
+        def members: () -> [ :attributes, :theme ]
         def to_h: () -> { attributes: Array[String]?, theme: String? }
       end
 
       class ListingsItemPatchRequest < Data
         def self.new: (patches: Array[Peddler::APIs::ListingsItems20210801::PatchOperation]?, product_type: String?) -> Peddler::APIs::ListingsItems20210801::ListingsItemPatchRequest
                     | (Array[Peddler::APIs::ListingsItems20210801::PatchOperation]?, String?) -> Peddler::APIs::ListingsItems20210801::ListingsItemPatchRequest
-
         def self.[]: (patches: Array[Peddler::APIs::ListingsItems20210801::PatchOperation]?, product_type: String?) -> Peddler::APIs::ListingsItems20210801::ListingsItemPatchRequest
                    | (Array[Peddler::APIs::ListingsItems20210801::PatchOperation]?, String?) -> Peddler::APIs::ListingsItems20210801::ListingsItemPatchRequest
 
@@ -404,15 +384,14 @@ module Peddler
 
         attr_reader patches: Array[Peddler::APIs::ListingsItems20210801::PatchOperation]?
         attr_reader product_type: String?
-        def members: () -> [ :patches, :product_type ]
 
+        def members: () -> [ :patches, :product_type ]
         def to_h: () -> { patches: Array[Peddler::APIs::ListingsItems20210801::PatchOperation]?, product_type: String? }
       end
 
       class ListingsItemPutRequest < Data
         def self.new: (attributes: Hash[untyped, untyped]?, product_type: String?, ?requirements: String?) -> Peddler::APIs::ListingsItems20210801::ListingsItemPutRequest
                     | (Hash[untyped, untyped]?, String?, String?) -> Peddler::APIs::ListingsItems20210801::ListingsItemPutRequest
-
         def self.[]: (attributes: Hash[untyped, untyped]?, product_type: String?, ?requirements: String?) -> Peddler::APIs::ListingsItems20210801::ListingsItemPutRequest
                    | (Hash[untyped, untyped]?, String?, String?) -> Peddler::APIs::ListingsItems20210801::ListingsItemPutRequest
 
@@ -423,15 +402,14 @@ module Peddler
         attr_reader attributes: Hash[untyped, untyped]?
         attr_reader product_type: String?
         attr_reader requirements: String?
-        def members: () -> [ :attributes, :product_type, :requirements ]
 
+        def members: () -> [ :attributes, :product_type, :requirements ]
         def to_h: () -> { attributes: Hash[untyped, untyped]?, product_type: String?, requirements: String? }
       end
 
       class ListingsItemSubmissionResponse < Data
         def self.new: (sku: String?, status: String?, submission_id: String?, ?identifiers: Array[Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace]?, ?issues: Array[Peddler::APIs::ListingsItems20210801::Issue]?) -> Peddler::APIs::ListingsItems20210801::ListingsItemSubmissionResponse
                     | (String?, String?, String?, Array[Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace]?, Array[Peddler::APIs::ListingsItems20210801::Issue]?) -> Peddler::APIs::ListingsItems20210801::ListingsItemSubmissionResponse
-
         def self.[]: (sku: String?, status: String?, submission_id: String?, ?identifiers: Array[Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace]?, ?issues: Array[Peddler::APIs::ListingsItems20210801::Issue]?) -> Peddler::APIs::ListingsItems20210801::ListingsItemSubmissionResponse
                    | (String?, String?, String?, Array[Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace]?, Array[Peddler::APIs::ListingsItems20210801::Issue]?) -> Peddler::APIs::ListingsItems20210801::ListingsItemSubmissionResponse
 
@@ -444,15 +422,14 @@ module Peddler
         attr_reader sku: String?
         attr_reader status: String?
         attr_reader submission_id: String?
-        def members: () -> [ :sku, :status, :submission_id, :identifiers, :issues ]
 
+        def members: () -> [ :sku, :status, :submission_id, :identifiers, :issues ]
         def to_h: () -> { sku: String?, status: String?, submission_id: String?, identifiers: Array[Peddler::APIs::ListingsItems20210801::ItemIdentifiersByMarketplace]?, issues: Array[Peddler::APIs::ListingsItems20210801::Issue]? }
       end
 
       class Pagination < Data
         def self.new: (?next_token: String?, ?previous_token: String?) -> Peddler::APIs::ListingsItems20210801::Pagination
                     | (String?, String?) -> Peddler::APIs::ListingsItems20210801::Pagination
-
         def self.[]: (?next_token: String?, ?previous_token: String?) -> Peddler::APIs::ListingsItems20210801::Pagination
                    | (String?, String?) -> Peddler::APIs::ListingsItems20210801::Pagination
 
@@ -462,15 +439,14 @@ module Peddler
 
         attr_reader next_token: String?
         attr_reader previous_token: String?
-        def members: () -> [ :next_token, :previous_token ]
 
+        def members: () -> [ :next_token, :previous_token ]
         def to_h: () -> { next_token: String?, previous_token: String? }
       end
 
       class PatchOperation < Data
         def self.new: (op: String?, path: String?, ?value: Array[untyped]?) -> Peddler::APIs::ListingsItems20210801::PatchOperation
                     | (String?, String?, Array[untyped]?) -> Peddler::APIs::ListingsItems20210801::PatchOperation
-
         def self.[]: (op: String?, path: String?, ?value: Array[untyped]?) -> Peddler::APIs::ListingsItems20210801::PatchOperation
                    | (String?, String?, Array[untyped]?) -> Peddler::APIs::ListingsItems20210801::PatchOperation
 
@@ -481,15 +457,14 @@ module Peddler
         attr_reader op: String?
         attr_reader path: String?
         attr_reader value: Array[untyped]?
-        def members: () -> [ :op, :path, :value ]
 
+        def members: () -> [ :op, :path, :value ]
         def to_h: () -> { op: String?, path: String?, value: Array[untyped]? }
       end
 
       class Points < Data
         def self.new: (points_number: Integer?) -> Peddler::APIs::ListingsItems20210801::Points
                     | (Integer?) -> Peddler::APIs::ListingsItems20210801::Points
-
         def self.[]: (points_number: Integer?) -> Peddler::APIs::ListingsItems20210801::Points
                    | (Integer?) -> Peddler::APIs::ListingsItems20210801::Points
 
@@ -498,8 +473,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20210801::Points
 
         attr_reader points_number: Integer?
-        def members: () -> [ :points_number ]
 
+        def members: () -> [ :points_number ]
         def to_h: () -> { points_number: Integer? }
       end
 

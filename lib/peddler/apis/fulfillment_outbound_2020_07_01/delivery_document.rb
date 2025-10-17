@@ -13,7 +13,7 @@ module Peddler
         attribute(:document_type, String, from: "documentType")
 
         # @return [String] A URL that you can use to download the document. This URL has a `Content-Type` header. Note
-        # that the URL expires after one hour. To get a new URL, you must call the API again.
+        #   that the URL expires after one hour. To get a new URL, you must call the API again.
         attribute?(:url, String)
       end
     end

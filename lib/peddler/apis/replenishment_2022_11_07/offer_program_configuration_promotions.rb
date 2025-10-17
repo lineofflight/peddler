@@ -16,11 +16,11 @@ module Peddler
         attribute?(:amazon_funded_tiered_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "amazonFundedTieredDiscount")
 
         # @return [OfferProgramConfigurationPromotionsDiscountFunding] A base discount set by the selling partner on the
-        # offer.
+        #   offer.
         attribute?(:selling_partner_funded_base_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "sellingPartnerFundedBaseDiscount")
 
         # @return [OfferProgramConfigurationPromotionsDiscountFunding] A tiered discount set by the selling partner on
-        # the offer.
+        #   the offer.
         attribute?(:selling_partner_funded_tiered_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "sellingPartnerFundedTieredDiscount")
       end
     end

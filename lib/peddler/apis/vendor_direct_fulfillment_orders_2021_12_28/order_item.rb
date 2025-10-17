@@ -10,7 +10,7 @@ module Peddler
       # An item within an order
       OrderItem = Structure.new do
         # @return [String] Numbering of the item on the purchase order. The first item will be 1, the second 2, and so
-        # on.
+        #   on.
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [Money] Net price (before tax) to vendor with currency details.
@@ -20,9 +20,9 @@ module Peddler
         attribute(:ordered_quantity, ItemQuantity, from: "orderedQuantity")
 
         # @return [BuyerCustomizedInfoDetail] The buyer information for products the vendor has configured as
-        # customizable, specifying the types of customizations or configurations along with types and ranges for their
-        # product. This provides the ability for buyers to customize multiple aspects of the products according to what
-        # the vendor allows.
+        #   customizable, specifying the types of customizations or configurations along with types and ranges for their
+        #   product. This provides the ability for buyers to customize multiple aspects of the products according to
+        #   what the vendor allows.
         attribute?(:buyer_customized_info, BuyerCustomizedInfoDetail, from: "buyerCustomizedInfo")
 
         # @return [String] Buyer's standard identification number (ASIN) of an item.

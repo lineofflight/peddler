@@ -13,7 +13,7 @@ module Peddler
         attribute(:label_type, String, from: "labelType")
 
         # @return [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
-        # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Array<MskuQuantity>] Represents the quantity of an MSKU to print item labels for.
@@ -23,7 +23,7 @@ module Peddler
         attribute?(:height, Float)
 
         # @return [String] The locale code constructed from ISO 639 language code and ISO 3166-1 alpha-2 standard of
-        # country codes separated by an underscore character.
+        #   country codes separated by an underscore character.
         attribute?(:locale_code, String, from: "localeCode")
 
         # @return [String]

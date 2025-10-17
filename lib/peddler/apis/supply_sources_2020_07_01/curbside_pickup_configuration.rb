@@ -16,7 +16,7 @@ module Peddler
         attribute?(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")
 
         # @return [ParkingWithAddressConfiguration] The parking configuration for curbside pickup with address for
-        # customers to use.
+        #   customers to use.
         attribute?(:parking_with_address_configuration, ParkingWithAddressConfiguration, from: "parkingWithAddressConfiguration")
       end
     end

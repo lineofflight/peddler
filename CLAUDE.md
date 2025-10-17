@@ -157,7 +157,16 @@ Key modules:
 
 Pipeline: Clone specs → Generate APIs/Notifications/Reports/Feeds → Generate RBS → Format
 
-To regenerate single API: `bundle exec rake generate[api_name]`
+### Generator Options
+
+- Full regeneration: `bundle exec rake generate` (all APIs, notifications, reports, feeds, Data Kiosk)
+- APIs only: `bundle exec rake generate:apis`
+- Notifications only: `bundle exec rake generate:notifications`
+- Reports only: `bundle exec rake generate:reports`
+- Feeds only: `bundle exec rake generate:feeds`
+- Data Kiosk only: `bundle exec rake generate:data_kiosk`
+
+Full regeneration takes several minutes. When making targeted changes, use specific tasks (e.g., `generate:data_kiosk` for Data Kiosk changes only).
 
 ### Type Organization
 

@@ -4,7 +4,6 @@ module Peddler
       class AdSummary < Data
         def self.new: (?ad_type_name: String?, ?charge: Peddler::DataKiosk::Economics20240315::AggregatedDetail?) -> Peddler::DataKiosk::Economics20240315::AdSummary
                     | (String?, Peddler::DataKiosk::Economics20240315::AggregatedDetail?) -> Peddler::DataKiosk::Economics20240315::AdSummary
-
         def self.[]: (?ad_type_name: String?, ?charge: Peddler::DataKiosk::Economics20240315::AggregatedDetail?) -> Peddler::DataKiosk::Economics20240315::AdSummary
                    | (String?, Peddler::DataKiosk::Economics20240315::AggregatedDetail?) -> Peddler::DataKiosk::Economics20240315::AdSummary
 
@@ -14,15 +13,14 @@ module Peddler
 
         attr_reader ad_type_name: String?
         attr_reader charge: Peddler::DataKiosk::Economics20240315::AggregatedDetail?
-        def members: () -> [ :ad_type_name, :charge ]
 
+        def members: () -> [ :ad_type_name, :charge ]
         def to_h: () -> { ad_type_name: String?, charge: Peddler::DataKiosk::Economics20240315::AggregatedDetail? }
       end
 
       class AggregatedDetail < Data
         def self.new: (?amount: Peddler::DataKiosk::Economics20240315::Amount?, ?amount_per_unit: Peddler::DataKiosk::Economics20240315::Amount?, ?amount_per_unit_delta: Peddler::DataKiosk::Economics20240315::Amount?, ?promotion_amount: Peddler::DataKiosk::Economics20240315::Amount?, ?quantity: Float?, ?tax_amount: Peddler::DataKiosk::Economics20240315::Amount?, ?total_amount: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::AggregatedDetail
                     | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, Float?, Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::AggregatedDetail
-
         def self.[]: (?amount: Peddler::DataKiosk::Economics20240315::Amount?, ?amount_per_unit: Peddler::DataKiosk::Economics20240315::Amount?, ?amount_per_unit_delta: Peddler::DataKiosk::Economics20240315::Amount?, ?promotion_amount: Peddler::DataKiosk::Economics20240315::Amount?, ?quantity: Float?, ?tax_amount: Peddler::DataKiosk::Economics20240315::Amount?, ?total_amount: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::AggregatedDetail
                    | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, Float?, Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::AggregatedDetail
 
@@ -37,15 +35,14 @@ module Peddler
         attr_reader quantity: Float?
         attr_reader tax_amount: Peddler::DataKiosk::Economics20240315::Amount?
         attr_reader total_amount: Peddler::DataKiosk::Economics20240315::Amount?
-        def members: () -> [ :amount, :amount_per_unit, :amount_per_unit_delta, :promotion_amount, :quantity, :tax_amount, :total_amount ]
 
+        def members: () -> [ :amount, :amount_per_unit, :amount_per_unit_delta, :promotion_amount, :quantity, :tax_amount, :total_amount ]
         def to_h: () -> { amount: Peddler::DataKiosk::Economics20240315::Amount?, amount_per_unit: Peddler::DataKiosk::Economics20240315::Amount?, amount_per_unit_delta: Peddler::DataKiosk::Economics20240315::Amount?, promotion_amount: Peddler::DataKiosk::Economics20240315::Amount?, quantity: Float?, tax_amount: Peddler::DataKiosk::Economics20240315::Amount?, total_amount: Peddler::DataKiosk::Economics20240315::Amount? }
       end
 
       class Amount < Data
         def self.new: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::Economics20240315::Amount
                     | (Float?, String?) -> Peddler::DataKiosk::Economics20240315::Amount
-
         def self.[]: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::Economics20240315::Amount
                    | (Float?, String?) -> Peddler::DataKiosk::Economics20240315::Amount
 
@@ -55,15 +52,14 @@ module Peddler
 
         attr_reader amount: Float?
         attr_reader currency_code: String?
-        def members: () -> [ :amount, :currency_code ]
 
+        def members: () -> [ :amount, :currency_code ]
         def to_h: () -> { amount: Float?, currency_code: String? }
       end
 
       class AnalyticsEconomics20240315 < Data
         def self.new: (?economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, ?economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
                     | (Array[Peddler::DataKiosk::Economics20240315::Economics]?, Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
-
         def self.[]: (?economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, ?economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
                    | (Array[Peddler::DataKiosk::Economics20240315::Economics]?, Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
 
@@ -73,15 +69,14 @@ module Peddler
 
         attr_reader economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?
         attr_reader economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?
-        def members: () -> [ :economics, :economics_preview ]
 
+        def members: () -> [ :economics, :economics_preview ]
         def to_h: () -> { economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]? }
       end
 
       class Economics < Data
         def self.new: (?ads: Array[Peddler::DataKiosk::Economics20240315::AdSummary]?, ?child_asin: String?, ?cost: Peddler::DataKiosk::Economics20240315::PerUnitCost?, ?end_date: String?, ?fees: Array[Peddler::DataKiosk::Economics20240315::FeeSummary]?, ?fnsku: String?, ?marketplace_id: String?, ?msku: String?, ?net_proceeds: Peddler::DataKiosk::Economics20240315::NetProceeds?, ?parent_asin: String?, ?sales: Peddler::DataKiosk::Economics20240315::Sales?, ?start_date: String?) -> Peddler::DataKiosk::Economics20240315::Economics
                     | (Array[Peddler::DataKiosk::Economics20240315::AdSummary]?, String?, Peddler::DataKiosk::Economics20240315::PerUnitCost?, String?, Array[Peddler::DataKiosk::Economics20240315::FeeSummary]?, String?, String?, String?, Peddler::DataKiosk::Economics20240315::NetProceeds?, String?, Peddler::DataKiosk::Economics20240315::Sales?, String?) -> Peddler::DataKiosk::Economics20240315::Economics
-
         def self.[]: (?ads: Array[Peddler::DataKiosk::Economics20240315::AdSummary]?, ?child_asin: String?, ?cost: Peddler::DataKiosk::Economics20240315::PerUnitCost?, ?end_date: String?, ?fees: Array[Peddler::DataKiosk::Economics20240315::FeeSummary]?, ?fnsku: String?, ?marketplace_id: String?, ?msku: String?, ?net_proceeds: Peddler::DataKiosk::Economics20240315::NetProceeds?, ?parent_asin: String?, ?sales: Peddler::DataKiosk::Economics20240315::Sales?, ?start_date: String?) -> Peddler::DataKiosk::Economics20240315::Economics
                    | (Array[Peddler::DataKiosk::Economics20240315::AdSummary]?, String?, Peddler::DataKiosk::Economics20240315::PerUnitCost?, String?, Array[Peddler::DataKiosk::Economics20240315::FeeSummary]?, String?, String?, String?, Peddler::DataKiosk::Economics20240315::NetProceeds?, String?, Peddler::DataKiosk::Economics20240315::Sales?, String?) -> Peddler::DataKiosk::Economics20240315::Economics
 
@@ -101,15 +96,14 @@ module Peddler
         attr_reader parent_asin: String?
         attr_reader sales: Peddler::DataKiosk::Economics20240315::Sales?
         attr_reader start_date: String?
-        def members: () -> [ :ads, :child_asin, :cost, :end_date, :fees, :fnsku, :marketplace_id, :msku, :net_proceeds, :parent_asin, :sales, :start_date ]
 
+        def members: () -> [ :ads, :child_asin, :cost, :end_date, :fees, :fnsku, :marketplace_id, :msku, :net_proceeds, :parent_asin, :sales, :start_date ]
         def to_h: () -> { ads: Array[Peddler::DataKiosk::Economics20240315::AdSummary]?, child_asin: String?, cost: Peddler::DataKiosk::Economics20240315::PerUnitCost?, end_date: String?, fees: Array[Peddler::DataKiosk::Economics20240315::FeeSummary]?, fnsku: String?, marketplace_id: String?, msku: String?, net_proceeds: Peddler::DataKiosk::Economics20240315::NetProceeds?, parent_asin: String?, sales: Peddler::DataKiosk::Economics20240315::Sales?, start_date: String? }
       end
 
       class EconomicsProperty < Data
         def self.new: (?property_name: String?, ?property_value: String?) -> Peddler::DataKiosk::Economics20240315::EconomicsProperty
                     | (String?, String?) -> Peddler::DataKiosk::Economics20240315::EconomicsProperty
-
         def self.[]: (?property_name: String?, ?property_value: String?) -> Peddler::DataKiosk::Economics20240315::EconomicsProperty
                    | (String?, String?) -> Peddler::DataKiosk::Economics20240315::EconomicsProperty
 
@@ -119,15 +113,14 @@ module Peddler
 
         attr_reader property_name: String?
         attr_reader property_value: String?
-        def members: () -> [ :property_name, :property_value ]
 
+        def members: () -> [ :property_name, :property_value ]
         def to_h: () -> { property_name: String?, property_value: String? }
       end
 
       class FBAPerUnitCost < Data
         def self.new: (?shipping_to_amazon_cost: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::FBAPerUnitCost
                     | (Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::FBAPerUnitCost
-
         def self.[]: (?shipping_to_amazon_cost: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::FBAPerUnitCost
                    | (Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::FBAPerUnitCost
 
@@ -136,15 +129,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::Economics20240315::FBAPerUnitCost
 
         attr_reader shipping_to_amazon_cost: Peddler::DataKiosk::Economics20240315::Amount?
-        def members: () -> [ :shipping_to_amazon_cost ]
 
+        def members: () -> [ :shipping_to_amazon_cost ]
         def to_h: () -> { shipping_to_amazon_cost: Peddler::DataKiosk::Economics20240315::Amount? }
       end
 
       class Fee < Data
         def self.new: (?aggregated_detail: Peddler::DataKiosk::Economics20240315::AggregatedDetail?, ?components: Array[Peddler::DataKiosk::Economics20240315::FeeComponent]?, ?end_date: String?, ?identifier: String?, ?properties: Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?, ?start_date: String?) -> Peddler::DataKiosk::Economics20240315::Fee
                     | (Peddler::DataKiosk::Economics20240315::AggregatedDetail?, Array[Peddler::DataKiosk::Economics20240315::FeeComponent]?, String?, String?, Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?, String?) -> Peddler::DataKiosk::Economics20240315::Fee
-
         def self.[]: (?aggregated_detail: Peddler::DataKiosk::Economics20240315::AggregatedDetail?, ?components: Array[Peddler::DataKiosk::Economics20240315::FeeComponent]?, ?end_date: String?, ?identifier: String?, ?properties: Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?, ?start_date: String?) -> Peddler::DataKiosk::Economics20240315::Fee
                    | (Peddler::DataKiosk::Economics20240315::AggregatedDetail?, Array[Peddler::DataKiosk::Economics20240315::FeeComponent]?, String?, String?, Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?, String?) -> Peddler::DataKiosk::Economics20240315::Fee
 
@@ -158,15 +150,14 @@ module Peddler
         attr_reader identifier: String?
         attr_reader properties: Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?
         attr_reader start_date: String?
-        def members: () -> [ :aggregated_detail, :components, :end_date, :identifier, :properties, :start_date ]
 
+        def members: () -> [ :aggregated_detail, :components, :end_date, :identifier, :properties, :start_date ]
         def to_h: () -> { aggregated_detail: Peddler::DataKiosk::Economics20240315::AggregatedDetail?, components: Array[Peddler::DataKiosk::Economics20240315::FeeComponent]?, end_date: String?, identifier: String?, properties: Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?, start_date: String? }
       end
 
       class FeeComponent < Data
         def self.new: (?aggregated_detail: Peddler::DataKiosk::Economics20240315::AggregatedDetail?, ?name: String?, ?properties: Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?) -> Peddler::DataKiosk::Economics20240315::FeeComponent
                     | (Peddler::DataKiosk::Economics20240315::AggregatedDetail?, String?, Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?) -> Peddler::DataKiosk::Economics20240315::FeeComponent
-
         def self.[]: (?aggregated_detail: Peddler::DataKiosk::Economics20240315::AggregatedDetail?, ?name: String?, ?properties: Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?) -> Peddler::DataKiosk::Economics20240315::FeeComponent
                    | (Peddler::DataKiosk::Economics20240315::AggregatedDetail?, String?, Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?) -> Peddler::DataKiosk::Economics20240315::FeeComponent
 
@@ -177,15 +168,14 @@ module Peddler
         attr_reader aggregated_detail: Peddler::DataKiosk::Economics20240315::AggregatedDetail?
         attr_reader name: String?
         attr_reader properties: Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]?
-        def members: () -> [ :aggregated_detail, :name, :properties ]
 
+        def members: () -> [ :aggregated_detail, :name, :properties ]
         def to_h: () -> { aggregated_detail: Peddler::DataKiosk::Economics20240315::AggregatedDetail?, name: String?, properties: Array[Peddler::DataKiosk::Economics20240315::EconomicsProperty]? }
       end
 
       class FeeSummary < Data
         def self.new: (?charge: Peddler::DataKiosk::Economics20240315::Fee?, ?charges: Array[Peddler::DataKiosk::Economics20240315::Fee]?, ?fee_type_name: String?) -> Peddler::DataKiosk::Economics20240315::FeeSummary
                     | (Peddler::DataKiosk::Economics20240315::Fee?, Array[Peddler::DataKiosk::Economics20240315::Fee]?, String?) -> Peddler::DataKiosk::Economics20240315::FeeSummary
-
         def self.[]: (?charge: Peddler::DataKiosk::Economics20240315::Fee?, ?charges: Array[Peddler::DataKiosk::Economics20240315::Fee]?, ?fee_type_name: String?) -> Peddler::DataKiosk::Economics20240315::FeeSummary
                    | (Peddler::DataKiosk::Economics20240315::Fee?, Array[Peddler::DataKiosk::Economics20240315::Fee]?, String?) -> Peddler::DataKiosk::Economics20240315::FeeSummary
 
@@ -196,15 +186,14 @@ module Peddler
         attr_reader charge: Peddler::DataKiosk::Economics20240315::Fee?
         attr_reader charges: Array[Peddler::DataKiosk::Economics20240315::Fee]?
         attr_reader fee_type_name: String?
-        def members: () -> [ :charge, :charges, :fee_type_name ]
 
+        def members: () -> [ :charge, :charges, :fee_type_name ]
         def to_h: () -> { charge: Peddler::DataKiosk::Economics20240315::Fee?, charges: Array[Peddler::DataKiosk::Economics20240315::Fee]?, fee_type_name: String? }
       end
 
       class MfnPerUnitCost < Data
         def self.new: (?fulfillment_cost: Peddler::DataKiosk::Economics20240315::Amount?, ?storage_cost: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::MfnPerUnitCost
                     | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::MfnPerUnitCost
-
         def self.[]: (?fulfillment_cost: Peddler::DataKiosk::Economics20240315::Amount?, ?storage_cost: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::MfnPerUnitCost
                    | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::MfnPerUnitCost
 
@@ -214,15 +203,14 @@ module Peddler
 
         attr_reader fulfillment_cost: Peddler::DataKiosk::Economics20240315::Amount?
         attr_reader storage_cost: Peddler::DataKiosk::Economics20240315::Amount?
-        def members: () -> [ :fulfillment_cost, :storage_cost ]
 
+        def members: () -> [ :fulfillment_cost, :storage_cost ]
         def to_h: () -> { fulfillment_cost: Peddler::DataKiosk::Economics20240315::Amount?, storage_cost: Peddler::DataKiosk::Economics20240315::Amount? }
       end
 
       class NetProceeds < Data
         def self.new: (?per_unit: Peddler::DataKiosk::Economics20240315::Amount?, ?total: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::NetProceeds
                     | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::NetProceeds
-
         def self.[]: (?per_unit: Peddler::DataKiosk::Economics20240315::Amount?, ?total: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::NetProceeds
                    | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::NetProceeds
 
@@ -232,15 +220,14 @@ module Peddler
 
         attr_reader per_unit: Peddler::DataKiosk::Economics20240315::Amount?
         attr_reader total: Peddler::DataKiosk::Economics20240315::Amount?
-        def members: () -> [ :per_unit, :total ]
 
+        def members: () -> [ :per_unit, :total ]
         def to_h: () -> { per_unit: Peddler::DataKiosk::Economics20240315::Amount?, total: Peddler::DataKiosk::Economics20240315::Amount? }
       end
 
       class PerUnitCost < Data
         def self.new: (?cost_of_goods_sold: Peddler::DataKiosk::Economics20240315::Amount?, ?fba_cost: Peddler::DataKiosk::Economics20240315::FBAPerUnitCost?, ?mfn_cost: Peddler::DataKiosk::Economics20240315::MfnPerUnitCost?, ?miscellaneous_cost: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::PerUnitCost
                     | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::FBAPerUnitCost?, Peddler::DataKiosk::Economics20240315::MfnPerUnitCost?, Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::PerUnitCost
-
         def self.[]: (?cost_of_goods_sold: Peddler::DataKiosk::Economics20240315::Amount?, ?fba_cost: Peddler::DataKiosk::Economics20240315::FBAPerUnitCost?, ?mfn_cost: Peddler::DataKiosk::Economics20240315::MfnPerUnitCost?, ?miscellaneous_cost: Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::PerUnitCost
                    | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::FBAPerUnitCost?, Peddler::DataKiosk::Economics20240315::MfnPerUnitCost?, Peddler::DataKiosk::Economics20240315::Amount?) -> Peddler::DataKiosk::Economics20240315::PerUnitCost
 
@@ -252,15 +239,14 @@ module Peddler
         attr_reader fba_cost: Peddler::DataKiosk::Economics20240315::FBAPerUnitCost?
         attr_reader mfn_cost: Peddler::DataKiosk::Economics20240315::MfnPerUnitCost?
         attr_reader miscellaneous_cost: Peddler::DataKiosk::Economics20240315::Amount?
-        def members: () -> [ :cost_of_goods_sold, :fba_cost, :mfn_cost, :miscellaneous_cost ]
 
+        def members: () -> [ :cost_of_goods_sold, :fba_cost, :mfn_cost, :miscellaneous_cost ]
         def to_h: () -> { cost_of_goods_sold: Peddler::DataKiosk::Economics20240315::Amount?, fba_cost: Peddler::DataKiosk::Economics20240315::FBAPerUnitCost?, mfn_cost: Peddler::DataKiosk::Economics20240315::MfnPerUnitCost?, miscellaneous_cost: Peddler::DataKiosk::Economics20240315::Amount? }
       end
 
       class Sales < Data
         def self.new: (?average_selling_price: Peddler::DataKiosk::Economics20240315::Amount?, ?net_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, ?net_units_sold: String?, ?ordered_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, ?refunded_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, ?units_ordered: String?, ?units_refunded: String?) -> Peddler::DataKiosk::Economics20240315::Sales
                     | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, String?, Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, String?, String?) -> Peddler::DataKiosk::Economics20240315::Sales
-
         def self.[]: (?average_selling_price: Peddler::DataKiosk::Economics20240315::Amount?, ?net_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, ?net_units_sold: String?, ?ordered_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, ?refunded_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, ?units_ordered: String?, ?units_refunded: String?) -> Peddler::DataKiosk::Economics20240315::Sales
                    | (Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, String?, Peddler::DataKiosk::Economics20240315::Amount?, Peddler::DataKiosk::Economics20240315::Amount?, String?, String?) -> Peddler::DataKiosk::Economics20240315::Sales
 
@@ -275,8 +261,8 @@ module Peddler
         attr_reader refunded_product_sales: Peddler::DataKiosk::Economics20240315::Amount?
         attr_reader units_ordered: String?
         attr_reader units_refunded: String?
-        def members: () -> [ :average_selling_price, :net_product_sales, :net_units_sold, :ordered_product_sales, :refunded_product_sales, :units_ordered, :units_refunded ]
 
+        def members: () -> [ :average_selling_price, :net_product_sales, :net_units_sold, :ordered_product_sales, :refunded_product_sales, :units_ordered, :units_refunded ]
         def to_h: () -> { average_selling_price: Peddler::DataKiosk::Economics20240315::Amount?, net_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, net_units_sold: String?, ordered_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, refunded_product_sales: Peddler::DataKiosk::Economics20240315::Amount?, units_ordered: String?, units_refunded: String? }
       end
 

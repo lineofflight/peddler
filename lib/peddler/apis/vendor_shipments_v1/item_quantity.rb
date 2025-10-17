@@ -10,8 +10,8 @@ module Peddler
       # Details of item quantity.
       ItemQuantity = Structure.new do
         # @return [Integer] Amount of units shipped for a specific item at a shipment level. If the item is present only
-        # in certain cartons or pallets within the shipment, please provide this at the appropriate carton or pallet
-        # level.
+        #   in certain cartons or pallets within the shipment, please provide this at the appropriate carton or pallet
+        #   level.
         attribute(:amount, Integer)
 
         # @return [String] Unit of measure for the shipped quantity.

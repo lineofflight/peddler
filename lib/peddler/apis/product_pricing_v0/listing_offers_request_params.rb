@@ -10,14 +10,14 @@ module Peddler
       # List of request parameters that can be accepted by `ListingOffersRequest`
       ListingOffersRequestParams = Structure.new do
         # @return [String] Filters the offer listings to be considered based on item condition. Possible values: New,
-        # Used, Collectible, Refurbished, Club.
+        #   Used, Collectible, Refurbished, Club.
         attribute(:item_condition, String, from: "ItemCondition")
 
         # @return [String]
         attribute(:marketplace_id, String, from: "MarketplaceId")
 
         # @return [String] The seller stock keeping unit (SKU) of the item. This is the same SKU passed as a path
-        # parameter.
+        #   parameter.
         attribute(:seller_sku, String, from: "SellerSKU")
 
         # @return [String] Indicates whether to request Consumer or Business offers. Default is Consumer.

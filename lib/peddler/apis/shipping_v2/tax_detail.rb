@@ -11,7 +11,7 @@ module Peddler
       # regions.
       TaxDetail = Structure.new do
         # @return [String] The shipper's tax registration number associated with the shipment for customs compliance
-        # purposes in certain regions.
+        #   purposes in certain regions.
         attribute(:tax_registration_number, String, from: "taxRegistrationNumber")
 
         # @return [String]

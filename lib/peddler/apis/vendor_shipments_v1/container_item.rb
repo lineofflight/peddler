@@ -10,7 +10,7 @@ module Peddler
       # Carton/Pallet level details for the item.
       ContainerItem = Structure.new do
         # @return [String] The reference number for the item. Please provide the itemSequenceNumber from the 'items'
-        # segment to refer to that item's details here.
+        #   segment to refer to that item's details here.
         attribute(:item_reference, String, from: "itemReference")
 
         # @return [ItemQuantity] Total item quantity shipped in this carton/pallet.

@@ -11,28 +11,28 @@ module Peddler
       # items.
       Invoice = Structure.new do
         # @return [String] Date when the invoice/credit note information was generated in the origin's accounting
-        # system. The invoice date should be on or after the purchase order creation date.
+        #   system. The invoice date should be on or after the purchase order creation date.
         attribute(:date, String)
 
         # @return [String] Unique number relating to the charges defined in this document. This will be invoice number
-        # if the document type is Invoice or CreditNote number if the document type is Credit Note. Failure to provide
-        # this reference will result in a rejection.
+        #   if the document type is Invoice or CreditNote number if the document type is Credit Note. Failure to provide
+        #   this reference will result in a rejection.
         attribute(:id, String)
 
         # @return [Money] Total monetary amount charged in the invoice or full value of credit note to be paid including
-        # all relevant taxes. It is the total amount of invoice (including charges, less allowances) before terms
-        # discount (if discount is applicable).
+        #   all relevant taxes. It is the total amount of invoice (including charges, less allowances) before terms
+        #   discount (if discount is applicable).
         attribute(:invoice_total, Money, from: "invoiceTotal")
 
         # @return [String] Identifies the type of invoice.
         attribute(:invoice_type, String, from: "invoiceType")
 
         # @return [PartyIdentification] Name, address and tax details of the party receiving the payment of this
-        # invoice.
+        #   invoice.
         attribute(:remit_to_party, PartyIdentification, from: "remitToParty")
 
         # @return [Array<AdditionalDetails>] Additional details provided by the selling party, for tax related or other
-        # purposes.
+        #   purposes.
         attribute?(:additional_details, [AdditionalDetails], from: "additionalDetails")
 
         # @return [Array<AllowanceDetails>] Total allowance amount details for all line items.

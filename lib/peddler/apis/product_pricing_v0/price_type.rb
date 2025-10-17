@@ -13,7 +13,7 @@ module Peddler
         attribute(:listing_price, Money, from: "ListingPrice")
 
         # @return [Money] The value calculated by adding ListingPrice + Shipping - Points. Note that if the landed price
-        # is not returned, the listing price represents the product with the lowest landed price.
+        #   is not returned, the listing price represents the product with the lowest landed price.
         attribute?(:landed_price, Money, from: "LandedPrice")
 
         # @return [Points] The number of Amazon Points offered with the purchase of an item, and their monetary value.

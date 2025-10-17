@@ -13,7 +13,7 @@ module Peddler
         attribute(:all_products, Float, from: "allProducts")
 
         # @return [Float] The percentage of reviews of the top 25 percent of products in the browse node that mention
-        # the topic.
+        #   the topic.
         attribute(:top_twenty_five_percent_products, Float, from: "topTwentyFivePercentProducts")
       end
     end

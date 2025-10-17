@@ -16,7 +16,7 @@ module Peddler
         attribute(:order_items, [OrderItem], from: "OrderItems")
 
         # @return [String] When present and not empty, pass this string token in the next request to return the next
-        # response page.
+        #   response page.
         attribute?(:next_token, String, from: "NextToken")
       end
     end

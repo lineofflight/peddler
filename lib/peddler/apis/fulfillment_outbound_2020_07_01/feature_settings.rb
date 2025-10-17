@@ -25,12 +25,12 @@ module Peddler
         #
         # - `BLOCK_AMZL`: Blocks orders from being shipped using Amazon Logistics (AMZL).
         # - Note: Using this feature will incur additional fee surcharges on MCF orders and may increase the risk of
-        # unfulfilled or delayed deliveries if alternative carriers are unavailable. Using `BLOCK_AMZL` in an order
-        # request will take precedence over your Seller Central account setting.
+        #   unfulfilled or delayed deliveries if alternative carriers are unavailable. Using `BLOCK_AMZL` in an order
+        #   request will take precedence over your Seller Central account setting.
         # - `BLANK_BOX`: Ships orders in non-Amazon branded packaging (blank boxes).
         # - `SIGNATURE_CONFIRMATION`: Requires a signature from the recipient upon delivery.
         # - Note: Using signature confirmation features will incur additional fees on MCF orders and are currently
-        # supported only in the US marketplace.
+        #   supported only in the US marketplace.
         attribute?(:feature_name, String, from: "featureName")
       end
     end

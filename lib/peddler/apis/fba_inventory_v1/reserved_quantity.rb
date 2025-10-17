@@ -10,7 +10,7 @@ module Peddler
       # The quantity of reserved inventory.
       ReservedQuantity = Structure.new do
         # @return [Integer] The number of units that have been sidelined at the fulfillment center for additional
-        # processing.
+        #   processing.
         attribute?(:fc_processing_quantity, Integer, from: "fcProcessingQuantity")
 
         # @return [Integer] The number of units reserved for customer orders.
@@ -20,7 +20,7 @@ module Peddler
         attribute?(:pending_transshipment_quantity, Integer, from: "pendingTransshipmentQuantity")
 
         # @return [Integer] The total number of units in Amazon's fulfillment network that are currently being picked,
-        # packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
+        #   packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
         attribute?(:total_reserved_quantity, Integer, from: "totalReservedQuantity")
       end
     end

@@ -28,7 +28,7 @@ module Peddler
         attribute(:shipping_service_id, String, from: "ShippingServiceId")
 
         # @return [String] A plain text representation of a carrier's shipping service. For example, "UPS Ground" or
-        # "FedEx Standard Overnight".
+        #   "FedEx Standard Overnight".
         attribute(:shipping_service_name, String, from: "ShippingServiceName")
 
         # @return [String] An Amazon-defined shipping service offer identifier.

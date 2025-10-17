@@ -4,7 +4,6 @@ module Peddler
       class Amount < Data
         def self.new: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Amount
                     | (Float?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Amount
-
         def self.[]: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Amount
                    | (Float?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Amount
 
@@ -14,15 +13,14 @@ module Peddler
 
         attr_reader amount: Float?
         attr_reader currency_code: String?
-        def members: () -> [ :amount, :currency_code ]
 
+        def members: () -> [ :amount, :currency_code ]
         def to_h: () -> { amount: Float?, currency_code: String? }
       end
 
       class AnalyticsVendoranalytics20240930 < Data
         def self.new: (?manufacturing_view: Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView]?, ?sourcing_view: Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingView]?) -> Peddler::DataKiosk::VendorAnalytics20240930::AnalyticsVendoranalytics20240930
                     | (Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView]?, Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingView]?) -> Peddler::DataKiosk::VendorAnalytics20240930::AnalyticsVendoranalytics20240930
-
         def self.[]: (?manufacturing_view: Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView]?, ?sourcing_view: Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingView]?) -> Peddler::DataKiosk::VendorAnalytics20240930::AnalyticsVendoranalytics20240930
                    | (Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView]?, Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingView]?) -> Peddler::DataKiosk::VendorAnalytics20240930::AnalyticsVendoranalytics20240930
 
@@ -32,15 +30,14 @@ module Peddler
 
         attr_reader manufacturing_view: Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView]?
         attr_reader sourcing_view: Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingView]?
-        def members: () -> [ :manufacturing_view, :sourcing_view ]
 
+        def members: () -> [ :manufacturing_view, :sourcing_view ]
         def to_h: () -> { manufacturing_view: Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView]?, sourcing_view: Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingView]? }
       end
 
       class Costs < Data
         def self.new: (?average_sales_discount: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?contra_cogs: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?contra_cogs_per_unit: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?net_ppm: Float?, ?sales_discount: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?shipped_cogs: Peddler::DataKiosk::VendorAnalytics20240930::Amount?) -> Peddler::DataKiosk::VendorAnalytics20240930::Costs
                     | (Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Float?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?) -> Peddler::DataKiosk::VendorAnalytics20240930::Costs
-
         def self.[]: (?average_sales_discount: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?contra_cogs: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?contra_cogs_per_unit: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?net_ppm: Float?, ?sales_discount: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?shipped_cogs: Peddler::DataKiosk::VendorAnalytics20240930::Amount?) -> Peddler::DataKiosk::VendorAnalytics20240930::Costs
                    | (Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Float?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?) -> Peddler::DataKiosk::VendorAnalytics20240930::Costs
 
@@ -54,15 +51,14 @@ module Peddler
         attr_reader net_ppm: Float?
         attr_reader sales_discount: Peddler::DataKiosk::VendorAnalytics20240930::Amount?
         attr_reader shipped_cogs: Peddler::DataKiosk::VendorAnalytics20240930::Amount?
-        def members: () -> [ :average_sales_discount, :contra_cogs, :contra_cogs_per_unit, :net_ppm, :sales_discount, :shipped_cogs ]
 
+        def members: () -> [ :average_sales_discount, :contra_cogs, :contra_cogs_per_unit, :net_ppm, :sales_discount, :shipped_cogs ]
         def to_h: () -> { average_sales_discount: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, contra_cogs: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, contra_cogs_per_unit: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, net_ppm: Float?, sales_discount: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, shipped_cogs: Peddler::DataKiosk::VendorAnalytics20240930::Amount? }
       end
 
       class CustomerReturnTopics < Data
         def self.new: (?browse_node_return_topic_trends: String?, ?browse_node_return_topics: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics
                     | (String?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics
-
         def self.[]: (?browse_node_return_topic_trends: String?, ?browse_node_return_topics: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics
                    | (String?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics
 
@@ -72,15 +68,14 @@ module Peddler
 
         attr_reader browse_node_return_topic_trends: String?
         attr_reader browse_node_return_topics: String?
-        def members: () -> [ :browse_node_return_topic_trends, :browse_node_return_topics ]
 
+        def members: () -> [ :browse_node_return_topic_trends, :browse_node_return_topics ]
         def to_h: () -> { browse_node_return_topic_trends: String?, browse_node_return_topics: String? }
       end
 
       class CustomerReviewTopics < Data
         def self.new: (?negative_review_topic_impact_on_star_rating: String?, ?negative_review_topic_trends: String?, ?negative_review_topics: String?, ?positive_review_topic_impact_on_star_rating: String?, ?positive_review_topic_trends: String?, ?positive_review_topics: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics
                     | (String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics
-
         def self.[]: (?negative_review_topic_impact_on_star_rating: String?, ?negative_review_topic_trends: String?, ?negative_review_topics: String?, ?positive_review_topic_impact_on_star_rating: String?, ?positive_review_topic_trends: String?, ?positive_review_topics: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics
                    | (String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics
 
@@ -94,15 +89,14 @@ module Peddler
         attr_reader positive_review_topic_impact_on_star_rating: String?
         attr_reader positive_review_topic_trends: String?
         attr_reader positive_review_topics: String?
-        def members: () -> [ :negative_review_topic_impact_on_star_rating, :negative_review_topic_trends, :negative_review_topics, :positive_review_topic_impact_on_star_rating, :positive_review_topic_trends, :positive_review_topics ]
 
+        def members: () -> [ :negative_review_topic_impact_on_star_rating, :negative_review_topic_trends, :negative_review_topics, :positive_review_topic_impact_on_star_rating, :positive_review_topic_trends, :positive_review_topics ]
         def to_h: () -> { negative_review_topic_impact_on_star_rating: String?, negative_review_topic_trends: String?, negative_review_topics: String?, positive_review_topic_impact_on_star_rating: String?, positive_review_topic_trends: String?, positive_review_topics: String? }
       end
 
       class CustomerReviews < Data
         def self.new: (?asin_review_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?, ?browse_node_review_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews
                     | (Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?, Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews
-
         def self.[]: (?asin_review_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?, ?browse_node_review_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews
                    | (Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?, Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews
 
@@ -112,15 +106,14 @@ module Peddler
 
         attr_reader asin_review_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?
         attr_reader browse_node_review_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?
-        def members: () -> [ :asin_review_topics, :browse_node_review_topics ]
 
+        def members: () -> [ :asin_review_topics, :browse_node_review_topics ]
         def to_h: () -> { asin_review_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics?, browse_node_review_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviewTopics? }
       end
 
       class CustomerSatisfaction < Data
         def self.new: (?customer_return_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics?, ?customer_returns: String?, ?customer_reviews: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction
                     | (Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics?, String?, Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction
-
         def self.[]: (?customer_return_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics?, ?customer_returns: String?, ?customer_reviews: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction
                    | (Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics?, String?, Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews?) -> Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction
 
@@ -131,15 +124,14 @@ module Peddler
         attr_reader customer_return_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics?
         attr_reader customer_returns: String?
         attr_reader customer_reviews: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews?
-        def members: () -> [ :customer_return_topics, :customer_returns, :customer_reviews ]
 
+        def members: () -> [ :customer_return_topics, :customer_returns, :customer_reviews ]
         def to_h: () -> { customer_return_topics: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReturnTopics?, customer_returns: String?, customer_reviews: Peddler::DataKiosk::VendorAnalytics20240930::CustomerReviews? }
       end
 
       class ForecastedDemandStatistic < Data
         def self.new: (?mean: String?, ?p70: String?, ?p80: String?, ?p90: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic
                     | (String?, String?, String?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic
-
         def self.[]: (?mean: String?, ?p70: String?, ?p80: String?, ?p90: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic
                    | (String?, String?, String?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic
 
@@ -151,15 +143,14 @@ module Peddler
         attr_reader p70: String?
         attr_reader p80: String?
         attr_reader p90: String?
-        def members: () -> [ :mean, :p70, :p80, :p90 ]
 
+        def members: () -> [ :mean, :p70, :p80, :p90 ]
         def to_h: () -> { mean: String?, p70: String?, p80: String?, p90: String? }
       end
 
       class ForecastedDemandWeekly < Data
         def self.new: (?demand: Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic?, ?end_date: String?, ?start_date: String?, ?week_number: Integer?) -> Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly
                     | (Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic?, String?, String?, Integer?) -> Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly
-
         def self.[]: (?demand: Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic?, ?end_date: String?, ?start_date: String?, ?week_number: Integer?) -> Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly
                    | (Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic?, String?, String?, Integer?) -> Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly
 
@@ -171,15 +162,14 @@ module Peddler
         attr_reader end_date: String?
         attr_reader start_date: String?
         attr_reader week_number: Integer?
-        def members: () -> [ :demand, :end_date, :start_date, :week_number ]
 
+        def members: () -> [ :demand, :end_date, :start_date, :week_number ]
         def to_h: () -> { demand: Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandStatistic?, end_date: String?, start_date: String?, week_number: Integer? }
       end
 
       class GroupByAttributes < Data
         def self.new: (?asin: String?, ?binding: String?, ?brand: String?, ?brand_code: String?, ?color: String?, ?ean: String?, ?isbn13: String?, ?manufacturer_code: String?, ?model_number: String?, ?msrp: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?parent_asin: String?, ?prep_instructions: String?, ?prep_instructions_performed_by: String?, ?product_group: String?, ?product_title: String?, ?release_date: String?, ?replenishment_category: String?, ?ship_to_city: String?, ?ship_to_country_code: String?, ?ship_to_state_or_province: String?, ?ship_to_zip_code: String?, ?upc: String?, ?vendor_code: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes
-
         def self.[]: (?asin: String?, ?binding: String?, ?brand: String?, ?brand_code: String?, ?color: String?, ?ean: String?, ?isbn13: String?, ?manufacturer_code: String?, ?model_number: String?, ?msrp: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?parent_asin: String?, ?prep_instructions: String?, ?prep_instructions_performed_by: String?, ?product_group: String?, ?product_title: String?, ?release_date: String?, ?replenishment_category: String?, ?ship_to_city: String?, ?ship_to_country_code: String?, ?ship_to_state_or_province: String?, ?ship_to_zip_code: String?, ?upc: String?, ?vendor_code: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes
                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes
 
@@ -210,15 +200,14 @@ module Peddler
         attr_reader ship_to_zip_code: String?
         attr_reader upc: String?
         attr_reader vendor_code: String?
-        def members: () -> [ :asin, :binding, :brand, :brand_code, :color, :ean, :isbn13, :manufacturer_code, :model_number, :msrp, :parent_asin, :prep_instructions, :prep_instructions_performed_by, :product_group, :product_title, :release_date, :replenishment_category, :ship_to_city, :ship_to_country_code, :ship_to_state_or_province, :ship_to_zip_code, :upc, :vendor_code ]
 
+        def members: () -> [ :asin, :binding, :brand, :brand_code, :color, :ean, :isbn13, :manufacturer_code, :model_number, :msrp, :parent_asin, :prep_instructions, :prep_instructions_performed_by, :product_group, :product_title, :release_date, :replenishment_category, :ship_to_city, :ship_to_country_code, :ship_to_state_or_province, :ship_to_zip_code, :upc, :vendor_code ]
         def to_h: () -> { asin: String?, binding: String?, brand: String?, brand_code: String?, color: String?, ean: String?, isbn13: String?, manufacturer_code: String?, model_number: String?, msrp: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, parent_asin: String?, prep_instructions: String?, prep_instructions_performed_by: String?, product_group: String?, product_title: String?, release_date: String?, replenishment_category: String?, ship_to_city: String?, ship_to_country_code: String?, ship_to_state_or_province: String?, ship_to_zip_code: String?, upc: String?, vendor_code: String? }
       end
 
       class ManufacturingView < Data
         def self.new: (?end_date: String?, ?marketplace_id: String?, ?metrics: Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy]?, ?start_date: String?, ?totals: Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView
                     | (String?, String?, Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy]?, String?, Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView
-
         def self.[]: (?end_date: String?, ?marketplace_id: String?, ?metrics: Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy]?, ?start_date: String?, ?totals: Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView
                    | (String?, String?, Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy]?, String?, Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingView
 
@@ -231,15 +220,14 @@ module Peddler
         attr_reader metrics: Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy]?
         attr_reader start_date: String?
         attr_reader totals: Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?
-        def members: () -> [ :end_date, :marketplace_id, :metrics, :start_date, :totals ]
 
+        def members: () -> [ :end_date, :marketplace_id, :metrics, :start_date, :totals ]
         def to_h: () -> { end_date: String?, marketplace_id: String?, metrics: Array[Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy]?, start_date: String?, totals: Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics? }
       end
 
       class ManufacturingViewMetrics < Data
         def self.new: (?costs: Peddler::DataKiosk::VendorAnalytics20240930::Costs?, ?customer_satisfaction: Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, ?forecasting: Array[Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly]?, ?orders: Peddler::DataKiosk::VendorAnalytics20240930::Orders?, ?product_availability: Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, ?shipped_orders: Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, ?sourcing: Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?, ?traffic: Peddler::DataKiosk::VendorAnalytics20240930::Traffic?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics
                     | (Peddler::DataKiosk::VendorAnalytics20240930::Costs?, Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, Array[Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly]?, Peddler::DataKiosk::VendorAnalytics20240930::Orders?, Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?, Peddler::DataKiosk::VendorAnalytics20240930::Traffic?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics
-
         def self.[]: (?costs: Peddler::DataKiosk::VendorAnalytics20240930::Costs?, ?customer_satisfaction: Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, ?forecasting: Array[Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly]?, ?orders: Peddler::DataKiosk::VendorAnalytics20240930::Orders?, ?product_availability: Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, ?shipped_orders: Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, ?sourcing: Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?, ?traffic: Peddler::DataKiosk::VendorAnalytics20240930::Traffic?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics
                    | (Peddler::DataKiosk::VendorAnalytics20240930::Costs?, Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, Array[Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly]?, Peddler::DataKiosk::VendorAnalytics20240930::Orders?, Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?, Peddler::DataKiosk::VendorAnalytics20240930::Traffic?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics
 
@@ -255,15 +243,14 @@ module Peddler
         attr_reader shipped_orders: Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?
         attr_reader sourcing: Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?
         attr_reader traffic: Peddler::DataKiosk::VendorAnalytics20240930::Traffic?
-        def members: () -> [ :costs, :customer_satisfaction, :forecasting, :orders, :product_availability, :shipped_orders, :sourcing, :traffic ]
 
+        def members: () -> [ :costs, :customer_satisfaction, :forecasting, :orders, :product_availability, :shipped_orders, :sourcing, :traffic ]
         def to_h: () -> { costs: Peddler::DataKiosk::VendorAnalytics20240930::Costs?, customer_satisfaction: Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, forecasting: Array[Peddler::DataKiosk::VendorAnalytics20240930::ForecastedDemandWeekly]?, orders: Peddler::DataKiosk::VendorAnalytics20240930::Orders?, product_availability: Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, shipped_orders: Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, sourcing: Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?, traffic: Peddler::DataKiosk::VendorAnalytics20240930::Traffic? }
       end
 
       class ManufacturingViewMetricsGroupedBy < Data
         def self.new: (?group_by_key: Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, ?metrics: Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy
                     | (Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy
-
         def self.[]: (?group_by_key: Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, ?metrics: Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy
                    | (Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetricsGroupedBy
 
@@ -273,15 +260,14 @@ module Peddler
 
         attr_reader group_by_key: Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?
         attr_reader metrics: Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics?
-        def members: () -> [ :group_by_key, :metrics ]
 
+        def members: () -> [ :group_by_key, :metrics ]
         def to_h: () -> { group_by_key: Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, metrics: Peddler::DataKiosk::VendorAnalytics20240930::ManufacturingViewMetrics? }
       end
 
       class Orders < Data
         def self.new: (?net_ordered_gms: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?net_shipment_gms: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?ordered_units_with_revenue: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?unfilled_ordered_units: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Orders
                     | (Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Orders
-
         def self.[]: (?net_ordered_gms: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?net_shipment_gms: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?ordered_units_with_revenue: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?unfilled_ordered_units: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Orders
                    | (Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Orders
 
@@ -293,15 +279,14 @@ module Peddler
         attr_reader net_shipment_gms: Peddler::DataKiosk::VendorAnalytics20240930::Amount?
         attr_reader ordered_units_with_revenue: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?
         attr_reader unfilled_ordered_units: String?
-        def members: () -> [ :net_ordered_gms, :net_shipment_gms, :ordered_units_with_revenue, :unfilled_ordered_units ]
 
+        def members: () -> [ :net_ordered_gms, :net_shipment_gms, :ordered_units_with_revenue, :unfilled_ordered_units ]
         def to_h: () -> { net_ordered_gms: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, net_shipment_gms: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ordered_units_with_revenue: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, unfilled_ordered_units: String? }
       end
 
       class ProductAvailability < Data
         def self.new: (?aged90_days_sellable_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?sell_through_rate: Float?, ?sellable_in_transit_inventory: String?, ?sellable_on_hand_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?sourceable_roos: Float?, ?ultra_fast_track: Float?, ?unhealthy_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?unsellable_in_transit_inventory: String?, ?unsellable_on_hand_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?) -> Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability
                     | (Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, Float?, String?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, Float?, Float?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, String?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?) -> Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability
-
         def self.[]: (?aged90_days_sellable_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?sell_through_rate: Float?, ?sellable_in_transit_inventory: String?, ?sellable_on_hand_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?sourceable_roos: Float?, ?ultra_fast_track: Float?, ?unhealthy_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?unsellable_in_transit_inventory: String?, ?unsellable_on_hand_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?) -> Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability
                    | (Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, Float?, String?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, Float?, Float?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, String?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?) -> Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability
 
@@ -318,15 +303,14 @@ module Peddler
         attr_reader unhealthy_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?
         attr_reader unsellable_in_transit_inventory: String?
         attr_reader unsellable_on_hand_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?
-        def members: () -> [ :aged90_days_sellable_inventory, :sell_through_rate, :sellable_in_transit_inventory, :sellable_on_hand_inventory, :sourceable_roos, :ultra_fast_track, :unhealthy_inventory, :unsellable_in_transit_inventory, :unsellable_on_hand_inventory ]
 
+        def members: () -> [ :aged90_days_sellable_inventory, :sell_through_rate, :sellable_in_transit_inventory, :sellable_on_hand_inventory, :sourceable_roos, :ultra_fast_track, :unhealthy_inventory, :unsellable_in_transit_inventory, :unsellable_on_hand_inventory ]
         def to_h: () -> { aged90_days_sellable_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, sell_through_rate: Float?, sellable_in_transit_inventory: String?, sellable_on_hand_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, sourceable_roos: Float?, ultra_fast_track: Float?, unhealthy_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, unsellable_in_transit_inventory: String?, unsellable_on_hand_inventory: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue? }
       end
 
       class ShippedOrders < Data
         def self.new: (?average_selling_price: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?shipped_units_with_revenue: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?) -> Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders
                     | (Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?) -> Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders
-
         def self.[]: (?average_selling_price: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, ?shipped_units_with_revenue: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?) -> Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders
                    | (Peddler::DataKiosk::VendorAnalytics20240930::Amount?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?) -> Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders
 
@@ -336,15 +320,14 @@ module Peddler
 
         attr_reader average_selling_price: Peddler::DataKiosk::VendorAnalytics20240930::Amount?
         attr_reader shipped_units_with_revenue: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?
-        def members: () -> [ :average_selling_price, :shipped_units_with_revenue ]
 
+        def members: () -> [ :average_selling_price, :shipped_units_with_revenue ]
         def to_h: () -> { average_selling_price: Peddler::DataKiosk::VendorAnalytics20240930::Amount?, shipped_units_with_revenue: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue? }
       end
 
       class Sourcing < Data
         def self.new: (?confirmed_units: String?, ?most_recent_submitted: String?, ?net_received: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?open_purchase_order_quantity: String?, ?overall_vendor_lead_time: Float?, ?procurable_product_oos: Float?, ?received_fill_rate: Float?, ?vendor_confirmation_rate: Float?) -> Peddler::DataKiosk::VendorAnalytics20240930::Sourcing
                     | (String?, String?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, String?, Float?, Float?, Float?, Float?) -> Peddler::DataKiosk::VendorAnalytics20240930::Sourcing
-
         def self.[]: (?confirmed_units: String?, ?most_recent_submitted: String?, ?net_received: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, ?open_purchase_order_quantity: String?, ?overall_vendor_lead_time: Float?, ?procurable_product_oos: Float?, ?received_fill_rate: Float?, ?vendor_confirmation_rate: Float?) -> Peddler::DataKiosk::VendorAnalytics20240930::Sourcing
                    | (String?, String?, Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, String?, Float?, Float?, Float?, Float?) -> Peddler::DataKiosk::VendorAnalytics20240930::Sourcing
 
@@ -360,15 +343,14 @@ module Peddler
         attr_reader procurable_product_oos: Float?
         attr_reader received_fill_rate: Float?
         attr_reader vendor_confirmation_rate: Float?
-        def members: () -> [ :confirmed_units, :most_recent_submitted, :net_received, :open_purchase_order_quantity, :overall_vendor_lead_time, :procurable_product_oos, :received_fill_rate, :vendor_confirmation_rate ]
 
+        def members: () -> [ :confirmed_units, :most_recent_submitted, :net_received, :open_purchase_order_quantity, :overall_vendor_lead_time, :procurable_product_oos, :received_fill_rate, :vendor_confirmation_rate ]
         def to_h: () -> { confirmed_units: String?, most_recent_submitted: String?, net_received: Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue?, open_purchase_order_quantity: String?, overall_vendor_lead_time: Float?, procurable_product_oos: Float?, received_fill_rate: Float?, vendor_confirmation_rate: Float? }
       end
 
       class SourcingView < Data
         def self.new: (?end_date: String?, ?marketplace_id: String?, ?metrics: Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy]?, ?start_date: String?, ?totals: Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingView
                     | (String?, String?, Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy]?, String?, Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingView
-
         def self.[]: (?end_date: String?, ?marketplace_id: String?, ?metrics: Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy]?, ?start_date: String?, ?totals: Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingView
                    | (String?, String?, Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy]?, String?, Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingView
 
@@ -381,15 +363,14 @@ module Peddler
         attr_reader metrics: Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy]?
         attr_reader start_date: String?
         attr_reader totals: Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?
-        def members: () -> [ :end_date, :marketplace_id, :metrics, :start_date, :totals ]
 
+        def members: () -> [ :end_date, :marketplace_id, :metrics, :start_date, :totals ]
         def to_h: () -> { end_date: String?, marketplace_id: String?, metrics: Array[Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy]?, start_date: String?, totals: Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics? }
       end
 
       class SourcingViewMetrics < Data
         def self.new: (?costs: Peddler::DataKiosk::VendorAnalytics20240930::Costs?, ?customer_satisfaction: Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, ?product_availability: Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, ?shipped_orders: Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, ?sourcing: Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics
                     | (Peddler::DataKiosk::VendorAnalytics20240930::Costs?, Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics
-
         def self.[]: (?costs: Peddler::DataKiosk::VendorAnalytics20240930::Costs?, ?customer_satisfaction: Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, ?product_availability: Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, ?shipped_orders: Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, ?sourcing: Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics
                    | (Peddler::DataKiosk::VendorAnalytics20240930::Costs?, Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics
 
@@ -402,15 +383,14 @@ module Peddler
         attr_reader product_availability: Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?
         attr_reader shipped_orders: Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?
         attr_reader sourcing: Peddler::DataKiosk::VendorAnalytics20240930::Sourcing?
-        def members: () -> [ :costs, :customer_satisfaction, :product_availability, :shipped_orders, :sourcing ]
 
+        def members: () -> [ :costs, :customer_satisfaction, :product_availability, :shipped_orders, :sourcing ]
         def to_h: () -> { costs: Peddler::DataKiosk::VendorAnalytics20240930::Costs?, customer_satisfaction: Peddler::DataKiosk::VendorAnalytics20240930::CustomerSatisfaction?, product_availability: Peddler::DataKiosk::VendorAnalytics20240930::ProductAvailability?, shipped_orders: Peddler::DataKiosk::VendorAnalytics20240930::ShippedOrders?, sourcing: Peddler::DataKiosk::VendorAnalytics20240930::Sourcing? }
       end
 
       class SourcingViewMetricsGroupedBy < Data
         def self.new: (?group_by_key: Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, ?metrics: Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy
                     | (Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy
-
         def self.[]: (?group_by_key: Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, ?metrics: Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy
                    | (Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?) -> Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetricsGroupedBy
 
@@ -420,15 +400,14 @@ module Peddler
 
         attr_reader group_by_key: Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?
         attr_reader metrics: Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics?
-        def members: () -> [ :group_by_key, :metrics ]
 
+        def members: () -> [ :group_by_key, :metrics ]
         def to_h: () -> { group_by_key: Peddler::DataKiosk::VendorAnalytics20240930::GroupByAttributes?, metrics: Peddler::DataKiosk::VendorAnalytics20240930::SourcingViewMetrics? }
       end
 
       class Traffic < Data
         def self.new: (?glance_views: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
                     | (String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
-
         def self.[]: (?glance_views: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
                    | (String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
 
@@ -437,15 +416,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
 
         attr_reader glance_views: String?
-        def members: () -> [ :glance_views ]
 
+        def members: () -> [ :glance_views ]
         def to_h: () -> { glance_views: String? }
       end
 
       class UnitsWithValue < Data
         def self.new: (?units: String?, ?value: Peddler::DataKiosk::VendorAnalytics20240930::Amount?) -> Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue
                     | (String?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?) -> Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue
-
         def self.[]: (?units: String?, ?value: Peddler::DataKiosk::VendorAnalytics20240930::Amount?) -> Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue
                    | (String?, Peddler::DataKiosk::VendorAnalytics20240930::Amount?) -> Peddler::DataKiosk::VendorAnalytics20240930::UnitsWithValue
 
@@ -455,8 +433,8 @@ module Peddler
 
         attr_reader units: String?
         attr_reader value: Peddler::DataKiosk::VendorAnalytics20240930::Amount?
-        def members: () -> [ :units, :value ]
 
+        def members: () -> [ :units, :value ]
         def to_h: () -> { units: String?, value: Peddler::DataKiosk::VendorAnalytics20240930::Amount? }
       end
 

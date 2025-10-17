@@ -10,7 +10,7 @@ module Peddler
       # The A+ Content standard comparison product block.
       StandardComparisonProductBlock = Structure.new do
         # @return [Integer] The rank or index of this comparison product block within the module. Different blocks
-        # cannot occupy the same position within a single module.
+        #   cannot occupy the same position within a single module.
         attribute(:position, Integer)
 
         # @return [String]

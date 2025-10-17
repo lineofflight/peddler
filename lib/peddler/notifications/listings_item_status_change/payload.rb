@@ -17,12 +17,12 @@ module Peddler
         attribute(:sku, String, from: "Sku")
 
         # @return [Array<String>] Array of status states currently associated with the affected listings item. The
-        # absence of a value indicates the status state is not currently applicable to the listings item. For example,
-        # if "BUYABLE" is not present, the listings item is not currently buyable.
+        #   absence of a value indicates the status state is not currently applicable to the listings item. For example,
+        #   if "BUYABLE" is not present, the listings item is not currently buyable.
         attribute(:status, [String], from: "Status")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) identifier of the catalog item associated
-        # with the listings item.
+        #   with the listings item.
         attribute?(:asin, String, from: "Asin")
 
         # @return [Time] Timestamp of when the listings item was created, formatted as ISO8601 date-time.

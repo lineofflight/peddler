@@ -19,7 +19,7 @@ module Peddler
         attribute(:submission_id, String, from: "submissionId")
 
         # @return [Array<ItemIdentifiersByMarketplace>] Identity attributes associated with the item in the Amazon
-        # catalog, such as the ASIN.
+        #   catalog, such as the ASIN.
         attribute?(:identifiers, [ItemIdentifiersByMarketplace])
 
         # @return [Array<Issue>] Listings item issues related to the listings item submission.

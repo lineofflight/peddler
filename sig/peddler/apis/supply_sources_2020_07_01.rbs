@@ -4,7 +4,6 @@ module Peddler
       class Address < Data
         def self.new: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::APIs::SupplySources20200701::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Address
-
         def self.[]: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::APIs::SupplySources20200701::Address
                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Address
 
@@ -23,15 +22,14 @@ module Peddler
         attr_reader phone: String?
         attr_reader postal_code: String?
         attr_reader state_or_region: String?
-        def members: () -> [ :address_line1, :country_code, :name, :state_or_region, :address_line2, :address_line3, :city, :county, :district, :phone, :postal_code ]
 
+        def members: () -> [ :address_line1, :country_code, :name, :state_or_region, :address_line2, :address_line3, :city, :county, :district, :phone, :postal_code ]
         def to_h: () -> { address_line1: String?, country_code: String?, name: String?, state_or_region: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String? }
       end
 
       class AddressWithContact < Data
         def self.new: (?address: Peddler::APIs::SupplySources20200701::Address?, ?contact_details: Peddler::APIs::SupplySources20200701::ContactDetails?) -> Peddler::APIs::SupplySources20200701::AddressWithContact
                     | (Peddler::APIs::SupplySources20200701::Address?, Peddler::APIs::SupplySources20200701::ContactDetails?) -> Peddler::APIs::SupplySources20200701::AddressWithContact
-
         def self.[]: (?address: Peddler::APIs::SupplySources20200701::Address?, ?contact_details: Peddler::APIs::SupplySources20200701::ContactDetails?) -> Peddler::APIs::SupplySources20200701::AddressWithContact
                    | (Peddler::APIs::SupplySources20200701::Address?, Peddler::APIs::SupplySources20200701::ContactDetails?) -> Peddler::APIs::SupplySources20200701::AddressWithContact
 
@@ -41,15 +39,14 @@ module Peddler
 
         attr_reader address: Peddler::APIs::SupplySources20200701::Address?
         attr_reader contact_details: Peddler::APIs::SupplySources20200701::ContactDetails?
-        def members: () -> [ :address, :contact_details ]
 
+        def members: () -> [ :address, :contact_details ]
         def to_h: () -> { address: Peddler::APIs::SupplySources20200701::Address?, contact_details: Peddler::APIs::SupplySources20200701::ContactDetails? }
       end
 
       class ContactDetails < Data
         def self.new: (?primary: Hash[untyped, untyped]?) -> Peddler::APIs::SupplySources20200701::ContactDetails
                     | (Hash[untyped, untyped]?) -> Peddler::APIs::SupplySources20200701::ContactDetails
-
         def self.[]: (?primary: Hash[untyped, untyped]?) -> Peddler::APIs::SupplySources20200701::ContactDetails
                    | (Hash[untyped, untyped]?) -> Peddler::APIs::SupplySources20200701::ContactDetails
 
@@ -58,15 +55,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::ContactDetails
 
         attr_reader primary: Hash[untyped, untyped]?
-        def members: () -> [ :primary ]
 
+        def members: () -> [ :primary ]
         def to_h: () -> { primary: Hash[untyped, untyped]? }
       end
 
       class CreateSupplySourceRequest < Data
         def self.new: (address: Peddler::APIs::SupplySources20200701::Address?, alias: String?, supply_source_code: String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
                     | (Peddler::APIs::SupplySources20200701::Address?, String?, String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
-
         def self.[]: (address: Peddler::APIs::SupplySources20200701::Address?, alias: String?, supply_source_code: String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
                    | (Peddler::APIs::SupplySources20200701::Address?, String?, String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
 
@@ -77,15 +73,14 @@ module Peddler
         attr_reader address: Peddler::APIs::SupplySources20200701::Address?
         attr_reader alias: String?
         attr_reader supply_source_code: String?
-        def members: () -> [ :address, :alias, :supply_source_code ]
 
+        def members: () -> [ :address, :alias, :supply_source_code ]
         def to_h: () -> { address: Peddler::APIs::SupplySources20200701::Address?, alias: String?, supply_source_code: String? }
       end
 
       class CreateSupplySourceResponse < Data
         def self.new: (supply_source_code: String?, supply_source_id: String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
                     | (String?, String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
-
         def self.[]: (supply_source_code: String?, supply_source_id: String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
                    | (String?, String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
 
@@ -95,15 +90,14 @@ module Peddler
 
         attr_reader supply_source_code: String?
         attr_reader supply_source_id: String?
-        def members: () -> [ :supply_source_code, :supply_source_id ]
 
+        def members: () -> [ :supply_source_code, :supply_source_id ]
         def to_h: () -> { supply_source_code: String?, supply_source_id: String? }
       end
 
       class CurbsidePickupConfiguration < Data
         def self.new: (?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, ?parking_with_address_configuration: Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration?) -> Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration
                     | (bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?, Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration?) -> Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration
-
         def self.[]: (?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, ?parking_with_address_configuration: Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration?) -> Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration
                    | (bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?, Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration?) -> Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration
 
@@ -117,14 +111,12 @@ module Peddler
 
         def members: () -> [ :supported, :operational_configuration, :parking_with_address_configuration ]
         def supported?: () -> bool
-
         def to_h: () -> { supported: bool?, operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, parking_with_address_configuration: Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration? }
       end
 
       class DeliveryChannel < Data
         def self.new: (?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::DeliveryChannel
                     | (bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::DeliveryChannel
-
         def self.[]: (?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::DeliveryChannel
                    | (bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::DeliveryChannel
 
@@ -137,14 +129,12 @@ module Peddler
 
         def members: () -> [ :supported, :operational_configuration ]
         def supported?: () -> bool
-
         def to_h: () -> { supported: bool?, operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration? }
       end
 
       class Duration < Data
         def self.new: (?time_unit: String?, ?value: Integer?) -> Peddler::APIs::SupplySources20200701::Duration
                     | (String?, Integer?) -> Peddler::APIs::SupplySources20200701::Duration
-
         def self.[]: (?time_unit: String?, ?value: Integer?) -> Peddler::APIs::SupplySources20200701::Duration
                    | (String?, Integer?) -> Peddler::APIs::SupplySources20200701::Duration
 
@@ -154,15 +144,14 @@ module Peddler
 
         attr_reader time_unit: String?
         attr_reader value: Integer?
-        def members: () -> [ :time_unit, :value ]
 
+        def members: () -> [ :time_unit, :value ]
         def to_h: () -> { time_unit: String?, value: Integer? }
       end
 
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SupplySources20200701::Error
                     | (String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SupplySources20200701::Error
                    | (String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Error
 
@@ -173,15 +162,14 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
       class ErrorList < Data
         def self.new: (errors: Array[Peddler::APIs::SupplySources20200701::Error]?) -> Peddler::APIs::SupplySources20200701::ErrorList
                     | (Array[Peddler::APIs::SupplySources20200701::Error]?) -> Peddler::APIs::SupplySources20200701::ErrorList
-
         def self.[]: (errors: Array[Peddler::APIs::SupplySources20200701::Error]?) -> Peddler::APIs::SupplySources20200701::ErrorList
                    | (Array[Peddler::APIs::SupplySources20200701::Error]?) -> Peddler::APIs::SupplySources20200701::ErrorList
 
@@ -190,15 +178,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::ErrorList
 
         attr_reader errors: Array[Peddler::APIs::SupplySources20200701::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::SupplySources20200701::Error]? }
       end
 
       class GetSupplySourcesResponse < Data
         def self.new: (?next_page_token: String?, ?supply_sources: Array[untyped]?) -> Peddler::APIs::SupplySources20200701::GetSupplySourcesResponse
                     | (String?, Array[untyped]?) -> Peddler::APIs::SupplySources20200701::GetSupplySourcesResponse
-
         def self.[]: (?next_page_token: String?, ?supply_sources: Array[untyped]?) -> Peddler::APIs::SupplySources20200701::GetSupplySourcesResponse
                    | (String?, Array[untyped]?) -> Peddler::APIs::SupplySources20200701::GetSupplySourcesResponse
 
@@ -208,15 +195,14 @@ module Peddler
 
         attr_reader next_page_token: String?
         attr_reader supply_sources: Array[untyped]?
-        def members: () -> [ :next_page_token, :supply_sources ]
 
+        def members: () -> [ :next_page_token, :supply_sources ]
         def to_h: () -> { next_page_token: String?, supply_sources: Array[untyped]? }
       end
 
       class InStorePickupConfiguration < Data
         def self.new: (?supported: bool?, ?parking_configuration: Peddler::APIs::SupplySources20200701::ParkingConfiguration?) -> Peddler::APIs::SupplySources20200701::InStorePickupConfiguration
                     | (bool?, Peddler::APIs::SupplySources20200701::ParkingConfiguration?) -> Peddler::APIs::SupplySources20200701::InStorePickupConfiguration
-
         def self.[]: (?supported: bool?, ?parking_configuration: Peddler::APIs::SupplySources20200701::ParkingConfiguration?) -> Peddler::APIs::SupplySources20200701::InStorePickupConfiguration
                    | (bool?, Peddler::APIs::SupplySources20200701::ParkingConfiguration?) -> Peddler::APIs::SupplySources20200701::InStorePickupConfiguration
 
@@ -229,14 +215,12 @@ module Peddler
 
         def members: () -> [ :supported, :parking_configuration ]
         def supported?: () -> bool
-
         def to_h: () -> { supported: bool?, parking_configuration: Peddler::APIs::SupplySources20200701::ParkingConfiguration? }
       end
 
       class OperatingHour < Data
         def self.new: (?end_time: String?, ?start_time: String?) -> Peddler::APIs::SupplySources20200701::OperatingHour
                     | (String?, String?) -> Peddler::APIs::SupplySources20200701::OperatingHour
-
         def self.[]: (?end_time: String?, ?start_time: String?) -> Peddler::APIs::SupplySources20200701::OperatingHour
                    | (String?, String?) -> Peddler::APIs::SupplySources20200701::OperatingHour
 
@@ -246,8 +230,8 @@ module Peddler
 
         attr_reader end_time: String?
         attr_reader start_time: String?
-        def members: () -> [ :end_time, :start_time ]
 
+        def members: () -> [ :end_time, :start_time ]
         def to_h: () -> { end_time: String?, start_time: String? }
       end
 
@@ -258,7 +242,6 @@ module Peddler
       class OperatingHoursByDay < Data
         def self.new: (?friday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?monday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?saturday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?sunday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?thursday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?tuesday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?wednesday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?) -> Peddler::APIs::SupplySources20200701::OperatingHoursByDay
                     | (Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?) -> Peddler::APIs::SupplySources20200701::OperatingHoursByDay
-
         def self.[]: (?friday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?monday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?saturday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?sunday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?thursday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?tuesday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, ?wednesday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?) -> Peddler::APIs::SupplySources20200701::OperatingHoursByDay
                    | (Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, Array[Peddler::APIs::SupplySources20200701::OperatingHour]?) -> Peddler::APIs::SupplySources20200701::OperatingHoursByDay
 
@@ -273,15 +256,14 @@ module Peddler
         attr_reader thursday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?
         attr_reader tuesday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?
         attr_reader wednesday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?
-        def members: () -> [ :friday, :monday, :saturday, :sunday, :thursday, :tuesday, :wednesday ]
 
+        def members: () -> [ :friday, :monday, :saturday, :sunday, :thursday, :tuesday, :wednesday ]
         def to_h: () -> { friday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, monday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, saturday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, sunday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, thursday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, tuesday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]?, wednesday: Array[Peddler::APIs::SupplySources20200701::OperatingHour]? }
       end
 
       class OperationalConfiguration < Data
         def self.new: (?contact_details: Peddler::APIs::SupplySources20200701::ContactDetails?, ?handling_time: Peddler::APIs::SupplySources20200701::Duration?, ?operating_hours_by_day: Peddler::APIs::SupplySources20200701::OperatingHoursByDay?, ?throughput_config: Peddler::APIs::SupplySources20200701::ThroughputConfig?) -> Peddler::APIs::SupplySources20200701::OperationalConfiguration
                     | (Peddler::APIs::SupplySources20200701::ContactDetails?, Peddler::APIs::SupplySources20200701::Duration?, Peddler::APIs::SupplySources20200701::OperatingHoursByDay?, Peddler::APIs::SupplySources20200701::ThroughputConfig?) -> Peddler::APIs::SupplySources20200701::OperationalConfiguration
-
         def self.[]: (?contact_details: Peddler::APIs::SupplySources20200701::ContactDetails?, ?handling_time: Peddler::APIs::SupplySources20200701::Duration?, ?operating_hours_by_day: Peddler::APIs::SupplySources20200701::OperatingHoursByDay?, ?throughput_config: Peddler::APIs::SupplySources20200701::ThroughputConfig?) -> Peddler::APIs::SupplySources20200701::OperationalConfiguration
                    | (Peddler::APIs::SupplySources20200701::ContactDetails?, Peddler::APIs::SupplySources20200701::Duration?, Peddler::APIs::SupplySources20200701::OperatingHoursByDay?, Peddler::APIs::SupplySources20200701::ThroughputConfig?) -> Peddler::APIs::SupplySources20200701::OperationalConfiguration
 
@@ -293,15 +275,14 @@ module Peddler
         attr_reader handling_time: Peddler::APIs::SupplySources20200701::Duration?
         attr_reader operating_hours_by_day: Peddler::APIs::SupplySources20200701::OperatingHoursByDay?
         attr_reader throughput_config: Peddler::APIs::SupplySources20200701::ThroughputConfig?
-        def members: () -> [ :contact_details, :handling_time, :operating_hours_by_day, :throughput_config ]
 
+        def members: () -> [ :contact_details, :handling_time, :operating_hours_by_day, :throughput_config ]
         def to_h: () -> { contact_details: Peddler::APIs::SupplySources20200701::ContactDetails?, handling_time: Peddler::APIs::SupplySources20200701::Duration?, operating_hours_by_day: Peddler::APIs::SupplySources20200701::OperatingHoursByDay?, throughput_config: Peddler::APIs::SupplySources20200701::ThroughputConfig? }
       end
 
       class OutboundCapability < Data
         def self.new: (?delivery_channel: Peddler::APIs::SupplySources20200701::DeliveryChannel?, ?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, ?pickup_channel: Peddler::APIs::SupplySources20200701::PickupChannel?, ?return_location: Peddler::APIs::SupplySources20200701::ReturnLocation?) -> Peddler::APIs::SupplySources20200701::OutboundCapability
                     | (Peddler::APIs::SupplySources20200701::DeliveryChannel?, bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?, Peddler::APIs::SupplySources20200701::PickupChannel?, Peddler::APIs::SupplySources20200701::ReturnLocation?) -> Peddler::APIs::SupplySources20200701::OutboundCapability
-
         def self.[]: (?delivery_channel: Peddler::APIs::SupplySources20200701::DeliveryChannel?, ?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, ?pickup_channel: Peddler::APIs::SupplySources20200701::PickupChannel?, ?return_location: Peddler::APIs::SupplySources20200701::ReturnLocation?) -> Peddler::APIs::SupplySources20200701::OutboundCapability
                    | (Peddler::APIs::SupplySources20200701::DeliveryChannel?, bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?, Peddler::APIs::SupplySources20200701::PickupChannel?, Peddler::APIs::SupplySources20200701::ReturnLocation?) -> Peddler::APIs::SupplySources20200701::OutboundCapability
 
@@ -317,14 +298,12 @@ module Peddler
 
         def members: () -> [ :delivery_channel, :supported, :operational_configuration, :pickup_channel, :return_location ]
         def supported?: () -> bool
-
         def to_h: () -> { delivery_channel: Peddler::APIs::SupplySources20200701::DeliveryChannel?, supported: bool?, operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, pickup_channel: Peddler::APIs::SupplySources20200701::PickupChannel?, return_location: Peddler::APIs::SupplySources20200701::ReturnLocation? }
       end
 
       class ParkingConfiguration < Data
         def self.new: (?number_of_parking_spots: Integer?, ?parking_cost_type: String?, ?parking_spot_identification_type: String?) -> Peddler::APIs::SupplySources20200701::ParkingConfiguration
                     | (Integer?, String?, String?) -> Peddler::APIs::SupplySources20200701::ParkingConfiguration
-
         def self.[]: (?number_of_parking_spots: Integer?, ?parking_cost_type: String?, ?parking_spot_identification_type: String?) -> Peddler::APIs::SupplySources20200701::ParkingConfiguration
                    | (Integer?, String?, String?) -> Peddler::APIs::SupplySources20200701::ParkingConfiguration
 
@@ -335,15 +314,14 @@ module Peddler
         attr_reader number_of_parking_spots: Integer?
         attr_reader parking_cost_type: String?
         attr_reader parking_spot_identification_type: String?
-        def members: () -> [ :number_of_parking_spots, :parking_cost_type, :parking_spot_identification_type ]
 
+        def members: () -> [ :number_of_parking_spots, :parking_cost_type, :parking_spot_identification_type ]
         def to_h: () -> { number_of_parking_spots: Integer?, parking_cost_type: String?, parking_spot_identification_type: String? }
       end
 
       class ParkingWithAddressConfiguration < Data
         def self.new: (?address: Peddler::APIs::SupplySources20200701::Address?, ?number_of_parking_spots: Integer?, ?parking_cost_type: String?, ?parking_spot_identification_type: String?) -> Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration
                     | (Peddler::APIs::SupplySources20200701::Address?, Integer?, String?, String?) -> Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration
-
         def self.[]: (?address: Peddler::APIs::SupplySources20200701::Address?, ?number_of_parking_spots: Integer?, ?parking_cost_type: String?, ?parking_spot_identification_type: String?) -> Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration
                    | (Peddler::APIs::SupplySources20200701::Address?, Integer?, String?, String?) -> Peddler::APIs::SupplySources20200701::ParkingWithAddressConfiguration
 
@@ -355,15 +333,14 @@ module Peddler
         attr_reader number_of_parking_spots: Integer?
         attr_reader parking_cost_type: String?
         attr_reader parking_spot_identification_type: String?
-        def members: () -> [ :address, :number_of_parking_spots, :parking_cost_type, :parking_spot_identification_type ]
 
+        def members: () -> [ :address, :number_of_parking_spots, :parking_cost_type, :parking_spot_identification_type ]
         def to_h: () -> { address: Peddler::APIs::SupplySources20200701::Address?, number_of_parking_spots: Integer?, parking_cost_type: String?, parking_spot_identification_type: String? }
       end
 
       class PickupChannel < Data
         def self.new: (?curbside_pickup_configuration: Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration?, ?in_store_pickup_configuration: Peddler::APIs::SupplySources20200701::InStorePickupConfiguration?, ?inventory_hold_period: Peddler::APIs::SupplySources20200701::Duration?, ?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::PickupChannel
                     | (Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration?, Peddler::APIs::SupplySources20200701::InStorePickupConfiguration?, Peddler::APIs::SupplySources20200701::Duration?, bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::PickupChannel
-
         def self.[]: (?curbside_pickup_configuration: Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration?, ?in_store_pickup_configuration: Peddler::APIs::SupplySources20200701::InStorePickupConfiguration?, ?inventory_hold_period: Peddler::APIs::SupplySources20200701::Duration?, ?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::PickupChannel
                    | (Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration?, Peddler::APIs::SupplySources20200701::InStorePickupConfiguration?, Peddler::APIs::SupplySources20200701::Duration?, bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::PickupChannel
 
@@ -379,14 +356,12 @@ module Peddler
 
         def members: () -> [ :curbside_pickup_configuration, :in_store_pickup_configuration, :inventory_hold_period, :supported, :operational_configuration ]
         def supported?: () -> bool
-
         def to_h: () -> { curbside_pickup_configuration: Peddler::APIs::SupplySources20200701::CurbsidePickupConfiguration?, in_store_pickup_configuration: Peddler::APIs::SupplySources20200701::InStorePickupConfiguration?, inventory_hold_period: Peddler::APIs::SupplySources20200701::Duration?, supported: bool?, operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration? }
       end
 
       class ReturnLocation < Data
         def self.new: (?address_with_contact: Peddler::APIs::SupplySources20200701::AddressWithContact?, ?supply_source_id: String?) -> Peddler::APIs::SupplySources20200701::ReturnLocation
                     | (Peddler::APIs::SupplySources20200701::AddressWithContact?, String?) -> Peddler::APIs::SupplySources20200701::ReturnLocation
-
         def self.[]: (?address_with_contact: Peddler::APIs::SupplySources20200701::AddressWithContact?, ?supply_source_id: String?) -> Peddler::APIs::SupplySources20200701::ReturnLocation
                    | (Peddler::APIs::SupplySources20200701::AddressWithContact?, String?) -> Peddler::APIs::SupplySources20200701::ReturnLocation
 
@@ -396,15 +371,14 @@ module Peddler
 
         attr_reader address_with_contact: Peddler::APIs::SupplySources20200701::AddressWithContact?
         attr_reader supply_source_id: String?
-        def members: () -> [ :address_with_contact, :supply_source_id ]
 
+        def members: () -> [ :address_with_contact, :supply_source_id ]
         def to_h: () -> { address_with_contact: Peddler::APIs::SupplySources20200701::AddressWithContact?, supply_source_id: String? }
       end
 
       class ServicesCapability < Data
         def self.new: (?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::ServicesCapability
                     | (bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::ServicesCapability
-
         def self.[]: (?supported: bool?, ?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::ServicesCapability
                    | (bool?, Peddler::APIs::SupplySources20200701::OperationalConfiguration?) -> Peddler::APIs::SupplySources20200701::ServicesCapability
 
@@ -417,14 +391,12 @@ module Peddler
 
         def members: () -> [ :supported, :operational_configuration ]
         def supported?: () -> bool
-
         def to_h: () -> { supported: bool?, operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration? }
       end
 
       class SupplySource < Data
         def self.new: (?address: Peddler::APIs::SupplySources20200701::Address?, ?alias: String?, ?capabilities: Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, ?configuration: Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?, ?created_at: String?, ?status: String?, ?supply_source_code: String?, ?supply_source_id: String?, ?updated_at: String?) -> Peddler::APIs::SupplySources20200701::SupplySource
                     | (Peddler::APIs::SupplySources20200701::Address?, String?, Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::SupplySource
-
         def self.[]: (?address: Peddler::APIs::SupplySources20200701::Address?, ?alias: String?, ?capabilities: Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, ?configuration: Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?, ?created_at: String?, ?status: String?, ?supply_source_code: String?, ?supply_source_id: String?, ?updated_at: String?) -> Peddler::APIs::SupplySources20200701::SupplySource
                    | (Peddler::APIs::SupplySources20200701::Address?, String?, Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::SupplySource
 
@@ -441,15 +413,14 @@ module Peddler
         attr_reader supply_source_code: String?
         attr_reader supply_source_id: String?
         attr_reader updated_at: String?
-        def members: () -> [ :address, :alias, :capabilities, :configuration, :created_at, :status, :supply_source_code, :supply_source_id, :updated_at ]
 
+        def members: () -> [ :address, :alias, :capabilities, :configuration, :created_at, :status, :supply_source_code, :supply_source_id, :updated_at ]
         def to_h: () -> { address: Peddler::APIs::SupplySources20200701::Address?, alias: String?, capabilities: Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, configuration: Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?, created_at: String?, status: String?, supply_source_code: String?, supply_source_id: String?, updated_at: String? }
       end
 
       class SupplySourceCapabilities < Data
         def self.new: (?outbound: Peddler::APIs::SupplySources20200701::OutboundCapability?, ?services: Peddler::APIs::SupplySources20200701::ServicesCapability?) -> Peddler::APIs::SupplySources20200701::SupplySourceCapabilities
                     | (Peddler::APIs::SupplySources20200701::OutboundCapability?, Peddler::APIs::SupplySources20200701::ServicesCapability?) -> Peddler::APIs::SupplySources20200701::SupplySourceCapabilities
-
         def self.[]: (?outbound: Peddler::APIs::SupplySources20200701::OutboundCapability?, ?services: Peddler::APIs::SupplySources20200701::ServicesCapability?) -> Peddler::APIs::SupplySources20200701::SupplySourceCapabilities
                    | (Peddler::APIs::SupplySources20200701::OutboundCapability?, Peddler::APIs::SupplySources20200701::ServicesCapability?) -> Peddler::APIs::SupplySources20200701::SupplySourceCapabilities
 
@@ -459,15 +430,14 @@ module Peddler
 
         attr_reader outbound: Peddler::APIs::SupplySources20200701::OutboundCapability?
         attr_reader services: Peddler::APIs::SupplySources20200701::ServicesCapability?
-        def members: () -> [ :outbound, :services ]
 
+        def members: () -> [ :outbound, :services ]
         def to_h: () -> { outbound: Peddler::APIs::SupplySources20200701::OutboundCapability?, services: Peddler::APIs::SupplySources20200701::ServicesCapability? }
       end
 
       class SupplySourceConfiguration < Data
         def self.new: (?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, ?timezone: String?) -> Peddler::APIs::SupplySources20200701::SupplySourceConfiguration
                     | (Peddler::APIs::SupplySources20200701::OperationalConfiguration?, String?) -> Peddler::APIs::SupplySources20200701::SupplySourceConfiguration
-
         def self.[]: (?operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, ?timezone: String?) -> Peddler::APIs::SupplySources20200701::SupplySourceConfiguration
                    | (Peddler::APIs::SupplySources20200701::OperationalConfiguration?, String?) -> Peddler::APIs::SupplySources20200701::SupplySourceConfiguration
 
@@ -477,8 +447,8 @@ module Peddler
 
         attr_reader operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?
         attr_reader timezone: String?
-        def members: () -> [ :operational_configuration, :timezone ]
 
+        def members: () -> [ :operational_configuration, :timezone ]
         def to_h: () -> { operational_configuration: Peddler::APIs::SupplySources20200701::OperationalConfiguration?, timezone: String? }
       end
 
@@ -489,7 +459,6 @@ module Peddler
       class ThroughputCap < Data
         def self.new: (?time_unit: String?, ?value: Integer?) -> Peddler::APIs::SupplySources20200701::ThroughputCap
                     | (String?, Integer?) -> Peddler::APIs::SupplySources20200701::ThroughputCap
-
         def self.[]: (?time_unit: String?, ?value: Integer?) -> Peddler::APIs::SupplySources20200701::ThroughputCap
                    | (String?, Integer?) -> Peddler::APIs::SupplySources20200701::ThroughputCap
 
@@ -499,15 +468,14 @@ module Peddler
 
         attr_reader time_unit: String?
         attr_reader value: Integer?
-        def members: () -> [ :time_unit, :value ]
 
+        def members: () -> [ :time_unit, :value ]
         def to_h: () -> { time_unit: String?, value: Integer? }
       end
 
       class ThroughputConfig < Data
         def self.new: (throughput_unit: String?, ?throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
                     | (String?, Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
-
         def self.[]: (throughput_unit: String?, ?throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
                    | (String?, Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
 
@@ -517,15 +485,14 @@ module Peddler
 
         attr_reader throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap?
         attr_reader throughput_unit: String?
-        def members: () -> [ :throughput_unit, :throughput_cap ]
 
+        def members: () -> [ :throughput_unit, :throughput_cap ]
         def to_h: () -> { throughput_unit: String?, throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap? }
       end
 
       class UpdateSupplySourceRequest < Data
         def self.new: (?alias: String?, ?capabilities: Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, ?configuration: Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceRequest
                     | (String?, Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceRequest
-
         def self.[]: (?alias: String?, ?capabilities: Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, ?configuration: Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceRequest
                    | (String?, Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceRequest
 
@@ -536,15 +503,14 @@ module Peddler
         attr_reader alias: String?
         attr_reader capabilities: Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?
         attr_reader configuration: Peddler::APIs::SupplySources20200701::SupplySourceConfiguration?
-        def members: () -> [ :alias, :capabilities, :configuration ]
 
+        def members: () -> [ :alias, :capabilities, :configuration ]
         def to_h: () -> { alias: String?, capabilities: Peddler::APIs::SupplySources20200701::SupplySourceCapabilities?, configuration: Peddler::APIs::SupplySources20200701::SupplySourceConfiguration? }
       end
 
       class UpdateSupplySourceStatusRequest < Data
         def self.new: (?status: String?) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceStatusRequest
                     | (String?) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceStatusRequest
-
         def self.[]: (?status: String?) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceStatusRequest
                    | (String?) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceStatusRequest
 
@@ -553,8 +519,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::UpdateSupplySourceStatusRequest
 
         attr_reader status: String?
-        def members: () -> [ :status ]
 
+        def members: () -> [ :status ]
         def to_h: () -> { status: String? }
       end
 

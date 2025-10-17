@@ -11,7 +11,7 @@ module Peddler
       # The response for the `getBrowseNodeReviewTrends` operation.
       BrowseNodeReviewTrendsResponse = Structure.new do
         # @return [String] The requested browse node id. A browse node id is the unique identifier of a given browse
-        # node.
+        #   node.
         attribute(:browse_node_id, String, from: "browseNodeId")
 
         # @return [String] The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
@@ -21,7 +21,7 @@ module Peddler
         attribute(:date_range, DateRange, from: "dateRange")
 
         # @return [String] The display name of the requested browse node id. The display name of the browse node as
-        # visible on the Amazon retail website.
+        #   visible on the Amazon retail website.
         attribute(:display_name, String, from: "displayName")
 
         # @return [String] The requested marketplace id.

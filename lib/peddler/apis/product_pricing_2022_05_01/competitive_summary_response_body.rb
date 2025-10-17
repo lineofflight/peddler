@@ -19,11 +19,11 @@ module Peddler
         attribute?(:errors, [Error])
 
         # @return [Array<FeaturedBuyingOption>] A list of featured buying options for the specified ASIN `marketplaceId`
-        # combination.
+        #   combination.
         attribute?(:featured_buying_options, [FeaturedBuyingOption], from: "featuredBuyingOptions")
 
         # @return [Array<LowestPricedOffer>] A list of lowest priced offers for the specified ASIN `marketplaceId`
-        # combination.
+        #   combination.
         attribute?(:lowest_priced_offers, [LowestPricedOffer], from: "lowestPricedOffers")
 
         # @return [Array<ReferencePrice>] A list of reference prices for the specified ASIN `marketplaceId` combination.

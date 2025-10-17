@@ -10,7 +10,7 @@ module Peddler
       # A fee event related to Amazon Imaging services.
       ImagingServicesFeeEvent = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item for which the imaging service
-        # was requested.
+        #   was requested.
         attribute?(:asin, String, from: "ASIN")
 
         # @return [Array<FeeComponent>] A list of fees associated with the event.

@@ -43,7 +43,7 @@ module Peddler
         attribute?(:geocode, Geocode)
 
         # @return [String] The phone number of the person, business or institution located at that address, including
-        # the country calling code.
+        #   the country calling code.
         attribute?(:phone_number, String, from: "phoneNumber")
       end
     end

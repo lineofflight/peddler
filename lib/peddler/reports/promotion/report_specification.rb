@@ -13,7 +13,7 @@ module Peddler
         attribute(:marketplace_ids, [String], from: "marketplaceIds")
 
         # @return [ReportOptions] Report options specifying the parameters promotionStartDateFrom and
-        # promotionStartDateTo.
+        #   promotionStartDateTo.
         attribute(:report_options, ReportOptions, from: "reportOptions")
 
         # @return [String] The report type.

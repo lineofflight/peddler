@@ -19,15 +19,15 @@ module Peddler
         attribute(:fulfillment_channel, String, from: "FulfillmentChannel")
 
         # @return [String] The item condition for the offer listing. Possible values: New, Used, Collectible,
-        # Refurbished, or Club.
+        #   Refurbished, or Club.
         attribute(:item_condition, String, from: "ItemCondition")
 
         # @return [String] The item subcondition for the offer listing. Possible values: New, Mint, Very Good, Good,
-        # Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
+        #   Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
         attribute(:item_sub_condition, String, from: "ItemSubCondition")
 
         # @return [Money] The current price excluding any promotions that apply to the product. Excludes the shipping
-        # cost.
+        #   cost.
         attribute(:regular_price, Money, from: "RegularPrice")
 
         # @return [String] The seller stock keeping unit (SKU) of the item.
@@ -40,7 +40,7 @@ module Peddler
         attribute?(:offer_type, String, from: "offerType")
 
         # @return [Array<QuantityDiscountPriceType>] List of `QuantityDiscountPrice` that contains item's pricing
-        # information when buy in bulk.
+        #   information when buy in bulk.
         attribute?(:quantity_discount_prices, [QuantityDiscountPriceType], from: "quantityDiscountPrices")
       end
     end

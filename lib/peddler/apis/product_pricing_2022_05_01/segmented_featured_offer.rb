@@ -16,7 +16,7 @@ module Peddler
         attribute(:featured_offer_segments, [FeaturedOfferSegment], from: "featuredOfferSegments")
 
         # @return [String] The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network)
-        # and `MFN` (Merchant Fulfillment Network).
+        #   and `MFN` (Merchant Fulfillment Network).
         attribute(:fulfillment_type, String, from: "fulfillmentType")
 
         # @return [Money] The offer buying price. This doesn't include shipping, points, or applicable promotions.
@@ -26,7 +26,7 @@ module Peddler
         attribute(:seller_id, String, from: "sellerId")
 
         # @return [Points] The number of Amazon Points that are offered with the purchase of an item and the monetary
-        # value of these points. Note that the Points element is only returned in Japan (JP).
+        #   value of these points. Note that the Points element is only returned in Japan (JP).
         attribute?(:points, Points)
 
         # @return [PrimeDetails] Amazon Prime details.

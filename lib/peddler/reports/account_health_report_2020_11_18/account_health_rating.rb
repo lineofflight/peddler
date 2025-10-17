@@ -14,7 +14,7 @@ module Peddler
         attribute(:reporting_date_range, ReportingDateRange, from: "reportingDateRange")
 
         # @return [String] Seller's overall Account Health Rating status within a given reporting date range for 1
-        # requested marketplace. It could be GREAT or WARNED
+        #   requested marketplace. It could be GREAT or WARNED
         attribute?(:account_health_rating_status, String, from: "accountHealthRatingStatus")
       end
     end

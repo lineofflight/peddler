@@ -69,7 +69,7 @@ module Generator
       if prop_def["description"] && !prop_def["description"].empty? && !generic_placeholder?(prop_def["description"])
         description = convert_html_links_to_yard(prop_def["description"])
         description = convert_doc_links_to_full_url(description)
-        split_long_comment_line("@return [#{return_type}] #{description}", base_indent: base_indent)
+        split_long_comment_line("@return [#{return_type}] #{description}", base_indent: base_indent, wrap_indent: 2)
       else
         indent = " " * base_indent
         "#{indent}# @return [#{return_type}]"

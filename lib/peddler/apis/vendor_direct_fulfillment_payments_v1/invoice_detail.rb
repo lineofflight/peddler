@@ -24,14 +24,14 @@ module Peddler
         attribute(:items, [InvoiceItem])
 
         # @return [PartyIdentification] Name, address and tax details of the party receiving the payment of this
-        # invoice.
+        #   invoice.
         attribute(:remit_to_party, PartyIdentification, from: "remitToParty")
 
         # @return [PartyIdentification] Warehouse code of the vendor as in the order.
         attribute(:ship_from_party, PartyIdentification, from: "shipFromParty")
 
         # @return [Array<AdditionalDetails>] Additional details provided by the selling party, for tax-related or other
-        # purposes.
+        #   purposes.
         attribute?(:additional_details, [AdditionalDetails], from: "additionalDetails")
 
         # @return [PartyIdentification] Name, address and tax details of the party to whom this invoice is issued.

@@ -17,7 +17,7 @@ module Peddler
         attribute(:sales_by_date, SalesByDate, from: "salesByDate")
 
         # @return [TrafficByDate] Object describing traffic metrics for ASINs in the seller's account aggregated by
-        # date.
+        #   date.
         attribute(:traffic_by_date, TrafficByDate, from: "trafficByDate")
       end
     end

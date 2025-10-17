@@ -19,7 +19,7 @@ module Peddler
         attribute(:ship_from_party, PartyIdentification, from: "shipFromParty")
 
         # @return [StatusUpdateDetails] Provide the details about the status of the shipment at that particular point of
-        # time.
+        #   time.
         attribute(:status_update_details, StatusUpdateDetails, from: "statusUpdateDetails")
       end
     end

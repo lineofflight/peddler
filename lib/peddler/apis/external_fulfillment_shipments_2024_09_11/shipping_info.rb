@@ -16,11 +16,11 @@ module Peddler
         attribute?(:recommended_packages, [RecommendedPackage], from: "recommendedPackages")
 
         # @return [String] The ship method recommended by the Amazon Fulfillment Network for the packages in this
-        # shipment.
+        #   shipment.
         attribute?(:recommended_ship_method, String, from: "recommendedShipMethod")
 
         # @return [Address] The address to which the packages must be shipped. Provide only basic information about the
-        # buyer's address needed for taxation purposes.
+        #   buyer's address needed for taxation purposes.
         attribute?(:ship_to_address, Address, from: "shipToAddress")
 
         # @return [String] The type of shipping that the seller uses to deliver a customer order.

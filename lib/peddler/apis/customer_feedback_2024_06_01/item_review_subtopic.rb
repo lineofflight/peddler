@@ -16,7 +16,7 @@ module Peddler
         attribute(:subtopic, String)
 
         # @return [Array<String>] A list of up to three snippets from reviews that contain the subtopic. This value is
-        # `null` if there aren't enough review snippets for the subtopic.
+        #   `null` if there aren't enough review snippets for the subtopic.
         attribute?(:review_snippets, [String], from: "reviewSnippets")
       end
     end

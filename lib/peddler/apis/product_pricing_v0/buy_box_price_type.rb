@@ -19,15 +19,15 @@ module Peddler
         attribute(:shipping, Money, from: "Shipping")
 
         # @return [String] Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or
-        # Club.
+        #   Club.
         attribute(:condition, String)
 
         # @return [Points] The number of Amazon Points offered with the purchase of an item.
         attribute?(:points, Points, from: "Points")
 
         # @return [String] Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C
-        # in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that
-        # quantity, not because they have a quantity discount on the ASIN.
+        #   in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that
+        #   quantity, not because they have a quantity discount on the ASIN.
         attribute?(:offer_type, String, from: "offerType")
 
         # @return [String] Indicates the type of quantity discount this price applies to.

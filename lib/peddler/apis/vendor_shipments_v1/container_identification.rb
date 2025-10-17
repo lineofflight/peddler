@@ -10,7 +10,7 @@ module Peddler
       # A list of carton identifiers.
       ContainerIdentification = Structure.new do
         # @return [String] Container identification number that adheres to the definition of the container
-        # identification type.
+        #   identification type.
         attribute(:container_identification_number, String, from: "containerIdentificationNumber")
 
         # @return [String] The container identification type.

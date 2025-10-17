@@ -20,8 +20,8 @@ module Peddler
         attribute(:items, [OrderItem])
 
         # @return [Time] The date the order was placed. This field is expected to be in ISO-8601 date/time format, for
-        # example:2018-07-16T23:00:00Z/ 2018-07-16T23:00:00-05:00 /2018-07-16T23:00:00-08:00. If no time zone is
-        # specified, UTC should be assumed.
+        #   example:2018-07-16T23:00:00Z/ 2018-07-16T23:00:00-05:00 /2018-07-16T23:00:00-08:00. If no time zone is
+        #   specified, UTC should be assumed.
         attribute(:order_date, Time, from: "orderDate")
 
         # @return [PartyIdentification] PartyID of vendor code.

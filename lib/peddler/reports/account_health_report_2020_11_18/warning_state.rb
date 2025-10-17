@@ -10,7 +10,7 @@ module Peddler
       # Seller account warning state for 1 requested marketplace.
       WarningState = Structure.new do
         # @return [String] Seller account warning state status for 1 requested marketplace. It could be GOOD or BAD or
-        # NONE.
+        #   NONE.
         attribute(:status, String)
 
         # @return [String] Seller account warning type for 1 requested marketplace.

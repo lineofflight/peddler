@@ -13,11 +13,11 @@ module Peddler
         attribute(:channel_name, String, from: "channelName")
 
         # @return [String] The marketplace ID associated with the location. To find the ID for your marketplace, refer
-        # to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        #   to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Array<String>] Marketplace channel-specific custom attributes for the order. These attributes are not
-        # mandatory and each channel can provide them differently.
+        #   mandatory and each channel can provide them differently.
         attribute?(:custom_attributes, [String], from: "customAttributes")
 
         # @return [String] The ID of the merchant or seller to whom this order is created.

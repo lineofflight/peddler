@@ -10,7 +10,7 @@ module Peddler
       # Nested notification data
       FeedProcessingFinishedNotification = Structure.new do
         # @return [String] The merchant customer identifier or vendor group identifier of the selling partner account on
-        # whose behalf the feed was submitted.
+        #   whose behalf the feed was submitted.
         attribute(:account_id, String, from: "accountId")
 
         # @return [String] The feed identifier.
@@ -26,7 +26,7 @@ module Peddler
         attribute?(:result_feed_document_id, String, from: "resultFeedDocumentId")
 
         # @return [String] The merchant customer identifier of the selling partner account on whose behalf the feed was
-        # submitted. This field will be null when the feed was submitted on behalf of a vendor group identifier.
+        #   submitted. This field will be null when the feed was submitted on behalf of a vendor group identifier.
         attribute?(:seller_id, String, from: "sellerId")
       end
     end

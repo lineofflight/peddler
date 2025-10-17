@@ -20,26 +20,26 @@ module Peddler
         attribute(:query, String)
 
         # @return [String] The query identifier. This identifier is unique only in combination with a selling partner
-        # account ID.
+        #   account ID.
         attribute(:query_id, String, from: "queryId")
 
         # @return [String] The data document identifier. This identifier is only present when there is data available as
-        # a result of the query. This identifier is unique only in combination with a selling partner account ID. Pass
-        # this identifier into the `getDocument` operation to get the information required to retrieve the data
-        # document's contents.
+        #   a result of the query. This identifier is unique only in combination with a selling partner account ID. Pass
+        #   this identifier into the `getDocument` operation to get the information required to retrieve the data
+        #   document's contents.
         attribute?(:data_document_id, String, from: "dataDocumentId")
 
         # @return [String] The error document identifier. This identifier is only present when an error occurs during
-        # query processing. This identifier is unique only in combination with a selling partner account ID. Pass this
-        # identifier into the `getDocument` operation to get the information required to retrieve the error document's
-        # contents.
+        #   query processing. This identifier is unique only in combination with a selling partner account ID. Pass this
+        #   identifier into the `getDocument` operation to get the information required to retrieve the error document's
+        #   contents.
         attribute?(:error_document_id, String, from: "errorDocumentId")
 
         # @return [Hash] When a query produces results that are not included in the data document, pagination occurs.
-        # This means the results are divided into pages. To retrieve the next page, you must pass a
-        # `CreateQuerySpecification` object with `paginationToken` set to this object's `nextToken` and with `query` set
-        # to this object's `query` in the subsequent `createQuery` request. When there are no more pages to fetch, the
-        # `nextToken` field will be absent.
+        #   This means the results are divided into pages. To retrieve the next page, you must pass a
+        #   `CreateQuerySpecification` object with `paginationToken` set to this object's `nextToken` and with `query`
+        #   set to this object's `query` in the subsequent `createQuery` request. When there are no more pages to fetch,
+        #   the `nextToken` field will be absent.
         attribute?(:pagination, Hash)
 
         # @return [Time] The date and time when the query processing completed, in ISO 8601 date time format.

@@ -17,7 +17,7 @@ module Peddler
         attribute?(:label_data, [LabelData], from: "labelData")
 
         # @return [ShipmentInformation] Indicates the shipment Information details like warehouse and business reference
-        # details like ARN, Selling Party detail and Vendor Warehouse details
+        #   details like ARN, Selling Party detail and Vendor Warehouse details
         attribute?(:shipment_information, ShipmentInformation, from: "shipmentInformation")
       end
     end

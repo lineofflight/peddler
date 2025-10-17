@@ -10,7 +10,7 @@ module Peddler
       # Information about a shipment.
       Shipment = Structure.new do
         # @return [Array<Charge>] The charges associated with the shipment. The charge amount does not include the tax
-        # amount.
+        #   amount.
         attribute(:charges, [Charge])
 
         # @return [String] The date and time when the shipment was created.
@@ -26,11 +26,11 @@ module Peddler
         attribute(:line_items, [ShipmentLineItem], from: "lineItems")
 
         # @return [String] The location identifier of the seller's location in the marketplace channel to which the
-        # shipment has been created for fulfillment.
+        #   shipment has been created for fulfillment.
         attribute(:location_id, String, from: "locationId")
 
         # @return [MarketplaceAttributes] The marketplace attributes from which the shipment has been created for
-        # fulfillment.
+        #   fulfillment.
         attribute(:marketplace_attributes, MarketplaceAttributes, from: "marketplaceAttributes")
 
         # @return [ShipmentInfo] High-level details of the shipment.
@@ -55,7 +55,7 @@ module Peddler
         attribute?(:packages, [Package])
 
         # @return [Array<PartyIdentificationInfo>] All involved party identification and metadata for vendor, buyer,
-        # seller. Applicable for direct-fulfillment sellers.
+        #   seller. Applicable for direct-fulfillment sellers.
         attribute?(:party_info_list, [PartyIdentificationInfo], from: "partyInfoList")
 
         # @return [String] The sub status of the shipment.

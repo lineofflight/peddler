@@ -13,7 +13,7 @@ module Peddler
         attribute?(:errors, [Error])
 
         # @return [Array<UpdateScheduleRecord>] Contains the `UpdateScheduleRecords` for which the error/warning has
-        # occurred.
+        #   occurred.
         attribute?(:payload, [UpdateScheduleRecord])
       end
     end

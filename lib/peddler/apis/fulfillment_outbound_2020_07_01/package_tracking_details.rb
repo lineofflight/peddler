@@ -35,7 +35,7 @@ module Peddler
         attribute?(:customer_tracking_link, String, from: "customerTrackingLink")
 
         # @return [DateRange] The delivery window for the package. This is available after the package reaches its
-        # destination delivery station.
+        #   destination delivery station.
         attribute?(:delivery_window, DateRange, from: "deliveryWindow")
 
         # @return [String] The estimated arrival date.

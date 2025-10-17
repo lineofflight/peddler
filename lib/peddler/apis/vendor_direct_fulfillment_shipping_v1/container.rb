@@ -25,7 +25,7 @@ module Peddler
         attribute?(:carrier, String)
 
         # @return [Integer] An integer that must be submitted for multi-box shipments only, where one item may come in
-        # separate packages.
+        #   separate packages.
         attribute?(:container_sequence_number, Integer, from: "containerSequenceNumber")
 
         # @return [Dimensions]

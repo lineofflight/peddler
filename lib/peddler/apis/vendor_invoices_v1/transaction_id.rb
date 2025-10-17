@@ -10,7 +10,7 @@ module Peddler
       # Response containing the transaction ID.
       TransactionId = Structure.new do
         # @return [String] GUID to identify this transaction. This value can be used with the Transaction Status API to
-        # return the status of this transaction.
+        #   return the status of this transaction.
         attribute?(:transaction_id, String, from: "transactionId")
       end
     end

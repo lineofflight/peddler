@@ -13,7 +13,7 @@ module Peddler
         attribute(:limit, Integer)
 
         # @return [Integer] The offset from which to retrieve the number of results specified by the `limit` value. The
-        # first result is at offset 0.
+        #   first result is at offset 0.
         attribute(:offset, Integer)
       end
     end

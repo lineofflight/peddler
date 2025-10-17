@@ -19,15 +19,15 @@ module Peddler
         attribute(:clicked_median_price, Money, from: "clickedMedianPrice")
 
         # @return [Integer] The number of times customers click on the ASIN with the one-day delivery message on the
-        # search results page.
+        #   search results page.
         attribute(:one_day_shipping_click_count, Integer, from: "oneDayShippingClickCount")
 
         # @return [Integer] The number of times customers click on the ASIN with the same day delivery message on the
-        # search results page.
+        #   search results page.
         attribute(:same_day_shipping_click_count, Integer, from: "sameDayShippingClickCount")
 
         # @return [Integer] The number of times customers click on the ASIN with the two-day delivery message on the
-        # search results page.
+        #   search results page.
         attribute(:two_day_shipping_click_count, Integer, from: "twoDayShippingClickCount")
       end
     end

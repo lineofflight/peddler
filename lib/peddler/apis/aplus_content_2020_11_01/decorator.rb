@@ -10,15 +10,15 @@ module Peddler
       # A decorator that is applied to a content string value in order to create rich text.
       Decorator = Structure.new do
         # @return [Integer] The relative intensity or variation of this decorator. Decorators, such as bullet-points,
-        # can have multiple indentation depths.
+        #   can have multiple indentation depths.
         attribute?(:depth, Integer)
 
         # @return [Integer] The number of content characters to alter with this decorator. Decorators, such as line
-        # breaks, can have zero length and fit between characters.
+        #   breaks, can have zero length and fit between characters.
         attribute?(:length, Integer)
 
         # @return [Integer] The starting value of this decorator within the content string. Use zero (`0`) for the first
-        # value.
+        #   value.
         attribute?(:offset, Integer)
 
         # @return [String]

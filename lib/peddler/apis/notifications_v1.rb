@@ -23,7 +23,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param payload_version [String] The version of the payload object to be used in the notification.
       # @param notification_type [String] The type of notification. For more information about notification types, refer
-      # to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+      #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_subscription(notification_type, payload_version: nil, rate_limit: 1.0)
@@ -43,7 +43,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param notification_type [String] The type of notification. For more information about notification types, refer
-      # to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+      #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_subscription(body, notification_type, rate_limit: 1.0)
@@ -59,7 +59,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param subscription_id [String] The identifier for the subscription that you want to get.
       # @param notification_type [String] The type of notification. For more information about notification types, refer
-      # to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+      #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
@@ -77,7 +77,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param subscription_id [String] The identifier for the subscription that you want to delete.
       # @param notification_type [String] The type of notification. For more information about notification types, refer
-      # to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+      #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)

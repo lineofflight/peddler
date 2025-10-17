@@ -17,7 +17,7 @@ module Peddler
         attribute?(:replenishment_quantity, Integer, from: "replenishmentQuantity")
 
         # @return [Integer] Quantity that is reserved for a downstream channel replenishment order that is being
-        # prepared for shipment.
+        #   prepared for shipment.
         attribute?(:reserved_distributable_quantity, Integer, from: "reservedDistributableQuantity")
       end
     end

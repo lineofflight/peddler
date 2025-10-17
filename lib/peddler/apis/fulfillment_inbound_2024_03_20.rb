@@ -17,8 +17,8 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param page_size [Integer] The number of inbound plans to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param status [String] The status of an inbound plan.
       # @param sort_by [String] Sort by field.
       # @param sort_order [String] The sort order.
@@ -69,8 +69,8 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param page_size [Integer] The number of boxes to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
@@ -103,8 +103,8 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param page_size [Integer] The number of items to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
@@ -138,8 +138,8 @@ module Peddler
       # @param packing_group_id [String] Identifier of a packing group.
       # @param page_size [Integer] The number of packing group boxes to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
@@ -161,8 +161,8 @@ module Peddler
       # @param packing_group_id [String] Identifier of a packing group.
       # @param page_size [Integer] The number of packing group items to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
@@ -197,8 +197,8 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param page_size [Integer] The number of packing options to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
@@ -243,8 +243,8 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param page_size [Integer] The number of pallets to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
@@ -264,8 +264,8 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param page_size [Integer] The number of placement options to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
@@ -296,7 +296,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param placement_option_id [String] The identifier of a placement option. A placement option represents the
-      # shipment splits and destinations of SKUs.
+      #   shipment splits and destinations of SKUs.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def confirm_placement_option(inbound_plan_id, placement_option_id, rate_limit: 2.0)
@@ -326,8 +326,8 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param page_size [Integer] The number of boxes to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
@@ -349,8 +349,8 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param page_size [Integer] The number of content update previews to return.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
@@ -431,10 +431,10 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] The shipment to get delivery window options for.
       # @param page_size [Integer] The number of delivery window options to return in the response matching the given
-      # query.
+      #   query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
@@ -487,8 +487,8 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param page_size [Integer] The number of items to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
@@ -522,8 +522,8 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param page_size [Integer] The number of pallets to return in the response matching the given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
@@ -559,10 +559,10 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param page_size [Integer] The number of self ship appointment slots to return in the response matching the
-      # given query.
+      #   given query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
@@ -644,14 +644,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param page_size [Integer] The number of transportation options to return in the response matching the given
-      # query.
+      #   query.
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
-      # token value from the query parameter the API returns the first page of the result.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
       # @param placement_option_id [String] The placement option to get transportation options for. Either
-      # `placementOptionId` or `shipmentId` must be specified.
+      #   `placementOptionId` or `shipmentId` must be specified.
       # @param shipment_id [String] The shipment to get transportation options for. Either `placementOptionId` or
-      # `shipmentId` must be specified.
+      #   `shipmentId` must be specified.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil,
@@ -701,9 +701,7 @@ module Peddler
       #
       # The following characters must be double percent encoded:
       #
-      # - `%`
-      # - `+`
-      # - `,`
+      # - `%` - `+` - `,`
       #
       # **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is
       # encoded as `test%252Cmsku`.
@@ -711,7 +709,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
       # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_item_compliance_details(mskus, marketplace_id, rate_limit: nil)
@@ -729,7 +727,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param body [Hash] The body of the request to `updateItemComplianceDetails`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -761,16 +759,14 @@ module Peddler
       #
       # The following characters must be double percent encoded:
       #
-      # - `%`
-      # - `+`
-      # - `,`
+      # - `%` - `+` - `,`
       #
       # **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is
       # encoded as `test%252Cmsku`.
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace ID. For a list of possible values, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response

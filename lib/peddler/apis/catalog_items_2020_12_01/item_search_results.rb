@@ -13,13 +13,13 @@ module Peddler
         attribute(:items, [Item])
 
         # @return [Integer] The estimated total number of products matched by the search query (only results up to the
-        # page count limit will be returned per request regardless of the number found).
+        #   page count limit will be returned per request regardless of the number found).
         #
         # Note: The maximum number of items (ASINs) that can be returned and paged through is 1000.
         attribute(:number_of_results, Integer, from: "numberOfResults")
 
         # @return [Pagination] If available, the nextToken and/or previousToken values required to return paginated
-        # results.
+        #   results.
         attribute(:pagination, Pagination)
 
         # @return [Refinements]

@@ -35,7 +35,7 @@ module Peddler
         attribute(:promotion_name, String, from: "promotionName")
 
         # @return [Float] The total revenue generated across all ASINs in the promotion. For sellers, this is equivalent
-        # to "sales" in the Seller Central UI.
+        #   to "sales" in the Seller Central UI.
         attribute(:revenue, Float)
 
         # @return [String] The ISO 4217 currency code of revenue.

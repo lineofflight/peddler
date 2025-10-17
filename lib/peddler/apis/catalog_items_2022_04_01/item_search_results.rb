@@ -13,15 +13,15 @@ module Peddler
         attribute(:items, [Item])
 
         # @return [Integer] For searches that are based on `identifiers`, `numberOfResults` is the total number of
-        # Amazon catalog items found. For searches that are based on `keywords`, `numberOfResults` is the estimated
-        # total number of Amazon catalog items that are matched by the search query. Only results up to the page count
-        # limit are returned per request regardless of the number found.
+        #   Amazon catalog items found. For searches that are based on `keywords`, `numberOfResults` is the estimated
+        #   total number of Amazon catalog items that are matched by the search query. Only results up to the page count
+        #   limit are returned per request regardless of the number found.
         #
         # **Note:** The maximum number of items (ASINs) that can be returned and paged through is 1,000.
         attribute(:number_of_results, Integer, from: "numberOfResults")
 
         # @return [Pagination] The `nextToken` and `previousToken` values that are required to retrieve paginated
-        # results.
+        #   results.
         attribute?(:pagination, Pagination)
 
         # @return [Refinements] Search refinements for searches that are based on `keywords`.

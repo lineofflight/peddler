@@ -13,7 +13,7 @@ module Peddler
         attribute(:change_reason, String, from: "ChangeReason")
 
         # @return [String] The time of the change that caused this notification, in ISO-8601 date/time format. Will be
-        # null when there is no related timestamp.
+        #   null when there is no related timestamp.
         attribute(:time_of_order_change, String, from: "TimeOfOrderChange")
       end
     end

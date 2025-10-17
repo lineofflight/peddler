@@ -13,7 +13,7 @@ module Peddler
         attribute(:reports, [Report])
 
         # @return [String] Returned when the number of results exceeds `pageSize`. To get the next page of results, call
-        # `getReports` with this token as the only parameter.
+        #   `getReports` with this token as the only parameter.
         attribute?(:next_token, String, from: "nextToken")
       end
     end

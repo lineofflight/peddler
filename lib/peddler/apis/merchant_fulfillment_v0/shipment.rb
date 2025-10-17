@@ -16,16 +16,16 @@ module Peddler
         attribute(:created_date, String, from: "CreatedDate")
 
         # @return [Money] If you specify `DeclaredValue` in a previous call to the `createShipment` operation, then
-        # `Insurance` indicates the shipment insurance amount that the carrier uses. If `DeclaredValue` isn't with a
-        # previous call to the `createShipment` operation, then the shipment is insured for the carrier's minimum
-        # insurance amount, or the combined sale prices that the items are listed for in the shipment.
+        #   `Insurance` indicates the shipment insurance amount that the carrier uses. If `DeclaredValue` isn't with a
+        #   previous call to the `createShipment` operation, then the shipment is insured for the carrier's minimum
+        #   insurance amount, or the combined sale prices that the items are listed for in the shipment.
         attribute(:insurance, Money, from: "Insurance")
 
         # @return [Array<Item>]
         attribute(:item_list, [Item], from: "ItemList")
 
         # @return [Label] Data for creating a shipping label and dimensions for printing the label. If the shipment is
-        # canceled, an empty label is returned.
+        #   canceled, an empty label is returned.
         attribute(:label, Label, from: "Label")
 
         # @return [PackageDimensions]

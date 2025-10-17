@@ -11,9 +11,9 @@ module Peddler
       # The request body for the `getSellingPartnerMetrics` operation.
       GetSellingPartnerMetricsRequest = Structure.new do
         # @return [String] The marketplace identifier. The supported marketplaces for both sellers and vendors are US,
-        # CA, ES, UK, FR, IT, IN, DE and JP. The supported marketplaces for vendors only are BR, AU, MX, AE and NL.
-        # Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the
-        # identifier for the marketplace.
+        #   CA, ES, UK, FR, IT, IN, DE and JP. The supported marketplaces for vendors only are BR, AU, MX, AE and NL.
+        #   Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the
+        #   identifier for the marketplace.
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Array<ProgramType>] The list of replenishment program types for which to return metrics.
@@ -29,7 +29,7 @@ module Peddler
         attribute?(:aggregation_frequency, String, from: "aggregationFrequency")
 
         # @return [Array<Metric>] The list of metrics requested. If no metric value is provided, data for all of the
-        # metrics will be returned.
+        #   metrics will be returned.
         attribute?(:metrics, Array)
       end
     end

@@ -13,7 +13,7 @@ module Peddler
         attribute(:forecast_by_asin, [ForecastByASIN], from: "forecastByAsin")
 
         # @return [Hash] The report input summary which includes the marketplace, selling program, and last updated
-        # date.
+        #   date.
         attribute(:report_specification, ReportSpecification, from: "reportSpecification")
       end
     end

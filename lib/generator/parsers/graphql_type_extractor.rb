@@ -65,6 +65,9 @@ module Generator
             "description" => field.description,
           }.compact
         end
+
+        # Mark non-null fields for Structure's null: false option
+        properties[field_name]["x-non-null"] = true if field.type.non_null?
       end
       properties
     end
@@ -75,10 +78,12 @@ module Generator
       # 2. Fields not included in the query are absent from the response
       # 3. The `!` marker in GraphQL means "if present, cannot be null",
       #    not "must always be present"
-      # 4. Structure gem cannot distinguish "nullable vs optional" - they're the same
       #
       # By returning an empty array, all fields will use attribute?() which allows
       # them to be absent from parsed JSON, matching GraphQL's actual behavior.
+      #
+      # Non-null constraints are handled separately via the "x-non-null" property flag,
+      # which translates to Structure's `null: false` option.
       []
     end
 

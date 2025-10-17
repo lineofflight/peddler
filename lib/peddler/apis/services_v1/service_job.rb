@@ -26,7 +26,7 @@ module Peddler
         attribute?(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Array<AppointmentTime>] A list of appointment windows preferred by the buyer. Included only if the
-        # buyer selected appointment windows when creating the order.
+        #   buyer selected appointment windows when creating the order.
         attribute?(:preferred_appointment_times, [AppointmentTime], from: "preferredAppointmentTimes")
 
         # @return [ScopeOfWork] The scope of work for the order.

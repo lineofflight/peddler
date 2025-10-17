@@ -28,7 +28,7 @@ module Peddler
         attribute?(:name, String)
 
         # @return [String] The score of access point, based on proximity to postal code and sorting preference. This can
-        # be used to sort access point results on shipper's end.
+        #   be used to sort access point results on shipper's end.
         attribute?(:score, String)
 
         # @return [Hash]

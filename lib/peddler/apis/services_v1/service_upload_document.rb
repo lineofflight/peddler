@@ -16,7 +16,7 @@ module Peddler
         attribute(:content_type, String, from: "contentType")
 
         # @return [String] An MD5 hash of the content to be submitted to the upload destination. This value is used to
-        # determine if the data has been corrupted or tampered with during transit.
+        #   determine if the data has been corrupted or tampered with during transit.
         attribute?(:content_md5, String, from: "contentMD5")
       end
     end

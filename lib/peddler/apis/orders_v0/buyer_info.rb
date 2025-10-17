@@ -21,13 +21,13 @@ module Peddler
         attribute?(:buyer_name, String, from: "BuyerName")
 
         # @return [BuyerTaxInfo] Tax information about the buyer. Sellers could use this data to issue electronic
-        # invoices for business orders.
+        #   invoices for business orders.
         #
         # **Note**: This attribute is only available for business orders in the Brazil, Mexico and India marketplaces.
         attribute?(:buyer_tax_info, BuyerTaxInfo, from: "BuyerTaxInfo")
 
         # @return [String] The purchase order (PO) number entered by the buyer at checkout. Only returned for orders
-        # where the buyer entered a PO number at checkout.
+        #   where the buyer entered a PO number at checkout.
         attribute?(:purchase_order_number, String, from: "PurchaseOrderNumber")
       end
     end

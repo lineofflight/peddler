@@ -4,7 +4,6 @@ module Peddler
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Transfers20240601::Error
                     | (String?, String?, String?) -> Peddler::APIs::Transfers20240601::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Transfers20240601::Error
                    | (String?, String?, String?) -> Peddler::APIs::Transfers20240601::Error
 
@@ -15,15 +14,14 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
       class ErrorList < Data
         def self.new: (errors: Array[Peddler::APIs::Transfers20240601::Error]?) -> Peddler::APIs::Transfers20240601::ErrorList
                     | (Array[Peddler::APIs::Transfers20240601::Error]?) -> Peddler::APIs::Transfers20240601::ErrorList
-
         def self.[]: (errors: Array[Peddler::APIs::Transfers20240601::Error]?) -> Peddler::APIs::Transfers20240601::ErrorList
                    | (Array[Peddler::APIs::Transfers20240601::Error]?) -> Peddler::APIs::Transfers20240601::ErrorList
 
@@ -32,15 +30,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::ErrorList
 
         attr_reader errors: Array[Peddler::APIs::Transfers20240601::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::Transfers20240601::Error]? }
       end
 
       class ExpiryDate < Data
         def self.new: (?month: String?, ?year: String?) -> Peddler::APIs::Transfers20240601::ExpiryDate
                     | (String?, String?) -> Peddler::APIs::Transfers20240601::ExpiryDate
-
         def self.[]: (?month: String?, ?year: String?) -> Peddler::APIs::Transfers20240601::ExpiryDate
                    | (String?, String?) -> Peddler::APIs::Transfers20240601::ExpiryDate
 
@@ -50,15 +47,14 @@ module Peddler
 
         attr_reader month: String?
         attr_reader year: String?
-        def members: () -> [ :month, :year ]
 
+        def members: () -> [ :month, :year ]
         def to_h: () -> { month: String?, year: String? }
       end
 
       class GetPaymentMethodsResponse < Data
         def self.new: (?payment_methods: Array[Peddler::APIs::Transfers20240601::PaymentMethodDetails]?) -> Peddler::APIs::Transfers20240601::GetPaymentMethodsResponse
                     | (Array[Peddler::APIs::Transfers20240601::PaymentMethodDetails]?) -> Peddler::APIs::Transfers20240601::GetPaymentMethodsResponse
-
         def self.[]: (?payment_methods: Array[Peddler::APIs::Transfers20240601::PaymentMethodDetails]?) -> Peddler::APIs::Transfers20240601::GetPaymentMethodsResponse
                    | (Array[Peddler::APIs::Transfers20240601::PaymentMethodDetails]?) -> Peddler::APIs::Transfers20240601::GetPaymentMethodsResponse
 
@@ -67,15 +63,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::GetPaymentMethodsResponse
 
         attr_reader payment_methods: Array[Peddler::APIs::Transfers20240601::PaymentMethodDetails]?
-        def members: () -> [ :payment_methods ]
 
+        def members: () -> [ :payment_methods ]
         def to_h: () -> { payment_methods: Array[Peddler::APIs::Transfers20240601::PaymentMethodDetails]? }
       end
 
       class InitiatePayoutRequest < Data
         def self.new: (account_type: String?, marketplace_id: String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
                     | (String?, String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
-
         def self.[]: (account_type: String?, marketplace_id: String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
                    | (String?, String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
 
@@ -85,15 +80,14 @@ module Peddler
 
         attr_reader account_type: String?
         attr_reader marketplace_id: String?
-        def members: () -> [ :account_type, :marketplace_id ]
 
+        def members: () -> [ :account_type, :marketplace_id ]
         def to_h: () -> { account_type: String?, marketplace_id: String? }
       end
 
       class InitiatePayoutResponse < Data
         def self.new: (payout_reference_id: String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
                     | (String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
-
         def self.[]: (payout_reference_id: String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
                    | (String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
 
@@ -102,15 +96,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
 
         attr_reader payout_reference_id: String?
-        def members: () -> [ :payout_reference_id ]
 
+        def members: () -> [ :payout_reference_id ]
         def to_h: () -> { payout_reference_id: String? }
       end
 
       class PaymentMethodDetails < Data
         def self.new: (?account_holder_name: String?, ?assignment_type: String?, ?country_code: String?, ?expiry_date: Peddler::APIs::Transfers20240601::ExpiryDate?, ?payment_method_id: String?, ?payment_method_type: String?, ?tail: String?) -> Peddler::APIs::Transfers20240601::PaymentMethodDetails
                     | (String?, String?, String?, Peddler::APIs::Transfers20240601::ExpiryDate?, String?, String?, String?) -> Peddler::APIs::Transfers20240601::PaymentMethodDetails
-
         def self.[]: (?account_holder_name: String?, ?assignment_type: String?, ?country_code: String?, ?expiry_date: Peddler::APIs::Transfers20240601::ExpiryDate?, ?payment_method_id: String?, ?payment_method_type: String?, ?tail: String?) -> Peddler::APIs::Transfers20240601::PaymentMethodDetails
                    | (String?, String?, String?, Peddler::APIs::Transfers20240601::ExpiryDate?, String?, String?, String?) -> Peddler::APIs::Transfers20240601::PaymentMethodDetails
 
@@ -125,8 +118,8 @@ module Peddler
         attr_reader payment_method_id: String?
         attr_reader payment_method_type: String?
         attr_reader tail: String?
-        def members: () -> [ :account_holder_name, :assignment_type, :country_code, :expiry_date, :payment_method_id, :payment_method_type, :tail ]
 
+        def members: () -> [ :account_holder_name, :assignment_type, :country_code, :expiry_date, :payment_method_id, :payment_method_type, :tail ]
         def to_h: () -> { account_holder_name: String?, assignment_type: String?, country_code: String?, expiry_date: Peddler::APIs::Transfers20240601::ExpiryDate?, payment_method_id: String?, payment_method_type: String?, tail: String? }
       end
 

@@ -4,7 +4,6 @@ module Peddler
       class Attachment < Data
         def self.new: (file_name: String?, upload_destination_id: String?) -> Peddler::APIs::MessagingV1::Attachment
                     | (String?, String?) -> Peddler::APIs::MessagingV1::Attachment
-
         def self.[]: (file_name: String?, upload_destination_id: String?) -> Peddler::APIs::MessagingV1::Attachment
                    | (String?, String?) -> Peddler::APIs::MessagingV1::Attachment
 
@@ -14,15 +13,14 @@ module Peddler
 
         attr_reader file_name: String?
         attr_reader upload_destination_id: String?
-        def members: () -> [ :file_name, :upload_destination_id ]
 
+        def members: () -> [ :file_name, :upload_destination_id ]
         def to_h: () -> { file_name: String?, upload_destination_id: String? }
       end
 
       class CreateAmazonMotorsRequest < Data
         def self.new: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
                     | (Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
-
         def self.[]: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
                    | (Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
 
@@ -31,15 +29,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
 
         attr_reader attachments: Array[Peddler::APIs::MessagingV1::Attachment]?
-        def members: () -> [ :attachments ]
 
+        def members: () -> [ :attachments ]
         def to_h: () -> { attachments: Array[Peddler::APIs::MessagingV1::Attachment]? }
       end
 
       class CreateAmazonMotorsResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
 
@@ -48,15 +45,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class CreateConfirmCustomizationDetailsRequest < Data
         def self.new: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, ?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsRequest
                     | (Array[Peddler::APIs::MessagingV1::Attachment]?, String?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsRequest
-
         def self.[]: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, ?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsRequest
                    | (Array[Peddler::APIs::MessagingV1::Attachment]?, String?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsRequest
 
@@ -66,15 +62,14 @@ module Peddler
 
         attr_reader attachments: Array[Peddler::APIs::MessagingV1::Attachment]?
         attr_reader text: String?
-        def members: () -> [ :attachments, :text ]
 
+        def members: () -> [ :attachments, :text ]
         def to_h: () -> { attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, text: String? }
       end
 
       class CreateConfirmCustomizationDetailsResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsResponse
 
@@ -83,15 +78,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class CreateConfirmDeliveryDetailsRequest < Data
         def self.new: (?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsRequest
                     | (String?) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsRequest
-
         def self.[]: (?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsRequest
                    | (String?) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsRequest
 
@@ -100,15 +94,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsRequest
 
         attr_reader text: String?
-        def members: () -> [ :text ]
 
+        def members: () -> [ :text ]
         def to_h: () -> { text: String? }
       end
 
       class CreateConfirmDeliveryDetailsResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsResponse
 
@@ -117,15 +110,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateConfirmDeliveryDetailsResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class CreateConfirmOrderDetailsRequest < Data
         def self.new: (?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsRequest
                     | (String?) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsRequest
-
         def self.[]: (?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsRequest
                    | (String?) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsRequest
 
@@ -134,15 +126,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsRequest
 
         attr_reader text: String?
-        def members: () -> [ :text ]
 
+        def members: () -> [ :text ]
         def to_h: () -> { text: String? }
       end
 
       class CreateConfirmOrderDetailsResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsResponse
 
@@ -151,15 +142,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateConfirmOrderDetailsResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class CreateConfirmServiceDetailsRequest < Data
         def self.new: (?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsRequest
                     | (String?) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsRequest
-
         def self.[]: (?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsRequest
                    | (String?) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsRequest
 
@@ -168,15 +158,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsRequest
 
         attr_reader text: String?
-        def members: () -> [ :text ]
 
+        def members: () -> [ :text ]
         def to_h: () -> { text: String? }
       end
 
       class CreateConfirmServiceDetailsResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsResponse
 
@@ -185,15 +174,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateConfirmServiceDetailsResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class CreateDigitalAccessKeyRequest < Data
         def self.new: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, ?text: String?) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyRequest
                     | (Array[Peddler::APIs::MessagingV1::Attachment]?, String?) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyRequest
-
         def self.[]: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, ?text: String?) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyRequest
                    | (Array[Peddler::APIs::MessagingV1::Attachment]?, String?) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyRequest
 
@@ -203,15 +191,14 @@ module Peddler
 
         attr_reader attachments: Array[Peddler::APIs::MessagingV1::Attachment]?
         attr_reader text: String?
-        def members: () -> [ :attachments, :text ]
 
+        def members: () -> [ :attachments, :text ]
         def to_h: () -> { attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, text: String? }
       end
 
       class CreateDigitalAccessKeyResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyResponse
 
@@ -220,15 +207,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateDigitalAccessKeyResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class CreateLegalDisclosureRequest < Data
         def self.new: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureRequest
                     | (Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureRequest
-
         def self.[]: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureRequest
                    | (Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureRequest
 
@@ -237,15 +223,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureRequest
 
         attr_reader attachments: Array[Peddler::APIs::MessagingV1::Attachment]?
-        def members: () -> [ :attachments ]
 
+        def members: () -> [ :attachments ]
         def to_h: () -> { attachments: Array[Peddler::APIs::MessagingV1::Attachment]? }
       end
 
       class CreateLegalDisclosureResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureResponse
 
@@ -254,15 +239,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateLegalDisclosureResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class CreateUnexpectedProblemRequest < Data
         def self.new: (?text: String?) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemRequest
                     | (String?) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemRequest
-
         def self.[]: (?text: String?) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemRequest
                    | (String?) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemRequest
 
@@ -271,15 +255,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemRequest
 
         attr_reader text: String?
-        def members: () -> [ :text ]
 
+        def members: () -> [ :text ]
         def to_h: () -> { text: String? }
       end
 
       class CreateUnexpectedProblemResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemResponse
 
@@ -288,15 +271,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateUnexpectedProblemResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class CreateWarrantyRequest < Data
         def self.new: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, ?coverage_end_date: Time?, ?coverage_start_date: Time?) -> Peddler::APIs::MessagingV1::CreateWarrantyRequest
                     | (Array[Peddler::APIs::MessagingV1::Attachment]?, Time?, Time?) -> Peddler::APIs::MessagingV1::CreateWarrantyRequest
-
         def self.[]: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, ?coverage_end_date: Time?, ?coverage_start_date: Time?) -> Peddler::APIs::MessagingV1::CreateWarrantyRequest
                    | (Array[Peddler::APIs::MessagingV1::Attachment]?, Time?, Time?) -> Peddler::APIs::MessagingV1::CreateWarrantyRequest
 
@@ -307,15 +289,14 @@ module Peddler
         attr_reader attachments: Array[Peddler::APIs::MessagingV1::Attachment]?
         attr_reader coverage_end_date: Time?
         attr_reader coverage_start_date: Time?
-        def members: () -> [ :attachments, :coverage_end_date, :coverage_start_date ]
 
+        def members: () -> [ :attachments, :coverage_end_date, :coverage_start_date ]
         def to_h: () -> { attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, coverage_end_date: Time?, coverage_start_date: Time? }
       end
 
       class CreateWarrantyResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateWarrantyResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateWarrantyResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateWarrantyResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateWarrantyResponse
 
@@ -324,15 +305,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateWarrantyResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::MessagingV1::Error
                     | (String?, String?, String?) -> Peddler::APIs::MessagingV1::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::MessagingV1::Error
                    | (String?, String?, String?) -> Peddler::APIs::MessagingV1::Error
 
@@ -343,8 +323,8 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
@@ -355,7 +335,6 @@ module Peddler
       class GetAttributesResponse < Data
         def self.new: (?buyer: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::GetAttributesResponse
                     | (Hash[untyped, untyped]?, Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::GetAttributesResponse
-
         def self.[]: (?buyer: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::GetAttributesResponse
                    | (Hash[untyped, untyped]?, Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::GetAttributesResponse
 
@@ -365,15 +344,14 @@ module Peddler
 
         attr_reader buyer: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :buyer, :errors ]
 
+        def members: () -> [ :buyer, :errors ]
         def to_h: () -> { buyer: Hash[untyped, untyped]?, errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class GetMessagingActionResponse < Data
         def self.new: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::MessagingV1::Error]?, ?payload: Peddler::APIs::MessagingV1::MessagingAction?) -> Peddler::APIs::MessagingV1::GetMessagingActionResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::APIs::MessagingV1::Error]?, Peddler::APIs::MessagingV1::MessagingAction?) -> Peddler::APIs::MessagingV1::GetMessagingActionResponse
-
         def self.[]: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::MessagingV1::Error]?, ?payload: Peddler::APIs::MessagingV1::MessagingAction?) -> Peddler::APIs::MessagingV1::GetMessagingActionResponse
                    | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::APIs::MessagingV1::Error]?, Peddler::APIs::MessagingV1::MessagingAction?) -> Peddler::APIs::MessagingV1::GetMessagingActionResponse
 
@@ -385,15 +363,14 @@ module Peddler
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
         attr_reader payload: Peddler::APIs::MessagingV1::MessagingAction?
-        def members: () -> [ :_embedded, :_links, :errors, :payload ]
 
+        def members: () -> [ :_embedded, :_links, :errors, :payload ]
         def to_h: () -> { _embedded: Hash[untyped, untyped]?, _links: Hash[untyped, untyped]?, errors: Array[Peddler::APIs::MessagingV1::Error]?, payload: Peddler::APIs::MessagingV1::MessagingAction? }
       end
 
       class GetMessagingActionsForOrderResponse < Data
         def self.new: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::GetMessagingActionsForOrderResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::GetMessagingActionsForOrderResponse
-
         def self.[]: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::GetMessagingActionsForOrderResponse
                    | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::GetMessagingActionsForOrderResponse
 
@@ -404,15 +381,14 @@ module Peddler
         attr_reader _embedded: Hash[untyped, untyped]?
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :_embedded, :_links, :errors ]
 
+        def members: () -> [ :_embedded, :_links, :errors ]
         def to_h: () -> { _embedded: Hash[untyped, untyped]?, _links: Hash[untyped, untyped]?, errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class GetSchemaResponse < Data
         def self.new: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::MessagingV1::Error]?, ?payload: Hash[untyped, untyped]?) -> Peddler::APIs::MessagingV1::GetSchemaResponse
                     | (Hash[untyped, untyped]?, Array[Peddler::APIs::MessagingV1::Error]?, Hash[untyped, untyped]?) -> Peddler::APIs::MessagingV1::GetSchemaResponse
-
         def self.[]: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::MessagingV1::Error]?, ?payload: Hash[untyped, untyped]?) -> Peddler::APIs::MessagingV1::GetSchemaResponse
                    | (Hash[untyped, untyped]?, Array[Peddler::APIs::MessagingV1::Error]?, Hash[untyped, untyped]?) -> Peddler::APIs::MessagingV1::GetSchemaResponse
 
@@ -423,15 +399,14 @@ module Peddler
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
         attr_reader payload: Hash[untyped, untyped]?
-        def members: () -> [ :_links, :errors, :payload ]
 
+        def members: () -> [ :_links, :errors, :payload ]
         def to_h: () -> { _links: Hash[untyped, untyped]?, errors: Array[Peddler::APIs::MessagingV1::Error]?, payload: Hash[untyped, untyped]? }
       end
 
       class InvoiceRequest < Data
         def self.new: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::InvoiceRequest
                     | (Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::InvoiceRequest
-
         def self.[]: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::InvoiceRequest
                    | (Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::InvoiceRequest
 
@@ -440,15 +415,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::InvoiceRequest
 
         attr_reader attachments: Array[Peddler::APIs::MessagingV1::Attachment]?
-        def members: () -> [ :attachments ]
 
+        def members: () -> [ :attachments ]
         def to_h: () -> { attachments: Array[Peddler::APIs::MessagingV1::Attachment]? }
       end
 
       class InvoiceResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::InvoiceResponse
                     | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::InvoiceResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::InvoiceResponse
                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::InvoiceResponse
 
@@ -457,15 +431,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::InvoiceResponse
 
         attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
       end
 
       class LinkObject < Data
         def self.new: (href: String?, ?name: String?) -> Peddler::APIs::MessagingV1::LinkObject
                     | (String?, String?) -> Peddler::APIs::MessagingV1::LinkObject
-
         def self.[]: (href: String?, ?name: String?) -> Peddler::APIs::MessagingV1::LinkObject
                    | (String?, String?) -> Peddler::APIs::MessagingV1::LinkObject
 
@@ -475,15 +448,14 @@ module Peddler
 
         attr_reader href: String?
         attr_reader name: String?
-        def members: () -> [ :href, :name ]
 
+        def members: () -> [ :href, :name ]
         def to_h: () -> { href: String?, name: String? }
       end
 
       class MessagingAction < Data
         def self.new: (name: String?) -> Peddler::APIs::MessagingV1::MessagingAction
                     | (String?) -> Peddler::APIs::MessagingV1::MessagingAction
-
         def self.[]: (name: String?) -> Peddler::APIs::MessagingV1::MessagingAction
                    | (String?) -> Peddler::APIs::MessagingV1::MessagingAction
 
@@ -492,8 +464,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::MessagingAction
 
         attr_reader name: String?
-        def members: () -> [ :name ]
 
+        def members: () -> [ :name ]
         def to_h: () -> { name: String? }
       end
 

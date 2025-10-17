@@ -14,7 +14,7 @@ module Peddler
         attribute(:package_id, String, from: "packageId")
 
         # @return [String] The ID provided by Amazon that identifies a given box. This ID is comprised of the external
-        # shipment ID (which is generated after transportation has been confirmed) and the index of the box.
+        #   shipment ID (which is generated after transportation has been confirmed) and the index of the box.
         attribute?(:box_id, String, from: "boxId")
 
         # @return [String]

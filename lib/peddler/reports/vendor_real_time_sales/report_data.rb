@@ -17,11 +17,11 @@ module Peddler
         attribute(:end_time, Time, from: "endTime")
 
         # @return [Float] Ordered Product Sales in the specified hour as of the time the report is generated.
-        # Adjustments are made for cancellations.
+        #   Adjustments are made for cancellations.
         attribute(:ordered_revenue, Float, from: "orderedRevenue")
 
         # @return [Integer] Number of units ordered by Amazon customers. This number can be negative if there are more
-        # cancellations than orders.
+        #   cancellations than orders.
         attribute(:ordered_units, Integer, from: "orderedUnits")
 
         # @return [Time] The start of a date-time range in UTC representing the beginning of the hour for this object.

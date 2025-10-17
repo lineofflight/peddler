@@ -19,7 +19,7 @@ module Peddler
         attribute?(:resource_id, String, from: "resourceId")
 
         # @return [Float] The duration of each slot which is returned. This value will be a multiple of 5 and fall in
-        # the following range: 5 <= `slotDuration` <= 360.
+        #   the following range: 5 <= `slotDuration` <= 360.
         attribute?(:slot_duration, Float, from: "slotDuration")
       end
     end

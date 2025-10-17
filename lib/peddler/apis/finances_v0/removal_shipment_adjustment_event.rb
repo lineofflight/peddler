@@ -25,7 +25,7 @@ module Peddler
         attribute?(:posted_date, String, from: "PostedDate")
 
         # @return [Array<RemovalShipmentItemAdjustment>] A comma-delimited list of Removal shipmentItemAdjustment
-        # details for FBA inventory.
+        #   details for FBA inventory.
         attribute?(:removal_shipment_item_adjustment_list, [RemovalShipmentItemAdjustment], from: "RemovalShipmentItemAdjustmentList")
 
         # @return [String] The type of removal order.

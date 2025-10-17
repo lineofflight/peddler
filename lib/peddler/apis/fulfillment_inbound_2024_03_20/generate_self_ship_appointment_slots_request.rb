@@ -11,11 +11,11 @@ module Peddler
       # The `generateSelfShipAppointmentSlots` request.
       GenerateSelfShipAppointmentSlotsRequest = Structure.new do
         # @return [Time] The desired end date. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
-        # datetime format.
+        #   datetime format.
         attribute?(:desired_end_date, Time, from: "desiredEndDate")
 
         # @return [Time] The desired start date. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
-        # datetime format.
+        #   datetime format.
         attribute?(:desired_start_date, Time, from: "desiredStartDate")
       end
     end

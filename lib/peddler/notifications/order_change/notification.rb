@@ -16,7 +16,7 @@ module Peddler
         attribute(:notification_metadata, Hash, from: "NotificationMetadata")
 
         # @return [String] The type of this notification, used to differentiate different notifications. Combined with
-        # payload version, this controls the structure of the payload object.
+        #   payload version, this controls the structure of the payload object.
         attribute(:notification_type, String, from: "NotificationType")
 
         # @return [String] The notification version.

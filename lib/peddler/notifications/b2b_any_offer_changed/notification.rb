@@ -10,14 +10,14 @@ module Peddler
       # Notification envelope with metadata
       Notification = Structure.new do
         # @return [String] The date and time in ISO 8601 format in UTC time that the event which triggered the
-        # notification occurred.
+        #   notification occurred.
         attribute(:event_time, String, from: "eventTime")
 
         # @return [String]
         attribute(:notification_metadata, String, from: "notificationMetadata")
 
         # @return [String] The notification type. Combined with the payload version this controls the structure of the
-        # payload object.
+        #   payload object.
         attribute(:notification_type, String, from: "notificationType")
 
         # @return [String] The notification version. This controls the structure of the notification.
@@ -27,7 +27,7 @@ module Peddler
         attribute(:payload, Payload)
 
         # @return [String] The payload version. Combined with the notification type this controls the structure of the
-        # payload object.
+        #   payload object.
         attribute(:payload_version, String, from: "payloadVersion")
       end
     end

@@ -27,7 +27,7 @@ module Peddler
         attribute?(:ineligible_reasons, [String], from: "ineligibleReasons")
 
         # @return [FeatureSKU] Information about the SKU, including the count available, identifiers, and a list of
-        # overlapping SKUs that share the same inventory pool.
+        #   overlapping SKUs that share the same inventory pool.
         attribute?(:sku_info, FeatureSKU, from: "skuInfo")
       end
     end

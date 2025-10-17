@@ -11,11 +11,11 @@ module Peddler
       # Information about an Amazon catalog item for the indicated `marketplaceId`.
       ItemSummaryByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier. To find the ID for your marketplace, refer to [Marketplace
-        # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [:boolean] When `true`, the Amazon catalog item is intended for an adult audience or is sexual in
-        # nature.
+        #   nature.
         attribute?(:adult_product, :boolean, from: "adultProduct")
 
         # @return [:boolean] When `true`, the Amazon catalog item is autographed.
@@ -25,14 +25,14 @@ module Peddler
         attribute?(:brand, String)
 
         # @return [ItemBrowseClassification] Classification (browse node) that is associated with the Amazon catalog
-        # item.
+        #   item.
         attribute?(:browse_classification, ItemBrowseClassification, from: "browseClassification")
 
         # @return [String] The color that is associated with the Amazon catalog item.
         attribute?(:color, String)
 
         # @return [Array<ItemContributor>] Individual contributors to the creation of the item, such as the authors or
-        # actors.
+        #   actors.
         attribute?(:contributors, [ItemContributor])
 
         # @return [String] Classification type that is associated with the Amazon catalog item.
@@ -72,7 +72,7 @@ module Peddler
         attribute?(:website_display_group, String, from: "websiteDisplayGroup")
 
         # @return [String] The display name of the website display group that is associated with the Amazon catalog
-        # item.
+        #   item.
         attribute?(:website_display_group_name, String, from: "websiteDisplayGroupName")
       end
     end

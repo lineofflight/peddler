@@ -19,9 +19,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which you want a list
-      # of available message types.
+      #   of available message types.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_messaging_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
@@ -38,9 +38,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -57,9 +57,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -77,9 +77,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -96,9 +96,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -116,9 +116,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -136,9 +136,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -155,9 +155,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -174,9 +174,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_attributes(amazon_order_id, marketplace_ids, rate_limit: 1.0)
@@ -193,9 +193,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -213,9 +213,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -232,9 +232,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      # order was placed. You can only specify one marketplace.
+      #   order was placed. You can only specify one marketplace.
       # @param body [Hash] This contains the message body for a message.
       # @return [Peddler::Response] The API response
       def send_invoice(amazon_order_id, marketplace_ids, body)

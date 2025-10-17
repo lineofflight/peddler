@@ -15,29 +15,29 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param return_location_id [String] The SmartConnect location ID of the location from which you want to retrieve
-      # return items.
+      #   return items.
       # @param rma_id [String] The RMA ID of the return items you want to list.
       # @param status [String] The status of return items you want to list. You can retrieve all new return items with
-      # the `CREATED` status.
+      #   the `CREATED` status.
       # @param reverse_tracking_id [String] The reverse tracking ID of the return items you want to list.
       # @param created_since [String] Return items created after the specified date are included in the response. In
-      # [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param created_until [String] Return items created before the specified date are included in the response. In
-      # [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param last_updated_since [String] Return items updated after the specified date are included in the response.
-      # In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If you supply this
-      # parameter, you must also supply `returnLocationId` and `status`.
+      #   In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If you supply this
+      #   parameter, you must also supply `returnLocationId` and `status`.
       # @param last_updated_until [String] Return items whose most recent update is before the specified date are
-      # included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
-      # format. If you supply this parameter, you must also supply `returnLocationId` and `status`.
+      #   included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
+      #   format. If you supply this parameter, you must also supply `returnLocationId` and `status`.
       # @param last_updated_after [String] DEPRECATED. Use the `createdSince` parameter.
       # @param last_updated_before [String] DEPRECATED. Use the `createdUntil` parameter.
       # @param max_results [Integer] The number of return items you want to include in the response. **Default:** 10
-      # **Maximum:** 100
+      #   **Maximum:** 100
       # @param next_token [String] A token that you use to retrieve the next page of results. The response includes
-      # `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with
-      # this token and include the same arguments as the call that produced the token. To get a complete list, call this
-      # operation until `nextToken` is null. Note that this operation can return empty pages.
+      #   `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with
+      #   this token and include the same arguments as the call that produced the token. To get a complete list, call
+      #   this operation until `nextToken` is null. Note that this operation can return empty pages.
       # @return [Peddler::Response] The API response
       def list_returns(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil,
         created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil,

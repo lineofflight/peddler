@@ -22,7 +22,7 @@ module Peddler
         attribute(:shipping_speed_category, String, from: "shippingSpeedCategory")
 
         # @return [Array<Fee>] The estimated fulfillment fees for this fulfillment order preview, if applicable. The
-        # fees data will not be available for IN marketplace orders.
+        #   fees data will not be available for IN marketplace orders.
         attribute?(:estimated_fees, [Fee], from: "estimatedFees")
 
         # @return [Weight] Estimated shipping weight for this fulfillment order preview.
@@ -35,12 +35,11 @@ module Peddler
         attribute?(:fulfillment_preview_shipments, [FulfillmentPreviewShipment], from: "fulfillmentPreviewShipments")
 
         # @return [Array<String>] Error codes associated with the fulfillment order preview that indicate why the order
-        # is not fulfillable.
+        #   is not fulfillable.
         #
         # Error code examples:
         #
-        # `DeliverySLAUnavailable`
-        # `InvalidDestinationAddress`
+        # `DeliverySLAUnavailable` `InvalidDestinationAddress`
         attribute?(:order_unfulfillable_reasons, [String], from: "orderUnfulfillableReasons")
 
         # @return [ScheduledDeliveryInfo]

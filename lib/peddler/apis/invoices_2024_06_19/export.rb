@@ -17,15 +17,15 @@ module Peddler
         attribute?(:export_id, String, from: "exportId")
 
         # @return [Time] The date and time when the export generation finished. Vales are in [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
         attribute?(:generate_export_finished_at, Time, from: "generateExportFinishedAt")
 
         # @return [Time] The date and time when the export generation started. Values are in [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
         attribute?(:generate_export_started_at, Time, from: "generateExportStartedAt")
 
         # @return [Array<String>] The identifier for the export documents. To get the information required to retrieve
-        # the export document's contents, pass each ID in the `getInvoicesDocument` operation.
+        #   the export document's contents, pass each ID in the `getInvoicesDocument` operation.
         #
         # This list is empty until the status is `DONE`.
         attribute?(:invoices_document_ids, [String], from: "invoicesDocumentIds")

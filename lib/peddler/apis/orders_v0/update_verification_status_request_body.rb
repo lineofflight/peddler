@@ -13,7 +13,7 @@ module Peddler
         attribute(:external_reviewer_id, String, from: "externalReviewerId")
 
         # @return [String] The unique identifier of the rejection reason used for rejecting the order's regulated
-        # information. Only required if the new status is rejected.
+        #   information. Only required if the new status is rejected.
         attribute?(:rejection_reason_id, String, from: "rejectionReasonId")
 
         # @return [String] The new verification status of the order.

@@ -15,7 +15,7 @@ module Peddler
         attribute?(:printable_documents_url, String, from: "printableDocumentsUrl")
 
         # @return [Array<RejectedOrder>] A list of orders we couldn't scheduled on your behalf. Each element contains
-        # the reason and details on the error.
+        #   the reason and details on the error.
         attribute?(:rejected_orders, [RejectedOrder], from: "rejectedOrders")
 
         # @return [Array<Package>] A list of packages. Refer to the `Package` object.

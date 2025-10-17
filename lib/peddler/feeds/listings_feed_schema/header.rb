@@ -13,12 +13,12 @@ module Peddler
         attribute(:seller_id, String, from: "sellerId")
 
         # @return [String] Version of the JSON Selling Partner Listings Feeds specification used for the feed
-        # submission.
+        #   submission.
         attribute(:version, String)
 
         # @return [String] Locale for issue localization. When not provided, the default language code of the first
-        # marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a
-        # localization is not available in the specified locale.
+        #   marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a
+        #   localization is not available in the specified locale.
         attribute?(:issue_locale, String, from: "issueLocale")
 
         # @return [Report] The report information for the feed submission.

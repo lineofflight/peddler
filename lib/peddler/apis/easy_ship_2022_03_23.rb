@@ -43,7 +43,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon-defined order identifier. Identifies the order that the seller wants
-      # to deliver using Amazon Easy Ship.
+      #   to deliver using Amazon Easy Ship.
       # @param marketplace_id [String] An identifier for the marketplace in which the seller is selling.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -130,7 +130,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_packages_request [Hash] The request schema for the `createScheduledPackageBulk`
-      # operation.
+      #   operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0)

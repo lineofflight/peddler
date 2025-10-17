@@ -14,11 +14,11 @@ module Peddler
         attribute(:asins, [ASINDetails])
 
         # @return [Float] Percentage of the allocated budget that has been spent, equal to the budgetSpent divided by
-        # budget or campaign totalBudget as appropriate.
+        #   budget or campaign totalBudget as appropriate.
         attribute(:budget_percentage_used, Float, from: "budgetPercentageUsed")
 
         # @return [Float] Total amount spent by the vendor on the coupon, including clip fees and redemption fees.
-        # Currency value. Represents a gross value, including purchases that were returned or cancelled.
+        #   Currency value. Represents a gross value, including purchases that were returned or cancelled.
         attribute(:budget_spent, Float, from: "budgetSpent")
 
         # @return [Integer] Number of times the coupon has been applied on the product page.
@@ -37,23 +37,23 @@ module Peddler
         attribute(:once_per_customer, :boolean, from: "isOncePerCustomer")
 
         # @return [Integer] Number of times the coupon has been used for a purchase. Represents a gross value, including
-        # purchases that were returned or cancelled.
+        #   purchases that were returned or cancelled.
         attribute(:redemptions, Integer)
 
         # @return [Time] Coupon start date-time in UTC.
         attribute(:start_date_time, Time, from: "startDateTime")
 
         # @return [Float] Total amount saved by customers redeeming the coupon. Currency value. Represents a gross
-        # value, including purchases that were returned or cancelled.
+        #   value, including purchases that were returned or cancelled.
         attribute(:total_discount, Float, from: "totalDiscount")
 
         # @return [Float] Budget allocated to the coupon. Currency value. Only present when campaign budgetType is
-        # PER_INDIVIDUAL_COUPON.
+        #   PER_INDIVIDUAL_COUPON.
         attribute?(:budget, Float)
 
         # @return [Float] Budget remaining for the coupon, equal to budget minus budgetSpent. Currency value. Only
-        # present when campaign budgetType is PER_INDIVIDUAL_COUPON. Represents a gross value, including purchases that
-        # were returned or cancelled.
+        #   present when campaign budgetType is PER_INDIVIDUAL_COUPON. Represents a gross value, including purchases
+        #   that were returned or cancelled.
         attribute?(:budget_remaining, Float, from: "budgetRemaining")
 
         # @return [String] The name given to the coupon.

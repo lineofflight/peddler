@@ -25,11 +25,11 @@ module Peddler
         attribute?(:fee_reason, String, from: "FeeReason")
 
         # @return [String] A unique identifier assigned by Amazon to products stored in and fulfilled from an Amazon
-        # fulfillment center.
+        #   fulfillment center.
         attribute?(:fn_sku, String, from: "FnSKU")
 
         # @return [String] The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is
-        # included with every call to the Selling Partner API.
+        #   included with every call to the Selling Partner API.
         attribute?(:seller_sku, String, from: "SellerSKU")
 
         # @return [String] The name of the store where the event occurred.

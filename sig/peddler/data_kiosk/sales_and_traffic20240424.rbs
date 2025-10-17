@@ -4,7 +4,6 @@ module Peddler
       class Amount < Data
         def self.new: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::Amount
                     | (Float?, String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::Amount
-
         def self.[]: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::Amount
                    | (Float?, String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::Amount
 
@@ -14,15 +13,14 @@ module Peddler
 
         attr_reader amount: Float?
         attr_reader currency_code: String?
-        def members: () -> [ :amount, :currency_code ]
 
+        def members: () -> [ :amount, :currency_code ]
         def to_h: () -> { amount: Float?, currency_code: String? }
       end
 
       class AnalyticsSalesandtraffic20240424 < Data
         def self.new: (?sales_and_traffic_by_asin: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN]?, ?sales_and_traffic_by_date: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate]?, ?sales_and_traffic_trends: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends]?) -> Peddler::DataKiosk::SalesAndTraffic20240424::AnalyticsSalesandtraffic20240424
                     | (Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN]?, Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate]?, Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends]?) -> Peddler::DataKiosk::SalesAndTraffic20240424::AnalyticsSalesandtraffic20240424
-
         def self.[]: (?sales_and_traffic_by_asin: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN]?, ?sales_and_traffic_by_date: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate]?, ?sales_and_traffic_trends: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends]?) -> Peddler::DataKiosk::SalesAndTraffic20240424::AnalyticsSalesandtraffic20240424
                    | (Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN]?, Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate]?, Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends]?) -> Peddler::DataKiosk::SalesAndTraffic20240424::AnalyticsSalesandtraffic20240424
 
@@ -33,15 +31,14 @@ module Peddler
         attr_reader sales_and_traffic_by_asin: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN]?
         attr_reader sales_and_traffic_by_date: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate]?
         attr_reader sales_and_traffic_trends: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends]?
-        def members: () -> [ :sales_and_traffic_by_asin, :sales_and_traffic_by_date, :sales_and_traffic_trends ]
 
+        def members: () -> [ :sales_and_traffic_by_asin, :sales_and_traffic_by_date, :sales_and_traffic_trends ]
         def to_h: () -> { sales_and_traffic_by_asin: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN]?, sales_and_traffic_by_date: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate]?, sales_and_traffic_trends: Array[Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends]? }
       end
 
       class ByASINSales < Data
         def self.new: (?ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?total_order_items: String?, ?total_order_items_b2b: String?, ?units_ordered: String?, ?units_ordered_b2b: String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales
                     | (Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, String?, String?, String?, String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales
-
         def self.[]: (?ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?total_order_items: String?, ?total_order_items_b2b: String?, ?units_ordered: String?, ?units_ordered_b2b: String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales
                    | (Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, String?, String?, String?, String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales
 
@@ -55,15 +52,14 @@ module Peddler
         attr_reader total_order_items_b2b: String?
         attr_reader units_ordered: String?
         attr_reader units_ordered_b2b: String?
-        def members: () -> [ :ordered_product_sales, :ordered_product_sales_b2b, :total_order_items, :total_order_items_b2b, :units_ordered, :units_ordered_b2b ]
 
+        def members: () -> [ :ordered_product_sales, :ordered_product_sales_b2b, :total_order_items, :total_order_items_b2b, :units_ordered, :units_ordered_b2b ]
         def to_h: () -> { ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, total_order_items: String?, total_order_items_b2b: String?, units_ordered: String?, units_ordered_b2b: String? }
       end
 
       class ByASINTraffic < Data
         def self.new: (?browser_page_views: String?, ?browser_page_views_b2b: String?, ?browser_page_views_percentage: Float?, ?browser_page_views_percentage_b2b: Float?, ?browser_session_percentage: Float?, ?browser_session_percentage_b2b: Float?, ?browser_sessions: String?, ?browser_sessions_b2b: String?, ?buy_box_percentage: Float?, ?buy_box_percentage_b2b: Float?, ?mobile_app_page_views: String?, ?mobile_app_page_views_b2b: String?, ?mobile_app_page_views_percentage: Float?, ?mobile_app_page_views_percentage_b2b: Float?, ?mobile_app_session_percentage: Float?, ?mobile_app_session_percentage_b2b: Float?, ?mobile_app_sessions: String?, ?mobile_app_sessions_b2b: String?, ?page_views: String?, ?page_views_b2b: String?, ?page_views_percentage: Float?, ?page_views_percentage_b2b: Float?, ?session_percentage: Float?, ?session_percentage_b2b: Float?, ?sessions: String?, ?sessions_b2b: String?, ?unit_session_percentage: Float?, ?unit_session_percentage_b2b: Float?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic
                     | (String?, String?, Float?, Float?, Float?, Float?, String?, String?, Float?, Float?, String?, String?, Float?, Float?, Float?, Float?, String?, String?, String?, String?, Float?, Float?, Float?, Float?, String?, String?, Float?, Float?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic
-
         def self.[]: (?browser_page_views: String?, ?browser_page_views_b2b: String?, ?browser_page_views_percentage: Float?, ?browser_page_views_percentage_b2b: Float?, ?browser_session_percentage: Float?, ?browser_session_percentage_b2b: Float?, ?browser_sessions: String?, ?browser_sessions_b2b: String?, ?buy_box_percentage: Float?, ?buy_box_percentage_b2b: Float?, ?mobile_app_page_views: String?, ?mobile_app_page_views_b2b: String?, ?mobile_app_page_views_percentage: Float?, ?mobile_app_page_views_percentage_b2b: Float?, ?mobile_app_session_percentage: Float?, ?mobile_app_session_percentage_b2b: Float?, ?mobile_app_sessions: String?, ?mobile_app_sessions_b2b: String?, ?page_views: String?, ?page_views_b2b: String?, ?page_views_percentage: Float?, ?page_views_percentage_b2b: Float?, ?session_percentage: Float?, ?session_percentage_b2b: Float?, ?sessions: String?, ?sessions_b2b: String?, ?unit_session_percentage: Float?, ?unit_session_percentage_b2b: Float?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic
                    | (String?, String?, Float?, Float?, Float?, Float?, String?, String?, Float?, Float?, String?, String?, Float?, Float?, Float?, Float?, String?, String?, String?, String?, Float?, Float?, Float?, Float?, String?, String?, Float?, Float?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic
 
@@ -99,15 +95,14 @@ module Peddler
         attr_reader sessions_b2b: String?
         attr_reader unit_session_percentage: Float?
         attr_reader unit_session_percentage_b2b: Float?
-        def members: () -> [ :browser_page_views, :browser_page_views_b2b, :browser_page_views_percentage, :browser_page_views_percentage_b2b, :browser_session_percentage, :browser_session_percentage_b2b, :browser_sessions, :browser_sessions_b2b, :buy_box_percentage, :buy_box_percentage_b2b, :mobile_app_page_views, :mobile_app_page_views_b2b, :mobile_app_page_views_percentage, :mobile_app_page_views_percentage_b2b, :mobile_app_session_percentage, :mobile_app_session_percentage_b2b, :mobile_app_sessions, :mobile_app_sessions_b2b, :page_views, :page_views_b2b, :page_views_percentage, :page_views_percentage_b2b, :session_percentage, :session_percentage_b2b, :sessions, :sessions_b2b, :unit_session_percentage, :unit_session_percentage_b2b ]
 
+        def members: () -> [ :browser_page_views, :browser_page_views_b2b, :browser_page_views_percentage, :browser_page_views_percentage_b2b, :browser_session_percentage, :browser_session_percentage_b2b, :browser_sessions, :browser_sessions_b2b, :buy_box_percentage, :buy_box_percentage_b2b, :mobile_app_page_views, :mobile_app_page_views_b2b, :mobile_app_page_views_percentage, :mobile_app_page_views_percentage_b2b, :mobile_app_session_percentage, :mobile_app_session_percentage_b2b, :mobile_app_sessions, :mobile_app_sessions_b2b, :page_views, :page_views_b2b, :page_views_percentage, :page_views_percentage_b2b, :session_percentage, :session_percentage_b2b, :sessions, :sessions_b2b, :unit_session_percentage, :unit_session_percentage_b2b ]
         def to_h: () -> { browser_page_views: String?, browser_page_views_b2b: String?, browser_page_views_percentage: Float?, browser_page_views_percentage_b2b: Float?, browser_session_percentage: Float?, browser_session_percentage_b2b: Float?, browser_sessions: String?, browser_sessions_b2b: String?, buy_box_percentage: Float?, buy_box_percentage_b2b: Float?, mobile_app_page_views: String?, mobile_app_page_views_b2b: String?, mobile_app_page_views_percentage: Float?, mobile_app_page_views_percentage_b2b: Float?, mobile_app_session_percentage: Float?, mobile_app_session_percentage_b2b: Float?, mobile_app_sessions: String?, mobile_app_sessions_b2b: String?, page_views: String?, page_views_b2b: String?, page_views_percentage: Float?, page_views_percentage_b2b: Float?, session_percentage: Float?, session_percentage_b2b: Float?, sessions: String?, sessions_b2b: String?, unit_session_percentage: Float?, unit_session_percentage_b2b: Float? }
       end
 
       class ByDateSales < Data
         def self.new: (?average_sales_per_order_item: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?average_sales_per_order_item_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?average_selling_price: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?average_selling_price_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?average_units_per_order_item: Float?, ?average_units_per_order_item_b2b: Float?, ?claims_amount: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?claims_granted: String?, ?ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?orders_shipped: String?, ?refund_rate: Float?, ?shipped_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?total_order_items: String?, ?total_order_items_b2b: String?, ?units_ordered: String?, ?units_ordered_b2b: String?, ?units_refunded: String?, ?units_shipped: String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales
                     | (Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Float?, Float?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, String?, Float?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales
-
         def self.[]: (?average_sales_per_order_item: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?average_sales_per_order_item_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?average_selling_price: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?average_selling_price_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?average_units_per_order_item: Float?, ?average_units_per_order_item_b2b: Float?, ?claims_amount: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?claims_granted: String?, ?ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?orders_shipped: String?, ?refund_rate: Float?, ?shipped_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ?total_order_items: String?, ?total_order_items_b2b: String?, ?units_ordered: String?, ?units_ordered_b2b: String?, ?units_refunded: String?, ?units_shipped: String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales
                    | (Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Float?, Float?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, String?, Float?, Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales
 
@@ -134,15 +129,14 @@ module Peddler
         attr_reader units_ordered_b2b: String?
         attr_reader units_refunded: String?
         attr_reader units_shipped: String?
-        def members: () -> [ :average_sales_per_order_item, :average_sales_per_order_item_b2b, :average_selling_price, :average_selling_price_b2b, :average_units_per_order_item, :average_units_per_order_item_b2b, :claims_amount, :claims_granted, :ordered_product_sales, :ordered_product_sales_b2b, :orders_shipped, :refund_rate, :shipped_product_sales, :total_order_items, :total_order_items_b2b, :units_ordered, :units_ordered_b2b, :units_refunded, :units_shipped ]
 
+        def members: () -> [ :average_sales_per_order_item, :average_sales_per_order_item_b2b, :average_selling_price, :average_selling_price_b2b, :average_units_per_order_item, :average_units_per_order_item_b2b, :claims_amount, :claims_granted, :ordered_product_sales, :ordered_product_sales_b2b, :orders_shipped, :refund_rate, :shipped_product_sales, :total_order_items, :total_order_items_b2b, :units_ordered, :units_ordered_b2b, :units_refunded, :units_shipped ]
         def to_h: () -> { average_sales_per_order_item: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, average_sales_per_order_item_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, average_selling_price: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, average_selling_price_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, average_units_per_order_item: Float?, average_units_per_order_item_b2b: Float?, claims_amount: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, claims_granted: String?, ordered_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, ordered_product_sales_b2b: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, orders_shipped: String?, refund_rate: Float?, shipped_product_sales: Peddler::DataKiosk::SalesAndTraffic20240424::Amount?, total_order_items: String?, total_order_items_b2b: String?, units_ordered: String?, units_ordered_b2b: String?, units_refunded: String?, units_shipped: String? }
       end
 
       class ByDateTraffic < Data
         def self.new: (?average_offer_count: String?, ?average_parent_items: String?, ?browser_page_views: String?, ?browser_page_views_b2b: String?, ?browser_sessions: String?, ?browser_sessions_b2b: String?, ?buy_box_percentage: Float?, ?buy_box_percentage_b2b: Float?, ?feedback_received: String?, ?mobile_app_page_views: String?, ?mobile_app_page_views_b2b: String?, ?mobile_app_sessions: String?, ?mobile_app_sessions_b2b: String?, ?negative_feedback_received: String?, ?order_item_session_percentage: Float?, ?order_item_session_percentage_b2b: Float?, ?page_views: String?, ?page_views_b2b: String?, ?received_negative_feedback_rate: Float?, ?sessions: String?, ?sessions_b2b: String?, ?unit_session_percentage: Float?, ?unit_session_percentage_b2b: Float?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic
                     | (String?, String?, String?, String?, String?, String?, Float?, Float?, String?, String?, String?, String?, String?, String?, Float?, Float?, String?, String?, Float?, String?, String?, Float?, Float?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic
-
         def self.[]: (?average_offer_count: String?, ?average_parent_items: String?, ?browser_page_views: String?, ?browser_page_views_b2b: String?, ?browser_sessions: String?, ?browser_sessions_b2b: String?, ?buy_box_percentage: Float?, ?buy_box_percentage_b2b: Float?, ?feedback_received: String?, ?mobile_app_page_views: String?, ?mobile_app_page_views_b2b: String?, ?mobile_app_sessions: String?, ?mobile_app_sessions_b2b: String?, ?negative_feedback_received: String?, ?order_item_session_percentage: Float?, ?order_item_session_percentage_b2b: Float?, ?page_views: String?, ?page_views_b2b: String?, ?received_negative_feedback_rate: Float?, ?sessions: String?, ?sessions_b2b: String?, ?unit_session_percentage: Float?, ?unit_session_percentage_b2b: Float?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic
                    | (String?, String?, String?, String?, String?, String?, Float?, Float?, String?, String?, String?, String?, String?, String?, Float?, Float?, String?, String?, Float?, String?, String?, Float?, Float?) -> Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic
 
@@ -173,15 +167,14 @@ module Peddler
         attr_reader sessions_b2b: String?
         attr_reader unit_session_percentage: Float?
         attr_reader unit_session_percentage_b2b: Float?
-        def members: () -> [ :average_offer_count, :average_parent_items, :browser_page_views, :browser_page_views_b2b, :browser_sessions, :browser_sessions_b2b, :buy_box_percentage, :buy_box_percentage_b2b, :feedback_received, :mobile_app_page_views, :mobile_app_page_views_b2b, :mobile_app_sessions, :mobile_app_sessions_b2b, :negative_feedback_received, :order_item_session_percentage, :order_item_session_percentage_b2b, :page_views, :page_views_b2b, :received_negative_feedback_rate, :sessions, :sessions_b2b, :unit_session_percentage, :unit_session_percentage_b2b ]
 
+        def members: () -> [ :average_offer_count, :average_parent_items, :browser_page_views, :browser_page_views_b2b, :browser_sessions, :browser_sessions_b2b, :buy_box_percentage, :buy_box_percentage_b2b, :feedback_received, :mobile_app_page_views, :mobile_app_page_views_b2b, :mobile_app_sessions, :mobile_app_sessions_b2b, :negative_feedback_received, :order_item_session_percentage, :order_item_session_percentage_b2b, :page_views, :page_views_b2b, :received_negative_feedback_rate, :sessions, :sessions_b2b, :unit_session_percentage, :unit_session_percentage_b2b ]
         def to_h: () -> { average_offer_count: String?, average_parent_items: String?, browser_page_views: String?, browser_page_views_b2b: String?, browser_sessions: String?, browser_sessions_b2b: String?, buy_box_percentage: Float?, buy_box_percentage_b2b: Float?, feedback_received: String?, mobile_app_page_views: String?, mobile_app_page_views_b2b: String?, mobile_app_sessions: String?, mobile_app_sessions_b2b: String?, negative_feedback_received: String?, order_item_session_percentage: Float?, order_item_session_percentage_b2b: Float?, page_views: String?, page_views_b2b: String?, received_negative_feedback_rate: Float?, sessions: String?, sessions_b2b: String?, unit_session_percentage: Float?, unit_session_percentage_b2b: Float? }
       end
 
       class SalesAndTrafficByASIN < Data
         def self.new: (?child_asin: String?, ?end_date: String?, ?marketplace_id: String?, ?parent_asin: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, ?sku: String?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN
                     | (String?, String?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN
-
         def self.[]: (?child_asin: String?, ?end_date: String?, ?marketplace_id: String?, ?parent_asin: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, ?sku: String?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN
                    | (String?, String?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByASIN
 
@@ -197,15 +190,14 @@ module Peddler
         attr_reader sku: String?
         attr_reader start_date: String?
         attr_reader traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?
-        def members: () -> [ :child_asin, :end_date, :marketplace_id, :parent_asin, :sales, :sku, :start_date, :traffic ]
 
+        def members: () -> [ :child_asin, :end_date, :marketplace_id, :parent_asin, :sales, :sku, :start_date, :traffic ]
         def to_h: () -> { child_asin: String?, end_date: String?, marketplace_id: String?, parent_asin: String?, sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, sku: String?, start_date: String?, traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic? }
       end
 
       class SalesAndTrafficByDate < Data
         def self.new: (?end_date: String?, ?marketplace_id: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate
                     | (String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate
-
         def self.[]: (?end_date: String?, ?marketplace_id: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate
                    | (String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate
 
@@ -218,15 +210,14 @@ module Peddler
         attr_reader sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales?
         attr_reader start_date: String?
         attr_reader traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic?
-        def members: () -> [ :end_date, :marketplace_id, :sales, :start_date, :traffic ]
 
+        def members: () -> [ :end_date, :marketplace_id, :sales, :start_date, :traffic ]
         def to_h: () -> { end_date: String?, marketplace_id: String?, sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByDateSales?, start_date: String?, traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByDateTraffic? }
       end
 
       class SalesAndTrafficTrends < Data
         def self.new: (?asin_aggregation: String?, ?child_asin: String?, ?end_date: String?, ?marketplace_id: String?, ?parent_asin: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, ?sku: String?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends
                     | (String?, String?, String?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends
-
         def self.[]: (?asin_aggregation: String?, ?child_asin: String?, ?end_date: String?, ?marketplace_id: String?, ?parent_asin: String?, ?sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, ?sku: String?, ?start_date: String?, ?traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends
                    | (String?, String?, String?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, String?, String?, Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?) -> Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficTrends
 
@@ -243,8 +234,8 @@ module Peddler
         attr_reader sku: String?
         attr_reader start_date: String?
         attr_reader traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic?
-        def members: () -> [ :asin_aggregation, :child_asin, :end_date, :marketplace_id, :parent_asin, :sales, :sku, :start_date, :traffic ]
 
+        def members: () -> [ :asin_aggregation, :child_asin, :end_date, :marketplace_id, :parent_asin, :sales, :sku, :start_date, :traffic ]
         def to_h: () -> { asin_aggregation: String?, child_asin: String?, end_date: String?, marketplace_id: String?, parent_asin: String?, sales: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINSales?, sku: String?, start_date: String?, traffic: Peddler::DataKiosk::SalesAndTraffic20240424::ByASINTraffic? }
       end
 

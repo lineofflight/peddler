@@ -9,11 +9,11 @@ module Peddler
     module PricingHealth
       Summary = Structure.new do
         # @return [Array<OfferCount>] A list that contains the total number of offers that are eligible for the Buy Box
-        # for the given conditions and fulfillment channels
+        #   for the given conditions and fulfillment channels
         attribute(:buy_box_eligible_offers, [OfferCount], from: "buyBoxEligibleOffers")
 
         # @return [Array<OfferCount>] A list that contains the total number of offers for the item for the given
-        # conditions and fulfillment channels
+        #   conditions and fulfillment channels
         attribute(:number_of_offers, [OfferCount], from: "numberOfOffers")
 
         # @return [String]

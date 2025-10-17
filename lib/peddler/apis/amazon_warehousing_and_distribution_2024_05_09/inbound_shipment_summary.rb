@@ -24,7 +24,7 @@ module Peddler
         attribute?(:created_at, Time, from: "createdAt")
 
         # @return [String] Optional client-provided reference ID that can be used to correlate this shipment with client
-        # resources. For example, to map this shipment to an internal bookkeeping order record.
+        #   resources. For example, to map this shipment to an internal bookkeeping order record.
         attribute?(:external_reference_id, String, from: "externalReferenceId")
 
         # @return [Time] Timestamp when the shipment was updated.

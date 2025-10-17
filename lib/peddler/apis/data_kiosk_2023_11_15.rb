@@ -20,14 +20,14 @@ module Peddler
       # @param processing_statuses [Array<String>] A list of processing statuses used to filter queries.
       # @param page_size [Integer] The maximum number of queries to return in a single call.
       # @param created_since [String] The earliest query creation date and time for queries to include in the response,
-      # in ISO 8601 date time format. The default is 90 days ago.
+      #   in ISO 8601 date time format. The default is 90 days ago.
       # @param created_until [String] The latest query creation date and time for queries to include in the response, in
-      # ISO 8601 date time format. The default is the time of the `getQueries` request.
+      #   ISO 8601 date time format. The default is the time of the `getQueries` request.
       # @param pagination_token [String] A token to fetch a certain page of results when there are multiple pages of
-      # results available. The value of this token is fetched from the `pagination.nextToken` field returned in the
-      # `GetQueriesResponse` object. All other parameters must be provided with the same values that were provided with
-      # the request that generated this token, with the exception of `pageSize` which can be modified between calls to
-      # `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
+      #   results available. The value of this token is fetched from the `pagination.nextToken` field returned in the
+      #   `GetQueriesResponse` object. All other parameters must be provided with the same values that were provided
+      #   with the request that generated this token, with the exception of `pageSize` which can be modified between
+      #   calls to `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil,
@@ -68,7 +68,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param query_id [String] The identifier for the query. This identifier is unique only in combination with a
-      # selling partner account ID.
+      #   selling partner account ID.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_query(query_id, rate_limit: 0.0222)

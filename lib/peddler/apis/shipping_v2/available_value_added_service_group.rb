@@ -19,7 +19,7 @@ module Peddler
         attribute(:required, :boolean, from: "isRequired")
 
         # @return [Array<ValueAddedService>] A list of optional value-added services available for purchase with a
-        # shipping service offering.
+        #   shipping service offering.
         attribute?(:value_added_services, [ValueAddedService], from: "valueAddedServices")
       end
     end

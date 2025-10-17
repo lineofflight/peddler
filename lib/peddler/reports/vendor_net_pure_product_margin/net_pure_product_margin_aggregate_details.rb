@@ -14,8 +14,8 @@ module Peddler
         attribute(:end_date, Date, from: "endDate")
 
         # @return [Float] A measure of Amazon's profitability considering Amazon's wholesale cost and vendor-funded
-        # cooperative marketing funds: (Product Revenue – Product COGS – Vendor Funded Coop) / Product Revenue. The
-        # value is a fraction with values between 0 and 1. To represent as a percentage, multiply the value by 100.
+        #   cooperative marketing funds: (Product Revenue – Product COGS – Vendor Funded Coop) / Product Revenue. The
+        #   value is a fraction with values between 0 and 1. To represent as a percentage, multiply the value by 100.
         attribute(:net_pure_product_margin, Float, from: "netPureProductMargin")
 
         # @return [Date] The start date of the aggregated data.

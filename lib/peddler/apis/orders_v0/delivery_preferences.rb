@@ -17,7 +17,7 @@ module Peddler
         attribute?(:drop_off_location, String, from: "DropOffLocation")
 
         # @return [Array<OtherDeliveryAttributes>] Enumerated list of miscellaneous delivery attributes associated with
-        # the shipping address.
+        #   the shipping address.
         attribute?(:other_attributes, Array, from: "OtherAttributes")
 
         # @return [PreferredDeliveryTime] Business hours and days when the delivery is preferred.

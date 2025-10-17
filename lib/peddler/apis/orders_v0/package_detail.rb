@@ -11,8 +11,8 @@ module Peddler
       # Properties of packages
       PackageDetail = Structure.new do
         # @return [String] Identifies the carrier that will deliver the package. This field is required for all
-        # marketplaces. For more information, refer to the [`CarrierCode`
-        # announcement](https://developer-docs.amazon.com/sp-api/changelog/carriercode-value-required-in-shipment-confirmations-for-br-mx-ca-sg-au-in-jp-marketplaces).
+        #   marketplaces. For more information, refer to the [`CarrierCode`
+        #   announcement](https://developer-docs.amazon.com/sp-api/changelog/carriercode-value-required-in-shipment-confirmations-for-br-mx-ca-sg-au-in-jp-marketplaces).
         attribute(:carrier_code, String, from: "carrierCode")
 
         # @return [Array<ConfirmShipmentOrderItem>] The list of order items and quantities to be updated.
@@ -22,7 +22,7 @@ module Peddler
         attribute(:package_reference_id, String, from: "packageReferenceId")
 
         # @return [Time] The shipping date for the package. Must be in
-        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
+        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
         attribute(:ship_date, Time, from: "shipDate")
 
         # @return [String] The tracking number used to obtain tracking and delivery information.

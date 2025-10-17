@@ -15,9 +15,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus
-      # notification. For information about subscribing to notifications, see the
-      # {https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide Notifications API Use Case
-      # Guide}.
+      #   notification. For information about subscribing to notifications, see the
+      #   {https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide Notifications API Use Case
+      #   Guide}.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_details(shipment_id, rate_limit: 1.133)

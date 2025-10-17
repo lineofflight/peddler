@@ -13,7 +13,7 @@ module Peddler
         attribute(:amount, String)
 
         # @return [String] The unit of measure for the weight of items that are ordered by cases and support pricing by
-        # weight.
+        #   weight.
         attribute(:unit_of_measure, String, from: "unitOfMeasure")
       end
     end

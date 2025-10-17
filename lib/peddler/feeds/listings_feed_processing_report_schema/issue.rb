@@ -22,8 +22,8 @@ module Peddler
         attribute?(:code, String)
 
         # @return [Integer] Identifier for the message that is unique within this feed submission. Correlated to
-        # Identifiers provided in the submitted feed. Not provided if the error is not related to a message (e.g. feed
-        # formatting issue).
+        #   Identifiers provided in the submitted feed. Not provided if the error is not related to a message (e.g. feed
+        #   formatting issue).
         attribute?(:message_id, Integer, from: "messageId")
       end
     end

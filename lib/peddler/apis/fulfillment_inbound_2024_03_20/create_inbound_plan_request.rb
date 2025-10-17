@@ -10,7 +10,7 @@ module Peddler
       # The `createInboundPlan` request.
       CreateInboundPlanRequest = Structure.new do
         # @return [Array<String>] Marketplaces where the items need to be shipped to. Currently only one marketplace can
-        # be selected in this request.
+        #   be selected in this request.
         attribute(:destination_marketplaces, [String], from: "destinationMarketplaces")
 
         # @return [Array<ItemInput>] Items included in this plan.

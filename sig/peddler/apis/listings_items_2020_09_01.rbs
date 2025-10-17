@@ -4,7 +4,6 @@ module Peddler
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ListingsItems20200901::Error
                     | (String?, String?, String?) -> Peddler::APIs::ListingsItems20200901::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ListingsItems20200901::Error
                    | (String?, String?, String?) -> Peddler::APIs::ListingsItems20200901::Error
 
@@ -15,15 +14,14 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
       class ErrorList < Data
         def self.new: (errors: Array[Peddler::APIs::ListingsItems20200901::Error]?) -> Peddler::APIs::ListingsItems20200901::ErrorList
                     | (Array[Peddler::APIs::ListingsItems20200901::Error]?) -> Peddler::APIs::ListingsItems20200901::ErrorList
-
         def self.[]: (errors: Array[Peddler::APIs::ListingsItems20200901::Error]?) -> Peddler::APIs::ListingsItems20200901::ErrorList
                    | (Array[Peddler::APIs::ListingsItems20200901::Error]?) -> Peddler::APIs::ListingsItems20200901::ErrorList
 
@@ -32,15 +30,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20200901::ErrorList
 
         attr_reader errors: Array[Peddler::APIs::ListingsItems20200901::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::ListingsItems20200901::Error]? }
       end
 
       class Issue < Data
         def self.new: (code: String?, message: String?, severity: String?, ?attribute_name: String?) -> Peddler::APIs::ListingsItems20200901::Issue
                     | (String?, String?, String?, String?) -> Peddler::APIs::ListingsItems20200901::Issue
-
         def self.[]: (code: String?, message: String?, severity: String?, ?attribute_name: String?) -> Peddler::APIs::ListingsItems20200901::Issue
                    | (String?, String?, String?, String?) -> Peddler::APIs::ListingsItems20200901::Issue
 
@@ -52,15 +49,14 @@ module Peddler
         attr_reader code: String?
         attr_reader message: String?
         attr_reader severity: String?
-        def members: () -> [ :code, :message, :severity, :attribute_name ]
 
+        def members: () -> [ :code, :message, :severity, :attribute_name ]
         def to_h: () -> { code: String?, message: String?, severity: String?, attribute_name: String? }
       end
 
       class ListingsItemPatchRequest < Data
         def self.new: (patches: Array[Peddler::APIs::ListingsItems20200901::PatchOperation]?, product_type: String?) -> Peddler::APIs::ListingsItems20200901::ListingsItemPatchRequest
                     | (Array[Peddler::APIs::ListingsItems20200901::PatchOperation]?, String?) -> Peddler::APIs::ListingsItems20200901::ListingsItemPatchRequest
-
         def self.[]: (patches: Array[Peddler::APIs::ListingsItems20200901::PatchOperation]?, product_type: String?) -> Peddler::APIs::ListingsItems20200901::ListingsItemPatchRequest
                    | (Array[Peddler::APIs::ListingsItems20200901::PatchOperation]?, String?) -> Peddler::APIs::ListingsItems20200901::ListingsItemPatchRequest
 
@@ -70,15 +66,14 @@ module Peddler
 
         attr_reader patches: Array[Peddler::APIs::ListingsItems20200901::PatchOperation]?
         attr_reader product_type: String?
-        def members: () -> [ :patches, :product_type ]
 
+        def members: () -> [ :patches, :product_type ]
         def to_h: () -> { patches: Array[Peddler::APIs::ListingsItems20200901::PatchOperation]?, product_type: String? }
       end
 
       class ListingsItemPutRequest < Data
         def self.new: (attributes: Hash[untyped, untyped]?, product_type: String?, ?requirements: String?) -> Peddler::APIs::ListingsItems20200901::ListingsItemPutRequest
                     | (Hash[untyped, untyped]?, String?, String?) -> Peddler::APIs::ListingsItems20200901::ListingsItemPutRequest
-
         def self.[]: (attributes: Hash[untyped, untyped]?, product_type: String?, ?requirements: String?) -> Peddler::APIs::ListingsItems20200901::ListingsItemPutRequest
                    | (Hash[untyped, untyped]?, String?, String?) -> Peddler::APIs::ListingsItems20200901::ListingsItemPutRequest
 
@@ -89,15 +84,14 @@ module Peddler
         attr_reader attributes: Hash[untyped, untyped]?
         attr_reader product_type: String?
         attr_reader requirements: String?
-        def members: () -> [ :attributes, :product_type, :requirements ]
 
+        def members: () -> [ :attributes, :product_type, :requirements ]
         def to_h: () -> { attributes: Hash[untyped, untyped]?, product_type: String?, requirements: String? }
       end
 
       class ListingsItemSubmissionResponse < Data
         def self.new: (sku: String?, status: String?, submission_id: String?, ?issues: Array[Peddler::APIs::ListingsItems20200901::Issue]?) -> Peddler::APIs::ListingsItems20200901::ListingsItemSubmissionResponse
                     | (String?, String?, String?, Array[Peddler::APIs::ListingsItems20200901::Issue]?) -> Peddler::APIs::ListingsItems20200901::ListingsItemSubmissionResponse
-
         def self.[]: (sku: String?, status: String?, submission_id: String?, ?issues: Array[Peddler::APIs::ListingsItems20200901::Issue]?) -> Peddler::APIs::ListingsItems20200901::ListingsItemSubmissionResponse
                    | (String?, String?, String?, Array[Peddler::APIs::ListingsItems20200901::Issue]?) -> Peddler::APIs::ListingsItems20200901::ListingsItemSubmissionResponse
 
@@ -109,15 +103,14 @@ module Peddler
         attr_reader sku: String?
         attr_reader status: String?
         attr_reader submission_id: String?
-        def members: () -> [ :sku, :status, :submission_id, :issues ]
 
+        def members: () -> [ :sku, :status, :submission_id, :issues ]
         def to_h: () -> { sku: String?, status: String?, submission_id: String?, issues: Array[Peddler::APIs::ListingsItems20200901::Issue]? }
       end
 
       class PatchOperation < Data
         def self.new: (op: String?, path: String?, ?value: Array[untyped]?) -> Peddler::APIs::ListingsItems20200901::PatchOperation
                     | (String?, String?, Array[untyped]?) -> Peddler::APIs::ListingsItems20200901::PatchOperation
-
         def self.[]: (op: String?, path: String?, ?value: Array[untyped]?) -> Peddler::APIs::ListingsItems20200901::PatchOperation
                    | (String?, String?, Array[untyped]?) -> Peddler::APIs::ListingsItems20200901::PatchOperation
 
@@ -128,8 +121,8 @@ module Peddler
         attr_reader op: String?
         attr_reader path: String?
         attr_reader value: Array[untyped]?
-        def members: () -> [ :op, :path, :value ]
 
+        def members: () -> [ :op, :path, :value ]
         def to_h: () -> { op: String?, path: String?, value: Array[untyped]? }
       end
 

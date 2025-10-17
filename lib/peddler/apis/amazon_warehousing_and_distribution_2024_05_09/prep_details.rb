@@ -17,8 +17,8 @@ module Peddler
         attribute?(:prep_category, String, from: "prepCategory")
 
         # @return [Array<PrepInstruction>] Contains information about the preparation of the inbound products. The
-        # system auto-generates this field with the use of the `prepCategory`, and if you attempt to pass a value for
-        # this field, the system will ignore it.
+        #   system auto-generates this field with the use of the `prepCategory`, and if you attempt to pass a value for
+        #   this field, the system will ignore it.
         attribute?(:prep_instructions, [PrepInstruction], from: "prepInstructions")
 
         # @return [String]

@@ -19,7 +19,7 @@ module Peddler
         attribute(:last_updated_date_time, String, from: "lastUpdatedDateTime")
 
         # @return [MarketplaceChannelDetails] Channel-specific attributes for the return. These attributes are not
-        # mandatory and each channel can provide them differently.
+        #   mandatory and each channel can provide them differently.
         attribute(:marketplace_channel_details, MarketplaceChannelDetails, from: "marketplaceChannelDetails")
 
         # @return [ReturnMetadata] Metadata about the return item.
@@ -47,7 +47,7 @@ module Peddler
         attribute?(:otp_details, OtpDetails, from: "otpDetails")
 
         # @return [String] The package delivery mode. This indicates whether the return was delivered to the seller with
-        # or without a one-time password (OTP).
+        #   or without a one-time password (OTP).
         attribute?(:package_delivery_mode, String, from: "packageDeliveryMode")
 
         # @return [ReplanningDetails] Details about the replanned returns.

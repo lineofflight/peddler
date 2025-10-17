@@ -22,8 +22,8 @@ module Peddler
         attribute(:rate_id, String, from: "rateId")
 
         # @return [:boolean] When true, indicates that additional inputs are required to purchase this shipment service.
-        # You must then call the getAdditionalInputs operation to return the JSON schema to use when providing the
-        # additional inputs to the purchaseShipment operation.
+        #   You must then call the getAdditionalInputs operation to return the JSON schema to use when providing the
+        #   additional inputs to the purchaseShipment operation.
         attribute(:requires_additional_inputs, :boolean, from: "requiresAdditionalInputs")
 
         # @return [String]

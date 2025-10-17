@@ -17,7 +17,7 @@ module Peddler
         attribute(:fees, [Incentive])
 
         # @return [String] The identifier of a placement option. A placement option represents the shipment splits and
-        # destinations of SKUs.
+        #   destinations of SKUs.
         attribute(:placement_option_id, String, from: "placementOptionId")
 
         # @return [Array<String>] Shipment ids.
@@ -27,8 +27,8 @@ module Peddler
         attribute(:status, String)
 
         # @return [Time] The expiration date of the placement option. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
-        # `yyyy-MM-ddTHH:mm:ss.sssZ`.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
+        #   `yyyy-MM-ddTHH:mm:ss.sssZ`.
         attribute?(:expiration, Time)
       end
     end

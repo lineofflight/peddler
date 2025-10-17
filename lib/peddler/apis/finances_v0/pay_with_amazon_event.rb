@@ -47,7 +47,7 @@ module Peddler
         attribute?(:store_name, String, from: "StoreName")
 
         # @return [String] The date and time when the payment transaction is posted. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
         attribute?(:transaction_posted_date, String, from: "TransactionPostedDate")
       end
     end

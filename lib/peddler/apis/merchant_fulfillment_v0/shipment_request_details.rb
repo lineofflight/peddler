@@ -31,15 +31,15 @@ module Peddler
         attribute?(:label_customization, LabelCustomization, from: "LabelCustomization")
 
         # @return [String] The date by which the package must arrive to keep the promise to the customer, in [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If `MustArriveByDate` is
-        # specified, only shipping service offers that can be delivered by that date are returned.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If `MustArriveByDate` is
+        #   specified, only shipping service offers that can be delivered by that date are returned.
         attribute?(:must_arrive_by_date, String, from: "MustArriveByDate")
 
         # @return [String] A seller-defined order identifier.
         attribute?(:seller_order_id, String, from: "SellerOrderId")
 
         # @return [String] When used in a request, this is the date and time that the seller wants to ship the package.
-        # When used in a response, this is the date and time that the package can be shipped by the indicated method.
+        #   When used in a response, this is the date and time that the package can be shipped by the indicated method.
         attribute?(:ship_date, String, from: "ShipDate")
       end
     end

@@ -20,7 +20,7 @@ module Peddler
         attribute(:inventory_by_asin, [InventoryByASIN], from: "inventoryByAsin")
 
         # @return [Hash] The report summary including a reporting date range, distributor view, selling program, and
-        # last updated date in the input.
+        #   last updated date in the input.
         attribute(:report_specification, ReportSpecification, from: "reportSpecification")
       end
     end

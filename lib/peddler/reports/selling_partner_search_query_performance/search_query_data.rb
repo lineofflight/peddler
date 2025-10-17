@@ -13,7 +13,7 @@ module Peddler
         attribute(:search_query, String, from: "searchQuery")
 
         # @return [Integer] The rank for a search query in comparison to other queries for the ASIN. The ranking
-        # mechanism measures overall performance (the highest rank is 1).
+        #   mechanism measures overall performance (the highest rank is 1).
         attribute(:search_query_score, Integer, from: "searchQueryScore")
 
         # @return [Integer] The number of times customers search for a query at a select time period.

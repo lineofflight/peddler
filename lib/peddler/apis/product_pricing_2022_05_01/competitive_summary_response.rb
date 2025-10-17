@@ -10,11 +10,11 @@ module Peddler
       # The response for the individual `competitiveSummary` request in the batch operation.
       CompetitiveSummaryResponse = Structure.new do
         # @return [CompetitiveSummaryResponseBody] The `competitiveSummaryResponse` body for a requested ASIN and
-        # `marketplaceId`.
+        #   `marketplaceId`.
         attribute(:body, CompetitiveSummaryResponseBody)
 
         # @return [HttpStatusLine] The HTTP status line associated with the response. For more information, refer to
-        # [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
+        #   [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
         attribute(:status, HttpStatusLine)
       end
     end

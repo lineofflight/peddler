@@ -37,7 +37,7 @@ module Peddler
         attribute?(:phone, String)
 
         # @return [String] The postal or zip code of that address. It contains a series of letters or digits or both,
-        # sometimes including spaces or punctuation.
+        #   sometimes including spaces or punctuation.
         attribute?(:postal_or_zip_code, String, from: "postalOrZipCode")
 
         # @return [String] The state or region where person, business or institution is located.

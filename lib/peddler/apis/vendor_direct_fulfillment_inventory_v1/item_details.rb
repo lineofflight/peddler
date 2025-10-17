@@ -13,14 +13,14 @@ module Peddler
         attribute(:available_quantity, ItemQuantity, from: "availableQuantity")
 
         # @return [String] The buyer selected product identification of the item. Either buyerProductIdentifier or
-        # vendorProductIdentifier should be submitted.
+        #   vendorProductIdentifier should be submitted.
         attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
 
         # @return [:boolean] When true, the item is permanently unavailable.
         attribute?(:obsolete, :boolean, from: "isObsolete")
 
         # @return [String] The vendor selected product identification of the item. Either buyerProductIdentifier or
-        # vendorProductIdentifier should be submitted.
+        #   vendorProductIdentifier should be submitted.
         attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
       end
     end

@@ -10,7 +10,7 @@ module Peddler
       # The `confirmTransportationOptions` request.
       ConfirmTransportationOptionsRequest = Structure.new do
         # @return [Array<TransportationSelection>] Information needed to confirm one of the available transportation
-        # options.
+        #   options.
         attribute(:transportation_selections, [TransportationSelection], from: "transportationSelections")
       end
     end

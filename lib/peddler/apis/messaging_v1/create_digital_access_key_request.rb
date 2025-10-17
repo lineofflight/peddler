@@ -13,8 +13,8 @@ module Peddler
         attribute?(:attachments, [Attachment])
 
         # @return [String] The text that is sent to the buyer. Only links that are related to the digital access key are
-        # allowed. Do not include HTML or email addresses. The text must be written in the buyer's preferred language,
-        # which you can retrieve from the `GetAttributes` operation.
+        #   allowed. Do not include HTML or email addresses. The text must be written in the buyer's preferred language,
+        #   which you can retrieve from the `GetAttributes` operation.
         attribute?(:text, String)
       end
     end

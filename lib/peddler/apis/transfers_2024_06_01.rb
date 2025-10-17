@@ -29,10 +29,10 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The identifier of the marketplace from which you want to retrieve payment
-      # methods. For the list of possible marketplace identifiers, refer to [Marketplace
-      # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      #   methods. For the list of possible marketplace identifiers, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param payment_method_types [Array<String>] A comma-separated list of the payment method types you want to
-      # include in the response.
+      #   include in the response.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_payment_methods(marketplace_id, payment_method_types: nil, rate_limit: 0.5)

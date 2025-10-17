@@ -12,8 +12,8 @@ module Peddler
         # @return [CustomerReviewTopics] Topics based on customer reviews for an ASIN.
         attribute?(:asin_review_topics, CustomerReviewTopics, from: "asinReviewTopics")
 
-        # @return [CustomerReviewTopics] Topics based on customer reviews, aggregated across all ASINs within the
-        # browse node (product category) associated with this ASIN.
+        # @return [CustomerReviewTopics] Topics based on customer reviews, aggregated across all ASINs within the browse
+        #   node (product category) associated with this ASIN.
         attribute?(:browse_node_review_topics, CustomerReviewTopics, from: "browseNodeReviewTopics")
       end
     end

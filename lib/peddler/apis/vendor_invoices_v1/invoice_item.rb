@@ -16,8 +16,8 @@ module Peddler
         attribute(:item_sequence_number, Integer, from: "itemSequenceNumber")
 
         # @return [Money] The item cost to Amazon, which should match the cost on the order. Price information should
-        # not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If items are
-        # priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
+        #   not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If items
+        #   are priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
         attribute(:net_cost, Money, from: "netCost")
 
         # @return [Array<AllowanceDetails>] Individual allowance details per line item.
@@ -30,26 +30,26 @@ module Peddler
         attribute?(:charge_details, [ChargeDetails], from: "chargeDetails")
 
         # @return [CreditNoteDetails] Details required in order to process a credit note. This information is required
-        # only if invoiceType is CreditNote.
+        #   only if invoiceType is CreditNote.
         attribute?(:credit_note_details, CreditNoteDetails, from: "creditNoteDetails")
 
         # @return [String] HSN Tax code. The HSN number cannot contain alphabets.
         attribute?(:hsn_code, String, from: "hsnCode")
 
         # @return [String] This field represents weight unit of measure of items that are ordered by cases and
-        # supporting priced by weight.
+        #   supporting priced by weight.
         attribute?(:net_cost_unit_of_measure, String, from: "netCostUnitOfMeasure")
 
         # @return [String] The Amazon purchase order number for this invoiced line item. Formatting Notes: 8-character
-        # alpha-numeric code. This value is mandatory only when invoiceType is Invoice, and is not required when
-        # invoiceType is CreditNote.
+        #   alpha-numeric code. This value is mandatory only when invoiceType is Invoice, and is not required when
+        #   invoiceType is CreditNote.
         attribute?(:purchase_order_number, String, from: "purchaseOrderNumber")
 
         # @return [Array<TaxDetails>] Individual tax details per line item.
         attribute?(:tax_details, [TaxDetails], from: "taxDetails")
 
         # @return [String] The vendor selected product identifier of the item. Should be the same as was provided in the
-        # purchase order.
+        #   purchase order.
         attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
       end
     end

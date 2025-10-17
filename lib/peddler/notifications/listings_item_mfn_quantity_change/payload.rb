@@ -10,11 +10,11 @@ module Peddler
       # Notification payload data
       Payload = Structure.new do
         # @return [String] The Fulfillment channel code representing the MFN (seller-fulfilled) fulfillment program,
-        # network, or channel where the quantity is applicable.
+        #   network, or channel where the quantity is applicable.
         attribute(:fulfillment_channel_code, String, from: "FulfillmentChannelCode")
 
         # @return [Integer] The available quantity for MFN (seller-fulfillment) with the fulfillment program, network,
-        # or channel.
+        #   or channel.
         attribute(:quantity, Integer, from: "Quantity")
 
         # @return [String] Selling partner identifier, such as a merchant ID, of the affected listings item.

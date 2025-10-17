@@ -29,15 +29,15 @@ module Peddler
         attribute(:start_date, Date, from: "startDate")
 
         # @return [Integer] The quantity of units returned. This field is populated when sellingProgram is RETAIL or
-        # BUSINESS.
+        #   BUSINESS.
         attribute?(:customer_returns, Integer, from: "customerReturns")
 
         # @return [Money] Ordered product sales in the selected time frame. Adjustments are made for returns. This field
-        # is populated when distributorView is MANUFACTURING
+        #   is populated when distributorView is MANUFACTURING
         attribute?(:ordered_revenue, Money, from: "orderedRevenue")
 
         # @return [Integer] Number of units ordered by Amazon customers. This field is populated when distributorView is
-        # MANUFACTURING
+        #   MANUFACTURING
         attribute?(:ordered_units, Integer, from: "orderedUnits")
       end
     end

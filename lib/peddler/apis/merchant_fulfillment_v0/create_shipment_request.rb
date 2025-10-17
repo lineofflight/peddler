@@ -16,7 +16,7 @@ module Peddler
         attribute(:shipping_service_id, String, from: "ShippingServiceId")
 
         # @return [String] Hazardous materials options for a package. Consult the terms and conditions for each carrier
-        # for more information about hazardous materials.
+        #   for more information about hazardous materials.
         attribute?(:hazmat_type, String, from: "HazmatType")
 
         # @return [LabelFormatOptionRequest]

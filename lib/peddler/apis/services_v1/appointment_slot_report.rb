@@ -11,7 +11,7 @@ module Peddler
       # Availability information as per the service context queried.
       AppointmentSlotReport = Structure.new do
         # @return [Array<AppointmentSlot>] A list of time windows along with associated capacity in which the service
-        # can be performed.
+        #   can be performed.
         attribute?(:appointment_slots, [AppointmentSlot], from: "appointmentSlots")
 
         # @return [Time] End Time up to which the appointment slots are generated in ISO 8601 format.

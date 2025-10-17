@@ -20,18 +20,18 @@ module Peddler
         attribute(:bank_account_number_format, String, from: "bankAccountNumberFormat")
 
         # @return [String] Last 3 digit of the bank account number, for all Amazon Seller Wallet account the value will
-        # be three consecutive 0's
+        #   be three consecutive 0's
         attribute(:bank_account_number_tail, String, from: "bankAccountNumberTail")
 
         # @return [String] Type of the Bank BankAccount is provided, for all Amazon Seller Wallet account the value will
-        # be SELF
+        #   be SELF
         attribute(:bank_account_ownership_type, String, from: "bankAccountOwnershipType")
 
         # @return [String] Bank account number format or routing number type.
         attribute(:bank_number_format, String, from: "bankNumberFormat")
 
         # @return [String] Routing number for automated clearing house transfers, for all Amazon Seller Wallet account
-        # the value will be denoted by nine cosecutive 0's,
+        #   the value will be denoted by nine cosecutive 0's,
         attribute(:routing_number, String, from: "routingNumber")
 
         # @return [String] BankAccount holder's name (expected to be Amazon customer)
@@ -44,7 +44,7 @@ module Peddler
         attribute?(:bank_account_holder_status, String, from: "bankAccountHolderStatus")
 
         # @return [String] The name of the bank, for all Amazon Seller Wallet account the value will be Amazon Seller
-        # Wallet
+        #   Wallet
         attribute?(:bank_name, String, from: "bankName")
       end
     end

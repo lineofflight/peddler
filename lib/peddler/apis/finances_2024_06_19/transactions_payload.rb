@@ -10,7 +10,7 @@ module Peddler
       # The payload for the `listTransactions` operation.
       TransactionsPayload = Structure.new do
         # @return [String] When present and not empty, pass this string token in the next request to return the next
-        # response page.
+        #   response page.
         attribute?(:next_token, String, from: "nextToken")
 
         # @return [Array<Transaction>]

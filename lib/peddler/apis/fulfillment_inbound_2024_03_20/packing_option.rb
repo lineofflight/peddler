@@ -30,12 +30,12 @@ module Peddler
         attribute(:supported_configurations, [PackingConfiguration], from: "supportedConfigurations")
 
         # @return [Array<ShippingConfiguration>] **This field is deprecated**. Use the `shippingRequirements` property
-        # under `supportedConfigurations` instead. List of supported shipping modes.
+        #   under `supportedConfigurations` instead. List of supported shipping modes.
         attribute(:supported_shipping_configurations, [ShippingConfiguration], from: "supportedShippingConfigurations")
 
         # @return [Time] The time at which this packing option is no longer valid. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
-        # `yyyy-MM-ddTHH:mm:ss.sssZ`.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
+        #   `yyyy-MM-ddTHH:mm:ss.sssZ`.
         attribute?(:expiration, Time)
       end
     end

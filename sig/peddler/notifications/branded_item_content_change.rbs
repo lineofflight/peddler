@@ -4,7 +4,6 @@ module Peddler
       class Notification < Data
         def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::BrandedItemContentChange::Payload?, payload_version: String?) -> Peddler::Notifications::BrandedItemContentChange::Notification
                     | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::BrandedItemContentChange::Payload?, String?) -> Peddler::Notifications::BrandedItemContentChange::Notification
-
         def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::BrandedItemContentChange::Payload?, payload_version: String?) -> Peddler::Notifications::BrandedItemContentChange::Notification
                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::BrandedItemContentChange::Payload?, String?) -> Peddler::Notifications::BrandedItemContentChange::Notification
 
@@ -18,15 +17,14 @@ module Peddler
         attr_reader notification_version: String?
         attr_reader payload: Peddler::Notifications::BrandedItemContentChange::Payload?
         attr_reader payload_version: String?
-        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
         def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::BrandedItemContentChange::Payload?, payload_version: String? }
       end
 
       class Payload < Data
         def self.new: (asin: String?, attributes_changed: Array[String]?, brand_name: String?, marketplace_id: String?) -> Peddler::Notifications::BrandedItemContentChange::Payload
                     | (String?, Array[String]?, String?, String?) -> Peddler::Notifications::BrandedItemContentChange::Payload
-
         def self.[]: (asin: String?, attributes_changed: Array[String]?, brand_name: String?, marketplace_id: String?) -> Peddler::Notifications::BrandedItemContentChange::Payload
                    | (String?, Array[String]?, String?, String?) -> Peddler::Notifications::BrandedItemContentChange::Payload
 
@@ -38,8 +36,8 @@ module Peddler
         attr_reader attributes_changed: Array[String]?
         attr_reader brand_name: String?
         attr_reader marketplace_id: String?
-        def members: () -> [ :asin, :attributes_changed, :brand_name, :marketplace_id ]
 
+        def members: () -> [ :asin, :attributes_changed, :brand_name, :marketplace_id ]
         def to_h: () -> { asin: String?, attributes_changed: Array[String]?, brand_name: String?, marketplace_id: String? }
       end
 

@@ -15,7 +15,7 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param transaction_id [String] Previously returned in the response to the POST request of a specific
-      # transaction.
+      #   transaction.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id, rate_limit: 10.0)

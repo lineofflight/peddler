@@ -19,7 +19,7 @@ module Peddler
         attribute(:marketplace_id, String, from: "MarketplaceID")
 
         # @return [Array<OfferDetail>] A list of offer details. The list is the same length as the TotalOfferCount in
-        # the Summary or 20, whichever is less.
+        #   the Summary or 20, whichever is less.
         attribute(:offers, [OfferDetail], from: "Offers")
 
         # @return [Summary] Pricing information about the item.

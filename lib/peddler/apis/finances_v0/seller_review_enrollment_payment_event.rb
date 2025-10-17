@@ -19,7 +19,7 @@ module Peddler
         attribute?(:fee_component, FeeComponent, from: "FeeComponent")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early
-        # Reviewer Program.
+        #   Reviewer Program.
         attribute?(:parent_asin, String, from: "ParentASIN")
 
         # @return [String] The date and time when the financial event was posted.

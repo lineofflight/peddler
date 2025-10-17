@@ -4,7 +4,6 @@ module Peddler
       class Recommendation < Data
         def self.new: (?brand: String?, ?category: String?, ?ean: String?, ?initial_b2b_buyer_industry: String?, ?initial_b2b_buyer_requested_date: String?, ?isbn: String?, ?item_name: String?, ?model_number: String?, ?part_number: String?, ?upc: String?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Recommendation
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Recommendation
-
         def self.[]: (?brand: String?, ?category: String?, ?ean: String?, ?initial_b2b_buyer_industry: String?, ?initial_b2b_buyer_requested_date: String?, ?isbn: String?, ?item_name: String?, ?model_number: String?, ?part_number: String?, ?upc: String?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Recommendation
                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Recommendation
 
@@ -22,15 +21,14 @@ module Peddler
         attr_reader model_number: String?
         attr_reader part_number: String?
         attr_reader upc: String?
-        def members: () -> [ :brand, :category, :ean, :initial_b2b_buyer_industry, :initial_b2b_buyer_requested_date, :isbn, :item_name, :model_number, :part_number, :upc ]
 
+        def members: () -> [ :brand, :category, :ean, :initial_b2b_buyer_industry, :initial_b2b_buyer_requested_date, :isbn, :item_name, :model_number, :part_number, :upc ]
         def to_h: () -> { brand: String?, category: String?, ean: String?, initial_b2b_buyer_industry: String?, initial_b2b_buyer_requested_date: String?, isbn: String?, item_name: String?, model_number: String?, part_number: String?, upc: String? }
       end
 
       class Report < Data
         def self.new: (recommendations: Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
                     | (Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
-
         def self.[]: (recommendations: Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
                    | (Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
 
@@ -39,8 +37,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
 
         attr_reader recommendations: Array[untyped]?
-        def members: () -> [ :recommendations ]
 
+        def members: () -> [ :recommendations ]
         def to_h: () -> { recommendations: Array[untyped]? }
       end
 

@@ -22,7 +22,7 @@ module Peddler
         attribute(:name, String)
 
         # @return [String] The postal code of that address. It conatins a series of letters or digits or both, sometimes
-        # including spaces or punctuation.
+        #   including spaces or punctuation.
         attribute(:postal_code, String, from: "postalCode")
 
         # @return [String] The state or region where person, business or institution is located.

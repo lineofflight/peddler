@@ -14,8 +14,8 @@ module Peddler
         attribute(:content_update_preview_id, String, from: "contentUpdatePreviewId")
 
         # @return [Time] The time at which the content update expires. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
-        # `yyyy-MM-ddTHH:mm:ss.sssZ`.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
+        #   `yyyy-MM-ddTHH:mm:ss.sssZ`.
         attribute(:expiration, Time)
 
         # @return [RequestedUpdates]

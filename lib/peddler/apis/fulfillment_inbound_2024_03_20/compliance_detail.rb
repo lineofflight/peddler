@@ -13,7 +13,7 @@ module Peddler
         attribute?(:asin, String)
 
         # @return [String] The Fulfillment Network SKU, which identifies a real fulfillable item with catalog data and
-        # condition.
+        #   condition.
         attribute?(:fnsku, String)
 
         # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.

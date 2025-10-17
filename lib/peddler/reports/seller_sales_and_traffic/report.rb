@@ -14,7 +14,7 @@ module Peddler
       # levels: PARENT, CHILD, SKU. Requests can span multiple date range periods.
       Report = Structure.new do
         # @return [Hash] Report summary including specified reporting date range, dateGranularity, and asinGranularity
-        # in the input.
+        #   in the input.
         attribute(:report_specification, ReportSpecification, from: "reportSpecification")
 
         # @return [Array<SalesAndTrafficByAsin>]

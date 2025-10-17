@@ -14,7 +14,7 @@ module Peddler
         attribute?(:liquidation_fee_amount, Money, from: "LiquidationFeeAmount")
 
         # @return [Money] The amount paid by the liquidator for the seller's inventory. The seller receives this amount
-        # minus LiquidationFeeAmount.
+        #   minus LiquidationFeeAmount.
         attribute?(:liquidation_proceeds_amount, Money, from: "LiquidationProceedsAmount")
 
         # @return [String] The identifier for the original removal order.

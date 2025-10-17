@@ -26,7 +26,7 @@ module Peddler
         attribute(:packages_to_inbound, [DistributionPackageQuantity], from: "packagesToInbound")
 
         # @return [DestinationDetails] Destination details of an inbound order based on the assigned region and DC for
-        # the order.
+        #   the order.
         attribute?(:destination_details, DestinationDetails, from: "destinationDetails")
 
         # @return [String] Reference ID that can be used to correlate the order with partner resources.

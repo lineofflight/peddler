@@ -16,7 +16,7 @@ module Peddler
         attribute(:image_crop_specification, ImageCropSpecification, from: "imageCropSpecification")
 
         # @return [String] This identifier is provided by the [Uploads
-        # API](https://developer-docs.amazon.com/sp-api/reference/welcome-to-api-references).
+        #   API](https://developer-docs.amazon.com/sp-api/reference/welcome-to-api-references).
         attribute(:upload_destination_id, String, from: "uploadDestinationId")
       end
     end

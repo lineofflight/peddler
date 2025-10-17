@@ -11,7 +11,7 @@ module Peddler
       # Seller's on-time delivery rate within a given reporting date range for 1 requested marketplace.
       OnTimeDeliveryRate = Structure.new do
         # @return [Integer] On-time delivered shipment count within a given reporting date range for 1 requested
-        # marketplace.
+        #   marketplace.
         attribute(:on_time_delivery_count, Integer, from: "onTimeDeliveryCount")
 
         # @return [String]
@@ -21,7 +21,7 @@ module Peddler
         attribute(:reporting_date_range, ReportingDateRange, from: "reportingDateRange")
 
         # @return [Float] The number of shipments with valid tracking associated within a given reporting date range for
-        # 1 requested marketplace.
+        #   1 requested marketplace.
         attribute(:shipment_count_with_valid_tracking, Float, from: "shipmentCountWithValidTracking")
 
         # @return [String]

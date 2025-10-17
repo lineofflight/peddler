@@ -13,7 +13,7 @@ module Peddler
         attribute(:carrier_name, String, from: "CarrierName")
 
         # @return [String] A reason code meant to be consumed programatically. For example,
-        # `CARRIER_CANNOT_SHIP_TO_POBOX`.
+        #   `CARRIER_CANNOT_SHIP_TO_POBOX`.
         attribute(:rejection_reason_code, String, from: "RejectionReasonCode")
 
         # @return [String] The rejected shipping service identifier. For example, `FEDEX_PTP_STANDARD_OVERNIGHT`.

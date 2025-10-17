@@ -10,7 +10,7 @@ module Peddler
       # Dimensions that are associated with the item in the Amazon catalog for the indicated `marketplaceId`.
       ItemDimensionsByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier. To find the ID for your marketplace, refer to [Marketplace
-        # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Dimensions] Dimensions of an Amazon catalog item.

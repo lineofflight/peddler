@@ -40,8 +40,8 @@ module Peddler
         attribute?(:product_type, String, from: "productType")
 
         # @return [Array<String>] A list of unique serial numbers in an Amazon package that can be used to guarantee
-        # non-fraudulent items. The number of serial numbers in the list must be less than or equal to the quantity of
-        # items being shipped. Only applicable when channel source is Amazon.
+        #   non-fraudulent items. The number of serial numbers in the list must be less than or equal to the quantity of
+        #   items being shipped. Only applicable when channel source is Amazon.
         attribute?(:serial_numbers, [String], from: "serialNumbers")
 
         # @return [Weight]

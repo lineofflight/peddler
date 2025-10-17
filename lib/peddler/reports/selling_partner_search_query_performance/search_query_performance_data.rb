@@ -11,7 +11,7 @@ module Peddler
       # Contains search query performance data at the ASIN level.
       SearchQueryPerformanceData = Structure.new do
         # @return [String] A space-separated list of ASINs for which you can request the report. There is a
-        # 200-character limit.
+        #   200-character limit.
         attribute(:asin, String)
 
         # @return [SearchQueryPerformanceCartAddData]

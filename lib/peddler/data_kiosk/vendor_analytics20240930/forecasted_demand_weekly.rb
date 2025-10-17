@@ -13,13 +13,13 @@ module Peddler
         attribute?(:demand, ForecastedDemandStatistic)
 
         # @return [String] End date of the forecasting range.
-        attribute?(:end_date, String, from: "endDate")
+        attribute?(:end_date, String, null: false, from: "endDate")
 
         # @return [String] Start date of the forecasting range.
-        attribute?(:start_date, String, from: "startDate")
+        attribute?(:start_date, String, null: false, from: "startDate")
 
         # @return [Integer] Week number of the forecasting range.
-        attribute?(:week_number, Integer, from: "weekNumber")
+        attribute?(:week_number, Integer, null: false, from: "weekNumber")
       end
     end
   end

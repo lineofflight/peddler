@@ -22,9 +22,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which you want a list
-      # of available solicitation types.
+      #   of available solicitation types.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
-      # order was placed. Only one marketplace can be specified.
+      #   order was placed. Only one marketplace can be specified.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
@@ -41,9 +41,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which a solicitation is
-      # sent.
+      #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
-      # order was placed. Only one marketplace can be specified.
+      #   order was placed. Only one marketplace can be specified.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids, rate_limit: 1.0)

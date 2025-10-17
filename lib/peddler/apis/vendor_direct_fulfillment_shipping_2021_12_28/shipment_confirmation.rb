@@ -11,7 +11,7 @@ module Peddler
       # details.
       ShipmentConfirmation = Structure.new do
         # @return [Array<Item>] Provide the details of the items in this shipment. If any of the item details field is
-        # common at a package or a pallet level, then provide them at the corresponding package.
+        #   common at a package or a pallet level, then provide them at the corresponding package.
         attribute(:items, [Item])
 
         # @return [String] Purchase order number corresponding to the shipment.
@@ -27,7 +27,7 @@ module Peddler
         attribute(:shipment_details, ShipmentDetails, from: "shipmentDetails")
 
         # @return [Array<Container>] Provide the details of the items in this shipment. If any of the item details field
-        # is common at a package or a pallet level, then provide them at the corresponding package.
+        #   is common at a package or a pallet level, then provide them at the corresponding package.
         attribute?(:containers, [Container])
       end
     end

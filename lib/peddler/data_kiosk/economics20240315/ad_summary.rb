@@ -10,7 +10,7 @@ module Peddler
       # The advertisements spend data summary for the seller's account aggregated by transaction event type: charge.
       AdSummary = Structure.new do
         # @return [String] Advertisement type name, for example: "Sponsored Products charge".
-        attribute?(:ad_type_name, String, from: "adTypeName")
+        attribute?(:ad_type_name, String, null: false, from: "adTypeName")
 
         # @return [AggregatedDetail] Charge aggregated detail for an advertisement type.
         attribute?(:charge, AggregatedDetail)

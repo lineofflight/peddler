@@ -13,7 +13,7 @@ module Peddler
         attribute(:feed_type, String, from: "feedType")
 
         # @return [String] The document identifier returned by the createFeedDocument operation. Upload the feed
-        # document contents before calling the createFeed operation.
+        #   document contents before calling the createFeed operation.
         attribute(:input_feed_document_id, String, from: "inputFeedDocumentId")
 
         # @return [Array<String>] A list of identifiers for marketplaces that you want the feed to be applied to.

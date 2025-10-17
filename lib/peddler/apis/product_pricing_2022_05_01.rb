@@ -23,7 +23,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param get_featured_offer_expected_price_batch_request_body [Hash] The batch of `getFeaturedOfferExpectedPrice`
-      # requests.
+      #   requests.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body,

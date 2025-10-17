@@ -17,7 +17,7 @@ module Peddler
         attribute(:purchase_order_date, Time, from: "purchaseOrderDate")
 
         # @return [String] The buyer's purchase order number for this order. Formatting Notes: 8-character alpha-numeric
-        # code.
+        #   code.
         attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
 
         # @return [String] The status of the buyer's purchase order for this order.
@@ -27,8 +27,8 @@ module Peddler
         attribute(:selling_party, PartyIdentification, from: "sellingParty")
 
         # @return [PartyIdentification] Name/Address and tax details of the ship to party. Find a list of fulfillment
-        # center addresses for a region on the [Resources page of Amazon Vendor
-        # Central](https://vendorcentral.amazon.com/hz/vendor/members/support/help/node/GPZ88XH8HQM97ZV6).
+        #   center addresses for a region on the [Resources page of Amazon Vendor
+        #   Central](https://vendorcentral.amazon.com/hz/vendor/members/support/help/node/GPZ88XH8HQM97ZV6).
         attribute(:ship_to_party, PartyIdentification, from: "shipToParty")
 
         # @return [Time] The date when the purchase order was last updated. Must be in ISO-8601 date/time format.

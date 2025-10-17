@@ -19,7 +19,7 @@ module Peddler
         attribute(:field_type, String, from: "FieldType")
 
         # @return [String] The content of the field as collected in regulatory form. Note that `FileAttachment` type
-        # fields contain a URL where you can download the attachment.
+        #   fields contain a URL where you can download the attachment.
         attribute(:field_value, String, from: "FieldValue")
       end
     end

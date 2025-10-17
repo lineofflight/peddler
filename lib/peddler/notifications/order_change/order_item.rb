@@ -19,7 +19,7 @@ module Peddler
         attribute(:seller_sku, String, from: "SellerSKU")
 
         # @return [String] The unique identifier of the supply source. Will be null when there is no related
-        # information.
+        #   information.
         attribute(:supply_source_id, String, from: "SupplySourceId")
 
         # @return [:boolean] True when the buyer has requested cancelation.
@@ -32,7 +32,7 @@ module Peddler
         attribute?(:item_latest_delivery_date, String, from: "ItemLatestDeliveryDate")
 
         # @return [String] The current status of the order item. This field Will have a non-null value when items'
-        # statuses are different.
+        #   statuses are different.
         attribute?(:order_item_status, String, from: "OrderItemStatus")
 
         # @return [Integer] The number of items shipped.

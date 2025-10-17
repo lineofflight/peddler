@@ -29,18 +29,18 @@ module Peddler
         attribute(:subscribe_and_save, :boolean, from: "isSubscribeAndSave")
 
         # @return [Time] The latest date-time the campaign data in this report was updated. May be up to 24 hours before
-        # the current date-time.
+        #   the current date-time.
         attribute(:last_updated_date_time, Time, from: "lastUpdatedDateTime")
 
         # @return [String] The marketplace the campaign is running in.
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Integer] Total number of times a coupon in the campaign has been applied on the product page, equal
-        # to the sum of all coupon clips.
+        #   to the sum of all coupon clips.
         attribute(:total_clips, Integer, from: "totalClips")
 
         # @return [Integer] Total number of times a coupon in the campaign has been used for a purchase, equal to the
-        # sum of all coupon redemptions.
+        #   sum of all coupon redemptions.
         attribute(:total_redemptions, Integer, from: "totalRedemptions")
 
         # @return [String] The vendor code associated with the campaign.
@@ -50,15 +50,15 @@ module Peddler
         attribute?(:currency_code, String, from: "currencyCode")
 
         # @return [Float] Total budget allocated to the campaign. Currency value. Only present when budgetType is
-        # SHARED_BUDGET.
+        #   SHARED_BUDGET.
         attribute?(:total_budget, Float, from: "totalBudget")
 
         # @return [Float] The budget remaining for the campaign, equal to totalBudget minus totalBudgetSpent. Currency
-        # value. Only present when budgetType is SHARED_BUDGET.
+        #   value. Only present when budgetType is SHARED_BUDGET.
         attribute?(:total_budget_remaining, Float, from: "totalBudgetRemaining")
 
         # @return [Float] Total amount spent by the vendor on the campaign, including clip fees and redemption fees,
-        # equal to the sum of all coupon budgetSpent. Currency value. Only present when budgetType is SHARED_BUDGET.
+        #   equal to the sum of all coupon budgetSpent. Currency value. Only present when budgetType is SHARED_BUDGET.
         attribute?(:total_budget_spent, Float, from: "totalBudgetSpent")
       end
     end

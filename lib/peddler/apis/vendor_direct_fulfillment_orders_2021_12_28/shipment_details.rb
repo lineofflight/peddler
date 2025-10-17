@@ -20,8 +20,8 @@ module Peddler
         attribute(:message_to_customer, String, from: "messageToCustomer")
 
         # @return [String] Ship method to be used for shipping the order. Amazon defines ship method codes indicating
-        # the shipping carrier and shipment service level. To see the full list of ship methods in use, including both
-        # the code and the friendly name, search the 'Help' section on Vendor Central for 'ship methods'.
+        #   the shipping carrier and shipment service level. To see the full list of ship methods in use, including both
+        #   the code and the friendly name, search the 'Help' section on Vendor Central for 'ship methods'.
         attribute(:ship_method, String, from: "shipMethod")
 
         # @return [ShipmentDates]

@@ -13,7 +13,7 @@ module Peddler
         attribute(:distributor_view, String, from: "distributorView")
 
         # @return [String] Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK,
-        # MONTH, QUARTER, YEAR.
+        #   MONTH, QUARTER, YEAR.
         attribute(:report_period, String, from: "reportPeriod")
 
         # @return [String] The selling program.

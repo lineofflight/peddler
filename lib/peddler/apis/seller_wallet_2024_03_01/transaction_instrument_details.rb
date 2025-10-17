@@ -14,15 +14,15 @@ module Peddler
         # @return [String] The bank account holder's name (expected to be an Amazon customer).
         #
         # **Note:** This field is encrypted before Amazon receives it, so should not be used to generate
-        # `destAccountDigitalSignature`, and should not be included in the request signature.
+        #   `destAccountDigitalSignature`, and should not be included in the request signature.
         attribute(:account_holder_name, String, from: "accountHolderName")
 
         # @return [BankAccount] Specifies the destination bank account details where the money needs to be deposited
         attribute(:bank_account, BankAccount, from: "bankAccount")
 
         # @return [String] This field would be used to populate the bank account number of the destination payment
-        # method. The field is intentionally not included in any other Schemas since Amazon internal systems will never
-        # receive it in unencrypted format, so field won't be part of the request signature
+        #   method. The field is intentionally not included in any other Schemas since Amazon internal systems will
+        #   never receive it in unencrypted format, so field won't be part of the request signature
         attribute(:bank_account_number, String, from: "bankAccountNumber")
       end
     end

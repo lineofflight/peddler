@@ -10,7 +10,7 @@ module Peddler
       # The report options that specify parameters, such as reportPeriod and asin.
       ReportOptions = Structure.new do
         # @return [String] A space-separated list of ASINs for which you can request the report. There is a
-        # 200-character limit.
+        #   200-character limit.
         attribute(:asin, String)
 
         # @return [String] The granularity of the data in the report. Valid values are WEEK, MONTH, and QUARTER.

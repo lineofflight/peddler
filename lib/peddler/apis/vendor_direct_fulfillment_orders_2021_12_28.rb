@@ -19,19 +19,19 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param ship_from_party_id [String] The vendor warehouse identifier for the fulfillment warehouse. If not
-      # specified, the result will contain orders for all warehouses.
+      #   specified, the result will contain orders for all warehouses.
       # @param status [String] Returns only the purchase orders that match the specified status. If not specified, the
-      # result will contain orders that match any status.
+      #   result will contain orders that match any status.
       # @param limit [Integer] The limit to the number of purchase orders returned.
       # @param created_after [String] Purchase orders that became available after this date and time will be included in
-      # the result. Must be in ISO-8601 date/time format.
+      #   the result. Must be in ISO-8601 date/time format.
       # @param created_before [String] Purchase orders that became available before this date and time will be included
-      # in the result. Must be in ISO-8601 date/time format.
+      #   in the result. Must be in ISO-8601 date/time format.
       # @param sort_order [String] Sort the list in ascending or descending order by order creation date.
       # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
-      # The token value is returned in the previous API call.
+      #   The token value is returned in the previous API call.
       # @param include_details [String] When true, returns the complete purchase order details. Otherwise, only purchase
-      # order numbers are returned.
+      #   order numbers are returned.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil,
@@ -55,7 +55,7 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The order identifier for the purchase order that you want. Formatting
-      # Notes: alpha-numeric code.
+      #   Notes: alpha-numeric code.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order(purchase_order_number, rate_limit: 10.0)

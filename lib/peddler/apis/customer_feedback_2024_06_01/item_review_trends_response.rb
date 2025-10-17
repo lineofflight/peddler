@@ -11,7 +11,7 @@ module Peddler
       # The response for the `getItemReviewTrends` operation.
       ItemReviewTrendsResponse = Structure.new do
         # @return [String] The requested ASIN. The Amazon Standard Identification Number (ASIN) is the unique identifier
-        # of a product within a marketplace.
+        #   of a product within a marketplace.
         attribute(:asin, String)
 
         # @return [String] The two digit country code of the requested marketplace id, in ISO 3166-1 alpha-2 format.

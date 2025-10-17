@@ -11,9 +11,9 @@ module Peddler
       # that is an array, the result must match at least one element in the provided array.
       ListOffersRequestFilters = Structure.new do
         # @return [String] The marketplace identifier. The supported marketplaces for both sellers and vendors are US,
-        # CA, ES, UK, FR, IT, IN, DE and JP. The supported marketplaces for vendors only are BR, AU, MX, AE and NL.
-        # Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the
-        # identifier for the marketplace.
+        #   CA, ES, UK, FR, IT, IN, DE and JP. The supported marketplaces for vendors only are BR, AU, MX, AE and NL.
+        #   Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the
+        #   identifier for the marketplace.
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Array<ProgramType>]
@@ -32,7 +32,7 @@ module Peddler
         attribute?(:promotions, Promotion)
 
         # @return [Array<String>] A list of SKUs to filter. This filter is only supported for sellers and not for
-        # vendors.
+        #   vendors.
         attribute?(:skus, [String])
       end
     end

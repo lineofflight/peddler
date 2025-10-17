@@ -20,7 +20,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_ids [Array<String>] The identifier for the marketplace in which you want to determine
-      # eligibility. Required only when program=INBOUND.
+      #   eligibility. Required only when program=INBOUND.
       # @param asin [String] The ASIN of the item for which you want an eligibility preview.
       # @param program [String] The program that you want to check eligibility against.
       # @param rate_limit [Float] Requests per second

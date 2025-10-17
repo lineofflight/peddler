@@ -10,7 +10,7 @@ module Peddler
       # The transaction response and historical details related to it.
       CreateTransactionResponse = Structure.new do
         # @return [String] The callback URL for the transaction which the user have to click to approve/consent the
-        # transaction
+        #   transaction
         attribute(:call_back_url, String, from: "callBackURL")
 
         # @return [Transaction] The transaction response details.

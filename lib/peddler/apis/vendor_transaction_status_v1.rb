@@ -14,7 +14,7 @@ module Peddler
       # Returns the status of the transaction that you specify.
       #
       # @param transaction_id [String] The GUID provided by Amazon in the 'transactionId' field in response to the post
-      # request of a specific transaction.
+      #   request of a specific transaction.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_transaction(transaction_id, rate_limit: 10.0)

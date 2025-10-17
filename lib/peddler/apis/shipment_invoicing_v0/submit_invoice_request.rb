@@ -10,8 +10,8 @@ module Peddler
       # The request schema for the submitInvoice operation.
       SubmitInvoiceRequest = Structure.new do
         # @return [String] MD5 sum for validating the invoice data. For more information about calculating this value,
-        # see [Working with Content-MD5
-        # Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
+        #   see [Working with Content-MD5
+        #   Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
         attribute(:content_md5_value, String, from: "ContentMD5Value")
 
         # @return [String]

@@ -13,7 +13,7 @@ module Peddler
         attribute(:brand_name, String, from: "brandName")
 
         # @return [Integer] The estimated number of results that would be returned if you refine your search by the
-        # specified `brandName`.
+        #   specified `brandName`.
         attribute(:number_of_results, Integer, from: "numberOfResults")
       end
     end

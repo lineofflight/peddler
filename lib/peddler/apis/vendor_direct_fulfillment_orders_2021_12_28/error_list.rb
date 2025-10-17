@@ -10,7 +10,7 @@ module Peddler
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
         # @return [Array<Error>] An array of Error objects representing individual errors encountered during the
-        # request.
+        #   request.
         attribute(:errors, [Error])
       end
     end

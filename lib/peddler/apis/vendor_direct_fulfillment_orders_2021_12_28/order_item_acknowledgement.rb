@@ -19,7 +19,7 @@ module Peddler
         attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
 
         # @return [String] The vendor selected product identification of the item. Should be the same as was provided in
-        # the purchase order.
+        #   the purchase order.
         attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
       end
     end

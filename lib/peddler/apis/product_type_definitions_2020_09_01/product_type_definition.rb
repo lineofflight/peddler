@@ -27,15 +27,15 @@ module Peddler
         attribute(:product_type_version, ProductTypeVersion, from: "productTypeVersion")
 
         # @return [Hash] Mapping of property group names to property groups. Property groups represent logical groupings
-        # of schema properties that can be used for display or informational purposes.
+        #   of schema properties that can be used for display or informational purposes.
         attribute(:property_groups, Hash, from: "propertyGroups")
 
         # @return [String] Name of the requirements set represented in this product type definition.
         attribute(:requirements, String)
 
         # @return [String] Identifies if the required attributes for a requirements set are enforced by the product type
-        # definition schema. Non-enforced requirements enable structural validation of individual attributes without all
-        # of the required attributes being present (such as for partial updates).
+        #   definition schema. Non-enforced requirements enable structural validation of individual attributes without
+        #   all of the required attributes being present (such as for partial updates).
         attribute(:requirements_enforced, String, from: "requirementsEnforced")
 
         # @return [SchemaLink] Link to schema describing the attributes and requirements for the product type.

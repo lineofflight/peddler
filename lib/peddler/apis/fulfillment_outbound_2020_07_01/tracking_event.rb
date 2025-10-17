@@ -16,7 +16,7 @@ module Peddler
         attribute(:event_code, String, from: "eventCode")
 
         # @return [String] The date and time that the delivery event took place. Must be in
-        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute(:event_date, String, from: "eventDate")
 
         # @return [String] A description for the corresponding event code.

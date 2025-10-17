@@ -10,7 +10,7 @@ module Peddler
       # The `generatePlacementOptions` request.
       GeneratePlacementOptionsRequest = Structure.new do
         # @return [Array<CustomPlacementInput>] Custom placement options you want to add to the plan. This is only used
-        # for the India (IN - A21TJRUUN4KGV) marketplace.
+        #   for the India (IN - A21TJRUUN4KGV) marketplace.
         attribute?(:custom_placement, [CustomPlacementInput], from: "customPlacement")
       end
     end

@@ -20,18 +20,18 @@ module Peddler
         attribute(:shipping, Money, from: "Shipping")
 
         # @return [DetailedShippingTimeType] The maximum time within which the item will likely be shipped once an order
-        # has been placed.
+        #   has been placed.
         attribute(:shipping_time, DetailedShippingTimeType, from: "ShippingTime")
 
         # @return [String] The subcondition of the item. Subcondition values: New, Mint, Very Good, Good, Acceptable,
-        # Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
+        #   Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
         attribute(:sub_condition, String, from: "SubCondition")
 
         # @return [String] Information about the condition of the item.
         attribute?(:condition_notes, String, from: "ConditionNotes")
 
         # @return [:boolean] When true, the offer is currently in the Buy Box. There can be up to two Buy Box winners at
-        # any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime.
+        #   any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime.
         attribute?(:buy_box_winner, :boolean, from: "IsBuyBoxWinner")
 
         # @return [:boolean] When true, the seller of the item is eligible to win the Buy Box.
@@ -47,7 +47,7 @@ module Peddler
         attribute?(:prime_information, PrimeInformationType, from: "PrimeInformation")
 
         # @return [SellerFeedbackType] Information about the seller's feedback, including the percentage of positive
-        # feedback, and the total number of ratings received.
+        #   feedback, and the total number of ratings received.
         attribute?(:seller_feedback_rating, SellerFeedbackType, from: "SellerFeedbackRating")
 
         # @return [String] The seller identifier for the offer.
@@ -60,7 +60,7 @@ module Peddler
         attribute?(:offer_type, String, from: "offerType")
 
         # @return [Array<QuantityDiscountPriceType>] List of `QuantityDiscountPrice` that contains item's pricing
-        # information when buy in bulk.
+        #   information when buy in bulk.
         attribute?(:quantity_discount_prices, [QuantityDiscountPriceType], from: "quantityDiscountPrices")
       end
     end

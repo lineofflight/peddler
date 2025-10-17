@@ -29,7 +29,7 @@ module Peddler
         attribute(:target_value, String, from: "targetValue")
 
         # @return [Integer] Shipment with valid tracking count within a given reporting date range for 1 requested
-        # marketplace.
+        #   marketplace.
         attribute(:valid_tracking_count, Integer, from: "validTrackingCount")
       end
     end
