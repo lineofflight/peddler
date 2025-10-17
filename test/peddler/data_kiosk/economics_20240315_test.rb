@@ -167,12 +167,12 @@ module Peddler
 
         response = api.download_query_document(data_document_id)
 
-        # data = response.to_s.each_line.map do |line|
-        #   payload = JSON.parse(line)
-        #   DataKiosk::Economics20240315::Economics.parse(payload)
-        # end
+        data = response.to_s.each_line.map do |line|
+          payload = JSON.parse(line)
+          DataKiosk::Economics20240315::Economics.parse(payload)
+        end
 
-        # refute_empty(data)
+        refute_empty(data)
       end
 
       private
