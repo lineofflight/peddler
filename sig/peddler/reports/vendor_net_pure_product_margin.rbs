@@ -4,7 +4,6 @@ module Peddler
       class NetPureProductMarginAggregateDetails < Data
         def self.new: (end_date: Date?, net_pure_product_margin: Float?, start_date: Date?) -> Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails
                     | (Date?, Float?, Date?) -> Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails
-
         def self.[]: (end_date: Date?, net_pure_product_margin: Float?, start_date: Date?) -> Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails
                    | (Date?, Float?, Date?) -> Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails
 
@@ -15,15 +14,14 @@ module Peddler
         attr_reader end_date: Date?
         attr_reader net_pure_product_margin: Float?
         attr_reader start_date: Date?
-        def members: () -> [ :end_date, :net_pure_product_margin, :start_date ]
 
+        def members: () -> [ :end_date, :net_pure_product_margin, :start_date ]
         def to_h: () -> { end_date: Date?, net_pure_product_margin: Float?, start_date: Date? }
       end
 
       class NetPureProductMarginDetailsByASIN < Data
         def self.new: (asin: String?, end_date: Date?, net_pure_product_margin: Float?, start_date: Date?) -> Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN
                     | (String?, Date?, Float?, Date?) -> Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN
-
         def self.[]: (asin: String?, end_date: Date?, net_pure_product_margin: Float?, start_date: Date?) -> Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN
                    | (String?, Date?, Float?, Date?) -> Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN
 
@@ -35,15 +33,14 @@ module Peddler
         attr_reader end_date: Date?
         attr_reader net_pure_product_margin: Float?
         attr_reader start_date: Date?
-        def members: () -> [ :asin, :end_date, :net_pure_product_margin, :start_date ]
 
+        def members: () -> [ :asin, :end_date, :net_pure_product_margin, :start_date ]
         def to_h: () -> { asin: String?, end_date: Date?, net_pure_product_margin: Float?, start_date: Date? }
       end
 
       class Report < Data
         def self.new: (net_pure_product_margin_aggregate: Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails]?, net_pure_product_margin_by_asin: Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN]?, report_specification: Peddler::Reports::VendorNetPureProductMargin::ReportSpecification?) -> Peddler::Reports::VendorNetPureProductMargin::Report
                     | (Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails]?, Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN]?, Peddler::Reports::VendorNetPureProductMargin::ReportSpecification?) -> Peddler::Reports::VendorNetPureProductMargin::Report
-
         def self.[]: (net_pure_product_margin_aggregate: Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails]?, net_pure_product_margin_by_asin: Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN]?, report_specification: Peddler::Reports::VendorNetPureProductMargin::ReportSpecification?) -> Peddler::Reports::VendorNetPureProductMargin::Report
                    | (Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails]?, Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN]?, Peddler::Reports::VendorNetPureProductMargin::ReportSpecification?) -> Peddler::Reports::VendorNetPureProductMargin::Report
 
@@ -54,15 +51,14 @@ module Peddler
         attr_reader net_pure_product_margin_aggregate: Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails]?
         attr_reader net_pure_product_margin_by_asin: Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN]?
         attr_reader report_specification: Peddler::Reports::VendorNetPureProductMargin::ReportSpecification?
-        def members: () -> [ :net_pure_product_margin_aggregate, :net_pure_product_margin_by_asin, :report_specification ]
 
+        def members: () -> [ :net_pure_product_margin_aggregate, :net_pure_product_margin_by_asin, :report_specification ]
         def to_h: () -> { net_pure_product_margin_aggregate: Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginAggregateDetails]?, net_pure_product_margin_by_asin: Array[Peddler::Reports::VendorNetPureProductMargin::NetPureProductMarginDetailsByASIN]?, report_specification: Peddler::Reports::VendorNetPureProductMargin::ReportSpecification? }
       end
 
       class ReportOptions < Data
         def self.new: (report_period: String?) -> Peddler::Reports::VendorNetPureProductMargin::ReportOptions
                     | (String?) -> Peddler::Reports::VendorNetPureProductMargin::ReportOptions
-
         def self.[]: (report_period: String?) -> Peddler::Reports::VendorNetPureProductMargin::ReportOptions
                    | (String?) -> Peddler::Reports::VendorNetPureProductMargin::ReportOptions
 
@@ -71,15 +67,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorNetPureProductMargin::ReportOptions
 
         attr_reader report_period: String?
-        def members: () -> [ :report_period ]
 
+        def members: () -> [ :report_period ]
         def to_h: () -> { report_period: String? }
       end
 
       class ReportSpecification < Data
         def self.new: (data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorNetPureProductMargin::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorNetPureProductMargin::ReportSpecification
                     | (Date?, Date?, Date?, Array[String]?, Peddler::Reports::VendorNetPureProductMargin::ReportOptions?, String?) -> Peddler::Reports::VendorNetPureProductMargin::ReportSpecification
-
         def self.[]: (data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorNetPureProductMargin::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorNetPureProductMargin::ReportSpecification
                    | (Date?, Date?, Date?, Array[String]?, Peddler::Reports::VendorNetPureProductMargin::ReportOptions?, String?) -> Peddler::Reports::VendorNetPureProductMargin::ReportSpecification
 
@@ -93,8 +88,8 @@ module Peddler
         attr_reader marketplace_ids: Array[String]?
         attr_reader report_options: Peddler::Reports::VendorNetPureProductMargin::ReportOptions?
         attr_reader report_type: String?
-        def members: () -> [ :data_end_time, :data_start_time, :last_updated_date, :marketplace_ids, :report_options, :report_type ]
 
+        def members: () -> [ :data_end_time, :data_start_time, :last_updated_date, :marketplace_ids, :report_options, :report_type ]
         def to_h: () -> { data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorNetPureProductMargin::ReportOptions?, report_type: String? }
       end
 

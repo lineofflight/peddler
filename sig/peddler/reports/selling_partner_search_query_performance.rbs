@@ -4,7 +4,6 @@ module Peddler
       class Report < Data
         def self.new: (data_by_asin: Array[Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData]?, report_specification: Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::Report
                     | (Array[Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData]?, Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::Report
-
         def self.[]: (data_by_asin: Array[Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData]?, report_specification: Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::Report
                    | (Array[Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData]?, Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::Report
 
@@ -14,15 +13,14 @@ module Peddler
 
         attr_reader data_by_asin: Array[Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData]?
         attr_reader report_specification: Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification?
-        def members: () -> [ :data_by_asin, :report_specification ]
 
+        def members: () -> [ :data_by_asin, :report_specification ]
         def to_h: () -> { data_by_asin: Array[Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData]?, report_specification: Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification? }
       end
 
       class ReportOptions < Data
         def self.new: (asin: String?, report_period: String?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions
                     | (String?, String?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions
-
         def self.[]: (asin: String?, report_period: String?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions
                    | (String?, String?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions
 
@@ -32,15 +30,14 @@ module Peddler
 
         attr_reader asin: String?
         attr_reader report_period: String?
-        def members: () -> [ :asin, :report_period ]
 
+        def members: () -> [ :asin, :report_period ]
         def to_h: () -> { asin: String?, report_period: String? }
       end
 
       class ReportSpecification < Data
         def self.new: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions?, report_type: String?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification
                     | (Date?, Date?, Array[String]?, Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions?, String?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification
-
         def self.[]: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions?, report_type: String?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification
                    | (Date?, Date?, Array[String]?, Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions?, String?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportSpecification
 
@@ -53,15 +50,14 @@ module Peddler
         attr_reader marketplace_ids: Array[String]?
         attr_reader report_options: Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions?
         attr_reader report_type: String?
-        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
 
+        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
         def to_h: () -> { data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerSearchQueryPerformance::ReportOptions?, report_type: String? }
       end
 
       class SearchQueryData < Data
         def self.new: (search_query: String?, search_query_score: Integer?, search_query_volume: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData
                     | (String?, Integer?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData
-
         def self.[]: (search_query: String?, search_query_score: Integer?, search_query_volume: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData
                    | (String?, Integer?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData
 
@@ -72,15 +68,14 @@ module Peddler
         attr_reader search_query: String?
         attr_reader search_query_score: Integer?
         attr_reader search_query_volume: Integer?
-        def members: () -> [ :search_query, :search_query_score, :search_query_volume ]
 
+        def members: () -> [ :search_query, :search_query_score, :search_query_volume ]
         def to_h: () -> { search_query: String?, search_query_score: Integer?, search_query_volume: Integer? }
       end
 
       class SearchQueryPerformanceCartAddData < Data
         def self.new: (asin_cart_add_count: Integer?, asin_cart_add_share: Float?, asin_median_cart_add_price: Peddler::Money?, total_cart_add_count: Integer?, total_cart_add_rate: Float?, total_median_cart_add_price: Peddler::Money?, total_one_day_shipping_cart_add_count: Integer?, total_same_day_shipping_cart_add_count: Integer?, total_two_day_shipping_cart_add_count: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData
                     | (Integer?, Float?, Peddler::Money?, Integer?, Float?, Peddler::Money?, Integer?, Integer?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData
-
         def self.[]: (asin_cart_add_count: Integer?, asin_cart_add_share: Float?, asin_median_cart_add_price: Peddler::Money?, total_cart_add_count: Integer?, total_cart_add_rate: Float?, total_median_cart_add_price: Peddler::Money?, total_one_day_shipping_cart_add_count: Integer?, total_same_day_shipping_cart_add_count: Integer?, total_two_day_shipping_cart_add_count: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData
                    | (Integer?, Float?, Peddler::Money?, Integer?, Float?, Peddler::Money?, Integer?, Integer?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData
 
@@ -97,15 +92,14 @@ module Peddler
         attr_reader total_one_day_shipping_cart_add_count: Integer?
         attr_reader total_same_day_shipping_cart_add_count: Integer?
         attr_reader total_two_day_shipping_cart_add_count: Integer?
-        def members: () -> [ :asin_cart_add_count, :asin_cart_add_share, :asin_median_cart_add_price, :total_cart_add_count, :total_cart_add_rate, :total_median_cart_add_price, :total_one_day_shipping_cart_add_count, :total_same_day_shipping_cart_add_count, :total_two_day_shipping_cart_add_count ]
 
+        def members: () -> [ :asin_cart_add_count, :asin_cart_add_share, :asin_median_cart_add_price, :total_cart_add_count, :total_cart_add_rate, :total_median_cart_add_price, :total_one_day_shipping_cart_add_count, :total_same_day_shipping_cart_add_count, :total_two_day_shipping_cart_add_count ]
         def to_h: () -> { asin_cart_add_count: Integer?, asin_cart_add_share: Float?, asin_median_cart_add_price: Peddler::Money?, total_cart_add_count: Integer?, total_cart_add_rate: Float?, total_median_cart_add_price: Peddler::Money?, total_one_day_shipping_cart_add_count: Integer?, total_same_day_shipping_cart_add_count: Integer?, total_two_day_shipping_cart_add_count: Integer? }
       end
 
       class SearchQueryPerformanceClickData < Data
         def self.new: (asin_click_count: Integer?, asin_click_share: Float?, asin_median_click_price: Peddler::Money?, total_click_count: Integer?, total_click_rate: Float?, total_median_click_price: Peddler::Money?, total_one_day_shipping_click_count: Integer?, total_same_day_shipping_click_count: Integer?, total_two_day_shipping_click_count: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData
                     | (Integer?, Float?, Peddler::Money?, Integer?, Float?, Peddler::Money?, Integer?, Integer?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData
-
         def self.[]: (asin_click_count: Integer?, asin_click_share: Float?, asin_median_click_price: Peddler::Money?, total_click_count: Integer?, total_click_rate: Float?, total_median_click_price: Peddler::Money?, total_one_day_shipping_click_count: Integer?, total_same_day_shipping_click_count: Integer?, total_two_day_shipping_click_count: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData
                    | (Integer?, Float?, Peddler::Money?, Integer?, Float?, Peddler::Money?, Integer?, Integer?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData
 
@@ -122,15 +116,14 @@ module Peddler
         attr_reader total_one_day_shipping_click_count: Integer?
         attr_reader total_same_day_shipping_click_count: Integer?
         attr_reader total_two_day_shipping_click_count: Integer?
-        def members: () -> [ :asin_click_count, :asin_click_share, :asin_median_click_price, :total_click_count, :total_click_rate, :total_median_click_price, :total_one_day_shipping_click_count, :total_same_day_shipping_click_count, :total_two_day_shipping_click_count ]
 
+        def members: () -> [ :asin_click_count, :asin_click_share, :asin_median_click_price, :total_click_count, :total_click_rate, :total_median_click_price, :total_one_day_shipping_click_count, :total_same_day_shipping_click_count, :total_two_day_shipping_click_count ]
         def to_h: () -> { asin_click_count: Integer?, asin_click_share: Float?, asin_median_click_price: Peddler::Money?, total_click_count: Integer?, total_click_rate: Float?, total_median_click_price: Peddler::Money?, total_one_day_shipping_click_count: Integer?, total_same_day_shipping_click_count: Integer?, total_two_day_shipping_click_count: Integer? }
       end
 
       class SearchQueryPerformanceData < Data
         def self.new: (asin: String?, cart_add_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData?, click_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData?, end_date: Date?, impression_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData?, purchase_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData?, search_query_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData?, start_date: Date?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData
                     | (String?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData?, Date?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData?, Date?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData
-
         def self.[]: (asin: String?, cart_add_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData?, click_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData?, end_date: Date?, impression_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData?, purchase_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData?, search_query_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData?, start_date: Date?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData
                    | (String?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData?, Date?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData?, Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData?, Date?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceData
 
@@ -146,15 +139,14 @@ module Peddler
         attr_reader purchase_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData?
         attr_reader search_query_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData?
         attr_reader start_date: Date?
-        def members: () -> [ :asin, :cart_add_data, :click_data, :end_date, :impression_data, :purchase_data, :search_query_data, :start_date ]
 
+        def members: () -> [ :asin, :cart_add_data, :click_data, :end_date, :impression_data, :purchase_data, :search_query_data, :start_date ]
         def to_h: () -> { asin: String?, cart_add_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceCartAddData?, click_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceClickData?, end_date: Date?, impression_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData?, purchase_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData?, search_query_data: Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryData?, start_date: Date? }
       end
 
       class SearchQueryPerformanceImpressionData < Data
         def self.new: (asin_impression_count: Integer?, asin_impression_share: Float?, total_query_impression_count: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData
                     | (Integer?, Float?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData
-
         def self.[]: (asin_impression_count: Integer?, asin_impression_share: Float?, total_query_impression_count: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData
                    | (Integer?, Float?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformanceImpressionData
 
@@ -165,15 +157,14 @@ module Peddler
         attr_reader asin_impression_count: Integer?
         attr_reader asin_impression_share: Float?
         attr_reader total_query_impression_count: Integer?
-        def members: () -> [ :asin_impression_count, :asin_impression_share, :total_query_impression_count ]
 
+        def members: () -> [ :asin_impression_count, :asin_impression_share, :total_query_impression_count ]
         def to_h: () -> { asin_impression_count: Integer?, asin_impression_share: Float?, total_query_impression_count: Integer? }
       end
 
       class SearchQueryPerformancePurchaseData < Data
         def self.new: (asin_median_purchase_price: Peddler::Money?, asin_purchase_count: Integer?, asin_purchase_share: Float?, total_median_purchase_price: Peddler::Money?, total_one_day_shipping_purchase_count: Integer?, total_purchase_count: Integer?, total_purchase_rate: Float?, total_same_day_shipping_purchase_count: Integer?, total_two_day_shipping_purchase_count: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData
                     | (Peddler::Money?, Integer?, Float?, Peddler::Money?, Integer?, Integer?, Float?, Integer?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData
-
         def self.[]: (asin_median_purchase_price: Peddler::Money?, asin_purchase_count: Integer?, asin_purchase_share: Float?, total_median_purchase_price: Peddler::Money?, total_one_day_shipping_purchase_count: Integer?, total_purchase_count: Integer?, total_purchase_rate: Float?, total_same_day_shipping_purchase_count: Integer?, total_two_day_shipping_purchase_count: Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData
                    | (Peddler::Money?, Integer?, Float?, Peddler::Money?, Integer?, Integer?, Float?, Integer?, Integer?) -> Peddler::Reports::SellingPartnerSearchQueryPerformance::SearchQueryPerformancePurchaseData
 
@@ -190,8 +181,8 @@ module Peddler
         attr_reader total_purchase_rate: Float?
         attr_reader total_same_day_shipping_purchase_count: Integer?
         attr_reader total_two_day_shipping_purchase_count: Integer?
-        def members: () -> [ :asin_median_purchase_price, :asin_purchase_count, :asin_purchase_share, :total_median_purchase_price, :total_one_day_shipping_purchase_count, :total_purchase_count, :total_purchase_rate, :total_same_day_shipping_purchase_count, :total_two_day_shipping_purchase_count ]
 
+        def members: () -> [ :asin_median_purchase_price, :asin_purchase_count, :asin_purchase_share, :total_median_purchase_price, :total_one_day_shipping_purchase_count, :total_purchase_count, :total_purchase_rate, :total_same_day_shipping_purchase_count, :total_two_day_shipping_purchase_count ]
         def to_h: () -> { asin_median_purchase_price: Peddler::Money?, asin_purchase_count: Integer?, asin_purchase_share: Float?, total_median_purchase_price: Peddler::Money?, total_one_day_shipping_purchase_count: Integer?, total_purchase_count: Integer?, total_purchase_rate: Float?, total_same_day_shipping_purchase_count: Integer?, total_two_day_shipping_purchase_count: Integer? }
       end
 

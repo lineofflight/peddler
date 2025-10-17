@@ -4,7 +4,6 @@ module Peddler
       class CreateProductReviewAndSellerFeedbackSolicitationResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
                     | (Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
                    | (Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
 
@@ -13,15 +12,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
 
         attr_reader errors: Array[Peddler::APIs::SolicitationsV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::SolicitationsV1::Error]? }
       end
 
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SolicitationsV1::Error
                     | (String?, String?, String?) -> Peddler::APIs::SolicitationsV1::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SolicitationsV1::Error
                    | (String?, String?, String?) -> Peddler::APIs::SolicitationsV1::Error
 
@@ -32,8 +30,8 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
@@ -44,7 +42,6 @@ module Peddler
       class GetSchemaResponse < Data
         def self.new: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::SolicitationsV1::Error]?, ?payload: Hash[untyped, untyped]?) -> Peddler::APIs::SolicitationsV1::GetSchemaResponse
                     | (Hash[untyped, untyped]?, Array[Peddler::APIs::SolicitationsV1::Error]?, Hash[untyped, untyped]?) -> Peddler::APIs::SolicitationsV1::GetSchemaResponse
-
         def self.[]: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::SolicitationsV1::Error]?, ?payload: Hash[untyped, untyped]?) -> Peddler::APIs::SolicitationsV1::GetSchemaResponse
                    | (Hash[untyped, untyped]?, Array[Peddler::APIs::SolicitationsV1::Error]?, Hash[untyped, untyped]?) -> Peddler::APIs::SolicitationsV1::GetSchemaResponse
 
@@ -55,15 +52,14 @@ module Peddler
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::APIs::SolicitationsV1::Error]?
         attr_reader payload: Hash[untyped, untyped]?
-        def members: () -> [ :_links, :errors, :payload ]
 
+        def members: () -> [ :_links, :errors, :payload ]
         def to_h: () -> { _links: Hash[untyped, untyped]?, errors: Array[Peddler::APIs::SolicitationsV1::Error]?, payload: Hash[untyped, untyped]? }
       end
 
       class GetSolicitationActionResponse < Data
         def self.new: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::SolicitationsV1::Error]?, ?payload: Peddler::APIs::SolicitationsV1::SolicitationsAction?) -> Peddler::APIs::SolicitationsV1::GetSolicitationActionResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::APIs::SolicitationsV1::Error]?, Peddler::APIs::SolicitationsV1::SolicitationsAction?) -> Peddler::APIs::SolicitationsV1::GetSolicitationActionResponse
-
         def self.[]: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::SolicitationsV1::Error]?, ?payload: Peddler::APIs::SolicitationsV1::SolicitationsAction?) -> Peddler::APIs::SolicitationsV1::GetSolicitationActionResponse
                    | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::APIs::SolicitationsV1::Error]?, Peddler::APIs::SolicitationsV1::SolicitationsAction?) -> Peddler::APIs::SolicitationsV1::GetSolicitationActionResponse
 
@@ -75,15 +71,14 @@ module Peddler
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::APIs::SolicitationsV1::Error]?
         attr_reader payload: Peddler::APIs::SolicitationsV1::SolicitationsAction?
-        def members: () -> [ :_embedded, :_links, :errors, :payload ]
 
+        def members: () -> [ :_embedded, :_links, :errors, :payload ]
         def to_h: () -> { _embedded: Hash[untyped, untyped]?, _links: Hash[untyped, untyped]?, errors: Array[Peddler::APIs::SolicitationsV1::Error]?, payload: Peddler::APIs::SolicitationsV1::SolicitationsAction? }
       end
 
       class GetSolicitationActionsForOrderResponse < Data
         def self.new: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::GetSolicitationActionsForOrderResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::GetSolicitationActionsForOrderResponse
-
         def self.[]: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::GetSolicitationActionsForOrderResponse
                    | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::GetSolicitationActionsForOrderResponse
 
@@ -94,15 +89,14 @@ module Peddler
         attr_reader _embedded: Hash[untyped, untyped]?
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::APIs::SolicitationsV1::Error]?
-        def members: () -> [ :_embedded, :_links, :errors ]
 
+        def members: () -> [ :_embedded, :_links, :errors ]
         def to_h: () -> { _embedded: Hash[untyped, untyped]?, _links: Hash[untyped, untyped]?, errors: Array[Peddler::APIs::SolicitationsV1::Error]? }
       end
 
       class LinkObject < Data
         def self.new: (href: String?, ?name: String?) -> Peddler::APIs::SolicitationsV1::LinkObject
                     | (String?, String?) -> Peddler::APIs::SolicitationsV1::LinkObject
-
         def self.[]: (href: String?, ?name: String?) -> Peddler::APIs::SolicitationsV1::LinkObject
                    | (String?, String?) -> Peddler::APIs::SolicitationsV1::LinkObject
 
@@ -112,15 +106,14 @@ module Peddler
 
         attr_reader href: String?
         attr_reader name: String?
-        def members: () -> [ :href, :name ]
 
+        def members: () -> [ :href, :name ]
         def to_h: () -> { href: String?, name: String? }
       end
 
       class SolicitationsAction < Data
         def self.new: (name: String?) -> Peddler::APIs::SolicitationsV1::SolicitationsAction
                     | (String?) -> Peddler::APIs::SolicitationsV1::SolicitationsAction
-
         def self.[]: (name: String?) -> Peddler::APIs::SolicitationsV1::SolicitationsAction
                    | (String?) -> Peddler::APIs::SolicitationsV1::SolicitationsAction
 
@@ -129,8 +122,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SolicitationsV1::SolicitationsAction
 
         attr_reader name: String?
-        def members: () -> [ :name ]
 
+        def members: () -> [ :name ]
         def to_h: () -> { name: String? }
       end
 

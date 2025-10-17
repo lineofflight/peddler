@@ -4,7 +4,6 @@ module Peddler
       class CreateRestrictedDataTokenRequest < Data
         def self.new: (restricted_resources: Array[Peddler::APIs::Tokens20210301::RestrictedResource]?, ?target_application: String?) -> Peddler::APIs::Tokens20210301::CreateRestrictedDataTokenRequest
                     | (Array[Peddler::APIs::Tokens20210301::RestrictedResource]?, String?) -> Peddler::APIs::Tokens20210301::CreateRestrictedDataTokenRequest
-
         def self.[]: (restricted_resources: Array[Peddler::APIs::Tokens20210301::RestrictedResource]?, ?target_application: String?) -> Peddler::APIs::Tokens20210301::CreateRestrictedDataTokenRequest
                    | (Array[Peddler::APIs::Tokens20210301::RestrictedResource]?, String?) -> Peddler::APIs::Tokens20210301::CreateRestrictedDataTokenRequest
 
@@ -14,15 +13,14 @@ module Peddler
 
         attr_reader restricted_resources: Array[Peddler::APIs::Tokens20210301::RestrictedResource]?
         attr_reader target_application: String?
-        def members: () -> [ :restricted_resources, :target_application ]
 
+        def members: () -> [ :restricted_resources, :target_application ]
         def to_h: () -> { restricted_resources: Array[Peddler::APIs::Tokens20210301::RestrictedResource]?, target_application: String? }
       end
 
       class CreateRestrictedDataTokenResponse < Data
         def self.new: (?expires_in: Integer?, ?restricted_data_token: String?) -> Peddler::APIs::Tokens20210301::CreateRestrictedDataTokenResponse
                     | (Integer?, String?) -> Peddler::APIs::Tokens20210301::CreateRestrictedDataTokenResponse
-
         def self.[]: (?expires_in: Integer?, ?restricted_data_token: String?) -> Peddler::APIs::Tokens20210301::CreateRestrictedDataTokenResponse
                    | (Integer?, String?) -> Peddler::APIs::Tokens20210301::CreateRestrictedDataTokenResponse
 
@@ -32,15 +30,14 @@ module Peddler
 
         attr_reader expires_in: Integer?
         attr_reader restricted_data_token: String?
-        def members: () -> [ :expires_in, :restricted_data_token ]
 
+        def members: () -> [ :expires_in, :restricted_data_token ]
         def to_h: () -> { expires_in: Integer?, restricted_data_token: String? }
       end
 
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Tokens20210301::Error
                     | (String?, String?, String?) -> Peddler::APIs::Tokens20210301::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Tokens20210301::Error
                    | (String?, String?, String?) -> Peddler::APIs::Tokens20210301::Error
 
@@ -51,15 +48,14 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
       class ErrorList < Data
         def self.new: (?errors: Array[Peddler::APIs::Tokens20210301::Error]?) -> Peddler::APIs::Tokens20210301::ErrorList
                     | (Array[Peddler::APIs::Tokens20210301::Error]?) -> Peddler::APIs::Tokens20210301::ErrorList
-
         def self.[]: (?errors: Array[Peddler::APIs::Tokens20210301::Error]?) -> Peddler::APIs::Tokens20210301::ErrorList
                    | (Array[Peddler::APIs::Tokens20210301::Error]?) -> Peddler::APIs::Tokens20210301::ErrorList
 
@@ -68,15 +64,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tokens20210301::ErrorList
 
         attr_reader errors: Array[Peddler::APIs::Tokens20210301::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::Tokens20210301::Error]? }
       end
 
       class RestrictedResource < Data
         def self.new: (method: String?, path: String?, ?data_elements: Array[String]?) -> Peddler::APIs::Tokens20210301::RestrictedResource
                     | (String?, String?, Array[String]?) -> Peddler::APIs::Tokens20210301::RestrictedResource
-
         def self.[]: (method: String?, path: String?, ?data_elements: Array[String]?) -> Peddler::APIs::Tokens20210301::RestrictedResource
                    | (String?, String?, Array[String]?) -> Peddler::APIs::Tokens20210301::RestrictedResource
 
@@ -87,8 +82,8 @@ module Peddler
         attr_reader data_elements: Array[String]?
         attr_reader method: String?
         attr_reader path: String?
-        def members: () -> [ :method, :path, :data_elements ]
 
+        def members: () -> [ :method, :path, :data_elements ]
         def to_h: () -> { method: String?, path: String?, data_elements: Array[String]? }
       end
 

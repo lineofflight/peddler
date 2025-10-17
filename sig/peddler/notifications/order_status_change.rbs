@@ -4,7 +4,6 @@ module Peddler
       class Notification < Data
         def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::OrderStatusChange::Payload?, payload_version: String?) -> Peddler::Notifications::OrderStatusChange::Notification
                     | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::OrderStatusChange::Payload?, String?) -> Peddler::Notifications::OrderStatusChange::Notification
-
         def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::OrderStatusChange::Payload?, payload_version: String?) -> Peddler::Notifications::OrderStatusChange::Notification
                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::OrderStatusChange::Payload?, String?) -> Peddler::Notifications::OrderStatusChange::Notification
 
@@ -18,15 +17,14 @@ module Peddler
         attr_reader notification_version: String?
         attr_reader payload: Peddler::Notifications::OrderStatusChange::Payload?
         attr_reader payload_version: String?
-        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
         def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::OrderStatusChange::Payload?, payload_version: String? }
       end
 
       class OrderStatusChangeNotification < Data
         def self.new: (amazon_order_id: String?, destination_postal_code: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, purchase_date: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, supply_source_id: String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
                     | (String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
-
         def self.[]: (amazon_order_id: String?, destination_postal_code: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, purchase_date: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, supply_source_id: String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
                    | (String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
 
@@ -45,15 +43,14 @@ module Peddler
         attr_reader seller_id: String?
         attr_reader seller_sku: String?
         attr_reader supply_source_id: String?
-        def members: () -> [ :amazon_order_id, :destination_postal_code, :fulfillment_channel, :marketplace_id, :order_item_id, :order_status, :purchase_date, :quantity, :seller_id, :seller_sku, :supply_source_id ]
 
+        def members: () -> [ :amazon_order_id, :destination_postal_code, :fulfillment_channel, :marketplace_id, :order_item_id, :order_status, :purchase_date, :quantity, :seller_id, :seller_sku, :supply_source_id ]
         def to_h: () -> { amazon_order_id: String?, destination_postal_code: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, purchase_date: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, supply_source_id: String? }
       end
 
       class Payload < Data
         def self.new: (order_status_change_notification: Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification?) -> Peddler::Notifications::OrderStatusChange::Payload
                     | (Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification?) -> Peddler::Notifications::OrderStatusChange::Payload
-
         def self.[]: (order_status_change_notification: Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification?) -> Peddler::Notifications::OrderStatusChange::Payload
                    | (Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification?) -> Peddler::Notifications::OrderStatusChange::Payload
 
@@ -62,8 +59,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::OrderStatusChange::Payload
 
         attr_reader order_status_change_notification: Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification?
-        def members: () -> [ :order_status_change_notification ]
 
+        def members: () -> [ :order_status_change_notification ]
         def to_h: () -> { order_status_change_notification: Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification? }
       end
 

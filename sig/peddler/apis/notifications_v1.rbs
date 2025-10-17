@@ -4,7 +4,6 @@ module Peddler
       class AggregationFilter < Data
         def self.new: (?aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?) -> Peddler::APIs::NotificationsV1::AggregationFilter
                     | (Peddler::APIs::NotificationsV1::AggregationSettings?) -> Peddler::APIs::NotificationsV1::AggregationFilter
-
         def self.[]: (?aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?) -> Peddler::APIs::NotificationsV1::AggregationFilter
                    | (Peddler::APIs::NotificationsV1::AggregationSettings?) -> Peddler::APIs::NotificationsV1::AggregationFilter
 
@@ -13,15 +12,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::AggregationFilter
 
         attr_reader aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?
-        def members: () -> [ :aggregation_settings ]
 
+        def members: () -> [ :aggregation_settings ]
         def to_h: () -> { aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings? }
       end
 
       class AggregationSettings < Data
         def self.new: (aggregation_time_period: String?) -> Peddler::APIs::NotificationsV1::AggregationSettings
                     | (String?) -> Peddler::APIs::NotificationsV1::AggregationSettings
-
         def self.[]: (aggregation_time_period: String?) -> Peddler::APIs::NotificationsV1::AggregationSettings
                    | (String?) -> Peddler::APIs::NotificationsV1::AggregationSettings
 
@@ -30,15 +28,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::AggregationSettings
 
         attr_reader aggregation_time_period: String?
-        def members: () -> [ :aggregation_time_period ]
 
+        def members: () -> [ :aggregation_time_period ]
         def to_h: () -> { aggregation_time_period: String? }
       end
 
       class CreateDestinationRequest < Data
         def self.new: (name: String?, resource_specification: Peddler::APIs::NotificationsV1::DestinationResourceSpecification?) -> Peddler::APIs::NotificationsV1::CreateDestinationRequest
                     | (String?, Peddler::APIs::NotificationsV1::DestinationResourceSpecification?) -> Peddler::APIs::NotificationsV1::CreateDestinationRequest
-
         def self.[]: (name: String?, resource_specification: Peddler::APIs::NotificationsV1::DestinationResourceSpecification?) -> Peddler::APIs::NotificationsV1::CreateDestinationRequest
                    | (String?, Peddler::APIs::NotificationsV1::DestinationResourceSpecification?) -> Peddler::APIs::NotificationsV1::CreateDestinationRequest
 
@@ -48,15 +45,14 @@ module Peddler
 
         attr_reader name: String?
         attr_reader resource_specification: Peddler::APIs::NotificationsV1::DestinationResourceSpecification?
-        def members: () -> [ :name, :resource_specification ]
 
+        def members: () -> [ :name, :resource_specification ]
         def to_h: () -> { name: String?, resource_specification: Peddler::APIs::NotificationsV1::DestinationResourceSpecification? }
       end
 
       class CreateDestinationResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Destination?) -> Peddler::APIs::NotificationsV1::CreateDestinationResponse
                     | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Destination?) -> Peddler::APIs::NotificationsV1::CreateDestinationResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Destination?) -> Peddler::APIs::NotificationsV1::CreateDestinationResponse
                    | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Destination?) -> Peddler::APIs::NotificationsV1::CreateDestinationResponse
 
@@ -66,15 +62,14 @@ module Peddler
 
         attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
         attr_reader payload: Peddler::APIs::NotificationsV1::Destination?
-        def members: () -> [ :errors, :payload ]
 
+        def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: Peddler::APIs::NotificationsV1::Destination? }
       end
 
       class CreateSubscriptionRequest < Data
         def self.new: (destination_id: String?, payload_version: String?, ?processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective?) -> Peddler::APIs::NotificationsV1::CreateSubscriptionRequest
                     | (String?, String?, Peddler::APIs::NotificationsV1::ProcessingDirective?) -> Peddler::APIs::NotificationsV1::CreateSubscriptionRequest
-
         def self.[]: (destination_id: String?, payload_version: String?, ?processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective?) -> Peddler::APIs::NotificationsV1::CreateSubscriptionRequest
                    | (String?, String?, Peddler::APIs::NotificationsV1::ProcessingDirective?) -> Peddler::APIs::NotificationsV1::CreateSubscriptionRequest
 
@@ -85,15 +80,14 @@ module Peddler
         attr_reader destination_id: String?
         attr_reader payload_version: String?
         attr_reader processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective?
-        def members: () -> [ :destination_id, :payload_version, :processing_directive ]
 
+        def members: () -> [ :destination_id, :payload_version, :processing_directive ]
         def to_h: () -> { destination_id: String?, payload_version: String?, processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective? }
       end
 
       class CreateSubscriptionResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::CreateSubscriptionResponse
                     | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::CreateSubscriptionResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::CreateSubscriptionResponse
                    | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::CreateSubscriptionResponse
 
@@ -103,15 +97,14 @@ module Peddler
 
         attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
         attr_reader payload: Peddler::APIs::NotificationsV1::Subscription?
-        def members: () -> [ :errors, :payload ]
 
+        def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: Peddler::APIs::NotificationsV1::Subscription? }
       end
 
       class DeleteDestinationResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?) -> Peddler::APIs::NotificationsV1::DeleteDestinationResponse
                     | (Array[Peddler::APIs::NotificationsV1::Error]?) -> Peddler::APIs::NotificationsV1::DeleteDestinationResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?) -> Peddler::APIs::NotificationsV1::DeleteDestinationResponse
                    | (Array[Peddler::APIs::NotificationsV1::Error]?) -> Peddler::APIs::NotificationsV1::DeleteDestinationResponse
 
@@ -120,15 +113,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::DeleteDestinationResponse
 
         attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]? }
       end
 
       class DeleteSubscriptionByIdResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?) -> Peddler::APIs::NotificationsV1::DeleteSubscriptionByIdResponse
                     | (Array[Peddler::APIs::NotificationsV1::Error]?) -> Peddler::APIs::NotificationsV1::DeleteSubscriptionByIdResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?) -> Peddler::APIs::NotificationsV1::DeleteSubscriptionByIdResponse
                    | (Array[Peddler::APIs::NotificationsV1::Error]?) -> Peddler::APIs::NotificationsV1::DeleteSubscriptionByIdResponse
 
@@ -137,15 +129,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::DeleteSubscriptionByIdResponse
 
         attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
-        def members: () -> [ :errors ]
 
+        def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]? }
       end
 
       class Destination < Data
         def self.new: (destination_id: String?, name: String?, resource: Peddler::APIs::NotificationsV1::DestinationResource?) -> Peddler::APIs::NotificationsV1::Destination
                     | (String?, String?, Peddler::APIs::NotificationsV1::DestinationResource?) -> Peddler::APIs::NotificationsV1::Destination
-
         def self.[]: (destination_id: String?, name: String?, resource: Peddler::APIs::NotificationsV1::DestinationResource?) -> Peddler::APIs::NotificationsV1::Destination
                    | (String?, String?, Peddler::APIs::NotificationsV1::DestinationResource?) -> Peddler::APIs::NotificationsV1::Destination
 
@@ -156,8 +147,8 @@ module Peddler
         attr_reader destination_id: String?
         attr_reader name: String?
         attr_reader resource: Peddler::APIs::NotificationsV1::DestinationResource?
-        def members: () -> [ :destination_id, :name, :resource ]
 
+        def members: () -> [ :destination_id, :name, :resource ]
         def to_h: () -> { destination_id: String?, name: String?, resource: Peddler::APIs::NotificationsV1::DestinationResource? }
       end
 
@@ -168,7 +159,6 @@ module Peddler
       class DestinationResource < Data
         def self.new: (?event_bridge: Peddler::APIs::NotificationsV1::EventBridgeResource?, ?sqs: Peddler::APIs::NotificationsV1::SqsResource?) -> Peddler::APIs::NotificationsV1::DestinationResource
                     | (Peddler::APIs::NotificationsV1::EventBridgeResource?, Peddler::APIs::NotificationsV1::SqsResource?) -> Peddler::APIs::NotificationsV1::DestinationResource
-
         def self.[]: (?event_bridge: Peddler::APIs::NotificationsV1::EventBridgeResource?, ?sqs: Peddler::APIs::NotificationsV1::SqsResource?) -> Peddler::APIs::NotificationsV1::DestinationResource
                    | (Peddler::APIs::NotificationsV1::EventBridgeResource?, Peddler::APIs::NotificationsV1::SqsResource?) -> Peddler::APIs::NotificationsV1::DestinationResource
 
@@ -178,15 +168,14 @@ module Peddler
 
         attr_reader event_bridge: Peddler::APIs::NotificationsV1::EventBridgeResource?
         attr_reader sqs: Peddler::APIs::NotificationsV1::SqsResource?
-        def members: () -> [ :event_bridge, :sqs ]
 
+        def members: () -> [ :event_bridge, :sqs ]
         def to_h: () -> { event_bridge: Peddler::APIs::NotificationsV1::EventBridgeResource?, sqs: Peddler::APIs::NotificationsV1::SqsResource? }
       end
 
       class DestinationResourceSpecification < Data
         def self.new: (?event_bridge: Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification?, ?sqs: Peddler::APIs::NotificationsV1::SqsResource?) -> Peddler::APIs::NotificationsV1::DestinationResourceSpecification
                     | (Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification?, Peddler::APIs::NotificationsV1::SqsResource?) -> Peddler::APIs::NotificationsV1::DestinationResourceSpecification
-
         def self.[]: (?event_bridge: Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification?, ?sqs: Peddler::APIs::NotificationsV1::SqsResource?) -> Peddler::APIs::NotificationsV1::DestinationResourceSpecification
                    | (Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification?, Peddler::APIs::NotificationsV1::SqsResource?) -> Peddler::APIs::NotificationsV1::DestinationResourceSpecification
 
@@ -196,15 +185,14 @@ module Peddler
 
         attr_reader event_bridge: Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification?
         attr_reader sqs: Peddler::APIs::NotificationsV1::SqsResource?
-        def members: () -> [ :event_bridge, :sqs ]
 
+        def members: () -> [ :event_bridge, :sqs ]
         def to_h: () -> { event_bridge: Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification?, sqs: Peddler::APIs::NotificationsV1::SqsResource? }
       end
 
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::NotificationsV1::Error
                     | (String?, String?, String?) -> Peddler::APIs::NotificationsV1::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::NotificationsV1::Error
                    | (String?, String?, String?) -> Peddler::APIs::NotificationsV1::Error
 
@@ -215,8 +203,8 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
@@ -227,7 +215,6 @@ module Peddler
       class EventBridgeResource < Data
         def self.new: (account_id: String?, name: String?, region: String?) -> Peddler::APIs::NotificationsV1::EventBridgeResource
                     | (String?, String?, String?) -> Peddler::APIs::NotificationsV1::EventBridgeResource
-
         def self.[]: (account_id: String?, name: String?, region: String?) -> Peddler::APIs::NotificationsV1::EventBridgeResource
                    | (String?, String?, String?) -> Peddler::APIs::NotificationsV1::EventBridgeResource
 
@@ -238,15 +225,14 @@ module Peddler
         attr_reader account_id: String?
         attr_reader name: String?
         attr_reader region: String?
-        def members: () -> [ :account_id, :name, :region ]
 
+        def members: () -> [ :account_id, :name, :region ]
         def to_h: () -> { account_id: String?, name: String?, region: String? }
       end
 
       class EventBridgeResourceSpecification < Data
         def self.new: (account_id: String?, region: String?) -> Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification
                     | (String?, String?) -> Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification
-
         def self.[]: (account_id: String?, region: String?) -> Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification
                    | (String?, String?) -> Peddler::APIs::NotificationsV1::EventBridgeResourceSpecification
 
@@ -256,15 +242,14 @@ module Peddler
 
         attr_reader account_id: String?
         attr_reader region: String?
-        def members: () -> [ :account_id, :region ]
 
+        def members: () -> [ :account_id, :region ]
         def to_h: () -> { account_id: String?, region: String? }
       end
 
       class EventFilter < Data
         def self.new: (event_filter_type: String?, ?aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?) -> Peddler::APIs::NotificationsV1::EventFilter
                     | (String?, Peddler::APIs::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?) -> Peddler::APIs::NotificationsV1::EventFilter
-
         def self.[]: (event_filter_type: String?, ?aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?) -> Peddler::APIs::NotificationsV1::EventFilter
                    | (String?, Peddler::APIs::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?) -> Peddler::APIs::NotificationsV1::EventFilter
 
@@ -276,15 +261,14 @@ module Peddler
         attr_reader event_filter_type: String?
         attr_reader marketplace_ids: Array[String]?
         attr_reader order_change_types: Array[untyped]?
-        def members: () -> [ :event_filter_type, :aggregation_settings, :marketplace_ids, :order_change_types ]
 
+        def members: () -> [ :event_filter_type, :aggregation_settings, :marketplace_ids, :order_change_types ]
         def to_h: () -> { event_filter_type: String?, aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, marketplace_ids: Array[String]?, order_change_types: Array[untyped]? }
       end
 
       class GetDestinationResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Destination?) -> Peddler::APIs::NotificationsV1::GetDestinationResponse
                     | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Destination?) -> Peddler::APIs::NotificationsV1::GetDestinationResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Destination?) -> Peddler::APIs::NotificationsV1::GetDestinationResponse
                    | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Destination?) -> Peddler::APIs::NotificationsV1::GetDestinationResponse
 
@@ -294,15 +278,14 @@ module Peddler
 
         attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
         attr_reader payload: Peddler::APIs::NotificationsV1::Destination?
-        def members: () -> [ :errors, :payload ]
 
+        def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: Peddler::APIs::NotificationsV1::Destination? }
       end
 
       class GetDestinationsResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Array[Peddler::APIs::NotificationsV1::Destination]?) -> Peddler::APIs::NotificationsV1::GetDestinationsResponse
                     | (Array[Peddler::APIs::NotificationsV1::Error]?, Array[Peddler::APIs::NotificationsV1::Destination]?) -> Peddler::APIs::NotificationsV1::GetDestinationsResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Array[Peddler::APIs::NotificationsV1::Destination]?) -> Peddler::APIs::NotificationsV1::GetDestinationsResponse
                    | (Array[Peddler::APIs::NotificationsV1::Error]?, Array[Peddler::APIs::NotificationsV1::Destination]?) -> Peddler::APIs::NotificationsV1::GetDestinationsResponse
 
@@ -312,15 +295,14 @@ module Peddler
 
         attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
         attr_reader payload: Array[Peddler::APIs::NotificationsV1::Destination]?
-        def members: () -> [ :errors, :payload ]
 
+        def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: Array[Peddler::APIs::NotificationsV1::Destination]? }
       end
 
       class GetSubscriptionByIdResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::GetSubscriptionByIdResponse
                     | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::GetSubscriptionByIdResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::GetSubscriptionByIdResponse
                    | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::GetSubscriptionByIdResponse
 
@@ -330,15 +312,14 @@ module Peddler
 
         attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
         attr_reader payload: Peddler::APIs::NotificationsV1::Subscription?
-        def members: () -> [ :errors, :payload ]
 
+        def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: Peddler::APIs::NotificationsV1::Subscription? }
       end
 
       class GetSubscriptionResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::GetSubscriptionResponse
                     | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::GetSubscriptionResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::GetSubscriptionResponse
                    | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::Subscription?) -> Peddler::APIs::NotificationsV1::GetSubscriptionResponse
 
@@ -348,15 +329,14 @@ module Peddler
 
         attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
         attr_reader payload: Peddler::APIs::NotificationsV1::Subscription?
-        def members: () -> [ :errors, :payload ]
 
+        def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: Peddler::APIs::NotificationsV1::Subscription? }
       end
 
       class MarketplaceFilter < Data
         def self.new: (?marketplace_ids: Array[String]?) -> Peddler::APIs::NotificationsV1::MarketplaceFilter
                     | (Array[String]?) -> Peddler::APIs::NotificationsV1::MarketplaceFilter
-
         def self.[]: (?marketplace_ids: Array[String]?) -> Peddler::APIs::NotificationsV1::MarketplaceFilter
                    | (Array[String]?) -> Peddler::APIs::NotificationsV1::MarketplaceFilter
 
@@ -365,8 +345,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::MarketplaceFilter
 
         attr_reader marketplace_ids: Array[String]?
-        def members: () -> [ :marketplace_ids ]
 
+        def members: () -> [ :marketplace_ids ]
         def to_h: () -> { marketplace_ids: Array[String]? }
       end
 
@@ -377,7 +357,6 @@ module Peddler
       class OrderChangeTypeFilter < Data
         def self.new: (?order_change_types: Array[untyped]?) -> Peddler::APIs::NotificationsV1::OrderChangeTypeFilter
                     | (Array[untyped]?) -> Peddler::APIs::NotificationsV1::OrderChangeTypeFilter
-
         def self.[]: (?order_change_types: Array[untyped]?) -> Peddler::APIs::NotificationsV1::OrderChangeTypeFilter
                    | (Array[untyped]?) -> Peddler::APIs::NotificationsV1::OrderChangeTypeFilter
 
@@ -386,8 +365,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::OrderChangeTypeFilter
 
         attr_reader order_change_types: Array[untyped]?
-        def members: () -> [ :order_change_types ]
 
+        def members: () -> [ :order_change_types ]
         def to_h: () -> { order_change_types: Array[untyped]? }
       end
 
@@ -398,7 +377,6 @@ module Peddler
       class ProcessingDirective < Data
         def self.new: (?event_filter: Peddler::APIs::NotificationsV1::EventFilter?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
                     | (Peddler::APIs::NotificationsV1::EventFilter?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
-
         def self.[]: (?event_filter: Peddler::APIs::NotificationsV1::EventFilter?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
                    | (Peddler::APIs::NotificationsV1::EventFilter?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
 
@@ -407,15 +385,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::ProcessingDirective
 
         attr_reader event_filter: Peddler::APIs::NotificationsV1::EventFilter?
-        def members: () -> [ :event_filter ]
 
+        def members: () -> [ :event_filter ]
         def to_h: () -> { event_filter: Peddler::APIs::NotificationsV1::EventFilter? }
       end
 
       class SqsResource < Data
         def self.new: (arn: String?) -> Peddler::APIs::NotificationsV1::SqsResource
                     | (String?) -> Peddler::APIs::NotificationsV1::SqsResource
-
         def self.[]: (arn: String?) -> Peddler::APIs::NotificationsV1::SqsResource
                    | (String?) -> Peddler::APIs::NotificationsV1::SqsResource
 
@@ -424,15 +401,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::SqsResource
 
         attr_reader arn: String?
-        def members: () -> [ :arn ]
 
+        def members: () -> [ :arn ]
         def to_h: () -> { arn: String? }
       end
 
       class Subscription < Data
         def self.new: (destination_id: String?, payload_version: String?, subscription_id: String?, ?processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective?) -> Peddler::APIs::NotificationsV1::Subscription
                     | (String?, String?, String?, Peddler::APIs::NotificationsV1::ProcessingDirective?) -> Peddler::APIs::NotificationsV1::Subscription
-
         def self.[]: (destination_id: String?, payload_version: String?, subscription_id: String?, ?processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective?) -> Peddler::APIs::NotificationsV1::Subscription
                    | (String?, String?, String?, Peddler::APIs::NotificationsV1::ProcessingDirective?) -> Peddler::APIs::NotificationsV1::Subscription
 
@@ -444,8 +420,8 @@ module Peddler
         attr_reader payload_version: String?
         attr_reader processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective?
         attr_reader subscription_id: String?
-        def members: () -> [ :destination_id, :payload_version, :subscription_id, :processing_directive ]
 
+        def members: () -> [ :destination_id, :payload_version, :subscription_id, :processing_directive ]
         def to_h: () -> { destination_id: String?, payload_version: String?, subscription_id: String?, processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective? }
       end
 

@@ -4,7 +4,6 @@ module Peddler
       class DetailsByASIN < Data
         def self.new: (asin: String?, combination_pct: Float?, end_date: Date?, purchased_with_asin: String?, purchased_with_rank: Integer?, start_date: Date?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN
                     | (String?, Float?, Date?, String?, Integer?, Date?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN
-
         def self.[]: (asin: String?, combination_pct: Float?, end_date: Date?, purchased_with_asin: String?, purchased_with_rank: Integer?, start_date: Date?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN
                    | (String?, Float?, Date?, String?, Integer?, Date?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN
 
@@ -18,15 +17,14 @@ module Peddler
         attr_reader purchased_with_asin: String?
         attr_reader purchased_with_rank: Integer?
         attr_reader start_date: Date?
-        def members: () -> [ :asin, :combination_pct, :end_date, :purchased_with_asin, :purchased_with_rank, :start_date ]
 
+        def members: () -> [ :asin, :combination_pct, :end_date, :purchased_with_asin, :purchased_with_rank, :start_date ]
         def to_h: () -> { asin: String?, combination_pct: Float?, end_date: Date?, purchased_with_asin: String?, purchased_with_rank: Integer?, start_date: Date? }
       end
 
       class Report < Data
         def self.new: (data_by_asin: Array[Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN]?, report_specification: Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::Report
                     | (Array[Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN]?, Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::Report
-
         def self.[]: (data_by_asin: Array[Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN]?, report_specification: Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::Report
                    | (Array[Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN]?, Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::Report
 
@@ -36,15 +34,14 @@ module Peddler
 
         attr_reader data_by_asin: Array[Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN]?
         attr_reader report_specification: Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification?
-        def members: () -> [ :data_by_asin, :report_specification ]
 
+        def members: () -> [ :data_by_asin, :report_specification ]
         def to_h: () -> { data_by_asin: Array[Peddler::Reports::SellingPartnerMarketBasketAnalysis::DetailsByASIN]?, report_specification: Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification? }
       end
 
       class ReportOptions < Data
         def self.new: (report_period: String?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions
                     | (String?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions
-
         def self.[]: (report_period: String?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions
                    | (String?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions
 
@@ -53,15 +50,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions
 
         attr_reader report_period: String?
-        def members: () -> [ :report_period ]
 
+        def members: () -> [ :report_period ]
         def to_h: () -> { report_period: String? }
       end
 
       class ReportSpecification < Data
         def self.new: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[untyped]?, report_options: Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions?, report_type: String?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification
                     | (Date?, Date?, Array[untyped]?, Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions?, String?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification
-
         def self.[]: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[untyped]?, report_options: Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions?, report_type: String?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification
                    | (Date?, Date?, Array[untyped]?, Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions?, String?) -> Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportSpecification
 
@@ -74,8 +70,8 @@ module Peddler
         attr_reader marketplace_ids: Array[untyped]?
         attr_reader report_options: Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions?
         attr_reader report_type: String?
-        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
 
+        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
         def to_h: () -> { data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[untyped]?, report_options: Peddler::Reports::SellingPartnerMarketBasketAnalysis::ReportOptions?, report_type: String? }
       end
 

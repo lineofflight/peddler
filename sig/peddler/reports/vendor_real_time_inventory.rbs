@@ -4,7 +4,6 @@ module Peddler
       class Report < Data
         def self.new: (report_data: Array[Peddler::Reports::VendorRealTimeInventory::ReportData]?, report_specification: Peddler::Reports::VendorRealTimeInventory::ReportSpecification?) -> Peddler::Reports::VendorRealTimeInventory::Report
                     | (Array[Peddler::Reports::VendorRealTimeInventory::ReportData]?, Peddler::Reports::VendorRealTimeInventory::ReportSpecification?) -> Peddler::Reports::VendorRealTimeInventory::Report
-
         def self.[]: (report_data: Array[Peddler::Reports::VendorRealTimeInventory::ReportData]?, report_specification: Peddler::Reports::VendorRealTimeInventory::ReportSpecification?) -> Peddler::Reports::VendorRealTimeInventory::Report
                    | (Array[Peddler::Reports::VendorRealTimeInventory::ReportData]?, Peddler::Reports::VendorRealTimeInventory::ReportSpecification?) -> Peddler::Reports::VendorRealTimeInventory::Report
 
@@ -14,15 +13,14 @@ module Peddler
 
         attr_reader report_data: Array[Peddler::Reports::VendorRealTimeInventory::ReportData]?
         attr_reader report_specification: Peddler::Reports::VendorRealTimeInventory::ReportSpecification?
-        def members: () -> [ :report_data, :report_specification ]
 
+        def members: () -> [ :report_data, :report_specification ]
         def to_h: () -> { report_data: Array[Peddler::Reports::VendorRealTimeInventory::ReportData]?, report_specification: Peddler::Reports::VendorRealTimeInventory::ReportSpecification? }
       end
 
       class ReportData < Data
         def self.new: (asin: String?, end_time: Time?, highly_available_inventory: Integer?, start_time: Time?) -> Peddler::Reports::VendorRealTimeInventory::ReportData
                     | (String?, Time?, Integer?, Time?) -> Peddler::Reports::VendorRealTimeInventory::ReportData
-
         def self.[]: (asin: String?, end_time: Time?, highly_available_inventory: Integer?, start_time: Time?) -> Peddler::Reports::VendorRealTimeInventory::ReportData
                    | (String?, Time?, Integer?, Time?) -> Peddler::Reports::VendorRealTimeInventory::ReportData
 
@@ -34,15 +32,14 @@ module Peddler
         attr_reader end_time: Time?
         attr_reader highly_available_inventory: Integer?
         attr_reader start_time: Time?
-        def members: () -> [ :asin, :end_time, :highly_available_inventory, :start_time ]
 
+        def members: () -> [ :asin, :end_time, :highly_available_inventory, :start_time ]
         def to_h: () -> { asin: String?, end_time: Time?, highly_available_inventory: Integer?, start_time: Time? }
       end
 
       class ReportSpecification < Data
         def self.new: (data_end_time: Time?, data_start_time: Time?, marketplace_ids: Array[String]?, report_type: String?) -> Peddler::Reports::VendorRealTimeInventory::ReportSpecification
                     | (Time?, Time?, Array[String]?, String?) -> Peddler::Reports::VendorRealTimeInventory::ReportSpecification
-
         def self.[]: (data_end_time: Time?, data_start_time: Time?, marketplace_ids: Array[String]?, report_type: String?) -> Peddler::Reports::VendorRealTimeInventory::ReportSpecification
                    | (Time?, Time?, Array[String]?, String?) -> Peddler::Reports::VendorRealTimeInventory::ReportSpecification
 
@@ -54,8 +51,8 @@ module Peddler
         attr_reader data_start_time: Time?
         attr_reader marketplace_ids: Array[String]?
         attr_reader report_type: String?
-        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_type ]
 
+        def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_type ]
         def to_h: () -> { data_end_time: Time?, data_start_time: Time?, marketplace_ids: Array[String]?, report_type: String? }
       end
 

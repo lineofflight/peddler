@@ -4,7 +4,6 @@ module Peddler
       class Error < Data
         def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
                     | (String?, String?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
-
         def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
                    | (String?, String?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
 
@@ -15,8 +14,8 @@ module Peddler
         attr_reader code: String?
         attr_reader details: String?
         attr_reader message: String?
-        def members: () -> [ :code, :message, :details ]
 
+        def members: () -> [ :code, :message, :details ]
         def to_h: () -> { code: String?, message: String?, details: String? }
       end
 
@@ -27,7 +26,6 @@ module Peddler
       class InventoryUpdate < Data
         def self.new: (full_update: bool?, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
                     | (bool?, Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
-
         def self.[]: (full_update: bool?, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
                    | (bool?, Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
 
@@ -41,14 +39,12 @@ module Peddler
 
         def full_update?: () -> bool
         def members: () -> [ :full_update, :items, :selling_party ]
-
         def to_h: () -> { full_update: bool?, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification? }
       end
 
       class ItemDetails < Data
         def self.new: (available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, ?buyer_product_identifier: String?, ?obsolete: bool?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
                     | (Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, String?, bool?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
-
         def self.[]: (available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, ?buyer_product_identifier: String?, ?obsolete: bool?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
                    | (Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, String?, bool?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
 
@@ -63,14 +59,12 @@ module Peddler
 
         def members: () -> [ :available_quantity, :buyer_product_identifier, :obsolete, :vendor_product_identifier ]
         def obsolete?: () -> bool
-
         def to_h: () -> { available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, buyer_product_identifier: String?, obsolete: bool?, vendor_product_identifier: String? }
       end
 
       class ItemQuantity < Data
         def self.new: (unit_of_measure: String?, ?amount: Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
                     | (String?, Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
-
         def self.[]: (unit_of_measure: String?, ?amount: Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
                    | (String?, Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
 
@@ -80,15 +74,14 @@ module Peddler
 
         attr_reader amount: Integer?
         attr_reader unit_of_measure: String?
-        def members: () -> [ :unit_of_measure, :amount ]
 
+        def members: () -> [ :unit_of_measure, :amount ]
         def to_h: () -> { unit_of_measure: String?, amount: Integer? }
       end
 
       class PartyIdentification < Data
         def self.new: (party_id: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
                     | (String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
-
         def self.[]: (party_id: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
                    | (String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
 
@@ -97,15 +90,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
 
         attr_reader party_id: String?
-        def members: () -> [ :party_id ]
 
+        def members: () -> [ :party_id ]
         def to_h: () -> { party_id: String? }
       end
 
       class SubmitInventoryUpdateRequest < Data
         def self.new: (?inventory: Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateRequest
                     | (Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateRequest
-
         def self.[]: (?inventory: Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateRequest
                    | (Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateRequest
 
@@ -114,15 +106,14 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateRequest
 
         attr_reader inventory: Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate?
-        def members: () -> [ :inventory ]
 
+        def members: () -> [ :inventory ]
         def to_h: () -> { inventory: Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate? }
       end
 
       class SubmitInventoryUpdateResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error]?, ?payload: Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
                     | (Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error]?, Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
-
         def self.[]: (?errors: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error]?, ?payload: Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
                    | (Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error]?, Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
 
@@ -132,15 +123,14 @@ module Peddler
 
         attr_reader errors: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error]?
         attr_reader payload: Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference?
-        def members: () -> [ :errors, :payload ]
 
+        def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error]?, payload: Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference? }
       end
 
       class TransactionReference < Data
         def self.new: (?transaction_id: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference
                     | (String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference
-
         def self.[]: (?transaction_id: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference
                    | (String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference
 
@@ -149,8 +139,8 @@ module Peddler
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::TransactionReference
 
         attr_reader transaction_id: String?
-        def members: () -> [ :transaction_id ]
 
+        def members: () -> [ :transaction_id ]
         def to_h: () -> { transaction_id: String? }
       end
 

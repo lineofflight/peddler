@@ -4,7 +4,6 @@ module Peddler
       class ASINDetails < Data
         def self.new: (asin: String?, discount_amount: Float?, discount_type: String?) -> Peddler::Reports::VendorCoupon::ASINDetails
                     | (String?, Float?, String?) -> Peddler::Reports::VendorCoupon::ASINDetails
-
         def self.[]: (asin: String?, discount_amount: Float?, discount_type: String?) -> Peddler::Reports::VendorCoupon::ASINDetails
                    | (String?, Float?, String?) -> Peddler::Reports::VendorCoupon::ASINDetails
 
@@ -15,15 +14,14 @@ module Peddler
         attr_reader asin: String?
         attr_reader discount_amount: Float?
         attr_reader discount_type: String?
-        def members: () -> [ :asin, :discount_amount, :discount_type ]
 
+        def members: () -> [ :asin, :discount_amount, :discount_type ]
         def to_h: () -> { asin: String?, discount_amount: Float?, discount_type: String? }
       end
 
       class CouponDetails < Data
         def self.new: (asins: Array[Peddler::Reports::VendorCoupon::ASINDetails]?, budget_percentage_used: Float?, budget_spent: Float?, clips: Integer?, coupon_id: String?, customer_segment: String?, end_date_time: Time?, once_per_customer: bool?, redemptions: Integer?, start_date_time: Time?, total_discount: Float?, ?budget: Float?, ?budget_remaining: Float?, ?name: String?, ?website_message: String?) -> Peddler::Reports::VendorCoupon::CouponDetails
                     | (Array[Peddler::Reports::VendorCoupon::ASINDetails]?, Float?, Float?, Integer?, String?, String?, Time?, bool?, Integer?, Time?, Float?, Float?, Float?, String?, String?) -> Peddler::Reports::VendorCoupon::CouponDetails
-
         def self.[]: (asins: Array[Peddler::Reports::VendorCoupon::ASINDetails]?, budget_percentage_used: Float?, budget_spent: Float?, clips: Integer?, coupon_id: String?, customer_segment: String?, end_date_time: Time?, once_per_customer: bool?, redemptions: Integer?, start_date_time: Time?, total_discount: Float?, ?budget: Float?, ?budget_remaining: Float?, ?name: String?, ?website_message: String?) -> Peddler::Reports::VendorCoupon::CouponDetails
                    | (Array[Peddler::Reports::VendorCoupon::ASINDetails]?, Float?, Float?, Integer?, String?, String?, Time?, bool?, Integer?, Time?, Float?, Float?, Float?, String?, String?) -> Peddler::Reports::VendorCoupon::CouponDetails
 
@@ -49,14 +47,12 @@ module Peddler
 
         def members: () -> [ :asins, :budget_percentage_used, :budget_spent, :clips, :coupon_id, :customer_segment, :end_date_time, :once_per_customer, :redemptions, :start_date_time, :total_discount, :budget, :budget_remaining, :name, :website_message ]
         def once_per_customer?: () -> bool
-
         def to_h: () -> { asins: Array[Peddler::Reports::VendorCoupon::ASINDetails]?, budget_percentage_used: Float?, budget_spent: Float?, clips: Integer?, coupon_id: String?, customer_segment: String?, end_date_time: Time?, once_per_customer: bool?, redemptions: Integer?, start_date_time: Time?, total_discount: Float?, budget: Float?, budget_remaining: Float?, name: String?, website_message: String? }
       end
 
       class DetailsByCampaign < Data
         def self.new: (budget_type: String?, campaign_id: String?, campaign_name: String?, coupons: Array[Peddler::Reports::VendorCoupon::CouponDetails]?, creation_date_time: Time?, subscribe_and_save: bool?, last_updated_date_time: Time?, marketplace_id: String?, total_clips: Integer?, total_redemptions: Integer?, vendor_code: String?, ?currency_code: String?, ?total_budget: Float?, ?total_budget_remaining: Float?, ?total_budget_spent: Float?) -> Peddler::Reports::VendorCoupon::DetailsByCampaign
                     | (String?, String?, String?, Array[Peddler::Reports::VendorCoupon::CouponDetails]?, Time?, bool?, Time?, String?, Integer?, Integer?, String?, String?, Float?, Float?, Float?) -> Peddler::Reports::VendorCoupon::DetailsByCampaign
-
         def self.[]: (budget_type: String?, campaign_id: String?, campaign_name: String?, coupons: Array[Peddler::Reports::VendorCoupon::CouponDetails]?, creation_date_time: Time?, subscribe_and_save: bool?, last_updated_date_time: Time?, marketplace_id: String?, total_clips: Integer?, total_redemptions: Integer?, vendor_code: String?, ?currency_code: String?, ?total_budget: Float?, ?total_budget_remaining: Float?, ?total_budget_spent: Float?) -> Peddler::Reports::VendorCoupon::DetailsByCampaign
                    | (String?, String?, String?, Array[Peddler::Reports::VendorCoupon::CouponDetails]?, Time?, bool?, Time?, String?, Integer?, Integer?, String?, String?, Float?, Float?, Float?) -> Peddler::Reports::VendorCoupon::DetailsByCampaign
 
@@ -82,14 +78,12 @@ module Peddler
 
         def members: () -> [ :budget_type, :campaign_id, :campaign_name, :coupons, :creation_date_time, :subscribe_and_save, :last_updated_date_time, :marketplace_id, :total_clips, :total_redemptions, :vendor_code, :currency_code, :total_budget, :total_budget_remaining, :total_budget_spent ]
         def subscribe_and_save?: () -> bool
-
         def to_h: () -> { budget_type: String?, campaign_id: String?, campaign_name: String?, coupons: Array[Peddler::Reports::VendorCoupon::CouponDetails]?, creation_date_time: Time?, subscribe_and_save: bool?, last_updated_date_time: Time?, marketplace_id: String?, total_clips: Integer?, total_redemptions: Integer?, vendor_code: String?, currency_code: String?, total_budget: Float?, total_budget_remaining: Float?, total_budget_spent: Float? }
       end
 
       class Report < Data
         def self.new: (campaigns: Array[Peddler::Reports::VendorCoupon::DetailsByCampaign]?, report_specification: Peddler::Reports::VendorCoupon::ReportSpecification?) -> Peddler::Reports::VendorCoupon::Report
                     | (Array[Peddler::Reports::VendorCoupon::DetailsByCampaign]?, Peddler::Reports::VendorCoupon::ReportSpecification?) -> Peddler::Reports::VendorCoupon::Report
-
         def self.[]: (campaigns: Array[Peddler::Reports::VendorCoupon::DetailsByCampaign]?, report_specification: Peddler::Reports::VendorCoupon::ReportSpecification?) -> Peddler::Reports::VendorCoupon::Report
                    | (Array[Peddler::Reports::VendorCoupon::DetailsByCampaign]?, Peddler::Reports::VendorCoupon::ReportSpecification?) -> Peddler::Reports::VendorCoupon::Report
 
@@ -99,15 +93,14 @@ module Peddler
 
         attr_reader campaigns: Array[Peddler::Reports::VendorCoupon::DetailsByCampaign]?
         attr_reader report_specification: Peddler::Reports::VendorCoupon::ReportSpecification?
-        def members: () -> [ :campaigns, :report_specification ]
 
+        def members: () -> [ :campaigns, :report_specification ]
         def to_h: () -> { campaigns: Array[Peddler::Reports::VendorCoupon::DetailsByCampaign]?, report_specification: Peddler::Reports::VendorCoupon::ReportSpecification? }
       end
 
       class ReportOptions < Data
         def self.new: (campaign_start_date_from: Time?, campaign_start_date_to: Time?) -> Peddler::Reports::VendorCoupon::ReportOptions
                     | (Time?, Time?) -> Peddler::Reports::VendorCoupon::ReportOptions
-
         def self.[]: (campaign_start_date_from: Time?, campaign_start_date_to: Time?) -> Peddler::Reports::VendorCoupon::ReportOptions
                    | (Time?, Time?) -> Peddler::Reports::VendorCoupon::ReportOptions
 
@@ -117,15 +110,14 @@ module Peddler
 
         attr_reader campaign_start_date_from: Time?
         attr_reader campaign_start_date_to: Time?
-        def members: () -> [ :campaign_start_date_from, :campaign_start_date_to ]
 
+        def members: () -> [ :campaign_start_date_from, :campaign_start_date_to ]
         def to_h: () -> { campaign_start_date_from: Time?, campaign_start_date_to: Time? }
       end
 
       class ReportSpecification < Data
         def self.new: (marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorCoupon::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorCoupon::ReportSpecification
                     | (Array[String]?, Peddler::Reports::VendorCoupon::ReportOptions?, String?) -> Peddler::Reports::VendorCoupon::ReportSpecification
-
         def self.[]: (marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorCoupon::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorCoupon::ReportSpecification
                    | (Array[String]?, Peddler::Reports::VendorCoupon::ReportOptions?, String?) -> Peddler::Reports::VendorCoupon::ReportSpecification
 
@@ -136,8 +128,8 @@ module Peddler
         attr_reader marketplace_ids: Array[String]?
         attr_reader report_options: Peddler::Reports::VendorCoupon::ReportOptions?
         attr_reader report_type: String?
-        def members: () -> [ :marketplace_ids, :report_options, :report_type ]
 
+        def members: () -> [ :marketplace_ids, :report_options, :report_type ]
         def to_h: () -> { marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorCoupon::ReportOptions?, report_type: String? }
       end
 
