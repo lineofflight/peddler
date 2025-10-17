@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0.pre.4] - 2025-10-17
+
 ### Added
 
 - Add Data Kiosk API support with four schema versions (SalesAndTraffic20231115, SalesAndTraffic20240424, Economics20240315, VendorAnalytics20240930)
@@ -546,7 +548,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.3...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.4...HEAD
+[5.0.0.pre.4]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.3...v5.0.0.pre.4
 [5.0.0.pre.3]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.2...v5.0.0.pre.3
 [5.0.0.pre.2]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.1...v5.0.0.pre.2
 [5.0.0.pre.1]: https://github.com/hakanensari/peddler/compare/v4.9.0...v5.0.0.pre.1
