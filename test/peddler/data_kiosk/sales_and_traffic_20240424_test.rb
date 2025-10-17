@@ -93,6 +93,10 @@ module Peddler
       def api_class
         APIs::DataKiosk20231115
       end
+
+      def aws_region
+        "us-east-1"
+      end
     end
   end
 end
