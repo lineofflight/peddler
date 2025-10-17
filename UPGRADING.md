@@ -55,6 +55,33 @@ item = response.parse  # Returns typed Structure object
 hash = response.to_h
 ```
 
+##### If You Weren't Using Typed Responses
+
+If you were using Peddler v4 without the `.typed` method, you were working exclusively with Hash objects. The `.parse` method returned a Hash by default in v4.x. In v5, to maintain the same Hash-based behavior:
+
+**v4 code (Hash-based):**
+```ruby
+response = api.get_catalog_item(asin: "B08N5WRWNW")
+item = response.parse  # Hash in v4
+title = item["summaries"].first["itemName"]
+```
+
+**v5 equivalent (Hash-based):**
+```ruby
+response = api.get_catalog_item(asin: "B08N5WRWNW")
+item = response.to_h  # Hash - same behavior as v4's parse
+title = item["summaries"].first["itemName"]
+```
+
+**v5 with typed responses (recommended):**
+```ruby
+response = api.get_catalog_item(asin: "B08N5WRWNW")
+item = response.parse  # Typed Structure object
+title = item.summaries.first.item_name  # Type-safe attribute access
+```
+
+**Note:** Before v4.6.0, typed responses didn't exist. Both `.parse` and `.to_h` returned Hashes and were interchangeable. If you're upgrading from those earlier versions, simply use `.to_h` instead of `.parse` to maintain the same Hash-based behavior, or embrace `.parse` for type-safe responses.
+
 #### 3. LWA Token API
 
 The `Token` class has been renamed to `LWA` and now returns typed responses.
