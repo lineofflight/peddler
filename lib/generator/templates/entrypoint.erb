@@ -7,8 +7,10 @@ require "peddler/inflector"
 
 loader = Zeitwerk::Loader.for_gem
 loader.inflector = Peddler::Inflector.new(__FILE__)
-loader.ignore("#{__dir__}/generator")
-loader.ignore("#{__dir__}/generator.rb")
+if File.exist?("#{__dir__}/generator.rb")
+  loader.ignore("#{__dir__}/generator.rb")
+  loader.ignore("#{__dir__}/generator")
+end
 loader.setup
 
 module Peddler
