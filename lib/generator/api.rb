@@ -35,7 +35,10 @@ module Generator
         api_models = Dir.glob(File.join(Config::BASE_PATH, "selling-partner-api-models/models/**/*.json"))
         APINameResolver.validate_no_unmapped_collisions!(api_models)
 
-        api_models.map { |file| new(file) }
+        api_models.map { |file| new(file) }.sort_by do |api|
+          version_key = api.version.start_with?("v") ? api.version : "z#{api.version}"
+          [api.name, version_key]
+        end
       end
 
       def cleanup!

@@ -15,7 +15,7 @@ loader.setup
 
 module Peddler
   class << self
-<% API.apis.each do |api| -%>
+<% apis.each do |api| -%>
     def <%= api.name_with_version %> = APIs::<%= api.class_name %>
 <% end -%>
 

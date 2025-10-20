@@ -38,15 +38,11 @@ module Generator
       format_files(written_files)
     end
 
-    def required_libraries
-      apis.map(&:library_name).append("peddler/lwa").sort
-    end
-
     def apis_with_latest_version
       apis.group_by(&:name).transform_values do |api_list|
         latest_version = VersionSelector.find_latest_version(api_list.map(&:version))
         api_list.find { |api| api.version == latest_version }
-      end.sort.to_h
+      end.to_h
     end
 
     private

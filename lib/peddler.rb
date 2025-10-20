@@ -33,7 +33,6 @@ module Peddler
     def feeds_2021_06_30 = APIs::Feeds20210630
     def finances_v0 = APIs::FinancesV0
     def finances_2024_06_19 = APIs::Finances20240619
-    def transfers_2024_06_01 = APIs::Transfers20240601
     def fulfillment_inbound_v0 = APIs::FulfillmentInboundV0
     def fulfillment_inbound_2024_03_20 = APIs::FulfillmentInbound20240320
     def fulfillment_outbound_2020_07_01 = APIs::FulfillmentOutbound20200701
@@ -61,6 +60,7 @@ module Peddler
     def solicitations_v1 = APIs::SolicitationsV1
     def supply_sources_2020_07_01 = APIs::SupplySources20200701
     def tokens_2021_03_01 = APIs::Tokens20210301
+    def transfers_2024_06_01 = APIs::Transfers20240601
     def uploads_2020_11_01 = APIs::Uploads20201101
     def vehicles_2024_11_01 = APIs::Vehicles20241101
     def vendor_direct_fulfillment_inventory_v1 = APIs::VendorDirectFulfillmentInventoryV1
