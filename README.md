@@ -488,15 +488,9 @@ parsed_data = JSON.parse(http_response.to_s)
 sales_data = Peddler::DataKiosk::SalesAndTraffic20231115.parse(parsed_data)
 ```
 
-**Query Document Management (Optional):**
+**Query Document Management:**
 
-Peddler provides a helper method for downloading query documents. Enable this by adding the graphql gem to your Gemfile (optional, only needed for schema validation):
-
-```ruby
-gem "graphql", "~> 2.0"
-```
-
-Then use the helper method:
+Peddler provides a helper method for downloading query documents:
 
 ```ruby
 api = Peddler.data_kiosk.new(aws_region, access_token)
