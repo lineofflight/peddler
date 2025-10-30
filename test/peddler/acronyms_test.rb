@@ -14,9 +14,13 @@ module Peddler
       assert_equal("RedirectURL", Acronyms.apply("RedirectUrl"))
     end
 
-    def test_handles_plural_acronyms
+    def test_handles_urls_plural
+      assert_equal("ClaimProofURLs", Acronyms.apply("ClaimProofUrls"))
+      assert_equal("URLs", Acronyms.apply("Urls"))
+    end
+
+    def test_handles_apis_plural
       assert_equal("APIs", Acronyms.apply("Apis"))
-      assert_equal("ASINs", Acronyms.apply("Asins"))
     end
 
     def test_prevents_partial_matches

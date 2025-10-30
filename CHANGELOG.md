@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix Zeitwerk inflection for plural acronyms (URLs, APIs) by using explicit mappings
+
 ## [5.0.0.pre.4] - 2025-10-17
 
 ### Added
