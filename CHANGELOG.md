@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0.pre.5] - 2025-10-30
+
 ### Fixed
 
 - Fix Zeitwerk inflection for plural acronyms (URLs, APIs) by using explicit mappings
@@ -552,7 +554,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.4...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.5...HEAD
+[5.0.0.pre.5]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.4...v5.0.0.pre.5
 [5.0.0.pre.4]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.3...v5.0.0.pre.4
 [5.0.0.pre.3]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.2...v5.0.0.pre.3
 [5.0.0.pre.2]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.1...v5.0.0.pre.2
