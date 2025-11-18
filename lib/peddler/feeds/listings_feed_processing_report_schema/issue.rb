@@ -25,6 +25,10 @@ module Peddler
         #   Identifiers provided in the submitted feed. Not provided if the error is not related to a message (e.g. feed
         #   formatting issue).
         attribute?(:message_id, Integer, from: "messageId")
+
+        # @return [String] Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies
+        #   a listing for a Selling Partner.
+        attribute?(:sku, String)
       end
     end
   end

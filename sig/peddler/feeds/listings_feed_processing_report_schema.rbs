@@ -40,12 +40,12 @@ module Peddler
       end
 
       class Issue < Data
-        def self.new: (message: String?, severity: String?, ?attribute_name: String?, ?code: String?, ?message_id: Integer?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
-                    | (String?, String?, String?, String?, Integer?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
-        def self.[]: (message: String?, severity: String?, ?attribute_name: String?, ?code: String?, ?message_id: Integer?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
-                   | (String?, String?, String?, String?, Integer?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
+        def self.new: (message: String?, severity: String?, ?attribute_name: String?, ?code: String?, ?message_id: Integer?, ?sku: String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
+                    | (String?, String?, String?, String?, Integer?, String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
+        def self.[]: (message: String?, severity: String?, ?attribute_name: String?, ?code: String?, ?message_id: Integer?, ?sku: String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
+                   | (String?, String?, String?, String?, Integer?, String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
 
-        def self.members: () -> [ :message, :severity, :attribute_name, :code, :message_id ]
+        def self.members: () -> [ :message, :severity, :attribute_name, :code, :message_id, :sku ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
 
@@ -54,9 +54,10 @@ module Peddler
         attr_reader message: String?
         attr_reader message_id: Integer?
         attr_reader severity: String?
+        attr_reader sku: String?
 
-        def members: () -> [ :message, :severity, :attribute_name, :code, :message_id ]
-        def to_h: () -> { message: String?, severity: String?, attribute_name: String?, code: String?, message_id: Integer? }
+        def members: () -> [ :message, :severity, :attribute_name, :code, :message_id, :sku ]
+        def to_h: () -> { message: String?, severity: String?, attribute_name: String?, code: String?, message_id: Integer?, sku: String? }
       end
 
       class ItemSummary < Data
