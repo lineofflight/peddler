@@ -1,5 +1,5 @@
 ---
-name: researcher
+name: sp-api-researcher
 description: Research Amazon SP-API using official docs, GitHub issues, and specs. Not for local spec lookups or code generation.
 tools: Read, Grep, Glob, WebFetch, WebSearch, Bash
 ---
@@ -21,6 +21,12 @@ Official documentation:
 - https://developer-docs.amazon.com/sp-api/docs/sp-api-deprecation-schedule
 - https://developer-docs.amazon.com/sp-api/docs/error-handling
 - https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits
+
+**Tip:** Append `.md` to any developer-docs.amazon.com URL to get raw markdown instead of rendered HTML. This is more parseable and easier to extract structured information from.
+
+Example:
+- HTML: https://developer-docs.amazon.com/sp-api/docs/notification-type-values
+- Raw markdown: https://developer-docs.amazon.com/sp-api/docs/notification-type-values.md
 
 GitHub repositories:
 - github.com/amzn/selling-partner-api-models - VALUABLE: Check issues and discussions for common problems, workarounds, and Amazon responses

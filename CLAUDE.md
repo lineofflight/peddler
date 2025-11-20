@@ -194,6 +194,6 @@ Use `jq` to parse, `rg` to search specs in `selling-partner-api-models/models/`
 
 ### External Research
 
-Use the researcher subagent when OpenAPI specs don't contain needed information or when behavior differs from documented specs.
+Use the sp-api-researcher subagent when OpenAPI specs don't contain needed information or when behavior differs from documented specs.
 
 For quick local lookups, use jq/grep directly.
