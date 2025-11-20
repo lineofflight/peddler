@@ -10,6 +10,7 @@ require_relative "support/config"
 require_relative "support/file_writer"
 require_relative "support/schema_generator"
 require_relative "support/introspection_loader"
+require_relative "support/money_detector"
 require_relative "parsers/json_schema_extractor"
 require_relative "builders/type"
 require_relative "support/schema_helpers"
@@ -286,7 +287,7 @@ module Generator
       result = {}
       properties.each do |prop_name, prop_def|
         # Check if this is a money-like object
-        if money_like_object?(prop_def)
+        if MoneyDetector.money_like?(prop_def)
           result[prop_name] = {
             "$ref" => "#/definitions/Money",
             "description" => prop_def["description"],
@@ -306,7 +307,7 @@ module Generator
           items = items.first if items.is_a?(Array) && !items.empty?
 
           # Check if items are money-like objects
-          if items.is_a?(Hash) && money_like_object?(items)
+          if items.is_a?(Hash) && MoneyDetector.money_like?(items)
             result[prop_name] = prop_def.dup
             result[prop_name]["items"] = { "$ref" => "#/definitions/Money" }
             next
@@ -329,27 +330,6 @@ module Generator
         end
       end
       result
-    end
-
-    # Detect if an object looks like a Money type
-    # Money objects have: amount/Amount (number) + currencyCode/CurrencyCode (string)
-    def money_like_object?(node)
-      return false unless node.is_a?(Hash) && node["type"] == "object"
-      return false unless node["properties"]
-
-      props = node["properties"]
-
-      # Check for both camelCase and PascalCase variants
-      has_amount = props.key?("Amount") || props.key?("amount") || props.key?("currencyAmount")
-      has_currency = props.key?("CurrencyCode") || props.key?("currencyCode")
-
-      return false unless has_amount && has_currency
-
-      # Verify types
-      amount_prop = props["Amount"] || props["amount"] || props["currencyAmount"]
-      currency_prop = props["CurrencyCode"] || props["currencyCode"]
-
-      amount_prop&.dig("type") == "number" && currency_prop&.dig("type") == "string"
     end
 
     private

@@ -1,19 +1,13 @@
 # frozen_string_literal: true
 
 require "active_support/inflector"
+require_relative "../support/money_detector"
+require_relative "../support/naming"
 
 module Generator
   # Resolves OpenAPI types to Ruby types for code generation
   class TypeResolver
-    MONEY_TYPES = ["Money", "MoneyType", "Currency", "CurrencyAmount"].freeze
-
     attr_reader :type_name, :specification, :api_name
-
-    class << self
-      def money?(name)
-        MONEY_TYPES.include?(name)
-      end
-    end
 
     def initialize(type_name, specification, api_name = nil)
       @type_name = type_name
@@ -41,7 +35,7 @@ module Generator
       # Only object types and allOf compositions get generated as separate files
       # Money-related types are handled specially
       # Types with ONLY additionalProperties (no defined properties) are treated as Hash
-      return false if money?(name)
+      return false if MoneyDetector.money_type?(name)
       return false if type_def["additionalProperties"] && !type_def["properties"] && !type_def["allOf"]
 
       type_def["type"] == "object" || type_def["allOf"]
@@ -49,21 +43,11 @@ module Generator
 
     private
 
-    def money?(name)
-      self.class.money?(name)
-    end
-
-    # Camelize and apply acronym rules (same as Type#class_name)
-    def camelize_with_acronyms(name)
-      camelized = name.camelize
-      Peddler::Acronyms.apply(camelized)
-    end
-
     def resolve_ref_type(ref, for_comment, for_rbs = false)
       ref_name = ref.split("/").last
 
       # Special handling for Money types
-      if money?(ref_name)
+      if MoneyDetector.money_type?(ref_name)
         # Money is at Peddler::Money
         # Just use "Money" - Ruby's constant lookup will find it in the Peddler namespace
         return "Money"
@@ -73,7 +57,7 @@ module Generator
       return ":self" if ref_name == type_name
 
       # Check if this is a generated type
-      return camelize_with_acronyms(ref_name) if generated_type?(ref_name)
+      return Naming.class_name(ref_name) if generated_type?(ref_name)
 
       # For non-object types, resolve their actual type
       resolve_ref_definition(ref_name, for_comment, for_rbs)
@@ -109,7 +93,7 @@ module Generator
         if for_comment
           "Array<#{item_type}>"
         elsif generated_type?(item_type)
-          "[#{camelize_with_acronyms(item_type)}]"
+          "[#{Naming.class_name(item_type)}]"
         else
           for_rbs ? "Array[untyped]" : "Array"
         end
@@ -137,7 +121,7 @@ module Generator
         # Check if this inline object matches an extracted type
         if prop_name && prop_def["properties"]
           type_name = prop_name.camelize
-          return camelize_with_acronyms(type_name) if generated_type?(type_name)
+          return Naming.class_name(type_name) if generated_type?(type_name)
         end
         for_rbs ? "Hash[untyped, untyped]" : "Hash"
       else
@@ -192,7 +176,7 @@ module Generator
       if for_comment
         "Array<#{item_type}>"
       elsif generated_type?(item_type)
-        "[#{camelize_with_acronyms(item_type)}]"
+        "[#{Naming.class_name(item_type)}]"
       else
         for_rbs ? "Array[untyped]" : "Array"
       end

@@ -3,6 +3,8 @@
 require "erb"
 require_relative "../support/config"
 require_relative "../support/file_writer"
+require_relative "../support/money_detector"
+require_relative "../support/naming"
 require_relative "../resolvers/type_resolver"
 require_relative "../support/schema_helpers"
 require "structure/rbs"
@@ -27,10 +29,7 @@ module Generator
     end
 
     def class_name
-      # Use ActiveSupport's camelize and apply Peddler inflector acronyms
-      camelized = name.camelize
-      # Apply the same acronym rules as Peddler::Inflector
-      Peddler::Acronyms.apply(camelized)
+      Naming.class_name(name)
     end
 
     def properties
@@ -118,7 +117,7 @@ module Generator
       properties.any? do |_prop_name, prop_def|
         if prop_def["$ref"]
           type_name = prop_def["$ref"].split("/").last
-          TypeResolver::MONEY_TYPES.include?(type_name)
+          MoneyDetector.money_type?(type_name)
         else
           false
         end
@@ -301,7 +300,7 @@ module Generator
       item_type = array_item_type
       return unless item_type
 
-      Peddler::Acronyms.apply(item_type.camelize)
+      Naming.class_name(item_type)
     end
 
     def array_template
@@ -343,7 +342,7 @@ module Generator
       item_type = array_item_type
       if item_type && generated_type?(item_type)
         # Apply acronym transformations to item type
-        item_class_name = Peddler::Acronyms.apply(item_type.camelize)
+        item_class_name = Naming.class_name(item_type)
         <<~RBS
           class #{class_name} < Array[#{item_class_name}]
             def self.parse: (Array[untyped]) -> #{class_name}

@@ -3,10 +3,10 @@
 require "erb"
 require_relative "../support/config"
 require_relative "../support/formatter"
+require_relative "../support/naming"
 require_relative "parameter_builder"
 require_relative "response_model"
 require_relative "../parsers/rate_limit_parser"
-require "peddler/acronyms"
 
 module Generator
   class Operation
@@ -170,7 +170,7 @@ module Generator
       return unless has_typed_response?
 
       # Apply acronym transformations to match the generated constant name
-      Peddler::Acronyms.apply(response_model[:model])
+      Naming.class_name(response_model[:model])
     end
 
     def name

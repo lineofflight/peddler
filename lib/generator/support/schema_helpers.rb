@@ -3,6 +3,8 @@
 require_relative "../parsers/json_schema_extractor"
 require_relative "../resolvers/type_resolver"
 require_relative "formatter"
+require_relative "money_detector"
+require_relative "naming"
 
 module Generator
   # Shared helper methods for schema-based generators (Notification, Report, Feed, Type)
@@ -12,12 +14,7 @@ module Generator
     # Generate attribute name (underscore the property name)
     # For boolean attributes, strip is_ prefix for more idiomatic Ruby
     def attribute_name_for(prop_name, prop_def)
-      underscored = prop_name.underscore
-      if prop_def && (prop_def["type"] == "boolean" || prop_def["type"] == "bool")
-        underscored.sub(/^is_/, "")
-      else
-        underscored
-      end
+      Naming.attribute_name(prop_name, prop_def)
     end
 
     # Check if description is a generic placeholder from Amazon's schema generator
@@ -45,7 +42,7 @@ module Generator
       properties.any? do |_prop_name, prop_def|
         if prop_def["$ref"]
           type_name = prop_def["$ref"].split("/").last
-          TypeResolver::MONEY_TYPES.include?(type_name)
+          MoneyDetector.money_type?(type_name)
         else
           false
         end

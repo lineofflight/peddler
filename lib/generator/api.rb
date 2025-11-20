@@ -9,6 +9,7 @@ require_relative "support/config"
 require_relative "support/formatter"
 require_relative "support/file_writer"
 require_relative "support/introspection_loader"
+require_relative "support/money_detector"
 require_relative "parsers/path"
 require_relative "resolvers/type_resolver"
 require_relative "resolvers/api_name_resolver"
@@ -178,7 +179,7 @@ module Generator
 
     def type_names
       openapi_spec["definitions"]
-        .select { |name, def_| def_["type"] == "object" && !TypeResolver::MONEY_TYPES.include?(name) && !def_["additionalProperties"] }
+        .select { |name, def_| def_["type"] == "object" && !MoneyDetector.money_type?(name) && !def_["additionalProperties"] }
         .keys
         .sort
     end

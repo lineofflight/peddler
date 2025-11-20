@@ -2,6 +2,7 @@
 
 require "json"
 require "active_support/inflector"
+require_relative "../support/money_detector"
 
 module Generator
   # Extracts nested type definitions from JSON Schema files
@@ -24,7 +25,7 @@ module Generator
         # Skip special definitions that aren't actual types (case-insensitive)
         next if ["notificationResponse", "payload"].any? { |skip| skip.casecmp?(type_name) }
         # Skip money-like types - they'll use the shared Money type
-        next if money_like_object?(type_def)
+        next if MoneyDetector.money_like?(type_def)
         # Skip definitions that are just $ref aliases (no actual object structure)
         # Example: {"$ref": "#/definitions/moneyType", "description": "..."}
         next if type_def["$ref"] && !type_def["type"] && !type_def["properties"]
@@ -71,7 +72,7 @@ module Generator
         # Extract nested structures from object properties
         if prop_def["type"] == "object" && prop_def["properties"]
           # Skip money-like objects
-          next if money_like_object?(prop_def)
+          next if MoneyDetector.money_like?(prop_def)
 
           # Create a type for this property (e.g., "header" => "Header")
           type_name = prop_name.camelize
@@ -97,7 +98,7 @@ module Generator
         # If array items are objects with properties, extract them
         next unless items["type"] == "object" && items["properties"]
         # Skip money-like objects
-        next if money_like_object?(items)
+        next if MoneyDetector.money_like?(items)
 
         # Check if items have additionalProperties: true (flexible structure)
         # These should remain as Hash, not extracted as a type
@@ -141,7 +142,7 @@ module Generator
       # Handle objects
       if node["type"] == "object" && node["properties"]
         # Skip money-like objects - they'll be converted to Money type
-        return if money_like_object?(node)
+        return if MoneyDetector.money_like?(node)
 
         # Generate type for this object (if it's not the root)
         unless path.empty?
@@ -202,7 +203,7 @@ module Generator
             ref_name = prop_def["$ref"].split("/").last
             # Resolve the $ref chain to find the actual definition
             resolved_def = resolve_ref_chain(ref_name)
-            if resolved_def && money_like_object?(resolved_def)
+            if resolved_def && MoneyDetector.money_like?(resolved_def)
               type_def["properties"][prop_name] = {
                 "$ref" => "#/definitions/Money",
                 "description" => prop_def["description"],
@@ -212,7 +213,7 @@ module Generator
           end
 
           # Convert money-like objects to Money type references
-          if money_like_object?(prop_def)
+          if MoneyDetector.money_like?(prop_def)
             type_def["properties"][prop_name] = {
               "$ref" => "#/definitions/Money",
               "description" => prop_def["description"],
@@ -252,7 +253,7 @@ module Generator
             # Handle inline object items
             if items.is_a?(Hash) && items["type"] == "object"
               # Convert array items that are money-like to Money references
-              if money_like_object?(items)
+              if MoneyDetector.money_like?(items)
                 type_def["properties"][prop_name]["items"] = {
                   "$ref" => "#/definitions/Money",
                 }
@@ -272,27 +273,6 @@ module Generator
           end
         end
       end
-    end
-
-    # Detect if an object looks like a Money type
-    # Money objects have: amount/Amount (number) + currencyCode/CurrencyCode (string)
-    def money_like_object?(node)
-      return false unless node["type"] == "object"
-      return false unless node["properties"]
-
-      props = node["properties"]
-
-      # Check for both camelCase and PascalCase variants
-      has_amount = props.key?("Amount") || props.key?("amount") || props.key?("currencyAmount")
-      has_currency = props.key?("CurrencyCode") || props.key?("currencyCode")
-
-      return false unless has_amount && has_currency
-
-      # Verify types
-      amount_prop = props["Amount"] || props["amount"] || props["currencyAmount"]
-      currency_prop = props["CurrencyCode"] || props["currencyCode"]
-
-      amount_prop&.dig("type") == "number" && currency_prop&.dig("type") == "string"
     end
 
     # Generate a type name from a JSON path
