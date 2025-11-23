@@ -107,7 +107,7 @@ module Generator
         # Skip non-object definitions but allow allOf compositions and arrays
         next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
         # Skip Money types as we use the custom Money type for these
-        next if TypeResolver.money?(name)
+        next if MoneyDetector.money_type?(name)
         # Skip types with ONLY additionalProperties (no defined properties) - they'll be referenced as Hash
         next if definition["additionalProperties"] && !definition["properties"] && !definition["allOf"]
 
