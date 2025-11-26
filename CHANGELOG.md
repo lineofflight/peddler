@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0.pre.7] - 2025-11-26
+
 ### Fixed
 
 - Fix more notification schemas marking optional fields as required (#219)
@@ -568,7 +570,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.6...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.7...HEAD
+[5.0.0.pre.7]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.6...v5.0.0.pre.7
 [5.0.0.pre.6]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.5...v5.0.0.pre.6
 [5.0.0.pre.5]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.4...v5.0.0.pre.5
 [5.0.0.pre.4]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.3...v5.0.0.pre.4
