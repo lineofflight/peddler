@@ -2,10 +2,10 @@ module Peddler
   module Notifications
     module PricingHealth
       class BuyBoxPrice < Data
-        def self.new: (condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: String?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
-                    | (String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
-        def self.[]: (condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: String?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
-                   | (String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
+        def self.new: (condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
+                    | (String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
+        def self.[]: (condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
+                   | (String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
 
         def self.members: () -> [ :condition, :landed_price, :listing_price, :shipping, :points ]
 
@@ -14,18 +14,18 @@ module Peddler
         attr_reader condition: String?
         attr_reader landed_price: Peddler::Money?
         attr_reader listing_price: Peddler::Money?
-        attr_reader points: String?
+        attr_reader points: Peddler::Notifications::PricingHealth::Points?
         attr_reader shipping: Peddler::Money?
 
         def members: () -> [ :condition, :landed_price, :listing_price, :shipping, :points ]
-        def to_h: () -> { condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, points: String? }
+        def to_h: () -> { condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, points: Peddler::Notifications::PricingHealth::Points? }
       end
 
       class MerchantOffer < Data
-        def self.new: (condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: String?) -> Peddler::Notifications::PricingHealth::MerchantOffer
-                    | (String?, String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::Notifications::PricingHealth::MerchantOffer
-        def self.[]: (condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: String?) -> Peddler::Notifications::PricingHealth::MerchantOffer
-                   | (String?, String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::Notifications::PricingHealth::MerchantOffer
+        def self.new: (condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
+                    | (String?, String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
+        def self.[]: (condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
+                   | (String?, String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
 
         def self.members: () -> [ :condition, :fulfillment_type, :landed_price, :listing_price, :shipping, :points ]
 
@@ -35,11 +35,11 @@ module Peddler
         attr_reader fulfillment_type: String?
         attr_reader landed_price: Peddler::Money?
         attr_reader listing_price: Peddler::Money?
-        attr_reader points: String?
+        attr_reader points: Peddler::Notifications::PricingHealth::Points?
         attr_reader shipping: Peddler::Money?
 
         def members: () -> [ :condition, :fulfillment_type, :landed_price, :listing_price, :shipping, :points ]
-        def to_h: () -> { condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, points: String? }
+        def to_h: () -> { condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, points: Peddler::Notifications::PricingHealth::Points? }
       end
 
       class Notification < Data
@@ -120,23 +120,23 @@ module Peddler
       end
 
       class Payload < Data
-        def self.new: (issue_type: String?, merchant_offer: String?, offer_change_trigger: String?, seller_id: String?, summary: String?) -> Peddler::Notifications::PricingHealth::Payload
-                    | (String?, String?, String?, String?, String?) -> Peddler::Notifications::PricingHealth::Payload
-        def self.[]: (issue_type: String?, merchant_offer: String?, offer_change_trigger: String?, seller_id: String?, summary: String?) -> Peddler::Notifications::PricingHealth::Payload
-                   | (String?, String?, String?, String?, String?) -> Peddler::Notifications::PricingHealth::Payload
+        def self.new: (issue_type: String?, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer?, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger?, seller_id: String?, summary: Peddler::Notifications::PricingHealth::Summary?) -> Peddler::Notifications::PricingHealth::Payload
+                    | (String?, Peddler::Notifications::PricingHealth::MerchantOffer?, Peddler::Notifications::PricingHealth::OfferChangeTrigger?, String?, Peddler::Notifications::PricingHealth::Summary?) -> Peddler::Notifications::PricingHealth::Payload
+        def self.[]: (issue_type: String?, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer?, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger?, seller_id: String?, summary: Peddler::Notifications::PricingHealth::Summary?) -> Peddler::Notifications::PricingHealth::Payload
+                   | (String?, Peddler::Notifications::PricingHealth::MerchantOffer?, Peddler::Notifications::PricingHealth::OfferChangeTrigger?, String?, Peddler::Notifications::PricingHealth::Summary?) -> Peddler::Notifications::PricingHealth::Payload
 
         def self.members: () -> [ :issue_type, :merchant_offer, :offer_change_trigger, :seller_id, :summary ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::Payload
 
         attr_reader issue_type: String?
-        attr_reader merchant_offer: String?
-        attr_reader offer_change_trigger: String?
+        attr_reader merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer?
+        attr_reader offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger?
         attr_reader seller_id: String?
-        attr_reader summary: String?
+        attr_reader summary: Peddler::Notifications::PricingHealth::Summary?
 
         def members: () -> [ :issue_type, :merchant_offer, :offer_change_trigger, :seller_id, :summary ]
-        def to_h: () -> { issue_type: String?, merchant_offer: String?, offer_change_trigger: String?, seller_id: String?, summary: String? }
+        def to_h: () -> { issue_type: String?, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer?, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger?, seller_id: String?, summary: Peddler::Notifications::PricingHealth::Summary? }
       end
 
       class Points < Data
@@ -192,10 +192,10 @@ module Peddler
       end
 
       class Summary < Data
-        def self.new: (buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: String?, ?buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, ?sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
-                    | (Array[Peddler::Notifications::PricingHealth::OfferCount]?, Array[Peddler::Notifications::PricingHealth::OfferCount]?, String?, Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
-        def self.[]: (buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: String?, ?buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, ?sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
-                   | (Array[Peddler::Notifications::PricingHealth::OfferCount]?, Array[Peddler::Notifications::PricingHealth::OfferCount]?, String?, Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
+        def self.new: (buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: Peddler::Notifications::PricingHealth::ReferencePrice?, ?buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, ?sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
+                    | (Array[Peddler::Notifications::PricingHealth::OfferCount]?, Array[Peddler::Notifications::PricingHealth::OfferCount]?, Peddler::Notifications::PricingHealth::ReferencePrice?, Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
+        def self.[]: (buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: Peddler::Notifications::PricingHealth::ReferencePrice?, ?buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, ?sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
+                   | (Array[Peddler::Notifications::PricingHealth::OfferCount]?, Array[Peddler::Notifications::PricingHealth::OfferCount]?, Peddler::Notifications::PricingHealth::ReferencePrice?, Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
 
         def self.members: () -> [ :buy_box_eligible_offers, :number_of_offers, :reference_price, :buy_box_prices, :sales_rankings ]
 
@@ -204,11 +204,11 @@ module Peddler
         attr_reader buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?
         attr_reader buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?
         attr_reader number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?
-        attr_reader reference_price: String?
+        attr_reader reference_price: Peddler::Notifications::PricingHealth::ReferencePrice?
         attr_reader sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?
 
         def members: () -> [ :buy_box_eligible_offers, :number_of_offers, :reference_price, :buy_box_prices, :sales_rankings ]
-        def to_h: () -> { buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: String?, buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]? }
+        def to_h: () -> { buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: Peddler::Notifications::PricingHealth::ReferencePrice?, buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::PricingHealth::Notification

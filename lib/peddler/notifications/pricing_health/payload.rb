@@ -12,17 +12,17 @@ module Peddler
         # @return [String] The issue type for the notification
         attribute(:issue_type, String, from: "issueType")
 
-        # @return [String]
-        attribute(:merchant_offer, String, from: "merchantOffer")
+        # @return [MerchantOffer]
+        attribute(:merchant_offer, MerchantOffer, from: "merchantOffer")
 
-        # @return [String]
-        attribute(:offer_change_trigger, String, from: "offerChangeTrigger")
+        # @return [OfferChangeTrigger]
+        attribute(:offer_change_trigger, OfferChangeTrigger, from: "offerChangeTrigger")
 
         # @return [String] The seller identifier for the offer
         attribute(:seller_id, String, from: "sellerId")
 
-        # @return [String]
-        attribute(:summary, String)
+        # @return [Summary]
+        attribute(:summary, Summary)
       end
     end
   end

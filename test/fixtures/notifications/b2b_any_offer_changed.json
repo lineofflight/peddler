@@ -102,8 +102,8 @@
           "isBuyBoxWinner": true,
           "conditionNotes": "New in box",
           "primeInformation": {
-            "isPrime": true,
-            "isNationalPrime": true
+            "isOfferPrime": true,
+            "isOfferNationalPrime": true
           },
           "isFeaturedMerchant": true
         }

@@ -2,22 +2,22 @@ module Peddler
   module Notifications
     module B2BAnyOfferChanged
       class B2BAnyOfferChangedNotification < Data
-        def self.new: (offer_change_trigger: String?, offers: Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, seller_id: String?, summary: String?) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
-                    | (String?, Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, String?, String?) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
-        def self.[]: (offer_change_trigger: String?, offers: Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, seller_id: String?, summary: String?) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
-                   | (String?, Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, String?, String?) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
+        def self.new: (offer_change_trigger: Peddler::Notifications::B2BAnyOfferChanged::OfferChangeTrigger?, offers: Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, seller_id: String?, summary: Peddler::Notifications::B2BAnyOfferChanged::Summary?) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
+                    | (Peddler::Notifications::B2BAnyOfferChanged::OfferChangeTrigger?, Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, String?, Peddler::Notifications::B2BAnyOfferChanged::Summary?) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
+        def self.[]: (offer_change_trigger: Peddler::Notifications::B2BAnyOfferChanged::OfferChangeTrigger?, offers: Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, seller_id: String?, summary: Peddler::Notifications::B2BAnyOfferChanged::Summary?) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
+                   | (Peddler::Notifications::B2BAnyOfferChanged::OfferChangeTrigger?, Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, String?, Peddler::Notifications::B2BAnyOfferChanged::Summary?) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
 
         def self.members: () -> [ :offer_change_trigger, :offers, :seller_id, :summary ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::B2BAnyOfferChanged::B2BAnyOfferChangedNotification
 
-        attr_reader offer_change_trigger: String?
+        attr_reader offer_change_trigger: Peddler::Notifications::B2BAnyOfferChanged::OfferChangeTrigger?
         attr_reader offers: Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?
         attr_reader seller_id: String?
-        attr_reader summary: String?
+        attr_reader summary: Peddler::Notifications::B2BAnyOfferChanged::Summary?
 
         def members: () -> [ :offer_change_trigger, :offers, :seller_id, :summary ]
-        def to_h: () -> { offer_change_trigger: String?, offers: Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, seller_id: String?, summary: String? }
+        def to_h: () -> { offer_change_trigger: Peddler::Notifications::B2BAnyOfferChanged::OfferChangeTrigger?, offers: Array[Peddler::Notifications::B2BAnyOfferChanged::Offer]?, seller_id: String?, summary: Peddler::Notifications::B2BAnyOfferChanged::Summary? }
       end
 
       class BuyBoxPrice < Data
@@ -107,12 +107,12 @@ module Peddler
       end
 
       class Offer < Data
-        def self.new: (fulfilled_by_amazon: bool?, listing_price: Peddler::Money?, seller_id: String?, shipping: Peddler::Money?, shipping_time: String?, sub_condition: String?, ?condition_notes: String?, ?buy_box_winner: bool?, ?featured_merchant: bool?, ?quantity_discount_price: Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, ?seller_feedback_rating: String?, ?ships_from: String?) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
-                    | (bool?, Peddler::Money?, String?, Peddler::Money?, String?, String?, String?, bool?, bool?, Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, String?, String?) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
-        def self.[]: (fulfilled_by_amazon: bool?, listing_price: Peddler::Money?, seller_id: String?, shipping: Peddler::Money?, shipping_time: String?, sub_condition: String?, ?condition_notes: String?, ?buy_box_winner: bool?, ?featured_merchant: bool?, ?quantity_discount_price: Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, ?seller_feedback_rating: String?, ?ships_from: String?) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
-                   | (bool?, Peddler::Money?, String?, Peddler::Money?, String?, String?, String?, bool?, bool?, Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, String?, String?) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
+        def self.new: (fulfilled_by_amazon: bool?, listing_price: Peddler::Money?, seller_id: String?, shipping: Peddler::Money?, shipping_time: Peddler::Notifications::B2BAnyOfferChanged::ShippingTime?, sub_condition: String?, ?condition_notes: String?, ?buy_box_winner: bool?, ?featured_merchant: bool?, ?prime_information: Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation?, ?quantity_discount_price: Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, ?seller_feedback_rating: Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating?, ?ships_from: Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom?) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
+                    | (bool?, Peddler::Money?, String?, Peddler::Money?, Peddler::Notifications::B2BAnyOfferChanged::ShippingTime?, String?, String?, bool?, bool?, Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation?, Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating?, Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom?) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
+        def self.[]: (fulfilled_by_amazon: bool?, listing_price: Peddler::Money?, seller_id: String?, shipping: Peddler::Money?, shipping_time: Peddler::Notifications::B2BAnyOfferChanged::ShippingTime?, sub_condition: String?, ?condition_notes: String?, ?buy_box_winner: bool?, ?featured_merchant: bool?, ?prime_information: Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation?, ?quantity_discount_price: Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, ?seller_feedback_rating: Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating?, ?ships_from: Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom?) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
+                   | (bool?, Peddler::Money?, String?, Peddler::Money?, Peddler::Notifications::B2BAnyOfferChanged::ShippingTime?, String?, String?, bool?, bool?, Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation?, Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating?, Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom?) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
 
-        def self.members: () -> [ :fulfilled_by_amazon, :listing_price, :seller_id, :shipping, :shipping_time, :sub_condition, :condition_notes, :buy_box_winner, :featured_merchant, :quantity_discount_price, :seller_feedback_rating, :ships_from ]
+        def self.members: () -> [ :fulfilled_by_amazon, :listing_price, :seller_id, :shipping, :shipping_time, :sub_condition, :condition_notes, :buy_box_winner, :featured_merchant, :prime_information, :quantity_discount_price, :seller_feedback_rating, :ships_from ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::B2BAnyOfferChanged::Offer
 
@@ -121,19 +121,20 @@ module Peddler
         attr_reader featured_merchant: bool?
         attr_reader fulfilled_by_amazon: bool?
         attr_reader listing_price: Peddler::Money?
+        attr_reader prime_information: Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation?
         attr_reader quantity_discount_price: Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?
-        attr_reader seller_feedback_rating: String?
+        attr_reader seller_feedback_rating: Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating?
         attr_reader seller_id: String?
         attr_reader shipping: Peddler::Money?
-        attr_reader shipping_time: String?
-        attr_reader ships_from: String?
+        attr_reader shipping_time: Peddler::Notifications::B2BAnyOfferChanged::ShippingTime?
+        attr_reader ships_from: Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom?
         attr_reader sub_condition: String?
 
         def buy_box_winner?: () -> bool
         def featured_merchant?: () -> bool
         def fulfilled_by_amazon?: () -> bool
-        def members: () -> [ :fulfilled_by_amazon, :listing_price, :seller_id, :shipping, :shipping_time, :sub_condition, :condition_notes, :buy_box_winner, :featured_merchant, :quantity_discount_price, :seller_feedback_rating, :ships_from ]
-        def to_h: () -> { fulfilled_by_amazon: bool?, listing_price: Peddler::Money?, seller_id: String?, shipping: Peddler::Money?, shipping_time: String?, sub_condition: String?, condition_notes: String?, buy_box_winner: bool?, featured_merchant: bool?, quantity_discount_price: Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, seller_feedback_rating: String?, ships_from: String? }
+        def members: () -> [ :fulfilled_by_amazon, :listing_price, :seller_id, :shipping, :shipping_time, :sub_condition, :condition_notes, :buy_box_winner, :featured_merchant, :prime_information, :quantity_discount_price, :seller_feedback_rating, :ships_from ]
+        def to_h: () -> { fulfilled_by_amazon: bool?, listing_price: Peddler::Money?, seller_id: String?, shipping: Peddler::Money?, shipping_time: Peddler::Notifications::B2BAnyOfferChanged::ShippingTime?, sub_condition: String?, condition_notes: String?, buy_box_winner: bool?, featured_merchant: bool?, prime_information: Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation?, quantity_discount_price: Array[Peddler::Notifications::B2BAnyOfferChanged::QuantityDiscountPriceType]?, seller_feedback_rating: Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating?, ships_from: Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom? }
       end
 
       class OfferChangeTrigger < Data
@@ -190,9 +191,9 @@ module Peddler
       end
 
       class PrimeInformation < Data
-        def self.new: (offer_national_prime: bool?, offer_prime: bool?) -> Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation
+        def self.new: (?offer_national_prime: bool?, ?offer_prime: bool?) -> Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation
                     | (bool?, bool?) -> Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation
-        def self.[]: (offer_national_prime: bool?, offer_prime: bool?) -> Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation
+        def self.[]: (?offer_national_prime: bool?, ?offer_prime: bool?) -> Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation
                    | (bool?, bool?) -> Peddler::Notifications::B2BAnyOfferChanged::PrimeInformation
 
         def self.members: () -> [ :offer_national_prime, :offer_prime ]

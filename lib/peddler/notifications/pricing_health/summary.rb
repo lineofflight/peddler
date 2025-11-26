@@ -16,8 +16,8 @@ module Peddler
         #   conditions and fulfillment channels
         attribute(:number_of_offers, [OfferCount], from: "numberOfOffers")
 
-        # @return [String]
-        attribute(:reference_price, String, from: "referencePrice")
+        # @return [ReferencePrice]
+        attribute(:reference_price, ReferencePrice, from: "referencePrice")
 
         # @return [Array<BuyBoxPrice>] A list that contains the Buy Box price of the item for the given conditions
         attribute?(:buy_box_prices, [BuyBoxPrice], from: "buyBoxPrices")

@@ -3,6 +3,7 @@
 # This file is generated. Do not edit.
 
 require "structure"
+require "time"
 
 module Peddler
   module Notifications
@@ -20,8 +21,8 @@ module Peddler
         # @return [Money]
         attribute(:shipping, Money)
 
-        # @return [String]
-        attribute(:shipping_time, String, from: "shippingTime")
+        # @return [ShippingTime]
+        attribute(:shipping_time, ShippingTime, from: "shippingTime")
 
         # @return [String] The subcondition of the item.
         attribute(:sub_condition, String, from: "subCondition")
@@ -36,15 +37,18 @@ module Peddler
         # @return [:boolean] True when the seller of the item is eligible to win the Buy Box.
         attribute?(:featured_merchant, :boolean, from: "isFeaturedMerchant")
 
+        # @return [PrimeInformation]
+        attribute?(:prime_information, PrimeInformation, from: "primeInformation")
+
         # @return [Array<QuantityDiscountPriceType>] Contains a list of pricing information that includes special
         #   pricing when buying in bulk.
         attribute?(:quantity_discount_price, [QuantityDiscountPriceType], from: "quantityDiscountPrice")
 
-        # @return [String]
-        attribute?(:seller_feedback_rating, String, from: "sellerFeedbackRating")
+        # @return [SellerFeedbackRating]
+        attribute?(:seller_feedback_rating, SellerFeedbackRating, from: "sellerFeedbackRating")
 
-        # @return [String]
-        attribute?(:ships_from, String, from: "shipsFrom")
+        # @return [ShipsFrom]
+        attribute?(:ships_from, ShipsFrom, from: "shipsFrom")
       end
     end
   end

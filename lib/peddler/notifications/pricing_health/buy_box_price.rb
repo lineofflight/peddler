@@ -20,8 +20,8 @@ module Peddler
         # @return [Money]
         attribute(:shipping, Money)
 
-        # @return [String]
-        attribute?(:points, String)
+        # @return [Points]
+        attribute?(:points, Points)
       end
     end
   end

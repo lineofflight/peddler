@@ -27,5 +27,17 @@
     "op": "replace",
     "path": "/definitions/shipsFrom/required",
     "value": []
+  },
+  {
+    "op": "add",
+    "path": "/definitions/offer/properties/primeInformation",
+    "value": {
+      "$ref": "#/definitions/primeInformation"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/definitions/primeInformation/required",
+    "value": []
   }
 ]
