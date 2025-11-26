@@ -2,12 +2,12 @@ module Peddler
   module Notifications
     module FulfillmentOrderStatus
       class FulfillmentOrderStatusNotification < Data
-        def self.new: (event_type: String?, fulfillment_order_status: String?, fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, seller_fulfillment_order_id: String?, seller_id: String?, status_updated_date_time: String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
-                    | (String?, String?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, String?, String?, String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
-        def self.[]: (event_type: String?, fulfillment_order_status: String?, fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, seller_fulfillment_order_id: String?, seller_id: String?, status_updated_date_time: String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
-                   | (String?, String?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, String?, String?, String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
+        def self.new: (event_type: String?, fulfillment_order_status: String?, seller_fulfillment_order_id: String?, status_updated_date_time: String?, ?fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, ?fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, ?seller_id: String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
+                    | (String?, String?, String?, String?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
+        def self.[]: (event_type: String?, fulfillment_order_status: String?, seller_fulfillment_order_id: String?, status_updated_date_time: String?, ?fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, ?fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, ?seller_id: String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
+                   | (String?, String?, String?, String?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
 
-        def self.members: () -> [ :event_type, :fulfillment_order_status, :fulfillment_return_item, :fulfillment_shipment, :seller_fulfillment_order_id, :seller_id, :status_updated_date_time ]
+        def self.members: () -> [ :event_type, :fulfillment_order_status, :seller_fulfillment_order_id, :status_updated_date_time, :fulfillment_return_item, :fulfillment_shipment, :seller_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
 
@@ -19,8 +19,8 @@ module Peddler
         attr_reader seller_id: String?
         attr_reader status_updated_date_time: String?
 
-        def members: () -> [ :event_type, :fulfillment_order_status, :fulfillment_return_item, :fulfillment_shipment, :seller_fulfillment_order_id, :seller_id, :status_updated_date_time ]
-        def to_h: () -> { event_type: String?, fulfillment_order_status: String?, fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, seller_fulfillment_order_id: String?, seller_id: String?, status_updated_date_time: String? }
+        def members: () -> [ :event_type, :fulfillment_order_status, :seller_fulfillment_order_id, :status_updated_date_time, :fulfillment_return_item, :fulfillment_shipment, :seller_id ]
+        def to_h: () -> { event_type: String?, fulfillment_order_status: String?, seller_fulfillment_order_id: String?, status_updated_date_time: String?, fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, seller_id: String? }
       end
 
       class FulfillmentReturnItem < Data

@@ -1,0 +1,14 @@
+[
+  {
+    "op": "replace",
+    "path": "/properties/Payload/properties/AnyOfferChangedNotification/properties/Offers/items/anyOf/0/required",
+    "value": [
+      "SellerId",
+      "SubCondition",
+      "ShippingTime",
+      "ListingPrice",
+      "Shipping",
+      "IsFulfilledByAmazon"
+    ]
+  }
+]

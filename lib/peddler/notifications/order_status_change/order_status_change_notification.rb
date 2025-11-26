@@ -12,9 +12,6 @@ module Peddler
         # @return [String] An Amazon-defined order identifier in 3-7-7 format.
         attribute(:amazon_order_id, String, from: "AmazonOrderId")
 
-        # @return [String] The destination postal code.
-        attribute(:destination_postal_code, String, from: "DestinationPostalCode")
-
         # @return [String] Fulfillment channel of the affected order, MFN or AFN.
         attribute(:fulfillment_channel, String, from: "FulfillmentChannel")
 
@@ -28,9 +25,6 @@ module Peddler
         #   PartiallyShipped, PendingAvailability, Canceled, InvoiceUnconfirmed, Shipped, and Unfulfillable.
         attribute(:order_status, String, from: "OrderStatus")
 
-        # @return [String] The purchase date of the order in Epoch time.
-        attribute(:purchase_date, String, from: "PurchaseDate")
-
         # @return [Integer] The number of items in the order.
         attribute(:quantity, Integer, from: "Quantity")
 
@@ -40,8 +34,14 @@ module Peddler
         # @return [String] The seller-specific SKU identifier for an item.
         attribute(:seller_sku, String, from: "SellerSKU")
 
+        # @return [String] The destination postal code.
+        attribute?(:destination_postal_code, String, from: "DestinationPostalCode")
+
+        # @return [String] The purchase date of the order in Epoch time.
+        attribute?(:purchase_date, String, from: "PurchaseDate")
+
         # @return [String] The unique identifier of the supply source.
-        attribute(:supply_source_id, String, from: "SupplySourceId")
+        attribute?(:supply_source_id, String, from: "SupplySourceId")
       end
     end
   end

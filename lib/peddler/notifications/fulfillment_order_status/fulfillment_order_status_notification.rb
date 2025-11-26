@@ -15,20 +15,20 @@ module Peddler
         # @return [String]
         attribute(:fulfillment_order_status, String, from: "FulfillmentOrderStatus")
 
-        # @return [FulfillmentReturnItem]
-        attribute(:fulfillment_return_item, FulfillmentReturnItem, from: "FulfillmentReturnItem")
-
-        # @return [FulfillmentShipment]
-        attribute(:fulfillment_shipment, FulfillmentShipment, from: "FulfillmentShipment")
-
         # @return [String]
         attribute(:seller_fulfillment_order_id, String, from: "SellerFulfillmentOrderId")
 
         # @return [String]
-        attribute(:seller_id, String, from: "SellerId")
+        attribute(:status_updated_date_time, String, from: "StatusUpdatedDateTime")
+
+        # @return [FulfillmentReturnItem]
+        attribute?(:fulfillment_return_item, FulfillmentReturnItem, from: "FulfillmentReturnItem")
+
+        # @return [FulfillmentShipment]
+        attribute?(:fulfillment_shipment, FulfillmentShipment, from: "FulfillmentShipment")
 
         # @return [String]
-        attribute(:status_updated_date_time, String, from: "StatusUpdatedDateTime")
+        attribute?(:seller_id, String, from: "SellerId")
       end
     end
   end

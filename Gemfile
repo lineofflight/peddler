@@ -6,6 +6,7 @@ gemspec
 
 gem "activesupport"
 gem "graphql"
+gem "hana"
 gem "herb"
 gem "irb"
 gem "minitest"

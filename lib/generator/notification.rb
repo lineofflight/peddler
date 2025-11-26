@@ -2,6 +2,7 @@
 
 require "erb"
 require "fileutils"
+require "hana"
 require "json"
 require "parallel"
 
@@ -369,6 +370,22 @@ module Generator
           props["NotificationVersion"] = props.delete("NotificatonTionVersion")
         end
       end
+
+      # Apply JSON Patch overrides if a patch file exists
+      apply_json_patch!
+    end
+
+    # Apply JSON Patch (RFC 6902) from per-notification patch files
+    # This fixes Amazon schema bugs where optional fields are marked as required
+    def apply_json_patch!
+      patch_file = File.join(__dir__, "patches", "#{notification_name.underscore}.json")
+      return unless File.exist?(patch_file)
+
+      patch_data = JSON.parse(File.read(patch_file))
+      patch = Hana::Patch.new(patch_data)
+      @schema = patch.apply(schema)
+
+      Generator.logger.warn("Applied JSON Patch from #{File.basename(patch_file)}")
     end
 
     def main_template

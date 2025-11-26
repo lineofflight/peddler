@@ -1,0 +1,12 @@
+[
+  {
+    "op": "replace",
+    "path": "/properties/Payload/properties/FulfillmentOrderStatusNotification/required",
+    "value": [
+      "EventType",
+      "StatusUpdatedDateTime",
+      "SellerFulfillmentOrderId",
+      "FulfillmentOrderStatus"
+    ]
+  }
+]

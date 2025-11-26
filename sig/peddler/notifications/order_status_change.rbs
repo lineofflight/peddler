@@ -23,12 +23,12 @@ module Peddler
       end
 
       class OrderStatusChangeNotification < Data
-        def self.new: (amazon_order_id: String?, destination_postal_code: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, purchase_date: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, supply_source_id: String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
-                    | (String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
-        def self.[]: (amazon_order_id: String?, destination_postal_code: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, purchase_date: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, supply_source_id: String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
-                   | (String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
+        def self.new: (amazon_order_id: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, ?destination_postal_code: String?, ?purchase_date: String?, ?supply_source_id: String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
+                    | (String?, String?, String?, String?, String?, Integer?, String?, String?, String?, String?, String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
+        def self.[]: (amazon_order_id: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, ?destination_postal_code: String?, ?purchase_date: String?, ?supply_source_id: String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
+                   | (String?, String?, String?, String?, String?, Integer?, String?, String?, String?, String?, String?) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
 
-        def self.members: () -> [ :amazon_order_id, :destination_postal_code, :fulfillment_channel, :marketplace_id, :order_item_id, :order_status, :purchase_date, :quantity, :seller_id, :seller_sku, :supply_source_id ]
+        def self.members: () -> [ :amazon_order_id, :fulfillment_channel, :marketplace_id, :order_item_id, :order_status, :quantity, :seller_id, :seller_sku, :destination_postal_code, :purchase_date, :supply_source_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::OrderStatusChange::OrderStatusChangeNotification
 
@@ -44,8 +44,8 @@ module Peddler
         attr_reader seller_sku: String?
         attr_reader supply_source_id: String?
 
-        def members: () -> [ :amazon_order_id, :destination_postal_code, :fulfillment_channel, :marketplace_id, :order_item_id, :order_status, :purchase_date, :quantity, :seller_id, :seller_sku, :supply_source_id ]
-        def to_h: () -> { amazon_order_id: String?, destination_postal_code: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, purchase_date: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, supply_source_id: String? }
+        def members: () -> [ :amazon_order_id, :fulfillment_channel, :marketplace_id, :order_item_id, :order_status, :quantity, :seller_id, :seller_sku, :destination_postal_code, :purchase_date, :supply_source_id ]
+        def to_h: () -> { amazon_order_id: String?, fulfillment_channel: String?, marketplace_id: String?, order_item_id: String?, order_status: String?, quantity: Integer?, seller_id: String?, seller_sku: String?, destination_postal_code: String?, purchase_date: String?, supply_source_id: String? }
       end
 
       class Payload < Data

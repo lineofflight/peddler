@@ -1,0 +1,15 @@
+[
+  {
+    "op": "replace",
+    "path": "/properties/Payload/properties/MFNOrderStatusChangeNotification/required",
+    "value": [
+      "SellerId",
+      "MarketplaceId",
+      "AmazonOrderId",
+      "OrderStatus",
+      "OrderItemId",
+      "SellerSKU",
+      "Quantity"
+    ]
+  }
+]
