@@ -36,7 +36,7 @@ module Generator
       @file_path = file_path
       @schema = JSON.parse(File.read(file_path))
       resolve_root_ref!
-      apply_schema_fixes!
+      apply_json_patch!
     end
 
     def generate
@@ -357,22 +357,6 @@ module Generator
           @schema = resolved_schema.merge("definitions" => definitions)
         end
       end
-    end
-
-    # Apply fixes for known Amazon schema bugs
-    def apply_schema_fixes!
-      # Fix: AnyOfferChanged has "NotificatonTionVersion" (typo) in schema
-      # but real Amazon data uses "NotificationVersion" (correct)
-      if notification_name == "AnyOfferChanged"
-        props = schema["properties"]
-        if props&.key?("NotificatonTionVersion")
-          Generator.logger.warn("Fixing schema bug in #{notification_name}: NotificatonTionVersion -> NotificationVersion")
-          props["NotificationVersion"] = props.delete("NotificatonTionVersion")
-        end
-      end
-
-      # Apply JSON Patch overrides if a patch file exists
-      apply_json_patch!
     end
 
     # Apply JSON Patch (RFC 6902) from per-notification patch files
