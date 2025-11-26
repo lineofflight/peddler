@@ -1,0 +1,20 @@
+{
+  "NotificationVersion": "1.0",
+  "NotificationType": "FBA_OUTBOUND_SHIPMENT_STATUS",
+  "PayloadVersion": "1.0",
+  "EventTime": "2020-01-11T00:09:53.109Z",
+  "Payload": {
+    "FBAOutboundShipmentStatusNotification": {
+      "SellerId": "merchantId",
+      "AmazonOrderId": "113-2646096-4474645",
+      "AmazonShipmentId": "DrLqQwqvb",
+      "ShipmentStatus": "Created"
+    }
+  },
+  "NotificationMetadata": {
+    "ApplicationId": "appId",
+    "SubscriptionId": "subId",
+    "PublishTime": "2020-01-11T00:02:50.501Z",
+    "NotificationId": "requestId"
+  }
+}

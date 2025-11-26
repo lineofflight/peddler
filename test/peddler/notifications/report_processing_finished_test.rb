@@ -7,17 +7,17 @@ require "helper"
 
 module Peddler
   module Notifications
-    class FeedProcessingFinishedTest < Minitest::Test
+    class ReportProcessingFinishedTest < Minitest::Test
       include FixtureHelpers
 
       def setup
-        @payload = load_fixture("notifications/feed_processing_finished.json")
+        @payload = load_fixture("notifications/report_processing_finished.json")
       end
 
       def test_parses_notification
-        notification = FeedProcessingFinished::Notification.parse(@payload)
+        notification = ReportProcessingFinished.parse(@payload)
 
-        assert_equal("FEED_PROCESSING_FINISHED", notification.notification_type)
+        assert_equal("REPORT_PROCESSING_FINISHED", notification.notification_type)
       end
     end
   end

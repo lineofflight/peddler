@@ -1,0 +1,23 @@
+{
+  "NotificationVersion": "1.0",
+  "NotificationType": "LISTINGS_ITEM_STATUS_CHANGE",
+  "PayloadVersion": "1.0",
+  "EventTime": "2021-02-03T18:59:30.194Z",
+  "Payload": {
+    "SellerId": "AXXXXXXXXXXXXX",
+    "MarketplaceId": "ATVPDKIKX0DER",
+    "Asin": "BT6RZ7JM4H",
+    "Sku": "NLS-SHOES-03",
+    "CreatedDate": "2021-02-03T18:50:26.196Z",
+    "Status": [
+      "BUYABLE",
+      "DISCOVERABLE"
+    ]
+  },
+  "NotificationMetadata": {
+    "ApplicationId": "amzn1.sellerapps.app.f1234566-aaec-55a6-b123-bcb752069ec5",
+    "SubscriptionId": "93b098e1-c42-2f45-93a1-78910a6a8369",
+    "PublishTime": "2021-02-03T18:59:30.194Z",
+    "NotificationId": "0e999936-da2c-4f9c-9fc2-02b67bae5f49"
+  }
+}

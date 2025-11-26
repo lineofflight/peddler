@@ -1,0 +1,68 @@
+{
+  "NotificationVersion": "1.0",
+  "NotificationType": "FBA_INVENTORY_AVAILABILITY_CHANGES",
+  "PayloadVersion": "1.0",
+  "EventTime": "2020-07-13T19:42:04.284Z",
+  "Payload": {
+    "SellerId": "A3TH9S8BH6GOGM",
+    "FNSKU": "X001ABCDEF",
+    "ASIN": "B00001ABCD",
+    "SKU": "SELLERSKU-1",
+    "FulfillmentInventoryByMarketplace": [
+      {
+        "MarketplaceId": "ATVPDKIKX0DER",
+        "ItemName": "Product Title",
+        "FulfillmentInventory": {
+          "InboundQuantityBreakdown": {
+            "Working": 0,
+            "Shipped": 5,
+            "Receiving": 10
+          },
+          "Fulfillable": 50,
+          "Unfulfillable": 0,
+          "Researching": 0,
+          "ReservedQuantityBreakdown": {
+            "WarehouseProcessing": 5,
+            "WarehouseTransfer": 15,
+            "PendingCustomerOrder": 10
+          },
+          "FutureSupplyBuyable": 10,
+          "PendingCustomerOrderInTransit": 0
+        },
+        "Stores": [
+          "Low-Cost Store"
+        ]
+      },
+      {
+        "MarketplaceId": "A2EUQ1WTGCTBG2",
+        "ItemName": "Product Title",
+        "FulfillmentInventory": {
+          "InboundQuantityBreakdown": {
+            "Working": 1,
+            "Shipped": 2,
+            "Receiving": 3
+          },
+          "Fulfillable": 40,
+          "Unfulfillable": 0,
+          "Researching": 0,
+          "ReservedQuantityBreakdown": {
+            "WarehouseProcessing": 5,
+            "WarehouseTransfer": 15,
+            "PendingCustomerOrder": 10
+          },
+          "FutureSupplyBuyable": 0,
+          "PendingCustomerOrderInTransit": 0
+        },
+        "Stores": [
+          "Low-Cost Store"
+        ]
+      }
+    ]
+  },
+  "NotificationMetadata": {
+    "ApplicationId": "app-id-d0e9e693-c3ad-4373-979f-ed4ec98dd746",
+    "SubscriptionId": "subscription-id-d0e9e693-c3ad-4373-979f-ed4ec98dd746",
+    "PublishTime": "2020-07-13T19:42:04.284Z",
+    "NotificationId": "d0e9e693-c3ad-4373-979f-ed4ec98dd746"
+  }
+}

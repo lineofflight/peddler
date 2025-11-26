@@ -1,0 +1,70 @@
+{
+  "NotificationVersion": "1.0",
+  "NotificationType": "FEE_PROMOTION",
+  "PayloadVersion": "1.0",
+  "EventTime": "2020-01-11T00:09:53.109Z",
+  "NotificationMetadata": {
+    "ApplicationId": "amzn1.sellerapps.app.f1234566-aaec-55a6-b123-bcb752069ec5",
+    "SubscriptionId": "7d78cc50-95c8-4641-add7-10af4b1fedc9",
+    "PublishTime": "2020-01-11T00:02:50.501Z",
+    "NotificationId": "2012e8e5-b365-4cb1-9fd8-be9dfc6d5eaf"
+  },
+  "Payload": {
+    "FeePromotionNotification": {
+      "MerchantId": "merchantId",
+      "MarketplaceId": "marketplaceId1",
+      "FeePromotionType": "Pricing",
+      "FeePromotionTypeDescription": "To help you offer a lower price to customers, we are offering you a temporary referral fee discount for every sale when the total sale price (price + shipping + gift wrap) is at or below the pricing threshold.",
+      "PromotionActiveTimeRange": {
+        "EffectiveFromDate": "2016-05-04T22:24:39.615Z",
+        "EffectiveThroughDate": "2016-04-28T02:45:12.786Z"
+      },
+      "Identifiers": [
+        {
+          "IdentifierType": "ASIN",
+          "IdentifierValues": [
+            {
+              "IdentifierValueId": "B0000000",
+              "IdentifierValueFriendlyName": "1234"
+            }
+          ]
+        }
+      ],
+      "PromotionInformation": [
+        {
+          "FeeType": "ReferralFee",
+          "FeeDiscountType": "Percentage points off",
+          "FeeDiscountValue": 5,
+          "PriceThreshold": {
+            "Amount": 1,
+            "CurrencyCode": "USD"
+          },
+          "FeesEstimate": {
+            "TimeOfFeesEstimated": "2016-05-05T22:24:39.635Z",
+            "TotalFeesEstimate": {
+              "Amount": 10,
+              "CurrencyCode": "USD"
+            },
+            "FeeDetails": [
+              {
+                "FeeType": "feeType",
+                "FeeAmount": {
+                  "Amount": 1,
+                  "CurrencyCode": "USD"
+                },
+                "FeePromotion": {
+                  "Amount": 0.8,
+                  "CurrencyCode": "USD"
+                },
+                "FinalFee": {
+                  "Amount": 0.2,
+                  "CurrencyCode": "USD"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "notificationVersion": "2020-09-04",
+  "notificationType": "DETAIL_PAGE_TRAFFIC_EVENT",
+  "payloadVersion": "2020-09-04",
+  "eventTime": "2023-02-07T16:05:32.378Z",
+  "payload": {
+    "detailPageTrafficEvents": [
+      {
+        "accountId": "amzn1.merchant.o.A21CXK3C4ERTY8",
+        "marketplaceId": "ATVPDKIKX0DER",
+        "startTime": "2023-02-07T15:00:00Z",
+        "endTime": "2023-02-07T16:00:00Z",
+        "asin": "B00032HE0O",
+        "glanceViews": 42
+      },
+      {
+        "accountId": "amzn1.merchant.o.A21CXK3C4ERTY8",
+        "marketplaceId": "ATVPDKIKX0DER",
+        "startTime": "2023-02-07T15:00:00Z",
+        "endTime": "2023-02-07T16:00:00Z",
+        "asin": "B00094A20U",
+        "glanceViews": 69
+      }
+    ]
+  },
+  "notificationMetadata": {
+    "applicationId": "amzn1.sellerapps.app.aacccfff-4455-4b7c-4422-664ecacdd336",
+    "subscriptionId": "d0e9e693-c3ad-4373-979f-ed4ec98dd746",
+    "publishTime": "2023-02-07T16:45:32.378Z",
+    "notificationId": "d0e9e693-c3ad-4373-979f-ed4ec98dd746"
+  }
+}

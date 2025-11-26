@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix more notification schemas marking optional fields as required (#219)
+
+### Added
+
+- Add notification parse tests with fixtures from Amazon docs
+
 ## [5.0.0.pre.6] - 2025-11-26
 
 ### Fixed
