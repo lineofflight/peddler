@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Patch missing `IsBuyBoxWinner` in `ANY_OFFER_CHANGED` notification (#220)
+- Patch missing `primeInformation` ref in `B2B_ANY_OFFER_CHANGED` notification (#221)
+- Fix generator resolving B2B `$ref` types as `String` instead of proper objects (#222)
+
 ## [5.0.0.pre.7] - 2025-11-26
 
 ### Fixed
