@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix notification schemas marking optional fields as required
+
 ## [5.0.0.pre.5] - 2025-10-30
 
 ### Fixed
