@@ -27,6 +27,10 @@ module Peddler
         # @return [String]
         attribute(:sub_condition, String, from: "SubCondition")
 
+        # @return [:boolean] True when the offer is currently in the Buy Box. There can be up to two Buy Box winners at
+        #   any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime.
+        attribute?(:buy_box_winner, :boolean, from: "IsBuyBoxWinner")
+
         # @return [:boolean]
         attribute?(:expedited_shipping_available, :boolean, from: "IsExpeditedShippingAvailable")
 

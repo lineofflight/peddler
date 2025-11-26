@@ -24,5 +24,13 @@
       "LowestPrices",
       "NumberOfBuyBoxEligibleOffers"
     ]
+  },
+  {
+    "op": "add",
+    "path": "/properties/Payload/properties/AnyOfferChangedNotification/properties/Offers/items/anyOf/0/properties/IsBuyBoxWinner",
+    "value": {
+      "type": "boolean",
+      "description": "True when the offer is currently in the Buy Box. There can be up to two Buy Box winners at any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime."
+    }
   }
 ]
