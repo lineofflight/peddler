@@ -15,5 +15,14 @@
       "Shipping",
       "IsFulfilledByAmazon"
     ]
+  },
+  {
+    "op": "replace",
+    "path": "/properties/Payload/properties/AnyOfferChangedNotification/properties/Summary/required",
+    "value": [
+      "NumberOfOffers",
+      "LowestPrices",
+      "NumberOfBuyBoxEligibleOffers"
+    ]
   }
 ]

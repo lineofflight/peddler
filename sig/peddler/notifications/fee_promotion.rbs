@@ -19,12 +19,12 @@ module Peddler
       end
 
       class FeeDetail < Data
-        def self.new: (fee_amount: Peddler::Notifications::FeePromotion::FeeAmount?, fee_promotion: Peddler::Notifications::FeePromotion::FeePromotion?, fee_type: String?, final_fee: Peddler::Notifications::FeePromotion::FinalFee?, included_fees: Array[untyped]?, tax_amount: Peddler::Notifications::FeePromotion::TaxAmount?) -> Peddler::Notifications::FeePromotion::FeeDetail
-                    | (Peddler::Notifications::FeePromotion::FeeAmount?, Peddler::Notifications::FeePromotion::FeePromotion?, String?, Peddler::Notifications::FeePromotion::FinalFee?, Array[untyped]?, Peddler::Notifications::FeePromotion::TaxAmount?) -> Peddler::Notifications::FeePromotion::FeeDetail
-        def self.[]: (fee_amount: Peddler::Notifications::FeePromotion::FeeAmount?, fee_promotion: Peddler::Notifications::FeePromotion::FeePromotion?, fee_type: String?, final_fee: Peddler::Notifications::FeePromotion::FinalFee?, included_fees: Array[untyped]?, tax_amount: Peddler::Notifications::FeePromotion::TaxAmount?) -> Peddler::Notifications::FeePromotion::FeeDetail
-                   | (Peddler::Notifications::FeePromotion::FeeAmount?, Peddler::Notifications::FeePromotion::FeePromotion?, String?, Peddler::Notifications::FeePromotion::FinalFee?, Array[untyped]?, Peddler::Notifications::FeePromotion::TaxAmount?) -> Peddler::Notifications::FeePromotion::FeeDetail
+        def self.new: (fee_amount: Peddler::Notifications::FeePromotion::FeeAmount?, fee_type: String?, final_fee: Peddler::Notifications::FeePromotion::FinalFee?, ?fee_promotion: Peddler::Notifications::FeePromotion::FeePromotion?, ?included_fees: Array[untyped]?, ?tax_amount: Peddler::Notifications::FeePromotion::TaxAmount?) -> Peddler::Notifications::FeePromotion::FeeDetail
+                    | (Peddler::Notifications::FeePromotion::FeeAmount?, String?, Peddler::Notifications::FeePromotion::FinalFee?, Peddler::Notifications::FeePromotion::FeePromotion?, Array[untyped]?, Peddler::Notifications::FeePromotion::TaxAmount?) -> Peddler::Notifications::FeePromotion::FeeDetail
+        def self.[]: (fee_amount: Peddler::Notifications::FeePromotion::FeeAmount?, fee_type: String?, final_fee: Peddler::Notifications::FeePromotion::FinalFee?, ?fee_promotion: Peddler::Notifications::FeePromotion::FeePromotion?, ?included_fees: Array[untyped]?, ?tax_amount: Peddler::Notifications::FeePromotion::TaxAmount?) -> Peddler::Notifications::FeePromotion::FeeDetail
+                   | (Peddler::Notifications::FeePromotion::FeeAmount?, String?, Peddler::Notifications::FeePromotion::FinalFee?, Peddler::Notifications::FeePromotion::FeePromotion?, Array[untyped]?, Peddler::Notifications::FeePromotion::TaxAmount?) -> Peddler::Notifications::FeePromotion::FeeDetail
 
-        def self.members: () -> [ :fee_amount, :fee_promotion, :fee_type, :final_fee, :included_fees, :tax_amount ]
+        def self.members: () -> [ :fee_amount, :fee_type, :final_fee, :fee_promotion, :included_fees, :tax_amount ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FeePromotion::FeeDetail
 
@@ -35,8 +35,8 @@ module Peddler
         attr_reader included_fees: Array[untyped]?
         attr_reader tax_amount: Peddler::Notifications::FeePromotion::TaxAmount?
 
-        def members: () -> [ :fee_amount, :fee_promotion, :fee_type, :final_fee, :included_fees, :tax_amount ]
-        def to_h: () -> { fee_amount: Peddler::Notifications::FeePromotion::FeeAmount?, fee_promotion: Peddler::Notifications::FeePromotion::FeePromotion?, fee_type: String?, final_fee: Peddler::Notifications::FeePromotion::FinalFee?, included_fees: Array[untyped]?, tax_amount: Peddler::Notifications::FeePromotion::TaxAmount? }
+        def members: () -> [ :fee_amount, :fee_type, :final_fee, :fee_promotion, :included_fees, :tax_amount ]
+        def to_h: () -> { fee_amount: Peddler::Notifications::FeePromotion::FeeAmount?, fee_type: String?, final_fee: Peddler::Notifications::FeePromotion::FinalFee?, fee_promotion: Peddler::Notifications::FeePromotion::FeePromotion?, included_fees: Array[untyped]?, tax_amount: Peddler::Notifications::FeePromotion::TaxAmount? }
       end
 
       class FeeDiscountMonetaryAmount < Data
@@ -165,20 +165,20 @@ module Peddler
       end
 
       class IdentifierValue < Data
-        def self.new: (identifier_value_friendly_name: String?, identifier_value_id: String?) -> Peddler::Notifications::FeePromotion::IdentifierValue
+        def self.new: (identifier_value_id: String?, ?identifier_value_friendly_name: String?) -> Peddler::Notifications::FeePromotion::IdentifierValue
                     | (String?, String?) -> Peddler::Notifications::FeePromotion::IdentifierValue
-        def self.[]: (identifier_value_friendly_name: String?, identifier_value_id: String?) -> Peddler::Notifications::FeePromotion::IdentifierValue
+        def self.[]: (identifier_value_id: String?, ?identifier_value_friendly_name: String?) -> Peddler::Notifications::FeePromotion::IdentifierValue
                    | (String?, String?) -> Peddler::Notifications::FeePromotion::IdentifierValue
 
-        def self.members: () -> [ :identifier_value_friendly_name, :identifier_value_id ]
+        def self.members: () -> [ :identifier_value_id, :identifier_value_friendly_name ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FeePromotion::IdentifierValue
 
         attr_reader identifier_value_friendly_name: String?
         attr_reader identifier_value_id: String?
 
-        def members: () -> [ :identifier_value_friendly_name, :identifier_value_id ]
-        def to_h: () -> { identifier_value_friendly_name: String?, identifier_value_id: String? }
+        def members: () -> [ :identifier_value_id, :identifier_value_friendly_name ]
+        def to_h: () -> { identifier_value_id: String?, identifier_value_friendly_name: String? }
       end
 
       class IncludedFee < Data
@@ -273,12 +273,12 @@ module Peddler
       end
 
       class PromotionInformation < Data
-        def self.new: (fee_discount_monetary_amount: Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, fee_discount_type: String?, fee_discount_value: Float?, fee_type: String?, fees_estimate: Peddler::Notifications::FeePromotion::FeesEstimate?, price_threshold: Peddler::Notifications::FeePromotion::PriceThreshold?) -> Peddler::Notifications::FeePromotion::PromotionInformation
-                    | (Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, String?, Float?, String?, Peddler::Notifications::FeePromotion::FeesEstimate?, Peddler::Notifications::FeePromotion::PriceThreshold?) -> Peddler::Notifications::FeePromotion::PromotionInformation
-        def self.[]: (fee_discount_monetary_amount: Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, fee_discount_type: String?, fee_discount_value: Float?, fee_type: String?, fees_estimate: Peddler::Notifications::FeePromotion::FeesEstimate?, price_threshold: Peddler::Notifications::FeePromotion::PriceThreshold?) -> Peddler::Notifications::FeePromotion::PromotionInformation
-                   | (Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, String?, Float?, String?, Peddler::Notifications::FeePromotion::FeesEstimate?, Peddler::Notifications::FeePromotion::PriceThreshold?) -> Peddler::Notifications::FeePromotion::PromotionInformation
+        def self.new: (fee_discount_type: String?, fee_type: String?, ?fee_discount_monetary_amount: Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, ?fee_discount_value: Float?, ?fees_estimate: Peddler::Notifications::FeePromotion::FeesEstimate?, ?price_threshold: Peddler::Notifications::FeePromotion::PriceThreshold?) -> Peddler::Notifications::FeePromotion::PromotionInformation
+                    | (String?, String?, Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, Float?, Peddler::Notifications::FeePromotion::FeesEstimate?, Peddler::Notifications::FeePromotion::PriceThreshold?) -> Peddler::Notifications::FeePromotion::PromotionInformation
+        def self.[]: (fee_discount_type: String?, fee_type: String?, ?fee_discount_monetary_amount: Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, ?fee_discount_value: Float?, ?fees_estimate: Peddler::Notifications::FeePromotion::FeesEstimate?, ?price_threshold: Peddler::Notifications::FeePromotion::PriceThreshold?) -> Peddler::Notifications::FeePromotion::PromotionInformation
+                   | (String?, String?, Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, Float?, Peddler::Notifications::FeePromotion::FeesEstimate?, Peddler::Notifications::FeePromotion::PriceThreshold?) -> Peddler::Notifications::FeePromotion::PromotionInformation
 
-        def self.members: () -> [ :fee_discount_monetary_amount, :fee_discount_type, :fee_discount_value, :fee_type, :fees_estimate, :price_threshold ]
+        def self.members: () -> [ :fee_discount_type, :fee_type, :fee_discount_monetary_amount, :fee_discount_value, :fees_estimate, :price_threshold ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FeePromotion::PromotionInformation
 
@@ -289,8 +289,8 @@ module Peddler
         attr_reader fees_estimate: Peddler::Notifications::FeePromotion::FeesEstimate?
         attr_reader price_threshold: Peddler::Notifications::FeePromotion::PriceThreshold?
 
-        def members: () -> [ :fee_discount_monetary_amount, :fee_discount_type, :fee_discount_value, :fee_type, :fees_estimate, :price_threshold ]
-        def to_h: () -> { fee_discount_monetary_amount: Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, fee_discount_type: String?, fee_discount_value: Float?, fee_type: String?, fees_estimate: Peddler::Notifications::FeePromotion::FeesEstimate?, price_threshold: Peddler::Notifications::FeePromotion::PriceThreshold? }
+        def members: () -> [ :fee_discount_type, :fee_type, :fee_discount_monetary_amount, :fee_discount_value, :fees_estimate, :price_threshold ]
+        def to_h: () -> { fee_discount_type: String?, fee_type: String?, fee_discount_monetary_amount: Peddler::Notifications::FeePromotion::FeeDiscountMonetaryAmount?, fee_discount_value: Float?, fees_estimate: Peddler::Notifications::FeePromotion::FeesEstimate?, price_threshold: Peddler::Notifications::FeePromotion::PriceThreshold? }
       end
 
       class TaxAmount < Data

@@ -19,7 +19,7 @@ module Peddler
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The update time for the offer that caused this notification
-        attribute(:time_of_offer_change, String, from: "timeOfOfferChange")
+        attribute?(:time_of_offer_change, String, from: "timeOfOfferChange")
       end
     end
   end

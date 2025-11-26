@@ -1,0 +1,31 @@
+[
+  {
+    "op": "replace",
+    "path": "/definitions/summary/required",
+    "value": [
+      "numberOfOffers",
+      "buyBoxEligibleOffers",
+      "lowestPrices"
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/definitions/offerCount/required",
+    "value": [
+      "condition",
+      "fulfillmentChannel"
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/definitions/sellerFeedbackRating/required",
+    "value": [
+      "feedbackCount"
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/definitions/shipsFrom/required",
+    "value": []
+  }
+]

@@ -83,9 +83,9 @@ module Peddler
       end
 
       class OfferChangeTrigger < Data
-        def self.new: (asin: String?, item_condition: String?, marketplace_id: String?, time_of_offer_change: String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
+        def self.new: (asin: String?, item_condition: String?, marketplace_id: String?, ?time_of_offer_change: String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
                     | (String?, String?, String?, String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
-        def self.[]: (asin: String?, item_condition: String?, marketplace_id: String?, time_of_offer_change: String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
+        def self.[]: (asin: String?, item_condition: String?, marketplace_id: String?, ?time_of_offer_change: String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
                    | (String?, String?, String?, String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
 
         def self.members: () -> [ :asin, :item_condition, :marketplace_id, :time_of_offer_change ]

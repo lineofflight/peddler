@@ -294,12 +294,12 @@ module Peddler
       end
 
       class Summary < Data
-        def self.new: (buy_box_prices: Array[untyped]?, competitive_price_threshold: Peddler::Money?, list_price: Peddler::Money?, lowest_prices: Array[untyped]?, minimum_advertised_price: Peddler::Money?, number_of_buy_box_eligible_offers: Array[untyped]?, number_of_offers: Array[untyped]?, sales_rankings: Array[untyped]?, suggested_lower_price_plus_shipping: Peddler::Money?, total_buy_box_eligible_offers: Integer?) -> Peddler::Notifications::AnyOfferChanged::Summary
-                    | (Array[untyped]?, Peddler::Money?, Peddler::Money?, Array[untyped]?, Peddler::Money?, Array[untyped]?, Array[untyped]?, Array[untyped]?, Peddler::Money?, Integer?) -> Peddler::Notifications::AnyOfferChanged::Summary
-        def self.[]: (buy_box_prices: Array[untyped]?, competitive_price_threshold: Peddler::Money?, list_price: Peddler::Money?, lowest_prices: Array[untyped]?, minimum_advertised_price: Peddler::Money?, number_of_buy_box_eligible_offers: Array[untyped]?, number_of_offers: Array[untyped]?, sales_rankings: Array[untyped]?, suggested_lower_price_plus_shipping: Peddler::Money?, total_buy_box_eligible_offers: Integer?) -> Peddler::Notifications::AnyOfferChanged::Summary
-                   | (Array[untyped]?, Peddler::Money?, Peddler::Money?, Array[untyped]?, Peddler::Money?, Array[untyped]?, Array[untyped]?, Array[untyped]?, Peddler::Money?, Integer?) -> Peddler::Notifications::AnyOfferChanged::Summary
+        def self.new: (lowest_prices: Array[untyped]?, number_of_buy_box_eligible_offers: Array[untyped]?, number_of_offers: Array[untyped]?, ?buy_box_prices: Array[untyped]?, ?competitive_price_threshold: Peddler::Money?, ?list_price: Peddler::Money?, ?minimum_advertised_price: Peddler::Money?, ?sales_rankings: Array[untyped]?, ?suggested_lower_price_plus_shipping: Peddler::Money?, ?total_buy_box_eligible_offers: Integer?) -> Peddler::Notifications::AnyOfferChanged::Summary
+                    | (Array[untyped]?, Array[untyped]?, Array[untyped]?, Array[untyped]?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Array[untyped]?, Peddler::Money?, Integer?) -> Peddler::Notifications::AnyOfferChanged::Summary
+        def self.[]: (lowest_prices: Array[untyped]?, number_of_buy_box_eligible_offers: Array[untyped]?, number_of_offers: Array[untyped]?, ?buy_box_prices: Array[untyped]?, ?competitive_price_threshold: Peddler::Money?, ?list_price: Peddler::Money?, ?minimum_advertised_price: Peddler::Money?, ?sales_rankings: Array[untyped]?, ?suggested_lower_price_plus_shipping: Peddler::Money?, ?total_buy_box_eligible_offers: Integer?) -> Peddler::Notifications::AnyOfferChanged::Summary
+                   | (Array[untyped]?, Array[untyped]?, Array[untyped]?, Array[untyped]?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Array[untyped]?, Peddler::Money?, Integer?) -> Peddler::Notifications::AnyOfferChanged::Summary
 
-        def self.members: () -> [ :buy_box_prices, :competitive_price_threshold, :list_price, :lowest_prices, :minimum_advertised_price, :number_of_buy_box_eligible_offers, :number_of_offers, :sales_rankings, :suggested_lower_price_plus_shipping, :total_buy_box_eligible_offers ]
+        def self.members: () -> [ :lowest_prices, :number_of_buy_box_eligible_offers, :number_of_offers, :buy_box_prices, :competitive_price_threshold, :list_price, :minimum_advertised_price, :sales_rankings, :suggested_lower_price_plus_shipping, :total_buy_box_eligible_offers ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::AnyOfferChanged::Summary
 
@@ -314,8 +314,8 @@ module Peddler
         attr_reader suggested_lower_price_plus_shipping: Peddler::Money?
         attr_reader total_buy_box_eligible_offers: Integer?
 
-        def members: () -> [ :buy_box_prices, :competitive_price_threshold, :list_price, :lowest_prices, :minimum_advertised_price, :number_of_buy_box_eligible_offers, :number_of_offers, :sales_rankings, :suggested_lower_price_plus_shipping, :total_buy_box_eligible_offers ]
-        def to_h: () -> { buy_box_prices: Array[untyped]?, competitive_price_threshold: Peddler::Money?, list_price: Peddler::Money?, lowest_prices: Array[untyped]?, minimum_advertised_price: Peddler::Money?, number_of_buy_box_eligible_offers: Array[untyped]?, number_of_offers: Array[untyped]?, sales_rankings: Array[untyped]?, suggested_lower_price_plus_shipping: Peddler::Money?, total_buy_box_eligible_offers: Integer? }
+        def members: () -> [ :lowest_prices, :number_of_buy_box_eligible_offers, :number_of_offers, :buy_box_prices, :competitive_price_threshold, :list_price, :minimum_advertised_price, :sales_rankings, :suggested_lower_price_plus_shipping, :total_buy_box_eligible_offers ]
+        def to_h: () -> { lowest_prices: Array[untyped]?, number_of_buy_box_eligible_offers: Array[untyped]?, number_of_offers: Array[untyped]?, buy_box_prices: Array[untyped]?, competitive_price_threshold: Peddler::Money?, list_price: Peddler::Money?, minimum_advertised_price: Peddler::Money?, sales_rankings: Array[untyped]?, suggested_lower_price_plus_shipping: Peddler::Money?, total_buy_box_eligible_offers: Integer? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::AnyOfferChanged::Notification

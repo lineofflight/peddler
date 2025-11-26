@@ -12,7 +12,7 @@ module Peddler
         attribute(:feedback_count, Integer, from: "feedbackCount")
 
         # @return [Float] The percentage of positive feedback for the seller in the past 365 days.
-        attribute(:seller_positive_feedback_rating, Float, from: "sellerPositiveFeedbackRating")
+        attribute?(:seller_positive_feedback_rating, Float, from: "sellerPositiveFeedbackRating")
       end
     end
   end

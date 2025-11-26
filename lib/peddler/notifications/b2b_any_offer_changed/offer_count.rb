@@ -15,7 +15,7 @@ module Peddler
         attribute(:fulfillment_channel, String, from: "fulfillmentChannel")
 
         # @return [Integer] The total number of offers for the specified condition and fulfillment channel.
-        attribute(:offer_count, Integer, from: "offerCount")
+        attribute?(:offer_count, Integer, from: "offerCount")
       end
     end
   end

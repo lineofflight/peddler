@@ -1,0 +1,11 @@
+[
+  {
+    "op": "replace",
+    "path": "/definitions/offerChangeTrigger/required",
+    "value": [
+      "marketplaceId",
+      "asin",
+      "itemCondition"
+    ]
+  }
+]

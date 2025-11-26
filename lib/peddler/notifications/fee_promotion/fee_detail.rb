@@ -11,20 +11,20 @@ module Peddler
         # @return [FeeAmount]
         attribute(:fee_amount, FeeAmount, from: "FeeAmount")
 
-        # @return [FeePromotion]
-        attribute(:fee_promotion, FeePromotion, from: "FeePromotion")
-
         # @return [String]
         attribute(:fee_type, String, from: "FeeType")
 
         # @return [FinalFee]
         attribute(:final_fee, FinalFee, from: "FinalFee")
 
+        # @return [FeePromotion]
+        attribute?(:fee_promotion, FeePromotion, from: "FeePromotion")
+
         # @return [Array]
-        attribute(:included_fees, Array, from: "IncludedFees")
+        attribute?(:included_fees, Array, from: "IncludedFees")
 
         # @return [TaxAmount]
-        attribute(:tax_amount, TaxAmount, from: "TaxAmount")
+        attribute?(:tax_amount, TaxAmount, from: "TaxAmount")
       end
     end
   end

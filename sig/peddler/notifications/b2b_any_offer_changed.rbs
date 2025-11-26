@@ -156,9 +156,9 @@ module Peddler
       end
 
       class OfferCount < Data
-        def self.new: (condition: String?, fulfillment_channel: String?, offer_count: Integer?) -> Peddler::Notifications::B2BAnyOfferChanged::OfferCount
+        def self.new: (condition: String?, fulfillment_channel: String?, ?offer_count: Integer?) -> Peddler::Notifications::B2BAnyOfferChanged::OfferCount
                     | (String?, String?, Integer?) -> Peddler::Notifications::B2BAnyOfferChanged::OfferCount
-        def self.[]: (condition: String?, fulfillment_channel: String?, offer_count: Integer?) -> Peddler::Notifications::B2BAnyOfferChanged::OfferCount
+        def self.[]: (condition: String?, fulfillment_channel: String?, ?offer_count: Integer?) -> Peddler::Notifications::B2BAnyOfferChanged::OfferCount
                    | (String?, String?, Integer?) -> Peddler::Notifications::B2BAnyOfferChanged::OfferCount
 
         def self.members: () -> [ :condition, :fulfillment_channel, :offer_count ]
@@ -227,9 +227,9 @@ module Peddler
       end
 
       class SellerFeedbackRating < Data
-        def self.new: (feedback_count: Integer?, seller_positive_feedback_rating: Float?) -> Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating
+        def self.new: (feedback_count: Integer?, ?seller_positive_feedback_rating: Float?) -> Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating
                     | (Integer?, Float?) -> Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating
-        def self.[]: (feedback_count: Integer?, seller_positive_feedback_rating: Float?) -> Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating
+        def self.[]: (feedback_count: Integer?, ?seller_positive_feedback_rating: Float?) -> Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating
                    | (Integer?, Float?) -> Peddler::Notifications::B2BAnyOfferChanged::SellerFeedbackRating
 
         def self.members: () -> [ :feedback_count, :seller_positive_feedback_rating ]
@@ -263,9 +263,9 @@ module Peddler
       end
 
       class ShipsFrom < Data
-        def self.new: (country: String?) -> Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom
+        def self.new: (?country: String?) -> Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom
                     | (String?) -> Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom
-        def self.[]: (country: String?) -> Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom
+        def self.[]: (?country: String?) -> Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom
                    | (String?) -> Peddler::Notifications::B2BAnyOfferChanged::ShipsFrom
 
         def self.members: () -> [ :country ]
@@ -279,12 +279,12 @@ module Peddler
       end
 
       class Summary < Data
-        def self.new: (buy_box_eligible_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, buy_box_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?, lowest_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, number_of_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
-                    | (Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?, Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
-        def self.[]: (buy_box_eligible_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, buy_box_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?, lowest_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, number_of_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
-                   | (Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?, Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
+        def self.new: (buy_box_eligible_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, lowest_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, number_of_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, ?buy_box_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
+                    | (Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
+        def self.[]: (buy_box_eligible_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, lowest_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, number_of_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, ?buy_box_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
+                   | (Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
 
-        def self.members: () -> [ :buy_box_eligible_offers, :buy_box_prices, :lowest_prices, :number_of_offers ]
+        def self.members: () -> [ :buy_box_eligible_offers, :lowest_prices, :number_of_offers, :buy_box_prices ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::B2BAnyOfferChanged::Summary
 
@@ -293,8 +293,8 @@ module Peddler
         attr_reader lowest_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?
         attr_reader number_of_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?
 
-        def members: () -> [ :buy_box_eligible_offers, :buy_box_prices, :lowest_prices, :number_of_offers ]
-        def to_h: () -> { buy_box_eligible_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, buy_box_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]?, lowest_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, number_of_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]? }
+        def members: () -> [ :buy_box_eligible_offers, :lowest_prices, :number_of_offers, :buy_box_prices ]
+        def to_h: () -> { buy_box_eligible_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, lowest_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::LowestPrice]?, number_of_offers: Array[Peddler::Notifications::B2BAnyOfferChanged::OfferCount]?, buy_box_prices: Array[Peddler::Notifications::B2BAnyOfferChanged::BuyBoxPrice]? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::B2BAnyOfferChanged::Notification

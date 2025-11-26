@@ -1,0 +1,26 @@
+[
+  {
+    "op": "replace",
+    "path": "/properties/Payload/properties/FeePromotionNotification/properties/Identifiers/items/anyOf/0/properties/IdentifierValues/items/anyOf/0/required",
+    "value": [
+      "IdentifierValueId"
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/properties/Payload/properties/FeePromotionNotification/properties/PromotionInformation/items/anyOf/0/required",
+    "value": [
+      "FeeType",
+      "FeeDiscountType"
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/properties/Payload/properties/FeePromotionNotification/properties/PromotionInformation/items/anyOf/0/properties/FeesEstimate/properties/FeeDetails/items/anyOf/0/required",
+    "value": [
+      "FeeType",
+      "FeeAmount",
+      "FinalFee"
+    ]
+  }
+]
