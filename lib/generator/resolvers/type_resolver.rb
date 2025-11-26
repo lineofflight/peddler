@@ -29,7 +29,9 @@ module Generator
       return false if name.nil?
       return false unless specification && specification["definitions"]
 
-      type_def = specification["definitions"][name]
+      # Try both the original name and PascalCase version
+      # B2B schemas use lowercase refs (e.g., "sellerFeedbackRating") but extracted types use PascalCase
+      type_def = specification["definitions"][name] || specification["definitions"][name.camelize]
       return false unless type_def
 
       # Only object types and allOf compositions get generated as separate files
