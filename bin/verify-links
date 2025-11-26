@@ -33,23 +33,49 @@ matches=$(
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-# Check each URL
-while IFS= read -r url; do
-  {
-    response=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+# Check a URL with retries for 5xx errors
+check_url() {
+  local url=$1
+  local max_retries=3
+  local retry_delay=2
+
+  for ((i=1; i<=max_retries; i++)); do
+    response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "$url")
     case $response in
       200)
         log_info "$response $url"
+        return
         ;;
       301|302)
         log_warn "$response $url"
+        return
+        ;;
+      5*)
+        if ((i < max_retries)); then
+          sleep $retry_delay
+        else
+          touch "$tmpdir/failed"
+          log_error "$response $url (after $max_retries retries)"
+        fi
         ;;
       *)
         touch "$tmpdir/failed"
         log_error "$response $url"
+        return
         ;;
     esac
-  } &
+  done
+}
+
+# Check each URL with limited concurrency
+max_jobs=5
+while IFS= read -r url; do
+  check_url "$url" &
+
+  # Limit concurrent jobs
+  while (( $(jobs -r | wc -l) >= max_jobs )); do
+    sleep 0.1
+  done
 done <<< "$matches"
 
 # Wait for all background jobs to finish
