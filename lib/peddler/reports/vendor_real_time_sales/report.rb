@@ -12,7 +12,7 @@ module Peddler
       # report would contain data for each complete hour within the time span.
       Report = Structure.new do
         # @return [Array<reportData>] List of hour and ASIN combinations.
-        attribute(:report_data, Array, from: "reportData")
+        attribute(:report_data, [ReportData], from: "reportData")
 
         # @return [Hash] Summarizes the original report request.
         attribute(:report_specification, ReportSpecification, from: "reportSpecification")
