@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0.pre.8] - 2025-11-27
+
 ### Fixed
 
 - Patch missing `IsBuyBoxWinner` in `ANY_OFFER_CHANGED` notification (#220)
@@ -576,7 +578,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.7...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.8...HEAD
+[5.0.0.pre.8]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.7...v5.0.0.pre.8
 [5.0.0.pre.7]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.6...v5.0.0.pre.7
 [5.0.0.pre.6]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.5...v5.0.0.pre.6
 [5.0.0.pre.5]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.4...v5.0.0.pre.5
