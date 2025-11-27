@@ -2,20 +2,20 @@ module Peddler
   module Reports
     module VendorRealTimeSales
       class Report < Data
-        def self.new: (report_data: Array[untyped]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
-                    | (Array[untyped]?, Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
-        def self.[]: (report_data: Array[untyped]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
-                   | (Array[untyped]?, Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
+        def self.new: (report_data: Array[Peddler::Reports::VendorRealTimeSales::ReportData]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
+                    | (Array[Peddler::Reports::VendorRealTimeSales::ReportData]?, Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
+        def self.[]: (report_data: Array[Peddler::Reports::VendorRealTimeSales::ReportData]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
+                   | (Array[Peddler::Reports::VendorRealTimeSales::ReportData]?, Peddler::Reports::VendorRealTimeSales::ReportSpecification?) -> Peddler::Reports::VendorRealTimeSales::Report
 
         def self.members: () -> [ :report_data, :report_specification ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorRealTimeSales::Report
 
-        attr_reader report_data: Array[untyped]?
+        attr_reader report_data: Array[Peddler::Reports::VendorRealTimeSales::ReportData]?
         attr_reader report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification?
 
         def members: () -> [ :report_data, :report_specification ]
-        def to_h: () -> { report_data: Array[untyped]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification? }
+        def to_h: () -> { report_data: Array[Peddler::Reports::VendorRealTimeSales::ReportData]?, report_specification: Peddler::Reports::VendorRealTimeSales::ReportSpecification? }
       end
 
       class ReportData < Data
