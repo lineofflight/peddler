@@ -5,74 +5,34 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [5.0.0.pre.8] - 2025-11-27
-
-### Fixed
-
-- Patch missing `IsBuyBoxWinner` in `ANY_OFFER_CHANGED` notification (#220)
-- Patch missing `primeInformation` ref in `B2B_ANY_OFFER_CHANGED` notification (#221)
-- Fix generator resolving B2B `$ref` types as `String` instead of proper objects (#222)
-
-## [5.0.0.pre.7] - 2025-11-26
-
-### Fixed
-
-- Fix more notification schemas marking optional fields as required (#219)
+## [5.0.0] - 2025-11-30
 
 ### Added
 
-- Add notification parse tests with fixtures from Amazon docs
-
-## [5.0.0.pre.6] - 2025-11-26
-
-### Fixed
-
-- Fix notification schemas marking optional fields as required
-
-## [5.0.0.pre.5] - 2025-10-30
-
-### Fixed
-
-- Fix Zeitwerk inflection for plural acronyms (URLs, APIs) by using explicit mappings
-
-## [5.0.0.pre.4] - 2025-10-17
-
-### Added
-
-- Add Data Kiosk API support with four schema versions (SalesAndTraffic20231115, SalesAndTraffic20240424, Economics20240315, VendorAnalytics20240930)
-- Type-safe parsing for Data Kiosk GraphQL responses using Structure classes
-- Helper method for downloading query documents
-
-## [5.0.0.pre.3] - 2025-10-15
-
-### Added
-
-- Parse SP-API notifications
+- Add Data Kiosk API support with four schema versions
+- Type-safe parsing for Data Kiosk GraphQL responses
+- Parse SP-API notifications with type-safe data structures
 - Parse SP-API feed schemas with type-safe data structures
 - Parse SP-API report schemas with type-safe data structures
+- Add notification parse tests with fixtures from Amazon docs
+- Add typed response for `Peddler::LWA.request`
 - Integrate Zeitwerk for autoloading (improves startup time)
 
 ### Changed
 
+- All HTTP errors (4xx and 5xx) now raise `Peddler::Error` exceptions
+- Simplify typed response handling - `parse` always returns typed responses, use `to_h` for raw Hash
+- Make Nokogiri a required dependency for S3 error parsing
+- Rename `Peddler::Token` to `Peddler::LWA` for clarity and consistency
 - Move API typed parsers from `Peddler::Types::*` to `Peddler::APIs::*` namespace
 
-## [5.0.0.pre.2] - 2025-10-06
+### Fixed
 
-### Added
-
-- Add typed response for `Peddler::LWA.request`
-
-### Changed
-
-- Rename `Peddler::Token` to `Peddler::LWA` for clarity and consistency with Amazon terminology
-
-## [5.0.0.pre.1] - 2025-10-06
-
-### Changed
-
-- All HTTP errors (4xx and 5xx) now raise `Peddler::Error` exceptions
-- Simplify typed response handling - `parse` now always returns typed responses, use `to_h` for raw Hash
-- Make Nokogiri a required dependency for S3 error parsing
+- Fix notification schemas marking optional fields as required
+- Fix Zeitwerk inflection for plural acronyms (URLs, APIs)
+- Fix incorrect type generation for B2B notification objects
+- Patch missing and incorrect data in notification schemas from Amazon's OpenAPI models
+- Separate colliding APIs in external-fulfillment and finances directories
 
 ### Removed
 
@@ -81,10 +41,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Remove `API#through` alias (use `API#via` instead)
 - Remove deprecated `Token::Error` class
 - Remove `typed` helpers (use `parse` directly)
-
-### Fixed
-
-- Separate colliding APIs in external-fulfillment and finances directories into distinct API classes
 
 ## [4.9.0] - 2025-10-01
 
@@ -240,23 +196,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Add new APIS
-  - Application Integrations 2024-04-01
-  - Finances 2024-06-19
-  - Invoices 2024-06-19
+- Add new APIS (Application Integrations 2024-04-01, Finances 2024-06-19, Invoices 2024-06-19)
 - Implement sandbox mode
 - Add convenience methods for the APIs at the top level
-- Add (back) marketplace model
-
-### Fixed
-
-- Refactor token to handle authorization workflows
-
-## [3.0.0.beta1] - 2024-09-15
+- Add marketplace model
 
 ### Changed
 
 - Complete rewrite—now wraps the Selling Partner API (SP-API)
+
+### Fixed
+
+- Refactor token to handle authorization workflows
 
 ## [2.4.5] - 2021-04-23
 
@@ -578,15 +529,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.8...HEAD
-[5.0.0.pre.8]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.7...v5.0.0.pre.8
-[5.0.0.pre.7]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.6...v5.0.0.pre.7
-[5.0.0.pre.6]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.5...v5.0.0.pre.6
-[5.0.0.pre.5]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.4...v5.0.0.pre.5
-[5.0.0.pre.4]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.3...v5.0.0.pre.4
-[5.0.0.pre.3]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.2...v5.0.0.pre.3
-[5.0.0.pre.2]: https://github.com/hakanensari/peddler/compare/v5.0.0.pre.1...v5.0.0.pre.2
-[5.0.0.pre.1]: https://github.com/hakanensari/peddler/compare/v4.9.0...v5.0.0.pre.1
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.0.0...HEAD
+[5.0.0]: https://github.com/hakanensari/peddler/compare/v4.9.0...v5.0.0
 [4.9.0]: https://github.com/hakanensari/peddler/compare/v4.8.0...v4.9.0
 [4.8.0]: https://github.com/hakanensari/peddler/compare/v4.7.0...v4.8.0
 [4.7.0]: https://github.com/hakanensari/peddler/compare/v4.6.1...v4.7.0
@@ -600,8 +544,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [4.1.1]: https://github.com/hakanensari/peddler/compare/v4.0.1...v4.1.1
 [4.0.1]: https://github.com/hakanensari/peddler/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0...v4.0.0
-[3.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0.beta1...v3.0.0
-[3.0.0.beta1]: https://github.com/hakanensari/peddler/compare/v2.4.5...v3.0.0.beta1
+[3.0.0]: https://github.com/hakanensari/peddler/compare/v2.4.5...v3.0.0
 [2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.4...v2.4.5
 [2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.3...v2.4.4
 [2.4.3]: https://github.com/hakanensari/peddler/compare/v2.4.2...v2.4.3

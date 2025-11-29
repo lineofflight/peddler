@@ -4,8 +4,6 @@
 
 > AI Agents: See [llms.txt](llms.txt)
 
-> **IMPORTANT:** This README is for the v5 pre-release. For the latest stable version, see the [v4.9.0 README](https://github.com/hakanensari/peddler/blob/v4.9.0/README.md).
-
 Peddler is a Ruby interface to the [Amazon Selling Partner API (SP-API)][api-docs]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
 Peddler is automatically generated from the latest Open API models provided by Amazon.
