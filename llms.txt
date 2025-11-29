@@ -1,0 +1,39 @@
+# Peddler
+
+> Ruby interface to Amazon's Selling Partner API (SP-API)
+
+## Getting Started
+
+```ruby
+# Install
+gem install peddler
+
+# Set credentials
+export LWA_CLIENT_ID=<YOUR_CLIENT_ID>
+export LWA_CLIENT_SECRET=<YOUR_CLIENT_SECRET>
+
+# Get access token
+require "peddler"
+response = Peddler::LWA.request(refresh_token: "<REFRESH_TOKEN>")
+access_token = response.parse.access_token
+
+# Make first API call
+api = Peddler.orders.new("us-east-1", access_token)
+response = api.get_orders(
+  marketplaceIds: ["ATVPDKIKX0DER"],
+  createdAfter: "2024-01-01T00:00:00Z"
+)
+orders = response.parse.payload.orders
+```
+
+## Source Code
+
+- [lib/peddler/](lib/peddler/) - Core implementation with YARD docs
+- [sig/peddler/](sig/peddler/) - RBS type signatures
+- [test/peddler/apis/](test/peddler/apis/) - Integration tests with VCR cassettes
+
+## Amazon SP-API
+
+- [API Models](https://github.com/amzn/selling-partner-api-models) - OpenAPI specs and schemas
+- [GitHub Issues](https://github.com/amzn/selling-partner-api-models/issues) - Troubleshooting, workarounds, Amazon responses
+- [Official Documentation](https://developer-docs.amazon.com/sp-api/) - Use cases, guides, registration
