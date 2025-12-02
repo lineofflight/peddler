@@ -153,20 +153,13 @@ module Peddler
           }
         GRAPHQL
 
-        skip("we keep hitting quota")
-
         response = api.create_query({ query: })
         query_id = response.parse.query_id
 
-        sleep(30)
-
         response = api.get_query(query_id)
-        parsed = response.parse
-
-        data_document_id = parsed.data_document_id
+        data_document_id = response.parse.data_document_id
 
         response = api.download_query_document(data_document_id)
-
         data = response.to_s.each_line.map do |line|
           payload = JSON.parse(line)
           DataKiosk::Economics20240315::Economics.parse(payload)
