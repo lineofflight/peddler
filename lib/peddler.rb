@@ -24,6 +24,7 @@ module Peddler
     def catalog_items_2022_04_01 = APIs::CatalogItems20220401
     def customer_feedback_2024_06_01 = APIs::CustomerFeedback20240601
     def data_kiosk_2023_11_15 = APIs::DataKiosk20231115
+    def delivery_by_amazon_2022_07_01 = APIs::DeliveryByAmazon20220701
     def easy_ship_2022_03_23 = APIs::EasyShip20220323
     def external_fulfillment_inventory_2024_09_11 = APIs::ExternalFulfillmentInventory20240911
     def external_fulfillment_returns_2024_09_11 = APIs::ExternalFulfillmentReturns20240911
@@ -84,6 +85,7 @@ module Peddler
     alias_method :catalog_items, :catalog_items_2022_04_01
     alias_method :customer_feedback, :customer_feedback_2024_06_01
     alias_method :data_kiosk, :data_kiosk_2023_11_15
+    alias_method :delivery_by_amazon, :delivery_by_amazon_2022_07_01
     alias_method :easy_ship, :easy_ship_2022_03_23
     alias_method :external_fulfillment_inventory, :external_fulfillment_inventory_2024_09_11
     alias_method :external_fulfillment_returns, :external_fulfillment_returns_2024_09_11
