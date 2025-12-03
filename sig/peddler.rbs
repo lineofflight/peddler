@@ -31,6 +31,10 @@ module Peddler
 
   def self.data_kiosk_2023_11_15: () -> singleton(APIs::DataKiosk20231115)
 
+  def self.delivery_by_amazon: () -> singleton(APIs::DeliveryByAmazon20220701)
+
+  def self.delivery_by_amazon_2022_07_01: () -> singleton(APIs::DeliveryByAmazon20220701)
+
   def self.easy_ship: () -> singleton(APIs::EasyShip20220323)
 
   def self.easy_ship_2022_03_23: () -> singleton(APIs::EasyShip20220323)
