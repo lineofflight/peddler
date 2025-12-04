@@ -4,12 +4,12 @@
 
 module Peddler
   module APIs
-    class Finances20240619
-      # A list of additional information about the item.
-      class Contexts < Array
+    class FulfillmentOutbound20200701
+      # An array of delivery offering information.
+      class DeliveryOfferingsList < Array
         class << self
           def parse(array)
-            new(array.map { |item| Context.parse(item) })
+            new(array.map { |item| DeliveryOffering.parse(item) })
           end
         end
       end

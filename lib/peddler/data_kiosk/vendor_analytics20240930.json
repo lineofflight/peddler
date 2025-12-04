@@ -1805,6 +1805,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "lostFeaturedOffer",
+              "description": "The percentage of product page views where your offer loses the Featured Offer\nposition (Buy Box) to others. It is equal to the number of glance views where\nyou do not win the Featured Offer divided by the total number of glance views.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,

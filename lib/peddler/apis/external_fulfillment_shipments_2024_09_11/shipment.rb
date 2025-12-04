@@ -58,6 +58,9 @@ module Peddler
         #   seller. Applicable for direct-fulfillment sellers.
         attribute?(:party_info_list, [PartyIdentificationInfo], from: "partyInfoList")
 
+        # @return [String] The reason for the sub-status.
+        attribute?(:reason, String)
+
         # @return [String] The sub status of the shipment.
         attribute?(:sub_status, String, from: "subStatus")
       end

@@ -10,6 +10,10 @@ module Peddler
     class SellerWallet20240301
       # The current transaction status and related historical details.
       Transaction = Structure.new do
+        # @return [String] The unique identifier of the Amazon Seller Wallet bank account from which the money is
+        #   debited.
+        attribute(:account_id, String, from: "accountId")
+
         # @return [Time] The last update date on the transaction
         attribute(:last_update_date, Time, from: "lastUpdateDate")
 
@@ -32,9 +36,6 @@ module Peddler
         # @return [String] The transaction initiation source. This value is either the Amazon portal or PISP name that
         #   the customer used to start the transaction.
         attribute(:transaction_requester_source, String, from: "transactionRequesterSource")
-
-        # @return [TransactionAccount] Source bank account details in the transaction
-        attribute(:transaction_source_account, TransactionAccount, from: "transactionSourceAccount")
 
         # @return [String] Execution Status of the transaction
         attribute(:transaction_status, String, from: "transactionStatus")
@@ -61,6 +62,9 @@ module Peddler
         # @return [Money] Specifies the amount of completed transaction in the destination account currency, this will
         #   be populated only for international transactions
         attribute?(:transaction_final_amount, Money, from: "transactionFinalAmount")
+
+        # @return [TransactionAccount] Source bank account details in the transaction
+        attribute?(:transaction_source_account, TransactionAccount, from: "transactionSourceAccount")
       end
     end
   end

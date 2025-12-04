@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class Finances20240619
-      # Error response returned when the request is unsuccessful.
+      # An error response returned when the request is unsuccessful.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.
         attribute(:code, String)

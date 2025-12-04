@@ -12,7 +12,7 @@ module Peddler
         # @return [String]
         attribute(:context_type, String, from: "contextType")
 
-        # @return [String] Amazon Standard Identification Number (ASIN) of the item.
+        # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String)
 
         # @return [String] Channel details of related transaction.
@@ -23,37 +23,37 @@ module Peddler
         # **Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
         attribute?(:deferral_reason, String, from: "deferralReason")
 
-        # @return [String] End time of the transaction.
+        # @return [String] The end time of the transaction.
         attribute?(:end_time, String, from: "endTime")
 
-        # @return [String] Fulfillment network of the item.
+        # @return [String] The fulfillment network of the item.
         attribute?(:fulfillment_network, String, from: "fulfillmentNetwork")
 
         # @return [String] The release date of the transaction.
         attribute?(:maturity_date, String, from: "maturityDate")
 
-        # @return [String] Order type of the transaction.
+        # @return [String] The transaction's order type.
         attribute?(:order_type, String, from: "orderType")
 
-        # @return [String] Date of payment made.
+        # @return [String] The date of the payment.
         attribute?(:payment_date, String, from: "paymentDate")
 
-        # @return [String] Method of payment made.
+        # @return [String] The method of payment.
         attribute?(:payment_method, String, from: "paymentMethod")
 
-        # @return [String] Reference number of payment made.
+        # @return [String] The reference number of the payment.
         attribute?(:payment_reference, String, from: "paymentReference")
 
-        # @return [String] Type of payment made.
+        # @return [String] The type of payment.
         attribute?(:payment_type, String, from: "paymentType")
 
-        # @return [Integer] Quantity of the item shipped.
+        # @return [Integer] The quantity of the item shipped.
         attribute?(:quantity_shipped, Integer, from: "quantityShipped")
 
-        # @return [String] Stock keeping unit (SKU) of the item.
+        # @return [String] The Stock Keeping Unit (SKU) of the item.
         attribute?(:sku, String)
 
-        # @return [String] Start time of the transaction.
+        # @return [String] The start time of the transaction.
         attribute?(:start_time, String, from: "startTime")
 
         # @return [String] The store name associated with the transaction.

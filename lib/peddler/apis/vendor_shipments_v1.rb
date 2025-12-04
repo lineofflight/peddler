@@ -23,6 +23,18 @@ module Peddler
         meter(rate_limit).post(path, body:, parser:)
       end
 
+      # Submits one shipment confirmation for vendor orders and get response immediately.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash] A request to submit shipment confirmation.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def submit_shipment_confirmation(body, rate_limit: 10.0)
+        path = "/vendor/shipping/v1/shipmentConfirmation"
+        parser = -> { SubmitShipmentConfirmationResponse }
+        meter(rate_limit).post(path, body:, parser:)
+      end
+
       # Submits one or more shipment request for vendor Orders.
       #
       # @param body [Hash] A request to submit shipment request.
@@ -61,7 +73,7 @@ module Peddler
       #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param estimated_delivery_before [String] Get Shipment Details by passing Estimated Delivery Date Before. Must
       #   be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
-      # @param estimated_delivery_after [String] Get Shipment Details by passing Estimated Delivery Date Before. Must be
+      # @param estimated_delivery_after [String] Get Shipment Details by passing Estimated Delivery Date After. Must be
       #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param shipment_delivery_before [String] Get Shipment Details by passing Shipment Delivery Date Before. Must be
       #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.

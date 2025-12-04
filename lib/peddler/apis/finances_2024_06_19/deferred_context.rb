@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class Finances20240619
-      # Additional information related to Deferred transactions.
+      # Additional information related to deferred transactions.
       DeferredContext = Structure.new do
         # @return [String] The deferral policy applied to the transaction.
         #

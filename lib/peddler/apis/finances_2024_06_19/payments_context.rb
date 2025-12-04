@@ -7,18 +7,18 @@ require "structure"
 module Peddler
   module APIs
     class Finances20240619
-      # Additional information related to Payments related transactions.
+      # Additional information related to payments-related transactions.
       PaymentsContext = Structure.new do
-        # @return [String] Date of payment made.
+        # @return [String] The date of the payment.
         attribute?(:payment_date, String, from: "paymentDate")
 
-        # @return [String] Method of payment made.
+        # @return [String] The method of payment.
         attribute?(:payment_method, String, from: "paymentMethod")
 
-        # @return [String] Reference number of payment made.
+        # @return [String] The reference number of the payment.
         attribute?(:payment_reference, String, from: "paymentReference")
 
-        # @return [String] Type of payment made.
+        # @return [String] The type of payment.
         attribute?(:payment_type, String, from: "paymentType")
       end
     end

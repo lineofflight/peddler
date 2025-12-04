@@ -119,8 +119,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Defines the actual payload of the request
-      # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
-      # @param amount_digital_signature [String] Digital signature for the source currency transaction amount.
+      # @param dest_account_digital_signature [String] Digital signature for the destination bank account details. For
+      #   more information, refer to [Third-Party Provider Signature
+      #   Guidance](https://developer-docs.amazon.com/sp-api/docs/tpp-registration-signature-guidance).
+      # @param amount_digital_signature [String] Digital signature for the source currency transaction amount. Sign in
+      #   the order of the request definitions. You can omit empty or optional fields. For more information, refer to
+      #   [Third-Party Provider Signature
+      #   Guidance](https://developer-docs.amazon.com/sp-api/docs/tpp-registration-signature-guidance).
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).

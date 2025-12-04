@@ -29,12 +29,12 @@ module Peddler
         #   sensitive information other than VAT-ID.
         attribute?(:customer_payment_reference, String, from: "customerPaymentReference")
 
-        # @return [AccountHolderAddress] Destination bank account details of the transaction request
-        attribute?(:destination_account_holder_address, AccountHolderAddress, from: "destinationAccountHolderAddress")
-
         # @return [String] Optional field to specify the unique identifier of the destination bank account where the
         #   money needs to be deposited
         attribute?(:destination_account_id, String, from: "destinationAccountId")
+
+        # @return [PayeeContactInformation] The contact information of a payee.
+        attribute?(:payee_contact_information, PayeeContactInformation, from: "payeeContactInformation")
 
         # @return [String] A description of the transaction.
         attribute?(:transaction_description, String, from: "transactionDescription")
