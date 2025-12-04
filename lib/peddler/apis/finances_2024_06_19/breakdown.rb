@@ -7,11 +7,10 @@ require "structure"
 module Peddler
   module APIs
     class Finances20240619
-      # Breakdown provides details regarding the money movement under the financial transaction. Breakdowns get
-      # categorized further into breakdown types, breakdown amounts, and further breakdowns into a hierarchical
-      # structure.
+      # Details about the movement of money in the financial transaction. Breakdowns are further categorized into
+      # breakdown types, breakdown amounts, and further breakdowns.
       Breakdown = Structure.new do
-        # @return [Money] The amount of the charge.
+        # @return [Money] The monetary amount of the charge.
         attribute?(:breakdown_amount, Money, from: "breakdownAmount")
 
         # @return [String] The type of charge.

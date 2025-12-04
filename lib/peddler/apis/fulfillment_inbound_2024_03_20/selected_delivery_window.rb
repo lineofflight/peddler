@@ -10,7 +10,8 @@ module Peddler
     class FulfillmentInbound20240320
       # Selected delivery window attributes.
       SelectedDeliveryWindow = Structure.new do
-        # @return [String] Identifies type of Delivery Window Availability. Values: `AVAILABLE`, `CONGESTED`
+        # @return [String] The type of delivery window availability. Values: `AVAILABLE`, `BLOCKED`, `CONGESTED`,
+        #   `DISCOUNTED`
         attribute(:availability_type, String, from: "availabilityType")
 
         # @return [String] Identifier of a delivery window option. A delivery window option represent one option for

@@ -7,9 +7,9 @@ require "structure"
 module Peddler
   module APIs
     class Finances20240619
-      # Metadata describing the seller.
+      # Metadata that describes the seller.
       SellingPartnerMetadata = Structure.new do
-        # @return [String] Account type of transaction.
+        # @return [String] The type of account in the transaction.
         attribute?(:account_type, String, from: "accountType")
 
         # @return [String] The identifier of the marketplace where the transaction occurred. The marketplace ID is the
@@ -17,7 +17,7 @@ module Peddler
         #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute?(:marketplace_id, String, from: "marketplaceId")
 
-        # @return [String] Unique seller identifier.
+        # @return [String] A unique seller identifier.
         attribute?(:selling_partner_id, String, from: "sellingPartnerId")
       end
     end

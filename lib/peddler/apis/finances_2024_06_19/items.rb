@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class Finances20240619
-      # List of items in the transaction
+      # A list of items in the transaction.
       class Items < Array
         class << self
           def parse(array)

@@ -12,7 +12,7 @@ module Peddler
         # @return [String] Enumerated set of related item identifier names for the item.
         attribute?(:item_related_identifier_name, String, from: "itemRelatedIdentifierName")
 
-        # @return [String] Corresponding value of ItemRelatedIdentifierName
+        # @return [String] Corresponding value to `ItemRelatedIdentifierName`.
         attribute?(:item_related_identifier_value, String, from: "itemRelatedIdentifierValue")
       end
     end

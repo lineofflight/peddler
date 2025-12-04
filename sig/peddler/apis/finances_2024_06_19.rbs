@@ -365,7 +365,7 @@ module Peddler
         def to_h: () -> { next_token: String?, transactions: Array[Peddler::APIs::Finances20240619::Transaction]? }
       end
 
-      def list_transactions: (String, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def list_transactions: (?posted_after: String?, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

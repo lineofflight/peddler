@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class Finances20240619
-      # Contains all information related to the transaction.
+      # All the information related to a transaction.
       Transaction = Structure.new do
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
         #   transaction.
@@ -18,10 +18,10 @@ module Peddler
 
         # @return [String] Describes the reasons for the transaction.
         #
-        # Example: 'Order Payment','Refund Order'
+        # **Example:** 'Order Payment', 'Refund Order'
         attribute?(:description, String)
 
-        # @return [Array<Item>] Additional information about the items in Transaction.
+        # @return [Array<Item>] Additional information about the items in the transaction.
         attribute?(:items, [Item])
 
         # @return [MarketplaceDetails] Information about the marketplace where the transaction occurred.
@@ -30,16 +30,16 @@ module Peddler
         # @return [String] The date and time when the transaction was posted.
         attribute?(:posted_date, String, from: "postedDate")
 
-        # @return [Array<RelatedIdentifier>] Related business identifiers of the transaction.
+        # @return [Array<RelatedIdentifier>] Identifiers related to the transaction, such as order and shipment IDs.
         attribute?(:related_identifiers, [RelatedIdentifier], from: "relatedIdentifiers")
 
-        # @return [SellingPartnerMetadata] Metadata describing the seller.
+        # @return [SellingPartnerMetadata] Metadata that describes the seller.
         attribute?(:selling_partner_metadata, SellingPartnerMetadata, from: "sellingPartnerMetadata")
 
-        # @return [Money] Total amount of transaction.
+        # @return [Money] The total amount of money in the transaction.
         attribute?(:total_amount, Money, from: "totalAmount")
 
-        # @return [String] The unique identifier for the transaction.
+        # @return [String] The unique identifier of the transaction.
         attribute?(:transaction_id, String, from: "transactionId")
 
         # @return [String] The status of the transaction.
@@ -54,9 +54,7 @@ module Peddler
 
         # @return [String] The type of transaction.
         #
-        # Possible values:
-        #
-        # * Shipment
+        # **Possible value:** `Shipment`
         attribute?(:transaction_type, String, from: "transactionType")
       end
     end

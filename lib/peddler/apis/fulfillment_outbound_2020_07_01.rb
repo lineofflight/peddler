@@ -24,6 +24,18 @@ module Peddler
         meter(rate_limit).post(path, body:, parser:)
       end
 
+      # Returns fast delivery estimates for Product Detail and Collection pages, based on criteria that you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash] GetDeliveryOfferingsRequest parameter
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def delivery_offerings(body, rate_limit: 5.0)
+        path = "/fba/outbound/2020-07-01/deliveryOfferings"
+        parser = -> { GetDeliveryOfferingsResponse }
+        meter(rate_limit).post(path, body:, parser:)
+      end
+
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
       # you specify.
       #
@@ -76,15 +88,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param package_number [Integer] The unencrypted package identifier. You can obtain this value from the
       #   `getFulfillmentOrder` operation.
-      # @param amazon_fulfillment_tracking_number [String] The Amazon fulfillment tracking number. You can obtain this
-      #   value from the `getFulfillmentOrder` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_package_tracking_details(package_number: nil, amazon_fulfillment_tracking_number: nil, rate_limit: 2.0)
+      def get_package_tracking_details(package_number, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/tracking"
         params = {
           "packageNumber" => package_number,
-          "amazonFulfillmentTrackingNumber" => amazon_fulfillment_tracking_number,
         }.compact
         parser = -> { GetPackageTrackingDetailsResponse }
         meter(rate_limit).get(path, params:, parser:)

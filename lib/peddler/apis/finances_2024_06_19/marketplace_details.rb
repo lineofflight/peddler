@@ -14,9 +14,8 @@ module Peddler
         #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute?(:marketplace_id, String, from: "marketplaceId")
 
-        # @return [String] The name of the marketplace where the transaction occurred.
-        #
-        # Example: 'Amazon.com','Amazon.in'
+        # @return [String] The name of the marketplace where the transaction occurred. For example:
+        #   `Amazon.com`,`Amazon.in`
         attribute?(:marketplace_name, String, from: "marketplaceName")
       end
     end

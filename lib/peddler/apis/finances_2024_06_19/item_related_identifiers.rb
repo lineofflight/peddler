@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class Finances20240619
-      # Related Business identifiers of the item in Transaction.
+      # Related business identifiers of the item in the transaction.
       class ItemRelatedIdentifiers < Array
         class << self
           def parse(array)

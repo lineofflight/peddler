@@ -12,10 +12,10 @@ module Peddler
         # @return [String] Channel details of related transaction.
         attribute?(:channel, String)
 
-        # @return [String] Order type of the transaction.
+        # @return [String] The transaction's order type.
         attribute?(:order_type, String, from: "orderType")
 
-        # @return [String] Store name related to transaction.
+        # @return [String] The name of the store that is related to the transaction.
         attribute?(:store_name, String, from: "storeName")
       end
     end

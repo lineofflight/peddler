@@ -406,19 +406,20 @@ module Peddler
       end
 
       class Traffic < Data
-        def self.new: (?glance_views: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
-                    | (String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
-        def self.[]: (?glance_views: String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
-                   | (String?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
+        def self.new: (?glance_views: String?, ?lost_featured_offer: Float?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
+                    | (String?, Float?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
+        def self.[]: (?glance_views: String?, ?lost_featured_offer: Float?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
+                   | (String?, Float?) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
 
-        def self.members: () -> [ :glance_views ]
+        def self.members: () -> [ :glance_views, :lost_featured_offer ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::VendorAnalytics20240930::Traffic
 
         attr_reader glance_views: String?
+        attr_reader lost_featured_offer: Float?
 
-        def members: () -> [ :glance_views ]
-        def to_h: () -> { glance_views: String? }
+        def members: () -> [ :glance_views, :lost_featured_offer ]
+        def to_h: () -> { glance_views: String?, lost_featured_offer: Float? }
       end
 
       class UnitsWithValue < Data

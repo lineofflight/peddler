@@ -321,6 +321,28 @@ module Peddler
         def to_h: () -> { date_range: Peddler::APIs::FulfillmentOutbound20200701::DateRange?, expires_at: String?, policy: Peddler::APIs::FulfillmentOutbound20200701::DeliveryPolicy? }
       end
 
+      class DeliveryOffering < Data
+        def self.new: (?date_range: Peddler::APIs::FulfillmentOutbound20200701::DateRange?, ?expires_at: String?, ?policy: Peddler::APIs::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering
+                    | (Peddler::APIs::FulfillmentOutbound20200701::DateRange?, String?, Peddler::APIs::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering
+        def self.[]: (?date_range: Peddler::APIs::FulfillmentOutbound20200701::DateRange?, ?expires_at: String?, ?policy: Peddler::APIs::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering
+                   | (Peddler::APIs::FulfillmentOutbound20200701::DateRange?, String?, Peddler::APIs::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering
+
+        def self.members: () -> [ :date_range, :expires_at, :policy ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering
+
+        attr_reader date_range: Peddler::APIs::FulfillmentOutbound20200701::DateRange?
+        attr_reader expires_at: String?
+        attr_reader policy: Peddler::APIs::FulfillmentOutbound20200701::DeliveryPolicy?
+
+        def members: () -> [ :date_range, :expires_at, :policy ]
+        def to_h: () -> { date_range: Peddler::APIs::FulfillmentOutbound20200701::DateRange?, expires_at: String?, policy: Peddler::APIs::FulfillmentOutbound20200701::DeliveryPolicy? }
+      end
+
+      class DeliveryOfferingsList < Array[DeliveryOffering]
+        def self.parse: (Array[untyped]) -> DeliveryOfferingsList
+      end
+
       class DeliveryOffersList < Array[DeliveryOffer]
         def self.parse: (Array[untyped]) -> DeliveryOffersList
       end
@@ -356,6 +378,23 @@ module Peddler
 
         def members: () -> [ :delivery_instructions, :drop_off_location ]
         def to_h: () -> { delivery_instructions: String?, drop_off_location: Peddler::APIs::FulfillmentOutbound20200701::DropOffLocation? }
+      end
+
+      class DeliveryQuantity < Data
+        def self.new: (amount: String?, unit_of_measure: String?) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity
+                    | (String?, String?) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity
+        def self.[]: (amount: String?, unit_of_measure: String?) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity
+                   | (String?, String?) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity
+
+        def self.members: () -> [ :amount, :unit_of_measure ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity
+
+        attr_reader amount: String?
+        attr_reader unit_of_measure: String?
+
+        def members: () -> [ :amount, :unit_of_measure ]
+        def to_h: () -> { amount: String?, unit_of_measure: String? }
       end
 
       class DeliveryWindow < Data
@@ -737,6 +776,58 @@ module Peddler
 
       class FulfillmentShipmentPackageList < Array[FulfillmentShipmentPackage]
         def self.parse: (Array[untyped]) -> FulfillmentShipmentPackageList
+      end
+
+      class GetDeliveryOfferingsRequest < Data
+        def self.new: (destination_address: Peddler::APIs::FulfillmentOutbound20200701::VariablePrecisionAddress?, seller_sku: String?, ship_from_country_code: String?, ?quantity: Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsRequest
+                    | (Peddler::APIs::FulfillmentOutbound20200701::VariablePrecisionAddress?, String?, String?, Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsRequest
+        def self.[]: (destination_address: Peddler::APIs::FulfillmentOutbound20200701::VariablePrecisionAddress?, seller_sku: String?, ship_from_country_code: String?, ?quantity: Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsRequest
+                   | (Peddler::APIs::FulfillmentOutbound20200701::VariablePrecisionAddress?, String?, String?, Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsRequest
+
+        def self.members: () -> [ :destination_address, :seller_sku, :ship_from_country_code, :quantity ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsRequest
+
+        attr_reader destination_address: Peddler::APIs::FulfillmentOutbound20200701::VariablePrecisionAddress?
+        attr_reader quantity: Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity?
+        attr_reader seller_sku: String?
+        attr_reader ship_from_country_code: String?
+
+        def members: () -> [ :destination_address, :seller_sku, :ship_from_country_code, :quantity ]
+        def to_h: () -> { destination_address: Peddler::APIs::FulfillmentOutbound20200701::VariablePrecisionAddress?, seller_sku: String?, ship_from_country_code: String?, quantity: Peddler::APIs::FulfillmentOutbound20200701::DeliveryQuantity? }
+      end
+
+      class GetDeliveryOfferingsResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResponse
+                    | (Array[Peddler::APIs::FulfillmentOutbound20200701::Error]?, Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResponse
+        def self.[]: (?errors: Array[Peddler::APIs::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResponse
+                   | (Array[Peddler::APIs::FulfillmentOutbound20200701::Error]?, Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResponse
+
+        attr_reader errors: Array[Peddler::APIs::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult?
+
+        def members: () -> [ :errors, :payload ]
+        def to_h: () -> { errors: Array[Peddler::APIs::FulfillmentOutbound20200701::Error]?, payload: Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult? }
+      end
+
+      class GetDeliveryOfferingsResult < Data
+        def self.new: (?delivery_offerings: Array[Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering]?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult
+                    | (Array[Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering]?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult
+        def self.[]: (?delivery_offerings: Array[Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering]?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult
+                   | (Array[Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering]?) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult
+
+        def self.members: () -> [ :delivery_offerings ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentOutbound20200701::GetDeliveryOfferingsResult
+
+        attr_reader delivery_offerings: Array[Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering]?
+
+        def members: () -> [ :delivery_offerings ]
+        def to_h: () -> { delivery_offerings: Array[Peddler::APIs::FulfillmentOutbound20200701::DeliveryOffering]? }
       end
 
       class GetDeliveryOffersProduct < Data
@@ -1589,6 +1680,7 @@ module Peddler
       def create_fulfillment_order: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
       def create_fulfillment_return: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
+      def delivery_offerings: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def delivery_offers: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
       def get_feature_inventory: (String, String, ?next_token: String?, ?query_start_date: String?, ?rate_limit: Float) -> Peddler::Response
@@ -1597,7 +1689,7 @@ module Peddler
       def get_fulfillment_order: (String, ?rate_limit: Float) -> Peddler::Response
       def get_fulfillment_preview: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
-      def get_package_tracking_details: (?package_number: Integer?, ?amazon_fulfillment_tracking_number: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_package_tracking_details: (Integer, ?rate_limit: Float) -> Peddler::Response
       def list_all_fulfillment_orders: (?query_start_date: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
 
       def list_return_reason_codes: (String, ?marketplace_id: String?, ?seller_fulfillment_order_id: String?, ?language: String?, ?rate_limit: Float) -> Peddler::Response

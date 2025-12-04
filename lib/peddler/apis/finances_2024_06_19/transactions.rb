@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class Finances20240619
-      # Contains transactions within a given time period.
+      # A list of transactions within the specified time period.
       class Transactions < Array
         class << self
           def parse(array)
