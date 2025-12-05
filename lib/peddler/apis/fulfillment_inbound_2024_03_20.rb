@@ -22,10 +22,8 @@ module Peddler
       # @param status [String] The status of an inbound plan.
       # @param sort_by [String] Sort by field.
       # @param sort_order [String] The sort order.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil,
-        rate_limit: 2.0)
+      def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans"
         params = {
           "pageSize" => page_size,
@@ -35,7 +33,7 @@ module Peddler
           "sortOrder" => sort_order,
         }.compact
         parser = -> { ListInboundPlansResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's
@@ -43,24 +41,22 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request to `createInboundPlan`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_inbound_plan(body, rate_limit: 2.0)
+      def create_inbound_plan(body)
         path = "/inbound/fba/2024-03-20/inboundPlans"
         parser = -> { CreateInboundPlanResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Fetches the top level information about an inbound plan.
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_inbound_plan(inbound_plan_id, rate_limit: 2.0)
+      def get_inbound_plan(inbound_plan_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}"
         parser = -> { InboundPlan }
-        meter(rate_limit).get(path, parser:)
+        get(path, parser:)
       end
 
       # Provides a paginated list of box packages in an inbound plan.
@@ -71,16 +67,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
+      def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/boxes"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListInboundPlanBoxesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Cancels an Inbound Plan. Charges may apply if the cancellation is performed outside of a void window. The window
@@ -89,12 +84,11 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_inbound_plan(inbound_plan_id, rate_limit: 2.0)
+      def cancel_inbound_plan(inbound_plan_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/cancellation"
         parser = -> { CancelInboundPlanResponse }
-        meter(rate_limit).put(path, parser:)
+        put(path, parser:)
       end
 
       # Provides a paginated list of item packages in an inbound plan.
@@ -105,16 +99,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
+      def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/items"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListInboundPlanItemsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Updates the name of an existing inbound plan.
@@ -122,11 +115,10 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `updateInboundPlanName`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_inbound_plan_name(inbound_plan_id, body, rate_limit: 2.0)
+      def update_inbound_plan_name(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/name"
-        meter(rate_limit).put(path, body:)
+        put(path, body:)
       end
 
       # Retrieves a page of boxes from a given packing group. These boxes were previously provided through the
@@ -140,17 +132,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
-        rate_limit: 2.0)
+      def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingGroups/#{percent_encode(packing_group_id)}/boxes"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListPackingGroupBoxesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Retrieves a page of items in a given packing group. Packing options must first be generated by the corresponding
@@ -163,17 +153,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
-        rate_limit: 2.0)
+      def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingGroups/#{percent_encode(packing_group_id)}/items"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListPackingGroupItemsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate
@@ -182,12 +170,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `setPackingInformation`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def set_packing_information(inbound_plan_id, body, rate_limit: 2.0)
+      def set_packing_information(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingInformation"
         parser = -> { SetPackingInformationResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Retrieves a list of all packing options for an inbound plan. Packing options must first be generated by the
@@ -199,28 +186,26 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
+      def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingOptions"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListPackingOptionsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Generates available packing options for the inbound plan.
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_packing_options(inbound_plan_id, rate_limit: 2.0)
+      def generate_packing_options(inbound_plan_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingOptions"
         parser = -> { GeneratePackingOptionsResponse }
-        meter(rate_limit).post(path, parser:)
+        post(path, parser:)
       end
 
       # Confirms the packing option for an inbound plan.
@@ -228,12 +213,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param packing_option_id [String] Identifier of a packing option.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_packing_option(inbound_plan_id, packing_option_id, rate_limit: 2.0)
+      def confirm_packing_option(inbound_plan_id, packing_option_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingOptions/#{percent_encode(packing_option_id)}/confirmation"
         parser = -> { ConfirmPackingOptionResponse }
-        meter(rate_limit).post(path, parser:)
+        post(path, parser:)
       end
 
       # Provides a paginated list of pallet packages in an inbound plan. An inbound plan will have pallets when the
@@ -245,16 +229,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
+      def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/pallets"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListInboundPlanPalletsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Provides a list of all placement options for an inbound plan. Placement options must first be generated by the
@@ -266,16 +249,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
+      def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/placementOptions"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListPlacementOptionsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Generates placement options for the inbound plan.
@@ -283,12 +265,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `generatePlacementOptions`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_placement_options(inbound_plan_id, body, rate_limit: 2.0)
+      def generate_placement_options(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/placementOptions"
         parser = -> { GeneratePlacementOptionsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.
@@ -297,12 +278,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param placement_option_id [String] The identifier of a placement option. A placement option represents the
       #   shipment splits and destinations of SKUs.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_placement_option(inbound_plan_id, placement_option_id, rate_limit: 2.0)
+      def confirm_placement_option(inbound_plan_id, placement_option_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/placementOptions/#{percent_encode(placement_option_id)}/confirmation"
         parser = -> { ConfirmPlacementOptionResponse }
-        meter(rate_limit).post(path, parser:)
+        post(path, parser:)
       end
 
       # Provides the full details for a specific shipment within an inbound plan. The `transportationOptionId` inside
@@ -311,12 +291,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment(inbound_plan_id, shipment_id, rate_limit: 2.0)
+      def get_shipment(inbound_plan_id, shipment_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}"
         parser = -> { Shipment }
-        meter(rate_limit).get(path, parser:)
+        get(path, parser:)
       end
 
       # Provides a paginated list of box packages in a shipment.
@@ -328,16 +307,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
+      def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/boxes"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListShipmentBoxesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Retrieve a paginated list of shipment content update previews for a given shipment. The shipment content update
@@ -351,17 +329,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
-        rate_limit: 2.0)
+      def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/contentUpdatePreviews"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListShipmentContentUpdatePreviewsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Generate a shipment content update preview given a set of intended boxes and/or items for a shipment with a
@@ -372,12 +348,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `generateShipmentContentUpdatePreviews`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
+      def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/contentUpdatePreviews"
         parser = -> { GenerateShipmentContentUpdatePreviewsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Retrieve a shipment content update preview which provides a summary of the requested shipment content changes
@@ -388,12 +363,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param content_update_preview_id [String] Identifier of a content update preview.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id, rate_limit: 2.0)
+      def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/contentUpdatePreviews/#{percent_encode(content_update_preview_id)}"
         parser = -> { ContentUpdatePreview }
-        meter(rate_limit).get(path, parser:)
+        get(path, parser:)
       end
 
       # Confirm a shipment content update preview and accept the changes in transportation cost.
@@ -402,13 +376,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param content_update_preview_id [String] Identifier of a content update preview.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id,
-        rate_limit: 2.0)
+      def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/contentUpdatePreviews/#{percent_encode(content_update_preview_id)}/confirmation"
         parser = -> { ConfirmShipmentContentUpdatePreviewResponse }
-        meter(rate_limit).post(path, parser:)
+        post(path, parser:)
       end
 
       # Provide delivery challan document for PCP transportation in IN marketplace.
@@ -416,12 +388,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_delivery_challan_document(inbound_plan_id, shipment_id, rate_limit: 2.0)
+      def get_delivery_challan_document(inbound_plan_id, shipment_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/deliveryChallanDocument"
         parser = -> { GetDeliveryChallanDocumentResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, parser:)
       end
 
       # Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the
@@ -435,17 +406,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
-        rate_limit: 2.0)
+      def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/deliveryWindowOptions"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListDeliveryWindowOptionsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Generates available delivery window options for a given shipment.
@@ -453,12 +422,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] The shipment to generate delivery window options for.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_delivery_window_options(inbound_plan_id, shipment_id, rate_limit: 2.0)
+      def generate_delivery_window_options(inbound_plan_id, shipment_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/deliveryWindowOptions"
         parser = -> { GenerateDeliveryWindowOptionsResponse }
-        meter(rate_limit).post(path, parser:)
+        post(path, parser:)
       end
 
       # Confirms the delivery window option for chosen shipment within an inbound plan. A placement option must be
@@ -472,12 +440,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] The shipment to confirm the delivery window option for.
       # @param delivery_window_option_id [String] The id of the delivery window option to be confirmed.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id, rate_limit: 2.0)
+      def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/deliveryWindowOptions/#{percent_encode(delivery_window_option_id)}/confirmation"
         parser = -> { ConfirmDeliveryWindowOptionsResponse }
-        meter(rate_limit).post(path, parser:)
+        post(path, parser:)
       end
 
       # Provides a paginated list of item packages in a shipment.
@@ -489,16 +456,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
+      def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/items"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListShipmentItemsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Updates the name of an existing shipment.
@@ -507,11 +473,10 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `updateShipmentName`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_shipment_name(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
+      def update_shipment_name(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/name"
-        meter(rate_limit).put(path, body:)
+        put(path, body:)
       end
 
       # Provides a paginated list of pallet packages in a shipment. A palletized shipment will have pallets when the
@@ -524,16 +489,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
+      def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/pallets"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { ListShipmentPalletsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Cancels a self-ship appointment slot against a shipment. Only available in the following
@@ -543,12 +507,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `cancelSelfShipAppointment`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body, rate_limit: nil)
+      def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentCancellation"
         parser = -> { CancelSelfShipAppointmentResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, parser:)
       end
 
       # Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only
@@ -563,17 +526,15 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
-        rate_limit: nil)
+      def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { GetSelfShipAppointmentSlotsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Initiates the process of generating the appointment slots list. Only available in the following
@@ -583,12 +544,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `generateSelfShipAppointmentSlots`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body, rate_limit: nil)
+      def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots"
         parser = -> { GenerateSelfShipAppointmentSlotsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following
@@ -599,12 +559,11 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param slot_id [String] An identifier to a self-ship appointment slot.
       # @param body [Hash] The body of the request to `scheduleSelfShipAppointment`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body, rate_limit: nil)
+      def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots/#{percent_encode(slot_id)}/schedule"
         parser = -> { ScheduleSelfShipAppointmentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Updates the source address of an existing shipment. The shipment source address can only be updated prior to the
@@ -616,12 +575,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `updateShipmentSourceAddress`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_shipment_source_address(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
+      def update_shipment_source_address(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/sourceAddress"
         parser = -> { UpdateShipmentSourceAddressResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, parser:)
       end
 
       # Updates a shipment's tracking details.
@@ -630,12 +588,11 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `updateShipmentTrackingDetails`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_shipment_tracking_details(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
+      def update_shipment_tracking_details(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/trackingDetails"
         parser = -> { UpdateShipmentTrackingDetailsResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, parser:)
       end
 
       # Retrieves all transportation options for a shipment. Transportation options must first be generated by the
@@ -652,10 +609,9 @@ module Peddler
       #   `placementOptionId` or `shipmentId` must be specified.
       # @param shipment_id [String] The shipment to get transportation options for. Either `placementOptionId` or
       #   `shipmentId` must be specified.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil,
-        shipment_id: nil, rate_limit: 2.0)
+        shipment_id: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/transportationOptions"
         params = {
           "pageSize" => page_size,
@@ -664,7 +620,7 @@ module Peddler
           "shipmentId" => shipment_id,
         }.compact
         parser = -> { ListTransportationOptionsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Generates available transportation options for a given placement option.
@@ -672,12 +628,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `generateTransportationOptions`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
+      def generate_transportation_options(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/transportationOptions"
         parser = -> { GenerateTransportationOptionsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use
@@ -686,12 +641,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `confirmTransportationOptions`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
+      def confirm_transportation_options(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/transportationOptions/confirmation"
         parser = -> { ConfirmTransportationOptionsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # List the inbound compliance details for MSKUs in a given marketplace.
@@ -710,16 +664,15 @@ module Peddler
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
       # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_item_compliance_details(mskus, marketplace_id, rate_limit: nil)
+      def list_item_compliance_details(mskus, marketplace_id)
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
           "mskus" => stringify_array(mskus),
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { ListItemComplianceDetailsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN -
@@ -729,27 +682,25 @@ module Peddler
       # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param body [Hash] The body of the request to `updateItemComplianceDetails`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_item_compliance_details(marketplace_id, body, rate_limit: 2.0)
+      def update_item_compliance_details(marketplace_id, body)
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { UpdateItemComplianceDetailsResponse }
-        meter(rate_limit).put(path, body:, params:, parser:)
+        put(path, body:, params:, parser:)
       end
 
       # For a given marketplace - creates labels for a list of MSKUs.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request to `createMarketplaceItemLabels`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_marketplace_item_labels(body, rate_limit: 2.0)
+      def create_marketplace_item_labels(body)
         path = "/inbound/fba/2024-03-20/items/labels"
         parser = -> { CreateMarketplaceItemLabelsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Get preparation details for a list of MSKUs in a specified marketplace.
@@ -768,40 +719,37 @@ module Peddler
       # @param marketplace_id [String] The marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_prep_details(marketplace_id, mskus, rate_limit: nil)
+      def list_prep_details(marketplace_id, mskus)
         path = "/inbound/fba/2024-03-20/items/prepDetails"
         params = {
           "marketplaceId" => marketplace_id,
           "mskus" => stringify_array(mskus),
         }.compact
         parser = -> { ListPrepDetailsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, parser:)
       end
 
       # Set the preparation details for a list of MSKUs in a specified marketplace.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request to `setPrepDetails`.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def set_prep_details(body, rate_limit: 2.0)
+      def set_prep_details(body)
         path = "/inbound/fba/2024-03-20/items/prepDetails"
         parser = -> { SetPrepDetailsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, parser:)
       end
 
       # Gets the status of the processing of an asynchronous API call.
       #
       # @note This operation can make a static sandbox call.
       # @param operation_id [String] Identifier of an asynchronous operation.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_inbound_operation_status(operation_id, rate_limit: 2.0)
+      def get_inbound_operation_status(operation_id)
         path = "/inbound/fba/2024-03-20/operations/#{percent_encode(operation_id)}"
         parser = -> { InboundOperationStatus }
-        meter(rate_limit).get(path, parser:)
+        get(path, parser:)
       end
     end
   end
