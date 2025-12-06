@@ -16,4 +16,10 @@ Metrics/ParameterLists:
   # get_transfer_preview operation required 6 parameters.
   Exclude:
     - "lib/peddler/apis/*.rb"
-    - "lib/generator.rb"
+
+Naming/AccessorMethodName:
+  # Generated API files may have accessor methods that do not follow the
+  # standard naming conventions. These should not be auto-corrected to avoid
+  # inconsistencies with the code generation templates.
+  Exclude:
+    - "lib/peddler/apis/*.rb"
