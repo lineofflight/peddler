@@ -24,18 +24,6 @@ module Peddler
         meter(rate_limit).post(path, body:, parser:)
       end
 
-      # Returns fast delivery estimates for Product Detail and Collection pages, based on criteria that you specify.
-      #
-      # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] GetDeliveryOfferingsRequest parameter
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def delivery_offerings(body, rate_limit: 5.0)
-        path = "/fba/outbound/2020-07-01/deliveryOfferings"
-        parser = -> { GetDeliveryOfferingsResponse }
-        meter(rate_limit).post(path, body:, parser:)
-      end
-
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
       # you specify.
       #
