@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "minitest/autorun"
+require "minitest/mock"
 require "vcr"
 require "webmock/minitest"
 
@@ -78,7 +79,7 @@ module Recordable
   def setup
     super
 
-    test_name = location.split(/::|#/).join("/")
+    test_name = "#{self.class.name}/#{name}".gsub("::", "/")
     VCR.insert_cassette(test_name)
   end
 
