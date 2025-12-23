@@ -22,6 +22,11 @@ module Peddler
         #   estimated sales, fees, and cost data. The supported fee types and advertisement charge types can be found
         #   [here](https://sellercentral.amazon.com/help/hub/reference/GQNVDV46U9JQ25HY).
         attribute?(:economics_preview, [Economics], from: "economicsPreview")
+
+        # @return [Array<Economics>] A query that simulates seller economics data for specified items, aggregated by a
+        #   date range between startDate and endDate. The data includes estimated sales, fees, and costs, which vary
+        #   based on the action type during the selected period.
+        attribute?(:economics_simulation, [Economics], from: "economicsSimulation")
       end
     end
   end

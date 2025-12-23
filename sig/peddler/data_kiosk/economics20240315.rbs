@@ -58,20 +58,21 @@ module Peddler
       end
 
       class AnalyticsEconomics20240315 < Data
-        def self.new: (?economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, ?economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
-                    | (Array[Peddler::DataKiosk::Economics20240315::Economics]?, Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
-        def self.[]: (?economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, ?economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
-                   | (Array[Peddler::DataKiosk::Economics20240315::Economics]?, Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
+        def self.new: (?economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, ?economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?, ?economics_simulation: Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
+                    | (Array[Peddler::DataKiosk::Economics20240315::Economics]?, Array[Peddler::DataKiosk::Economics20240315::Economics]?, Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
+        def self.[]: (?economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, ?economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?, ?economics_simulation: Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
+                   | (Array[Peddler::DataKiosk::Economics20240315::Economics]?, Array[Peddler::DataKiosk::Economics20240315::Economics]?, Array[Peddler::DataKiosk::Economics20240315::Economics]?) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
 
-        def self.members: () -> [ :economics, :economics_preview ]
+        def self.members: () -> [ :economics, :economics_preview, :economics_simulation ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::Economics20240315::AnalyticsEconomics20240315
 
         attr_reader economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?
         attr_reader economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?
+        attr_reader economics_simulation: Array[Peddler::DataKiosk::Economics20240315::Economics]?
 
-        def members: () -> [ :economics, :economics_preview ]
-        def to_h: () -> { economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]? }
+        def members: () -> [ :economics, :economics_preview, :economics_simulation ]
+        def to_h: () -> { economics: Array[Peddler::DataKiosk::Economics20240315::Economics]?, economics_preview: Array[Peddler::DataKiosk::Economics20240315::Economics]?, economics_simulation: Array[Peddler::DataKiosk::Economics20240315::Economics]? }
       end
 
       class Economics < Data
