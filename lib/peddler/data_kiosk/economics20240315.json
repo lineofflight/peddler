@@ -8,6 +8,29 @@
       "subscriptionType": null,
       "types": [
         {
+          "kind": "ENUM",
+          "name": "ActionType",
+          "description": "Supported action types in economic simulations. Economic results will only be\nreturned for products eligible for the selected actions.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "AWD",
+              "description": "Amazon Warehousing and Distribution - simulate business impact of using AWD services.\nProvides upstream supply chain solutions including bulk storage and automatic replenishment.\nFor details, refer to [Amazon Warehousing and Distribution](https://sellercentral.amazon.com/help/hub/reference/external/GF6ZC8VEBM7HCEGV).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SIPP",
+              "description": "Ships in Product Packaging program - simulate business impact of adding products to this program.\nReduces packaging waste and costs by shipping items in their original packaging.\nFor details, refer to [Ships in Product Packaging](https://sellercentral.amazon.com/help/hub/reference/external/GDTDMAWM8FG2CX6U).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "AdSummary",
           "description": "The advertisements spend data summary for the seller's account aggregated by transaction event type: charge.",
@@ -201,6 +224,45 @@
           "possibleTypes": null
         },
         {
+          "kind": "INPUT_OBJECT",
+          "name": "AmountInput",
+          "description": "Monetary amount with the corresponding currency code.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "amount",
+              "description": "The amount.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "currencyCode",
+              "description": "Currency code of the amount in ISO 4217 format.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "Analytics_Economics_2024_03_15",
           "description": "A root type for seller economics queries version 2024_03_15.",
@@ -312,7 +374,7 @@
                 },
                 {
                   "name": "endDate",
-                  "description": "The end date of the seller economics preview data to retrieve. The end date must be no more than 30 days after today.",
+                  "description": "The end date of the seller economics preview data to retrieve. The end date must be no more than 120 days after today.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -371,6 +433,109 @@
                 {
                   "name": "startDate",
                   "description": "The start date of the seller preview economics data to retrieve. The start date must be not earlier than today.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Date",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Economics",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "economicsSimulation",
+              "description": "A query that simulates seller economics data for specified items, aggregated\nby a date range between startDate and endDate. The data includes estimated\nsales, fees, and costs, which vary based on the action type during the\nselected period.",
+              "args": [
+                {
+                  "name": "actionTypes",
+                  "description": "Specifies which action types to simulate.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "LIST",
+                      "name": null,
+                      "ofType": {
+                        "kind": "NON_NULL",
+                        "name": null,
+                        "ofType": {
+                          "kind": "ENUM",
+                          "name": "ActionType",
+                          "ofType": null
+                        }
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "endDate",
+                  "description": "The end date of the seller economics simulation data to retrieve. The end date must be no more than 90 days after today.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Date",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "marketplaceId",
+                  "description": "The marketplace identifiers to retrieve seller simulation economics data for.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "products",
+                  "description": "List of products to include in the economics simulation. Maximum 100\nproducts per request. Each product must contain required identifiers for fee calculations.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "LIST",
+                      "name": null,
+                      "ofType": {
+                        "kind": "NON_NULL",
+                        "name": null,
+                        "ofType": {
+                          "kind": "INPUT_OBJECT",
+                          "name": "Product",
+                          "ofType": null
+                        }
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "startDate",
+                  "description": "The start date of the seller economics simulation data to retrieve. The start date must be not earlier than today.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -1308,6 +1473,80 @@
           "possibleTypes": null
         },
         {
+          "kind": "INPUT_OBJECT",
+          "name": "Product",
+          "description": "A product entity with various Amazon identifiers and input context.\nThis type contains the core identifiers used across Amazon's fulfillment and catalog systems\n@example\n{\n  idType: ASIN\n  idValue: \"B08N5WRWNW\"\n  inputContext: { ... }\n}",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "identifier",
+              "description": "The product identifier.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProductIdentifier",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "inputContext",
+              "description": "Context information about how this product data was input/sourced.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "ProductInputContext",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProductIdentifier",
+          "description": "The product identifier.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "type",
+              "description": "The type of the product identifier.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ProductIdentifierType",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "value",
+              "description": "The value of the product identifier.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "ENUM",
           "name": "ProductIdentifierGranularity",
           "description": "The product identifier granularity used in aggregation.",
@@ -1318,12 +1557,6 @@
             {
               "name": "CHILD_ASIN",
               "description": "Seller Economics data is aggregated by child ASIN.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FNSKU",
-              "description": "Seller Economics data is aggregated by fulfillment network sku.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -1340,6 +1573,106 @@
               "deprecationReason": null
             }
           ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "ProductIdentifierType",
+          "description": "The productIdentifier types that are supported in economics simulation.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "ASIN",
+              "description": "Amazon Standard Identification Number - unique catalog identifier",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FNSKU",
+              "description": "Fulfillment Network SKU - warehouse/fulfillment identifier",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MSKU",
+              "description": "Merchant SKU - seller's unique identifier for this product",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProductInputContext",
+          "description": "Input context containing operational and financial parameters for product\nprocessing. This type captures the business context needed for seller economics calculations.\n@example\n{\n  itemPrice: { amount: 29.99, currencyCode: \"USD\" }\n  shippingCost: { amount: 1.99, currencyCode: \"USD\" }\n  unitPerCarton: 12\n  historicalAverageWeeklySales: 150\n  sendToAWDQuantity: 500\n  shipmentLeadTime: 2\n}",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "historicalAverageWeeklySales",
+              "description": "Historical Weekly Sales (units). Default value calculated based on the average weekly sales in the past 90 days.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "itemPrice",
+              "description": "The item price, will use default value of the listing if it is empty.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "AmountInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "sendToAWDQuantity",
+              "description": "Send to AWD quantity - units allocated to Amazon Warehousing and Distribution.\nDefault value is 12 weeks of Historical Weekly Sales.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "shipmentLeadTime",
+              "description": "Shipment lead time (weeks) - time required from shipment to delivery for supply planning. Default value is 1 week.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "shippingCost",
+              "description": "The shipping cost, will use default value of the listing if it is empty.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "AmountInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "unitPerCarton",
+              "description": "Units per carton - packaging configuration for AWD shipping and inventory\nmanagement. Default value is 20 units per carton.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
           "possibleTypes": null
         },
         {
