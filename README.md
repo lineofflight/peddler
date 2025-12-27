@@ -11,7 +11,7 @@ Peddler is automatically generated from the latest Open API models provided by A
 To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials][view-credentials] to access your own or other selling partners' data.
 
 - [API docs][api-docs]
-- [Swagger models][swagger-models]
+- [OpenAPI models][openapi-models]
 - [API samples][api-samples]
 
 <img src="https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 830px" />
@@ -288,7 +288,7 @@ Detailed workflows are available in test files with VCR cassettes:
 
 For complete method signatures, see [sig/peddler/apis/](sig/peddler/apis/)
 
-For a complete list of available APIs and their detailed documentation, refer to the [API models repository][swagger-models].
+For a complete list of available APIs and their detailed documentation, refer to the [API models repository][openapi-models].
 
 ## Development
 
@@ -314,7 +314,7 @@ bundle exec steep check --severity-level=hint
 [api-docs]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
-[swagger-models]: https://github.com/amzn/selling-partner-api-models
+[openapi-models]: https://github.com/amzn/selling-partner-api-models
 [api-samples]: https://github.com/amzn/selling-partner-api-samples
 [view-credentials]: https://developer-docs.amazon.com/sp-api/docs/viewing-your-application-information-and-credentials
 [authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
