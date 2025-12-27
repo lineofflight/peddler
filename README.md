@@ -98,7 +98,7 @@ api.get_orders("...": "...")
 
 ### Typed Responses
 
-Peddler provides typed response parsing using the [Structure gem](https://github.com/hakanensari/structure), offering runtime type checking and better IDE support. Types are based on Ruby's [Data class](https://docs.ruby-lang.org/en/3.4/Data.html) and are lazy-loaded.
+Peddler provides typed response parsing using the [Structure gem](https://github.com/hakanensari/structure), offering runtime type checking and better IDE support. Types are based on Ruby's [Data class](https://docs.ruby-lang.org/en/4.0/Data.html) and are lazy-loaded.
 
 ```ruby
 api = Peddler.orders.new(aws_region, access_token)

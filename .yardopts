@@ -1,2 +1,2 @@
---markup-provider=commonmarker
+--markup-provider=rdiscount
 --markup=markdown

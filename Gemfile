@@ -15,6 +15,7 @@ gem "parallel"
 gem "openssl"
 gem "rake"
 gem "rbs"
+gem "rdiscount"
 gem "rubocop"
 gem "rubocop-graphql"
 gem "rubocop-minitest"
@@ -26,11 +27,6 @@ gem "steep"
 gem "vcr"
 gem "webmock"
 gem "yard"
-
-# TODO: Remove the version guard when Yard handles changes in the new Commonmarker
-# https://github.com/lsegal/yard/issues/1528
-# Also update .github/dependabot.yml to remove the ignore rule when this is resolved
-gem "commonmarker", "~> 0.23.10"
 
 # Removed from stdlib
 # TODO: Remove when VCR updates to handle this natively
