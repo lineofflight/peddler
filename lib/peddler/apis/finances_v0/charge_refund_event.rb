@@ -15,14 +15,10 @@ module Peddler
         # @return [String] The date and time when the financial event was posted.
         attribute?(:posted_date, String, from: "PostedDate")
 
-        # @return [String] The reason given for a charge refund.
-        #
-        # Example: `SubscriptionFeeCorrection`
+        # @return [String] The reason given for a charge refund. For example, `SubscriptionFeeCorrection`.
         attribute?(:reason_code, String, from: "ReasonCode")
 
-        # @return [String] A description of the Reason Code.
-        #
-        # Example: `SubscriptionFeeCorrection`
+        # @return [String] A description of the Reason Code. For example, `SubscriptionFeeCorrection`.
         attribute?(:reason_code_description, String, from: "ReasonCodeDescription")
       end
     end

@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class FinancesV0
-      # A TaxWithholding event on seller's account.
+      # A tax withholding event on a seller's account.
       TaxWithholdingEvent = Structure.new do
         # @return [Money] The amount which tax was withheld against.
         attribute?(:base_amount, Money, from: "BaseAmount")

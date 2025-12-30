@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class FinancesV0
-      # A comma-delimited list of Removal shipmentAdjustment details for FBA inventory.
+      # A comma-delimited list of `RemovalShipmentAdjustment` details for FBA inventory.
       class RemovalShipmentAdjustmentEventList < Array
         class << self
           def parse(array)

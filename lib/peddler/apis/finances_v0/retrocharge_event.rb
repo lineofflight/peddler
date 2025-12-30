@@ -25,9 +25,9 @@ module Peddler
         #
         # Possible values:
         #
-        # * Retrocharge
+        # * `Retrocharge`
         #
-        # * RetrochargeReversal
+        # * `RetrochargeReversal`
         attribute?(:retrocharge_event_type, String, from: "RetrochargeEventType")
 
         # @return [Array<TaxWithheldComponent>] A list of information about taxes withheld.

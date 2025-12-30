@@ -13,10 +13,9 @@ module Peddler
         #
         # Possible values:
         #
-        # * MarketplaceFacilitator - Tax is withheld and remitted to the taxing authority by Amazon on behalf of the
+        # * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the
         #   seller.
-        #
-        # * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
+        # * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
         attribute?(:tax_collection_model, String, from: "TaxCollectionModel")
 
         # @return [Array<ChargeComponent>] A list of charges that represent the types and amounts of taxes withheld.

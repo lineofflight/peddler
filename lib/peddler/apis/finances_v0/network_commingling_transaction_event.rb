@@ -27,16 +27,16 @@ module Peddler
         # @return [Money] The tax on the network item swap paid by the seller.
         attribute?(:tax_amount, Money, from: "TaxAmount")
 
-        # @return [Money] The price of the swapped item minus TaxAmount.
+        # @return [Money] The price of the swapped item minus `TaxAmount`.
         attribute?(:tax_exclusive_amount, Money, from: "TaxExclusiveAmount")
 
         # @return [String] The type of network item swap.
         #
         # Possible values:
         #
-        # * NetCo - A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
+        # * `NetCo`: A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
         #
-        # * ComminglingVAT - A commingling VAT transaction. Available only in the UK, Spain, France, Germany, and Italy
+        # * `ComminglingVAT`: A commingling VAT transaction. Available only in the Spain, UK, France, Germany, and Italy
         #   marketplaces.
         attribute?(:transaction_type, String, from: "TransactionType")
       end

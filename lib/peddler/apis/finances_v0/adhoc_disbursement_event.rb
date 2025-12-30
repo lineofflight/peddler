@@ -18,9 +18,7 @@ module Peddler
         # @return [String] The identifier for the transaction.
         attribute?(:transaction_id, String, from: "TransactionId")
 
-        # @return [String] Indicates the type of transaction.
-        #
-        # Example: "Disbursed to Amazon Gift Card balance"
+        # @return [String] The type of transaction. For example, "Disbursed to Amazon Gift Card balance".
         attribute?(:transaction_type, String, from: "TransactionType")
       end
     end

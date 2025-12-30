@@ -12,7 +12,7 @@ module Peddler
         # @return [Money] Base amount of the transaction, before tax.
         attribute?(:base_value, Money, from: "baseValue")
 
-        # @return [String] Identifier for the invoice that the transaction appears in.
+        # @return [String] The identifier for the invoice that includes the transaction.
         attribute?(:invoice_id, String, from: "invoiceId")
 
         # @return [String] The date and time when the financial event was posted.
@@ -25,12 +25,12 @@ module Peddler
         #
         # Possible values:
         #
-        # * charge - Charge
+        # * `charge`
         #
-        # * refund - Refund
+        # * `refund`
         attribute?(:transaction_type, String, from: "transactionType")
 
-        # @return [Money] The total amount of the transaction. Equal to baseValue + taxValue.
+        # @return [Money] The total amount of the transaction. Equal to `baseValue` + `taxValue`.
         attribute?(:transaction_value, Money, from: "transactionValue")
       end
     end

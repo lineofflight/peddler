@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class FinancesV0
-      # A list of information about removal shipment items.
+      # A list of `RemovalShipmentItem`.
       class RemovalShipmentItemList < Array
         class << self
           def parse(array)

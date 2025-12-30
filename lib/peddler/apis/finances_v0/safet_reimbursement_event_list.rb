@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class FinancesV0
-      # A list of SAFETReimbursementEvents.
+      # A list of `SAFETReimbursementEvent`.
       class SAFETReimbursementEventList < Array
         class << self
           def parse(array)

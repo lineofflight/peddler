@@ -9,7 +9,7 @@ module Peddler
     class FinancesV0
       # Item-level information for a removal shipment item adjustment.
       RemovalShipmentItemAdjustment = Structure.new do
-        # @return [Integer] Adjusted quantity of removal shipmentItemAdjustment items.
+        # @return [Integer] Adjusted quantity of `RemovalShipmentItemAdjustment` items.
         attribute?(:adjusted_quantity, Integer, from: "AdjustedQuantity")
 
         # @return [String] The Amazon fulfillment network SKU for the item.
@@ -21,22 +21,21 @@ module Peddler
         # @return [Money] The total amount adjusted for disputed items.
         attribute?(:revenue_adjustment, Money, from: "RevenueAdjustment")
 
-        # @return [Money] Adjustment on the Tax collected amount on the adjusted revenue.
+        # @return [Money] Adjustment on the tax collected amount on the adjusted revenue.
         attribute?(:tax_amount_adjustment, Money, from: "TaxAmountAdjustment")
 
-        # @return [String] The tax collection model applied to the item.
+        # @return [String] The tax collection model that is applied to the item.
         #
         # Possible values:
         #
-        # * MarketplaceFacilitator - Tax is withheld and remitted to the taxing authority by Amazon on behalf of the
+        # * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the
         #   seller.
-        #
-        # * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
+        # * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
         attribute?(:tax_collection_model, String, from: "TaxCollectionModel")
 
-        # @return [Money] Adjustment the tax withheld and remitted to the taxing authority by Amazon on behalf of the
-        #   seller. If TaxCollectionModel=MarketplaceFacilitator, then TaxWithheld=TaxAmount (except the TaxWithheld
-        #   amount is a negative number). Otherwise TaxWithheld=0.
+        # @return [Money] Adjustment of the tax that is withheld and remitted to the taxing authority by Amazon on
+        #   behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount`
+        #   (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
         attribute?(:tax_withheld_adjustment, Money, from: "TaxWithheldAdjustment")
       end
     end

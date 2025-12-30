@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class FinancesV0
-      # A list of information about solution provider credits.
+      # A list of `SolutionProviderCreditEvent`.
       class SolutionProviderCreditEventList < Array
         class << self
           def parse(array)

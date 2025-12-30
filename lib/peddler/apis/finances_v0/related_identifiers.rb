@@ -5,11 +5,11 @@
 module Peddler
   module APIs
     class FinancesV0
-      # A list of `FailedAdhocDisbursementEvent`.
-      class FailedAdhocDisbursementEventList < Array
+      # Related business identifiers of the transaction.
+      class RelatedIdentifiers < Array
         class << self
           def parse(array)
-            new(array.map { |item| FailedAdhocDisbursementEvent.parse(item) })
+            new(array.map { |item| RelatedIdentifier.parse(item) })
           end
         end
       end

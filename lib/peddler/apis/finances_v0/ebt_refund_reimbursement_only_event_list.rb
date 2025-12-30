@@ -5,11 +5,11 @@
 module Peddler
   module APIs
     class FinancesV0
-      # A list of `FailedAdhocDisbursementEvent`.
-      class FailedAdhocDisbursementEventList < Array
+      # A list of EBT refund reimbursement events.
+      class EBTRefundReimbursementOnlyEventList < Array
         class << self
           def parse(array)
-            new(array.map { |item| FailedAdhocDisbursementEvent.parse(item) })
+            new(array.map { |item| EBTRefundReimbursementOnlyEvent.parse(item) })
           end
         end
       end

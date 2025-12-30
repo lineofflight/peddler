@@ -12,22 +12,16 @@ module Peddler
         # @return [String] The disbursement identifier.
         attribute?(:disbursement_id, String, from: "DisbursementId")
 
-        # @return [String] The type of fund transfer.
-        #
-        # Example "Refund"
+        # @return [String] The type of fund transfer. For example, `Refund`.
         attribute?(:funds_transfers_type, String, from: "FundsTransfersType")
 
-        # @return [String] The type of payment for disbursement.
-        #
-        # Example `CREDIT_CARD`
+        # @return [String] The type of payment for disbursement. For example, `CREDIT_CARD`.
         attribute?(:payment_disbursement_type, String, from: "PaymentDisbursementType")
 
         # @return [String] The date and time when the financial event was posted.
         attribute?(:posted_date, String, from: "PostedDate")
 
-        # @return [String] The status of the failed `AdhocDisbursement`.
-        #
-        # Example `HARD_DECLINED`
+        # @return [String] The status of the failed `AdhocDisbursement`. For example, `HARD_DECLINED`.
         attribute?(:status, String, from: "Status")
 
         # @return [Money] The amount of the Adhoc Disbursement.

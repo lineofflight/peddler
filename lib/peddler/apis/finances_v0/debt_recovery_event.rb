@@ -19,11 +19,7 @@ module Peddler
         #
         # Possible values:
         #
-        # * DebtPayment
-        #
-        # * DebtPaymentFailure
-        #
-        # * DebtAdjustment
+        # * `DebtPayment` * `DebtPaymentFailure` * `DebtAdjustment`
         attribute?(:debt_recovery_type, String, from: "DebtRecoveryType")
 
         # @return [Money] The amount returned for overpayment.

@@ -18,9 +18,7 @@ module Peddler
         # @return [Money] The amount of the service charge event.
         attribute?(:transaction_amount, Money, from: "TransactionAmount")
 
-        # @return [String] Indicates the type of transaction.
-        #
-        # Example: 'Other Support Service fees'
+        # @return [String] The transaction type. For example, 'Other Support Service fees'
         attribute?(:transaction_type, String, from: "TransactionType")
       end
     end

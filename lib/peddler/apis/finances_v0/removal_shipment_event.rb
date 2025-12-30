@@ -9,7 +9,7 @@ module Peddler
     class FinancesV0
       # A removal shipment event for a removal order.
       RemovalShipmentEvent = Structure.new do
-        # @return [String] The merchant removal orderId.
+        # @return [String] The merchant removal `orderId`.
         attribute?(:merchant_order_id, String, from: "MerchantOrderId")
 
         # @return [String] The identifier for the removal shipment order.
@@ -28,7 +28,7 @@ module Peddler
         #
         # Possible values:
         #
-        # * WHOLESALE_LIQUIDATION
+        # * `WHOLESALE_LIQUIDATION`
         attribute?(:transaction_type, String, from: "TransactionType")
       end
     end

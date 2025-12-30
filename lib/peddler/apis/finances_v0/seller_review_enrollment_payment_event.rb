@@ -25,7 +25,7 @@ module Peddler
         # @return [String] The date and time when the financial event was posted.
         attribute?(:posted_date, String, from: "PostedDate")
 
-        # @return [Money] The FeeComponent value plus the ChargeComponent value.
+        # @return [Money] The `FeeComponent` value plus the `ChargeComponent` value.
         attribute?(:total_amount, Money, from: "TotalAmount")
       end
     end

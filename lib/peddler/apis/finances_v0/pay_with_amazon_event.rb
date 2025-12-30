@@ -25,16 +25,16 @@ module Peddler
         #
         # Possible values:
         #
-        # * AFN - Amazon Fulfillment Network (Fulfillment by Amazon)
+        # * `AFN`: Amazon Fulfillment Network (Fulfillment by Amazon)
         #
-        # * MFN - Merchant Fulfillment Network (self-fulfilled)
+        # * `MFN`: Merchant Fulfillment Network (self-fulfilled)
         attribute?(:fulfillment_channel, String, from: "FulfillmentChannel")
 
         # @return [String] The type of payment.
         #
         # Possible values:
         #
-        # * Sales
+        # * `Sales`
         attribute?(:payment_amount_type, String, from: "PaymentAmountType")
 
         # @return [String] The sales channel for the transaction.
@@ -43,11 +43,11 @@ module Peddler
         # @return [String] An order identifier that is specified by the seller.
         attribute?(:seller_order_id, String, from: "SellerOrderId")
 
-        # @return [String] The store name where the event occurred.
+        # @return [String] The name of the store where the event occurred.
         attribute?(:store_name, String, from: "StoreName")
 
         # @return [String] The date and time when the payment transaction is posted. In [ISO
-        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
         attribute?(:transaction_posted_date, String, from: "TransactionPostedDate")
       end
     end

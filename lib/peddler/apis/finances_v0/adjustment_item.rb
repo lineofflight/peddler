@@ -15,14 +15,14 @@ module Peddler
         # @return [String] A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
         attribute?(:fn_sku, String, from: "FnSKU")
 
-        # @return [Money] The per unit value of the item.
+        # @return [Money] The per-unit value of the item.
         attribute?(:per_unit_amount, Money, from: "PerUnitAmount")
 
         # @return [String] A short description of the item.
         attribute?(:product_description, String, from: "ProductDescription")
 
-        # @return [String] Represents the number of units in the seller's inventory when the AdustmentType is
-        #   FBAInventoryReimbursement.
+        # @return [String] Represents the number of units in the seller's inventory when the `AdjustmentType` is
+        #   `FBAInventoryReimbursement`.
         attribute?(:quantity, String, from: "Quantity")
 
         # @return [String] The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is

@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class FinancesV0
-      # A list of `TaxWithholding` events.
+      # A list of tax withholding events.
       class TaxWithholdingEventList < Array
         class << self
           def parse(array)

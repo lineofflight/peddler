@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class FinancesV0
-      # Contains all information related to a financial event.
+      # All the information that is related to a financial event.
       FinancialEvents = Structure.new do
         # @return [Array<AdhocDisbursementEvent>]
         attribute?(:adhoc_disbursement_event_list, [AdhocDisbursementEvent], from: "AdhocDisbursementEventList")
@@ -35,6 +35,9 @@ module Peddler
 
         # @return [Array<DebtRecoveryEvent>]
         attribute?(:debt_recovery_event_list, [DebtRecoveryEvent], from: "DebtRecoveryEventList")
+
+        # @return [Array<EBTRefundReimbursementOnlyEvent>] A list of EBT refund reimbursement events.
+        attribute?(:ebt_refund_reimbursement_only_event_list, [EBTRefundReimbursementOnlyEvent], from: "EBTRefundReimbursementOnlyEventList")
 
         # @return [Array<FBALiquidationEvent>]
         attribute?(:fba_liquidation_event_list, [FBALiquidationEvent], from: "FBALiquidationEventList")

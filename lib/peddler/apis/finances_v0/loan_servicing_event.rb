@@ -16,11 +16,11 @@ module Peddler
         #
         # Possible values:
         #
-        # * LoanAdvance
+        # * `LoanAdvance`
         #
-        # * LoanPayment
+        # * `LoanPayment`
         #
-        # * LoanRefund
+        # * `LoanRefund`
         attribute?(:source_business_event_type, String, from: "SourceBusinessEventType")
       end
     end

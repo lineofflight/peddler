@@ -24,23 +24,22 @@ module Peddler
         # @return [Money] The amount charged for clicks incurred under the Sponsored Products program.
         attribute?(:base_expense, Money, from: "BaseExpense")
 
-        # @return [String] An encrypted, Amazon-defined marketplace identifier.
+        # @return [String] The Amazon-defined marketplace identifier.
         attribute?(:marketplace_id, String, from: "MarketplaceId")
 
         # @return [String] The date and time when the financial event was created.
         attribute?(:posted_date, String, from: "PostedDate")
 
-        # @return [Money] The total amount charged to the seller. TotalExpense = BaseExpense + TaxTypeIGST + TaxTypeCGST
-        #   + TaxTypeSGST.
+        # @return [Money] The total amount charged to the seller. `TotalExpense` = `BaseExpense` + `TaxTypeIGST` +
+        #   `TaxTypeCGST` + `TaxTypeSGST`.
         attribute?(:total_expense, Money, from: "TotalExpense")
 
-        # @return [String] Indicates the type of transaction.
+        # @return [String] The type of transaction.
         #
         # Possible values:
         #
-        # * Charge - For an affordability promotion expense.
-        #
-        # * Refund - For an affordability promotion expense reversal.
+        # * `Charge`: an affordability promotion expense.
+        # * `Refund`: an affordability promotion expense reversal.
         attribute?(:transaction_type, String, from: "TransactionType")
       end
     end

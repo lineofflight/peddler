@@ -30,7 +30,7 @@ module Peddler
         # @return [String] The description provided by the seller when they created the coupon.
         attribute?(:seller_coupon_description, String, from: "SellerCouponDescription")
 
-        # @return [Money] The FeeComponent value plus the ChargeComponent value.
+        # @return [Money] The `FeeComponent` value plus the `ChargeComponent` value.
         attribute?(:total_amount, Money, from: "TotalAmount")
       end
     end

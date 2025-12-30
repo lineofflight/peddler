@@ -24,7 +24,7 @@ module Peddler
         # @return [String] The date when the financial event was posted.
         attribute?(:posted_date, String, from: "PostedDate")
 
-        # @return [Array<RemovalShipmentItemAdjustment>] A comma-delimited list of Removal shipmentItemAdjustment
+        # @return [Array<RemovalShipmentItemAdjustment>] A comma-delimited list of `RemovalShipmentItemAdjustment`
         #   details for FBA inventory.
         attribute?(:removal_shipment_item_adjustment_list, [RemovalShipmentItemAdjustment], from: "RemovalShipmentItemAdjustmentList")
 
@@ -32,7 +32,7 @@ module Peddler
         #
         # Possible values:
         #
-        # * WHOLESALE_LIQUIDATION.
+        # * `WHOLESALE_LIQUIDATION`.
         attribute?(:transaction_type, String, from: "TransactionType")
       end
     end

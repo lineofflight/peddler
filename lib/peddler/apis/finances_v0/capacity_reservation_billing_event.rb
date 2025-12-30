@@ -18,7 +18,7 @@ module Peddler
         # @return [Money] The amount of the capacity reservation billing event.
         attribute?(:transaction_amount, Money, from: "TransactionAmount")
 
-        # @return [String] Indicates the type of transaction. For example, FBA Inventory Fee
+        # @return [String] The transaction type. For example, FBA Inventory Fee.
         attribute?(:transaction_type, String, from: "TransactionType")
       end
     end

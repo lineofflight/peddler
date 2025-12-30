@@ -38,7 +38,7 @@ module Peddler
         attribute?(:transaction_amount, Money, from: "TransactionAmount")
 
         # @return [String] The date and time that the credit transaction was created, in [ISO
-        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
         attribute?(:transaction_creation_date, String, from: "TransactionCreationDate")
       end
     end

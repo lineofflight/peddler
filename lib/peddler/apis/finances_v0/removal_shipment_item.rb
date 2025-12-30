@@ -28,19 +28,18 @@ module Peddler
         # @return [Money] Tax collected on the revenue.
         attribute?(:tax_amount, Money, from: "TaxAmount")
 
-        # @return [String] The tax collection model applied to the item.
+        # @return [String] The tax collection model that is applied to the item.
         #
         # Possible values:
         #
-        # * MarketplaceFacilitator - Tax is withheld and remitted to the taxing authority by Amazon on behalf of the
+        # * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the
         #   seller.
-        #
-        # * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
+        # * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
         attribute?(:tax_collection_model, String, from: "TaxCollectionModel")
 
         # @return [Money] The tax withheld and remitted to the taxing authority by Amazon on behalf of the seller. If
-        #   TaxCollectionModel=MarketplaceFacilitator, then TaxWithheld=TaxAmount (except the TaxWithheld amount is a
-        #   negative number). Otherwise TaxWithheld=0.
+        #   `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the
+        #   `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
         attribute?(:tax_withheld, Money, from: "TaxWithheld")
       end
     end
