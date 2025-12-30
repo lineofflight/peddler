@@ -13,6 +13,7 @@ module Peddler
       "B2b" => "B2B",
       "Cgst" => "CGST",
       "Cod" => "COD",
+      "Ebt" => "EBT",
       "Fba" => "FBA",
       "Igst" => "IGST",
       "Lwa" => "LWA",
