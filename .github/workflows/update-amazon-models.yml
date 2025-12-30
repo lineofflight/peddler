@@ -85,7 +85,7 @@ jobs:
             execSync(`git checkout -b ${branchName}`);
 
             // Create commit message with conventional format
-            let commitMessage = 'feat: update amazon api models';
+            let commitMessage = 'feat: update amazon models';
             if (apiUpdates.length > 0) {
               commitMessage += '\n\nUpdated APIs:\n' + apiUpdates.map(api => `- ${api}`).join('\n');
             }
@@ -96,11 +96,10 @@ jobs:
             execSync(`git push --set-upstream origin ${branchName}`);
 
             // Create PR title and body
-            const today = new Date().toISOString().split('T')[0];
-            const prTitle = `Update Amazon models - ${today}`;
+            const prTitle = `feat: update amazon models`;
 
             // Build PR body with character limit handling
-            const baseBody = `This PR was automatically generated to update the Amazon API models.
+            const baseBody = `This PR was automatically generated to update the Amazon SP-API models.
 
             Changes include:
             `;
