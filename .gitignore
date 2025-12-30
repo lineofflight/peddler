@@ -1,14 +1,9 @@
 Gemfile.lock
 .bundle
-.claude/settings.local.json
-.claude/commands
 .gem_rbs_collection
 .yardoc
-coverage
 doc
-docs
 pkg
 rbs_collection.lock.yaml
 selling-partner-api-models
 test/config.json
-vendor
