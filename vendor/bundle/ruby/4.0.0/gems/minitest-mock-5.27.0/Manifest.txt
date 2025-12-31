@@ -1,0 +1,7 @@
+History.rdoc
+Manifest.txt
+README.rdoc
+Rakefile
+lib/minitest/mock.rb
+test/minitest/metametameta.rb
+test/minitest/test_minitest_mock.rb

@@ -1,0 +1,19 @@
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
+/opt/hostedtoolcache/Ruby/4.0.0/x64/bin/ruby extconf.rb
+checking for rb_io_mode_t in ruby/io.h... yes
+creating Makefile
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-qc9r8g sitelibdir\=./.gem.20251227-2144-qc9r8g clean
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-qc9r8g sitelibdir\=./.gem.20251227-2144-qc9r8g
+compiling stringio.c
+linking shared-object stringio.so
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-qc9r8g sitelibdir\=./.gem.20251227-2144-qc9r8g install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20251227-2144-qc9r8g
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20251227-2144-qc9r8g sitelibdir\=./.gem.20251227-2144-qc9r8g clean

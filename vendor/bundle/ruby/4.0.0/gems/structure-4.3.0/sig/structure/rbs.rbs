@@ -1,0 +1,14 @@
+module Structure
+  module RBS
+    EMPTY_CUSTOM_METHODS: { instance: Array[untyped], singleton: Array[untyped] }
+
+    def self.emit: (untyped klass) -> String?
+    def self.write: (untyped klass, ?dir: String) -> String?
+
+    private def self.emit_rbs_content: (class_name: String, attributes: Array[Symbol], types: Hash[Symbol, untyped], required: Array[Symbol], has_structure_modules: bool, custom_methods: untyped) -> String
+    private def self.parse_data_type: (untyped type, String class_name) -> String
+    private def self.map_type_to_rbs: (untyped type, String class_name) -> String
+    private def self.format_method_signature: (Hash[Symbol, untyped] method_meta, singleton: bool) -> String
+    private def self.build_parameters_fragment: (Array[[Symbol, untyped]] parameters) -> [String, String?]
+  end
+end

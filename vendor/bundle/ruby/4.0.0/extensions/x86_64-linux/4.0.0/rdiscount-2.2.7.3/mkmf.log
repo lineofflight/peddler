@@ -1,0 +1,319 @@
+have_func: checking for random()... -------------------- yes
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))random; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for srandom()... -------------------- yes
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))srandom; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for rand()... -------------------- yes
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))rand; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for srand()... -------------------- yes
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))srand; return !p; }
+/* end */
+
+--------------------
+
+check_sizeof: checking size of unsigned long... -------------------- 8
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC   -c conftest.c"
+conftest.c:7:5: error: size of array ‘conftest_const’ is negative
+    7 | int conftest_const[(sizeof((*rbcv_ptr_)) < 0) ? 1 : -1];
+      |     ^~~~~~~~~~~~~~
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: typedef unsigned long rbcv_typedef_;
+4: rbcv_typedef_ *rbcv_ptr_;
+5: 
+6: /*top*/
+7: int conftest_const[(sizeof((*rbcv_ptr_)) < 0) ? 1 : -1];
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+conftest.c: In function ‘main’:
+conftest.c:18:5: warning: old-style function definition [-Wold-style-definition]
+   18 | int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+      |     ^~~~
+At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: typedef unsigned long rbcv_typedef_;
+ 4: rbcv_typedef_ *rbcv_ptr_;
+ 5: 
+ 6: #include <stdio.h>
+ 7: /*top*/
+ 8: typedef unsigned
+ 9: #ifdef PRI_LL_PREFIX
+10: #define PRI_CONFTEST_PREFIX PRI_LL_PREFIX
+11: LONG_LONG
+12: #else
+13: #define PRI_CONFTEST_PREFIX "l"
+14: long
+15: #endif
+16: conftest_type;
+17: conftest_type conftest_const = (conftest_type)(sizeof((*rbcv_ptr_)));
+18: int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 ./conftest |
+--------------------
+
+check_sizeof: checking size of unsigned int... -------------------- 4
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC   -c conftest.c"
+conftest.c:7:5: error: size of array ‘conftest_const’ is negative
+    7 | int conftest_const[(sizeof((*rbcv_ptr_)) < 0) ? 1 : -1];
+      |     ^~~~~~~~~~~~~~
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: typedef unsigned int rbcv_typedef_;
+4: rbcv_typedef_ *rbcv_ptr_;
+5: 
+6: /*top*/
+7: int conftest_const[(sizeof((*rbcv_ptr_)) < 0) ? 1 : -1];
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+conftest.c: In function ‘main’:
+conftest.c:18:5: warning: old-style function definition [-Wold-style-definition]
+   18 | int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+      |     ^~~~
+At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: typedef unsigned int rbcv_typedef_;
+ 4: rbcv_typedef_ *rbcv_ptr_;
+ 5: 
+ 6: #include <stdio.h>
+ 7: /*top*/
+ 8: typedef unsigned
+ 9: #ifdef PRI_LL_PREFIX
+10: #define PRI_CONFTEST_PREFIX PRI_LL_PREFIX
+11: LONG_LONG
+12: #else
+13: #define PRI_CONFTEST_PREFIX "l"
+14: long
+15: #endif
+16: conftest_type;
+17: conftest_type conftest_const = (conftest_type)(sizeof((*rbcv_ptr_)));
+18: int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 ./conftest |
+--------------------
+
+check_sizeof: checking size of unsigned int... -------------------- 4
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC   -c conftest.c"
+conftest.c:7:5: error: size of array ‘conftest_const’ is negative
+    7 | int conftest_const[(sizeof((*rbcv_ptr_)) < 0) ? 1 : -1];
+      |     ^~~~~~~~~~~~~~
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: typedef unsigned int rbcv_typedef_;
+4: rbcv_typedef_ *rbcv_ptr_;
+5: 
+6: /*top*/
+7: int conftest_const[(sizeof((*rbcv_ptr_)) < 0) ? 1 : -1];
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+conftest.c: In function ‘main’:
+conftest.c:18:5: warning: old-style function definition [-Wold-style-definition]
+   18 | int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+      |     ^~~~
+At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: typedef unsigned int rbcv_typedef_;
+ 4: rbcv_typedef_ *rbcv_ptr_;
+ 5: 
+ 6: #include <stdio.h>
+ 7: /*top*/
+ 8: typedef unsigned
+ 9: #ifdef PRI_LL_PREFIX
+10: #define PRI_CONFTEST_PREFIX PRI_LL_PREFIX
+11: LONG_LONG
+12: #else
+13: #define PRI_CONFTEST_PREFIX "l"
+14: long
+15: #endif
+16: conftest_type;
+17: conftest_type conftest_const = (conftest_type)(sizeof((*rbcv_ptr_)));
+18: int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 ./conftest |
+--------------------
+
+check_sizeof: checking size of unsigned short... -------------------- 2
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC   -c conftest.c"
+conftest.c:7:5: error: size of array ‘conftest_const’ is negative
+    7 | int conftest_const[(sizeof((*rbcv_ptr_)) < 0) ? 1 : -1];
+      |     ^~~~~~~~~~~~~~
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: typedef unsigned short rbcv_typedef_;
+4: rbcv_typedef_ *rbcv_ptr_;
+5: 
+6: /*top*/
+7: int conftest_const[(sizeof((*rbcv_ptr_)) < 0) ? 1 : -1];
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0/ruby/backward -I/opt/hostedtoolcache/Ruby/4.0.0/x64/include/ruby-4.0.0 -I. -DENABLE_PATH_CHECK=0   -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef  -fPIC conftest.c -L. -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -L/opt/hostedtoolcache/Ruby/4.0.0/x64/lib -lruby  -lm -lpthread  -lc"
+conftest.c: In function ‘main’:
+conftest.c:18:5: warning: old-style function definition [-Wold-style-definition]
+   18 | int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+      |     ^~~~
+At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: typedef unsigned short rbcv_typedef_;
+ 4: rbcv_typedef_ *rbcv_ptr_;
+ 5: 
+ 6: #include <stdio.h>
+ 7: /*top*/
+ 8: typedef unsigned
+ 9: #ifdef PRI_LL_PREFIX
+10: #define PRI_CONFTEST_PREFIX PRI_LL_PREFIX
+11: LONG_LONG
+12: #else
+13: #define PRI_CONFTEST_PREFIX "l"
+14: long
+15: #endif
+16: conftest_type;
+17: conftest_type conftest_const = (conftest_type)(sizeof((*rbcv_ptr_)));
+18: int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+/* end */
+
+LD_LIBRARY_PATH=.:/opt/hostedtoolcache/Ruby/4.0.0/x64/lib LSAN_OPTIONS=detect_leaks=0 ./conftest |
+--------------------
+

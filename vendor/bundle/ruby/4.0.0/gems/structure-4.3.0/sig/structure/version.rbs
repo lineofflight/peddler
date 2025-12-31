@@ -1,0 +1,3 @@
+module Structure
+  VERSION: String
+end

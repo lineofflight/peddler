@@ -1,0 +1,741 @@
+errors:
+  fields:
+    - name: message
+      type: string
+
+    - name: start
+      type: position
+
+    - name: end
+      type: position
+
+  types:
+    - name: UnexpectedError
+      message:
+        template: "%s. Expected: `%s`, found: `%s`."
+        arguments:
+          - description
+          - expected
+          - found
+
+      fields:
+        - name: description
+          type: string
+
+        - name: expected
+          type: string
+
+        - name: found
+          type: string
+
+    - name: UnexpectedTokenError
+      message:
+        template: "Found `%s` when expecting `%s` at (%u:%u)."
+        arguments:
+          - token_type_to_string(found->type)
+          - token_type_to_string(expected_type)
+          - found->location.start.line
+          - found->location.start.column
+
+      fields:
+        - name: expected_type
+          type: token_type
+
+        - name: found
+          type: token
+
+    - name: MissingOpeningTagError
+      message:
+        template: "Found closing tag `</%s>` at (%u:%u) without a matching opening tag in the same scope."
+        arguments:
+          - closing_tag->value
+          - closing_tag->location.start.line
+          - closing_tag->location.start.column
+
+      fields:
+        - name: closing_tag
+          type: token
+
+    - name: MissingClosingTagError
+      message:
+        template: "Opening tag `<%s>` at (%u:%u) doesn't have a matching closing tag `</%s>` in the same scope."
+        arguments:
+          - opening_tag->value
+          - opening_tag->location.start.line
+          - opening_tag->location.start.column
+          - opening_tag->value
+
+      fields:
+        - name: opening_tag
+          type: token
+
+    - name: TagNamesMismatchError
+      message:
+        template: "Opening tag `<%s>` at (%u:%u) closed with `</%s>` at (%u:%u)."
+        arguments:
+          - opening_tag->value
+          - opening_tag->location.start.line
+          - opening_tag->location.start.column
+          - closing_tag->value
+          - closing_tag->location.start.line
+          - closing_tag->location.start.column
+
+      fields:
+        - name: opening_tag
+          type: token
+
+        - name: closing_tag
+          type: token
+
+    - name: QuotesMismatchError
+      message:
+        template: "String opened with %s but closed with %s at (%u:%u)."
+        arguments:
+          - opening_quote->value
+          - closing_quote->value
+          - closing_quote->location.start.line
+          - closing_quote->location.start.column
+
+      fields:
+        - name: opening_quote
+          type: token
+
+        - name: closing_quote
+          type: token
+
+    - name: VoidElementClosingTagError
+      message:
+        template: "`%s` is a void element and should not be used as a closing tag. Use `<%s>` or `<%s />` instead of `</%s>`."
+        arguments:
+          - tag_name->value
+          - tag_name->value
+          - tag_name->value
+          - tag_name->value
+
+      fields:
+        - name: tag_name
+          type: token
+
+        - name: expected
+          type: string
+
+        - name: found
+          type: string
+
+    - name: UnclosedElementError
+      message:
+        template: "Tag `<%s>` opened at (%u:%u) was never closed before the end of document."
+        arguments:
+          - opening_tag->value
+          - opening_tag->location.start.line
+          - opening_tag->location.start.column
+
+      fields:
+        - name: opening_tag
+          type: token
+
+    - name: RubyParseError
+      message:
+        template: "%s: %s"
+        arguments:
+          - diagnostic_id
+          - error_message
+
+      fields:
+        - name: error_message
+          type: string
+
+        - name: diagnostic_id
+          type: string
+
+        - name: level
+          type: string
+
+    - name: ERBControlFlowScopeError
+      message:
+        template: "%s appears outside its control flow block. Keep ERB control flow statements together within the same HTML scope (tag, attribute, or content)."
+        arguments:
+          - keyword
+
+      fields:
+        - name: keyword
+          type: string
+
+    - name: MissingERBEndTagError
+      message:
+        template: "%s started here but never closed with an end tag. The end tag may be in a different scope."
+        arguments:
+          - keyword
+
+      fields:
+        - name: keyword
+          type: string
+
+    - name: ERBMultipleBlocksInTagError
+      message:
+        template: "Multiple unclosed control flow blocks in a single ERB tag. Split each block into its own ERB tag, or close all blocks within the same tag."
+        arguments: []
+
+      fields: []
+
+warnings:
+  fields: []
+  types: []
+
+nodes:
+  # fields:
+  #   - name: type
+  #     type: ast_node_type
+  #
+  #   - name: start
+  #     type: position
+  #
+  #   - name: end
+  #     type: position
+  #
+  #   - name: errors
+  #     type: array
+  #     kind: error
+  #
+  #   # - name: warnings
+  #   #  type: array
+  #   #  kind: warning
+  #
+  #   # - name: range
+  #   #   type: range
+
+  types:
+    - name: DocumentNode
+      fields:
+        - name: children
+          type: array
+          kind: Node
+
+    - name: LiteralNode
+      fields:
+        - name: content
+          type: string
+
+    - name: HTMLOpenTagNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: tag_name
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        - name: is_void
+          type: boolean
+
+    - name: HTMLCloseTagNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: tag_name
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        - name: tag_closing
+          type: token
+
+    - name: HTMLElementNode
+      fields:
+        - name: open_tag
+          type: node
+          kind: HTMLOpenTagNode
+
+        - name: tag_name
+          type: token
+
+        - name: body
+          type: array
+          kind: Node
+
+        - name: close_tag
+          type: node
+          kind: HTMLCloseTagNode
+
+        - name: is_void
+          type: boolean
+
+        - name: source
+          type: element_source
+
+    - name: HTMLAttributeValueNode
+      fields:
+        - name: open_quote
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        - name: close_quote
+          type: token
+
+        - name: quoted
+          type: boolean
+
+    - name: HTMLAttributeNameNode
+      fields:
+        - name: children
+          type: array
+          kind: Node
+          # kind:
+          #   - LiteralNode
+          #   - ERBContentNode
+          #   - WhitespaceNode
+
+    - name: HTMLAttributeNode
+      fields:
+        - name: name
+          type: node
+          kind: HTMLAttributeNameNode
+
+        - name: equals
+          type: token
+
+        - name: value
+          type: node
+          kind: HTMLAttributeValueNode
+
+    - name: HTMLTextNode
+      fields:
+        - name: content
+          type: string
+
+    - name: HTMLCommentNode
+      fields:
+        - name: comment_start
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        - name: comment_end
+          type: token
+
+    - name: HTMLDoctypeNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        - name: tag_closing
+          type: token
+
+    - name: XMLDeclarationNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        - name: tag_closing
+          type: token
+
+    - name: CDATANode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        - name: tag_closing
+          type: token
+
+    - name: WhitespaceNode
+      fields:
+        - name: value
+          type: token
+
+    - name: ERBContentNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        - name: analyzed_ruby
+          type: analyzed_ruby
+
+        - name: parsed
+          type: boolean
+
+        - name: valid
+          type: boolean
+
+    - name: ERBEndNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+    - name: ERBElseNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        - name: statements
+          type: array
+          kind: Node
+
+    - name: ERBIfNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        # - name: predicate
+        #   type: prism_node
+
+        - name: statements
+          type: array
+          kind: Node
+
+        - name: subsequent
+          type: node
+          kind: Node
+          # kind:
+          #   - ERBIfNode
+          #   - ERBElseNode
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBBlockNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        # - name: block_type
+        #   type: string
+
+        # - name: opener
+        #   type: prism_node
+
+        - name: body
+          type: array
+          kind: Node
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBWhenNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        # - name: conditions
+        #   type: array
+        #   kind: prism_node
+
+        - name: statements
+          type: array
+          kind: Node
+
+    - name: ERBCaseNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        # - name: predicate
+        #   type: prism_node
+
+        - name: conditions
+          type: array
+          kind: ERBWhenNode
+
+        - name: else_clause
+          type: node
+          kind: ERBElseNode
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBCaseMatchNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        - name: children
+          type: array
+          kind: Node
+
+        # - name: predicate
+        #   type: prism_node
+
+        - name: conditions
+          type: array
+          kind: ERBInNode
+
+        - name: else_clause
+          type: node
+          kind: ERBElseNode
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBWhileNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        # - name: predicate
+        #   type: prism_node
+
+        - name: statements
+          type: array
+          kind: Node
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBUntilNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        # - name: predicate
+        #   type: prism_node
+
+        - name: statements
+          type: array
+          kind: Node
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBForNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        # - name: index
+        #   type: prism_node
+
+        # - name: collection
+        #   type: prism_node
+
+        - name: statements
+          type: array
+          kind: Node
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBRescueNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        # - name: exceptions
+        #   type: array
+        #   kind: Node
+
+        # - name: reference
+        #   type: prism_node
+
+        - name: statements
+          type: array
+          kind: Node
+
+        - name: subsequent
+          type: node
+          kind: ERBRescueNode
+
+    - name: ERBEnsureNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        - name: statements
+          type: array
+          kind: Node
+
+    - name: ERBBeginNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        - name: statements
+          type: array
+          kind: Node
+
+        - name: rescue_clause
+          type: node
+          kind: ERBRescueNode
+
+        - name: else_clause
+          type: node
+          kind: ERBElseNode
+
+        - name: ensure_clause
+          type: node
+          kind: ERBEnsureNode
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBUnlessNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        # - name: predicate
+        #   type: prism_node
+
+        - name: statements
+          type: array
+          kind: Node
+
+        - name: else_clause
+          type: node
+          kind: ERBElseNode
+
+        - name: end_node
+          type: node
+          kind: ERBEndNode
+
+    - name: ERBYieldNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+    - name: ERBInNode
+      fields:
+        - name: tag_opening
+          type: token
+
+        - name: content
+          type: token
+
+        - name: tag_closing
+          type: token
+
+        - name: statements
+          type: array
+          kind: Node

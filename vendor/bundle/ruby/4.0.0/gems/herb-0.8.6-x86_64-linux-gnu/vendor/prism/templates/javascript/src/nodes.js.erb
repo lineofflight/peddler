@@ -1,0 +1,197 @@
+<%-
+
+def camelize(string)
+  string.gsub(/_([a-z])/) { $1.upcase }
+end
+
+def prop(field)
+  field.name == "arguments" ? "arguments_" : camelize(field.name)
+end
+
+def jstype(field)
+  case field
+  when Prism::Template::NodeField then field.ruby_type
+  when Prism::Template::OptionalNodeField then "#{field.ruby_type} | null"
+  when Prism::Template::NodeListField then "Node[]"
+  when Prism::Template::StringField then "RubyString"
+  when Prism::Template::ConstantField then "string"
+  when Prism::Template::OptionalConstantField then "string | null"
+  when Prism::Template::ConstantListField then "string[]"
+  when Prism::Template::LocationField then "Location"
+  when Prism::Template::OptionalLocationField then "Location | null"
+  when Prism::Template::UInt8Field, Prism::Template::UInt32Field, Prism::Template::IntegerField, Prism::Template::DoubleField then "number"
+  else raise
+  end
+end
+-%>
+import * as visitors from "./visitor.js"
+
+<%- flags.each do |flag| -%>
+
+/**
+ * <%= flag.comment %>
+ */
+const <%= flag.name %> = {
+<%- flag.values.each_with_index do |value, index| -%>
+  <%= value.name %>: 1 << <%= index + Prism::Template::COMMON_FLAGS_COUNT %>,
+<%- end -%>
+};
+<%- end -%>
+
+/**
+ * A location in the source code.
+ *
+ * @typedef {{ startOffset: number, length: number }} Location
+ */
+
+/**
+ * An encoded Ruby string.
+ *
+ * @typedef {{ value: string, encoding: string, validEncoding: boolean }} RubyString
+ */
+
+/**
+ * A generic node in the tree.
+ *
+ * @typedef {(<%= nodes.map(&:name).join("|") %>)} Node
+ */
+<%- nodes.each do |node| -%>
+
+/**
+<%- node.each_comment_line do |line| -%>
+ *<%= line %>
+<%- end -%>
+ */
+export class <%= node.name -%> {
+  /**
+   * @type number
+   */
+  nodeID;
+
+  /**
+   * @type {Location}
+   */
+  location;
+
+  /**
+   * @type number
+   */
+  #flags;
+
+  <%- node.fields.each do |field| -%>
+  /**
+   * @type <%= jstype(field) %>
+   */
+  <%= prop(field) %>;
+
+  <%- end -%>
+  /**
+   * Construct a new <%= node.name %>.
+   *
+   * @param {number} nodeID
+   * @param {Location} location
+   * @param {number} flags
+   <%- node.fields.each do |field| -%>
+   * @param {<%= jstype(field) %>} <%= prop(field) %>
+   <%- end -%>
+   */
+  constructor(<%= ["nodeID", "location", "flags", *node.fields.map { |field| prop(field) }].join(", ") %>) {
+    this.nodeID = nodeID;
+    this.location = location;
+    this.#flags = flags;
+    <%- node.fields.each do |field| -%>
+    this.<%= prop(field) %> = <%= prop(field) %>;
+    <%- end -%>
+  }
+  <%- if (node_flags = node.flags) -%>
+  <%- node_flags.values.each do |value| -%>
+
+  /**
+   * True if this node has the <%= value.name %> flag.
+   *
+   * @returns {boolean}
+   */
+  is<%= value.camelcase %>() {
+    return (this.#flags & <%= node_flags.name %>.<%= value.name %>) !== 0;
+  }
+  <%- end -%>
+  <%- end -%>
+
+  /**
+   * Accept a visitor for this node.
+   *
+   * @param {visitors.Visitor} visitor
+   */
+  accept(visitor) {
+    visitor.visit<%= camelize(node.name) %>(this)
+  }
+
+  /**
+   * Returns all child nodes of the current node.
+   *
+   * @returns {(Node | null)[]} An array of child nodes.
+   */
+  childNodes() {
+    return [<%= node.fields.map { |field|
+    case field
+    when Prism::Template::NodeField, Prism::Template::OptionalNodeField then "this.#{prop(field)}"
+    when Prism::Template::NodeListField then "...this.#{prop(field)}"
+    end
+    }.compact.join(", ") %>]
+  }
+
+  /**
+   * Compact and return an array of child nodes.
+   *
+   * @returns {Node[]} An array of compacted child nodes.
+   */
+  compactChildNodes() {
+    <%- if node.fields.any? { |field| field.is_a?(Prism::Template::OptionalNodeField) } -%>
+    const compact = [];
+
+    <%- node.fields.each do |field| -%>
+    <%- case field -%>
+    <%- when Prism::Template::NodeField -%>
+    compact.push(this.<%= prop(field) %>);
+
+    <%- when Prism::Template::OptionalNodeField -%>
+    if (this.<%= prop(field) %>) {
+      compact.push(this.<%= prop(field) %>);
+    }
+    <%- when Prism::Template::NodeListField -%>
+    compact.concat(this.<%= prop(field) %>);
+    <%- end -%>
+    <%- end -%>
+
+    return compact;
+    <%- else -%>
+    return [<%= node.fields.map { |field|
+    case field
+    when Prism::Template::NodeField then "this.#{prop(field)}"
+    when Prism::Template::NodeListField then "...this.#{prop(field)}"
+    end
+    }.compact.join(", ") %>];
+    <%- end -%>
+  }
+
+  /**
+   * Transforms the Node to a JavaScript object.
+   *
+   * @returns {Object}
+   */
+  toJSON() {
+    return {
+      type: "<%= node.name %>",
+      location: this.location,
+      flags: this.#flags,
+      <%- node.fields.each do |field| -%>
+      <%- if field.name == "arguments" -%>
+      arguments: this.<%= prop(field) %>,
+      <%- else -%>
+      <%= prop(field) %>: this.<%= prop(field) %>,
+      <%- end -%>
+      <%- end -%>
+    };
+  }
+}
+<%- end -%>

@@ -1,0 +1,18 @@
+module Structure
+  TO_H_CHECKER: Proc
+
+  interface _StructuredDataClass
+    def __structure_meta__: () -> {
+      types: Hash[Symbol, untyped],
+      defaults: Hash[Symbol, untyped],
+      mappings: Hash[Symbol, String],
+      coercions: Hash[Symbol, untyped],
+      after_parse: untyped,
+      required: Array[Symbol]
+    }
+  end
+
+  # Block evaluated twice: first for DSL methods (attribute calls), then for custom methods
+  # Context set to Builder so DSL methods are recognized
+  def self.new: () ?{ () [self: Structure::Builder] -> void } -> untyped
+end

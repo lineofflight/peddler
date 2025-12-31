@@ -1,0 +1,222 @@
+inherit_mode:
+  merge:
+    - Exclude
+    - Include
+
+AllCops:
+  Include:
+    - '**/*.rbs'
+
+Lint:
+  Exclude:
+    - '**/*.rbs'
+
+Style:
+  Exclude:
+    - '**/*.rbs'
+
+# RBS
+
+RBS:
+  Enabled: true
+  Include:
+    - '**/*.rbs'
+
+## RBS/Layout
+
+RBS/Layout:
+  Enabled: true
+
+RBS/Layout/CommentIndentation:
+  Description: 'Use 2 spaces for comment indentation'
+  Enabled: true
+
+RBS/Layout/EmptyLineBetweenDeclarations:
+  Description: 'Keep 1 blank line between declarations'
+  Enabled: true
+  Class: true
+  Module: true
+  Interface: true
+
+RBS/Layout/EmptyLinesAroundAccessModifier:
+  Description: "Keeps track of empty lines around access modifiers."
+  Enabled: true
+
+RBS/Layout/EmptyLinesAroundClassBody:
+  Description: "Keeps track of empty lines around class bodies."
+  Enabled: true
+
+RBS/Layout/EmptyLinesAroundInterfaceBody:
+  Description: "Keeps track of empty lines around interface bodies."
+  Enabled: true
+
+RBS/Layout/EmptyLinesAroundModuleBody:
+  Description: "Keeps track of empty lines around module bodies."
+  Enabled: true
+
+RBS/Layout/EmptyLinesAroundOverloads:
+  Description: 'No empty line between overload'
+  Enabled: true
+
+RBS/Layout/EmptyLines:
+  Description: "Don't use several empty lines in a row."
+  Enabled: true
+
+RBS/Layout/EndAlignment:
+  Description: 'Align `end` keyword'
+  Enabled: true
+
+RBS/Layout/ExtraSpacing:
+  Description: 'Remove extra spacing'
+  Enabled: true
+
+RBS/Layout/IndentationWidth:
+  Description: 'Use 2 spaces for indentation'
+  Enabled: true
+
+RBS/Layout/OverloadIndentation:
+  Description: 'Indent overload method'
+  Enabled: true
+
+RBS/Layout/SpaceAfterComma:
+  Description: 'Use space after `,`'
+  Enabled: true
+
+RBS/Layout/SpaceAroundArrow:
+  Description: 'Use space around `->`'
+  Enabled: true
+
+RBS/Layout/SpaceAroundBraces:
+  Description: 'Use space around `{}`'
+  Enabled: true
+
+RBS/Layout/SpaceAroundOperators:
+  Description: 'Use space around `|` or `&`'
+  Enabled: true
+
+RBS/Layout/SpaceBeforeColon:
+  Description: 'Use space before `:`'
+  Enabled: true
+
+RBS/Layout/SpaceBeforeOverload:
+  Description: 'Use space before overload method'
+  Enabled: true
+
+RBS/Layout/TrailingWhitespace:
+  Description: 'Remove trailing whitespace'
+  Enabled: true
+
+## RBS/Lint
+
+RBS/Lint:
+  Severity: warning
+  Enabled: true
+
+RBS/Lint/AmbiguousKeywordArgumentKey:
+  Description: 'Check ambiguous keyword argument key'
+  Enabled: true
+
+RBS/Lint/AmbiguousOperatorPrecedence:
+  Description: 'Check ambiguous operator precedence'
+  Enabled: true
+
+RBS/Lint/DuplicateAnnotation:
+  Description: 'Checks that there are no repeated annotations'
+  Enabled: true
+
+RBS/Lint/DuplicateOverload:
+  Description: 'Checks that there are no repeated overload bodies'
+  Enabled: true
+
+RBS/Lint/ImplicitlyReturnsNil:
+  Description: 'Check implicitly returns nil'
+  Enabled: true
+
+RBS/Lint/LiteralIntersection:
+  Description: 'Check literal intersection'
+  Enabled: true
+
+RBS/Lint/NewReturnsVoid:
+  Description: 'sigleton `new` method should not returns `void` type'
+  Enabled: true
+
+RBS/Lint/RestKeywordHash:
+  Description: 'Check rest keyword with `Hash` type'
+  Enabled: true
+
+RBS/Lint/Syntax:
+  Severity: fatal
+  Description: 'Check RBS syntax'
+  Enabled: true
+
+RBS/Lint/TopLevelInterface:
+  Description: 'Check top level interface'
+  Enabled: true
+  VersionAdded: '1.2.0'
+
+RBS/Lint/TopLevelTypeAlias:
+  Description: 'Check top level type alias'
+  Enabled: true
+  VersionAdded: '1.2.0'
+
+RBS/Lint/UselessAccessModifier:
+  AutoCorrect: contextual
+  Description: 'Check useless access modifier'
+  Enabled: true
+
+RBS/Lint/UnusedOverloadTypeParams:
+  Description: 'Check redundant overload type params'
+  Enabled: true
+
+RBS/Lint/UnusedTypeAliasTypeParams:
+  Description: 'Check redundant type alias type params'
+  Enabled: true
+
+RBS/Lint/WillSyntaxError:
+  Description: 'Check RBS will syntax error'
+  Enabled: true
+
+## RBS/Style
+
+RBS/Style:
+  Enabled: true
+
+RBS/Style/BlockReturnBoolish:
+  Description: 'Use `bool` for block return type'
+  Enabled: true
+
+RBS/Style/ClassWithSingleton:
+  Description: 'Check `class` with singleton context'
+  Enabled: true
+
+RBS/Style/ClassicType:
+  Description: 'Use simple type'
+  Enabled: true
+
+RBS/Style/DuplicatedType:
+  Description: 'Check duplicated type'
+  Enabled: true
+
+RBS/Style/EmptyArgument:
+  Description: 'Use `()` for empty argument'
+  Enabled: true
+
+RBS/Style/InitializeReturnType:
+  Description: 'Use `void` for initialize method'
+  Enabled: true
+
+RBS/Style/InstanceWithInstance:
+  Description: 'Check `instance` with instance context'
+  Enabled: true
+
+RBS/Style/OptionalNil:
+  Description: 'Use nil instead of nil?'
+  Enabled: true
+
+RBS/Style/RedundantParentheses:
+  Description: 'Remove redundant parentheses'
+  Enabled: true
+
+RBS/Style/TrueFalse:
+  Description: 'Use bool instead of true | false'
+  Enabled: true

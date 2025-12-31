@@ -1,0 +1,18 @@
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+/opt/hostedtoolcache/Ruby/4.0.0/x64/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-7pjlyu sitelibdir\=./.gem.20251227-2144-7pjlyu clean
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-7pjlyu sitelibdir\=./.gem.20251227-2144-7pjlyu
+compiling escape.c
+linking shared-object cgi/escape.so
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-7pjlyu sitelibdir\=./.gem.20251227-2144-7pjlyu install
+/usr/bin/install -c -m 0755 escape.so ./.gem.20251227-2144-7pjlyu/cgi
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+make DESTDIR\= sitearchdir\=./.gem.20251227-2144-7pjlyu sitelibdir\=./.gem.20251227-2144-7pjlyu clean

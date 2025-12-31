@@ -1,0 +1,32 @@
+module Structure
+  class Builder
+    @mappings: Hash[Symbol, String]
+    @types: Hash[Symbol, untyped]
+    @defaults: Hash[Symbol, untyped]
+    @after_parse_callback: Proc?
+    @optional: Set[Symbol]
+    @non_nullable: Set[Symbol]
+
+    def attribute: (Symbol name, untyped type, ?from: String | Symbol | nil, ?default: untyped, ?null: bool) ?{ (untyped) -> untyped } -> void
+                 | (Symbol name, ?from: String | Symbol | nil, ?default: untyped, ?null: bool) ?{ (untyped) -> untyped } -> void
+
+    def attribute?: (Symbol name, untyped type, ?from: String | Symbol | nil, ?default: untyped, ?null: bool) ?{ (untyped) -> untyped } -> void
+                  | (Symbol name, ?from: String | Symbol | nil, ?default: untyped, ?null: bool) ?{ (untyped) -> untyped } -> void
+
+    def after_parse: () { (Data) -> void } -> void
+
+    def attributes: () -> Array[Symbol]
+    def mappings: () -> Hash[Symbol, String]
+    def types: () -> Hash[Symbol, untyped]
+    def defaults: () -> Hash[Symbol, untyped]
+    def coercions: (?untyped? context) -> Hash[Symbol, Proc]
+    def predicate_methods: () -> Hash[Symbol, Symbol]
+    def optional: () -> Array[Symbol]
+    def required: () -> Array[Symbol]
+    def non_nullable: () -> Array[Symbol]
+    def after_parse_callback: () -> (Proc | nil)
+
+    def method_missing: (Symbol, *untyped, **untyped) ?{ (*untyped, **untyped) -> untyped } -> untyped
+    def respond_to_missing?: (Symbol, bool) -> bool
+  end
+end

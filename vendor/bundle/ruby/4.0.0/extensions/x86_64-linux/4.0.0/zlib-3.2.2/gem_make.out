@@ -1,0 +1,25 @@
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/zlib-3.2.2/ext/zlib
+/opt/hostedtoolcache/Ruby/4.0.0/x64/bin/ruby extconf.rb
+checking for deflateReset(NULL) in -lz... yes
+checking for crc32_combine() in zlib.h... yes
+checking for adler32_combine() in zlib.h... yes
+checking for z_crc_t in zlib.h... yes
+checking for z_size_t in zlib.h... yes
+checking for crc32_z() in zlib.h... yes
+checking for adler32_z() in zlib.h... yes
+creating Makefile
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/zlib-3.2.2/ext/zlib
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-occbdz sitelibdir\=./.gem.20251227-2144-occbdz clean
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/zlib-3.2.2/ext/zlib
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-occbdz sitelibdir\=./.gem.20251227-2144-occbdz
+compiling zlib.c
+linking shared-object zlib.so
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/zlib-3.2.2/ext/zlib
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-occbdz sitelibdir\=./.gem.20251227-2144-occbdz install
+/usr/bin/install -c -m 0755 zlib.so ./.gem.20251227-2144-occbdz
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/zlib-3.2.2/ext/zlib
+make DESTDIR\= sitearchdir\=./.gem.20251227-2144-occbdz sitelibdir\=./.gem.20251227-2144-occbdz clean

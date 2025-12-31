@@ -1,0 +1,177 @@
+GraphQL:
+  Enabled: true
+  Include:
+    - "**/graphql/**/*"
+  Exclude:
+    - "spec/**/*"
+    - "test/**/*"
+
+GraphQL/ArgumentDescription:
+  Enabled: true
+  VersionAdded: '0.2.0'
+  Description: 'Ensures all arguments have a description'
+
+GraphQL/ArgumentName:
+  Enabled: true
+  VersionAdded: '0.2.0'
+  Description: 'This cop checks whether argument names are snake_case'
+
+GraphQL/ArgumentUniqueness:
+  Enabled: true
+  VersionAdded: '0.11.0'
+  Description: 'This cop enforces arguments to be defined once per block'
+
+GraphQL/ExtractInputType:
+  Enabled: true
+  VersionAdded: '0.2.0'
+  Description: 'Suggests using input type instead of many arguments'
+  MaxArguments: 2
+  Include:
+    - '**/graphql/mutations/**/*.rb'
+
+GraphQL/ExtractType:
+  Enabled: true
+  VersionAdded: '0.2.0'
+  Description: 'Suggests extracting fields with common prefixes to the separate type'
+  MaxFields: 2
+  Prefixes:
+    - is
+    - has
+    - with
+    - avg
+    - min
+    - max
+  Exclude:
+    - '**/graphql/mutations/**/*.rb'
+
+GraphQL/FieldDefinitions:
+  Enabled: true
+  VersionAdded: '0.1.0'
+  Description: 'Checks consistency of field definitions'
+  EnforcedStyle: group_definitions
+  SupportedStyles:
+    - group_definitions
+    - define_resolver_after_definition
+
+GraphQL/FieldDescription:
+  Enabled: true
+  VersionAdded: '0.1.0'
+  Description: 'Ensures all fields have a description'
+
+GraphQL/FieldHashKey:
+  Enabled: true
+  VersionAdded: '0.4.0'
+  Description: 'Checks :hash_key option is used for appropriate fields'
+
+GraphQL/FieldMethod:
+  Enabled: true
+  VersionAdded: '0.2.0'
+  Description: 'Checks :method option is used for appropriate fields'
+
+GraphQL/FieldName:
+  Enabled: true
+  VersionAdded: '0.2.0'
+  Description: 'This cop checks whether field names are snake_case'
+  SafeAutoCorrect: false
+
+GraphQL/FieldUniqueness:
+  Enabled: true
+  VersionAdded: '0.11.0'
+  Description: 'This cop enforces fields to be defined once'
+
+GraphQL/GraphqlName:
+  Enabled: true
+  VersionAdded: '1.0.0'
+  Description: 'This cop check proper configuration of graphql_name'
+  Include:
+    - "**/graphql/types/**/*"
+    - "**/graphql/mutations/**/*"
+  EnforcedStyle: only_override
+  SupportedStyles:
+    - required
+    - only_override
+
+GraphQL/LegacyDsl:
+  Enabled: true
+  VersionAdded: '0.9.0'
+  Description: 'Checks that types are defined with class-based API'
+
+GraphQL/MaxComplexitySchema:
+  Enabled: true
+  VersionAdded: '1.0.0'
+  Description: 'Enforces max_complexity configuration in schema'
+  Include:
+    - '**/graphql/**/*_schema.rb'
+
+GraphQL/MaxDepthSchema:
+  Enabled: true
+  VersionAdded: '1.0.0'
+  Description: 'Enforces max_depth configuration in schema'
+  Include:
+    - '**/graphql/**/*_schema.rb'
+
+GraphQL/MultipleFieldDefinitions:
+  Enabled: true
+  VersionAdded: '0.15.0'
+  Description: 'Ensures that fields with multiple definitions are grouped together'
+
+GraphQL/NotAuthorizedNodeType:
+  Enabled: true
+  VersionAdded: '1.0.0'
+  Description: 'Detects types that implement Node interface and not have `.authorized?` check'
+  Include:
+    - '**/graphql/types/**/*'
+  SafeBaseClasses: []
+
+GraphQL/ResolverMethodLength:
+  Enabled: true
+  VersionAdded: '0.1.0'
+  Description: 'Checks resolver methods are not too long'
+  Max: 10
+  CountComments: false
+  ExcludedMethods: []
+  CountAsOne: []
+
+GraphQL/ObjectDescription:
+  Enabled: true
+  VersionAdded: '0.3.0'
+  Description: 'Ensures all types have a description'
+  Exclude:
+    - "spec/**/*"
+    - "test/**/*"
+    - '**/*_schema.rb'
+    - '**/base_*.rb'
+    - '**/graphql/query_context.rb'
+
+GraphQL/OrderedArguments:
+  Enabled: true
+  VersionAdded: '0.7.0'
+  Description: 'Arguments should be alphabetically sorted within groups'
+  Order: null
+
+GraphQL/OrderedFields:
+  Enabled: true
+  VersionAdded: '0.5.0'
+  Description: 'Fields should be alphabetically sorted within groups'
+  Groups: true
+  Order: null
+
+GraphQL/UnusedArgument:
+  Enabled: true
+  VersionAdded: '0.12.0'
+  Description: 'Arguments should either be listed explicitly or **rest should be in the resolve signature'
+
+GraphQL/UnnecessaryFieldAlias:
+  Enabled: true
+  VersionAdded: '0.18.0'
+  Description: 'Field aliases should be different than their field names'
+
+GraphQL/UnnecessaryArgumentCamelize:
+  Enabled: true
+  VersionAdded: '0.18.0'
+  Description: "Camelize isn't necessary if the argument name doesn't contain underscores"
+
+GraphQL/UnnecessaryFieldCamelize:
+  Enabled: true
+  VersionAdded: '0.18.0'
+  Description: "Camelize isn't necessary if the field name doesn't contain underscores"

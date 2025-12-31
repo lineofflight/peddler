@@ -1,0 +1,39 @@
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/rbs-3.10.0/ext/rbs_extension
+/opt/hostedtoolcache/Ruby/4.0.0/x64/bin/ruby extconf.rb
+checking for whether -std=gnu99 is accepted as CFLAGS... yes
+checking for whether -Wimplicit-fallthrough is accepted as CFLAGS... yes
+checking for whether -Wunused-result is accepted as CFLAGS... yes
+checking for whether -Wc++-compat is accepted as CFLAGS... yes
+checking for whether -DNDEBUG is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/rbs-3.10.0/ext/rbs_extension
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-kr3fmu sitelibdir\=./.gem.20251227-2144-kr3fmu clean
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/rbs-3.10.0/ext/rbs_extension
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-kr3fmu sitelibdir\=./.gem.20251227-2144-kr3fmu
+compiling ./../../src/ast.c
+compiling ./../../src/lexer.c
+compiling ./../../src/lexstate.c
+compiling ./../../src/location.c
+compiling ./../../src/parser.c
+compiling ./../../src/string.c
+compiling ./../../src/util/rbs_allocator.c
+compiling ./../../src/util/rbs_assert.c
+compiling ./../../src/util/rbs_buffer.c
+compiling ./../../src/util/rbs_constant_pool.c
+compiling ./../../src/util/rbs_encoding.c
+compiling ./../../src/util/rbs_unescape.c
+compiling ast_translation.c
+compiling class_constants.c
+compiling legacy_location.c
+compiling main.c
+compiling rbs_string_bridging.c
+linking shared-object rbs_extension.so
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/rbs-3.10.0/ext/rbs_extension
+make -j4 DESTDIR\= sitearchdir\=./.gem.20251227-2144-kr3fmu sitelibdir\=./.gem.20251227-2144-kr3fmu install
+/usr/bin/install -c -m 0755 rbs_extension.so ./.gem.20251227-2144-kr3fmu
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/4.0.0/gems/rbs-3.10.0/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20251227-2144-kr3fmu sitelibdir\=./.gem.20251227-2144-kr3fmu clean

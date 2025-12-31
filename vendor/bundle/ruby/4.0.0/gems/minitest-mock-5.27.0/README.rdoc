@@ -1,0 +1,139 @@
+= minitest/mock
+
+home :: https://minite.st/
+code :: https://github.com/minitest/minitest-mock
+bugs :: https://github.com/minitest/minitest-mock/issues
+rdoc :: https://docs.seattlerb.org/minitest-mock
+clog :: https://github.com/minitest/minitest-mock/blob/main/History.rdoc
+
+== DESCRIPTION:
+
+minitest/mock, by Steven Baker, is a beautifully tiny mock (and stub)
+object framework.
+
+The minitest-mock gem is an extraction of minitest/mock.rb from
+minitest in order to make it easier to maintain independent of
+minitest.
+
+== FEATURES/PROBLEMS:
+
+* minitest/mock - a simple and clean mock/stub system.
+* Written by squishy human beings. Software can never be perfect. We will all eventually die.
+
+== SYNOPSIS:
+
+=== Mocks
+
+Mocks and stubs defined using terminology by Fowler & Meszaros at
+https://www.martinfowler.com/bliki/TestDouble.html:
+
+"Mocks are pre-programmed with expectations which form a specification
+of the calls they are expected to receive. They can throw an exception
+if they receive a call they don't expect and are checked during
+verification to ensure they got all the calls they were expecting."
+
+  class MemeAsker
+    def initialize(meme)
+      @meme = meme
+    end
+
+    def ask(question)
+      method = question.tr(" ", "_") + "?"
+      @meme.__send__(method)
+    end
+  end
+
+  require "minitest/autorun"
+
+  describe MemeAsker, :ask do
+    describe "when passed an unpunctuated question" do
+      it "should invoke the appropriate predicate method on the meme" do
+        @meme = Minitest::Mock.new
+        @meme_asker = MemeAsker.new @meme
+        @meme.expect :will_it_blend?, :return_value
+
+        @meme_asker.ask "will it blend"
+
+        @meme.verify
+      end
+    end
+  end
+
+==== Multi-threading and Mocks
+
+Minitest mocks do not support multi-threading. If it works, fine, if it doesn't
+you can use regular ruby patterns and facilities like local variables. Here's
+an example of asserting that code inside a thread is run:
+
+  def test_called_inside_thread
+    called = false
+    pr = Proc.new { called = true }
+    thread = Thread.new(&pr)
+    thread.join
+    assert called, "proc not called"
+  end
+
+=== Stubs
+
+Mocks and stubs are defined using terminology by Fowler & Meszaros at
+https://www.martinfowler.com/bliki/TestDouble.html:
+
+"Stubs provide canned answers to calls made during the test".
+
+Minitest's stub method overrides a single method for the duration of
+the block.
+
+  def test_stale_eh
+    obj_under_test = Something.new
+
+    refute obj_under_test.stale?
+
+    Time.stub :now, Time.at(0) do   # stub goes away once the block is done
+      assert obj_under_test.stale?
+    end
+  end
+
+A note on stubbing: In order to stub a method, the method must
+actually exist prior to stubbing. Use a singleton method to create a
+new non-existing method:
+
+  def obj_under_test.fake_method
+    ...
+  end
+
+== REQUIREMENTS:
+
+* Ruby 3+. No magic is involved. I hope.
+
+== INSTALL:
+
+  gem install minitest-mock
+
+or
+
+  bundle add minitest-mock
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) Ryan Davis, seattle.rb
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

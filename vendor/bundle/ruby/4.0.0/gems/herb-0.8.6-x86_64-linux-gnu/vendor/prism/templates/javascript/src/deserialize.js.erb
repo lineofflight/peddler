@@ -1,0 +1,448 @@
+import * as nodes from "./nodes.js";
+
+const MAJOR_VERSION = 1;
+const MINOR_VERSION = 7;
+const PATCH_VERSION = 0;
+
+// The DataView getFloat64 function takes an optional second argument that
+// specifies whether the number is little-endian or big-endian. It does not
+// appear to have a native endian mode, so we need to determine the endianness
+// of the system at runtime.
+const LITTLE_ENDIAN = (() => {
+  let uint32 = new Uint32Array([0x11223344]);
+  let uint8 = new Uint8Array(uint32.buffer);
+
+  if (uint8[0] === 0x44) {
+    return true;
+  } else if (uInt8[0] === 0x11) {
+    return false;
+  } else {
+    throw new Error("Mixed endianness");
+  }
+})();
+
+class SerializationBuffer {
+  FORCED_UTF8_ENCODING_FLAG = 1 << 2;
+  FORCED_BINARY_ENCODING_FLAG = 1 << 3;
+
+  DECODER_MAP = new Map([
+    ["ascii-8bit", "ascii"]
+  ]);
+
+  constructor(source, array) {
+    this.source = source;
+    this.array = array;
+    this.index = 0;
+    this.fileEncoding = "utf-8";
+    this.decoders = new Map();
+  }
+
+  readByte() {
+    const result = this.array[this.index];
+    this.index += 1;
+    return result;
+  }
+
+  readBytes(length) {
+    const result = this.array.slice(this.index, this.index + length);
+    this.index += length;
+    return result;
+  }
+
+  readString(length, flags) {
+    return this.decodeString(this.readBytes(length), flags).value;
+  }
+
+  // Read a 32-bit unsigned integer in little-endian format.
+  readUint32() {
+    const result = this.scanUint32(this.index);
+    this.index += 4;
+    return result;
+  }
+
+  scanUint32(offset) {
+    const bytes = this.array.slice(offset, offset + 4);
+    return bytes[0] | (bytes[1] << 8) | (bytes[2] << 16) | (bytes[3] << 24);
+  }
+
+  readVarInt() {
+    let result = 0;
+    let shift = 0;
+
+    while (true) {
+      const byte = this.readByte();
+      result += (byte & 0x7f) << shift;
+      shift += 7;
+
+      if ((byte & 0x80) === 0) {
+        break;
+      }
+    }
+
+    return result;
+  }
+
+  readLocation() {
+    return { startOffset: this.readVarInt(), length: this.readVarInt() };
+  }
+
+  readOptionalLocation() {
+    if (this.readByte() != 0) {
+      return this.readLocation();
+    } else {
+      return null;
+    }
+  }
+
+  readStringField(flags) {
+    if (flags === undefined) flags = 0;
+    const type = this.readByte();
+
+    switch (type) {
+      case 1: {
+        const startOffset = this.readVarInt();
+        const length = this.readVarInt();
+        return this.decodeString(this.source.slice(startOffset, startOffset + length), flags);
+      }
+      case 2:
+        return this.decodeString(this.readBytes(this.readVarInt()), flags);
+      default:
+        throw new Error(`Unknown serialized string type: ${type}`);
+    }
+  }
+
+  scanConstant(constantPoolOffset, constantIndex) {
+    const offset = constantPoolOffset + constantIndex * 8;
+    let startOffset = this.scanUint32(offset);
+    const length = this.scanUint32(offset + 4);
+
+    if (startOffset & (1 << 31)) {
+      startOffset &= (1 << 31) - 1;
+      return new TextDecoder().decode(this.array.slice(startOffset, startOffset + length));
+    } else {
+      return new TextDecoder().decode(this.source.slice(startOffset, startOffset + length));
+    }
+  }
+
+  readDouble() {
+    const view = new DataView(new ArrayBuffer(8));
+    for (let index = 0; index < 8; index++) {
+      view.setUint8(index, this.readByte());
+    }
+
+    return view.getFloat64(0, LITTLE_ENDIAN);
+  }
+
+  decodeString(bytes, flags) {
+    const forcedBin = (flags & this.FORCED_BINARY_ENCODING_FLAG) !== 0;
+    const forcedUtf8 = (flags & this.FORCED_UTF8_ENCODING_FLAG) !== 0;
+
+    if (forcedBin) {
+      // just use raw bytes
+      return {
+        encoding: "ascii",
+        validEncoding: true,
+        value: this.asciiDecoder.decode(bytes)
+      };
+    } else {
+      const encoding = forcedUtf8 ? "utf-8" : this.fileEncoding.toLowerCase();
+      const decoder = this.getDecoder(encoding);
+
+      try {
+        // decode with encoding
+        return {
+          encoding,
+          validEncoding: true,
+          value: decoder.decode(bytes)
+        };
+      } catch(e) {
+        // just use raw bytes, capture what the encoding should be, set flag saying encoding is invalid
+        if (e.code === "ERR_ENCODING_INVALID_ENCODED_DATA") {
+          return {
+            encoding,
+            validEncoding: false,
+            value: this.asciiDecoder.decode(bytes)
+          };
+        }
+
+        throw e;
+      }
+    }
+  }
+
+  getDecoder(encoding) {
+    encoding = this.DECODER_MAP.get(encoding) || encoding;
+
+    if (!this.decoders.has(encoding)) {
+      this.decoders.set(encoding, new TextDecoder(encoding, {fatal: true}));
+    }
+
+    return this.decoders.get(encoding);
+  }
+
+  get asciiDecoder() {
+    if (!this._asciiDecoder) {
+      this._asciiDecoder = new TextDecoder("ascii");
+    }
+
+    return this._asciiDecoder;
+  }
+}
+
+/**
+ * A location in the source code.
+ *
+ * @typedef {{ startOffset: number, length: number }} Location
+ */
+
+/**
+ * A comment in the source code.
+ *
+ * @typedef {{ type: number, location: Location }} Comment
+ */
+
+/**
+ * A magic comment in the source code.
+ *
+ * @typedef {{ startLocation: Location, endLocation: Location }} MagicComment
+ */
+
+/**
+ * An error in the source code.
+ *
+ * @typedef {{ type: string, message: string, location: Location, level: string }} ParseError
+ */
+
+/**
+ * A warning in the source code.
+ *
+ * @typedef {{ type: string, message: string, location: Location, level: string }} ParseWarning
+ */
+
+/**
+ * The result of parsing the source code.
+ *
+ * @typedef {{ value: ProgramNode, comments: Comment[], magicComments: MagicComment[], errors: ParseError[], warnings: ParseWarning[] }} ParseResult
+ */
+
+/**
+ * The result of calling parse.
+ */
+export class ParseResult {
+  /**
+   * @type {nodes.ProgramNode}
+   */
+  value;
+
+  /**
+   * @type {Comment[]}
+   */
+  comments;
+
+  /**
+   * @type {MagicComment[]}
+   */
+  magicComments;
+
+  /**
+   * @type {Location | null}
+   */
+
+  /**
+   * @type {ParseError[]}
+   */
+  errors;
+
+  /**
+   * @type {ParseWarning[]}
+   */
+  warnings;
+
+  /**
+   * @param {nodes.ProgramNode} value
+   * @param {Comment[]} comments
+   * @param {MagicComment[]} magicComments
+   * @param {ParseError[]} errors
+   * @param {ParseWarning[]} warnings
+   */
+  constructor(value, comments, magicComments, dataLoc, errors, warnings) {
+    this.value = value;
+    this.comments = comments;
+    this.magicComments = magicComments;
+    this.dataLoc = dataLoc;
+    this.errors = errors;
+    this.warnings = warnings;
+  }
+}
+
+const errorLevels = ["syntax", "argument", "load"];
+const errorTypes = [
+  <%- errors.each do |error| -%>
+  "<%= error.name.downcase %>",
+  <%- end -%>
+];
+
+const warningLevels = ["default", "verbose"];
+const warningTypes = [
+  <%- warnings.each do |warning| -%>
+  "<%= warning.name.downcase %>",
+  <%- end -%>
+];
+
+/**
+ * Accept two Uint8Arrays, one for the source and one for the serialized format.
+ * Return the AST corresponding to the serialized form.
+ *
+ * @param {Uint8Array} source
+ * @param {Uint8Array} array
+ * @returns {ParseResult}
+ * @throws {Error}
+ */
+export function deserialize(source, array) {
+  const buffer = new SerializationBuffer(source, array);
+
+  if (buffer.readString(5) !== "PRISM") {
+    throw new Error("Invalid serialization");
+  }
+
+  if ((buffer.readByte() != MAJOR_VERSION) || (buffer.readByte() != MINOR_VERSION) || (buffer.readByte() != PATCH_VERSION)) {
+    throw new Error("Invalid serialization");
+  }
+
+  if (buffer.readByte() != 0) {
+    throw new Error("Invalid serialization (location fields must be included but are not)");
+  }
+
+  // Read the file's encoding.
+  buffer.fileEncoding = buffer.readString(buffer.readVarInt());
+
+  // Skip past the start line, as we don't support that option yet in
+  // JavaScript.
+  buffer.readVarInt();
+
+  // Skip past the line offsets, as there is no Source object yet in JavaScript.
+  // const lineOffsets = Array.from({ length: buffer.readVarInt() }, () => buffer.readVarInt());
+  const lineOffsetsCount = buffer.readVarInt();
+  for (let i = 0; i < lineOffsetsCount; i ++) {
+    buffer.readVarInt();
+  }
+
+  const comments = Array.from({ length: buffer.readVarInt() }, () => ({
+    type: buffer.readVarInt(),
+    location: buffer.readLocation()
+  }));
+
+  const magicComments = Array.from({ length: buffer.readVarInt() }, () => ({
+    startLocation: buffer.readLocation(),
+    endLocation: buffer.readLocation()
+  }));
+
+  const dataLoc = buffer.readOptionalLocation();
+
+  const errors = Array.from({ length: buffer.readVarInt() }, () => ({
+    type: errorTypes[buffer.readVarInt()],
+    message: buffer.readString(buffer.readVarInt()),
+    location: buffer.readLocation(),
+    level: errorLevels[buffer.readByte()]
+  }));
+
+  const warnings = Array.from({ length: buffer.readVarInt() }, () => ({
+    type: warningTypes[buffer.readVarInt()],
+    message: buffer.readString(buffer.readVarInt()),
+    location: buffer.readLocation(),
+    level: warningLevels[buffer.readByte()]
+  }));
+
+  const constantPoolOffset = buffer.readUint32();
+  const constants = Array.from({ length: buffer.readVarInt() }, () => null);
+
+  return new ParseResult(readRequiredNode(), comments, magicComments, dataLoc, errors, warnings);
+
+  function readRequiredNode() {
+    const type = buffer.readByte();
+    const nodeID = buffer.readVarInt();
+    const location = buffer.readLocation();
+    let flags;
+
+    switch (type) {
+      <%- nodes.each.with_index(1) do |node, index| -%>
+      case <%= index %>:
+        <%- if node.needs_serialized_length? -%>
+        buffer.readUint32();
+        <%- end -%>
+        return new nodes.<%= node.name %>(<%= ["nodeID", "location", "flags = buffer.readVarInt()", *node.fields.map { |field|
+          case field
+          when Prism::Template::NodeField then "readRequiredNode()"
+          when Prism::Template::OptionalNodeField then "readOptionalNode()"
+          when Prism::Template::StringField then "buffer.readStringField(flags)"
+          when Prism::Template::NodeListField then "Array.from({ length: buffer.readVarInt() }, readRequiredNode)"
+          when Prism::Template::ConstantField then "readRequiredConstant()"
+          when Prism::Template::OptionalConstantField then "readOptionalConstant()"
+          when Prism::Template::ConstantListField then "Array.from({ length: buffer.readVarInt() }, readRequiredConstant)"
+          when Prism::Template::LocationField then "buffer.readLocation()"
+          when Prism::Template::OptionalLocationField then "buffer.readOptionalLocation()"
+          when Prism::Template::UInt8Field then "buffer.readByte()"
+          when Prism::Template::UInt32Field then "buffer.readVarInt()"
+          when Prism::Template::IntegerField then "readInteger()"
+          when Prism::Template::DoubleField then "buffer.readDouble()"
+          end
+        }].join(", ") -%>);
+      <%- end -%>
+      default:
+        throw new Error(`Unknown node type: ${type}`);
+    }
+  }
+
+  function readOptionalNode() {
+    if (buffer.readByte() != 0) {
+      buffer.index -= 1;
+      return readRequiredNode();
+    } else {
+      return null;
+    }
+  }
+
+  function scanConstant(constantIndex) {
+    if (constants[constantIndex] === null) {
+      constants[constantIndex] = buffer.scanConstant(constantPoolOffset, constantIndex);
+    }
+
+    return constants[constantIndex];
+  }
+
+  function readRequiredConstant() {
+    return scanConstant(buffer.readVarInt() - 1);
+  }
+
+  function readOptionalConstant() {
+    const index = buffer.readVarInt();
+    if (index === 0) {
+      return null;
+    } else {
+      return scanConstant(index - 1);
+    }
+  }
+
+  function readInteger() {
+    const negative = buffer.readByte() != 0;
+    const length = buffer.readVarInt();
+
+    const firstWord = buffer.readVarInt();
+    if (length == 1) {
+      if (negative && firstWord >= 0x80000000) {
+        return -BigInt(firstWord);
+      } else if (negative) {
+        return -firstWord;
+      } else {
+        return firstWord;
+      }
+    }
+
+    let result = BigInt(firstWord);
+    for (let index = 1; index < length; index++) {
+      result |= (BigInt(buffer.readVarInt()) << BigInt(index * 32));
+    }
+
+    return negative ? -result : result;
+  }
+}
