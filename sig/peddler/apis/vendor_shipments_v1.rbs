@@ -467,24 +467,6 @@ module Peddler
         def to_h: () -> { buyer_product_identifier: String?, item_details: Peddler::APIs::VendorShipmentsV1::PackageItemDetails?, item_sequence_number: String?, packed_quantity: Peddler::APIs::VendorShipmentsV1::ItemQuantity?, vendor_product_identifier: String? }
       end
 
-      class PackedQuantity < Data
-        def self.new: (amount: Integer?, unit_of_measure: String?, ?unit_size: Integer?) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
-                    | (Integer?, String?, Integer?) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
-        def self.[]: (amount: Integer?, unit_of_measure: String?, ?unit_size: Integer?) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
-                   | (Integer?, String?, Integer?) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
-
-        def self.members: () -> [ :amount, :unit_of_measure, :unit_size ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
-
-        attr_reader amount: Integer?
-        attr_reader unit_of_measure: String?
-        attr_reader unit_size: Integer?
-
-        def members: () -> [ :amount, :unit_of_measure, :unit_size ]
-        def to_h: () -> { amount: Integer?, unit_of_measure: String?, unit_size: Integer? }
-      end
-
       class Pagination < Data
         def self.new: (?next_token: String?) -> Peddler::APIs::VendorShipmentsV1::Pagination
                     | (String?) -> Peddler::APIs::VendorShipmentsV1::Pagination
@@ -539,22 +521,6 @@ module Peddler
 
         def members: () -> [ :party_id, :address, :tax_registration_details ]
         def to_h: () -> { party_id: String?, address: Peddler::APIs::VendorShipmentsV1::Address?, tax_registration_details: Array[Peddler::APIs::VendorShipmentsV1::TaxRegistrationDetails]? }
-      end
-
-      class PurchaseOrderItemDetails < Data
-        def self.new: (?maximum_retail_price: Peddler::Money?) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
-                    | (Peddler::Money?) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
-        def self.[]: (?maximum_retail_price: Peddler::Money?) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
-                   | (Peddler::Money?) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
-
-        def self.members: () -> [ :maximum_retail_price ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
-
-        attr_reader maximum_retail_price: Peddler::Money?
-
-        def members: () -> [ :maximum_retail_price ]
-        def to_h: () -> { maximum_retail_price: Peddler::Money? }
       end
 
       class PurchaseOrderItems < Data

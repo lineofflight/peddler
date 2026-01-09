@@ -592,40 +592,6 @@ module Peddler
         def to_h: () -> { errors: Array[Peddler::APIs::FinancesV0::Error]?, payload: Peddler::APIs::FinancesV0::ListFinancialEventsPayload? }
       end
 
-      class ListTransactionsPayload < Data
-        def self.new: (?next_token: String?, ?transactions: Array[Peddler::APIs::FinancesV0::Transaction]?) -> Peddler::APIs::FinancesV0::ListTransactionsPayload
-                    | (String?, Array[Peddler::APIs::FinancesV0::Transaction]?) -> Peddler::APIs::FinancesV0::ListTransactionsPayload
-        def self.[]: (?next_token: String?, ?transactions: Array[Peddler::APIs::FinancesV0::Transaction]?) -> Peddler::APIs::FinancesV0::ListTransactionsPayload
-                   | (String?, Array[Peddler::APIs::FinancesV0::Transaction]?) -> Peddler::APIs::FinancesV0::ListTransactionsPayload
-
-        def self.members: () -> [ :next_token, :transactions ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesV0::ListTransactionsPayload
-
-        attr_reader next_token: String?
-        attr_reader transactions: Array[Peddler::APIs::FinancesV0::Transaction]?
-
-        def members: () -> [ :next_token, :transactions ]
-        def to_h: () -> { next_token: String?, transactions: Array[Peddler::APIs::FinancesV0::Transaction]? }
-      end
-
-      class ListTransactionsResponse < Data
-        def self.new: (?errors: Array[Peddler::APIs::FinancesV0::Error]?, ?payload: Peddler::APIs::FinancesV0::ListTransactionsPayload?) -> Peddler::APIs::FinancesV0::ListTransactionsResponse
-                    | (Array[Peddler::APIs::FinancesV0::Error]?, Peddler::APIs::FinancesV0::ListTransactionsPayload?) -> Peddler::APIs::FinancesV0::ListTransactionsResponse
-        def self.[]: (?errors: Array[Peddler::APIs::FinancesV0::Error]?, ?payload: Peddler::APIs::FinancesV0::ListTransactionsPayload?) -> Peddler::APIs::FinancesV0::ListTransactionsResponse
-                   | (Array[Peddler::APIs::FinancesV0::Error]?, Peddler::APIs::FinancesV0::ListTransactionsPayload?) -> Peddler::APIs::FinancesV0::ListTransactionsResponse
-
-        def self.members: () -> [ :errors, :payload ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesV0::ListTransactionsResponse
-
-        attr_reader errors: Array[Peddler::APIs::FinancesV0::Error]?
-        attr_reader payload: Peddler::APIs::FinancesV0::ListTransactionsPayload?
-
-        def members: () -> [ :errors, :payload ]
-        def to_h: () -> { errors: Array[Peddler::APIs::FinancesV0::Error]?, payload: Peddler::APIs::FinancesV0::ListTransactionsPayload? }
-      end
-
       class LoanServicingEvent < Data
         def self.new: (?loan_amount: Peddler::Money?, ?source_business_event_type: String?) -> Peddler::APIs::FinancesV0::LoanServicingEvent
                     | (Peddler::Money?, String?) -> Peddler::APIs::FinancesV0::LoanServicingEvent
@@ -748,27 +714,6 @@ module Peddler
 
       class PromotionList < Array[Promotion]
         def self.parse: (Array[untyped]) -> PromotionList
-      end
-
-      class RelatedIdentifier < Data
-        def self.new: (?related_identifier_name: String?, ?related_identifier_value: String?) -> Peddler::APIs::FinancesV0::RelatedIdentifier
-                    | (String?, String?) -> Peddler::APIs::FinancesV0::RelatedIdentifier
-        def self.[]: (?related_identifier_name: String?, ?related_identifier_value: String?) -> Peddler::APIs::FinancesV0::RelatedIdentifier
-                   | (String?, String?) -> Peddler::APIs::FinancesV0::RelatedIdentifier
-
-        def self.members: () -> [ :related_identifier_name, :related_identifier_value ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesV0::RelatedIdentifier
-
-        attr_reader related_identifier_name: String?
-        attr_reader related_identifier_value: String?
-
-        def members: () -> [ :related_identifier_name, :related_identifier_value ]
-        def to_h: () -> { related_identifier_name: String?, related_identifier_value: String? }
-      end
-
-      class RelatedIdentifiers < Array[RelatedIdentifier]
-        def self.parse: (Array[untyped]) -> RelatedIdentifiers
       end
 
       class RemovalShipmentAdjustmentEvent < Data
@@ -1023,24 +968,6 @@ module Peddler
         def self.parse: (Array[untyped]) -> SellerReviewEnrollmentPaymentEventList
       end
 
-      class SellingPartnerMetadata < Data
-        def self.new: (?account_type: String?, ?marketplace_id: String?, ?selling_partner_id: String?) -> Peddler::APIs::FinancesV0::SellingPartnerMetadata
-                    | (String?, String?, String?) -> Peddler::APIs::FinancesV0::SellingPartnerMetadata
-        def self.[]: (?account_type: String?, ?marketplace_id: String?, ?selling_partner_id: String?) -> Peddler::APIs::FinancesV0::SellingPartnerMetadata
-                   | (String?, String?, String?) -> Peddler::APIs::FinancesV0::SellingPartnerMetadata
-
-        def self.members: () -> [ :account_type, :marketplace_id, :selling_partner_id ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesV0::SellingPartnerMetadata
-
-        attr_reader account_type: String?
-        attr_reader marketplace_id: String?
-        attr_reader selling_partner_id: String?
-
-        def members: () -> [ :account_type, :marketplace_id, :selling_partner_id ]
-        def to_h: () -> { account_type: String?, marketplace_id: String?, selling_partner_id: String? }
-      end
-
       class ServiceFeeEvent < Data
         def self.new: (?asin: String?, ?amazon_order_id: String?, ?fee_description: String?, ?fee_list: Array[Peddler::APIs::FinancesV0::FeeComponent]?, ?fee_reason: String?, ?fn_sku: String?, ?seller_sku: String?, ?store_name: String?) -> Peddler::APIs::FinancesV0::ServiceFeeEvent
                     | (String?, String?, String?, Array[Peddler::APIs::FinancesV0::FeeComponent]?, String?, String?, String?, String?) -> Peddler::APIs::FinancesV0::ServiceFeeEvent
@@ -1249,30 +1176,6 @@ module Peddler
         def to_h: () -> { end_date: String?, start_date: String? }
       end
 
-      class Transaction < Data
-        def self.new: (?posted_date: String?, ?related_identifiers: Array[Peddler::APIs::FinancesV0::RelatedIdentifier]?, ?selling_partner_metadata: Peddler::APIs::FinancesV0::SellingPartnerMetadata?, ?total_amount: Peddler::Money?, ?transaction_type: String?) -> Peddler::APIs::FinancesV0::Transaction
-                    | (String?, Array[Peddler::APIs::FinancesV0::RelatedIdentifier]?, Peddler::APIs::FinancesV0::SellingPartnerMetadata?, Peddler::Money?, String?) -> Peddler::APIs::FinancesV0::Transaction
-        def self.[]: (?posted_date: String?, ?related_identifiers: Array[Peddler::APIs::FinancesV0::RelatedIdentifier]?, ?selling_partner_metadata: Peddler::APIs::FinancesV0::SellingPartnerMetadata?, ?total_amount: Peddler::Money?, ?transaction_type: String?) -> Peddler::APIs::FinancesV0::Transaction
-                   | (String?, Array[Peddler::APIs::FinancesV0::RelatedIdentifier]?, Peddler::APIs::FinancesV0::SellingPartnerMetadata?, Peddler::Money?, String?) -> Peddler::APIs::FinancesV0::Transaction
-
-        def self.members: () -> [ :posted_date, :related_identifiers, :selling_partner_metadata, :total_amount, :transaction_type ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesV0::Transaction
-
-        attr_reader posted_date: String?
-        attr_reader related_identifiers: Array[Peddler::APIs::FinancesV0::RelatedIdentifier]?
-        attr_reader selling_partner_metadata: Peddler::APIs::FinancesV0::SellingPartnerMetadata?
-        attr_reader total_amount: Peddler::Money?
-        attr_reader transaction_type: String?
-
-        def members: () -> [ :posted_date, :related_identifiers, :selling_partner_metadata, :total_amount, :transaction_type ]
-        def to_h: () -> { posted_date: String?, related_identifiers: Array[Peddler::APIs::FinancesV0::RelatedIdentifier]?, selling_partner_metadata: Peddler::APIs::FinancesV0::SellingPartnerMetadata?, total_amount: Peddler::Money?, transaction_type: String? }
-      end
-
-      class Transactions < Array[Transaction]
-        def self.parse: (Array[untyped]) -> Transactions
-      end
-
       class TrialShipmentEvent < Data
         def self.new: (?amazon_order_id: String?, ?fee_list: Array[Peddler::APIs::FinancesV0::FeeComponent]?, ?financial_event_group_id: String?, ?posted_date: String?, ?sku: String?) -> Peddler::APIs::FinancesV0::TrialShipmentEvent
                     | (String?, Array[Peddler::APIs::FinancesV0::FeeComponent]?, String?, String?, String?) -> Peddler::APIs::FinancesV0::TrialShipmentEvent
@@ -1325,8 +1228,6 @@ module Peddler
       def list_financial_events: (?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
       def list_financial_events_by_group_id: (String, ?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
       def list_financial_events_by_order_id: (String, ?max_results_per_page: Integer?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def list_transactions: (String, String, ?posted_before: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end
