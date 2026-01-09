@@ -142,38 +142,6 @@ module Peddler
         parser = -> { ListFinancialEventsResponse }
         meter(rate_limit).get(path, params:, parser:)
       end
-
-      # Returns transactions for the given parameters. Orders from the last 48 hours might not be included in financial
-      # events.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param posted_after [String] The response includes financial events posted after (or on) this date. This date
-      #   must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time
-      #   must be more than two minutes before the time of the request.
-      # @param posted_before [String] The response includes financial events posted before (but not on) this date. This
-      #   date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The
-      #   date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If
-      #   `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the
-      #   `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter. **Default:** Two
-      #   minutes before the time of the request.
-      # @param marketplace_id [String] The ID of the marketplace from which you want to retrieve transactions.
-      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
-      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
-      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
-      #   is null. Note that this operation can return empty pages.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def list_transactions(posted_after, marketplace_id, posted_before: nil, next_token: nil, rate_limit: 1.0)
-        path = "/finances/v0/transactions"
-        params = {
-          "PostedAfter" => posted_after,
-          "PostedBefore" => posted_before,
-          "MarketplaceId" => marketplace_id,
-          "NextToken" => next_token,
-        }.compact
-        parser = -> { ListTransactionsResponse }
-        meter(rate_limit).get(path, params:, parser:)
-      end
     end
   end
 end
