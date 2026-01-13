@@ -61,7 +61,7 @@ module Peddler
           "keywordsLocale" => keywords_locale,
         }.compact
         parser = -> { ItemSearchResults }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Retrieves details for an item in the Amazon catalog.
@@ -84,7 +84,7 @@ module Peddler
           "locale" => locale,
         }.compact
         parser = -> { Item }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

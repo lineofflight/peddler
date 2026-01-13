@@ -39,7 +39,7 @@ module Peddler
           "ASINList" => stringify_array(asin_list),
         }.compact
         parser = -> { GetPrepInstructionsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
@@ -81,7 +81,7 @@ module Peddler
           "PageStartIndex" => page_start_index,
         }.compact
         parser = -> { GetLabelsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading
@@ -96,7 +96,7 @@ module Peddler
       def get_bill_of_lading(shipment_id, rate_limit: 2.0)
         path = "/fba/inbound/v0/shipments/#{percent_encode(shipment_id)}/billOfLading"
         parser = -> { GetBillOfLadingResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns a list of inbound shipments based on criteria that you specify.
@@ -133,7 +133,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetShipmentsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns a list of items in a specified inbound shipment.
@@ -149,7 +149,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetShipmentItemsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
@@ -179,7 +179,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetShipmentItemsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

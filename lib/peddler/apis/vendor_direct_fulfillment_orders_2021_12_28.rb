@@ -48,7 +48,7 @@ module Peddler
           "includeDetails" => include_details,
         }.compact
         parser = -> { OrderList }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
@@ -61,7 +61,7 @@ module Peddler
       def get_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/#{percent_encode(purchase_order_number)}"
         parser = -> { Order }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Submits acknowledgements for one or more purchase orders.
@@ -73,7 +73,7 @@ module Peddler
       def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
         parser = -> { TransactionId }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

@@ -39,7 +39,7 @@ module Peddler
       def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
         path = "/products/fees/v0/listings/#{percent_encode(seller_sku)}/feesEstimate"
         parser = -> { GetMyFeesEstimateResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the
@@ -66,7 +66,7 @@ module Peddler
       def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
         path = "/products/fees/v0/items/#{percent_encode(asin)}/feesEstimate"
         parser = -> { GetMyFeesEstimateResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the estimated fees for a list of products.
@@ -78,7 +78,7 @@ module Peddler
       def get_my_fees_estimates(body, rate_limit: 0.5)
         path = "/products/fees/v0/feesEstimate"
         parser = -> { GetMyFeesEstimatesResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

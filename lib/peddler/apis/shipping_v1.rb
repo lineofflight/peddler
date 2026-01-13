@@ -23,7 +23,7 @@ module Peddler
       def create_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/shipments"
         parser = -> { CreateShipmentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Return the entire shipment object for the shipmentId.
@@ -35,7 +35,7 @@ module Peddler
       def get_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}"
         parser = -> { GetShipmentResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Cancel a shipment by the given shipmentId.
@@ -47,7 +47,7 @@ module Peddler
       def cancel_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/cancel"
         parser = -> { CancelShipmentResponse }
-        meter(rate_limit).post(path, parser:)
+        post(path, rate_limit:, parser:)
       end
 
       # Purchase shipping labels based on a given rate.
@@ -60,7 +60,7 @@ module Peddler
       def purchase_labels(shipment_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/purchaseLabels"
         parser = -> { PurchaseLabelsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Retrieve shipping label based on the shipment id and tracking id.
@@ -74,7 +74,7 @@ module Peddler
       def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/containers/#{percent_encode(tracking_id)}/label"
         parser = -> { RetrieveShippingLabelResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Purchase shipping labels.
@@ -86,7 +86,7 @@ module Peddler
       def purchase_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/purchaseShipment"
         parser = -> { PurchaseShipmentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Get service rates.
@@ -98,7 +98,7 @@ module Peddler
       def get_rates(body, rate_limit: 5.0)
         path = "/shipping/v1/rates"
         parser = -> { GetRatesResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Verify if the current account is valid.
@@ -109,7 +109,7 @@ module Peddler
       def get_account(rate_limit: 5.0)
         path = "/shipping/v1/account"
         parser = -> { GetAccountResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Return the tracking information of a shipment.
@@ -121,7 +121,7 @@ module Peddler
       def get_tracking_information(tracking_id, rate_limit: 1.0)
         path = "/shipping/v1/tracking/#{percent_encode(tracking_id)}"
         parser = -> { GetTrackingInformationResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
     end
   end

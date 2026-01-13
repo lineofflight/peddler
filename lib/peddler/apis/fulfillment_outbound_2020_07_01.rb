@@ -21,7 +21,7 @@ module Peddler
       def get_fulfillment_preview(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
         parser = -> { GetFulfillmentPreviewResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
@@ -34,7 +34,7 @@ module Peddler
       def delivery_offers(body, rate_limit: 5.0)
         path = "/fba/outbound/2020-07-01/deliveryOffers"
         parser = -> { GetDeliveryOffersResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the
@@ -54,7 +54,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
         parser = -> { ListAllFulfillmentOrdersResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
@@ -67,7 +67,7 @@ module Peddler
       def create_fulfillment_order(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
         parser = -> { CreateFulfillmentOrderResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
@@ -84,7 +84,7 @@ module Peddler
           "packageNumber" => package_number,
         }.compact
         parser = -> { GetPackageTrackingDetailsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation
@@ -111,7 +111,7 @@ module Peddler
           "language" => language,
         }.compact
         parser = -> { ListReturnReasonCodesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates a fulfillment return.
@@ -126,7 +126,7 @@ module Peddler
       def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/return"
         parser = -> { CreateFulfillmentReturnResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, rate_limit:, parser:)
       end
 
       # Returns the fulfillment order indicated by the specified order identifier.
@@ -139,7 +139,7 @@ module Peddler
       def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
         parser = -> { GetFulfillmentOrderResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
@@ -153,7 +153,7 @@ module Peddler
       def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
         parser = -> { UpdateFulfillmentOrderResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, rate_limit:, parser:)
       end
 
       # Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order
@@ -167,7 +167,7 @@ module Peddler
       def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/cancel"
         parser = -> { CancelFulfillmentOrderResponse }
-        meter(rate_limit).put(path, parser:)
+        put(path, rate_limit:, parser:)
       end
 
       # Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
@@ -202,7 +202,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetFeaturesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
@@ -226,7 +226,7 @@ module Peddler
           "queryStartDate" => query_start_date,
         }.compact
         parser = -> { GetFeatureInventoryResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns the number of items with the `sellerSku` you specify that can have orders fulfilled using the specified
@@ -247,7 +247,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetFeatureSKUResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

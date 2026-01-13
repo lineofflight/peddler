@@ -20,7 +20,7 @@ module Peddler
       def get_eligible_shipment_services(body, rate_limit: 6.0)
         path = "/mfn/v0/eligibleShippingServices"
         parser = -> { GetEligibleShipmentServicesResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the shipment information for an existing shipment.
@@ -32,7 +32,7 @@ module Peddler
       def get_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
         parser = -> { GetShipmentResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Cancel the shipment indicated by the specified shipment identifier.
@@ -44,7 +44,7 @@ module Peddler
       def cancel_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
         parser = -> { CancelShipmentResponse }
-        meter(rate_limit).delete(path, parser:)
+        delete(path, rate_limit:, parser:)
       end
 
       # Create a shipment with the information provided.
@@ -56,7 +56,7 @@ module Peddler
       def create_shipment(body, rate_limit: 2.0)
         path = "/mfn/v0/shipments"
         parser = -> { CreateShipmentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
@@ -69,7 +69,7 @@ module Peddler
       def get_additional_seller_inputs(body, rate_limit: 1.0)
         path = "/mfn/v0/additionalSellerInputs"
         parser = -> { GetAdditionalSellerInputsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

@@ -33,7 +33,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { GetSolicitationActionsForOrderResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
@@ -52,7 +52,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateProductReviewAndSellerFeedbackSolicitationResponse }
-        meter(rate_limit).post(path, params:, parser:)
+        post(path, params:, rate_limit:, parser:)
       end
     end
   end

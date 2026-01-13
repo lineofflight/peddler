@@ -23,7 +23,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetInvoicesAttributesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
@@ -36,7 +36,7 @@ module Peddler
       def get_invoices_document(invoices_document_id, rate_limit: 0.0167)
         path = "/tax/invoices/2024-06-19/documents/#{percent_encode(invoices_document_id)}"
         parser = -> { GetInvoicesDocumentResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Creates an invoice export request.
@@ -48,7 +48,7 @@ module Peddler
       def create_invoices_export(body, rate_limit: 0.167)
         path = "/tax/invoices/2024-06-19/exports"
         parser = -> { ExportInvoicesResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns invoice exports details for exports that match the filters that you specify.
@@ -81,7 +81,7 @@ module Peddler
           "status" => status,
         }.compact
         parser = -> { GetInvoicesExportsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
@@ -93,7 +93,7 @@ module Peddler
       def get_invoices_export(export_id, rate_limit: 2.0)
         path = "/tax/invoices/2024-06-19/exports/#{percent_encode(export_id)}"
         parser = -> { GetInvoicesExportResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns invoice details for the invoices that match the filters that you specify.
@@ -151,7 +151,7 @@ module Peddler
           "sortBy" => sort_by,
         }.compact
         parser = -> { GetInvoicesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
@@ -169,7 +169,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetInvoiceResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

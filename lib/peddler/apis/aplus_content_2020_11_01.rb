@@ -31,7 +31,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
         parser = -> { SearchContentDocumentsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates a new A+ Content document.
@@ -51,7 +51,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { PostContentDocumentResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Returns an A+ Content document, if available.
@@ -74,7 +74,7 @@ module Peddler
           "includedDataSet" => stringify_array(included_data_set),
         }.compact
         parser = -> { GetContentDocumentResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Updates an existing A+ Content document.
@@ -98,7 +98,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { PostContentDocumentResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Returns a list of ASINs that are related to the specified A+ Content document, if available. If you don't
@@ -129,7 +129,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
         parser = -> { ListContentDocumentASINRelationsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Replaces all ASINs related to the specified A+ Content document, if available. This operation can add or remove
@@ -156,7 +156,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { PostContentDocumentASINRelationsResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Checks if the A+ Content document is valid for use on a set of ASINs.
@@ -179,7 +179,7 @@ module Peddler
           "asinSet" => stringify_array(asin_set),
         }.compact
         parser = -> { ValidateContentDocumentASINRelationsResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Searches for A+ Content publishing records, if available.
@@ -203,7 +203,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
         parser = -> { SearchContentPublishRecordsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Submits an A+ Content document for review, approval, and publishing.
@@ -224,7 +224,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { PostContentDocumentApprovalSubmissionResponse }
-        meter(rate_limit).post(path, params:, parser:)
+        post(path, params:, rate_limit:, parser:)
       end
 
       # Submits a request to suspend visible A+ Content. This doesn't delete the content document or the ASIN relations.
@@ -245,7 +245,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { PostContentDocumentSuspendSubmissionResponse }
-        meter(rate_limit).post(path, params:, parser:)
+        post(path, params:, rate_limit:, parser:)
       end
     end
   end

@@ -35,7 +35,7 @@ module Peddler
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
         parser = -> { ListHandoverSlotsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
@@ -54,7 +54,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { Package }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Schedules an Easy Ship order and returns the scheduled package information.
@@ -85,7 +85,7 @@ module Peddler
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
         parser = -> { Package }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
@@ -104,7 +104,7 @@ module Peddler
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
         parser = -> { Packages }
-        meter(rate_limit).patch(path, body:, parser:)
+        patch(path, body:, rate_limit:, parser:)
       end
 
       # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
@@ -137,7 +137,7 @@ module Peddler
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
         parser = -> { CreateScheduledPackagesResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

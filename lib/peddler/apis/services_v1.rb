@@ -20,7 +20,7 @@ module Peddler
       def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}"
         parser = -> { GetServiceJobByServiceJobIdResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Cancels the service job indicated by the service job identifier specified.
@@ -37,7 +37,7 @@ module Peddler
           "cancellationReasonCode" => cancellation_reason_code,
         }.compact
         parser = -> { CancelServiceJobByServiceJobIdResponse }
-        meter(rate_limit).put(path, params:, parser:)
+        put(path, params:, rate_limit:, parser:)
       end
 
       # Completes the service job indicated by the service job identifier specified.
@@ -49,7 +49,7 @@ module Peddler
       def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/completions"
         parser = -> { CompleteServiceJobByServiceJobIdResponse }
-        meter(rate_limit).put(path, parser:)
+        put(path, rate_limit:, parser:)
       end
 
       # Gets service job details for the specified filter query.
@@ -111,7 +111,7 @@ module Peddler
           "storeIds" => stringify_array(store_ids),
         }.compact
         parser = -> { GetServiceJobsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Adds an appointment to the service job indicated by the service job identifier specified.
@@ -124,7 +124,7 @@ module Peddler
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments"
         parser = -> { SetAppointmentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
@@ -139,7 +139,7 @@ module Peddler
         rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}"
         parser = -> { SetAppointmentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
@@ -154,7 +154,7 @@ module Peddler
       def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}/resources"
         parser = -> { AssignAppointmentResourcesResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, rate_limit:, parser:)
       end
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
@@ -168,7 +168,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def set_appointment_fulfillment_data(service_job_id, appointment_id, body, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}/fulfillment"
-        meter(rate_limit).put(path, body:)
+        put(path, body:, rate_limit:)
       end
 
       # Provides capacity slots in a format similar to availability records.
@@ -187,7 +187,7 @@ module Peddler
           "nextPageToken" => next_page_token,
         }.compact
         parser = -> { RangeSlotCapacity }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Provides capacity in fixed-size slots.
@@ -206,7 +206,7 @@ module Peddler
           "nextPageToken" => next_page_token,
         }.compact
         parser = -> { FixedSlotCapacity }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Update the schedule of the given resource.
@@ -223,7 +223,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { UpdateScheduleResponse }
-        meter(rate_limit).put(path, body:, params:, parser:)
+        put(path, body:, params:, rate_limit:, parser:)
       end
 
       # Create a reservation.
@@ -239,7 +239,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateReservationResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Update a reservation.
@@ -256,7 +256,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { UpdateReservationResponse }
-        meter(rate_limit).put(path, body:, params:, parser:)
+        put(path, body:, params:, rate_limit:, parser:)
       end
 
       # Cancel a reservation.
@@ -272,7 +272,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CancelReservationResponse }
-        meter(rate_limit).delete(path, params:, parser:)
+        delete(path, params:, rate_limit:, parser:)
       end
 
       # Gets appointment slots for the service associated with the service job id specified.
@@ -297,7 +297,7 @@ module Peddler
           "endTime" => end_time,
         }.compact
         parser = -> { GetAppointmentSlotsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Gets appointment slots as per the service context specified.
@@ -324,7 +324,7 @@ module Peddler
           "endTime" => end_time,
         }.compact
         parser = -> { GetAppointmentSlotsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates an upload destination.
@@ -336,7 +336,7 @@ module Peddler
       def create_service_document_upload_destination(body, rate_limit: 5.0)
         path = "/service/v1/documents"
         parser = -> { CreateServiceDocumentUploadDestination }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

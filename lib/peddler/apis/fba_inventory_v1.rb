@@ -61,7 +61,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { GetInventorySummariesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a

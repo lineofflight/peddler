@@ -26,7 +26,7 @@ module Peddler
       def get_marketplace_participations(rate_limit: 0.016)
         path = "/sellers/v1/marketplaceParticipations"
         parser = -> { GetMarketplaceParticipationsResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns information about a seller account and its marketplaces.
@@ -37,7 +37,7 @@ module Peddler
       def get_account(rate_limit: 0.016)
         path = "/sellers/v1/account"
         parser = -> { GetAccountResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
     end
   end

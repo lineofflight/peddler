@@ -24,7 +24,7 @@ module Peddler
       def get_selling_partner_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
         parser = -> { GetSellingPartnerMetricsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns aggregated replenishment program metrics for a selling partner's offers.
@@ -36,7 +36,7 @@ module Peddler
       def list_offer_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/metrics/search"
         parser = -> { ListOfferMetricsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the details of a selling partner's replenishment program offers.
@@ -48,7 +48,7 @@ module Peddler
       def list_offers(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/search"
         parser = -> { ListOffersResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

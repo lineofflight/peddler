@@ -22,7 +22,7 @@ module Peddler
 
         path = "/vendor/transactions/v1/transactions/#{percent_encode(transaction_id)}"
         parser = -> { GetTransactionResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
     end
   end

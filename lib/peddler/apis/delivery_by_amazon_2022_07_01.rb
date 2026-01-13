@@ -27,7 +27,7 @@ module Peddler
           "shipmentId" => shipment_id,
         }.compact
         parser = -> { SubmitInvoiceResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Returns the invoice status for the order or shipment you specify. You must specify either an `orderId` or
@@ -52,7 +52,7 @@ module Peddler
           "programType" => program_type,
         }.compact
         parser = -> { GetInvoiceStatusResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

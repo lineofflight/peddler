@@ -46,7 +46,7 @@ module Peddler
           "OfferType" => offer_type,
         }.compact
         parser = -> { GetPricingResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -80,7 +80,7 @@ module Peddler
           "CustomerType" => customer_type,
         }.compact
         parser = -> { GetPricingResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns the lowest priced offers for a single SKU listing.
@@ -107,7 +107,7 @@ module Peddler
           "CustomerType" => customer_type,
         }.compact
         parser = -> { GetOffersResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns the lowest priced offers for a single item based on ASIN.
@@ -129,7 +129,7 @@ module Peddler
           "CustomerType" => customer_type,
         }.compact
         parser = -> { GetOffersResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
@@ -142,7 +142,7 @@ module Peddler
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
         parser = -> { GetItemOffersBatchResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the lowest priced offers for a batch of listings by SKU.
@@ -156,7 +156,7 @@ module Peddler
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body
         parser = -> { GetListingOffersBatchResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

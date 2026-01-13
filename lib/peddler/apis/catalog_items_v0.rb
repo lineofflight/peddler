@@ -28,7 +28,7 @@ module Peddler
           "SellerSKU" => seller_sku,
         }.compact
         parser = -> { ListCatalogCategoriesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

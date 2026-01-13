@@ -20,7 +20,7 @@ module Peddler
       def create_notification(body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications"
         parser = -> { CreateNotificationResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Remove your application's notifications from the Appstore notifications dashboard.
@@ -31,7 +31,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_notifications(body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications/deletion"
-        meter(rate_limit).post(path, body:)
+        post(path, body:, rate_limit:)
       end
 
       # Records the seller's response to a notification.
@@ -43,7 +43,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def record_action_feedback(notification_id, body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications/#{percent_encode(notification_id)}/feedback"
-        meter(rate_limit).post(path, body:)
+        post(path, body:, rate_limit:)
       end
     end
   end

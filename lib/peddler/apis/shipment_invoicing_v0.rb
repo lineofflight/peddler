@@ -23,7 +23,7 @@ module Peddler
       def get_shipment_details(shipment_id, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}"
         parser = -> { GetShipmentDetailsResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Submits a shipment invoice document for a given shipment.
@@ -36,7 +36,7 @@ module Peddler
       def submit_invoice(shipment_id, body, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice"
         parser = -> { SubmitInvoiceResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the invoice status for the shipment you specify.
@@ -48,7 +48,7 @@ module Peddler
       def get_invoice_status(shipment_id, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice/status"
         parser = -> { GetInvoiceStatusResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
     end
   end

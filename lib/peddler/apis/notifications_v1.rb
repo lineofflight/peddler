@@ -32,7 +32,7 @@ module Peddler
           "payloadVersion" => payload_version,
         }.compact
         parser = -> { GetSubscriptionResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates a subscription for the specified notification type to be delivered to the specified destination. Before
@@ -49,7 +49,7 @@ module Peddler
       def create_subscription(body, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}"
         parser = -> { CreateSubscriptionResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns information about a subscription for the specified notification type. The `getSubscriptionById`
@@ -65,7 +65,7 @@ module Peddler
       def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}/#{percent_encode(subscription_id)}"
         parser = -> { GetSubscriptionByIdResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Deletes the subscription indicated by the subscription identifier and notification type that you specify. The
@@ -83,7 +83,7 @@ module Peddler
       def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}/#{percent_encode(subscription_id)}"
         parser = -> { DeleteSubscriptionByIdResponse }
-        meter(rate_limit).delete(path, parser:)
+        delete(path, rate_limit:, parser:)
       end
 
       # Returns information about all destinations. The `getDestinations` operation is grantless. For more information,
@@ -95,7 +95,7 @@ module Peddler
       def get_destinations(rate_limit: 1.0)
         path = "/notifications/v1/destinations"
         parser = -> { GetDestinationsResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Creates a destination resource to receive notifications. The `createDestination` operation is grantless. For
@@ -109,7 +109,7 @@ module Peddler
       def create_destination(body, rate_limit: 1.0)
         path = "/notifications/v1/destinations"
         parser = -> { CreateDestinationResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns information about the destination that you specify. The `getDestination` operation is grantless. For
@@ -123,7 +123,7 @@ module Peddler
       def get_destination(destination_id, rate_limit: 1.0)
         path = "/notifications/v1/destinations/#{percent_encode(destination_id)}"
         parser = -> { GetDestinationResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information,
@@ -136,7 +136,7 @@ module Peddler
       def delete_destination(destination_id, rate_limit: 1.0)
         path = "/notifications/v1/destinations/#{percent_encode(destination_id)}"
         parser = -> { DeleteDestinationResponse }
-        meter(rate_limit).delete(path, parser:)
+        delete(path, rate_limit:, parser:)
       end
     end
   end

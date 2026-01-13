@@ -20,7 +20,7 @@ module Peddler
       def submit_invoice(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/payments/v1/invoices"
         parser = -> { SubmitInvoiceResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

@@ -21,7 +21,7 @@ module Peddler
       def submit_inventory_update(body, warehouse_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{percent_encode(warehouse_id)}/items"
         parser = -> { SubmitInventoryUpdateResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

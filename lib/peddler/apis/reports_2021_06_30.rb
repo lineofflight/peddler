@@ -48,7 +48,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
         parser = -> { GetReportsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates a report.
@@ -60,7 +60,7 @@ module Peddler
       def create_report(body, rate_limit: 0.0167)
         path = "/reports/2021-06-30/reports"
         parser = -> { CreateReportResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled
@@ -73,7 +73,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_report(report_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/reports/#{percent_encode(report_id)}"
-        meter(rate_limit).delete(path)
+        delete(path, rate_limit:)
       end
 
       # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
@@ -86,7 +86,7 @@ module Peddler
       def get_report(report_id, rate_limit: 2.0)
         path = "/reports/2021-06-30/reports/#{percent_encode(report_id)}"
         parser = -> { Report }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns report schedule details that match the filters that you specify.
@@ -102,7 +102,7 @@ module Peddler
           "reportTypes" => stringify_array(report_types),
         }.compact
         parser = -> { ReportScheduleList }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
@@ -115,7 +115,7 @@ module Peddler
       def create_report_schedule(body, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules"
         parser = -> { CreateReportScheduleResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Cancels the report schedule that you specify.
@@ -127,7 +127,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_report_schedule(report_schedule_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules/#{percent_encode(report_schedule_id)}"
-        meter(rate_limit).delete(path)
+        delete(path, rate_limit:)
       end
 
       # Returns report schedule details for the report schedule that you specify.
@@ -140,7 +140,7 @@ module Peddler
       def get_report_schedule(report_schedule_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules/#{percent_encode(report_schedule_id)}"
         parser = -> { ReportSchedule }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns the information required for retrieving a report document's contents.
@@ -152,7 +152,7 @@ module Peddler
       def get_report_document(report_document_id, rate_limit: 0.0167)
         path = "/reports/2021-06-30/documents/#{percent_encode(report_document_id)}"
         parser = -> { ReportDocument }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
     end
   end

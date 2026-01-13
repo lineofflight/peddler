@@ -21,7 +21,7 @@ module Peddler
       def create_inbound(body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders"
         parser = -> { InboundOrderReference }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Retrieves an AWD inbound order.
@@ -33,7 +33,7 @@ module Peddler
       def get_inbound(order_id, rate_limit: 2.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}"
         parser = -> { InboundOrder }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Updates an AWD inbound order that is in `DRAFT` status and not yet confirmed. Use this operation to update the
@@ -46,7 +46,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_inbound(order_id, body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}"
-        meter(rate_limit).put(path, body:)
+        put(path, body:, rate_limit:)
       end
 
       # Cancels an AWD Inbound order and its associated shipment.
@@ -57,7 +57,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_inbound(order_id, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}/cancellation"
-        meter(rate_limit).post(path)
+        post(path, rate_limit:)
       end
 
       # Confirms an AWD inbound order in `DRAFT` status.
@@ -68,7 +68,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_inbound(order_id, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}/confirmation"
-        meter(rate_limit).post(path)
+        post(path, rate_limit:)
       end
 
       # Retrieves an AWD inbound shipment.
@@ -85,7 +85,7 @@ module Peddler
           "skuQuantities" => sku_quantities,
         }.compact
         parser = -> { InboundShipment }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Retrieves the box labels for a shipment ID that you specify. This is an asynchronous operation. If the label
@@ -105,7 +105,7 @@ module Peddler
           "formatType" => format_type,
         }.compact
         parser = -> { ShipmentLabels }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Updates transport details for an AWD shipment.
@@ -117,7 +117,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_inbound_shipment_transport_details(shipment_id, body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundShipments/#{percent_encode(shipment_id)}/transport"
-        meter(rate_limit).put(path, body:)
+        put(path, body:, rate_limit:)
       end
 
       # Determines if the packages you specify are eligible for an AWD inbound order and contains error details for
@@ -130,7 +130,7 @@ module Peddler
       def check_inbound_eligibility(body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundEligibility"
         parser = -> { InboundEligibility }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
@@ -166,7 +166,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
         parser = -> { ShipmentListing }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
@@ -194,7 +194,7 @@ module Peddler
           "maxResults" => max_results,
         }.compact
         parser = -> { InventoryListing }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

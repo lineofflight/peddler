@@ -30,7 +30,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { GetMessagingActionsForOrderResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Sends a message asking a buyer to provide or verify customization details such as name spelling, images,
@@ -50,7 +50,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateConfirmCustomizationDetailsResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
@@ -69,7 +69,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateConfirmDeliveryDetailsResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer.
@@ -89,7 +89,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateLegalDisclosureResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Sends a message to ask a buyer an order-related question prior to shipping their order.
@@ -108,7 +108,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateConfirmOrderDetailsResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a
@@ -128,7 +128,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateConfirmServiceDetailsResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by
@@ -148,7 +148,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateAmazonMotorsResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
@@ -167,7 +167,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateWarrantyResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Returns a response containing attributes related to an order. This includes buyer preferences.
@@ -185,7 +185,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { GetAttributesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Sends a buyer a message to share a digital access key that is required to utilize digital content in their
@@ -205,7 +205,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateDigitalAccessKeyResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the
@@ -225,7 +225,7 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
         parser = -> { CreateUnexpectedProblemResponse }
-        meter(rate_limit).post(path, body:, params:, parser:)
+        post(path, body:, params:, rate_limit:, parser:)
       end
 
       # Sends a message providing the buyer an invoice

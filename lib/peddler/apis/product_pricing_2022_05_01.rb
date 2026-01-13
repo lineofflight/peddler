@@ -31,7 +31,7 @@ module Peddler
         path = "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
         body = get_featured_offer_expected_price_batch_request_body
         parser = -> { GetFeaturedOfferExpectedPriceBatchResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the competitive summary response, including featured buying options for the ASIN and `marketplaceId`
@@ -45,7 +45,7 @@ module Peddler
         path = "/batches/products/pricing/2022-05-01/items/competitiveSummary"
         body = requests
         parser = -> { CompetitiveSummaryBatchResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

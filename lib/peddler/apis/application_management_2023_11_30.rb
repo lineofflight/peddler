@@ -23,7 +23,7 @@ module Peddler
         cannot_sandbox!
 
         path = "/applications/2023-11-30/clientSecret"
-        meter(rate_limit).post(path)
+        post(path, rate_limit:)
       end
     end
   end

@@ -41,7 +41,7 @@ module Peddler
           "paginationToken" => pagination_token,
         }.compact
         parser = -> { GetQueriesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates a Data Kiosk query request.
@@ -58,7 +58,7 @@ module Peddler
       def create_query(body, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/queries"
         parser = -> { CreateQueryResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Cancels the query specified by the `queryId` parameter. Only queries with a non-terminal `processingStatus`
@@ -73,7 +73,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_query(query_id, rate_limit: 0.0222)
         path = "/dataKiosk/2023-11-15/queries/#{percent_encode(query_id)}"
-        meter(rate_limit).delete(path)
+        delete(path, rate_limit:)
       end
 
       # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
@@ -86,7 +86,7 @@ module Peddler
       def get_query(query_id, rate_limit: 2.0)
         path = "/dataKiosk/2023-11-15/queries/#{percent_encode(query_id)}"
         parser = -> { Query }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
@@ -99,7 +99,7 @@ module Peddler
       def get_document(document_id, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/documents/#{percent_encode(document_id)}"
         parser = -> { GetDocumentResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
     end
   end

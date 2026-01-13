@@ -41,7 +41,7 @@ module Peddler
           "searchLocale" => search_locale,
         }.compact
         parser = -> { ProductTypeList }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Retrieve an Amazon product type definition.
@@ -76,7 +76,7 @@ module Peddler
           "locale" => locale,
         }.compact
         parser = -> { ProductTypeDefinition }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

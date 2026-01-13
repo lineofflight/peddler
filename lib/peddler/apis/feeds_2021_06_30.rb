@@ -45,7 +45,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
         parser = -> { GetFeedsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
@@ -57,7 +57,7 @@ module Peddler
       def create_feed(body, rate_limit: 0.0083)
         path = "/feeds/2021-06-30/feeds"
         parser = -> { CreateFeedResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds
@@ -71,7 +71,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_feed(feed_id, rate_limit: 2.0)
         path = "/feeds/2021-06-30/feeds/#{percent_encode(feed_id)}"
-        meter(rate_limit).delete(path)
+        delete(path, rate_limit:)
       end
 
       # Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.
@@ -84,7 +84,7 @@ module Peddler
       def get_feed(feed_id, rate_limit: 2.0)
         path = "/feeds/2021-06-30/feeds/#{percent_encode(feed_id)}"
         parser = -> { Feed }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading
@@ -98,7 +98,7 @@ module Peddler
       def create_feed_document(body, rate_limit: 0.5)
         path = "/feeds/2021-06-30/documents"
         parser = -> { CreateFeedDocumentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the information required for retrieving a feed document's contents.
@@ -110,7 +110,7 @@ module Peddler
       def get_feed_document(feed_document_id, rate_limit: 0.0222)
         path = "/feeds/2021-06-30/documents/#{percent_encode(feed_document_id)}"
         parser = -> { FeedDocument }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
     end
   end

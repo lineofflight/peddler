@@ -22,7 +22,7 @@ module Peddler
       def initiate_payout(body, rate_limit: 0.017)
         path = "/finances/transfers/2024-06-01/payouts"
         parser = -> { InitiatePayoutResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the list of payment methods for the seller, which can be filtered by method type.
@@ -42,7 +42,7 @@ module Peddler
           "paymentMethodTypes" => stringify_array(payment_method_types),
         }.compact
         parser = -> { GetPaymentMethodsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

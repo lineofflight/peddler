@@ -55,7 +55,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
         parser = -> { ListTransactionsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

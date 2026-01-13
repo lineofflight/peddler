@@ -38,7 +38,7 @@ module Peddler
           "reasonLocale" => reason_locale,
         }.compact
         parser = -> { RestrictionList }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

@@ -142,7 +142,7 @@ module Peddler
           "LatestDeliveryDateAfter" => latest_delivery_date_after,
         }.compact
         parser = -> { GetOrdersResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns the order that you specify.
@@ -154,7 +154,7 @@ module Peddler
       def get_order(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}"
         parser = -> { GetOrderResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns buyer information for the order that you specify.
@@ -166,7 +166,7 @@ module Peddler
       def get_order_buyer_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/buyerInfo"
         parser = -> { GetOrderBuyerInfoResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns the shipping address for the order that you specify.
@@ -178,7 +178,7 @@ module Peddler
       def get_order_address(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/address"
         parser = -> { GetOrderAddressResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
@@ -202,7 +202,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
         parser = -> { GetOrderItemsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns buyer information for the order items in the order that you specify.
@@ -218,7 +218,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
         parser = -> { GetOrderItemsBuyerInfoResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Update the shipment status for an order that you specify.
@@ -231,7 +231,7 @@ module Peddler
       def update_shipment_status(order_id, payload, rate_limit: 5.0)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/shipment"
         body = payload
-        meter(rate_limit).post(path, body:)
+        post(path, body:, rate_limit:)
       end
 
       # Returns regulated information for the order that you specify.
@@ -243,7 +243,7 @@ module Peddler
       def get_order_regulated_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/regulatedInfo"
         parser = -> { GetOrderRegulatedInfoResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
@@ -256,7 +256,7 @@ module Peddler
       def update_verification_status(order_id, payload, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/regulatedInfo"
         body = payload
-        meter(rate_limit).patch(path, body:)
+        patch(path, body:, rate_limit:)
       end
 
       # Updates the shipment confirmation status for a specified order.
@@ -269,7 +269,7 @@ module Peddler
       def confirm_shipment(order_id, payload, rate_limit: 2.0)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/shipmentConfirmation"
         body = payload
-        meter(rate_limit).post(path, body:)
+        post(path, body:, rate_limit:)
       end
     end
   end

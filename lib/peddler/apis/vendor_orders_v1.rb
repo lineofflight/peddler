@@ -63,7 +63,7 @@ module Peddler
           "orderingVendorCode" => ordering_vendor_code,
         }.compact
         parser = -> { GetPurchaseOrdersResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
@@ -76,7 +76,7 @@ module Peddler
       def get_purchase_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/orders/v1/purchaseOrders/#{percent_encode(purchase_order_number)}"
         parser = -> { GetPurchaseOrderResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Submits acknowledgements for one or more purchase orders.
@@ -88,7 +88,7 @@ module Peddler
       def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/orders/v1/acknowledgements"
         parser = -> { SubmitAcknowledgementResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns purchase order statuses based on the filters that you specify. Date range to search must not be more
@@ -148,7 +148,7 @@ module Peddler
           "shipToPartyId" => ship_to_party_id,
         }.compact
         parser = -> { GetPurchaseOrdersStatusResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

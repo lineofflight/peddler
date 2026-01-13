@@ -40,7 +40,7 @@ module Peddler
           "contentType" => content_type,
         }.compact
         parser = -> { CreateUploadDestinationResponse }
-        meter(rate_limit).post(path, params:, parser:)
+        post(path, params:, rate_limit:, parser:)
       end
     end
   end

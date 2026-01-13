@@ -29,7 +29,7 @@ module Peddler
       def create_restricted_data_token(body, rate_limit: 1.0)
         path = "/tokens/2021-03-01/restrictedDataToken"
         parser = -> { CreateRestrictedDataTokenResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end

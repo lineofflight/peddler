@@ -40,7 +40,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
         parser = -> { GetShippingLabelListResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Creates a shipping label for a purchase order and returns a transactionId for reference.
@@ -52,7 +52,7 @@ module Peddler
       def submit_shipping_label_request(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
         parser = -> { SubmitShippingLabelsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns a shipping label for the purchaseOrderNumber that you specify.
@@ -65,7 +65,7 @@ module Peddler
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels/#{percent_encode(purchase_order_number)}"
         parser = -> { GetShippingLabelResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Submits one or more shipment confirmations for vendor orders.
@@ -77,7 +77,7 @@ module Peddler
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
         parser = -> { SubmitShipmentConfirmationsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment
@@ -91,7 +91,7 @@ module Peddler
       def submit_shipment_status_updates(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
         parser = -> { SubmitShipmentStatusUpdatesResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
@@ -123,7 +123,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
         parser = -> { GetCustomerInvoicesResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
@@ -135,7 +135,7 @@ module Peddler
       def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices/#{percent_encode(purchase_order_number)}"
         parser = -> { GetCustomerInvoiceResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
@@ -166,7 +166,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
         parser = -> { GetPackingSlipListResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
@@ -178,7 +178,7 @@ module Peddler
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/packingSlips/#{percent_encode(purchase_order_number)}"
         parser = -> { GetPackingSlipResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
     end
   end

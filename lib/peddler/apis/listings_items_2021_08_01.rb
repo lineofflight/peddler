@@ -33,7 +33,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
         parser = -> { ListingsItemSubmissionResponse }
-        meter(rate_limit).delete(path, params:, parser:)
+        delete(path, params:, rate_limit:, parser:)
       end
 
       # Returns details about a listings item for a selling partner.
@@ -58,7 +58,7 @@ module Peddler
           "includedData" => stringify_array(included_data),
         }.compact
         parser = -> { Item }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -87,7 +87,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
         parser = -> { ListingsItemSubmissionResponse }
-        meter(rate_limit).patch(path, body:, params:, parser:)
+        patch(path, body:, params:, rate_limit:, parser:)
       end
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
@@ -115,7 +115,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
         parser = -> { ListingsItemSubmissionResponse }
-        meter(rate_limit).put(path, body:, params:, parser:)
+        put(path, body:, params:, rate_limit:, parser:)
       end
 
       # Search for and return a list of selling partner listings items and their respective details.
@@ -190,7 +190,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
         parser = -> { ItemSearchResults }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

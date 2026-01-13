@@ -20,7 +20,7 @@ module Peddler
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/shipping/v1/shipmentConfirmations"
         parser = -> { SubmitShipmentConfirmationsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Submits one shipment confirmation for vendor orders and get response immediately.
@@ -32,7 +32,7 @@ module Peddler
       def submit_shipment_confirmation(body, rate_limit: 10.0)
         path = "/vendor/shipping/v1/shipmentConfirmation"
         parser = -> { SubmitShipmentConfirmationResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Submits one or more shipment request for vendor Orders.
@@ -45,7 +45,7 @@ module Peddler
 
         path = "/vendor/shipping/v1/shipments"
         parser = -> { SubmitShipmentConfirmationsResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns the Details about Shipment, Carrier Details, status of the shipment, container details and other details
@@ -133,7 +133,7 @@ module Peddler
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
         parser = -> { GetShipmentDetailsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns small parcel shipment labels based on the filters that you specify.
@@ -172,7 +172,7 @@ module Peddler
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
         parser = -> { GetShipmentLabels }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

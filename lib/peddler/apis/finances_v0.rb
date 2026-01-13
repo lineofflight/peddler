@@ -43,7 +43,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
         parser = -> { ListFinancialEventGroupsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be
@@ -81,7 +81,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
         parser = -> { ListFinancialEventsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns all financial events for the specified order. Orders from the last 48 hours might not be included in
@@ -104,7 +104,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
         parser = -> { ListFinancialEventsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns financial events for the specified data range. Orders from the last 48 hours might not be included in
@@ -140,7 +140,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
         parser = -> { ListFinancialEventsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

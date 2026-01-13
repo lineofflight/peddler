@@ -23,7 +23,7 @@ module Peddler
       def get_rates(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/rates"
         parser = -> { GetRatesResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
@@ -44,7 +44,7 @@ module Peddler
         rate_limit: 80.0)
         path = "/shipping/v2/shipments/directPurchase"
         parser = -> { DirectPurchaseResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Purchases a shipping service and returns purchase related details and documents.
@@ -64,7 +64,7 @@ module Peddler
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments"
         parser = -> { PurchaseShipmentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Purchases a shipping service identifier and returns purchase-related details and documents.
@@ -78,7 +78,7 @@ module Peddler
       def one_click_shipment(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/oneClickShipment"
         parser = -> { OneClickShipmentResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Returns tracking information for a purchased shipment.
@@ -99,7 +99,7 @@ module Peddler
           "carrierId" => carrier_id,
         }.compact
         parser = -> { GetTrackingResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns the shipping documents associated with a package in a shipment.
@@ -125,7 +125,7 @@ module Peddler
           "dpi" => dpi,
         }.compact
         parser = -> { GetShipmentDocumentsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
@@ -139,7 +139,7 @@ module Peddler
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/#{percent_encode(shipment_id)}/cancel"
         parser = -> { CancelShipmentResponse }
-        meter(rate_limit).put(path, parser:)
+        put(path, rate_limit:, parser:)
       end
 
       # Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
@@ -161,7 +161,7 @@ module Peddler
           "rateId" => rate_id,
         }.compact
         parser = -> { GetAdditionalInputsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # This API will return a list of input schema required to register a shipper account with the carrier.
@@ -175,7 +175,7 @@ module Peddler
 
         path = "/shipping/v2/carrierAccountFormInputs"
         parser = -> { GetCarrierAccountFormInputsResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # This API will return Get all carrier accounts for a merchant.
@@ -190,7 +190,7 @@ module Peddler
 
         path = "/shipping/v2/carrierAccounts"
         parser = -> { GetCarrierAccountsResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, rate_limit:, parser:)
       end
 
       # This API associates/links the specified carrier account with the merchant.
@@ -205,7 +205,7 @@ module Peddler
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}"
         parser = -> { LinkCarrierAccountResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # This API Unlink the specified carrier account with the merchant.
@@ -221,7 +221,7 @@ module Peddler
 
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}/unlink"
         parser = -> { UnlinkCarrierAccountResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, rate_limit:, parser:)
       end
 
       # This API Call to generate the collection form.
@@ -239,7 +239,7 @@ module Peddler
 
         path = "/shipping/v2/collectionForms"
         parser = -> { GenerateCollectionFormResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # This API Call to get the history of the previously generated collection forms.
@@ -254,7 +254,7 @@ module Peddler
 
         path = "/shipping/v2/collectionForms/history"
         parser = -> { GetCollectionFormHistoryResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, rate_limit:, parser:)
       end
 
       # This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
@@ -270,7 +270,7 @@ module Peddler
 
         path = "/shipping/v2/unmanifestedShipments"
         parser = -> { GetUnmanifestedShipmentsResponse }
-        meter(rate_limit).put(path, body:, parser:)
+        put(path, body:, rate_limit:, parser:)
       end
 
       # This API reprint a collection form.
@@ -285,7 +285,7 @@ module Peddler
 
         path = "/shipping/v2/collectionForms/#{percent_encode(collection_form_id)}"
         parser = -> { GetCollectionFormResponse }
-        meter(rate_limit).get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Returns a list of access points in proximity of input postal code.
@@ -307,7 +307,7 @@ module Peddler
           "postalCode" => postal_code,
         }.compact
         parser = -> { GetAccessPointsResponse }
-        meter(rate_limit).get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
@@ -320,7 +320,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/ndrFeedback"
-        meter(rate_limit).post(path, body:)
+        post(path, body:, rate_limit:)
       end
 
       # This API will be used to create claim for single eligible shipment.
@@ -334,7 +334,7 @@ module Peddler
       def create_claim(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/claims"
         parser = -> { CreateClaimResponse }
-        meter(rate_limit).post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
     end
   end
