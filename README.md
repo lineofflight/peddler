@@ -2,8 +2,6 @@
 
 [![Build](https://github.com/lineofflight/peddler/actions/workflows/ci.yml/badge.svg)][build]
 
-> AI Agents: See [llms.txt](llms.txt)
-
 Peddler is a Ruby interface to the [Amazon Selling Partner API (SP-API)][api-docs]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
 Peddler is automatically generated from the latest Open API models provided by Amazon.
@@ -309,6 +307,8 @@ bundle exec rake generate
 # Type check with Steep
 bundle exec steep check --severity-level=hint
 ```
+
+> AI Agents: See [llms.txt](llms.txt)
 
 [build]: https://github.com/lineofflight/peddler/actions
 [api-docs]: https://developer.amazonservices.com/sp-api-docs/overview
