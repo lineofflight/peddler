@@ -8,44 +8,34 @@ module Peddler
 
     @access_token: String
     @endpoint: Endpoint
-
-    @http: HTTP::Client?
+    @http: HTTP::Client
     @retries: Integer
     @sandbox: bool
 
     attr_reader access_token: String
     attr_reader endpoint: Endpoint
-
     attr_reader retries: Integer
 
-    def initialize: (String aws_region, String access_token, ?retries: Integer) -> void
+    def initialize: (String aws_region, String access_token, ?retries: Integer, ?http: HTTP::Client) -> void
 
-    def cannot_sandbox!: () -> void
-
-    def delete: (String path, ?parser: untyped, **untyped) -> Response
     def endpoint_uri: () -> URI::HTTPS
-
-    def get: (String path, ?parser: untyped, **untyped) -> Response
-    def http: () -> HTTP::Client
-    def must_sandbox!: () -> void
-
-    def patch: (String path, ?parser: untyped, **untyped) -> Response
-    def post: (String path, ?parser: untyped, **untyped) -> Response
-    def put: (String path, ?parser: untyped, **untyped) -> Response
-    def retriable: (**untyped) ?{ () -> untyped } -> self
     def sandbox: () -> self
     def sandbox?: () -> bool
-
-    def use: (*untyped, **untyped) ?{ () -> untyped } -> self
-    def via: (*untyped, **untyped) ?{ () -> untyped } -> self
+    def http: (?rate_limit: Float?) -> HTTP::Client
 
     private
 
-    def meter: (Float? requests_per_second) -> self
-
+    def get: (String path, ?rate_limit: Float?, ?parser: untyped, **untyped) -> Response
+    def post: (String path, ?rate_limit: Float?, ?parser: untyped, **untyped) -> Response
+    def put: (String path, ?rate_limit: Float?, ?parser: untyped, **untyped) -> Response
+    def delete: (String path, ?rate_limit: Float?, ?parser: untyped, **untyped) -> Response
+    def patch: (String path, ?rate_limit: Float?, ?parser: untyped, **untyped) -> Response
+    def request: (Symbol method, String path, ?rate_limit: Float?, ?parser: untyped, **untyped) -> Response
+    def cannot_sandbox!: () -> void
+    def must_sandbox!: () -> void
+    def user_agent: () -> String
+    def timestamp: () -> String
     def percent_encode: (String component) -> String
     def stringify_array: (Array[untyped]? val) -> String?
-    def timestamp: () -> String
-    def user_agent: () -> String
   end
 end

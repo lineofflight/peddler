@@ -23,10 +23,12 @@ module Peddler
     # @param [String] aws_region The AWS region to use for the endpoint
     # @param [String] access_token The access token for authentication
     # @param [Integer] retries The number of retries if throttled (default: 0)
-    def initialize(aws_region, access_token, retries: 0)
+    # @param [HTTP::Client] http HTTP client
+    def initialize(aws_region, access_token, retries: 0, http: HTTP)
       @endpoint = Endpoint.find(aws_region)
       @access_token = access_token
       @retries = retries
+      @http = http
       @sandbox = false
     end
 
@@ -52,77 +54,50 @@ module Peddler
     # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
     # @see https://developer-docs.amazon.com/amazon-shipping/docs/connecting-to-the-selling-partner-api#step-3-add-headers-to-the-uri
     # @return [HTTP::Client]
-    def http
-      @http ||= HTTP.headers(
+    def http(rate_limit: nil)
+      client = @http.headers(
         "Host" => endpoint_uri.host,
         "User-Agent" => user_agent,
         "X-Amz-Access-Token" => access_token,
+        "X-Amz-Date" => timestamp,
       )
-    end
 
-    # Throttles with a rate limit and retries when the API returns a 429
-    #
-    # @param [Float] requests_per_second
-    # @return [self]
-    def meter(requests_per_second)
-      return self if retries.zero?
-      return self if requests_per_second.nil?
+      return client if retries.zero? || rate_limit.nil?
 
-      delay = sandbox? ? 0.2 : 1.0 / requests_per_second
-      retriable(delay:, tries: retries + 1, retry_statuses: [429])
-
-      self
-    end
-
-    # @!method use(*features)
-    #   Turn on [HTTP](https://github.com/httprb/http) features
-    #
-    #   @param features
-    #   @return [self]
-    #
-    # @!method via(*proxy)
-    #   Make a request through an HTTP proxy
-    #
-    #   @param [Array] proxy
-    #   @raise [HTTP::Request::Error] if HTTP proxy is invalid
-    #   @return [self]
-    #
-    # @!method retriable(**options)
-    #   Retries requests if they fail due to socket or `5xx` errors
-    #
-    #   @param (see Performer#initialize)
-    #   @return [self]
-    [:via, :use, :retriable].each do |method|
-      define_method(method) do |*args, **kwargs, &block|
-        # @type self: API
-        # @type var kwargs: Hash[Symbol, untyped]
-        @http = http.send(method, *args, **kwargs, &block)
-        self
-      end
-    end
-
-    [:get, :post, :put, :delete, :patch].each do |method|
-      define_method(method) do |path, parser: nil, **options|
-        # @type self: API
-        # @type var parser: untyped
-        # @type var options: Hash[Symbol, untyped]
-        if options[:body] && !options[:body].is_a?(String)
-          options[:json] = options.delete(:body)
-        end
-
-        uri = endpoint_uri.tap do |uri|
-          uri.path = path
-        end
-
-        http_response = http
-          .headers("X-Amz-Date" => timestamp)
-          .send(method, uri, **options)
-
-        Response.wrap(http_response, parser:)
-      end
+      delay = sandbox? ? 0.2 : 1.0 / rate_limit
+      client.retriable(delay:, tries: retries + 1, retry_statuses: [429]) # steep:ignore NoMethod
     end
 
     private
+
+    def get(path, rate_limit: nil, parser: nil, **options)
+      request(:get, path, rate_limit:, parser:, **options)
+    end
+
+    def post(path, rate_limit: nil, parser: nil, **options)
+      request(:post, path, rate_limit:, parser:, **options)
+    end
+
+    def put(path, rate_limit: nil, parser: nil, **options)
+      request(:put, path, rate_limit:, parser:, **options)
+    end
+
+    def delete(path, rate_limit: nil, parser: nil, **options)
+      request(:delete, path, rate_limit:, parser:, **options)
+    end
+
+    def patch(path, rate_limit: nil, parser: nil, **options)
+      request(:patch, path, rate_limit:, parser:, **options)
+    end
+
+    def request(method, path, rate_limit: nil, parser: nil, **options)
+      options[:json] = options.delete(:body) if options[:body] && !options[:body].is_a?(String)
+
+      uri = endpoint_uri.tap { |u| u.path = path }
+      http_response = http(rate_limit:).send(method, uri, **options)
+
+      Response.wrap(http_response, parser:)
+    end
 
     def cannot_sandbox!
       raise CannotSandbox, "cannot run in a sandbox" if sandbox?
@@ -140,12 +115,10 @@ module Peddler
       Time.now.utc.strftime("%Y%m%dT%H%M%SZ")
     end
 
-    # Encodes URL path components
     def percent_encode(component)
       URI.encode_uri_component(component)
     end
 
-    # Converts an array to a comma-separated string, or returns the value as-is if not an array
     def stringify_array(val)
       val.is_a?(Array) ? val.join(",") : val
     end

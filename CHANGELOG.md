@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Accept pre-configured HTTP client in `API#initialize`
+
+### Removed
+
+- Remove `API#use`, `API#via`, and `API#retriable` methods
+
 ## [5.0.0] - 2025-11-30
 
 ### Added

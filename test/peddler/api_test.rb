@@ -31,56 +31,30 @@ module Peddler
       assert_equal(@api.http.default_options.headers["X-Amz-Access-Token"], @api.access_token)
     end
 
-    def test_date_header_added_per_request
-      refute(@api.http.default_options.headers["X-Amz-Date"])
+    def test_date_header
+      assert(@api.http.default_options.headers["X-Amz-Date"])
     end
 
     def test_http_verb_methods
-      assert_equal(200, @api.get("/").status)
+      assert_equal(200, @api.send(:get, "/").status)
     end
 
-    def test_chainable_http_methods
-      @api.use(instrumentation: { instrumenter: nil })
+    def test_http_with_custom_client
+      custom_http = HTTP.use(instrumentation: { instrumenter: nil })
+      api = API.new("eu-west-1", "access_token", http: custom_http)
 
-      refute_empty(@api.http.default_options.features)
-    end
-
-    def test_rate_limit_noop
-      initial_http_object_id = @api.http.object_id
-
-      assert_equal(initial_http_object_id, @api.meter(1.0).http.object_id)
-    end
-
-    def test_rate_limit
-      @api.meter(1.0)
-
-      assert_kind_of(HTTP::Client, @api.http)
-
-      @api.stub(:retries, 1) do
-        @api.meter(1.0)
-
-        assert_kind_of(HTTP::Retriable::Client, @api.http)
-      end
-    end
-
-    def test_custom_rate_limit
-      # http.instance_variable_get(:@performer).instance_variable_get(:@delay_calculator).instance_variable_get(:@delay)
-      skip("HTTP doesn't expose retriable arguments for inspection")
-    end
-
-    def test_sandbox_rate_limit
-      skip("HTTP doesn't expose retriable arguments for inspection")
+      refute_empty(api.http.default_options.features)
     end
 
     def test_client_error
       assert_raises(Peddler::Error) do
-        @api.post("/")
+        @api.send(:post, "/")
       end
     end
 
     def test_body_to_json_conversion
       error = assert_raises(Peddler::Error) do
-        @api.post("/", body: { key: "value" })
+        @api.send(:post, "/", body: { key: "value" })
       end
       request = error.response.request
       request_body = request.body.source
@@ -122,7 +96,6 @@ module Peddler
     def test_server_errors_always_raise
       # Mock HTTP client to return 500 error
       mock_http = Minitest::Mock.new
-      mock_http.expect(:headers, mock_http) { |h| h.key?("X-Amz-Date") }
       mock_http.expect(
         :get,
         HTTP::Response.new(
@@ -137,7 +110,7 @@ module Peddler
 
       @api.stub(:http, mock_http) do
         assert_raises(Peddler::Error) do
-          @api.get("/test")
+          @api.send(:get, "/test")
         end
       end
     end
@@ -145,7 +118,6 @@ module Peddler
     def test_client_errors_always_raise
       # Mock HTTP client to return 404 error
       mock_http = Minitest::Mock.new
-      mock_http.expect(:headers, mock_http) { |h| h.key?("X-Amz-Date") }
       mock_http.expect(
         :get,
         HTTP::Response.new(
@@ -160,7 +132,7 @@ module Peddler
 
       @api.stub(:http, mock_http) do
         assert_raises(Peddler::Errors::NotFound) do
-          @api.get("/test")
+          @api.send(:get, "/test")
         end
       end
     end

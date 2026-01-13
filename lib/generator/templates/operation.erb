@@ -21,9 +21,5 @@
   <% if has_typed_response? -%>
   parser = -> { <%= parser_class_name %> }
   <% end -%>
-  <% if rate_limit -%>
-  meter(rate_limit).<%= verb %>(<%= request_args.join(", ") %><% if has_typed_response? -%>, parser:<% end -%>)
-  <% else -%>
-  <%= verb %>(<%= request_args.join(", ") %><% if has_typed_response? -%>, parser:<% end -%>)
-  <% end -%>
+  <%= verb %>(<%= request_args.join(", ") %><% if rate_limit -%>, rate_limit:<% end -%><% if has_typed_response? -%>, parser:<% end -%>)
 end
