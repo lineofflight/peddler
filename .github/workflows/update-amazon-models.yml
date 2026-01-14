@@ -99,23 +99,32 @@ jobs:
             const prTitle = `feat: update amazon models`;
 
             // Build PR body with character limit handling
+            const apiList = apiUpdates.join(', ') || 'various APIs';
             const baseBody = `This PR was automatically generated to update the Amazon SP-API models.
 
-            Changes include:
+            **APIs affected:** ${apiList}
+
+            **Changes include:**
             `;
+
+            const claudePrompt = `
+
+            ---
+
+            @claude Summarize the changes - what's new, what's removed, and any breaking changes.`;
 
             const maxLength = 65536;
             const truncationMessage = '(truncated due to length)';
 
             let filesList = changedFiles.map(file => `- ${file}`).join('\n');
 
-            // Calculate max allowed length for the complete body
+            // Calculate max allowed length for the complete body (including Claude prompt)
             const maxBodyLength = maxLength;
-            const currentLength = baseBody.length + filesList.length;
+            const currentLength = baseBody.length + filesList.length + claudePrompt.length;
 
             // Truncate if necessary
             if (currentLength > maxBodyLength) {
-              const maxFilesListLength = maxBodyLength - baseBody.length - truncationMessage.length;
+              const maxFilesListLength = maxBodyLength - baseBody.length - claudePrompt.length - truncationMessage.length;
               filesList = filesList.substring(0, maxFilesListLength);
               // Find the last complete line
               const lastNewline = filesList.lastIndexOf('\n');
@@ -125,7 +134,7 @@ jobs:
               filesList += truncationMessage;
             }
 
-            const prBody = baseBody + filesList;
+            const prBody = baseBody + filesList + claudePrompt;
 
             // Create PR using GitHub API
             const { data: pr } = await github.rest.pulls.create({
