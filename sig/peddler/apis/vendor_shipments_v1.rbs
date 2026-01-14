@@ -759,39 +759,6 @@ module Peddler
         def to_h: () -> { function_code: String?, arrival_time: Time?, departure_time: Time?, location_identification: Peddler::APIs::VendorShipmentsV1::Location? }
       end
 
-      class SubmitShipmentConfirmationRequest < Data
-        def self.new: (shipment_confirmation: Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
-                    | (Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
-        def self.[]: (shipment_confirmation: Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
-                   | (Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
-
-        def self.members: () -> [ :shipment_confirmation ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
-
-        attr_reader shipment_confirmation: Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?
-
-        def members: () -> [ :shipment_confirmation ]
-        def to_h: () -> { shipment_confirmation: Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation? }
-      end
-
-      class SubmitShipmentConfirmationResponse < Data
-        def self.new: (?errors: Array[Peddler::APIs::VendorShipmentsV1::Error]?, ?payload: Peddler::APIs::VendorShipmentsV1::TransactionReference?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
-                    | (Array[Peddler::APIs::VendorShipmentsV1::Error]?, Peddler::APIs::VendorShipmentsV1::TransactionReference?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
-        def self.[]: (?errors: Array[Peddler::APIs::VendorShipmentsV1::Error]?, ?payload: Peddler::APIs::VendorShipmentsV1::TransactionReference?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
-                   | (Array[Peddler::APIs::VendorShipmentsV1::Error]?, Peddler::APIs::VendorShipmentsV1::TransactionReference?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
-
-        def self.members: () -> [ :errors, :payload ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
-
-        attr_reader errors: Array[Peddler::APIs::VendorShipmentsV1::Error]?
-        attr_reader payload: Peddler::APIs::VendorShipmentsV1::TransactionReference?
-
-        def members: () -> [ :errors, :payload ]
-        def to_h: () -> { errors: Array[Peddler::APIs::VendorShipmentsV1::Error]?, payload: Peddler::APIs::VendorShipmentsV1::TransactionReference? }
-      end
-
       class SubmitShipmentConfirmationsRequest < Data
         def self.new: (?shipment_confirmations: Array[Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation]?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationsRequest
                     | (Array[Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation]?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationsRequest
@@ -1040,9 +1007,7 @@ module Peddler
 
       def get_shipment_details: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?shipment_confirmed_before: String?, ?shipment_confirmed_after: String?, ?package_label_created_before: String?, ?package_label_created_after: String?, ?shipped_before: String?, ?shipped_after: String?, ?estimated_delivery_before: String?, ?estimated_delivery_after: String?, ?shipment_delivery_before: String?, ?shipment_delivery_after: String?, ?requested_pick_up_before: String?, ?requested_pick_up_after: String?, ?scheduled_pick_up_before: String?, ?scheduled_pick_up_after: String?, ?current_shipment_status: String?, ?vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?buyer_warehouse_code: String?, ?seller_warehouse_code: String?, ?rate_limit: Float) -> Peddler::Response
       def get_shipment_labels: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?label_created_after: String?, ?label_created_before: String?, ?buyer_reference_number: String?, ?vendor_shipment_identifier: String?, ?seller_warehouse_code: String?, ?rate_limit: Float) -> Peddler::Response
-      def submit_shipment_confirmation: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def submit_shipment_confirmations: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
       def submit_shipments: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
