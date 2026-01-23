@@ -61,11 +61,9 @@ module Peddler
       # @param payment_methods [Array<String>] A list of payment method values. Use this field to select orders that
       #   were paid with the specified payment methods. **Possible values**: `COD` (cash on delivery), `CVS`
       #   (convenience store), `Other` (Any payment method other than COD or CVS).
-      # @param buyer_email [String] The email address of a buyer. Used to select orders that contain the specified email
-      #   address.
       # @param seller_order_id [String] An order identifier that is specified by the seller. Used to select only the
       #   orders that match the order identifier. If `SellerOrderId` is specified, then `FulfillmentChannels`,
-      #   `OrderStatuses`, `PaymentMethod`, `LastUpdatedAfter`, LastUpdatedBefore, and `BuyerEmail` cannot be specified.
+      #   `OrderStatuses`, `PaymentMethod`, `LastUpdatedAfter`, and `LastUpdatedBefore` cannot be specified.
       # @param max_results_per_page [Integer] A number that indicates the maximum number of orders that can be returned
       #   per page. Value must be 1 - 100. Default 100.
       # @param easy_ship_shipment_statuses [Array<String>] A list of `EasyShipShipmentStatus` values. Used to select
@@ -111,7 +109,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_orders(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil,
         last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil,
-        buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil,
+        seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil,
         electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil,
         actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil,
         earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil,
@@ -126,7 +124,6 @@ module Peddler
           "MarketplaceIds" => stringify_array(marketplace_ids),
           "FulfillmentChannels" => stringify_array(fulfillment_channels),
           "PaymentMethods" => stringify_array(payment_methods),
-          "BuyerEmail" => buyer_email,
           "SellerOrderId" => seller_order_id,
           "MaxResultsPerPage" => max_results_per_page,
           "EasyShipShipmentStatuses" => stringify_array(easy_ship_shipment_statuses),
