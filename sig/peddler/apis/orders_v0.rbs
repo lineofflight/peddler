@@ -137,23 +137,22 @@ module Peddler
       end
 
       class BuyerInfo < Data
-        def self.new: (?buyer_county: String?, ?buyer_email: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::APIs::OrdersV0::BuyerInfo
-                    | (String?, String?, String?, Peddler::APIs::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::APIs::OrdersV0::BuyerInfo
-        def self.[]: (?buyer_county: String?, ?buyer_email: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::APIs::OrdersV0::BuyerInfo
-                   | (String?, String?, String?, Peddler::APIs::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::APIs::OrdersV0::BuyerInfo
+        def self.new: (?buyer_county: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::APIs::OrdersV0::BuyerInfo
+                    | (String?, String?, Peddler::APIs::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::APIs::OrdersV0::BuyerInfo
+        def self.[]: (?buyer_county: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::APIs::OrdersV0::BuyerInfo
+                   | (String?, String?, Peddler::APIs::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::APIs::OrdersV0::BuyerInfo
 
-        def self.members: () -> [ :buyer_county, :buyer_email, :buyer_name, :buyer_tax_info, :purchase_order_number ]
+        def self.members: () -> [ :buyer_county, :buyer_name, :buyer_tax_info, :purchase_order_number ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::BuyerInfo
 
         attr_reader buyer_county: String?
-        attr_reader buyer_email: String?
         attr_reader buyer_name: String?
         attr_reader buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?
         attr_reader purchase_order_number: String?
 
-        def members: () -> [ :buyer_county, :buyer_email, :buyer_name, :buyer_tax_info, :purchase_order_number ]
-        def to_h: () -> { buyer_county: String?, buyer_email: String?, buyer_name: String?, buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, purchase_order_number: String? }
+        def members: () -> [ :buyer_county, :buyer_name, :buyer_tax_info, :purchase_order_number ]
+        def to_h: () -> { buyer_county: String?, buyer_name: String?, buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, purchase_order_number: String? }
       end
 
       class BuyerRequestedCancel < Data
@@ -641,24 +640,23 @@ module Peddler
       end
 
       class OrderBuyerInfo < Data
-        def self.new: (amazon_order_id: String?, ?buyer_county: String?, ?buyer_email: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
-                    | (String?, String?, String?, String?, Peddler::APIs::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
-        def self.[]: (amazon_order_id: String?, ?buyer_county: String?, ?buyer_email: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
-                   | (String?, String?, String?, String?, Peddler::APIs::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
+        def self.new: (amazon_order_id: String?, ?buyer_county: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
+                    | (String?, String?, String?, Peddler::APIs::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
+        def self.[]: (amazon_order_id: String?, ?buyer_county: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
+                   | (String?, String?, String?, Peddler::APIs::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
 
-        def self.members: () -> [ :amazon_order_id, :buyer_county, :buyer_email, :buyer_name, :buyer_tax_info, :purchase_order_number ]
+        def self.members: () -> [ :amazon_order_id, :buyer_county, :buyer_name, :buyer_tax_info, :purchase_order_number ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::OrderBuyerInfo
 
         attr_reader amazon_order_id: String?
         attr_reader buyer_county: String?
-        attr_reader buyer_email: String?
         attr_reader buyer_name: String?
         attr_reader buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?
         attr_reader purchase_order_number: String?
 
-        def members: () -> [ :amazon_order_id, :buyer_county, :buyer_email, :buyer_name, :buyer_tax_info, :purchase_order_number ]
-        def to_h: () -> { amazon_order_id: String?, buyer_county: String?, buyer_email: String?, buyer_name: String?, buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, purchase_order_number: String? }
+        def members: () -> [ :amazon_order_id, :buyer_county, :buyer_name, :buyer_tax_info, :purchase_order_number ]
+        def to_h: () -> { amazon_order_id: String?, buyer_county: String?, buyer_name: String?, buyer_tax_info: Peddler::APIs::OrdersV0::BuyerTaxInfo?, purchase_order_number: String? }
       end
 
       class OrderItem < Data
@@ -1258,7 +1256,7 @@ module Peddler
       def get_order_items_buyer_info: (String, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
 
       def get_order_regulated_info: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_orders: (Array[String], ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?order_statuses: Array[String]?, ?fulfillment_channels: Array[String]?, ?payment_methods: Array[String]?, ?buyer_email: String?, ?seller_order_id: String?, ?max_results_per_page: Integer?, ?easy_ship_shipment_statuses: Array[String]?, ?electronic_invoice_statuses: Array[String]?, ?next_token: String?, ?amazon_order_ids: Array[String]?, ?actual_fulfillment_supply_source_id: String?, ?is_ispu: bool?, ?store_chain_store_id: String?, ?earliest_delivery_date_before: String?, ?earliest_delivery_date_after: String?, ?latest_delivery_date_before: String?, ?latest_delivery_date_after: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_orders: (Array[String], ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?order_statuses: Array[String]?, ?fulfillment_channels: Array[String]?, ?payment_methods: Array[String]?, ?seller_order_id: String?, ?max_results_per_page: Integer?, ?easy_ship_shipment_statuses: Array[String]?, ?electronic_invoice_statuses: Array[String]?, ?next_token: String?, ?amazon_order_ids: Array[String]?, ?actual_fulfillment_supply_source_id: String?, ?is_ispu: bool?, ?store_chain_store_id: String?, ?earliest_delivery_date_before: String?, ?earliest_delivery_date_after: String?, ?latest_delivery_date_before: String?, ?latest_delivery_date_after: String?, ?rate_limit: Float) -> Peddler::Response
 
       def update_shipment_status: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 

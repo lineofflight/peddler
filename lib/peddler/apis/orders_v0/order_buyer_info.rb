@@ -17,9 +17,6 @@ module Peddler
         # **Note**: This attribute is only available in the Brazil marketplace.
         attribute?(:buyer_county, String, from: "BuyerCounty")
 
-        # @return [String] The anonymized email address of the buyer.
-        attribute?(:buyer_email, String, from: "BuyerEmail")
-
         # @return [String] The buyer name or the recipient name.
         attribute?(:buyer_name, String, from: "BuyerName")
 
