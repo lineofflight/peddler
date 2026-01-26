@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.2.0] - 2026-01-29
+
 ### Added
 
 - Add Orders API 2026-01-01
@@ -543,7 +545,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.1.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.2.0...HEAD
+[5.2.0]: https://github.com/hakanensari/peddler/compare/v5.1.0...v5.2.0
 [5.1.0]: https://github.com/hakanensari/peddler/compare/v5.0.0...v5.1.0
 [5.0.0]: https://github.com/hakanensari/peddler/compare/v4.9.0...v5.0.0
 [4.9.0]: https://github.com/hakanensari/peddler/compare/v4.8.0...v4.9.0
