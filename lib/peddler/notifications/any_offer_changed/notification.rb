@@ -18,14 +18,14 @@ module Peddler
         # @return [String]
         attribute(:notification_type, String, from: "NotificationType")
 
+        # @return [String]
+        attribute(:notification_version, String, from: "NotificationVersion")
+
         # @return [Payload]
         attribute(:payload, Payload, from: "Payload")
 
         # @return [String]
         attribute(:payload_version, String, from: "PayloadVersion")
-
-        # @return [String]
-        attribute?(:notification_version, String, from: "NotificationVersion")
       end
     end
   end

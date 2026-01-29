@@ -31,10 +31,10 @@ module Peddler
       #   the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated
       #   to `DEFERRED_RELEASED` when the transaction is released.
       # @param related_identifier_name [String] The name of the `relatedIdentifier`. **Possible values:** *
-      #   `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction. **Note:**
-      #   FINANCIAL_EVENT_GROUP_ID is the only `relatedIdentifier` with filtering capabilities at the moment. While
-      #   other `relatedIdentifier` values will be included in the response when available, they cannot be used for
-      #   filtering purposes.
+      #   `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction. * `ORDER_ID`: the
+      #   order ID associated with the transaction. **Note:** FINANCIAL_EVENT_GROUP_ID and ORDER_ID are the only
+      #   `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be
+      #   included in the response when available, they cannot be used for filtering purposes.
       # @param related_identifier_value [String] The value of the `relatedIdentifier`.
       # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
       #   `pageSize` value. To get the next page of results, call the operation with this token and include the same

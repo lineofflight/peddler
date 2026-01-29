@@ -9,11 +9,11 @@ module Peddler
     module SalesAndTraffic20240424
       # The traffic data for the seller's account aggregated by date.
       ByDateTraffic = Structure.new do
-        # @return [String] The average number of offers listed for sale in the selected time period. It is calculated
-        #   from the total number of offers and the total number of days in the selected time period.
+        # @return [String] The average number of offers listed for sale for the selected time period. It is calculated
+        #   from the total number of offers and the total number of days for the selected time period.
         attribute?(:average_offer_count, String, null: false, from: "averageOfferCount")
 
-        # @return [String] The average number of parent items listed for sale in the selected time period.
+        # @return [String] The average number of parent items listed for sale for the selected time period.
         attribute?(:average_parent_items, String, null: false, from: "averageParentItems")
 
         # @return [String] Browser page views are the number of times a user visited your Amazon.com browser pages for
@@ -45,8 +45,12 @@ module Peddler
         #   is only populated when the seller is a B2B seller.
         attribute?(:buy_box_percentage_b2b, Float, from: "buyBoxPercentageB2B")
 
-        # @return [String] The number of times customers left feedback in the selected time period.
+        # @return [String] The number of times customers left feedback for the selected time period.
         attribute?(:feedback_received, String, null: false, from: "feedbackReceived")
+
+        # @return [String] The number of times Amazon Business customers left feedback for the selected time period.
+        #   Note: This field is only populated when the seller is a B2B seller.
+        attribute?(:feedback_received_b2b, String, from: "feedbackReceivedB2B")
 
         # @return [String] Mobile app page views are the number of times a user visited your Amazon.com mobile app pages
         #   for the selected time period.
@@ -69,8 +73,12 @@ module Peddler
         #   a single session. Note: This field is only populated when the seller is a B2B seller.
         attribute?(:mobile_app_sessions_b2b, String, from: "mobileAppSessionsB2B")
 
-        # @return [String] The number of times customers left negative feedback in the selected time period.
+        # @return [String] The number of times customers left negative feedback for the selected time period.
         attribute?(:negative_feedback_received, String, null: false, from: "negativeFeedbackReceived")
+
+        # @return [String] The number of times Amazon Business customers left negative feedback for the selected time
+        #   period. Note: This field is only populated when the seller is a B2B seller.
+        attribute?(:negative_feedback_received_b2b, String, from: "negativeFeedbackReceivedB2B")
 
         # @return [Float] The percentage conversion metric indicating how many order items were generated relative to
         #   the number of people who viewed the products.
@@ -91,8 +99,13 @@ module Peddler
         attribute?(:page_views_b2b, String, from: "pageViewsB2B")
 
         # @return [Float] The negative feedback rate is the number of orders that have received negative feedback
-        #   divided by the number of orders in the selected time period.
+        #   divided by the number of orders for the selected time period.
         attribute?(:received_negative_feedback_rate, Float, null: false, from: "receivedNegativeFeedbackRate")
+
+        # @return [Float] The negative feedback rate for Amazon Business customers is the number of orders that have
+        #   received negative feedback divided by the number of orders for the selected time period. Note: This field is
+        #   only populated when the seller is a B2B seller.
+        attribute?(:received_negative_feedback_rate_b2b, Float, from: "receivedNegativeFeedbackRateB2B")
 
         # @return [String] Sessions are visits to your Amazon.com browser or mobile app pages by a user.
         # All browser and mobile app activity within a 24-hour period is considered a session. It is calculated as the

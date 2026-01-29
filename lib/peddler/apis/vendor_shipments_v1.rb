@@ -23,6 +23,18 @@ module Peddler
         post(path, body:, rate_limit:, parser:)
       end
 
+      # Submits one shipment confirmation for vendor orders and get response immediately.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash] A request to submit shipment confirmation.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def submit_shipment_confirmation(body, rate_limit: 10.0)
+        path = "/vendor/shipping/v1/shipmentConfirmation"
+        parser = -> { SubmitShipmentConfirmationResponse }
+        post(path, body:, rate_limit:, parser:)
+      end
+
       # Submits one or more shipment request for vendor Orders.
       #
       # @param body [Hash] A request to submit shipment request.

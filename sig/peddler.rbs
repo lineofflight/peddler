@@ -105,7 +105,9 @@ module Peddler
 
   def self.notifications_v1: () -> singleton(APIs::NotificationsV1)
 
-  def self.orders: () -> singleton(APIs::OrdersV0)
+  def self.orders: () -> singleton(APIs::Orders20260101)
+
+  def self.orders_2026_01_01: () -> singleton(APIs::Orders20260101)
 
   def self.orders_v0: () -> singleton(APIs::OrdersV0)
 

@@ -349,23 +349,27 @@ module Peddler
       end
 
       class ItemDetails < Data
-        def self.new: (?expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, ?handling_code: String?, ?lot_number: String?, ?maximum_retail_price: Peddler::Money?, ?purchase_order_number: String?) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
-                    | (Peddler::APIs::VendorShipmentsV1::Expiry?, String?, String?, Peddler::Money?, String?) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
-        def self.[]: (?expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, ?handling_code: String?, ?lot_number: String?, ?maximum_retail_price: Peddler::Money?, ?purchase_order_number: String?) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
-                   | (Peddler::APIs::VendorShipmentsV1::Expiry?, String?, String?, Peddler::Money?, String?) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
+        def self.new: (?country_of_origin: String?, ?expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, ?handling_code: String?, ?lot_number: String?, ?lot_number_source_reference: String?, ?lot_number_source_type: String?, ?maximum_retail_price: Peddler::Money?, ?purchase_order_number: String?, ?regulation_references: Peddler::APIs::VendorShipmentsV1::RegulationReferences?) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
+                    | (String?, Peddler::APIs::VendorShipmentsV1::Expiry?, String?, String?, String?, String?, Peddler::Money?, String?, Peddler::APIs::VendorShipmentsV1::RegulationReferences?) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
+        def self.[]: (?country_of_origin: String?, ?expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, ?handling_code: String?, ?lot_number: String?, ?lot_number_source_reference: String?, ?lot_number_source_type: String?, ?maximum_retail_price: Peddler::Money?, ?purchase_order_number: String?, ?regulation_references: Peddler::APIs::VendorShipmentsV1::RegulationReferences?) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
+                   | (String?, Peddler::APIs::VendorShipmentsV1::Expiry?, String?, String?, String?, String?, Peddler::Money?, String?, Peddler::APIs::VendorShipmentsV1::RegulationReferences?) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
 
-        def self.members: () -> [ :expiry, :handling_code, :lot_number, :maximum_retail_price, :purchase_order_number ]
+        def self.members: () -> [ :country_of_origin, :expiry, :handling_code, :lot_number, :lot_number_source_reference, :lot_number_source_type, :maximum_retail_price, :purchase_order_number, :regulation_references ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::ItemDetails
 
+        attr_reader country_of_origin: String?
         attr_reader expiry: Peddler::APIs::VendorShipmentsV1::Expiry?
         attr_reader handling_code: String?
         attr_reader lot_number: String?
+        attr_reader lot_number_source_reference: String?
+        attr_reader lot_number_source_type: String?
         attr_reader maximum_retail_price: Peddler::Money?
         attr_reader purchase_order_number: String?
+        attr_reader regulation_references: Peddler::APIs::VendorShipmentsV1::RegulationReferences?
 
-        def members: () -> [ :expiry, :handling_code, :lot_number, :maximum_retail_price, :purchase_order_number ]
-        def to_h: () -> { expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, handling_code: String?, lot_number: String?, maximum_retail_price: Peddler::Money?, purchase_order_number: String? }
+        def members: () -> [ :country_of_origin, :expiry, :handling_code, :lot_number, :lot_number_source_reference, :lot_number_source_type, :maximum_retail_price, :purchase_order_number, :regulation_references ]
+        def to_h: () -> { country_of_origin: String?, expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, handling_code: String?, lot_number: String?, lot_number_source_reference: String?, lot_number_source_type: String?, maximum_retail_price: Peddler::Money?, purchase_order_number: String?, regulation_references: Peddler::APIs::VendorShipmentsV1::RegulationReferences? }
       end
 
       class ItemQuantity < Data
@@ -426,25 +430,21 @@ module Peddler
       end
 
       class PackageItemDetails < Data
-        def self.new: (?country_of_origin: String?, ?expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, ?lot_number: String?, ?lot_number_source_reference: String?, ?lot_number_source_type: String?, ?purchase_order_number: String?, ?regulation_references: Peddler::APIs::VendorShipmentsV1::RegulationReferences?) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
-                    | (String?, Peddler::APIs::VendorShipmentsV1::Expiry?, String?, String?, String?, String?, Peddler::APIs::VendorShipmentsV1::RegulationReferences?) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
-        def self.[]: (?country_of_origin: String?, ?expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, ?lot_number: String?, ?lot_number_source_reference: String?, ?lot_number_source_type: String?, ?purchase_order_number: String?, ?regulation_references: Peddler::APIs::VendorShipmentsV1::RegulationReferences?) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
-                   | (String?, Peddler::APIs::VendorShipmentsV1::Expiry?, String?, String?, String?, String?, Peddler::APIs::VendorShipmentsV1::RegulationReferences?) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
+        def self.new: (?expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, ?lot_number: String?, ?purchase_order_number: String?) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
+                    | (Peddler::APIs::VendorShipmentsV1::Expiry?, String?, String?) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
+        def self.[]: (?expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, ?lot_number: String?, ?purchase_order_number: String?) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
+                   | (Peddler::APIs::VendorShipmentsV1::Expiry?, String?, String?) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
 
-        def self.members: () -> [ :country_of_origin, :expiry, :lot_number, :lot_number_source_reference, :lot_number_source_type, :purchase_order_number, :regulation_references ]
+        def self.members: () -> [ :expiry, :lot_number, :purchase_order_number ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::PackageItemDetails
 
-        attr_reader country_of_origin: String?
         attr_reader expiry: Peddler::APIs::VendorShipmentsV1::Expiry?
         attr_reader lot_number: String?
-        attr_reader lot_number_source_reference: String?
-        attr_reader lot_number_source_type: String?
         attr_reader purchase_order_number: String?
-        attr_reader regulation_references: Peddler::APIs::VendorShipmentsV1::RegulationReferences?
 
-        def members: () -> [ :country_of_origin, :expiry, :lot_number, :lot_number_source_reference, :lot_number_source_type, :purchase_order_number, :regulation_references ]
-        def to_h: () -> { country_of_origin: String?, expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, lot_number: String?, lot_number_source_reference: String?, lot_number_source_type: String?, purchase_order_number: String?, regulation_references: Peddler::APIs::VendorShipmentsV1::RegulationReferences? }
+        def members: () -> [ :expiry, :lot_number, :purchase_order_number ]
+        def to_h: () -> { expiry: Peddler::APIs::VendorShipmentsV1::Expiry?, lot_number: String?, purchase_order_number: String? }
       end
 
       class PackedItems < Data
@@ -465,6 +465,24 @@ module Peddler
 
         def members: () -> [ :buyer_product_identifier, :item_details, :item_sequence_number, :packed_quantity, :vendor_product_identifier ]
         def to_h: () -> { buyer_product_identifier: String?, item_details: Peddler::APIs::VendorShipmentsV1::PackageItemDetails?, item_sequence_number: String?, packed_quantity: Peddler::APIs::VendorShipmentsV1::ItemQuantity?, vendor_product_identifier: String? }
+      end
+
+      class PackedQuantity < Data
+        def self.new: (amount: Integer?, unit_of_measure: String?, ?unit_size: Integer?) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
+                    | (Integer?, String?, Integer?) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
+        def self.[]: (amount: Integer?, unit_of_measure: String?, ?unit_size: Integer?) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
+                   | (Integer?, String?, Integer?) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
+
+        def self.members: () -> [ :amount, :unit_of_measure, :unit_size ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::PackedQuantity
+
+        attr_reader amount: Integer?
+        attr_reader unit_of_measure: String?
+        attr_reader unit_size: Integer?
+
+        def members: () -> [ :amount, :unit_of_measure, :unit_size ]
+        def to_h: () -> { amount: Integer?, unit_of_measure: String?, unit_size: Integer? }
       end
 
       class Pagination < Data
@@ -521,6 +539,22 @@ module Peddler
 
         def members: () -> [ :party_id, :address, :tax_registration_details ]
         def to_h: () -> { party_id: String?, address: Peddler::APIs::VendorShipmentsV1::Address?, tax_registration_details: Array[Peddler::APIs::VendorShipmentsV1::TaxRegistrationDetails]? }
+      end
+
+      class PurchaseOrderItemDetails < Data
+        def self.new: (?maximum_retail_price: Peddler::Money?) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
+                    | (Peddler::Money?) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
+        def self.[]: (?maximum_retail_price: Peddler::Money?) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
+                   | (Peddler::Money?) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
+
+        def self.members: () -> [ :maximum_retail_price ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::PurchaseOrderItemDetails
+
+        attr_reader maximum_retail_price: Peddler::Money?
+
+        def members: () -> [ :maximum_retail_price ]
+        def to_h: () -> { maximum_retail_price: Peddler::Money? }
       end
 
       class PurchaseOrderItems < Data
@@ -757,6 +791,55 @@ module Peddler
 
         def members: () -> [ :function_code, :arrival_time, :departure_time, :location_identification ]
         def to_h: () -> { function_code: String?, arrival_time: Time?, departure_time: Time?, location_identification: Peddler::APIs::VendorShipmentsV1::Location? }
+      end
+
+      class SubmitShipmentConfirmationRequest < Data
+        def self.new: (shipment_confirmation: Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
+                    | (Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
+        def self.[]: (shipment_confirmation: Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
+                   | (Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
+
+        def self.members: () -> [ :shipment_confirmation ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationRequest
+
+        attr_reader shipment_confirmation: Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation?
+
+        def members: () -> [ :shipment_confirmation ]
+        def to_h: () -> { shipment_confirmation: Peddler::APIs::VendorShipmentsV1::ShipmentConfirmation? }
+      end
+
+      class SubmitShipmentConfirmationResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::VendorShipmentsV1::Error]?, ?payload: Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
+                    | (Array[Peddler::APIs::VendorShipmentsV1::Error]?, Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
+        def self.[]: (?errors: Array[Peddler::APIs::VendorShipmentsV1::Error]?, ?payload: Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
+                   | (Array[Peddler::APIs::VendorShipmentsV1::Error]?, Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResponse
+
+        attr_reader errors: Array[Peddler::APIs::VendorShipmentsV1::Error]?
+        attr_reader payload: Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult?
+
+        def members: () -> [ :errors, :payload ]
+        def to_h: () -> { errors: Array[Peddler::APIs::VendorShipmentsV1::Error]?, payload: Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult? }
+      end
+
+      class SubmitShipmentConfirmationResult < Data
+        def self.new: (?message: String?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult
+                    | (String?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult
+        def self.[]: (?message: String?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult
+                   | (String?) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult
+
+        def self.members: () -> [ :message ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorShipmentsV1::SubmitShipmentConfirmationResult
+
+        attr_reader message: String?
+
+        def members: () -> [ :message ]
+        def to_h: () -> { message: String? }
       end
 
       class SubmitShipmentConfirmationsRequest < Data
@@ -1007,7 +1090,9 @@ module Peddler
 
       def get_shipment_details: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?shipment_confirmed_before: String?, ?shipment_confirmed_after: String?, ?package_label_created_before: String?, ?package_label_created_after: String?, ?shipped_before: String?, ?shipped_after: String?, ?estimated_delivery_before: String?, ?estimated_delivery_after: String?, ?shipment_delivery_before: String?, ?shipment_delivery_after: String?, ?requested_pick_up_before: String?, ?requested_pick_up_after: String?, ?scheduled_pick_up_before: String?, ?scheduled_pick_up_after: String?, ?current_shipment_status: String?, ?vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?buyer_warehouse_code: String?, ?seller_warehouse_code: String?, ?rate_limit: Float) -> Peddler::Response
       def get_shipment_labels: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?label_created_after: String?, ?label_created_before: String?, ?buyer_reference_number: String?, ?vendor_shipment_identifier: String?, ?seller_warehouse_code: String?, ?rate_limit: Float) -> Peddler::Response
+      def submit_shipment_confirmation: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def submit_shipment_confirmations: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
       def submit_shipments: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end

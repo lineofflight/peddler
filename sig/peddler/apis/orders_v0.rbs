@@ -325,6 +325,23 @@ module Peddler
         def to_h: () -> { exception_date: String?, open: bool?, open_intervals: Array[Peddler::APIs::OrdersV0::OpenInterval]? }
       end
 
+      class ExportInfo < Data
+        def self.new: (?export_charge: Peddler::Money?, ?export_charge_model: String?) -> Peddler::APIs::OrdersV0::ExportInfo
+                    | (Peddler::Money?, String?) -> Peddler::APIs::OrdersV0::ExportInfo
+        def self.[]: (?export_charge: Peddler::Money?, ?export_charge_model: String?) -> Peddler::APIs::OrdersV0::ExportInfo
+                   | (Peddler::Money?, String?) -> Peddler::APIs::OrdersV0::ExportInfo
+
+        def self.members: () -> [ :export_charge, :export_charge_model ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::ExportInfo
+
+        attr_reader export_charge: Peddler::Money?
+        attr_reader export_charge_model: String?
+
+        def members: () -> [ :export_charge, :export_charge_model ]
+        def to_h: () -> { export_charge: Peddler::Money?, export_charge_model: String? }
+      end
+
       class FulfillmentInstruction < Data
         def self.new: (?fulfillment_supply_source_id: String?) -> Peddler::APIs::OrdersV0::FulfillmentInstruction
                     | (String?) -> Peddler::APIs::OrdersV0::FulfillmentInstruction
@@ -339,6 +356,96 @@ module Peddler
 
         def members: () -> [ :fulfillment_supply_source_id ]
         def to_h: () -> { fulfillment_supply_source_id: String? }
+      end
+
+      class FulfillmentInstructions < Data
+        def self.new: (amazon_order_id: String?, ?fulfillment_plans: Array[Peddler::APIs::OrdersV0::FulfillmentPlan]?) -> Peddler::APIs::OrdersV0::FulfillmentInstructions
+                    | (String?, Array[Peddler::APIs::OrdersV0::FulfillmentPlan]?) -> Peddler::APIs::OrdersV0::FulfillmentInstructions
+        def self.[]: (amazon_order_id: String?, ?fulfillment_plans: Array[Peddler::APIs::OrdersV0::FulfillmentPlan]?) -> Peddler::APIs::OrdersV0::FulfillmentInstructions
+                   | (String?, Array[Peddler::APIs::OrdersV0::FulfillmentPlan]?) -> Peddler::APIs::OrdersV0::FulfillmentInstructions
+
+        def self.members: () -> [ :amazon_order_id, :fulfillment_plans ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::FulfillmentInstructions
+
+        attr_reader amazon_order_id: String?
+        attr_reader fulfillment_plans: Array[Peddler::APIs::OrdersV0::FulfillmentPlan]?
+
+        def members: () -> [ :amazon_order_id, :fulfillment_plans ]
+        def to_h: () -> { amazon_order_id: String?, fulfillment_plans: Array[Peddler::APIs::OrdersV0::FulfillmentPlan]? }
+      end
+
+      class FulfillmentLocation < Data
+        def self.new: (?supply_source_id: String?) -> Peddler::APIs::OrdersV0::FulfillmentLocation
+                    | (String?) -> Peddler::APIs::OrdersV0::FulfillmentLocation
+        def self.[]: (?supply_source_id: String?) -> Peddler::APIs::OrdersV0::FulfillmentLocation
+                   | (String?) -> Peddler::APIs::OrdersV0::FulfillmentLocation
+
+        def self.members: () -> [ :supply_source_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::FulfillmentLocation
+
+        attr_reader supply_source_id: String?
+
+        def members: () -> [ :supply_source_id ]
+        def to_h: () -> { supply_source_id: String? }
+      end
+
+      class FulfillmentPlan < Data
+        def self.new: (creation_date: String?, fulfillment_plan_id: String?, fulfillment_plan_items: Array[Peddler::APIs::OrdersV0::FulfillmentPlanItem]?, fulfillment_plan_status: String?, fulfillment_type: String?, last_status_update_date: String?, ?fulfillment_location: Peddler::APIs::OrdersV0::FulfillmentLocation?, ?shipping_instructions: Peddler::APIs::OrdersV0::ShippingInstructions?) -> Peddler::APIs::OrdersV0::FulfillmentPlan
+                    | (String?, String?, Array[Peddler::APIs::OrdersV0::FulfillmentPlanItem]?, String?, String?, String?, Peddler::APIs::OrdersV0::FulfillmentLocation?, Peddler::APIs::OrdersV0::ShippingInstructions?) -> Peddler::APIs::OrdersV0::FulfillmentPlan
+        def self.[]: (creation_date: String?, fulfillment_plan_id: String?, fulfillment_plan_items: Array[Peddler::APIs::OrdersV0::FulfillmentPlanItem]?, fulfillment_plan_status: String?, fulfillment_type: String?, last_status_update_date: String?, ?fulfillment_location: Peddler::APIs::OrdersV0::FulfillmentLocation?, ?shipping_instructions: Peddler::APIs::OrdersV0::ShippingInstructions?) -> Peddler::APIs::OrdersV0::FulfillmentPlan
+                   | (String?, String?, Array[Peddler::APIs::OrdersV0::FulfillmentPlanItem]?, String?, String?, String?, Peddler::APIs::OrdersV0::FulfillmentLocation?, Peddler::APIs::OrdersV0::ShippingInstructions?) -> Peddler::APIs::OrdersV0::FulfillmentPlan
+
+        def self.members: () -> [ :creation_date, :fulfillment_plan_id, :fulfillment_plan_items, :fulfillment_plan_status, :fulfillment_type, :last_status_update_date, :fulfillment_location, :shipping_instructions ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::FulfillmentPlan
+
+        attr_reader creation_date: String?
+        attr_reader fulfillment_location: Peddler::APIs::OrdersV0::FulfillmentLocation?
+        attr_reader fulfillment_plan_id: String?
+        attr_reader fulfillment_plan_items: Array[Peddler::APIs::OrdersV0::FulfillmentPlanItem]?
+        attr_reader fulfillment_plan_status: String?
+        attr_reader fulfillment_type: String?
+        attr_reader last_status_update_date: String?
+        attr_reader shipping_instructions: Peddler::APIs::OrdersV0::ShippingInstructions?
+
+        def members: () -> [ :creation_date, :fulfillment_plan_id, :fulfillment_plan_items, :fulfillment_plan_status, :fulfillment_type, :last_status_update_date, :fulfillment_location, :shipping_instructions ]
+        def to_h: () -> { creation_date: String?, fulfillment_plan_id: String?, fulfillment_plan_items: Array[Peddler::APIs::OrdersV0::FulfillmentPlanItem]?, fulfillment_plan_status: String?, fulfillment_type: String?, last_status_update_date: String?, fulfillment_location: Peddler::APIs::OrdersV0::FulfillmentLocation?, shipping_instructions: Peddler::APIs::OrdersV0::ShippingInstructions? }
+      end
+
+      class FulfillmentPlanItem < Data
+        def self.new: (measurement: Peddler::APIs::OrdersV0::Measurement?, order_item_id: String?) -> Peddler::APIs::OrdersV0::FulfillmentPlanItem
+                    | (Peddler::APIs::OrdersV0::Measurement?, String?) -> Peddler::APIs::OrdersV0::FulfillmentPlanItem
+        def self.[]: (measurement: Peddler::APIs::OrdersV0::Measurement?, order_item_id: String?) -> Peddler::APIs::OrdersV0::FulfillmentPlanItem
+                   | (Peddler::APIs::OrdersV0::Measurement?, String?) -> Peddler::APIs::OrdersV0::FulfillmentPlanItem
+
+        def self.members: () -> [ :measurement, :order_item_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::FulfillmentPlanItem
+
+        attr_reader measurement: Peddler::APIs::OrdersV0::Measurement?
+        attr_reader order_item_id: String?
+
+        def members: () -> [ :measurement, :order_item_id ]
+        def to_h: () -> { measurement: Peddler::APIs::OrdersV0::Measurement?, order_item_id: String? }
+      end
+
+      class FulfillmentPlanShippingConstraints < Data
+        def self.new: (?pallet_delivery: String?, ?signature_confirmation: String?) -> Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints
+                    | (String?, String?) -> Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints
+        def self.[]: (?pallet_delivery: String?, ?signature_confirmation: String?) -> Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints
+                   | (String?, String?) -> Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints
+
+        def self.members: () -> [ :pallet_delivery, :signature_confirmation ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints
+
+        attr_reader pallet_delivery: String?
+        attr_reader signature_confirmation: String?
+
+        def members: () -> [ :pallet_delivery, :signature_confirmation ]
+        def to_h: () -> { pallet_delivery: String?, signature_confirmation: String? }
       end
 
       class GetOrderAddressResponse < Data
@@ -373,6 +480,23 @@ module Peddler
 
         def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::OrdersV0::Error]?, payload: Peddler::APIs::OrdersV0::OrderBuyerInfo? }
+      end
+
+      class GetOrderFulfillmentInstructionsResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::OrdersV0::Error]?, ?payload: Peddler::APIs::OrdersV0::FulfillmentInstructions?) -> Peddler::APIs::OrdersV0::GetOrderFulfillmentInstructionsResponse
+                    | (Array[Peddler::APIs::OrdersV0::Error]?, Peddler::APIs::OrdersV0::FulfillmentInstructions?) -> Peddler::APIs::OrdersV0::GetOrderFulfillmentInstructionsResponse
+        def self.[]: (?errors: Array[Peddler::APIs::OrdersV0::Error]?, ?payload: Peddler::APIs::OrdersV0::FulfillmentInstructions?) -> Peddler::APIs::OrdersV0::GetOrderFulfillmentInstructionsResponse
+                   | (Array[Peddler::APIs::OrdersV0::Error]?, Peddler::APIs::OrdersV0::FulfillmentInstructions?) -> Peddler::APIs::OrdersV0::GetOrderFulfillmentInstructionsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::GetOrderFulfillmentInstructionsResponse
+
+        attr_reader errors: Array[Peddler::APIs::OrdersV0::Error]?
+        attr_reader payload: Peddler::APIs::OrdersV0::FulfillmentInstructions?
+
+        def members: () -> [ :errors, :payload ]
+        def to_h: () -> { errors: Array[Peddler::APIs::OrdersV0::Error]?, payload: Peddler::APIs::OrdersV0::FulfillmentInstructions? }
       end
 
       class GetOrderItemsBuyerInfoResponse < Data
@@ -660,12 +784,12 @@ module Peddler
       end
 
       class OrderItem < Data
-        def self.new: (asin: String?, order_item_id: String?, quantity_ordered: Integer?, ?amazon_programs: Peddler::APIs::OrdersV0::AmazonPrograms?, ?associated_items: Array[Peddler::APIs::OrdersV0::AssociatedItem]?, ?buyer_info: Peddler::APIs::OrdersV0::ItemBuyerInfo?, ?buyer_requested_cancel: Peddler::APIs::OrdersV0::BuyerRequestedCancel?, ?cod_fee: Peddler::Money?, ?cod_fee_discount: Peddler::Money?, ?condition_id: String?, ?condition_note: String?, ?condition_subtype_id: String?, ?deemed_reseller_category: String?, ?ioss_number: String?, ?is_gift: String?, ?transparency: bool?, ?item_price: Peddler::Money?, ?item_tax: Peddler::Money?, ?measurement: Peddler::APIs::OrdersV0::Measurement?, ?points_granted: Peddler::APIs::OrdersV0::PointsGrantedDetail?, ?price_designation: String?, ?product_info: Peddler::APIs::OrdersV0::ProductInfoDetail?, ?promotion_discount: Peddler::Money?, ?promotion_discount_tax: Peddler::Money?, ?promotion_ids: Array[String]?, ?quantity_shipped: Integer?, ?scheduled_delivery_end_date: String?, ?scheduled_delivery_start_date: String?, ?seller_sku: String?, ?serial_number_required: bool?, ?serial_numbers: Array[String]?, ?shipping_constraints: Peddler::APIs::OrdersV0::ShippingConstraints?, ?shipping_discount: Peddler::Money?, ?shipping_discount_tax: Peddler::Money?, ?shipping_price: Peddler::Money?, ?shipping_tax: Peddler::Money?, ?store_chain_store_id: String?, ?substitution_preferences: Peddler::APIs::OrdersV0::SubstitutionPreferences?, ?tax_collection: Peddler::APIs::OrdersV0::TaxCollection?, ?title: String?) -> Peddler::APIs::OrdersV0::OrderItem
-                    | (String?, String?, Integer?, Peddler::APIs::OrdersV0::AmazonPrograms?, Array[Peddler::APIs::OrdersV0::AssociatedItem]?, Peddler::APIs::OrdersV0::ItemBuyerInfo?, Peddler::APIs::OrdersV0::BuyerRequestedCancel?, Peddler::Money?, Peddler::Money?, String?, String?, String?, String?, String?, String?, bool?, Peddler::Money?, Peddler::Money?, Peddler::APIs::OrdersV0::Measurement?, Peddler::APIs::OrdersV0::PointsGrantedDetail?, String?, Peddler::APIs::OrdersV0::ProductInfoDetail?, Peddler::Money?, Peddler::Money?, Array[String]?, Integer?, String?, String?, String?, bool?, Array[String]?, Peddler::APIs::OrdersV0::ShippingConstraints?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Money?, String?, Peddler::APIs::OrdersV0::SubstitutionPreferences?, Peddler::APIs::OrdersV0::TaxCollection?, String?) -> Peddler::APIs::OrdersV0::OrderItem
-        def self.[]: (asin: String?, order_item_id: String?, quantity_ordered: Integer?, ?amazon_programs: Peddler::APIs::OrdersV0::AmazonPrograms?, ?associated_items: Array[Peddler::APIs::OrdersV0::AssociatedItem]?, ?buyer_info: Peddler::APIs::OrdersV0::ItemBuyerInfo?, ?buyer_requested_cancel: Peddler::APIs::OrdersV0::BuyerRequestedCancel?, ?cod_fee: Peddler::Money?, ?cod_fee_discount: Peddler::Money?, ?condition_id: String?, ?condition_note: String?, ?condition_subtype_id: String?, ?deemed_reseller_category: String?, ?ioss_number: String?, ?is_gift: String?, ?transparency: bool?, ?item_price: Peddler::Money?, ?item_tax: Peddler::Money?, ?measurement: Peddler::APIs::OrdersV0::Measurement?, ?points_granted: Peddler::APIs::OrdersV0::PointsGrantedDetail?, ?price_designation: String?, ?product_info: Peddler::APIs::OrdersV0::ProductInfoDetail?, ?promotion_discount: Peddler::Money?, ?promotion_discount_tax: Peddler::Money?, ?promotion_ids: Array[String]?, ?quantity_shipped: Integer?, ?scheduled_delivery_end_date: String?, ?scheduled_delivery_start_date: String?, ?seller_sku: String?, ?serial_number_required: bool?, ?serial_numbers: Array[String]?, ?shipping_constraints: Peddler::APIs::OrdersV0::ShippingConstraints?, ?shipping_discount: Peddler::Money?, ?shipping_discount_tax: Peddler::Money?, ?shipping_price: Peddler::Money?, ?shipping_tax: Peddler::Money?, ?store_chain_store_id: String?, ?substitution_preferences: Peddler::APIs::OrdersV0::SubstitutionPreferences?, ?tax_collection: Peddler::APIs::OrdersV0::TaxCollection?, ?title: String?) -> Peddler::APIs::OrdersV0::OrderItem
-                   | (String?, String?, Integer?, Peddler::APIs::OrdersV0::AmazonPrograms?, Array[Peddler::APIs::OrdersV0::AssociatedItem]?, Peddler::APIs::OrdersV0::ItemBuyerInfo?, Peddler::APIs::OrdersV0::BuyerRequestedCancel?, Peddler::Money?, Peddler::Money?, String?, String?, String?, String?, String?, String?, bool?, Peddler::Money?, Peddler::Money?, Peddler::APIs::OrdersV0::Measurement?, Peddler::APIs::OrdersV0::PointsGrantedDetail?, String?, Peddler::APIs::OrdersV0::ProductInfoDetail?, Peddler::Money?, Peddler::Money?, Array[String]?, Integer?, String?, String?, String?, bool?, Array[String]?, Peddler::APIs::OrdersV0::ShippingConstraints?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Money?, String?, Peddler::APIs::OrdersV0::SubstitutionPreferences?, Peddler::APIs::OrdersV0::TaxCollection?, String?) -> Peddler::APIs::OrdersV0::OrderItem
+        def self.new: (asin: String?, order_item_id: String?, quantity_ordered: Integer?, ?amazon_programs: Peddler::APIs::OrdersV0::AmazonPrograms?, ?associated_items: Array[Peddler::APIs::OrdersV0::AssociatedItem]?, ?buyer_info: Peddler::APIs::OrdersV0::ItemBuyerInfo?, ?buyer_requested_cancel: Peddler::APIs::OrdersV0::BuyerRequestedCancel?, ?cod_fee: Peddler::Money?, ?cod_fee_discount: Peddler::Money?, ?condition_id: String?, ?condition_note: String?, ?condition_subtype_id: String?, ?deemed_reseller_category: String?, ?export_info: Peddler::APIs::OrdersV0::ExportInfo?, ?ioss_number: String?, ?is_gift: String?, ?transparency: bool?, ?item_price: Peddler::Money?, ?item_tax: Peddler::Money?, ?measurement: Peddler::APIs::OrdersV0::Measurement?, ?points_granted: Peddler::APIs::OrdersV0::PointsGrantedDetail?, ?price_designation: String?, ?product_info: Peddler::APIs::OrdersV0::ProductInfoDetail?, ?promotion_discount: Peddler::Money?, ?promotion_discount_tax: Peddler::Money?, ?promotion_ids: Array[String]?, ?quantity_shipped: Integer?, ?scheduled_delivery_end_date: String?, ?scheduled_delivery_start_date: String?, ?seller_sku: String?, ?serial_number_required: bool?, ?serial_numbers: Array[String]?, ?shipping_constraints: Peddler::APIs::OrdersV0::ShippingConstraints?, ?shipping_discount: Peddler::Money?, ?shipping_discount_tax: Peddler::Money?, ?shipping_price: Peddler::Money?, ?shipping_tax: Peddler::Money?, ?store_chain_store_id: String?, ?substitution_preferences: Peddler::APIs::OrdersV0::SubstitutionPreferences?, ?tax_collection: Peddler::APIs::OrdersV0::TaxCollection?, ?title: String?) -> Peddler::APIs::OrdersV0::OrderItem
+                    | (String?, String?, Integer?, Peddler::APIs::OrdersV0::AmazonPrograms?, Array[Peddler::APIs::OrdersV0::AssociatedItem]?, Peddler::APIs::OrdersV0::ItemBuyerInfo?, Peddler::APIs::OrdersV0::BuyerRequestedCancel?, Peddler::Money?, Peddler::Money?, String?, String?, String?, String?, Peddler::APIs::OrdersV0::ExportInfo?, String?, String?, bool?, Peddler::Money?, Peddler::Money?, Peddler::APIs::OrdersV0::Measurement?, Peddler::APIs::OrdersV0::PointsGrantedDetail?, String?, Peddler::APIs::OrdersV0::ProductInfoDetail?, Peddler::Money?, Peddler::Money?, Array[String]?, Integer?, String?, String?, String?, bool?, Array[String]?, Peddler::APIs::OrdersV0::ShippingConstraints?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Money?, String?, Peddler::APIs::OrdersV0::SubstitutionPreferences?, Peddler::APIs::OrdersV0::TaxCollection?, String?) -> Peddler::APIs::OrdersV0::OrderItem
+        def self.[]: (asin: String?, order_item_id: String?, quantity_ordered: Integer?, ?amazon_programs: Peddler::APIs::OrdersV0::AmazonPrograms?, ?associated_items: Array[Peddler::APIs::OrdersV0::AssociatedItem]?, ?buyer_info: Peddler::APIs::OrdersV0::ItemBuyerInfo?, ?buyer_requested_cancel: Peddler::APIs::OrdersV0::BuyerRequestedCancel?, ?cod_fee: Peddler::Money?, ?cod_fee_discount: Peddler::Money?, ?condition_id: String?, ?condition_note: String?, ?condition_subtype_id: String?, ?deemed_reseller_category: String?, ?export_info: Peddler::APIs::OrdersV0::ExportInfo?, ?ioss_number: String?, ?is_gift: String?, ?transparency: bool?, ?item_price: Peddler::Money?, ?item_tax: Peddler::Money?, ?measurement: Peddler::APIs::OrdersV0::Measurement?, ?points_granted: Peddler::APIs::OrdersV0::PointsGrantedDetail?, ?price_designation: String?, ?product_info: Peddler::APIs::OrdersV0::ProductInfoDetail?, ?promotion_discount: Peddler::Money?, ?promotion_discount_tax: Peddler::Money?, ?promotion_ids: Array[String]?, ?quantity_shipped: Integer?, ?scheduled_delivery_end_date: String?, ?scheduled_delivery_start_date: String?, ?seller_sku: String?, ?serial_number_required: bool?, ?serial_numbers: Array[String]?, ?shipping_constraints: Peddler::APIs::OrdersV0::ShippingConstraints?, ?shipping_discount: Peddler::Money?, ?shipping_discount_tax: Peddler::Money?, ?shipping_price: Peddler::Money?, ?shipping_tax: Peddler::Money?, ?store_chain_store_id: String?, ?substitution_preferences: Peddler::APIs::OrdersV0::SubstitutionPreferences?, ?tax_collection: Peddler::APIs::OrdersV0::TaxCollection?, ?title: String?) -> Peddler::APIs::OrdersV0::OrderItem
+                   | (String?, String?, Integer?, Peddler::APIs::OrdersV0::AmazonPrograms?, Array[Peddler::APIs::OrdersV0::AssociatedItem]?, Peddler::APIs::OrdersV0::ItemBuyerInfo?, Peddler::APIs::OrdersV0::BuyerRequestedCancel?, Peddler::Money?, Peddler::Money?, String?, String?, String?, String?, Peddler::APIs::OrdersV0::ExportInfo?, String?, String?, bool?, Peddler::Money?, Peddler::Money?, Peddler::APIs::OrdersV0::Measurement?, Peddler::APIs::OrdersV0::PointsGrantedDetail?, String?, Peddler::APIs::OrdersV0::ProductInfoDetail?, Peddler::Money?, Peddler::Money?, Array[String]?, Integer?, String?, String?, String?, bool?, Array[String]?, Peddler::APIs::OrdersV0::ShippingConstraints?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Money?, String?, Peddler::APIs::OrdersV0::SubstitutionPreferences?, Peddler::APIs::OrdersV0::TaxCollection?, String?) -> Peddler::APIs::OrdersV0::OrderItem
 
-        def self.members: () -> [ :asin, :order_item_id, :quantity_ordered, :amazon_programs, :associated_items, :buyer_info, :buyer_requested_cancel, :cod_fee, :cod_fee_discount, :condition_id, :condition_note, :condition_subtype_id, :deemed_reseller_category, :ioss_number, :is_gift, :transparency, :item_price, :item_tax, :measurement, :points_granted, :price_designation, :product_info, :promotion_discount, :promotion_discount_tax, :promotion_ids, :quantity_shipped, :scheduled_delivery_end_date, :scheduled_delivery_start_date, :seller_sku, :serial_number_required, :serial_numbers, :shipping_constraints, :shipping_discount, :shipping_discount_tax, :shipping_price, :shipping_tax, :store_chain_store_id, :substitution_preferences, :tax_collection, :title ]
+        def self.members: () -> [ :asin, :order_item_id, :quantity_ordered, :amazon_programs, :associated_items, :buyer_info, :buyer_requested_cancel, :cod_fee, :cod_fee_discount, :condition_id, :condition_note, :condition_subtype_id, :deemed_reseller_category, :export_info, :ioss_number, :is_gift, :transparency, :item_price, :item_tax, :measurement, :points_granted, :price_designation, :product_info, :promotion_discount, :promotion_discount_tax, :promotion_ids, :quantity_shipped, :scheduled_delivery_end_date, :scheduled_delivery_start_date, :seller_sku, :serial_number_required, :serial_numbers, :shipping_constraints, :shipping_discount, :shipping_discount_tax, :shipping_price, :shipping_tax, :store_chain_store_id, :substitution_preferences, :tax_collection, :title ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::OrderItem
 
@@ -680,6 +804,7 @@ module Peddler
         attr_reader condition_note: String?
         attr_reader condition_subtype_id: String?
         attr_reader deemed_reseller_category: String?
+        attr_reader export_info: Peddler::APIs::OrdersV0::ExportInfo?
         attr_reader ioss_number: String?
         attr_reader is_gift: String?
         attr_reader item_price: Peddler::Money?
@@ -710,9 +835,9 @@ module Peddler
         attr_reader title: String?
         attr_reader transparency: bool?
 
-        def members: () -> [ :asin, :order_item_id, :quantity_ordered, :amazon_programs, :associated_items, :buyer_info, :buyer_requested_cancel, :cod_fee, :cod_fee_discount, :condition_id, :condition_note, :condition_subtype_id, :deemed_reseller_category, :ioss_number, :is_gift, :transparency, :item_price, :item_tax, :measurement, :points_granted, :price_designation, :product_info, :promotion_discount, :promotion_discount_tax, :promotion_ids, :quantity_shipped, :scheduled_delivery_end_date, :scheduled_delivery_start_date, :seller_sku, :serial_number_required, :serial_numbers, :shipping_constraints, :shipping_discount, :shipping_discount_tax, :shipping_price, :shipping_tax, :store_chain_store_id, :substitution_preferences, :tax_collection, :title ]
+        def members: () -> [ :asin, :order_item_id, :quantity_ordered, :amazon_programs, :associated_items, :buyer_info, :buyer_requested_cancel, :cod_fee, :cod_fee_discount, :condition_id, :condition_note, :condition_subtype_id, :deemed_reseller_category, :export_info, :ioss_number, :is_gift, :transparency, :item_price, :item_tax, :measurement, :points_granted, :price_designation, :product_info, :promotion_discount, :promotion_discount_tax, :promotion_ids, :quantity_shipped, :scheduled_delivery_end_date, :scheduled_delivery_start_date, :seller_sku, :serial_number_required, :serial_numbers, :shipping_constraints, :shipping_discount, :shipping_discount_tax, :shipping_price, :shipping_tax, :store_chain_store_id, :substitution_preferences, :tax_collection, :title ]
         def serial_number_required?: () -> bool
-        def to_h: () -> { asin: String?, order_item_id: String?, quantity_ordered: Integer?, amazon_programs: Peddler::APIs::OrdersV0::AmazonPrograms?, associated_items: Array[Peddler::APIs::OrdersV0::AssociatedItem]?, buyer_info: Peddler::APIs::OrdersV0::ItemBuyerInfo?, buyer_requested_cancel: Peddler::APIs::OrdersV0::BuyerRequestedCancel?, cod_fee: Peddler::Money?, cod_fee_discount: Peddler::Money?, condition_id: String?, condition_note: String?, condition_subtype_id: String?, deemed_reseller_category: String?, ioss_number: String?, is_gift: String?, transparency: bool?, item_price: Peddler::Money?, item_tax: Peddler::Money?, measurement: Peddler::APIs::OrdersV0::Measurement?, points_granted: Peddler::APIs::OrdersV0::PointsGrantedDetail?, price_designation: String?, product_info: Peddler::APIs::OrdersV0::ProductInfoDetail?, promotion_discount: Peddler::Money?, promotion_discount_tax: Peddler::Money?, promotion_ids: Array[String]?, quantity_shipped: Integer?, scheduled_delivery_end_date: String?, scheduled_delivery_start_date: String?, seller_sku: String?, serial_number_required: bool?, serial_numbers: Array[String]?, shipping_constraints: Peddler::APIs::OrdersV0::ShippingConstraints?, shipping_discount: Peddler::Money?, shipping_discount_tax: Peddler::Money?, shipping_price: Peddler::Money?, shipping_tax: Peddler::Money?, store_chain_store_id: String?, substitution_preferences: Peddler::APIs::OrdersV0::SubstitutionPreferences?, tax_collection: Peddler::APIs::OrdersV0::TaxCollection?, title: String? }
+        def to_h: () -> { asin: String?, order_item_id: String?, quantity_ordered: Integer?, amazon_programs: Peddler::APIs::OrdersV0::AmazonPrograms?, associated_items: Array[Peddler::APIs::OrdersV0::AssociatedItem]?, buyer_info: Peddler::APIs::OrdersV0::ItemBuyerInfo?, buyer_requested_cancel: Peddler::APIs::OrdersV0::BuyerRequestedCancel?, cod_fee: Peddler::Money?, cod_fee_discount: Peddler::Money?, condition_id: String?, condition_note: String?, condition_subtype_id: String?, deemed_reseller_category: String?, export_info: Peddler::APIs::OrdersV0::ExportInfo?, ioss_number: String?, is_gift: String?, transparency: bool?, item_price: Peddler::Money?, item_tax: Peddler::Money?, measurement: Peddler::APIs::OrdersV0::Measurement?, points_granted: Peddler::APIs::OrdersV0::PointsGrantedDetail?, price_designation: String?, product_info: Peddler::APIs::OrdersV0::ProductInfoDetail?, promotion_discount: Peddler::Money?, promotion_discount_tax: Peddler::Money?, promotion_ids: Array[String]?, quantity_shipped: Integer?, scheduled_delivery_end_date: String?, scheduled_delivery_start_date: String?, seller_sku: String?, serial_number_required: bool?, serial_numbers: Array[String]?, shipping_constraints: Peddler::APIs::OrdersV0::ShippingConstraints?, shipping_discount: Peddler::Money?, shipping_discount_tax: Peddler::Money?, shipping_price: Peddler::Money?, shipping_tax: Peddler::Money?, store_chain_store_id: String?, substitution_preferences: Peddler::APIs::OrdersV0::SubstitutionPreferences?, tax_collection: Peddler::APIs::OrdersV0::TaxCollection?, title: String? }
         def transparency?: () -> bool
       end
 
@@ -1049,6 +1174,24 @@ module Peddler
         def to_h: () -> { pallet_delivery: String?, recipient_age_verification: String?, recipient_identity_verification: String?, signature_confirmation: String? }
       end
 
+      class ShippingInstructions < Data
+        def self.new: (?carrier_code: String?, ?shipping_constraints: Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints?, ?shipping_method: String?) -> Peddler::APIs::OrdersV0::ShippingInstructions
+                    | (String?, Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints?, String?) -> Peddler::APIs::OrdersV0::ShippingInstructions
+        def self.[]: (?carrier_code: String?, ?shipping_constraints: Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints?, ?shipping_method: String?) -> Peddler::APIs::OrdersV0::ShippingInstructions
+                   | (String?, Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints?, String?) -> Peddler::APIs::OrdersV0::ShippingInstructions
+
+        def self.members: () -> [ :carrier_code, :shipping_constraints, :shipping_method ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::ShippingInstructions
+
+        attr_reader carrier_code: String?
+        attr_reader shipping_constraints: Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints?
+        attr_reader shipping_method: String?
+
+        def members: () -> [ :carrier_code, :shipping_constraints, :shipping_method ]
+        def to_h: () -> { carrier_code: String?, shipping_constraints: Peddler::APIs::OrdersV0::FulfillmentPlanShippingConstraints?, shipping_method: String? }
+      end
+
       class SubstitutionOption < Data
         def self.new: (?asin: String?, ?measurement: Peddler::APIs::OrdersV0::Measurement?, ?quantity_ordered: Integer?, ?seller_sku: String?, ?title: String?) -> Peddler::APIs::OrdersV0::SubstitutionOption
                     | (String?, Peddler::APIs::OrdersV0::Measurement?, Integer?, String?, String?) -> Peddler::APIs::OrdersV0::SubstitutionOption
@@ -1252,6 +1395,7 @@ module Peddler
       def get_order_address: (String, ?rate_limit: Float) -> Peddler::Response
       def get_order_buyer_info: (String, ?rate_limit: Float) -> Peddler::Response
 
+      def get_order_fulfillment_instructions: (String, ?rate_limit: Float) -> Peddler::Response
       def get_order_items: (String, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
       def get_order_items_buyer_info: (String, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
 

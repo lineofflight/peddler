@@ -96,6 +96,72 @@ module Peddler
         get(path, rate_limit:, parser:)
       end
 
+      # Submits an asynchronous government invoice creation request.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash] Information required to create the government invoice.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def create_government_invoice(body, rate_limit: 0.0167)
+        path = "/tax/invoices/2024-06-19/governmentInvoiceRequests"
+        post(path, body:, rate_limit:)
+      end
+
+      # Returns the status of an invoice generation request.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The invoices status will match the marketplace that you specify.
+      # @param transaction_type [String] Marketplace specific classification of the transaction type that originated the
+      #   invoice. Check 'transactionType' options using 'getInvoicesAttributes' operation.
+      # @param shipment_id [String] The unique shipment identifier to get an invoice for.
+      # @param invoice_type [String] Marketplace specific classification of the invoice type. Check 'invoiceType'
+      #   options using 'getInvoicesAttributes' operation.
+      # @param inbound_plan_id [String] The unique InboundPlan identifier in which the shipment is contained and for
+      #   which the invoice will be created.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def get_government_invoice_status(marketplace_id, transaction_type, shipment_id, invoice_type,
+        inbound_plan_id: nil, rate_limit: 0.0167)
+        path = "/tax/invoices/2024-06-19/governmentInvoiceRequests"
+        params = {
+          "marketplaceId" => marketplace_id,
+          "transactionType" => transaction_type,
+          "shipmentId" => shipment_id,
+          "invoiceType" => invoice_type,
+          "inboundPlanId" => inbound_plan_id,
+        }.compact
+        parser = -> { GovernmentInvoiceStatusResponse }
+        get(path, params:, rate_limit:, parser:)
+      end
+
+      # Returns an invoiceDocument object containing an invoiceDocumentUrl .
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The invoices returned will match the marketplace that you specify.
+      # @param transaction_type [String] Marketplace specific classification of the transaction type that originated the
+      #   invoice. Check 'transactionType' options using 'getInvoicesAttributes' operation.
+      # @param shipment_id [String] The unique shipment identifier to get an invoice for.
+      # @param invoice_type [String] Marketplace specific classification of the invoice type. Check 'invoiceType'
+      #   options using 'getInvoicesAttributes' operation.
+      # @param inbound_plan_id [String] The unique InboundPlan identifier in which the shipment is contained and for
+      #   which the invoice will be created.
+      # @param file_format [String] Requested file format. Default is XML
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def get_government_invoice_document(marketplace_id, transaction_type, shipment_id, invoice_type,
+        inbound_plan_id: nil, file_format: nil, rate_limit: 0.0167)
+        path = "/tax/invoices/2024-06-19/governmentInvoiceRequests/#{percent_encode(shipment_id)}"
+        params = {
+          "marketplaceId" => marketplace_id,
+          "transactionType" => transaction_type,
+          "invoiceType" => invoice_type,
+          "inboundPlanId" => inbound_plan_id,
+          "fileFormat" => file_format,
+        }.compact
+        parser = -> { GovtInvoiceDocumentResponse }
+        get(path, params:, rate_limit:, parser:)
+      end
+
       # Returns invoice details for the invoices that match the filters that you specify.
       #
       # @note This operation can make a static sandbox call.
