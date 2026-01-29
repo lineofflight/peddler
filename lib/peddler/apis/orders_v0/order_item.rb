@@ -59,6 +59,9 @@ module Peddler
         #   EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK.
         attribute?(:deemed_reseller_category, String, from: "DeemedResellerCategory")
 
+        # @return [ExportInfo] Contains information that is related to the export of an order item.
+        attribute?(:export_info, ExportInfo, from: "ExportInfo")
+
         # @return [String] The IOSS number of the marketplace. Sellers shipping to the EU from outside the EU must
         #   provide this IOSS number to their carrier when Amazon has collected the VAT on the sale.
         attribute?(:ioss_number, String, from: "IossNumber")

@@ -7,24 +7,22 @@ require "structure"
 module Peddler
   module APIs
     class VendorShipmentsV1
-      # Container for regulatory compliance information, for instance EU Due Diligence Regulation (EUDR) requirements.
-      # Includes reference numbers, verification codes, compliance information, and exemption codes necessary for
-      # documenting regulatory compliance for shipments.
+      # Regulatory requirements and compliance information for the item, including reference numbers, verification
+      # codes, and exemption codes. Use this field to specify applicable regulations such as EU Deforestation Regulation
+      # (EUDR).
       RegulationReferences = Structure.new do
-        # @return [String] The Due Diligence exemption code for EUDR products indicating the item is exempt from due
-        #   diligence requirements.
+        # @return [String] The exemption code for EUDR products exempt from due diligence requirements.
         attribute?(:due_diligence_exemption_code, String, from: "dueDiligenceExemptionCode")
 
-        # @return [String] The EUDR Due Diligence Information for EUDR that was already pre-loaded in Vendor Central
-        #   within Amazon compliance collection experience.
+        # @return [String] The EUDR Due Diligence information pre-loaded in Vendor Central.
         attribute?(:due_diligence_information, String, from: "dueDiligenceInformation")
 
-        # @return [String] The EUDR Due Diligence Reference number from vendor's upstream Due Dilligence Statement (DDS)
-        #   submitted to EU Commison portal or provided to Onix.
+        # @return [String] The reference number from the vendor's EUDR Due Diligence Statement (DDS) submitted to the EU
+        #   Commission portal or provided to Amazon through ONIX feed.
         attribute?(:due_diligence_reference, String, from: "dueDiligenceReference")
 
-        # @return [String] The EUDR Due Diligence Verification number provided by EU Commision associated with submitted
-        #   DDR.
+        # @return [String] The EUDR Due Diligence verification number provided by the EU Commission for the submitted
+        #   DDS.
         attribute?(:due_diligence_verification, String, from: "dueDiligenceVerification")
       end
     end

@@ -391,6 +391,34 @@
               "deprecationReason": null
             },
             {
+              "name": "refundRate",
+              "description": "The percentage conversion metric indicating how many orders were refunded,\ncalculated by dividing unitsRefunded by unitsOrdered for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "refundRateB2B",
+              "description": "The percentage conversion metric indicating how many orders were refunded by\nAmazon Business customers, calculated by dividing unitsRefundedB2B by\nunitsOrderedB2B for the selected time period. Note: This field is only\npopulated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "totalOrderItems",
               "description": "The number of items that were ordered for the selected time period.",
               "args": [],
@@ -437,6 +465,34 @@
             {
               "name": "unitsOrderedB2B",
               "description": "The number of units ordered by Amazon Business customers. Note: This field is\nonly populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsRefunded",
+              "description": "The number of units refunded for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Long",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsRefundedB2B",
+              "description": "The number of units refunded by Amazon Business customers for the selected\ntime period. Note: This field is only populated when the seller is a B2B seller.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -890,7 +946,7 @@
             },
             {
               "name": "averageSellingPrice",
-              "description": "The average price of the units sold in the selected time period, calculated by\ndividing the orderedProductSales by unitsOrdered for the selected time period.",
+              "description": "The average price of the units sold for the selected time period, calculated\nby dividing the orderedProductSales by unitsOrdered for the selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -961,6 +1017,18 @@
               "deprecationReason": null
             },
             {
+              "name": "claimsAmountB2B",
+              "description": "Monetary amount of filed A-to-z guarantee claims for Amazon Business\ncustomers. Note: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "claimsGranted",
               "description": "The number of A-to-z guarantee claims granted.",
               "args": [],
@@ -972,6 +1040,18 @@
                   "name": "Long",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "claimsGrantedB2B",
+              "description": "The number of A-to-z guarantee claims granted for Amazon Business customers.\nNote: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -994,7 +1074,7 @@
             },
             {
               "name": "orderedProductSalesB2B",
-              "description": "The amount of ordered product sales to Amazon Business customers, calculated\nby multiplying the price of products and the number of units sold for the\nselected time period.",
+              "description": "The amount of ordered product sales to Amazon Business customers, calculated\nby multiplying the price of products and the number of units sold for the\nselected time period. Note: This field is only populated when the seller is a B2B seller.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -1006,7 +1086,7 @@
             },
             {
               "name": "ordersShipped",
-              "description": "The number of orders shipped in the selected time period.",
+              "description": "The number of orders shipped for the selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1022,7 +1102,7 @@
             },
             {
               "name": "refundRate",
-              "description": "The percentage conversion metric indicating how many orders were refunded by\nthe seller, calculated by dividing unitsOrdered by unitsRefunded in the\nselected time period.",
+              "description": "The percentage conversion metric indicating how many orders were refunded by\nthe seller, calculated by dividing unitsRefunded by unitsOrdered for the\nselected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1032,6 +1112,18 @@
                   "name": "Float",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "refundRateB2B",
+              "description": "The percentage conversion metric indicating how many orders were refunded by\nAmazon Business customers, calculated by dividing unitsRefundedB2B by\nunitsOrderedB2B for the selected time period. Note: This field is only\npopulated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1070,7 +1162,7 @@
             },
             {
               "name": "totalOrderItemsB2B",
-              "description": "The number of items that were ordered by Amazon Business customers for the\nselected time period. Example: For an order containing 2 copies of book A and\n3 copies of book B, the number of orders is 1, the number of order items is 2\n(book A and book B), and the number of units is 5 (2 + 3).",
+              "description": "The number of items that were ordered by Amazon Business customers for the\nselected time period. Example: For an order containing 2 copies of book A and\n3 copies of book B, the number of orders is 1, the number of order items is 2\n(book A and book B), and the number of units is 5 (2 + 3). Note: This field is\nonly populated when the seller is a B2B seller.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1098,7 +1190,7 @@
             },
             {
               "name": "unitsOrderedB2B",
-              "description": "The number of units ordered by Amazon Business customers for the selected time\nperiod. Example: For an order containing 2 copies of book A and 3 copies of\nbook B, the number of orders is 1, the number of order items is 2 (book A and\nbook B), and the number of units is 5 (2 + 3).",
+              "description": "The number of units ordered by Amazon Business customers for the selected time\nperiod. Example: For an order containing 2 copies of book A and 3 copies of\nbook B, the number of orders is 1, the number of order items is 2 (book A and\nbook B), and the number of units is 5 (2 + 3). Note: This field is only\npopulated when the seller is a B2B seller.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1110,7 +1202,7 @@
             },
             {
               "name": "unitsRefunded",
-              "description": "The number of units refunded in the selected time period.",
+              "description": "The number of units refunded for the selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1125,8 +1217,20 @@
               "deprecationReason": null
             },
             {
+              "name": "unitsRefundedB2B",
+              "description": "The number of units refunded by Amazon Business customers for the selected\ntime period. Note: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "unitsShipped",
-              "description": "The number of units shipped in the selected time period.",
+              "description": "The number of units shipped for the selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1153,7 +1257,7 @@
           "fields": [
             {
               "name": "averageOfferCount",
-              "description": "The average number of offers listed for sale in the selected time period. It\nis calculated from the total number of offers and the total number of days in\nthe selected time period.",
+              "description": "The average number of offers listed for sale for the selected time period. It\nis calculated from the total number of offers and the total number of days for\nthe selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1169,7 +1273,7 @@
             },
             {
               "name": "averageParentItems",
-              "description": "The average number of parent items listed for sale in the selected time period.",
+              "description": "The average number of parent items listed for sale for the selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1269,7 +1373,7 @@
             },
             {
               "name": "feedbackReceived",
-              "description": "The number of times customers left feedback in the selected time period.",
+              "description": "The number of times customers left feedback for the selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1279,6 +1383,18 @@
                   "name": "Long",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "feedbackReceivedB2B",
+              "description": "The number of times Amazon Business customers left feedback for the selected\ntime period. Note: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1341,7 +1457,7 @@
             },
             {
               "name": "negativeFeedbackReceived",
-              "description": "The number of times customers left negative feedback in the selected time period.",
+              "description": "The number of times customers left negative feedback for the selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1351,6 +1467,18 @@
                   "name": "Long",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "negativeFeedbackReceivedB2B",
+              "description": "The number of times Amazon Business customers left negative feedback for the\nselected time period. Note: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1413,7 +1541,7 @@
             },
             {
               "name": "receivedNegativeFeedbackRate",
-              "description": "The negative feedback rate is the number of orders that have received negative\nfeedback divided by the number of orders in the selected time period.",
+              "description": "The negative feedback rate is the number of orders that have received negative\nfeedback divided by the number of orders for the selected time period.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -1423,6 +1551,18 @@
                   "name": "Float",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "receivedNegativeFeedbackRateB2B",
+              "description": "The negative feedback rate for Amazon Business customers is the number of\norders that have received negative feedback divided by the number of orders\nfor the selected time period. Note: This field is only populated when the\nseller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null

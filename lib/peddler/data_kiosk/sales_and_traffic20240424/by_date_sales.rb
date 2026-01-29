@@ -18,7 +18,7 @@ module Peddler
         #   populated when the seller is a B2B seller.
         attribute?(:average_sales_per_order_item_b2b, Amount, from: "averageSalesPerOrderItemB2B")
 
-        # @return [Amount] The average price of the units sold in the selected time period, calculated by dividing the
+        # @return [Amount] The average price of the units sold for the selected time period, calculated by dividing the
         #   orderedProductSales by unitsOrdered for the selected time period.
         attribute?(:average_selling_price, Amount, null: false, from: "averageSellingPrice")
 
@@ -37,23 +37,37 @@ module Peddler
         # @return [Amount] Monetary amount of filed A-to-z guarantee claims.
         attribute?(:claims_amount, Amount, null: false, from: "claimsAmount")
 
+        # @return [Amount] Monetary amount of filed A-to-z guarantee claims for Amazon Business customers. Note: This
+        #   field is only populated when the seller is a B2B seller.
+        attribute?(:claims_amount_b2b, Amount, from: "claimsAmountB2B")
+
         # @return [String] The number of A-to-z guarantee claims granted.
         attribute?(:claims_granted, String, null: false, from: "claimsGranted")
+
+        # @return [String] The number of A-to-z guarantee claims granted for Amazon Business customers.
+        # Note: This field is only populated when the seller is a B2B seller.
+        attribute?(:claims_granted_b2b, String, from: "claimsGrantedB2B")
 
         # @return [Amount] The amount of ordered product sales, calculated by multiplying the price of products and the
         #   number of units sold for the selected time period.
         attribute?(:ordered_product_sales, Amount, null: false, from: "orderedProductSales")
 
         # @return [Amount] The amount of ordered product sales to Amazon Business customers, calculated by multiplying
-        #   the price of products and the number of units sold for the selected time period.
+        #   the price of products and the number of units sold for the selected time period. Note: This field is only
+        #   populated when the seller is a B2B seller.
         attribute?(:ordered_product_sales_b2b, Amount, from: "orderedProductSalesB2B")
 
-        # @return [String] The number of orders shipped in the selected time period.
+        # @return [String] The number of orders shipped for the selected time period.
         attribute?(:orders_shipped, String, null: false, from: "ordersShipped")
 
         # @return [Float] The percentage conversion metric indicating how many orders were refunded by the seller,
-        #   calculated by dividing unitsOrdered by unitsRefunded in the selected time period.
+        #   calculated by dividing unitsRefunded by unitsOrdered for the selected time period.
         attribute?(:refund_rate, Float, null: false, from: "refundRate")
+
+        # @return [Float] The percentage conversion metric indicating how many orders were refunded by Amazon Business
+        #   customers, calculated by dividing unitsRefundedB2B by unitsOrderedB2B for the selected time period. Note:
+        #   This field is only populated when the seller is a B2B seller.
+        attribute?(:refund_rate_b2b, Float, from: "refundRateB2B")
 
         # @return [Amount] The amount of ordered product sales shipped for the selected time period.
         attribute?(:shipped_product_sales, Amount, null: false, from: "shippedProductSales")
@@ -65,7 +79,8 @@ module Peddler
 
         # @return [String] The number of items that were ordered by Amazon Business customers for the selected time
         #   period. Example: For an order containing 2 copies of book A and 3 copies of book B, the number of orders is
-        #   1, the number of order items is 2 (book A and book B), and the number of units is 5 (2 + 3).
+        #   1, the number of order items is 2 (book A and book B), and the number of units is 5 (2 + 3). Note: This
+        #   field is only populated when the seller is a B2B seller.
         attribute?(:total_order_items_b2b, String, from: "totalOrderItemsB2B")
 
         # @return [String] The number of units ordered for the selected time period. Example: For an order containing 2
@@ -75,13 +90,18 @@ module Peddler
 
         # @return [String] The number of units ordered by Amazon Business customers for the selected time period.
         #   Example: For an order containing 2 copies of book A and 3 copies of book B, the number of orders is 1, the
-        #   number of order items is 2 (book A and book B), and the number of units is 5 (2 + 3).
+        #   number of order items is 2 (book A and book B), and the number of units is 5 (2 + 3). Note: This field is
+        #   only populated when the seller is a B2B seller.
         attribute?(:units_ordered_b2b, String, from: "unitsOrderedB2B")
 
-        # @return [String] The number of units refunded in the selected time period.
+        # @return [String] The number of units refunded for the selected time period.
         attribute?(:units_refunded, String, null: false, from: "unitsRefunded")
 
-        # @return [String] The number of units shipped in the selected time period.
+        # @return [String] The number of units refunded by Amazon Business customers for the selected time period. Note:
+        #   This field is only populated when the seller is a B2B seller.
+        attribute?(:units_refunded_b2b, String, from: "unitsRefundedB2B")
+
+        # @return [String] The number of units shipped for the selected time period.
         attribute?(:units_shipped, String, null: false, from: "unitsShipped")
       end
     end
