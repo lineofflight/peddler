@@ -107,24 +107,18 @@ jobs:
             **Changes include:**
             `;
 
-            const claudePrompt = `
-
-            ---
-
-            @claude Summarize the changes - what's new, what's removed, and any breaking changes.`;
-
             const maxLength = 65536;
             const truncationMessage = '(truncated due to length)';
 
             let filesList = changedFiles.map(file => `- ${file}`).join('\n');
 
-            // Calculate max allowed length for the complete body (including Claude prompt)
+            // Calculate max allowed length for the complete body
             const maxBodyLength = maxLength;
-            const currentLength = baseBody.length + filesList.length + claudePrompt.length;
+            const currentLength = baseBody.length + filesList.length;
 
             // Truncate if necessary
             if (currentLength > maxBodyLength) {
-              const maxFilesListLength = maxBodyLength - baseBody.length - claudePrompt.length - truncationMessage.length;
+              const maxFilesListLength = maxBodyLength - baseBody.length - truncationMessage.length;
               filesList = filesList.substring(0, maxFilesListLength);
               // Find the last complete line
               const lastNewline = filesList.lastIndexOf('\n');
@@ -134,7 +128,7 @@ jobs:
               filesList += truncationMessage;
             }
 
-            const prBody = baseBody + filesList + claudePrompt;
+            const prBody = baseBody + filesList;
 
             // Create PR using GitHub API
             const { data: pr } = await github.rest.pulls.create({
@@ -147,3 +141,11 @@ jobs:
             });
 
             console.log(`Created PR #${pr.number}: ${pr.html_url}`);
+
+            // Add comment to trigger Claude
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: '@claude Summarize the changes - what\'s new, what\'s removed, and any breaking changes.'
+            });
