@@ -45,6 +45,7 @@ module Peddler
     def messaging_v1 = APIs::MessagingV1
     def notifications_v1 = APIs::NotificationsV1
     def orders_v0 = APIs::OrdersV0
+    def orders_2026_01_01 = APIs::Orders20260101
     def product_fees_v0 = APIs::ProductFeesV0
     def product_pricing_v0 = APIs::ProductPricingV0
     def product_pricing_2022_05_01 = APIs::ProductPricing20220501
@@ -102,7 +103,7 @@ module Peddler
     alias_method :merchant_fulfillment, :merchant_fulfillment_v0
     alias_method :messaging, :messaging_v1
     alias_method :notifications, :notifications_v1
-    alias_method :orders, :orders_v0
+    alias_method :orders, :orders_2026_01_01
     alias_method :product_fees, :product_fees_v0
     alias_method :product_pricing, :product_pricing_2022_05_01
     alias_method :product_type_definitions, :product_type_definitions_2020_09_01

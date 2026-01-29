@@ -10,6 +10,10 @@ module Peddler
       # Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever
       # is appropriate.
       ItemDetails = Structure.new do
+        # @return [String] The two-character country code for the country where the product was manufactured or
+        #   originates. Use ISO 3166-1 alpha-2 format.
+        attribute?(:country_of_origin, String, from: "countryOfOrigin")
+
         # @return [Expiry] Expiry refers to the collection of dates required for certain items. These could be either
         #   expiryDate or mfgDate and expiryAfterDuration. These are mandatory for perishable items.
         attribute?(:expiry, Expiry)
@@ -22,6 +26,15 @@ module Peddler
         #   the trade item itself or to items contained. This field is mandatory for all perishable items.
         attribute?(:lot_number, String, from: "lotNumber")
 
+        # @return [String] The location identifier where the product receives a traceability lot number. Provide this
+        #   field for products subject to the FDA Food Safety Modernization Act (FSMA) Section 204. When you provide
+        #   `lotNumberSourceReference`, you must also specify the corresponding `lotNumberSourceType` field.
+        attribute?(:lot_number_source_reference, String, from: "lotNumberSourceReference")
+
+        # @return [String] The identifier type used for the lot number source. Provide this field when you specify
+        #   `lotNumberSourceReference`.
+        attribute?(:lot_number_source_type, String, from: "lotNumberSourceType")
+
         # @return [Money] Maximum retail price of the item being shipped.
         attribute?(:maximum_retail_price, Money, from: "maximumRetailPrice")
 
@@ -30,6 +43,9 @@ module Peddler
         #   provide the purchaseOrderNumber at the appropriate carton or pallet level. Formatting Notes: 8-character
         #   alpha-numeric code.
         attribute?(:purchase_order_number, String, from: "purchaseOrderNumber")
+
+        # @return [RegulationReferences] Regulatory requirements and compliance information for the item.
+        attribute?(:regulation_references, RegulationReferences, from: "regulationReferences")
       end
     end
   end
