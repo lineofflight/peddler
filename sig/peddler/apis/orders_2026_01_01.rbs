@@ -1,0 +1,940 @@
+module Peddler
+  module APIs
+    class Orders20260101 < API
+      class AddressExtendedFields < Data
+        def self.new: (?complement: String?, ?neighborhood: String?, ?street_name: String?, ?street_number: String?) -> Peddler::APIs::Orders20260101::AddressExtendedFields
+                    | (String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::AddressExtendedFields
+        def self.[]: (?complement: String?, ?neighborhood: String?, ?street_name: String?, ?street_number: String?) -> Peddler::APIs::Orders20260101::AddressExtendedFields
+                   | (String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::AddressExtendedFields
+
+        def self.members: () -> [ :complement, :neighborhood, :street_name, :street_number ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::AddressExtendedFields
+
+        attr_reader complement: String?
+        attr_reader neighborhood: String?
+        attr_reader street_name: String?
+        attr_reader street_number: String?
+
+        def members: () -> [ :complement, :neighborhood, :street_name, :street_number ]
+        def to_h: () -> { complement: String?, neighborhood: String?, street_name: String?, street_number: String? }
+      end
+
+      class Alias < Data
+        def self.new: (alias_id: String?, alias_type: String?) -> Peddler::APIs::Orders20260101::Alias
+                    | (String?, String?) -> Peddler::APIs::Orders20260101::Alias
+        def self.[]: (alias_id: String?, alias_type: String?) -> Peddler::APIs::Orders20260101::Alias
+                   | (String?, String?) -> Peddler::APIs::Orders20260101::Alias
+
+        def self.members: () -> [ :alias_id, :alias_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::Alias
+
+        attr_reader alias_id: String?
+        attr_reader alias_type: String?
+
+        def members: () -> [ :alias_id, :alias_type ]
+        def to_h: () -> { alias_id: String?, alias_type: String? }
+      end
+
+      class AssociatedOrder < Data
+        def self.new: (?association_type: String?, ?order_id: String?) -> Peddler::APIs::Orders20260101::AssociatedOrder
+                    | (String?, String?) -> Peddler::APIs::Orders20260101::AssociatedOrder
+        def self.[]: (?association_type: String?, ?order_id: String?) -> Peddler::APIs::Orders20260101::AssociatedOrder
+                   | (String?, String?) -> Peddler::APIs::Orders20260101::AssociatedOrder
+
+        def self.members: () -> [ :association_type, :order_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::AssociatedOrder
+
+        attr_reader association_type: String?
+        attr_reader order_id: String?
+
+        def members: () -> [ :association_type, :order_id ]
+        def to_h: () -> { association_type: String?, order_id: String? }
+      end
+
+      class BusinessHour < Data
+        def self.new: (?day_of_week: String?, ?time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]?) -> Peddler::APIs::Orders20260101::BusinessHour
+                    | (String?, Array[Peddler::APIs::Orders20260101::TimeWindow]?) -> Peddler::APIs::Orders20260101::BusinessHour
+        def self.[]: (?day_of_week: String?, ?time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]?) -> Peddler::APIs::Orders20260101::BusinessHour
+                   | (String?, Array[Peddler::APIs::Orders20260101::TimeWindow]?) -> Peddler::APIs::Orders20260101::BusinessHour
+
+        def self.members: () -> [ :day_of_week, :time_windows ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::BusinessHour
+
+        attr_reader day_of_week: String?
+        attr_reader time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]?
+
+        def members: () -> [ :day_of_week, :time_windows ]
+        def to_h: () -> { day_of_week: String?, time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]? }
+      end
+
+      class Buyer < Data
+        def self.new: (?buyer_company_name: String?, ?buyer_email: String?, ?buyer_name: String?, ?buyer_purchase_order_number: String?) -> Peddler::APIs::Orders20260101::Buyer
+                    | (String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::Buyer
+        def self.[]: (?buyer_company_name: String?, ?buyer_email: String?, ?buyer_name: String?, ?buyer_purchase_order_number: String?) -> Peddler::APIs::Orders20260101::Buyer
+                   | (String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::Buyer
+
+        def self.members: () -> [ :buyer_company_name, :buyer_email, :buyer_name, :buyer_purchase_order_number ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::Buyer
+
+        attr_reader buyer_company_name: String?
+        attr_reader buyer_email: String?
+        attr_reader buyer_name: String?
+        attr_reader buyer_purchase_order_number: String?
+
+        def members: () -> [ :buyer_company_name, :buyer_email, :buyer_name, :buyer_purchase_order_number ]
+        def to_h: () -> { buyer_company_name: String?, buyer_email: String?, buyer_name: String?, buyer_purchase_order_number: String? }
+      end
+
+      class CustomerAddress < Data
+        def self.new: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?company_name: String?, ?country_code: String?, ?district_or_county: String?, ?extended_fields: Peddler::APIs::Orders20260101::AddressExtendedFields?, ?municipality: String?, ?name: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::Orders20260101::CustomerAddress
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, Peddler::APIs::Orders20260101::AddressExtendedFields?, String?, String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::CustomerAddress
+        def self.[]: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?company_name: String?, ?country_code: String?, ?district_or_county: String?, ?extended_fields: Peddler::APIs::Orders20260101::AddressExtendedFields?, ?municipality: String?, ?name: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::Orders20260101::CustomerAddress
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, Peddler::APIs::Orders20260101::AddressExtendedFields?, String?, String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::CustomerAddress
+
+        def self.members: () -> [ :address_line1, :address_line2, :address_line3, :address_type, :city, :company_name, :country_code, :district_or_county, :extended_fields, :municipality, :name, :phone, :postal_code, :state_or_region ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::CustomerAddress
+
+        attr_reader address_line1: String?
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader address_type: String?
+        attr_reader city: String?
+        attr_reader company_name: String?
+        attr_reader country_code: String?
+        attr_reader district_or_county: String?
+        attr_reader extended_fields: Peddler::APIs::Orders20260101::AddressExtendedFields?
+        attr_reader municipality: String?
+        attr_reader name: String?
+        attr_reader phone: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def members: () -> [ :address_line1, :address_line2, :address_line3, :address_type, :city, :company_name, :country_code, :district_or_county, :extended_fields, :municipality, :name, :phone, :postal_code, :state_or_region ]
+        def to_h: () -> { address_line1: String?, address_line2: String?, address_line3: String?, address_type: String?, city: String?, company_name: String?, country_code: String?, district_or_county: String?, extended_fields: Peddler::APIs::Orders20260101::AddressExtendedFields?, municipality: String?, name: String?, phone: String?, postal_code: String?, state_or_region: String? }
+      end
+
+      class DateTimeRange < Data
+        def self.new: (?earliest_date_time: Time?, ?latest_date_time: Time?) -> Peddler::APIs::Orders20260101::DateTimeRange
+                    | (Time?, Time?) -> Peddler::APIs::Orders20260101::DateTimeRange
+        def self.[]: (?earliest_date_time: Time?, ?latest_date_time: Time?) -> Peddler::APIs::Orders20260101::DateTimeRange
+                   | (Time?, Time?) -> Peddler::APIs::Orders20260101::DateTimeRange
+
+        def self.members: () -> [ :earliest_date_time, :latest_date_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::DateTimeRange
+
+        attr_reader earliest_date_time: Time?
+        attr_reader latest_date_time: Time?
+
+        def members: () -> [ :earliest_date_time, :latest_date_time ]
+        def to_h: () -> { earliest_date_time: Time?, latest_date_time: Time? }
+      end
+
+      class DeliveryPreference < Data
+        def self.new: (?address_instruction: String?, ?delivery_capabilities: Array[untyped]?, ?delivery_time: Peddler::APIs::Orders20260101::PreferredDeliveryTime?, ?drop_off_location: String?) -> Peddler::APIs::Orders20260101::DeliveryPreference
+                    | (String?, Array[untyped]?, Peddler::APIs::Orders20260101::PreferredDeliveryTime?, String?) -> Peddler::APIs::Orders20260101::DeliveryPreference
+        def self.[]: (?address_instruction: String?, ?delivery_capabilities: Array[untyped]?, ?delivery_time: Peddler::APIs::Orders20260101::PreferredDeliveryTime?, ?drop_off_location: String?) -> Peddler::APIs::Orders20260101::DeliveryPreference
+                   | (String?, Array[untyped]?, Peddler::APIs::Orders20260101::PreferredDeliveryTime?, String?) -> Peddler::APIs::Orders20260101::DeliveryPreference
+
+        def self.members: () -> [ :address_instruction, :delivery_capabilities, :delivery_time, :drop_off_location ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::DeliveryPreference
+
+        attr_reader address_instruction: String?
+        attr_reader delivery_capabilities: Array[untyped]?
+        attr_reader delivery_time: Peddler::APIs::Orders20260101::PreferredDeliveryTime?
+        attr_reader drop_off_location: String?
+
+        def members: () -> [ :address_instruction, :delivery_capabilities, :delivery_time, :drop_off_location ]
+        def to_h: () -> { address_instruction: String?, delivery_capabilities: Array[untyped]?, delivery_time: Peddler::APIs::Orders20260101::PreferredDeliveryTime?, drop_off_location: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Orders20260101::Error
+                    | (String?, String?, String?) -> Peddler::APIs::Orders20260101::Error
+        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Orders20260101::Error
+                   | (String?, String?, String?) -> Peddler::APIs::Orders20260101::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::Error
+
+        attr_reader code: String?
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def members: () -> [ :code, :message, :details ]
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::Orders20260101::Error]?) -> Peddler::APIs::Orders20260101::ErrorList
+                    | (Array[Peddler::APIs::Orders20260101::Error]?) -> Peddler::APIs::Orders20260101::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Orders20260101::Error]?) -> Peddler::APIs::Orders20260101::ErrorList
+                   | (Array[Peddler::APIs::Orders20260101::Error]?) -> Peddler::APIs::Orders20260101::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::Orders20260101::Error]?
+
+        def members: () -> [ :errors ]
+        def to_h: () -> { errors: Array[Peddler::APIs::Orders20260101::Error]? }
+      end
+
+      class ExceptionDate < Data
+        def self.new: (?exception_date: Date?, ?exception_date_type: String?, ?time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]?) -> Peddler::APIs::Orders20260101::ExceptionDate
+                    | (Date?, String?, Array[Peddler::APIs::Orders20260101::TimeWindow]?) -> Peddler::APIs::Orders20260101::ExceptionDate
+        def self.[]: (?exception_date: Date?, ?exception_date_type: String?, ?time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]?) -> Peddler::APIs::Orders20260101::ExceptionDate
+                   | (Date?, String?, Array[Peddler::APIs::Orders20260101::TimeWindow]?) -> Peddler::APIs::Orders20260101::ExceptionDate
+
+        def self.members: () -> [ :exception_date, :exception_date_type, :time_windows ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ExceptionDate
+
+        attr_reader exception_date: Date?
+        attr_reader exception_date_type: String?
+        attr_reader time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]?
+
+        def members: () -> [ :exception_date, :exception_date_type, :time_windows ]
+        def to_h: () -> { exception_date: Date?, exception_date_type: String?, time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]? }
+      end
+
+      class GetOrderResponse < Data
+        def self.new: (order: Peddler::APIs::Orders20260101::Order?) -> Peddler::APIs::Orders20260101::GetOrderResponse
+                    | (Peddler::APIs::Orders20260101::Order?) -> Peddler::APIs::Orders20260101::GetOrderResponse
+        def self.[]: (order: Peddler::APIs::Orders20260101::Order?) -> Peddler::APIs::Orders20260101::GetOrderResponse
+                   | (Peddler::APIs::Orders20260101::Order?) -> Peddler::APIs::Orders20260101::GetOrderResponse
+
+        def self.members: () -> [ :order ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::GetOrderResponse
+
+        attr_reader order: Peddler::APIs::Orders20260101::Order?
+
+        def members: () -> [ :order ]
+        def to_h: () -> { order: Peddler::APIs::Orders20260101::Order? }
+      end
+
+      class GiftOption < Data
+        def self.new: (?gift_message: String?, ?gift_wrap_level: String?) -> Peddler::APIs::Orders20260101::GiftOption
+                    | (String?, String?) -> Peddler::APIs::Orders20260101::GiftOption
+        def self.[]: (?gift_message: String?, ?gift_wrap_level: String?) -> Peddler::APIs::Orders20260101::GiftOption
+                   | (String?, String?) -> Peddler::APIs::Orders20260101::GiftOption
+
+        def self.members: () -> [ :gift_message, :gift_wrap_level ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::GiftOption
+
+        attr_reader gift_message: String?
+        attr_reader gift_wrap_level: String?
+
+        def members: () -> [ :gift_message, :gift_wrap_level ]
+        def to_h: () -> { gift_message: String?, gift_wrap_level: String? }
+      end
+
+      class HourMinute < Data
+        def self.new: (?hour: Integer?, ?minute: Integer?) -> Peddler::APIs::Orders20260101::HourMinute
+                    | (Integer?, Integer?) -> Peddler::APIs::Orders20260101::HourMinute
+        def self.[]: (?hour: Integer?, ?minute: Integer?) -> Peddler::APIs::Orders20260101::HourMinute
+                   | (Integer?, Integer?) -> Peddler::APIs::Orders20260101::HourMinute
+
+        def self.members: () -> [ :hour, :minute ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::HourMinute
+
+        attr_reader hour: Integer?
+        attr_reader minute: Integer?
+
+        def members: () -> [ :hour, :minute ]
+        def to_h: () -> { hour: Integer?, minute: Integer? }
+      end
+
+      class ItemCancellation < Data
+        def self.new: (?cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
+                    | (Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
+        def self.[]: (?cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
+                   | (Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
+
+        def self.members: () -> [ :cancellation_request ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemCancellation
+
+        attr_reader cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest?
+
+        def members: () -> [ :cancellation_request ]
+        def to_h: () -> { cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest? }
+      end
+
+      class ItemCancellationRequest < Data
+        def self.new: (?cancel_reason: String?, ?requester: String?) -> Peddler::APIs::Orders20260101::ItemCancellationRequest
+                    | (String?, String?) -> Peddler::APIs::Orders20260101::ItemCancellationRequest
+        def self.[]: (?cancel_reason: String?, ?requester: String?) -> Peddler::APIs::Orders20260101::ItemCancellationRequest
+                   | (String?, String?) -> Peddler::APIs::Orders20260101::ItemCancellationRequest
+
+        def self.members: () -> [ :cancel_reason, :requester ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemCancellationRequest
+
+        attr_reader cancel_reason: String?
+        attr_reader requester: String?
+
+        def members: () -> [ :cancel_reason, :requester ]
+        def to_h: () -> { cancel_reason: String?, requester: String? }
+      end
+
+      class ItemCondition < Data
+        def self.new: (?condition_note: String?, ?condition_subtype: String?, ?condition_type: String?) -> Peddler::APIs::Orders20260101::ItemCondition
+                    | (String?, String?, String?) -> Peddler::APIs::Orders20260101::ItemCondition
+        def self.[]: (?condition_note: String?, ?condition_subtype: String?, ?condition_type: String?) -> Peddler::APIs::Orders20260101::ItemCondition
+                   | (String?, String?, String?) -> Peddler::APIs::Orders20260101::ItemCondition
+
+        def self.members: () -> [ :condition_note, :condition_subtype, :condition_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemCondition
+
+        attr_reader condition_note: String?
+        attr_reader condition_subtype: String?
+        attr_reader condition_type: String?
+
+        def members: () -> [ :condition_note, :condition_subtype, :condition_type ]
+        def to_h: () -> { condition_note: String?, condition_subtype: String?, condition_type: String? }
+      end
+
+      class ItemCustomization < Data
+        def self.new: (?customized_url: String?) -> Peddler::APIs::Orders20260101::ItemCustomization
+                    | (String?) -> Peddler::APIs::Orders20260101::ItemCustomization
+        def self.[]: (?customized_url: String?) -> Peddler::APIs::Orders20260101::ItemCustomization
+                   | (String?) -> Peddler::APIs::Orders20260101::ItemCustomization
+
+        def self.members: () -> [ :customized_url ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemCustomization
+
+        attr_reader customized_url: String?
+
+        def members: () -> [ :customized_url ]
+        def to_h: () -> { customized_url: String? }
+      end
+
+      class ItemExpense < Data
+        def self.new: (?points_cost: Peddler::APIs::Orders20260101::ItemPointsCost?) -> Peddler::APIs::Orders20260101::ItemExpense
+                    | (Peddler::APIs::Orders20260101::ItemPointsCost?) -> Peddler::APIs::Orders20260101::ItemExpense
+        def self.[]: (?points_cost: Peddler::APIs::Orders20260101::ItemPointsCost?) -> Peddler::APIs::Orders20260101::ItemExpense
+                   | (Peddler::APIs::Orders20260101::ItemPointsCost?) -> Peddler::APIs::Orders20260101::ItemExpense
+
+        def self.members: () -> [ :points_cost ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemExpense
+
+        attr_reader points_cost: Peddler::APIs::Orders20260101::ItemPointsCost?
+
+        def members: () -> [ :points_cost ]
+        def to_h: () -> { points_cost: Peddler::APIs::Orders20260101::ItemPointsCost? }
+      end
+
+      class ItemFulfillment < Data
+        def self.new: (?packing: Peddler::APIs::Orders20260101::ItemPacking?, ?picking: Peddler::APIs::Orders20260101::ItemPicking?, ?quantity_fulfilled: Integer?, ?quantity_unfulfilled: Integer?, ?shipping: Peddler::APIs::Orders20260101::ItemShipping?) -> Peddler::APIs::Orders20260101::ItemFulfillment
+                    | (Peddler::APIs::Orders20260101::ItemPacking?, Peddler::APIs::Orders20260101::ItemPicking?, Integer?, Integer?, Peddler::APIs::Orders20260101::ItemShipping?) -> Peddler::APIs::Orders20260101::ItemFulfillment
+        def self.[]: (?packing: Peddler::APIs::Orders20260101::ItemPacking?, ?picking: Peddler::APIs::Orders20260101::ItemPicking?, ?quantity_fulfilled: Integer?, ?quantity_unfulfilled: Integer?, ?shipping: Peddler::APIs::Orders20260101::ItemShipping?) -> Peddler::APIs::Orders20260101::ItemFulfillment
+                   | (Peddler::APIs::Orders20260101::ItemPacking?, Peddler::APIs::Orders20260101::ItemPicking?, Integer?, Integer?, Peddler::APIs::Orders20260101::ItemShipping?) -> Peddler::APIs::Orders20260101::ItemFulfillment
+
+        def self.members: () -> [ :packing, :picking, :quantity_fulfilled, :quantity_unfulfilled, :shipping ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemFulfillment
+
+        attr_reader packing: Peddler::APIs::Orders20260101::ItemPacking?
+        attr_reader picking: Peddler::APIs::Orders20260101::ItemPicking?
+        attr_reader quantity_fulfilled: Integer?
+        attr_reader quantity_unfulfilled: Integer?
+        attr_reader shipping: Peddler::APIs::Orders20260101::ItemShipping?
+
+        def members: () -> [ :packing, :picking, :quantity_fulfilled, :quantity_unfulfilled, :shipping ]
+        def to_h: () -> { packing: Peddler::APIs::Orders20260101::ItemPacking?, picking: Peddler::APIs::Orders20260101::ItemPicking?, quantity_fulfilled: Integer?, quantity_unfulfilled: Integer?, shipping: Peddler::APIs::Orders20260101::ItemShipping? }
+      end
+
+      class ItemInternationalShipping < Data
+        def self.new: (?ioss_number: String?) -> Peddler::APIs::Orders20260101::ItemInternationalShipping
+                    | (String?) -> Peddler::APIs::Orders20260101::ItemInternationalShipping
+        def self.[]: (?ioss_number: String?) -> Peddler::APIs::Orders20260101::ItemInternationalShipping
+                   | (String?) -> Peddler::APIs::Orders20260101::ItemInternationalShipping
+
+        def self.members: () -> [ :ioss_number ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemInternationalShipping
+
+        attr_reader ioss_number: String?
+
+        def members: () -> [ :ioss_number ]
+        def to_h: () -> { ioss_number: String? }
+      end
+
+      class ItemPacking < Data
+        def self.new: (?gift_option: Peddler::APIs::Orders20260101::GiftOption?) -> Peddler::APIs::Orders20260101::ItemPacking
+                    | (Peddler::APIs::Orders20260101::GiftOption?) -> Peddler::APIs::Orders20260101::ItemPacking
+        def self.[]: (?gift_option: Peddler::APIs::Orders20260101::GiftOption?) -> Peddler::APIs::Orders20260101::ItemPacking
+                   | (Peddler::APIs::Orders20260101::GiftOption?) -> Peddler::APIs::Orders20260101::ItemPacking
+
+        def self.members: () -> [ :gift_option ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemPacking
+
+        attr_reader gift_option: Peddler::APIs::Orders20260101::GiftOption?
+
+        def members: () -> [ :gift_option ]
+        def to_h: () -> { gift_option: Peddler::APIs::Orders20260101::GiftOption? }
+      end
+
+      class ItemPicking < Data
+        def self.new: (?substitution_preference: Peddler::APIs::Orders20260101::ItemSubstitutionPreference?) -> Peddler::APIs::Orders20260101::ItemPicking
+                    | (Peddler::APIs::Orders20260101::ItemSubstitutionPreference?) -> Peddler::APIs::Orders20260101::ItemPicking
+        def self.[]: (?substitution_preference: Peddler::APIs::Orders20260101::ItemSubstitutionPreference?) -> Peddler::APIs::Orders20260101::ItemPicking
+                   | (Peddler::APIs::Orders20260101::ItemSubstitutionPreference?) -> Peddler::APIs::Orders20260101::ItemPicking
+
+        def self.members: () -> [ :substitution_preference ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemPicking
+
+        attr_reader substitution_preference: Peddler::APIs::Orders20260101::ItemSubstitutionPreference?
+
+        def members: () -> [ :substitution_preference ]
+        def to_h: () -> { substitution_preference: Peddler::APIs::Orders20260101::ItemSubstitutionPreference? }
+      end
+
+      class ItemPointsCost < Data
+        def self.new: (?points_granted: Peddler::APIs::Orders20260101::PointsGranted?) -> Peddler::APIs::Orders20260101::ItemPointsCost
+                    | (Peddler::APIs::Orders20260101::PointsGranted?) -> Peddler::APIs::Orders20260101::ItemPointsCost
+        def self.[]: (?points_granted: Peddler::APIs::Orders20260101::PointsGranted?) -> Peddler::APIs::Orders20260101::ItemPointsCost
+                   | (Peddler::APIs::Orders20260101::PointsGranted?) -> Peddler::APIs::Orders20260101::ItemPointsCost
+
+        def self.members: () -> [ :points_granted ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemPointsCost
+
+        attr_reader points_granted: Peddler::APIs::Orders20260101::PointsGranted?
+
+        def members: () -> [ :points_granted ]
+        def to_h: () -> { points_granted: Peddler::APIs::Orders20260101::PointsGranted? }
+      end
+
+      class ItemPrice < Data
+        def self.new: (?price_designation: String?, ?unit_price: Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemPrice
+                    | (String?, Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemPrice
+        def self.[]: (?price_designation: String?, ?unit_price: Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemPrice
+                   | (String?, Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemPrice
+
+        def self.members: () -> [ :price_designation, :unit_price ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemPrice
+
+        attr_reader price_designation: String?
+        attr_reader unit_price: Peddler::Money?
+
+        def members: () -> [ :price_designation, :unit_price ]
+        def to_h: () -> { price_designation: String?, unit_price: Peddler::Money? }
+      end
+
+      class ItemProceeds < Data
+        def self.new: (?breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsBreakdown]?, ?proceeds_total: Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemProceeds
+                    | (Array[Peddler::APIs::Orders20260101::ItemProceedsBreakdown]?, Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemProceeds
+        def self.[]: (?breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsBreakdown]?, ?proceeds_total: Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemProceeds
+                   | (Array[Peddler::APIs::Orders20260101::ItemProceedsBreakdown]?, Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemProceeds
+
+        def self.members: () -> [ :breakdowns, :proceeds_total ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemProceeds
+
+        attr_reader breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsBreakdown]?
+        attr_reader proceeds_total: Peddler::Money?
+
+        def members: () -> [ :breakdowns, :proceeds_total ]
+        def to_h: () -> { breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsBreakdown]?, proceeds_total: Peddler::Money? }
+      end
+
+      class ItemProceedsBreakdown < Data
+        def self.new: (?detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, ?subtotal: Peddler::Money?, ?type: String?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+                    | (Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, Peddler::Money?, String?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+        def self.[]: (?detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, ?subtotal: Peddler::Money?, ?type: String?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+                   | (Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, Peddler::Money?, String?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+
+        def self.members: () -> [ :detailed_breakdowns, :subtotal, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+
+        attr_reader detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?
+        attr_reader subtotal: Peddler::Money?
+        attr_reader type: String?
+
+        def members: () -> [ :detailed_breakdowns, :subtotal, :type ]
+        def to_h: () -> { detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, subtotal: Peddler::Money?, type: String? }
+      end
+
+      class ItemProceedsDetailedBreakdown < Data
+        def self.new: (?subtype: String?, ?value: Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown
+                    | (String?, Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown
+        def self.[]: (?subtype: String?, ?value: Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown
+                   | (String?, Peddler::Money?) -> Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown
+
+        def self.members: () -> [ :subtype, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown
+
+        attr_reader subtype: String?
+        attr_reader value: Peddler::Money?
+
+        def members: () -> [ :subtype, :value ]
+        def to_h: () -> { subtype: String?, value: Peddler::Money? }
+      end
+
+      class ItemProduct < Data
+        def self.new: (?asin: String?, ?condition: Peddler::APIs::Orders20260101::ItemCondition?, ?customization: Peddler::APIs::Orders20260101::ItemCustomization?, ?price: Peddler::APIs::Orders20260101::ItemPrice?, ?seller_sku: String?, ?serial_numbers: Array[String]?, ?title: String?) -> Peddler::APIs::Orders20260101::ItemProduct
+                    | (String?, Peddler::APIs::Orders20260101::ItemCondition?, Peddler::APIs::Orders20260101::ItemCustomization?, Peddler::APIs::Orders20260101::ItemPrice?, String?, Array[String]?, String?) -> Peddler::APIs::Orders20260101::ItemProduct
+        def self.[]: (?asin: String?, ?condition: Peddler::APIs::Orders20260101::ItemCondition?, ?customization: Peddler::APIs::Orders20260101::ItemCustomization?, ?price: Peddler::APIs::Orders20260101::ItemPrice?, ?seller_sku: String?, ?serial_numbers: Array[String]?, ?title: String?) -> Peddler::APIs::Orders20260101::ItemProduct
+                   | (String?, Peddler::APIs::Orders20260101::ItemCondition?, Peddler::APIs::Orders20260101::ItemCustomization?, Peddler::APIs::Orders20260101::ItemPrice?, String?, Array[String]?, String?) -> Peddler::APIs::Orders20260101::ItemProduct
+
+        def self.members: () -> [ :asin, :condition, :customization, :price, :seller_sku, :serial_numbers, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemProduct
+
+        attr_reader asin: String?
+        attr_reader condition: Peddler::APIs::Orders20260101::ItemCondition?
+        attr_reader customization: Peddler::APIs::Orders20260101::ItemCustomization?
+        attr_reader price: Peddler::APIs::Orders20260101::ItemPrice?
+        attr_reader seller_sku: String?
+        attr_reader serial_numbers: Array[String]?
+        attr_reader title: String?
+
+        def members: () -> [ :asin, :condition, :customization, :price, :seller_sku, :serial_numbers, :title ]
+        def to_h: () -> { asin: String?, condition: Peddler::APIs::Orders20260101::ItemCondition?, customization: Peddler::APIs::Orders20260101::ItemCustomization?, price: Peddler::APIs::Orders20260101::ItemPrice?, seller_sku: String?, serial_numbers: Array[String]?, title: String? }
+      end
+
+      class ItemPromotion < Data
+        def self.new: (?breakdowns: Array[Peddler::APIs::Orders20260101::ItemPromotionBreakdown]?) -> Peddler::APIs::Orders20260101::ItemPromotion
+                    | (Array[Peddler::APIs::Orders20260101::ItemPromotionBreakdown]?) -> Peddler::APIs::Orders20260101::ItemPromotion
+        def self.[]: (?breakdowns: Array[Peddler::APIs::Orders20260101::ItemPromotionBreakdown]?) -> Peddler::APIs::Orders20260101::ItemPromotion
+                   | (Array[Peddler::APIs::Orders20260101::ItemPromotionBreakdown]?) -> Peddler::APIs::Orders20260101::ItemPromotion
+
+        def self.members: () -> [ :breakdowns ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemPromotion
+
+        attr_reader breakdowns: Array[Peddler::APIs::Orders20260101::ItemPromotionBreakdown]?
+
+        def members: () -> [ :breakdowns ]
+        def to_h: () -> { breakdowns: Array[Peddler::APIs::Orders20260101::ItemPromotionBreakdown]? }
+      end
+
+      class ItemPromotionBreakdown < Data
+        def self.new: (?promotion_id: String?) -> Peddler::APIs::Orders20260101::ItemPromotionBreakdown
+                    | (String?) -> Peddler::APIs::Orders20260101::ItemPromotionBreakdown
+        def self.[]: (?promotion_id: String?) -> Peddler::APIs::Orders20260101::ItemPromotionBreakdown
+                   | (String?) -> Peddler::APIs::Orders20260101::ItemPromotionBreakdown
+
+        def self.members: () -> [ :promotion_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemPromotionBreakdown
+
+        attr_reader promotion_id: String?
+
+        def members: () -> [ :promotion_id ]
+        def to_h: () -> { promotion_id: String? }
+      end
+
+      class ItemShipping < Data
+        def self.new: (?international_shipping: Peddler::APIs::Orders20260101::ItemInternationalShipping?, ?scheduled_delivery_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?shipping_constraints: Peddler::APIs::Orders20260101::ItemShippingConstraints?) -> Peddler::APIs::Orders20260101::ItemShipping
+                    | (Peddler::APIs::Orders20260101::ItemInternationalShipping?, Peddler::APIs::Orders20260101::DateTimeRange?, Peddler::APIs::Orders20260101::ItemShippingConstraints?) -> Peddler::APIs::Orders20260101::ItemShipping
+        def self.[]: (?international_shipping: Peddler::APIs::Orders20260101::ItemInternationalShipping?, ?scheduled_delivery_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?shipping_constraints: Peddler::APIs::Orders20260101::ItemShippingConstraints?) -> Peddler::APIs::Orders20260101::ItemShipping
+                   | (Peddler::APIs::Orders20260101::ItemInternationalShipping?, Peddler::APIs::Orders20260101::DateTimeRange?, Peddler::APIs::Orders20260101::ItemShippingConstraints?) -> Peddler::APIs::Orders20260101::ItemShipping
+
+        def self.members: () -> [ :international_shipping, :scheduled_delivery_window, :shipping_constraints ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemShipping
+
+        attr_reader international_shipping: Peddler::APIs::Orders20260101::ItemInternationalShipping?
+        attr_reader scheduled_delivery_window: Peddler::APIs::Orders20260101::DateTimeRange?
+        attr_reader shipping_constraints: Peddler::APIs::Orders20260101::ItemShippingConstraints?
+
+        def members: () -> [ :international_shipping, :scheduled_delivery_window, :shipping_constraints ]
+        def to_h: () -> { international_shipping: Peddler::APIs::Orders20260101::ItemInternationalShipping?, scheduled_delivery_window: Peddler::APIs::Orders20260101::DateTimeRange?, shipping_constraints: Peddler::APIs::Orders20260101::ItemShippingConstraints? }
+      end
+
+      class ItemShippingConstraints < Data
+        def self.new: (?cash_on_delivery: String?, ?pallet_delivery: String?, ?recipient_age_verification: String?, ?recipient_identity_verification: String?, ?signature_confirmation: String?) -> Peddler::APIs::Orders20260101::ItemShippingConstraints
+                    | (String?, String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::ItemShippingConstraints
+        def self.[]: (?cash_on_delivery: String?, ?pallet_delivery: String?, ?recipient_age_verification: String?, ?recipient_identity_verification: String?, ?signature_confirmation: String?) -> Peddler::APIs::Orders20260101::ItemShippingConstraints
+                   | (String?, String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::ItemShippingConstraints
+
+        def self.members: () -> [ :cash_on_delivery, :pallet_delivery, :recipient_age_verification, :recipient_identity_verification, :signature_confirmation ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemShippingConstraints
+
+        attr_reader cash_on_delivery: String?
+        attr_reader pallet_delivery: String?
+        attr_reader recipient_age_verification: String?
+        attr_reader recipient_identity_verification: String?
+        attr_reader signature_confirmation: String?
+
+        def members: () -> [ :cash_on_delivery, :pallet_delivery, :recipient_age_verification, :recipient_identity_verification, :signature_confirmation ]
+        def to_h: () -> { cash_on_delivery: String?, pallet_delivery: String?, recipient_age_verification: String?, recipient_identity_verification: String?, signature_confirmation: String? }
+      end
+
+      class ItemSubstitutionOption < Data
+        def self.new: (?asin: String?, ?measurement: Peddler::APIs::Orders20260101::Measurement?, ?quantity_ordered: Integer?, ?seller_sku: String?, ?title: String?) -> Peddler::APIs::Orders20260101::ItemSubstitutionOption
+                    | (String?, Peddler::APIs::Orders20260101::Measurement?, Integer?, String?, String?) -> Peddler::APIs::Orders20260101::ItemSubstitutionOption
+        def self.[]: (?asin: String?, ?measurement: Peddler::APIs::Orders20260101::Measurement?, ?quantity_ordered: Integer?, ?seller_sku: String?, ?title: String?) -> Peddler::APIs::Orders20260101::ItemSubstitutionOption
+                   | (String?, Peddler::APIs::Orders20260101::Measurement?, Integer?, String?, String?) -> Peddler::APIs::Orders20260101::ItemSubstitutionOption
+
+        def self.members: () -> [ :asin, :measurement, :quantity_ordered, :seller_sku, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemSubstitutionOption
+
+        attr_reader asin: String?
+        attr_reader measurement: Peddler::APIs::Orders20260101::Measurement?
+        attr_reader quantity_ordered: Integer?
+        attr_reader seller_sku: String?
+        attr_reader title: String?
+
+        def members: () -> [ :asin, :measurement, :quantity_ordered, :seller_sku, :title ]
+        def to_h: () -> { asin: String?, measurement: Peddler::APIs::Orders20260101::Measurement?, quantity_ordered: Integer?, seller_sku: String?, title: String? }
+      end
+
+      class ItemSubstitutionPreference < Data
+        def self.new: (substitution_type: String?, ?substitution_options: Array[Peddler::APIs::Orders20260101::ItemSubstitutionOption]?) -> Peddler::APIs::Orders20260101::ItemSubstitutionPreference
+                    | (String?, Array[Peddler::APIs::Orders20260101::ItemSubstitutionOption]?) -> Peddler::APIs::Orders20260101::ItemSubstitutionPreference
+        def self.[]: (substitution_type: String?, ?substitution_options: Array[Peddler::APIs::Orders20260101::ItemSubstitutionOption]?) -> Peddler::APIs::Orders20260101::ItemSubstitutionPreference
+                   | (String?, Array[Peddler::APIs::Orders20260101::ItemSubstitutionOption]?) -> Peddler::APIs::Orders20260101::ItemSubstitutionPreference
+
+        def self.members: () -> [ :substitution_type, :substitution_options ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemSubstitutionPreference
+
+        attr_reader substitution_options: Array[Peddler::APIs::Orders20260101::ItemSubstitutionOption]?
+        attr_reader substitution_type: String?
+
+        def members: () -> [ :substitution_type, :substitution_options ]
+        def to_h: () -> { substitution_type: String?, substitution_options: Array[Peddler::APIs::Orders20260101::ItemSubstitutionOption]? }
+      end
+
+      class Measurement < Data
+        def self.new: (unit: String?, value: Float?) -> Peddler::APIs::Orders20260101::Measurement
+                    | (String?, Float?) -> Peddler::APIs::Orders20260101::Measurement
+        def self.[]: (unit: String?, value: Float?) -> Peddler::APIs::Orders20260101::Measurement
+                   | (String?, Float?) -> Peddler::APIs::Orders20260101::Measurement
+
+        def self.members: () -> [ :unit, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::Measurement
+
+        attr_reader unit: String?
+        attr_reader value: Float?
+
+        def members: () -> [ :unit, :value ]
+        def to_h: () -> { unit: String?, value: Float? }
+      end
+
+      class MerchantAddress < Data
+        def self.new: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?country_code: String?, ?district_or_county: String?, ?municipality: String?, ?name: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::Orders20260101::MerchantAddress
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::MerchantAddress
+        def self.[]: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?country_code: String?, ?district_or_county: String?, ?municipality: String?, ?name: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::Orders20260101::MerchantAddress
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::MerchantAddress
+
+        def self.members: () -> [ :address_line1, :address_line2, :address_line3, :city, :country_code, :district_or_county, :municipality, :name, :postal_code, :state_or_region ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::MerchantAddress
+
+        attr_reader address_line1: String?
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String?
+        attr_reader district_or_county: String?
+        attr_reader municipality: String?
+        attr_reader name: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def members: () -> [ :address_line1, :address_line2, :address_line3, :city, :country_code, :district_or_county, :municipality, :name, :postal_code, :state_or_region ]
+        def to_h: () -> { address_line1: String?, address_line2: String?, address_line3: String?, city: String?, country_code: String?, district_or_county: String?, municipality: String?, name: String?, postal_code: String?, state_or_region: String? }
+      end
+
+      class Order < Data
+        def self.new: (created_time: Time?, last_updated_time: Time?, order_id: String?, order_items: Array[Peddler::APIs::Orders20260101::OrderItem]?, sales_channel: Peddler::APIs::Orders20260101::SalesChannel?, ?associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, ?buyer: Peddler::APIs::Orders20260101::Buyer?, ?fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, ?order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, ?packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, ?proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, ?programs: Array[String]?, ?recipient: Peddler::APIs::Orders20260101::Recipient?) -> Peddler::APIs::Orders20260101::Order
+                    | (Time?, Time?, String?, Array[Peddler::APIs::Orders20260101::OrderItem]?, Peddler::APIs::Orders20260101::SalesChannel?, Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, Peddler::APIs::Orders20260101::Buyer?, Peddler::APIs::Orders20260101::OrderFulfillment?, Array[Peddler::APIs::Orders20260101::Alias]?, Array[Peddler::APIs::Orders20260101::OrderPackage]?, Peddler::APIs::Orders20260101::OrderProceeds?, Array[String]?, Peddler::APIs::Orders20260101::Recipient?) -> Peddler::APIs::Orders20260101::Order
+        def self.[]: (created_time: Time?, last_updated_time: Time?, order_id: String?, order_items: Array[Peddler::APIs::Orders20260101::OrderItem]?, sales_channel: Peddler::APIs::Orders20260101::SalesChannel?, ?associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, ?buyer: Peddler::APIs::Orders20260101::Buyer?, ?fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, ?order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, ?packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, ?proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, ?programs: Array[String]?, ?recipient: Peddler::APIs::Orders20260101::Recipient?) -> Peddler::APIs::Orders20260101::Order
+                   | (Time?, Time?, String?, Array[Peddler::APIs::Orders20260101::OrderItem]?, Peddler::APIs::Orders20260101::SalesChannel?, Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, Peddler::APIs::Orders20260101::Buyer?, Peddler::APIs::Orders20260101::OrderFulfillment?, Array[Peddler::APIs::Orders20260101::Alias]?, Array[Peddler::APIs::Orders20260101::OrderPackage]?, Peddler::APIs::Orders20260101::OrderProceeds?, Array[String]?, Peddler::APIs::Orders20260101::Recipient?) -> Peddler::APIs::Orders20260101::Order
+
+        def self.members: () -> [ :created_time, :last_updated_time, :order_id, :order_items, :sales_channel, :associated_orders, :buyer, :fulfillment, :order_aliases, :packages, :proceeds, :programs, :recipient ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::Order
+
+        attr_reader associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?
+        attr_reader buyer: Peddler::APIs::Orders20260101::Buyer?
+        attr_reader created_time: Time?
+        attr_reader fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?
+        attr_reader last_updated_time: Time?
+        attr_reader order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?
+        attr_reader order_id: String?
+        attr_reader order_items: Array[Peddler::APIs::Orders20260101::OrderItem]?
+        attr_reader packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?
+        attr_reader proceeds: Peddler::APIs::Orders20260101::OrderProceeds?
+        attr_reader programs: Array[String]?
+        attr_reader recipient: Peddler::APIs::Orders20260101::Recipient?
+        attr_reader sales_channel: Peddler::APIs::Orders20260101::SalesChannel?
+
+        def members: () -> [ :created_time, :last_updated_time, :order_id, :order_items, :sales_channel, :associated_orders, :buyer, :fulfillment, :order_aliases, :packages, :proceeds, :programs, :recipient ]
+        def to_h: () -> { created_time: Time?, last_updated_time: Time?, order_id: String?, order_items: Array[Peddler::APIs::Orders20260101::OrderItem]?, sales_channel: Peddler::APIs::Orders20260101::SalesChannel?, associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, buyer: Peddler::APIs::Orders20260101::Buyer?, fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, programs: Array[String]?, recipient: Peddler::APIs::Orders20260101::Recipient? }
+      end
+
+      class OrderFulfillment < Data
+        def self.new: (fulfillment_status: String?, ?deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?fulfilled_by: String?, ?fulfillment_service_level: String?, ?ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
+                    | (String?, Peddler::APIs::Orders20260101::DateTimeRange?, String?, String?, Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
+        def self.[]: (fulfillment_status: String?, ?deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?fulfilled_by: String?, ?fulfillment_service_level: String?, ?ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
+                   | (String?, Peddler::APIs::Orders20260101::DateTimeRange?, String?, String?, Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
+
+        def self.members: () -> [ :fulfillment_status, :deliver_by_window, :fulfilled_by, :fulfillment_service_level, :ship_by_window ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::OrderFulfillment
+
+        attr_reader deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?
+        attr_reader fulfilled_by: String?
+        attr_reader fulfillment_service_level: String?
+        attr_reader fulfillment_status: String?
+        attr_reader ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange?
+
+        def members: () -> [ :fulfillment_status, :deliver_by_window, :fulfilled_by, :fulfillment_service_level, :ship_by_window ]
+        def to_h: () -> { fulfillment_status: String?, deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, fulfilled_by: String?, fulfillment_service_level: String?, ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange? }
+      end
+
+      class OrderItem < Data
+        def self.new: (order_item_id: String?, product: Peddler::APIs::Orders20260101::ItemProduct?, quantity_ordered: Integer?, ?cancellation: Peddler::APIs::Orders20260101::ItemCancellation?, ?expense: Peddler::APIs::Orders20260101::ItemExpense?, ?fulfillment: Peddler::APIs::Orders20260101::ItemFulfillment?, ?measurement: Peddler::APIs::Orders20260101::Measurement?, ?proceeds: Peddler::APIs::Orders20260101::ItemProceeds?, ?programs: Array[String]?, ?promotion: Peddler::APIs::Orders20260101::ItemPromotion?) -> Peddler::APIs::Orders20260101::OrderItem
+                    | (String?, Peddler::APIs::Orders20260101::ItemProduct?, Integer?, Peddler::APIs::Orders20260101::ItemCancellation?, Peddler::APIs::Orders20260101::ItemExpense?, Peddler::APIs::Orders20260101::ItemFulfillment?, Peddler::APIs::Orders20260101::Measurement?, Peddler::APIs::Orders20260101::ItemProceeds?, Array[String]?, Peddler::APIs::Orders20260101::ItemPromotion?) -> Peddler::APIs::Orders20260101::OrderItem
+        def self.[]: (order_item_id: String?, product: Peddler::APIs::Orders20260101::ItemProduct?, quantity_ordered: Integer?, ?cancellation: Peddler::APIs::Orders20260101::ItemCancellation?, ?expense: Peddler::APIs::Orders20260101::ItemExpense?, ?fulfillment: Peddler::APIs::Orders20260101::ItemFulfillment?, ?measurement: Peddler::APIs::Orders20260101::Measurement?, ?proceeds: Peddler::APIs::Orders20260101::ItemProceeds?, ?programs: Array[String]?, ?promotion: Peddler::APIs::Orders20260101::ItemPromotion?) -> Peddler::APIs::Orders20260101::OrderItem
+                   | (String?, Peddler::APIs::Orders20260101::ItemProduct?, Integer?, Peddler::APIs::Orders20260101::ItemCancellation?, Peddler::APIs::Orders20260101::ItemExpense?, Peddler::APIs::Orders20260101::ItemFulfillment?, Peddler::APIs::Orders20260101::Measurement?, Peddler::APIs::Orders20260101::ItemProceeds?, Array[String]?, Peddler::APIs::Orders20260101::ItemPromotion?) -> Peddler::APIs::Orders20260101::OrderItem
+
+        def self.members: () -> [ :order_item_id, :product, :quantity_ordered, :cancellation, :expense, :fulfillment, :measurement, :proceeds, :programs, :promotion ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::OrderItem
+
+        attr_reader cancellation: Peddler::APIs::Orders20260101::ItemCancellation?
+        attr_reader expense: Peddler::APIs::Orders20260101::ItemExpense?
+        attr_reader fulfillment: Peddler::APIs::Orders20260101::ItemFulfillment?
+        attr_reader measurement: Peddler::APIs::Orders20260101::Measurement?
+        attr_reader order_item_id: String?
+        attr_reader proceeds: Peddler::APIs::Orders20260101::ItemProceeds?
+        attr_reader product: Peddler::APIs::Orders20260101::ItemProduct?
+        attr_reader programs: Array[String]?
+        attr_reader promotion: Peddler::APIs::Orders20260101::ItemPromotion?
+        attr_reader quantity_ordered: Integer?
+
+        def members: () -> [ :order_item_id, :product, :quantity_ordered, :cancellation, :expense, :fulfillment, :measurement, :proceeds, :programs, :promotion ]
+        def to_h: () -> { order_item_id: String?, product: Peddler::APIs::Orders20260101::ItemProduct?, quantity_ordered: Integer?, cancellation: Peddler::APIs::Orders20260101::ItemCancellation?, expense: Peddler::APIs::Orders20260101::ItemExpense?, fulfillment: Peddler::APIs::Orders20260101::ItemFulfillment?, measurement: Peddler::APIs::Orders20260101::Measurement?, proceeds: Peddler::APIs::Orders20260101::ItemProceeds?, programs: Array[String]?, promotion: Peddler::APIs::Orders20260101::ItemPromotion? }
+      end
+
+      class OrderPackage < Data
+        def self.new: (package_reference_id: String?, ?carrier: String?, ?created_time: Time?, ?package_items: Array[Peddler::APIs::Orders20260101::PackageItem]?, ?package_status: Peddler::APIs::Orders20260101::PackageStatus?, ?ship_from_address: Peddler::APIs::Orders20260101::MerchantAddress?, ?ship_time: Time?, ?shipping_service: String?, ?tracking_number: String?) -> Peddler::APIs::Orders20260101::OrderPackage
+                    | (String?, String?, Time?, Array[Peddler::APIs::Orders20260101::PackageItem]?, Peddler::APIs::Orders20260101::PackageStatus?, Peddler::APIs::Orders20260101::MerchantAddress?, Time?, String?, String?) -> Peddler::APIs::Orders20260101::OrderPackage
+        def self.[]: (package_reference_id: String?, ?carrier: String?, ?created_time: Time?, ?package_items: Array[Peddler::APIs::Orders20260101::PackageItem]?, ?package_status: Peddler::APIs::Orders20260101::PackageStatus?, ?ship_from_address: Peddler::APIs::Orders20260101::MerchantAddress?, ?ship_time: Time?, ?shipping_service: String?, ?tracking_number: String?) -> Peddler::APIs::Orders20260101::OrderPackage
+                   | (String?, String?, Time?, Array[Peddler::APIs::Orders20260101::PackageItem]?, Peddler::APIs::Orders20260101::PackageStatus?, Peddler::APIs::Orders20260101::MerchantAddress?, Time?, String?, String?) -> Peddler::APIs::Orders20260101::OrderPackage
+
+        def self.members: () -> [ :package_reference_id, :carrier, :created_time, :package_items, :package_status, :ship_from_address, :ship_time, :shipping_service, :tracking_number ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::OrderPackage
+
+        attr_reader carrier: String?
+        attr_reader created_time: Time?
+        attr_reader package_items: Array[Peddler::APIs::Orders20260101::PackageItem]?
+        attr_reader package_reference_id: String?
+        attr_reader package_status: Peddler::APIs::Orders20260101::PackageStatus?
+        attr_reader ship_from_address: Peddler::APIs::Orders20260101::MerchantAddress?
+        attr_reader ship_time: Time?
+        attr_reader shipping_service: String?
+        attr_reader tracking_number: String?
+
+        def members: () -> [ :package_reference_id, :carrier, :created_time, :package_items, :package_status, :ship_from_address, :ship_time, :shipping_service, :tracking_number ]
+        def to_h: () -> { package_reference_id: String?, carrier: String?, created_time: Time?, package_items: Array[Peddler::APIs::Orders20260101::PackageItem]?, package_status: Peddler::APIs::Orders20260101::PackageStatus?, ship_from_address: Peddler::APIs::Orders20260101::MerchantAddress?, ship_time: Time?, shipping_service: String?, tracking_number: String? }
+      end
+
+      class OrderProceeds < Data
+        def self.new: (?grand_total: Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
+                    | (Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
+        def self.[]: (?grand_total: Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
+                   | (Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
+
+        def self.members: () -> [ :grand_total ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::OrderProceeds
+
+        attr_reader grand_total: Peddler::Money?
+
+        def members: () -> [ :grand_total ]
+        def to_h: () -> { grand_total: Peddler::Money? }
+      end
+
+      class PackageItem < Data
+        def self.new: (order_item_id: String?, quantity: Integer?, ?transparency_codes: Array[String]?) -> Peddler::APIs::Orders20260101::PackageItem
+                    | (String?, Integer?, Array[String]?) -> Peddler::APIs::Orders20260101::PackageItem
+        def self.[]: (order_item_id: String?, quantity: Integer?, ?transparency_codes: Array[String]?) -> Peddler::APIs::Orders20260101::PackageItem
+                   | (String?, Integer?, Array[String]?) -> Peddler::APIs::Orders20260101::PackageItem
+
+        def self.members: () -> [ :order_item_id, :quantity, :transparency_codes ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::PackageItem
+
+        attr_reader order_item_id: String?
+        attr_reader quantity: Integer?
+        attr_reader transparency_codes: Array[String]?
+
+        def members: () -> [ :order_item_id, :quantity, :transparency_codes ]
+        def to_h: () -> { order_item_id: String?, quantity: Integer?, transparency_codes: Array[String]? }
+      end
+
+      class PackageStatus < Data
+        def self.new: (status: String?, ?detailed_status: String?) -> Peddler::APIs::Orders20260101::PackageStatus
+                    | (String?, String?) -> Peddler::APIs::Orders20260101::PackageStatus
+        def self.[]: (status: String?, ?detailed_status: String?) -> Peddler::APIs::Orders20260101::PackageStatus
+                   | (String?, String?) -> Peddler::APIs::Orders20260101::PackageStatus
+
+        def self.members: () -> [ :status, :detailed_status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::PackageStatus
+
+        attr_reader detailed_status: String?
+        attr_reader status: String?
+
+        def members: () -> [ :status, :detailed_status ]
+        def to_h: () -> { status: String?, detailed_status: String? }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?) -> Peddler::APIs::Orders20260101::Pagination
+                    | (String?) -> Peddler::APIs::Orders20260101::Pagination
+        def self.[]: (?next_token: String?) -> Peddler::APIs::Orders20260101::Pagination
+                   | (String?) -> Peddler::APIs::Orders20260101::Pagination
+
+        def self.members: () -> [ :next_token ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::Pagination
+
+        attr_reader next_token: String?
+
+        def members: () -> [ :next_token ]
+        def to_h: () -> { next_token: String? }
+      end
+
+      class PointsGranted < Data
+        def self.new: (?points_monetary_value: Peddler::Money?, ?points_number: Integer?) -> Peddler::APIs::Orders20260101::PointsGranted
+                    | (Peddler::Money?, Integer?) -> Peddler::APIs::Orders20260101::PointsGranted
+        def self.[]: (?points_monetary_value: Peddler::Money?, ?points_number: Integer?) -> Peddler::APIs::Orders20260101::PointsGranted
+                   | (Peddler::Money?, Integer?) -> Peddler::APIs::Orders20260101::PointsGranted
+
+        def self.members: () -> [ :points_monetary_value, :points_number ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::PointsGranted
+
+        attr_reader points_monetary_value: Peddler::Money?
+        attr_reader points_number: Integer?
+
+        def members: () -> [ :points_monetary_value, :points_number ]
+        def to_h: () -> { points_monetary_value: Peddler::Money?, points_number: Integer? }
+      end
+
+      class PreferredDeliveryTime < Data
+        def self.new: (?business_hours: Array[Peddler::APIs::Orders20260101::BusinessHour]?, ?exception_dates: Array[Peddler::APIs::Orders20260101::ExceptionDate]?) -> Peddler::APIs::Orders20260101::PreferredDeliveryTime
+                    | (Array[Peddler::APIs::Orders20260101::BusinessHour]?, Array[Peddler::APIs::Orders20260101::ExceptionDate]?) -> Peddler::APIs::Orders20260101::PreferredDeliveryTime
+        def self.[]: (?business_hours: Array[Peddler::APIs::Orders20260101::BusinessHour]?, ?exception_dates: Array[Peddler::APIs::Orders20260101::ExceptionDate]?) -> Peddler::APIs::Orders20260101::PreferredDeliveryTime
+                   | (Array[Peddler::APIs::Orders20260101::BusinessHour]?, Array[Peddler::APIs::Orders20260101::ExceptionDate]?) -> Peddler::APIs::Orders20260101::PreferredDeliveryTime
+
+        def self.members: () -> [ :business_hours, :exception_dates ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::PreferredDeliveryTime
+
+        attr_reader business_hours: Array[Peddler::APIs::Orders20260101::BusinessHour]?
+        attr_reader exception_dates: Array[Peddler::APIs::Orders20260101::ExceptionDate]?
+
+        def members: () -> [ :business_hours, :exception_dates ]
+        def to_h: () -> { business_hours: Array[Peddler::APIs::Orders20260101::BusinessHour]?, exception_dates: Array[Peddler::APIs::Orders20260101::ExceptionDate]? }
+      end
+
+      class Recipient < Data
+        def self.new: (?delivery_address: Peddler::APIs::Orders20260101::CustomerAddress?, ?delivery_preference: Peddler::APIs::Orders20260101::DeliveryPreference?) -> Peddler::APIs::Orders20260101::Recipient
+                    | (Peddler::APIs::Orders20260101::CustomerAddress?, Peddler::APIs::Orders20260101::DeliveryPreference?) -> Peddler::APIs::Orders20260101::Recipient
+        def self.[]: (?delivery_address: Peddler::APIs::Orders20260101::CustomerAddress?, ?delivery_preference: Peddler::APIs::Orders20260101::DeliveryPreference?) -> Peddler::APIs::Orders20260101::Recipient
+                   | (Peddler::APIs::Orders20260101::CustomerAddress?, Peddler::APIs::Orders20260101::DeliveryPreference?) -> Peddler::APIs::Orders20260101::Recipient
+
+        def self.members: () -> [ :delivery_address, :delivery_preference ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::Recipient
+
+        attr_reader delivery_address: Peddler::APIs::Orders20260101::CustomerAddress?
+        attr_reader delivery_preference: Peddler::APIs::Orders20260101::DeliveryPreference?
+
+        def members: () -> [ :delivery_address, :delivery_preference ]
+        def to_h: () -> { delivery_address: Peddler::APIs::Orders20260101::CustomerAddress?, delivery_preference: Peddler::APIs::Orders20260101::DeliveryPreference? }
+      end
+
+      class SalesChannel < Data
+        def self.new: (channel_name: String?, ?marketplace_id: String?, ?marketplace_name: String?) -> Peddler::APIs::Orders20260101::SalesChannel
+                    | (String?, String?, String?) -> Peddler::APIs::Orders20260101::SalesChannel
+        def self.[]: (channel_name: String?, ?marketplace_id: String?, ?marketplace_name: String?) -> Peddler::APIs::Orders20260101::SalesChannel
+                   | (String?, String?, String?) -> Peddler::APIs::Orders20260101::SalesChannel
+
+        def self.members: () -> [ :channel_name, :marketplace_id, :marketplace_name ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::SalesChannel
+
+        attr_reader channel_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader marketplace_name: String?
+
+        def members: () -> [ :channel_name, :marketplace_id, :marketplace_name ]
+        def to_h: () -> { channel_name: String?, marketplace_id: String?, marketplace_name: String? }
+      end
+
+      class SearchOrdersResponse < Data
+        def self.new: (orders: Array[Peddler::APIs::Orders20260101::Order]?, ?created_before: Time?, ?last_updated_before: Time?, ?pagination: Peddler::APIs::Orders20260101::Pagination?) -> Peddler::APIs::Orders20260101::SearchOrdersResponse
+                    | (Array[Peddler::APIs::Orders20260101::Order]?, Time?, Time?, Peddler::APIs::Orders20260101::Pagination?) -> Peddler::APIs::Orders20260101::SearchOrdersResponse
+        def self.[]: (orders: Array[Peddler::APIs::Orders20260101::Order]?, ?created_before: Time?, ?last_updated_before: Time?, ?pagination: Peddler::APIs::Orders20260101::Pagination?) -> Peddler::APIs::Orders20260101::SearchOrdersResponse
+                   | (Array[Peddler::APIs::Orders20260101::Order]?, Time?, Time?, Peddler::APIs::Orders20260101::Pagination?) -> Peddler::APIs::Orders20260101::SearchOrdersResponse
+
+        def self.members: () -> [ :orders, :created_before, :last_updated_before, :pagination ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::SearchOrdersResponse
+
+        attr_reader created_before: Time?
+        attr_reader last_updated_before: Time?
+        attr_reader orders: Array[Peddler::APIs::Orders20260101::Order]?
+        attr_reader pagination: Peddler::APIs::Orders20260101::Pagination?
+
+        def members: () -> [ :orders, :created_before, :last_updated_before, :pagination ]
+        def to_h: () -> { orders: Array[Peddler::APIs::Orders20260101::Order]?, created_before: Time?, last_updated_before: Time?, pagination: Peddler::APIs::Orders20260101::Pagination? }
+      end
+
+      class TimeWindow < Data
+        def self.new: (?end_time: Peddler::APIs::Orders20260101::HourMinute?, ?start_time: Peddler::APIs::Orders20260101::HourMinute?) -> Peddler::APIs::Orders20260101::TimeWindow
+                    | (Peddler::APIs::Orders20260101::HourMinute?, Peddler::APIs::Orders20260101::HourMinute?) -> Peddler::APIs::Orders20260101::TimeWindow
+        def self.[]: (?end_time: Peddler::APIs::Orders20260101::HourMinute?, ?start_time: Peddler::APIs::Orders20260101::HourMinute?) -> Peddler::APIs::Orders20260101::TimeWindow
+                   | (Peddler::APIs::Orders20260101::HourMinute?, Peddler::APIs::Orders20260101::HourMinute?) -> Peddler::APIs::Orders20260101::TimeWindow
+
+        def self.members: () -> [ :end_time, :start_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::TimeWindow
+
+        attr_reader end_time: Peddler::APIs::Orders20260101::HourMinute?
+        attr_reader start_time: Peddler::APIs::Orders20260101::HourMinute?
+
+        def members: () -> [ :end_time, :start_time ]
+        def to_h: () -> { end_time: Peddler::APIs::Orders20260101::HourMinute?, start_time: Peddler::APIs::Orders20260101::HourMinute? }
+      end
+
+      def get_order: (String, ?included_data: Array[String]?) -> Peddler::Response
+      def search_orders: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?) -> Peddler::Response
+    end
+  end
+end

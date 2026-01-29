@@ -196,6 +196,76 @@ module Peddler
         parser = -> { InventoryListing }
         get(path, params:, rate_limit:, parser:)
       end
+
+      # Retrieves all the AWD replenishment orders pertaining to a merchant with optional filters.
+      # API by default will sort orders by updatedAt attribute in descending order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param updated_after [String] Get the replenishment orders updated after certain time (Inclusive) Date should be
+      #   in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.
+      # @param updated_before [String] Get the replenishment orders updated before certain time (Inclusive) Date should
+      #   be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.
+      # @param sort_order [String] Sort the response in ASCENDING or DESCENDING order. The default sort order is
+      #   DESCENDING.
+      # @param max_results [Integer] Maximum results to be returned in a single response.
+      # @param next_token [String] A token that is used to retrieve the next page of results. The response includes
+      #   `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of
+      #   results, call the operation with this token and include the same arguments as the call that produced the
+      #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
+      #   return empty pages.
+      # @return [Peddler::Response] The API response
+      def list_replenishment_orders(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25,
+        next_token: nil)
+        path = "/awd/2024-05-09/replenishmentOrders"
+        params = {
+          "updatedAfter" => updated_after,
+          "updatedBefore" => updated_before,
+          "sortOrder" => sort_order,
+          "maxResults" => max_results,
+          "nextToken" => next_token,
+        }.compact
+        parser = -> { ReplenishmentOrderListing }
+        get(path, params:, parser:)
+      end
+
+      # Creates an AWD replenishment order with given products to replenish.
+      # The API will return the order ID of the newly created order and also start an async validation check on the
+      # products to e.
+      # The order status will transition to ELIGIBLE/INELIGIBLE status from VALIDATING post validation check
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash] Payload for creating a replenishment order.
+      # @return [Peddler::Response] The API response
+      def create_replenishment_order(body)
+        path = "/awd/2024-05-09/replenishmentOrders"
+        parser = -> { ReplenishmentOrderReference }
+        post(path, body:, parser:)
+      end
+
+      # Retrieves an AWD Replenishment order with a set of shipments containing items that is/was planned to be
+      # replenished into an FBA node.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] ID of the replenishment order to be retrieved.
+      # @return [Peddler::Response] The API response
+      def get_replenishment_order(order_id)
+        path = "/awd/2024-05-09/replenishmentOrders/#{percent_encode(order_id)}"
+        parser = -> { ReplenishmentOrder }
+        get(path, parser:)
+      end
+
+      # Confirms an AWD replenishment order in ELIGIBLE state with a set of shipments containing items that are needed
+      # to be replenished to an FBA node.
+      # Order can only be confirmed in ELIGIBLE state.
+      #
+      # @param order_id [String] ID of the replenishment order to be confirmed.
+      # @return [Peddler::Response] The API response
+      def confirm_replenishment_order(order_id)
+        cannot_sandbox!
+
+        path = "/awd/2024-05-09/replenishmentOrders/#{percent_encode(order_id)}/confirmation"
+        post(path)
+      end
     end
   end
 end

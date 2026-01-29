@@ -62,12 +62,12 @@ module Peddler
       end
 
       class Notification < Data
-        def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, payload: Peddler::Notifications::AnyOfferChanged::Payload?, payload_version: String?, ?notification_version: String?) -> Peddler::Notifications::AnyOfferChanged::Notification
-                    | (String?, Hash[untyped, untyped]?, String?, Peddler::Notifications::AnyOfferChanged::Payload?, String?, String?) -> Peddler::Notifications::AnyOfferChanged::Notification
-        def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, payload: Peddler::Notifications::AnyOfferChanged::Payload?, payload_version: String?, ?notification_version: String?) -> Peddler::Notifications::AnyOfferChanged::Notification
-                   | (String?, Hash[untyped, untyped]?, String?, Peddler::Notifications::AnyOfferChanged::Payload?, String?, String?) -> Peddler::Notifications::AnyOfferChanged::Notification
+        def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::AnyOfferChanged::Payload?, payload_version: String?) -> Peddler::Notifications::AnyOfferChanged::Notification
+                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::AnyOfferChanged::Payload?, String?) -> Peddler::Notifications::AnyOfferChanged::Notification
+        def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::AnyOfferChanged::Payload?, payload_version: String?) -> Peddler::Notifications::AnyOfferChanged::Notification
+                   | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::AnyOfferChanged::Payload?, String?) -> Peddler::Notifications::AnyOfferChanged::Notification
 
-        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :payload, :payload_version, :notification_version ]
+        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::AnyOfferChanged::Notification
 
@@ -78,8 +78,8 @@ module Peddler
         attr_reader payload: Peddler::Notifications::AnyOfferChanged::Payload?
         attr_reader payload_version: String?
 
-        def members: () -> [ :event_time, :notification_metadata, :notification_type, :payload, :payload_version, :notification_version ]
-        def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, payload: Peddler::Notifications::AnyOfferChanged::Payload?, payload_version: String?, notification_version: String? }
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+        def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::AnyOfferChanged::Payload?, payload_version: String? }
       end
 
       class NumberOfBuyBoxEligibleOffer < Data

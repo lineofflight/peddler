@@ -93,10 +93,10 @@ module Peddler
       # @param is_ispu [Boolean] When true, this order is marked to be picked up from a store rather than delivered.
       # @param store_chain_store_id [String] The store chain store identifier. Linked to a specific store in a store
       #   chain.
-      # @param earliest_delivery_date_before [String] Use this date to select orders with a earliest delivery date
+      # @param earliest_delivery_date_before [String] Use this date to select orders with an earliest delivery date
       #   before (or at) a specified time. The date must be in [ISO
       #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param earliest_delivery_date_after [String] Use this date to select orders with a earliest delivery date after
+      # @param earliest_delivery_date_after [String] Use this date to select orders with an earliest delivery date after
       #   (or at) a specified time. The date must be in [ISO
       #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @param latest_delivery_date_before [String] Use this date to select orders with a latest delivery date before
@@ -175,6 +175,18 @@ module Peddler
       def get_order_address(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/address"
         parser = -> { GetOrderAddressResponse }
+        get(path, rate_limit:, parser:)
+      end
+
+      # Returns the fulfillment instructions for the order that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def get_order_fulfillment_instructions(order_id, rate_limit: 0.5)
+        path = "/orders/v0/orders/#{percent_encode(order_id)}/fulfillmentInstructions"
+        parser = -> { GetOrderFulfillmentInstructionsResponse }
         get(path, rate_limit:, parser:)
       end
 
