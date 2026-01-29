@@ -1,10 +1,5 @@
 [
   {
-    "op": "move",
-    "from": "/properties/NotificatonTionVersion",
-    "path": "/properties/NotificationVersion"
-  },
-  {
     "op": "replace",
     "path": "/properties/Payload/properties/AnyOfferChangedNotification/properties/Offers/items/anyOf/0/required",
     "value": [
