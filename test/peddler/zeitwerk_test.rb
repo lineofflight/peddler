@@ -4,7 +4,7 @@ require "helper"
 
 class ZeitwerkTest < Minitest::Test
   def test_convenience_methods_return_api_classes
-    assert_equal(Peddler::APIs::OrdersV0, Peddler.orders)
+    assert_equal(Peddler::APIs::Orders20260101, Peddler.orders)
     assert_equal(Peddler::APIs::CatalogItems20220401, Peddler.catalog_items)
     assert_equal(Peddler::APIs::Reports20210630, Peddler.reports)
   end
