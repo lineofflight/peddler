@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Add Orders API 2026-01-01
+
 ## [5.1.0] - 2026-01-26
 
 ### Changed
