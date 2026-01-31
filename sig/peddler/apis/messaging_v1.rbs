@@ -18,38 +18,6 @@ module Peddler
         def to_h: () -> { file_name: String?, upload_destination_id: String? }
       end
 
-      class CreateAmazonMotorsRequest < Data
-        def self.new: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
-                    | (Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
-        def self.[]: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
-                   | (Array[Peddler::APIs::MessagingV1::Attachment]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
-
-        def self.members: () -> [ :attachments ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsRequest
-
-        attr_reader attachments: Array[Peddler::APIs::MessagingV1::Attachment]?
-
-        def members: () -> [ :attachments ]
-        def to_h: () -> { attachments: Array[Peddler::APIs::MessagingV1::Attachment]? }
-      end
-
-      class CreateAmazonMotorsResponse < Data
-        def self.new: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
-                    | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
-        def self.[]: (?errors: Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
-                   | (Array[Peddler::APIs::MessagingV1::Error]?) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
-
-        def self.members: () -> [ :errors ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::CreateAmazonMotorsResponse
-
-        attr_reader errors: Array[Peddler::APIs::MessagingV1::Error]?
-
-        def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::MessagingV1::Error]? }
-      end
-
       class CreateConfirmCustomizationDetailsRequest < Data
         def self.new: (?attachments: Array[Peddler::APIs::MessagingV1::Attachment]?, ?text: String?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsRequest
                     | (Array[Peddler::APIs::MessagingV1::Attachment]?, String?) -> Peddler::APIs::MessagingV1::CreateConfirmCustomizationDetailsRequest
@@ -470,8 +438,6 @@ module Peddler
       end
 
       def confirm_customization_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def create_amazon_motors: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def create_confirm_delivery_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
       def create_confirm_order_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

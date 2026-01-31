@@ -131,26 +131,6 @@ module Peddler
         post(path, body:, params:, rate_limit:, parser:)
       end
 
-      # Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by
-      # Amazon Motors sellers.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
-      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
-      # @param body [Hash] This contains the message body for a message.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def create_amazon_motors(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/amazonMotors"
-        params = {
-          "marketplaceIds" => stringify_array(marketplace_ids),
-        }.compact
-        parser = -> { CreateAmazonMotorsResponse }
-        post(path, body:, params:, rate_limit:, parser:)
-      end
-
       # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
       #
       # @note This operation can make a static sandbox call.
