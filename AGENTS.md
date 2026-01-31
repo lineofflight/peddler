@@ -2,8 +2,6 @@
 
 Peddler is a Ruby library for Amazon's Selling Partner API (SP-API), using code generation from OpenAPI specs.
 
-See [llms.txt](llms.txt) for external resources.
-
 ## Critical: Generated vs. Manual Code
 
 **Never edit generated code** - changes will be overwritten:
@@ -47,3 +45,9 @@ Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:r
 ## SP-API Specs
 
 Local specs: `selling-partner-api-models/models/` (use `jq` to parse, `rg` to search)
+
+## External Resources
+
+- [API Models](https://github.com/amzn/selling-partner-api-models) - OpenAPI specs and schemas
+- [GitHub Issues](https://github.com/amzn/selling-partner-api-models/issues) - Troubleshooting, workarounds, Amazon responses
+- [Official Documentation](https://developer-docs.amazon.com/sp-api/) - Use cases, guides, registration

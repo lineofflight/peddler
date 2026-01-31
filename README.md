@@ -6,6 +6,8 @@ Peddler is a Ruby interface to the [Amazon Selling Partner API (SP-API)][api-doc
 
 Peddler is automatically generated from the latest Open API models provided by Amazon.
 
+Peddler covers all SP-API endpoints, reports, notifications, and feeds. It's also lightweight: thanks to Zeitwerk, only the code you use gets loaded.
+
 To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials][view-credentials] to access your own or other selling partners' data.
 
 - [API docs][api-docs]
