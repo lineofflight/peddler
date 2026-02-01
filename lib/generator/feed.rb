@@ -117,13 +117,9 @@ module Generator
 
     # Build Feed type definition with $ref to extracted types
     def feed_type_definition
-      # Get extracted types to know which properties should be replaced with $ref
-      extractor = JsonSchemaExtractor.new(schema, feed_name)
-      extracted_types = extractor.extract_types
-
       # Replace root properties with $ref when a corresponding type exists
-      updated_properties = root_properties.transform_values do |prop_def|
-        replace_with_ref_if_extracted(prop_def, extracted_types)
+      updated_properties = root_properties.each_with_object({}) do |(prop_name, prop_def), props|
+        props[prop_name] = replace_with_ref_if_extracted(prop_name, prop_def, extracted_types)
       end
 
       {
@@ -135,12 +131,12 @@ module Generator
     end
 
     # Replace property definition with $ref if a corresponding type was extracted
-    def replace_with_ref_if_extracted(prop_def, extracted_types)
+    def replace_with_ref_if_extracted(prop_name, prop_def, extracted_types)
       # Handle object properties
-      return replace_object_with_ref(prop_def, extracted_types) if object_property?(prop_def)
+      return replace_object_with_ref(prop_name, prop_def, extracted_types) if object_property?(prop_def)
 
       # Handle array properties with object items
-      return replace_array_items_with_ref(prop_def, extracted_types) if array_with_object_items?(prop_def)
+      return replace_array_items_with_ref(prop_name, prop_def, extracted_types) if array_with_object_items?(prop_def)
 
       # Return original if no replacement needed
       prop_def
@@ -155,10 +151,7 @@ module Generator
         prop_def["items"]["type"] == "object" && prop_def["items"]["properties"]
     end
 
-    def replace_object_with_ref(prop_def, extracted_types)
-      prop_name = root_properties.find { |_k, v| v == prop_def }&.first
-      return prop_def unless prop_name
-
+    def replace_object_with_ref(prop_name, prop_def, extracted_types)
       type_name = prop_name.camelize
       return prop_def unless extracted_types.key?(type_name)
 
@@ -168,14 +161,11 @@ module Generator
       }.compact
     end
 
-    def replace_array_items_with_ref(prop_def, extracted_types)
+    def replace_array_items_with_ref(prop_name, prop_def, extracted_types)
       items = prop_def["items"]
 
       # Skip arrays with additionalProperties: true (flexible structure)
       return prop_def if items["additionalProperties"] == true && items["minProperties"]
-
-      prop_name = root_properties.find { |_k, v| v == prop_def }&.first
-      return prop_def unless prop_name
 
       type_name = prop_name.singularize.camelize
       return prop_def unless extracted_types.key?(type_name)
@@ -190,19 +180,19 @@ module Generator
     end
 
     def generate_feed_type!
-      # Build spec with all extracted types
-      extractor = JsonSchemaExtractor.new(schema, feed_name)
-      extracted_types = extractor.extract_types
-
-      openapi_spec = {
-        "definitions" => extracted_types,
-      }
-
       api_name = "feeds/#{feed_name.underscore}"
       feed_type = Type.new("Feed", feed_type_definition, api_name, openapi_spec)
       file_path = feed_type.generate
 
       { file: file_path, type: feed_type }
+    end
+
+    def extracted_types
+      @extracted_types ||= JsonSchemaExtractor.new(schema, feed_name).extract_types
+    end
+
+    def openapi_spec
+      @openapi_spec ||= { "definitions" => extracted_types }
     end
   end
 end

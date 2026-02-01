@@ -10,6 +10,13 @@ module Generator
     class Types
       include FileWriter
 
+      KIND_DEFS = [
+        ["notifications/", "Notifications", "sig/peddler/notifications", :notification],
+        ["reports/", "Reports", "sig/peddler/reports", :report],
+        ["feeds/", "Feeds", "sig/peddler/feeds", :feed],
+        ["data_kiosk/", "DataKiosk", "sig/peddler/data_kiosk", :data_kiosk],
+      ].freeze
+
       def initialize(api_name, api_types)
         @api_name = api_name
         @api_types = api_types
@@ -20,36 +27,13 @@ module Generator
       end
 
       def content
+        context = api_context
         lines = []
         lines << "# #{Config::GENERATED_FILE_NOTICE}"
         lines << ""
         lines << "module Peddler"
-
-        # Determine if this is a notification, report, feed, data_kiosk, or regular type
-        is_notification = @api_name.start_with?("notifications/")
-        is_report = @api_name.start_with?("reports/")
-        is_feed = @api_name.start_with?("feeds/")
-        is_data_kiosk = @api_name.start_with?("data_kiosk/")
-
-        if is_notification
-          notification_name = @api_name.sub("notifications/", "").camelize
-          lines << "  module Notifications"
-          lines << "    module #{notification_name}"
-        elsif is_report
-          report_name = @api_name.sub("reports/", "").camelize
-          lines << "  module Reports"
-          lines << "    module #{report_name}"
-        elsif is_feed
-          feed_name = @api_name.sub("feeds/", "").camelize
-          lines << "  module Feeds"
-          lines << "    module #{feed_name}"
-        elsif is_data_kiosk
-          data_kiosk_name = @api_name.sub("data_kiosk/", "").camelize
-          lines << "  module DataKiosk"
-          lines << "    module #{data_kiosk_name}"
-        else
-          raise "RBS::Types should only be used for notifications, reports, feeds, or data_kiosk. Got: #{@api_name}"
-        end
+        lines << "  module #{context[:module_name]}"
+        lines << "    module #{context[:name]}"
 
         # Sort types alphabetically by class name for consistent output
         sorted_types = @api_types.sort_by(&:class_name)
@@ -64,32 +48,29 @@ module Generator
         end
 
         # For notifications, reports, feeds, and data_kiosk, add module-level parse method
-        if is_notification
-          # Find the Notification type to get its fully qualified name
+        case context[:kind]
+        when :notification
           notification_type = sorted_types.find { |t| t.class_name == "Notification" }
           if notification_type
-            full_type_name = "Peddler::Notifications::#{notification_name}::Notification"
+            full_type_name = "Peddler::#{context[:module_name]}::#{context[:name]}::Notification"
             lines << "      def self.parse: (Hash[String | Symbol, untyped]) -> #{full_type_name}"
             lines << ""
           end
-        elsif is_report
-          # Find the Report type to get its fully qualified name
+        when :report
           report_type = sorted_types.find { |t| t.class_name == "Report" }
           if report_type
-            full_type_name = "Peddler::Reports::#{report_name}::Report"
+            full_type_name = "Peddler::#{context[:module_name]}::#{context[:name]}::Report"
             lines << "      def self.parse: (Hash[String | Symbol, untyped]) -> #{full_type_name}"
             lines << ""
           end
-        elsif is_feed
-          # Find the Feed type to get its fully qualified name
+        when :feed
           feed_type = sorted_types.find { |t| t.class_name == "Feed" }
           if feed_type
-            full_type_name = "Peddler::Feeds::#{feed_name}::Feed"
+            full_type_name = "Peddler::#{context[:module_name]}::#{context[:name]}::Feed"
             lines << "      def self.parse: (Hash[String | Symbol, untyped]) -> #{full_type_name}"
             lines << ""
           end
-        elsif is_data_kiosk
-          # Add schema class method for data kiosk modules
+        when :data_kiosk
           lines << "      def self.schema: () -> Hash[String, untyped]"
           lines << ""
         end
@@ -112,25 +93,25 @@ module Generator
       end
 
       def rbs_file_path
-        # Determine the right path based on whether this is a notification, report, feed, or data_kiosk
-        if @api_name.start_with?("notifications/")
-          # For notifications, remove "notifications/" prefix and put in sig/peddler/notifications/
-          notification_path = @api_name.sub("notifications/", "")
-          File.join(Config::BASE_PATH, "sig/peddler/notifications/#{notification_path}.rbs")
-        elsif @api_name.start_with?("reports/")
-          # For reports, remove "reports/" prefix and put in sig/peddler/reports/
-          report_path = @api_name.sub("reports/", "")
-          File.join(Config::BASE_PATH, "sig/peddler/reports/#{report_path}.rbs")
-        elsif @api_name.start_with?("feeds/")
-          # For feeds, remove "feeds/" prefix and put in sig/peddler/feeds/
-          feed_path = @api_name.sub("feeds/", "")
-          File.join(Config::BASE_PATH, "sig/peddler/feeds/#{feed_path}.rbs")
-        elsif @api_name.start_with?("data_kiosk/")
-          # For data_kiosk, remove "data_kiosk/" prefix and put in sig/peddler/data_kiosk/
-          data_kiosk_path = @api_name.sub("data_kiosk/", "")
-          File.join(Config::BASE_PATH, "sig/peddler/data_kiosk/#{data_kiosk_path}.rbs")
-        else
-          raise "RBS::Types should only be used for notifications, reports, feeds, or data_kiosk. Got: #{@api_name}"
+        context = api_context
+        File.join(Config::BASE_PATH, "#{context[:sig_dir]}/#{context[:short]}.rbs")
+      end
+
+      def api_context
+        @api_context ||= begin
+          match = KIND_DEFS.find { |prefix, _module_name, _sig_dir, _kind| @api_name.start_with?(prefix) }
+          raise "RBS::Types should only be used for notifications, reports, feeds, or data_kiosk. Got: #{@api_name}" unless match
+
+          prefix, module_name, sig_dir, kind = match
+          short = @api_name.delete_prefix(prefix)
+
+          {
+            module_name: module_name,
+            sig_dir: sig_dir,
+            kind: kind,
+            name: short.camelize,
+            short: short,
+          }
         end
       end
     end

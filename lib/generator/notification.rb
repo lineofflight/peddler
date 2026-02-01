@@ -92,25 +92,12 @@ module Generator
 
     # Get the actual notification object name within payload (handles casing variations)
     def notification_object_name
-      payload_schema = schema.dig("properties", "payload") || schema.dig("properties", "Payload")
-      return unless payload_schema
+      payload = resolved_payload_schema
+      return unless payload
 
-      # If payload uses a $ref, resolve it
-      if payload_schema["$ref"]
-        ref_path = payload_schema["$ref"].sub("#/definitions/", "")
-        payload_schema = schema.dig("definitions", ref_path)
-        return unless payload_schema
+      notification_object_candidates.find do |candidate|
+        payload.dig("properties", candidate)
       end
-
-      # Try different casing conventions
-      [
-        "#{notification_name.camelize(:lower)}Notification", # feedProcessingFinishedNotification
-        "#{notification_name.camelize}Notification", # FeedProcessingFinishedNotification
-      ].each do |name|
-        return name if payload_schema.dig("properties", name)
-      end
-
-      nil
     end
 
     # Class name for the notification (e.g., "AnyOfferChanged")
@@ -158,47 +145,19 @@ module Generator
 
     # Detect if this is Type A (nested) or Type B (flat) notification
     def notification_type
-      payload_schema = schema.dig("properties", "payload") || schema.dig("properties", "Payload")
-      return :unknown unless payload_schema
+      return :unknown unless resolved_payload_schema
 
-      # If payload uses a $ref, resolve it
-      if payload_schema["$ref"]
-        ref_path = payload_schema["$ref"].sub("#/definitions/", "")
-        payload_schema = schema.dig("definitions", ref_path)
-        return :unknown unless payload_schema
-      end
-
-      # Type A: has nested notification object (e.g., feedProcessingFinishedNotification)
-      [
-        "#{notification_name.camelize(:lower)}Notification",
-        "#{notification_name.camelize}Notification",
-      ].each do |name|
-        return :nested if payload_schema.dig("properties", name)
-      end
-
-      # Type B: flat payload
-      :flat
+      notification_object_schema ? :nested : :flat
     end
 
     # Get envelope properties (notificationVersion, notificationType, eventTime, etc.)
     def envelope_properties
-      props = {}
-      ["notificationVersion", "NotificationVersion"].each do |key|
-        props[key] = schema.dig("properties", key) if schema.dig("properties", key)
+      keys = %w[notificationVersion notificationType payloadVersion eventTime notificationMetadata]
+
+      keys.flat_map { |key| [key, key.sub(/\A./, &:upcase)] }.each_with_object({}) do |key, props|
+        prop = schema.dig("properties", key)
+        props[key] = prop if prop
       end
-      ["notificationType", "NotificationType"].each do |key|
-        props[key] = schema.dig("properties", key) if schema.dig("properties", key)
-      end
-      ["payloadVersion", "PayloadVersion"].each do |key|
-        props[key] = schema.dig("properties", key) if schema.dig("properties", key)
-      end
-      ["eventTime", "EventTime"].each do |key|
-        props[key] = schema.dig("properties", key) if schema.dig("properties", key)
-      end
-      ["notificationMetadata", "NotificationMetadata"].each do |key|
-        props[key] = schema.dig("properties", key) if schema.dig("properties", key)
-      end
-      props
     end
 
     # Get required envelope properties
@@ -215,71 +174,31 @@ module Generator
 
     # Get payload properties based on notification type
     def payload_properties
-      return {} unless payload_schema
-
-      resolved_payload = payload_schema
-      # Resolve $ref if present
-      if resolved_payload&.dig("$ref")
-        ref_path = resolved_payload["$ref"].sub("#/definitions/", "")
-        resolved_payload = schema.dig("definitions", ref_path)
-        return {} unless resolved_payload
-      end
+      payload = resolved_payload_schema
+      return {} unless payload
 
       if notification_type == :nested
-        # Type A: extract the nested notification object properties
-        [
-          "#{notification_name.camelize(:lower)}Notification",
-          "#{notification_name.camelize}Notification",
-        ].each do |name|
-          nested_obj = resolved_payload.dig("properties", name)
-          next unless nested_obj
+        nested_obj = notification_object_schema
+        return sorted_properties(nested_obj["properties"] || {}) if nested_obj
 
-          # Resolve nested object $ref if present
-          if nested_obj["$ref"]
-            ref_path = nested_obj["$ref"].sub("#/definitions/", "")
-            nested_obj = schema.dig("definitions", ref_path)
-          end
-          return sorted_properties(nested_obj["properties"] || {}) if nested_obj
-        end
         {}
       else
         # Type B: use payload properties directly
-        sorted_properties(resolved_payload["properties"] || {})
+        sorted_properties(payload["properties"] || {})
       end
     end
 
     # Get required payload properties based on notification type
     def payload_required_properties
-      return [] unless payload_schema
-
-      resolved_payload = payload_schema
-      # Resolve $ref if present
-      if resolved_payload&.dig("$ref")
-        ref_path = resolved_payload["$ref"].sub("#/definitions/", "")
-        resolved_payload = schema.dig("definitions", ref_path)
-        return [] unless resolved_payload
-      end
+      payload = resolved_payload_schema
+      return [] unless payload
 
       if notification_type == :nested
-        # Type A: get required from nested notification object
-        [
-          "#{notification_name.camelize(:lower)}Notification",
-          "#{notification_name.camelize}Notification",
-        ].each do |name|
-          nested_obj = resolved_payload.dig("properties", name)
-          next unless nested_obj
-
-          # Resolve nested object $ref if present
-          if nested_obj["$ref"]
-            ref_path = nested_obj["$ref"].sub("#/definitions/", "")
-            nested_obj = schema.dig("definitions", ref_path)
-          end
-          return nested_obj["required"] || [] if nested_obj
-        end
-        []
+        nested_obj = notification_object_schema
+        nested_obj ? (nested_obj["required"] || []) : []
       else
         # Type B: use payload required directly
-        resolved_payload["required"] || []
+        payload["required"] || []
       end
     end
 
@@ -338,6 +257,40 @@ module Generator
     # Provide the name for schema extraction
     def name
       notification_name
+    end
+
+    def resolved_payload_schema
+      payload = payload_schema
+      return unless payload
+      return payload unless payload["$ref"]
+
+      ref_path = payload["$ref"].sub("#/definitions/", "")
+      schema.dig("definitions", ref_path)
+    end
+
+    def notification_object_candidates
+      [
+        "#{notification_name.camelize(:lower)}Notification",
+        "#{notification_name.camelize}Notification",
+      ]
+    end
+
+    def notification_object_schema
+      payload = resolved_payload_schema
+      return unless payload
+
+      name = notification_object_candidates.find { |candidate| payload.dig("properties", candidate) }
+      return unless name
+
+      nested = payload.dig("properties", name)
+      return unless nested
+
+      if nested["$ref"]
+        ref_path = nested["$ref"].sub("#/definitions/", "")
+        schema.dig("definitions", ref_path)
+      else
+        nested
+      end
     end
 
     # Resolve root-level $ref or #ref if present
