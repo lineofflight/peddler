@@ -152,7 +152,7 @@ module Generator
 
     # Get envelope properties (notificationVersion, notificationType, eventTime, etc.)
     def envelope_properties
-      keys = %w[notificationVersion notificationType payloadVersion eventTime notificationMetadata]
+      keys = ["notificationVersion", "notificationType", "payloadVersion", "eventTime", "notificationMetadata"]
 
       keys.flat_map { |key| [key, key.sub(/\A./, &:upcase)] }.each_with_object({}) do |key, props|
         prop = schema.dig("properties", key)
