@@ -309,9 +309,6 @@ bundle exec rake generate
 # Type check with Steep
 bundle exec steep check --severity-level=hint
 ```
-
-> AI Agents: See [llms.txt](llms.txt)
-
 [build]: https://github.com/lineofflight/peddler/actions
 [api-docs]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
