@@ -178,18 +178,6 @@ module Peddler
         get(path, rate_limit:, parser:)
       end
 
-      # Returns the fulfillment instructions for the order that you specify.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_order_fulfillment_instructions(order_id, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{percent_encode(order_id)}/fulfillmentInstructions"
-        parser = -> { GetOrderFulfillmentInstructionsResponse }
-        get(path, rate_limit:, parser:)
-      end
-
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
       # retrieve the next page of order items.
       #
