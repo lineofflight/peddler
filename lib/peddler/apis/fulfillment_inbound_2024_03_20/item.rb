@@ -16,7 +16,8 @@ module Peddler
         #   fulfillment center.
         attribute(:fnsku, String)
 
-        # @return [String] Specifies who will label the items. Options include `AMAZON`, `SELLER`, and `NONE`.
+        # @return [String] Specifies who will label the items. Options include `AMAZON`, `SELLER`, and `NONE`. `AMAZON`
+        #   is not an accepted value in the US marketplace.
         attribute(:label_owner, String, from: "labelOwner")
 
         # @return [String] The merchant-defined SKU ID.
