@@ -16,6 +16,8 @@ module Peddler
         #   drop-off location specified in the `type` field.
         # If the `type` is set to `FALLBACK_NEIGHBOR_DELIVERY`, the `attributes` object should include the exact keys
         #   `neighborName` and `houseNumber` to provide the name and house number of the designated neighbor.
+        # For `RECEPTIONIST`, `MAIL_ROOM_CLERK`, and `AS_INSTRUCTED` types, the `attributes` object will include a
+        #   `recipientName` field containing the name of the person who received the package.
         attribute?(:attributes, Hash)
       end
     end

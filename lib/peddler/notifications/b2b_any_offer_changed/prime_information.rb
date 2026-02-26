@@ -9,11 +9,11 @@ module Peddler
     module B2BAnyOfferChanged
       PrimeInformation = Structure.new do
         # @return [:boolean] Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace
-        #   where it is listed.
-        attribute?(:offer_national_prime, :boolean, from: "isOfferNationalPrime")
+        #   where it is listed
+        attribute?(:national_prime, :boolean, from: "IsNationalPrime")
 
-        # @return [:boolean] Indicates whether the offer is an Amazon Prime offer.
-        attribute?(:offer_prime, :boolean, from: "isOfferPrime")
+        # @return [:boolean] Indicates whether the offer is an Amazon Prime offer
+        attribute?(:prime, :boolean, from: "IsPrime")
       end
     end
   end

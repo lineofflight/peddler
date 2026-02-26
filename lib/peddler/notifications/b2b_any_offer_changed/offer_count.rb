@@ -9,13 +9,13 @@ module Peddler
     module B2BAnyOfferChanged
       OfferCount = Structure.new do
         # @return [String]
-        attribute(:condition, String)
+        attribute(:condition, String, from: "Condition")
 
         # @return [String]
-        attribute(:fulfillment_channel, String, from: "fulfillmentChannel")
+        attribute(:fulfillment_channel, String, from: "FulfillmentChannel")
 
-        # @return [Integer] The total number of offers for the specified condition and fulfillment channel.
-        attribute?(:offer_count, Integer, from: "offerCount")
+        # @return [Integer] The total number of offers for the specified condition and fulfillment channel
+        attribute?(:offer_count, Integer, from: "OfferCount")
       end
     end
   end

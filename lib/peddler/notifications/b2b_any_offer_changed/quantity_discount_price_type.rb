@@ -10,13 +10,13 @@ module Peddler
       # Contains pricing information that includes special pricing when buying in bulk.
       QuantityDiscountPriceType = Structure.new do
         # @return [Money] The price at this quantity tier.
-        attribute(:listing_price, Money, from: "listingPrice")
+        attribute(:listing_price, Money, from: "ListingPrice")
 
         # @return [String] Indicates the type of quantity discount this price applies to.
-        attribute(:quantity_discount_type, String, from: "quantityDiscountType")
+        attribute(:quantity_discount_type, String, from: "QuantityDiscountType")
 
         # @return [Integer] Indicates at what quantity this price becomes active.
-        attribute(:quantity_tier, Integer, from: "quantityTier")
+        attribute(:quantity_tier, Integer, from: "QuantityTier")
       end
     end
   end

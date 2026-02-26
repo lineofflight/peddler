@@ -391,6 +391,34 @@
               "deprecationReason": null
             },
             {
+              "name": "ordersShipped",
+              "description": "The number of orders shipped for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Long",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ordersShippedB2B",
+              "description": "The number of orders shipped to Amazon Business customers for the selected\ntime period. Note: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "refundRate",
               "description": "The percentage conversion metric indicating how many orders were refunded,\ncalculated by dividing unitsRefunded by unitsOrdered for the selected time period.",
               "args": [],
@@ -413,6 +441,34 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "shippedProductSales",
+              "description": "The amount of ordered product sales shipped for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "shippedProductSalesB2B",
+              "description": "The amount of ordered product sales shipped to Amazon Business customers for\nthe selected time period. Note: This field is only populated when the seller\nis a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -493,6 +549,34 @@
             {
               "name": "unitsRefundedB2B",
               "description": "The number of units refunded by Amazon Business customers for the selected\ntime period. Note: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsShipped",
+              "description": "The number of units shipped for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Long",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsShippedB2B",
+              "description": "The number of units shipped to Amazon Business customers for the selected time\nperiod. Note: This field is only populated when the seller is a B2B seller.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1101,6 +1185,18 @@
               "deprecationReason": null
             },
             {
+              "name": "ordersShippedB2B",
+              "description": "The number of orders shipped to Amazon Business customers for the selected\ntime period. Note: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "refundRate",
               "description": "The percentage conversion metric indicating how many orders were refunded by\nthe seller, calculated by dividing unitsRefunded by unitsOrdered for the\nselected time period.",
               "args": [],
@@ -1140,6 +1236,18 @@
                   "name": "Amount",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "shippedProductSalesB2B",
+              "description": "The amount of ordered product sales shipped to Amazon Business customers for\nthe selected time period. Note: This field is only populated when the seller\nis a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1240,6 +1348,18 @@
                   "name": "Long",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsShippedB2B",
+              "description": "The number of units shipped to Amazon Business customers for the selected time\nperiod. Note: This field is only populated when the seller is a B2B seller.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null

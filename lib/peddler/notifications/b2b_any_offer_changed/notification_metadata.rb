@@ -8,17 +8,17 @@ module Peddler
   module Notifications
     module B2BAnyOfferChanged
       NotificationMetadata = Structure.new do
-        # @return [String] The identifier for the application that uses the notifications.
-        attribute(:application_id, String, from: "applicationId")
+        # @return [String] The identifier for the application that uses the notifications
+        attribute(:application_id, String, from: "ApplicationId")
 
-        # @return [String] A unique identifier for this notification instance.
-        attribute(:notification_id, String, from: "notificationId")
+        # @return [String] A unique identifier for this notification instance
+        attribute(:notification_id, String, from: "NotificationId")
 
-        # @return [String] The date and time in ISO 8601 format in UTC time that the notification was sent.
-        attribute(:publish_time, String, from: "publishTime")
+        # @return [String] The date and time (in UTC) that the notification was sent
+        attribute(:publish_time, String, from: "PublishTime")
 
-        # @return [String] A unique identifier for the subscription which resulted in this notification.
-        attribute(:subscription_id, String, from: "subscriptionId")
+        # @return [String] A unique identifier for the subscription which resulted in this notification
+        attribute(:subscription_id, String, from: "SubscriptionId")
       end
     end
   end

@@ -15,15 +15,15 @@ module Peddler
         # @return [String] The condition of the item.
         attribute(:item_condition, String, from: "ItemCondition")
 
-        # @return [String] A marketplace identifier.
-        attribute(:marketplace_id, String, from: "MarketplaceID")
-
         # @return [Array<OfferDetail>] A list of offer details. The list is the same length as the TotalOfferCount in
         #   the Summary or 20, whichever is less.
         attribute(:offers, [OfferDetail], from: "Offers")
 
         # @return [Summary] Pricing information about the item.
         attribute(:summary, Summary, from: "Summary")
+
+        # @return [String] A marketplace identifier.
+        attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The status of the operation.
         attribute(:status, String)

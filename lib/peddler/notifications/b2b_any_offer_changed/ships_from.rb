@@ -9,7 +9,10 @@ module Peddler
     module B2BAnyOfferChanged
       ShipsFrom = Structure.new do
         # @return [String]
-        attribute?(:country, String)
+        attribute?(:country, String, from: "Country")
+
+        # @return [String]
+        attribute?(:state, String, from: "State")
       end
     end
   end

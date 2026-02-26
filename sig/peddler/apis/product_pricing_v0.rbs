@@ -311,12 +311,12 @@ module Peddler
       end
 
       class GetOffersResult < Data
-        def self.new: (identifier: Peddler::APIs::ProductPricingV0::ItemIdentifier?, item_condition: String?, marketplace_id: String?, offers: Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, summary: Peddler::APIs::ProductPricingV0::Summary?, status: String?, ?asin: String?, ?sku: String?) -> Peddler::APIs::ProductPricingV0::GetOffersResult
-                    | (Peddler::APIs::ProductPricingV0::ItemIdentifier?, String?, String?, Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, Peddler::APIs::ProductPricingV0::Summary?, String?, String?, String?) -> Peddler::APIs::ProductPricingV0::GetOffersResult
-        def self.[]: (identifier: Peddler::APIs::ProductPricingV0::ItemIdentifier?, item_condition: String?, marketplace_id: String?, offers: Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, summary: Peddler::APIs::ProductPricingV0::Summary?, status: String?, ?asin: String?, ?sku: String?) -> Peddler::APIs::ProductPricingV0::GetOffersResult
-                   | (Peddler::APIs::ProductPricingV0::ItemIdentifier?, String?, String?, Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, Peddler::APIs::ProductPricingV0::Summary?, String?, String?, String?) -> Peddler::APIs::ProductPricingV0::GetOffersResult
+        def self.new: (identifier: Peddler::APIs::ProductPricingV0::ItemIdentifier?, item_condition: String?, offers: Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, summary: Peddler::APIs::ProductPricingV0::Summary?, marketplace_id: String?, status: String?, ?asin: String?, ?sku: String?) -> Peddler::APIs::ProductPricingV0::GetOffersResult
+                    | (Peddler::APIs::ProductPricingV0::ItemIdentifier?, String?, Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, Peddler::APIs::ProductPricingV0::Summary?, String?, String?, String?, String?) -> Peddler::APIs::ProductPricingV0::GetOffersResult
+        def self.[]: (identifier: Peddler::APIs::ProductPricingV0::ItemIdentifier?, item_condition: String?, offers: Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, summary: Peddler::APIs::ProductPricingV0::Summary?, marketplace_id: String?, status: String?, ?asin: String?, ?sku: String?) -> Peddler::APIs::ProductPricingV0::GetOffersResult
+                   | (Peddler::APIs::ProductPricingV0::ItemIdentifier?, String?, Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, Peddler::APIs::ProductPricingV0::Summary?, String?, String?, String?, String?) -> Peddler::APIs::ProductPricingV0::GetOffersResult
 
-        def self.members: () -> [ :identifier, :item_condition, :marketplace_id, :offers, :summary, :status, :asin, :sku ]
+        def self.members: () -> [ :identifier, :item_condition, :offers, :summary, :marketplace_id, :status, :asin, :sku ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricingV0::GetOffersResult
 
@@ -329,8 +329,8 @@ module Peddler
         attr_reader status: String?
         attr_reader summary: Peddler::APIs::ProductPricingV0::Summary?
 
-        def members: () -> [ :identifier, :item_condition, :marketplace_id, :offers, :summary, :status, :asin, :sku ]
-        def to_h: () -> { identifier: Peddler::APIs::ProductPricingV0::ItemIdentifier?, item_condition: String?, marketplace_id: String?, offers: Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, summary: Peddler::APIs::ProductPricingV0::Summary?, status: String?, asin: String?, sku: String? }
+        def members: () -> [ :identifier, :item_condition, :offers, :summary, :marketplace_id, :status, :asin, :sku ]
+        def to_h: () -> { identifier: Peddler::APIs::ProductPricingV0::ItemIdentifier?, item_condition: String?, offers: Array[Peddler::APIs::ProductPricingV0::OfferDetail]?, summary: Peddler::APIs::ProductPricingV0::Summary?, marketplace_id: String?, status: String?, asin: String?, sku: String? }
       end
 
       class GetPricingResponse < Data

@@ -18,6 +18,13 @@ module Peddler
         #   populated when the seller is a B2B seller.
         attribute?(:ordered_product_sales_b2b, Amount, from: "orderedProductSalesB2B")
 
+        # @return [String] The number of orders shipped for the selected time period.
+        attribute?(:orders_shipped, String, null: false, from: "ordersShipped")
+
+        # @return [String] The number of orders shipped to Amazon Business customers for the selected time period. Note:
+        #   This field is only populated when the seller is a B2B seller.
+        attribute?(:orders_shipped_b2b, String, from: "ordersShippedB2B")
+
         # @return [Float] The percentage conversion metric indicating how many orders were refunded, calculated by
         #   dividing unitsRefunded by unitsOrdered for the selected time period.
         attribute?(:refund_rate, Float, null: false, from: "refundRate")
@@ -26,6 +33,13 @@ module Peddler
         #   customers, calculated by dividing unitsRefundedB2B by unitsOrderedB2B for the selected time period. Note:
         #   This field is only populated when the seller is a B2B seller.
         attribute?(:refund_rate_b2b, Float, from: "refundRateB2B")
+
+        # @return [Amount] The amount of ordered product sales shipped for the selected time period.
+        attribute?(:shipped_product_sales, Amount, null: false, from: "shippedProductSales")
+
+        # @return [Amount] The amount of ordered product sales shipped to Amazon Business customers for the selected
+        #   time period. Note: This field is only populated when the seller is a B2B seller.
+        attribute?(:shipped_product_sales_b2b, Amount, from: "shippedProductSalesB2B")
 
         # @return [String] The number of items that were ordered for the selected time period.
         attribute?(:total_order_items, String, null: false, from: "totalOrderItems")
@@ -47,6 +61,13 @@ module Peddler
         # @return [String] The number of units refunded by Amazon Business customers for the selected time period. Note:
         #   This field is only populated when the seller is a B2B seller.
         attribute?(:units_refunded_b2b, String, from: "unitsRefundedB2B")
+
+        # @return [String] The number of units shipped for the selected time period.
+        attribute?(:units_shipped, String, null: false, from: "unitsShipped")
+
+        # @return [String] The number of units shipped to Amazon Business customers for the selected time period. Note:
+        #   This field is only populated when the seller is a B2B seller.
+        attribute?(:units_shipped_b2b, String, from: "unitsShippedB2B")
       end
     end
   end

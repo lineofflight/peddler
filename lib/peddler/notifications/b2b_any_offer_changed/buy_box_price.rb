@@ -9,28 +9,31 @@ module Peddler
     module B2BAnyOfferChanged
       BuyBoxPrice = Structure.new do
         # @return [String]
-        attribute(:condition, String)
+        attribute(:condition, String, from: "Condition")
 
         # @return [Money]
-        attribute(:listing_price, Money, from: "listingPrice")
+        attribute(:listing_price, Money, from: "ListingPrice")
 
         # @return [String]
-        attribute(:offer_type, String, from: "offerType")
+        attribute(:offer_type, String, from: "OfferType")
 
         # @return [String]
-        attribute(:quantity_tier, String, from: "quantityTier")
+        attribute(:quantity_tier, String, from: "QuantityTier")
 
         # @return [String]
-        attribute?(:discount_type, String, from: "discountType")
+        attribute?(:discount_type, String, from: "DiscountType")
 
         # @return [Money]
-        attribute?(:landed_price, Money, from: "landedPrice")
+        attribute?(:landed_price, Money, from: "LandedPrice")
 
-        # @return [String] The seller identifier for the offer.
-        attribute?(:seller_id, String, from: "sellerId")
+        # @return [Points]
+        attribute?(:points, Points, from: "Points")
+
+        # @return [String] The seller identifier for the offer
+        attribute?(:seller_id, String, from: "SellerId")
 
         # @return [Money]
-        attribute?(:shipping, Money)
+        attribute?(:shipping, Money, from: "Shipping")
       end
     end
   end
