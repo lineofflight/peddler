@@ -5,6 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Add Data Kiosk Sales and Traffic 2024-04-24 query
+
+### Changed
+
+- Rework B2B Any Offer Changed notification types for PascalCase keys
+
+### Removed
+
+- Remove fulfillment plan endpoints from Orders v0
+- Remove shipment confirmation endpoints from Vendor Shipments v1
+- Remove Amazon Motors endpoints from Messaging v1
+
 ## [5.2.0] - 2026-01-29
 
 ### Added
