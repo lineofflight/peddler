@@ -1,0 +1,60 @@
+# frozen_string_literal: true
+
+require "vcr"
+require "webmock/minitest"
+
+VCR.configure do |c|
+  c.hook_into(:webmock)
+  c.cassette_library_dir = "test/vcr_cassettes"
+
+  ["client_id", "client_secret", "refresh_token"].each do |param|
+    c.filter_sensitive_data("FILTERED") do |interaction|
+      interaction.request.body.to_s[/(?<=#{param}=)[^&]+/]
+    end
+  end
+
+  ["refresh_token", "access_token"].each do |token|
+    c.filter_sensitive_data("FILTERED") do |interaction|
+      JSON.parse(interaction.response.body)[token]
+    rescue
+      nil
+    end
+  end
+
+  c.filter_sensitive_data("FILTERED") do |interaction|
+    interaction.request.headers["X-Amz-Access-Token"]&.first
+  end
+
+  # Use custom URI matcher that normalizes the regional endpoints for SP-API requests
+  c.register_request_matcher(:sp_api_uri) do |request_1, request_2|
+    normalize_uri(request_1.uri) == normalize_uri(request_2.uri)
+  end
+
+  c.default_cassette_options = {
+    match_requests_on: [:method, :sp_api_uri],
+  }
+
+  c.preserve_exact_body_bytes do |http_message|
+    http_message.body.encoding.name == "ASCII-8BIT" ||
+      !http_message.body.valid_encoding?
+  end
+end
+
+def normalize_uri(uri)
+  uri.to_s.gsub(/sellingpartnerapi-(eu|na|fe)\.amazon\.com/, "sellingpartnerapi.amazon.com")
+end
+
+module Recordable
+  def setup
+    super
+
+    test_name = "#{self.class.name}/#{name}".gsub("::", "/")
+    VCR.insert_cassette(test_name)
+  end
+
+  def teardown
+    super
+
+    VCR.eject_cassette
+  end
+end

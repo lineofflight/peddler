@@ -17,8 +17,7 @@ module Generator
     # Batch format files with RuboCop and sort RBS files
     def format_files(files)
       # Separate Ruby files from RBS files
-      ruby_files = files.reject { |f| f.end_with?(".rbs") }
-      rbs_files = files.select { |f| f.end_with?(".rbs") }
+      rbs_files, ruby_files = files.partition { |f| f.end_with?(".rbs") }
 
       # Format Ruby files with RuboCop
       ruby_files.each_slice(100) do |batch|
