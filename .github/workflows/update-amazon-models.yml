@@ -62,8 +62,8 @@ jobs:
               .sort();
 
             // Configure git
-            execSync('git config user.name "lineofflight-bot"');
-            execSync('git config user.email "4628864+lineofflight-bot@users.noreply.github.com"');
+            execSync('git config user.name "lineoffligbt"');
+            execSync('git config user.email "4628864+lineoffligbt@users.noreply.github.com"');
 
             // Use fixed branch name and handle existing branch
             const branchName = 'update-api-models';
