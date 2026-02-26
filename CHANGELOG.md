@@ -1,7 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/). Changes to Amazon's SP-API models are not considered breaking and do not trigger a major version bump.
 
 ## [Unreleased]
 
