@@ -1,111 +1,175 @@
 {
-  "notificationVersion": "1.0",
-  "notificationType": "B2B_ANY_OFFER_CHANGED",
-  "payloadVersion": "1.0",
-  "eventTime": "2020-09-23T21:30:13.713Z",
-  "notificationMetadata": {
-    "applicationId": "amzn1.sellerapps.app.1da85d14-a68d-4ff3-9ff0-df6429e00d9a",
-    "subscriptionId": "e3a059ca-677a-442a-8d39-05b2848971b6",
-    "publishTime": "2020-09-23T21:30:16.903Z",
-    "notificationId": "23ae41cd-3537-4676-af46-6ee9abf8802e"
+  "NotificationVersion": "1.0",
+  "NotificationType": "B2B_ANY_OFFER_CHANGED",
+  "PayloadVersion": "1.0",
+  "EventTime": "2020-09-23T21:30:13.713Z",
+  "NotificationMetadata": {
+    "ApplicationId": "amzn1.sellerapps.app.1da85d14-a68d-4ff3-9ff0-df6429e00d9a",
+    "SubscriptionId": "e3a059ca-677a-442a-8d39-05b2848971b6",
+    "PublishTime": "2020-09-23T21:30:16.903Z",
+    "NotificationId": "23ae41cd-3537-4676-af46-6ee9abf8802e"
   },
-  "payload": {
-    "b2bAnyOfferChangedNotification": {
-      "sellerId": "A3EZFOFNDPFB8R",
-      "offerChangeTrigger": {
-        "marketplaceId": "ATVPDKIKX0DER",
-        "asin": "B007IBIWZY",
-        "itemCondition": "new",
-        "timeOfOfferChange": "2020-09-23T21:30:13.409Z"
+  "Payload": {
+    "B2BAnyOfferChangedNotification": {
+      "SellerId": "A3EZFOFNDPFB8R",
+      "OfferChangeTrigger": {
+        "MarketplaceId": "ATVPDKIKX0DER",
+        "ASIN": "B007IBIWZY",
+        "ItemCondition": "new",
+        "TimeOfOfferChange": "2020-09-23T21:30:13.409Z"
       },
-      "summary": {
-        "numberOfOffers": [
+      "Summary": {
+        "NumberOfOffers": [
           {
-            "condition": "new",
-            "fulfillmentChannel": "Merchant",
-            "offerCount": 3
+            "Condition": "new",
+            "FulfillmentChannel": "Merchant",
+            "OfferCount": 3
           }
         ],
-        "buyBoxEligibleOffers": [
+        "BuyBoxEligibleOffers": [
           {
-            "condition": "new",
-            "fulfillmentChannel": "Merchant",
-            "offerCount": 3
+            "Condition": "new",
+            "FulfillmentChannel": "Merchant",
+            "OfferCount": 3
           }
         ],
-        "lowestPrices": [
+        "LowestPrices": [
           {
-            "condition": "new",
-            "fulfillmentChannel": "Merchant",
-            "offerType": "B2B",
-            "quantityTier": 1,
-            "listingPrice": {
-              "amount": 8184.23,
-              "currencyCode": "USD"
+            "Condition": "new",
+            "FulfillmentChannel": "Merchant",
+            "OfferType": "B2B",
+            "QuantityTier": 1,
+            "ListingPrice": {
+              "Amount": 8184.23,
+              "CurrencyCode": "USD"
             },
-            "shipping": {
-              "amount": 4.49,
-              "currencyCode": "USD"
+            "Shipping": {
+              "Amount": 4.49,
+              "CurrencyCode": "USD"
             },
-            "landedPrice": {
-              "amount": 8188.72,
-              "currencyCode": "USD"
+            "LandedPrice": {
+              "Amount": 8188.72,
+              "CurrencyCode": "USD"
+            },
+            "Points": {
+              "PointsNumber": 100
+            }
+          },
+          {
+            "Condition": "new",
+            "FulfillmentChannel": "Merchant",
+            "OfferType": "B2B",
+            "QuantityTier": 20,
+            "ListingPrice": {
+              "Amount": 7500,
+              "CurrencyCode": "USD"
+            }
+          },
+          {
+            "Condition": "new",
+            "FulfillmentChannel": "Merchant",
+            "OfferType": "B2B",
+            "QuantityTier": 30,
+            "DiscountType": "QUANTITY_DISCOUNT",
+            "ListingPrice": {
+              "Amount": 6975,
+              "CurrencyCode": "USD"
             }
           }
         ],
-        "buyBoxPrices": [
+        "BuyBoxPrices": [
           {
-            "condition": "new",
-            "offerType": "B2B",
-            "quantityTier": 1,
-            "listingPrice": {
-              "amount": 8184.23,
-              "currencyCode": "USD"
+            "Condition": "new",
+            "OfferType": "B2B",
+            "QuantityTier": 1,
+            "ListingPrice": {
+              "Amount": 8184.23,
+              "CurrencyCode": "USD"
             },
-            "shipping": {
-              "amount": 4.49,
-              "currencyCode": "USD"
+            "Shipping": {
+              "Amount": 4.49,
+              "CurrencyCode": "USD"
             },
-            "landedPrice": {
-              "amount": 8188.72,
-              "currencyCode": "USD"
-            }
+            "LandedPrice": {
+              "Amount": 8188.72,
+              "CurrencyCode": "USD"
+            },
+            "Points": {
+              "PointsNumber": 100
+            },
+            "SellerId": "A2VUIDM8BZ902A"
+          },
+          {
+            "Condition": "new",
+            "OfferType": "B2B",
+            "QuantityTier": 20,
+            "DiscountType": "QUANTITY_DISCOUNT",
+            "ListingPrice": {
+              "Amount": 8000,
+              "CurrencyCode": "USD"
+            },
+            "SellerId": "A2VUIDM8BZ902A"
+          },
+          {
+            "Condition": "new",
+            "OfferType": "B2B",
+            "QuantityTier": 30,
+            "DiscountType": "QUANTITY_DISCOUNT",
+            "ListingPrice": {
+              "Amount": 7800,
+              "CurrencyCode": "USD"
+            },
+            "SellerId": "A2VUIDM8BZ902A"
           }
         ]
       },
-      "offers": [
+      "Offers": [
         {
-          "sellerId": "A2VUIDM8BZ902A",
-          "subCondition": "new",
-          "sellerFeedbackRating": {
-            "feedbackCount": 1,
-            "sellerPositiveFeedbackRating": 0
+          "SellerId": "A2VUIDM8BZ902A",
+          "SubCondition": "new",
+          "SellerFeedbackRating": {
+            "FeedbackCount": 1,
+            "SellerPositiveFeedbackRating": 0
           },
-          "shippingTime": {
-            "minimumHours": 24,
-            "maximumHours": 48,
-            "availabilityType": "available",
-            "availableDate": "2020-07-13T19:42:04.284Z"
+          "ShippingTime": {
+            "MinimumHours": 24,
+            "MaximumHours": 48,
+            "AvailabilityType": "available",
+            "AvailableDate": "2020-07-13T19:42:04.284Z"
           },
-          "listingPrice": {
-            "amount": 8184.23,
-            "currencyCode": "USD"
+          "ListingPrice": {
+            "Amount": 8184.23,
+            "CurrencyCode": "USD"
           },
-          "shipping": {
-            "amount": 4.49,
-            "currencyCode": "USD"
+          "Points": {
+            "PointsNumber": 50
           },
-          "shipsFrom": {
-            "country": "US"
+          "QuantityDiscountPrice": [
+            {
+              "QuantityTier": 5,
+              "QuantityDiscountType": "QUANTITY_DISCOUNT",
+              "ListingPrice": {
+                "CurrencyCode": "USD",
+                "Amount": 8183.00
+              }
+            }
+          ],
+          "Shipping": {
+            "Amount": 4.49,
+            "CurrencyCode": "USD"
           },
-          "isFulfilledByAmazon": false,
-          "isBuyBoxWinner": true,
-          "conditionNotes": "New in box",
-          "primeInformation": {
-            "isOfferPrime": true,
-            "isOfferNationalPrime": true
+          "ShipsFrom": {
+            "Country": "US",
+            "State": "WA"
           },
-          "isFeaturedMerchant": true
+          "IsFulfilledByAmazon": false,
+          "IsBuyBoxWinner": true,
+          "ConditionNotes": "New in box",
+          "PrimeInformation": {
+            "IsPrime": true,
+            "IsNationalPrime": true
+          },
+          "IsFeaturedMerchant": true
         }
       ]
     }

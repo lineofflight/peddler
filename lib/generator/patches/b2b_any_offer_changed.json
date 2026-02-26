@@ -1,43 +1,36 @@
 [
   {
     "op": "replace",
-    "path": "/definitions/summary/required",
+    "path": "/definitions/Summary/required",
     "value": [
-      "numberOfOffers",
-      "buyBoxEligibleOffers",
-      "lowestPrices"
+      "NumberOfOffers",
+      "BuyBoxEligibleOffers",
+      "LowestPrices"
     ]
   },
   {
     "op": "replace",
-    "path": "/definitions/offerCount/required",
+    "path": "/definitions/OfferCount/required",
     "value": [
-      "condition",
-      "fulfillmentChannel"
+      "Condition",
+      "FulfillmentChannel"
     ]
   },
   {
     "op": "replace",
-    "path": "/definitions/sellerFeedbackRating/required",
+    "path": "/definitions/SellerFeedbackRating/required",
     "value": [
-      "feedbackCount"
+      "FeedbackCount"
     ]
   },
   {
     "op": "replace",
-    "path": "/definitions/shipsFrom/required",
+    "path": "/definitions/ShipsFrom/required",
     "value": []
   },
   {
-    "op": "add",
-    "path": "/definitions/offer/properties/primeInformation",
-    "value": {
-      "$ref": "#/definitions/primeInformation"
-    }
-  },
-  {
     "op": "replace",
-    "path": "/definitions/primeInformation/required",
+    "path": "/definitions/PrimeInformation/required",
     "value": []
   }
 ]
