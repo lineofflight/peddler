@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+## [5.3.0] - 2026-02-26
+
 ### Added
 
 - Add Data Kiosk Sales and Traffic 2024-04-24 query
