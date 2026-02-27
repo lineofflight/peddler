@@ -158,13 +158,13 @@ end
 Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is available in its respective version. Access APIs by calling methods on the Peddler module:
 
 ```ruby
-api = Peddler.<api_name>_<version>.new(aws_region, access_token, options)
+api = Peddler.<api_name>_<version>.new(aws_region, access_token, **options)
 ```
 
 You can also simply use the latest version:
 
 ```ruby
-api = Peddler.<api_name>.new(aws_region, access_token, options)
+api = Peddler.<api_name>.new(aws_region, access_token, **options)
 ```
 
 Available APIs by category:
