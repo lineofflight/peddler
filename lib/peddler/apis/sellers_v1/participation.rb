@@ -11,10 +11,10 @@ module Peddler
       Participation = Structure.new do
         # @return [:boolean] Specifies if the seller has suspended listings. `true` if the seller Listing Status is set
         #   to Inactive, otherwise `false`.
-        attribute(:has_suspended_listings, :boolean, from: "hasSuspendedListings")
+        attribute(:has_suspended_listings, :boolean, null: false, from: "hasSuspendedListings")
 
         # @return [:boolean] If `true`, the seller participates in the marketplace. Otherwise `false`.
-        attribute(:participating, :boolean, from: "isParticipating")
+        attribute(:participating, :boolean, null: false, from: "isParticipating")
       end
     end
   end

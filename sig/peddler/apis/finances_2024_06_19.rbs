@@ -60,10 +60,10 @@ module Peddler
       end
 
       class Context < Data
-        def self.new: (context_type: String?, ?asin: String?, ?channel: String?, ?deferral_reason: String?, ?end_time: String?, ?fulfillment_network: String?, ?maturity_date: String?, ?order_type: String?, ?payment_date: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_type: String?, ?quantity_shipped: Integer?, ?sku: String?, ?start_time: String?, ?store_name: String?) -> Peddler::APIs::Finances20240619::Context
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::APIs::Finances20240619::Context
-        def self.[]: (context_type: String?, ?asin: String?, ?channel: String?, ?deferral_reason: String?, ?end_time: String?, ?fulfillment_network: String?, ?maturity_date: String?, ?order_type: String?, ?payment_date: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_type: String?, ?quantity_shipped: Integer?, ?sku: String?, ?start_time: String?, ?store_name: String?) -> Peddler::APIs::Finances20240619::Context
-                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::APIs::Finances20240619::Context
+        def self.new: (context_type: String, ?asin: String?, ?channel: String?, ?deferral_reason: String?, ?end_time: String?, ?fulfillment_network: String?, ?maturity_date: String?, ?order_type: String?, ?payment_date: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_type: String?, ?quantity_shipped: Integer?, ?sku: String?, ?start_time: String?, ?store_name: String?) -> Peddler::APIs::Finances20240619::Context
+                    | (String, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::APIs::Finances20240619::Context
+        def self.[]: (context_type: String, ?asin: String?, ?channel: String?, ?deferral_reason: String?, ?end_time: String?, ?fulfillment_network: String?, ?maturity_date: String?, ?order_type: String?, ?payment_date: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_type: String?, ?quantity_shipped: Integer?, ?sku: String?, ?start_time: String?, ?store_name: String?) -> Peddler::APIs::Finances20240619::Context
+                   | (String, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::APIs::Finances20240619::Context
 
         def self.members: () -> [ :context_type, :asin, :channel, :deferral_reason, :end_time, :fulfillment_network, :maturity_date, :order_type, :payment_date, :payment_method, :payment_reference, :payment_type, :quantity_shipped, :sku, :start_time, :store_name ]
 
@@ -71,7 +71,7 @@ module Peddler
 
         attr_reader asin: String?
         attr_reader channel: String?
-        attr_reader context_type: String?
+        attr_reader context_type: String
         attr_reader deferral_reason: String?
         attr_reader end_time: String?
         attr_reader fulfillment_network: String?
@@ -87,7 +87,7 @@ module Peddler
         attr_reader store_name: String?
 
         def members: () -> [ :context_type, :asin, :channel, :deferral_reason, :end_time, :fulfillment_network, :maturity_date, :order_type, :payment_date, :payment_method, :payment_reference, :payment_type, :quantity_shipped, :sku, :start_time, :store_name ]
-        def to_h: () -> { context_type: String?, asin: String?, channel: String?, deferral_reason: String?, end_time: String?, fulfillment_network: String?, maturity_date: String?, order_type: String?, payment_date: String?, payment_method: String?, payment_reference: String?, payment_type: String?, quantity_shipped: Integer?, sku: String?, start_time: String?, store_name: String? }
+        def to_h: () -> { context_type: String, asin: String?, channel: String?, deferral_reason: String?, end_time: String?, fulfillment_network: String?, maturity_date: String?, order_type: String?, payment_date: String?, payment_method: String?, payment_reference: String?, payment_type: String?, quantity_shipped: Integer?, sku: String?, start_time: String?, store_name: String? }
       end
 
       class Contexts < Array[Context]
@@ -112,37 +112,37 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Finances20240619::Error
-                    | (String?, String?, String?) -> Peddler::APIs::Finances20240619::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Finances20240619::Error
-                   | (String?, String?, String?) -> Peddler::APIs::Finances20240619::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Finances20240619::Error
+                    | (String, String, String?) -> Peddler::APIs::Finances20240619::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Finances20240619::Error
+                   | (String, String, String?) -> Peddler::APIs::Finances20240619::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Finances20240619::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::Finances20240619::Error]?) -> Peddler::APIs::Finances20240619::ErrorList
-                    | (Array[Peddler::APIs::Finances20240619::Error]?) -> Peddler::APIs::Finances20240619::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::Finances20240619::Error]?) -> Peddler::APIs::Finances20240619::ErrorList
-                   | (Array[Peddler::APIs::Finances20240619::Error]?) -> Peddler::APIs::Finances20240619::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::Finances20240619::Error]) -> Peddler::APIs::Finances20240619::ErrorList
+                    | (Array[Peddler::APIs::Finances20240619::Error]) -> Peddler::APIs::Finances20240619::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Finances20240619::Error]) -> Peddler::APIs::Finances20240619::ErrorList
+                   | (Array[Peddler::APIs::Finances20240619::Error]) -> Peddler::APIs::Finances20240619::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Finances20240619::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::Finances20240619::Error]?
+        attr_reader errors: Array[Peddler::APIs::Finances20240619::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::Finances20240619::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::Finances20240619::Error] }
       end
 
       class Item < Data

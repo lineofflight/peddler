@@ -11,7 +11,7 @@ module Peddler
       # Seller's account health rating within a given reporting date range for 1 requested marketplace.
       AccountHealthRating = Structure.new do
         # @return [ReportingDateRange]
-        attribute(:reporting_date_range, ReportingDateRange, from: "reportingDateRange")
+        attribute(:reporting_date_range, ReportingDateRange, null: false, from: "reportingDateRange")
 
         # @return [String] Seller's overall Account Health Rating status within a given reporting date range for 1
         #   requested marketplace. It could be GREAT or WARNED

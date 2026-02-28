@@ -10,10 +10,10 @@ module Peddler
       # Request schema for the `updateReservation` operation.
       UpdateReservationRequest = Structure.new do
         # @return [Reservation] `Reservation` object to reduce the capacity of a resource.
-        attribute(:reservation, Reservation)
+        attribute(:reservation, Reservation, null: false)
 
         # @return [String] Resource (store) identifier.
-        attribute(:resource_id, String, from: "resourceId")
+        attribute(:resource_id, String, null: false, from: "resourceId")
       end
     end
   end

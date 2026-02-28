@@ -10,7 +10,7 @@ module Peddler
       # The Response for the GetCarrierAccountsResponse operation.
       GetCarrierAccountsResponse = Structure.new do
         # @return [Array<ActiveAccount>]
-        attribute(:active_accounts, [ActiveAccount], from: "activeAccounts")
+        attribute(:active_accounts, [ActiveAccount], null: false, from: "activeAccounts")
       end
     end
   end

@@ -10,16 +10,16 @@ module Peddler
       # The A+ Content document. This is the enhanced content that is published to product detail pages.
       ContentDocument = Structure.new do
         # @return [Array<ContentModule>]
-        attribute(:content_module_list, [ContentModule], from: "contentModuleList")
+        attribute(:content_module_list, [ContentModule], null: false, from: "contentModuleList")
 
         # @return [String]
-        attribute(:content_type, String, from: "contentType")
+        attribute(:content_type, String, null: false, from: "contentType")
 
         # @return [String]
-        attribute(:locale, String)
+        attribute(:locale, String, null: false)
 
         # @return [String] The A+ Content document name.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String]
         attribute?(:content_sub_type, String, from: "contentSubType")

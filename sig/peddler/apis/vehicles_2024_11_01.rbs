@@ -2,54 +2,54 @@ module Peddler
   module APIs
     class Vehicles20241101 < API
       class EngineOutput < Data
-        def self.new: (unit: String?, value: Float?) -> Peddler::APIs::Vehicles20241101::EngineOutput
-                    | (String?, Float?) -> Peddler::APIs::Vehicles20241101::EngineOutput
-        def self.[]: (unit: String?, value: Float?) -> Peddler::APIs::Vehicles20241101::EngineOutput
-                   | (String?, Float?) -> Peddler::APIs::Vehicles20241101::EngineOutput
+        def self.new: (unit: String, value: Float) -> Peddler::APIs::Vehicles20241101::EngineOutput
+                    | (String, Float) -> Peddler::APIs::Vehicles20241101::EngineOutput
+        def self.[]: (unit: String, value: Float) -> Peddler::APIs::Vehicles20241101::EngineOutput
+                   | (String, Float) -> Peddler::APIs::Vehicles20241101::EngineOutput
 
         def self.members: () -> [ :unit, :value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Vehicles20241101::EngineOutput
 
-        attr_reader unit: String?
-        attr_reader value: Float?
+        attr_reader unit: String
+        attr_reader value: Float
 
         def members: () -> [ :unit, :value ]
-        def to_h: () -> { unit: String?, value: Float? }
+        def to_h: () -> { unit: String, value: Float }
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Vehicles20241101::Error
-                    | (String?, String?, String?) -> Peddler::APIs::Vehicles20241101::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Vehicles20241101::Error
-                   | (String?, String?, String?) -> Peddler::APIs::Vehicles20241101::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Vehicles20241101::Error
+                    | (String, String, String?) -> Peddler::APIs::Vehicles20241101::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Vehicles20241101::Error
+                   | (String, String, String?) -> Peddler::APIs::Vehicles20241101::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Vehicles20241101::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::Vehicles20241101::Error]?) -> Peddler::APIs::Vehicles20241101::ErrorList
-                    | (Array[Peddler::APIs::Vehicles20241101::Error]?) -> Peddler::APIs::Vehicles20241101::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::Vehicles20241101::Error]?) -> Peddler::APIs::Vehicles20241101::ErrorList
-                   | (Array[Peddler::APIs::Vehicles20241101::Error]?) -> Peddler::APIs::Vehicles20241101::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::Vehicles20241101::Error]) -> Peddler::APIs::Vehicles20241101::ErrorList
+                    | (Array[Peddler::APIs::Vehicles20241101::Error]) -> Peddler::APIs::Vehicles20241101::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Vehicles20241101::Error]) -> Peddler::APIs::Vehicles20241101::ErrorList
+                   | (Array[Peddler::APIs::Vehicles20241101::Error]) -> Peddler::APIs::Vehicles20241101::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Vehicles20241101::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::Vehicles20241101::Error]?
+        attr_reader errors: Array[Peddler::APIs::Vehicles20241101::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::Vehicles20241101::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::Vehicles20241101::Error] }
       end
 
       class MonthAndYear < Data
@@ -87,10 +87,10 @@ module Peddler
       end
 
       class Vehicle < Data
-        def self.new: (identifiers: Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers]?, make: String?, model: String?, ?body_style: String?, ?drive_type: String?, ?energy: String?, ?engine_output: Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, ?last_processed_date: String?, ?manufacturing_start_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, ?manufacturing_stop_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, ?status: String?, ?variant_name: String?) -> Peddler::APIs::Vehicles20241101::Vehicle
-                    | (Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers]?, String?, String?, String?, String?, String?, Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, String?, Peddler::APIs::Vehicles20241101::MonthAndYear?, Peddler::APIs::Vehicles20241101::MonthAndYear?, String?, String?) -> Peddler::APIs::Vehicles20241101::Vehicle
-        def self.[]: (identifiers: Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers]?, make: String?, model: String?, ?body_style: String?, ?drive_type: String?, ?energy: String?, ?engine_output: Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, ?last_processed_date: String?, ?manufacturing_start_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, ?manufacturing_stop_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, ?status: String?, ?variant_name: String?) -> Peddler::APIs::Vehicles20241101::Vehicle
-                   | (Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers]?, String?, String?, String?, String?, String?, Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, String?, Peddler::APIs::Vehicles20241101::MonthAndYear?, Peddler::APIs::Vehicles20241101::MonthAndYear?, String?, String?) -> Peddler::APIs::Vehicles20241101::Vehicle
+        def self.new: (identifiers: Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers], make: String, model: String, ?body_style: String?, ?drive_type: String?, ?energy: String?, ?engine_output: Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, ?last_processed_date: String?, ?manufacturing_start_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, ?manufacturing_stop_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, ?status: String?, ?variant_name: String?) -> Peddler::APIs::Vehicles20241101::Vehicle
+                    | (Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers], String, String, String?, String?, String?, Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, String?, Peddler::APIs::Vehicles20241101::MonthAndYear?, Peddler::APIs::Vehicles20241101::MonthAndYear?, String?, String?) -> Peddler::APIs::Vehicles20241101::Vehicle
+        def self.[]: (identifiers: Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers], make: String, model: String, ?body_style: String?, ?drive_type: String?, ?energy: String?, ?engine_output: Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, ?last_processed_date: String?, ?manufacturing_start_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, ?manufacturing_stop_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, ?status: String?, ?variant_name: String?) -> Peddler::APIs::Vehicles20241101::Vehicle
+                   | (Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers], String, String, String?, String?, String?, Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, String?, Peddler::APIs::Vehicles20241101::MonthAndYear?, Peddler::APIs::Vehicles20241101::MonthAndYear?, String?, String?) -> Peddler::APIs::Vehicles20241101::Vehicle
 
         def self.members: () -> [ :identifiers, :make, :model, :body_style, :drive_type, :energy, :engine_output, :last_processed_date, :manufacturing_start_date, :manufacturing_stop_date, :status, :variant_name ]
 
@@ -100,51 +100,51 @@ module Peddler
         attr_reader drive_type: String?
         attr_reader energy: String?
         attr_reader engine_output: Array[Peddler::APIs::Vehicles20241101::EngineOutput]?
-        attr_reader identifiers: Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers]?
+        attr_reader identifiers: Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers]
         attr_reader last_processed_date: String?
-        attr_reader make: String?
+        attr_reader make: String
         attr_reader manufacturing_start_date: Peddler::APIs::Vehicles20241101::MonthAndYear?
         attr_reader manufacturing_stop_date: Peddler::APIs::Vehicles20241101::MonthAndYear?
-        attr_reader model: String?
+        attr_reader model: String
         attr_reader status: String?
         attr_reader variant_name: String?
 
         def members: () -> [ :identifiers, :make, :model, :body_style, :drive_type, :energy, :engine_output, :last_processed_date, :manufacturing_start_date, :manufacturing_stop_date, :status, :variant_name ]
-        def to_h: () -> { identifiers: Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers]?, make: String?, model: String?, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, last_processed_date: String?, manufacturing_start_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, status: String?, variant_name: String? }
+        def to_h: () -> { identifiers: Array[Peddler::APIs::Vehicles20241101::VehicleIdentifiers], make: String, model: String, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::APIs::Vehicles20241101::EngineOutput]?, last_processed_date: String?, manufacturing_start_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::APIs::Vehicles20241101::MonthAndYear?, status: String?, variant_name: String? }
       end
 
       class VehicleIdentifiers < Data
-        def self.new: (standard: String?, value: String?) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
-                    | (String?, String?) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
-        def self.[]: (standard: String?, value: String?) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
-                   | (String?, String?) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
+        def self.new: (standard: String, value: String) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
+                    | (String, String) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
+        def self.[]: (standard: String, value: String) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
+                   | (String, String) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
 
         def self.members: () -> [ :standard, :value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Vehicles20241101::VehicleIdentifiers
 
-        attr_reader standard: String?
-        attr_reader value: String?
+        attr_reader standard: String
+        attr_reader value: String
 
         def members: () -> [ :standard, :value ]
-        def to_h: () -> { standard: String?, value: String? }
+        def to_h: () -> { standard: String, value: String }
       end
 
       class VehiclesResponse < Data
-        def self.new: (vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle]?, ?pagination: Peddler::APIs::Vehicles20241101::Pagination?) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
-                    | (Array[Peddler::APIs::Vehicles20241101::Vehicle]?, Peddler::APIs::Vehicles20241101::Pagination?) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
-        def self.[]: (vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle]?, ?pagination: Peddler::APIs::Vehicles20241101::Pagination?) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
-                   | (Array[Peddler::APIs::Vehicles20241101::Vehicle]?, Peddler::APIs::Vehicles20241101::Pagination?) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
+        def self.new: (vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle], ?pagination: Peddler::APIs::Vehicles20241101::Pagination?) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
+                    | (Array[Peddler::APIs::Vehicles20241101::Vehicle], Peddler::APIs::Vehicles20241101::Pagination?) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
+        def self.[]: (vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle], ?pagination: Peddler::APIs::Vehicles20241101::Pagination?) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
+                   | (Array[Peddler::APIs::Vehicles20241101::Vehicle], Peddler::APIs::Vehicles20241101::Pagination?) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
 
         def self.members: () -> [ :vehicles, :pagination ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Vehicles20241101::VehiclesResponse
 
         attr_reader pagination: Peddler::APIs::Vehicles20241101::Pagination?
-        attr_reader vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle]?
+        attr_reader vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle]
 
         def members: () -> [ :vehicles, :pagination ]
-        def to_h: () -> { vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle]?, pagination: Peddler::APIs::Vehicles20241101::Pagination? }
+        def to_h: () -> { vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle], pagination: Peddler::APIs::Vehicles20241101::Pagination? }
       end
 
       def get_vehicles: (String, String, ?page_token: String?, ?updated_after: String?) -> Peddler::Response

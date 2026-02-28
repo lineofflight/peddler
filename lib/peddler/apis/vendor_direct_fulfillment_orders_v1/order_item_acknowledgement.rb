@@ -10,10 +10,10 @@ module Peddler
       # Details of an individual item within the order being acknowledged.
       OrderItemAcknowledgement = Structure.new do
         # @return [ItemQuantity] Details of quantity acknowledged with the above acknowledgement code.
-        attribute(:acknowledged_quantity, ItemQuantity, from: "acknowledgedQuantity")
+        attribute(:acknowledged_quantity, ItemQuantity, null: false, from: "acknowledgedQuantity")
 
         # @return [String] Line item sequence number for the item.
-        attribute(:item_sequence_number, String, from: "itemSequenceNumber")
+        attribute(:item_sequence_number, String, null: false, from: "itemSequenceNumber")
 
         # @return [String] Buyer's standard identification number (ASIN) of an item.
         attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")

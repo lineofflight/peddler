@@ -10,22 +10,22 @@ module Peddler
       # Shipment information required for requesting shipping service offers or for creating a shipment.
       ShipmentRequestDetails = Structure.new do
         # @return [String] An Amazon-defined order identifier in 3-7-7 format.
-        attribute(:amazon_order_id, String, from: "AmazonOrderId")
+        attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
         # @return [Array<Item>]
-        attribute(:item_list, [Item], from: "ItemList")
+        attribute(:item_list, [Item], null: false, from: "ItemList")
 
         # @return [PackageDimensions] The package dimensions.
-        attribute(:package_dimensions, PackageDimensions, from: "PackageDimensions")
+        attribute(:package_dimensions, PackageDimensions, null: false, from: "PackageDimensions")
 
         # @return [Address] The address of the sender.
-        attribute(:ship_from_address, Address, from: "ShipFromAddress")
+        attribute(:ship_from_address, Address, null: false, from: "ShipFromAddress")
 
         # @return [ShippingServiceOptions] Extra services offered by the carrier.
-        attribute(:shipping_service_options, ShippingServiceOptions, from: "ShippingServiceOptions")
+        attribute(:shipping_service_options, ShippingServiceOptions, null: false, from: "ShippingServiceOptions")
 
         # @return [Weight] The package weight.
-        attribute(:weight, Weight, from: "Weight")
+        attribute(:weight, Weight, null: false, from: "Weight")
 
         # @return [LabelCustomization] Label customization options.
         attribute?(:label_customization, LabelCustomization, from: "LabelCustomization")

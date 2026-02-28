@@ -10,7 +10,7 @@ module Peddler
       # A list of report schedules.
       ReportScheduleList = Structure.new do
         # @return [Array<ReportSchedule>] Detailed information about a report schedule.
-        attribute(:report_schedules, [ReportSchedule], from: "reportSchedules")
+        attribute(:report_schedules, [ReportSchedule], null: false, from: "reportSchedules")
       end
     end
   end

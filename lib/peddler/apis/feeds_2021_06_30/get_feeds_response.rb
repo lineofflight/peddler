@@ -10,7 +10,7 @@ module Peddler
       # Response schema.
       GetFeedsResponse = Structure.new do
         # @return [Array<Feed>] The feeds.
-        attribute(:feeds, [Feed])
+        attribute(:feeds, [Feed], null: false)
 
         # @return [String] Returned when the number of results exceeds pageSize. To get the next page of results, call
         #   the getFeeds operation with this token as the only parameter.

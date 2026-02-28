@@ -12,17 +12,17 @@ module Peddler
       ReportSpecification = Structure.new do
         # @return [Date] The date when the report was last updated. Follows the
         #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} Date format of YYYY-MM-DD.
-        attribute(:last_updated_date, Date, from: "lastUpdatedDate")
+        attribute(:last_updated_date, Date, null: false, from: "lastUpdatedDate")
 
         # @return [Array<String>] This parameter must match the marketplaceId of the selling partner account. Each
         #   selling partner account belongs to only one marketplaceId.
-        attribute(:marketplace_ids, [String], from: "marketplaceIds")
+        attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
         # @return [ReportOptions] Report options specifying parameters such as sellingProgram.
-        attribute(:report_options, ReportOptions, from: "reportOptions")
+        attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
         # @return [String] The report type.
-        attribute(:report_type, String, from: "reportType")
+        attribute(:report_type, String, null: false, from: "reportType")
       end
     end
   end

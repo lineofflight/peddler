@@ -10,7 +10,7 @@ module Peddler
       # Information about taxes.
       Tax = Structure.new do
         # @return [ChargeBreakup] Details of individual tax charges.
-        attribute(:charge, ChargeBreakup)
+        attribute(:charge, ChargeBreakup, null: false)
 
         # @return [String] The rate of the tax.
         attribute?(:rate, String)

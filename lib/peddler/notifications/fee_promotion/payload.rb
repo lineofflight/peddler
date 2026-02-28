@@ -10,7 +10,7 @@ module Peddler
       # Notification payload that wraps nested notification data
       Payload = Structure.new do
         # @return [FeePromotionNotification]
-        attribute(:fee_promotion_notification, FeePromotionNotification, from: "FeePromotionNotification")
+        attribute(:fee_promotion_notification, FeePromotionNotification, null: false, from: "FeePromotionNotification")
       end
     end
   end

@@ -12,10 +12,10 @@ module Peddler
       # acknowledged quantity, scheduled ship and delivery dates, and rejection reason (if applicable).
       OrderItemAcknowledgement = Structure.new do
         # @return [ItemQuantity] Details of quantity acknowledged with the above acknowledgement code.
-        attribute(:acknowledged_quantity, ItemQuantity, from: "acknowledgedQuantity")
+        attribute(:acknowledged_quantity, ItemQuantity, null: false, from: "acknowledgedQuantity")
 
         # @return [String] This indicates the acknowledgement code.
-        attribute(:acknowledgement_code, String, from: "acknowledgementCode")
+        attribute(:acknowledgement_code, String, null: false, from: "acknowledgementCode")
 
         # @return [String] Indicates the reason for rejection.
         attribute?(:rejection_reason, String, from: "rejectionReason")

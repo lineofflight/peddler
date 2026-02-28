@@ -14,14 +14,14 @@ module Peddler
       # data for each of those 3 contiguous weeks.
       Report = Structure.new do
         # @return [Array<InventoryAggregate>]
-        attribute(:inventory_aggregate, [InventoryAggregate], from: "inventoryAggregate")
+        attribute(:inventory_aggregate, [InventoryAggregate], null: false, from: "inventoryAggregate")
 
         # @return [Array<InventoryByAsin>]
-        attribute(:inventory_by_asin, [InventoryByASIN], from: "inventoryByAsin")
+        attribute(:inventory_by_asin, [InventoryByASIN], null: false, from: "inventoryByAsin")
 
         # @return [Hash] The report summary including a reporting date range, distributor view, selling program, and
         #   last updated date in the input.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

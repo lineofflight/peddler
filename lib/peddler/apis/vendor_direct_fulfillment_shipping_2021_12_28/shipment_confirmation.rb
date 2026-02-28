@@ -12,19 +12,19 @@ module Peddler
       ShipmentConfirmation = Structure.new do
         # @return [Array<Item>] Provide the details of the items in this shipment. If any of the item details field is
         #   common at a package or a pallet level, then provide them at the corresponding package.
-        attribute(:items, [Item])
+        attribute(:items, [Item], null: false)
 
         # @return [String] Purchase order number corresponding to the shipment.
-        attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
+        attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
         # @return [PartyIdentification] ID of the selling party or vendor.
-        attribute(:selling_party, PartyIdentification, from: "sellingParty")
+        attribute(:selling_party, PartyIdentification, null: false, from: "sellingParty")
 
         # @return [PartyIdentification] Warehouse code of vendor.
-        attribute(:ship_from_party, PartyIdentification, from: "shipFromParty")
+        attribute(:ship_from_party, PartyIdentification, null: false, from: "shipFromParty")
 
         # @return [ShipmentDetails] Shipment information.
-        attribute(:shipment_details, ShipmentDetails, from: "shipmentDetails")
+        attribute(:shipment_details, ShipmentDetails, null: false, from: "shipmentDetails")
 
         # @return [Array<Container>] Provide the details of the items in this shipment. If any of the item details field
         #   is common at a package or a pallet level, then provide them at the corresponding package.

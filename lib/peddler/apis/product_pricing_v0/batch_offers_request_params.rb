@@ -11,10 +11,10 @@ module Peddler
       BatchOffersRequestParams = Structure.new do
         # @return [String] Filters the offer listings to be considered based on item condition. Possible values: New,
         #   Used, Collectible, Refurbished, Club.
-        attribute(:item_condition, String, from: "ItemCondition")
+        attribute(:item_condition, String, null: false, from: "ItemCondition")
 
         # @return [String]
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
         # @return [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
         attribute?(:customer_type, String, from: "CustomerType")

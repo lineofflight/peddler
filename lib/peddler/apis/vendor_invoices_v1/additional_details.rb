@@ -10,10 +10,10 @@ module Peddler
       # Additional information provided by the selling party for tax-related or any other purpose.
       AdditionalDetails = Structure.new do
         # @return [String] The detail of the additional information provided by the selling party.
-        attribute(:detail, String)
+        attribute(:detail, String, null: false)
 
         # @return [String] The type of the additional information provided by the selling party.
-        attribute(:type, String)
+        attribute(:type, String, null: false)
 
         # @return [String] The language code of the additional information detail.
         attribute?(:language_code, String, from: "languageCode")

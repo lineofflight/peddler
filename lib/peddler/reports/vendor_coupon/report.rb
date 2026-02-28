@@ -11,10 +11,10 @@ module Peddler
       # report supports start dates up to two years before the current date.
       Report = Structure.new do
         # @return [Array<DetailsByCampaign>] List of included campaigns.
-        attribute(:campaigns, [DetailsByCampaign])
+        attribute(:campaigns, [DetailsByCampaign], null: false)
 
         # @return [Hash] Summarizes the original report request.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

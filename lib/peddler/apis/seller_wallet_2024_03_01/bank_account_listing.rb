@@ -10,7 +10,7 @@ module Peddler
       # Struct that holds collection of accounts.
       BankAccountListing = Structure.new do
         # @return [Array<BankAccount>] Collection that holds BankAccount
-        attribute(:accounts, [BankAccount])
+        attribute(:accounts, [BankAccount], null: false)
       end
     end
   end

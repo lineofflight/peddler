@@ -10,7 +10,7 @@ module Peddler
       # An item in a package.
       Item = Structure.new do
         # @return [Integer] The number of units. This value is required.
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [DangerousGoodsDetails]
         attribute?(:dangerous_goods_details, DangerousGoodsDetails, from: "dangerousGoodsDetails")

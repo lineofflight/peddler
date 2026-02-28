@@ -2,198 +2,198 @@ module Peddler
   module APIs
     class CustomerFeedback20240601 < API
       class BrowseNodeAllOccurrence < Data
-        def self.new: (all_products: Float?, top_twenty_five_percent_products: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
-                    | (Float?, Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
-        def self.[]: (all_products: Float?, top_twenty_five_percent_products: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
-                   | (Float?, Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
+        def self.new: (all_products: Float, top_twenty_five_percent_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
+                    | (Float, Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
+        def self.[]: (all_products: Float, top_twenty_five_percent_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
+                   | (Float, Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
 
         def self.members: () -> [ :all_products, :top_twenty_five_percent_products ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
 
-        attr_reader all_products: Float?
-        attr_reader top_twenty_five_percent_products: Float?
+        attr_reader all_products: Float
+        attr_reader top_twenty_five_percent_products: Float
 
         def members: () -> [ :all_products, :top_twenty_five_percent_products ]
-        def to_h: () -> { all_products: Float?, top_twenty_five_percent_products: Float? }
+        def to_h: () -> { all_products: Float, top_twenty_five_percent_products: Float }
       end
 
       class BrowseNodeAllStarRatingImpact < Data
-        def self.new: (all_products: Float?, top_twenty_five_percent_products: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
-                    | (Float?, Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
-        def self.[]: (all_products: Float?, top_twenty_five_percent_products: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
-                   | (Float?, Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
+        def self.new: (all_products: Float, top_twenty_five_percent_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
+                    | (Float, Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
+        def self.[]: (all_products: Float, top_twenty_five_percent_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
+                   | (Float, Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
 
         def self.members: () -> [ :all_products, :top_twenty_five_percent_products ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
 
-        attr_reader all_products: Float?
-        attr_reader top_twenty_five_percent_products: Float?
+        attr_reader all_products: Float
+        attr_reader top_twenty_five_percent_products: Float
 
         def members: () -> [ :all_products, :top_twenty_five_percent_products ]
-        def to_h: () -> { all_products: Float?, top_twenty_five_percent_products: Float? }
+        def to_h: () -> { all_products: Float, top_twenty_five_percent_products: Float }
       end
 
       class BrowseNodeOccurrence < Data
-        def self.new: (all_products: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
-                    | (Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
-        def self.[]: (all_products: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
-                   | (Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
+        def self.new: (all_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
+                    | (Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
+        def self.[]: (all_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
+                   | (Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
 
         def self.members: () -> [ :all_products ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
 
-        attr_reader all_products: Float?
+        attr_reader all_products: Float
 
         def members: () -> [ :all_products ]
-        def to_h: () -> { all_products: Float? }
+        def to_h: () -> { all_products: Float }
       end
 
       class BrowseNodeResponse < Data
-        def self.new: (browse_node_id: String?, display_name: String?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
-                    | (String?, String?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
-        def self.[]: (browse_node_id: String?, display_name: String?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
-                   | (String?, String?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
+        def self.new: (browse_node_id: String, display_name: String) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
+                    | (String, String) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
+        def self.[]: (browse_node_id: String, display_name: String) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
+                   | (String, String) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
 
         def self.members: () -> [ :browse_node_id, :display_name ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeResponse
 
-        attr_reader browse_node_id: String?
-        attr_reader display_name: String?
+        attr_reader browse_node_id: String
+        attr_reader display_name: String
 
         def members: () -> [ :browse_node_id, :display_name ]
-        def to_h: () -> { browse_node_id: String?, display_name: String? }
+        def to_h: () -> { browse_node_id: String, display_name: String }
       end
 
       class BrowseNodeReturnTopics < Data
-        def self.new: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, topic: String?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
-                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, String?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
-        def self.[]: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, topic: String?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
-                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, String?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
+        def self.new: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, topic: String) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
+                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, String) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
+        def self.[]: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, topic: String) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
+                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, String) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
 
         def self.members: () -> [ :browse_node_metrics, :topic ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics
 
-        attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?
-        attr_reader topic: String?
+        attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
+        attr_reader topic: String
 
         def members: () -> [ :browse_node_metrics, :topic ]
-        def to_h: () -> { browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, topic: String? }
+        def to_h: () -> { browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, topic: String }
       end
 
       class BrowseNodeReturnTopicsResponse < Data
-        def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
-                    | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
-        def self.[]: (browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
-                   | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
+        def self.new: (browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, topics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
+                    | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
+        def self.[]: (browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, topics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
+                   | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
 
         def self.members: () -> [ :browse_node_id, :country_code, :date_range, :display_name, :marketplace_id, :topics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
 
-        attr_reader browse_node_id: String?
-        attr_reader country_code: String?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
-        attr_reader display_name: String?
-        attr_reader marketplace_id: String?
-        attr_reader topics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]?
+        attr_reader browse_node_id: String
+        attr_reader country_code: String
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
+        attr_reader display_name: String
+        attr_reader marketplace_id: String
+        attr_reader topics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]
 
         def members: () -> [ :browse_node_id, :country_code, :date_range, :display_name, :marketplace_id, :topics ]
-        def to_h: () -> { browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics]? }
+        def to_h: () -> { browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, topics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTopics] }
       end
 
       class BrowseNodeReturnTrend < Data
-        def self.new: (topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
-                    | (String?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
-        def self.[]: (topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
-                   | (String?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
+        def self.new: (topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
+                    | (String, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
+        def self.[]: (topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
+                   | (String, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
 
         def self.members: () -> [ :topic, :trend_metrics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend
 
-        attr_reader topic: String?
-        attr_reader trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]?
+        attr_reader topic: String
+        attr_reader trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]
 
         def members: () -> [ :topic, :trend_metrics ]
-        def to_h: () -> { topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]? }
+        def to_h: () -> { topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint] }
       end
 
       class BrowseNodeReturnTrendPoint < Data
-        def self.new: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
-                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::DateRange?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
-        def self.[]: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
-                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::DateRange?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
+        def self.new: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
+                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, Peddler::APIs::CustomerFeedback20240601::DateRange) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
+        def self.[]: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
+                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, Peddler::APIs::CustomerFeedback20240601::DateRange) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
 
         def self.members: () -> [ :browse_node_metrics, :date_range ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
 
-        attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
+        attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
 
         def members: () -> [ :browse_node_metrics, :date_range ]
-        def to_h: () -> { browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange? }
+        def to_h: () -> { browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange }
       end
 
       class BrowseNodeReturnTrendsResponse < Data
-        def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, return_trends: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
-                    | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
-        def self.[]: (browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, return_trends: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
-                   | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+        def self.new: (browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, return_trends: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+                    | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+        def self.[]: (browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, return_trends: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+                   | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
 
         def self.members: () -> [ :browse_node_id, :country_code, :date_range, :display_name, :marketplace_id, :return_trends ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
 
-        attr_reader browse_node_id: String?
-        attr_reader country_code: String?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
-        attr_reader display_name: String?
-        attr_reader marketplace_id: String?
-        attr_reader return_trends: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]?
+        attr_reader browse_node_id: String
+        attr_reader country_code: String
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
+        attr_reader display_name: String
+        attr_reader marketplace_id: String
+        attr_reader return_trends: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]
 
         def members: () -> [ :browse_node_id, :country_code, :date_range, :display_name, :marketplace_id, :return_trends ]
-        def to_h: () -> { browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, return_trends: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend]? }
+        def to_h: () -> { browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, return_trends: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReturnTrend] }
       end
 
       class BrowseNodeReviewSubtopicMetrics < Data
-        def self.new: (occurrence_percentage: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
-                    | (Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
-        def self.[]: (occurrence_percentage: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
-                   | (Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
+        def self.new: (occurrence_percentage: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
+                    | (Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
+        def self.[]: (occurrence_percentage: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
+                   | (Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
 
         def self.members: () -> [ :occurrence_percentage ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
 
-        attr_reader occurrence_percentage: Float?
+        attr_reader occurrence_percentage: Float
 
         def members: () -> [ :occurrence_percentage ]
-        def to_h: () -> { occurrence_percentage: Float? }
+        def to_h: () -> { occurrence_percentage: Float }
       end
 
       class BrowseNodeReviewTopic < Data
-        def self.new: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, topic: String?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
-                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, String?, Array[String]?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
-        def self.[]: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, topic: String?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
-                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, String?, Array[String]?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
+        def self.new: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics, topic: String, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
+                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics, String, Array[String]?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
+        def self.[]: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics, topic: String, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
+                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics, String, Array[String]?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
 
         def self.members: () -> [ :browse_node_metrics, :topic, :review_snippets, :subtopics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopic
 
-        attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?
+        attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics
         attr_reader review_snippets: Array[String]?
         attr_reader subtopics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]?
-        attr_reader topic: String?
+        attr_reader topic: String
 
         def members: () -> [ :browse_node_metrics, :topic, :review_snippets, :subtopics ]
-        def to_h: () -> { browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, topic: String?, review_snippets: Array[String]?, subtopics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]? }
+        def to_h: () -> { browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics, topic: String, review_snippets: Array[String]?, subtopics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic]? }
       end
 
       class BrowseNodeReviewTopicMetrics < Data
@@ -231,74 +231,74 @@ module Peddler
       end
 
       class BrowseNodeReviewTopicsResponse < Data
-        def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
-                    | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
-        def self.[]: (browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
-                   | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+        def self.new: (browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, topics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+                    | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+        def self.[]: (browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, topics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+                   | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
 
         def self.members: () -> [ :browse_node_id, :country_code, :date_range, :display_name, :marketplace_id, :topics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
 
-        attr_reader browse_node_id: String?
-        attr_reader country_code: String?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
-        attr_reader display_name: String?
-        attr_reader marketplace_id: String?
-        attr_reader topics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics?
+        attr_reader browse_node_id: String
+        attr_reader country_code: String
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
+        attr_reader display_name: String
+        attr_reader marketplace_id: String
+        attr_reader topics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics
 
         def members: () -> [ :browse_node_id, :country_code, :date_range, :display_name, :marketplace_id, :topics ]
-        def to_h: () -> { browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics? }
+        def to_h: () -> { browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, topics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTopics }
       end
 
       class BrowseNodeReviewTrend < Data
-        def self.new: (topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
-                    | (String?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
-        def self.[]: (topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
-                   | (String?, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
+        def self.new: (topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
+                    | (String, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
+        def self.[]: (topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
+                   | (String, Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
 
         def self.members: () -> [ :topic, :trend_metrics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrend
 
-        attr_reader topic: String?
-        attr_reader trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?
+        attr_reader topic: String
+        attr_reader trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]
 
         def members: () -> [ :topic, :trend_metrics ]
-        def to_h: () -> { topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]? }
+        def to_h: () -> { topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint] }
       end
 
       class BrowseNodeReviewTrendMetrics < Data
-        def self.new: (occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
-                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
-        def self.[]: (occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
-                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
+        def self.new: (occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
+                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
+        def self.[]: (occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
+                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
 
         def self.members: () -> [ :occurrence_percentage ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
 
-        attr_reader occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence?
+        attr_reader occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
 
         def members: () -> [ :occurrence_percentage ]
-        def to_h: () -> { occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence? }
+        def to_h: () -> { occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence }
       end
 
       class BrowseNodeReviewTrendPoint < Data
-        def self.new: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
-                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::DateRange?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
-        def self.[]: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
-                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::DateRange?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+        def self.new: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics, Peddler::APIs::CustomerFeedback20240601::DateRange) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+        def self.[]: (browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics, Peddler::APIs::CustomerFeedback20240601::DateRange) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
 
         def self.members: () -> [ :browse_node_metrics, :date_range ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
 
-        attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
+        attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
 
         def members: () -> [ :browse_node_metrics, :date_range ]
-        def to_h: () -> { browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange? }
+        def to_h: () -> { browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange }
       end
 
       class BrowseNodeReviewTrends < Data
@@ -319,91 +319,91 @@ module Peddler
       end
 
       class BrowseNodeReviewTrendsResponse < Data
-        def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, review_trends: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
-                    | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
-        def self.[]: (browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, review_trends: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
-                   | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
+        def self.new: (browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, review_trends: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
+                    | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
+        def self.[]: (browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, review_trends: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
+                   | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
 
         def self.members: () -> [ :browse_node_id, :country_code, :date_range, :display_name, :marketplace_id, :review_trends ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
 
-        attr_reader browse_node_id: String?
-        attr_reader country_code: String?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
-        attr_reader display_name: String?
-        attr_reader marketplace_id: String?
-        attr_reader review_trends: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends?
+        attr_reader browse_node_id: String
+        attr_reader country_code: String
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
+        attr_reader display_name: String
+        attr_reader marketplace_id: String
+        attr_reader review_trends: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends
 
         def members: () -> [ :browse_node_id, :country_code, :date_range, :display_name, :marketplace_id, :review_trends ]
-        def to_h: () -> { browse_node_id: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, review_trends: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends? }
+        def to_h: () -> { browse_node_id: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, display_name: String, marketplace_id: String, review_trends: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewTrends }
       end
 
       class BrowseNodeStarRatingImpact < Data
-        def self.new: (all_products: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
-                    | (Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
-        def self.[]: (all_products: Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
-                   | (Float?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
+        def self.new: (all_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
+                    | (Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
+        def self.[]: (all_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
+                   | (Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
 
         def self.members: () -> [ :all_products ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeStarRatingImpact
 
-        attr_reader all_products: Float?
+        attr_reader all_products: Float
 
         def members: () -> [ :all_products ]
-        def to_h: () -> { all_products: Float? }
+        def to_h: () -> { all_products: Float }
       end
 
       class BrowseNodeSubtopic < Data
-        def self.new: (metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?, subtopic: String?, ?review_snippets: Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
-                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?, String?, Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
-        def self.[]: (metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?, subtopic: String?, ?review_snippets: Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
-                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?, String?, Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
+        def self.new: (metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics, subtopic: String, ?review_snippets: Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
+                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics, String, Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
+        def self.[]: (metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics, subtopic: String, ?review_snippets: Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
+                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics, String, Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
 
         def self.members: () -> [ :metrics, :subtopic, :review_snippets ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeSubtopic
 
-        attr_reader metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?
+        attr_reader metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
         attr_reader review_snippets: Array[String]?
-        attr_reader subtopic: String?
+        attr_reader subtopic: String
 
         def members: () -> [ :metrics, :subtopic, :review_snippets ]
-        def to_h: () -> { metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?, subtopic: String?, review_snippets: Array[String]? }
+        def to_h: () -> { metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics, subtopic: String, review_snippets: Array[String]? }
       end
 
       class BrowseNodeTrendMetrics < Data
-        def self.new: (occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
-                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
-        def self.[]: (occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
-                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence?) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
+        def self.new: (occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
+                    | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
+        def self.[]: (occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
+                   | (Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
 
         def self.members: () -> [ :occurrence_percentage ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics
 
-        attr_reader occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence?
+        attr_reader occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence
 
         def members: () -> [ :occurrence_percentage ]
-        def to_h: () -> { occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence? }
+        def to_h: () -> { occurrence_percentage: Peddler::APIs::CustomerFeedback20240601::BrowseNodeOccurrence }
       end
 
       class ChildASINMentionMetrics < Data
-        def self.new: (asin: String?, number_of_mentions: Integer?) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
-                    | (String?, Integer?) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
-        def self.[]: (asin: String?, number_of_mentions: Integer?) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
-                   | (String?, Integer?) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
+        def self.new: (asin: String, number_of_mentions: Integer) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
+                    | (String, Integer) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
+        def self.[]: (asin: String, number_of_mentions: Integer) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
+                   | (String, Integer) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
 
         def self.members: () -> [ :asin, :number_of_mentions ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ChildASINMentionMetrics
 
-        attr_reader asin: String?
-        attr_reader number_of_mentions: Integer?
+        attr_reader asin: String
+        attr_reader number_of_mentions: Integer
 
         def members: () -> [ :asin, :number_of_mentions ]
-        def to_h: () -> { asin: String?, number_of_mentions: Integer? }
+        def to_h: () -> { asin: String, number_of_mentions: Integer }
       end
 
       class ChildASINMetrics < Data
@@ -424,54 +424,54 @@ module Peddler
       end
 
       class DateRange < Data
-        def self.new: (end_date: Time?, start_date: Time?) -> Peddler::APIs::CustomerFeedback20240601::DateRange
-                    | (Time?, Time?) -> Peddler::APIs::CustomerFeedback20240601::DateRange
-        def self.[]: (end_date: Time?, start_date: Time?) -> Peddler::APIs::CustomerFeedback20240601::DateRange
-                   | (Time?, Time?) -> Peddler::APIs::CustomerFeedback20240601::DateRange
+        def self.new: (end_date: Time, start_date: Time) -> Peddler::APIs::CustomerFeedback20240601::DateRange
+                    | (Time, Time) -> Peddler::APIs::CustomerFeedback20240601::DateRange
+        def self.[]: (end_date: Time, start_date: Time) -> Peddler::APIs::CustomerFeedback20240601::DateRange
+                   | (Time, Time) -> Peddler::APIs::CustomerFeedback20240601::DateRange
 
         def self.members: () -> [ :end_date, :start_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::DateRange
 
-        attr_reader end_date: Time?
-        attr_reader start_date: Time?
+        attr_reader end_date: Time
+        attr_reader start_date: Time
 
         def members: () -> [ :end_date, :start_date ]
-        def to_h: () -> { end_date: Time?, start_date: Time? }
+        def to_h: () -> { end_date: Time, start_date: Time }
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::CustomerFeedback20240601::Error
-                    | (String?, String?, String?) -> Peddler::APIs::CustomerFeedback20240601::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::CustomerFeedback20240601::Error
-                   | (String?, String?, String?) -> Peddler::APIs::CustomerFeedback20240601::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::CustomerFeedback20240601::Error
+                    | (String, String, String?) -> Peddler::APIs::CustomerFeedback20240601::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::CustomerFeedback20240601::Error
+                   | (String, String, String?) -> Peddler::APIs::CustomerFeedback20240601::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::CustomerFeedback20240601::Error]?) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
-                    | (Array[Peddler::APIs::CustomerFeedback20240601::Error]?) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::CustomerFeedback20240601::Error]?) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
-                   | (Array[Peddler::APIs::CustomerFeedback20240601::Error]?) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::CustomerFeedback20240601::Error]) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
+                    | (Array[Peddler::APIs::CustomerFeedback20240601::Error]) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::CustomerFeedback20240601::Error]) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
+                   | (Array[Peddler::APIs::CustomerFeedback20240601::Error]) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::CustomerFeedback20240601::Error]?
+        attr_reader errors: Array[Peddler::APIs::CustomerFeedback20240601::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::CustomerFeedback20240601::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::CustomerFeedback20240601::Error] }
       end
 
       class ItemReviewBrowseNodeMetrics < Data
@@ -492,60 +492,60 @@ module Peddler
       end
 
       class ItemReviewSubtopic < Data
-        def self.new: (metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, subtopic: String?, ?review_snippets: Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
-                    | (Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, String?, Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
-        def self.[]: (metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, subtopic: String?, ?review_snippets: Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
-                   | (Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, String?, Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
+        def self.new: (metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics, subtopic: String, ?review_snippets: Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
+                    | (Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics, String, Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
+        def self.[]: (metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics, subtopic: String, ?review_snippets: Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
+                   | (Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics, String, Array[String]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
 
         def self.members: () -> [ :metrics, :subtopic, :review_snippets ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic
 
-        attr_reader metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics?
+        attr_reader metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
         attr_reader review_snippets: Array[String]?
-        attr_reader subtopic: String?
+        attr_reader subtopic: String
 
         def members: () -> [ :metrics, :subtopic, :review_snippets ]
-        def to_h: () -> { metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, subtopic: String?, review_snippets: Array[String]? }
+        def to_h: () -> { metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics, subtopic: String, review_snippets: Array[String]? }
       end
 
       class ItemReviewSubtopicMetrics < Data
-        def self.new: (number_of_mentions: Integer?, occurrence_percentage: Float?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
-                    | (Integer?, Float?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
-        def self.[]: (number_of_mentions: Integer?, occurrence_percentage: Float?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
-                   | (Integer?, Float?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
+        def self.new: (number_of_mentions: Integer, occurrence_percentage: Float) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
+                    | (Integer, Float) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
+        def self.[]: (number_of_mentions: Integer, occurrence_percentage: Float) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
+                   | (Integer, Float) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
 
         def self.members: () -> [ :number_of_mentions, :occurrence_percentage ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopicMetrics
 
-        attr_reader number_of_mentions: Integer?
-        attr_reader occurrence_percentage: Float?
+        attr_reader number_of_mentions: Integer
+        attr_reader occurrence_percentage: Float
 
         def members: () -> [ :number_of_mentions, :occurrence_percentage ]
-        def to_h: () -> { number_of_mentions: Integer?, occurrence_percentage: Float? }
+        def to_h: () -> { number_of_mentions: Integer, occurrence_percentage: Float }
       end
 
       class ItemReviewTopic < Data
-        def self.new: (asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, topic: String?, ?browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, ?child_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, ?parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
-                    | (Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, String?, Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, Array[String]?, Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
-        def self.[]: (asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, topic: String?, ?browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, ?child_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, ?parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
-                   | (Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, String?, Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, Array[String]?, Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
+        def self.new: (asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics, topic: String, ?browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, ?child_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, ?parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
+                    | (Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics, String, Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, Array[String]?, Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
+        def self.[]: (asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics, topic: String, ?browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, ?child_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, ?parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
+                   | (Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics, String, Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, Array[String]?, Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
 
         def self.members: () -> [ :asin_metrics, :topic, :browse_node_metrics, :child_asin_metrics, :parent_asin_metrics, :review_snippets, :subtopics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopic
 
-        attr_reader asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?
+        attr_reader asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics
         attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?
         attr_reader child_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?
         attr_reader parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?
         attr_reader review_snippets: Array[String]?
         attr_reader subtopics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]?
-        attr_reader topic: String?
+        attr_reader topic: String
 
         def members: () -> [ :asin_metrics, :topic, :browse_node_metrics, :child_asin_metrics, :parent_asin_metrics, :review_snippets, :subtopics ]
-        def to_h: () -> { asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, topic: String?, browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, child_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, review_snippets: Array[String]?, subtopics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]? }
+        def to_h: () -> { asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics, topic: String, browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, child_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ChildASINMetrics?, parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicMetrics?, review_snippets: Array[String]?, subtopics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewSubtopic]? }
       end
 
       class ItemReviewTopicMetrics < Data
@@ -584,60 +584,60 @@ module Peddler
       end
 
       class ItemReviewTopicsResponse < Data
-        def self.new: (asin: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, topics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
-                    | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
-        def self.[]: (asin: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, topics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
-                   | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
+        def self.new: (asin: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, item_name: String, marketplace_id: String, topics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
+                    | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
+        def self.[]: (asin: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, item_name: String, marketplace_id: String, topics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
+                   | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
 
         def self.members: () -> [ :asin, :country_code, :date_range, :item_name, :marketplace_id, :topics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTopicsResponse
 
-        attr_reader asin: String?
-        attr_reader country_code: String?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
-        attr_reader item_name: String?
-        attr_reader marketplace_id: String?
-        attr_reader topics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics?
+        attr_reader asin: String
+        attr_reader country_code: String
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
+        attr_reader item_name: String
+        attr_reader marketplace_id: String
+        attr_reader topics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics
 
         def members: () -> [ :asin, :country_code, :date_range, :item_name, :marketplace_id, :topics ]
-        def to_h: () -> { asin: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, topics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics? }
+        def to_h: () -> { asin: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, item_name: String, marketplace_id: String, topics: Peddler::APIs::CustomerFeedback20240601::ItemReviewTopics }
       end
 
       class ItemReviewTrend < Data
-        def self.new: (topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
-                    | (String?, Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
-        def self.[]: (topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
-                   | (String?, Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
+        def self.new: (topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
+                    | (String, Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
+        def self.[]: (topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
+                   | (String, Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
 
         def self.members: () -> [ :topic, :trend_metrics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrend
 
-        attr_reader topic: String?
-        attr_reader trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]?
+        attr_reader topic: String
+        attr_reader trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]
 
         def members: () -> [ :topic, :trend_metrics ]
-        def to_h: () -> { topic: String?, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint]? }
+        def to_h: () -> { topic: String, trend_metrics: Array[Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint] }
       end
 
       class ItemReviewTrendPoint < Data
-        def self.new: (asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, ?browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, ?parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
-                    | (Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::DateRange?, Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
-        def self.[]: (asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, ?browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, ?parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
-                   | (Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::DateRange?, Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
+        def self.new: (asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, ?browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, ?parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
+                    | (Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics, Peddler::APIs::CustomerFeedback20240601::DateRange, Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
+        def self.[]: (asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, ?browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, ?parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
+                   | (Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics, Peddler::APIs::CustomerFeedback20240601::DateRange, Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
 
         def self.members: () -> [ :asin_metrics, :date_range, :browse_node_metrics, :parent_asin_metrics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendPoint
 
-        attr_reader asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?
+        attr_reader asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
         attr_reader browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
         attr_reader parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?
 
         def members: () -> [ :asin_metrics, :date_range, :browse_node_metrics, :parent_asin_metrics ]
-        def to_h: () -> { asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics? }
+        def to_h: () -> { asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, browse_node_metrics: Peddler::APIs::CustomerFeedback20240601::BrowseNodeTrendMetrics?, parent_asin_metrics: Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics? }
       end
 
       class ItemReviewTrends < Data
@@ -658,40 +658,40 @@ module Peddler
       end
 
       class ItemReviewTrendsResponse < Data
-        def self.new: (asin: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, review_trends: Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
-                    | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
-        def self.[]: (asin: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, review_trends: Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
-                   | (String?, String?, Peddler::APIs::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends?) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
+        def self.new: (asin: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, item_name: String, marketplace_id: String, review_trends: Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
+                    | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
+        def self.[]: (asin: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, item_name: String, marketplace_id: String, review_trends: Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
+                   | (String, String, Peddler::APIs::CustomerFeedback20240601::DateRange, String, String, Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
 
         def self.members: () -> [ :asin, :country_code, :date_range, :item_name, :marketplace_id, :review_trends ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ItemReviewTrendsResponse
 
-        attr_reader asin: String?
-        attr_reader country_code: String?
-        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?
-        attr_reader item_name: String?
-        attr_reader marketplace_id: String?
-        attr_reader review_trends: Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends?
+        attr_reader asin: String
+        attr_reader country_code: String
+        attr_reader date_range: Peddler::APIs::CustomerFeedback20240601::DateRange
+        attr_reader item_name: String
+        attr_reader marketplace_id: String
+        attr_reader review_trends: Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends
 
         def members: () -> [ :asin, :country_code, :date_range, :item_name, :marketplace_id, :review_trends ]
-        def to_h: () -> { asin: String?, country_code: String?, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, review_trends: Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends? }
+        def to_h: () -> { asin: String, country_code: String, date_range: Peddler::APIs::CustomerFeedback20240601::DateRange, item_name: String, marketplace_id: String, review_trends: Peddler::APIs::CustomerFeedback20240601::ItemReviewTrends }
       end
 
       class ReviewTrendMetrics < Data
-        def self.new: (occurrence_percentage: Float?) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
-                    | (Float?) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
-        def self.[]: (occurrence_percentage: Float?) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
-                   | (Float?) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
+        def self.new: (occurrence_percentage: Float) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
+                    | (Float) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
+        def self.[]: (occurrence_percentage: Float) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
+                   | (Float) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
 
         def self.members: () -> [ :occurrence_percentage ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::CustomerFeedback20240601::ReviewTrendMetrics
 
-        attr_reader occurrence_percentage: Float?
+        attr_reader occurrence_percentage: Float
 
         def members: () -> [ :occurrence_percentage ]
-        def to_h: () -> { occurrence_percentage: Float? }
+        def to_h: () -> { occurrence_percentage: Float }
       end
 
       def get_browse_node_return_topics: (String, String) -> Peddler::Response

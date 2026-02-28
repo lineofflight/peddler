@@ -11,13 +11,13 @@ module Peddler
       # party, ship from party, and a list of containers or packages in the shipment.
       ShippingLabelRequest = Structure.new do
         # @return [String] Purchase order number of the order for which to create a shipping label.
-        attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
+        attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
         # @return [PartyIdentification] ID of the selling party or vendor.
-        attribute(:selling_party, PartyIdentification, from: "sellingParty")
+        attribute(:selling_party, PartyIdentification, null: false, from: "sellingParty")
 
         # @return [PartyIdentification] Warehouse code of vendor.
-        attribute(:ship_from_party, PartyIdentification, from: "shipFromParty")
+        attribute(:ship_from_party, PartyIdentification, null: false, from: "shipFromParty")
 
         # @return [Array<Container>] A list of the packages in this shipment.
         attribute?(:containers, [Container])

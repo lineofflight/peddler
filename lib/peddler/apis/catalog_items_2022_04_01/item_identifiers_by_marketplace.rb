@@ -11,11 +11,11 @@ module Peddler
       ItemIdentifiersByMarketplace = Structure.new do
         # @return [Array<ItemIdentifier>] Identifiers associated with the item in the Amazon catalog for the indicated
         #   `marketplaceId`.
-        attribute(:identifiers, [ItemIdentifier])
+        attribute(:identifiers, [ItemIdentifier], null: false)
 
         # @return [String] Amazon marketplace identifier. To find the ID for your marketplace, refer to [Marketplace
         #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).identifier.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
       end
     end
   end

@@ -10,10 +10,10 @@ module Peddler
       # The weight of a package.
       Weight = Structure.new do
         # @return [String] The numerical value of the weight. Must be a positive value.
-        attribute(:value, String)
+        attribute(:value, String, null: false)
 
         # @return [String] The unit of measurement of the weight.
-        attribute(:weight_unit, String, from: "weightUnit")
+        attribute(:weight_unit, String, null: false, from: "weightUnit")
       end
     end
   end

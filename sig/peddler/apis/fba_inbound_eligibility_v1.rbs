@@ -2,21 +2,21 @@ module Peddler
   module APIs
     class FBAInboundEligibilityV1 < API
       class Error < Data
-        def self.new: (code: String?, ?details: String?, ?message: String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
-                    | (String?, String?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
-        def self.[]: (code: String?, ?details: String?, ?message: String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
-                   | (String?, String?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
+        def self.new: (code: String, ?details: String?, ?message: String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
+                    | (String, String?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
+        def self.[]: (code: String, ?details: String?, ?message: String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
+                   | (String, String?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
 
         def self.members: () -> [ :code, :details, :message ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInboundEligibilityV1::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
         attr_reader message: String?
 
         def members: () -> [ :code, :details, :message ]
-        def to_h: () -> { code: String?, details: String?, message: String? }
+        def to_h: () -> { code: String, details: String?, message: String? }
       end
 
       class ErrorList < Array[Error]
@@ -41,24 +41,24 @@ module Peddler
       end
 
       class ItemEligibilityPreview < Data
-        def self.new: (asin: String?, eligible_for_program: bool?, program: String?, ?ineligibility_reason_list: Array[String]?, ?marketplace_id: String?) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
-                    | (String?, bool?, String?, Array[String]?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
-        def self.[]: (asin: String?, eligible_for_program: bool?, program: String?, ?ineligibility_reason_list: Array[String]?, ?marketplace_id: String?) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
-                   | (String?, bool?, String?, Array[String]?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
+        def self.new: (asin: String, eligible_for_program: bool, program: String, ?ineligibility_reason_list: Array[String]?, ?marketplace_id: String?) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
+                    | (String, bool, String, Array[String]?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
+        def self.[]: (asin: String, eligible_for_program: bool, program: String, ?ineligibility_reason_list: Array[String]?, ?marketplace_id: String?) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
+                   | (String, bool, String, Array[String]?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
 
         def self.members: () -> [ :asin, :eligible_for_program, :program, :ineligibility_reason_list, :marketplace_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FBAInboundEligibilityV1::ItemEligibilityPreview
 
-        attr_reader asin: String?
-        attr_reader eligible_for_program: bool?
+        attr_reader asin: String
+        attr_reader eligible_for_program: bool
         attr_reader ineligibility_reason_list: Array[String]?
         attr_reader marketplace_id: String?
-        attr_reader program: String?
+        attr_reader program: String
 
         def eligible_for_program?: () -> bool
         def members: () -> [ :asin, :eligible_for_program, :program, :ineligibility_reason_list, :marketplace_id ]
-        def to_h: () -> { asin: String?, eligible_for_program: bool?, program: String?, ineligibility_reason_list: Array[String]?, marketplace_id: String? }
+        def to_h: () -> { asin: String, eligible_for_program: bool, program: String, ineligibility_reason_list: Array[String]?, marketplace_id: String? }
       end
 
       def get_item_eligibility_preview: (String, String, ?marketplace_ids: Array[String]?, ?rate_limit: Float) -> Peddler::Response

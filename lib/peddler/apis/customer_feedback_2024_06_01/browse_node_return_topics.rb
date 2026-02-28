@@ -10,10 +10,10 @@ module Peddler
       # Topics from returns for all items in a browse node.
       BrowseNodeReturnTopics = Structure.new do
         # @return [BrowseNodeTrendMetrics] The browse node return topic metrics.
-        attribute(:browse_node_metrics, BrowseNodeTrendMetrics, from: "browseNodeMetrics")
+        attribute(:browse_node_metrics, BrowseNodeTrendMetrics, null: false, from: "browseNodeMetrics")
 
         # @return [String] The name of the return feedback topic .
-        attribute(:topic, String)
+        attribute(:topic, String, null: false)
       end
     end
   end

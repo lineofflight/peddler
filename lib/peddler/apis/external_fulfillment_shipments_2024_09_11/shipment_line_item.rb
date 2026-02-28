@@ -11,20 +11,20 @@ module Peddler
       ShipmentLineItem = Structure.new do
         # @return [Array<Charge>] The charges associated with the line item. The charge amount does not include the tax
         #   amount.
-        attribute(:charges, [Charge])
+        attribute(:charges, [Charge], null: false)
 
         # @return [ComplianceAttributes] All necessary compliance attributes specific to the line item.
-        attribute(:compliance_attributes, ComplianceAttributes, from: "complianceAttributes")
+        attribute(:compliance_attributes, ComplianceAttributes, null: false, from: "complianceAttributes")
 
         # @return [String] The seller's identifier for the SKU in this line item.
-        attribute(:merchant_sku, String, from: "merchantSku")
+        attribute(:merchant_sku, String, null: false, from: "merchantSku")
 
         # @return [Integer] The number of items of the SKU in this line item.
-        attribute(:number_of_units, Integer, from: "numberOfUnits")
+        attribute(:number_of_units, Integer, null: false, from: "numberOfUnits")
 
         # @return [String] An identifier for a shipment's line item. This identifier is guaranteed to be unique within
         #   the scope of its containing shipment.
-        attribute(:shipment_line_item_id, String, from: "shipmentLineItemId")
+        attribute(:shipment_line_item_id, String, null: false, from: "shipmentLineItemId")
 
         # @return [Array<Cancellation>] A list of cancellations for the given line item.
         attribute?(:cancellations, [Cancellation])

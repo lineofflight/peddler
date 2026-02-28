@@ -10,10 +10,10 @@ module Peddler
       # The result of creating a new supply source.
       CreateSupplySourceResponse = Structure.new do
         # @return [String]
-        attribute(:supply_source_code, String, from: "supplySourceCode")
+        attribute(:supply_source_code, String, null: false, from: "supplySourceCode")
 
         # @return [String]
-        attribute(:supply_source_id, String, from: "supplySourceId")
+        attribute(:supply_source_id, String, null: false, from: "supplySourceId")
       end
     end
   end

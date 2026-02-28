@@ -11,10 +11,10 @@ module Peddler
       # A date range.
       DateRange = Structure.new do
         # @return [Time] The end date of the date range in ISO-8601 date/time format.
-        attribute(:end_date, Time, from: "endDate")
+        attribute(:end_date, Time, null: false, from: "endDate")
 
         # @return [Time] The start date of the date range in ISO-8601 date/time format.
-        attribute(:start_date, Time, from: "startDate")
+        attribute(:start_date, Time, null: false, from: "startDate")
       end
     end
   end

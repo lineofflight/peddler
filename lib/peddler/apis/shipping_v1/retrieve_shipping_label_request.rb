@@ -10,7 +10,7 @@ module Peddler
       # The request schema for the retrieveShippingLabel operation.
       RetrieveShippingLabelRequest = Structure.new do
         # @return [LabelSpecification]
-        attribute(:label_specification, LabelSpecification, from: "labelSpecification")
+        attribute(:label_specification, LabelSpecification, null: false, from: "labelSpecification")
       end
     end
   end

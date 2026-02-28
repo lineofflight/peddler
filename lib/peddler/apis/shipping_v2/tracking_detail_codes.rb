@@ -11,11 +11,11 @@ module Peddler
       TrackingDetailCodes = Structure.new do
         # @return [Array<DetailCodes>] Contains detail codes that provide additional details related to the forward leg
         #   of the shipment.
-        attribute(:forward, Array)
+        attribute(:forward, Array, null: false)
 
         # @return [Array<DetailCodes>] Contains detail codes that provide additional details related to the return leg
         #   of the shipment.
-        attribute(:returns, Array)
+        attribute(:returns, Array, null: false)
       end
     end
   end

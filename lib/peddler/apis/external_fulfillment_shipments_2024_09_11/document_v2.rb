@@ -16,7 +16,7 @@ module Peddler
         #
         # - **ZPL**: `x.application/zpl` - **PDF**: `application/pdf` - **PNG**: `image/png` - **Plain Text**:
         #   `text/plain`
-        attribute(:url, String)
+        attribute(:url, String, null: false)
       end
     end
   end

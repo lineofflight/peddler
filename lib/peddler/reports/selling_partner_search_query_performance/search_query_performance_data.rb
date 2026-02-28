@@ -12,28 +12,28 @@ module Peddler
       SearchQueryPerformanceData = Structure.new do
         # @return [String] A space-separated list of ASINs for which you can request the report. There is a
         #   200-character limit.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [SearchQueryPerformanceCartAddData]
-        attribute(:cart_add_data, SearchQueryPerformanceCartAddData, from: "cartAddData")
+        attribute(:cart_add_data, SearchQueryPerformanceCartAddData, null: false, from: "cartAddData")
 
         # @return [SearchQueryPerformanceClickData]
-        attribute(:click_data, SearchQueryPerformanceClickData, from: "clickData")
+        attribute(:click_data, SearchQueryPerformanceClickData, null: false, from: "clickData")
 
         # @return [Date] The end date of the data for the ASIN that you specify.
-        attribute(:end_date, Date, from: "endDate")
+        attribute(:end_date, Date, null: false, from: "endDate")
 
         # @return [SearchQueryPerformanceImpressionData]
-        attribute(:impression_data, SearchQueryPerformanceImpressionData, from: "impressionData")
+        attribute(:impression_data, SearchQueryPerformanceImpressionData, null: false, from: "impressionData")
 
         # @return [SearchQueryPerformancePurchaseData]
-        attribute(:purchase_data, SearchQueryPerformancePurchaseData, from: "purchaseData")
+        attribute(:purchase_data, SearchQueryPerformancePurchaseData, null: false, from: "purchaseData")
 
         # @return [SearchQueryData]
-        attribute(:search_query_data, SearchQueryData, from: "searchQueryData")
+        attribute(:search_query_data, SearchQueryData, null: false, from: "searchQueryData")
 
         # @return [Date] The start date of the data for the ASIN that you specify.
-        attribute(:start_date, Date, from: "startDate")
+        attribute(:start_date, Date, null: false, from: "startDate")
       end
     end
   end

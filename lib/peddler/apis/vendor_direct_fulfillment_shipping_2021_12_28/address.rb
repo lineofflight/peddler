@@ -10,14 +10,14 @@ module Peddler
       # Address of the party.
       Address = Structure.new do
         # @return [String] First line of the address.
-        attribute(:address_line1, String, from: "addressLine1")
+        attribute(:address_line1, String, null: false, from: "addressLine1")
 
         # @return [String] The two-letter country code in [ISO 3166-1 alpha-2](https://www.iban.com/country-codes)
         #   format.
-        attribute(:country_code, String, from: "countryCode")
+        attribute(:country_code, String, null: false, from: "countryCode")
 
         # @return [String] The name of the person, business or institution at that address.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String] Additional street address information, if required.
         attribute?(:address_line2, String, from: "addressLine2")

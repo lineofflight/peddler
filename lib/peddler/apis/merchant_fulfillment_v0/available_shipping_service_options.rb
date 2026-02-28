@@ -10,10 +10,10 @@ module Peddler
       # The available shipping service options.
       AvailableShippingServiceOptions = Structure.new do
         # @return [Array<AvailableCarrierWillPickUpOption>]
-        attribute(:available_carrier_will_pick_up_options, [AvailableCarrierWillPickUpOption], from: "AvailableCarrierWillPickUpOptions")
+        attribute(:available_carrier_will_pick_up_options, [AvailableCarrierWillPickUpOption], null: false, from: "AvailableCarrierWillPickUpOptions")
 
         # @return [Array<AvailableDeliveryExperienceOption>]
-        attribute(:available_delivery_experience_options, [AvailableDeliveryExperienceOption], from: "AvailableDeliveryExperienceOptions")
+        attribute(:available_delivery_experience_options, [AvailableDeliveryExperienceOption], null: false, from: "AvailableDeliveryExperienceOptions")
       end
     end
   end

@@ -11,10 +11,10 @@ module Peddler
       # updateInboundShipment operation.
       InboundShipmentItem = Structure.new do
         # @return [Integer] The item quantity that you are shipping.
-        attribute(:quantity_shipped, Integer, from: "QuantityShipped")
+        attribute(:quantity_shipped, Integer, null: false, from: "QuantityShipped")
 
         # @return [String] The seller SKU of the item.
-        attribute(:seller_sku, String, from: "SellerSKU")
+        attribute(:seller_sku, String, null: false, from: "SellerSKU")
 
         # @return [String] Amazon's fulfillment network SKU of the item.
         attribute?(:fulfillment_network_sku, String, from: "FulfillmentNetworkSKU")

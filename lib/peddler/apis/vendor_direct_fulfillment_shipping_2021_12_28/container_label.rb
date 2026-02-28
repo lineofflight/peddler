@@ -10,10 +10,10 @@ module Peddler
       # The details of the container label.
       ContainerLabel = Structure.new do
         # @return [String] The container label content encoded into a Base64 string.
-        attribute(:content, String)
+        attribute(:content, String, null: false)
 
         # @return [String] The format of the container label.
-        attribute(:format, String)
+        attribute(:format, String, null: false)
 
         # @return [String] The container (pallet) tracking identifier from the shipping carrier.
         attribute?(:container_tracking_number, String, from: "containerTrackingNumber")

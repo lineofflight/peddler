@@ -12,23 +12,23 @@ module Peddler
       # taxes, charges, and line items.
       InvoiceDetail = Structure.new do
         # @return [Time] Invoice date.
-        attribute(:invoice_date, Time, from: "invoiceDate")
+        attribute(:invoice_date, Time, null: false, from: "invoiceDate")
 
         # @return [String] The unique invoice number.
-        attribute(:invoice_number, String, from: "invoiceNumber")
+        attribute(:invoice_number, String, null: false, from: "invoiceNumber")
 
         # @return [Money] Total amount details of the invoice.
-        attribute(:invoice_total, Money, from: "invoiceTotal")
+        attribute(:invoice_total, Money, null: false, from: "invoiceTotal")
 
         # @return [Array<InvoiceItem>] Provides the details of the items in this invoice.
-        attribute(:items, [InvoiceItem])
+        attribute(:items, [InvoiceItem], null: false)
 
         # @return [PartyIdentification] Name, address and tax details of the party receiving the payment of this
         #   invoice.
-        attribute(:remit_to_party, PartyIdentification, from: "remitToParty")
+        attribute(:remit_to_party, PartyIdentification, null: false, from: "remitToParty")
 
         # @return [PartyIdentification] Warehouse code of the vendor as in the order.
-        attribute(:ship_from_party, PartyIdentification, from: "shipFromParty")
+        attribute(:ship_from_party, PartyIdentification, null: false, from: "shipFromParty")
 
         # @return [Array<AdditionalDetails>] Additional details provided by the selling party, for tax-related or other
         #   purposes.

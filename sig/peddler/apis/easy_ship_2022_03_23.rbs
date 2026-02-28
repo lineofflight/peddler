@@ -2,39 +2,39 @@ module Peddler
   module APIs
     class EasyShip20220323 < API
       class CreateScheduledPackageRequest < Data
-        def self.new: (amazon_order_id: String?, marketplace_id: String?, package_details: Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
-                    | (String?, String?, Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
-        def self.[]: (amazon_order_id: String?, marketplace_id: String?, package_details: Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
-                   | (String?, String?, Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
+        def self.new: (amazon_order_id: String, marketplace_id: String, package_details: Peddler::APIs::EasyShip20220323::PackageDetails) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
+                    | (String, String, Peddler::APIs::EasyShip20220323::PackageDetails) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
+        def self.[]: (amazon_order_id: String, marketplace_id: String, package_details: Peddler::APIs::EasyShip20220323::PackageDetails) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
+                   | (String, String, Peddler::APIs::EasyShip20220323::PackageDetails) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
 
         def self.members: () -> [ :amazon_order_id, :marketplace_id, :package_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
 
-        attr_reader amazon_order_id: String?
-        attr_reader marketplace_id: String?
-        attr_reader package_details: Peddler::APIs::EasyShip20220323::PackageDetails?
+        attr_reader amazon_order_id: String
+        attr_reader marketplace_id: String
+        attr_reader package_details: Peddler::APIs::EasyShip20220323::PackageDetails
 
         def members: () -> [ :amazon_order_id, :marketplace_id, :package_details ]
-        def to_h: () -> { amazon_order_id: String?, marketplace_id: String?, package_details: Peddler::APIs::EasyShip20220323::PackageDetails? }
+        def to_h: () -> { amazon_order_id: String, marketplace_id: String, package_details: Peddler::APIs::EasyShip20220323::PackageDetails }
       end
 
       class CreateScheduledPackagesRequest < Data
-        def self.new: (label_format: String?, marketplace_id: String?, order_schedule_details_list: Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]?) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
-                    | (String?, String?, Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]?) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
-        def self.[]: (label_format: String?, marketplace_id: String?, order_schedule_details_list: Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]?) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
-                   | (String?, String?, Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]?) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
+        def self.new: (label_format: String, marketplace_id: String, order_schedule_details_list: Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
+                    | (String, String, Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
+        def self.[]: (label_format: String, marketplace_id: String, order_schedule_details_list: Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
+                   | (String, String, Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
 
         def self.members: () -> [ :label_format, :marketplace_id, :order_schedule_details_list ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackagesRequest
 
-        attr_reader label_format: String?
-        attr_reader marketplace_id: String?
-        attr_reader order_schedule_details_list: Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]?
+        attr_reader label_format: String
+        attr_reader marketplace_id: String
+        attr_reader order_schedule_details_list: Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]
 
         def members: () -> [ :label_format, :marketplace_id, :order_schedule_details_list ]
-        def to_h: () -> { label_format: String?, marketplace_id: String?, order_schedule_details_list: Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails]? }
+        def to_h: () -> { label_format: String, marketplace_id: String, order_schedule_details_list: Array[Peddler::APIs::EasyShip20220323::OrderScheduleDetails] }
       end
 
       class CreateScheduledPackagesResponse < Data
@@ -76,54 +76,54 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::EasyShip20220323::Error
-                    | (String?, String?, String?) -> Peddler::APIs::EasyShip20220323::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::EasyShip20220323::Error
-                   | (String?, String?, String?) -> Peddler::APIs::EasyShip20220323::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::EasyShip20220323::Error
+                    | (String, String, String?) -> Peddler::APIs::EasyShip20220323::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::EasyShip20220323::Error
+                   | (String, String, String?) -> Peddler::APIs::EasyShip20220323::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::EasyShip20220323::Error]?) -> Peddler::APIs::EasyShip20220323::ErrorList
-                    | (Array[Peddler::APIs::EasyShip20220323::Error]?) -> Peddler::APIs::EasyShip20220323::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::EasyShip20220323::Error]?) -> Peddler::APIs::EasyShip20220323::ErrorList
-                   | (Array[Peddler::APIs::EasyShip20220323::Error]?) -> Peddler::APIs::EasyShip20220323::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::EasyShip20220323::Error]) -> Peddler::APIs::EasyShip20220323::ErrorList
+                    | (Array[Peddler::APIs::EasyShip20220323::Error]) -> Peddler::APIs::EasyShip20220323::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::EasyShip20220323::Error]) -> Peddler::APIs::EasyShip20220323::ErrorList
+                   | (Array[Peddler::APIs::EasyShip20220323::Error]) -> Peddler::APIs::EasyShip20220323::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::EasyShip20220323::Error]?
+        attr_reader errors: Array[Peddler::APIs::EasyShip20220323::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::EasyShip20220323::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::EasyShip20220323::Error] }
       end
 
       class InvoiceData < Data
-        def self.new: (invoice_number: String?, ?invoice_date: String?) -> Peddler::APIs::EasyShip20220323::InvoiceData
-                    | (String?, String?) -> Peddler::APIs::EasyShip20220323::InvoiceData
-        def self.[]: (invoice_number: String?, ?invoice_date: String?) -> Peddler::APIs::EasyShip20220323::InvoiceData
-                   | (String?, String?) -> Peddler::APIs::EasyShip20220323::InvoiceData
+        def self.new: (invoice_number: String, ?invoice_date: String?) -> Peddler::APIs::EasyShip20220323::InvoiceData
+                    | (String, String?) -> Peddler::APIs::EasyShip20220323::InvoiceData
+        def self.[]: (invoice_number: String, ?invoice_date: String?) -> Peddler::APIs::EasyShip20220323::InvoiceData
+                   | (String, String?) -> Peddler::APIs::EasyShip20220323::InvoiceData
 
         def self.members: () -> [ :invoice_number, :invoice_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::InvoiceData
 
         attr_reader invoice_date: String?
-        attr_reader invoice_number: String?
+        attr_reader invoice_number: String
 
         def members: () -> [ :invoice_number, :invoice_date ]
-        def to_h: () -> { invoice_number: String?, invoice_date: String? }
+        def to_h: () -> { invoice_number: String, invoice_date: String? }
       end
 
       class Item < Data
@@ -148,39 +148,39 @@ module Peddler
       end
 
       class ListHandoverSlotsRequest < Data
-        def self.new: (amazon_order_id: String?, marketplace_id: String?, package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions?, package_weight: Peddler::APIs::EasyShip20220323::Weight?) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
-                    | (String?, String?, Peddler::APIs::EasyShip20220323::Dimensions?, Peddler::APIs::EasyShip20220323::Weight?) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
-        def self.[]: (amazon_order_id: String?, marketplace_id: String?, package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions?, package_weight: Peddler::APIs::EasyShip20220323::Weight?) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
-                   | (String?, String?, Peddler::APIs::EasyShip20220323::Dimensions?, Peddler::APIs::EasyShip20220323::Weight?) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
+        def self.new: (amazon_order_id: String, marketplace_id: String, package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions, package_weight: Peddler::APIs::EasyShip20220323::Weight) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
+                    | (String, String, Peddler::APIs::EasyShip20220323::Dimensions, Peddler::APIs::EasyShip20220323::Weight) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
+        def self.[]: (amazon_order_id: String, marketplace_id: String, package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions, package_weight: Peddler::APIs::EasyShip20220323::Weight) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
+                   | (String, String, Peddler::APIs::EasyShip20220323::Dimensions, Peddler::APIs::EasyShip20220323::Weight) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
 
         def self.members: () -> [ :amazon_order_id, :marketplace_id, :package_dimensions, :package_weight ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsRequest
 
-        attr_reader amazon_order_id: String?
-        attr_reader marketplace_id: String?
-        attr_reader package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions?
-        attr_reader package_weight: Peddler::APIs::EasyShip20220323::Weight?
+        attr_reader amazon_order_id: String
+        attr_reader marketplace_id: String
+        attr_reader package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions
+        attr_reader package_weight: Peddler::APIs::EasyShip20220323::Weight
 
         def members: () -> [ :amazon_order_id, :marketplace_id, :package_dimensions, :package_weight ]
-        def to_h: () -> { amazon_order_id: String?, marketplace_id: String?, package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions?, package_weight: Peddler::APIs::EasyShip20220323::Weight? }
+        def to_h: () -> { amazon_order_id: String, marketplace_id: String, package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions, package_weight: Peddler::APIs::EasyShip20220323::Weight }
       end
 
       class ListHandoverSlotsResponse < Data
-        def self.new: (amazon_order_id: String?, time_slots: Array[Peddler::APIs::EasyShip20220323::TimeSlot]?) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
-                    | (String?, Array[Peddler::APIs::EasyShip20220323::TimeSlot]?) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
-        def self.[]: (amazon_order_id: String?, time_slots: Array[Peddler::APIs::EasyShip20220323::TimeSlot]?) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
-                   | (String?, Array[Peddler::APIs::EasyShip20220323::TimeSlot]?) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
+        def self.new: (amazon_order_id: String, time_slots: Array[Peddler::APIs::EasyShip20220323::TimeSlot]) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
+                    | (String, Array[Peddler::APIs::EasyShip20220323::TimeSlot]) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
+        def self.[]: (amazon_order_id: String, time_slots: Array[Peddler::APIs::EasyShip20220323::TimeSlot]) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
+                   | (String, Array[Peddler::APIs::EasyShip20220323::TimeSlot]) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
 
         def self.members: () -> [ :amazon_order_id, :time_slots ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::ListHandoverSlotsResponse
 
-        attr_reader amazon_order_id: String?
-        attr_reader time_slots: Array[Peddler::APIs::EasyShip20220323::TimeSlot]?
+        attr_reader amazon_order_id: String
+        attr_reader time_slots: Array[Peddler::APIs::EasyShip20220323::TimeSlot]
 
         def members: () -> [ :amazon_order_id, :time_slots ]
-        def to_h: () -> { amazon_order_id: String?, time_slots: Array[Peddler::APIs::EasyShip20220323::TimeSlot]? }
+        def to_h: () -> { amazon_order_id: String, time_slots: Array[Peddler::APIs::EasyShip20220323::TimeSlot] }
       end
 
       class OrderItemSerialNumbers < Array[untyped]
@@ -188,51 +188,51 @@ module Peddler
       end
 
       class OrderScheduleDetails < Data
-        def self.new: (amazon_order_id: String?, ?package_details: Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
-                    | (String?, Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
-        def self.[]: (amazon_order_id: String?, ?package_details: Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
-                   | (String?, Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
+        def self.new: (amazon_order_id: String, ?package_details: Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
+                    | (String, Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
+        def self.[]: (amazon_order_id: String, ?package_details: Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
+                   | (String, Peddler::APIs::EasyShip20220323::PackageDetails?) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
 
         def self.members: () -> [ :amazon_order_id, :package_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::OrderScheduleDetails
 
-        attr_reader amazon_order_id: String?
+        attr_reader amazon_order_id: String
         attr_reader package_details: Peddler::APIs::EasyShip20220323::PackageDetails?
 
         def members: () -> [ :amazon_order_id, :package_details ]
-        def to_h: () -> { amazon_order_id: String?, package_details: Peddler::APIs::EasyShip20220323::PackageDetails? }
+        def to_h: () -> { amazon_order_id: String, package_details: Peddler::APIs::EasyShip20220323::PackageDetails? }
       end
 
       class Package < Data
-        def self.new: (package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions?, package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, package_weight: Peddler::APIs::EasyShip20220323::Weight?, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId?, ?invoice: Peddler::APIs::EasyShip20220323::InvoiceData?, ?package_identifier: String?, ?package_items: Array[Peddler::APIs::EasyShip20220323::Item]?, ?package_status: String?, ?tracking_details: Peddler::APIs::EasyShip20220323::TrackingDetails?) -> Peddler::APIs::EasyShip20220323::Package
-                    | (Peddler::APIs::EasyShip20220323::Dimensions?, Peddler::APIs::EasyShip20220323::TimeSlot?, Peddler::APIs::EasyShip20220323::Weight?, Peddler::APIs::EasyShip20220323::ScheduledPackageId?, Peddler::APIs::EasyShip20220323::InvoiceData?, String?, Array[Peddler::APIs::EasyShip20220323::Item]?, String?, Peddler::APIs::EasyShip20220323::TrackingDetails?) -> Peddler::APIs::EasyShip20220323::Package
-        def self.[]: (package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions?, package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, package_weight: Peddler::APIs::EasyShip20220323::Weight?, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId?, ?invoice: Peddler::APIs::EasyShip20220323::InvoiceData?, ?package_identifier: String?, ?package_items: Array[Peddler::APIs::EasyShip20220323::Item]?, ?package_status: String?, ?tracking_details: Peddler::APIs::EasyShip20220323::TrackingDetails?) -> Peddler::APIs::EasyShip20220323::Package
-                   | (Peddler::APIs::EasyShip20220323::Dimensions?, Peddler::APIs::EasyShip20220323::TimeSlot?, Peddler::APIs::EasyShip20220323::Weight?, Peddler::APIs::EasyShip20220323::ScheduledPackageId?, Peddler::APIs::EasyShip20220323::InvoiceData?, String?, Array[Peddler::APIs::EasyShip20220323::Item]?, String?, Peddler::APIs::EasyShip20220323::TrackingDetails?) -> Peddler::APIs::EasyShip20220323::Package
+        def self.new: (package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions, package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, package_weight: Peddler::APIs::EasyShip20220323::Weight, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId, ?invoice: Peddler::APIs::EasyShip20220323::InvoiceData?, ?package_identifier: String?, ?package_items: Array[Peddler::APIs::EasyShip20220323::Item]?, ?package_status: String?, ?tracking_details: Peddler::APIs::EasyShip20220323::TrackingDetails?) -> Peddler::APIs::EasyShip20220323::Package
+                    | (Peddler::APIs::EasyShip20220323::Dimensions, Peddler::APIs::EasyShip20220323::TimeSlot, Peddler::APIs::EasyShip20220323::Weight, Peddler::APIs::EasyShip20220323::ScheduledPackageId, Peddler::APIs::EasyShip20220323::InvoiceData?, String?, Array[Peddler::APIs::EasyShip20220323::Item]?, String?, Peddler::APIs::EasyShip20220323::TrackingDetails?) -> Peddler::APIs::EasyShip20220323::Package
+        def self.[]: (package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions, package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, package_weight: Peddler::APIs::EasyShip20220323::Weight, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId, ?invoice: Peddler::APIs::EasyShip20220323::InvoiceData?, ?package_identifier: String?, ?package_items: Array[Peddler::APIs::EasyShip20220323::Item]?, ?package_status: String?, ?tracking_details: Peddler::APIs::EasyShip20220323::TrackingDetails?) -> Peddler::APIs::EasyShip20220323::Package
+                   | (Peddler::APIs::EasyShip20220323::Dimensions, Peddler::APIs::EasyShip20220323::TimeSlot, Peddler::APIs::EasyShip20220323::Weight, Peddler::APIs::EasyShip20220323::ScheduledPackageId, Peddler::APIs::EasyShip20220323::InvoiceData?, String?, Array[Peddler::APIs::EasyShip20220323::Item]?, String?, Peddler::APIs::EasyShip20220323::TrackingDetails?) -> Peddler::APIs::EasyShip20220323::Package
 
         def self.members: () -> [ :package_dimensions, :package_time_slot, :package_weight, :scheduled_package_id, :invoice, :package_identifier, :package_items, :package_status, :tracking_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::Package
 
         attr_reader invoice: Peddler::APIs::EasyShip20220323::InvoiceData?
-        attr_reader package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions?
+        attr_reader package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions
         attr_reader package_identifier: String?
         attr_reader package_items: Array[Peddler::APIs::EasyShip20220323::Item]?
         attr_reader package_status: String?
-        attr_reader package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?
-        attr_reader package_weight: Peddler::APIs::EasyShip20220323::Weight?
-        attr_reader scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId?
+        attr_reader package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot
+        attr_reader package_weight: Peddler::APIs::EasyShip20220323::Weight
+        attr_reader scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId
         attr_reader tracking_details: Peddler::APIs::EasyShip20220323::TrackingDetails?
 
         def members: () -> [ :package_dimensions, :package_time_slot, :package_weight, :scheduled_package_id, :invoice, :package_identifier, :package_items, :package_status, :tracking_details ]
-        def to_h: () -> { package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions?, package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, package_weight: Peddler::APIs::EasyShip20220323::Weight?, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId?, invoice: Peddler::APIs::EasyShip20220323::InvoiceData?, package_identifier: String?, package_items: Array[Peddler::APIs::EasyShip20220323::Item]?, package_status: String?, tracking_details: Peddler::APIs::EasyShip20220323::TrackingDetails? }
+        def to_h: () -> { package_dimensions: Peddler::APIs::EasyShip20220323::Dimensions, package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, package_weight: Peddler::APIs::EasyShip20220323::Weight, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId, invoice: Peddler::APIs::EasyShip20220323::InvoiceData?, package_identifier: String?, package_items: Array[Peddler::APIs::EasyShip20220323::Item]?, package_status: String?, tracking_details: Peddler::APIs::EasyShip20220323::TrackingDetails? }
       end
 
       class PackageDetails < Data
-        def self.new: (package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, ?package_identifier: String?, ?package_items: Array[Peddler::APIs::EasyShip20220323::Item]?) -> Peddler::APIs::EasyShip20220323::PackageDetails
-                    | (Peddler::APIs::EasyShip20220323::TimeSlot?, String?, Array[Peddler::APIs::EasyShip20220323::Item]?) -> Peddler::APIs::EasyShip20220323::PackageDetails
-        def self.[]: (package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, ?package_identifier: String?, ?package_items: Array[Peddler::APIs::EasyShip20220323::Item]?) -> Peddler::APIs::EasyShip20220323::PackageDetails
-                   | (Peddler::APIs::EasyShip20220323::TimeSlot?, String?, Array[Peddler::APIs::EasyShip20220323::Item]?) -> Peddler::APIs::EasyShip20220323::PackageDetails
+        def self.new: (package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, ?package_identifier: String?, ?package_items: Array[Peddler::APIs::EasyShip20220323::Item]?) -> Peddler::APIs::EasyShip20220323::PackageDetails
+                    | (Peddler::APIs::EasyShip20220323::TimeSlot, String?, Array[Peddler::APIs::EasyShip20220323::Item]?) -> Peddler::APIs::EasyShip20220323::PackageDetails
+        def self.[]: (package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, ?package_identifier: String?, ?package_items: Array[Peddler::APIs::EasyShip20220323::Item]?) -> Peddler::APIs::EasyShip20220323::PackageDetails
+                   | (Peddler::APIs::EasyShip20220323::TimeSlot, String?, Array[Peddler::APIs::EasyShip20220323::Item]?) -> Peddler::APIs::EasyShip20220323::PackageDetails
 
         def self.members: () -> [ :package_time_slot, :package_identifier, :package_items ]
 
@@ -240,67 +240,67 @@ module Peddler
 
         attr_reader package_identifier: String?
         attr_reader package_items: Array[Peddler::APIs::EasyShip20220323::Item]?
-        attr_reader package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?
+        attr_reader package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot
 
         def members: () -> [ :package_time_slot, :package_identifier, :package_items ]
-        def to_h: () -> { package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, package_identifier: String?, package_items: Array[Peddler::APIs::EasyShip20220323::Item]? }
+        def to_h: () -> { package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, package_identifier: String?, package_items: Array[Peddler::APIs::EasyShip20220323::Item]? }
       end
 
       class Packages < Data
-        def self.new: (packages: Array[Peddler::APIs::EasyShip20220323::Package]?) -> Peddler::APIs::EasyShip20220323::Packages
-                    | (Array[Peddler::APIs::EasyShip20220323::Package]?) -> Peddler::APIs::EasyShip20220323::Packages
-        def self.[]: (packages: Array[Peddler::APIs::EasyShip20220323::Package]?) -> Peddler::APIs::EasyShip20220323::Packages
-                   | (Array[Peddler::APIs::EasyShip20220323::Package]?) -> Peddler::APIs::EasyShip20220323::Packages
+        def self.new: (packages: Array[Peddler::APIs::EasyShip20220323::Package]) -> Peddler::APIs::EasyShip20220323::Packages
+                    | (Array[Peddler::APIs::EasyShip20220323::Package]) -> Peddler::APIs::EasyShip20220323::Packages
+        def self.[]: (packages: Array[Peddler::APIs::EasyShip20220323::Package]) -> Peddler::APIs::EasyShip20220323::Packages
+                   | (Array[Peddler::APIs::EasyShip20220323::Package]) -> Peddler::APIs::EasyShip20220323::Packages
 
         def self.members: () -> [ :packages ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::Packages
 
-        attr_reader packages: Array[Peddler::APIs::EasyShip20220323::Package]?
+        attr_reader packages: Array[Peddler::APIs::EasyShip20220323::Package]
 
         def members: () -> [ :packages ]
-        def to_h: () -> { packages: Array[Peddler::APIs::EasyShip20220323::Package]? }
+        def to_h: () -> { packages: Array[Peddler::APIs::EasyShip20220323::Package] }
       end
 
       class RejectedOrder < Data
-        def self.new: (amazon_order_id: String?, ?error: Peddler::APIs::EasyShip20220323::Error?) -> Peddler::APIs::EasyShip20220323::RejectedOrder
-                    | (String?, Peddler::APIs::EasyShip20220323::Error?) -> Peddler::APIs::EasyShip20220323::RejectedOrder
-        def self.[]: (amazon_order_id: String?, ?error: Peddler::APIs::EasyShip20220323::Error?) -> Peddler::APIs::EasyShip20220323::RejectedOrder
-                   | (String?, Peddler::APIs::EasyShip20220323::Error?) -> Peddler::APIs::EasyShip20220323::RejectedOrder
+        def self.new: (amazon_order_id: String, ?error: Peddler::APIs::EasyShip20220323::Error?) -> Peddler::APIs::EasyShip20220323::RejectedOrder
+                    | (String, Peddler::APIs::EasyShip20220323::Error?) -> Peddler::APIs::EasyShip20220323::RejectedOrder
+        def self.[]: (amazon_order_id: String, ?error: Peddler::APIs::EasyShip20220323::Error?) -> Peddler::APIs::EasyShip20220323::RejectedOrder
+                   | (String, Peddler::APIs::EasyShip20220323::Error?) -> Peddler::APIs::EasyShip20220323::RejectedOrder
 
         def self.members: () -> [ :amazon_order_id, :error ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::RejectedOrder
 
-        attr_reader amazon_order_id: String?
+        attr_reader amazon_order_id: String
         attr_reader error: Peddler::APIs::EasyShip20220323::Error?
 
         def members: () -> [ :amazon_order_id, :error ]
-        def to_h: () -> { amazon_order_id: String?, error: Peddler::APIs::EasyShip20220323::Error? }
+        def to_h: () -> { amazon_order_id: String, error: Peddler::APIs::EasyShip20220323::Error? }
       end
 
       class ScheduledPackageId < Data
-        def self.new: (amazon_order_id: String?, ?package_id: String?) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
-                    | (String?, String?) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
-        def self.[]: (amazon_order_id: String?, ?package_id: String?) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
-                   | (String?, String?) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
+        def self.new: (amazon_order_id: String, ?package_id: String?) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
+                    | (String, String?) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
+        def self.[]: (amazon_order_id: String, ?package_id: String?) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
+                   | (String, String?) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
 
         def self.members: () -> [ :amazon_order_id, :package_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::ScheduledPackageId
 
-        attr_reader amazon_order_id: String?
+        attr_reader amazon_order_id: String
         attr_reader package_id: String?
 
         def members: () -> [ :amazon_order_id, :package_id ]
-        def to_h: () -> { amazon_order_id: String?, package_id: String? }
+        def to_h: () -> { amazon_order_id: String, package_id: String? }
       end
 
       class TimeSlot < Data
-        def self.new: (slot_id: String?, ?end_time: String?, ?handover_method: String?, ?start_time: String?) -> Peddler::APIs::EasyShip20220323::TimeSlot
-                    | (String?, String?, String?, String?) -> Peddler::APIs::EasyShip20220323::TimeSlot
-        def self.[]: (slot_id: String?, ?end_time: String?, ?handover_method: String?, ?start_time: String?) -> Peddler::APIs::EasyShip20220323::TimeSlot
-                   | (String?, String?, String?, String?) -> Peddler::APIs::EasyShip20220323::TimeSlot
+        def self.new: (slot_id: String, ?end_time: String?, ?handover_method: String?, ?start_time: String?) -> Peddler::APIs::EasyShip20220323::TimeSlot
+                    | (String, String?, String?, String?) -> Peddler::APIs::EasyShip20220323::TimeSlot
+        def self.[]: (slot_id: String, ?end_time: String?, ?handover_method: String?, ?start_time: String?) -> Peddler::APIs::EasyShip20220323::TimeSlot
+                   | (String, String?, String?, String?) -> Peddler::APIs::EasyShip20220323::TimeSlot
 
         def self.members: () -> [ :slot_id, :end_time, :handover_method, :start_time ]
 
@@ -308,11 +308,11 @@ module Peddler
 
         attr_reader end_time: String?
         attr_reader handover_method: String?
-        attr_reader slot_id: String?
+        attr_reader slot_id: String
         attr_reader start_time: String?
 
         def members: () -> [ :slot_id, :end_time, :handover_method, :start_time ]
-        def to_h: () -> { slot_id: String?, end_time: String?, handover_method: String?, start_time: String? }
+        def to_h: () -> { slot_id: String, end_time: String?, handover_method: String?, start_time: String? }
       end
 
       class TimeSlots < Array[TimeSlot]
@@ -336,20 +336,20 @@ module Peddler
       end
 
       class UpdatePackageDetails < Data
-        def self.new: (package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId?) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
-                    | (Peddler::APIs::EasyShip20220323::TimeSlot?, Peddler::APIs::EasyShip20220323::ScheduledPackageId?) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
-        def self.[]: (package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId?) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
-                   | (Peddler::APIs::EasyShip20220323::TimeSlot?, Peddler::APIs::EasyShip20220323::ScheduledPackageId?) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
+        def self.new: (package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
+                    | (Peddler::APIs::EasyShip20220323::TimeSlot, Peddler::APIs::EasyShip20220323::ScheduledPackageId) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
+        def self.[]: (package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
+                   | (Peddler::APIs::EasyShip20220323::TimeSlot, Peddler::APIs::EasyShip20220323::ScheduledPackageId) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
 
         def self.members: () -> [ :package_time_slot, :scheduled_package_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::UpdatePackageDetails
 
-        attr_reader package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?
-        attr_reader scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId?
+        attr_reader package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot
+        attr_reader scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId
 
         def members: () -> [ :package_time_slot, :scheduled_package_id ]
-        def to_h: () -> { package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot?, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId? }
+        def to_h: () -> { package_time_slot: Peddler::APIs::EasyShip20220323::TimeSlot, scheduled_package_id: Peddler::APIs::EasyShip20220323::ScheduledPackageId }
       end
 
       class UpdatePackageDetailsList < Array[UpdatePackageDetails]
@@ -357,20 +357,20 @@ module Peddler
       end
 
       class UpdateScheduledPackagesRequest < Data
-        def self.new: (marketplace_id: String?, update_package_details_list: Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]?) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
-                    | (String?, Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]?) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
-        def self.[]: (marketplace_id: String?, update_package_details_list: Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]?) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
-                   | (String?, Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]?) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
+        def self.new: (marketplace_id: String, update_package_details_list: Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
+                    | (String, Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
+        def self.[]: (marketplace_id: String, update_package_details_list: Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
+                   | (String, Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
 
         def self.members: () -> [ :marketplace_id, :update_package_details_list ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::EasyShip20220323::UpdateScheduledPackagesRequest
 
-        attr_reader marketplace_id: String?
-        attr_reader update_package_details_list: Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]?
+        attr_reader marketplace_id: String
+        attr_reader update_package_details_list: Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]
 
         def members: () -> [ :marketplace_id, :update_package_details_list ]
-        def to_h: () -> { marketplace_id: String?, update_package_details_list: Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails]? }
+        def to_h: () -> { marketplace_id: String, update_package_details_list: Array[Peddler::APIs::EasyShip20220323::UpdatePackageDetails] }
       end
 
       class Weight < Data

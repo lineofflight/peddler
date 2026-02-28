@@ -15,10 +15,10 @@ module Peddler
       # data.
       Report = Structure.new do
         # @return [Array<EndUserData>] A list of consented end users (buyers) and their data.
-        attribute(:end_user_data, [EndUserData], from: "endUserData")
+        attribute(:end_user_data, [EndUserData], null: false, from: "endUserData")
 
         # @return [Hash] Summarizes the report request.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

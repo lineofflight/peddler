@@ -10,7 +10,7 @@ module Peddler
       # Schema for price info in `getPricing` response
       Price = Structure.new do
         # @return [String] The status of the operation.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String, from: "ASIN")

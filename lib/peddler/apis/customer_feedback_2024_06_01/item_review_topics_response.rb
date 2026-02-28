@@ -12,22 +12,22 @@ module Peddler
       ItemReviewTopicsResponse = Structure.new do
         # @return [String] The requested ASIN. The Amazon Standard Identification Number (ASIN) is the unique identifier
         #   of a product within a marketplace.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [String] The two digit country code of the requested marketplace id, in ISO 3166-1 alpha-2 format.
-        attribute(:country_code, String, from: "countryCode")
+        attribute(:country_code, String, null: false, from: "countryCode")
 
         # @return [DateRange] The date range of the item review topics.
-        attribute(:date_range, DateRange, from: "dateRange")
+        attribute(:date_range, DateRange, null: false, from: "dateRange")
 
         # @return [String] The product title of the requested ASIN.
-        attribute(:item_name, String, from: "itemName")
+        attribute(:item_name, String, null: false, from: "itemName")
 
         # @return [String] The requested marketplace id.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [ItemReviewTopics] The item review topics for the requested ASIN.
-        attribute(:topics, ItemReviewTopics)
+        attribute(:topics, ItemReviewTopics, null: false)
       end
     end
   end

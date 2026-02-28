@@ -25,7 +25,7 @@ module Peddler
         # * For `QUARTER` the metric is computed up to the last day of the quarter that contains the `endDate`.
         # * For `YEAR` the metric is computed up to the last day of the year that contains the `endDate`.
         # Note: The end date may be adjusted to a lower value based on the data available in our system.
-        attribute(:end_date, Time, from: "endDate")
+        attribute(:end_date, Time, null: false, from: "endDate")
 
         # @return [Time] When this object is used as a request parameter, the specified `startDate` is adjusted based on
         #   the aggregation frequency.
@@ -35,7 +35,7 @@ module Peddler
         # * For `MONTH` the metric is computed from the first day of the month that contains the `startDate`.
         # * For `QUARTER` the metric is computed from the first day of the quarter that contains the `startDate`.
         # * For `YEAR` the metric is computed from the first day of the year that contains the `startDate`.
-        attribute(:start_date, Time, from: "startDate")
+        attribute(:start_date, Time, null: false, from: "startDate")
       end
     end
   end

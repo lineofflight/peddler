@@ -11,36 +11,36 @@ module Peddler
       # Describes ASIN-aggregated inventory metrics for the vendor's account.
       InventoryByASIN = Structure.new do
         # @return [String] The Amazon Standard Identification Number.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [Date] The end date of the aggregated data.
-        attribute(:end_date, Date, from: "endDate")
+        attribute(:end_date, Date, null: false, from: "endDate")
 
         # @return [Money] Cost of the inventory that Amazon received from the vendor, minus the cost of the inventory
         #   that was returned to the vendor. The cost returned to the vendor takes into account any products that were
         #   returned due to damaged merchandise. This number can be negative if more cost was returned than received.
-        attribute(:net_received_inventory_cost, Money, from: "netReceivedInventoryCost")
+        attribute(:net_received_inventory_cost, Money, null: false, from: "netReceivedInventoryCost")
 
         # @return [Integer] Units received from the vendor minus any units that were returned to the vendor. This number
         #   can be negative if more units were returned than received.
-        attribute(:net_received_inventory_units, Integer, from: "netReceivedInventoryUnits")
+        attribute(:net_received_inventory_units, Integer, null: false, from: "netReceivedInventoryUnits")
 
         # @return [Integer] Number of units contained in Amazon’s confirmed purchase orders that are not yet received by
         #   Amazon. This number can be negative if the vendor has shipped more units than Amazon has requested.
-        attribute(:open_purchase_order_units, Integer, from: "openPurchaseOrderUnits")
+        attribute(:open_purchase_order_units, Integer, null: false, from: "openPurchaseOrderUnits")
 
         # @return [Money] The cost of the inventory in Amazon fulfillment centers that is in sellable condition on the
         #   last day of the selected time window. Backorders count as negative cost, and can cause this value to be
         #   negative overall.
-        attribute(:sellable_on_hand_inventory_cost, Money, from: "sellableOnHandInventoryCost")
+        attribute(:sellable_on_hand_inventory_cost, Money, null: false, from: "sellableOnHandInventoryCost")
 
         # @return [Integer] The number of units in Amazon fulfillment centers that is in sellable condition on the last
         #   day of the selected time window. Backorders count as negative units, and can cause this value to be negative
         #   overall.
-        attribute(:sellable_on_hand_inventory_units, Integer, from: "sellableOnHandInventoryUnits")
+        attribute(:sellable_on_hand_inventory_units, Integer, null: false, from: "sellableOnHandInventoryUnits")
 
         # @return [Date] The start date of the aggregated data.
-        attribute(:start_date, Date, from: "startDate")
+        attribute(:start_date, Date, null: false, from: "startDate")
 
         # @return [Money] The cost of the inventory in Amazon fulfillment centers that is at least 90 days old, and is
         #   in a sellable condition on the last day of the selected time window. Backorders count as a negative cost,

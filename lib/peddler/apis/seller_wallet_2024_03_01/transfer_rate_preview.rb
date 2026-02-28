@@ -19,16 +19,16 @@ module Peddler
       # `fees` array.
       TransferRatePreview = Structure.new do
         # @return [Money] Base amount of the transaction.
-        attribute(:base_amount, Money, from: "baseAmount")
+        attribute(:base_amount, Money, null: false, from: "baseAmount")
 
         # @return [Array<Fee>] List of fees
-        attribute(:fees, [Fee])
+        attribute(:fees, [Fee], null: false)
 
         # @return [FxRateDetails] The foreign exchange rate value of the transaction.
-        attribute(:fx_rate_details, FxRateDetails, from: "fxRateDetails")
+        attribute(:fx_rate_details, FxRateDetails, null: false, from: "fxRateDetails")
 
         # @return [Money] The final amount reflects both the fee deduction and currency conversion rate exchange
-        attribute(:transfer_amount, Money, from: "transferAmount")
+        attribute(:transfer_amount, Money, null: false, from: "transferAmount")
       end
     end
   end

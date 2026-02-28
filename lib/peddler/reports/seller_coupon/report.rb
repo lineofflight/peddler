@@ -11,10 +11,10 @@ module Peddler
       # report supports start dates up to two years before the current date.
       Report = Structure.new do
         # @return [Array<CouponDetails>] A list of included coupons.
-        attribute(:coupons, [CouponDetails])
+        attribute(:coupons, [CouponDetails], null: false)
 
         # @return [Hash] Summarizes the original report request.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

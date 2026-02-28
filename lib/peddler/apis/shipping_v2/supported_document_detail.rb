@@ -10,10 +10,10 @@ module Peddler
       # The supported document types for a service offering.
       SupportedDocumentDetail = Structure.new do
         # @return [:boolean] When true, the supported document type is required.
-        attribute(:mandatory, :boolean, from: "isMandatory")
+        attribute(:mandatory, :boolean, null: false, from: "isMandatory")
 
         # @return [String]
-        attribute(:name, String)
+        attribute(:name, String, null: false)
       end
     end
   end

@@ -10,10 +10,10 @@ module Peddler
       # An object representing an error that occurred during the API operation.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.
-        attribute(:code, String)
+        attribute(:code, String, null: false)
 
         # @return [String] A message that describes the error condition.
-        attribute(:message, String)
+        attribute(:message, String, null: false)
 
         # @return [String] Additional details that can help the caller understand or fix the issue.
         attribute?(:details, String)

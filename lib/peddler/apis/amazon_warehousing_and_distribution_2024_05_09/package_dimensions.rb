@@ -10,16 +10,16 @@ module Peddler
       # Dimensions of the package.
       PackageDimensions = Structure.new do
         # @return [Float] Height of the package.
-        attribute(:height, Float)
+        attribute(:height, Float, null: false)
 
         # @return [Float] Length of the package.
-        attribute(:length, Float)
+        attribute(:length, Float, null: false)
 
         # @return [String] Unit of measurement for package dimensions.
-        attribute(:unit_of_measurement, String, from: "unitOfMeasurement")
+        attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
 
         # @return [Float] Width of the package.
-        attribute(:width, Float)
+        attribute(:width, Float, null: false)
       end
     end
   end

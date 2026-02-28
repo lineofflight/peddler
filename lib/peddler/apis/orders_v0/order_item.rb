@@ -10,13 +10,13 @@ module Peddler
       # A single order item.
       OrderItem = Structure.new do
         # @return [String] The item's Amazon Standard Identification Number (ASIN).
-        attribute(:asin, String, from: "ASIN")
+        attribute(:asin, String, null: false, from: "ASIN")
 
         # @return [String] An Amazon-defined order item identifier.
-        attribute(:order_item_id, String, from: "OrderItemId")
+        attribute(:order_item_id, String, null: false, from: "OrderItemId")
 
         # @return [Integer] The number of items in the order.
-        attribute(:quantity_ordered, Integer, from: "QuantityOrdered")
+        attribute(:quantity_ordered, Integer, null: false, from: "QuantityOrdered")
 
         # @return [AmazonPrograms] Contains the list of programs that are associated with an item.
         attribute?(:amazon_programs, AmazonPrograms, from: "AmazonPrograms")

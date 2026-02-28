@@ -11,7 +11,7 @@ module Peddler
       RegulatedInformation = Structure.new do
         # @return [Array<RegulatedInformationField>] A list of regulated information fields as collected from the
         #   regulatory form.
-        attribute(:fields, [RegulatedInformationField], from: "Fields")
+        attribute(:fields, [RegulatedInformationField], null: false, from: "Fields")
       end
     end
   end

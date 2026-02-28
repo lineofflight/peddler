@@ -10,19 +10,19 @@ module Peddler
       # Offer details of the merchant receiving the notification
       MerchantOffer = Structure.new do
         # @return [String]
-        attribute(:condition, String)
+        attribute(:condition, String, null: false)
 
         # @return [String]
-        attribute(:fulfillment_type, String, from: "fulfillmentType")
+        attribute(:fulfillment_type, String, null: false, from: "fulfillmentType")
 
         # @return [Money]
-        attribute(:landed_price, Money, from: "landedPrice")
+        attribute(:landed_price, Money, null: false, from: "landedPrice")
 
         # @return [Money]
-        attribute(:listing_price, Money, from: "listingPrice")
+        attribute(:listing_price, Money, null: false, from: "listingPrice")
 
         # @return [Money]
-        attribute(:shipping, Money)
+        attribute(:shipping, Money, null: false)
 
         # @return [Points]
         attribute?(:points, Points)

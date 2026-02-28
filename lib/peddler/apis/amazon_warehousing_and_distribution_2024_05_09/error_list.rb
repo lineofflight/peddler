@@ -10,7 +10,7 @@ module Peddler
       # This exception is thrown when client inputs are invalid.
       ErrorList = Structure.new do
         # @return [Array<Error>] A list of errors describing the failures.
-        attribute(:errors, [Error])
+        attribute(:errors, [Error], null: false)
       end
     end
   end

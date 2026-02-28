@@ -11,10 +11,10 @@ module Peddler
       InboundShipmentInfo = Structure.new do
         # @return [:boolean] Indicates whether or not an inbound shipment contains case-packed boxes. When
         #   AreCasesRequired = true for an inbound shipment, all items in the inbound shipment must be case packed.
-        attribute(:are_cases_required, :boolean, from: "AreCasesRequired")
+        attribute(:are_cases_required, :boolean, null: false, from: "AreCasesRequired")
 
         # @return [Address] The return address.
-        attribute(:ship_from_address, Address, from: "ShipFromAddress")
+        attribute(:ship_from_address, Address, null: false, from: "ShipFromAddress")
 
         # @return [String]
         attribute?(:box_contents_source, String, from: "BoxContentsSource")

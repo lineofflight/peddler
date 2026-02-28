@@ -11,14 +11,14 @@ module Peddler
       # Object describing sales and traffic metrics for ASINs in the seller's account aggregated by date.
       SalesAndTrafficByDate = Structure.new do
         # @return [Date] The start date of the period of the aggregated data.
-        attribute(:date, Date)
+        attribute(:date, Date, null: false)
 
         # @return [SalesByDate] Object describing sales metrics for ASINs in the seller's account aggregated by date.
-        attribute(:sales_by_date, SalesByDate, from: "salesByDate")
+        attribute(:sales_by_date, SalesByDate, null: false, from: "salesByDate")
 
         # @return [TrafficByDate] Object describing traffic metrics for ASINs in the seller's account aggregated by
         #   date.
-        attribute(:traffic_by_date, TrafficByDate, from: "trafficByDate")
+        attribute(:traffic_by_date, TrafficByDate, null: false, from: "trafficByDate")
       end
     end
   end

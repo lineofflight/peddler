@@ -11,10 +11,10 @@ module Peddler
       # The return metrics for a certain month.
       BrowseNodeReturnTrendPoint = Structure.new do
         # @return [BrowseNodeTrendMetrics] The browse node return metrics.
-        attribute(:browse_node_metrics, BrowseNodeTrendMetrics, from: "browseNodeMetrics")
+        attribute(:browse_node_metrics, BrowseNodeTrendMetrics, null: false, from: "browseNodeMetrics")
 
         # @return [DateRange] The range of dates during which the returns were made.
-        attribute(:date_range, DateRange, from: "dateRange")
+        attribute(:date_range, DateRange, null: false, from: "dateRange")
       end
     end
   end

@@ -10,7 +10,7 @@ module Peddler
       # The `createMarketplaceItemLabels` response.
       CreateMarketplaceItemLabelsResponse = Structure.new do
         # @return [Array<DocumentDownload>] Resources to download the requested document.
-        attribute(:document_downloads, [DocumentDownload], from: "documentDownloads")
+        attribute(:document_downloads, [DocumentDownload], null: false, from: "documentDownloads")
       end
     end
   end

@@ -2,31 +2,31 @@ module Peddler
   module Notifications
     module ListingsItemIssuesChange
       class Notification < Data
-        def self.new: (event_time: Time?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ListingsItemIssuesChange::Payload?, payload_version: String?) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
-                    | (Time?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::ListingsItemIssuesChange::Payload?, String?) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
-        def self.[]: (event_time: Time?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ListingsItemIssuesChange::Payload?, payload_version: String?) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
-                   | (Time?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::ListingsItemIssuesChange::Payload?, String?) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
+        def self.new: (event_time: Time, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ListingsItemIssuesChange::Payload, payload_version: String) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
+                    | (Time, Hash[untyped, untyped], String, String, Peddler::Notifications::ListingsItemIssuesChange::Payload, String) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
+        def self.[]: (event_time: Time, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ListingsItemIssuesChange::Payload, payload_version: String) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
+                   | (Time, Hash[untyped, untyped], String, String, Peddler::Notifications::ListingsItemIssuesChange::Payload, String) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ListingsItemIssuesChange::Notification
 
-        attr_reader event_time: Time?
-        attr_reader notification_metadata: Hash[untyped, untyped]?
-        attr_reader notification_type: String?
-        attr_reader notification_version: String?
-        attr_reader payload: Peddler::Notifications::ListingsItemIssuesChange::Payload?
-        attr_reader payload_version: String?
+        attr_reader event_time: Time
+        attr_reader notification_metadata: Hash[untyped, untyped]
+        attr_reader notification_type: String
+        attr_reader notification_version: String
+        attr_reader payload: Peddler::Notifications::ListingsItemIssuesChange::Payload
+        attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: Time?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ListingsItemIssuesChange::Payload?, payload_version: String? }
+        def to_h: () -> { event_time: Time, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ListingsItemIssuesChange::Payload, payload_version: String }
       end
 
       class Payload < Data
-        def self.new: (seller_id: String?, severities: Array[String]?, sku: String?, ?asin: String?, ?enforcement_actions: Array[String]?, ?marketplace_id: String?) -> Peddler::Notifications::ListingsItemIssuesChange::Payload
-                    | (String?, Array[String]?, String?, String?, Array[String]?, String?) -> Peddler::Notifications::ListingsItemIssuesChange::Payload
-        def self.[]: (seller_id: String?, severities: Array[String]?, sku: String?, ?asin: String?, ?enforcement_actions: Array[String]?, ?marketplace_id: String?) -> Peddler::Notifications::ListingsItemIssuesChange::Payload
-                   | (String?, Array[String]?, String?, String?, Array[String]?, String?) -> Peddler::Notifications::ListingsItemIssuesChange::Payload
+        def self.new: (seller_id: String, severities: Array[String], sku: String, ?asin: String?, ?enforcement_actions: Array[String]?, ?marketplace_id: String?) -> Peddler::Notifications::ListingsItemIssuesChange::Payload
+                    | (String, Array[String], String, String?, Array[String]?, String?) -> Peddler::Notifications::ListingsItemIssuesChange::Payload
+        def self.[]: (seller_id: String, severities: Array[String], sku: String, ?asin: String?, ?enforcement_actions: Array[String]?, ?marketplace_id: String?) -> Peddler::Notifications::ListingsItemIssuesChange::Payload
+                   | (String, Array[String], String, String?, Array[String]?, String?) -> Peddler::Notifications::ListingsItemIssuesChange::Payload
 
         def self.members: () -> [ :seller_id, :severities, :sku, :asin, :enforcement_actions, :marketplace_id ]
 
@@ -35,12 +35,12 @@ module Peddler
         attr_reader asin: String?
         attr_reader enforcement_actions: Array[String]?
         attr_reader marketplace_id: String?
-        attr_reader seller_id: String?
-        attr_reader severities: Array[String]?
-        attr_reader sku: String?
+        attr_reader seller_id: String
+        attr_reader severities: Array[String]
+        attr_reader sku: String
 
         def members: () -> [ :seller_id, :severities, :sku, :asin, :enforcement_actions, :marketplace_id ]
-        def to_h: () -> { seller_id: String?, severities: Array[String]?, sku: String?, asin: String?, enforcement_actions: Array[String]?, marketplace_id: String? }
+        def to_h: () -> { seller_id: String, severities: Array[String], sku: String, asin: String?, enforcement_actions: Array[String]?, marketplace_id: String? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::ListingsItemIssuesChange::Notification

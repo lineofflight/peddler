@@ -10,13 +10,13 @@ module Peddler
       # The payload schema for the purchaseLabels operation.
       PurchaseLabelsResult = Structure.new do
         # @return [AcceptedRate]
-        attribute(:accepted_rate, AcceptedRate, from: "acceptedRate")
+        attribute(:accepted_rate, AcceptedRate, null: false, from: "acceptedRate")
 
         # @return [Array<LabelResult>]
-        attribute(:label_results, [LabelResult], from: "labelResults")
+        attribute(:label_results, [LabelResult], null: false, from: "labelResults")
 
         # @return [String]
-        attribute(:shipment_id, String, from: "shipmentId")
+        attribute(:shipment_id, String, null: false, from: "shipmentId")
 
         # @return [String]
         attribute?(:client_reference_id, String, from: "clientReferenceId")

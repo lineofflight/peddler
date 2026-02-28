@@ -10,7 +10,7 @@ module Peddler
       # Request schema for the `assignAppointmentResources` operation.
       AssignAppointmentResourcesRequest = Structure.new do
         # @return [Array<AppointmentResource>] List of resource objects to be assigned.
-        attribute(:resources, [AppointmentResource])
+        attribute(:resources, [AppointmentResource], null: false)
       end
     end
   end

@@ -2,79 +2,79 @@ module Peddler
   module Reports
     module SellingPartnerRepeatPurchase
       class DataByASIN < Data
-        def self.new: (asin: String?, end_date: Date?, orders: Integer?, repeat_customers_pct_total: Float?, repeat_purchase_revenue: Peddler::Money?, repeat_purchase_revenue_pct_total: Float?, start_date: Date?, unique_customers: Integer?) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
-                    | (String?, Date?, Integer?, Float?, Peddler::Money?, Float?, Date?, Integer?) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
-        def self.[]: (asin: String?, end_date: Date?, orders: Integer?, repeat_customers_pct_total: Float?, repeat_purchase_revenue: Peddler::Money?, repeat_purchase_revenue_pct_total: Float?, start_date: Date?, unique_customers: Integer?) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
-                   | (String?, Date?, Integer?, Float?, Peddler::Money?, Float?, Date?, Integer?) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
+        def self.new: (asin: String, end_date: Date, orders: Integer, repeat_customers_pct_total: Float, repeat_purchase_revenue: Peddler::Money, repeat_purchase_revenue_pct_total: Float, start_date: Date, unique_customers: Integer) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
+                    | (String, Date, Integer, Float, Peddler::Money, Float, Date, Integer) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
+        def self.[]: (asin: String, end_date: Date, orders: Integer, repeat_customers_pct_total: Float, repeat_purchase_revenue: Peddler::Money, repeat_purchase_revenue_pct_total: Float, start_date: Date, unique_customers: Integer) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
+                   | (String, Date, Integer, Float, Peddler::Money, Float, Date, Integer) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
 
         def self.members: () -> [ :asin, :end_date, :orders, :repeat_customers_pct_total, :repeat_purchase_revenue, :repeat_purchase_revenue_pct_total, :start_date, :unique_customers ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN
 
-        attr_reader asin: String?
-        attr_reader end_date: Date?
-        attr_reader orders: Integer?
-        attr_reader repeat_customers_pct_total: Float?
-        attr_reader repeat_purchase_revenue: Peddler::Money?
-        attr_reader repeat_purchase_revenue_pct_total: Float?
-        attr_reader start_date: Date?
-        attr_reader unique_customers: Integer?
+        attr_reader asin: String
+        attr_reader end_date: Date
+        attr_reader orders: Integer
+        attr_reader repeat_customers_pct_total: Float
+        attr_reader repeat_purchase_revenue: Peddler::Money
+        attr_reader repeat_purchase_revenue_pct_total: Float
+        attr_reader start_date: Date
+        attr_reader unique_customers: Integer
 
         def members: () -> [ :asin, :end_date, :orders, :repeat_customers_pct_total, :repeat_purchase_revenue, :repeat_purchase_revenue_pct_total, :start_date, :unique_customers ]
-        def to_h: () -> { asin: String?, end_date: Date?, orders: Integer?, repeat_customers_pct_total: Float?, repeat_purchase_revenue: Peddler::Money?, repeat_purchase_revenue_pct_total: Float?, start_date: Date?, unique_customers: Integer? }
+        def to_h: () -> { asin: String, end_date: Date, orders: Integer, repeat_customers_pct_total: Float, repeat_purchase_revenue: Peddler::Money, repeat_purchase_revenue_pct_total: Float, start_date: Date, unique_customers: Integer }
       end
 
       class Report < Data
-        def self.new: (data_by_asin: Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN]?, report_specification: Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification?) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
-                    | (Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN]?, Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification?) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
-        def self.[]: (data_by_asin: Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN]?, report_specification: Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification?) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
-                   | (Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN]?, Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification?) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
+        def self.new: (data_by_asin: Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN], report_specification: Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
+                    | (Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN], Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
+        def self.[]: (data_by_asin: Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN], report_specification: Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
+                   | (Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN], Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
 
         def self.members: () -> [ :data_by_asin, :report_specification ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report
 
-        attr_reader data_by_asin: Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN]?
-        attr_reader report_specification: Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification?
+        attr_reader data_by_asin: Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN]
+        attr_reader report_specification: Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
 
         def members: () -> [ :data_by_asin, :report_specification ]
-        def to_h: () -> { data_by_asin: Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN]?, report_specification: Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification? }
+        def to_h: () -> { data_by_asin: Array[Peddler::Reports::SellingPartnerRepeatPurchase::DataByASIN], report_specification: Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification }
       end
 
       class ReportOptions < Data
-        def self.new: (report_period: String?) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
-                    | (String?) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
-        def self.[]: (report_period: String?) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
-                   | (String?) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
+        def self.new: (report_period: String) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
+                    | (String) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
+        def self.[]: (report_period: String) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
+                   | (String) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
 
         def self.members: () -> [ :report_period ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
 
-        attr_reader report_period: String?
+        attr_reader report_period: String
 
         def members: () -> [ :report_period ]
-        def to_h: () -> { report_period: String? }
+        def to_h: () -> { report_period: String }
       end
 
       class ReportSpecification < Data
-        def self.new: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions?, report_type: String?) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
-                    | (Date?, Date?, Array[String]?, Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions?, String?) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
-        def self.[]: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions?, report_type: String?) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
-                   | (Date?, Date?, Array[String]?, Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions?, String?) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
+        def self.new: (data_end_time: Date, data_start_time: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions, report_type: String) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
+                    | (Date, Date, Array[String], Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions, String) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
+        def self.[]: (data_end_time: Date, data_start_time: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions, report_type: String) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
+                   | (Date, Date, Array[String], Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions, String) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
 
         def self.members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerRepeatPurchase::ReportSpecification
 
-        attr_reader data_end_time: Date?
-        attr_reader data_start_time: Date?
-        attr_reader marketplace_ids: Array[String]?
-        attr_reader report_options: Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions?
-        attr_reader report_type: String?
+        attr_reader data_end_time: Date
+        attr_reader data_start_time: Date
+        attr_reader marketplace_ids: Array[String]
+        attr_reader report_options: Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions
+        attr_reader report_type: String
 
         def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
-        def to_h: () -> { data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions?, report_type: String? }
+        def to_h: () -> { data_end_time: Date, data_start_time: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::SellingPartnerRepeatPurchase::ReportOptions, report_type: String }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::SellingPartnerRepeatPurchase::Report

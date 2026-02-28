@@ -11,7 +11,7 @@ module Peddler
       Address = Structure.new do
         # @return [String] The postal code of the address. It contains a series of letters or digits or both, sometimes
         #   including spaces or punctuation.
-        attribute(:postal_code, String, from: "postalCode")
+        attribute(:postal_code, String, null: false, from: "postalCode")
 
         # @return [String] The first line of the address.
         attribute?(:address_line1, String, from: "addressLine1")

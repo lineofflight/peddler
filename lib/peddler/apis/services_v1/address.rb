@@ -10,10 +10,10 @@ module Peddler
       # The shipping address for the service job.
       Address = Structure.new do
         # @return [String] The first line of the address.
-        attribute(:address_line1, String, from: "addressLine1")
+        attribute(:address_line1, String, null: false, from: "addressLine1")
 
         # @return [String] The name of the person, business, or institution.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String] Additional address information, if required.
         attribute?(:address_line2, String, from: "addressLine2")

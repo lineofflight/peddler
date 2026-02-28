@@ -9,13 +9,13 @@ module Peddler
     module AnyOfferChanged
       NumberOfOffer = Structure.new do
         # @return [String]
-        attribute(:condition, String, from: "Condition")
+        attribute(:condition, String, null: false, from: "Condition")
 
         # @return [String]
-        attribute(:fulfillment_channel, String, from: "FulfillmentChannel")
+        attribute(:fulfillment_channel, String, null: false, from: "FulfillmentChannel")
 
         # @return [Integer]
-        attribute(:offer_count, Integer, from: "OfferCount")
+        attribute(:offer_count, Integer, null: false, from: "OfferCount")
       end
     end
   end

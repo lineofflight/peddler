@@ -10,7 +10,7 @@ module Peddler
       # The relationship details for a listing item.
       ItemRelationship = Structure.new do
         # @return [String] The type of relationship.
-        attribute(:type, String)
+        attribute(:type, String, null: false)
 
         # @return [Array<String>] Identifiers (SKUs) of the related items that are children of this listing item.
         attribute?(:child_skus, [String], from: "childSkus")

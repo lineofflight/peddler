@@ -10,7 +10,7 @@ module Peddler
       # Contains details about an asin.
       ASINDetails = Structure.new do
         # @return [String] The asin of the product.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
       end
     end
   end

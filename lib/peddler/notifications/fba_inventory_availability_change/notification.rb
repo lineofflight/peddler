@@ -11,7 +11,7 @@ module Peddler
       # The root schema comprises the entire JSON document.
       Notification = Structure.new do
         # @return [Payload] The details of this notification.
-        attribute(:payload, Payload, from: "Payload")
+        attribute(:payload, Payload, null: false, from: "Payload")
 
         # @return [Time] Timestamp of the event. Formatted as ISO 8601 date-time.
         attribute?(:event_time, Time, from: "EventTime")

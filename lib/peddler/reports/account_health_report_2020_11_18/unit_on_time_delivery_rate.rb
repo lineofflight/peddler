@@ -12,26 +12,26 @@ module Peddler
       # specify. This metric is only available in the US marketplace.
       UnitOnTimeDeliveryRate = Structure.new do
         # @return [String]
-        attribute(:rate, String)
+        attribute(:rate, String, null: false)
 
         # @return [ReportingDateRange]
-        attribute(:reporting_date_range, ReportingDateRange, from: "reportingDateRange")
+        attribute(:reporting_date_range, ReportingDateRange, null: false, from: "reportingDateRange")
 
         # @return [String]
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [String]
-        attribute(:target_condition, String, from: "targetCondition")
+        attribute(:target_condition, String, null: false, from: "targetCondition")
 
         # @return [String]
-        attribute(:target_value, String, from: "targetValue")
+        attribute(:target_value, String, null: false, from: "targetValue")
 
         # @return [Integer] The total unit count within a reporting date range for one marketplace that you specify.
-        attribute(:total_unit_count, Integer, from: "totalUnitCount")
+        attribute(:total_unit_count, Integer, null: false, from: "totalUnitCount")
 
         # @return [Integer] The on-time delivery unit count within a reporting date range for one marketplace that you
         #   specify.
-        attribute(:unit_on_time_delivery_count, Integer, from: "unitOnTimeDeliveryCount")
+        attribute(:unit_on_time_delivery_count, Integer, null: false, from: "unitOnTimeDeliveryCount")
       end
     end
   end

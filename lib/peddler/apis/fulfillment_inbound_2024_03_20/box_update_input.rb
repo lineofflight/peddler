@@ -10,16 +10,16 @@ module Peddler
       # Input information for updating a box
       BoxUpdateInput = Structure.new do
         # @return [String]
-        attribute(:content_information_source, String, from: "contentInformationSource")
+        attribute(:content_information_source, String, null: false, from: "contentInformationSource")
 
         # @return [Dimensions]
-        attribute(:dimensions, Dimensions)
+        attribute(:dimensions, Dimensions, null: false)
 
         # @return [Integer] The number of containers where all other properties like weight or dimensions are identical.
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [Weight]
-        attribute(:weight, Weight)
+        attribute(:weight, Weight, null: false)
 
         # @return [Array<ItemInput>] The items and their quantity in the box. This must be empty if the box
         #   `contentInformationSource` is `BARCODE_2D` or `MANUAL_PROCESS`.

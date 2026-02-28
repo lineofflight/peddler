@@ -14,10 +14,10 @@ module Peddler
       # catalog.
       Report = Structure.new do
         # @return [Array<DetailsByAsin>]
-        attribute(:data_by_asin, [DetailsByASIN], from: "dataByAsin")
+        attribute(:data_by_asin, [DetailsByASIN], null: false, from: "dataByAsin")
 
         # @return [Hash] Summarizes the original report request.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

@@ -11,16 +11,16 @@ module Peddler
       Payload = Structure.new do
         # @return [String] The merchant customer identifier or vendor group identifier of the selling partner account on
         #   whose behalf the query was submitted.
-        attribute(:account_id, String, from: "accountId")
+        attribute(:account_id, String, null: false, from: "accountId")
 
         # @return [String] The processing status of the query.
-        attribute(:processing_status, String, from: "processingStatus")
+        attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # @return [String] The submitted query.
-        attribute(:query, String)
+        attribute(:query, String, null: false)
 
         # @return [String] The query identifier. This identifier is unique only in combination with the `accountId`.
-        attribute(:query_id, String, from: "queryId")
+        attribute(:query_id, String, null: false, from: "queryId")
 
         # @return [String] The data document identifier. This document identifier is only present when there is data
         #   available as a result of the query. This identifier is unique only in combination with the `accountId`. Pass

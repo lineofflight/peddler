@@ -10,10 +10,10 @@ module Peddler
       # Total invoice defects count due to missing invoice and late invoice.
       InvoiceDefect = Structure.new do
         # @return [Integer] Invoice defects count.
-        attribute(:count, Integer)
+        attribute(:count, Integer, null: false)
 
         # @return [String]
-        attribute(:status, String)
+        attribute(:status, String, null: false)
       end
     end
   end

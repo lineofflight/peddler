@@ -9,7 +9,7 @@ module Peddler
     module FeePromotion
       IdentifierValue = Structure.new do
         # @return [String]
-        attribute(:identifier_value_id, String, from: "IdentifierValueId")
+        attribute(:identifier_value_id, String, null: false, from: "IdentifierValueId")
 
         # @return [String]
         attribute?(:identifier_value_friendly_name, String, from: "IdentifierValueFriendlyName")

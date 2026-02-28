@@ -10,7 +10,7 @@ module Peddler
       # The response for the `getReports` operation.
       GetReportsResponse = Structure.new do
         # @return [Array<Report>] The reports.
-        attribute(:reports, [Report])
+        attribute(:reports, [Report], null: false)
 
         # @return [String] Returned when the number of results exceeds `pageSize`. To get the next page of results, call
         #   `getReports` with this token as the only parameter.

@@ -10,10 +10,10 @@ module Peddler
       # The parameters for an individual request.
       FeaturedOfferExpectedPriceRequestParams = Structure.new do
         # @return [String]
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String]
-        attribute(:sku, String)
+        attribute(:sku, String, null: false)
 
         # @return [Segment]
         attribute?(:segment, Segment)

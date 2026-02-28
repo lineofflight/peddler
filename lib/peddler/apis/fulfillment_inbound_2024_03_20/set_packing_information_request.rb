@@ -10,7 +10,7 @@ module Peddler
       # The `setPackingInformation` request.
       SetPackingInformationRequest = Structure.new do
         # @return [Array<PackageGroupingInput>] List of packing information for the inbound plan.
-        attribute(:package_groupings, [PackageGroupingInput], from: "packageGroupings")
+        attribute(:package_groupings, [PackageGroupingInput], null: false, from: "packageGroupings")
       end
     end
   end

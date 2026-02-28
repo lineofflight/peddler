@@ -11,7 +11,7 @@ module Peddler
       ShipmentDestination = Structure.new do
         # @return [String] The type of destination for this shipment. Possible values: `AMAZON_OPTIMIZED`,
         #   `AMAZON_WAREHOUSE`.
-        attribute(:destination_type, String, from: "destinationType")
+        attribute(:destination_type, String, null: false, from: "destinationType")
 
         # @return [Address] The address the shipment should be sent to. This can be empty if the destination type is
         #   `AMAZON_OPTIMIZED`.

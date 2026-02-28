@@ -11,11 +11,11 @@ module Peddler
       LowestPricedOffer = Structure.new do
         # @return [LowestPricedOffersInput] The filtering criteria that are used to retrieve the lowest priced offers
         #   that correspond to the `lowestPricedOffersInputs` request.
-        attribute(:lowest_priced_offers_input, LowestPricedOffersInput, from: "lowestPricedOffersInput")
+        attribute(:lowest_priced_offers_input, LowestPricedOffersInput, null: false, from: "lowestPricedOffersInput")
 
         # @return [Array<Offer>] A list of up to 20 lowest priced offers that match the criteria specified in
         #   `lowestPricedOffersInput`.
-        attribute(:offers, [Offer])
+        attribute(:offers, [Offer], null: false)
       end
     end
   end

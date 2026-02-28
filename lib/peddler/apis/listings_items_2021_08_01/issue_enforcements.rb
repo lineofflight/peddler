@@ -12,10 +12,10 @@ module Peddler
       IssueEnforcements = Structure.new do
         # @return [Array<IssueEnforcementAction>] List of enforcement actions taken by Amazon that affect the publishing
         #   or status of a listing.
-        attribute(:actions, [IssueEnforcementAction])
+        attribute(:actions, [IssueEnforcementAction], null: false)
 
         # @return [IssueExemption] The "exemption" field serves to convey the status of enforcement actions by Amazon.
-        attribute(:exemption, IssueExemption)
+        attribute(:exemption, IssueExemption, null: false)
       end
     end
   end

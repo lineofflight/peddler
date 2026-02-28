@@ -10,7 +10,7 @@ module Peddler
       # The payload for the `getFeatures` operation.
       GetFeaturesResult = Structure.new do
         # @return [Array<Feature>]
-        attribute(:features, [Feature])
+        attribute(:features, [Feature], null: false)
       end
     end
   end

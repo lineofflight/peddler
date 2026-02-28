@@ -11,11 +11,11 @@ module Peddler
       CompetitiveSummaryResponse = Structure.new do
         # @return [CompetitiveSummaryResponseBody] The `competitiveSummaryResponse` body for a requested ASIN and
         #   `marketplaceId`.
-        attribute(:body, CompetitiveSummaryResponseBody)
+        attribute(:body, CompetitiveSummaryResponseBody, null: false)
 
         # @return [HttpStatusLine] The HTTP status line associated with the response. For more information, refer to
         #   [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
-        attribute(:status, HttpStatusLine)
+        attribute(:status, HttpStatusLine, null: false)
       end
     end
   end

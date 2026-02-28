@@ -10,20 +10,20 @@ module Peddler
       # An object that contains details about a product.
       DetailsByProduct = Structure.new do
         # @return [String] The product ASIN.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [String] The product name.
-        attribute(:product_name, String, from: "productName")
+        attribute(:product_name, String, null: false, from: "productName")
 
         # @return [Float] The total revenue generated at the ASIN level. For sellers, this is equivalent to "sales" in
         #   the Seller Central UI.
-        attribute(:product_revenue, Float, from: "productRevenue")
+        attribute(:product_revenue, Float, null: false, from: "productRevenue")
 
         # @return [String] ISO 4217 currency code of productRevenue.
-        attribute(:product_revenue_currency_code, String, from: "productRevenueCurrencyCode")
+        attribute(:product_revenue_currency_code, String, null: false, from: "productRevenueCurrencyCode")
 
         # @return [Integer] The number of units sold at the promotional price.
-        attribute(:product_units_sold, Integer, from: "productUnitsSold")
+        attribute(:product_units_sold, Integer, null: false, from: "productUnitsSold")
 
         # @return [Float] Total funding provided by the vendor at the ASIN level. For vendors only.
         attribute?(:product_amount_spent, Float, from: "productAmountSpent")

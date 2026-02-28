@@ -11,15 +11,15 @@ module Peddler
       # Describes the aggregated net pure product margin for ASINs in the vendor's account.
       NetPureProductMarginAggregateDetails = Structure.new do
         # @return [Date] The end date of the aggregated data.
-        attribute(:end_date, Date, from: "endDate")
+        attribute(:end_date, Date, null: false, from: "endDate")
 
         # @return [Float] A measure of Amazon's profitability considering Amazon's wholesale cost and vendor-funded
         #   cooperative marketing funds: (Product Revenue – Product COGS – Vendor Funded Coop) / Product Revenue. The
         #   value is a fraction with values between 0 and 1. To represent as a percentage, multiply the value by 100.
-        attribute(:net_pure_product_margin, Float, from: "netPureProductMargin")
+        attribute(:net_pure_product_margin, Float, null: false, from: "netPureProductMargin")
 
         # @return [Date] The start date of the aggregated data.
-        attribute(:start_date, Date, from: "startDate")
+        attribute(:start_date, Date, null: false, from: "startDate")
       end
     end
   end

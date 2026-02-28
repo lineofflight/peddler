@@ -29,16 +29,16 @@ module Peddler
         #   duplicate of another ASIN.
         #
         # * 'QUALIFICATION_REQUIRED' - Indicating that the listing requires qualification-related approval.
-        attribute(:categories, [String])
+        attribute(:categories, [String], null: false)
 
         # @return [String] An issue code that identifies the type of issue.
-        attribute(:code, String)
+        attribute(:code, String, null: false)
 
         # @return [String] A message that describes the issue.
-        attribute(:message, String)
+        attribute(:message, String, null: false)
 
         # @return [String] The severity of the issue.
-        attribute(:severity, String)
+        attribute(:severity, String, null: false)
 
         # @return [Array<String>] The names of the attributes associated with the issue, if applicable.
         attribute?(:attribute_names, [String], from: "attributeNames")

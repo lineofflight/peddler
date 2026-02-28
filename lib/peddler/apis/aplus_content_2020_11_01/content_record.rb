@@ -10,7 +10,7 @@ module Peddler
       # A content document with additional information for content management.
       ContentRecord = Structure.new do
         # @return [String]
-        attribute(:content_reference_key, String, from: "contentReferenceKey")
+        attribute(:content_reference_key, String, null: false, from: "contentReferenceKey")
 
         # @return [ContentDocument]
         attribute?(:content_document, ContentDocument, from: "contentDocument")

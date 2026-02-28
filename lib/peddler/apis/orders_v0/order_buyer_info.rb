@@ -10,7 +10,7 @@ module Peddler
       # Buyer information for an order.
       OrderBuyerInfo = Structure.new do
         # @return [String] An Amazon-defined order identifier, in 3-7-7 format.
-        attribute(:amazon_order_id, String, from: "AmazonOrderId")
+        attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
         # @return [String] The county of the buyer.
         #

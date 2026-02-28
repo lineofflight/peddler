@@ -2,347 +2,347 @@ module Peddler
   module Reports
     module AccountHealthReport20201118
       class AccountHealthRating < Data
-        def self.new: (reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, ?account_health_rating_status: String?) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
-                    | (Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
-        def self.[]: (reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, ?account_health_rating_status: String?) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
-                   | (Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
+        def self.new: (reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, ?account_health_rating_status: String?) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
+                    | (Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String?) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
+        def self.[]: (reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, ?account_health_rating_status: String?) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
+                   | (Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String?) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
 
         def self.members: () -> [ :reporting_date_range, :account_health_rating_status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
 
         attr_reader account_health_rating_status: String?
-        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?
+        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
 
         def members: () -> [ :reporting_date_range, :account_health_rating_status ]
-        def to_h: () -> { reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, account_health_rating_status: String? }
+        def to_h: () -> { reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, account_health_rating_status: String? }
       end
 
       class AccountStatus < Data
-        def self.new: (marketplace_id: String?, status: String?) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
-                    | (String?, String?) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
-        def self.[]: (marketplace_id: String?, status: String?) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
-                   | (String?, String?) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
+        def self.new: (marketplace_id: String, status: String) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
+                    | (String, String) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
+        def self.[]: (marketplace_id: String, status: String) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
+                   | (String, String) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
 
         def self.members: () -> [ :marketplace_id, :status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::AccountStatus
 
-        attr_reader marketplace_id: String?
-        attr_reader status: String?
+        attr_reader marketplace_id: String
+        attr_reader status: String
 
         def members: () -> [ :marketplace_id, :status ]
-        def to_h: () -> { marketplace_id: String?, status: String? }
+        def to_h: () -> { marketplace_id: String, status: String }
       end
 
       class InvoiceDefect < Data
-        def self.new: (count: Integer?, status: String?) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
-                    | (Integer?, String?) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
-        def self.[]: (count: Integer?, status: String?) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
-                   | (Integer?, String?) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
+        def self.new: (count: Integer, status: String) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
+                    | (Integer, String) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
+        def self.[]: (count: Integer, status: String) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
+                   | (Integer, String) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
 
         def self.members: () -> [ :count, :status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
 
-        attr_reader count: Integer?
-        attr_reader status: String?
+        attr_reader count: Integer
+        attr_reader status: String
 
         def members: () -> [ :count, :status ]
-        def to_h: () -> { count: Integer?, status: String? }
+        def to_h: () -> { count: Integer, status: String }
       end
 
       class InvoiceDefectRate < Data
-        def self.new: (invoice_defect: Peddler::Reports::AccountHealthReport20201118::InvoiceDefect?, late_invoice: Peddler::Reports::AccountHealthReport20201118::LateInvoice?, missing_invoice: Peddler::Reports::AccountHealthReport20201118::MissingInvoice?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
-                    | (Peddler::Reports::AccountHealthReport20201118::InvoiceDefect?, Peddler::Reports::AccountHealthReport20201118::LateInvoice?, Peddler::Reports::AccountHealthReport20201118::MissingInvoice?, String?, String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
-        def self.[]: (invoice_defect: Peddler::Reports::AccountHealthReport20201118::InvoiceDefect?, late_invoice: Peddler::Reports::AccountHealthReport20201118::LateInvoice?, missing_invoice: Peddler::Reports::AccountHealthReport20201118::MissingInvoice?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
-                   | (Peddler::Reports::AccountHealthReport20201118::InvoiceDefect?, Peddler::Reports::AccountHealthReport20201118::LateInvoice?, Peddler::Reports::AccountHealthReport20201118::MissingInvoice?, String?, String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
+        def self.new: (invoice_defect: Peddler::Reports::AccountHealthReport20201118::InvoiceDefect, late_invoice: Peddler::Reports::AccountHealthReport20201118::LateInvoice, missing_invoice: Peddler::Reports::AccountHealthReport20201118::MissingInvoice, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
+                    | (Peddler::Reports::AccountHealthReport20201118::InvoiceDefect, Peddler::Reports::AccountHealthReport20201118::LateInvoice, Peddler::Reports::AccountHealthReport20201118::MissingInvoice, String, String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
+        def self.[]: (invoice_defect: Peddler::Reports::AccountHealthReport20201118::InvoiceDefect, late_invoice: Peddler::Reports::AccountHealthReport20201118::LateInvoice, missing_invoice: Peddler::Reports::AccountHealthReport20201118::MissingInvoice, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
+                   | (Peddler::Reports::AccountHealthReport20201118::InvoiceDefect, Peddler::Reports::AccountHealthReport20201118::LateInvoice, Peddler::Reports::AccountHealthReport20201118::MissingInvoice, String, String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
 
         def self.members: () -> [ :invoice_defect, :late_invoice, :missing_invoice, :order_count, :rate, :reporting_date_range, :status, :target_condition, :target_value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
 
-        attr_reader invoice_defect: Peddler::Reports::AccountHealthReport20201118::InvoiceDefect?
-        attr_reader late_invoice: Peddler::Reports::AccountHealthReport20201118::LateInvoice?
-        attr_reader missing_invoice: Peddler::Reports::AccountHealthReport20201118::MissingInvoice?
-        attr_reader order_count: String?
-        attr_reader rate: String?
-        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?
-        attr_reader status: String?
-        attr_reader target_condition: String?
-        attr_reader target_value: String?
+        attr_reader invoice_defect: Peddler::Reports::AccountHealthReport20201118::InvoiceDefect
+        attr_reader late_invoice: Peddler::Reports::AccountHealthReport20201118::LateInvoice
+        attr_reader missing_invoice: Peddler::Reports::AccountHealthReport20201118::MissingInvoice
+        attr_reader order_count: String
+        attr_reader rate: String
+        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        attr_reader status: String
+        attr_reader target_condition: String
+        attr_reader target_value: String
 
         def members: () -> [ :invoice_defect, :late_invoice, :missing_invoice, :order_count, :rate, :reporting_date_range, :status, :target_condition, :target_value ]
-        def to_h: () -> { invoice_defect: Peddler::Reports::AccountHealthReport20201118::InvoiceDefect?, late_invoice: Peddler::Reports::AccountHealthReport20201118::LateInvoice?, missing_invoice: Peddler::Reports::AccountHealthReport20201118::MissingInvoice?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String? }
+        def to_h: () -> { invoice_defect: Peddler::Reports::AccountHealthReport20201118::InvoiceDefect, late_invoice: Peddler::Reports::AccountHealthReport20201118::LateInvoice, missing_invoice: Peddler::Reports::AccountHealthReport20201118::MissingInvoice, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String }
       end
 
       class LateInvoice < Data
-        def self.new: (count: Integer?, status: String?) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
-                    | (Integer?, String?) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
-        def self.[]: (count: Integer?, status: String?) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
-                   | (Integer?, String?) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
+        def self.new: (count: Integer, status: String) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
+                    | (Integer, String) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
+        def self.[]: (count: Integer, status: String) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
+                   | (Integer, String) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
 
         def self.members: () -> [ :count, :status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::LateInvoice
 
-        attr_reader count: Integer?
-        attr_reader status: String?
+        attr_reader count: Integer
+        attr_reader status: String
 
         def members: () -> [ :count, :status ]
-        def to_h: () -> { count: Integer?, status: String? }
+        def to_h: () -> { count: Integer, status: String }
       end
 
       class LateShipmentRate < Data
-        def self.new: (late_shipment_count: Integer?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
-                    | (Integer?, String?, String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
-        def self.[]: (late_shipment_count: Integer?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
-                   | (Integer?, String?, String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
+        def self.new: (late_shipment_count: Integer, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
+                    | (Integer, String, String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
+        def self.[]: (late_shipment_count: Integer, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
+                   | (Integer, String, String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
 
         def self.members: () -> [ :late_shipment_count, :order_count, :rate, :reporting_date_range, :status, :target_condition, :target_value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
 
-        attr_reader late_shipment_count: Integer?
-        attr_reader order_count: String?
-        attr_reader rate: String?
-        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?
-        attr_reader status: String?
-        attr_reader target_condition: String?
-        attr_reader target_value: String?
+        attr_reader late_shipment_count: Integer
+        attr_reader order_count: String
+        attr_reader rate: String
+        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        attr_reader status: String
+        attr_reader target_condition: String
+        attr_reader target_value: String
 
         def members: () -> [ :late_shipment_count, :order_count, :rate, :reporting_date_range, :status, :target_condition, :target_value ]
-        def to_h: () -> { late_shipment_count: Integer?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String? }
+        def to_h: () -> { late_shipment_count: Integer, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String }
       end
 
       class ListingLevelViolation < Data
-        def self.new: (defects_count: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
-                    | (String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
-        def self.[]: (defects_count: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
-                   | (String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        def self.new: (defects_count: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+                    | (String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        def self.[]: (defects_count: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+                   | (String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
 
         def self.members: () -> [ :defects_count, :reporting_date_range, :status, :target_condition, :target_value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
 
-        attr_reader defects_count: String?
-        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?
-        attr_reader status: String?
-        attr_reader target_condition: String?
-        attr_reader target_value: String?
+        attr_reader defects_count: String
+        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        attr_reader status: String
+        attr_reader target_condition: String
+        attr_reader target_value: String
 
         def members: () -> [ :defects_count, :reporting_date_range, :status, :target_condition, :target_value ]
-        def to_h: () -> { defects_count: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String? }
+        def to_h: () -> { defects_count: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String }
       end
 
       class MissingInvoice < Data
-        def self.new: (count: Integer?, status: String?) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
-                    | (Integer?, String?) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
-        def self.[]: (count: Integer?, status: String?) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
-                   | (Integer?, String?) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
+        def self.new: (count: Integer, status: String) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
+                    | (Integer, String) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
+        def self.[]: (count: Integer, status: String) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
+                   | (Integer, String) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
 
         def self.members: () -> [ :count, :status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::MissingInvoice
 
-        attr_reader count: Integer?
-        attr_reader status: String?
+        attr_reader count: Integer
+        attr_reader status: String
 
         def members: () -> [ :count, :status ]
-        def to_h: () -> { count: Integer?, status: String? }
+        def to_h: () -> { count: Integer, status: String }
       end
 
       class OnTimeDeliveryRate < Data
-        def self.new: (on_time_delivery_count: Integer?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, shipment_count_with_valid_tracking: Float?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
-                    | (Integer?, String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, Float?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
-        def self.[]: (on_time_delivery_count: Integer?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, shipment_count_with_valid_tracking: Float?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
-                   | (Integer?, String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, Float?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
+        def self.new: (on_time_delivery_count: Integer, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, shipment_count_with_valid_tracking: Float, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
+                    | (Integer, String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, Float, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
+        def self.[]: (on_time_delivery_count: Integer, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, shipment_count_with_valid_tracking: Float, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
+                   | (Integer, String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, Float, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
 
         def self.members: () -> [ :on_time_delivery_count, :rate, :reporting_date_range, :shipment_count_with_valid_tracking, :status, :target_condition, :target_value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
 
-        attr_reader on_time_delivery_count: Integer?
-        attr_reader rate: String?
-        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?
-        attr_reader shipment_count_with_valid_tracking: Float?
-        attr_reader status: String?
-        attr_reader target_condition: String?
-        attr_reader target_value: String?
+        attr_reader on_time_delivery_count: Integer
+        attr_reader rate: String
+        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        attr_reader shipment_count_with_valid_tracking: Float
+        attr_reader status: String
+        attr_reader target_condition: String
+        attr_reader target_value: String
 
         def members: () -> [ :on_time_delivery_count, :rate, :reporting_date_range, :shipment_count_with_valid_tracking, :status, :target_condition, :target_value ]
-        def to_h: () -> { on_time_delivery_count: Integer?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, shipment_count_with_valid_tracking: Float?, status: String?, target_condition: String?, target_value: String? }
+        def to_h: () -> { on_time_delivery_count: Integer, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, shipment_count_with_valid_tracking: Float, status: String, target_condition: String, target_value: String }
       end
 
       class OrderDefectRate < Data
         type parse_data = { ?afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate | parse_data, ?mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate | parse_data }
-        def self.new: (afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
-                    | (Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
-        def self.[]: (afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
-                   | (Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
+        def self.new: (afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
+                    | (Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, Peddler::Reports::AccountHealthReport20201118::OrderDefectRate) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
+        def self.[]: (afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
+                   | (Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, Peddler::Reports::AccountHealthReport20201118::OrderDefectRate) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
 
         def self.members: () -> [ :afn, :mfn ]
 
         def self.parse: (?parse_data data) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
                       | (?Hash[String, untyped] data) -> Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
 
-        attr_reader afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?
-        attr_reader mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?
+        attr_reader afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
+        attr_reader mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
 
         def members: () -> [ :afn, :mfn ]
-        def to_h: () -> { afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate? }
+        def to_h: () -> { afn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, mfn: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate }
       end
 
       class PerformanceMetric < Data
-        def self.new: (account_health_rating: Peddler::Reports::AccountHealthReport20201118::AccountHealthRating?, document_requests: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, food_and_product_safety_issues: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, invoice_defect_rate: Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate?, late_shipment_rate: Peddler::Reports::AccountHealthReport20201118::LateShipmentRate?, listing_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, marketplace_id: String?, on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate?, order_defect_rate: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, other_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, pre_fulfillment_cancellation_rate: Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate?, product_authenticity_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, product_condition_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, product_safety_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, received_intellectual_property_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, restricted_product_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, suspected_intellectual_property_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, unit_on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate?, valid_tracking_rate: Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate?, warning_states: Array[Peddler::Reports::AccountHealthReport20201118::WarningState]?) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
-                    | (Peddler::Reports::AccountHealthReport20201118::AccountHealthRating?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate?, Peddler::Reports::AccountHealthReport20201118::LateShipmentRate?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, String?, Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate?, Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate?, Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate?, Array[Peddler::Reports::AccountHealthReport20201118::WarningState]?) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
-        def self.[]: (account_health_rating: Peddler::Reports::AccountHealthReport20201118::AccountHealthRating?, document_requests: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, food_and_product_safety_issues: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, invoice_defect_rate: Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate?, late_shipment_rate: Peddler::Reports::AccountHealthReport20201118::LateShipmentRate?, listing_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, marketplace_id: String?, on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate?, order_defect_rate: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, other_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, pre_fulfillment_cancellation_rate: Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate?, product_authenticity_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, product_condition_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, product_safety_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, received_intellectual_property_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, restricted_product_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, suspected_intellectual_property_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, unit_on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate?, valid_tracking_rate: Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate?, warning_states: Array[Peddler::Reports::AccountHealthReport20201118::WarningState]?) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
-                   | (Peddler::Reports::AccountHealthReport20201118::AccountHealthRating?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate?, Peddler::Reports::AccountHealthReport20201118::LateShipmentRate?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, String?, Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate?, Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate?, Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate?, Array[Peddler::Reports::AccountHealthReport20201118::WarningState]?) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
+        def self.new: (account_health_rating: Peddler::Reports::AccountHealthReport20201118::AccountHealthRating, document_requests: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, food_and_product_safety_issues: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, invoice_defect_rate: Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate, late_shipment_rate: Peddler::Reports::AccountHealthReport20201118::LateShipmentRate, listing_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, marketplace_id: String, on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate, order_defect_rate: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, other_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, pre_fulfillment_cancellation_rate: Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate, product_authenticity_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, product_condition_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, product_safety_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, received_intellectual_property_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, restricted_product_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, suspected_intellectual_property_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, unit_on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate, valid_tracking_rate: Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate, warning_states: Array[Peddler::Reports::AccountHealthReport20201118::WarningState]) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
+                    | (Peddler::Reports::AccountHealthReport20201118::AccountHealthRating, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate, Peddler::Reports::AccountHealthReport20201118::LateShipmentRate, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, String, Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate, Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate, Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate, Array[Peddler::Reports::AccountHealthReport20201118::WarningState]) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
+        def self.[]: (account_health_rating: Peddler::Reports::AccountHealthReport20201118::AccountHealthRating, document_requests: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, food_and_product_safety_issues: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, invoice_defect_rate: Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate, late_shipment_rate: Peddler::Reports::AccountHealthReport20201118::LateShipmentRate, listing_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, marketplace_id: String, on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate, order_defect_rate: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, other_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, pre_fulfillment_cancellation_rate: Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate, product_authenticity_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, product_condition_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, product_safety_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, received_intellectual_property_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, restricted_product_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, suspected_intellectual_property_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, unit_on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate, valid_tracking_rate: Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate, warning_states: Array[Peddler::Reports::AccountHealthReport20201118::WarningState]) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
+                   | (Peddler::Reports::AccountHealthReport20201118::AccountHealthRating, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate, Peddler::Reports::AccountHealthReport20201118::LateShipmentRate, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, String, Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate, Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate, Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate, Array[Peddler::Reports::AccountHealthReport20201118::WarningState]) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
 
         def self.members: () -> [ :account_health_rating, :document_requests, :food_and_product_safety_issues, :invoice_defect_rate, :late_shipment_rate, :listing_policy_violations, :marketplace_id, :on_time_delivery_rate, :order_defect_rate, :other_policy_violations, :pre_fulfillment_cancellation_rate, :product_authenticity_customer_complaints, :product_condition_customer_complaints, :product_safety_customer_complaints, :received_intellectual_property_complaints, :restricted_product_policy_violations, :suspected_intellectual_property_violations, :unit_on_time_delivery_rate, :valid_tracking_rate, :warning_states ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::PerformanceMetric
 
-        attr_reader account_health_rating: Peddler::Reports::AccountHealthReport20201118::AccountHealthRating?
-        attr_reader document_requests: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader food_and_product_safety_issues: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader invoice_defect_rate: Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate?
-        attr_reader late_shipment_rate: Peddler::Reports::AccountHealthReport20201118::LateShipmentRate?
-        attr_reader listing_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader marketplace_id: String?
-        attr_reader on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate?
-        attr_reader order_defect_rate: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?
-        attr_reader other_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader pre_fulfillment_cancellation_rate: Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate?
-        attr_reader product_authenticity_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader product_condition_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader product_safety_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader received_intellectual_property_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader restricted_product_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader suspected_intellectual_property_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?
-        attr_reader unit_on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate?
-        attr_reader valid_tracking_rate: Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate?
-        attr_reader warning_states: Array[Peddler::Reports::AccountHealthReport20201118::WarningState]?
+        attr_reader account_health_rating: Peddler::Reports::AccountHealthReport20201118::AccountHealthRating
+        attr_reader document_requests: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader food_and_product_safety_issues: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader invoice_defect_rate: Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate
+        attr_reader late_shipment_rate: Peddler::Reports::AccountHealthReport20201118::LateShipmentRate
+        attr_reader listing_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader marketplace_id: String
+        attr_reader on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate
+        attr_reader order_defect_rate: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate
+        attr_reader other_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader pre_fulfillment_cancellation_rate: Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
+        attr_reader product_authenticity_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader product_condition_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader product_safety_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader received_intellectual_property_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader restricted_product_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader suspected_intellectual_property_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation
+        attr_reader unit_on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
+        attr_reader valid_tracking_rate: Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
+        attr_reader warning_states: Array[Peddler::Reports::AccountHealthReport20201118::WarningState]
 
         def members: () -> [ :account_health_rating, :document_requests, :food_and_product_safety_issues, :invoice_defect_rate, :late_shipment_rate, :listing_policy_violations, :marketplace_id, :on_time_delivery_rate, :order_defect_rate, :other_policy_violations, :pre_fulfillment_cancellation_rate, :product_authenticity_customer_complaints, :product_condition_customer_complaints, :product_safety_customer_complaints, :received_intellectual_property_complaints, :restricted_product_policy_violations, :suspected_intellectual_property_violations, :unit_on_time_delivery_rate, :valid_tracking_rate, :warning_states ]
-        def to_h: () -> { account_health_rating: Peddler::Reports::AccountHealthReport20201118::AccountHealthRating?, document_requests: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, food_and_product_safety_issues: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, invoice_defect_rate: Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate?, late_shipment_rate: Peddler::Reports::AccountHealthReport20201118::LateShipmentRate?, listing_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, marketplace_id: String?, on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate?, order_defect_rate: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate?, other_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, pre_fulfillment_cancellation_rate: Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate?, product_authenticity_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, product_condition_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, product_safety_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, received_intellectual_property_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, restricted_product_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, suspected_intellectual_property_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation?, unit_on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate?, valid_tracking_rate: Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate?, warning_states: Array[Peddler::Reports::AccountHealthReport20201118::WarningState]? }
+        def to_h: () -> { account_health_rating: Peddler::Reports::AccountHealthReport20201118::AccountHealthRating, document_requests: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, food_and_product_safety_issues: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, invoice_defect_rate: Peddler::Reports::AccountHealthReport20201118::InvoiceDefectRate, late_shipment_rate: Peddler::Reports::AccountHealthReport20201118::LateShipmentRate, listing_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, marketplace_id: String, on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::OnTimeDeliveryRate, order_defect_rate: Peddler::Reports::AccountHealthReport20201118::OrderDefectRate, other_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, pre_fulfillment_cancellation_rate: Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate, product_authenticity_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, product_condition_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, product_safety_customer_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, received_intellectual_property_complaints: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, restricted_product_policy_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, suspected_intellectual_property_violations: Peddler::Reports::AccountHealthReport20201118::ListingLevelViolation, unit_on_time_delivery_rate: Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate, valid_tracking_rate: Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate, warning_states: Array[Peddler::Reports::AccountHealthReport20201118::WarningState] }
       end
 
       class PreFulfillmentCancellationRate < Data
-        def self.new: (cancellation_count: Integer?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
-                    | (Integer?, String?, String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
-        def self.[]: (cancellation_count: Integer?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
-                   | (Integer?, String?, String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
+        def self.new: (cancellation_count: Integer, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
+                    | (Integer, String, String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
+        def self.[]: (cancellation_count: Integer, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
+                   | (Integer, String, String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
 
         def self.members: () -> [ :cancellation_count, :order_count, :rate, :reporting_date_range, :status, :target_condition, :target_value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::PreFulfillmentCancellationRate
 
-        attr_reader cancellation_count: Integer?
-        attr_reader order_count: String?
-        attr_reader rate: String?
-        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?
-        attr_reader status: String?
-        attr_reader target_condition: String?
-        attr_reader target_value: String?
+        attr_reader cancellation_count: Integer
+        attr_reader order_count: String
+        attr_reader rate: String
+        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        attr_reader status: String
+        attr_reader target_condition: String
+        attr_reader target_value: String
 
         def members: () -> [ :cancellation_count, :order_count, :rate, :reporting_date_range, :status, :target_condition, :target_value ]
-        def to_h: () -> { cancellation_count: Integer?, order_count: String?, rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String? }
+        def to_h: () -> { cancellation_count: Integer, order_count: String, rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String }
       end
 
       class Report < Data
-        def self.new: (account_statuses: Array[untyped]?, performance_metrics: Array[untyped]?) -> Peddler::Reports::AccountHealthReport20201118::Report
-                    | (Array[untyped]?, Array[untyped]?) -> Peddler::Reports::AccountHealthReport20201118::Report
-        def self.[]: (account_statuses: Array[untyped]?, performance_metrics: Array[untyped]?) -> Peddler::Reports::AccountHealthReport20201118::Report
-                   | (Array[untyped]?, Array[untyped]?) -> Peddler::Reports::AccountHealthReport20201118::Report
+        def self.new: (account_statuses: Array[untyped], performance_metrics: Array[untyped]) -> Peddler::Reports::AccountHealthReport20201118::Report
+                    | (Array[untyped], Array[untyped]) -> Peddler::Reports::AccountHealthReport20201118::Report
+        def self.[]: (account_statuses: Array[untyped], performance_metrics: Array[untyped]) -> Peddler::Reports::AccountHealthReport20201118::Report
+                   | (Array[untyped], Array[untyped]) -> Peddler::Reports::AccountHealthReport20201118::Report
 
         def self.members: () -> [ :account_statuses, :performance_metrics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::Report
 
-        attr_reader account_statuses: Array[untyped]?
-        attr_reader performance_metrics: Array[untyped]?
+        attr_reader account_statuses: Array[untyped]
+        attr_reader performance_metrics: Array[untyped]
 
         def members: () -> [ :account_statuses, :performance_metrics ]
-        def to_h: () -> { account_statuses: Array[untyped]?, performance_metrics: Array[untyped]? }
+        def to_h: () -> { account_statuses: Array[untyped], performance_metrics: Array[untyped] }
       end
 
       class ReportingDateRange < Data
-        def self.new: (reporting_date_from: String?, reporting_date_to: String?) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
-                    | (String?, String?) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
-        def self.[]: (reporting_date_from: String?, reporting_date_to: String?) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
-                   | (String?, String?) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        def self.new: (reporting_date_from: String, reporting_date_to: String) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+                    | (String, String) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        def self.[]: (reporting_date_from: String, reporting_date_to: String) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+                   | (String, String) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
 
         def self.members: () -> [ :reporting_date_from, :reporting_date_to ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
 
-        attr_reader reporting_date_from: String?
-        attr_reader reporting_date_to: String?
+        attr_reader reporting_date_from: String
+        attr_reader reporting_date_to: String
 
         def members: () -> [ :reporting_date_from, :reporting_date_to ]
-        def to_h: () -> { reporting_date_from: String?, reporting_date_to: String? }
+        def to_h: () -> { reporting_date_from: String, reporting_date_to: String }
       end
 
       class UnitOnTimeDeliveryRate < Data
-        def self.new: (rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?, total_unit_count: Integer?, unit_on_time_delivery_count: Integer?) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
-                    | (String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?, Integer?, Integer?) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
-        def self.[]: (rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?, total_unit_count: Integer?, unit_on_time_delivery_count: Integer?) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
-                   | (String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, String?, String?, String?, Integer?, Integer?) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
+        def self.new: (rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String, total_unit_count: Integer, unit_on_time_delivery_count: Integer) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
+                    | (String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String, Integer, Integer) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
+        def self.[]: (rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String, total_unit_count: Integer, unit_on_time_delivery_count: Integer) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
+                   | (String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, String, String, String, Integer, Integer) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
 
         def self.members: () -> [ :rate, :reporting_date_range, :status, :target_condition, :target_value, :total_unit_count, :unit_on_time_delivery_count ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::UnitOnTimeDeliveryRate
 
-        attr_reader rate: String?
-        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?
-        attr_reader status: String?
-        attr_reader target_condition: String?
-        attr_reader target_value: String?
-        attr_reader total_unit_count: Integer?
-        attr_reader unit_on_time_delivery_count: Integer?
+        attr_reader rate: String
+        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        attr_reader status: String
+        attr_reader target_condition: String
+        attr_reader target_value: String
+        attr_reader total_unit_count: Integer
+        attr_reader unit_on_time_delivery_count: Integer
 
         def members: () -> [ :rate, :reporting_date_range, :status, :target_condition, :target_value, :total_unit_count, :unit_on_time_delivery_count ]
-        def to_h: () -> { rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, status: String?, target_condition: String?, target_value: String?, total_unit_count: Integer?, unit_on_time_delivery_count: Integer? }
+        def to_h: () -> { rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, status: String, target_condition: String, target_value: String, total_unit_count: Integer, unit_on_time_delivery_count: Integer }
       end
 
       class ValidTrackingRate < Data
-        def self.new: (rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, shipment_count: Integer?, status: String?, target_condition: String?, target_value: String?, valid_tracking_count: Integer?) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
-                    | (String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, Integer?, String?, String?, String?, Integer?) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
-        def self.[]: (rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, shipment_count: Integer?, status: String?, target_condition: String?, target_value: String?, valid_tracking_count: Integer?) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
-                   | (String?, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, Integer?, String?, String?, String?, Integer?) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
+        def self.new: (rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, shipment_count: Integer, status: String, target_condition: String, target_value: String, valid_tracking_count: Integer) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
+                    | (String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, Integer, String, String, String, Integer) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
+        def self.[]: (rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, shipment_count: Integer, status: String, target_condition: String, target_value: String, valid_tracking_count: Integer) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
+                   | (String, Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, Integer, String, String, String, Integer) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
 
         def self.members: () -> [ :rate, :reporting_date_range, :shipment_count, :status, :target_condition, :target_value, :valid_tracking_count ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::ValidTrackingRate
 
-        attr_reader rate: String?
-        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?
-        attr_reader shipment_count: Integer?
-        attr_reader status: String?
-        attr_reader target_condition: String?
-        attr_reader target_value: String?
-        attr_reader valid_tracking_count: Integer?
+        attr_reader rate: String
+        attr_reader reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange
+        attr_reader shipment_count: Integer
+        attr_reader status: String
+        attr_reader target_condition: String
+        attr_reader target_value: String
+        attr_reader valid_tracking_count: Integer
 
         def members: () -> [ :rate, :reporting_date_range, :shipment_count, :status, :target_condition, :target_value, :valid_tracking_count ]
-        def to_h: () -> { rate: String?, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange?, shipment_count: Integer?, status: String?, target_condition: String?, target_value: String?, valid_tracking_count: Integer? }
+        def to_h: () -> { rate: String, reporting_date_range: Peddler::Reports::AccountHealthReport20201118::ReportingDateRange, shipment_count: Integer, status: String, target_condition: String, target_value: String, valid_tracking_count: Integer }
       end
 
       class WarningState < Data
-        def self.new: (status: String?, warning_type: String?) -> Peddler::Reports::AccountHealthReport20201118::WarningState
-                    | (String?, String?) -> Peddler::Reports::AccountHealthReport20201118::WarningState
-        def self.[]: (status: String?, warning_type: String?) -> Peddler::Reports::AccountHealthReport20201118::WarningState
-                   | (String?, String?) -> Peddler::Reports::AccountHealthReport20201118::WarningState
+        def self.new: (status: String, warning_type: String) -> Peddler::Reports::AccountHealthReport20201118::WarningState
+                    | (String, String) -> Peddler::Reports::AccountHealthReport20201118::WarningState
+        def self.[]: (status: String, warning_type: String) -> Peddler::Reports::AccountHealthReport20201118::WarningState
+                   | (String, String) -> Peddler::Reports::AccountHealthReport20201118::WarningState
 
         def self.members: () -> [ :status, :warning_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::AccountHealthReport20201118::WarningState
 
-        attr_reader status: String?
-        attr_reader warning_type: String?
+        attr_reader status: String
+        attr_reader warning_type: String
 
         def members: () -> [ :status, :warning_type ]
-        def to_h: () -> { status: String?, warning_type: String? }
+        def to_h: () -> { status: String, warning_type: String }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::AccountHealthReport20201118::Report

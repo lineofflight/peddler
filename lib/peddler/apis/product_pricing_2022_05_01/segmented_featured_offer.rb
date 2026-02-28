@@ -10,20 +10,20 @@ module Peddler
       # A product offer with segment information indicating where it's featured.
       SegmentedFeaturedOffer = Structure.new do
         # @return [String] Item Condition.
-        attribute(:condition, String)
+        attribute(:condition, String, null: false)
 
         # @return [Array<FeaturedOfferSegment>] The list of segment information in which the offer is featured.
-        attribute(:featured_offer_segments, [FeaturedOfferSegment], from: "featuredOfferSegments")
+        attribute(:featured_offer_segments, [FeaturedOfferSegment], null: false, from: "featuredOfferSegments")
 
         # @return [String] The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network)
         #   and `MFN` (Merchant Fulfillment Network).
-        attribute(:fulfillment_type, String, from: "fulfillmentType")
+        attribute(:fulfillment_type, String, null: false, from: "fulfillmentType")
 
         # @return [Money] The offer buying price. This doesn't include shipping, points, or applicable promotions.
-        attribute(:listing_price, Money, from: "listingPrice")
+        attribute(:listing_price, Money, null: false, from: "listingPrice")
 
         # @return [String] The seller identifier for the offer.
-        attribute(:seller_id, String, from: "sellerId")
+        attribute(:seller_id, String, null: false, from: "sellerId")
 
         # @return [Points] The number of Amazon Points that are offered with the purchase of an item and the monetary
         #   value of these points. Note that the Points element is only returned in Japan (JP).

@@ -2,29 +2,29 @@ module Peddler
   module APIs
     class SupplySources20200701 < API
       class Address < Data
-        def self.new: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::APIs::SupplySources20200701::Address
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Address
-        def self.[]: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::APIs::SupplySources20200701::Address
-                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Address
+        def self.new: (address_line1: String, country_code: String, name: String, state_or_region: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::APIs::SupplySources20200701::Address
+                    | (String, String, String, String, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Address
+        def self.[]: (address_line1: String, country_code: String, name: String, state_or_region: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::APIs::SupplySources20200701::Address
+                   | (String, String, String, String, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Address
 
         def self.members: () -> [ :address_line1, :country_code, :name, :state_or_region, :address_line2, :address_line3, :city, :county, :district, :phone, :postal_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::Address
 
-        attr_reader address_line1: String?
+        attr_reader address_line1: String
         attr_reader address_line2: String?
         attr_reader address_line3: String?
         attr_reader city: String?
-        attr_reader country_code: String?
+        attr_reader country_code: String
         attr_reader county: String?
         attr_reader district: String?
-        attr_reader name: String?
+        attr_reader name: String
         attr_reader phone: String?
         attr_reader postal_code: String?
-        attr_reader state_or_region: String?
+        attr_reader state_or_region: String
 
         def members: () -> [ :address_line1, :country_code, :name, :state_or_region, :address_line2, :address_line3, :city, :county, :district, :phone, :postal_code ]
-        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, state_or_region: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String? }
+        def to_h: () -> { address_line1: String, country_code: String, name: String, state_or_region: String, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String? }
       end
 
       class AddressWithContact < Data
@@ -61,38 +61,38 @@ module Peddler
       end
 
       class CreateSupplySourceRequest < Data
-        def self.new: (address: Peddler::APIs::SupplySources20200701::Address?, alias: String?, supply_source_code: String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
-                    | (Peddler::APIs::SupplySources20200701::Address?, String?, String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
-        def self.[]: (address: Peddler::APIs::SupplySources20200701::Address?, alias: String?, supply_source_code: String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
-                   | (Peddler::APIs::SupplySources20200701::Address?, String?, String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
+        def self.new: (address: Peddler::APIs::SupplySources20200701::Address, alias: String, supply_source_code: String) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
+                    | (Peddler::APIs::SupplySources20200701::Address, String, String) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
+        def self.[]: (address: Peddler::APIs::SupplySources20200701::Address, alias: String, supply_source_code: String) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
+                   | (Peddler::APIs::SupplySources20200701::Address, String, String) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
 
         def self.members: () -> [ :address, :alias, :supply_source_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceRequest
 
-        attr_reader address: Peddler::APIs::SupplySources20200701::Address?
-        attr_reader alias: String?
-        attr_reader supply_source_code: String?
+        attr_reader address: Peddler::APIs::SupplySources20200701::Address
+        attr_reader alias: String
+        attr_reader supply_source_code: String
 
         def members: () -> [ :address, :alias, :supply_source_code ]
-        def to_h: () -> { address: Peddler::APIs::SupplySources20200701::Address?, alias: String?, supply_source_code: String? }
+        def to_h: () -> { address: Peddler::APIs::SupplySources20200701::Address, alias: String, supply_source_code: String }
       end
 
       class CreateSupplySourceResponse < Data
-        def self.new: (supply_source_code: String?, supply_source_id: String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
-                    | (String?, String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
-        def self.[]: (supply_source_code: String?, supply_source_id: String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
-                   | (String?, String?) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
+        def self.new: (supply_source_code: String, supply_source_id: String) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
+                    | (String, String) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
+        def self.[]: (supply_source_code: String, supply_source_id: String) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
+                   | (String, String) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
 
         def self.members: () -> [ :supply_source_code, :supply_source_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::CreateSupplySourceResponse
 
-        attr_reader supply_source_code: String?
-        attr_reader supply_source_id: String?
+        attr_reader supply_source_code: String
+        attr_reader supply_source_id: String
 
         def members: () -> [ :supply_source_code, :supply_source_id ]
-        def to_h: () -> { supply_source_code: String?, supply_source_id: String? }
+        def to_h: () -> { supply_source_code: String, supply_source_id: String }
       end
 
       class CurbsidePickupConfiguration < Data
@@ -150,37 +150,37 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SupplySources20200701::Error
-                    | (String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::SupplySources20200701::Error
-                   | (String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::SupplySources20200701::Error
+                    | (String, String, String?) -> Peddler::APIs::SupplySources20200701::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::SupplySources20200701::Error
+                   | (String, String, String?) -> Peddler::APIs::SupplySources20200701::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::SupplySources20200701::Error]?) -> Peddler::APIs::SupplySources20200701::ErrorList
-                    | (Array[Peddler::APIs::SupplySources20200701::Error]?) -> Peddler::APIs::SupplySources20200701::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::SupplySources20200701::Error]?) -> Peddler::APIs::SupplySources20200701::ErrorList
-                   | (Array[Peddler::APIs::SupplySources20200701::Error]?) -> Peddler::APIs::SupplySources20200701::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::SupplySources20200701::Error]) -> Peddler::APIs::SupplySources20200701::ErrorList
+                    | (Array[Peddler::APIs::SupplySources20200701::Error]) -> Peddler::APIs::SupplySources20200701::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::SupplySources20200701::Error]) -> Peddler::APIs::SupplySources20200701::ErrorList
+                   | (Array[Peddler::APIs::SupplySources20200701::Error]) -> Peddler::APIs::SupplySources20200701::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::SupplySources20200701::Error]?
+        attr_reader errors: Array[Peddler::APIs::SupplySources20200701::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::SupplySources20200701::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::SupplySources20200701::Error] }
       end
 
       class GetSupplySourcesResponse < Data
@@ -474,20 +474,20 @@ module Peddler
       end
 
       class ThroughputConfig < Data
-        def self.new: (throughput_unit: String?, ?throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
-                    | (String?, Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
-        def self.[]: (throughput_unit: String?, ?throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
-                   | (String?, Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
+        def self.new: (throughput_unit: String, ?throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
+                    | (String, Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
+        def self.[]: (throughput_unit: String, ?throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
+                   | (String, Peddler::APIs::SupplySources20200701::ThroughputCap?) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
 
         def self.members: () -> [ :throughput_unit, :throughput_cap ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::SupplySources20200701::ThroughputConfig
 
         attr_reader throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap?
-        attr_reader throughput_unit: String?
+        attr_reader throughput_unit: String
 
         def members: () -> [ :throughput_unit, :throughput_cap ]
-        def to_h: () -> { throughput_unit: String?, throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap? }
+        def to_h: () -> { throughput_unit: String, throughput_cap: Peddler::APIs::SupplySources20200701::ThroughputCap? }
       end
 
       class UpdateSupplySourceRequest < Data

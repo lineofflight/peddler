@@ -10,7 +10,7 @@ module Peddler
       # The shipping address for the order.
       OrderAddress = Structure.new do
         # @return [String] An Amazon-defined order identifier, in 3-7-7 format.
-        attribute(:amazon_order_id, String, from: "AmazonOrderId")
+        attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
         # @return [String] The company name of the contact buyer. For IBA orders, the buyer company must be Amazon
         #   entities.

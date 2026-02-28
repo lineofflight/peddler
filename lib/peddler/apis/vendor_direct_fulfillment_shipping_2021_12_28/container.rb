@@ -10,16 +10,16 @@ module Peddler
       # A container used for shipping and packing items.
       Container = Structure.new do
         # @return [String] The container identifier.
-        attribute(:container_identifier, String, from: "containerIdentifier")
+        attribute(:container_identifier, String, null: false, from: "containerIdentifier")
 
         # @return [String] The type of container.
-        attribute(:container_type, String, from: "containerType")
+        attribute(:container_type, String, null: false, from: "containerType")
 
         # @return [Array<PackedItem>] A list of packed items.
-        attribute(:packed_items, [PackedItem], from: "packedItems")
+        attribute(:packed_items, [PackedItem], null: false, from: "packedItems")
 
         # @return [Weight]
-        attribute(:weight, Weight)
+        attribute(:weight, Weight, null: false)
 
         # @return [String] Carrier required for EU VOC vendors only.
         attribute?(:carrier, String)

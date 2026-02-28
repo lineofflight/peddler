@@ -10,10 +10,10 @@ module Peddler
       # The browse node review subtopic.
       BrowseNodeSubtopic = Structure.new do
         # @return [BrowseNodeReviewSubtopicMetrics] The browse node review subtopic metrics.
-        attribute(:metrics, BrowseNodeReviewSubtopicMetrics)
+        attribute(:metrics, BrowseNodeReviewSubtopicMetrics, null: false)
 
         # @return [String] The name of the browse node review subtopic.
-        attribute(:subtopic, String)
+        attribute(:subtopic, String, null: false)
 
         # @return [Array<String>] A list of up to three snippets from reviews that contain the topic. This value is
         #   `null` if there aren't enough review snippets for the subtopic.

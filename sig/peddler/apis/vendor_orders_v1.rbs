@@ -20,47 +20,47 @@ module Peddler
       end
 
       class Address < Data
-        def self.new: (address_line1: String?, country_code: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::VendorOrdersV1::Address
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::VendorOrdersV1::Address
-        def self.[]: (address_line1: String?, country_code: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::VendorOrdersV1::Address
-                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::VendorOrdersV1::Address
+        def self.new: (address_line1: String, country_code: String, name: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::VendorOrdersV1::Address
+                    | (String, String, String, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::VendorOrdersV1::Address
+        def self.[]: (address_line1: String, country_code: String, name: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::VendorOrdersV1::Address
+                   | (String, String, String, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::VendorOrdersV1::Address
 
         def self.members: () -> [ :address_line1, :country_code, :name, :address_line2, :address_line3, :city, :county, :district, :phone, :postal_code, :state_or_region ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::Address
 
-        attr_reader address_line1: String?
+        attr_reader address_line1: String
         attr_reader address_line2: String?
         attr_reader address_line3: String?
         attr_reader city: String?
-        attr_reader country_code: String?
+        attr_reader country_code: String
         attr_reader county: String?
         attr_reader district: String?
-        attr_reader name: String?
+        attr_reader name: String
         attr_reader phone: String?
         attr_reader postal_code: String?
         attr_reader state_or_region: String?
 
         def members: () -> [ :address_line1, :country_code, :name, :address_line2, :address_line3, :city, :county, :district, :phone, :postal_code, :state_or_region ]
-        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String?, state_or_region: String? }
+        def to_h: () -> { address_line1: String, country_code: String, name: String, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String?, state_or_region: String? }
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorOrdersV1::Error
-                    | (String?, String?, String?) -> Peddler::APIs::VendorOrdersV1::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorOrdersV1::Error
-                   | (String?, String?, String?) -> Peddler::APIs::VendorOrdersV1::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorOrdersV1::Error
+                    | (String, String, String?) -> Peddler::APIs::VendorOrdersV1::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorOrdersV1::Error
+                   | (String, String, String?) -> Peddler::APIs::VendorOrdersV1::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]
@@ -161,47 +161,47 @@ module Peddler
       end
 
       class Order < Data
-        def self.new: (purchase_order_number: String?, purchase_order_state: String?, ?order_details: Peddler::APIs::VendorOrdersV1::OrderDetails?) -> Peddler::APIs::VendorOrdersV1::Order
-                    | (String?, String?, Peddler::APIs::VendorOrdersV1::OrderDetails?) -> Peddler::APIs::VendorOrdersV1::Order
-        def self.[]: (purchase_order_number: String?, purchase_order_state: String?, ?order_details: Peddler::APIs::VendorOrdersV1::OrderDetails?) -> Peddler::APIs::VendorOrdersV1::Order
-                   | (String?, String?, Peddler::APIs::VendorOrdersV1::OrderDetails?) -> Peddler::APIs::VendorOrdersV1::Order
+        def self.new: (purchase_order_number: String, purchase_order_state: String, ?order_details: Peddler::APIs::VendorOrdersV1::OrderDetails?) -> Peddler::APIs::VendorOrdersV1::Order
+                    | (String, String, Peddler::APIs::VendorOrdersV1::OrderDetails?) -> Peddler::APIs::VendorOrdersV1::Order
+        def self.[]: (purchase_order_number: String, purchase_order_state: String, ?order_details: Peddler::APIs::VendorOrdersV1::OrderDetails?) -> Peddler::APIs::VendorOrdersV1::Order
+                   | (String, String, Peddler::APIs::VendorOrdersV1::OrderDetails?) -> Peddler::APIs::VendorOrdersV1::Order
 
         def self.members: () -> [ :purchase_order_number, :purchase_order_state, :order_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::Order
 
         attr_reader order_details: Peddler::APIs::VendorOrdersV1::OrderDetails?
-        attr_reader purchase_order_number: String?
-        attr_reader purchase_order_state: String?
+        attr_reader purchase_order_number: String
+        attr_reader purchase_order_state: String
 
         def members: () -> [ :purchase_order_number, :purchase_order_state, :order_details ]
-        def to_h: () -> { purchase_order_number: String?, purchase_order_state: String?, order_details: Peddler::APIs::VendorOrdersV1::OrderDetails? }
+        def to_h: () -> { purchase_order_number: String, purchase_order_state: String, order_details: Peddler::APIs::VendorOrdersV1::OrderDetails? }
       end
 
       class OrderAcknowledgement < Data
-        def self.new: (acknowledgement_date: Time?, items: Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem]?, purchase_order_number: String?, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
-                    | (Time?, Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem]?, String?, Peddler::APIs::VendorOrdersV1::PartyIdentification?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
-        def self.[]: (acknowledgement_date: Time?, items: Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem]?, purchase_order_number: String?, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
-                   | (Time?, Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem]?, String?, Peddler::APIs::VendorOrdersV1::PartyIdentification?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
+        def self.new: (acknowledgement_date: Time, items: Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem], purchase_order_number: String, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
+                    | (Time, Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem], String, Peddler::APIs::VendorOrdersV1::PartyIdentification) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
+        def self.[]: (acknowledgement_date: Time, items: Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem], purchase_order_number: String, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
+                   | (Time, Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem], String, Peddler::APIs::VendorOrdersV1::PartyIdentification) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
 
         def self.members: () -> [ :acknowledgement_date, :items, :purchase_order_number, :selling_party ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgement
 
-        attr_reader acknowledgement_date: Time?
-        attr_reader items: Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem]?
-        attr_reader purchase_order_number: String?
-        attr_reader selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?
+        attr_reader acknowledgement_date: Time
+        attr_reader items: Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem]
+        attr_reader purchase_order_number: String
+        attr_reader selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification
 
         def members: () -> [ :acknowledgement_date, :items, :purchase_order_number, :selling_party ]
-        def to_h: () -> { acknowledgement_date: Time?, items: Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem]?, purchase_order_number: String?, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification? }
+        def to_h: () -> { acknowledgement_date: Time, items: Array[Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem], purchase_order_number: String, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification }
       end
 
       class OrderAcknowledgementItem < Data
-        def self.new: (item_acknowledgements: Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement]?, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, ?amazon_product_identifier: String?, ?discount_multiplier: String?, ?item_sequence_number: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem
-                    | (Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement]?, Peddler::APIs::VendorOrdersV1::ItemQuantity?, String?, String?, String?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem
-        def self.[]: (item_acknowledgements: Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement]?, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, ?amazon_product_identifier: String?, ?discount_multiplier: String?, ?item_sequence_number: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem
-                   | (Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement]?, Peddler::APIs::VendorOrdersV1::ItemQuantity?, String?, String?, String?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem
+        def self.new: (item_acknowledgements: Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement], ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, ?amazon_product_identifier: String?, ?discount_multiplier: String?, ?item_sequence_number: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem
+                    | (Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement], Peddler::APIs::VendorOrdersV1::ItemQuantity, String?, String?, String?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem
+        def self.[]: (item_acknowledgements: Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement], ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, ?amazon_product_identifier: String?, ?discount_multiplier: String?, ?item_sequence_number: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem
+                   | (Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement], Peddler::APIs::VendorOrdersV1::ItemQuantity, String?, String?, String?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::APIs::VendorOrdersV1::OrderAcknowledgementItem
 
         def self.members: () -> [ :item_acknowledgements, :ordered_quantity, :amazon_product_identifier, :discount_multiplier, :item_sequence_number, :list_price, :net_cost, :vendor_product_identifier ]
 
@@ -209,22 +209,22 @@ module Peddler
 
         attr_reader amazon_product_identifier: String?
         attr_reader discount_multiplier: String?
-        attr_reader item_acknowledgements: Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement]?
+        attr_reader item_acknowledgements: Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement]
         attr_reader item_sequence_number: String?
         attr_reader list_price: Peddler::Money?
         attr_reader net_cost: Peddler::Money?
-        attr_reader ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?
+        attr_reader ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity
         attr_reader vendor_product_identifier: String?
 
         def members: () -> [ :item_acknowledgements, :ordered_quantity, :amazon_product_identifier, :discount_multiplier, :item_sequence_number, :list_price, :net_cost, :vendor_product_identifier ]
-        def to_h: () -> { item_acknowledgements: Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement]?, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, amazon_product_identifier: String?, discount_multiplier: String?, item_sequence_number: String?, list_price: Peddler::Money?, net_cost: Peddler::Money?, vendor_product_identifier: String? }
+        def to_h: () -> { item_acknowledgements: Array[Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement], ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, amazon_product_identifier: String?, discount_multiplier: String?, item_sequence_number: String?, list_price: Peddler::Money?, net_cost: Peddler::Money?, vendor_product_identifier: String? }
       end
 
       class OrderDetails < Data
-        def self.new: (items: Array[Peddler::APIs::VendorOrdersV1::OrderItem]?, purchase_order_date: Time?, purchase_order_state_changed_date: Time?, ?bill_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?buying_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?deal_code: String?, ?delivery_window: String?, ?import_details: Peddler::APIs::VendorOrdersV1::ImportDetails?, ?payment_method: String?, ?purchase_order_changed_date: Time?, ?purchase_order_type: String?, ?selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?ship_window: String?) -> Peddler::APIs::VendorOrdersV1::OrderDetails
-                    | (Array[Peddler::APIs::VendorOrdersV1::OrderItem]?, Time?, Time?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, String?, String?, Peddler::APIs::VendorOrdersV1::ImportDetails?, String?, Time?, String?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, String?) -> Peddler::APIs::VendorOrdersV1::OrderDetails
-        def self.[]: (items: Array[Peddler::APIs::VendorOrdersV1::OrderItem]?, purchase_order_date: Time?, purchase_order_state_changed_date: Time?, ?bill_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?buying_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?deal_code: String?, ?delivery_window: String?, ?import_details: Peddler::APIs::VendorOrdersV1::ImportDetails?, ?payment_method: String?, ?purchase_order_changed_date: Time?, ?purchase_order_type: String?, ?selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?ship_window: String?) -> Peddler::APIs::VendorOrdersV1::OrderDetails
-                   | (Array[Peddler::APIs::VendorOrdersV1::OrderItem]?, Time?, Time?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, String?, String?, Peddler::APIs::VendorOrdersV1::ImportDetails?, String?, Time?, String?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, String?) -> Peddler::APIs::VendorOrdersV1::OrderDetails
+        def self.new: (items: Array[Peddler::APIs::VendorOrdersV1::OrderItem], purchase_order_date: Time, purchase_order_state_changed_date: Time, ?bill_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?buying_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?deal_code: String?, ?delivery_window: String?, ?import_details: Peddler::APIs::VendorOrdersV1::ImportDetails?, ?payment_method: String?, ?purchase_order_changed_date: Time?, ?purchase_order_type: String?, ?selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?ship_window: String?) -> Peddler::APIs::VendorOrdersV1::OrderDetails
+                    | (Array[Peddler::APIs::VendorOrdersV1::OrderItem], Time, Time, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, String?, String?, Peddler::APIs::VendorOrdersV1::ImportDetails?, String?, Time?, String?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, String?) -> Peddler::APIs::VendorOrdersV1::OrderDetails
+        def self.[]: (items: Array[Peddler::APIs::VendorOrdersV1::OrderItem], purchase_order_date: Time, purchase_order_state_changed_date: Time, ?bill_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?buying_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?deal_code: String?, ?delivery_window: String?, ?import_details: Peddler::APIs::VendorOrdersV1::ImportDetails?, ?payment_method: String?, ?purchase_order_changed_date: Time?, ?purchase_order_type: String?, ?selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?ship_window: String?) -> Peddler::APIs::VendorOrdersV1::OrderDetails
+                   | (Array[Peddler::APIs::VendorOrdersV1::OrderItem], Time, Time, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, String?, String?, Peddler::APIs::VendorOrdersV1::ImportDetails?, String?, Time?, String?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, String?) -> Peddler::APIs::VendorOrdersV1::OrderDetails
 
         def self.members: () -> [ :items, :purchase_order_date, :purchase_order_state_changed_date, :bill_to_party, :buying_party, :deal_code, :delivery_window, :import_details, :payment_method, :purchase_order_changed_date, :purchase_order_type, :selling_party, :ship_to_party, :ship_window ]
 
@@ -235,68 +235,68 @@ module Peddler
         attr_reader deal_code: String?
         attr_reader delivery_window: String?
         attr_reader import_details: Peddler::APIs::VendorOrdersV1::ImportDetails?
-        attr_reader items: Array[Peddler::APIs::VendorOrdersV1::OrderItem]?
+        attr_reader items: Array[Peddler::APIs::VendorOrdersV1::OrderItem]
         attr_reader payment_method: String?
         attr_reader purchase_order_changed_date: Time?
-        attr_reader purchase_order_date: Time?
-        attr_reader purchase_order_state_changed_date: Time?
+        attr_reader purchase_order_date: Time
+        attr_reader purchase_order_state_changed_date: Time
         attr_reader purchase_order_type: String?
         attr_reader selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?
         attr_reader ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?
         attr_reader ship_window: String?
 
         def members: () -> [ :items, :purchase_order_date, :purchase_order_state_changed_date, :bill_to_party, :buying_party, :deal_code, :delivery_window, :import_details, :payment_method, :purchase_order_changed_date, :purchase_order_type, :selling_party, :ship_to_party, :ship_window ]
-        def to_h: () -> { items: Array[Peddler::APIs::VendorOrdersV1::OrderItem]?, purchase_order_date: Time?, purchase_order_state_changed_date: Time?, bill_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, buying_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, deal_code: String?, delivery_window: String?, import_details: Peddler::APIs::VendorOrdersV1::ImportDetails?, payment_method: String?, purchase_order_changed_date: Time?, purchase_order_type: String?, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ship_window: String? }
+        def to_h: () -> { items: Array[Peddler::APIs::VendorOrdersV1::OrderItem], purchase_order_date: Time, purchase_order_state_changed_date: Time, bill_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, buying_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, deal_code: String?, delivery_window: String?, import_details: Peddler::APIs::VendorOrdersV1::ImportDetails?, payment_method: String?, purchase_order_changed_date: Time?, purchase_order_type: String?, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ship_window: String? }
       end
 
       class OrderItem < Data
-        def self.new: (back_order_allowed: bool?, item_sequence_number: String?, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, ?amazon_product_identifier: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderItem
-                    | (bool?, String?, Peddler::APIs::VendorOrdersV1::ItemQuantity?, String?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::APIs::VendorOrdersV1::OrderItem
-        def self.[]: (back_order_allowed: bool?, item_sequence_number: String?, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, ?amazon_product_identifier: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderItem
-                   | (bool?, String?, Peddler::APIs::VendorOrdersV1::ItemQuantity?, String?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::APIs::VendorOrdersV1::OrderItem
+        def self.new: (back_order_allowed: bool, item_sequence_number: String, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, ?amazon_product_identifier: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderItem
+                    | (bool, String, Peddler::APIs::VendorOrdersV1::ItemQuantity, String?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::APIs::VendorOrdersV1::OrderItem
+        def self.[]: (back_order_allowed: bool, item_sequence_number: String, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, ?amazon_product_identifier: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderItem
+                   | (bool, String, Peddler::APIs::VendorOrdersV1::ItemQuantity, String?, Peddler::Money?, Peddler::Money?, String?) -> Peddler::APIs::VendorOrdersV1::OrderItem
 
         def self.members: () -> [ :back_order_allowed, :item_sequence_number, :ordered_quantity, :amazon_product_identifier, :list_price, :net_cost, :vendor_product_identifier ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::OrderItem
 
         attr_reader amazon_product_identifier: String?
-        attr_reader back_order_allowed: bool?
-        attr_reader item_sequence_number: String?
+        attr_reader back_order_allowed: bool
+        attr_reader item_sequence_number: String
         attr_reader list_price: Peddler::Money?
         attr_reader net_cost: Peddler::Money?
-        attr_reader ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?
+        attr_reader ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity
         attr_reader vendor_product_identifier: String?
 
         def back_order_allowed?: () -> bool
         def members: () -> [ :back_order_allowed, :item_sequence_number, :ordered_quantity, :amazon_product_identifier, :list_price, :net_cost, :vendor_product_identifier ]
-        def to_h: () -> { back_order_allowed: bool?, item_sequence_number: String?, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, amazon_product_identifier: String?, list_price: Peddler::Money?, net_cost: Peddler::Money?, vendor_product_identifier: String? }
+        def to_h: () -> { back_order_allowed: bool, item_sequence_number: String, ordered_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, amazon_product_identifier: String?, list_price: Peddler::Money?, net_cost: Peddler::Money?, vendor_product_identifier: String? }
       end
 
       class OrderItemAcknowledgement < Data
-        def self.new: (acknowledged_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, acknowledgement_code: String?, ?rejection_reason: String?, ?scheduled_delivery_date: Time?, ?scheduled_ship_date: Time?) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
-                    | (Peddler::APIs::VendorOrdersV1::ItemQuantity?, String?, String?, Time?, Time?) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
-        def self.[]: (acknowledged_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, acknowledgement_code: String?, ?rejection_reason: String?, ?scheduled_delivery_date: Time?, ?scheduled_ship_date: Time?) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
-                   | (Peddler::APIs::VendorOrdersV1::ItemQuantity?, String?, String?, Time?, Time?) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
+        def self.new: (acknowledged_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, acknowledgement_code: String, ?rejection_reason: String?, ?scheduled_delivery_date: Time?, ?scheduled_ship_date: Time?) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
+                    | (Peddler::APIs::VendorOrdersV1::ItemQuantity, String, String?, Time?, Time?) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
+        def self.[]: (acknowledged_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, acknowledgement_code: String, ?rejection_reason: String?, ?scheduled_delivery_date: Time?, ?scheduled_ship_date: Time?) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
+                   | (Peddler::APIs::VendorOrdersV1::ItemQuantity, String, String?, Time?, Time?) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
 
         def self.members: () -> [ :acknowledged_quantity, :acknowledgement_code, :rejection_reason, :scheduled_delivery_date, :scheduled_ship_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::OrderItemAcknowledgement
 
-        attr_reader acknowledged_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?
-        attr_reader acknowledgement_code: String?
+        attr_reader acknowledged_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity
+        attr_reader acknowledgement_code: String
         attr_reader rejection_reason: String?
         attr_reader scheduled_delivery_date: Time?
         attr_reader scheduled_ship_date: Time?
 
         def members: () -> [ :acknowledged_quantity, :acknowledgement_code, :rejection_reason, :scheduled_delivery_date, :scheduled_ship_date ]
-        def to_h: () -> { acknowledged_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity?, acknowledgement_code: String?, rejection_reason: String?, scheduled_delivery_date: Time?, scheduled_ship_date: Time? }
+        def to_h: () -> { acknowledged_quantity: Peddler::APIs::VendorOrdersV1::ItemQuantity, acknowledgement_code: String, rejection_reason: String?, scheduled_delivery_date: Time?, scheduled_ship_date: Time? }
       end
 
       class OrderItemStatus < Data
-        def self.new: (item_sequence_number: String?, ?acknowledgement_status: Hash[untyped, untyped]?, ?buyer_product_identifier: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?ordered_quantity: Hash[untyped, untyped]?, ?receiving_status: Hash[untyped, untyped]?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderItemStatus
-                    | (String?, Hash[untyped, untyped]?, String?, Peddler::Money?, Peddler::Money?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, String?) -> Peddler::APIs::VendorOrdersV1::OrderItemStatus
-        def self.[]: (item_sequence_number: String?, ?acknowledgement_status: Hash[untyped, untyped]?, ?buyer_product_identifier: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?ordered_quantity: Hash[untyped, untyped]?, ?receiving_status: Hash[untyped, untyped]?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderItemStatus
-                   | (String?, Hash[untyped, untyped]?, String?, Peddler::Money?, Peddler::Money?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, String?) -> Peddler::APIs::VendorOrdersV1::OrderItemStatus
+        def self.new: (item_sequence_number: String, ?acknowledgement_status: Hash[untyped, untyped]?, ?buyer_product_identifier: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?ordered_quantity: Hash[untyped, untyped]?, ?receiving_status: Hash[untyped, untyped]?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderItemStatus
+                    | (String, Hash[untyped, untyped]?, String?, Peddler::Money?, Peddler::Money?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, String?) -> Peddler::APIs::VendorOrdersV1::OrderItemStatus
+        def self.[]: (item_sequence_number: String, ?acknowledgement_status: Hash[untyped, untyped]?, ?buyer_product_identifier: String?, ?list_price: Peddler::Money?, ?net_cost: Peddler::Money?, ?ordered_quantity: Hash[untyped, untyped]?, ?receiving_status: Hash[untyped, untyped]?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorOrdersV1::OrderItemStatus
+                   | (String, Hash[untyped, untyped]?, String?, Peddler::Money?, Peddler::Money?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, String?) -> Peddler::APIs::VendorOrdersV1::OrderItemStatus
 
         def self.members: () -> [ :item_sequence_number, :acknowledgement_status, :buyer_product_identifier, :list_price, :net_cost, :ordered_quantity, :receiving_status, :vendor_product_identifier ]
 
@@ -304,7 +304,7 @@ module Peddler
 
         attr_reader acknowledgement_status: Hash[untyped, untyped]?
         attr_reader buyer_product_identifier: String?
-        attr_reader item_sequence_number: String?
+        attr_reader item_sequence_number: String
         attr_reader list_price: Peddler::Money?
         attr_reader net_cost: Peddler::Money?
         attr_reader ordered_quantity: Hash[untyped, untyped]?
@@ -312,7 +312,7 @@ module Peddler
         attr_reader vendor_product_identifier: String?
 
         def members: () -> [ :item_sequence_number, :acknowledgement_status, :buyer_product_identifier, :list_price, :net_cost, :ordered_quantity, :receiving_status, :vendor_product_identifier ]
-        def to_h: () -> { item_sequence_number: String?, acknowledgement_status: Hash[untyped, untyped]?, buyer_product_identifier: String?, list_price: Peddler::Money?, net_cost: Peddler::Money?, ordered_quantity: Hash[untyped, untyped]?, receiving_status: Hash[untyped, untyped]?, vendor_product_identifier: String? }
+        def to_h: () -> { item_sequence_number: String, acknowledgement_status: Hash[untyped, untyped]?, buyer_product_identifier: String?, list_price: Peddler::Money?, net_cost: Peddler::Money?, ordered_quantity: Hash[untyped, untyped]?, receiving_status: Hash[untyped, untyped]?, vendor_product_identifier: String? }
       end
 
       class OrderList < Data
@@ -350,25 +350,25 @@ module Peddler
       end
 
       class OrderStatus < Data
-        def self.new: (item_status: Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus]?, purchase_order_date: Time?, purchase_order_number: String?, purchase_order_status: String?, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?last_updated_date: Time?) -> Peddler::APIs::VendorOrdersV1::OrderStatus
-                    | (Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus]?, Time?, String?, String?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Time?) -> Peddler::APIs::VendorOrdersV1::OrderStatus
-        def self.[]: (item_status: Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus]?, purchase_order_date: Time?, purchase_order_number: String?, purchase_order_status: String?, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ?last_updated_date: Time?) -> Peddler::APIs::VendorOrdersV1::OrderStatus
-                   | (Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus]?, Time?, String?, String?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Peddler::APIs::VendorOrdersV1::PartyIdentification?, Time?) -> Peddler::APIs::VendorOrdersV1::OrderStatus
+        def self.new: (item_status: Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus], purchase_order_date: Time, purchase_order_number: String, purchase_order_status: String, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification, ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification, ?last_updated_date: Time?) -> Peddler::APIs::VendorOrdersV1::OrderStatus
+                    | (Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus], Time, String, String, Peddler::APIs::VendorOrdersV1::PartyIdentification, Peddler::APIs::VendorOrdersV1::PartyIdentification, Time?) -> Peddler::APIs::VendorOrdersV1::OrderStatus
+        def self.[]: (item_status: Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus], purchase_order_date: Time, purchase_order_number: String, purchase_order_status: String, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification, ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification, ?last_updated_date: Time?) -> Peddler::APIs::VendorOrdersV1::OrderStatus
+                   | (Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus], Time, String, String, Peddler::APIs::VendorOrdersV1::PartyIdentification, Peddler::APIs::VendorOrdersV1::PartyIdentification, Time?) -> Peddler::APIs::VendorOrdersV1::OrderStatus
 
         def self.members: () -> [ :item_status, :purchase_order_date, :purchase_order_number, :purchase_order_status, :selling_party, :ship_to_party, :last_updated_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::OrderStatus
 
-        attr_reader item_status: Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus]?
+        attr_reader item_status: Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus]
         attr_reader last_updated_date: Time?
-        attr_reader purchase_order_date: Time?
-        attr_reader purchase_order_number: String?
-        attr_reader purchase_order_status: String?
-        attr_reader selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?
-        attr_reader ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?
+        attr_reader purchase_order_date: Time
+        attr_reader purchase_order_number: String
+        attr_reader purchase_order_status: String
+        attr_reader selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification
+        attr_reader ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification
 
         def members: () -> [ :item_status, :purchase_order_date, :purchase_order_number, :purchase_order_status, :selling_party, :ship_to_party, :last_updated_date ]
-        def to_h: () -> { item_status: Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus]?, purchase_order_date: Time?, purchase_order_number: String?, purchase_order_status: String?, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification?, last_updated_date: Time? }
+        def to_h: () -> { item_status: Array[Peddler::APIs::VendorOrdersV1::OrderItemStatus], purchase_order_date: Time, purchase_order_number: String, purchase_order_status: String, selling_party: Peddler::APIs::VendorOrdersV1::PartyIdentification, ship_to_party: Peddler::APIs::VendorOrdersV1::PartyIdentification, last_updated_date: Time? }
       end
 
       class OrderedQuantityDetails < Data
@@ -406,21 +406,21 @@ module Peddler
       end
 
       class PartyIdentification < Data
-        def self.new: (party_id: String?, ?address: Peddler::APIs::VendorOrdersV1::Address?, ?tax_info: Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
-                    | (String?, Peddler::APIs::VendorOrdersV1::Address?, Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
-        def self.[]: (party_id: String?, ?address: Peddler::APIs::VendorOrdersV1::Address?, ?tax_info: Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
-                   | (String?, Peddler::APIs::VendorOrdersV1::Address?, Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
+        def self.new: (party_id: String, ?address: Peddler::APIs::VendorOrdersV1::Address?, ?tax_info: Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
+                    | (String, Peddler::APIs::VendorOrdersV1::Address?, Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
+        def self.[]: (party_id: String, ?address: Peddler::APIs::VendorOrdersV1::Address?, ?tax_info: Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
+                   | (String, Peddler::APIs::VendorOrdersV1::Address?, Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
 
         def self.members: () -> [ :party_id, :address, :tax_info ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::PartyIdentification
 
         attr_reader address: Peddler::APIs::VendorOrdersV1::Address?
-        attr_reader party_id: String?
+        attr_reader party_id: String
         attr_reader tax_info: Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails?
 
         def members: () -> [ :party_id, :address, :tax_info ]
-        def to_h: () -> { party_id: String?, address: Peddler::APIs::VendorOrdersV1::Address?, tax_info: Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails? }
+        def to_h: () -> { party_id: String, address: Peddler::APIs::VendorOrdersV1::Address?, tax_info: Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails? }
       end
 
       class SubmitAcknowledgementRequest < Data
@@ -457,20 +457,20 @@ module Peddler
       end
 
       class TaxRegistrationDetails < Data
-        def self.new: (tax_registration_number: String?, tax_registration_type: String?) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
-                    | (String?, String?) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
-        def self.[]: (tax_registration_number: String?, tax_registration_type: String?) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
-                   | (String?, String?) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
+        def self.new: (tax_registration_number: String, tax_registration_type: String) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
+                    | (String, String) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
+        def self.[]: (tax_registration_number: String, tax_registration_type: String) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
+                   | (String, String) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
 
         def self.members: () -> [ :tax_registration_number, :tax_registration_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorOrdersV1::TaxRegistrationDetails
 
-        attr_reader tax_registration_number: String?
-        attr_reader tax_registration_type: String?
+        attr_reader tax_registration_number: String
+        attr_reader tax_registration_type: String
 
         def members: () -> [ :tax_registration_number, :tax_registration_type ]
-        def to_h: () -> { tax_registration_number: String?, tax_registration_type: String? }
+        def to_h: () -> { tax_registration_number: String, tax_registration_type: String }
       end
 
       class TransactionId < Data

@@ -10,10 +10,10 @@ module Peddler
       # Data for creating a shipping label and dimensions for printing the label.
       Label = Structure.new do
         # @return [LabelDimensions]
-        attribute(:dimensions, LabelDimensions, from: "Dimensions")
+        attribute(:dimensions, LabelDimensions, null: false, from: "Dimensions")
 
         # @return [FileContents]
-        attribute(:file_contents, FileContents, from: "FileContents")
+        attribute(:file_contents, FileContents, null: false, from: "FileContents")
 
         # @return [String]
         attribute?(:custom_text_for_label, String, from: "CustomTextForLabel")

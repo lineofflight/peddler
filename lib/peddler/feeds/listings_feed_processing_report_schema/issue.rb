@@ -10,10 +10,10 @@ module Peddler
       # Issue containing message processing information corresponding to an individual listings data submission.
       Issue = Structure.new do
         # @return [String] Localized Error Message Associated with the issue encountered.
-        attribute(:message, String)
+        attribute(:message, String, null: false)
 
         # @return [String] The severity of the issue.
-        attribute(:severity, String)
+        attribute(:severity, String, null: false)
 
         # @return [String] Name of the attribute associated with the issue, if applicable.
         attribute?(:attribute_name, String, from: "attributeName")

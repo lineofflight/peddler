@@ -10,7 +10,7 @@ module Peddler
       # Details of the Pallet/Tare being shipped.
       Pallet = Structure.new do
         # @return [Array<ContainerIdentification>] A list of pallet identifiers.
-        attribute(:pallet_identifiers, [ContainerIdentification], from: "palletIdentifiers")
+        attribute(:pallet_identifiers, [ContainerIdentification], null: false, from: "palletIdentifiers")
 
         # @return [Integer] Number of cartons per layer on the pallet. Only applicable to container type Pallet.
         attribute?(:block, Integer)

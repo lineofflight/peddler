@@ -9,10 +9,10 @@ module Peddler
     module AnyOfferChanged
       SalesRanking = Structure.new do
         # @return [String]
-        attribute(:product_category_id, String, from: "ProductCategoryId")
+        attribute(:product_category_id, String, null: false, from: "ProductCategoryId")
 
         # @return [Integer]
-        attribute(:rank, Integer, from: "Rank")
+        attribute(:rank, Integer, null: false, from: "Rank")
       end
     end
   end

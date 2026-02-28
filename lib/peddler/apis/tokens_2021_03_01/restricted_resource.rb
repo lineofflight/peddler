@@ -10,7 +10,7 @@ module Peddler
       # Model of a restricted resource.
       RestrictedResource = Structure.new do
         # @return [String] The HTTP method in the restricted resource.
-        attribute(:method, String)
+        attribute(:method, String, null: false)
 
         # @return [String] The path in the restricted resource. Here are some path examples:
         # - ```/orders/v0/orders```. For getting an RDT for the getOrders operation of the Orders API. For bulk orders.
@@ -22,7 +22,7 @@ module Peddler
         #   For a specific shipment.
         # - ```/mfn/v0/shipments/{shipmentId}```. For getting an RDT for the getShipment operation of the Shipping API.
         #   For any of a selling partner's shipments that you specify when you call the getShipment operation.
-        attribute(:path, String)
+        attribute(:path, String, null: false)
 
         # @return [Array<String>] Indicates the type of Personally Identifiable Information requested. This parameter is
         #   required only when getting an RDT for use with the getOrder, getOrders, or getOrderItems operation of the

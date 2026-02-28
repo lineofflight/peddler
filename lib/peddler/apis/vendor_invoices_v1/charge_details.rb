@@ -10,10 +10,10 @@ module Peddler
       # Monetary and tax details of the charge.
       ChargeDetails = Structure.new do
         # @return [Money] Total monetary amount related to this charge.
-        attribute(:charge_amount, Money, from: "chargeAmount")
+        attribute(:charge_amount, Money, null: false, from: "chargeAmount")
 
         # @return [String] Type of the charge applied.
-        attribute(:type, String)
+        attribute(:type, String, null: false)
 
         # @return [String] Description of the charge.
         attribute?(:description, String)

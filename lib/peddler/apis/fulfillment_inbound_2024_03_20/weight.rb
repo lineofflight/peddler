@@ -10,10 +10,10 @@ module Peddler
       # The weight of a package.
       Weight = Structure.new do
         # @return [String]
-        attribute(:unit, String)
+        attribute(:unit, String, null: false)
 
         # @return [Float] Value of a weight.
-        attribute(:value, Float)
+        attribute(:value, Float, null: false)
       end
     end
   end

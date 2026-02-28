@@ -10,13 +10,13 @@ module Peddler
       # Details of the bank account involved in the transaction.
       TransactionAccount = Structure.new do
         # @return [String] The currency code in ISO 4217 format
-        attribute(:bank_account_currency, String, from: "bankAccountCurrency")
+        attribute(:bank_account_currency, String, null: false, from: "bankAccountCurrency")
 
         # @return [String] Bank account format
-        attribute(:bank_account_number_format, String, from: "bankAccountNumberFormat")
+        attribute(:bank_account_number_format, String, null: false, from: "bankAccountNumberFormat")
 
         # @return [String] The name of the bank
-        attribute(:bank_name, String, from: "bankName")
+        attribute(:bank_name, String, null: false, from: "bankName")
 
         # @return [String] The unique identifier provided by Amazon to identify the account
         attribute?(:account_id, String, from: "accountId")

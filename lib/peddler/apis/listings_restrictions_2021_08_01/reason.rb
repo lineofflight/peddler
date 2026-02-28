@@ -11,7 +11,7 @@ module Peddler
       # restriction, if available.
       Reason = Structure.new do
         # @return [String] A message describing the reason for the restriction.
-        attribute(:message, String)
+        attribute(:message, String, null: false)
 
         # @return [Array<Link>] A list of path forward links that may allow Selling Partners to remove the restriction.
         attribute?(:links, [Link])

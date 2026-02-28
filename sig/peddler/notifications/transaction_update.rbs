@@ -2,112 +2,112 @@ module Peddler
   module Notifications
     module TransactionUpdate
       class Notification < Data
-        def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::TransactionUpdate::Payload?, payload_version: String?) -> Peddler::Notifications::TransactionUpdate::Notification
-                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::TransactionUpdate::Payload?, String?) -> Peddler::Notifications::TransactionUpdate::Notification
-        def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::TransactionUpdate::Payload?, payload_version: String?) -> Peddler::Notifications::TransactionUpdate::Notification
-                   | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::TransactionUpdate::Payload?, String?) -> Peddler::Notifications::TransactionUpdate::Notification
+        def self.new: (event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::TransactionUpdate::Payload, payload_version: String) -> Peddler::Notifications::TransactionUpdate::Notification
+                    | (String, Hash[untyped, untyped], String, String, Peddler::Notifications::TransactionUpdate::Payload, String) -> Peddler::Notifications::TransactionUpdate::Notification
+        def self.[]: (event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::TransactionUpdate::Payload, payload_version: String) -> Peddler::Notifications::TransactionUpdate::Notification
+                   | (String, Hash[untyped, untyped], String, String, Peddler::Notifications::TransactionUpdate::Payload, String) -> Peddler::Notifications::TransactionUpdate::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TransactionUpdate::Notification
 
-        attr_reader event_time: String?
-        attr_reader notification_metadata: Hash[untyped, untyped]?
-        attr_reader notification_type: String?
-        attr_reader notification_version: String?
-        attr_reader payload: Peddler::Notifications::TransactionUpdate::Payload?
-        attr_reader payload_version: String?
+        attr_reader event_time: String
+        attr_reader notification_metadata: Hash[untyped, untyped]
+        attr_reader notification_type: String
+        attr_reader notification_version: String
+        attr_reader payload: Peddler::Notifications::TransactionUpdate::Payload
+        attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::TransactionUpdate::Payload?, payload_version: String? }
+        def to_h: () -> { event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::TransactionUpdate::Payload, payload_version: String }
       end
 
       class Payload < Data
-        def self.new: (transaction_update_notification: Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification?) -> Peddler::Notifications::TransactionUpdate::Payload
-                    | (Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification?) -> Peddler::Notifications::TransactionUpdate::Payload
-        def self.[]: (transaction_update_notification: Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification?) -> Peddler::Notifications::TransactionUpdate::Payload
-                   | (Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification?) -> Peddler::Notifications::TransactionUpdate::Payload
+        def self.new: (transaction_update_notification: Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification) -> Peddler::Notifications::TransactionUpdate::Payload
+                    | (Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification) -> Peddler::Notifications::TransactionUpdate::Payload
+        def self.[]: (transaction_update_notification: Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification) -> Peddler::Notifications::TransactionUpdate::Payload
+                   | (Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification) -> Peddler::Notifications::TransactionUpdate::Payload
 
         def self.members: () -> [ :transaction_update_notification ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TransactionUpdate::Payload
 
-        attr_reader transaction_update_notification: Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification?
+        attr_reader transaction_update_notification: Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
 
         def members: () -> [ :transaction_update_notification ]
-        def to_h: () -> { transaction_update_notification: Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification? }
+        def to_h: () -> { transaction_update_notification: Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification }
       end
 
       class RelatedIdentifier < Data
-        def self.new: (related_identifier_name: String?, related_identifier_value: String?) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
-                    | (String?, String?) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
-        def self.[]: (related_identifier_name: String?, related_identifier_value: String?) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
-                   | (String?, String?) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
+        def self.new: (related_identifier_name: String, related_identifier_value: String) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
+                    | (String, String) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
+        def self.[]: (related_identifier_name: String, related_identifier_value: String) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
+                   | (String, String) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
 
         def self.members: () -> [ :related_identifier_name, :related_identifier_value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TransactionUpdate::RelatedIdentifier
 
-        attr_reader related_identifier_name: String?
-        attr_reader related_identifier_value: String?
+        attr_reader related_identifier_name: String
+        attr_reader related_identifier_value: String
 
         def members: () -> [ :related_identifier_name, :related_identifier_value ]
-        def to_h: () -> { related_identifier_name: String?, related_identifier_value: String? }
+        def to_h: () -> { related_identifier_name: String, related_identifier_value: String }
       end
 
       class SellingPartnerMetadata < Data
-        def self.new: (account_type: String?, marketplace_id: String?, selling_partner_id: String?) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
-                    | (String?, String?, String?) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
-        def self.[]: (account_type: String?, marketplace_id: String?, selling_partner_id: String?) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
-                   | (String?, String?, String?) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
+        def self.new: (account_type: String, marketplace_id: String, selling_partner_id: String) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
+                    | (String, String, String) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
+        def self.[]: (account_type: String, marketplace_id: String, selling_partner_id: String) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
+                   | (String, String, String) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
 
         def self.members: () -> [ :account_type, :marketplace_id, :selling_partner_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
 
-        attr_reader account_type: String?
-        attr_reader marketplace_id: String?
-        attr_reader selling_partner_id: String?
+        attr_reader account_type: String
+        attr_reader marketplace_id: String
+        attr_reader selling_partner_id: String
 
         def members: () -> [ :account_type, :marketplace_id, :selling_partner_id ]
-        def to_h: () -> { account_type: String?, marketplace_id: String?, selling_partner_id: String? }
+        def to_h: () -> { account_type: String, marketplace_id: String, selling_partner_id: String }
       end
 
       class TotalAmount < Data
-        def self.new: (currency_amount: Float?, currency_code: String?) -> Peddler::Notifications::TransactionUpdate::TotalAmount
-                    | (Float?, String?) -> Peddler::Notifications::TransactionUpdate::TotalAmount
-        def self.[]: (currency_amount: Float?, currency_code: String?) -> Peddler::Notifications::TransactionUpdate::TotalAmount
-                   | (Float?, String?) -> Peddler::Notifications::TransactionUpdate::TotalAmount
+        def self.new: (currency_amount: Float, currency_code: String) -> Peddler::Notifications::TransactionUpdate::TotalAmount
+                    | (Float, String) -> Peddler::Notifications::TransactionUpdate::TotalAmount
+        def self.[]: (currency_amount: Float, currency_code: String) -> Peddler::Notifications::TransactionUpdate::TotalAmount
+                   | (Float, String) -> Peddler::Notifications::TransactionUpdate::TotalAmount
 
         def self.members: () -> [ :currency_amount, :currency_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TransactionUpdate::TotalAmount
 
-        attr_reader currency_amount: Float?
-        attr_reader currency_code: String?
+        attr_reader currency_amount: Float
+        attr_reader currency_code: String
 
         def members: () -> [ :currency_amount, :currency_code ]
-        def to_h: () -> { currency_amount: Float?, currency_code: String? }
+        def to_h: () -> { currency_amount: Float, currency_code: String }
       end
 
       class TransactionUpdateNotification < Data
-        def self.new: (posted_date: String?, selling_partner_metadata: Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata?, total_amount: Peddler::Notifications::TransactionUpdate::TotalAmount?, transaction_type: String?, ?related_identifiers: Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
-                    | (String?, Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata?, Peddler::Notifications::TransactionUpdate::TotalAmount?, String?, Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
-        def self.[]: (posted_date: String?, selling_partner_metadata: Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata?, total_amount: Peddler::Notifications::TransactionUpdate::TotalAmount?, transaction_type: String?, ?related_identifiers: Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
-                   | (String?, Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata?, Peddler::Notifications::TransactionUpdate::TotalAmount?, String?, Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
+        def self.new: (posted_date: String, selling_partner_metadata: Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata, total_amount: Peddler::Notifications::TransactionUpdate::TotalAmount, transaction_type: String, ?related_identifiers: Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
+                    | (String, Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata, Peddler::Notifications::TransactionUpdate::TotalAmount, String, Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
+        def self.[]: (posted_date: String, selling_partner_metadata: Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata, total_amount: Peddler::Notifications::TransactionUpdate::TotalAmount, transaction_type: String, ?related_identifiers: Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
+                   | (String, Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata, Peddler::Notifications::TransactionUpdate::TotalAmount, String, Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
 
         def self.members: () -> [ :posted_date, :selling_partner_metadata, :total_amount, :transaction_type, :related_identifiers ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TransactionUpdate::TransactionUpdateNotification
 
-        attr_reader posted_date: String?
+        attr_reader posted_date: String
         attr_reader related_identifiers: Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]?
-        attr_reader selling_partner_metadata: Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata?
-        attr_reader total_amount: Peddler::Notifications::TransactionUpdate::TotalAmount?
-        attr_reader transaction_type: String?
+        attr_reader selling_partner_metadata: Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata
+        attr_reader total_amount: Peddler::Notifications::TransactionUpdate::TotalAmount
+        attr_reader transaction_type: String
 
         def members: () -> [ :posted_date, :selling_partner_metadata, :total_amount, :transaction_type, :related_identifiers ]
-        def to_h: () -> { posted_date: String?, selling_partner_metadata: Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata?, total_amount: Peddler::Notifications::TransactionUpdate::TotalAmount?, transaction_type: String?, related_identifiers: Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]? }
+        def to_h: () -> { posted_date: String, selling_partner_metadata: Peddler::Notifications::TransactionUpdate::SellingPartnerMetadata, total_amount: Peddler::Notifications::TransactionUpdate::TotalAmount, transaction_type: String, related_identifiers: Array[Peddler::Notifications::TransactionUpdate::RelatedIdentifier]? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::TransactionUpdate::Notification

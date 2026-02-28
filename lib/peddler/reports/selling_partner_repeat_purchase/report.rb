@@ -12,10 +12,10 @@ module Peddler
       # reporting periods. In this report, "asin" is an ASIN in the selling partner's catalog.
       Report = Structure.new do
         # @return [Array<DataByAsin>]
-        attribute(:data_by_asin, [DataByASIN], from: "dataByAsin")
+        attribute(:data_by_asin, [DataByASIN], null: false, from: "dataByAsin")
 
         # @return [Hash] Summarizes the original report request.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

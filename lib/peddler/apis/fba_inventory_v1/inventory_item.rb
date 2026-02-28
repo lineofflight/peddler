@@ -10,13 +10,13 @@ module Peddler
       # An item in the list of inventory to be added.
       InventoryItem = Structure.new do
         # @return [String] The marketplaceId.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Integer] The quantity of item to add.
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [String] The seller SKU of the item.
-        attribute(:seller_sku, String, from: "sellerSku")
+        attribute(:seller_sku, String, null: false, from: "sellerSku")
       end
     end
   end

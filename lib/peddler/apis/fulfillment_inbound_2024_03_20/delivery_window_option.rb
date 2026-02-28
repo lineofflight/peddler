@@ -12,26 +12,26 @@ module Peddler
       DeliveryWindowOption = Structure.new do
         # @return [String] The type of delivery window availability. Values: `AVAILABLE`, `BLOCKED`, `CONGESTED`,
         #   `DISCOUNTED`
-        attribute(:availability_type, String, from: "availabilityType")
+        attribute(:availability_type, String, null: false, from: "availabilityType")
 
         # @return [String] Identifier of a delivery window option. A delivery window option represent one option for
         #   when a shipment is expected to be delivered.
-        attribute(:delivery_window_option_id, String, from: "deliveryWindowOptionId")
+        attribute(:delivery_window_option_id, String, null: false, from: "deliveryWindowOptionId")
 
         # @return [Time] The time at which this delivery window option ends. In [ISO
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
         #   `yyyy-MM-ddTHH:mmZ`.
-        attribute(:end_date, Time, from: "endDate")
+        attribute(:end_date, Time, null: false, from: "endDate")
 
         # @return [Time] The time at which this delivery window option starts. In [ISO
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
         #   `yyyy-MM-ddTHH:mmZ`.
-        attribute(:start_date, Time, from: "startDate")
+        attribute(:start_date, Time, null: false, from: "startDate")
 
         # @return [Time] The time at which this window delivery option is no longer valid. In [ISO
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
         #   `yyyy-MM-ddTHH:mmZ`.
-        attribute(:valid_until, Time, from: "validUntil")
+        attribute(:valid_until, Time, null: false, from: "validUntil")
       end
     end
   end

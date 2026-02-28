@@ -9,19 +9,19 @@ module Peddler
     module AnyOfferChanged
       OfferChangeTrigger = Structure.new do
         # @return [String]
-        attribute(:asin, String, from: "ASIN")
+        attribute(:asin, String, null: false, from: "ASIN")
 
         # @return [String]
-        attribute(:item_condition, String, from: "ItemCondition")
+        attribute(:item_condition, String, null: false, from: "ItemCondition")
 
         # @return [String]
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
         # @return [String]
-        attribute(:offer_change_type, String, from: "OfferChangeType")
+        attribute(:offer_change_type, String, null: false, from: "OfferChangeType")
 
         # @return [String]
-        attribute(:time_of_offer_change, String, from: "TimeOfOfferChange")
+        attribute(:time_of_offer_change, String, null: false, from: "TimeOfOfferChange")
       end
     end
   end

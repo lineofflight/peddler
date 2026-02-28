@@ -11,10 +11,10 @@ module Peddler
       ItemOffersRequestParams = Structure.new do
         # @return [String] Filters the offer listings to be considered based on item condition. Possible values: New,
         #   Used, Collectible, Refurbished, Club.
-        attribute(:item_condition, String, from: "ItemCondition")
+        attribute(:item_condition, String, null: false, from: "ItemCondition")
 
         # @return [String]
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item. This is the same Asin passed as
         #   a request parameter.

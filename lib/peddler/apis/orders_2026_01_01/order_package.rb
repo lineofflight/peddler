@@ -12,7 +12,7 @@ module Peddler
       # merchant-fulfilled (FBM) orders.
       OrderPackage = Structure.new do
         # @return [String] A unique identifier for this package within the context of the order.
-        attribute(:package_reference_id, String, from: "packageReferenceId")
+        attribute(:package_reference_id, String, null: false, from: "packageReferenceId")
 
         # @return [String] The carrier responsible for transporting this package to the customer.
         attribute?(:carrier, String)

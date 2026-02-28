@@ -12,7 +12,7 @@ module Peddler
       # metadata.
       ASINMetadata = Structure.new do
         # @return [String]
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [Array<AsinBadge>]
         attribute?(:badge_set, Array, from: "badgeSet")

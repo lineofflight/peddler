@@ -76,10 +76,10 @@ module Peddler
       end
 
       class AffordabilityExpenseEvent < Data
-        def self.new: (tax_type_cgst: Peddler::Money?, tax_type_igst: Peddler::Money?, tax_type_sgst: Peddler::Money?, ?amazon_order_id: String?, ?base_expense: Peddler::Money?, ?marketplace_id: String?, ?posted_date: String?, ?total_expense: Peddler::Money?, ?transaction_type: String?) -> Peddler::APIs::FinancesV0::AffordabilityExpenseEvent
-                    | (Peddler::Money?, Peddler::Money?, Peddler::Money?, String?, Peddler::Money?, String?, String?, Peddler::Money?, String?) -> Peddler::APIs::FinancesV0::AffordabilityExpenseEvent
-        def self.[]: (tax_type_cgst: Peddler::Money?, tax_type_igst: Peddler::Money?, tax_type_sgst: Peddler::Money?, ?amazon_order_id: String?, ?base_expense: Peddler::Money?, ?marketplace_id: String?, ?posted_date: String?, ?total_expense: Peddler::Money?, ?transaction_type: String?) -> Peddler::APIs::FinancesV0::AffordabilityExpenseEvent
-                   | (Peddler::Money?, Peddler::Money?, Peddler::Money?, String?, Peddler::Money?, String?, String?, Peddler::Money?, String?) -> Peddler::APIs::FinancesV0::AffordabilityExpenseEvent
+        def self.new: (tax_type_cgst: Peddler::Money, tax_type_igst: Peddler::Money, tax_type_sgst: Peddler::Money, ?amazon_order_id: String?, ?base_expense: Peddler::Money?, ?marketplace_id: String?, ?posted_date: String?, ?total_expense: Peddler::Money?, ?transaction_type: String?) -> Peddler::APIs::FinancesV0::AffordabilityExpenseEvent
+                    | (Peddler::Money, Peddler::Money, Peddler::Money, String?, Peddler::Money?, String?, String?, Peddler::Money?, String?) -> Peddler::APIs::FinancesV0::AffordabilityExpenseEvent
+        def self.[]: (tax_type_cgst: Peddler::Money, tax_type_igst: Peddler::Money, tax_type_sgst: Peddler::Money, ?amazon_order_id: String?, ?base_expense: Peddler::Money?, ?marketplace_id: String?, ?posted_date: String?, ?total_expense: Peddler::Money?, ?transaction_type: String?) -> Peddler::APIs::FinancesV0::AffordabilityExpenseEvent
+                   | (Peddler::Money, Peddler::Money, Peddler::Money, String?, Peddler::Money?, String?, String?, Peddler::Money?, String?) -> Peddler::APIs::FinancesV0::AffordabilityExpenseEvent
 
         def self.members: () -> [ :tax_type_cgst, :tax_type_igst, :tax_type_sgst, :amazon_order_id, :base_expense, :marketplace_id, :posted_date, :total_expense, :transaction_type ]
 
@@ -89,14 +89,14 @@ module Peddler
         attr_reader base_expense: Peddler::Money?
         attr_reader marketplace_id: String?
         attr_reader posted_date: String?
-        attr_reader tax_type_cgst: Peddler::Money?
-        attr_reader tax_type_igst: Peddler::Money?
-        attr_reader tax_type_sgst: Peddler::Money?
+        attr_reader tax_type_cgst: Peddler::Money
+        attr_reader tax_type_igst: Peddler::Money
+        attr_reader tax_type_sgst: Peddler::Money
         attr_reader total_expense: Peddler::Money?
         attr_reader transaction_type: String?
 
         def members: () -> [ :tax_type_cgst, :tax_type_igst, :tax_type_sgst, :amazon_order_id, :base_expense, :marketplace_id, :posted_date, :total_expense, :transaction_type ]
-        def to_h: () -> { tax_type_cgst: Peddler::Money?, tax_type_igst: Peddler::Money?, tax_type_sgst: Peddler::Money?, amazon_order_id: String?, base_expense: Peddler::Money?, marketplace_id: String?, posted_date: String?, total_expense: Peddler::Money?, transaction_type: String? }
+        def to_h: () -> { tax_type_cgst: Peddler::Money, tax_type_igst: Peddler::Money, tax_type_sgst: Peddler::Money, amazon_order_id: String?, base_expense: Peddler::Money?, marketplace_id: String?, posted_date: String?, total_expense: Peddler::Money?, transaction_type: String? }
       end
 
       class AffordabilityExpenseEventList < Array[AffordabilityExpenseEvent]
@@ -331,21 +331,21 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::FinancesV0::Error
-                    | (String?, String?, String?) -> Peddler::APIs::FinancesV0::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::FinancesV0::Error
-                   | (String?, String?, String?) -> Peddler::APIs::FinancesV0::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::FinancesV0::Error
+                    | (String, String, String?) -> Peddler::APIs::FinancesV0::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::FinancesV0::Error
+                   | (String, String, String?) -> Peddler::APIs::FinancesV0::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesV0::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]

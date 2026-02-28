@@ -10,10 +10,10 @@ module Peddler
       # Carrier Account details used to fetch rates.
       CarrierAccount = Structure.new do
         # @return [String]
-        attribute(:carrier_account_id, String, from: "carrierAccountId")
+        attribute(:carrier_account_id, String, null: false, from: "carrierAccountId")
 
         # @return [String]
-        attribute(:carrier_id, String, from: "carrierId")
+        attribute(:carrier_id, String, null: false, from: "carrierId")
       end
     end
   end

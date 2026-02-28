@@ -10,7 +10,7 @@ module Peddler
       # The `listShipmentItems` response.
       ListShipmentItemsResponse = Structure.new do
         # @return [Array<Item>] The items in a shipment.
-        attribute(:items, [Item])
+        attribute(:items, [Item], null: false)
 
         # @return [Pagination]
         attribute?(:pagination, Pagination)

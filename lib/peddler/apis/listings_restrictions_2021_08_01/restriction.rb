@@ -11,7 +11,7 @@ module Peddler
       Restriction = Structure.new do
         # @return [String] A marketplace identifier. Identifies the Amazon marketplace where the restriction is
         #   enforced.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The condition that applies to the restriction.
         attribute?(:condition_type, String, from: "conditionType")

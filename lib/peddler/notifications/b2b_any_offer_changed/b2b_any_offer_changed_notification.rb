@@ -9,17 +9,17 @@ module Peddler
     module B2BAnyOfferChanged
       B2BAnyOfferChangedNotification = Structure.new do
         # @return [OfferChangeTrigger]
-        attribute(:offer_change_trigger, OfferChangeTrigger, from: "OfferChangeTrigger")
+        attribute(:offer_change_trigger, OfferChangeTrigger, null: false, from: "OfferChangeTrigger")
 
         # @return [Array<Offer>] The top 20 competitive B2B offers for the item and condition that triggered the
         #   notification
-        attribute(:offers, [Offer], from: "Offers")
+        attribute(:offers, [Offer], null: false, from: "Offers")
 
         # @return [String] The seller identifier for the offer
-        attribute(:seller_id, String, from: "SellerId")
+        attribute(:seller_id, String, null: false, from: "SellerId")
 
         # @return [Summary]
-        attribute(:summary, Summary, from: "Summary")
+        attribute(:summary, Summary, null: false, from: "Summary")
       end
     end
   end

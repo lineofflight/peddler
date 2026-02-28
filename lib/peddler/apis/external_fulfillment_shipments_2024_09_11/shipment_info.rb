@@ -10,16 +10,16 @@ module Peddler
       # High-level details of the shipment.
       ShipmentInfo = Structure.new do
         # @return [String] The buyer's order ID.
-        attribute(:buyer_order_id, String, from: "buyerOrderId")
+        attribute(:buyer_order_id, String, null: false, from: "buyerOrderId")
 
         # @return [Integer] Total number of units in the shipment.
-        attribute(:number_of_units, Integer, from: "numberOfUnits")
+        attribute(:number_of_units, Integer, null: false, from: "numberOfUnits")
 
         # @return [String] The priority of the order.
-        attribute(:priority, String)
+        attribute(:priority, String, null: false)
 
         # @return [String] The type of shipment.
-        attribute(:shipment_type, String, from: "shipmentType")
+        attribute(:shipment_type, String, null: false, from: "shipmentType")
 
         # @return [String] The timestamp of when the order was placed, in UTC
         attribute?(:order_placed_timestamp, String, from: "orderPlacedTimestamp")

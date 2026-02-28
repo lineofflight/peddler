@@ -10,7 +10,7 @@ module Peddler
       # Notification payload that wraps nested notification data
       Payload = Structure.new do
         # @return [TransactionUpdateNotification]
-        attribute(:transaction_update_notification, TransactionUpdateNotification, from: "TransactionUpdateNotification")
+        attribute(:transaction_update_notification, TransactionUpdateNotification, null: false, from: "TransactionUpdateNotification")
       end
     end
   end

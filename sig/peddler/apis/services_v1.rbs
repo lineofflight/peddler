@@ -2,45 +2,45 @@ module Peddler
   module APIs
     class ServicesV1 < API
       class AddAppointmentRequest < Data
-        def self.new: (appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput?) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
-                    | (Peddler::APIs::ServicesV1::AppointmentTimeInput?) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
-        def self.[]: (appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput?) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
-                   | (Peddler::APIs::ServicesV1::AppointmentTimeInput?) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
+        def self.new: (appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
+                    | (Peddler::APIs::ServicesV1::AppointmentTimeInput) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
+        def self.[]: (appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
+                   | (Peddler::APIs::ServicesV1::AppointmentTimeInput) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
 
         def self.members: () -> [ :appointment_time ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::AddAppointmentRequest
 
-        attr_reader appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput?
+        attr_reader appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput
 
         def members: () -> [ :appointment_time ]
-        def to_h: () -> { appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput? }
+        def to_h: () -> { appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput }
       end
 
       class Address < Data
-        def self.new: (address_line1: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::ServicesV1::Address
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ServicesV1::Address
-        def self.[]: (address_line1: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::ServicesV1::Address
-                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ServicesV1::Address
+        def self.new: (address_line1: String, name: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::ServicesV1::Address
+                    | (String, String, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ServicesV1::Address
+        def self.[]: (address_line1: String, name: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::ServicesV1::Address
+                   | (String, String, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ServicesV1::Address
 
         def self.members: () -> [ :address_line1, :name, :address_line2, :address_line3, :city, :country_code, :county, :district, :phone, :postal_code, :state_or_region ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::Address
 
-        attr_reader address_line1: String?
+        attr_reader address_line1: String
         attr_reader address_line2: String?
         attr_reader address_line3: String?
         attr_reader city: String?
         attr_reader country_code: String?
         attr_reader county: String?
         attr_reader district: String?
-        attr_reader name: String?
+        attr_reader name: String
         attr_reader phone: String?
         attr_reader postal_code: String?
         attr_reader state_or_region: String?
 
         def members: () -> [ :address_line1, :name, :address_line2, :address_line3, :city, :country_code, :county, :district, :phone, :postal_code, :state_or_region ]
-        def to_h: () -> { address_line1: String?, name: String?, address_line2: String?, address_line3: String?, city: String?, country_code: String?, county: String?, district: String?, phone: String?, postal_code: String?, state_or_region: String? }
+        def to_h: () -> { address_line1: String, name: String, address_line2: String?, address_line3: String?, city: String?, country_code: String?, county: String?, district: String?, phone: String?, postal_code: String?, state_or_region: String? }
       end
 
       class Appointment < Data
@@ -122,53 +122,53 @@ module Peddler
       end
 
       class AppointmentTime < Data
-        def self.new: (duration_in_minutes: Integer?, start_time: Time?) -> Peddler::APIs::ServicesV1::AppointmentTime
-                    | (Integer?, Time?) -> Peddler::APIs::ServicesV1::AppointmentTime
-        def self.[]: (duration_in_minutes: Integer?, start_time: Time?) -> Peddler::APIs::ServicesV1::AppointmentTime
-                   | (Integer?, Time?) -> Peddler::APIs::ServicesV1::AppointmentTime
+        def self.new: (duration_in_minutes: Integer, start_time: Time) -> Peddler::APIs::ServicesV1::AppointmentTime
+                    | (Integer, Time) -> Peddler::APIs::ServicesV1::AppointmentTime
+        def self.[]: (duration_in_minutes: Integer, start_time: Time) -> Peddler::APIs::ServicesV1::AppointmentTime
+                   | (Integer, Time) -> Peddler::APIs::ServicesV1::AppointmentTime
 
         def self.members: () -> [ :duration_in_minutes, :start_time ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::AppointmentTime
 
-        attr_reader duration_in_minutes: Integer?
-        attr_reader start_time: Time?
+        attr_reader duration_in_minutes: Integer
+        attr_reader start_time: Time
 
         def members: () -> [ :duration_in_minutes, :start_time ]
-        def to_h: () -> { duration_in_minutes: Integer?, start_time: Time? }
+        def to_h: () -> { duration_in_minutes: Integer, start_time: Time }
       end
 
       class AppointmentTimeInput < Data
-        def self.new: (start_time: Time?, ?duration_in_minutes: Integer?) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
-                    | (Time?, Integer?) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
-        def self.[]: (start_time: Time?, ?duration_in_minutes: Integer?) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
-                   | (Time?, Integer?) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
+        def self.new: (start_time: Time, ?duration_in_minutes: Integer?) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
+                    | (Time, Integer?) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
+        def self.[]: (start_time: Time, ?duration_in_minutes: Integer?) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
+                   | (Time, Integer?) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
 
         def self.members: () -> [ :start_time, :duration_in_minutes ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::AppointmentTimeInput
 
         attr_reader duration_in_minutes: Integer?
-        attr_reader start_time: Time?
+        attr_reader start_time: Time
 
         def members: () -> [ :start_time, :duration_in_minutes ]
-        def to_h: () -> { start_time: Time?, duration_in_minutes: Integer? }
+        def to_h: () -> { start_time: Time, duration_in_minutes: Integer? }
       end
 
       class AssignAppointmentResourcesRequest < Data
-        def self.new: (resources: Array[Peddler::APIs::ServicesV1::AppointmentResource]?) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
-                    | (Array[Peddler::APIs::ServicesV1::AppointmentResource]?) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
-        def self.[]: (resources: Array[Peddler::APIs::ServicesV1::AppointmentResource]?) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
-                   | (Array[Peddler::APIs::ServicesV1::AppointmentResource]?) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
+        def self.new: (resources: Array[Peddler::APIs::ServicesV1::AppointmentResource]) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
+                    | (Array[Peddler::APIs::ServicesV1::AppointmentResource]) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
+        def self.[]: (resources: Array[Peddler::APIs::ServicesV1::AppointmentResource]) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
+                   | (Array[Peddler::APIs::ServicesV1::AppointmentResource]) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
 
         def self.members: () -> [ :resources ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::AssignAppointmentResourcesRequest
 
-        attr_reader resources: Array[Peddler::APIs::ServicesV1::AppointmentResource]?
+        attr_reader resources: Array[Peddler::APIs::ServicesV1::AppointmentResource]
 
         def members: () -> [ :resources ]
-        def to_h: () -> { resources: Array[Peddler::APIs::ServicesV1::AppointmentResource]? }
+        def to_h: () -> { resources: Array[Peddler::APIs::ServicesV1::AppointmentResource] }
       end
 
       class AssignAppointmentResourcesResponse < Data
@@ -211,22 +211,22 @@ module Peddler
       end
 
       class AvailabilityRecord < Data
-        def self.new: (end_time: Time?, start_time: Time?, ?capacity: Integer?, ?recurrence: Peddler::APIs::ServicesV1::Recurrence?) -> Peddler::APIs::ServicesV1::AvailabilityRecord
-                    | (Time?, Time?, Integer?, Peddler::APIs::ServicesV1::Recurrence?) -> Peddler::APIs::ServicesV1::AvailabilityRecord
-        def self.[]: (end_time: Time?, start_time: Time?, ?capacity: Integer?, ?recurrence: Peddler::APIs::ServicesV1::Recurrence?) -> Peddler::APIs::ServicesV1::AvailabilityRecord
-                   | (Time?, Time?, Integer?, Peddler::APIs::ServicesV1::Recurrence?) -> Peddler::APIs::ServicesV1::AvailabilityRecord
+        def self.new: (end_time: Time, start_time: Time, ?capacity: Integer?, ?recurrence: Peddler::APIs::ServicesV1::Recurrence?) -> Peddler::APIs::ServicesV1::AvailabilityRecord
+                    | (Time, Time, Integer?, Peddler::APIs::ServicesV1::Recurrence?) -> Peddler::APIs::ServicesV1::AvailabilityRecord
+        def self.[]: (end_time: Time, start_time: Time, ?capacity: Integer?, ?recurrence: Peddler::APIs::ServicesV1::Recurrence?) -> Peddler::APIs::ServicesV1::AvailabilityRecord
+                   | (Time, Time, Integer?, Peddler::APIs::ServicesV1::Recurrence?) -> Peddler::APIs::ServicesV1::AvailabilityRecord
 
         def self.members: () -> [ :end_time, :start_time, :capacity, :recurrence ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::AvailabilityRecord
 
         attr_reader capacity: Integer?
-        attr_reader end_time: Time?
+        attr_reader end_time: Time
         attr_reader recurrence: Peddler::APIs::ServicesV1::Recurrence?
-        attr_reader start_time: Time?
+        attr_reader start_time: Time
 
         def members: () -> [ :end_time, :start_time, :capacity, :recurrence ]
-        def to_h: () -> { end_time: Time?, start_time: Time?, capacity: Integer?, recurrence: Peddler::APIs::ServicesV1::Recurrence? }
+        def to_h: () -> { end_time: Time, start_time: Time, capacity: Integer?, recurrence: Peddler::APIs::ServicesV1::Recurrence? }
       end
 
       class AvailabilityRecords < Array[AvailabilityRecord]
@@ -320,20 +320,20 @@ module Peddler
       end
 
       class CreateReservationRequest < Data
-        def self.new: (reservation: Peddler::APIs::ServicesV1::Reservation?, resource_id: String?) -> Peddler::APIs::ServicesV1::CreateReservationRequest
-                    | (Peddler::APIs::ServicesV1::Reservation?, String?) -> Peddler::APIs::ServicesV1::CreateReservationRequest
-        def self.[]: (reservation: Peddler::APIs::ServicesV1::Reservation?, resource_id: String?) -> Peddler::APIs::ServicesV1::CreateReservationRequest
-                   | (Peddler::APIs::ServicesV1::Reservation?, String?) -> Peddler::APIs::ServicesV1::CreateReservationRequest
+        def self.new: (reservation: Peddler::APIs::ServicesV1::Reservation, resource_id: String) -> Peddler::APIs::ServicesV1::CreateReservationRequest
+                    | (Peddler::APIs::ServicesV1::Reservation, String) -> Peddler::APIs::ServicesV1::CreateReservationRequest
+        def self.[]: (reservation: Peddler::APIs::ServicesV1::Reservation, resource_id: String) -> Peddler::APIs::ServicesV1::CreateReservationRequest
+                   | (Peddler::APIs::ServicesV1::Reservation, String) -> Peddler::APIs::ServicesV1::CreateReservationRequest
 
         def self.members: () -> [ :reservation, :resource_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::CreateReservationRequest
 
-        attr_reader reservation: Peddler::APIs::ServicesV1::Reservation?
-        attr_reader resource_id: String?
+        attr_reader reservation: Peddler::APIs::ServicesV1::Reservation
+        attr_reader resource_id: String
 
         def members: () -> [ :reservation, :resource_id ]
-        def to_h: () -> { reservation: Peddler::APIs::ServicesV1::Reservation?, resource_id: String? }
+        def to_h: () -> { reservation: Peddler::APIs::ServicesV1::Reservation, resource_id: String }
       end
 
       class CreateReservationResponse < Data
@@ -371,57 +371,57 @@ module Peddler
       end
 
       class DateTimeRange < Data
-        def self.new: (end_time: Time?, start_time: Time?) -> Peddler::APIs::ServicesV1::DateTimeRange
-                    | (Time?, Time?) -> Peddler::APIs::ServicesV1::DateTimeRange
-        def self.[]: (end_time: Time?, start_time: Time?) -> Peddler::APIs::ServicesV1::DateTimeRange
-                   | (Time?, Time?) -> Peddler::APIs::ServicesV1::DateTimeRange
+        def self.new: (end_time: Time, start_time: Time) -> Peddler::APIs::ServicesV1::DateTimeRange
+                    | (Time, Time) -> Peddler::APIs::ServicesV1::DateTimeRange
+        def self.[]: (end_time: Time, start_time: Time) -> Peddler::APIs::ServicesV1::DateTimeRange
+                   | (Time, Time) -> Peddler::APIs::ServicesV1::DateTimeRange
 
         def self.members: () -> [ :end_time, :start_time ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::DateTimeRange
 
-        attr_reader end_time: Time?
-        attr_reader start_time: Time?
+        attr_reader end_time: Time
+        attr_reader start_time: Time
 
         def members: () -> [ :end_time, :start_time ]
-        def to_h: () -> { end_time: Time?, start_time: Time? }
+        def to_h: () -> { end_time: Time, start_time: Time }
       end
 
       class EncryptionDetails < Data
-        def self.new: (initialization_vector: String?, key: String?, standard: String?) -> Peddler::APIs::ServicesV1::EncryptionDetails
-                    | (String?, String?, String?) -> Peddler::APIs::ServicesV1::EncryptionDetails
-        def self.[]: (initialization_vector: String?, key: String?, standard: String?) -> Peddler::APIs::ServicesV1::EncryptionDetails
-                   | (String?, String?, String?) -> Peddler::APIs::ServicesV1::EncryptionDetails
+        def self.new: (initialization_vector: String, key: String, standard: String) -> Peddler::APIs::ServicesV1::EncryptionDetails
+                    | (String, String, String) -> Peddler::APIs::ServicesV1::EncryptionDetails
+        def self.[]: (initialization_vector: String, key: String, standard: String) -> Peddler::APIs::ServicesV1::EncryptionDetails
+                   | (String, String, String) -> Peddler::APIs::ServicesV1::EncryptionDetails
 
         def self.members: () -> [ :initialization_vector, :key, :standard ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::EncryptionDetails
 
-        attr_reader initialization_vector: String?
-        attr_reader key: String?
-        attr_reader standard: String?
+        attr_reader initialization_vector: String
+        attr_reader key: String
+        attr_reader standard: String
 
         def members: () -> [ :initialization_vector, :key, :standard ]
-        def to_h: () -> { initialization_vector: String?, key: String?, standard: String? }
+        def to_h: () -> { initialization_vector: String, key: String, standard: String }
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?, ?error_level: String?) -> Peddler::APIs::ServicesV1::Error
-                    | (String?, String?, String?, String?) -> Peddler::APIs::ServicesV1::Error
-        def self.[]: (code: String?, message: String?, ?details: String?, ?error_level: String?) -> Peddler::APIs::ServicesV1::Error
-                   | (String?, String?, String?, String?) -> Peddler::APIs::ServicesV1::Error
+        def self.new: (code: String, message: String, ?details: String?, ?error_level: String?) -> Peddler::APIs::ServicesV1::Error
+                    | (String, String, String?, String?) -> Peddler::APIs::ServicesV1::Error
+        def self.[]: (code: String, message: String, ?details: String?, ?error_level: String?) -> Peddler::APIs::ServicesV1::Error
+                   | (String, String, String?, String?) -> Peddler::APIs::ServicesV1::Error
 
         def self.members: () -> [ :code, :message, :details, :error_level ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
         attr_reader error_level: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details, :error_level ]
-        def to_h: () -> { code: String?, message: String?, details: String?, error_level: String? }
+        def to_h: () -> { code: String, message: String, details: String?, error_level: String? }
       end
 
       class ErrorList < Array[Error]
@@ -484,22 +484,22 @@ module Peddler
       end
 
       class FixedSlotCapacityQuery < Data
-        def self.new: (end_date_time: Time?, start_date_time: Time?, ?capacity_types: Array[untyped]?, ?slot_duration: Float?) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
-                    | (Time?, Time?, Array[untyped]?, Float?) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
-        def self.[]: (end_date_time: Time?, start_date_time: Time?, ?capacity_types: Array[untyped]?, ?slot_duration: Float?) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
-                   | (Time?, Time?, Array[untyped]?, Float?) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
+        def self.new: (end_date_time: Time, start_date_time: Time, ?capacity_types: Array[untyped]?, ?slot_duration: Float?) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
+                    | (Time, Time, Array[untyped]?, Float?) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
+        def self.[]: (end_date_time: Time, start_date_time: Time, ?capacity_types: Array[untyped]?, ?slot_duration: Float?) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
+                   | (Time, Time, Array[untyped]?, Float?) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
 
         def self.members: () -> [ :end_date_time, :start_date_time, :capacity_types, :slot_duration ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::FixedSlotCapacityQuery
 
         attr_reader capacity_types: Array[untyped]?
-        attr_reader end_date_time: Time?
+        attr_reader end_date_time: Time
         attr_reader slot_duration: Float?
-        attr_reader start_date_time: Time?
+        attr_reader start_date_time: Time
 
         def members: () -> [ :end_date_time, :start_date_time, :capacity_types, :slot_duration ]
-        def to_h: () -> { end_date_time: Time?, start_date_time: Time?, capacity_types: Array[untyped]?, slot_duration: Float? }
+        def to_h: () -> { end_date_time: Time, start_date_time: Time, capacity_types: Array[untyped]?, slot_duration: Float? }
       end
 
       class FulfillmentDocument < Data
@@ -734,28 +734,28 @@ module Peddler
       end
 
       class RangeSlotCapacityQuery < Data
-        def self.new: (end_date_time: Time?, start_date_time: Time?, ?capacity_types: Array[untyped]?) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
-                    | (Time?, Time?, Array[untyped]?) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
-        def self.[]: (end_date_time: Time?, start_date_time: Time?, ?capacity_types: Array[untyped]?) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
-                   | (Time?, Time?, Array[untyped]?) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
+        def self.new: (end_date_time: Time, start_date_time: Time, ?capacity_types: Array[untyped]?) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
+                    | (Time, Time, Array[untyped]?) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
+        def self.[]: (end_date_time: Time, start_date_time: Time, ?capacity_types: Array[untyped]?) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
+                   | (Time, Time, Array[untyped]?) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
 
         def self.members: () -> [ :end_date_time, :start_date_time, :capacity_types ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::RangeSlotCapacityQuery
 
         attr_reader capacity_types: Array[untyped]?
-        attr_reader end_date_time: Time?
-        attr_reader start_date_time: Time?
+        attr_reader end_date_time: Time
+        attr_reader start_date_time: Time
 
         def members: () -> [ :end_date_time, :start_date_time, :capacity_types ]
-        def to_h: () -> { end_date_time: Time?, start_date_time: Time?, capacity_types: Array[untyped]? }
+        def to_h: () -> { end_date_time: Time, start_date_time: Time, capacity_types: Array[untyped]? }
       end
 
       class Recurrence < Data
-        def self.new: (end_time: Time?, ?days_of_month: Array[Integer]?, ?days_of_week: Array[untyped]?) -> Peddler::APIs::ServicesV1::Recurrence
-                    | (Time?, Array[Integer]?, Array[untyped]?) -> Peddler::APIs::ServicesV1::Recurrence
-        def self.[]: (end_time: Time?, ?days_of_month: Array[Integer]?, ?days_of_week: Array[untyped]?) -> Peddler::APIs::ServicesV1::Recurrence
-                   | (Time?, Array[Integer]?, Array[untyped]?) -> Peddler::APIs::ServicesV1::Recurrence
+        def self.new: (end_time: Time, ?days_of_month: Array[Integer]?, ?days_of_week: Array[untyped]?) -> Peddler::APIs::ServicesV1::Recurrence
+                    | (Time, Array[Integer]?, Array[untyped]?) -> Peddler::APIs::ServicesV1::Recurrence
+        def self.[]: (end_time: Time, ?days_of_month: Array[Integer]?, ?days_of_week: Array[untyped]?) -> Peddler::APIs::ServicesV1::Recurrence
+                   | (Time, Array[Integer]?, Array[untyped]?) -> Peddler::APIs::ServicesV1::Recurrence
 
         def self.members: () -> [ :end_time, :days_of_month, :days_of_week ]
 
@@ -763,45 +763,45 @@ module Peddler
 
         attr_reader days_of_month: Array[Integer]?
         attr_reader days_of_week: Array[untyped]?
-        attr_reader end_time: Time?
+        attr_reader end_time: Time
 
         def members: () -> [ :end_time, :days_of_month, :days_of_week ]
-        def to_h: () -> { end_time: Time?, days_of_month: Array[Integer]?, days_of_week: Array[untyped]? }
+        def to_h: () -> { end_time: Time, days_of_month: Array[Integer]?, days_of_week: Array[untyped]? }
       end
 
       class RescheduleAppointmentRequest < Data
-        def self.new: (appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput?, reschedule_reason_code: String?) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
-                    | (Peddler::APIs::ServicesV1::AppointmentTimeInput?, String?) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
-        def self.[]: (appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput?, reschedule_reason_code: String?) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
-                   | (Peddler::APIs::ServicesV1::AppointmentTimeInput?, String?) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
+        def self.new: (appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput, reschedule_reason_code: String) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
+                    | (Peddler::APIs::ServicesV1::AppointmentTimeInput, String) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
+        def self.[]: (appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput, reschedule_reason_code: String) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
+                   | (Peddler::APIs::ServicesV1::AppointmentTimeInput, String) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
 
         def self.members: () -> [ :appointment_time, :reschedule_reason_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::RescheduleAppointmentRequest
 
-        attr_reader appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput?
-        attr_reader reschedule_reason_code: String?
+        attr_reader appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput
+        attr_reader reschedule_reason_code: String
 
         def members: () -> [ :appointment_time, :reschedule_reason_code ]
-        def to_h: () -> { appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput?, reschedule_reason_code: String? }
+        def to_h: () -> { appointment_time: Peddler::APIs::ServicesV1::AppointmentTimeInput, reschedule_reason_code: String }
       end
 
       class Reservation < Data
-        def self.new: (availability: Peddler::APIs::ServicesV1::AvailabilityRecord?, type: String?, ?reservation_id: String?) -> Peddler::APIs::ServicesV1::Reservation
-                    | (Peddler::APIs::ServicesV1::AvailabilityRecord?, String?, String?) -> Peddler::APIs::ServicesV1::Reservation
-        def self.[]: (availability: Peddler::APIs::ServicesV1::AvailabilityRecord?, type: String?, ?reservation_id: String?) -> Peddler::APIs::ServicesV1::Reservation
-                   | (Peddler::APIs::ServicesV1::AvailabilityRecord?, String?, String?) -> Peddler::APIs::ServicesV1::Reservation
+        def self.new: (availability: Peddler::APIs::ServicesV1::AvailabilityRecord, type: String, ?reservation_id: String?) -> Peddler::APIs::ServicesV1::Reservation
+                    | (Peddler::APIs::ServicesV1::AvailabilityRecord, String, String?) -> Peddler::APIs::ServicesV1::Reservation
+        def self.[]: (availability: Peddler::APIs::ServicesV1::AvailabilityRecord, type: String, ?reservation_id: String?) -> Peddler::APIs::ServicesV1::Reservation
+                   | (Peddler::APIs::ServicesV1::AvailabilityRecord, String, String?) -> Peddler::APIs::ServicesV1::Reservation
 
         def self.members: () -> [ :availability, :type, :reservation_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::Reservation
 
-        attr_reader availability: Peddler::APIs::ServicesV1::AvailabilityRecord?
+        attr_reader availability: Peddler::APIs::ServicesV1::AvailabilityRecord
         attr_reader reservation_id: String?
-        attr_reader type: String?
+        attr_reader type: String
 
         def members: () -> [ :availability, :type, :reservation_id ]
-        def to_h: () -> { availability: Peddler::APIs::ServicesV1::AvailabilityRecord?, type: String?, reservation_id: String? }
+        def to_h: () -> { availability: Peddler::APIs::ServicesV1::AvailabilityRecord, type: String, reservation_id: String? }
       end
 
       class ScopeOfWork < Data
@@ -840,22 +840,22 @@ module Peddler
       end
 
       class ServiceDocumentUploadDestination < Data
-        def self.new: (encryption_details: Peddler::APIs::ServicesV1::EncryptionDetails?, upload_destination_id: String?, url: String?, ?headers: Hash[untyped, untyped]?) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
-                    | (Peddler::APIs::ServicesV1::EncryptionDetails?, String?, String?, Hash[untyped, untyped]?) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
-        def self.[]: (encryption_details: Peddler::APIs::ServicesV1::EncryptionDetails?, upload_destination_id: String?, url: String?, ?headers: Hash[untyped, untyped]?) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
-                   | (Peddler::APIs::ServicesV1::EncryptionDetails?, String?, String?, Hash[untyped, untyped]?) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
+        def self.new: (encryption_details: Peddler::APIs::ServicesV1::EncryptionDetails, upload_destination_id: String, url: String, ?headers: Hash[untyped, untyped]?) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
+                    | (Peddler::APIs::ServicesV1::EncryptionDetails, String, String, Hash[untyped, untyped]?) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
+        def self.[]: (encryption_details: Peddler::APIs::ServicesV1::EncryptionDetails, upload_destination_id: String, url: String, ?headers: Hash[untyped, untyped]?) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
+                   | (Peddler::APIs::ServicesV1::EncryptionDetails, String, String, Hash[untyped, untyped]?) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
 
         def self.members: () -> [ :encryption_details, :upload_destination_id, :url, :headers ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::ServiceDocumentUploadDestination
 
-        attr_reader encryption_details: Peddler::APIs::ServicesV1::EncryptionDetails?
+        attr_reader encryption_details: Peddler::APIs::ServicesV1::EncryptionDetails
         attr_reader headers: Hash[untyped, untyped]?
-        attr_reader upload_destination_id: String?
-        attr_reader url: String?
+        attr_reader upload_destination_id: String
+        attr_reader url: String
 
         def members: () -> [ :encryption_details, :upload_destination_id, :url, :headers ]
-        def to_h: () -> { encryption_details: Peddler::APIs::ServicesV1::EncryptionDetails?, upload_destination_id: String?, url: String?, headers: Hash[untyped, untyped]? }
+        def to_h: () -> { encryption_details: Peddler::APIs::ServicesV1::EncryptionDetails, upload_destination_id: String, url: String, headers: Hash[untyped, untyped]? }
       end
 
       class ServiceJob < Data
@@ -921,21 +921,21 @@ module Peddler
       end
 
       class ServiceUploadDocument < Data
-        def self.new: (content_length: Float?, content_type: String?, ?content_md5: String?) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
-                    | (Float?, String?, String?) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
-        def self.[]: (content_length: Float?, content_type: String?, ?content_md5: String?) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
-                   | (Float?, String?, String?) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
+        def self.new: (content_length: Float, content_type: String, ?content_md5: String?) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
+                    | (Float, String, String?) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
+        def self.[]: (content_length: Float, content_type: String, ?content_md5: String?) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
+                   | (Float, String, String?) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
 
         def self.members: () -> [ :content_length, :content_type, :content_md5 ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::ServiceUploadDocument
 
-        attr_reader content_length: Float?
+        attr_reader content_length: Float
         attr_reader content_md5: String?
-        attr_reader content_type: String?
+        attr_reader content_type: String
 
         def members: () -> [ :content_length, :content_type, :content_md5 ]
-        def to_h: () -> { content_length: Float?, content_type: String?, content_md5: String? }
+        def to_h: () -> { content_length: Float, content_type: String, content_md5: String? }
       end
 
       class SetAppointmentFulfillmentDataRequest < Data
@@ -1011,20 +1011,20 @@ module Peddler
       end
 
       class UpdateReservationRequest < Data
-        def self.new: (reservation: Peddler::APIs::ServicesV1::Reservation?, resource_id: String?) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
-                    | (Peddler::APIs::ServicesV1::Reservation?, String?) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
-        def self.[]: (reservation: Peddler::APIs::ServicesV1::Reservation?, resource_id: String?) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
-                   | (Peddler::APIs::ServicesV1::Reservation?, String?) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
+        def self.new: (reservation: Peddler::APIs::ServicesV1::Reservation, resource_id: String) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
+                    | (Peddler::APIs::ServicesV1::Reservation, String) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
+        def self.[]: (reservation: Peddler::APIs::ServicesV1::Reservation, resource_id: String) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
+                   | (Peddler::APIs::ServicesV1::Reservation, String) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
 
         def self.members: () -> [ :reservation, :resource_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::UpdateReservationRequest
 
-        attr_reader reservation: Peddler::APIs::ServicesV1::Reservation?
-        attr_reader resource_id: String?
+        attr_reader reservation: Peddler::APIs::ServicesV1::Reservation
+        attr_reader resource_id: String
 
         def members: () -> [ :reservation, :resource_id ]
-        def to_h: () -> { reservation: Peddler::APIs::ServicesV1::Reservation?, resource_id: String? }
+        def to_h: () -> { reservation: Peddler::APIs::ServicesV1::Reservation, resource_id: String }
       end
 
       class UpdateReservationResponse < Data
@@ -1063,19 +1063,19 @@ module Peddler
       end
 
       class UpdateScheduleRequest < Data
-        def self.new: (schedules: Array[Peddler::APIs::ServicesV1::AvailabilityRecord]?) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
-                    | (Array[Peddler::APIs::ServicesV1::AvailabilityRecord]?) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
-        def self.[]: (schedules: Array[Peddler::APIs::ServicesV1::AvailabilityRecord]?) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
-                   | (Array[Peddler::APIs::ServicesV1::AvailabilityRecord]?) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
+        def self.new: (schedules: Array[Peddler::APIs::ServicesV1::AvailabilityRecord]) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
+                    | (Array[Peddler::APIs::ServicesV1::AvailabilityRecord]) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
+        def self.[]: (schedules: Array[Peddler::APIs::ServicesV1::AvailabilityRecord]) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
+                   | (Array[Peddler::APIs::ServicesV1::AvailabilityRecord]) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
 
         def self.members: () -> [ :schedules ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::UpdateScheduleRequest
 
-        attr_reader schedules: Array[Peddler::APIs::ServicesV1::AvailabilityRecord]?
+        attr_reader schedules: Array[Peddler::APIs::ServicesV1::AvailabilityRecord]
 
         def members: () -> [ :schedules ]
-        def to_h: () -> { schedules: Array[Peddler::APIs::ServicesV1::AvailabilityRecord]? }
+        def to_h: () -> { schedules: Array[Peddler::APIs::ServicesV1::AvailabilityRecord] }
       end
 
       class UpdateScheduleResponse < Data
@@ -1096,21 +1096,21 @@ module Peddler
       end
 
       class Warning < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ServicesV1::Warning
-                    | (String?, String?, String?) -> Peddler::APIs::ServicesV1::Warning
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ServicesV1::Warning
-                   | (String?, String?, String?) -> Peddler::APIs::ServicesV1::Warning
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ServicesV1::Warning
+                    | (String, String, String?) -> Peddler::APIs::ServicesV1::Warning
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::ServicesV1::Warning
+                   | (String, String, String?) -> Peddler::APIs::ServicesV1::Warning
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::Warning
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class WarningList < Array[Warning]

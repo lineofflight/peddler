@@ -11,7 +11,7 @@ module Peddler
       # The input appointment time details.
       AppointmentTimeInput = Structure.new do
         # @return [Time] The date, time in UTC for the start time of an appointment in ISO 8601 format.
-        attribute(:start_time, Time, from: "startTime")
+        attribute(:start_time, Time, null: false, from: "startTime")
 
         # @return [Integer] The duration of an appointment in minutes.
         attribute?(:duration_in_minutes, Integer, from: "durationInMinutes")

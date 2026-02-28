@@ -11,7 +11,7 @@ module Peddler
       # `Points` element is only returned in Japan (JP).
       Points = Structure.new do
         # @return [Integer]
-        attribute(:points_number, Integer, from: "pointsNumber")
+        attribute(:points_number, Integer, null: false, from: "pointsNumber")
       end
     end
   end

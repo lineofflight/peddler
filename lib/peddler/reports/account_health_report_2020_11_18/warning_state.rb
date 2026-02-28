@@ -11,10 +11,10 @@ module Peddler
       WarningState = Structure.new do
         # @return [String] Seller account warning state status for 1 requested marketplace. It could be GOOD or BAD or
         #   NONE.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [String] Seller account warning type for 1 requested marketplace.
-        attribute(:warning_type, String, from: "warningType")
+        attribute(:warning_type, String, null: false, from: "warningType")
       end
     end
   end

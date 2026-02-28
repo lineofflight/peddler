@@ -2,146 +2,146 @@ module Peddler
   module APIs
     class Feeds20210630 < API
       class CreateFeedDocumentResponse < Data
-        def self.new: (feed_document_id: String?, url: String?) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
-                    | (String?, String?) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
-        def self.[]: (feed_document_id: String?, url: String?) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
-                   | (String?, String?) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
+        def self.new: (feed_document_id: String, url: String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
+                    | (String, String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
+        def self.[]: (feed_document_id: String, url: String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
+                   | (String, String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
 
         def self.members: () -> [ :feed_document_id, :url ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
 
-        attr_reader feed_document_id: String?
-        attr_reader url: String?
+        attr_reader feed_document_id: String
+        attr_reader url: String
 
         def members: () -> [ :feed_document_id, :url ]
-        def to_h: () -> { feed_document_id: String?, url: String? }
+        def to_h: () -> { feed_document_id: String, url: String }
       end
 
       class CreateFeedDocumentSpecification < Data
-        def self.new: (content_type: String?) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
-                    | (String?) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
-        def self.[]: (content_type: String?) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
-                   | (String?) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
+        def self.new: (content_type: String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
+                    | (String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
+        def self.[]: (content_type: String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
+                   | (String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
 
         def self.members: () -> [ :content_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentSpecification
 
-        attr_reader content_type: String?
+        attr_reader content_type: String
 
         def members: () -> [ :content_type ]
-        def to_h: () -> { content_type: String? }
+        def to_h: () -> { content_type: String }
       end
 
       class CreateFeedResponse < Data
-        def self.new: (feed_id: String?) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
-                    | (String?) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
-        def self.[]: (feed_id: String?) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
-                   | (String?) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
+        def self.new: (feed_id: String) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
+                    | (String) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
+        def self.[]: (feed_id: String) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
+                   | (String) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
 
         def self.members: () -> [ :feed_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::CreateFeedResponse
 
-        attr_reader feed_id: String?
+        attr_reader feed_id: String
 
         def members: () -> [ :feed_id ]
-        def to_h: () -> { feed_id: String? }
+        def to_h: () -> { feed_id: String }
       end
 
       class CreateFeedSpecification < Data
-        def self.new: (feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, ?feed_options: Hash[untyped, untyped]?) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
-                    | (String?, String?, Array[String]?, Hash[untyped, untyped]?) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
-        def self.[]: (feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, ?feed_options: Hash[untyped, untyped]?) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
-                   | (String?, String?, Array[String]?, Hash[untyped, untyped]?) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
+        def self.new: (feed_type: String, input_feed_document_id: String, marketplace_ids: Array[String], ?feed_options: Hash[untyped, untyped]?) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
+                    | (String, String, Array[String], Hash[untyped, untyped]?) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
+        def self.[]: (feed_type: String, input_feed_document_id: String, marketplace_ids: Array[String], ?feed_options: Hash[untyped, untyped]?) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
+                   | (String, String, Array[String], Hash[untyped, untyped]?) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
 
         def self.members: () -> [ :feed_type, :input_feed_document_id, :marketplace_ids, :feed_options ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::CreateFeedSpecification
 
         attr_reader feed_options: Hash[untyped, untyped]?
-        attr_reader feed_type: String?
-        attr_reader input_feed_document_id: String?
-        attr_reader marketplace_ids: Array[String]?
+        attr_reader feed_type: String
+        attr_reader input_feed_document_id: String
+        attr_reader marketplace_ids: Array[String]
 
         def members: () -> [ :feed_type, :input_feed_document_id, :marketplace_ids, :feed_options ]
-        def to_h: () -> { feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, feed_options: Hash[untyped, untyped]? }
+        def to_h: () -> { feed_type: String, input_feed_document_id: String, marketplace_ids: Array[String], feed_options: Hash[untyped, untyped]? }
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Feeds20210630::Error
-                    | (String?, String?, String?) -> Peddler::APIs::Feeds20210630::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Feeds20210630::Error
-                   | (String?, String?, String?) -> Peddler::APIs::Feeds20210630::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Feeds20210630::Error
+                    | (String, String, String?) -> Peddler::APIs::Feeds20210630::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Feeds20210630::Error
+                   | (String, String, String?) -> Peddler::APIs::Feeds20210630::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::Feeds20210630::Error]?) -> Peddler::APIs::Feeds20210630::ErrorList
-                    | (Array[Peddler::APIs::Feeds20210630::Error]?) -> Peddler::APIs::Feeds20210630::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::Feeds20210630::Error]?) -> Peddler::APIs::Feeds20210630::ErrorList
-                   | (Array[Peddler::APIs::Feeds20210630::Error]?) -> Peddler::APIs::Feeds20210630::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::Feeds20210630::Error]) -> Peddler::APIs::Feeds20210630::ErrorList
+                    | (Array[Peddler::APIs::Feeds20210630::Error]) -> Peddler::APIs::Feeds20210630::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Feeds20210630::Error]) -> Peddler::APIs::Feeds20210630::ErrorList
+                   | (Array[Peddler::APIs::Feeds20210630::Error]) -> Peddler::APIs::Feeds20210630::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::Feeds20210630::Error]?
+        attr_reader errors: Array[Peddler::APIs::Feeds20210630::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::Feeds20210630::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::Feeds20210630::Error] }
       end
 
       class Feed < Data
-        def self.new: (created_time: Time?, feed_id: String?, feed_type: String?, processing_status: String?, ?marketplace_ids: Array[String]?, ?processing_end_time: Time?, ?processing_start_time: Time?, ?result_feed_document_id: String?) -> Peddler::APIs::Feeds20210630::Feed
-                    | (Time?, String?, String?, String?, Array[String]?, Time?, Time?, String?) -> Peddler::APIs::Feeds20210630::Feed
-        def self.[]: (created_time: Time?, feed_id: String?, feed_type: String?, processing_status: String?, ?marketplace_ids: Array[String]?, ?processing_end_time: Time?, ?processing_start_time: Time?, ?result_feed_document_id: String?) -> Peddler::APIs::Feeds20210630::Feed
-                   | (Time?, String?, String?, String?, Array[String]?, Time?, Time?, String?) -> Peddler::APIs::Feeds20210630::Feed
+        def self.new: (created_time: Time, feed_id: String, feed_type: String, processing_status: String, ?marketplace_ids: Array[String]?, ?processing_end_time: Time?, ?processing_start_time: Time?, ?result_feed_document_id: String?) -> Peddler::APIs::Feeds20210630::Feed
+                    | (Time, String, String, String, Array[String]?, Time?, Time?, String?) -> Peddler::APIs::Feeds20210630::Feed
+        def self.[]: (created_time: Time, feed_id: String, feed_type: String, processing_status: String, ?marketplace_ids: Array[String]?, ?processing_end_time: Time?, ?processing_start_time: Time?, ?result_feed_document_id: String?) -> Peddler::APIs::Feeds20210630::Feed
+                   | (Time, String, String, String, Array[String]?, Time?, Time?, String?) -> Peddler::APIs::Feeds20210630::Feed
 
         def self.members: () -> [ :created_time, :feed_id, :feed_type, :processing_status, :marketplace_ids, :processing_end_time, :processing_start_time, :result_feed_document_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::Feed
 
-        attr_reader created_time: Time?
-        attr_reader feed_id: String?
-        attr_reader feed_type: String?
+        attr_reader created_time: Time
+        attr_reader feed_id: String
+        attr_reader feed_type: String
         attr_reader marketplace_ids: Array[String]?
         attr_reader processing_end_time: Time?
         attr_reader processing_start_time: Time?
-        attr_reader processing_status: String?
+        attr_reader processing_status: String
         attr_reader result_feed_document_id: String?
 
         def members: () -> [ :created_time, :feed_id, :feed_type, :processing_status, :marketplace_ids, :processing_end_time, :processing_start_time, :result_feed_document_id ]
-        def to_h: () -> { created_time: Time?, feed_id: String?, feed_type: String?, processing_status: String?, marketplace_ids: Array[String]?, processing_end_time: Time?, processing_start_time: Time?, result_feed_document_id: String? }
+        def to_h: () -> { created_time: Time, feed_id: String, feed_type: String, processing_status: String, marketplace_ids: Array[String]?, processing_end_time: Time?, processing_start_time: Time?, result_feed_document_id: String? }
       end
 
       class FeedDocument < Data
-        def self.new: (feed_document_id: String?, url: String?, ?compression_algorithm: String?) -> Peddler::APIs::Feeds20210630::FeedDocument
-                    | (String?, String?, String?) -> Peddler::APIs::Feeds20210630::FeedDocument
-        def self.[]: (feed_document_id: String?, url: String?, ?compression_algorithm: String?) -> Peddler::APIs::Feeds20210630::FeedDocument
-                   | (String?, String?, String?) -> Peddler::APIs::Feeds20210630::FeedDocument
+        def self.new: (feed_document_id: String, url: String, ?compression_algorithm: String?) -> Peddler::APIs::Feeds20210630::FeedDocument
+                    | (String, String, String?) -> Peddler::APIs::Feeds20210630::FeedDocument
+        def self.[]: (feed_document_id: String, url: String, ?compression_algorithm: String?) -> Peddler::APIs::Feeds20210630::FeedDocument
+                   | (String, String, String?) -> Peddler::APIs::Feeds20210630::FeedDocument
 
         def self.members: () -> [ :feed_document_id, :url, :compression_algorithm ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::FeedDocument
 
         attr_reader compression_algorithm: String?
-        attr_reader feed_document_id: String?
-        attr_reader url: String?
+        attr_reader feed_document_id: String
+        attr_reader url: String
 
         def members: () -> [ :feed_document_id, :url, :compression_algorithm ]
-        def to_h: () -> { feed_document_id: String?, url: String?, compression_algorithm: String? }
+        def to_h: () -> { feed_document_id: String, url: String, compression_algorithm: String? }
       end
 
       class FeedList < Array[Feed]
@@ -149,20 +149,20 @@ module Peddler
       end
 
       class GetFeedsResponse < Data
-        def self.new: (feeds: Array[Peddler::APIs::Feeds20210630::Feed]?, ?next_token: String?) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
-                    | (Array[Peddler::APIs::Feeds20210630::Feed]?, String?) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
-        def self.[]: (feeds: Array[Peddler::APIs::Feeds20210630::Feed]?, ?next_token: String?) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
-                   | (Array[Peddler::APIs::Feeds20210630::Feed]?, String?) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
+        def self.new: (feeds: Array[Peddler::APIs::Feeds20210630::Feed], ?next_token: String?) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
+                    | (Array[Peddler::APIs::Feeds20210630::Feed], String?) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
+        def self.[]: (feeds: Array[Peddler::APIs::Feeds20210630::Feed], ?next_token: String?) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
+                   | (Array[Peddler::APIs::Feeds20210630::Feed], String?) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
 
         def self.members: () -> [ :feeds, :next_token ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Feeds20210630::GetFeedsResponse
 
-        attr_reader feeds: Array[Peddler::APIs::Feeds20210630::Feed]?
+        attr_reader feeds: Array[Peddler::APIs::Feeds20210630::Feed]
         attr_reader next_token: String?
 
         def members: () -> [ :feeds, :next_token ]
-        def to_h: () -> { feeds: Array[Peddler::APIs::Feeds20210630::Feed]?, next_token: String? }
+        def to_h: () -> { feeds: Array[Peddler::APIs::Feeds20210630::Feed], next_token: String? }
       end
 
       def cancel_feed: (String, ?rate_limit: Float) -> Peddler::Response

@@ -11,7 +11,7 @@ module Peddler
       OrderItemStatus = Structure.new do
         # @return [String] Numbering of the item on the purchase order. The first item will be 1, the second 2, and so
         #   on.
-        attribute(:item_sequence_number, String, from: "itemSequenceNumber")
+        attribute(:item_sequence_number, String, null: false, from: "itemSequenceNumber")
 
         # @return [Hash] Acknowledgement status information.
         attribute?(:acknowledgement_status, Hash, from: "acknowledgementStatus")

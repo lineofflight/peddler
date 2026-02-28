@@ -10,10 +10,10 @@ module Peddler
       # The weight.
       Weight = Structure.new do
         # @return [String] The unit of weight.
-        attribute(:unit, String)
+        attribute(:unit, String, null: false)
 
         # @return [String] The weight value.
-        attribute(:value, String)
+        attribute(:value, String, null: false)
       end
     end
   end

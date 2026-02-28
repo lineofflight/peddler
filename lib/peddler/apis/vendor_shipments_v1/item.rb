@@ -11,10 +11,10 @@ module Peddler
       Item = Structure.new do
         # @return [String] Item sequence number for the item. The first item will be 001, the second 002, and so on.
         #   This number is used as a reference to refer to this item from the carton or pallet level.
-        attribute(:item_sequence_number, String, from: "itemSequenceNumber")
+        attribute(:item_sequence_number, String, null: false, from: "itemSequenceNumber")
 
         # @return [ItemQuantity] Total item quantity shipped in this shipment.
-        attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")
+        attribute(:shipped_quantity, ItemQuantity, null: false, from: "shippedQuantity")
 
         # @return [String] Buyer Standard Identification Number (ASIN) of an item.
         attribute?(:amazon_product_identifier, String, from: "amazonProductIdentifier")

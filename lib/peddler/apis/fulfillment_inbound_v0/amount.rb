@@ -10,10 +10,10 @@ module Peddler
       # The monetary value.
       Amount = Structure.new do
         # @return [String]
-        attribute(:currency_code, String, from: "CurrencyCode")
+        attribute(:currency_code, String, null: false, from: "CurrencyCode")
 
         # @return [Float] The amount.
-        attribute(:value, Float, from: "Value")
+        attribute(:value, Float, null: false, from: "Value")
       end
     end
   end

@@ -11,7 +11,7 @@ module Peddler
       # Shipment dates.
       ShipmentDates = Structure.new do
         # @return [Time] Time by which the vendor is required to ship the order.
-        attribute(:required_ship_date, Time, from: "requiredShipDate")
+        attribute(:required_ship_date, Time, null: false, from: "requiredShipDate")
 
         # @return [Time] Delivery date promised to the Amazon customer.
         attribute?(:promised_delivery_date, Time, from: "promisedDeliveryDate")

@@ -10,23 +10,23 @@ module Peddler
       # Address of the party.
       Address = Structure.new do
         # @return [String] First line of the address.
-        attribute(:address_line1, String, from: "addressLine1")
+        attribute(:address_line1, String, null: false, from: "addressLine1")
 
         # @return [String] The city where the person, business or institution is located.
-        attribute(:city, String)
+        attribute(:city, String, null: false)
 
         # @return [String] The two digit country code in ISO 3166-1 alpha-2 format.
-        attribute(:country_code, String, from: "countryCode")
+        attribute(:country_code, String, null: false, from: "countryCode")
 
         # @return [String] The name of the person, business or institution at that address.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String] The postal code of that address. It conatins a series of letters or digits or both, sometimes
         #   including spaces or punctuation.
-        attribute(:postal_code, String, from: "postalCode")
+        attribute(:postal_code, String, null: false, from: "postalCode")
 
         # @return [String] The state or region where person, business or institution is located.
-        attribute(:state_or_region, String, from: "stateOrRegion")
+        attribute(:state_or_region, String, null: false, from: "stateOrRegion")
 
         # @return [String] Additional street address information, if required.
         attribute?(:address_line2, String, from: "addressLine2")

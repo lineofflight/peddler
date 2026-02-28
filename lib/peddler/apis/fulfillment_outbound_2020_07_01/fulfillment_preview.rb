@@ -10,16 +10,16 @@ module Peddler
       # Information about a fulfillment order preview, including delivery and fee information based on shipping method.
       FulfillmentPreview = Structure.new do
         # @return [:boolean] When true, this fulfillment order preview is for COD (Cash On Delivery).
-        attribute(:cod_capable, :boolean, from: "isCODCapable")
+        attribute(:cod_capable, :boolean, null: false, from: "isCODCapable")
 
         # @return [:boolean] When true, this fulfillment order preview is fulfillable.
-        attribute(:fulfillable, :boolean, from: "isFulfillable")
+        attribute(:fulfillable, :boolean, null: false, from: "isFulfillable")
 
         # @return [String] The marketplace the fulfillment order is placed against.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String]
-        attribute(:shipping_speed_category, String, from: "shippingSpeedCategory")
+        attribute(:shipping_speed_category, String, null: false, from: "shippingSpeedCategory")
 
         # @return [Array<Fee>] The estimated fulfillment fees for this fulfillment order preview, if applicable. The
         #   fees data will not be available for IN marketplace orders.

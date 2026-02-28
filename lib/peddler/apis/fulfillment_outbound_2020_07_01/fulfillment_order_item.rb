@@ -10,20 +10,20 @@ module Peddler
       # Item information for a fulfillment order.
       FulfillmentOrderItem = Structure.new do
         # @return [Integer] The item quantity that was cancelled by the seller.
-        attribute(:cancelled_quantity, Integer, from: "cancelledQuantity")
+        attribute(:cancelled_quantity, Integer, null: false, from: "cancelledQuantity")
 
         # @return [Integer]
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [String] A fulfillment order item identifier submitted with a call to the `createFulfillmentOrder`
         #   operation.
-        attribute(:seller_fulfillment_order_item_id, String, from: "sellerFulfillmentOrderItemId")
+        attribute(:seller_fulfillment_order_item_id, String, null: false, from: "sellerFulfillmentOrderItemId")
 
         # @return [String] The seller SKU of the item.
-        attribute(:seller_sku, String, from: "sellerSku")
+        attribute(:seller_sku, String, null: false, from: "sellerSku")
 
         # @return [Integer] The item quantity that is unfulfillable.
-        attribute(:unfulfillable_quantity, Integer, from: "unfulfillableQuantity")
+        attribute(:unfulfillable_quantity, Integer, null: false, from: "unfulfillableQuantity")
 
         # @return [String] Item-specific text that displays in recipient-facing materials such as the outbound shipment
         #   packing slip.

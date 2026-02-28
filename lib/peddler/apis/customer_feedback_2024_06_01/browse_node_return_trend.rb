@@ -10,10 +10,10 @@ module Peddler
       # The trend of return topic metrics for all items in the requested browse node.
       BrowseNodeReturnTrend = Structure.new do
         # @return [String] The name of the topic.
-        attribute(:topic, String)
+        attribute(:topic, String, null: false)
 
         # @return [Array<BrowseNodeReturnTrendPoint>] The browse node return trend metrics.
-        attribute(:trend_metrics, [BrowseNodeReturnTrendPoint], from: "trendMetrics")
+        attribute(:trend_metrics, [BrowseNodeReturnTrendPoint], null: false, from: "trendMetrics")
       end
     end
   end

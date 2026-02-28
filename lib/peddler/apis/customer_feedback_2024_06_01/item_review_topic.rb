@@ -10,10 +10,10 @@ module Peddler
       # Details of item review topic.
       ItemReviewTopic = Structure.new do
         # @return [ItemReviewTopicMetrics] The ASIN's review topic metrics.
-        attribute(:asin_metrics, ItemReviewTopicMetrics, from: "asinMetrics")
+        attribute(:asin_metrics, ItemReviewTopicMetrics, null: false, from: "asinMetrics")
 
         # @return [String] The name of the item review topic.
-        attribute(:topic, String)
+        attribute(:topic, String, null: false)
 
         # @return [ItemReviewBrowseNodeMetrics] The browse node's review topic metrics. This value is `null` if there
         #   isn't enough topic data for the browse node.

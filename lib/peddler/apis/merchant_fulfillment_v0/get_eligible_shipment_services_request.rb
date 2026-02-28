@@ -10,7 +10,7 @@ module Peddler
       # Request schema.
       GetEligibleShipmentServicesRequest = Structure.new do
         # @return [ShipmentRequestDetails] Shipment information required for requesting shipping service offers.
-        attribute(:shipment_request_details, ShipmentRequestDetails, from: "ShipmentRequestDetails")
+        attribute(:shipment_request_details, ShipmentRequestDetails, null: false, from: "ShipmentRequestDetails")
 
         # @return [ShippingOfferingFilter]
         attribute?(:shipping_offering_filter, ShippingOfferingFilter, from: "ShippingOfferingFilter")

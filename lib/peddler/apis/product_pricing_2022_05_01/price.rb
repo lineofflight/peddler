@@ -10,7 +10,7 @@ module Peddler
       # The schema for item's price information, including listing price, shipping price, and Amazon Points.
       Price = Structure.new do
         # @return [Money] The listing price for the item, excluding any promotions.
-        attribute(:listing_price, Money, from: "listingPrice")
+        attribute(:listing_price, Money, null: false, from: "listingPrice")
 
         # @return [Points] The number of Amazon Points that are offered with the purchase of an item and the monetary
         #   value of these points.

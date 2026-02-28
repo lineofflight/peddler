@@ -11,7 +11,7 @@ module Peddler
       # multiple items or boxes.
       Pallet = Structure.new do
         # @return [String] Primary key to uniquely identify a Package (Box or Pallet).
-        attribute(:package_id, String, from: "packageId")
+        attribute(:package_id, String, null: false, from: "packageId")
 
         # @return [Dimensions]
         attribute?(:dimensions, Dimensions)

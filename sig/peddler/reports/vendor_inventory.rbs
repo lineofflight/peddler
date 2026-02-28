@@ -2,10 +2,10 @@ module Peddler
   module Reports
     module VendorInventory
       class InventoryAggregate < Data
-        def self.new: (end_date: Date?, net_received_inventory_cost: Peddler::Money?, net_received_inventory_units: Integer?, open_purchase_order_units: Integer?, sellable_on_hand_inventory_cost: Peddler::Money?, sellable_on_hand_inventory_units: Integer?, start_date: Date?, ?aged90_plus_days_sellable_inventory_cost: Peddler::Money?, ?aged90_plus_days_sellable_inventory_units: Integer?, ?average_vendor_lead_time_days: Float?, ?procurable_product_out_of_stock_rate: Float?, ?receive_fill_rate: Float?, ?sell_through_rate: Float?, ?uft: Float?, ?unfilled_customer_ordered_units: Integer?, ?unhealthy_inventory_cost: Peddler::Money?, ?unhealthy_inventory_units: Integer?, ?unsellable_on_hand_inventory_cost: Peddler::Money?, ?unsellable_on_hand_inventory_units: Integer?, ?vendor_confirmation_rate: Float?) -> Peddler::Reports::VendorInventory::InventoryAggregate
-                    | (Date?, Peddler::Money?, Integer?, Integer?, Peddler::Money?, Integer?, Date?, Peddler::Money?, Integer?, Float?, Float?, Float?, Float?, Float?, Integer?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?) -> Peddler::Reports::VendorInventory::InventoryAggregate
-        def self.[]: (end_date: Date?, net_received_inventory_cost: Peddler::Money?, net_received_inventory_units: Integer?, open_purchase_order_units: Integer?, sellable_on_hand_inventory_cost: Peddler::Money?, sellable_on_hand_inventory_units: Integer?, start_date: Date?, ?aged90_plus_days_sellable_inventory_cost: Peddler::Money?, ?aged90_plus_days_sellable_inventory_units: Integer?, ?average_vendor_lead_time_days: Float?, ?procurable_product_out_of_stock_rate: Float?, ?receive_fill_rate: Float?, ?sell_through_rate: Float?, ?uft: Float?, ?unfilled_customer_ordered_units: Integer?, ?unhealthy_inventory_cost: Peddler::Money?, ?unhealthy_inventory_units: Integer?, ?unsellable_on_hand_inventory_cost: Peddler::Money?, ?unsellable_on_hand_inventory_units: Integer?, ?vendor_confirmation_rate: Float?) -> Peddler::Reports::VendorInventory::InventoryAggregate
-                   | (Date?, Peddler::Money?, Integer?, Integer?, Peddler::Money?, Integer?, Date?, Peddler::Money?, Integer?, Float?, Float?, Float?, Float?, Float?, Integer?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?) -> Peddler::Reports::VendorInventory::InventoryAggregate
+        def self.new: (end_date: Date, net_received_inventory_cost: Peddler::Money, net_received_inventory_units: Integer, open_purchase_order_units: Integer, sellable_on_hand_inventory_cost: Peddler::Money, sellable_on_hand_inventory_units: Integer, start_date: Date, ?aged90_plus_days_sellable_inventory_cost: Peddler::Money?, ?aged90_plus_days_sellable_inventory_units: Integer?, ?average_vendor_lead_time_days: Float?, ?procurable_product_out_of_stock_rate: Float?, ?receive_fill_rate: Float?, ?sell_through_rate: Float?, ?uft: Float?, ?unfilled_customer_ordered_units: Integer?, ?unhealthy_inventory_cost: Peddler::Money?, ?unhealthy_inventory_units: Integer?, ?unsellable_on_hand_inventory_cost: Peddler::Money?, ?unsellable_on_hand_inventory_units: Integer?, ?vendor_confirmation_rate: Float?) -> Peddler::Reports::VendorInventory::InventoryAggregate
+                    | (Date, Peddler::Money, Integer, Integer, Peddler::Money, Integer, Date, Peddler::Money?, Integer?, Float?, Float?, Float?, Float?, Float?, Integer?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?) -> Peddler::Reports::VendorInventory::InventoryAggregate
+        def self.[]: (end_date: Date, net_received_inventory_cost: Peddler::Money, net_received_inventory_units: Integer, open_purchase_order_units: Integer, sellable_on_hand_inventory_cost: Peddler::Money, sellable_on_hand_inventory_units: Integer, start_date: Date, ?aged90_plus_days_sellable_inventory_cost: Peddler::Money?, ?aged90_plus_days_sellable_inventory_units: Integer?, ?average_vendor_lead_time_days: Float?, ?procurable_product_out_of_stock_rate: Float?, ?receive_fill_rate: Float?, ?sell_through_rate: Float?, ?uft: Float?, ?unfilled_customer_ordered_units: Integer?, ?unhealthy_inventory_cost: Peddler::Money?, ?unhealthy_inventory_units: Integer?, ?unsellable_on_hand_inventory_cost: Peddler::Money?, ?unsellable_on_hand_inventory_units: Integer?, ?vendor_confirmation_rate: Float?) -> Peddler::Reports::VendorInventory::InventoryAggregate
+                   | (Date, Peddler::Money, Integer, Integer, Peddler::Money, Integer, Date, Peddler::Money?, Integer?, Float?, Float?, Float?, Float?, Float?, Integer?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?) -> Peddler::Reports::VendorInventory::InventoryAggregate
 
         def self.members: () -> [ :end_date, :net_received_inventory_cost, :net_received_inventory_units, :open_purchase_order_units, :sellable_on_hand_inventory_cost, :sellable_on_hand_inventory_units, :start_date, :aged90_plus_days_sellable_inventory_cost, :aged90_plus_days_sellable_inventory_units, :average_vendor_lead_time_days, :procurable_product_out_of_stock_rate, :receive_fill_rate, :sell_through_rate, :uft, :unfilled_customer_ordered_units, :unhealthy_inventory_cost, :unhealthy_inventory_units, :unsellable_on_hand_inventory_cost, :unsellable_on_hand_inventory_units, :vendor_confirmation_rate ]
 
@@ -14,16 +14,16 @@ module Peddler
         attr_reader aged90_plus_days_sellable_inventory_cost: Peddler::Money?
         attr_reader aged90_plus_days_sellable_inventory_units: Integer?
         attr_reader average_vendor_lead_time_days: Float?
-        attr_reader end_date: Date?
-        attr_reader net_received_inventory_cost: Peddler::Money?
-        attr_reader net_received_inventory_units: Integer?
-        attr_reader open_purchase_order_units: Integer?
+        attr_reader end_date: Date
+        attr_reader net_received_inventory_cost: Peddler::Money
+        attr_reader net_received_inventory_units: Integer
+        attr_reader open_purchase_order_units: Integer
         attr_reader procurable_product_out_of_stock_rate: Float?
         attr_reader receive_fill_rate: Float?
         attr_reader sell_through_rate: Float?
-        attr_reader sellable_on_hand_inventory_cost: Peddler::Money?
-        attr_reader sellable_on_hand_inventory_units: Integer?
-        attr_reader start_date: Date?
+        attr_reader sellable_on_hand_inventory_cost: Peddler::Money
+        attr_reader sellable_on_hand_inventory_units: Integer
+        attr_reader start_date: Date
         attr_reader uft: Float?
         attr_reader unfilled_customer_ordered_units: Integer?
         attr_reader unhealthy_inventory_cost: Peddler::Money?
@@ -33,14 +33,14 @@ module Peddler
         attr_reader vendor_confirmation_rate: Float?
 
         def members: () -> [ :end_date, :net_received_inventory_cost, :net_received_inventory_units, :open_purchase_order_units, :sellable_on_hand_inventory_cost, :sellable_on_hand_inventory_units, :start_date, :aged90_plus_days_sellable_inventory_cost, :aged90_plus_days_sellable_inventory_units, :average_vendor_lead_time_days, :procurable_product_out_of_stock_rate, :receive_fill_rate, :sell_through_rate, :uft, :unfilled_customer_ordered_units, :unhealthy_inventory_cost, :unhealthy_inventory_units, :unsellable_on_hand_inventory_cost, :unsellable_on_hand_inventory_units, :vendor_confirmation_rate ]
-        def to_h: () -> { end_date: Date?, net_received_inventory_cost: Peddler::Money?, net_received_inventory_units: Integer?, open_purchase_order_units: Integer?, sellable_on_hand_inventory_cost: Peddler::Money?, sellable_on_hand_inventory_units: Integer?, start_date: Date?, aged90_plus_days_sellable_inventory_cost: Peddler::Money?, aged90_plus_days_sellable_inventory_units: Integer?, average_vendor_lead_time_days: Float?, procurable_product_out_of_stock_rate: Float?, receive_fill_rate: Float?, sell_through_rate: Float?, uft: Float?, unfilled_customer_ordered_units: Integer?, unhealthy_inventory_cost: Peddler::Money?, unhealthy_inventory_units: Integer?, unsellable_on_hand_inventory_cost: Peddler::Money?, unsellable_on_hand_inventory_units: Integer?, vendor_confirmation_rate: Float? }
+        def to_h: () -> { end_date: Date, net_received_inventory_cost: Peddler::Money, net_received_inventory_units: Integer, open_purchase_order_units: Integer, sellable_on_hand_inventory_cost: Peddler::Money, sellable_on_hand_inventory_units: Integer, start_date: Date, aged90_plus_days_sellable_inventory_cost: Peddler::Money?, aged90_plus_days_sellable_inventory_units: Integer?, average_vendor_lead_time_days: Float?, procurable_product_out_of_stock_rate: Float?, receive_fill_rate: Float?, sell_through_rate: Float?, uft: Float?, unfilled_customer_ordered_units: Integer?, unhealthy_inventory_cost: Peddler::Money?, unhealthy_inventory_units: Integer?, unsellable_on_hand_inventory_cost: Peddler::Money?, unsellable_on_hand_inventory_units: Integer?, vendor_confirmation_rate: Float? }
       end
 
       class InventoryByASIN < Data
-        def self.new: (asin: String?, end_date: Date?, net_received_inventory_cost: Peddler::Money?, net_received_inventory_units: Integer?, open_purchase_order_units: Integer?, sellable_on_hand_inventory_cost: Peddler::Money?, sellable_on_hand_inventory_units: Integer?, start_date: Date?, ?aged90_plus_days_sellable_inventory_cost: Peddler::Money?, ?aged90_plus_days_sellable_inventory_units: Integer?, ?average_vendor_lead_time_days: Float?, ?sell_through_rate: Float?, ?unfilled_customer_ordered_units: Integer?, ?unhealthy_inventory_cost: Peddler::Money?, ?unhealthy_inventory_units: Integer?, ?unsellable_on_hand_inventory_cost: Peddler::Money?, ?unsellable_on_hand_inventory_units: Integer?, ?vendor_confirmation_rate: Float?) -> Peddler::Reports::VendorInventory::InventoryByASIN
-                    | (String?, Date?, Peddler::Money?, Integer?, Integer?, Peddler::Money?, Integer?, Date?, Peddler::Money?, Integer?, Float?, Float?, Integer?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?) -> Peddler::Reports::VendorInventory::InventoryByASIN
-        def self.[]: (asin: String?, end_date: Date?, net_received_inventory_cost: Peddler::Money?, net_received_inventory_units: Integer?, open_purchase_order_units: Integer?, sellable_on_hand_inventory_cost: Peddler::Money?, sellable_on_hand_inventory_units: Integer?, start_date: Date?, ?aged90_plus_days_sellable_inventory_cost: Peddler::Money?, ?aged90_plus_days_sellable_inventory_units: Integer?, ?average_vendor_lead_time_days: Float?, ?sell_through_rate: Float?, ?unfilled_customer_ordered_units: Integer?, ?unhealthy_inventory_cost: Peddler::Money?, ?unhealthy_inventory_units: Integer?, ?unsellable_on_hand_inventory_cost: Peddler::Money?, ?unsellable_on_hand_inventory_units: Integer?, ?vendor_confirmation_rate: Float?) -> Peddler::Reports::VendorInventory::InventoryByASIN
-                   | (String?, Date?, Peddler::Money?, Integer?, Integer?, Peddler::Money?, Integer?, Date?, Peddler::Money?, Integer?, Float?, Float?, Integer?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?) -> Peddler::Reports::VendorInventory::InventoryByASIN
+        def self.new: (asin: String, end_date: Date, net_received_inventory_cost: Peddler::Money, net_received_inventory_units: Integer, open_purchase_order_units: Integer, sellable_on_hand_inventory_cost: Peddler::Money, sellable_on_hand_inventory_units: Integer, start_date: Date, ?aged90_plus_days_sellable_inventory_cost: Peddler::Money?, ?aged90_plus_days_sellable_inventory_units: Integer?, ?average_vendor_lead_time_days: Float?, ?sell_through_rate: Float?, ?unfilled_customer_ordered_units: Integer?, ?unhealthy_inventory_cost: Peddler::Money?, ?unhealthy_inventory_units: Integer?, ?unsellable_on_hand_inventory_cost: Peddler::Money?, ?unsellable_on_hand_inventory_units: Integer?, ?vendor_confirmation_rate: Float?) -> Peddler::Reports::VendorInventory::InventoryByASIN
+                    | (String, Date, Peddler::Money, Integer, Integer, Peddler::Money, Integer, Date, Peddler::Money?, Integer?, Float?, Float?, Integer?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?) -> Peddler::Reports::VendorInventory::InventoryByASIN
+        def self.[]: (asin: String, end_date: Date, net_received_inventory_cost: Peddler::Money, net_received_inventory_units: Integer, open_purchase_order_units: Integer, sellable_on_hand_inventory_cost: Peddler::Money, sellable_on_hand_inventory_units: Integer, start_date: Date, ?aged90_plus_days_sellable_inventory_cost: Peddler::Money?, ?aged90_plus_days_sellable_inventory_units: Integer?, ?average_vendor_lead_time_days: Float?, ?sell_through_rate: Float?, ?unfilled_customer_ordered_units: Integer?, ?unhealthy_inventory_cost: Peddler::Money?, ?unhealthy_inventory_units: Integer?, ?unsellable_on_hand_inventory_cost: Peddler::Money?, ?unsellable_on_hand_inventory_units: Integer?, ?vendor_confirmation_rate: Float?) -> Peddler::Reports::VendorInventory::InventoryByASIN
+                   | (String, Date, Peddler::Money, Integer, Integer, Peddler::Money, Integer, Date, Peddler::Money?, Integer?, Float?, Float?, Integer?, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Float?) -> Peddler::Reports::VendorInventory::InventoryByASIN
 
         def self.members: () -> [ :asin, :end_date, :net_received_inventory_cost, :net_received_inventory_units, :open_purchase_order_units, :sellable_on_hand_inventory_cost, :sellable_on_hand_inventory_units, :start_date, :aged90_plus_days_sellable_inventory_cost, :aged90_plus_days_sellable_inventory_units, :average_vendor_lead_time_days, :sell_through_rate, :unfilled_customer_ordered_units, :unhealthy_inventory_cost, :unhealthy_inventory_units, :unsellable_on_hand_inventory_cost, :unsellable_on_hand_inventory_units, :vendor_confirmation_rate ]
 
@@ -48,16 +48,16 @@ module Peddler
 
         attr_reader aged90_plus_days_sellable_inventory_cost: Peddler::Money?
         attr_reader aged90_plus_days_sellable_inventory_units: Integer?
-        attr_reader asin: String?
+        attr_reader asin: String
         attr_reader average_vendor_lead_time_days: Float?
-        attr_reader end_date: Date?
-        attr_reader net_received_inventory_cost: Peddler::Money?
-        attr_reader net_received_inventory_units: Integer?
-        attr_reader open_purchase_order_units: Integer?
+        attr_reader end_date: Date
+        attr_reader net_received_inventory_cost: Peddler::Money
+        attr_reader net_received_inventory_units: Integer
+        attr_reader open_purchase_order_units: Integer
         attr_reader sell_through_rate: Float?
-        attr_reader sellable_on_hand_inventory_cost: Peddler::Money?
-        attr_reader sellable_on_hand_inventory_units: Integer?
-        attr_reader start_date: Date?
+        attr_reader sellable_on_hand_inventory_cost: Peddler::Money
+        attr_reader sellable_on_hand_inventory_units: Integer
+        attr_reader start_date: Date
         attr_reader unfilled_customer_ordered_units: Integer?
         attr_reader unhealthy_inventory_cost: Peddler::Money?
         attr_reader unhealthy_inventory_units: Integer?
@@ -66,64 +66,64 @@ module Peddler
         attr_reader vendor_confirmation_rate: Float?
 
         def members: () -> [ :asin, :end_date, :net_received_inventory_cost, :net_received_inventory_units, :open_purchase_order_units, :sellable_on_hand_inventory_cost, :sellable_on_hand_inventory_units, :start_date, :aged90_plus_days_sellable_inventory_cost, :aged90_plus_days_sellable_inventory_units, :average_vendor_lead_time_days, :sell_through_rate, :unfilled_customer_ordered_units, :unhealthy_inventory_cost, :unhealthy_inventory_units, :unsellable_on_hand_inventory_cost, :unsellable_on_hand_inventory_units, :vendor_confirmation_rate ]
-        def to_h: () -> { asin: String?, end_date: Date?, net_received_inventory_cost: Peddler::Money?, net_received_inventory_units: Integer?, open_purchase_order_units: Integer?, sellable_on_hand_inventory_cost: Peddler::Money?, sellable_on_hand_inventory_units: Integer?, start_date: Date?, aged90_plus_days_sellable_inventory_cost: Peddler::Money?, aged90_plus_days_sellable_inventory_units: Integer?, average_vendor_lead_time_days: Float?, sell_through_rate: Float?, unfilled_customer_ordered_units: Integer?, unhealthy_inventory_cost: Peddler::Money?, unhealthy_inventory_units: Integer?, unsellable_on_hand_inventory_cost: Peddler::Money?, unsellable_on_hand_inventory_units: Integer?, vendor_confirmation_rate: Float? }
+        def to_h: () -> { asin: String, end_date: Date, net_received_inventory_cost: Peddler::Money, net_received_inventory_units: Integer, open_purchase_order_units: Integer, sellable_on_hand_inventory_cost: Peddler::Money, sellable_on_hand_inventory_units: Integer, start_date: Date, aged90_plus_days_sellable_inventory_cost: Peddler::Money?, aged90_plus_days_sellable_inventory_units: Integer?, average_vendor_lead_time_days: Float?, sell_through_rate: Float?, unfilled_customer_ordered_units: Integer?, unhealthy_inventory_cost: Peddler::Money?, unhealthy_inventory_units: Integer?, unsellable_on_hand_inventory_cost: Peddler::Money?, unsellable_on_hand_inventory_units: Integer?, vendor_confirmation_rate: Float? }
       end
 
       class Report < Data
-        def self.new: (inventory_aggregate: Array[Peddler::Reports::VendorInventory::InventoryAggregate]?, inventory_by_asin: Array[Peddler::Reports::VendorInventory::InventoryByASIN]?, report_specification: Peddler::Reports::VendorInventory::ReportSpecification?) -> Peddler::Reports::VendorInventory::Report
-                    | (Array[Peddler::Reports::VendorInventory::InventoryAggregate]?, Array[Peddler::Reports::VendorInventory::InventoryByASIN]?, Peddler::Reports::VendorInventory::ReportSpecification?) -> Peddler::Reports::VendorInventory::Report
-        def self.[]: (inventory_aggregate: Array[Peddler::Reports::VendorInventory::InventoryAggregate]?, inventory_by_asin: Array[Peddler::Reports::VendorInventory::InventoryByASIN]?, report_specification: Peddler::Reports::VendorInventory::ReportSpecification?) -> Peddler::Reports::VendorInventory::Report
-                   | (Array[Peddler::Reports::VendorInventory::InventoryAggregate]?, Array[Peddler::Reports::VendorInventory::InventoryByASIN]?, Peddler::Reports::VendorInventory::ReportSpecification?) -> Peddler::Reports::VendorInventory::Report
+        def self.new: (inventory_aggregate: Array[Peddler::Reports::VendorInventory::InventoryAggregate], inventory_by_asin: Array[Peddler::Reports::VendorInventory::InventoryByASIN], report_specification: Peddler::Reports::VendorInventory::ReportSpecification) -> Peddler::Reports::VendorInventory::Report
+                    | (Array[Peddler::Reports::VendorInventory::InventoryAggregate], Array[Peddler::Reports::VendorInventory::InventoryByASIN], Peddler::Reports::VendorInventory::ReportSpecification) -> Peddler::Reports::VendorInventory::Report
+        def self.[]: (inventory_aggregate: Array[Peddler::Reports::VendorInventory::InventoryAggregate], inventory_by_asin: Array[Peddler::Reports::VendorInventory::InventoryByASIN], report_specification: Peddler::Reports::VendorInventory::ReportSpecification) -> Peddler::Reports::VendorInventory::Report
+                   | (Array[Peddler::Reports::VendorInventory::InventoryAggregate], Array[Peddler::Reports::VendorInventory::InventoryByASIN], Peddler::Reports::VendorInventory::ReportSpecification) -> Peddler::Reports::VendorInventory::Report
 
         def self.members: () -> [ :inventory_aggregate, :inventory_by_asin, :report_specification ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorInventory::Report
 
-        attr_reader inventory_aggregate: Array[Peddler::Reports::VendorInventory::InventoryAggregate]?
-        attr_reader inventory_by_asin: Array[Peddler::Reports::VendorInventory::InventoryByASIN]?
-        attr_reader report_specification: Peddler::Reports::VendorInventory::ReportSpecification?
+        attr_reader inventory_aggregate: Array[Peddler::Reports::VendorInventory::InventoryAggregate]
+        attr_reader inventory_by_asin: Array[Peddler::Reports::VendorInventory::InventoryByASIN]
+        attr_reader report_specification: Peddler::Reports::VendorInventory::ReportSpecification
 
         def members: () -> [ :inventory_aggregate, :inventory_by_asin, :report_specification ]
-        def to_h: () -> { inventory_aggregate: Array[Peddler::Reports::VendorInventory::InventoryAggregate]?, inventory_by_asin: Array[Peddler::Reports::VendorInventory::InventoryByASIN]?, report_specification: Peddler::Reports::VendorInventory::ReportSpecification? }
+        def to_h: () -> { inventory_aggregate: Array[Peddler::Reports::VendorInventory::InventoryAggregate], inventory_by_asin: Array[Peddler::Reports::VendorInventory::InventoryByASIN], report_specification: Peddler::Reports::VendorInventory::ReportSpecification }
       end
 
       class ReportOptions < Data
-        def self.new: (distributor_view: String?, report_period: String?, selling_program: String?) -> Peddler::Reports::VendorInventory::ReportOptions
-                    | (String?, String?, String?) -> Peddler::Reports::VendorInventory::ReportOptions
-        def self.[]: (distributor_view: String?, report_period: String?, selling_program: String?) -> Peddler::Reports::VendorInventory::ReportOptions
-                   | (String?, String?, String?) -> Peddler::Reports::VendorInventory::ReportOptions
+        def self.new: (distributor_view: String, report_period: String, selling_program: String) -> Peddler::Reports::VendorInventory::ReportOptions
+                    | (String, String, String) -> Peddler::Reports::VendorInventory::ReportOptions
+        def self.[]: (distributor_view: String, report_period: String, selling_program: String) -> Peddler::Reports::VendorInventory::ReportOptions
+                   | (String, String, String) -> Peddler::Reports::VendorInventory::ReportOptions
 
         def self.members: () -> [ :distributor_view, :report_period, :selling_program ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorInventory::ReportOptions
 
-        attr_reader distributor_view: String?
-        attr_reader report_period: String?
-        attr_reader selling_program: String?
+        attr_reader distributor_view: String
+        attr_reader report_period: String
+        attr_reader selling_program: String
 
         def members: () -> [ :distributor_view, :report_period, :selling_program ]
-        def to_h: () -> { distributor_view: String?, report_period: String?, selling_program: String? }
+        def to_h: () -> { distributor_view: String, report_period: String, selling_program: String }
       end
 
       class ReportSpecification < Data
-        def self.new: (data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorInventory::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorInventory::ReportSpecification
-                    | (Date?, Date?, Date?, Array[String]?, Peddler::Reports::VendorInventory::ReportOptions?, String?) -> Peddler::Reports::VendorInventory::ReportSpecification
-        def self.[]: (data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorInventory::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorInventory::ReportSpecification
-                   | (Date?, Date?, Date?, Array[String]?, Peddler::Reports::VendorInventory::ReportOptions?, String?) -> Peddler::Reports::VendorInventory::ReportSpecification
+        def self.new: (data_end_time: Date, data_start_time: Date, last_updated_date: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::VendorInventory::ReportOptions, report_type: String) -> Peddler::Reports::VendorInventory::ReportSpecification
+                    | (Date, Date, Date, Array[String], Peddler::Reports::VendorInventory::ReportOptions, String) -> Peddler::Reports::VendorInventory::ReportSpecification
+        def self.[]: (data_end_time: Date, data_start_time: Date, last_updated_date: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::VendorInventory::ReportOptions, report_type: String) -> Peddler::Reports::VendorInventory::ReportSpecification
+                   | (Date, Date, Date, Array[String], Peddler::Reports::VendorInventory::ReportOptions, String) -> Peddler::Reports::VendorInventory::ReportSpecification
 
         def self.members: () -> [ :data_end_time, :data_start_time, :last_updated_date, :marketplace_ids, :report_options, :report_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorInventory::ReportSpecification
 
-        attr_reader data_end_time: Date?
-        attr_reader data_start_time: Date?
-        attr_reader last_updated_date: Date?
-        attr_reader marketplace_ids: Array[String]?
-        attr_reader report_options: Peddler::Reports::VendorInventory::ReportOptions?
-        attr_reader report_type: String?
+        attr_reader data_end_time: Date
+        attr_reader data_start_time: Date
+        attr_reader last_updated_date: Date
+        attr_reader marketplace_ids: Array[String]
+        attr_reader report_options: Peddler::Reports::VendorInventory::ReportOptions
+        attr_reader report_type: String
 
         def members: () -> [ :data_end_time, :data_start_time, :last_updated_date, :marketplace_ids, :report_options, :report_type ]
-        def to_h: () -> { data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorInventory::ReportOptions?, report_type: String? }
+        def to_h: () -> { data_end_time: Date, data_start_time: Date, last_updated_date: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::VendorInventory::ReportOptions, report_type: String }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::VendorInventory::Report

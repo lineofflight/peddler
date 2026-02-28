@@ -9,10 +9,10 @@ module Peddler
     module AnyOfferChanged
       PrimeInformation = Structure.new do
         # @return [:boolean]
-        attribute(:offer_national_prime, :boolean, from: "IsOfferNationalPrime")
+        attribute(:offer_national_prime, :boolean, null: false, from: "IsOfferNationalPrime")
 
         # @return [:boolean]
-        attribute(:offer_prime, :boolean, from: "IsOfferPrime")
+        attribute(:offer_prime, :boolean, null: false, from: "IsOfferPrime")
       end
     end
   end

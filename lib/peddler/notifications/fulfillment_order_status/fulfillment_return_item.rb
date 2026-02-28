@@ -9,13 +9,13 @@ module Peddler
     module FulfillmentOrderStatus
       FulfillmentReturnItem = Structure.new do
         # @return [String]
-        attribute(:received_date_time, String, from: "ReceivedDateTime")
+        attribute(:received_date_time, String, null: false, from: "ReceivedDateTime")
 
         # @return [Integer]
-        attribute(:returned_quantity, Integer, from: "ReturnedQuantity")
+        attribute(:returned_quantity, Integer, null: false, from: "ReturnedQuantity")
 
         # @return [String]
-        attribute(:seller_sku, String, from: "SellerSKU")
+        attribute(:seller_sku, String, null: false, from: "SellerSKU")
       end
     end
   end

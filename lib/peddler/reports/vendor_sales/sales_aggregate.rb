@@ -11,19 +11,19 @@ module Peddler
       # Describes aggregated sales metrics for ASINs in the vendor's account.
       SalesAggregate = Structure.new do
         # @return [Date] The end date of the aggregated data.
-        attribute(:end_date, Date, from: "endDate")
+        attribute(:end_date, Date, null: false, from: "endDate")
 
         # @return [Money] Revenue based on the cost of goods sold. Adjustments are made for returns.
-        attribute(:shipped_cogs, Money, from: "shippedCogs")
+        attribute(:shipped_cogs, Money, null: false, from: "shippedCogs")
 
         # @return [Money] Revenue based on units shipped in the selected time frame. Adjustments are made for returns.
-        attribute(:shipped_revenue, Money, from: "shippedRevenue")
+        attribute(:shipped_revenue, Money, null: false, from: "shippedRevenue")
 
         # @return [Integer] Number of units shipped to Amazon customers.
-        attribute(:shipped_units, Integer, from: "shippedUnits")
+        attribute(:shipped_units, Integer, null: false, from: "shippedUnits")
 
         # @return [Date] The start date of the aggregated data.
-        attribute(:start_date, Date, from: "startDate")
+        attribute(:start_date, Date, null: false, from: "startDate")
 
         # @return [Integer] The quantity of units returned. This field is populated when sellingProgram is RETAIL or
         #   BUSINESS.

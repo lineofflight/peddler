@@ -10,7 +10,7 @@ module Peddler
       # Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
       ItemVendorDetailsByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] Brand code associated with an Amazon catalog item.
         attribute?(:brand_code, String, from: "brandCode")

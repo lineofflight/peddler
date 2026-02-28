@@ -11,7 +11,7 @@ module Peddler
       FeaturedOffer = Structure.new do
         # @return [OfferIdentifier] An offer identifier used to identify the merchant of the featured offer. Since this
         #   may not belong to the requester, the SKU field is omitted.
-        attribute(:offer_identifier, OfferIdentifier, from: "offerIdentifier")
+        attribute(:offer_identifier, OfferIdentifier, null: false, from: "offerIdentifier")
 
         # @return [String] The item condition.
         attribute?(:condition, String)

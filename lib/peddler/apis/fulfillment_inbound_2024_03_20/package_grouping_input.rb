@@ -10,7 +10,7 @@ module Peddler
       # Packing information for the inbound plan.
       PackageGroupingInput = Structure.new do
         # @return [Array<BoxInput>] Box level information being provided.
-        attribute(:boxes, [BoxInput])
+        attribute(:boxes, [BoxInput], null: false)
 
         # @return [String] The ID of the `packingGroup` that packages are grouped according to. The `PackingGroupId` can
         #   only be provided before placement confirmation, and it must belong to the confirmed `PackingOption`. One of

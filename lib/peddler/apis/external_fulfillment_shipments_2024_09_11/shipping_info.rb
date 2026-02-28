@@ -10,7 +10,7 @@ module Peddler
       # Shipping information for the packages in a shipment.
       ShippingInfo = Structure.new do
         # @return [String] The date and time when Amazon expects the seller to ship the packages.
-        attribute(:expected_shipping_date_time_in_utc, String, from: "expectedShippingDateTimeInUTC")
+        attribute(:expected_shipping_date_time_in_utc, String, null: false, from: "expectedShippingDateTimeInUTC")
 
         # @return [Array<RecommendedPackage>]
         attribute?(:recommended_packages, [RecommendedPackage], from: "recommendedPackages")

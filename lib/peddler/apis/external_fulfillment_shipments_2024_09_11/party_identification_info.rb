@@ -10,10 +10,10 @@ module Peddler
       # Party identification details for the shipment, applicable to direct fulfillment shipments.
       PartyIdentificationInfo = Structure.new do
         # @return [String] Assigned identification for the party. For example, a warehouse code or vendor code.
-        attribute(:party_id, String, from: "partyId")
+        attribute(:party_id, String, null: false, from: "partyId")
 
         # @return [String] Assigned identification for the party. For example, a warehouse code or vendor code.
-        attribute(:party_type, String, from: "partyType")
+        attribute(:party_type, String, null: false, from: "partyType")
 
         # @return [Address] Address details of the party.
         attribute?(:address, Address)

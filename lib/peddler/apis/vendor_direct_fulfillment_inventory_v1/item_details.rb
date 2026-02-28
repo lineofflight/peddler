@@ -10,7 +10,7 @@ module Peddler
       # Updated inventory details for an item.
       ItemDetails = Structure.new do
         # @return [ItemQuantity] Total item quantity available in the warehouse.
-        attribute(:available_quantity, ItemQuantity, from: "availableQuantity")
+        attribute(:available_quantity, ItemQuantity, null: false, from: "availableQuantity")
 
         # @return [String] The buyer selected product identification of the item. Either buyerProductIdentifier or
         #   vendorProductIdentifier should be submitted.

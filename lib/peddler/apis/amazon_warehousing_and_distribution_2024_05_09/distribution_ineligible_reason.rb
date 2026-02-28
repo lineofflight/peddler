@@ -11,10 +11,10 @@ module Peddler
       # validation.
       DistributionIneligibleReason = Structure.new do
         # @return [String] Failure code details of the error.
-        attribute(:failure_code, String, from: "failureCode")
+        attribute(:failure_code, String, null: false, from: "failureCode")
 
         # @return [Array<String>] Failure reasons of the error.
-        attribute(:failure_reasons, [String], from: "failureReasons")
+        attribute(:failure_reasons, [String], null: false, from: "failureReasons")
 
         # @return [String] SKU associated with the error.
         attribute?(:sku, String)

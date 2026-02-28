@@ -42,37 +42,37 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Invoices20240619::Error
-                    | (String?, String?, String?) -> Peddler::APIs::Invoices20240619::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Invoices20240619::Error
-                   | (String?, String?, String?) -> Peddler::APIs::Invoices20240619::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Invoices20240619::Error
+                    | (String, String, String?) -> Peddler::APIs::Invoices20240619::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Invoices20240619::Error
+                   | (String, String, String?) -> Peddler::APIs::Invoices20240619::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Invoices20240619::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::Invoices20240619::Error]?) -> Peddler::APIs::Invoices20240619::ErrorList
-                    | (Array[Peddler::APIs::Invoices20240619::Error]?) -> Peddler::APIs::Invoices20240619::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::Invoices20240619::Error]?) -> Peddler::APIs::Invoices20240619::ErrorList
-                   | (Array[Peddler::APIs::Invoices20240619::Error]?) -> Peddler::APIs::Invoices20240619::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::Invoices20240619::Error]) -> Peddler::APIs::Invoices20240619::ErrorList
+                    | (Array[Peddler::APIs::Invoices20240619::Error]) -> Peddler::APIs::Invoices20240619::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Invoices20240619::Error]) -> Peddler::APIs::Invoices20240619::ErrorList
+                   | (Array[Peddler::APIs::Invoices20240619::Error]) -> Peddler::APIs::Invoices20240619::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Invoices20240619::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::Invoices20240619::Error]?
+        attr_reader errors: Array[Peddler::APIs::Invoices20240619::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::Invoices20240619::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::Invoices20240619::Error] }
       end
 
       class Export < Data
@@ -97,10 +97,10 @@ module Peddler
       end
 
       class ExportInvoicesRequest < Data
-        def self.new: (marketplace_id: String?, ?date_end: Date?, ?date_start: Date?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
-                    | (String?, Date?, Date?, String?, String?, String?, String?, Array[String]?, Peddler::APIs::Invoices20240619::TransactionIdentifier?, String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
-        def self.[]: (marketplace_id: String?, ?date_end: Date?, ?date_start: Date?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
-                   | (String?, Date?, Date?, String?, String?, String?, String?, Array[String]?, Peddler::APIs::Invoices20240619::TransactionIdentifier?, String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
+        def self.new: (marketplace_id: String, ?date_end: Date?, ?date_start: Date?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
+                    | (String, Date?, Date?, String?, String?, String?, String?, Array[String]?, Peddler::APIs::Invoices20240619::TransactionIdentifier?, String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
+        def self.[]: (marketplace_id: String, ?date_end: Date?, ?date_start: Date?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
+                   | (String, Date?, Date?, String?, String?, String?, String?, Array[String]?, Peddler::APIs::Invoices20240619::TransactionIdentifier?, String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
 
         def self.members: () -> [ :marketplace_id, :date_end, :date_start, :external_invoice_id, :file_format, :invoice_type, :series, :statuses, :transaction_identifier, :transaction_type ]
 
@@ -111,14 +111,14 @@ module Peddler
         attr_reader external_invoice_id: String?
         attr_reader file_format: String?
         attr_reader invoice_type: String?
-        attr_reader marketplace_id: String?
+        attr_reader marketplace_id: String
         attr_reader series: String?
         attr_reader statuses: Array[String]?
         attr_reader transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?
         attr_reader transaction_type: String?
 
         def members: () -> [ :marketplace_id, :date_end, :date_start, :external_invoice_id, :file_format, :invoice_type, :series, :statuses, :transaction_identifier, :transaction_type ]
-        def to_h: () -> { marketplace_id: String?, date_end: Date?, date_start: Date?, external_invoice_id: String?, file_format: String?, invoice_type: String?, series: String?, statuses: Array[String]?, transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, transaction_type: String? }
+        def to_h: () -> { marketplace_id: String, date_end: Date?, date_start: Date?, external_invoice_id: String?, file_format: String?, invoice_type: String?, series: String?, statuses: Array[String]?, transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, transaction_type: String? }
       end
 
       class ExportInvoicesResponse < Data
@@ -236,10 +236,10 @@ module Peddler
       end
 
       class GovernmentInvoiceRequest < Data
-        def self.new: (invoice_type: String?, marketplace_id: String?, shipment_id: String?, transaction_type: String?, ?contexts: Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, ?inbound_plan_id: String?) -> Peddler::APIs::Invoices20240619::GovernmentInvoiceRequest
-                    | (String?, String?, String?, String?, Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, String?) -> Peddler::APIs::Invoices20240619::GovernmentInvoiceRequest
-        def self.[]: (invoice_type: String?, marketplace_id: String?, shipment_id: String?, transaction_type: String?, ?contexts: Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, ?inbound_plan_id: String?) -> Peddler::APIs::Invoices20240619::GovernmentInvoiceRequest
-                   | (String?, String?, String?, String?, Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, String?) -> Peddler::APIs::Invoices20240619::GovernmentInvoiceRequest
+        def self.new: (invoice_type: String, marketplace_id: String, shipment_id: String, transaction_type: String, ?contexts: Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, ?inbound_plan_id: String?) -> Peddler::APIs::Invoices20240619::GovernmentInvoiceRequest
+                    | (String, String, String, String, Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, String?) -> Peddler::APIs::Invoices20240619::GovernmentInvoiceRequest
+        def self.[]: (invoice_type: String, marketplace_id: String, shipment_id: String, transaction_type: String, ?contexts: Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, ?inbound_plan_id: String?) -> Peddler::APIs::Invoices20240619::GovernmentInvoiceRequest
+                   | (String, String, String, String, Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, String?) -> Peddler::APIs::Invoices20240619::GovernmentInvoiceRequest
 
         def self.members: () -> [ :invoice_type, :marketplace_id, :shipment_id, :transaction_type, :contexts, :inbound_plan_id ]
 
@@ -247,13 +247,13 @@ module Peddler
 
         attr_reader contexts: Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?
         attr_reader inbound_plan_id: String?
-        attr_reader invoice_type: String?
-        attr_reader marketplace_id: String?
-        attr_reader shipment_id: String?
-        attr_reader transaction_type: String?
+        attr_reader invoice_type: String
+        attr_reader marketplace_id: String
+        attr_reader shipment_id: String
+        attr_reader transaction_type: String
 
         def members: () -> [ :invoice_type, :marketplace_id, :shipment_id, :transaction_type, :contexts, :inbound_plan_id ]
-        def to_h: () -> { invoice_type: String?, marketplace_id: String?, shipment_id: String?, transaction_type: String?, contexts: Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, inbound_plan_id: String? }
+        def to_h: () -> { invoice_type: String, marketplace_id: String, shipment_id: String, transaction_type: String, contexts: Array[Peddler::APIs::Invoices20240619::CarrierDetailsContext]?, inbound_plan_id: String? }
       end
 
       class GovernmentInvoiceStatusResponse < Data

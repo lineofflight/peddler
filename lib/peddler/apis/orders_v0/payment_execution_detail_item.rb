@@ -10,14 +10,14 @@ module Peddler
       # Information about a sub-payment method used to pay for a COD order.
       PaymentExecutionDetailItem = Structure.new do
         # @return [Money]
-        attribute(:payment, Money, from: "Payment")
+        attribute(:payment, Money, null: false, from: "Payment")
 
         # @return [String] The sub-payment method for an order.
         #
         # **Possible values**:
         # * `COD`: Cash on delivery * `GC`: Gift card * `PointsAccount`: Amazon Points * `Invoice`: Invoice *
         #   `CreditCard`: Credit card * `Pix`: Pix * `Other`: Other.
-        attribute(:payment_method, String, from: "PaymentMethod")
+        attribute(:payment_method, String, null: false, from: "PaymentMethod")
 
         # @return [String] The Brazilian Taxpayer Identifier (CNPJ) of the payment processor or acquiring bank that
         #   authorizes the payment.

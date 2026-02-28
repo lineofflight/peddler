@@ -2,16 +2,16 @@ module Peddler
   module Reports
     module B2BProductOpportunitiesRecommendedForYouReport20201119
       class Recommendation < Data
-        def self.new: (asin: String?, ?b2b_sales_rank: Integer?, ?b2b_sales_rank_growth: String?, ?brand: String?, ?category: String?, ?ean: String?, ?has_amazon_offer: bool?, ?has_fba_offer: bool?, ?has_offer_with_vat_invoice_generation: bool?, ?brand_you_offer: bool?, ?category_you_offer: bool?, ?product_on_amazon: bool?, ?isbn: String?, ?item_name: String?, ?link: String?, ?lowest_price_in_the_last_week: Peddler::Money?, ?model_number: String?, ?offer_count: Integer?, ?page_views: String?, ?part_number: String?, ?product_performance: String?, ?review_count: Integer?, ?sub_category: String?, ?upc: String?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
-                    | (String?, Integer?, String?, String?, String?, String?, bool?, bool?, bool?, bool?, bool?, bool?, String?, String?, String?, Peddler::Money?, String?, Integer?, String?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
-        def self.[]: (asin: String?, ?b2b_sales_rank: Integer?, ?b2b_sales_rank_growth: String?, ?brand: String?, ?category: String?, ?ean: String?, ?has_amazon_offer: bool?, ?has_fba_offer: bool?, ?has_offer_with_vat_invoice_generation: bool?, ?brand_you_offer: bool?, ?category_you_offer: bool?, ?product_on_amazon: bool?, ?isbn: String?, ?item_name: String?, ?link: String?, ?lowest_price_in_the_last_week: Peddler::Money?, ?model_number: String?, ?offer_count: Integer?, ?page_views: String?, ?part_number: String?, ?product_performance: String?, ?review_count: Integer?, ?sub_category: String?, ?upc: String?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
-                   | (String?, Integer?, String?, String?, String?, String?, bool?, bool?, bool?, bool?, bool?, bool?, String?, String?, String?, Peddler::Money?, String?, Integer?, String?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
+        def self.new: (asin: String, ?b2b_sales_rank: Integer?, ?b2b_sales_rank_growth: String?, ?brand: String?, ?category: String?, ?ean: String?, ?has_amazon_offer: bool?, ?has_fba_offer: bool?, ?has_offer_with_vat_invoice_generation: bool?, ?brand_you_offer: bool?, ?category_you_offer: bool?, ?product_on_amazon: bool?, ?isbn: String?, ?item_name: String?, ?link: String?, ?lowest_price_in_the_last_week: Peddler::Money?, ?model_number: String?, ?offer_count: Integer?, ?page_views: String?, ?part_number: String?, ?product_performance: String?, ?review_count: Integer?, ?sub_category: String?, ?upc: String?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
+                    | (String, Integer?, String?, String?, String?, String?, bool?, bool?, bool?, bool?, bool?, bool?, String?, String?, String?, Peddler::Money?, String?, Integer?, String?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
+        def self.[]: (asin: String, ?b2b_sales_rank: Integer?, ?b2b_sales_rank_growth: String?, ?brand: String?, ?category: String?, ?ean: String?, ?has_amazon_offer: bool?, ?has_fba_offer: bool?, ?has_offer_with_vat_invoice_generation: bool?, ?brand_you_offer: bool?, ?category_you_offer: bool?, ?product_on_amazon: bool?, ?isbn: String?, ?item_name: String?, ?link: String?, ?lowest_price_in_the_last_week: Peddler::Money?, ?model_number: String?, ?offer_count: Integer?, ?page_views: String?, ?part_number: String?, ?product_performance: String?, ?review_count: Integer?, ?sub_category: String?, ?upc: String?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
+                   | (String, Integer?, String?, String?, String?, String?, bool?, bool?, bool?, bool?, bool?, bool?, String?, String?, String?, Peddler::Money?, String?, Integer?, String?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
 
         def self.members: () -> [ :asin, :b2b_sales_rank, :b2b_sales_rank_growth, :brand, :category, :ean, :has_amazon_offer, :has_fba_offer, :has_offer_with_vat_invoice_generation, :brand_you_offer, :category_you_offer, :product_on_amazon, :isbn, :item_name, :link, :lowest_price_in_the_last_week, :model_number, :offer_count, :page_views, :part_number, :product_performance, :review_count, :sub_category, :upc ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Recommendation
 
-        attr_reader asin: String?
+        attr_reader asin: String
         attr_reader b2b_sales_rank: Integer?
         attr_reader b2b_sales_rank_growth: String?
         attr_reader brand: String?
@@ -43,23 +43,23 @@ module Peddler
         def has_offer_with_vat_invoice_generation?: () -> bool
         def members: () -> [ :asin, :b2b_sales_rank, :b2b_sales_rank_growth, :brand, :category, :ean, :has_amazon_offer, :has_fba_offer, :has_offer_with_vat_invoice_generation, :brand_you_offer, :category_you_offer, :product_on_amazon, :isbn, :item_name, :link, :lowest_price_in_the_last_week, :model_number, :offer_count, :page_views, :part_number, :product_performance, :review_count, :sub_category, :upc ]
         def product_on_amazon?: () -> bool
-        def to_h: () -> { asin: String?, b2b_sales_rank: Integer?, b2b_sales_rank_growth: String?, brand: String?, category: String?, ean: String?, has_amazon_offer: bool?, has_fba_offer: bool?, has_offer_with_vat_invoice_generation: bool?, brand_you_offer: bool?, category_you_offer: bool?, product_on_amazon: bool?, isbn: String?, item_name: String?, link: String?, lowest_price_in_the_last_week: Peddler::Money?, model_number: String?, offer_count: Integer?, page_views: String?, part_number: String?, product_performance: String?, review_count: Integer?, sub_category: String?, upc: String? }
+        def to_h: () -> { asin: String, b2b_sales_rank: Integer?, b2b_sales_rank_growth: String?, brand: String?, category: String?, ean: String?, has_amazon_offer: bool?, has_fba_offer: bool?, has_offer_with_vat_invoice_generation: bool?, brand_you_offer: bool?, category_you_offer: bool?, product_on_amazon: bool?, isbn: String?, item_name: String?, link: String?, lowest_price_in_the_last_week: Peddler::Money?, model_number: String?, offer_count: Integer?, page_views: String?, part_number: String?, product_performance: String?, review_count: Integer?, sub_category: String?, upc: String? }
       end
 
       class Report < Data
-        def self.new: (recommendations: Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
-                    | (Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
-        def self.[]: (recommendations: Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
-                   | (Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
+        def self.new: (recommendations: Array[untyped]) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
+                    | (Array[untyped]) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
+        def self.[]: (recommendations: Array[untyped]) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
+                   | (Array[untyped]) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
 
         def self.members: () -> [ :recommendations ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report
 
-        attr_reader recommendations: Array[untyped]?
+        attr_reader recommendations: Array[untyped]
 
         def members: () -> [ :recommendations ]
-        def to_h: () -> { recommendations: Array[untyped]? }
+        def to_h: () -> { recommendations: Array[untyped] }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::B2BProductOpportunitiesRecommendedForYouReport20201119::Report

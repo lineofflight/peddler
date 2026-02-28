@@ -11,17 +11,17 @@ module Peddler
       # Contains information pertaining to a shipment in an inbound plan.
       Shipment = Structure.new do
         # @return [ShipmentDestination]
-        attribute(:destination, ShipmentDestination)
+        attribute(:destination, ShipmentDestination, null: false)
 
         # @return [String] The identifier of a placement option. A placement option represents the shipment splits and
         #   destinations of SKUs.
-        attribute(:placement_option_id, String, from: "placementOptionId")
+        attribute(:placement_option_id, String, null: false, from: "placementOptionId")
 
         # @return [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
-        attribute(:shipment_id, String, from: "shipmentId")
+        attribute(:shipment_id, String, null: false, from: "shipmentId")
 
         # @return [ShipmentSource]
-        attribute(:source, ShipmentSource)
+        attribute(:source, ShipmentSource, null: false)
 
         # @return [String] A unique identifier created by Amazon that identifies this Amazon-partnered, Less Than
         #   Truckload/Full Truckload (LTL/FTL) shipment.

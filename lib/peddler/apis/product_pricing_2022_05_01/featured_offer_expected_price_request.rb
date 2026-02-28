@@ -10,17 +10,17 @@ module Peddler
       # An individual FOEP request for a particular SKU.
       FeaturedOfferExpectedPriceRequest = Structure.new do
         # @return [String]
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String]
-        attribute(:method, String)
+        attribute(:method, String, null: false)
 
         # @return [String]
-        attribute(:sku, String)
+        attribute(:sku, String, null: false)
 
         # @return [String] The URI associated with an individual request within a batch. For
         #   `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
-        attribute(:uri, String)
+        attribute(:uri, String, null: false)
 
         # @return [Hash]
         attribute?(:body, Hash)

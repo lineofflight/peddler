@@ -12,16 +12,16 @@ module Peddler
       ASINMetrics = Structure.new do
         # @return [String] ASIN for which the metrics are provided. Only ASINs with an active offer from the Seller are
         #   included.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [Date] End date of the aggregation window.
-        attribute(:end_date, Date, from: "endDate")
+        attribute(:end_date, Date, null: false, from: "endDate")
 
         # @return [String] Marketplace for which the metrics are provided.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Date] Start date of the aggregation window.
-        attribute(:start_date, Date, from: "startDate")
+        attribute(:start_date, Date, null: false, from: "startDate")
 
         # @return [String] The ISO 4217 currency code in which GMS is calculated.
         attribute?(:currency_code, String, from: "currencyCode")

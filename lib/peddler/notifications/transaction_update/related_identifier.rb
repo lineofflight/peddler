@@ -10,10 +10,10 @@ module Peddler
       # Related business identifier of the transaction.
       RelatedIdentifier = Structure.new do
         # @return [String] Enumerated set of related business identifier names.
-        attribute(:related_identifier_name, String, from: "RelatedIdentifierName")
+        attribute(:related_identifier_name, String, null: false, from: "RelatedIdentifierName")
 
         # @return [String] Corresponding value of RelatedIdentifierName
-        attribute(:related_identifier_value, String, from: "RelatedIdentifierValue")
+        attribute(:related_identifier_value, String, null: false, from: "RelatedIdentifierValue")
       end
     end
   end

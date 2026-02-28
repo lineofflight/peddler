@@ -10,10 +10,10 @@ module Peddler
       # The seller's contact information.
       ContactInformation = Structure.new do
         # @return [String] The contact's name.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String] The phone number.
-        attribute(:phone_number, String, from: "phoneNumber")
+        attribute(:phone_number, String, null: false, from: "phoneNumber")
 
         # @return [String] The email address.
         attribute?(:email, String)

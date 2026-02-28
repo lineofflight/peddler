@@ -10,7 +10,7 @@ module Peddler
       # Contains input information to update Small Parcel Delivery (SPD) tracking information.
       SpdTrackingDetailInput = Structure.new do
         # @return [Array<SpdTrackingItemInput>] List of Small Parcel Delivery (SPD) tracking items input.
-        attribute(:spd_tracking_items, [SpdTrackingItemInput], from: "spdTrackingItems")
+        attribute(:spd_tracking_items, [SpdTrackingItemInput], null: false, from: "spdTrackingItems")
       end
     end
   end

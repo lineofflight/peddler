@@ -10,7 +10,7 @@ module Peddler
       # Product identifier input that locates a product for MCF.
       ProductIdentifier = Structure.new do
         # @return [String] The merchant SKU for the product.
-        attribute(:merchant_sku, String, from: "merchantSku")
+        attribute(:merchant_sku, String, null: false, from: "merchantSku")
       end
     end
   end

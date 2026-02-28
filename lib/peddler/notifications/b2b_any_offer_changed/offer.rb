@@ -9,22 +9,22 @@ module Peddler
     module B2BAnyOfferChanged
       Offer = Structure.new do
         # @return [:boolean] Indicates whether the offer is fulfilled by Amazon
-        attribute(:fulfilled_by_amazon, :boolean, from: "IsFulfilledByAmazon")
+        attribute(:fulfilled_by_amazon, :boolean, null: false, from: "IsFulfilledByAmazon")
 
         # @return [Money]
-        attribute(:listing_price, Money, from: "ListingPrice")
+        attribute(:listing_price, Money, null: false, from: "ListingPrice")
 
         # @return [String] The seller identifier for the offer
-        attribute(:seller_id, String, from: "SellerId")
+        attribute(:seller_id, String, null: false, from: "SellerId")
 
         # @return [Money]
-        attribute(:shipping, Money, from: "Shipping")
+        attribute(:shipping, Money, null: false, from: "Shipping")
 
         # @return [Hash]
-        attribute(:shipping_time, Hash, from: "ShippingTime")
+        attribute(:shipping_time, Hash, null: false, from: "ShippingTime")
 
         # @return [String] The subcondition of the item
-        attribute(:sub_condition, String, from: "SubCondition")
+        attribute(:sub_condition, String, null: false, from: "SubCondition")
 
         # @return [String] Information about the condition of the item
         attribute?(:condition_notes, String, from: "ConditionNotes")

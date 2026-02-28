@@ -10,7 +10,7 @@ module Peddler
       # Additional Information about the item.
       Context = Structure.new do
         # @return [String]
-        attribute(:context_type, String, from: "contextType")
+        attribute(:context_type, String, null: false, from: "contextType")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String)

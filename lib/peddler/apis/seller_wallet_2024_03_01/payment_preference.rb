@@ -11,10 +11,10 @@ module Peddler
       PaymentPreference = Structure.new do
         # @return [String] Specifies the preferred payment type for the scheduled transaction eg:PERCENTAGE of certain
         #   total amount in account
-        attribute(:payment_preference_payment_type, String, from: "paymentPreferencePaymentType")
+        attribute(:payment_preference_payment_type, String, null: false, from: "paymentPreferencePaymentType")
 
         # @return [Float] The value of the payment preference.
-        attribute(:value, Float)
+        attribute(:value, Float, null: false)
       end
     end
   end

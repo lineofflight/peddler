@@ -9,7 +9,7 @@ module Peddler
     module B2BAnyOfferChanged
       Points = Structure.new do
         # @return [Integer] The number of Amazon Points offered with the purchase of an item
-        attribute(:points_number, Integer, from: "PointsNumber")
+        attribute(:points_number, Integer, null: false, from: "PointsNumber")
       end
     end
   end

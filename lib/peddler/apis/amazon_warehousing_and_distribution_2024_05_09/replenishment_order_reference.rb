@@ -11,7 +11,7 @@ module Peddler
       # order ID.
       ReplenishmentOrderReference = Structure.new do
         # @return [String] Order ID of the Replenishment order.
-        attribute(:order_id, String, from: "orderId")
+        attribute(:order_id, String, null: false, from: "orderId")
       end
     end
   end

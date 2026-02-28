@@ -11,10 +11,10 @@ module Peddler
       ProductTypeVersion = Structure.new do
         # @return [:boolean] When true, the version indicated by the version identifier is the latest available for the
         #   Amazon product type.
-        attribute(:latest, :boolean)
+        attribute(:latest, :boolean, null: false)
 
         # @return [String] Version identifier.
-        attribute(:version, String)
+        attribute(:version, String, null: false)
 
         # @return [:boolean] When true, the version indicated by the version identifier is the prerelease (release
         #   candidate) for the Amazon product type.

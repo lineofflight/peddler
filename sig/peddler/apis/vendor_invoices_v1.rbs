@@ -2,85 +2,85 @@ module Peddler
   module APIs
     class VendorInvoicesV1 < API
       class AdditionalDetails < Data
-        def self.new: (detail: String?, type: String?, ?language_code: String?) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
-                    | (String?, String?, String?) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
-        def self.[]: (detail: String?, type: String?, ?language_code: String?) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
-                   | (String?, String?, String?) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
+        def self.new: (detail: String, type: String, ?language_code: String?) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
+                    | (String, String, String?) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
+        def self.[]: (detail: String, type: String, ?language_code: String?) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
+                   | (String, String, String?) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
 
         def self.members: () -> [ :detail, :type, :language_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::AdditionalDetails
 
-        attr_reader detail: String?
+        attr_reader detail: String
         attr_reader language_code: String?
-        attr_reader type: String?
+        attr_reader type: String
 
         def members: () -> [ :detail, :type, :language_code ]
-        def to_h: () -> { detail: String?, type: String?, language_code: String? }
+        def to_h: () -> { detail: String, type: String, language_code: String? }
       end
 
       class Address < Data
-        def self.new: (address_line1: String?, country_code: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_or_zip_code: String?, ?state_or_region: String?) -> Peddler::APIs::VendorInvoicesV1::Address
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::VendorInvoicesV1::Address
-        def self.[]: (address_line1: String?, country_code: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_or_zip_code: String?, ?state_or_region: String?) -> Peddler::APIs::VendorInvoicesV1::Address
-                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::VendorInvoicesV1::Address
+        def self.new: (address_line1: String, country_code: String, name: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_or_zip_code: String?, ?state_or_region: String?) -> Peddler::APIs::VendorInvoicesV1::Address
+                    | (String, String, String, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::VendorInvoicesV1::Address
+        def self.[]: (address_line1: String, country_code: String, name: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_or_zip_code: String?, ?state_or_region: String?) -> Peddler::APIs::VendorInvoicesV1::Address
+                   | (String, String, String, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::VendorInvoicesV1::Address
 
         def self.members: () -> [ :address_line1, :country_code, :name, :address_line2, :address_line3, :city, :county, :district, :phone, :postal_or_zip_code, :state_or_region ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::Address
 
-        attr_reader address_line1: String?
+        attr_reader address_line1: String
         attr_reader address_line2: String?
         attr_reader address_line3: String?
         attr_reader city: String?
-        attr_reader country_code: String?
+        attr_reader country_code: String
         attr_reader county: String?
         attr_reader district: String?
-        attr_reader name: String?
+        attr_reader name: String
         attr_reader phone: String?
         attr_reader postal_or_zip_code: String?
         attr_reader state_or_region: String?
 
         def members: () -> [ :address_line1, :country_code, :name, :address_line2, :address_line3, :city, :county, :district, :phone, :postal_or_zip_code, :state_or_region ]
-        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_or_zip_code: String?, state_or_region: String? }
+        def to_h: () -> { address_line1: String, country_code: String, name: String, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_or_zip_code: String?, state_or_region: String? }
       end
 
       class AllowanceDetails < Data
-        def self.new: (allowance_amount: Peddler::Money?, type: String?, ?description: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
-                    | (Peddler::Money?, String?, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
-        def self.[]: (allowance_amount: Peddler::Money?, type: String?, ?description: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
-                   | (Peddler::Money?, String?, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
+        def self.new: (allowance_amount: Peddler::Money, type: String, ?description: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
+                    | (Peddler::Money, String, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
+        def self.[]: (allowance_amount: Peddler::Money, type: String, ?description: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
+                   | (Peddler::Money, String, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
 
         def self.members: () -> [ :allowance_amount, :type, :description, :tax_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::AllowanceDetails
 
-        attr_reader allowance_amount: Peddler::Money?
+        attr_reader allowance_amount: Peddler::Money
         attr_reader description: String?
         attr_reader tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?
-        attr_reader type: String?
+        attr_reader type: String
 
         def members: () -> [ :allowance_amount, :type, :description, :tax_details ]
-        def to_h: () -> { allowance_amount: Peddler::Money?, type: String?, description: String?, tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]? }
+        def to_h: () -> { allowance_amount: Peddler::Money, type: String, description: String?, tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]? }
       end
 
       class ChargeDetails < Data
-        def self.new: (charge_amount: Peddler::Money?, type: String?, ?description: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
-                    | (Peddler::Money?, String?, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
-        def self.[]: (charge_amount: Peddler::Money?, type: String?, ?description: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
-                   | (Peddler::Money?, String?, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
+        def self.new: (charge_amount: Peddler::Money, type: String, ?description: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
+                    | (Peddler::Money, String, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
+        def self.[]: (charge_amount: Peddler::Money, type: String, ?description: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
+                   | (Peddler::Money, String, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
 
         def self.members: () -> [ :charge_amount, :type, :description, :tax_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::ChargeDetails
 
-        attr_reader charge_amount: Peddler::Money?
+        attr_reader charge_amount: Peddler::Money
         attr_reader description: String?
         attr_reader tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?
-        attr_reader type: String?
+        attr_reader type: String
 
         def members: () -> [ :charge_amount, :type, :description, :tax_details ]
-        def to_h: () -> { charge_amount: Peddler::Money?, type: String?, description: String?, tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]? }
+        def to_h: () -> { charge_amount: Peddler::Money, type: String, description: String?, tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]? }
       end
 
       class CreditNoteDetails < Data
@@ -106,21 +106,21 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorInvoicesV1::Error
-                    | (String?, String?, String?) -> Peddler::APIs::VendorInvoicesV1::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorInvoicesV1::Error
-                   | (String?, String?, String?) -> Peddler::APIs::VendorInvoicesV1::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorInvoicesV1::Error
+                    | (String, String, String?) -> Peddler::APIs::VendorInvoicesV1::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorInvoicesV1::Error
+                   | (String, String, String?) -> Peddler::APIs::VendorInvoicesV1::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]
@@ -128,10 +128,10 @@ module Peddler
       end
 
       class Invoice < Data
-        def self.new: (date: String?, id: String?, invoice_total: Peddler::Money?, invoice_type: String?, remit_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?additional_details: Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, ?allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, ?bill_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, ?items: Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, ?payment_terms: Peddler::APIs::VendorInvoicesV1::PaymentTerms?, ?reference_number: String?, ?ship_from_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?ship_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::Invoice
-                    | (String?, String?, Peddler::Money?, String?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, Peddler::APIs::VendorInvoicesV1::PaymentTerms?, String?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::Invoice
-        def self.[]: (date: String?, id: String?, invoice_total: Peddler::Money?, invoice_type: String?, remit_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?additional_details: Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, ?allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, ?bill_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, ?items: Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, ?payment_terms: Peddler::APIs::VendorInvoicesV1::PaymentTerms?, ?reference_number: String?, ?ship_from_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?ship_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::Invoice
-                   | (String?, String?, Peddler::Money?, String?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, Peddler::APIs::VendorInvoicesV1::PaymentTerms?, String?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::Invoice
+        def self.new: (date: String, id: String, invoice_total: Peddler::Money, invoice_type: String, remit_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification, ?additional_details: Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, ?allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, ?bill_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, ?items: Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, ?payment_terms: Peddler::APIs::VendorInvoicesV1::PaymentTerms?, ?reference_number: String?, ?ship_from_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?ship_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::Invoice
+                    | (String, String, Peddler::Money, String, Peddler::APIs::VendorInvoicesV1::PartyIdentification, Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, Peddler::APIs::VendorInvoicesV1::PaymentTerms?, String?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::Invoice
+        def self.[]: (date: String, id: String, invoice_total: Peddler::Money, invoice_type: String, remit_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification, ?additional_details: Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, ?allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, ?bill_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, ?items: Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, ?payment_terms: Peddler::APIs::VendorInvoicesV1::PaymentTerms?, ?reference_number: String?, ?ship_from_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?ship_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::Invoice
+                   | (String, String, Peddler::Money, String, Peddler::APIs::VendorInvoicesV1::PartyIdentification, Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, Peddler::APIs::VendorInvoicesV1::PaymentTerms?, String?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Peddler::APIs::VendorInvoicesV1::PartyIdentification?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?) -> Peddler::APIs::VendorInvoicesV1::Invoice
 
         def self.members: () -> [ :date, :id, :invoice_total, :invoice_type, :remit_to_party, :additional_details, :allowance_details, :bill_to_party, :charge_details, :items, :payment_terms, :reference_number, :ship_from_party, :ship_to_party, :tax_details ]
 
@@ -141,27 +141,27 @@ module Peddler
         attr_reader allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?
         attr_reader bill_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?
         attr_reader charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?
-        attr_reader date: String?
-        attr_reader id: String?
-        attr_reader invoice_total: Peddler::Money?
-        attr_reader invoice_type: String?
+        attr_reader date: String
+        attr_reader id: String
+        attr_reader invoice_total: Peddler::Money
+        attr_reader invoice_type: String
         attr_reader items: Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?
         attr_reader payment_terms: Peddler::APIs::VendorInvoicesV1::PaymentTerms?
         attr_reader reference_number: String?
-        attr_reader remit_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?
+        attr_reader remit_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification
         attr_reader ship_from_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?
         attr_reader ship_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?
         attr_reader tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?
 
         def members: () -> [ :date, :id, :invoice_total, :invoice_type, :remit_to_party, :additional_details, :allowance_details, :bill_to_party, :charge_details, :items, :payment_terms, :reference_number, :ship_from_party, :ship_to_party, :tax_details ]
-        def to_h: () -> { date: String?, id: String?, invoice_total: Peddler::Money?, invoice_type: String?, remit_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, additional_details: Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, bill_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, items: Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, payment_terms: Peddler::APIs::VendorInvoicesV1::PaymentTerms?, reference_number: String?, ship_from_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ship_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]? }
+        def to_h: () -> { date: String, id: String, invoice_total: Peddler::Money, invoice_type: String, remit_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification, additional_details: Array[Peddler::APIs::VendorInvoicesV1::AdditionalDetails]?, allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, bill_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, items: Array[Peddler::APIs::VendorInvoicesV1::InvoiceItem]?, payment_terms: Peddler::APIs::VendorInvoicesV1::PaymentTerms?, reference_number: String?, ship_from_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, ship_to_party: Peddler::APIs::VendorInvoicesV1::PartyIdentification?, tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]? }
       end
 
       class InvoiceItem < Data
-        def self.new: (invoiced_quantity: Peddler::APIs::VendorInvoicesV1::ItemQuantity?, item_sequence_number: Integer?, net_cost: Peddler::Money?, ?allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, ?amazon_product_identifier: String?, ?charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, ?credit_note_details: Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, ?hsn_code: String?, ?net_cost_unit_of_measure: String?, ?purchase_order_number: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorInvoicesV1::InvoiceItem
-                    | (Peddler::APIs::VendorInvoicesV1::ItemQuantity?, Integer?, Peddler::Money?, Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, String?, Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, String?, String?, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, String?) -> Peddler::APIs::VendorInvoicesV1::InvoiceItem
-        def self.[]: (invoiced_quantity: Peddler::APIs::VendorInvoicesV1::ItemQuantity?, item_sequence_number: Integer?, net_cost: Peddler::Money?, ?allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, ?amazon_product_identifier: String?, ?charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, ?credit_note_details: Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, ?hsn_code: String?, ?net_cost_unit_of_measure: String?, ?purchase_order_number: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorInvoicesV1::InvoiceItem
-                   | (Peddler::APIs::VendorInvoicesV1::ItemQuantity?, Integer?, Peddler::Money?, Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, String?, Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, String?, String?, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, String?) -> Peddler::APIs::VendorInvoicesV1::InvoiceItem
+        def self.new: (invoiced_quantity: Peddler::APIs::VendorInvoicesV1::ItemQuantity, item_sequence_number: Integer, net_cost: Peddler::Money, ?allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, ?amazon_product_identifier: String?, ?charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, ?credit_note_details: Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, ?hsn_code: String?, ?net_cost_unit_of_measure: String?, ?purchase_order_number: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorInvoicesV1::InvoiceItem
+                    | (Peddler::APIs::VendorInvoicesV1::ItemQuantity, Integer, Peddler::Money, Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, String?, Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, String?, String?, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, String?) -> Peddler::APIs::VendorInvoicesV1::InvoiceItem
+        def self.[]: (invoiced_quantity: Peddler::APIs::VendorInvoicesV1::ItemQuantity, item_sequence_number: Integer, net_cost: Peddler::Money, ?allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, ?amazon_product_identifier: String?, ?charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, ?credit_note_details: Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, ?hsn_code: String?, ?net_cost_unit_of_measure: String?, ?purchase_order_number: String?, ?tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorInvoicesV1::InvoiceItem
+                   | (Peddler::APIs::VendorInvoicesV1::ItemQuantity, Integer, Peddler::Money, Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, String?, Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, String?, String?, String?, Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, String?) -> Peddler::APIs::VendorInvoicesV1::InvoiceItem
 
         def self.members: () -> [ :invoiced_quantity, :item_sequence_number, :net_cost, :allowance_details, :amazon_product_identifier, :charge_details, :credit_note_details, :hsn_code, :net_cost_unit_of_measure, :purchase_order_number, :tax_details, :vendor_product_identifier ]
 
@@ -172,53 +172,53 @@ module Peddler
         attr_reader charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?
         attr_reader credit_note_details: Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?
         attr_reader hsn_code: String?
-        attr_reader invoiced_quantity: Peddler::APIs::VendorInvoicesV1::ItemQuantity?
-        attr_reader item_sequence_number: Integer?
-        attr_reader net_cost: Peddler::Money?
+        attr_reader invoiced_quantity: Peddler::APIs::VendorInvoicesV1::ItemQuantity
+        attr_reader item_sequence_number: Integer
+        attr_reader net_cost: Peddler::Money
         attr_reader net_cost_unit_of_measure: String?
         attr_reader purchase_order_number: String?
         attr_reader tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?
         attr_reader vendor_product_identifier: String?
 
         def members: () -> [ :invoiced_quantity, :item_sequence_number, :net_cost, :allowance_details, :amazon_product_identifier, :charge_details, :credit_note_details, :hsn_code, :net_cost_unit_of_measure, :purchase_order_number, :tax_details, :vendor_product_identifier ]
-        def to_h: () -> { invoiced_quantity: Peddler::APIs::VendorInvoicesV1::ItemQuantity?, item_sequence_number: Integer?, net_cost: Peddler::Money?, allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, amazon_product_identifier: String?, charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, credit_note_details: Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, hsn_code: String?, net_cost_unit_of_measure: String?, purchase_order_number: String?, tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, vendor_product_identifier: String? }
+        def to_h: () -> { invoiced_quantity: Peddler::APIs::VendorInvoicesV1::ItemQuantity, item_sequence_number: Integer, net_cost: Peddler::Money, allowance_details: Array[Peddler::APIs::VendorInvoicesV1::AllowanceDetails]?, amazon_product_identifier: String?, charge_details: Array[Peddler::APIs::VendorInvoicesV1::ChargeDetails]?, credit_note_details: Peddler::APIs::VendorInvoicesV1::CreditNoteDetails?, hsn_code: String?, net_cost_unit_of_measure: String?, purchase_order_number: String?, tax_details: Array[Peddler::APIs::VendorInvoicesV1::TaxDetails]?, vendor_product_identifier: String? }
       end
 
       class ItemQuantity < Data
-        def self.new: (amount: Integer?, unit_of_measure: String?, ?total_weight: Peddler::APIs::VendorInvoicesV1::TotalWeight?, ?unit_size: Integer?) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
-                    | (Integer?, String?, Peddler::APIs::VendorInvoicesV1::TotalWeight?, Integer?) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
-        def self.[]: (amount: Integer?, unit_of_measure: String?, ?total_weight: Peddler::APIs::VendorInvoicesV1::TotalWeight?, ?unit_size: Integer?) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
-                   | (Integer?, String?, Peddler::APIs::VendorInvoicesV1::TotalWeight?, Integer?) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
+        def self.new: (amount: Integer, unit_of_measure: String, ?total_weight: Peddler::APIs::VendorInvoicesV1::TotalWeight?, ?unit_size: Integer?) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
+                    | (Integer, String, Peddler::APIs::VendorInvoicesV1::TotalWeight?, Integer?) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
+        def self.[]: (amount: Integer, unit_of_measure: String, ?total_weight: Peddler::APIs::VendorInvoicesV1::TotalWeight?, ?unit_size: Integer?) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
+                   | (Integer, String, Peddler::APIs::VendorInvoicesV1::TotalWeight?, Integer?) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
 
         def self.members: () -> [ :amount, :unit_of_measure, :total_weight, :unit_size ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::ItemQuantity
 
-        attr_reader amount: Integer?
+        attr_reader amount: Integer
         attr_reader total_weight: Peddler::APIs::VendorInvoicesV1::TotalWeight?
-        attr_reader unit_of_measure: String?
+        attr_reader unit_of_measure: String
         attr_reader unit_size: Integer?
 
         def members: () -> [ :amount, :unit_of_measure, :total_weight, :unit_size ]
-        def to_h: () -> { amount: Integer?, unit_of_measure: String?, total_weight: Peddler::APIs::VendorInvoicesV1::TotalWeight?, unit_size: Integer? }
+        def to_h: () -> { amount: Integer, unit_of_measure: String, total_weight: Peddler::APIs::VendorInvoicesV1::TotalWeight?, unit_size: Integer? }
       end
 
       class PartyIdentification < Data
-        def self.new: (party_id: String?, ?address: Peddler::APIs::VendorInvoicesV1::Address?, ?tax_registration_details: Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
-                    | (String?, Peddler::APIs::VendorInvoicesV1::Address?, Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
-        def self.[]: (party_id: String?, ?address: Peddler::APIs::VendorInvoicesV1::Address?, ?tax_registration_details: Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
-                   | (String?, Peddler::APIs::VendorInvoicesV1::Address?, Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
+        def self.new: (party_id: String, ?address: Peddler::APIs::VendorInvoicesV1::Address?, ?tax_registration_details: Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
+                    | (String, Peddler::APIs::VendorInvoicesV1::Address?, Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
+        def self.[]: (party_id: String, ?address: Peddler::APIs::VendorInvoicesV1::Address?, ?tax_registration_details: Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
+                   | (String, Peddler::APIs::VendorInvoicesV1::Address?, Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
 
         def self.members: () -> [ :party_id, :address, :tax_registration_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::PartyIdentification
 
         attr_reader address: Peddler::APIs::VendorInvoicesV1::Address?
-        attr_reader party_id: String?
+        attr_reader party_id: String
         attr_reader tax_registration_details: Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]?
 
         def members: () -> [ :party_id, :address, :tax_registration_details ]
-        def to_h: () -> { party_id: String?, address: Peddler::APIs::VendorInvoicesV1::Address?, tax_registration_details: Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]? }
+        def to_h: () -> { party_id: String, address: Peddler::APIs::VendorInvoicesV1::Address?, tax_registration_details: Array[Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails]? }
       end
 
       class PaymentTerms < Data
@@ -274,56 +274,56 @@ module Peddler
       end
 
       class TaxDetails < Data
-        def self.new: (tax_amount: Peddler::Money?, tax_type: String?, ?tax_rate: String?, ?taxable_amount: Peddler::Money?) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
-                    | (Peddler::Money?, String?, String?, Peddler::Money?) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
-        def self.[]: (tax_amount: Peddler::Money?, tax_type: String?, ?tax_rate: String?, ?taxable_amount: Peddler::Money?) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
-                   | (Peddler::Money?, String?, String?, Peddler::Money?) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
+        def self.new: (tax_amount: Peddler::Money, tax_type: String, ?tax_rate: String?, ?taxable_amount: Peddler::Money?) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
+                    | (Peddler::Money, String, String?, Peddler::Money?) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
+        def self.[]: (tax_amount: Peddler::Money, tax_type: String, ?tax_rate: String?, ?taxable_amount: Peddler::Money?) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
+                   | (Peddler::Money, String, String?, Peddler::Money?) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
 
         def self.members: () -> [ :tax_amount, :tax_type, :tax_rate, :taxable_amount ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::TaxDetails
 
-        attr_reader tax_amount: Peddler::Money?
+        attr_reader tax_amount: Peddler::Money
         attr_reader tax_rate: String?
-        attr_reader tax_type: String?
+        attr_reader tax_type: String
         attr_reader taxable_amount: Peddler::Money?
 
         def members: () -> [ :tax_amount, :tax_type, :tax_rate, :taxable_amount ]
-        def to_h: () -> { tax_amount: Peddler::Money?, tax_type: String?, tax_rate: String?, taxable_amount: Peddler::Money? }
+        def to_h: () -> { tax_amount: Peddler::Money, tax_type: String, tax_rate: String?, taxable_amount: Peddler::Money? }
       end
 
       class TaxRegistrationDetails < Data
-        def self.new: (tax_registration_number: String?, tax_registration_type: String?) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
-                    | (String?, String?) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
-        def self.[]: (tax_registration_number: String?, tax_registration_type: String?) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
-                   | (String?, String?) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
+        def self.new: (tax_registration_number: String, tax_registration_type: String) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
+                    | (String, String) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
+        def self.[]: (tax_registration_number: String, tax_registration_type: String) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
+                   | (String, String) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
 
         def self.members: () -> [ :tax_registration_number, :tax_registration_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::TaxRegistrationDetails
 
-        attr_reader tax_registration_number: String?
-        attr_reader tax_registration_type: String?
+        attr_reader tax_registration_number: String
+        attr_reader tax_registration_type: String
 
         def members: () -> [ :tax_registration_number, :tax_registration_type ]
-        def to_h: () -> { tax_registration_number: String?, tax_registration_type: String? }
+        def to_h: () -> { tax_registration_number: String, tax_registration_type: String }
       end
 
       class TotalWeight < Data
-        def self.new: (amount: String?, unit_of_measure: String?) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
-                    | (String?, String?) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
-        def self.[]: (amount: String?, unit_of_measure: String?) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
-                   | (String?, String?) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
+        def self.new: (amount: String, unit_of_measure: String) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
+                    | (String, String) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
+        def self.[]: (amount: String, unit_of_measure: String) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
+                   | (String, String) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
 
         def self.members: () -> [ :amount, :unit_of_measure ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorInvoicesV1::TotalWeight
 
-        attr_reader amount: String?
-        attr_reader unit_of_measure: String?
+        attr_reader amount: String
+        attr_reader unit_of_measure: String
 
         def members: () -> [ :amount, :unit_of_measure ]
-        def to_h: () -> { amount: String?, unit_of_measure: String? }
+        def to_h: () -> { amount: String, unit_of_measure: String }
       end
 
       class TransactionId < Data

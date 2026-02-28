@@ -11,29 +11,29 @@ module Peddler
       ItemSalesEventChange = Structure.new do
         # @return [String] The merchant customer ID or vendor group ID of the partner account this notification is sent
         #   to.
-        attribute(:account_id, String, from: "accountId")
+        attribute(:account_id, String, null: false, from: "accountId")
 
         # @return [String] The Amazon Standard Identification Number of the product.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [String] The currency code of any monetary amounts in ISO 4217 format.
-        attribute(:currency_code, String, from: "currencyCode")
+        attribute(:currency_code, String, null: false, from: "currencyCode")
 
         # @return [Time] The end of the date-time range of the sales data in ISO 8601 format in UTC time.
-        attribute(:end_time, Time, from: "endTime")
+        attribute(:end_time, Time, null: false, from: "endTime")
 
         # @return [String] The marketplace identifier of the sales data.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Float] The ordered product sales in the specified time frame. Adjustments are made for cancellations.
-        attribute(:ordered_revenue, Float, from: "orderedRevenue")
+        attribute(:ordered_revenue, Float, null: false, from: "orderedRevenue")
 
         # @return [Integer] The number of units ordered by Amazon customers in the specified time frame. This number can
         #   be negative if there are more cancellations than orders.
-        attribute(:ordered_units, Integer, from: "orderedUnits")
+        attribute(:ordered_units, Integer, null: false, from: "orderedUnits")
 
         # @return [Time] The start of the date-time range of the sales data in ISO 8601 format in UTC time.
-        attribute(:start_time, Time, from: "startTime")
+        attribute(:start_time, Time, null: false, from: "startTime")
       end
     end
   end

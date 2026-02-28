@@ -9,13 +9,13 @@ module Peddler
     module FulfillmentOrderStatus
       FulfillmentShipmentPackage = Structure.new do
         # @return [String]
-        attribute(:carrier_code, String, from: "CarrierCode")
+        attribute(:carrier_code, String, null: false, from: "CarrierCode")
 
         # @return [Integer]
-        attribute(:package_number, Integer, from: "PackageNumber")
+        attribute(:package_number, Integer, null: false, from: "PackageNumber")
 
         # @return [String]
-        attribute(:tracking_number, String, from: "TrackingNumber")
+        attribute(:tracking_number, String, null: false, from: "TrackingNumber")
       end
     end
   end

@@ -10,10 +10,10 @@ module Peddler
       # The request schema for the NdrFeedback operation
       SubmitNdrFeedbackRequest = Structure.new do
         # @return [String]
-        attribute(:ndr_action, String, from: "ndrAction")
+        attribute(:ndr_action, String, null: false, from: "ndrAction")
 
         # @return [String]
-        attribute(:tracking_id, String, from: "trackingId")
+        attribute(:tracking_id, String, null: false, from: "trackingId")
 
         # @return [NdrRequestData]
         attribute?(:ndr_request_data, NdrRequestData, from: "ndrRequestData")

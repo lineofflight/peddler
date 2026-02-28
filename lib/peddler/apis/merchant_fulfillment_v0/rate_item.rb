@@ -10,7 +10,7 @@ module Peddler
       # Rate item for shipping costs and adjustments.
       RateItem = Structure.new do
         # @return [String] Unique identifier for the RateItem.
-        attribute(:rate_item_id, String, from: "RateItemID")
+        attribute(:rate_item_id, String, null: false, from: "RateItemID")
 
         # @return [Money] The monetary value for the RateItem.
         attribute?(:rate_item_charge, Money, from: "RateItemCharge")

@@ -10,10 +10,10 @@ module Peddler
       # Summary information about a packing option.
       PackingOptionSummary = Structure.new do
         # @return [String] Identifier of a packing option.
-        attribute(:packing_option_id, String, from: "packingOptionId")
+        attribute(:packing_option_id, String, null: false, from: "packingOptionId")
 
         # @return [String] The status of a packing option. Possible values: 'OFFERED', 'ACCEPTED', 'EXPIRED'.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
       end
     end
   end

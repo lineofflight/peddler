@@ -10,11 +10,11 @@ module Peddler
       # Header information about the feed submission.
       Header = Structure.new do
         # @return [String] Identifier for the Selling Partner, such as the Merchant Account or Vendor Code.
-        attribute(:seller_id, String, from: "sellerId")
+        attribute(:seller_id, String, null: false, from: "sellerId")
 
         # @return [String] Version of the JSON Selling Partner Listings Feeds specification used for the feed
         #   submission.
-        attribute(:version, String)
+        attribute(:version, String, null: false)
 
         # @return [String] Locale for issue localization. When not provided, the default language code of the first
         #   marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a

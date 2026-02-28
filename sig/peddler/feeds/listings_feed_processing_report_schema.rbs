@@ -2,48 +2,48 @@ module Peddler
   module Feeds
     module ListingsFeedProcessingReportSchema
       class Feed < Data
-        def self.new: (header: Peddler::Feeds::ListingsFeedProcessingReportSchema::Header?, issues: Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue]?, summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary?, ?items: Array[untyped]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
-                    | (Peddler::Feeds::ListingsFeedProcessingReportSchema::Header?, Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue]?, Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary?, Array[untyped]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
-        def self.[]: (header: Peddler::Feeds::ListingsFeedProcessingReportSchema::Header?, issues: Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue]?, summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary?, ?items: Array[untyped]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
-                   | (Peddler::Feeds::ListingsFeedProcessingReportSchema::Header?, Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue]?, Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary?, Array[untyped]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
+        def self.new: (header: Peddler::Feeds::ListingsFeedProcessingReportSchema::Header, issues: Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue], summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary, ?items: Array[untyped]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
+                    | (Peddler::Feeds::ListingsFeedProcessingReportSchema::Header, Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue], Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary, Array[untyped]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
+        def self.[]: (header: Peddler::Feeds::ListingsFeedProcessingReportSchema::Header, issues: Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue], summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary, ?items: Array[untyped]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
+                   | (Peddler::Feeds::ListingsFeedProcessingReportSchema::Header, Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue], Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary, Array[untyped]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
 
         def self.members: () -> [ :header, :issues, :summary, :items ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed
 
-        attr_reader header: Peddler::Feeds::ListingsFeedProcessingReportSchema::Header?
-        attr_reader issues: Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue]?
+        attr_reader header: Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
+        attr_reader issues: Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue]
         attr_reader items: Array[untyped]?
-        attr_reader summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary?
+        attr_reader summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
 
         def members: () -> [ :header, :issues, :summary, :items ]
-        def to_h: () -> { header: Peddler::Feeds::ListingsFeedProcessingReportSchema::Header?, issues: Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue]?, summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary?, items: Array[untyped]? }
+        def to_h: () -> { header: Peddler::Feeds::ListingsFeedProcessingReportSchema::Header, issues: Array[Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue], summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary, items: Array[untyped]? }
       end
 
       class Header < Data
-        def self.new: (feed_id: String?, seller_id: String?, version: String?, ?report: Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
-                    | (String?, String?, String?, Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
-        def self.[]: (feed_id: String?, seller_id: String?, version: String?, ?report: Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
-                   | (String?, String?, String?, Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
+        def self.new: (feed_id: String, seller_id: String, version: String, ?report: Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
+                    | (String, String, String, Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
+        def self.[]: (feed_id: String, seller_id: String, version: String, ?report: Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
+                   | (String, String, String, Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
 
         def self.members: () -> [ :feed_id, :seller_id, :version, :report ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Header
 
-        attr_reader feed_id: String?
+        attr_reader feed_id: String
         attr_reader report: Peddler::Feeds::ListingsFeedProcessingReportSchema::Report?
-        attr_reader seller_id: String?
-        attr_reader version: String?
+        attr_reader seller_id: String
+        attr_reader version: String
 
         def members: () -> [ :feed_id, :seller_id, :version, :report ]
-        def to_h: () -> { feed_id: String?, seller_id: String?, version: String?, report: Peddler::Feeds::ListingsFeedProcessingReportSchema::Report? }
+        def to_h: () -> { feed_id: String, seller_id: String, version: String, report: Peddler::Feeds::ListingsFeedProcessingReportSchema::Report? }
       end
 
       class Issue < Data
-        def self.new: (message: String?, severity: String?, ?attribute_name: String?, ?code: String?, ?message_id: Integer?, ?sku: String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
-                    | (String?, String?, String?, String?, Integer?, String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
-        def self.[]: (message: String?, severity: String?, ?attribute_name: String?, ?code: String?, ?message_id: Integer?, ?sku: String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
-                   | (String?, String?, String?, String?, Integer?, String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
+        def self.new: (message: String, severity: String, ?attribute_name: String?, ?code: String?, ?message_id: Integer?, ?sku: String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
+                    | (String, String, String?, String?, Integer?, String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
+        def self.[]: (message: String, severity: String, ?attribute_name: String?, ?code: String?, ?message_id: Integer?, ?sku: String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
+                   | (String, String, String?, String?, Integer?, String?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Issue
 
         def self.members: () -> [ :message, :severity, :attribute_name, :code, :message_id, :sku ]
 
@@ -51,69 +51,69 @@ module Peddler
 
         attr_reader attribute_name: String?
         attr_reader code: String?
-        attr_reader message: String?
+        attr_reader message: String
         attr_reader message_id: Integer?
-        attr_reader severity: String?
+        attr_reader severity: String
         attr_reader sku: String?
 
         def members: () -> [ :message, :severity, :attribute_name, :code, :message_id, :sku ]
-        def to_h: () -> { message: String?, severity: String?, attribute_name: String?, code: String?, message_id: Integer?, sku: String? }
+        def to_h: () -> { message: String, severity: String, attribute_name: String?, code: String?, message_id: Integer?, sku: String? }
       end
 
       class ItemSummary < Data
-        def self.new: (errors: Integer?, items: Integer?, warnings: Integer?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
-                    | (Integer?, Integer?, Integer?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
-        def self.[]: (errors: Integer?, items: Integer?, warnings: Integer?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
-                   | (Integer?, Integer?, Integer?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
+        def self.new: (errors: Integer, items: Integer, warnings: Integer) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
+                    | (Integer, Integer, Integer) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
+        def self.[]: (errors: Integer, items: Integer, warnings: Integer) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
+                   | (Integer, Integer, Integer) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
 
         def self.members: () -> [ :errors, :items, :warnings ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary
 
-        attr_reader errors: Integer?
-        attr_reader items: Integer?
-        attr_reader warnings: Integer?
+        attr_reader errors: Integer
+        attr_reader items: Integer
+        attr_reader warnings: Integer
 
         def members: () -> [ :errors, :items, :warnings ]
-        def to_h: () -> { errors: Integer?, items: Integer?, warnings: Integer? }
+        def to_h: () -> { errors: Integer, items: Integer, warnings: Integer }
       end
 
       class Report < Data
-        def self.new: (api_version: String?, included_data: Array[String]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
-                    | (String?, Array[String]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
-        def self.[]: (api_version: String?, included_data: Array[String]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
-                   | (String?, Array[String]?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
+        def self.new: (api_version: String, included_data: Array[String]) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
+                    | (String, Array[String]) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
+        def self.[]: (api_version: String, included_data: Array[String]) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
+                   | (String, Array[String]) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
 
         def self.members: () -> [ :api_version, :included_data ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Report
 
-        attr_reader api_version: String?
-        attr_reader included_data: Array[String]?
+        attr_reader api_version: String
+        attr_reader included_data: Array[String]
 
         def members: () -> [ :api_version, :included_data ]
-        def to_h: () -> { api_version: String?, included_data: Array[String]? }
+        def to_h: () -> { api_version: String, included_data: Array[String] }
       end
 
       class Summary < Data
-        def self.new: (errors: Integer?, messages_accepted: Integer?, messages_invalid: Integer?, messages_processed: Integer?, warnings: Integer?, ?item_summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
-                    | (Integer?, Integer?, Integer?, Integer?, Integer?, Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
-        def self.[]: (errors: Integer?, messages_accepted: Integer?, messages_invalid: Integer?, messages_processed: Integer?, warnings: Integer?, ?item_summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
-                   | (Integer?, Integer?, Integer?, Integer?, Integer?, Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
+        def self.new: (errors: Integer, messages_accepted: Integer, messages_invalid: Integer, messages_processed: Integer, warnings: Integer, ?item_summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
+                    | (Integer, Integer, Integer, Integer, Integer, Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
+        def self.[]: (errors: Integer, messages_accepted: Integer, messages_invalid: Integer, messages_processed: Integer, warnings: Integer, ?item_summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
+                   | (Integer, Integer, Integer, Integer, Integer, Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
 
         def self.members: () -> [ :errors, :messages_accepted, :messages_invalid, :messages_processed, :warnings, :item_summary ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Summary
 
-        attr_reader errors: Integer?
+        attr_reader errors: Integer
         attr_reader item_summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary?
-        attr_reader messages_accepted: Integer?
-        attr_reader messages_invalid: Integer?
-        attr_reader messages_processed: Integer?
-        attr_reader warnings: Integer?
+        attr_reader messages_accepted: Integer
+        attr_reader messages_invalid: Integer
+        attr_reader messages_processed: Integer
+        attr_reader warnings: Integer
 
         def members: () -> [ :errors, :messages_accepted, :messages_invalid, :messages_processed, :warnings, :item_summary ]
-        def to_h: () -> { errors: Integer?, messages_accepted: Integer?, messages_invalid: Integer?, messages_processed: Integer?, warnings: Integer?, item_summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary? }
+        def to_h: () -> { errors: Integer, messages_accepted: Integer, messages_invalid: Integer, messages_processed: Integer, warnings: Integer, item_summary: Peddler::Feeds::ListingsFeedProcessingReportSchema::ItemSummary? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Feeds::ListingsFeedProcessingReportSchema::Feed

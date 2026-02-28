@@ -2,37 +2,37 @@ module Peddler
   module APIs
     class Transfers20240601 < API
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Transfers20240601::Error
-                    | (String?, String?, String?) -> Peddler::APIs::Transfers20240601::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Transfers20240601::Error
-                   | (String?, String?, String?) -> Peddler::APIs::Transfers20240601::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Transfers20240601::Error
+                    | (String, String, String?) -> Peddler::APIs::Transfers20240601::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Transfers20240601::Error
+                   | (String, String, String?) -> Peddler::APIs::Transfers20240601::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::Transfers20240601::Error]?) -> Peddler::APIs::Transfers20240601::ErrorList
-                    | (Array[Peddler::APIs::Transfers20240601::Error]?) -> Peddler::APIs::Transfers20240601::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::Transfers20240601::Error]?) -> Peddler::APIs::Transfers20240601::ErrorList
-                   | (Array[Peddler::APIs::Transfers20240601::Error]?) -> Peddler::APIs::Transfers20240601::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::Transfers20240601::Error]) -> Peddler::APIs::Transfers20240601::ErrorList
+                    | (Array[Peddler::APIs::Transfers20240601::Error]) -> Peddler::APIs::Transfers20240601::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Transfers20240601::Error]) -> Peddler::APIs::Transfers20240601::ErrorList
+                   | (Array[Peddler::APIs::Transfers20240601::Error]) -> Peddler::APIs::Transfers20240601::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::Transfers20240601::Error]?
+        attr_reader errors: Array[Peddler::APIs::Transfers20240601::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::Transfers20240601::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::Transfers20240601::Error] }
       end
 
       class ExpiryDate < Data
@@ -69,36 +69,36 @@ module Peddler
       end
 
       class InitiatePayoutRequest < Data
-        def self.new: (account_type: String?, marketplace_id: String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
-                    | (String?, String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
-        def self.[]: (account_type: String?, marketplace_id: String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
-                   | (String?, String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
+        def self.new: (account_type: String, marketplace_id: String) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
+                    | (String, String) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
+        def self.[]: (account_type: String, marketplace_id: String) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
+                   | (String, String) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
 
         def self.members: () -> [ :account_type, :marketplace_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::InitiatePayoutRequest
 
-        attr_reader account_type: String?
-        attr_reader marketplace_id: String?
+        attr_reader account_type: String
+        attr_reader marketplace_id: String
 
         def members: () -> [ :account_type, :marketplace_id ]
-        def to_h: () -> { account_type: String?, marketplace_id: String? }
+        def to_h: () -> { account_type: String, marketplace_id: String }
       end
 
       class InitiatePayoutResponse < Data
-        def self.new: (payout_reference_id: String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
-                    | (String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
-        def self.[]: (payout_reference_id: String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
-                   | (String?) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
+        def self.new: (payout_reference_id: String) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
+                    | (String) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
+        def self.[]: (payout_reference_id: String) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
+                   | (String) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
 
         def self.members: () -> [ :payout_reference_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::InitiatePayoutResponse
 
-        attr_reader payout_reference_id: String?
+        attr_reader payout_reference_id: String
 
         def members: () -> [ :payout_reference_id ]
-        def to_h: () -> { payout_reference_id: String? }
+        def to_h: () -> { payout_reference_id: String }
       end
 
       class PaymentMethodDetails < Data

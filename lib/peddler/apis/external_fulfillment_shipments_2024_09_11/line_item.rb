@@ -11,7 +11,7 @@ module Peddler
       LineItem = Structure.new do
         # @return [String] The identifier of the line item from the shipment that is being confirmed or rejected by the
         #   seller.
-        attribute(:id, String)
+        attribute(:id, String, null: false)
 
         # @return [Integer] The quantity of the line item.
         attribute?(:quantity, Integer)

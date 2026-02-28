@@ -14,10 +14,10 @@ module Peddler
       # two weeks.
       Report = Structure.new do
         # @return [Array<SearchQueryPerformanceData>]
-        attribute(:data_by_asin, [SearchQueryPerformanceData], from: "dataByAsin")
+        attribute(:data_by_asin, [SearchQueryPerformanceData], null: false, from: "dataByAsin")
 
         # @return [Hash] Summarizes the original report request.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

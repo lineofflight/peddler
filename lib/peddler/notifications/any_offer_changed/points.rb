@@ -9,7 +9,7 @@ module Peddler
     module AnyOfferChanged
       Points = Structure.new do
         # @return [Integer]
-        attribute(:points_number, Integer, from: "PointsNumber")
+        attribute(:points_number, Integer, null: false, from: "PointsNumber")
       end
     end
   end

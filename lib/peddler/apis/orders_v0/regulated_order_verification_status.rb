@@ -11,14 +11,14 @@ module Peddler
       RegulatedOrderVerificationStatus = Structure.new do
         # @return [:boolean] When true, the regulated information provided in the order requires a review by the
         #   merchant.
-        attribute(:requires_merchant_action, :boolean, from: "RequiresMerchantAction")
+        attribute(:requires_merchant_action, :boolean, null: false, from: "RequiresMerchantAction")
 
         # @return [String] The verification status of the order.
-        attribute(:status, String, from: "Status")
+        attribute(:status, String, null: false, from: "Status")
 
         # @return [Array<RejectionReason>] A list of valid rejection reasons that may be used to reject the order's
         #   regulated information.
-        attribute(:valid_rejection_reasons, [RejectionReason], from: "ValidRejectionReasons")
+        attribute(:valid_rejection_reasons, [RejectionReason], null: false, from: "ValidRejectionReasons")
 
         # @return [String] The identifier for the order's regulated information reviewer.
         attribute?(:external_reviewer_id, String, from: "ExternalReviewerId")

@@ -10,7 +10,7 @@ module Peddler
       # The recommendation result object.
       Recommendation = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN).
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [Integer] The sales rank of the product, at the Category level, based only on Amazon Business customer
         #   purchases.

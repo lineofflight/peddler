@@ -10,10 +10,10 @@ module Peddler
       # One-time password (OTP) details of the return item.
       OtpDetails = Structure.new do
         # @return [String] One-time password to validate the return delivered to the seller.
-        attribute(:otp, String)
+        attribute(:otp, String, null: false)
 
         # @return [Integer] The UNIX timestamp of when the verification code expires.
-        attribute(:valid_till, Integer, from: "validTill")
+        attribute(:valid_till, Integer, null: false, from: "validTill")
       end
     end
   end

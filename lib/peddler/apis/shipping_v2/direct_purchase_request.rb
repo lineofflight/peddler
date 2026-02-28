@@ -11,7 +11,7 @@ module Peddler
       # is not required and will be ignored.
       DirectPurchaseRequest = Structure.new do
         # @return [ChannelDetails]
-        attribute(:channel_details, ChannelDetails, from: "channelDetails")
+        attribute(:channel_details, ChannelDetails, null: false, from: "channelDetails")
 
         # @return [RequestedDocumentSpecification] The document (label) specifications requested. The default label
         #   returned is PNG DPI 203 4x6 if no label specification is provided. Requesting an invalid file format results

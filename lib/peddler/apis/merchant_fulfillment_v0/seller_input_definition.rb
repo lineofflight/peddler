@@ -10,19 +10,19 @@ module Peddler
       # Specifies characteristics that apply to a seller input.
       SellerInputDefinition = Structure.new do
         # @return [Array<Constraint>]
-        attribute(:constraints, [Constraint], from: "Constraints")
+        attribute(:constraints, [Constraint], null: false, from: "Constraints")
 
         # @return [String] The data type of the additional input field.
-        attribute(:data_type, String, from: "DataType")
+        attribute(:data_type, String, null: false, from: "DataType")
 
         # @return [String] The display text for the additional input field.
-        attribute(:input_display_text, String, from: "InputDisplayText")
+        attribute(:input_display_text, String, null: false, from: "InputDisplayText")
 
         # @return [:boolean] When true, the additional input field is required.
-        attribute(:required, :boolean, from: "IsRequired")
+        attribute(:required, :boolean, null: false, from: "IsRequired")
 
         # @return [AdditionalSellerInput]
-        attribute(:stored_value, AdditionalSellerInput, from: "StoredValue")
+        attribute(:stored_value, AdditionalSellerInput, null: false, from: "StoredValue")
 
         # @return [String] Whether the seller input applies to the item or the shipment.
         attribute?(:input_target, String, from: "InputTarget")

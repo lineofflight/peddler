@@ -10,7 +10,7 @@ module Peddler
       # The name, address, and tax details of a party.
       PartyIdentification = Structure.new do
         # @return [String] The identifier of the party.
-        attribute(:party_id, String, from: "partyId")
+        attribute(:party_id, String, null: false, from: "partyId")
 
         # @return [Address] The address of the party.
         attribute?(:address, Address)

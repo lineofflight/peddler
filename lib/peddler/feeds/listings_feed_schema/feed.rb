@@ -10,10 +10,10 @@ module Peddler
       # Selling Partner Listings Feed (v2)
       Feed = Structure.new do
         # @return [Header] Header information about the feed submission.
-        attribute(:header, Header)
+        attribute(:header, Header, null: false)
 
         # @return [Array<Message>] Messages containing listings data submissions for the Selling Partner.
-        attribute(:messages, [Message])
+        attribute(:messages, [Message], null: false)
       end
     end
   end

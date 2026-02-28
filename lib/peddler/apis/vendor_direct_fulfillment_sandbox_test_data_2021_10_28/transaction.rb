@@ -11,10 +11,10 @@ module Peddler
       # test order data.
       Transaction = Structure.new do
         # @return [String] The current processing status of the transaction.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [String] The unique identifier returned in the response to the generateOrderScenarios request.
-        attribute(:transaction_id, String, from: "transactionId")
+        attribute(:transaction_id, String, null: false, from: "transactionId")
 
         # @return [TestCaseData] Test case data for the transaction. Only available when the transaction status is
         #   SUCCESS.

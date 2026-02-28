@@ -11,10 +11,10 @@ module Peddler
       Scenario = Structure.new do
         # @return [Array<TestOrder>] A list of orders that can be used by the caller to test each life cycle or
         #   scenario.
-        attribute(:orders, [TestOrder])
+        attribute(:orders, [TestOrder], null: false)
 
         # @return [String] An identifier that identifies the type of scenario that user can use for testing.
-        attribute(:scenario_id, String, from: "scenarioId")
+        attribute(:scenario_id, String, null: false, from: "scenarioId")
       end
     end
   end

@@ -11,19 +11,19 @@ module Peddler
       # Represents an AWD inbound order.
       InboundOrder = Structure.new do
         # @return [Time] Date when this order was created.
-        attribute(:created_at, Time, from: "createdAt")
+        attribute(:created_at, Time, null: false, from: "createdAt")
 
         # @return [String] Inbound order ID.
-        attribute(:order_id, String, from: "orderId")
+        attribute(:order_id, String, null: false, from: "orderId")
 
         # @return [String] Inbound order status.
-        attribute(:order_status, String, from: "orderStatus")
+        attribute(:order_status, String, null: false, from: "orderStatus")
 
         # @return [Address] Origin address from where the inbound order will be shipped.
-        attribute(:origin_address, Address, from: "originAddress")
+        attribute(:origin_address, Address, null: false, from: "originAddress")
 
         # @return [Array<DistributionPackageQuantity>] List of packages to be inbounded.
-        attribute(:packages_to_inbound, [DistributionPackageQuantity], from: "packagesToInbound")
+        attribute(:packages_to_inbound, [DistributionPackageQuantity], null: false, from: "packagesToInbound")
 
         # @return [DestinationDetails] Destination details of an inbound order based on the assigned region and DC for
         #   the order.

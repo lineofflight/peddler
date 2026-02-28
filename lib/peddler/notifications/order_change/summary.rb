@@ -13,21 +13,21 @@ module Peddler
         attribute(:destination_postal_code, String, from: "DestinationPostalCode")
 
         # @return [String] Fulfillment type of the affected order, MFN or AFN.
-        attribute(:fulfillment_type, String, from: "FulfillmentType")
+        attribute(:fulfillment_type, String, null: false, from: "FulfillmentType")
 
         # @return [String] The Amazon marketplace identifier of the order.
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
         # @return [Array<OrderItem>] Information about order items included in this order. For OrderItemLevel
         #   notifications, one payload includes one item, while for OrderLevel notifications, one payload includes all
         #   items.
-        attribute(:order_items, [OrderItem], from: "OrderItems")
+        attribute(:order_items, [OrderItem], null: false, from: "OrderItems")
 
         # @return [String] The current order status.
-        attribute(:order_status, String, from: "OrderStatus")
+        attribute(:order_status, String, null: false, from: "OrderStatus")
 
         # @return [String] The type of the order.
-        attribute(:order_type, String, from: "OrderType")
+        attribute(:order_type, String, null: false, from: "OrderType")
 
         # @return [String] The purchase date of the order, in ISO-8601 date/time format. It will be null when there is
         #   no related information.

@@ -11,13 +11,13 @@ module Peddler
       # Details about a shipment.
       ShipmentDetails = Structure.new do
         # @return [String] The shipment status.
-        attribute(:shipment_status, String, from: "shipmentStatus")
+        attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
         # @return [Time] The date of the shipment's departure from vendor's location. Vendors send ASNs within 30
         #   minutes of departure from their warehouse/distribution center or six hours prior to the appointment time at
         #   the Amazon destination warehouse. The shipped date mentioned in the shipment confirmation cannot be in the
         #   future.
-        attribute(:shipped_date, Time, from: "shippedDate")
+        attribute(:shipped_date, Time, null: false, from: "shippedDate")
 
         # @return [Time] The date on which the shipment is expected to reach the buyer's warehouse. The date is
         #   estimated based on the average transit time between the ship-from location and the destination. Usually, the

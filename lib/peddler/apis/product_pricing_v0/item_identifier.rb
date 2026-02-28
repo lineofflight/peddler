@@ -10,10 +10,10 @@ module Peddler
       # Information that identifies an item.
       ItemIdentifier = Structure.new do
         # @return [String] The condition of the item.
-        attribute(:item_condition, String, from: "ItemCondition")
+        attribute(:item_condition, String, null: false, from: "ItemCondition")
 
         # @return [String] A marketplace identifier. Specifies the marketplace from which prices are returned.
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String, from: "ASIN")

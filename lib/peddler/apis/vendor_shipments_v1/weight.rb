@@ -10,10 +10,10 @@ module Peddler
       # The weight of the shipment.
       Weight = Structure.new do
         # @return [String] The unit of measurement.
-        attribute(:unit_of_measure, String, from: "unitOfMeasure")
+        attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         # @return [String] The measurement value.
-        attribute(:value, String)
+        attribute(:value, String, null: false)
       end
     end
   end

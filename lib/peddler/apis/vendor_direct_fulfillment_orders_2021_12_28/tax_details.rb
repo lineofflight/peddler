@@ -11,7 +11,7 @@ module Peddler
       # _Note:_ Amazon calculates tax on the list price (Amazon retail price).
       TaxDetails = Structure.new do
         # @return [Money]
-        attribute(:tax_amount, Money, from: "taxAmount")
+        attribute(:tax_amount, Money, null: false, from: "taxAmount")
 
         # @return [String]
         attribute?(:tax_rate, String, from: "taxRate")

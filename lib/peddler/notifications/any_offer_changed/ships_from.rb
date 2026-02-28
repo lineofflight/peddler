@@ -9,10 +9,10 @@ module Peddler
     module AnyOfferChanged
       ShipsFrom = Structure.new do
         # @return [String]
-        attribute(:country, String, from: "Country")
+        attribute(:country, String, null: false, from: "Country")
 
         # @return [String]
-        attribute(:state, String, from: "State")
+        attribute(:state, String, null: false, from: "State")
       end
     end
   end

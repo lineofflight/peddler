@@ -10,10 +10,10 @@ module Peddler
       # Information about the shipment's invoice.
       InvoiceInfo = Structure.new do
         # @return [String] When the invoice was created.
-        attribute(:creation_date_time, String, from: "creationDateTime")
+        attribute(:creation_date_time, String, null: false, from: "creationDateTime")
 
         # @return [String] The unique ID of the invoice that corresponds to the shipment.
-        attribute(:invoice_id, String, from: "invoiceId")
+        attribute(:invoice_id, String, null: false, from: "invoiceId")
       end
     end
   end

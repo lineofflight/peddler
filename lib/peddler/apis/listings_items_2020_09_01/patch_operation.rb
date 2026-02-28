@@ -11,10 +11,10 @@ module Peddler
       PatchOperation = Structure.new do
         # @return [String] Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and
         #   delete. See <https://tools.ietf.org/html/rfc6902>.
-        attribute(:op, String)
+        attribute(:op, String, null: false)
 
         # @return [String] JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
-        attribute(:path, String)
+        attribute(:path, String, null: false)
 
         # @return [Array<Object>] JSON value to add, replace, or delete.
         attribute?(:value, Array)

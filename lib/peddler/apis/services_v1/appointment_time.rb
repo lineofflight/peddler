@@ -11,10 +11,10 @@ module Peddler
       # The time of the appointment window.
       AppointmentTime = Structure.new do
         # @return [Integer] The duration of the appointment window, in minutes.
-        attribute(:duration_in_minutes, Integer, from: "durationInMinutes")
+        attribute(:duration_in_minutes, Integer, null: false, from: "durationInMinutes")
 
         # @return [Time] The date and time of the start of the appointment window in ISO 8601 format.
-        attribute(:start_time, Time, from: "startTime")
+        attribute(:start_time, Time, null: false, from: "startTime")
       end
     end
   end

@@ -12,10 +12,10 @@ module Peddler
       # indicator for when a transportation carrier is accepting shipments to be picked up.
       CarrierAppointment = Structure.new do
         # @return [Time] The end timestamp of the appointment in UTC.
-        attribute(:end_time, Time, from: "endTime")
+        attribute(:end_time, Time, null: false, from: "endTime")
 
         # @return [Time] The start timestamp of the appointment in UTC.
-        attribute(:start_time, Time, from: "startTime")
+        attribute(:start_time, Time, null: false, from: "startTime")
       end
     end
   end

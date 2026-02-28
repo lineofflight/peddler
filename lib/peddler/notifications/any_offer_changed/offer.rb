@@ -10,22 +10,22 @@ module Peddler
     module AnyOfferChanged
       Offer = Structure.new do
         # @return [:boolean]
-        attribute(:fulfilled_by_amazon, :boolean, from: "IsFulfilledByAmazon")
+        attribute(:fulfilled_by_amazon, :boolean, null: false, from: "IsFulfilledByAmazon")
 
         # @return [Money]
-        attribute(:listing_price, Money, from: "ListingPrice")
+        attribute(:listing_price, Money, null: false, from: "ListingPrice")
 
         # @return [String]
-        attribute(:seller_id, String, from: "SellerId")
+        attribute(:seller_id, String, null: false, from: "SellerId")
 
         # @return [Money]
-        attribute(:shipping, Money, from: "Shipping")
+        attribute(:shipping, Money, null: false, from: "Shipping")
 
         # @return [ShippingTime]
-        attribute(:shipping_time, ShippingTime, from: "ShippingTime")
+        attribute(:shipping_time, ShippingTime, null: false, from: "ShippingTime")
 
         # @return [String]
-        attribute(:sub_condition, String, from: "SubCondition")
+        attribute(:sub_condition, String, null: false, from: "SubCondition")
 
         # @return [:boolean] True when the offer is currently in the Buy Box. There can be up to two Buy Box winners at
         #   any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime.

@@ -11,13 +11,13 @@ module Peddler
       SalesByASIN = Structure.new do
         # @return [Money] The amount of ordered product sales, calculated by multiplying the price of products and the
         #   number of units sold for the selected time period.
-        attribute(:ordered_product_sales, Money, from: "orderedProductSales")
+        attribute(:ordered_product_sales, Money, null: false, from: "orderedProductSales")
 
         # @return [Integer] The number of items that were ordered for the selected time period.
-        attribute(:total_order_items, Integer, from: "totalOrderItems")
+        attribute(:total_order_items, Integer, null: false, from: "totalOrderItems")
 
         # @return [Integer] The number of units ordered.
-        attribute(:units_ordered, Integer, from: "unitsOrdered")
+        attribute(:units_ordered, Integer, null: false, from: "unitsOrdered")
 
         # @return [Money] The amount of ordered product sales to Amazon Business customers, calculated by multiplying
         #   the price of products and the number of units sold for the selected time period. Note: This field is only

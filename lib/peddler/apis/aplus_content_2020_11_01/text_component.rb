@@ -10,7 +10,7 @@ module Peddler
       # Rich text content.
       TextComponent = Structure.new do
         # @return [String] The actual plain text.
-        attribute(:value, String)
+        attribute(:value, String, null: false)
 
         # @return [Array<Decorator>]
         attribute?(:decorator_set, [Decorator], from: "decoratorSet")

@@ -11,10 +11,10 @@ module Peddler
       # measurements rather than simple count.
       Measurement = Structure.new do
         # @return [String] The specific unit of measurement used to quantify this item.
-        attribute(:unit, String)
+        attribute(:unit, String, null: false)
 
         # @return [Float] The numerical quantity or amount being measured in the specified unit.
-        attribute(:value, Float)
+        attribute(:value, Float, null: false)
       end
     end
   end

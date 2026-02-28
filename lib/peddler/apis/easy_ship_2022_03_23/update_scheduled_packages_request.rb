@@ -10,10 +10,10 @@ module Peddler
       # The request schema for the `updateScheduledPackages` operation.
       UpdateScheduledPackagesRequest = Structure.new do
         # @return [String]
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<UpdatePackageDetails>]
-        attribute(:update_package_details_list, [UpdatePackageDetails], from: "updatePackageDetailsList")
+        attribute(:update_package_details_list, [UpdatePackageDetails], null: false, from: "updatePackageDetailsList")
       end
     end
   end

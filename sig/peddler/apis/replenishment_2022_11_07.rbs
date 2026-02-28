@@ -18,58 +18,58 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Replenishment20221107::Error
-                    | (String?, String?, String?) -> Peddler::APIs::Replenishment20221107::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Replenishment20221107::Error
-                   | (String?, String?, String?) -> Peddler::APIs::Replenishment20221107::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Replenishment20221107::Error
+                    | (String, String, String?) -> Peddler::APIs::Replenishment20221107::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Replenishment20221107::Error
+                   | (String, String, String?) -> Peddler::APIs::Replenishment20221107::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::Replenishment20221107::Error]?) -> Peddler::APIs::Replenishment20221107::ErrorList
-                    | (Array[Peddler::APIs::Replenishment20221107::Error]?) -> Peddler::APIs::Replenishment20221107::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::Replenishment20221107::Error]?) -> Peddler::APIs::Replenishment20221107::ErrorList
-                   | (Array[Peddler::APIs::Replenishment20221107::Error]?) -> Peddler::APIs::Replenishment20221107::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::Replenishment20221107::Error]) -> Peddler::APIs::Replenishment20221107::ErrorList
+                    | (Array[Peddler::APIs::Replenishment20221107::Error]) -> Peddler::APIs::Replenishment20221107::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Replenishment20221107::Error]) -> Peddler::APIs::Replenishment20221107::ErrorList
+                   | (Array[Peddler::APIs::Replenishment20221107::Error]) -> Peddler::APIs::Replenishment20221107::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::Replenishment20221107::Error]?
+        attr_reader errors: Array[Peddler::APIs::Replenishment20221107::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::Replenishment20221107::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::Replenishment20221107::Error] }
       end
 
       class GetSellingPartnerMetricsRequest < Data
-        def self.new: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
-                    | (String?, Array[untyped]?, Peddler::APIs::Replenishment20221107::TimeInterval?, String?, String?, Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
-        def self.[]: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
-                   | (String?, Array[untyped]?, Peddler::APIs::Replenishment20221107::TimeInterval?, String?, String?, Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
+        def self.new: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
+                    | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
+        def self.[]: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
+                   | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
 
         def self.members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :metrics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
 
         attr_reader aggregation_frequency: String?
-        attr_reader marketplace_id: String?
+        attr_reader marketplace_id: String
         attr_reader metrics: Array[untyped]?
-        attr_reader program_types: Array[untyped]?
-        attr_reader time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?
-        attr_reader time_period_type: String?
+        attr_reader program_types: Array[untyped]
+        attr_reader time_interval: Peddler::APIs::Replenishment20221107::TimeInterval
+        attr_reader time_period_type: String
 
         def members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :metrics ]
-        def to_h: () -> { marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, time_period_type: String?, aggregation_frequency: String?, metrics: Array[untyped]? }
+        def to_h: () -> { marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, aggregation_frequency: String?, metrics: Array[untyped]? }
       end
 
       class GetSellingPartnerMetricsResponse < Data
@@ -137,28 +137,28 @@ module Peddler
       end
 
       class ListOfferMetricsRequest < Data
-        def self.new: (filters: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters?, pagination: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination?, ?sort: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
-                    | (Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters?, Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination?, Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
-        def self.[]: (filters: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters?, pagination: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination?, ?sort: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
-                   | (Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters?, Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination?, Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
+        def self.new: (filters: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters, pagination: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination, ?sort: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
+                    | (Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters, Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination, Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
+        def self.[]: (filters: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters, pagination: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination, ?sort: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
+                   | (Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters, Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination, Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
 
         def self.members: () -> [ :filters, :pagination, :sort ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequest
 
-        attr_reader filters: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters?
-        attr_reader pagination: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination?
+        attr_reader filters: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+        attr_reader pagination: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
         attr_reader sort: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort?
 
         def members: () -> [ :filters, :pagination, :sort ]
-        def to_h: () -> { filters: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters?, pagination: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination?, sort: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort? }
+        def to_h: () -> { filters: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters, pagination: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination, sort: Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort? }
       end
 
       class ListOfferMetricsRequestFilters < Data
-        def self.new: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?asins: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
-                    | (String?, Array[untyped]?, Peddler::APIs::Replenishment20221107::TimeInterval?, String?, String?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
-        def self.[]: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?asins: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
-                   | (String?, Array[untyped]?, Peddler::APIs::Replenishment20221107::TimeInterval?, String?, String?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+        def self.new: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?asins: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+                    | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+        def self.[]: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?asins: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+                   | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
 
         def self.members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :asins ]
 
@@ -166,47 +166,47 @@ module Peddler
 
         attr_reader aggregation_frequency: String?
         attr_reader asins: Array[String]?
-        attr_reader marketplace_id: String?
-        attr_reader program_types: Array[untyped]?
-        attr_reader time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?
-        attr_reader time_period_type: String?
+        attr_reader marketplace_id: String
+        attr_reader program_types: Array[untyped]
+        attr_reader time_interval: Peddler::APIs::Replenishment20221107::TimeInterval
+        attr_reader time_period_type: String
 
         def members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :asins ]
-        def to_h: () -> { marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, time_period_type: String?, aggregation_frequency: String?, asins: Array[String]? }
+        def to_h: () -> { marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, aggregation_frequency: String?, asins: Array[String]? }
       end
 
       class ListOfferMetricsRequestPagination < Data
-        def self.new: (limit: Integer?, offset: Integer?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
-                    | (Integer?, Integer?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
-        def self.[]: (limit: Integer?, offset: Integer?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
-                   | (Integer?, Integer?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
+        def self.new: (limit: Integer, offset: Integer) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
+                    | (Integer, Integer) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
+        def self.[]: (limit: Integer, offset: Integer) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
+                   | (Integer, Integer) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
 
         def self.members: () -> [ :limit, :offset ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestPagination
 
-        attr_reader limit: Integer?
-        attr_reader offset: Integer?
+        attr_reader limit: Integer
+        attr_reader offset: Integer
 
         def members: () -> [ :limit, :offset ]
-        def to_h: () -> { limit: Integer?, offset: Integer? }
+        def to_h: () -> { limit: Integer, offset: Integer }
       end
 
       class ListOfferMetricsRequestSort < Data
-        def self.new: (key: String?, order: String?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
-                    | (String?, String?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
-        def self.[]: (key: String?, order: String?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
-                   | (String?, String?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
+        def self.new: (key: String, order: String) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
+                    | (String, String) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
+        def self.[]: (key: String, order: String) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
+                   | (String, String) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
 
         def self.members: () -> [ :key, :order ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestSort
 
-        attr_reader key: String?
-        attr_reader order: String?
+        attr_reader key: String
+        attr_reader order: String
 
         def members: () -> [ :key, :order ]
-        def to_h: () -> { key: String?, order: String? }
+        def to_h: () -> { key: String, order: String }
       end
 
       class ListOfferMetricsResponse < Data
@@ -259,28 +259,28 @@ module Peddler
       end
 
       class ListOffersRequest < Data
-        def self.new: (filters: Peddler::APIs::Replenishment20221107::ListOffersRequestFilters?, pagination: Peddler::APIs::Replenishment20221107::ListOffersRequestPagination?, ?sort: Peddler::APIs::Replenishment20221107::ListOffersRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
-                    | (Peddler::APIs::Replenishment20221107::ListOffersRequestFilters?, Peddler::APIs::Replenishment20221107::ListOffersRequestPagination?, Peddler::APIs::Replenishment20221107::ListOffersRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
-        def self.[]: (filters: Peddler::APIs::Replenishment20221107::ListOffersRequestFilters?, pagination: Peddler::APIs::Replenishment20221107::ListOffersRequestPagination?, ?sort: Peddler::APIs::Replenishment20221107::ListOffersRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
-                   | (Peddler::APIs::Replenishment20221107::ListOffersRequestFilters?, Peddler::APIs::Replenishment20221107::ListOffersRequestPagination?, Peddler::APIs::Replenishment20221107::ListOffersRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
+        def self.new: (filters: Peddler::APIs::Replenishment20221107::ListOffersRequestFilters, pagination: Peddler::APIs::Replenishment20221107::ListOffersRequestPagination, ?sort: Peddler::APIs::Replenishment20221107::ListOffersRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
+                    | (Peddler::APIs::Replenishment20221107::ListOffersRequestFilters, Peddler::APIs::Replenishment20221107::ListOffersRequestPagination, Peddler::APIs::Replenishment20221107::ListOffersRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
+        def self.[]: (filters: Peddler::APIs::Replenishment20221107::ListOffersRequestFilters, pagination: Peddler::APIs::Replenishment20221107::ListOffersRequestPagination, ?sort: Peddler::APIs::Replenishment20221107::ListOffersRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
+                   | (Peddler::APIs::Replenishment20221107::ListOffersRequestFilters, Peddler::APIs::Replenishment20221107::ListOffersRequestPagination, Peddler::APIs::Replenishment20221107::ListOffersRequestSort?) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
 
         def self.members: () -> [ :filters, :pagination, :sort ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ListOffersRequest
 
-        attr_reader filters: Peddler::APIs::Replenishment20221107::ListOffersRequestFilters?
-        attr_reader pagination: Peddler::APIs::Replenishment20221107::ListOffersRequestPagination?
+        attr_reader filters: Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
+        attr_reader pagination: Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
         attr_reader sort: Peddler::APIs::Replenishment20221107::ListOffersRequestSort?
 
         def members: () -> [ :filters, :pagination, :sort ]
-        def to_h: () -> { filters: Peddler::APIs::Replenishment20221107::ListOffersRequestFilters?, pagination: Peddler::APIs::Replenishment20221107::ListOffersRequestPagination?, sort: Peddler::APIs::Replenishment20221107::ListOffersRequestSort? }
+        def to_h: () -> { filters: Peddler::APIs::Replenishment20221107::ListOffersRequestFilters, pagination: Peddler::APIs::Replenishment20221107::ListOffersRequestPagination, sort: Peddler::APIs::Replenishment20221107::ListOffersRequestSort? }
       end
 
       class ListOffersRequestFilters < Data
-        def self.new: (marketplace_id: String?, program_types: Array[untyped]?, ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::APIs::Replenishment20221107::Preference?, ?promotions: Peddler::APIs::Replenishment20221107::Promotion?, ?skus: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
-                    | (String?, Array[untyped]?, Array[String]?, Array[untyped]?, Peddler::APIs::Replenishment20221107::Preference?, Peddler::APIs::Replenishment20221107::Promotion?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
-        def self.[]: (marketplace_id: String?, program_types: Array[untyped]?, ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::APIs::Replenishment20221107::Preference?, ?promotions: Peddler::APIs::Replenishment20221107::Promotion?, ?skus: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
-                   | (String?, Array[untyped]?, Array[String]?, Array[untyped]?, Peddler::APIs::Replenishment20221107::Preference?, Peddler::APIs::Replenishment20221107::Promotion?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
+        def self.new: (marketplace_id: String, program_types: Array[untyped], ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::APIs::Replenishment20221107::Preference?, ?promotions: Peddler::APIs::Replenishment20221107::Promotion?, ?skus: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
+                    | (String, Array[untyped], Array[String]?, Array[untyped]?, Peddler::APIs::Replenishment20221107::Preference?, Peddler::APIs::Replenishment20221107::Promotion?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
+        def self.[]: (marketplace_id: String, program_types: Array[untyped], ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::APIs::Replenishment20221107::Preference?, ?promotions: Peddler::APIs::Replenishment20221107::Promotion?, ?skus: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
+                   | (String, Array[untyped], Array[String]?, Array[untyped]?, Peddler::APIs::Replenishment20221107::Preference?, Peddler::APIs::Replenishment20221107::Promotion?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestFilters
 
         def self.members: () -> [ :marketplace_id, :program_types, :asins, :eligibilities, :preferences, :promotions, :skus ]
 
@@ -288,48 +288,48 @@ module Peddler
 
         attr_reader asins: Array[String]?
         attr_reader eligibilities: Array[untyped]?
-        attr_reader marketplace_id: String?
+        attr_reader marketplace_id: String
         attr_reader preferences: Peddler::APIs::Replenishment20221107::Preference?
-        attr_reader program_types: Array[untyped]?
+        attr_reader program_types: Array[untyped]
         attr_reader promotions: Peddler::APIs::Replenishment20221107::Promotion?
         attr_reader skus: Array[String]?
 
         def members: () -> [ :marketplace_id, :program_types, :asins, :eligibilities, :preferences, :promotions, :skus ]
-        def to_h: () -> { marketplace_id: String?, program_types: Array[untyped]?, asins: Array[String]?, eligibilities: Array[untyped]?, preferences: Peddler::APIs::Replenishment20221107::Preference?, promotions: Peddler::APIs::Replenishment20221107::Promotion?, skus: Array[String]? }
+        def to_h: () -> { marketplace_id: String, program_types: Array[untyped], asins: Array[String]?, eligibilities: Array[untyped]?, preferences: Peddler::APIs::Replenishment20221107::Preference?, promotions: Peddler::APIs::Replenishment20221107::Promotion?, skus: Array[String]? }
       end
 
       class ListOffersRequestPagination < Data
-        def self.new: (limit: Integer?, offset: Integer?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
-                    | (Integer?, Integer?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
-        def self.[]: (limit: Integer?, offset: Integer?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
-                   | (Integer?, Integer?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
+        def self.new: (limit: Integer, offset: Integer) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
+                    | (Integer, Integer) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
+        def self.[]: (limit: Integer, offset: Integer) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
+                   | (Integer, Integer) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
 
         def self.members: () -> [ :limit, :offset ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ListOffersRequestPagination
 
-        attr_reader limit: Integer?
-        attr_reader offset: Integer?
+        attr_reader limit: Integer
+        attr_reader offset: Integer
 
         def members: () -> [ :limit, :offset ]
-        def to_h: () -> { limit: Integer?, offset: Integer? }
+        def to_h: () -> { limit: Integer, offset: Integer }
       end
 
       class ListOffersRequestSort < Data
-        def self.new: (key: String?, order: String?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
-                    | (String?, String?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
-        def self.[]: (key: String?, order: String?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
-                   | (String?, String?) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
+        def self.new: (key: String, order: String) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
+                    | (String, String) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
+        def self.[]: (key: String, order: String) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
+                   | (String, String) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
 
         def self.members: () -> [ :key, :order ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ListOffersRequestSort
 
-        attr_reader key: String?
-        attr_reader order: String?
+        attr_reader key: String
+        attr_reader order: String
 
         def members: () -> [ :key, :order ]
-        def to_h: () -> { key: String?, order: String? }
+        def to_h: () -> { key: String, order: String }
       end
 
       class ListOffersResponse < Data
@@ -496,20 +496,20 @@ module Peddler
       end
 
       class TimeInterval < Data
-        def self.new: (end_date: Time?, start_date: Time?) -> Peddler::APIs::Replenishment20221107::TimeInterval
-                    | (Time?, Time?) -> Peddler::APIs::Replenishment20221107::TimeInterval
-        def self.[]: (end_date: Time?, start_date: Time?) -> Peddler::APIs::Replenishment20221107::TimeInterval
-                   | (Time?, Time?) -> Peddler::APIs::Replenishment20221107::TimeInterval
+        def self.new: (end_date: Time, start_date: Time) -> Peddler::APIs::Replenishment20221107::TimeInterval
+                    | (Time, Time) -> Peddler::APIs::Replenishment20221107::TimeInterval
+        def self.[]: (end_date: Time, start_date: Time) -> Peddler::APIs::Replenishment20221107::TimeInterval
+                   | (Time, Time) -> Peddler::APIs::Replenishment20221107::TimeInterval
 
         def self.members: () -> [ :end_date, :start_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::TimeInterval
 
-        attr_reader end_date: Time?
-        attr_reader start_date: Time?
+        attr_reader end_date: Time
+        attr_reader start_date: Time
 
         def members: () -> [ :end_date, :start_date ]
-        def to_h: () -> { end_date: Time?, start_date: Time? }
+        def to_h: () -> { end_date: Time, start_date: Time }
       end
 
       def get_selling_partner_metrics: (?body: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response

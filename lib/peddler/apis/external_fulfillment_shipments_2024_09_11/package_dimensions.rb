@@ -10,13 +10,13 @@ module Peddler
       # The dimensions of a package.
       PackageDimensions = Structure.new do
         # @return [Dimension] The height of the package.
-        attribute(:height, Dimension)
+        attribute(:height, Dimension, null: false)
 
         # @return [Dimension] The length of the package.
-        attribute(:length, Dimension)
+        attribute(:length, Dimension, null: false)
 
         # @return [Dimension] The width of the package.
-        attribute(:width, Dimension)
+        attribute(:width, Dimension, null: false)
       end
     end
   end

@@ -10,7 +10,7 @@ module Peddler
       # A list of orders along with additional information to make subsequent API calls.
       OrdersList = Structure.new do
         # @return [Array<Order>]
-        attribute(:orders, [Order], from: "Orders")
+        attribute(:orders, [Order], null: false, from: "Orders")
 
         # @return [String] Use this date to select orders created before (or at) a specified time. Only orders placed
         #   before the specified time are returned. The date must be in [ISO

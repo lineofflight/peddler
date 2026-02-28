@@ -10,7 +10,7 @@ module Peddler
       # The `competitiveSummary` batch request data.
       CompetitiveSummaryBatchRequest = Structure.new do
         # @return [Array<CompetitiveSummaryRequest>] A batched list of `competitiveSummary` requests.
-        attribute(:requests, [CompetitiveSummaryRequest])
+        attribute(:requests, [CompetitiveSummaryRequest], null: false)
       end
     end
   end

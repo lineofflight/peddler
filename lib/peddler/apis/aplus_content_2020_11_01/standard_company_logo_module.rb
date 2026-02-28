@@ -10,7 +10,7 @@ module Peddler
       # The standard company logo image.
       StandardCompanyLogoModule = Structure.new do
         # @return [ImageComponent]
-        attribute(:company_logo, ImageComponent, from: "companyLogo")
+        attribute(:company_logo, ImageComponent, null: false, from: "companyLogo")
       end
     end
   end

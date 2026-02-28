@@ -11,10 +11,10 @@ module Peddler
       ScheduledDeliveryInfo = Structure.new do
         # @return [String] The time zone of the destination address for the fulfillment order preview. Must be an IANA
         #   time zone name. Example: Asia/Tokyo.
-        attribute(:delivery_time_zone, String, from: "deliveryTimeZone")
+        attribute(:delivery_time_zone, String, null: false, from: "deliveryTimeZone")
 
         # @return [Array<DeliveryWindow>] An array of time ranges that are available for scheduled delivery.
-        attribute(:delivery_windows, [DeliveryWindow], from: "deliveryWindows")
+        attribute(:delivery_windows, [DeliveryWindow], null: false, from: "deliveryWindows")
       end
     end
   end

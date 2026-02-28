@@ -10,7 +10,7 @@ module Peddler
       # Struct that holds collection of transactions.
       TransactionListing = Structure.new do
         # @return [Array<Transaction>] Collection that holds Transaction
-        attribute(:transactions, [Transaction])
+        attribute(:transactions, [Transaction], null: false)
 
         # @return [String] If present, use this pagination token to retrieve the next page of supply sources, if not
         #   provided the API will return same response. The field will only be provided when the list is greater than

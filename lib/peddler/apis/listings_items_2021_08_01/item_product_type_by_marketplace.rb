@@ -10,10 +10,10 @@ module Peddler
       # Product types that are associated with the listing item for the specified marketplace.
       ItemProductTypeByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The name of the product type that is submitted by the Selling Partner.
-        attribute(:product_type, String, from: "productType")
+        attribute(:product_type, String, null: false, from: "productType")
       end
     end
   end

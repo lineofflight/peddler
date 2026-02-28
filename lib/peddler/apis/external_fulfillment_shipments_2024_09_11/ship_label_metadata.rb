@@ -11,10 +11,10 @@ module Peddler
       # Metadata for a ship label document.
       ShipLabelMetadata = Structure.new do
         # @return [String] The name of the carrier.
-        attribute(:carrier_name, String, from: "carrierName")
+        attribute(:carrier_name, String, null: false, from: "carrierName")
 
         # @return [String] The tracking number of the package.
-        attribute(:tracking_id, String, from: "trackingId")
+        attribute(:tracking_id, String, null: false, from: "trackingId")
 
         # @return [TimeWindow] The time window during which the package was picked up.
         attribute?(:pickup_window, TimeWindow, from: "pickupWindow")

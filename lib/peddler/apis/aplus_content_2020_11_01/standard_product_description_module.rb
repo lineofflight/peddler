@@ -10,7 +10,7 @@ module Peddler
       # Standard product description text.
       StandardProductDescriptionModule = Structure.new do
         # @return [ParagraphComponent]
-        attribute(:body, ParagraphComponent)
+        attribute(:body, ParagraphComponent, null: false)
       end
     end
   end

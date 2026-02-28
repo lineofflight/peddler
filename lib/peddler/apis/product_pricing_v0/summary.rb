@@ -12,7 +12,7 @@ module Peddler
       # SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
       Summary = Structure.new do
         # @return [Integer] The number of unique offers contained in NumberOfOffers.
-        attribute(:total_offer_count, Integer, from: "TotalOfferCount")
+        attribute(:total_offer_count, Integer, null: false, from: "TotalOfferCount")
 
         # @return [Array<OfferCountType>] A list that contains the total number of offers that are eligible for the Buy
         #   Box for the given conditions and fulfillment channels.

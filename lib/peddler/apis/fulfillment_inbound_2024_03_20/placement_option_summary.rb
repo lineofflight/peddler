@@ -11,10 +11,10 @@ module Peddler
       PlacementOptionSummary = Structure.new do
         # @return [String] The identifier of a placement option. A placement option represents the shipment splits and
         #   destinations of SKUs.
-        attribute(:placement_option_id, String, from: "placementOptionId")
+        attribute(:placement_option_id, String, null: false, from: "placementOptionId")
 
         # @return [String] The status of a placement option. Possible values: `OFFERED`, `ACCEPTED`.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
       end
     end
   end

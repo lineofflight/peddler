@@ -2,20 +2,20 @@ module Peddler
   module APIs
     class MessagingV1 < API
       class Attachment < Data
-        def self.new: (file_name: String?, upload_destination_id: String?) -> Peddler::APIs::MessagingV1::Attachment
-                    | (String?, String?) -> Peddler::APIs::MessagingV1::Attachment
-        def self.[]: (file_name: String?, upload_destination_id: String?) -> Peddler::APIs::MessagingV1::Attachment
-                   | (String?, String?) -> Peddler::APIs::MessagingV1::Attachment
+        def self.new: (file_name: String, upload_destination_id: String) -> Peddler::APIs::MessagingV1::Attachment
+                    | (String, String) -> Peddler::APIs::MessagingV1::Attachment
+        def self.[]: (file_name: String, upload_destination_id: String) -> Peddler::APIs::MessagingV1::Attachment
+                   | (String, String) -> Peddler::APIs::MessagingV1::Attachment
 
         def self.members: () -> [ :file_name, :upload_destination_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::Attachment
 
-        attr_reader file_name: String?
-        attr_reader upload_destination_id: String?
+        attr_reader file_name: String
+        attr_reader upload_destination_id: String
 
         def members: () -> [ :file_name, :upload_destination_id ]
-        def to_h: () -> { file_name: String?, upload_destination_id: String? }
+        def to_h: () -> { file_name: String, upload_destination_id: String }
       end
 
       class CreateConfirmCustomizationDetailsRequest < Data
@@ -279,21 +279,21 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::MessagingV1::Error
-                    | (String?, String?, String?) -> Peddler::APIs::MessagingV1::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::MessagingV1::Error
-                   | (String?, String?, String?) -> Peddler::APIs::MessagingV1::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::MessagingV1::Error
+                    | (String, String, String?) -> Peddler::APIs::MessagingV1::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::MessagingV1::Error
+                   | (String, String, String?) -> Peddler::APIs::MessagingV1::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]
@@ -405,36 +405,36 @@ module Peddler
       end
 
       class LinkObject < Data
-        def self.new: (href: String?, ?name: String?) -> Peddler::APIs::MessagingV1::LinkObject
-                    | (String?, String?) -> Peddler::APIs::MessagingV1::LinkObject
-        def self.[]: (href: String?, ?name: String?) -> Peddler::APIs::MessagingV1::LinkObject
-                   | (String?, String?) -> Peddler::APIs::MessagingV1::LinkObject
+        def self.new: (href: String, ?name: String?) -> Peddler::APIs::MessagingV1::LinkObject
+                    | (String, String?) -> Peddler::APIs::MessagingV1::LinkObject
+        def self.[]: (href: String, ?name: String?) -> Peddler::APIs::MessagingV1::LinkObject
+                   | (String, String?) -> Peddler::APIs::MessagingV1::LinkObject
 
         def self.members: () -> [ :href, :name ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::LinkObject
 
-        attr_reader href: String?
+        attr_reader href: String
         attr_reader name: String?
 
         def members: () -> [ :href, :name ]
-        def to_h: () -> { href: String?, name: String? }
+        def to_h: () -> { href: String, name: String? }
       end
 
       class MessagingAction < Data
-        def self.new: (name: String?) -> Peddler::APIs::MessagingV1::MessagingAction
-                    | (String?) -> Peddler::APIs::MessagingV1::MessagingAction
-        def self.[]: (name: String?) -> Peddler::APIs::MessagingV1::MessagingAction
-                   | (String?) -> Peddler::APIs::MessagingV1::MessagingAction
+        def self.new: (name: String) -> Peddler::APIs::MessagingV1::MessagingAction
+                    | (String) -> Peddler::APIs::MessagingV1::MessagingAction
+        def self.[]: (name: String) -> Peddler::APIs::MessagingV1::MessagingAction
+                   | (String) -> Peddler::APIs::MessagingV1::MessagingAction
 
         def self.members: () -> [ :name ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::MessagingV1::MessagingAction
 
-        attr_reader name: String?
+        attr_reader name: String
 
         def members: () -> [ :name ]
-        def to_h: () -> { name: String? }
+        def to_h: () -> { name: String }
       end
 
       def confirm_customization_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

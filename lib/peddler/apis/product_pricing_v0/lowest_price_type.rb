@@ -10,14 +10,14 @@ module Peddler
       # Schema for an individual lowest price.
       LowestPriceType = Structure.new do
         # @return [Money] The price of the item.
-        attribute(:listing_price, Money, from: "ListingPrice")
+        attribute(:listing_price, Money, null: false, from: "ListingPrice")
 
         # @return [String] Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or
         #   Club.
-        attribute(:condition, String)
+        attribute(:condition, String, null: false)
 
         # @return [String] Indicates whether the item is fulfilled by Amazon or by the seller.
-        attribute(:fulfillment_channel, String, from: "fulfillmentChannel")
+        attribute(:fulfillment_channel, String, null: false, from: "fulfillmentChannel")
 
         # @return [Money] The value calculated by adding ListingPrice + Shipping - Points.
         attribute?(:landed_price, Money, from: "LandedPrice")

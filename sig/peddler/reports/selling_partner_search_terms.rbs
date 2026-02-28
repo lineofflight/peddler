@@ -2,78 +2,78 @@ module Peddler
   module Reports
     module SellingPartnerSearchTerms
       class DetailsByDepartmentAndSearchTerm < Data
-        def self.new: (click_share: Float?, click_share_rank: Integer?, clicked_asin: String?, conversion_share: Float?, department_name: String?, search_frequency_rank: Integer?, search_term: String?) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
-                    | (Float?, Integer?, String?, Float?, String?, Integer?, String?) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
-        def self.[]: (click_share: Float?, click_share_rank: Integer?, clicked_asin: String?, conversion_share: Float?, department_name: String?, search_frequency_rank: Integer?, search_term: String?) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
-                   | (Float?, Integer?, String?, Float?, String?, Integer?, String?) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
+        def self.new: (click_share: Float, click_share_rank: Integer, clicked_asin: String, conversion_share: Float, department_name: String, search_frequency_rank: Integer, search_term: String) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
+                    | (Float, Integer, String, Float, String, Integer, String) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
+        def self.[]: (click_share: Float, click_share_rank: Integer, clicked_asin: String, conversion_share: Float, department_name: String, search_frequency_rank: Integer, search_term: String) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
+                   | (Float, Integer, String, Float, String, Integer, String) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
 
         def self.members: () -> [ :click_share, :click_share_rank, :clicked_asin, :conversion_share, :department_name, :search_frequency_rank, :search_term ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm
 
-        attr_reader click_share: Float?
-        attr_reader click_share_rank: Integer?
-        attr_reader clicked_asin: String?
-        attr_reader conversion_share: Float?
-        attr_reader department_name: String?
-        attr_reader search_frequency_rank: Integer?
-        attr_reader search_term: String?
+        attr_reader click_share: Float
+        attr_reader click_share_rank: Integer
+        attr_reader clicked_asin: String
+        attr_reader conversion_share: Float
+        attr_reader department_name: String
+        attr_reader search_frequency_rank: Integer
+        attr_reader search_term: String
 
         def members: () -> [ :click_share, :click_share_rank, :clicked_asin, :conversion_share, :department_name, :search_frequency_rank, :search_term ]
-        def to_h: () -> { click_share: Float?, click_share_rank: Integer?, clicked_asin: String?, conversion_share: Float?, department_name: String?, search_frequency_rank: Integer?, search_term: String? }
+        def to_h: () -> { click_share: Float, click_share_rank: Integer, clicked_asin: String, conversion_share: Float, department_name: String, search_frequency_rank: Integer, search_term: String }
       end
 
       class Report < Data
-        def self.new: (data_by_department_and_search_term: Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm]?, report_specification: Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification?) -> Peddler::Reports::SellingPartnerSearchTerms::Report
-                    | (Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm]?, Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification?) -> Peddler::Reports::SellingPartnerSearchTerms::Report
-        def self.[]: (data_by_department_and_search_term: Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm]?, report_specification: Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification?) -> Peddler::Reports::SellingPartnerSearchTerms::Report
-                   | (Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm]?, Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification?) -> Peddler::Reports::SellingPartnerSearchTerms::Report
+        def self.new: (data_by_department_and_search_term: Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm], report_specification: Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification) -> Peddler::Reports::SellingPartnerSearchTerms::Report
+                    | (Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm], Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification) -> Peddler::Reports::SellingPartnerSearchTerms::Report
+        def self.[]: (data_by_department_and_search_term: Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm], report_specification: Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification) -> Peddler::Reports::SellingPartnerSearchTerms::Report
+                   | (Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm], Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification) -> Peddler::Reports::SellingPartnerSearchTerms::Report
 
         def self.members: () -> [ :data_by_department_and_search_term, :report_specification ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerSearchTerms::Report
 
-        attr_reader data_by_department_and_search_term: Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm]?
-        attr_reader report_specification: Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification?
+        attr_reader data_by_department_and_search_term: Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm]
+        attr_reader report_specification: Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
 
         def members: () -> [ :data_by_department_and_search_term, :report_specification ]
-        def to_h: () -> { data_by_department_and_search_term: Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm]?, report_specification: Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification? }
+        def to_h: () -> { data_by_department_and_search_term: Array[Peddler::Reports::SellingPartnerSearchTerms::DetailsByDepartmentAndSearchTerm], report_specification: Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification }
       end
 
       class ReportOptions < Data
-        def self.new: (report_period: String?) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
-                    | (String?) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
-        def self.[]: (report_period: String?) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
-                   | (String?) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
+        def self.new: (report_period: String) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
+                    | (String) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
+        def self.[]: (report_period: String) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
+                   | (String) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
 
         def self.members: () -> [ :report_period ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
 
-        attr_reader report_period: String?
+        attr_reader report_period: String
 
         def members: () -> [ :report_period ]
-        def to_h: () -> { report_period: String? }
+        def to_h: () -> { report_period: String }
       end
 
       class ReportSpecification < Data
-        def self.new: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerSearchTerms::ReportOptions?, report_type: String?) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
-                    | (Date?, Date?, Array[String]?, Peddler::Reports::SellingPartnerSearchTerms::ReportOptions?, String?) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
-        def self.[]: (data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerSearchTerms::ReportOptions?, report_type: String?) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
-                   | (Date?, Date?, Array[String]?, Peddler::Reports::SellingPartnerSearchTerms::ReportOptions?, String?) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
+        def self.new: (data_end_time: Date, data_start_time: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::SellingPartnerSearchTerms::ReportOptions, report_type: String) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
+                    | (Date, Date, Array[String], Peddler::Reports::SellingPartnerSearchTerms::ReportOptions, String) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
+        def self.[]: (data_end_time: Date, data_start_time: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::SellingPartnerSearchTerms::ReportOptions, report_type: String) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
+                   | (Date, Date, Array[String], Peddler::Reports::SellingPartnerSearchTerms::ReportOptions, String) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
 
         def self.members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellingPartnerSearchTerms::ReportSpecification
 
-        attr_reader data_end_time: Date?
-        attr_reader data_start_time: Date?
-        attr_reader marketplace_ids: Array[String]?
-        attr_reader report_options: Peddler::Reports::SellingPartnerSearchTerms::ReportOptions?
-        attr_reader report_type: String?
+        attr_reader data_end_time: Date
+        attr_reader data_start_time: Date
+        attr_reader marketplace_ids: Array[String]
+        attr_reader report_options: Peddler::Reports::SellingPartnerSearchTerms::ReportOptions
+        attr_reader report_type: String
 
         def members: () -> [ :data_end_time, :data_start_time, :marketplace_ids, :report_options, :report_type ]
-        def to_h: () -> { data_end_time: Date?, data_start_time: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::SellingPartnerSearchTerms::ReportOptions?, report_type: String? }
+        def to_h: () -> { data_end_time: Date, data_start_time: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::SellingPartnerSearchTerms::ReportOptions, report_type: String }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::SellingPartnerSearchTerms::Report

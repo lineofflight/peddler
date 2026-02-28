@@ -10,7 +10,7 @@ module Peddler
       # Package weight and dimension.
       MeasurementData = Structure.new do
         # @return [PackageWeight] Weight of the package.
-        attribute(:weight, PackageWeight)
+        attribute(:weight, PackageWeight, null: false)
 
         # @return [PackageDimensions] Dimensions of the package. Dimensions are required when creating an inbound or
         #   outbound order.

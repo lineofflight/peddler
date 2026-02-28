@@ -10,23 +10,23 @@ module Peddler
       # The payload for the getListingOffers and getItemOffers operations.
       GetOffersResult = Structure.new do
         # @return [ItemIdentifier] Metadata that identifies the item.
-        attribute(:identifier, ItemIdentifier, from: "Identifier")
+        attribute(:identifier, ItemIdentifier, null: false, from: "Identifier")
 
         # @return [String] The condition of the item.
-        attribute(:item_condition, String, from: "ItemCondition")
+        attribute(:item_condition, String, null: false, from: "ItemCondition")
 
         # @return [Array<OfferDetail>] A list of offer details. The list is the same length as the TotalOfferCount in
         #   the Summary or 20, whichever is less.
-        attribute(:offers, [OfferDetail], from: "Offers")
+        attribute(:offers, [OfferDetail], null: false, from: "Offers")
 
         # @return [Summary] Pricing information about the item.
-        attribute(:summary, Summary, from: "Summary")
+        attribute(:summary, Summary, null: false, from: "Summary")
 
         # @return [String] A marketplace identifier.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The status of the operation.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String, from: "ASIN")

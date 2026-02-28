@@ -11,13 +11,13 @@ module Peddler
       # status (boolean), and a list of ineligibility reason codes.
       ItemEligibilityPreview = Structure.new do
         # @return [String] The ASIN for which eligibility was determined.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [:boolean] Indicates if the item is eligible for the program.
-        attribute(:eligible_for_program, :boolean, from: "isEligibleForProgram")
+        attribute(:eligible_for_program, :boolean, null: false, from: "isEligibleForProgram")
 
         # @return [String] The program for which eligibility was determined.
-        attribute(:program, String)
+        attribute(:program, String, null: false)
 
         # @return [Array<String>] Potential Ineligibility Reason Codes.
         attribute?(:ineligibility_reason_list, [String], from: "ineligibilityReasonList")

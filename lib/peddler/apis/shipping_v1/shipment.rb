@@ -10,19 +10,19 @@ module Peddler
       # The shipment related data.
       Shipment = Structure.new do
         # @return [String]
-        attribute(:client_reference_id, String, from: "clientReferenceId")
+        attribute(:client_reference_id, String, null: false, from: "clientReferenceId")
 
         # @return [Array<Container>]
-        attribute(:containers, [Container])
+        attribute(:containers, [Container], null: false)
 
         # @return [Address]
-        attribute(:ship_from, Address, from: "shipFrom")
+        attribute(:ship_from, Address, null: false, from: "shipFrom")
 
         # @return [Address]
-        attribute(:ship_to, Address, from: "shipTo")
+        attribute(:ship_to, Address, null: false, from: "shipTo")
 
         # @return [String]
-        attribute(:shipment_id, String, from: "shipmentId")
+        attribute(:shipment_id, String, null: false, from: "shipmentId")
 
         # @return [AcceptedRate]
         attribute?(:accepted_rate, AcceptedRate, from: "acceptedRate")

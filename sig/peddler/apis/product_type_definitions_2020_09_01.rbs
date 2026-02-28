@@ -2,117 +2,117 @@ module Peddler
   module APIs
     class ProductTypeDefinitions20200901 < API
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
-                    | (String?, String?, String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
-                   | (String?, String?, String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
+                    | (String, String, String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
+                   | (String, String, String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]?) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
-                    | (Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]?) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]?) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
-                   | (Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]?) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
+                    | (Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
+                   | (Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductTypeDefinitions20200901::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]?
+        attr_reader errors: Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::ProductTypeDefinitions20200901::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::ProductTypeDefinitions20200901::Error] }
       end
 
       class ProductType < Data
-        def self.new: (display_name: String?, marketplace_ids: Array[String]?, name: String?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
-                    | (String?, Array[String]?, String?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
-        def self.[]: (display_name: String?, marketplace_ids: Array[String]?, name: String?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
-                   | (String?, Array[String]?, String?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
+        def self.new: (display_name: String, marketplace_ids: Array[String], name: String) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
+                    | (String, Array[String], String) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
+        def self.[]: (display_name: String, marketplace_ids: Array[String], name: String) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
+                   | (String, Array[String], String) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
 
         def self.members: () -> [ :display_name, :marketplace_ids, :name ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductType
 
-        attr_reader display_name: String?
-        attr_reader marketplace_ids: Array[String]?
-        attr_reader name: String?
+        attr_reader display_name: String
+        attr_reader marketplace_ids: Array[String]
+        attr_reader name: String
 
         def members: () -> [ :display_name, :marketplace_ids, :name ]
-        def to_h: () -> { display_name: String?, marketplace_ids: Array[String]?, name: String? }
+        def to_h: () -> { display_name: String, marketplace_ids: Array[String], name: String }
       end
 
       class ProductTypeDefinition < Data
-        def self.new: (display_name: String?, locale: String?, marketplace_ids: Array[String]?, product_type: String?, product_type_version: Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion?, property_groups: Hash[untyped, untyped]?, requirements: String?, requirements_enforced: String?, schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?, ?meta_schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
-                    | (String?, String?, Array[String]?, String?, Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion?, Hash[untyped, untyped]?, String?, String?, Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?, Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
-        def self.[]: (display_name: String?, locale: String?, marketplace_ids: Array[String]?, product_type: String?, product_type_version: Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion?, property_groups: Hash[untyped, untyped]?, requirements: String?, requirements_enforced: String?, schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?, ?meta_schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
-                   | (String?, String?, Array[String]?, String?, Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion?, Hash[untyped, untyped]?, String?, String?, Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?, Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
+        def self.new: (display_name: String, locale: String, marketplace_ids: Array[String], product_type: String, product_type_version: Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion, property_groups: Hash[untyped, untyped], requirements: String, requirements_enforced: String, schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink, ?meta_schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
+                    | (String, String, Array[String], String, Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion, Hash[untyped, untyped], String, String, Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink, Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
+        def self.[]: (display_name: String, locale: String, marketplace_ids: Array[String], product_type: String, product_type_version: Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion, property_groups: Hash[untyped, untyped], requirements: String, requirements_enforced: String, schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink, ?meta_schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
+                   | (String, String, Array[String], String, Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion, Hash[untyped, untyped], String, String, Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink, Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
 
         def self.members: () -> [ :display_name, :locale, :marketplace_ids, :product_type, :product_type_version, :property_groups, :requirements, :requirements_enforced, :schema, :meta_schema ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeDefinition
 
-        attr_reader display_name: String?
-        attr_reader locale: String?
-        attr_reader marketplace_ids: Array[String]?
+        attr_reader display_name: String
+        attr_reader locale: String
+        attr_reader marketplace_ids: Array[String]
         attr_reader meta_schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?
-        attr_reader product_type: String?
-        attr_reader product_type_version: Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion?
-        attr_reader property_groups: Hash[untyped, untyped]?
-        attr_reader requirements: String?
-        attr_reader requirements_enforced: String?
-        attr_reader schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?
+        attr_reader product_type: String
+        attr_reader product_type_version: Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
+        attr_reader property_groups: Hash[untyped, untyped]
+        attr_reader requirements: String
+        attr_reader requirements_enforced: String
+        attr_reader schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
 
         def members: () -> [ :display_name, :locale, :marketplace_ids, :product_type, :product_type_version, :property_groups, :requirements, :requirements_enforced, :schema, :meta_schema ]
-        def to_h: () -> { display_name: String?, locale: String?, marketplace_ids: Array[String]?, product_type: String?, product_type_version: Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion?, property_groups: Hash[untyped, untyped]?, requirements: String?, requirements_enforced: String?, schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink?, meta_schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink? }
+        def to_h: () -> { display_name: String, locale: String, marketplace_ids: Array[String], product_type: String, product_type_version: Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion, property_groups: Hash[untyped, untyped], requirements: String, requirements_enforced: String, schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink, meta_schema: Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink? }
       end
 
       class ProductTypeList < Data
-        def self.new: (product_type_version: String?, product_types: Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
-                    | (String?, Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
-        def self.[]: (product_type_version: String?, product_types: Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
-                   | (String?, Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
+        def self.new: (product_type_version: String, product_types: Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
+                    | (String, Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
+        def self.[]: (product_type_version: String, product_types: Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
+                   | (String, Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
 
         def self.members: () -> [ :product_type_version, :product_types ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeList
 
-        attr_reader product_type_version: String?
-        attr_reader product_types: Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]?
+        attr_reader product_type_version: String
+        attr_reader product_types: Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]
 
         def members: () -> [ :product_type_version, :product_types ]
-        def to_h: () -> { product_type_version: String?, product_types: Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType]? }
+        def to_h: () -> { product_type_version: String, product_types: Array[Peddler::APIs::ProductTypeDefinitions20200901::ProductType] }
       end
 
       class ProductTypeVersion < Data
-        def self.new: (latest: bool?, version: String?, ?release_candidate: bool?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
-                    | (bool?, String?, bool?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
-        def self.[]: (latest: bool?, version: String?, ?release_candidate: bool?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
-                   | (bool?, String?, bool?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
+        def self.new: (latest: bool, version: String, ?release_candidate: bool?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
+                    | (bool, String, bool?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
+        def self.[]: (latest: bool, version: String, ?release_candidate: bool?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
+                   | (bool, String, bool?) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
 
         def self.members: () -> [ :latest, :version, :release_candidate ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductTypeDefinitions20200901::ProductTypeVersion
 
-        attr_reader latest: bool?
+        attr_reader latest: bool
         attr_reader release_candidate: bool?
-        attr_reader version: String?
+        attr_reader version: String
 
         def latest?: () -> bool
         def members: () -> [ :latest, :version, :release_candidate ]
         def release_candidate?: () -> bool
-        def to_h: () -> { latest: bool?, version: String?, release_candidate: bool? }
+        def to_h: () -> { latest: bool, version: String, release_candidate: bool? }
       end
 
       class PropertyGroup < Data
@@ -134,20 +134,20 @@ module Peddler
       end
 
       class SchemaLink < Data
-        def self.new: (checksum: String?, link: Hash[untyped, untyped]?) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
-                    | (String?, Hash[untyped, untyped]?) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
-        def self.[]: (checksum: String?, link: Hash[untyped, untyped]?) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
-                   | (String?, Hash[untyped, untyped]?) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
+        def self.new: (checksum: String, link: Hash[untyped, untyped]) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
+                    | (String, Hash[untyped, untyped]) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
+        def self.[]: (checksum: String, link: Hash[untyped, untyped]) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
+                   | (String, Hash[untyped, untyped]) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
 
         def self.members: () -> [ :checksum, :link ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductTypeDefinitions20200901::SchemaLink
 
-        attr_reader checksum: String?
-        attr_reader link: Hash[untyped, untyped]?
+        attr_reader checksum: String
+        attr_reader link: Hash[untyped, untyped]
 
         def members: () -> [ :checksum, :link ]
-        def to_h: () -> { checksum: String?, link: Hash[untyped, untyped]? }
+        def to_h: () -> { checksum: String, link: Hash[untyped, untyped] }
       end
 
       def get_definitions_product_type: (String, Array[String], ?seller_id: String?, ?product_type_version: String?, ?requirements: String?, ?requirements_enforced: String?, ?locale: String?, ?rate_limit: Float) -> Peddler::Response

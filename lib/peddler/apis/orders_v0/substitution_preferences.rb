@@ -10,7 +10,7 @@ module Peddler
       # Substitution preferences for an order item.
       SubstitutionPreferences = Structure.new do
         # @return [String] The type of substitution that these preferences represent.
-        attribute(:substitution_type, String, from: "SubstitutionType")
+        attribute(:substitution_type, String, null: false, from: "SubstitutionType")
 
         # @return [Array<SubstitutionOption>] Substitution options for the order item.
         attribute?(:substitution_options, [SubstitutionOption], from: "SubstitutionOptions")

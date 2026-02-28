@@ -11,10 +11,10 @@ module Peddler
       # `ImageDimensions` units must be in pixels.
       ImageDimensions = Structure.new do
         # @return [IntegerWithUnits]
-        attribute(:height, IntegerWithUnits)
+        attribute(:height, IntegerWithUnits, null: false)
 
         # @return [IntegerWithUnits]
-        attribute(:width, IntegerWithUnits)
+        attribute(:width, IntegerWithUnits, null: false)
       end
     end
   end

@@ -10,7 +10,7 @@ module Peddler
       # Notification payload that wraps nested notification data
       Payload = Structure.new do
         # @return [FeedProcessingFinishedNotification]
-        attribute(:feed_processing_finished_notification, FeedProcessingFinishedNotification, from: "feedProcessingFinishedNotification")
+        attribute(:feed_processing_finished_notification, FeedProcessingFinishedNotification, null: false, from: "feedProcessingFinishedNotification")
       end
     end
   end

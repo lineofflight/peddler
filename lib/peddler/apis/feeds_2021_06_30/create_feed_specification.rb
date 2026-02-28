@@ -10,14 +10,14 @@ module Peddler
       # Information required to create the feed.
       CreateFeedSpecification = Structure.new do
         # @return [String] The feed type.
-        attribute(:feed_type, String, from: "feedType")
+        attribute(:feed_type, String, null: false, from: "feedType")
 
         # @return [String] The document identifier returned by the createFeedDocument operation. Upload the feed
         #   document contents before calling the createFeed operation.
-        attribute(:input_feed_document_id, String, from: "inputFeedDocumentId")
+        attribute(:input_feed_document_id, String, null: false, from: "inputFeedDocumentId")
 
         # @return [Array<String>] A list of identifiers for marketplaces that you want the feed to be applied to.
-        attribute(:marketplace_ids, [String], from: "marketplaceIds")
+        attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
         # @return [Hash]
         attribute?(:feed_options, Hash, from: "feedOptions")

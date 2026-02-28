@@ -15,11 +15,11 @@ module Peddler
         #   detail type may be provided. For example, if the value of this field is ["Approved"], calls to provide the
         #   associated verification detail will fail for orders with a `VerificationStatus` of `Pending`, `Rejected`,
         #   `Expired`, or `Cancelled`.
-        attribute(:valid_verification_statuses, Array, from: "ValidVerificationStatuses")
+        attribute(:valid_verification_statuses, Array, null: false, from: "ValidVerificationStatuses")
 
         # @return [String] A supported type of verification detail. The type indicates which verification detail could
         #   be shared while updating the regulated order. Valid value: `prescriptionDetail`.
-        attribute(:verification_detail_type, String, from: "VerificationDetailType")
+        attribute(:verification_detail_type, String, null: false, from: "VerificationDetailType")
       end
     end
   end

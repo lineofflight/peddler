@@ -11,10 +11,10 @@ module Peddler
       ShipmentTransportationConfiguration = Structure.new do
         # @return [WindowInput] The range of dates within which the seller intends to ship their items. This is the
         #   pick-up date or 'ready to ship' date, not an estimated delivery date.
-        attribute(:ready_to_ship_window, WindowInput, from: "readyToShipWindow")
+        attribute(:ready_to_ship_window, WindowInput, null: false, from: "readyToShipWindow")
 
         # @return [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
-        attribute(:shipment_id, String, from: "shipmentId")
+        attribute(:shipment_id, String, null: false, from: "shipmentId")
 
         # @return [ContactInformation]
         attribute?(:contact_information, ContactInformation, from: "contactInformation")

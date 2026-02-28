@@ -11,7 +11,7 @@ module Peddler
       ReportOptions = Structure.new do
         # @return [String] Determines what granularity of data is expected in the report. Valid values are: WEEK, MONTH,
         #   QUARTER.
-        attribute(:report_period, String, from: "reportPeriod")
+        attribute(:report_period, String, null: false, from: "reportPeriod")
       end
     end
   end

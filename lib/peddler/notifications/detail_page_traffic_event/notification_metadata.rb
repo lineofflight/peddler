@@ -9,16 +9,16 @@ module Peddler
     module DetailPageTrafficEvent
       NotificationMetadata = Structure.new do
         # @return [String]
-        attribute(:application_id, String, from: "applicationId")
+        attribute(:application_id, String, null: false, from: "applicationId")
 
         # @return [String]
-        attribute(:notification_id, String, from: "notificationId")
+        attribute(:notification_id, String, null: false, from: "notificationId")
 
         # @return [String]
-        attribute(:publish_time, String, from: "publishTime")
+        attribute(:publish_time, String, null: false, from: "publishTime")
 
         # @return [String]
-        attribute(:subscription_id, String, from: "subscriptionId")
+        attribute(:subscription_id, String, null: false, from: "subscriptionId")
       end
     end
   end

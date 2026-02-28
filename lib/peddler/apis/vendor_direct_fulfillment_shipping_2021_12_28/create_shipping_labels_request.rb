@@ -10,10 +10,10 @@ module Peddler
       # The request body for the createShippingLabels operation.
       CreateShippingLabelsRequest = Structure.new do
         # @return [PartyIdentification] ID of the selling party or vendor.
-        attribute(:selling_party, PartyIdentification, from: "sellingParty")
+        attribute(:selling_party, PartyIdentification, null: false, from: "sellingParty")
 
         # @return [PartyIdentification] Warehouse code of vendor.
-        attribute(:ship_from_party, PartyIdentification, from: "shipFromParty")
+        attribute(:ship_from_party, PartyIdentification, null: false, from: "shipFromParty")
 
         # @return [Array<Container>] A list of the packages in this shipment.
         attribute?(:containers, [Container])

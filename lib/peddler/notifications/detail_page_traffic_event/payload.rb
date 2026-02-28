@@ -10,7 +10,7 @@ module Peddler
       # Notification payload data
       Payload = Structure.new do
         # @return [Array<DetailPageTrafficEvent>]
-        attribute(:detail_page_traffic_events, [DetailPageTrafficEvent], from: "detailPageTrafficEvents")
+        attribute(:detail_page_traffic_events, [DetailPageTrafficEvent], null: false, from: "detailPageTrafficEvents")
       end
     end
   end

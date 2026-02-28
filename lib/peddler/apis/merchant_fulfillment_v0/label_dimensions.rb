@@ -10,13 +10,13 @@ module Peddler
       # Dimensions for printing a shipping label.
       LabelDimensions = Structure.new do
         # @return [Float] The length dimension.
-        attribute(:length, Float, from: "Length")
+        attribute(:length, Float, null: false, from: "Length")
 
         # @return [String] The unit of measurement.
-        attribute(:unit, String, from: "Unit")
+        attribute(:unit, String, null: false, from: "Unit")
 
         # @return [Float] The width dimension.
-        attribute(:width, Float, from: "Width")
+        attribute(:width, Float, null: false, from: "Width")
       end
     end
   end

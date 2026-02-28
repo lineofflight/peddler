@@ -10,10 +10,10 @@ module Peddler
       # The available delivery confirmation options, and the fee charged, if any.
       AvailableDeliveryExperienceOption = Structure.new do
         # @return [Money]
-        attribute(:charge, Money, from: "Charge")
+        attribute(:charge, Money, null: false, from: "Charge")
 
         # @return [String]
-        attribute(:delivery_experience_option, String, from: "DeliveryExperienceOption")
+        attribute(:delivery_experience_option, String, null: false, from: "DeliveryExperienceOption")
       end
     end
   end

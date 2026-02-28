@@ -11,10 +11,10 @@ module Peddler
       Carton = Structure.new do
         # @return [String] Carton sequence number for the carton. The first carton will be 001, the second 002, and so
         #   on. This number is used as a reference to refer to this carton from the pallet level.
-        attribute(:carton_sequence_number, String, from: "cartonSequenceNumber")
+        attribute(:carton_sequence_number, String, null: false, from: "cartonSequenceNumber")
 
         # @return [Array<ContainerItem>] A list of container item details.
-        attribute(:items, [ContainerItem])
+        attribute(:items, [ContainerItem], null: false)
 
         # @return [Array<ContainerIdentification>] A list of carton identifiers.
         attribute?(:carton_identifiers, [ContainerIdentification], from: "cartonIdentifiers")

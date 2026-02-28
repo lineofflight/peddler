@@ -11,7 +11,7 @@ module Peddler
       # are supported.
       ScheduleExpression = Structure.new do
         # @return [String] Field to specify type of the scheduled transfer
-        attribute(:schedule_expression_type, String, from: "scheduleExpressionType")
+        attribute(:schedule_expression_type, String, null: false, from: "scheduleExpressionType")
 
         # @return [String] Field to specify recurrence of the scheduled transfer. Recurring frequency is mandatory if
         #   scheduleExpressionType is set as RECURRING otherwise it should be empty field.

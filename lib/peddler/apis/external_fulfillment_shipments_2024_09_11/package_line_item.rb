@@ -10,11 +10,11 @@ module Peddler
       # A line item in a package.
       PackageLineItem = Structure.new do
         # @return [String] The line item ID.
-        attribute(:package_line_item_id, String, from: "packageLineItemId")
+        attribute(:package_line_item_id, String, null: false, from: "packageLineItemId")
 
         # @return [Integer] The number of items of a particular line item of a shipment that are packed into the
         #   package.
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [String] The country of origin provided by the seller, represented by a two-letter country code in
         #   ISO-3166 alpha-2 format. You must pass this field when `countryOfOriginRequirement` is `REQUIRED` in the

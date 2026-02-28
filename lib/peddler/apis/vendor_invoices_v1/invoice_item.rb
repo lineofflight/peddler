@@ -10,15 +10,15 @@ module Peddler
       # Details of the item being invoiced.
       InvoiceItem = Structure.new do
         # @return [ItemQuantity] Invoiced quantity of this item. Quantity must be greater than zero.
-        attribute(:invoiced_quantity, ItemQuantity, from: "invoicedQuantity")
+        attribute(:invoiced_quantity, ItemQuantity, null: false, from: "invoicedQuantity")
 
         # @return [Integer] Unique number related to this line item.
-        attribute(:item_sequence_number, Integer, from: "itemSequenceNumber")
+        attribute(:item_sequence_number, Integer, null: false, from: "itemSequenceNumber")
 
         # @return [Money] The item cost to Amazon, which should match the cost on the order. Price information should
         #   not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If items
         #   are priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
-        attribute(:net_cost, Money, from: "netCost")
+        attribute(:net_cost, Money, null: false, from: "netCost")
 
         # @return [Array<AllowanceDetails>] Individual allowance details per line item.
         attribute?(:allowance_details, [AllowanceDetails], from: "allowanceDetails")

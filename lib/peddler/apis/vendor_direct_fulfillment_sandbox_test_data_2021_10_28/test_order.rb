@@ -10,7 +10,7 @@ module Peddler
       # Error response returned when the request is unsuccessful.
       TestOrder = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.
-        attribute(:order_id, String, from: "orderId")
+        attribute(:order_id, String, null: false, from: "orderId")
       end
     end
   end

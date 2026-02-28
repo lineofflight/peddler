@@ -10,7 +10,7 @@ module Peddler
       # Specifies the content type for the createFeedDocument operation.
       CreateFeedDocumentSpecification = Structure.new do
         # @return [String] The content type of the feed.
-        attribute(:content_type, String, from: "contentType")
+        attribute(:content_type, String, null: false, from: "contentType")
       end
     end
   end

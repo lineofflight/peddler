@@ -10,7 +10,7 @@ module Peddler
       # Notification payload that wraps nested notification data
       Payload = Structure.new do
         # @return [FulfillmentOrderStatusNotification]
-        attribute(:fulfillment_order_status_notification, FulfillmentOrderStatusNotification, from: "FulfillmentOrderStatusNotification")
+        attribute(:fulfillment_order_status_notification, FulfillmentOrderStatusNotification, null: false, from: "FulfillmentOrderStatusNotification")
       end
     end
   end

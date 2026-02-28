@@ -2,157 +2,157 @@ module Peddler
   module Notifications
     module PricingHealth
       class BuyBoxPrice < Data
-        def self.new: (condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
-                    | (String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
-        def self.[]: (condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
-                   | (String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
+        def self.new: (condition: String, landed_price: Peddler::Money, listing_price: Peddler::Money, shipping: Peddler::Money, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
+                    | (String, Peddler::Money, Peddler::Money, Peddler::Money, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
+        def self.[]: (condition: String, landed_price: Peddler::Money, listing_price: Peddler::Money, shipping: Peddler::Money, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
+                   | (String, Peddler::Money, Peddler::Money, Peddler::Money, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
 
         def self.members: () -> [ :condition, :landed_price, :listing_price, :shipping, :points ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::BuyBoxPrice
 
-        attr_reader condition: String?
-        attr_reader landed_price: Peddler::Money?
-        attr_reader listing_price: Peddler::Money?
+        attr_reader condition: String
+        attr_reader landed_price: Peddler::Money
+        attr_reader listing_price: Peddler::Money
         attr_reader points: Peddler::Notifications::PricingHealth::Points?
-        attr_reader shipping: Peddler::Money?
+        attr_reader shipping: Peddler::Money
 
         def members: () -> [ :condition, :landed_price, :listing_price, :shipping, :points ]
-        def to_h: () -> { condition: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, points: Peddler::Notifications::PricingHealth::Points? }
+        def to_h: () -> { condition: String, landed_price: Peddler::Money, listing_price: Peddler::Money, shipping: Peddler::Money, points: Peddler::Notifications::PricingHealth::Points? }
       end
 
       class MerchantOffer < Data
-        def self.new: (condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
-                    | (String?, String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
-        def self.[]: (condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
-                   | (String?, String?, Peddler::Money?, Peddler::Money?, Peddler::Money?, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
+        def self.new: (condition: String, fulfillment_type: String, landed_price: Peddler::Money, listing_price: Peddler::Money, shipping: Peddler::Money, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
+                    | (String, String, Peddler::Money, Peddler::Money, Peddler::Money, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
+        def self.[]: (condition: String, fulfillment_type: String, landed_price: Peddler::Money, listing_price: Peddler::Money, shipping: Peddler::Money, ?points: Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
+                   | (String, String, Peddler::Money, Peddler::Money, Peddler::Money, Peddler::Notifications::PricingHealth::Points?) -> Peddler::Notifications::PricingHealth::MerchantOffer
 
         def self.members: () -> [ :condition, :fulfillment_type, :landed_price, :listing_price, :shipping, :points ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::MerchantOffer
 
-        attr_reader condition: String?
-        attr_reader fulfillment_type: String?
-        attr_reader landed_price: Peddler::Money?
-        attr_reader listing_price: Peddler::Money?
+        attr_reader condition: String
+        attr_reader fulfillment_type: String
+        attr_reader landed_price: Peddler::Money
+        attr_reader listing_price: Peddler::Money
         attr_reader points: Peddler::Notifications::PricingHealth::Points?
-        attr_reader shipping: Peddler::Money?
+        attr_reader shipping: Peddler::Money
 
         def members: () -> [ :condition, :fulfillment_type, :landed_price, :listing_price, :shipping, :points ]
-        def to_h: () -> { condition: String?, fulfillment_type: String?, landed_price: Peddler::Money?, listing_price: Peddler::Money?, shipping: Peddler::Money?, points: Peddler::Notifications::PricingHealth::Points? }
+        def to_h: () -> { condition: String, fulfillment_type: String, landed_price: Peddler::Money, listing_price: Peddler::Money, shipping: Peddler::Money, points: Peddler::Notifications::PricingHealth::Points? }
       end
 
       class Notification < Data
-        def self.new: (event_time: String?, notification_metadata: String?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::PricingHealth::Payload?, payload_version: String?) -> Peddler::Notifications::PricingHealth::Notification
-                    | (String?, String?, String?, String?, Peddler::Notifications::PricingHealth::Payload?, String?) -> Peddler::Notifications::PricingHealth::Notification
-        def self.[]: (event_time: String?, notification_metadata: String?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::PricingHealth::Payload?, payload_version: String?) -> Peddler::Notifications::PricingHealth::Notification
-                   | (String?, String?, String?, String?, Peddler::Notifications::PricingHealth::Payload?, String?) -> Peddler::Notifications::PricingHealth::Notification
+        def self.new: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::PricingHealth::Payload, payload_version: String) -> Peddler::Notifications::PricingHealth::Notification
+                    | (String, String, String, String, Peddler::Notifications::PricingHealth::Payload, String) -> Peddler::Notifications::PricingHealth::Notification
+        def self.[]: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::PricingHealth::Payload, payload_version: String) -> Peddler::Notifications::PricingHealth::Notification
+                   | (String, String, String, String, Peddler::Notifications::PricingHealth::Payload, String) -> Peddler::Notifications::PricingHealth::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::Notification
 
-        attr_reader event_time: String?
-        attr_reader notification_metadata: String?
-        attr_reader notification_type: String?
-        attr_reader notification_version: String?
-        attr_reader payload: Peddler::Notifications::PricingHealth::Payload?
-        attr_reader payload_version: String?
+        attr_reader event_time: String
+        attr_reader notification_metadata: String
+        attr_reader notification_type: String
+        attr_reader notification_version: String
+        attr_reader payload: Peddler::Notifications::PricingHealth::Payload
+        attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: String?, notification_metadata: String?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::PricingHealth::Payload?, payload_version: String? }
+        def to_h: () -> { event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::PricingHealth::Payload, payload_version: String }
       end
 
       class NotificationMetadata < Data
-        def self.new: (application_id: String?, notification_id: String?, publish_time: String?, subscription_id: String?) -> Peddler::Notifications::PricingHealth::NotificationMetadata
-                    | (String?, String?, String?, String?) -> Peddler::Notifications::PricingHealth::NotificationMetadata
-        def self.[]: (application_id: String?, notification_id: String?, publish_time: String?, subscription_id: String?) -> Peddler::Notifications::PricingHealth::NotificationMetadata
-                   | (String?, String?, String?, String?) -> Peddler::Notifications::PricingHealth::NotificationMetadata
+        def self.new: (application_id: String, notification_id: String, publish_time: String, subscription_id: String) -> Peddler::Notifications::PricingHealth::NotificationMetadata
+                    | (String, String, String, String) -> Peddler::Notifications::PricingHealth::NotificationMetadata
+        def self.[]: (application_id: String, notification_id: String, publish_time: String, subscription_id: String) -> Peddler::Notifications::PricingHealth::NotificationMetadata
+                   | (String, String, String, String) -> Peddler::Notifications::PricingHealth::NotificationMetadata
 
         def self.members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::NotificationMetadata
 
-        attr_reader application_id: String?
-        attr_reader notification_id: String?
-        attr_reader publish_time: String?
-        attr_reader subscription_id: String?
+        attr_reader application_id: String
+        attr_reader notification_id: String
+        attr_reader publish_time: String
+        attr_reader subscription_id: String
 
         def members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
-        def to_h: () -> { application_id: String?, notification_id: String?, publish_time: String?, subscription_id: String? }
+        def to_h: () -> { application_id: String, notification_id: String, publish_time: String, subscription_id: String }
       end
 
       class OfferChangeTrigger < Data
-        def self.new: (asin: String?, item_condition: String?, marketplace_id: String?, ?time_of_offer_change: String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
-                    | (String?, String?, String?, String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
-        def self.[]: (asin: String?, item_condition: String?, marketplace_id: String?, ?time_of_offer_change: String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
-                   | (String?, String?, String?, String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
+        def self.new: (asin: String, item_condition: String, marketplace_id: String, ?time_of_offer_change: String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
+                    | (String, String, String, String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
+        def self.[]: (asin: String, item_condition: String, marketplace_id: String, ?time_of_offer_change: String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
+                   | (String, String, String, String?) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
 
         def self.members: () -> [ :asin, :item_condition, :marketplace_id, :time_of_offer_change ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::OfferChangeTrigger
 
-        attr_reader asin: String?
-        attr_reader item_condition: String?
-        attr_reader marketplace_id: String?
+        attr_reader asin: String
+        attr_reader item_condition: String
+        attr_reader marketplace_id: String
         attr_reader time_of_offer_change: String?
 
         def members: () -> [ :asin, :item_condition, :marketplace_id, :time_of_offer_change ]
-        def to_h: () -> { asin: String?, item_condition: String?, marketplace_id: String?, time_of_offer_change: String? }
+        def to_h: () -> { asin: String, item_condition: String, marketplace_id: String, time_of_offer_change: String? }
       end
 
       class OfferCount < Data
-        def self.new: (condition: String?, fulfillment_type: String?, offer_count: Integer?) -> Peddler::Notifications::PricingHealth::OfferCount
-                    | (String?, String?, Integer?) -> Peddler::Notifications::PricingHealth::OfferCount
-        def self.[]: (condition: String?, fulfillment_type: String?, offer_count: Integer?) -> Peddler::Notifications::PricingHealth::OfferCount
-                   | (String?, String?, Integer?) -> Peddler::Notifications::PricingHealth::OfferCount
+        def self.new: (condition: String, fulfillment_type: String, offer_count: Integer) -> Peddler::Notifications::PricingHealth::OfferCount
+                    | (String, String, Integer) -> Peddler::Notifications::PricingHealth::OfferCount
+        def self.[]: (condition: String, fulfillment_type: String, offer_count: Integer) -> Peddler::Notifications::PricingHealth::OfferCount
+                   | (String, String, Integer) -> Peddler::Notifications::PricingHealth::OfferCount
 
         def self.members: () -> [ :condition, :fulfillment_type, :offer_count ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::OfferCount
 
-        attr_reader condition: String?
-        attr_reader fulfillment_type: String?
-        attr_reader offer_count: Integer?
+        attr_reader condition: String
+        attr_reader fulfillment_type: String
+        attr_reader offer_count: Integer
 
         def members: () -> [ :condition, :fulfillment_type, :offer_count ]
-        def to_h: () -> { condition: String?, fulfillment_type: String?, offer_count: Integer? }
+        def to_h: () -> { condition: String, fulfillment_type: String, offer_count: Integer }
       end
 
       class Payload < Data
-        def self.new: (issue_type: String?, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer?, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger?, seller_id: String?, summary: Peddler::Notifications::PricingHealth::Summary?) -> Peddler::Notifications::PricingHealth::Payload
-                    | (String?, Peddler::Notifications::PricingHealth::MerchantOffer?, Peddler::Notifications::PricingHealth::OfferChangeTrigger?, String?, Peddler::Notifications::PricingHealth::Summary?) -> Peddler::Notifications::PricingHealth::Payload
-        def self.[]: (issue_type: String?, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer?, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger?, seller_id: String?, summary: Peddler::Notifications::PricingHealth::Summary?) -> Peddler::Notifications::PricingHealth::Payload
-                   | (String?, Peddler::Notifications::PricingHealth::MerchantOffer?, Peddler::Notifications::PricingHealth::OfferChangeTrigger?, String?, Peddler::Notifications::PricingHealth::Summary?) -> Peddler::Notifications::PricingHealth::Payload
+        def self.new: (issue_type: String, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger, seller_id: String, summary: Peddler::Notifications::PricingHealth::Summary) -> Peddler::Notifications::PricingHealth::Payload
+                    | (String, Peddler::Notifications::PricingHealth::MerchantOffer, Peddler::Notifications::PricingHealth::OfferChangeTrigger, String, Peddler::Notifications::PricingHealth::Summary) -> Peddler::Notifications::PricingHealth::Payload
+        def self.[]: (issue_type: String, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger, seller_id: String, summary: Peddler::Notifications::PricingHealth::Summary) -> Peddler::Notifications::PricingHealth::Payload
+                   | (String, Peddler::Notifications::PricingHealth::MerchantOffer, Peddler::Notifications::PricingHealth::OfferChangeTrigger, String, Peddler::Notifications::PricingHealth::Summary) -> Peddler::Notifications::PricingHealth::Payload
 
         def self.members: () -> [ :issue_type, :merchant_offer, :offer_change_trigger, :seller_id, :summary ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::Payload
 
-        attr_reader issue_type: String?
-        attr_reader merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer?
-        attr_reader offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger?
-        attr_reader seller_id: String?
-        attr_reader summary: Peddler::Notifications::PricingHealth::Summary?
+        attr_reader issue_type: String
+        attr_reader merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer
+        attr_reader offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger
+        attr_reader seller_id: String
+        attr_reader summary: Peddler::Notifications::PricingHealth::Summary
 
         def members: () -> [ :issue_type, :merchant_offer, :offer_change_trigger, :seller_id, :summary ]
-        def to_h: () -> { issue_type: String?, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer?, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger?, seller_id: String?, summary: Peddler::Notifications::PricingHealth::Summary? }
+        def to_h: () -> { issue_type: String, merchant_offer: Peddler::Notifications::PricingHealth::MerchantOffer, offer_change_trigger: Peddler::Notifications::PricingHealth::OfferChangeTrigger, seller_id: String, summary: Peddler::Notifications::PricingHealth::Summary }
       end
 
       class Points < Data
-        def self.new: (points_number: Integer?) -> Peddler::Notifications::PricingHealth::Points
-                    | (Integer?) -> Peddler::Notifications::PricingHealth::Points
-        def self.[]: (points_number: Integer?) -> Peddler::Notifications::PricingHealth::Points
-                   | (Integer?) -> Peddler::Notifications::PricingHealth::Points
+        def self.new: (points_number: Integer) -> Peddler::Notifications::PricingHealth::Points
+                    | (Integer) -> Peddler::Notifications::PricingHealth::Points
+        def self.[]: (points_number: Integer) -> Peddler::Notifications::PricingHealth::Points
+                   | (Integer) -> Peddler::Notifications::PricingHealth::Points
 
         def self.members: () -> [ :points_number ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::Points
 
-        attr_reader points_number: Integer?
+        attr_reader points_number: Integer
 
         def members: () -> [ :points_number ]
-        def to_h: () -> { points_number: Integer? }
+        def to_h: () -> { points_number: Integer }
       end
 
       class ReferencePrice < Data
@@ -175,40 +175,40 @@ module Peddler
       end
 
       class SalesRank < Data
-        def self.new: (product_category_id: String?, rank: Integer?) -> Peddler::Notifications::PricingHealth::SalesRank
-                    | (String?, Integer?) -> Peddler::Notifications::PricingHealth::SalesRank
-        def self.[]: (product_category_id: String?, rank: Integer?) -> Peddler::Notifications::PricingHealth::SalesRank
-                   | (String?, Integer?) -> Peddler::Notifications::PricingHealth::SalesRank
+        def self.new: (product_category_id: String, rank: Integer) -> Peddler::Notifications::PricingHealth::SalesRank
+                    | (String, Integer) -> Peddler::Notifications::PricingHealth::SalesRank
+        def self.[]: (product_category_id: String, rank: Integer) -> Peddler::Notifications::PricingHealth::SalesRank
+                   | (String, Integer) -> Peddler::Notifications::PricingHealth::SalesRank
 
         def self.members: () -> [ :product_category_id, :rank ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::SalesRank
 
-        attr_reader product_category_id: String?
-        attr_reader rank: Integer?
+        attr_reader product_category_id: String
+        attr_reader rank: Integer
 
         def members: () -> [ :product_category_id, :rank ]
-        def to_h: () -> { product_category_id: String?, rank: Integer? }
+        def to_h: () -> { product_category_id: String, rank: Integer }
       end
 
       class Summary < Data
-        def self.new: (buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: Peddler::Notifications::PricingHealth::ReferencePrice?, ?buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, ?sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
-                    | (Array[Peddler::Notifications::PricingHealth::OfferCount]?, Array[Peddler::Notifications::PricingHealth::OfferCount]?, Peddler::Notifications::PricingHealth::ReferencePrice?, Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
-        def self.[]: (buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: Peddler::Notifications::PricingHealth::ReferencePrice?, ?buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, ?sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
-                   | (Array[Peddler::Notifications::PricingHealth::OfferCount]?, Array[Peddler::Notifications::PricingHealth::OfferCount]?, Peddler::Notifications::PricingHealth::ReferencePrice?, Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
+        def self.new: (buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount], number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount], reference_price: Peddler::Notifications::PricingHealth::ReferencePrice, ?buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, ?sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
+                    | (Array[Peddler::Notifications::PricingHealth::OfferCount], Array[Peddler::Notifications::PricingHealth::OfferCount], Peddler::Notifications::PricingHealth::ReferencePrice, Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
+        def self.[]: (buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount], number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount], reference_price: Peddler::Notifications::PricingHealth::ReferencePrice, ?buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, ?sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
+                   | (Array[Peddler::Notifications::PricingHealth::OfferCount], Array[Peddler::Notifications::PricingHealth::OfferCount], Peddler::Notifications::PricingHealth::ReferencePrice, Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, Array[Peddler::Notifications::PricingHealth::SalesRank]?) -> Peddler::Notifications::PricingHealth::Summary
 
         def self.members: () -> [ :buy_box_eligible_offers, :number_of_offers, :reference_price, :buy_box_prices, :sales_rankings ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::PricingHealth::Summary
 
-        attr_reader buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?
+        attr_reader buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]
         attr_reader buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?
-        attr_reader number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?
-        attr_reader reference_price: Peddler::Notifications::PricingHealth::ReferencePrice?
+        attr_reader number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]
+        attr_reader reference_price: Peddler::Notifications::PricingHealth::ReferencePrice
         attr_reader sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]?
 
         def members: () -> [ :buy_box_eligible_offers, :number_of_offers, :reference_price, :buy_box_prices, :sales_rankings ]
-        def to_h: () -> { buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount]?, reference_price: Peddler::Notifications::PricingHealth::ReferencePrice?, buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]? }
+        def to_h: () -> { buy_box_eligible_offers: Array[Peddler::Notifications::PricingHealth::OfferCount], number_of_offers: Array[Peddler::Notifications::PricingHealth::OfferCount], reference_price: Peddler::Notifications::PricingHealth::ReferencePrice, buy_box_prices: Array[Peddler::Notifications::PricingHealth::BuyBoxPrice]?, sales_rankings: Array[Peddler::Notifications::PricingHealth::SalesRank]? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::PricingHealth::Notification

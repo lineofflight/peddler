@@ -13,13 +13,13 @@ module Peddler
       Report = Structure.new do
         # @return [Hash] The report summary including the specified reporting date range and the last updated date in
         #   the input.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
 
         # @return [Array<TrafficAggregate>]
-        attribute(:traffic_aggregate, [TrafficAggregate], from: "trafficAggregate")
+        attribute(:traffic_aggregate, [TrafficAggregate], null: false, from: "trafficAggregate")
 
         # @return [Array<TrafficByAsin>]
-        attribute(:traffic_by_asin, [TrafficByASIN], from: "trafficByAsin")
+        attribute(:traffic_by_asin, [TrafficByASIN], null: false, from: "trafficByAsin")
       end
     end
   end

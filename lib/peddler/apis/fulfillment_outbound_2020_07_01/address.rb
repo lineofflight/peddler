@@ -10,16 +10,16 @@ module Peddler
       # A physical address.
       Address = Structure.new do
         # @return [String] The first line of the address.
-        attribute(:address_line1, String, from: "addressLine1")
+        attribute(:address_line1, String, null: false, from: "addressLine1")
 
         # @return [String] The two digit country code. In ISO 3166-1 alpha-2 format.
-        attribute(:country_code, String, from: "countryCode")
+        attribute(:country_code, String, null: false, from: "countryCode")
 
         # @return [String] The name of the person, business or institution at the address.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String] The postal code of the address.
-        attribute(:postal_code, String, from: "postalCode")
+        attribute(:postal_code, String, null: false, from: "postalCode")
 
         # @return [String] Additional address information, if required.
         attribute?(:address_line2, String, from: "addressLine2")

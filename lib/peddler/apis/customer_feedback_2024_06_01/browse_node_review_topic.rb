@@ -11,10 +11,10 @@ module Peddler
       BrowseNodeReviewTopic = Structure.new do
         # @return [BrowseNodeReviewTopicMetrics] The percentage of browse node reviews that mention the topic, and the
         #   effect the topic has on the star rating.
-        attribute(:browse_node_metrics, BrowseNodeReviewTopicMetrics, from: "browseNodeMetrics")
+        attribute(:browse_node_metrics, BrowseNodeReviewTopicMetrics, null: false, from: "browseNodeMetrics")
 
         # @return [String] The name browse node review topic.
-        attribute(:topic, String)
+        attribute(:topic, String, null: false)
 
         # @return [Array<String>] A list of up to three snippets from reviews that contain the topic. This value is
         #   `null` if there aren't enough review snippets for the topic.

@@ -11,7 +11,7 @@ module Peddler
       CreateQuerySpecification = Structure.new do
         # @return [String] The GraphQL query to submit. A query must be at most 8000 characters after unnecessary
         #   whitespace is removed.
-        attribute(:query, String)
+        attribute(:query, String, null: false)
 
         # @return [String] A token to fetch a certain page of query results when there are multiple pages of query
         #   results available. The value of this token must be fetched from the `pagination.nextToken` field of the

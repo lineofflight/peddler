@@ -9,7 +9,7 @@ module Peddler
     class AplusContent20201101
       PostContentDocumentASINRelationsRequest = Structure.new do
         # @return [Array<Asin>]
-        attribute(:asin_set, Array, from: "asinSet")
+        attribute(:asin_set, Array, null: false, from: "asinSet")
       end
     end
   end

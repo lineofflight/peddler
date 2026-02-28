@@ -10,7 +10,7 @@ module Peddler
       # The `scheduleSelfShipAppointment` response.
       ScheduleSelfShipAppointmentResponse = Structure.new do
         # @return [SelfShipAppointmentDetails]
-        attribute(:self_ship_appointment_details, SelfShipAppointmentDetails, from: "selfShipAppointmentDetails")
+        attribute(:self_ship_appointment_details, SelfShipAppointmentDetails, null: false, from: "selfShipAppointmentDetails")
       end
     end
   end

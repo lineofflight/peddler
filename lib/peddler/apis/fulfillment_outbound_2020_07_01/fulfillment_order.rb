@@ -10,38 +10,38 @@ module Peddler
       # General information about a fulfillment order, including its status.
       FulfillmentOrder = Structure.new do
         # @return [Address] The destination address submitted with the `createFulfillmentOrder` operation.
-        attribute(:destination_address, Address, from: "destinationAddress")
+        attribute(:destination_address, Address, null: false, from: "destinationAddress")
 
         # @return [String] A text block submitted with the `createFulfillmentOrder` operation. Displays in
         #   recipient-facing materials such as the packing slip.
-        attribute(:displayable_order_comment, String, from: "displayableOrderComment")
+        attribute(:displayable_order_comment, String, null: false, from: "displayableOrderComment")
 
         # @return [String] A date and time submitted with the `createFulfillmentOrder` operation. Displays as the order
         #   date in recipient-facing materials such as the packing slip.
-        attribute(:displayable_order_date, String, from: "displayableOrderDate")
+        attribute(:displayable_order_date, String, null: false, from: "displayableOrderDate")
 
         # @return [String] A fulfillment order identifier submitted with the `createFulfillmentOrder` operation.
         #   Displays as the order identifier in recipient-facing materials such as the packing slip.
-        attribute(:displayable_order_id, String, from: "displayableOrderId")
+        attribute(:displayable_order_id, String, null: false, from: "displayableOrderId")
 
         # @return [String]
-        attribute(:fulfillment_order_status, String, from: "fulfillmentOrderStatus")
+        attribute(:fulfillment_order_status, String, null: false, from: "fulfillmentOrderStatus")
 
         # @return [String] The identifier for the marketplace the fulfillment order is placed against.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The date and time that the fulfillment order was received by an Amazon fulfillment center.
-        attribute(:received_date, String, from: "receivedDate")
+        attribute(:received_date, String, null: false, from: "receivedDate")
 
         # @return [String] The fulfillment order identifier submitted with the `createFulfillmentOrder` operation.
-        attribute(:seller_fulfillment_order_id, String, from: "sellerFulfillmentOrderId")
+        attribute(:seller_fulfillment_order_id, String, null: false, from: "sellerFulfillmentOrderId")
 
         # @return [String]
-        attribute(:shipping_speed_category, String, from: "shippingSpeedCategory")
+        attribute(:shipping_speed_category, String, null: false, from: "shippingSpeedCategory")
 
-        # @return [String] The date and time that the status of the fulfillment order last changed, in ISO 8601 date
-        #   time format.
-        attribute(:status_updated_date, String, from: "statusUpdatedDate")
+        # @return [String] The date and time that the status of the fulfillment order last changed. Must be in
+        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+        attribute(:status_updated_date, String, null: false, from: "statusUpdatedDate")
 
         # @return [CODSettings]
         attribute?(:cod_settings, CODSettings, from: "codSettings")

@@ -10,29 +10,29 @@ module Peddler
       # Information about the return item.
       Return = Structure.new do
         # @return [String] The ID of the location that fulfilled the order.
-        attribute(:fulfillment_location_id, String, from: "fulfillmentLocationId")
+        attribute(:fulfillment_location_id, String, null: false, from: "fulfillmentLocationId")
 
         # @return [String] The return item's ID.
-        attribute(:id, String)
+        attribute(:id, String, null: false)
 
         # @return [String] The date and time of the most recent update to the return.
-        attribute(:last_updated_date_time, String, from: "lastUpdatedDateTime")
+        attribute(:last_updated_date_time, String, null: false, from: "lastUpdatedDateTime")
 
         # @return [MarketplaceChannelDetails] Channel-specific attributes for the return. These attributes are not
         #   mandatory and each channel can provide them differently.
-        attribute(:marketplace_channel_details, MarketplaceChannelDetails, from: "marketplaceChannelDetails")
+        attribute(:marketplace_channel_details, MarketplaceChannelDetails, null: false, from: "marketplaceChannelDetails")
 
         # @return [ReturnMetadata] Metadata about the return item.
-        attribute(:return_metadata, ReturnMetadata, from: "returnMetadata")
+        attribute(:return_metadata, ReturnMetadata, null: false, from: "returnMetadata")
 
         # @return [ReturnShippingInfo] Information about the shipping of the return packages.
-        attribute(:return_shipping_info, ReturnShippingInfo, from: "returnShippingInfo")
+        attribute(:return_shipping_info, ReturnShippingInfo, null: false, from: "returnShippingInfo")
 
         # @return [String] The type of return.
-        attribute(:return_type, String, from: "returnType")
+        attribute(:return_type, String, null: false, from: "returnType")
 
         # @return [String] The current status of the return.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [String] The date and time when the return was created.
         attribute?(:creation_date_time, String, from: "creationDateTime")

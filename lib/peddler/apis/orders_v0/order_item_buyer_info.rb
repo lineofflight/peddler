@@ -10,7 +10,7 @@ module Peddler
       # A single order item's buyer information.
       OrderItemBuyerInfo = Structure.new do
         # @return [String] An Amazon-defined order item identifier.
-        attribute(:order_item_id, String, from: "OrderItemId")
+        attribute(:order_item_id, String, null: false, from: "OrderItemId")
 
         # @return [BuyerCustomizedInfoDetail] Buyer information for custom orders from the Amazon Custom program.
         #

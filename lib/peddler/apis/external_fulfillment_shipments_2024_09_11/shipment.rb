@@ -11,39 +11,39 @@ module Peddler
       Shipment = Structure.new do
         # @return [Array<Charge>] The charges associated with the shipment. The charge amount does not include the tax
         #   amount.
-        attribute(:charges, [Charge])
+        attribute(:charges, [Charge], null: false)
 
         # @return [String] The date and time when the shipment was created.
-        attribute(:creation_date_time, String, from: "creationDateTime")
+        attribute(:creation_date_time, String, null: false, from: "creationDateTime")
 
         # @return [String] The shipment's ID.
-        attribute(:id, String)
+        attribute(:id, String, null: false)
 
         # @return [String] The date and time when the shipment was last updated.
-        attribute(:last_updated_date_time, String, from: "lastUpdatedDateTime")
+        attribute(:last_updated_date_time, String, null: false, from: "lastUpdatedDateTime")
 
         # @return [Array<ShipmentLineItem>] The line items in the shipment.
-        attribute(:line_items, [ShipmentLineItem], from: "lineItems")
+        attribute(:line_items, [ShipmentLineItem], null: false, from: "lineItems")
 
         # @return [String] The location identifier of the seller's location in the marketplace channel to which the
         #   shipment has been created for fulfillment.
-        attribute(:location_id, String, from: "locationId")
+        attribute(:location_id, String, null: false, from: "locationId")
 
         # @return [MarketplaceAttributes] The marketplace attributes from which the shipment has been created for
         #   fulfillment.
-        attribute(:marketplace_attributes, MarketplaceAttributes, from: "marketplaceAttributes")
+        attribute(:marketplace_attributes, MarketplaceAttributes, null: false, from: "marketplaceAttributes")
 
         # @return [ShipmentInfo] High-level details of the shipment.
-        attribute(:shipment_info, ShipmentInfo, from: "shipmentInfo")
+        attribute(:shipment_info, ShipmentInfo, null: false, from: "shipmentInfo")
 
         # @return [ShipmentRequirements] Whether a specific capabilities are enabled/required for the shipment.
-        attribute(:shipment_requirements, ShipmentRequirements, from: "shipmentRequirements")
+        attribute(:shipment_requirements, ShipmentRequirements, null: false, from: "shipmentRequirements")
 
         # @return [ShippingInfo] Shipping information for the packages in this shipment.
-        attribute(:shipping_info, ShippingInfo, from: "shippingInfo")
+        attribute(:shipping_info, ShippingInfo, null: false, from: "shippingInfo")
 
         # @return [String] The current status of the shipment.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [String] The time when the shipment becomes eligible for processing.
         attribute?(:earliest_pack_date_time, String, from: "earliestPackDateTime")

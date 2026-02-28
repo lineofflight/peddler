@@ -11,62 +11,62 @@ module Peddler
       TrafficByASIN = Structure.new do
         # @return [Integer] Browser page views are the number of times any user visited your Amazon.com browser pages
         #   for the selected time period.
-        attribute(:browser_page_views, Integer, from: "browserPageViews")
+        attribute(:browser_page_views, Integer, null: false, from: "browserPageViews")
 
         # @return [Float] The percentage of browser views that a particular SKU/ASIN receives relative to the total
         #   number of mobile page views for all products.
-        attribute(:browser_page_views_percentage, Float, from: "browserPageViewsPercentage")
+        attribute(:browser_page_views_percentage, Float, null: false, from: "browserPageViewsPercentage")
 
         # @return [Float] The percentage of browser sessions that contain at least one page view for a particular
         #   SKU/ASIN relative to the total number of browser sessions for all products.
-        attribute(:browser_session_percentage, Float, from: "browserSessionPercentage")
+        attribute(:browser_session_percentage, Float, null: false, from: "browserSessionPercentage")
 
         # @return [Integer] Browser sessions are visits to your Amazon.com browser pages by any user. All activity
         #   within a 24-hour period is considered a browser session. For example, if any user visits your pages using
         #   browser multiple times within a 24 hour period it is counted as a single session.
-        attribute(:browser_sessions, Integer, from: "browserSessions")
+        attribute(:browser_sessions, Integer, null: false, from: "browserSessions")
 
         # @return [Float] The percentage of page views where the buy box (the add to shopping cart link) appeared on the
         #   page for customers to add your product to their cart.
-        attribute(:buy_box_percentage, Float, from: "buyBoxPercentage")
+        attribute(:buy_box_percentage, Float, null: false, from: "buyBoxPercentage")
 
         # @return [Integer] Mobile app page views are the number of times any user visited your Amazon.com mobile app
         #   pages for the selected time period.
-        attribute(:mobile_app_page_views, Integer, from: "mobileAppPageViews")
+        attribute(:mobile_app_page_views, Integer, null: false, from: "mobileAppPageViews")
 
         # @return [Float] The percentage of mobile page views that a particular SKU/ASIN receives relative to the total
         #   number of mobile page views for all products.
-        attribute(:mobile_app_page_views_percentage, Float, from: "mobileAppPageViewsPercentage")
+        attribute(:mobile_app_page_views_percentage, Float, null: false, from: "mobileAppPageViewsPercentage")
 
         # @return [Float] The percentage of mobile app sessions that contain at least one page view for a particular
         #   SKU/ASIN relative to the total number of mobile app sessions for all products.
-        attribute(:mobile_app_session_percentage, Float, from: "mobileAppSessionPercentage")
+        attribute(:mobile_app_session_percentage, Float, null: false, from: "mobileAppSessionPercentage")
 
         # @return [Integer] Mobile app sessions are visits to your Amazon.com mobile app pages by any user. All activity
         #   within a 24-hour period is considered a mobile app session. For example, if any user visits your pages using
         #   mobile app multiple times within a 24 hour period it is counted as a single session.
-        attribute(:mobile_app_sessions, Integer, from: "mobileAppSessions")
+        attribute(:mobile_app_sessions, Integer, null: false, from: "mobileAppSessions")
 
         # @return [Integer] Page views are the number of times any user visited your Amazon.com pages using browser or
         #   mobile app for the selected time period.
-        attribute(:page_views, Integer, from: "pageViews")
+        attribute(:page_views, Integer, null: false, from: "pageViews")
 
         # @return [Float] The percentage of page views that a particular SKU/ASIN receives relative to the total number
         #   of page views for all products.
-        attribute(:page_views_percentage, Float, from: "pageViewsPercentage")
+        attribute(:page_views_percentage, Float, null: false, from: "pageViewsPercentage")
 
         # @return [Float] The percentage of sessions that contain at least one page view for a particular SKU/ASIN
         #   relative to the total number of sessions for all products.
-        attribute(:session_percentage, Float, from: "sessionPercentage")
+        attribute(:session_percentage, Float, null: false, from: "sessionPercentage")
 
         # @return [Integer] Sessions are visits to your Amazon.com pages using mobile app or browser by any user. All
         #   activity within a 24-hour period is considered a session. For example, if any user visits your pages
         #   multiple times within a 24 hour period it is counted as a single session.
-        attribute(:sessions, Integer)
+        attribute(:sessions, Integer, null: false)
 
         # @return [Float] The percentage conversion metric indicating how many units were purchased relative to the
         #   number of people who viewed the products, calculated by dividing unitsOrdered by sessions.
-        attribute(:unit_session_percentage, Float, from: "unitSessionPercentage")
+        attribute(:unit_session_percentage, Float, null: false, from: "unitSessionPercentage")
 
         # @return [Integer] Browser page views are the number of times an Amazon Business customer visited your
         #   Amazon.com browser pages for the selected time period. Note: This field is only populated when the seller is

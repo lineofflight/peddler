@@ -12,19 +12,19 @@ module Peddler
       # and when channelType is Amazon shipTo is ignored.
       OneClickShipmentRequest = Structure.new do
         # @return [ChannelDetails]
-        attribute(:channel_details, ChannelDetails, from: "channelDetails")
+        attribute(:channel_details, ChannelDetails, null: false, from: "channelDetails")
 
         # @return [RequestedDocumentSpecification]
-        attribute(:label_specifications, RequestedDocumentSpecification, from: "labelSpecifications")
+        attribute(:label_specifications, RequestedDocumentSpecification, null: false, from: "labelSpecifications")
 
         # @return [Array<Package>]
-        attribute(:packages, [Package])
+        attribute(:packages, [Package], null: false)
 
         # @return [ServiceSelection]
-        attribute(:service_selection, ServiceSelection, from: "serviceSelection")
+        attribute(:service_selection, ServiceSelection, null: false, from: "serviceSelection")
 
         # @return [Address] The ship from address.
-        attribute(:ship_from, Address, from: "shipFrom")
+        attribute(:ship_from, Address, null: false, from: "shipFrom")
 
         # @return [AccessPointDetails]
         attribute?(:destination_access_point_details, AccessPointDetails, from: "destinationAccessPointDetails")

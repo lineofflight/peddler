@@ -10,10 +10,10 @@ module Peddler
       # The payload for the `getEligibleInventory` operation.
       GetFeatureInventoryResult = Structure.new do
         # @return [String] The name of the feature.
-        attribute(:feature_name, String, from: "featureName")
+        attribute(:feature_name, String, null: false, from: "featureName")
 
         # @return [String] The requested marketplace.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<FeatureSku>] An array of SKUs eligible for this feature and the quantity available.
         attribute?(:feature_skus, [FeatureSKU], from: "featureSkus")

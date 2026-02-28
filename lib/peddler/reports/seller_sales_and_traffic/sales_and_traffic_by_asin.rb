@@ -11,13 +11,13 @@ module Peddler
       SalesAndTrafficByASIN = Structure.new do
         # @return [String] The Amazon Standard Identification Number of the parent product. A parent product appears in
         #   our catalog as a non-buyable, generic identifier for a product that has buyable variations (child products).
-        attribute(:parent_asin, String, from: "parentAsin")
+        attribute(:parent_asin, String, null: false, from: "parentAsin")
 
         # @return [SalesByASIN] Sales metrics for ASINs in the seller's account aggregated by ASIN
-        attribute(:sales_by_asin, SalesByASIN, from: "salesByAsin")
+        attribute(:sales_by_asin, SalesByASIN, null: false, from: "salesByAsin")
 
         # @return [TrafficByASIN] Traffic metrics for ASINs in the seller's account aggregated by ASIN
-        attribute(:traffic_by_asin, TrafficByASIN, from: "trafficByAsin")
+        attribute(:traffic_by_asin, TrafficByASIN, null: false, from: "trafficByAsin")
 
         # @return [String] The Amazon Standard Identification Number of the child product. Child products are unique,
         #   sellable products that are related in our catalog to a single, non-sellable parent product. Note: This field

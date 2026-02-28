@@ -11,16 +11,16 @@ module Peddler
       ReportProcessingFinishedNotification = Structure.new do
         # @return [String] The merchant customer identifier or vendor group identifier of the selling partner account on
         #   whose behalf the report was submitted.
-        attribute(:account_id, String, from: "accountId")
+        attribute(:account_id, String, null: false, from: "accountId")
 
         # @return [String] The processing status of the report.
-        attribute(:processing_status, String, from: "processingStatus")
+        attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # @return [String] The report identifier.
-        attribute(:report_id, String, from: "reportId")
+        attribute(:report_id, String, null: false, from: "reportId")
 
         # @return [String] The report type.
-        attribute(:report_type, String, from: "reportType")
+        attribute(:report_type, String, null: false, from: "reportType")
 
         # @return [String] The report document identifier. This identifier is unique only in combination with a seller
         #   ID.

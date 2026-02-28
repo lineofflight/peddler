@@ -10,7 +10,7 @@ module Peddler
       # Items in the Amazon catalog and search-related metadata.
       ItemSearchResults = Structure.new do
         # @return [Array<Item>] A list of items from the Amazon catalog.
-        attribute(:items, [Item])
+        attribute(:items, [Item], null: false)
 
         # @return [Integer] For searches that are based on `identifiers`, `numberOfResults` is the total number of
         #   Amazon catalog items found. For searches that are based on `keywords`, `numberOfResults` is the estimated
@@ -18,7 +18,7 @@ module Peddler
         #   limit are returned per request regardless of the number found.
         #
         # **Note:** The maximum number of items (ASINs) that can be returned and paged through is 1,000.
-        attribute(:number_of_results, Integer, from: "numberOfResults")
+        attribute(:number_of_results, Integer, null: false, from: "numberOfResults")
 
         # @return [Pagination] The `nextToken` and `previousToken` values that are required to retrieve paginated
         #   results.

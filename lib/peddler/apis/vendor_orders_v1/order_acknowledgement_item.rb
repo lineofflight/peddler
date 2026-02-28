@@ -10,10 +10,10 @@ module Peddler
       # Details of the item being acknowledged.
       OrderAcknowledgementItem = Structure.new do
         # @return [Array<OrderItemAcknowledgement>] This is used to indicate acknowledged quantity.
-        attribute(:item_acknowledgements, [OrderItemAcknowledgement], from: "itemAcknowledgements")
+        attribute(:item_acknowledgements, [OrderItemAcknowledgement], null: false, from: "itemAcknowledgements")
 
         # @return [ItemQuantity] The quantity of this item ordered.
-        attribute(:ordered_quantity, ItemQuantity, from: "orderedQuantity")
+        attribute(:ordered_quantity, ItemQuantity, null: false, from: "orderedQuantity")
 
         # @return [String] Amazon Standard Identification Number (ASIN) of an item.
         attribute?(:amazon_product_identifier, String, from: "amazonProductIdentifier")

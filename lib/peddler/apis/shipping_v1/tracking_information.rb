@@ -10,16 +10,16 @@ module Peddler
       # The payload schema for the getTrackingInformation operation.
       TrackingInformation = Structure.new do
         # @return [Array<Event>]
-        attribute(:event_history, [Event], from: "eventHistory")
+        attribute(:event_history, [Event], null: false, from: "eventHistory")
 
         # @return [String]
-        attribute(:promised_delivery_date, String, from: "promisedDeliveryDate")
+        attribute(:promised_delivery_date, String, null: false, from: "promisedDeliveryDate")
 
         # @return [TrackingSummary]
-        attribute(:summary, TrackingSummary)
+        attribute(:summary, TrackingSummary, null: false)
 
         # @return [String]
-        attribute(:tracking_id, String, from: "trackingId")
+        attribute(:tracking_id, String, null: false, from: "trackingId")
       end
     end
   end

@@ -2,21 +2,21 @@ module Peddler
   module APIs
     class ProductFeesV0 < API
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ProductFeesV0::Error
-                    | (String?, String?, String?) -> Peddler::APIs::ProductFeesV0::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ProductFeesV0::Error
-                   | (String?, String?, String?) -> Peddler::APIs::ProductFeesV0::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ProductFeesV0::Error
+                    | (String, String, String?) -> Peddler::APIs::ProductFeesV0::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::ProductFeesV0::Error
+                   | (String, String, String?) -> Peddler::APIs::ProductFeesV0::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]
@@ -24,24 +24,24 @@ module Peddler
       end
 
       class FeeDetail < Data
-        def self.new: (fee_amount: Peddler::Money?, fee_type: String?, final_fee: Peddler::Money?, ?fee_promotion: Peddler::Money?, ?included_fee_detail_list: Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, ?tax_amount: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeeDetail
-                    | (Peddler::Money?, String?, Peddler::Money?, Peddler::Money?, Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeeDetail
-        def self.[]: (fee_amount: Peddler::Money?, fee_type: String?, final_fee: Peddler::Money?, ?fee_promotion: Peddler::Money?, ?included_fee_detail_list: Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, ?tax_amount: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeeDetail
-                   | (Peddler::Money?, String?, Peddler::Money?, Peddler::Money?, Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeeDetail
+        def self.new: (fee_amount: Peddler::Money, fee_type: String, final_fee: Peddler::Money, ?fee_promotion: Peddler::Money?, ?included_fee_detail_list: Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, ?tax_amount: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeeDetail
+                    | (Peddler::Money, String, Peddler::Money, Peddler::Money?, Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeeDetail
+        def self.[]: (fee_amount: Peddler::Money, fee_type: String, final_fee: Peddler::Money, ?fee_promotion: Peddler::Money?, ?included_fee_detail_list: Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, ?tax_amount: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeeDetail
+                   | (Peddler::Money, String, Peddler::Money, Peddler::Money?, Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeeDetail
 
         def self.members: () -> [ :fee_amount, :fee_type, :final_fee, :fee_promotion, :included_fee_detail_list, :tax_amount ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::FeeDetail
 
-        attr_reader fee_amount: Peddler::Money?
+        attr_reader fee_amount: Peddler::Money
         attr_reader fee_promotion: Peddler::Money?
-        attr_reader fee_type: String?
-        attr_reader final_fee: Peddler::Money?
+        attr_reader fee_type: String
+        attr_reader final_fee: Peddler::Money
         attr_reader included_fee_detail_list: Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?
         attr_reader tax_amount: Peddler::Money?
 
         def members: () -> [ :fee_amount, :fee_type, :final_fee, :fee_promotion, :included_fee_detail_list, :tax_amount ]
-        def to_h: () -> { fee_amount: Peddler::Money?, fee_type: String?, final_fee: Peddler::Money?, fee_promotion: Peddler::Money?, included_fee_detail_list: Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, tax_amount: Peddler::Money? }
+        def to_h: () -> { fee_amount: Peddler::Money, fee_type: String, final_fee: Peddler::Money, fee_promotion: Peddler::Money?, included_fee_detail_list: Array[Peddler::APIs::ProductFeesV0::IncludedFeeDetail]?, tax_amount: Peddler::Money? }
       end
 
       class FeeDetailList < Array[FeeDetail]
@@ -49,58 +49,58 @@ module Peddler
       end
 
       class FeesEstimate < Data
-        def self.new: (time_of_fees_estimation: Time?, ?fee_detail_list: Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, ?total_fees_estimate: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeesEstimate
-                    | (Time?, Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeesEstimate
-        def self.[]: (time_of_fees_estimation: Time?, ?fee_detail_list: Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, ?total_fees_estimate: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeesEstimate
-                   | (Time?, Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeesEstimate
+        def self.new: (time_of_fees_estimation: Time, ?fee_detail_list: Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, ?total_fees_estimate: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeesEstimate
+                    | (Time, Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeesEstimate
+        def self.[]: (time_of_fees_estimation: Time, ?fee_detail_list: Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, ?total_fees_estimate: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeesEstimate
+                   | (Time, Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::FeesEstimate
 
         def self.members: () -> [ :time_of_fees_estimation, :fee_detail_list, :total_fees_estimate ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::FeesEstimate
 
         attr_reader fee_detail_list: Array[Peddler::APIs::ProductFeesV0::FeeDetail]?
-        attr_reader time_of_fees_estimation: Time?
+        attr_reader time_of_fees_estimation: Time
         attr_reader total_fees_estimate: Peddler::Money?
 
         def members: () -> [ :time_of_fees_estimation, :fee_detail_list, :total_fees_estimate ]
-        def to_h: () -> { time_of_fees_estimation: Time?, fee_detail_list: Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, total_fees_estimate: Peddler::Money? }
+        def to_h: () -> { time_of_fees_estimation: Time, fee_detail_list: Array[Peddler::APIs::ProductFeesV0::FeeDetail]?, total_fees_estimate: Peddler::Money? }
       end
 
       class FeesEstimateByIdRequest < Data
-        def self.new: (id_type: String?, id_value: String?, ?fees_estimate_request: Peddler::APIs::ProductFeesV0::FeesEstimateRequest?) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
-                    | (String?, String?, Peddler::APIs::ProductFeesV0::FeesEstimateRequest?) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
-        def self.[]: (id_type: String?, id_value: String?, ?fees_estimate_request: Peddler::APIs::ProductFeesV0::FeesEstimateRequest?) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
-                   | (String?, String?, Peddler::APIs::ProductFeesV0::FeesEstimateRequest?) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
+        def self.new: (id_type: String, id_value: String, ?fees_estimate_request: Peddler::APIs::ProductFeesV0::FeesEstimateRequest?) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
+                    | (String, String, Peddler::APIs::ProductFeesV0::FeesEstimateRequest?) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
+        def self.[]: (id_type: String, id_value: String, ?fees_estimate_request: Peddler::APIs::ProductFeesV0::FeesEstimateRequest?) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
+                   | (String, String, Peddler::APIs::ProductFeesV0::FeesEstimateRequest?) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
 
         def self.members: () -> [ :id_type, :id_value, :fees_estimate_request ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::FeesEstimateByIdRequest
 
         attr_reader fees_estimate_request: Peddler::APIs::ProductFeesV0::FeesEstimateRequest?
-        attr_reader id_type: String?
-        attr_reader id_value: String?
+        attr_reader id_type: String
+        attr_reader id_value: String
 
         def members: () -> [ :id_type, :id_value, :fees_estimate_request ]
-        def to_h: () -> { id_type: String?, id_value: String?, fees_estimate_request: Peddler::APIs::ProductFeesV0::FeesEstimateRequest? }
+        def to_h: () -> { id_type: String, id_value: String, fees_estimate_request: Peddler::APIs::ProductFeesV0::FeesEstimateRequest? }
       end
 
       class FeesEstimateError < Data
-        def self.new: (code: String?, detail: Array[untyped]?, message: String?, type: String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
-                    | (String?, Array[untyped]?, String?, String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
-        def self.[]: (code: String?, detail: Array[untyped]?, message: String?, type: String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
-                   | (String?, Array[untyped]?, String?, String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
+        def self.new: (code: String, detail: Array[untyped], message: String, type: String) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
+                    | (String, Array[untyped], String, String) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
+        def self.[]: (code: String, detail: Array[untyped], message: String, type: String) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
+                   | (String, Array[untyped], String, String) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
 
         def self.members: () -> [ :code, :detail, :message, :type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::FeesEstimateError
 
-        attr_reader code: String?
-        attr_reader detail: Array[untyped]?
-        attr_reader message: String?
-        attr_reader type: String?
+        attr_reader code: String
+        attr_reader detail: Array[untyped]
+        attr_reader message: String
+        attr_reader type: String
 
         def members: () -> [ :code, :detail, :message, :type ]
-        def to_h: () -> { code: String?, detail: Array[untyped]?, message: String?, type: String? }
+        def to_h: () -> { code: String, detail: Array[untyped], message: String, type: String }
       end
 
       class FeesEstimateErrorDetail < Array[untyped]
@@ -132,24 +132,24 @@ module Peddler
       end
 
       class FeesEstimateRequest < Data
-        def self.new: (identifier: String?, marketplace_id: String?, price_to_estimate_fees: Peddler::APIs::ProductFeesV0::PriceToEstimateFees?, ?amazon_fulfilled: bool?, ?optional_fulfillment_program: String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
-                    | (String?, String?, Peddler::APIs::ProductFeesV0::PriceToEstimateFees?, bool?, String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
-        def self.[]: (identifier: String?, marketplace_id: String?, price_to_estimate_fees: Peddler::APIs::ProductFeesV0::PriceToEstimateFees?, ?amazon_fulfilled: bool?, ?optional_fulfillment_program: String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
-                   | (String?, String?, Peddler::APIs::ProductFeesV0::PriceToEstimateFees?, bool?, String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
+        def self.new: (identifier: String, marketplace_id: String, price_to_estimate_fees: Peddler::APIs::ProductFeesV0::PriceToEstimateFees, ?amazon_fulfilled: bool?, ?optional_fulfillment_program: String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
+                    | (String, String, Peddler::APIs::ProductFeesV0::PriceToEstimateFees, bool?, String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
+        def self.[]: (identifier: String, marketplace_id: String, price_to_estimate_fees: Peddler::APIs::ProductFeesV0::PriceToEstimateFees, ?amazon_fulfilled: bool?, ?optional_fulfillment_program: String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
+                   | (String, String, Peddler::APIs::ProductFeesV0::PriceToEstimateFees, bool?, String?) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
 
         def self.members: () -> [ :identifier, :marketplace_id, :price_to_estimate_fees, :amazon_fulfilled, :optional_fulfillment_program ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::FeesEstimateRequest
 
         attr_reader amazon_fulfilled: bool?
-        attr_reader identifier: String?
-        attr_reader marketplace_id: String?
+        attr_reader identifier: String
+        attr_reader marketplace_id: String
         attr_reader optional_fulfillment_program: String?
-        attr_reader price_to_estimate_fees: Peddler::APIs::ProductFeesV0::PriceToEstimateFees?
+        attr_reader price_to_estimate_fees: Peddler::APIs::ProductFeesV0::PriceToEstimateFees
 
         def amazon_fulfilled?: () -> bool
         def members: () -> [ :identifier, :marketplace_id, :price_to_estimate_fees, :amazon_fulfilled, :optional_fulfillment_program ]
-        def to_h: () -> { identifier: String?, marketplace_id: String?, price_to_estimate_fees: Peddler::APIs::ProductFeesV0::PriceToEstimateFees?, amazon_fulfilled: bool?, optional_fulfillment_program: String? }
+        def to_h: () -> { identifier: String, marketplace_id: String, price_to_estimate_fees: Peddler::APIs::ProductFeesV0::PriceToEstimateFees, amazon_fulfilled: bool?, optional_fulfillment_program: String? }
       end
 
       class FeesEstimateResult < Data
@@ -221,19 +221,19 @@ module Peddler
       end
 
       class GetMyFeesEstimatesErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::ProductFeesV0::Error]?) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
-                    | (Array[Peddler::APIs::ProductFeesV0::Error]?) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
-        def self.[]: (errors: Array[Peddler::APIs::ProductFeesV0::Error]?) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
-                   | (Array[Peddler::APIs::ProductFeesV0::Error]?) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
+        def self.new: (errors: Array[Peddler::APIs::ProductFeesV0::Error]) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
+                    | (Array[Peddler::APIs::ProductFeesV0::Error]) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
+        def self.[]: (errors: Array[Peddler::APIs::ProductFeesV0::Error]) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
+                   | (Array[Peddler::APIs::ProductFeesV0::Error]) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::GetMyFeesEstimatesErrorList
 
-        attr_reader errors: Array[Peddler::APIs::ProductFeesV0::Error]?
+        attr_reader errors: Array[Peddler::APIs::ProductFeesV0::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::ProductFeesV0::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::ProductFeesV0::Error] }
       end
 
       class GetMyFeesEstimatesRequest < Array[FeesEstimateByIdRequest]
@@ -245,23 +245,23 @@ module Peddler
       end
 
       class IncludedFeeDetail < Data
-        def self.new: (fee_amount: Peddler::Money?, fee_type: String?, final_fee: Peddler::Money?, ?fee_promotion: Peddler::Money?, ?tax_amount: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
-                    | (Peddler::Money?, String?, Peddler::Money?, Peddler::Money?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
-        def self.[]: (fee_amount: Peddler::Money?, fee_type: String?, final_fee: Peddler::Money?, ?fee_promotion: Peddler::Money?, ?tax_amount: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
-                   | (Peddler::Money?, String?, Peddler::Money?, Peddler::Money?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
+        def self.new: (fee_amount: Peddler::Money, fee_type: String, final_fee: Peddler::Money, ?fee_promotion: Peddler::Money?, ?tax_amount: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
+                    | (Peddler::Money, String, Peddler::Money, Peddler::Money?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
+        def self.[]: (fee_amount: Peddler::Money, fee_type: String, final_fee: Peddler::Money, ?fee_promotion: Peddler::Money?, ?tax_amount: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
+                   | (Peddler::Money, String, Peddler::Money, Peddler::Money?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
 
         def self.members: () -> [ :fee_amount, :fee_type, :final_fee, :fee_promotion, :tax_amount ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::IncludedFeeDetail
 
-        attr_reader fee_amount: Peddler::Money?
+        attr_reader fee_amount: Peddler::Money
         attr_reader fee_promotion: Peddler::Money?
-        attr_reader fee_type: String?
-        attr_reader final_fee: Peddler::Money?
+        attr_reader fee_type: String
+        attr_reader final_fee: Peddler::Money
         attr_reader tax_amount: Peddler::Money?
 
         def members: () -> [ :fee_amount, :fee_type, :final_fee, :fee_promotion, :tax_amount ]
-        def to_h: () -> { fee_amount: Peddler::Money?, fee_type: String?, final_fee: Peddler::Money?, fee_promotion: Peddler::Money?, tax_amount: Peddler::Money? }
+        def to_h: () -> { fee_amount: Peddler::Money, fee_type: String, final_fee: Peddler::Money, fee_promotion: Peddler::Money?, tax_amount: Peddler::Money? }
       end
 
       class IncludedFeeDetailList < Array[IncludedFeeDetail]
@@ -286,21 +286,21 @@ module Peddler
       end
 
       class PriceToEstimateFees < Data
-        def self.new: (listing_price: Peddler::Money?, ?points: Peddler::APIs::ProductFeesV0::Points?, ?shipping: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
-                    | (Peddler::Money?, Peddler::APIs::ProductFeesV0::Points?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
-        def self.[]: (listing_price: Peddler::Money?, ?points: Peddler::APIs::ProductFeesV0::Points?, ?shipping: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
-                   | (Peddler::Money?, Peddler::APIs::ProductFeesV0::Points?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
+        def self.new: (listing_price: Peddler::Money, ?points: Peddler::APIs::ProductFeesV0::Points?, ?shipping: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
+                    | (Peddler::Money, Peddler::APIs::ProductFeesV0::Points?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
+        def self.[]: (listing_price: Peddler::Money, ?points: Peddler::APIs::ProductFeesV0::Points?, ?shipping: Peddler::Money?) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
+                   | (Peddler::Money, Peddler::APIs::ProductFeesV0::Points?, Peddler::Money?) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
 
         def self.members: () -> [ :listing_price, :points, :shipping ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductFeesV0::PriceToEstimateFees
 
-        attr_reader listing_price: Peddler::Money?
+        attr_reader listing_price: Peddler::Money
         attr_reader points: Peddler::APIs::ProductFeesV0::Points?
         attr_reader shipping: Peddler::Money?
 
         def members: () -> [ :listing_price, :points, :shipping ]
-        def to_h: () -> { listing_price: Peddler::Money?, points: Peddler::APIs::ProductFeesV0::Points?, shipping: Peddler::Money? }
+        def to_h: () -> { listing_price: Peddler::Money, points: Peddler::APIs::ProductFeesV0::Points?, shipping: Peddler::Money? }
       end
 
       def get_my_fees_estimate_for_asin: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response

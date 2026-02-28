@@ -10,13 +10,13 @@ module Peddler
       # Information about a single product within an order.
       OrderItem = Structure.new do
         # @return [String] A unique identifier for this specific item within the order.
-        attribute(:order_item_id, String, from: "orderItemId")
+        attribute(:order_item_id, String, null: false, from: "orderItemId")
 
         # @return [ItemProduct] Information about the product being ordered.
-        attribute(:product, ItemProduct)
+        attribute(:product, ItemProduct, null: false)
 
         # @return [Integer] The number of units of this item that the customer ordered.
-        attribute(:quantity_ordered, Integer, from: "quantityOrdered")
+        attribute(:quantity_ordered, Integer, null: false, from: "quantityOrdered")
 
         # @return [ItemCancellation] The cancellation information of the order item.
         attribute?(:cancellation, ItemCancellation)

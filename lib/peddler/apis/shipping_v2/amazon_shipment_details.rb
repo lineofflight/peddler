@@ -11,7 +11,7 @@ module Peddler
       AmazonShipmentDetails = Structure.new do
         # @return [String] This attribute is required only for a Direct Fulfillment shipment. This is the encrypted
         #   shipment ID.
-        attribute(:shipment_id, String, from: "shipmentId")
+        attribute(:shipment_id, String, null: false, from: "shipmentId")
       end
     end
   end

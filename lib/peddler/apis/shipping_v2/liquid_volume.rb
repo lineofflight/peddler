@@ -10,10 +10,10 @@ module Peddler
       # Liquid Volume.
       LiquidVolume = Structure.new do
         # @return [String] The unit of measurement.
-        attribute(:unit, String)
+        attribute(:unit, String, null: false)
 
         # @return [Float] The measurement value.
-        attribute(:value, Float)
+        attribute(:value, Float, null: false)
       end
     end
   end

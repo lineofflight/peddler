@@ -10,16 +10,16 @@ module Peddler
       # The specific rate for a shipping service, or null if no service available.
       ServiceRate = Structure.new do
         # @return [Weight] The weight that was used to calculate the totalCharge.
-        attribute(:billable_weight, Weight, from: "billableWeight")
+        attribute(:billable_weight, Weight, null: false, from: "billableWeight")
 
         # @return [ShippingPromiseSet]
-        attribute(:promise, ShippingPromiseSet)
+        attribute(:promise, ShippingPromiseSet, null: false)
 
         # @return [String]
-        attribute(:service_type, String, from: "serviceType")
+        attribute(:service_type, String, null: false, from: "serviceType")
 
         # @return [Money] The total charge that will be billed for the rate.
-        attribute(:total_charge, Money, from: "totalCharge")
+        attribute(:total_charge, Money, null: false, from: "totalCharge")
       end
     end
   end

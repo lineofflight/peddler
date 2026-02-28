@@ -10,20 +10,21 @@ module Peddler
       # Package information for a shipment in a fulfillment order.
       FulfillmentShipmentPackage = Structure.new do
         # @return [String] Identifies the carrier who will deliver the shipment to the recipient.
-        attribute(:carrier_code, String, from: "carrierCode")
+        attribute(:carrier_code, String, null: false, from: "carrierCode")
 
         # @return [Integer] Identifies a package in a shipment.
-        attribute(:package_number, Integer, from: "packageNumber")
+        attribute(:package_number, Integer, null: false, from: "packageNumber")
 
         # @return [String] The Amazon fulfillment tracking number, if provided, can be used to obtain tracking and
         #   delivery information.
         attribute?(:amazon_fulfillment_tracking_number, String, from: "amazonFulfillmentTrackingNumber")
 
-        # @return [DeliveryInformation] The delivery information of the package, this information is only available post
-        #   package delivery to its intended destination.
+        # @return [DeliveryInformation] The delivery information for the package. This information is available after
+        #   the package is delivered.
         attribute?(:delivery_information, DeliveryInformation, from: "deliveryInformation")
 
-        # @return [String] The estimated arrival date and time of the package, in ISO 8601 date time format.
+        # @return [String] The estimated arrival date and time of the package. Must be in
+        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute?(:estimated_arrival_date, String, from: "estimatedArrivalDate")
 
         # @return [LockerDetails] The locker details, if provided can be used to access locker delivery box.

@@ -15,18 +15,18 @@ module Peddler
         #   previous month for monthly reporting periods will be used instead. Additionally if the end date differs from
         #   the start date by more than 365 days, it will be adjusted to the closest end date with a maximum 365 day
         #   difference based on the selected reporting period.
-        attribute(:data_end_time, Date, from: "dataEndTime")
+        attribute(:data_end_time, Date, null: false, from: "dataEndTime")
 
         # @return [Date] Determines the start date of the report - the time component is ignored. If the provided start
         #   date occurs mid-week or mid-month, the following Sunday for weekly reporting periods or the first day of the
         #   next month for monthly reporting periods will be used instead.
-        attribute(:data_start_time, Date, from: "dataStartTime")
+        attribute(:data_start_time, Date, null: false, from: "dataStartTime")
 
         # @return [Array<String>] Any of the EU(8) marketplaces. DE, FR, IT, ES, NL, PL, SE and BE
-        attribute(:marketplace_ids, [String], from: "marketplaceIds")
+        attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
         # @return [String] The report type.
-        attribute(:report_type, String, from: "reportType")
+        attribute(:report_type, String, null: false, from: "reportType")
 
         # @return [ReportOptions] Used to specify the report period.
         attribute?(:report_options, ReportOptions, from: "reportOptions")

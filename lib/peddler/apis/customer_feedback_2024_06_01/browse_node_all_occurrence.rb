@@ -10,11 +10,11 @@ module Peddler
       # The browse node review occurrence metrics.
       BrowseNodeAllOccurrence = Structure.new do
         # @return [Float] The percentage of reviews of products in the browse node that mention the topic.
-        attribute(:all_products, Float, from: "allProducts")
+        attribute(:all_products, Float, null: false, from: "allProducts")
 
         # @return [Float] The percentage of reviews of the top 25 percent of products in the browse node that mention
         #   the topic.
-        attribute(:top_twenty_five_percent_products, Float, from: "topTwentyFivePercentProducts")
+        attribute(:top_twenty_five_percent_products, Float, null: false, from: "topTwentyFivePercentProducts")
       end
     end
   end

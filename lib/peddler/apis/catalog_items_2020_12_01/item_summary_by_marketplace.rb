@@ -10,7 +10,7 @@ module Peddler
       # Summary details of an Amazon catalog item for the indicated Amazon marketplace.
       ItemSummaryByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] Name of the brand associated with an Amazon catalog item.
         attribute?(:brand_name, String, from: "brandName")

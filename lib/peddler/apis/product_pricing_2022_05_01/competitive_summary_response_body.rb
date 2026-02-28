@@ -10,10 +10,10 @@ module Peddler
       # The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
       CompetitiveSummaryResponseBody = Structure.new do
         # @return [String] The Amazon identifier for the item.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [String] A marketplace identifier.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<Error>] A list of errors
         attribute?(:errors, [Error])

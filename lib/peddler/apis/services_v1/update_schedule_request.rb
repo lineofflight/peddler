@@ -10,7 +10,7 @@ module Peddler
       # Request schema for the `updateSchedule` operation.
       UpdateScheduleRequest = Structure.new do
         # @return [Array<AvailabilityRecord>] List of schedule objects to define the normal working hours of a resource.
-        attribute(:schedules, [AvailabilityRecord])
+        attribute(:schedules, [AvailabilityRecord], null: false)
       end
     end
   end

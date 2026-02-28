@@ -2,21 +2,21 @@ module Peddler
   module APIs
     class VendorTransactionStatusV1 < API
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorTransactionStatusV1::Error
-                    | (String?, String?, String?) -> Peddler::APIs::VendorTransactionStatusV1::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorTransactionStatusV1::Error
-                   | (String?, String?, String?) -> Peddler::APIs::VendorTransactionStatusV1::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorTransactionStatusV1::Error
+                    | (String, String, String?) -> Peddler::APIs::VendorTransactionStatusV1::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorTransactionStatusV1::Error
+                   | (String, String, String?) -> Peddler::APIs::VendorTransactionStatusV1::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorTransactionStatusV1::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]
@@ -41,21 +41,21 @@ module Peddler
       end
 
       class Transaction < Data
-        def self.new: (status: String?, transaction_id: String?, ?errors: Array[Peddler::APIs::VendorTransactionStatusV1::Error]?) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
-                    | (String?, String?, Array[Peddler::APIs::VendorTransactionStatusV1::Error]?) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
-        def self.[]: (status: String?, transaction_id: String?, ?errors: Array[Peddler::APIs::VendorTransactionStatusV1::Error]?) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
-                   | (String?, String?, Array[Peddler::APIs::VendorTransactionStatusV1::Error]?) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
+        def self.new: (status: String, transaction_id: String, ?errors: Array[Peddler::APIs::VendorTransactionStatusV1::Error]?) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
+                    | (String, String, Array[Peddler::APIs::VendorTransactionStatusV1::Error]?) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
+        def self.[]: (status: String, transaction_id: String, ?errors: Array[Peddler::APIs::VendorTransactionStatusV1::Error]?) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
+                   | (String, String, Array[Peddler::APIs::VendorTransactionStatusV1::Error]?) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
 
         def self.members: () -> [ :status, :transaction_id, :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorTransactionStatusV1::Transaction
 
         attr_reader errors: Array[Peddler::APIs::VendorTransactionStatusV1::Error]?
-        attr_reader status: String?
-        attr_reader transaction_id: String?
+        attr_reader status: String
+        attr_reader transaction_id: String
 
         def members: () -> [ :status, :transaction_id, :errors ]
-        def to_h: () -> { status: String?, transaction_id: String?, errors: Array[Peddler::APIs::VendorTransactionStatusV1::Error]? }
+        def to_h: () -> { status: String, transaction_id: String, errors: Array[Peddler::APIs::VendorTransactionStatusV1::Error]? }
       end
 
       class TransactionStatus < Data

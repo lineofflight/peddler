@@ -11,10 +11,10 @@ module Peddler
       # Represents a product with the SKU details and the corresponding quantity.
       ProductQuantity = Structure.new do
         # @return [Integer] Product quantity.
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [String] The seller or merchant SKU.
-        attribute(:sku, String)
+        attribute(:sku, String, null: false)
 
         # @return [Array<ProductAttribute>] Contains attributes for this instance of the product. For example, item
         #   color, or other attributes that distinguish the product beyond the SKU. This is metadata for the product and

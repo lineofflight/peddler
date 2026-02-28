@@ -10,10 +10,10 @@ module Peddler
       # Whether specific capabilities are enabled or required for the shipment.
       ShipmentRequirements = Structure.new do
         # @return [InvoiceRequirement] Whether the invoice must be attached to the shipment.
-        attribute(:invoice, InvoiceRequirement)
+        attribute(:invoice, InvoiceRequirement, null: false)
 
         # @return [PackingSlipRequirement] Whether the packing slip must be attached to the shipment.
-        attribute(:p_slip, PackingSlipRequirement, from: "pSlip")
+        attribute(:p_slip, PackingSlipRequirement, null: false, from: "pSlip")
       end
     end
   end

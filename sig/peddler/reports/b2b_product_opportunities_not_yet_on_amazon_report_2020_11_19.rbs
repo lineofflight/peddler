@@ -27,19 +27,19 @@ module Peddler
       end
 
       class Report < Data
-        def self.new: (recommendations: Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
-                    | (Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
-        def self.[]: (recommendations: Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
-                   | (Array[untyped]?) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
+        def self.new: (recommendations: Array[untyped]) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
+                    | (Array[untyped]) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
+        def self.[]: (recommendations: Array[untyped]) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
+                   | (Array[untyped]) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
 
         def self.members: () -> [ :recommendations ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report
 
-        attr_reader recommendations: Array[untyped]?
+        attr_reader recommendations: Array[untyped]
 
         def members: () -> [ :recommendations ]
-        def to_h: () -> { recommendations: Array[untyped]? }
+        def to_h: () -> { recommendations: Array[untyped] }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::B2BProductOpportunitiesNotYetOnAmazonReport20201119::Report

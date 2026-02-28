@@ -15,16 +15,16 @@ module Peddler
         #   CA, ES, UK, FR, IT, IN, DE and JP. The supported marketplaces for vendors only are BR, AU, MX, AE and NL.
         #   Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the
         #   identifier for the marketplace.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<ProgramType>]
-        attribute(:program_types, Array, from: "programTypes")
+        attribute(:program_types, Array, null: false, from: "programTypes")
 
         # @return [TimeInterval] A time interval used to compute metrics.
-        attribute(:time_interval, TimeInterval, from: "timeInterval")
+        attribute(:time_interval, TimeInterval, null: false, from: "timeInterval")
 
         # @return [String]
-        attribute(:time_period_type, String, from: "timePeriodType")
+        attribute(:time_period_type, String, null: false, from: "timePeriodType")
 
         # @return [String]
         attribute?(:aggregation_frequency, String, from: "aggregationFrequency")

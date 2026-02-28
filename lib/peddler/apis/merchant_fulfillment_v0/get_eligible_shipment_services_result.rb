@@ -10,7 +10,7 @@ module Peddler
       # The payload for the `getEligibleShipmentServices` operation.
       GetEligibleShipmentServicesResult = Structure.new do
         # @return [Array<ShippingService>] A list of shipping services offers.
-        attribute(:shipping_service_list, [ShippingService], from: "ShippingServiceList")
+        attribute(:shipping_service_list, [ShippingService], null: false, from: "ShippingServiceList")
 
         # @return [Array<RejectedShippingService>]
         attribute?(:rejected_shipping_service_list, [RejectedShippingService], from: "RejectedShippingServiceList")

@@ -10,11 +10,11 @@ module Peddler
       # Item information for updating a fulfillment order.
       UpdateFulfillmentOrderItem = Structure.new do
         # @return [Integer]
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [String] Identifies the fulfillment order item to update. Created with a previous call to the
         #   `createFulfillmentOrder` operation.
-        attribute(:seller_fulfillment_order_item_id, String, from: "sellerFulfillmentOrderItemId")
+        attribute(:seller_fulfillment_order_item_id, String, null: false, from: "sellerFulfillmentOrderItemId")
 
         # @return [String] Item-specific text that displays in recipient-facing materials such as the outbound shipment
         #   packing slip.

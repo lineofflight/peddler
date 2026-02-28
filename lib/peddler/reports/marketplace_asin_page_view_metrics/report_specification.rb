@@ -11,13 +11,13 @@ module Peddler
       # Summarizes the report request.
       ReportSpecification = Structure.new do
         # @return [Array<String>] Any of the EU(8) or UK marketplaces. DE, FR, IT, ES, NL, PL, SE, BE and UK
-        attribute(:marketplace_ids, [String], from: "marketplaceIds")
+        attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
         # @return [ReportOptions] Specifies the product type.
-        attribute(:report_options, ReportOptions, from: "reportOptions")
+        attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
         # @return [String] The report type.
-        attribute(:report_type, String, from: "reportType")
+        attribute(:report_type, String, null: false, from: "reportType")
 
         # @return [Date] Determines the end date of the report - the time component is ignored. If the end date of the
         #   report is not within the seven days from start date, the report will be cancelled. If the end date of the

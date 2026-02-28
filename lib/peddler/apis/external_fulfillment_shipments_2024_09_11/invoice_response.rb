@@ -10,7 +10,7 @@ module Peddler
       # The response of the `generateInvoice` operation.
       InvoiceResponse = Structure.new do
         # @return [Document] The invoice.
-        attribute(:document, Document)
+        attribute(:document, Document, null: false)
       end
     end
   end

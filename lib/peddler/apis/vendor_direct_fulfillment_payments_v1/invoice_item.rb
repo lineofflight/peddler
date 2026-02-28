@@ -10,17 +10,17 @@ module Peddler
       # Provides the details of the items in this invoice.
       InvoiceItem = Structure.new do
         # @return [ItemQuantity] Item quantity invoiced.
-        attribute(:invoiced_quantity, ItemQuantity, from: "invoicedQuantity")
+        attribute(:invoiced_quantity, ItemQuantity, null: false, from: "invoicedQuantity")
 
         # @return [String] Numbering of the item on the purchase order. The first item will be 1, the second 2, and so
         #   on.
-        attribute(:item_sequence_number, String, from: "itemSequenceNumber")
+        attribute(:item_sequence_number, String, null: false, from: "itemSequenceNumber")
 
         # @return [Money] Net price (before tax) to vendor with currency details.
-        attribute(:net_cost, Money, from: "netCost")
+        attribute(:net_cost, Money, null: false, from: "netCost")
 
         # @return [String] The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
-        attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
+        attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
         # @return [String] Buyer's standard identification number (ASIN) of an item.
         attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")

@@ -10,10 +10,10 @@ module Peddler
       # A response to an individual inventory request.
       InventoryResponse = Structure.new do
         # @return [InventoryResponseBody] The body of the response.
-        attribute(:body, InventoryResponseBody)
+        attribute(:body, InventoryResponseBody, null: false)
 
         # @return [HttpStatusLine] The HTTP status code associated with the response.
-        attribute(:status, HttpStatusLine)
+        attribute(:status, HttpStatusLine, null: false)
       end
     end
   end

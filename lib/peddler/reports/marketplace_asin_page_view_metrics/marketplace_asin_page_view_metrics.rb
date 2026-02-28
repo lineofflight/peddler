@@ -11,19 +11,19 @@ module Peddler
       # Contains aggregate ASIN page view metrics.
       MarketplaceASINPageViewMetrics = Structure.new do
         # @return [String] ASIN for which the page view metrics are provided.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [Time] End time of the aggregation window in UTC.
-        attribute(:end_time, Time, from: "endTime")
+        attribute(:end_time, Time, null: false, from: "endTime")
 
         # @return [String] Marketplace for which the page view metrics are provided.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Integer] Total page views (count).
-        attribute(:page_views, Integer, from: "pageViews")
+        attribute(:page_views, Integer, null: false, from: "pageViews")
 
         # @return [Time] Start time of the aggregation window in UTC.
-        attribute(:start_time, Time, from: "startTime")
+        attribute(:start_time, Time, null: false, from: "startTime")
       end
     end
   end

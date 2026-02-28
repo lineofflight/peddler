@@ -12,13 +12,13 @@ module Peddler
       # required and will be ignored.
       GetRatesRequest = Structure.new do
         # @return [ChannelDetails]
-        attribute(:channel_details, ChannelDetails, from: "channelDetails")
+        attribute(:channel_details, ChannelDetails, null: false, from: "channelDetails")
 
         # @return [Array<Package>]
-        attribute(:packages, [Package])
+        attribute(:packages, [Package], null: false)
 
         # @return [Address] The ship from address.
-        attribute(:ship_from, Address, from: "shipFrom")
+        attribute(:ship_from, Address, null: false, from: "shipFrom")
 
         # @return [Array<CarrierAccount>]
         attribute?(:carrier_accounts, [CarrierAccount], from: "carrierAccounts")

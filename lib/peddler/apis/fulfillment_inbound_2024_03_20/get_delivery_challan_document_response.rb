@@ -10,7 +10,7 @@ module Peddler
       # The `getDeliveryChallanDocumentResponse` response.
       GetDeliveryChallanDocumentResponse = Structure.new do
         # @return [DocumentDownload]
-        attribute(:document_download, DocumentDownload, from: "documentDownload")
+        attribute(:document_download, DocumentDownload, null: false, from: "documentDownload")
       end
     end
   end

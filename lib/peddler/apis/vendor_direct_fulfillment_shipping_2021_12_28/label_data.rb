@@ -10,7 +10,7 @@ module Peddler
       # Details of the shipment label.
       LabelData = Structure.new do
         # @return [String] This field will contain the Base64 string of the shipment label content.
-        attribute(:content, String)
+        attribute(:content, String, null: false)
 
         # @return [String] Identifier for the package. The first package will be 001, the second 002, and so on. This
         #   number is used as a reference to refer to this package from the pallet level.

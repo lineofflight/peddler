@@ -11,15 +11,15 @@ module Peddler
       SearchQueryPerformanceImpressionData = Structure.new do
         # @return [Integer] The total number of impressions that originate from the search results page for the current
         #   ASIN with the current query.
-        attribute(:asin_impression_count, Integer, from: "asinImpressionCount")
+        attribute(:asin_impression_count, Integer, null: false, from: "asinImpressionCount")
 
         # @return [Float] The fraction of impressions for the ASIN in comparison to the total impression count for the
         #   query.
-        attribute(:asin_impression_share, Float, from: "asinImpressionShare")
+        attribute(:asin_impression_share, Float, null: false, from: "asinImpressionShare")
 
         # @return [Integer] The total number of impressions that originate from the search results page for all ASINs
         #   with the current query.
-        attribute(:total_query_impression_count, Integer, from: "totalQueryImpressionCount")
+        attribute(:total_query_impression_count, Integer, null: false, from: "totalQueryImpressionCount")
       end
     end
   end

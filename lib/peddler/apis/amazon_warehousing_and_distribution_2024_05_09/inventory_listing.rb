@@ -10,7 +10,7 @@ module Peddler
       # AWD inventory payload.
       InventoryListing = Structure.new do
         # @return [Array<InventorySummary>] List of inventory summaries.
-        attribute(:inventory, [InventorySummary])
+        attribute(:inventory, [InventorySummary], null: false)
 
         # @return [String] A token that is used to retrieve the next page of results. The response includes `nextToken`
         #   when the number of results exceeds the specified `maxResults` value. To get the next page of results, call

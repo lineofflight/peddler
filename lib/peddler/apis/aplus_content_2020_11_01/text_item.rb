@@ -11,10 +11,10 @@ module Peddler
       TextItem = Structure.new do
         # @return [Integer] The rank or index of this text item within the collection. Different items cannot occupy the
         #   same position within a single collection.
-        attribute(:position, Integer)
+        attribute(:position, Integer, null: false)
 
         # @return [TextComponent]
-        attribute(:text, TextComponent)
+        attribute(:text, TextComponent, null: false)
       end
     end
   end

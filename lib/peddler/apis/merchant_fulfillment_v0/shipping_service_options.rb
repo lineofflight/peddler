@@ -11,10 +11,10 @@ module Peddler
       ShippingServiceOptions = Structure.new do
         # @return [:boolean] When true, the carrier will pick up the package. Note: Scheduled carrier pickup is
         #   available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
-        attribute(:carrier_will_pick_up, :boolean, from: "CarrierWillPickUp")
+        attribute(:carrier_will_pick_up, :boolean, null: false, from: "CarrierWillPickUp")
 
         # @return [String] The delivery confirmation level.
-        attribute(:delivery_experience, String, from: "DeliveryExperience")
+        attribute(:delivery_experience, String, null: false, from: "DeliveryExperience")
 
         # @return [String]
         attribute?(:carrier_will_pick_up_option, String, from: "CarrierWillPickUpOption")

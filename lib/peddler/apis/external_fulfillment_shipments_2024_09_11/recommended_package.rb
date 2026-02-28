@@ -10,13 +10,13 @@ module Peddler
       # Recommendations for a package
       RecommendedPackage = Structure.new do
         # @return [PackageDimensions]
-        attribute(:dimensions, PackageDimensions)
+        attribute(:dimensions, PackageDimensions, null: false)
 
         # @return [Array<RecommendedPackageLineItem>]
-        attribute(:line_items, [RecommendedPackageLineItem], from: "lineItems")
+        attribute(:line_items, [RecommendedPackageLineItem], null: false, from: "lineItems")
 
         # @return [Weight]
-        attribute(:weight, Weight)
+        attribute(:weight, Weight, null: false)
       end
     end
   end

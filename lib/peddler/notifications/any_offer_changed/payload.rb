@@ -10,7 +10,7 @@ module Peddler
       # Notification payload that wraps nested notification data
       Payload = Structure.new do
         # @return [AnyOfferChangedNotification]
-        attribute(:any_offer_changed_notification, AnyOfferChangedNotification, from: "AnyOfferChangedNotification")
+        attribute(:any_offer_changed_notification, AnyOfferChangedNotification, null: false, from: "AnyOfferChangedNotification")
       end
     end
   end

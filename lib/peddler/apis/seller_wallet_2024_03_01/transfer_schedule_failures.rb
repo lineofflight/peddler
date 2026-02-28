@@ -11,10 +11,10 @@ module Peddler
       # Specifies the balance amount in the Amazon SW bank account
       TransferScheduleFailures = Structure.new do
         # @return [Time] The transfer schedule cancellation date
-        attribute(:transfer_schedule_failure_date, Time, from: "transferScheduleFailureDate")
+        attribute(:transfer_schedule_failure_date, Time, null: false, from: "transferScheduleFailureDate")
 
         # @return [String] The statement/reasoning listed for the cancellation of the transfer schedule
-        attribute(:transfer_schedule_failure_reason, String, from: "transferScheduleFailureReason")
+        attribute(:transfer_schedule_failure_reason, String, null: false, from: "transferScheduleFailureReason")
       end
     end
   end

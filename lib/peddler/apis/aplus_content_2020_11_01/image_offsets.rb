@@ -10,10 +10,10 @@ module Peddler
       # The top left corner of the cropped image, specified in the original image's coordinate space.
       ImageOffsets = Structure.new do
         # @return [IntegerWithUnits]
-        attribute(:x, IntegerWithUnits)
+        attribute(:x, IntegerWithUnits, null: false)
 
         # @return [IntegerWithUnits]
-        attribute(:y, IntegerWithUnits)
+        attribute(:y, IntegerWithUnits, null: false)
       end
     end
   end

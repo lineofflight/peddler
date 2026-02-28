@@ -10,14 +10,14 @@ module Peddler
       # Item information for a shipment in a fulfillment order.
       FulfillmentShipmentItem = Structure.new do
         # @return [Integer]
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [String] The fulfillment order item identifier that the seller created and submitted with a call to
         #   the `createFulfillmentOrder` operation.
-        attribute(:seller_fulfillment_order_item_id, String, from: "sellerFulfillmentOrderItemId")
+        attribute(:seller_fulfillment_order_item_id, String, null: false, from: "sellerFulfillmentOrderItemId")
 
         # @return [String] The seller SKU of the item.
-        attribute(:seller_sku, String, from: "sellerSku")
+        attribute(:seller_sku, String, null: false, from: "sellerSku")
 
         # @return [Array<String>] The manufacturer lot codes of the shipped items.
         attribute?(:manufacturer_lot_codes, [String], from: "manufacturerLotCodes")

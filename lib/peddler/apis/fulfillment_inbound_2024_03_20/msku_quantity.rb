@@ -10,10 +10,10 @@ module Peddler
       # Represents an MSKU and the related quantity.
       MskuQuantity = Structure.new do
         # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.
-        attribute(:msku, String)
+        attribute(:msku, String, null: false)
 
         # @return [Integer] A positive integer.
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
       end
     end
   end

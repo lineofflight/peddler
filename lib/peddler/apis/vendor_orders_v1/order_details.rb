@@ -11,14 +11,14 @@ module Peddler
       # Details of an order.
       OrderDetails = Structure.new do
         # @return [Array<OrderItem>] A list of items in this purchase order.
-        attribute(:items, [OrderItem])
+        attribute(:items, [OrderItem], null: false)
 
         # @return [Time] The date the purchase order was placed. Must be in ISO-8601 date/time format.
-        attribute(:purchase_order_date, Time, from: "purchaseOrderDate")
+        attribute(:purchase_order_date, Time, null: false, from: "purchaseOrderDate")
 
         # @return [Time] The date when current purchase order state was changed. Current purchase order state is
         #   available in the field 'purchaseOrderState'. Must be in ISO-8601 date/time format.
-        attribute(:purchase_order_state_changed_date, Time, from: "purchaseOrderStateChangedDate")
+        attribute(:purchase_order_state_changed_date, Time, null: false, from: "purchaseOrderStateChangedDate")
 
         # @return [PartyIdentification] Name/Address and tax details of the bill to party.
         attribute?(:bill_to_party, PartyIdentification, from: "billToParty")

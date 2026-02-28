@@ -10,14 +10,14 @@ module Peddler
       # Contains details about an asin.
       ASINDetails = Structure.new do
         # @return [String] Asin of the product.
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [Float] Discount amount the customer receives on the product. Reflects a percentage when discountType
         #   is PERCENT_OFF_LIST_PRICE and a currency value when discountType is AMOUNT_OFF_LIST_PRICE.
-        attribute(:discount_amount, Float, from: "discountAmount")
+        attribute(:discount_amount, Float, null: false, from: "discountAmount")
 
         # @return [String] Whether the discount is given as a fixed amount or a percentage off the list price.
-        attribute(:discount_type, String, from: "discountType")
+        attribute(:discount_type, String, null: false, from: "discountType")
       end
     end
   end

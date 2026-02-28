@@ -10,7 +10,7 @@ module Peddler
       # Metadata about the return item.
       ReturnMetadata = Structure.new do
         # @return [String] The reason for the return.
-        attribute(:return_reason, String, from: "returnReason")
+        attribute(:return_reason, String, null: false, from: "returnReason")
 
         # @return [String] The SmartConnect ID of the fulfillment order for which the return was placed.
         attribute?(:fulfillment_order_id, String, from: "fulfillmentOrderId")

@@ -11,17 +11,17 @@ module Peddler
       # Detailed information about the query.
       Query = Structure.new do
         # @return [Time] The date and time when the query was created, in ISO 8601 date time format.
-        attribute(:created_time, Time, from: "createdTime")
+        attribute(:created_time, Time, null: false, from: "createdTime")
 
         # @return [String] The processing status of the query.
-        attribute(:processing_status, String, from: "processingStatus")
+        attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # @return [String] The submitted query.
-        attribute(:query, String)
+        attribute(:query, String, null: false)
 
         # @return [String] The query identifier. This identifier is unique only in combination with a selling partner
         #   account ID.
-        attribute(:query_id, String, from: "queryId")
+        attribute(:query_id, String, null: false, from: "queryId")
 
         # @return [String] The data document identifier. This identifier is only present when there is data available as
         #   a result of the query. This identifier is unique only in combination with a selling partner account ID. Pass

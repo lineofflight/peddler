@@ -2,33 +2,33 @@ module Peddler
   module Reports
     module Promotion
       class DetailsByProduct < Data
-        def self.new: (asin: String?, product_name: String?, product_revenue: Float?, product_revenue_currency_code: String?, product_units_sold: Integer?, ?product_amount_spent: Float?, ?product_amount_spent_currency_code: String?, ?product_glance_views: Integer?) -> Peddler::Reports::Promotion::DetailsByProduct
-                    | (String?, String?, Float?, String?, Integer?, Float?, String?, Integer?) -> Peddler::Reports::Promotion::DetailsByProduct
-        def self.[]: (asin: String?, product_name: String?, product_revenue: Float?, product_revenue_currency_code: String?, product_units_sold: Integer?, ?product_amount_spent: Float?, ?product_amount_spent_currency_code: String?, ?product_glance_views: Integer?) -> Peddler::Reports::Promotion::DetailsByProduct
-                   | (String?, String?, Float?, String?, Integer?, Float?, String?, Integer?) -> Peddler::Reports::Promotion::DetailsByProduct
+        def self.new: (asin: String, product_name: String, product_revenue: Float, product_revenue_currency_code: String, product_units_sold: Integer, ?product_amount_spent: Float?, ?product_amount_spent_currency_code: String?, ?product_glance_views: Integer?) -> Peddler::Reports::Promotion::DetailsByProduct
+                    | (String, String, Float, String, Integer, Float?, String?, Integer?) -> Peddler::Reports::Promotion::DetailsByProduct
+        def self.[]: (asin: String, product_name: String, product_revenue: Float, product_revenue_currency_code: String, product_units_sold: Integer, ?product_amount_spent: Float?, ?product_amount_spent_currency_code: String?, ?product_glance_views: Integer?) -> Peddler::Reports::Promotion::DetailsByProduct
+                   | (String, String, Float, String, Integer, Float?, String?, Integer?) -> Peddler::Reports::Promotion::DetailsByProduct
 
         def self.members: () -> [ :asin, :product_name, :product_revenue, :product_revenue_currency_code, :product_units_sold, :product_amount_spent, :product_amount_spent_currency_code, :product_glance_views ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::Promotion::DetailsByProduct
 
-        attr_reader asin: String?
+        attr_reader asin: String
         attr_reader product_amount_spent: Float?
         attr_reader product_amount_spent_currency_code: String?
         attr_reader product_glance_views: Integer?
-        attr_reader product_name: String?
-        attr_reader product_revenue: Float?
-        attr_reader product_revenue_currency_code: String?
-        attr_reader product_units_sold: Integer?
+        attr_reader product_name: String
+        attr_reader product_revenue: Float
+        attr_reader product_revenue_currency_code: String
+        attr_reader product_units_sold: Integer
 
         def members: () -> [ :asin, :product_name, :product_revenue, :product_revenue_currency_code, :product_units_sold, :product_amount_spent, :product_amount_spent_currency_code, :product_glance_views ]
-        def to_h: () -> { asin: String?, product_name: String?, product_revenue: Float?, product_revenue_currency_code: String?, product_units_sold: Integer?, product_amount_spent: Float?, product_amount_spent_currency_code: String?, product_glance_views: Integer? }
+        def to_h: () -> { asin: String, product_name: String, product_revenue: Float, product_revenue_currency_code: String, product_units_sold: Integer, product_amount_spent: Float?, product_amount_spent_currency_code: String?, product_glance_views: Integer? }
       end
 
       class DetailsByPromotion < Data
-        def self.new: (created_date_time: Time?, creation_channel: String?, end_date_time: Time?, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct]?, last_updated_date_time: Time?, marketplace_id: String?, promotion_id: String?, promotion_name: String?, revenue: Float?, revenue_currency_code: String?, start_date_time: Time?, status: String?, type: String?, units_sold: Integer?, ?amount_spent: Float?, ?amount_spent_currency_code: String?, ?funding_agreement_id: String?, ?glance_views: Integer?, ?merchant_id: String?, ?vendor_code: String?) -> Peddler::Reports::Promotion::DetailsByPromotion
-                    | (Time?, String?, Time?, Array[Peddler::Reports::Promotion::DetailsByProduct]?, Time?, String?, String?, String?, Float?, String?, Time?, String?, String?, Integer?, Float?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::Promotion::DetailsByPromotion
-        def self.[]: (created_date_time: Time?, creation_channel: String?, end_date_time: Time?, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct]?, last_updated_date_time: Time?, marketplace_id: String?, promotion_id: String?, promotion_name: String?, revenue: Float?, revenue_currency_code: String?, start_date_time: Time?, status: String?, type: String?, units_sold: Integer?, ?amount_spent: Float?, ?amount_spent_currency_code: String?, ?funding_agreement_id: String?, ?glance_views: Integer?, ?merchant_id: String?, ?vendor_code: String?) -> Peddler::Reports::Promotion::DetailsByPromotion
-                   | (Time?, String?, Time?, Array[Peddler::Reports::Promotion::DetailsByProduct]?, Time?, String?, String?, String?, Float?, String?, Time?, String?, String?, Integer?, Float?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::Promotion::DetailsByPromotion
+        def self.new: (created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, ?amount_spent: Float?, ?amount_spent_currency_code: String?, ?funding_agreement_id: String?, ?glance_views: Integer?, ?merchant_id: String?, ?vendor_code: String?) -> Peddler::Reports::Promotion::DetailsByPromotion
+                    | (Time, String, Time, Array[Peddler::Reports::Promotion::DetailsByProduct], Time, String, String, String, Float, String, Time, String, String, Integer, Float?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::Promotion::DetailsByPromotion
+        def self.[]: (created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, ?amount_spent: Float?, ?amount_spent_currency_code: String?, ?funding_agreement_id: String?, ?glance_views: Integer?, ?merchant_id: String?, ?vendor_code: String?) -> Peddler::Reports::Promotion::DetailsByPromotion
+                   | (Time, String, Time, Array[Peddler::Reports::Promotion::DetailsByProduct], Time, String, String, String, Float, String, Time, String, String, Integer, Float?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::Promotion::DetailsByPromotion
 
         def self.members: () -> [ :created_date_time, :creation_channel, :end_date_time, :included_products, :last_updated_date_time, :marketplace_id, :promotion_id, :promotion_name, :revenue, :revenue_currency_code, :start_date_time, :status, :type, :units_sold, :amount_spent, :amount_spent_currency_code, :funding_agreement_id, :glance_views, :merchant_id, :vendor_code ]
 
@@ -36,79 +36,79 @@ module Peddler
 
         attr_reader amount_spent: Float?
         attr_reader amount_spent_currency_code: String?
-        attr_reader created_date_time: Time?
-        attr_reader creation_channel: String?
-        attr_reader end_date_time: Time?
+        attr_reader created_date_time: Time
+        attr_reader creation_channel: String
+        attr_reader end_date_time: Time
         attr_reader funding_agreement_id: String?
         attr_reader glance_views: Integer?
-        attr_reader included_products: Array[Peddler::Reports::Promotion::DetailsByProduct]?
-        attr_reader last_updated_date_time: Time?
-        attr_reader marketplace_id: String?
+        attr_reader included_products: Array[Peddler::Reports::Promotion::DetailsByProduct]
+        attr_reader last_updated_date_time: Time
+        attr_reader marketplace_id: String
         attr_reader merchant_id: String?
-        attr_reader promotion_id: String?
-        attr_reader promotion_name: String?
-        attr_reader revenue: Float?
-        attr_reader revenue_currency_code: String?
-        attr_reader start_date_time: Time?
-        attr_reader status: String?
-        attr_reader type: String?
-        attr_reader units_sold: Integer?
+        attr_reader promotion_id: String
+        attr_reader promotion_name: String
+        attr_reader revenue: Float
+        attr_reader revenue_currency_code: String
+        attr_reader start_date_time: Time
+        attr_reader status: String
+        attr_reader type: String
+        attr_reader units_sold: Integer
         attr_reader vendor_code: String?
 
         def members: () -> [ :created_date_time, :creation_channel, :end_date_time, :included_products, :last_updated_date_time, :marketplace_id, :promotion_id, :promotion_name, :revenue, :revenue_currency_code, :start_date_time, :status, :type, :units_sold, :amount_spent, :amount_spent_currency_code, :funding_agreement_id, :glance_views, :merchant_id, :vendor_code ]
-        def to_h: () -> { created_date_time: Time?, creation_channel: String?, end_date_time: Time?, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct]?, last_updated_date_time: Time?, marketplace_id: String?, promotion_id: String?, promotion_name: String?, revenue: Float?, revenue_currency_code: String?, start_date_time: Time?, status: String?, type: String?, units_sold: Integer?, amount_spent: Float?, amount_spent_currency_code: String?, funding_agreement_id: String?, glance_views: Integer?, merchant_id: String?, vendor_code: String? }
+        def to_h: () -> { created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, amount_spent: Float?, amount_spent_currency_code: String?, funding_agreement_id: String?, glance_views: Integer?, merchant_id: String?, vendor_code: String? }
       end
 
       class Report < Data
-        def self.new: (promotions: Array[Peddler::Reports::Promotion::DetailsByPromotion]?, report_specification: Peddler::Reports::Promotion::ReportSpecification?) -> Peddler::Reports::Promotion::Report
-                    | (Array[Peddler::Reports::Promotion::DetailsByPromotion]?, Peddler::Reports::Promotion::ReportSpecification?) -> Peddler::Reports::Promotion::Report
-        def self.[]: (promotions: Array[Peddler::Reports::Promotion::DetailsByPromotion]?, report_specification: Peddler::Reports::Promotion::ReportSpecification?) -> Peddler::Reports::Promotion::Report
-                   | (Array[Peddler::Reports::Promotion::DetailsByPromotion]?, Peddler::Reports::Promotion::ReportSpecification?) -> Peddler::Reports::Promotion::Report
+        def self.new: (promotions: Array[Peddler::Reports::Promotion::DetailsByPromotion], report_specification: Peddler::Reports::Promotion::ReportSpecification) -> Peddler::Reports::Promotion::Report
+                    | (Array[Peddler::Reports::Promotion::DetailsByPromotion], Peddler::Reports::Promotion::ReportSpecification) -> Peddler::Reports::Promotion::Report
+        def self.[]: (promotions: Array[Peddler::Reports::Promotion::DetailsByPromotion], report_specification: Peddler::Reports::Promotion::ReportSpecification) -> Peddler::Reports::Promotion::Report
+                   | (Array[Peddler::Reports::Promotion::DetailsByPromotion], Peddler::Reports::Promotion::ReportSpecification) -> Peddler::Reports::Promotion::Report
 
         def self.members: () -> [ :promotions, :report_specification ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::Promotion::Report
 
-        attr_reader promotions: Array[Peddler::Reports::Promotion::DetailsByPromotion]?
-        attr_reader report_specification: Peddler::Reports::Promotion::ReportSpecification?
+        attr_reader promotions: Array[Peddler::Reports::Promotion::DetailsByPromotion]
+        attr_reader report_specification: Peddler::Reports::Promotion::ReportSpecification
 
         def members: () -> [ :promotions, :report_specification ]
-        def to_h: () -> { promotions: Array[Peddler::Reports::Promotion::DetailsByPromotion]?, report_specification: Peddler::Reports::Promotion::ReportSpecification? }
+        def to_h: () -> { promotions: Array[Peddler::Reports::Promotion::DetailsByPromotion], report_specification: Peddler::Reports::Promotion::ReportSpecification }
       end
 
       class ReportOptions < Data
-        def self.new: (promotion_start_date_from: Time?, promotion_start_date_to: Time?) -> Peddler::Reports::Promotion::ReportOptions
-                    | (Time?, Time?) -> Peddler::Reports::Promotion::ReportOptions
-        def self.[]: (promotion_start_date_from: Time?, promotion_start_date_to: Time?) -> Peddler::Reports::Promotion::ReportOptions
-                   | (Time?, Time?) -> Peddler::Reports::Promotion::ReportOptions
+        def self.new: (promotion_start_date_from: Time, promotion_start_date_to: Time) -> Peddler::Reports::Promotion::ReportOptions
+                    | (Time, Time) -> Peddler::Reports::Promotion::ReportOptions
+        def self.[]: (promotion_start_date_from: Time, promotion_start_date_to: Time) -> Peddler::Reports::Promotion::ReportOptions
+                   | (Time, Time) -> Peddler::Reports::Promotion::ReportOptions
 
         def self.members: () -> [ :promotion_start_date_from, :promotion_start_date_to ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::Promotion::ReportOptions
 
-        attr_reader promotion_start_date_from: Time?
-        attr_reader promotion_start_date_to: Time?
+        attr_reader promotion_start_date_from: Time
+        attr_reader promotion_start_date_to: Time
 
         def members: () -> [ :promotion_start_date_from, :promotion_start_date_to ]
-        def to_h: () -> { promotion_start_date_from: Time?, promotion_start_date_to: Time? }
+        def to_h: () -> { promotion_start_date_from: Time, promotion_start_date_to: Time }
       end
 
       class ReportSpecification < Data
-        def self.new: (marketplace_ids: Array[String]?, report_options: Peddler::Reports::Promotion::ReportOptions?, report_type: String?) -> Peddler::Reports::Promotion::ReportSpecification
-                    | (Array[String]?, Peddler::Reports::Promotion::ReportOptions?, String?) -> Peddler::Reports::Promotion::ReportSpecification
-        def self.[]: (marketplace_ids: Array[String]?, report_options: Peddler::Reports::Promotion::ReportOptions?, report_type: String?) -> Peddler::Reports::Promotion::ReportSpecification
-                   | (Array[String]?, Peddler::Reports::Promotion::ReportOptions?, String?) -> Peddler::Reports::Promotion::ReportSpecification
+        def self.new: (marketplace_ids: Array[String], report_options: Peddler::Reports::Promotion::ReportOptions, report_type: String) -> Peddler::Reports::Promotion::ReportSpecification
+                    | (Array[String], Peddler::Reports::Promotion::ReportOptions, String) -> Peddler::Reports::Promotion::ReportSpecification
+        def self.[]: (marketplace_ids: Array[String], report_options: Peddler::Reports::Promotion::ReportOptions, report_type: String) -> Peddler::Reports::Promotion::ReportSpecification
+                   | (Array[String], Peddler::Reports::Promotion::ReportOptions, String) -> Peddler::Reports::Promotion::ReportSpecification
 
         def self.members: () -> [ :marketplace_ids, :report_options, :report_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::Promotion::ReportSpecification
 
-        attr_reader marketplace_ids: Array[String]?
-        attr_reader report_options: Peddler::Reports::Promotion::ReportOptions?
-        attr_reader report_type: String?
+        attr_reader marketplace_ids: Array[String]
+        attr_reader report_options: Peddler::Reports::Promotion::ReportOptions
+        attr_reader report_type: String
 
         def members: () -> [ :marketplace_ids, :report_options, :report_type ]
-        def to_h: () -> { marketplace_ids: Array[String]?, report_options: Peddler::Reports::Promotion::ReportOptions?, report_type: String? }
+        def to_h: () -> { marketplace_ids: Array[String], report_options: Peddler::Reports::Promotion::ReportOptions, report_type: String }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::Promotion::Report

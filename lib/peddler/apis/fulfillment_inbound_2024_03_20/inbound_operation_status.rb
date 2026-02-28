@@ -10,16 +10,16 @@ module Peddler
       # GetInboundOperationStatus response.
       InboundOperationStatus = Structure.new do
         # @return [String] The name of the operation in the asynchronous API call.
-        attribute(:operation, String)
+        attribute(:operation, String, null: false)
 
         # @return [String] The operation ID returned by the asynchronous API call.
-        attribute(:operation_id, String, from: "operationId")
+        attribute(:operation_id, String, null: false, from: "operationId")
 
         # @return [Array<OperationProblem>] The problems in the processing of the asynchronous operation.
-        attribute(:operation_problems, [OperationProblem], from: "operationProblems")
+        attribute(:operation_problems, [OperationProblem], null: false, from: "operationProblems")
 
         # @return [String]
-        attribute(:operation_status, String, from: "operationStatus")
+        attribute(:operation_status, String, null: false, from: "operationStatus")
       end
     end
   end

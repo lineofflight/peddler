@@ -10,16 +10,16 @@ module Peddler
       # The request schema for the createShipment operation.
       CreateShipmentRequest = Structure.new do
         # @return [String]
-        attribute(:client_reference_id, String, from: "clientReferenceId")
+        attribute(:client_reference_id, String, null: false, from: "clientReferenceId")
 
         # @return [Array<Container>]
-        attribute(:containers, [Container])
+        attribute(:containers, [Container], null: false)
 
         # @return [Address]
-        attribute(:ship_from, Address, from: "shipFrom")
+        attribute(:ship_from, Address, null: false, from: "shipFrom")
 
         # @return [Address]
-        attribute(:ship_to, Address, from: "shipTo")
+        attribute(:ship_to, Address, null: false, from: "shipTo")
       end
     end
   end

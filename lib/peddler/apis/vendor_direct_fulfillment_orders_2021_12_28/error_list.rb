@@ -11,7 +11,7 @@ module Peddler
       ErrorList = Structure.new do
         # @return [Array<Error>] An array of Error objects representing individual errors encountered during the
         #   request.
-        attribute(:errors, [Error])
+        attribute(:errors, [Error], null: false)
       end
     end
   end

@@ -11,7 +11,7 @@ module Peddler
       PartyIdentification = Structure.new do
         # @return [String] Assigned identification for the party. For example, warehouse code or vendor code. Please
         #   refer to specific party for more details.
-        attribute(:party_id, String, from: "partyId")
+        attribute(:party_id, String, null: false, from: "partyId")
 
         # @return [Address] Identification of the party by address.
         attribute?(:address, Address)

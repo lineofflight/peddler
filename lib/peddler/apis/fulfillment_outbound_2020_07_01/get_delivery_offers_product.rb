@@ -10,7 +10,7 @@ module Peddler
       # The product details for the delivery offer.
       GetDeliveryOffersProduct = Structure.new do
         # @return [ProductIdentifier] Product identifier input that locates a product for MCF.
-        attribute(:product_identifier, ProductIdentifier, from: "productIdentifier")
+        attribute(:product_identifier, ProductIdentifier, null: false, from: "productIdentifier")
 
         # @return [Amount] The amount of the requested product.
         attribute?(:amount, Amount)

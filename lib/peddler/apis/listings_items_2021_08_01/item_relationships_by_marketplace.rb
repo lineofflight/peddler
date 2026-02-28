@@ -10,10 +10,10 @@ module Peddler
       # Relationship details for the listing item in the specified marketplace.
       ItemRelationshipsByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<ItemRelationship>] Relationships for the listing item.
-        attribute(:relationships, [ItemRelationship])
+        attribute(:relationships, [ItemRelationship], null: false)
       end
     end
   end

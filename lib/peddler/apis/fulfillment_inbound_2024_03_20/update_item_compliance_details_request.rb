@@ -10,10 +10,10 @@ module Peddler
       # The `updateItemComplianceDetails` request.
       UpdateItemComplianceDetailsRequest = Structure.new do
         # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.
-        attribute(:msku, String)
+        attribute(:msku, String, null: false)
 
         # @return [TaxDetails]
-        attribute(:tax_details, TaxDetails, from: "taxDetails")
+        attribute(:tax_details, TaxDetails, null: false, from: "taxDetails")
       end
     end
   end

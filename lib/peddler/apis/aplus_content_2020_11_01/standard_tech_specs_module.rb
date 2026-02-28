@@ -10,7 +10,7 @@ module Peddler
       # The standard table of technical feature names and definitions.
       StandardTechSpecsModule = Structure.new do
         # @return [Array<StandardTextPairBlock>] The specification list.
-        attribute(:specification_list, [StandardTextPairBlock], from: "specificationList")
+        attribute(:specification_list, [StandardTextPairBlock], null: false, from: "specificationList")
 
         # @return [TextComponent]
         attribute?(:headline, TextComponent)

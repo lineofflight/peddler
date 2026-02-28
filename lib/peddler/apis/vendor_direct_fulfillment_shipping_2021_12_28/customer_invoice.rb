@@ -10,10 +10,10 @@ module Peddler
       # Represents a customer invoice associated with a purchase order.
       CustomerInvoice = Structure.new do
         # @return [String] The Base64 customer invoice.
-        attribute(:content, String)
+        attribute(:content, String, null: false)
 
         # @return [String] The purchase order number for this order.
-        attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
+        attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
       end
     end
   end

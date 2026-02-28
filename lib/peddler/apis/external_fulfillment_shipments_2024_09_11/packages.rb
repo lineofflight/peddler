@@ -10,7 +10,7 @@ module Peddler
       # The request schema of the `createPackages` operation.
       Packages = Structure.new do
         # @return [Array<Package>] A list of packages.
-        attribute(:packages, [Package])
+        attribute(:packages, [Package], null: false)
       end
     end
   end

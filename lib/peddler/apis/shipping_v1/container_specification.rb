@@ -10,10 +10,10 @@ module Peddler
       # Container specification for checking the service rate.
       ContainerSpecification = Structure.new do
         # @return [Dimensions] The length, width, and height of the container.
-        attribute(:dimensions, Dimensions)
+        attribute(:dimensions, Dimensions, null: false)
 
         # @return [Weight] The weight of the container.
-        attribute(:weight, Weight)
+        attribute(:weight, Weight, null: false)
       end
     end
   end

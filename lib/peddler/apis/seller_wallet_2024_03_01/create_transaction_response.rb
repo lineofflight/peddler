@@ -11,10 +11,10 @@ module Peddler
       CreateTransactionResponse = Structure.new do
         # @return [String] The callback URL for the transaction which the user have to click to approve/consent the
         #   transaction
-        attribute(:call_back_url, String, from: "callBackURL")
+        attribute(:call_back_url, String, null: false, from: "callBackURL")
 
         # @return [Transaction] The transaction response details.
-        attribute(:transaction, Transaction)
+        attribute(:transaction, Transaction, null: false)
       end
     end
   end

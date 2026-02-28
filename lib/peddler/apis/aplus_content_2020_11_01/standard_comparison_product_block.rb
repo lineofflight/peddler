@@ -11,7 +11,7 @@ module Peddler
       StandardComparisonProductBlock = Structure.new do
         # @return [Integer] The rank or index of this comparison product block within the module. Different blocks
         #   cannot occupy the same position within a single module.
-        attribute(:position, Integer)
+        attribute(:position, Integer, null: false)
 
         # @return [String]
         attribute?(:asin, String)

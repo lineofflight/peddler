@@ -11,18 +11,18 @@ module Peddler
       # Detailed information about the report.
       Report = Structure.new do
         # @return [Time] The date and time when the report was created.
-        attribute(:created_time, Time, from: "createdTime")
+        attribute(:created_time, Time, null: false, from: "createdTime")
 
         # @return [String] The processing status of the report.
-        attribute(:processing_status, String, from: "processingStatus")
+        attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # @return [String] The identifier for the report. This identifier is unique only in combination with a seller
         #   ID.
-        attribute(:report_id, String, from: "reportId")
+        attribute(:report_id, String, null: false, from: "reportId")
 
         # @return [String] The report type. Refer to [Report Type
         #   Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
-        attribute(:report_type, String, from: "reportType")
+        attribute(:report_type, String, null: false, from: "reportType")
 
         # @return [Time] The end of a date and time range used for selecting the data to report.
         attribute?(:data_end_time, Time, from: "dataEndTime")

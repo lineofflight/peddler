@@ -14,7 +14,7 @@ module Peddler
         #   by the subscription service to determine the type of event filter. Refer to [Notification Type
         #   Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values) to determine if an
         #   `eventFilterType` is supported.
-        attribute(:event_filter_type, String, from: "eventFilterType")
+        attribute(:event_filter_type, String, null: false, from: "eventFilterType")
 
         # @return [AggregationSettings]
         attribute?(:aggregation_settings, AggregationSettings, from: "aggregationSettings")

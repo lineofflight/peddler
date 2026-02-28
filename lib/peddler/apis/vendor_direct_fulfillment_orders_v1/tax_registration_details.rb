@@ -10,7 +10,7 @@ module Peddler
       # Tax registration details of the entity.
       TaxRegistrationDetails = Structure.new do
         # @return [String] Tax registration number for the party. For example, VAT ID.
-        attribute(:tax_registration_number, String, from: "taxRegistrationNumber")
+        attribute(:tax_registration_number, String, null: false, from: "taxRegistrationNumber")
 
         # @return [Address] Address associated with the tax registration number.
         attribute?(:tax_registration_address, Address, from: "taxRegistrationAddress")

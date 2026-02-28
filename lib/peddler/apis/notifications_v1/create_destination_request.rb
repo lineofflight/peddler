@@ -10,11 +10,11 @@ module Peddler
       # The request schema for the `createDestination` operation.
       CreateDestinationRequest = Structure.new do
         # @return [String] A developer-defined name to help identify this destination.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [DestinationResourceSpecification] The information required to create a destination resource.
         #   Applications should use one resource type (sqs or eventBridge) per destination.
-        attribute(:resource_specification, DestinationResourceSpecification, from: "resourceSpecification")
+        attribute(:resource_specification, DestinationResourceSpecification, null: false, from: "resourceSpecification")
       end
     end
   end

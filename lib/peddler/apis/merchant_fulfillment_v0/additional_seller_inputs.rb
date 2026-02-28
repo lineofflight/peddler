@@ -10,10 +10,10 @@ module Peddler
       # An additional set of seller inputs required to purchase shipping.
       AdditionalSellerInputs = Structure.new do
         # @return [String] The name of the additional input field.
-        attribute(:additional_input_field_name, String, from: "AdditionalInputFieldName")
+        attribute(:additional_input_field_name, String, null: false, from: "AdditionalInputFieldName")
 
         # @return [AdditionalSellerInput]
-        attribute(:additional_seller_input, AdditionalSellerInput, from: "AdditionalSellerInput")
+        attribute(:additional_seller_input, AdditionalSellerInput, null: false, from: "AdditionalSellerInput")
       end
     end
   end

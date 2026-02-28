@@ -12,10 +12,10 @@ module Peddler
         # @return [ListOfferMetricsRequestFilters] Use these parameters to filter results. Any result must match all
         #   provided parameters. For any parameter that is an array, the result must match at least one element in the
         #   provided array.
-        attribute(:filters, ListOfferMetricsRequestFilters)
+        attribute(:filters, ListOfferMetricsRequestFilters, null: false)
 
         # @return [ListOfferMetricsRequestPagination] Use these parameters to paginate through the response.
-        attribute(:pagination, ListOfferMetricsRequestPagination)
+        attribute(:pagination, ListOfferMetricsRequestPagination, null: false)
 
         # @return [ListOfferMetricsRequestSort] Use these parameters to sort the response.
         attribute?(:sort, ListOfferMetricsRequestSort)

@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The Amazon product type of the ASINs for which the report is being requested. All ASINs with
         #   the productType will be included. The value for the product type can be found by following instructions on
         #   Seller Central's Help page. - https://developer-docs.amazon.com/sp-api/docs/seller-central-urls
-        attribute(:product_type, String, from: "productType")
+        attribute(:product_type, String, null: false, from: "productType")
       end
     end
   end

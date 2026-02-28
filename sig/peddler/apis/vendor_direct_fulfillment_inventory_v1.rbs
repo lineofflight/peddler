@@ -2,21 +2,21 @@ module Peddler
   module APIs
     class VendorDirectFulfillmentInventoryV1 < API
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
-                    | (String?, String?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
-                   | (String?, String?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
+                    | (String, String, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
+                   | (String, String, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]
@@ -24,75 +24,75 @@ module Peddler
       end
 
       class InventoryUpdate < Data
-        def self.new: (full_update: bool?, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
-                    | (bool?, Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
-        def self.[]: (full_update: bool?, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
-                   | (bool?, Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
+        def self.new: (full_update: bool, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails], selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
+                    | (bool, Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails], Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
+        def self.[]: (full_update: bool, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails], selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
+                   | (bool, Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails], Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
 
         def self.members: () -> [ :full_update, :items, :selling_party ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::InventoryUpdate
 
-        attr_reader full_update: bool?
-        attr_reader items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?
-        attr_reader selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification?
+        attr_reader full_update: bool
+        attr_reader items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]
+        attr_reader selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
 
         def full_update?: () -> bool
         def members: () -> [ :full_update, :items, :selling_party ]
-        def to_h: () -> { full_update: bool?, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails]?, selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification? }
+        def to_h: () -> { full_update: bool, items: Array[Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails], selling_party: Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification }
       end
 
       class ItemDetails < Data
-        def self.new: (available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, ?buyer_product_identifier: String?, ?obsolete: bool?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
-                    | (Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, String?, bool?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
-        def self.[]: (available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, ?buyer_product_identifier: String?, ?obsolete: bool?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
-                   | (Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, String?, bool?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
+        def self.new: (available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity, ?buyer_product_identifier: String?, ?obsolete: bool?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
+                    | (Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity, String?, bool?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
+        def self.[]: (available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity, ?buyer_product_identifier: String?, ?obsolete: bool?, ?vendor_product_identifier: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
+                   | (Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity, String?, bool?, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
 
         def self.members: () -> [ :available_quantity, :buyer_product_identifier, :obsolete, :vendor_product_identifier ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemDetails
 
-        attr_reader available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?
+        attr_reader available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
         attr_reader buyer_product_identifier: String?
         attr_reader obsolete: bool?
         attr_reader vendor_product_identifier: String?
 
         def members: () -> [ :available_quantity, :buyer_product_identifier, :obsolete, :vendor_product_identifier ]
         def obsolete?: () -> bool
-        def to_h: () -> { available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity?, buyer_product_identifier: String?, obsolete: bool?, vendor_product_identifier: String? }
+        def to_h: () -> { available_quantity: Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity, buyer_product_identifier: String?, obsolete: bool?, vendor_product_identifier: String? }
       end
 
       class ItemQuantity < Data
-        def self.new: (unit_of_measure: String?, ?amount: Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
-                    | (String?, Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
-        def self.[]: (unit_of_measure: String?, ?amount: Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
-                   | (String?, Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
+        def self.new: (unit_of_measure: String, ?amount: Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
+                    | (String, Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
+        def self.[]: (unit_of_measure: String, ?amount: Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
+                   | (String, Integer?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
 
         def self.members: () -> [ :unit_of_measure, :amount ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::ItemQuantity
 
         attr_reader amount: Integer?
-        attr_reader unit_of_measure: String?
+        attr_reader unit_of_measure: String
 
         def members: () -> [ :unit_of_measure, :amount ]
-        def to_h: () -> { unit_of_measure: String?, amount: Integer? }
+        def to_h: () -> { unit_of_measure: String, amount: Integer? }
       end
 
       class PartyIdentification < Data
-        def self.new: (party_id: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
-                    | (String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
-        def self.[]: (party_id: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
-                   | (String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
+        def self.new: (party_id: String) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
+                    | (String) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
+        def self.[]: (party_id: String) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
+                   | (String) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
 
         def self.members: () -> [ :party_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::PartyIdentification
 
-        attr_reader party_id: String?
+        attr_reader party_id: String
 
         def members: () -> [ :party_id ]
-        def to_h: () -> { party_id: String? }
+        def to_h: () -> { party_id: String }
       end
 
       class SubmitInventoryUpdateRequest < Data

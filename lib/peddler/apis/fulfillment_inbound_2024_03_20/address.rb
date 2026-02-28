@@ -10,19 +10,19 @@ module Peddler
       # Specific details to identify a place.
       Address = Structure.new do
         # @return [String] Street address information.
-        attribute(:address_line1, String, from: "addressLine1")
+        attribute(:address_line1, String, null: false, from: "addressLine1")
 
         # @return [String] The city.
-        attribute(:city, String)
+        attribute(:city, String, null: false)
 
         # @return [String] The country code in two-character ISO 3166-1 alpha-2 format.
-        attribute(:country_code, String, from: "countryCode")
+        attribute(:country_code, String, null: false, from: "countryCode")
 
         # @return [String] The name of the individual who is the primary contact.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String] The postal code.
-        attribute(:postal_code, String, from: "postalCode")
+        attribute(:postal_code, String, null: false, from: "postalCode")
 
         # @return [String] Additional street address information.
         attribute?(:address_line2, String, from: "addressLine2")

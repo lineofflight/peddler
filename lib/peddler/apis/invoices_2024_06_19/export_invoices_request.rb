@@ -11,7 +11,7 @@ module Peddler
       # The information required to create the export request.
       ExportInvoicesRequest = Structure.new do
         # @return [String] The ID of the marketplace from which you want the invoices.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Date] The latest invoice creation date for invoices that you want to include in the response. Dates
         #   are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is

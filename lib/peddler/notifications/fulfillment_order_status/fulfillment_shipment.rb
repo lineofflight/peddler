@@ -9,16 +9,16 @@ module Peddler
     module FulfillmentOrderStatus
       FulfillmentShipment = Structure.new do
         # @return [String]
-        attribute(:amazon_shipment_id, String, from: "AmazonShipmentId")
+        attribute(:amazon_shipment_id, String, null: false, from: "AmazonShipmentId")
 
         # @return [String]
-        attribute(:estimated_arrival_date_time, String, from: "EstimatedArrivalDateTime")
+        attribute(:estimated_arrival_date_time, String, null: false, from: "EstimatedArrivalDateTime")
 
         # @return [Array]
-        attribute(:fulfillment_shipment_packages, Array, from: "FulfillmentShipmentPackages")
+        attribute(:fulfillment_shipment_packages, Array, null: false, from: "FulfillmentShipmentPackages")
 
         # @return [String]
-        attribute(:fulfillment_shipment_status, String, from: "FulfillmentShipmentStatus")
+        attribute(:fulfillment_shipment_status, String, null: false, from: "FulfillmentShipmentStatus")
       end
     end
   end

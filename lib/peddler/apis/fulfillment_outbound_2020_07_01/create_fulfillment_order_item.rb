@@ -10,16 +10,16 @@ module Peddler
       # Item information for creating a fulfillment order.
       CreateFulfillmentOrderItem = Structure.new do
         # @return [Integer]
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [String] A fulfillment order item identifier that the seller creates to track fulfillment order items.
         #   Used to disambiguate multiple fulfillment items that have the same `sellerSku` value. For example, the
         #   seller might assign different `sellerFulfillmentOrderItemId` values to two items in a fulfillment order that
         #   share the same `sellerSku` value but have different `giftMessage` values.
-        attribute(:seller_fulfillment_order_item_id, String, from: "sellerFulfillmentOrderItemId")
+        attribute(:seller_fulfillment_order_item_id, String, null: false, from: "sellerFulfillmentOrderItemId")
 
         # @return [String] The seller SKU of the item.
-        attribute(:seller_sku, String, from: "sellerSku")
+        attribute(:seller_sku, String, null: false, from: "sellerSku")
 
         # @return [String] Item-specific text that displays in recipient-facing materials such as the outbound shipment
         #   packing slip.

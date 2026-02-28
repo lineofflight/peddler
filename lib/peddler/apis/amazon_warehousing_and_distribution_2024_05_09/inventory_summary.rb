@@ -10,7 +10,7 @@ module Peddler
       # Summary of inventory per SKU.
       InventorySummary = Structure.new do
         # @return [String] The seller or merchant SKU.
-        attribute(:sku, String)
+        attribute(:sku, String, null: false)
 
         # @return [Array<ExpirationDetails>] The expiration details of the inventory. This object will only appear if
         #   the `details` parameter in the request is set to `SHOW`.

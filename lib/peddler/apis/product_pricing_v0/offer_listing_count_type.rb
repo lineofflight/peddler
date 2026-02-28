@@ -10,10 +10,10 @@ module Peddler
       # The number of offer listings with the specified condition.
       OfferListingCountType = Structure.new do
         # @return [Integer] The number of offer listings.
-        attribute(:count, Integer, from: "Count")
+        attribute(:count, Integer, null: false, from: "Count")
 
         # @return [String] The condition of the item.
-        attribute(:condition, String)
+        attribute(:condition, String, null: false)
       end
     end
   end

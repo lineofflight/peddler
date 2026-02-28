@@ -9,13 +9,13 @@ module Peddler
     module AnyOfferChanged
       Summary = Structure.new do
         # @return [Array]
-        attribute(:lowest_prices, Array, from: "LowestPrices")
+        attribute(:lowest_prices, Array, null: false, from: "LowestPrices")
 
         # @return [Array]
-        attribute(:number_of_buy_box_eligible_offers, Array, from: "NumberOfBuyBoxEligibleOffers")
+        attribute(:number_of_buy_box_eligible_offers, Array, null: false, from: "NumberOfBuyBoxEligibleOffers")
 
         # @return [Array]
-        attribute(:number_of_offers, Array, from: "NumberOfOffers")
+        attribute(:number_of_offers, Array, null: false, from: "NumberOfOffers")
 
         # @return [Array]
         attribute?(:buy_box_prices, Array, from: "BuyBoxPrices")

@@ -11,13 +11,13 @@ module Peddler
       # Represents an AWD replenishment order.
       ReplenishmentOrder = Structure.new do
         # @return [String] Order Id of the replenishment order.
-        attribute(:order_id, String, from: "orderId")
+        attribute(:order_id, String, null: false, from: "orderId")
 
         # @return [Array<OutboundShipmentSummary>] List of outbound shipments that are part of this order.
-        attribute(:outbound_shipments, [OutboundShipmentSummary], from: "outboundShipments")
+        attribute(:outbound_shipments, [OutboundShipmentSummary], null: false, from: "outboundShipments")
 
         # @return [String]
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [Time] Date on which this replenishment order was confirmed.
         attribute?(:confirmed_on, Time, from: "confirmedOn")

@@ -10,14 +10,14 @@ module Peddler
       # The `createMarketplaceItemLabels` request.
       CreateMarketplaceItemLabelsRequest = Structure.new do
         # @return [String]
-        attribute(:label_type, String, from: "labelType")
+        attribute(:label_type, String, null: false, from: "labelType")
 
         # @return [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
         #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<MskuQuantity>] Represents the quantity of an MSKU to print item labels for.
-        attribute(:msku_quantities, [MskuQuantity], from: "mskuQuantities")
+        attribute(:msku_quantities, [MskuQuantity], null: false, from: "mskuQuantities")
 
         # @return [Float] The height of the item label.
         attribute?(:height, Float)

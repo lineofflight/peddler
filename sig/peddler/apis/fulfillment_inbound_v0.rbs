@@ -25,26 +25,26 @@ module Peddler
       end
 
       class Address < Data
-        def self.new: (address_line1: String?, city: String?, country_code: String?, name: String?, postal_code: String?, state_or_province_code: String?, ?address_line2: String?, ?district_or_county: String?) -> Peddler::APIs::FulfillmentInboundV0::Address
-                    | (String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::Address
-        def self.[]: (address_line1: String?, city: String?, country_code: String?, name: String?, postal_code: String?, state_or_province_code: String?, ?address_line2: String?, ?district_or_county: String?) -> Peddler::APIs::FulfillmentInboundV0::Address
-                   | (String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::Address
+        def self.new: (address_line1: String, city: String, country_code: String, name: String, postal_code: String, state_or_province_code: String, ?address_line2: String?, ?district_or_county: String?) -> Peddler::APIs::FulfillmentInboundV0::Address
+                    | (String, String, String, String, String, String, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::Address
+        def self.[]: (address_line1: String, city: String, country_code: String, name: String, postal_code: String, state_or_province_code: String, ?address_line2: String?, ?district_or_county: String?) -> Peddler::APIs::FulfillmentInboundV0::Address
+                   | (String, String, String, String, String, String, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::Address
 
         def self.members: () -> [ :address_line1, :city, :country_code, :name, :postal_code, :state_or_province_code, :address_line2, :district_or_county ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentInboundV0::Address
 
-        attr_reader address_line1: String?
+        attr_reader address_line1: String
         attr_reader address_line2: String?
-        attr_reader city: String?
-        attr_reader country_code: String?
+        attr_reader city: String
+        attr_reader country_code: String
         attr_reader district_or_county: String?
-        attr_reader name: String?
-        attr_reader postal_code: String?
-        attr_reader state_or_province_code: String?
+        attr_reader name: String
+        attr_reader postal_code: String
+        attr_reader state_or_province_code: String
 
         def members: () -> [ :address_line1, :city, :country_code, :name, :postal_code, :state_or_province_code, :address_line2, :district_or_county ]
-        def to_h: () -> { address_line1: String?, city: String?, country_code: String?, name: String?, postal_code: String?, state_or_province_code: String?, address_line2: String?, district_or_county: String? }
+        def to_h: () -> { address_line1: String, city: String, country_code: String, name: String, postal_code: String, state_or_province_code: String, address_line2: String?, district_or_county: String? }
       end
 
       class AmazonPrepFeesDetails < Data
@@ -69,20 +69,20 @@ module Peddler
       end
 
       class Amount < Data
-        def self.new: (currency_code: String?, value: Float?) -> Peddler::APIs::FulfillmentInboundV0::Amount
-                    | (String?, Float?) -> Peddler::APIs::FulfillmentInboundV0::Amount
-        def self.[]: (currency_code: String?, value: Float?) -> Peddler::APIs::FulfillmentInboundV0::Amount
-                   | (String?, Float?) -> Peddler::APIs::FulfillmentInboundV0::Amount
+        def self.new: (currency_code: String, value: Float) -> Peddler::APIs::FulfillmentInboundV0::Amount
+                    | (String, Float) -> Peddler::APIs::FulfillmentInboundV0::Amount
+        def self.[]: (currency_code: String, value: Float) -> Peddler::APIs::FulfillmentInboundV0::Amount
+                   | (String, Float) -> Peddler::APIs::FulfillmentInboundV0::Amount
 
         def self.members: () -> [ :currency_code, :value ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentInboundV0::Amount
 
-        attr_reader currency_code: String?
-        attr_reader value: Float?
+        attr_reader currency_code: String
+        attr_reader value: Float
 
         def members: () -> [ :currency_code, :value ]
-        def to_h: () -> { currency_code: String?, value: Float? }
+        def to_h: () -> { currency_code: String, value: Float }
       end
 
       class BillOfLadingDownloadURL < Data
@@ -120,21 +120,21 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::FulfillmentInboundV0::Error
-                    | (String?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::FulfillmentInboundV0::Error
-                   | (String?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::FulfillmentInboundV0::Error
+                    | (String, String, String?) -> Peddler::APIs::FulfillmentInboundV0::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::FulfillmentInboundV0::Error
+                   | (String, String, String?) -> Peddler::APIs::FulfillmentInboundV0::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentInboundV0::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]
@@ -280,36 +280,36 @@ module Peddler
       end
 
       class InboundShipmentInfo < Data
-        def self.new: (are_cases_required: bool?, ship_from_address: Peddler::APIs::FulfillmentInboundV0::Address?, ?box_contents_source: String?, ?confirmed_need_by_date: String?, ?destination_fulfillment_center_id: String?, ?estimated_box_contents_fee: Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, ?label_prep_type: String?, ?shipment_id: String?, ?shipment_name: String?, ?shipment_status: String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
-                    | (bool?, Peddler::APIs::FulfillmentInboundV0::Address?, String?, String?, String?, Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, String?, String?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
-        def self.[]: (are_cases_required: bool?, ship_from_address: Peddler::APIs::FulfillmentInboundV0::Address?, ?box_contents_source: String?, ?confirmed_need_by_date: String?, ?destination_fulfillment_center_id: String?, ?estimated_box_contents_fee: Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, ?label_prep_type: String?, ?shipment_id: String?, ?shipment_name: String?, ?shipment_status: String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
-                   | (bool?, Peddler::APIs::FulfillmentInboundV0::Address?, String?, String?, String?, Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, String?, String?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
+        def self.new: (are_cases_required: bool, ship_from_address: Peddler::APIs::FulfillmentInboundV0::Address, ?box_contents_source: String?, ?confirmed_need_by_date: String?, ?destination_fulfillment_center_id: String?, ?estimated_box_contents_fee: Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, ?label_prep_type: String?, ?shipment_id: String?, ?shipment_name: String?, ?shipment_status: String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
+                    | (bool, Peddler::APIs::FulfillmentInboundV0::Address, String?, String?, String?, Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, String?, String?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
+        def self.[]: (are_cases_required: bool, ship_from_address: Peddler::APIs::FulfillmentInboundV0::Address, ?box_contents_source: String?, ?confirmed_need_by_date: String?, ?destination_fulfillment_center_id: String?, ?estimated_box_contents_fee: Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, ?label_prep_type: String?, ?shipment_id: String?, ?shipment_name: String?, ?shipment_status: String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
+                   | (bool, Peddler::APIs::FulfillmentInboundV0::Address, String?, String?, String?, Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, String?, String?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
 
         def self.members: () -> [ :are_cases_required, :ship_from_address, :box_contents_source, :confirmed_need_by_date, :destination_fulfillment_center_id, :estimated_box_contents_fee, :label_prep_type, :shipment_id, :shipment_name, :shipment_status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentInfo
 
-        attr_reader are_cases_required: bool?
+        attr_reader are_cases_required: bool
         attr_reader box_contents_source: String?
         attr_reader confirmed_need_by_date: String?
         attr_reader destination_fulfillment_center_id: String?
         attr_reader estimated_box_contents_fee: Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?
         attr_reader label_prep_type: String?
-        attr_reader ship_from_address: Peddler::APIs::FulfillmentInboundV0::Address?
+        attr_reader ship_from_address: Peddler::APIs::FulfillmentInboundV0::Address
         attr_reader shipment_id: String?
         attr_reader shipment_name: String?
         attr_reader shipment_status: String?
 
         def are_cases_required?: () -> bool
         def members: () -> [ :are_cases_required, :ship_from_address, :box_contents_source, :confirmed_need_by_date, :destination_fulfillment_center_id, :estimated_box_contents_fee, :label_prep_type, :shipment_id, :shipment_name, :shipment_status ]
-        def to_h: () -> { are_cases_required: bool?, ship_from_address: Peddler::APIs::FulfillmentInboundV0::Address?, box_contents_source: String?, confirmed_need_by_date: String?, destination_fulfillment_center_id: String?, estimated_box_contents_fee: Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, label_prep_type: String?, shipment_id: String?, shipment_name: String?, shipment_status: String? }
+        def to_h: () -> { are_cases_required: bool, ship_from_address: Peddler::APIs::FulfillmentInboundV0::Address, box_contents_source: String?, confirmed_need_by_date: String?, destination_fulfillment_center_id: String?, estimated_box_contents_fee: Peddler::APIs::FulfillmentInboundV0::BoxContentsFeeDetails?, label_prep_type: String?, shipment_id: String?, shipment_name: String?, shipment_status: String? }
       end
 
       class InboundShipmentItem < Data
-        def self.new: (quantity_shipped: Integer?, seller_sku: String?, ?fulfillment_network_sku: String?, ?prep_details_list: Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, ?quantity_in_case: Integer?, ?quantity_received: Integer?, ?release_date: String?, ?shipment_id: String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentItem
-                    | (Integer?, String?, String?, Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, Integer?, Integer?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentItem
-        def self.[]: (quantity_shipped: Integer?, seller_sku: String?, ?fulfillment_network_sku: String?, ?prep_details_list: Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, ?quantity_in_case: Integer?, ?quantity_received: Integer?, ?release_date: String?, ?shipment_id: String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentItem
-                   | (Integer?, String?, String?, Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, Integer?, Integer?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentItem
+        def self.new: (quantity_shipped: Integer, seller_sku: String, ?fulfillment_network_sku: String?, ?prep_details_list: Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, ?quantity_in_case: Integer?, ?quantity_received: Integer?, ?release_date: String?, ?shipment_id: String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentItem
+                    | (Integer, String, String?, Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, Integer?, Integer?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentItem
+        def self.[]: (quantity_shipped: Integer, seller_sku: String, ?fulfillment_network_sku: String?, ?prep_details_list: Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, ?quantity_in_case: Integer?, ?quantity_received: Integer?, ?release_date: String?, ?shipment_id: String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentItem
+                   | (Integer, String, String?, Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, Integer?, Integer?, String?, String?) -> Peddler::APIs::FulfillmentInboundV0::InboundShipmentItem
 
         def self.members: () -> [ :quantity_shipped, :seller_sku, :fulfillment_network_sku, :prep_details_list, :quantity_in_case, :quantity_received, :release_date, :shipment_id ]
 
@@ -319,13 +319,13 @@ module Peddler
         attr_reader prep_details_list: Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?
         attr_reader quantity_in_case: Integer?
         attr_reader quantity_received: Integer?
-        attr_reader quantity_shipped: Integer?
+        attr_reader quantity_shipped: Integer
         attr_reader release_date: String?
-        attr_reader seller_sku: String?
+        attr_reader seller_sku: String
         attr_reader shipment_id: String?
 
         def members: () -> [ :quantity_shipped, :seller_sku, :fulfillment_network_sku, :prep_details_list, :quantity_in_case, :quantity_received, :release_date, :shipment_id ]
-        def to_h: () -> { quantity_shipped: Integer?, seller_sku: String?, fulfillment_network_sku: String?, prep_details_list: Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, quantity_in_case: Integer?, quantity_received: Integer?, release_date: String?, shipment_id: String? }
+        def to_h: () -> { quantity_shipped: Integer, seller_sku: String, fulfillment_network_sku: String?, prep_details_list: Array[Peddler::APIs::FulfillmentInboundV0::PrepDetails]?, quantity_in_case: Integer?, quantity_received: Integer?, release_date: String?, shipment_id: String? }
       end
 
       class InboundShipmentItemList < Array[InboundShipmentItem]
@@ -395,20 +395,20 @@ module Peddler
       end
 
       class PrepDetails < Data
-        def self.new: (prep_instruction: String?, prep_owner: String?) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
-                    | (String?, String?) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
-        def self.[]: (prep_instruction: String?, prep_owner: String?) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
-                   | (String?, String?) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
+        def self.new: (prep_instruction: String, prep_owner: String) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
+                    | (String, String) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
+        def self.[]: (prep_instruction: String, prep_owner: String) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
+                   | (String, String) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
 
         def self.members: () -> [ :prep_instruction, :prep_owner ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentInboundV0::PrepDetails
 
-        attr_reader prep_instruction: String?
-        attr_reader prep_owner: String?
+        attr_reader prep_instruction: String
+        attr_reader prep_owner: String
 
         def members: () -> [ :prep_instruction, :prep_owner ]
-        def to_h: () -> { prep_instruction: String?, prep_owner: String? }
+        def to_h: () -> { prep_instruction: String, prep_owner: String }
       end
 
       class PrepDetailsList < Array[PrepDetails]

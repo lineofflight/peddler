@@ -9,10 +9,10 @@ module Peddler
     module AnyOfferChanged
       SellerFeedbackRating = Structure.new do
         # @return [Integer]
-        attribute(:feedback_count, Integer, from: "FeedbackCount")
+        attribute(:feedback_count, Integer, null: false, from: "FeedbackCount")
 
         # @return [Integer]
-        attribute(:seller_positive_feedback_rating, Integer, from: "SellerPositiveFeedbackRating")
+        attribute(:seller_positive_feedback_rating, Integer, null: false, from: "SellerPositiveFeedbackRating")
       end
     end
   end

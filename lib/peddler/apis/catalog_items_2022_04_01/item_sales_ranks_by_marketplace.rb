@@ -11,7 +11,7 @@ module Peddler
       ItemSalesRanksByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier. To find the ID for your marketplace, refer to [Marketplace
         #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<ItemClassificationSalesRank>] Sales ranks of an Amazon catalog item for a `marketplaceId`,
         #   grouped by classification.

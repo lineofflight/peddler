@@ -10,7 +10,7 @@ module Peddler
       # A simple object containing the name of the template.
       SolicitationsAction = Structure.new do
         # @return [String]
-        attribute(:name, String)
+        attribute(:name, String, null: false)
       end
     end
   end

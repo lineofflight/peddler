@@ -10,7 +10,7 @@ module Peddler
       # An item in the Amazon catalog.
       Item = Structure.new do
         # @return [String]
-        attribute(:asin, String)
+        attribute(:asin, String, null: false)
 
         # @return [Hash]
         attribute?(:attributes, Hash)

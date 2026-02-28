@@ -10,7 +10,7 @@ module Peddler
       # The `listPackingGroupItems` response.
       ListPackingGroupItemsResponse = Structure.new do
         # @return [Array<Item>] Provides the information about the list of items in the packing group.
-        attribute(:items, [Item])
+        attribute(:items, [Item], null: false)
 
         # @return [Pagination]
         attribute?(:pagination, Pagination)

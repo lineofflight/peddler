@@ -18,7 +18,7 @@ module Peddler
         # @return [Array<String>] A list of the programs that Amazon associates with the order item.
         #
         # **Possible values**: `SUBSCRIBE_AND_SAVE`, `FBM_SHIP_PLUS`
-        attribute(:programs, [String], from: "Programs")
+        attribute(:programs, [String], null: false, from: "Programs")
       end
     end
   end

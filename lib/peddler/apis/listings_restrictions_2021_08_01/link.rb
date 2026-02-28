@@ -10,10 +10,10 @@ module Peddler
       # A link to resources related to a listing restriction.
       Link = Structure.new do
         # @return [URI] The URI of the related resource.
-        attribute(:resource, URI)
+        attribute(:resource, URI, null: false)
 
         # @return [String] The HTTP verb used to interact with the related resource.
-        attribute(:verb, String)
+        attribute(:verb, String, null: false)
 
         # @return [String] The title of the related resource.
         attribute?(:title, String)

@@ -10,10 +10,10 @@ module Peddler
       # Represents a distribution package with its respective quantity.
       DistributionPackageQuantity = Structure.new do
         # @return [Integer] Number of cases or pallets with the same package configuration.
-        attribute(:count, Integer)
+        attribute(:count, Integer, null: false)
 
         # @return [DistributionPackage]
-        attribute(:distribution_package, "DistributionPackage", from: "distributionPackage")
+        attribute(:distribution_package, "DistributionPackage", null: false, from: "distributionPackage")
       end
     end
   end

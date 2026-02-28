@@ -10,7 +10,7 @@ module Peddler
       # The updated values of the `VerificationStatus` field.
       UpdateVerificationStatusRequestBody = Structure.new do
         # @return [String] The identifier of the order's regulated information reviewer.
-        attribute(:external_reviewer_id, String, from: "externalReviewerId")
+        attribute(:external_reviewer_id, String, null: false, from: "externalReviewerId")
 
         # @return [String] The unique identifier of the rejection reason used for rejecting the order's regulated
         #   information. Only required if the new status is rejected.

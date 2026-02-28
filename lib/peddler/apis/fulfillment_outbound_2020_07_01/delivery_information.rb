@@ -7,8 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class FulfillmentOutbound20200701
-      # The delivery information of the package, this information is only available post package delivery to its
-      # intended destination.
+      # The delivery information for the package. This information is available after the package is delivered.
       DeliveryInformation = Structure.new do
         # @return [Array<DeliveryDocument>] All of the delivery documents for a package.
         attribute?(:delivery_document_list, [DeliveryDocument], from: "deliveryDocumentList")

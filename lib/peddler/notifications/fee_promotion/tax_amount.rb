@@ -9,10 +9,10 @@ module Peddler
     module FeePromotion
       TaxAmount = Structure.new do
         # @return [Integer]
-        attribute(:amount, Integer, from: "Amount")
+        attribute(:amount, Integer, null: false, from: "Amount")
 
         # @return [String]
-        attribute(:currency_code, String, from: "CurrencyCode")
+        attribute(:currency_code, String, null: false, from: "CurrencyCode")
       end
     end
   end

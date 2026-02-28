@@ -11,10 +11,10 @@ module Peddler
       # multiple date range periods, including the current day.
       Report = Structure.new do
         # @return [Array<ReportData>] List of ASIN and inventory count combinations.
-        attribute(:report_data, [ReportData], from: "reportData")
+        attribute(:report_data, [ReportData], null: false, from: "reportData")
 
         # @return [Hash] Summarizes the original report request.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

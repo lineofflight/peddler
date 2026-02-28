@@ -10,7 +10,7 @@ module Peddler
       # Relationship details for an Amazon catalog item.
       ItemRelationship = Structure.new do
         # @return [String] Type of relationship.
-        attribute(:type, String)
+        attribute(:type, String, null: false)
 
         # @return [Array<String>] ASINs of the related items that are children of this item.
         attribute?(:child_asins, [String], from: "childAsins")

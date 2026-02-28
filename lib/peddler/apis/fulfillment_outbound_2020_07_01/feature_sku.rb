@@ -19,7 +19,7 @@ module Peddler
         # @return [Array<String>] Other seller SKUs that are shared across the same inventory.
         attribute?(:overlapping_skus, [String], from: "overlappingSkus")
 
-        # @return [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's
+        # @return [String] Used to identify an item in the given marketplace. `SellerSKU` is qualified by the seller's
         #   SellerId, which is included with every operation that you submit.
         attribute?(:seller_sku, String, from: "sellerSku")
 

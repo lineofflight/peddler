@@ -11,7 +11,7 @@ module Peddler
       # Tracking details of package
       PackageTrackingDetails = Structure.new do
         # @return [Integer] The package identifier.
-        attribute(:package_number, Integer, from: "packageNumber")
+        attribute(:package_number, Integer, null: false, from: "packageNumber")
 
         # @return [String]
         attribute?(:additional_location_info, String, from: "additionalLocationInfo")

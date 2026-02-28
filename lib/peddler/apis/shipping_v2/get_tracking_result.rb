@@ -11,19 +11,19 @@ module Peddler
       # The payload for the getTracking operation.
       GetTrackingResult = Structure.new do
         # @return [String]
-        attribute(:alternate_leg_tracking_id, String, from: "alternateLegTrackingId")
+        attribute(:alternate_leg_tracking_id, String, null: false, from: "alternateLegTrackingId")
 
         # @return [Array<Event>] A list of tracking events.
-        attribute(:event_history, [Event], from: "eventHistory")
+        attribute(:event_history, [Event], null: false, from: "eventHistory")
 
         # @return [Time] The date and time by which the shipment is promised to be delivered.
-        attribute(:promised_delivery_date, Time, from: "promisedDeliveryDate")
+        attribute(:promised_delivery_date, Time, null: false, from: "promisedDeliveryDate")
 
         # @return [TrackingSummary]
-        attribute(:summary, TrackingSummary)
+        attribute(:summary, TrackingSummary, null: false)
 
         # @return [String]
-        attribute(:tracking_id, String, from: "trackingId")
+        attribute(:tracking_id, String, null: false, from: "trackingId")
       end
     end
   end

@@ -12,7 +12,7 @@ module Peddler
       RecommendedPackageLineItem = Structure.new do
         # @return [String] An ID for a line item in an order. The line item should be present in the recommended
         #   package. This identifier has the same value as the ID of the line item present in the order.
-        attribute(:line_item_id, String, from: "lineItemId")
+        attribute(:line_item_id, String, null: false, from: "lineItemId")
       end
     end
   end

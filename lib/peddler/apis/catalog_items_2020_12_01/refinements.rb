@@ -10,10 +10,10 @@ module Peddler
       # Search refinements.
       Refinements = Structure.new do
         # @return [Array<BrandRefinement>] Brand search refinements.
-        attribute(:brands, [BrandRefinement])
+        attribute(:brands, [BrandRefinement], null: false)
 
         # @return [Array<ClassificationRefinement>] Classification search refinements.
-        attribute(:classifications, [ClassificationRefinement])
+        attribute(:classifications, [ClassificationRefinement], null: false)
       end
     end
   end

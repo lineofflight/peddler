@@ -12,20 +12,20 @@ module Peddler
       Order = Structure.new do
         # @return [Time] The time when the customer placed the order. In [ISO
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-        attribute(:created_time, Time, from: "createdTime")
+        attribute(:created_time, Time, null: false, from: "createdTime")
 
         # @return [Time] The most recent time when any aspect of this order was modified by Amazon or the seller. In
         #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-        attribute(:last_updated_time, Time, from: "lastUpdatedTime")
+        attribute(:last_updated_time, Time, null: false, from: "lastUpdatedTime")
 
         # @return [String] An Amazon-defined order identifier.
-        attribute(:order_id, String, from: "orderId")
+        attribute(:order_id, String, null: false, from: "orderId")
 
         # @return [Array<OrderItem>] The list of all order items included in this order.
-        attribute(:order_items, [OrderItem], from: "orderItems")
+        attribute(:order_items, [OrderItem], null: false, from: "orderItems")
 
         # @return [SalesChannel] Information about where this order was placed.
-        attribute(:sales_channel, SalesChannel, from: "salesChannel")
+        attribute(:sales_channel, SalesChannel, null: false, from: "salesChannel")
 
         # @return [Array<AssociatedOrder>] Other orders that have a direct relationship to this order, such as
         #   replacement or exchange orders.

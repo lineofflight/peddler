@@ -10,19 +10,19 @@ module Peddler
       # Notification payload data
       Payload = Structure.new do
         # @return [String] The issue type for the notification
-        attribute(:issue_type, String, from: "issueType")
+        attribute(:issue_type, String, null: false, from: "issueType")
 
         # @return [MerchantOffer]
-        attribute(:merchant_offer, MerchantOffer, from: "merchantOffer")
+        attribute(:merchant_offer, MerchantOffer, null: false, from: "merchantOffer")
 
         # @return [OfferChangeTrigger]
-        attribute(:offer_change_trigger, OfferChangeTrigger, from: "offerChangeTrigger")
+        attribute(:offer_change_trigger, OfferChangeTrigger, null: false, from: "offerChangeTrigger")
 
         # @return [String] The seller identifier for the offer
-        attribute(:seller_id, String, from: "sellerId")
+        attribute(:seller_id, String, null: false, from: "sellerId")
 
         # @return [Summary]
-        attribute(:summary, Summary)
+        attribute(:summary, Summary, null: false)
       end
     end
   end

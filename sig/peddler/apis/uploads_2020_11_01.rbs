@@ -19,21 +19,21 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Uploads20201101::Error
-                    | (String?, String?, String?) -> Peddler::APIs::Uploads20201101::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::Uploads20201101::Error
-                   | (String?, String?, String?) -> Peddler::APIs::Uploads20201101::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Uploads20201101::Error
+                    | (String, String, String?) -> Peddler::APIs::Uploads20201101::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Uploads20201101::Error
+                   | (String, String, String?) -> Peddler::APIs::Uploads20201101::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Uploads20201101::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]

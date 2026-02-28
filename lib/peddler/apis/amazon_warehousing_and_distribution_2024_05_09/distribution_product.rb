@@ -10,10 +10,10 @@ module Peddler
       # Represents a product with sku details and corresponding quantity
       DistributionProduct = Structure.new do
         # @return [Integer] Quantity of the product
-        attribute(:quantity, Integer)
+        attribute(:quantity, Integer, null: false)
 
         # @return [String] The seller/merchant stock keeping unit (SKU).
-        attribute(:sku, String)
+        attribute(:sku, String, null: false)
 
         # @return [Array<ProductAttribute>] Attributes for this instance of the product, i.e. already-prepped, or other
         #   attributes that distinguish the product beyond the SKU.

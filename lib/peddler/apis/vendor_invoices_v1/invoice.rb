@@ -12,24 +12,24 @@ module Peddler
       Invoice = Structure.new do
         # @return [String] Date when the invoice/credit note information was generated in the origin's accounting
         #   system. The invoice date should be on or after the purchase order creation date.
-        attribute(:date, String)
+        attribute(:date, String, null: false)
 
         # @return [String] Unique number relating to the charges defined in this document. This will be invoice number
         #   if the document type is Invoice or CreditNote number if the document type is Credit Note. Failure to provide
         #   this reference will result in a rejection.
-        attribute(:id, String)
+        attribute(:id, String, null: false)
 
         # @return [Money] Total monetary amount charged in the invoice or full value of credit note to be paid including
         #   all relevant taxes. It is the total amount of invoice (including charges, less allowances) before terms
         #   discount (if discount is applicable).
-        attribute(:invoice_total, Money, from: "invoiceTotal")
+        attribute(:invoice_total, Money, null: false, from: "invoiceTotal")
 
         # @return [String] Identifies the type of invoice.
-        attribute(:invoice_type, String, from: "invoiceType")
+        attribute(:invoice_type, String, null: false, from: "invoiceType")
 
         # @return [PartyIdentification] Name, address and tax details of the party receiving the payment of this
         #   invoice.
-        attribute(:remit_to_party, PartyIdentification, from: "remitToParty")
+        attribute(:remit_to_party, PartyIdentification, null: false, from: "remitToParty")
 
         # @return [Array<AdditionalDetails>] Additional details provided by the selling party, for tax related or other
         #   purposes.

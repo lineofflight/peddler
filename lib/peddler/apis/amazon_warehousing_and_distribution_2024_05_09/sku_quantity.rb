@@ -10,10 +10,10 @@ module Peddler
       # Quantity details for a SKU as part of a shipment
       SKUQuantity = Structure.new do
         # @return [InventoryQuantity]
-        attribute(:expected_quantity, InventoryQuantity, from: "expectedQuantity")
+        attribute(:expected_quantity, InventoryQuantity, null: false, from: "expectedQuantity")
 
         # @return [String] The merchant stock keeping unit
-        attribute(:sku, String)
+        attribute(:sku, String, null: false)
 
         # @return [InventoryQuantity]
         attribute?(:received_quantity, InventoryQuantity, from: "receivedQuantity")

@@ -10,7 +10,7 @@ module Peddler
       # Details about what caused this ORDER_CHANGE notification to be sent.
       OrderChangeTrigger = Structure.new do
         # @return [String] The reason this ORDER_CHANGE notification was sent.
-        attribute(:change_reason, String, from: "ChangeReason")
+        attribute(:change_reason, String, null: false, from: "ChangeReason")
 
         # @return [String] The time of the change that caused this notification, in ISO-8601 date/time format. Will be
         #   null when there is no related timestamp.

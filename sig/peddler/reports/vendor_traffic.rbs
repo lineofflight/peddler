@@ -2,95 +2,95 @@ module Peddler
   module Reports
     module VendorTraffic
       class Report < Data
-        def self.new: (report_specification: Peddler::Reports::VendorTraffic::ReportSpecification?, traffic_aggregate: Array[Peddler::Reports::VendorTraffic::TrafficAggregate]?, traffic_by_asin: Array[Peddler::Reports::VendorTraffic::TrafficByASIN]?) -> Peddler::Reports::VendorTraffic::Report
-                    | (Peddler::Reports::VendorTraffic::ReportSpecification?, Array[Peddler::Reports::VendorTraffic::TrafficAggregate]?, Array[Peddler::Reports::VendorTraffic::TrafficByASIN]?) -> Peddler::Reports::VendorTraffic::Report
-        def self.[]: (report_specification: Peddler::Reports::VendorTraffic::ReportSpecification?, traffic_aggregate: Array[Peddler::Reports::VendorTraffic::TrafficAggregate]?, traffic_by_asin: Array[Peddler::Reports::VendorTraffic::TrafficByASIN]?) -> Peddler::Reports::VendorTraffic::Report
-                   | (Peddler::Reports::VendorTraffic::ReportSpecification?, Array[Peddler::Reports::VendorTraffic::TrafficAggregate]?, Array[Peddler::Reports::VendorTraffic::TrafficByASIN]?) -> Peddler::Reports::VendorTraffic::Report
+        def self.new: (report_specification: Peddler::Reports::VendorTraffic::ReportSpecification, traffic_aggregate: Array[Peddler::Reports::VendorTraffic::TrafficAggregate], traffic_by_asin: Array[Peddler::Reports::VendorTraffic::TrafficByASIN]) -> Peddler::Reports::VendorTraffic::Report
+                    | (Peddler::Reports::VendorTraffic::ReportSpecification, Array[Peddler::Reports::VendorTraffic::TrafficAggregate], Array[Peddler::Reports::VendorTraffic::TrafficByASIN]) -> Peddler::Reports::VendorTraffic::Report
+        def self.[]: (report_specification: Peddler::Reports::VendorTraffic::ReportSpecification, traffic_aggregate: Array[Peddler::Reports::VendorTraffic::TrafficAggregate], traffic_by_asin: Array[Peddler::Reports::VendorTraffic::TrafficByASIN]) -> Peddler::Reports::VendorTraffic::Report
+                   | (Peddler::Reports::VendorTraffic::ReportSpecification, Array[Peddler::Reports::VendorTraffic::TrafficAggregate], Array[Peddler::Reports::VendorTraffic::TrafficByASIN]) -> Peddler::Reports::VendorTraffic::Report
 
         def self.members: () -> [ :report_specification, :traffic_aggregate, :traffic_by_asin ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorTraffic::Report
 
-        attr_reader report_specification: Peddler::Reports::VendorTraffic::ReportSpecification?
-        attr_reader traffic_aggregate: Array[Peddler::Reports::VendorTraffic::TrafficAggregate]?
-        attr_reader traffic_by_asin: Array[Peddler::Reports::VendorTraffic::TrafficByASIN]?
+        attr_reader report_specification: Peddler::Reports::VendorTraffic::ReportSpecification
+        attr_reader traffic_aggregate: Array[Peddler::Reports::VendorTraffic::TrafficAggregate]
+        attr_reader traffic_by_asin: Array[Peddler::Reports::VendorTraffic::TrafficByASIN]
 
         def members: () -> [ :report_specification, :traffic_aggregate, :traffic_by_asin ]
-        def to_h: () -> { report_specification: Peddler::Reports::VendorTraffic::ReportSpecification?, traffic_aggregate: Array[Peddler::Reports::VendorTraffic::TrafficAggregate]?, traffic_by_asin: Array[Peddler::Reports::VendorTraffic::TrafficByASIN]? }
+        def to_h: () -> { report_specification: Peddler::Reports::VendorTraffic::ReportSpecification, traffic_aggregate: Array[Peddler::Reports::VendorTraffic::TrafficAggregate], traffic_by_asin: Array[Peddler::Reports::VendorTraffic::TrafficByASIN] }
       end
 
       class ReportOptions < Data
-        def self.new: (report_period: String?) -> Peddler::Reports::VendorTraffic::ReportOptions
-                    | (String?) -> Peddler::Reports::VendorTraffic::ReportOptions
-        def self.[]: (report_period: String?) -> Peddler::Reports::VendorTraffic::ReportOptions
-                   | (String?) -> Peddler::Reports::VendorTraffic::ReportOptions
+        def self.new: (report_period: String) -> Peddler::Reports::VendorTraffic::ReportOptions
+                    | (String) -> Peddler::Reports::VendorTraffic::ReportOptions
+        def self.[]: (report_period: String) -> Peddler::Reports::VendorTraffic::ReportOptions
+                   | (String) -> Peddler::Reports::VendorTraffic::ReportOptions
 
         def self.members: () -> [ :report_period ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorTraffic::ReportOptions
 
-        attr_reader report_period: String?
+        attr_reader report_period: String
 
         def members: () -> [ :report_period ]
-        def to_h: () -> { report_period: String? }
+        def to_h: () -> { report_period: String }
       end
 
       class ReportSpecification < Data
-        def self.new: (data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorTraffic::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorTraffic::ReportSpecification
-                    | (Date?, Date?, Date?, Array[String]?, Peddler::Reports::VendorTraffic::ReportOptions?, String?) -> Peddler::Reports::VendorTraffic::ReportSpecification
-        def self.[]: (data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorTraffic::ReportOptions?, report_type: String?) -> Peddler::Reports::VendorTraffic::ReportSpecification
-                   | (Date?, Date?, Date?, Array[String]?, Peddler::Reports::VendorTraffic::ReportOptions?, String?) -> Peddler::Reports::VendorTraffic::ReportSpecification
+        def self.new: (data_end_time: Date, data_start_time: Date, last_updated_date: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::VendorTraffic::ReportOptions, report_type: String) -> Peddler::Reports::VendorTraffic::ReportSpecification
+                    | (Date, Date, Date, Array[String], Peddler::Reports::VendorTraffic::ReportOptions, String) -> Peddler::Reports::VendorTraffic::ReportSpecification
+        def self.[]: (data_end_time: Date, data_start_time: Date, last_updated_date: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::VendorTraffic::ReportOptions, report_type: String) -> Peddler::Reports::VendorTraffic::ReportSpecification
+                   | (Date, Date, Date, Array[String], Peddler::Reports::VendorTraffic::ReportOptions, String) -> Peddler::Reports::VendorTraffic::ReportSpecification
 
         def self.members: () -> [ :data_end_time, :data_start_time, :last_updated_date, :marketplace_ids, :report_options, :report_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorTraffic::ReportSpecification
 
-        attr_reader data_end_time: Date?
-        attr_reader data_start_time: Date?
-        attr_reader last_updated_date: Date?
-        attr_reader marketplace_ids: Array[String]?
-        attr_reader report_options: Peddler::Reports::VendorTraffic::ReportOptions?
-        attr_reader report_type: String?
+        attr_reader data_end_time: Date
+        attr_reader data_start_time: Date
+        attr_reader last_updated_date: Date
+        attr_reader marketplace_ids: Array[String]
+        attr_reader report_options: Peddler::Reports::VendorTraffic::ReportOptions
+        attr_reader report_type: String
 
         def members: () -> [ :data_end_time, :data_start_time, :last_updated_date, :marketplace_ids, :report_options, :report_type ]
-        def to_h: () -> { data_end_time: Date?, data_start_time: Date?, last_updated_date: Date?, marketplace_ids: Array[String]?, report_options: Peddler::Reports::VendorTraffic::ReportOptions?, report_type: String? }
+        def to_h: () -> { data_end_time: Date, data_start_time: Date, last_updated_date: Date, marketplace_ids: Array[String], report_options: Peddler::Reports::VendorTraffic::ReportOptions, report_type: String }
       end
 
       class TrafficAggregate < Data
-        def self.new: (end_date: Date?, glance_views: Integer?, start_date: Date?) -> Peddler::Reports::VendorTraffic::TrafficAggregate
-                    | (Date?, Integer?, Date?) -> Peddler::Reports::VendorTraffic::TrafficAggregate
-        def self.[]: (end_date: Date?, glance_views: Integer?, start_date: Date?) -> Peddler::Reports::VendorTraffic::TrafficAggregate
-                   | (Date?, Integer?, Date?) -> Peddler::Reports::VendorTraffic::TrafficAggregate
+        def self.new: (end_date: Date, glance_views: Integer, start_date: Date) -> Peddler::Reports::VendorTraffic::TrafficAggregate
+                    | (Date, Integer, Date) -> Peddler::Reports::VendorTraffic::TrafficAggregate
+        def self.[]: (end_date: Date, glance_views: Integer, start_date: Date) -> Peddler::Reports::VendorTraffic::TrafficAggregate
+                   | (Date, Integer, Date) -> Peddler::Reports::VendorTraffic::TrafficAggregate
 
         def self.members: () -> [ :end_date, :glance_views, :start_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorTraffic::TrafficAggregate
 
-        attr_reader end_date: Date?
-        attr_reader glance_views: Integer?
-        attr_reader start_date: Date?
+        attr_reader end_date: Date
+        attr_reader glance_views: Integer
+        attr_reader start_date: Date
 
         def members: () -> [ :end_date, :glance_views, :start_date ]
-        def to_h: () -> { end_date: Date?, glance_views: Integer?, start_date: Date? }
+        def to_h: () -> { end_date: Date, glance_views: Integer, start_date: Date }
       end
 
       class TrafficByASIN < Data
-        def self.new: (asin: String?, end_date: String?, glance_views: Integer?, start_date: String?) -> Peddler::Reports::VendorTraffic::TrafficByASIN
-                    | (String?, String?, Integer?, String?) -> Peddler::Reports::VendorTraffic::TrafficByASIN
-        def self.[]: (asin: String?, end_date: String?, glance_views: Integer?, start_date: String?) -> Peddler::Reports::VendorTraffic::TrafficByASIN
-                   | (String?, String?, Integer?, String?) -> Peddler::Reports::VendorTraffic::TrafficByASIN
+        def self.new: (asin: String, end_date: String, glance_views: Integer, start_date: String) -> Peddler::Reports::VendorTraffic::TrafficByASIN
+                    | (String, String, Integer, String) -> Peddler::Reports::VendorTraffic::TrafficByASIN
+        def self.[]: (asin: String, end_date: String, glance_views: Integer, start_date: String) -> Peddler::Reports::VendorTraffic::TrafficByASIN
+                   | (String, String, Integer, String) -> Peddler::Reports::VendorTraffic::TrafficByASIN
 
         def self.members: () -> [ :asin, :end_date, :glance_views, :start_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::VendorTraffic::TrafficByASIN
 
-        attr_reader asin: String?
-        attr_reader end_date: String?
-        attr_reader glance_views: Integer?
-        attr_reader start_date: String?
+        attr_reader asin: String
+        attr_reader end_date: String
+        attr_reader glance_views: Integer
+        attr_reader start_date: String
 
         def members: () -> [ :asin, :end_date, :glance_views, :start_date ]
-        def to_h: () -> { asin: String?, end_date: String?, glance_views: Integer?, start_date: String? }
+        def to_h: () -> { asin: String, end_date: String, glance_views: Integer, start_date: String }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Reports::VendorTraffic::Report

@@ -10,13 +10,13 @@ module Peddler
       # The range of weights that are allowed for a package.
       WeightRange = Structure.new do
         # @return [Float] Maximum allowed weight.
-        attribute(:maximum, Float)
+        attribute(:maximum, Float, null: false)
 
         # @return [Float] Minimum allowed weight.
-        attribute(:minimum, Float)
+        attribute(:minimum, Float, null: false)
 
         # @return [String]
-        attribute(:unit, String)
+        attribute(:unit, String, null: false)
       end
     end
   end

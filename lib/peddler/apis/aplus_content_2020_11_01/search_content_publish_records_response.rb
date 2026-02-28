@@ -9,7 +9,7 @@ module Peddler
     class AplusContent20201101
       SearchContentPublishRecordsResponse = Structure.new do
         # @return [Array<PublishRecord>]
-        attribute(:publish_record_list, [PublishRecord], from: "publishRecordList")
+        attribute(:publish_record_list, [PublishRecord], null: false, from: "publishRecordList")
       end
     end
   end

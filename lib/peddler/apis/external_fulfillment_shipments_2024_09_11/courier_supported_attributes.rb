@@ -11,10 +11,10 @@ module Peddler
       # provided when the value of `shipBy` is `THIRD_PARTY_CARRIER`.
       CourierSupportedAttributes = Structure.new do
         # @return [String] The name of the courier service used to ship the package
-        attribute(:carrier_name, String, from: "carrierName")
+        attribute(:carrier_name, String, null: false, from: "carrierName")
 
         # @return [String] The tracking number of the package.
-        attribute(:tracking_id, String, from: "trackingId")
+        attribute(:tracking_id, String, null: false, from: "trackingId")
       end
     end
   end

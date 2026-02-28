@@ -10,13 +10,13 @@ module Peddler
       # Information about every order item.
       OrderItem = Structure.new do
         # @return [String] The Amazon-defined order item identifier.
-        attribute(:order_item_id, String, from: "OrderItemId")
+        attribute(:order_item_id, String, null: false, from: "OrderItemId")
 
         # @return [Integer] The number of items in the order.
-        attribute(:quantity, Integer, from: "Quantity")
+        attribute(:quantity, Integer, null: false, from: "Quantity")
 
         # @return [String] The seller-specific SKU for an item.
-        attribute(:seller_sku, String, from: "SellerSKU")
+        attribute(:seller_sku, String, null: false, from: "SellerSKU")
 
         # @return [String] The unique identifier of the supply source. Will be null when there is no related
         #   information.

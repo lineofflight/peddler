@@ -10,13 +10,13 @@ module Peddler
       # Metadata describing the seller.
       SellingPartnerMetadata = Structure.new do
         # @return [String] Account type of transaction.
-        attribute(:account_type, String, from: "AccountType")
+        attribute(:account_type, String, null: false, from: "AccountType")
 
         # @return [String] Marketplace identifier of transaction.
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
         # @return [String] Unique seller identifier.
-        attribute(:selling_partner_id, String, from: "SellingPartnerId")
+        attribute(:selling_partner_id, String, null: false, from: "SellingPartnerId")
       end
     end
   end

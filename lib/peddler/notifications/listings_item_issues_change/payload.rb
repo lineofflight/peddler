@@ -11,14 +11,14 @@ module Peddler
       Payload = Structure.new do
         # @return [String] Selling partner identifier, such as a merchant account or vendor code, of the affected
         #   listings item.
-        attribute(:seller_id, String, from: "SellerId")
+        attribute(:seller_id, String, null: false, from: "SellerId")
 
         # @return [Array<String>] Array of severities for the issues currently associated with the affected listings
         #   item. When no issues are affecting the listings item, "NONE" is provided instead.
-        attribute(:severities, [String], from: "Severities")
+        attribute(:severities, [String], null: false, from: "Severities")
 
         # @return [String] Identifier of the affected listings item.
-        attribute(:sku, String, from: "Sku")
+        attribute(:sku, String, null: false, from: "Sku")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) identifier of the catalog item associated
         #   with the listings item.

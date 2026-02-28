@@ -10,7 +10,7 @@ module Peddler
       # The `listPlacementOptions` response.
       ListPlacementOptionsResponse = Structure.new do
         # @return [Array<PlacementOption>] Placement options generated for the inbound plan.
-        attribute(:placement_options, [PlacementOption], from: "placementOptions")
+        attribute(:placement_options, [PlacementOption], null: false, from: "placementOptions")
 
         # @return [Pagination]
         attribute?(:pagination, Pagination)

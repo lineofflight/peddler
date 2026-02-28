@@ -10,10 +10,10 @@ module Peddler
       # Represents an order placed by Amazon, including the purchase order number, current state, and order details.
       Order = Structure.new do
         # @return [String] The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
-        attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
+        attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
         # @return [String] This field will contain the current state of the purchase order.
-        attribute(:purchase_order_state, String, from: "purchaseOrderState")
+        attribute(:purchase_order_state, String, null: false, from: "purchaseOrderState")
 
         # @return [OrderDetails] Details of an order.
         attribute?(:order_details, OrderDetails, from: "orderDetails")

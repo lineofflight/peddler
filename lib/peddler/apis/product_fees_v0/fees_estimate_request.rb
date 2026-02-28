@@ -10,13 +10,13 @@ module Peddler
       # A product, marketplace, and proposed price used to request estimated fees.
       FeesEstimateRequest = Structure.new do
         # @return [String] A unique identifier provided by the caller to track this request.
-        attribute(:identifier, String, from: "Identifier")
+        attribute(:identifier, String, null: false, from: "Identifier")
 
         # @return [String] A marketplace identifier.
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
         # @return [PriceToEstimateFees] The product price that the fee estimate is based on.
-        attribute(:price_to_estimate_fees, PriceToEstimateFees, from: "PriceToEstimateFees")
+        attribute(:price_to_estimate_fees, PriceToEstimateFees, null: false, from: "PriceToEstimateFees")
 
         # @return [:boolean] When true, the offer is fulfilled by Amazon.
         attribute?(:amazon_fulfilled, :boolean, from: "IsAmazonFulfilled")

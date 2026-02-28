@@ -10,10 +10,10 @@ module Peddler
       # Information about the seller's business. Certain fields may be omitted depending on the seller's `businessType`.
       Business = Structure.new do
         # @return [String] The registered business name.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [Address] The registered business address.
-        attribute(:registered_business_address, Address, from: "registeredBusinessAddress")
+        attribute(:registered_business_address, Address, null: false, from: "registeredBusinessAddress")
 
         # @return [String] The seller's company registration number, if applicable. This field will be absent for
         #   individual sellers and sole proprietorships.

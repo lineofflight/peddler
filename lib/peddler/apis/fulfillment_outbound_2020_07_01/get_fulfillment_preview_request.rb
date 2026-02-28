@@ -10,11 +10,11 @@ module Peddler
       # The request body schema for the `getFulfillmentPreview` operation.
       GetFulfillmentPreviewRequest = Structure.new do
         # @return [Address] The destination address for the fulfillment order preview.
-        attribute(:address, Address)
+        attribute(:address, Address, null: false)
 
         # @return [Array<GetFulfillmentPreviewItem>] Identifying information and quantity information for the items in
         #   the fulfillment order preview. Maximum of 100 line items with a maximum of 250 units per order.
-        attribute(:items, [GetFulfillmentPreviewItem])
+        attribute(:items, [GetFulfillmentPreviewItem], null: false)
 
         # @return [Array<FeatureSettings>] A list of features and their fulfillment policies to apply to the order.
         attribute?(:feature_constraints, [FeatureSettings], from: "featureConstraints")

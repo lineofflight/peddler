@@ -10,7 +10,7 @@ module Peddler
       # A listings item.
       Item = Structure.new do
         # @return [String] A selling partner provided identifier for an Amazon listing.
-        attribute(:sku, String)
+        attribute(:sku, String, null: false)
 
         # @return [Hash]
         attribute?(:attributes, Hash)

@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the `createContainerLabel` operation.
       CreateContainerLabelResponse = Structure.new do
         # @return [ContainerLabel] The label data for the container label.
-        attribute(:container_label, ContainerLabel, from: "containerLabel")
+        attribute(:container_label, ContainerLabel, null: false, from: "containerLabel")
       end
     end
   end

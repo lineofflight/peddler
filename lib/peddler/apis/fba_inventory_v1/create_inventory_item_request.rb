@@ -10,13 +10,13 @@ module Peddler
       # An item to be created in the inventory.
       CreateInventoryItemRequest = Structure.new do
         # @return [String] The marketplaceId.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The name of the item.
-        attribute(:product_name, String, from: "productName")
+        attribute(:product_name, String, null: false, from: "productName")
 
         # @return [String] The seller SKU of the item.
-        attribute(:seller_sku, String, from: "sellerSku")
+        attribute(:seller_sku, String, null: false, from: "sellerSku")
       end
     end
   end

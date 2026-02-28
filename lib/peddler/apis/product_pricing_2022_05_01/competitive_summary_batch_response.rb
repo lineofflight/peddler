@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the `competitiveSummaryBatch` operation.
       CompetitiveSummaryBatchResponse = Structure.new do
         # @return [Array<CompetitiveSummaryResponse>] The response list for the `competitiveSummaryBatch` operation.
-        attribute(:responses, [CompetitiveSummaryResponse])
+        attribute(:responses, [CompetitiveSummaryResponse], null: false)
       end
     end
   end

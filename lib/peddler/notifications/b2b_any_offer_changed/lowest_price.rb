@@ -9,19 +9,19 @@ module Peddler
     module B2BAnyOfferChanged
       LowestPrice = Structure.new do
         # @return [String]
-        attribute(:condition, String, from: "Condition")
+        attribute(:condition, String, null: false, from: "Condition")
 
         # @return [String]
-        attribute(:fulfillment_channel, String, from: "FulfillmentChannel")
+        attribute(:fulfillment_channel, String, null: false, from: "FulfillmentChannel")
 
         # @return [Money]
-        attribute(:listing_price, Money, from: "ListingPrice")
+        attribute(:listing_price, Money, null: false, from: "ListingPrice")
 
         # @return [String]
-        attribute(:offer_type, String, from: "OfferType")
+        attribute(:offer_type, String, null: false, from: "OfferType")
 
         # @return [String]
-        attribute(:quantity_tier, String, from: "QuantityTier")
+        attribute(:quantity_tier, String, null: false, from: "QuantityTier")
 
         # @return [String]
         attribute?(:discount_type, String, from: "DiscountType")

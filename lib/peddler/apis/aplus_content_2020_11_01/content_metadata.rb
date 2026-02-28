@@ -11,19 +11,19 @@ module Peddler
       # The A+ Content document's metadata.
       ContentMetadata = Structure.new do
         # @return [Array<ContentBadge>]
-        attribute(:badge_set, Array, from: "badgeSet")
+        attribute(:badge_set, Array, null: false, from: "badgeSet")
 
         # @return [String]
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The A+ Content document's name.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String]
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [Time] The approximate age of the A+ Content document and metadata.
-        attribute(:update_time, Time, from: "updateTime")
+        attribute(:update_time, Time, null: false, from: "updateTime")
       end
     end
   end

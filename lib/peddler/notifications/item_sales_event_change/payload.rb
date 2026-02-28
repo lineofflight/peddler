@@ -10,7 +10,7 @@ module Peddler
       # Notification payload data
       Payload = Structure.new do
         # @return [Array<ItemSalesEventChange>]
-        attribute(:item_sales_event_changes, [ItemSalesEventChange], from: "itemSalesEventChanges")
+        attribute(:item_sales_event_changes, [ItemSalesEventChange], null: false, from: "itemSalesEventChanges")
       end
     end
   end

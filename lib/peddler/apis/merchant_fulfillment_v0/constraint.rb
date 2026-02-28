@@ -10,7 +10,7 @@ module Peddler
       # A validation constraint.
       Constraint = Structure.new do
         # @return [String] A validation string.
-        attribute(:validation_string, String, from: "ValidationString")
+        attribute(:validation_string, String, null: false, from: "ValidationString")
 
         # @return [String] A regular expression.
         attribute?(:validation_reg_ex, String, from: "ValidationRegEx")

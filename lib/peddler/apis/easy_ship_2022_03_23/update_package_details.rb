@@ -11,10 +11,10 @@ module Peddler
       # Request to update the time slot of a package.
       UpdatePackageDetails = Structure.new do
         # @return [TimeSlot]
-        attribute(:package_time_slot, TimeSlot, from: "packageTimeSlot")
+        attribute(:package_time_slot, TimeSlot, null: false, from: "packageTimeSlot")
 
         # @return [ScheduledPackageId]
-        attribute(:scheduled_package_id, ScheduledPackageId, from: "scheduledPackageId")
+        attribute(:scheduled_package_id, ScheduledPackageId, null: false, from: "scheduledPackageId")
       end
     end
   end

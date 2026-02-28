@@ -2,37 +2,37 @@ module Peddler
   module APIs
     class ApplicationManagement20231130 < API
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ApplicationManagement20231130::Error
-                    | (String?, String?, String?) -> Peddler::APIs::ApplicationManagement20231130::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ApplicationManagement20231130::Error
-                   | (String?, String?, String?) -> Peddler::APIs::ApplicationManagement20231130::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ApplicationManagement20231130::Error
+                    | (String, String, String?) -> Peddler::APIs::ApplicationManagement20231130::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::ApplicationManagement20231130::Error
+                   | (String, String, String?) -> Peddler::APIs::ApplicationManagement20231130::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ApplicationManagement20231130::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::ApplicationManagement20231130::Error]?) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
-                    | (Array[Peddler::APIs::ApplicationManagement20231130::Error]?) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::ApplicationManagement20231130::Error]?) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
-                   | (Array[Peddler::APIs::ApplicationManagement20231130::Error]?) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::ApplicationManagement20231130::Error]) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
+                    | (Array[Peddler::APIs::ApplicationManagement20231130::Error]) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::ApplicationManagement20231130::Error]) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
+                   | (Array[Peddler::APIs::ApplicationManagement20231130::Error]) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ApplicationManagement20231130::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::ApplicationManagement20231130::Error]?
+        attr_reader errors: Array[Peddler::APIs::ApplicationManagement20231130::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::ApplicationManagement20231130::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::ApplicationManagement20231130::Error] }
       end
 
       def rotate_application_client_secret: (?rate_limit: Float) -> Peddler::Response

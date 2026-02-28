@@ -11,14 +11,14 @@ module Peddler
       # information.
       OrderItem = Structure.new do
         # @return [:boolean] When true, we will accept backorder confirmations for this item.
-        attribute(:back_order_allowed, :boolean, from: "isBackOrderAllowed")
+        attribute(:back_order_allowed, :boolean, null: false, from: "isBackOrderAllowed")
 
         # @return [String] Numbering of the item on the purchase order. The first item will be 1, the second 2, and so
         #   on.
-        attribute(:item_sequence_number, String, from: "itemSequenceNumber")
+        attribute(:item_sequence_number, String, null: false, from: "itemSequenceNumber")
 
         # @return [ItemQuantity] Item quantity ordered.
-        attribute(:ordered_quantity, ItemQuantity, from: "orderedQuantity")
+        attribute(:ordered_quantity, ItemQuantity, null: false, from: "orderedQuantity")
 
         # @return [String] Amazon Standard Identification Number (ASIN) of an item.
         attribute?(:amazon_product_identifier, String, from: "amazonProductIdentifier")

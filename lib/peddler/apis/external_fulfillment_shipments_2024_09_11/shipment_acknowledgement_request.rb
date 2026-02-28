@@ -11,7 +11,7 @@ module Peddler
       ShipmentAcknowledgementRequest = Structure.new do
         # @return [Array<LineItemWithReason>] Details about the line items from the shipment that are being confirmed or
         #   rejected by the seller.
-        attribute(:line_items, [LineItemWithReason], from: "lineItems")
+        attribute(:line_items, [LineItemWithReason], null: false, from: "lineItems")
 
         # @return [String] A unique identifier for every shipment rejection.
         attribute?(:reference_id, String, from: "referenceId")

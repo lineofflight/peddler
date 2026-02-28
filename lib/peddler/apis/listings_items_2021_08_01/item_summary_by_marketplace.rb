@@ -11,19 +11,19 @@ module Peddler
       # Summary details of a listings item for an Amazon marketplace.
       ItemSummaryByMarketplace = Structure.new do
         # @return [Time] The date the listings item was created in ISO 8601 format.
-        attribute(:created_date, Time, from: "createdDate")
+        attribute(:created_date, Time, null: false, from: "createdDate")
 
         # @return [Time] The date the listings item was last updated in ISO 8601 format.
-        attribute(:last_updated_date, Time, from: "lastUpdatedDate")
+        attribute(:last_updated_date, Time, null: false, from: "lastUpdatedDate")
 
         # @return [String] A marketplace identifier. Identifies the Amazon marketplace for the listings item.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The Amazon product type of the listings item.
-        attribute(:product_type, String, from: "productType")
+        attribute(:product_type, String, null: false, from: "productType")
 
         # @return [Array<String>] Statuses that apply to the listings item.
-        attribute(:status, [String])
+        attribute(:status, [String], null: false)
 
         # @return [String] Amazon Standard Identification Number (ASIN) of the listings item.
         attribute?(:asin, String)

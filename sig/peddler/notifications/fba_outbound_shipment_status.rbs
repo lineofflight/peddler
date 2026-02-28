@@ -2,59 +2,59 @@ module Peddler
   module Notifications
     module FBAOutboundShipmentStatus
       class FBAOutboundShipmentStatusNotification < Data
-        def self.new: (amazon_order_id: String?, amazon_shipment_id: String?, seller_id: String?, shipment_status: String?) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
-                    | (String?, String?, String?, String?) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
-        def self.[]: (amazon_order_id: String?, amazon_shipment_id: String?, seller_id: String?, shipment_status: String?) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
-                   | (String?, String?, String?, String?) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
+        def self.new: (amazon_order_id: String, amazon_shipment_id: String, seller_id: String, shipment_status: String) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
+                    | (String, String, String, String) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
+        def self.[]: (amazon_order_id: String, amazon_shipment_id: String, seller_id: String, shipment_status: String) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
+                   | (String, String, String, String) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
 
         def self.members: () -> [ :amazon_order_id, :amazon_shipment_id, :seller_id, :shipment_status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
 
-        attr_reader amazon_order_id: String?
-        attr_reader amazon_shipment_id: String?
-        attr_reader seller_id: String?
-        attr_reader shipment_status: String?
+        attr_reader amazon_order_id: String
+        attr_reader amazon_shipment_id: String
+        attr_reader seller_id: String
+        attr_reader shipment_status: String
 
         def members: () -> [ :amazon_order_id, :amazon_shipment_id, :seller_id, :shipment_status ]
-        def to_h: () -> { amazon_order_id: String?, amazon_shipment_id: String?, seller_id: String?, shipment_status: String? }
+        def to_h: () -> { amazon_order_id: String, amazon_shipment_id: String, seller_id: String, shipment_status: String }
       end
 
       class Notification < Data
-        def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::FBAOutboundShipmentStatus::Payload?, payload_version: String?) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
-                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::FBAOutboundShipmentStatus::Payload?, String?) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
-        def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::FBAOutboundShipmentStatus::Payload?, payload_version: String?) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
-                   | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::FBAOutboundShipmentStatus::Payload?, String?) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
+        def self.new: (event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::FBAOutboundShipmentStatus::Payload, payload_version: String) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
+                    | (String, Hash[untyped, untyped], String, String, Peddler::Notifications::FBAOutboundShipmentStatus::Payload, String) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
+        def self.[]: (event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::FBAOutboundShipmentStatus::Payload, payload_version: String) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
+                   | (String, Hash[untyped, untyped], String, String, Peddler::Notifications::FBAOutboundShipmentStatus::Payload, String) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification
 
-        attr_reader event_time: String?
-        attr_reader notification_metadata: Hash[untyped, untyped]?
-        attr_reader notification_type: String?
-        attr_reader notification_version: String?
-        attr_reader payload: Peddler::Notifications::FBAOutboundShipmentStatus::Payload?
-        attr_reader payload_version: String?
+        attr_reader event_time: String
+        attr_reader notification_metadata: Hash[untyped, untyped]
+        attr_reader notification_type: String
+        attr_reader notification_version: String
+        attr_reader payload: Peddler::Notifications::FBAOutboundShipmentStatus::Payload
+        attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::FBAOutboundShipmentStatus::Payload?, payload_version: String? }
+        def to_h: () -> { event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::FBAOutboundShipmentStatus::Payload, payload_version: String }
       end
 
       class Payload < Data
-        def self.new: (fba_outbound_shipment_status_notification: Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification?) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
-                    | (Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification?) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
-        def self.[]: (fba_outbound_shipment_status_notification: Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification?) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
-                   | (Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification?) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
+        def self.new: (fba_outbound_shipment_status_notification: Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
+                    | (Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
+        def self.[]: (fba_outbound_shipment_status_notification: Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
+                   | (Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
 
         def self.members: () -> [ :fba_outbound_shipment_status_notification ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FBAOutboundShipmentStatus::Payload
 
-        attr_reader fba_outbound_shipment_status_notification: Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification?
+        attr_reader fba_outbound_shipment_status_notification: Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification
 
         def members: () -> [ :fba_outbound_shipment_status_notification ]
-        def to_h: () -> { fba_outbound_shipment_status_notification: Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification? }
+        def to_h: () -> { fba_outbound_shipment_status_notification: Peddler::Notifications::FBAOutboundShipmentStatus::FBAOutboundShipmentStatusNotification }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::FBAOutboundShipmentStatus::Notification

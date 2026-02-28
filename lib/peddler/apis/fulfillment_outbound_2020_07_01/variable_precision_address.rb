@@ -11,10 +11,10 @@ module Peddler
       # than country code and postal code alone.
       VariablePrecisionAddress = Structure.new do
         # @return [String] The two digit country code. In ISO 3166-1 alpha-2 format.
-        attribute(:country_code, String, from: "countryCode")
+        attribute(:country_code, String, null: false, from: "countryCode")
 
         # @return [String] The postal code of the address.
-        attribute(:postal_code, String, from: "postalCode")
+        attribute(:postal_code, String, null: false, from: "postalCode")
 
         # @return [String] The first line of the address.
         attribute?(:address_line1, String, from: "addressLine1")

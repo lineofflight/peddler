@@ -2,29 +2,29 @@ module Peddler
   module APIs
     class AmazonWarehousingAndDistribution20240509 < API
       class Address < Data
-        def self.new: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone_number: String?, ?postal_code: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
-        def self.[]: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone_number: String?, ?postal_code: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
-                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
+        def self.new: (address_line1: String, country_code: String, name: String, state_or_region: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone_number: String?, ?postal_code: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
+                    | (String, String, String, String, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
+        def self.[]: (address_line1: String, country_code: String, name: String, state_or_region: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone_number: String?, ?postal_code: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
+                   | (String, String, String, String, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
 
         def self.members: () -> [ :address_line1, :country_code, :name, :state_or_region, :address_line2, :address_line3, :city, :county, :district, :phone_number, :postal_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
 
-        attr_reader address_line1: String?
+        attr_reader address_line1: String
         attr_reader address_line2: String?
         attr_reader address_line3: String?
         attr_reader city: String?
-        attr_reader country_code: String?
+        attr_reader country_code: String
         attr_reader county: String?
         attr_reader district: String?
-        attr_reader name: String?
+        attr_reader name: String
         attr_reader phone_number: String?
         attr_reader postal_code: String?
-        attr_reader state_or_region: String?
+        attr_reader state_or_region: String
 
         def members: () -> [ :address_line1, :country_code, :name, :state_or_region, :address_line2, :address_line3, :city, :county, :district, :phone_number, :postal_code ]
-        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, state_or_region: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone_number: String?, postal_code: String? }
+        def to_h: () -> { address_line1: String, country_code: String, name: String, state_or_region: String, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone_number: String?, postal_code: String? }
       end
 
       class CarrierCode < Data
@@ -63,39 +63,39 @@ module Peddler
       end
 
       class DistributionIneligibleReason < Data
-        def self.new: (failure_code: String?, failure_reasons: Array[String]?, ?sku: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
-                    | (String?, Array[String]?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
-        def self.[]: (failure_code: String?, failure_reasons: Array[String]?, ?sku: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
-                   | (String?, Array[String]?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
+        def self.new: (failure_code: String, failure_reasons: Array[String], ?sku: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
+                    | (String, Array[String], String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
+        def self.[]: (failure_code: String, failure_reasons: Array[String], ?sku: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
+                   | (String, Array[String], String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
 
         def self.members: () -> [ :failure_code, :failure_reasons, :sku ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason
 
-        attr_reader failure_code: String?
-        attr_reader failure_reasons: Array[String]?
+        attr_reader failure_code: String
+        attr_reader failure_reasons: Array[String]
         attr_reader sku: String?
 
         def members: () -> [ :failure_code, :failure_reasons, :sku ]
-        def to_h: () -> { failure_code: String?, failure_reasons: Array[String]?, sku: String? }
+        def to_h: () -> { failure_code: String, failure_reasons: Array[String], sku: String? }
       end
 
       class DistributionPackage < Data
-        def self.new: (contents: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?, measurements: Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData?, type: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
-                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
-        def self.[]: (contents: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?, measurements: Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData?, type: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
-                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
+        def self.new: (contents: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents, measurements: Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData, type: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
+                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents, Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData, String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
+        def self.[]: (contents: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents, measurements: Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData, type: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
+                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents, Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData, String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
 
         def self.members: () -> [ :contents, :measurements, :type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackage
 
-        attr_reader contents: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?
-        attr_reader measurements: Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData?
-        attr_reader type: String?
+        attr_reader contents: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents
+        attr_reader measurements: Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
+        attr_reader type: String
 
         def members: () -> [ :contents, :measurements, :type ]
-        def to_h: () -> { contents: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?, measurements: Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData?, type: String? }
+        def to_h: () -> { contents: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageContents, measurements: Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData, type: String }
       end
 
       class DistributionPackageContents < Data
@@ -116,72 +116,72 @@ module Peddler
       end
 
       class DistributionPackageQuantity < Data
-        def self.new: (count: Integer?, distribution_package: untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
-                    | (Integer?, untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
-        def self.[]: (count: Integer?, distribution_package: untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
-                   | (Integer?, untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
+        def self.new: (count: Integer, distribution_package: untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
+                    | (Integer, untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
+        def self.[]: (count: Integer, distribution_package: untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
+                   | (Integer, untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
 
         def self.members: () -> [ :count, :distribution_package ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
 
-        attr_reader count: Integer?
+        attr_reader count: Integer
         attr_reader distribution_package: untyped
 
         def members: () -> [ :count, :distribution_package ]
-        def to_h: () -> { count: Integer?, distribution_package: untyped }
+        def to_h: () -> { count: Integer, distribution_package: untyped }
       end
 
       class DistributionProduct < Data
-        def self.new: (quantity: Integer?, sku: String?, ?attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
-                    | (Integer?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
-        def self.[]: (quantity: Integer?, sku: String?, ?attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
-                   | (Integer?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
+        def self.new: (quantity: Integer, sku: String, ?attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
+                    | (Integer, String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
+        def self.[]: (quantity: Integer, sku: String, ?attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
+                   | (Integer, String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
 
         def self.members: () -> [ :quantity, :sku, :attributes ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct
 
         attr_reader attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?
-        attr_reader quantity: Integer?
-        attr_reader sku: String?
+        attr_reader quantity: Integer
+        attr_reader sku: String
 
         def members: () -> [ :quantity, :sku, :attributes ]
-        def to_h: () -> { quantity: Integer?, sku: String?, attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]? }
+        def to_h: () -> { quantity: Integer, sku: String, attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]? }
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
-                    | (String?, String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
-                   | (String?, String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
+                    | (String, String, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
+                   | (String, String, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
-                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
-                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
+                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
+                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]?
+        attr_reader errors: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::Error] }
       end
 
       class ExpirationDetails < Data
@@ -202,97 +202,97 @@ module Peddler
       end
 
       class InboundEligibility < Data
-        def self.new: (packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility]?, previewed_at: Time?, status: String?, ?ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
-                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility]?, Time?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
-        def self.[]: (packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility]?, previewed_at: Time?, status: String?, ?ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
-                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility]?, Time?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
+        def self.new: (packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility], previewed_at: Time, status: String, ?ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
+                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility], Time, String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
+        def self.[]: (packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility], previewed_at: Time, status: String, ?ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
+                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility], Time, String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
 
         def self.members: () -> [ :packages_to_inbound, :previewed_at, :status, :ineligibility_reasons ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundEligibility
 
         attr_reader ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?
-        attr_reader packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility]?
-        attr_reader previewed_at: Time?
-        attr_reader status: String?
+        attr_reader packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility]
+        attr_reader previewed_at: Time
+        attr_reader status: String
 
         def members: () -> [ :packages_to_inbound, :previewed_at, :status, :ineligibility_reasons ]
-        def to_h: () -> { packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility]?, previewed_at: Time?, status: String?, ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]? }
+        def to_h: () -> { packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility], previewed_at: Time, status: String, ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]? }
       end
 
       class InboundOrder < Data
-        def self.new: (created_at: Time?, order_id: String?, order_status: String?, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?destination_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, ?external_reference_id: String?, ?preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
-                    | (Time?, String?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
-        def self.[]: (created_at: Time?, order_id: String?, order_status: String?, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?destination_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, ?external_reference_id: String?, ?preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
-                   | (Time?, String?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
+        def self.new: (created_at: Time, order_id: String, order_status: String, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], ?destination_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, ?external_reference_id: String?, ?preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
+                    | (Time, String, String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
+        def self.[]: (created_at: Time, order_id: String, order_status: String, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], ?destination_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, ?external_reference_id: String?, ?preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
+                   | (Time, String, String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
 
         def self.members: () -> [ :created_at, :order_id, :order_status, :origin_address, :packages_to_inbound, :destination_details, :external_reference_id, :preferences, :updated_at ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrder
 
-        attr_reader created_at: Time?
+        attr_reader created_at: Time
         attr_reader destination_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?
         attr_reader external_reference_id: String?
-        attr_reader order_id: String?
-        attr_reader order_status: String?
-        attr_reader origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?
-        attr_reader packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+        attr_reader order_id: String
+        attr_reader order_status: String
+        attr_reader origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
+        attr_reader packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]
         attr_reader preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?
         attr_reader updated_at: Time?
 
         def members: () -> [ :created_at, :order_id, :order_status, :origin_address, :packages_to_inbound, :destination_details, :external_reference_id, :preferences, :updated_at ]
-        def to_h: () -> { created_at: Time?, order_id: String?, order_status: String?, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, destination_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, external_reference_id: String?, preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, updated_at: Time? }
+        def to_h: () -> { created_at: Time, order_id: String, order_status: String, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], destination_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DestinationDetails?, external_reference_id: String?, preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?, updated_at: Time? }
       end
 
       class InboundOrderCreationData < Data
-        def self.new: (origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?external_reference_id: String?, ?preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
-                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
-        def self.[]: (origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?external_reference_id: String?, ?preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
-                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
+        def self.new: (origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], ?external_reference_id: String?, ?preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
+                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
+        def self.[]: (origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], ?external_reference_id: String?, ?preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
+                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
 
         def self.members: () -> [ :origin_address, :packages_to_inbound, :external_reference_id, :preferences ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
 
         attr_reader external_reference_id: String?
-        attr_reader origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?
-        attr_reader packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+        attr_reader origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
+        attr_reader packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]
         attr_reader preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences?
 
         def members: () -> [ :origin_address, :packages_to_inbound, :external_reference_id, :preferences ]
-        def to_h: () -> { origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, external_reference_id: String?, preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences? }
+        def to_h: () -> { origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], external_reference_id: String?, preferences: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPreferences? }
       end
 
       class InboundOrderReference < Data
-        def self.new: (order_id: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
-                    | (String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
-        def self.[]: (order_id: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
-                   | (String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+        def self.new: (order_id: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+                    | (String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+        def self.[]: (order_id: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+                   | (String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
 
         def self.members: () -> [ :order_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundOrderReference
 
-        attr_reader order_id: String?
+        attr_reader order_id: String
 
         def members: () -> [ :order_id ]
-        def to_h: () -> { order_id: String? }
+        def to_h: () -> { order_id: String }
       end
 
       class InboundPackages < Data
-        def self.new: (packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
-                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
-        def self.[]: (packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
-                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
+        def self.new: (packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
+                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
+        def self.[]: (packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
+                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
 
         def self.members: () -> [ :packages_to_inbound ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundPackages
 
-        attr_reader packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+        attr_reader packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]
 
         def members: () -> [ :packages_to_inbound ]
-        def to_h: () -> { packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]? }
+        def to_h: () -> { packages_to_inbound: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity] }
       end
 
       class InboundPreferences < Data
@@ -312,10 +312,10 @@ module Peddler
       end
 
       class InboundShipment < Data
-        def self.new: (destination_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, order_id: String?, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, shipment_container_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, shipment_status: String?, ?carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, ?created_at: Time?, ?destination_region: String?, ?external_reference_id: String?, ?received_quantity: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ?ship_by: Time?, ?shipment_sku_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, ?tracking_id: String?, ?updated_at: Time?, ?warehouse_reference_id: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipment
-                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, String?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, Time?, String?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, Time?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, String?, Time?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipment
-        def self.[]: (destination_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, order_id: String?, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, shipment_container_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, shipment_status: String?, ?carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, ?created_at: Time?, ?destination_region: String?, ?external_reference_id: String?, ?received_quantity: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ?ship_by: Time?, ?shipment_sku_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, ?tracking_id: String?, ?updated_at: Time?, ?warehouse_reference_id: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipment
-                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, String?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, Time?, String?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, Time?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, String?, Time?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipment
+        def self.new: (destination_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, order_id: String, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, shipment_container_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], shipment_id: String, shipment_status: String, ?carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, ?created_at: Time?, ?destination_region: String?, ?external_reference_id: String?, ?received_quantity: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ?ship_by: Time?, ?shipment_sku_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, ?tracking_id: String?, ?updated_at: Time?, ?warehouse_reference_id: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipment
+                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], String, String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, Time?, String?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, Time?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, String?, Time?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipment
+        def self.[]: (destination_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, order_id: String, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, shipment_container_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], shipment_id: String, shipment_status: String, ?carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, ?created_at: Time?, ?destination_region: String?, ?external_reference_id: String?, ?received_quantity: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ?ship_by: Time?, ?shipment_sku_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, ?tracking_id: String?, ?updated_at: Time?, ?warehouse_reference_id: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipment
+                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], String, String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, Time?, String?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, Time?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, String?, Time?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipment
 
         def self.members: () -> [ :destination_address, :order_id, :origin_address, :shipment_container_quantities, :shipment_id, :shipment_status, :carrier_code, :created_at, :destination_region, :external_reference_id, :received_quantity, :ship_by, :shipment_sku_quantities, :tracking_id, :updated_at, :warehouse_reference_id ]
 
@@ -323,30 +323,30 @@ module Peddler
 
         attr_reader carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?
         attr_reader created_at: Time?
-        attr_reader destination_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?
+        attr_reader destination_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
         attr_reader destination_region: String?
         attr_reader external_reference_id: String?
-        attr_reader order_id: String?
-        attr_reader origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?
+        attr_reader order_id: String
+        attr_reader origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
         attr_reader received_quantity: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?
         attr_reader ship_by: Time?
-        attr_reader shipment_container_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
-        attr_reader shipment_id: String?
+        attr_reader shipment_container_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]
+        attr_reader shipment_id: String
         attr_reader shipment_sku_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?
-        attr_reader shipment_status: String?
+        attr_reader shipment_status: String
         attr_reader tracking_id: String?
         attr_reader updated_at: Time?
         attr_reader warehouse_reference_id: String?
 
         def members: () -> [ :destination_address, :order_id, :origin_address, :shipment_container_quantities, :shipment_id, :shipment_status, :carrier_code, :created_at, :destination_region, :external_reference_id, :received_quantity, :ship_by, :shipment_sku_quantities, :tracking_id, :updated_at, :warehouse_reference_id ]
-        def to_h: () -> { destination_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, order_id: String?, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address?, shipment_container_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, shipment_status: String?, carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, created_at: Time?, destination_region: String?, external_reference_id: String?, received_quantity: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ship_by: Time?, shipment_sku_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, tracking_id: String?, updated_at: Time?, warehouse_reference_id: String? }
+        def to_h: () -> { destination_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, order_id: String, origin_address: Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address, shipment_container_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity], shipment_id: String, shipment_status: String, carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?, created_at: Time?, destination_region: String?, external_reference_id: String?, received_quantity: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ship_by: Time?, shipment_sku_quantities: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity]?, tracking_id: String?, updated_at: Time?, warehouse_reference_id: String? }
       end
 
       class InboundShipmentSummary < Data
-        def self.new: (order_id: String?, shipment_id: String?, shipment_status: String?, ?created_at: Time?, ?external_reference_id: String?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
-                    | (String?, String?, String?, Time?, String?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
-        def self.[]: (order_id: String?, shipment_id: String?, shipment_status: String?, ?created_at: Time?, ?external_reference_id: String?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
-                   | (String?, String?, String?, Time?, String?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+        def self.new: (order_id: String, shipment_id: String, shipment_status: String, ?created_at: Time?, ?external_reference_id: String?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+                    | (String, String, String, Time?, String?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+        def self.[]: (order_id: String, shipment_id: String, shipment_status: String, ?created_at: Time?, ?external_reference_id: String?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+                   | (String, String, String, Time?, String?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
 
         def self.members: () -> [ :order_id, :shipment_id, :shipment_status, :created_at, :external_reference_id, :updated_at ]
 
@@ -354,13 +354,13 @@ module Peddler
 
         attr_reader created_at: Time?
         attr_reader external_reference_id: String?
-        attr_reader order_id: String?
-        attr_reader shipment_id: String?
-        attr_reader shipment_status: String?
+        attr_reader order_id: String
+        attr_reader shipment_id: String
+        attr_reader shipment_status: String
         attr_reader updated_at: Time?
 
         def members: () -> [ :order_id, :shipment_id, :shipment_status, :created_at, :external_reference_id, :updated_at ]
-        def to_h: () -> { order_id: String?, shipment_id: String?, shipment_status: String?, created_at: Time?, external_reference_id: String?, updated_at: Time? }
+        def to_h: () -> { order_id: String, shipment_id: String, shipment_status: String, created_at: Time?, external_reference_id: String?, updated_at: Time? }
       end
 
       class InventoryDetails < Data
@@ -382,44 +382,44 @@ module Peddler
       end
 
       class InventoryListing < Data
-        def self.new: (inventory: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary]?, ?next_token: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
-                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary]?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
-        def self.[]: (inventory: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary]?, ?next_token: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
-                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary]?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
+        def self.new: (inventory: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary], ?next_token: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
+                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary], String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
+        def self.[]: (inventory: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary], ?next_token: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
+                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary], String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
 
         def self.members: () -> [ :inventory, :next_token ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryListing
 
-        attr_reader inventory: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary]?
+        attr_reader inventory: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary]
         attr_reader next_token: String?
 
         def members: () -> [ :inventory, :next_token ]
-        def to_h: () -> { inventory: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary]?, next_token: String? }
+        def to_h: () -> { inventory: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary], next_token: String? }
       end
 
       class InventoryQuantity < Data
-        def self.new: (quantity: Float?, unit_of_measurement: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
-                    | (Float?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
-        def self.[]: (quantity: Float?, unit_of_measurement: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
-                   | (Float?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
+        def self.new: (quantity: Float, unit_of_measurement: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
+                    | (Float, String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
+        def self.[]: (quantity: Float, unit_of_measurement: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
+                   | (Float, String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
 
         def self.members: () -> [ :quantity, :unit_of_measurement ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
 
-        attr_reader quantity: Float?
-        attr_reader unit_of_measurement: String?
+        attr_reader quantity: Float
+        attr_reader unit_of_measurement: String
 
         def members: () -> [ :quantity, :unit_of_measurement ]
-        def to_h: () -> { quantity: Float?, unit_of_measurement: String? }
+        def to_h: () -> { quantity: Float, unit_of_measurement: String }
       end
 
       class InventorySummary < Data
-        def self.new: (sku: String?, ?expiration_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, ?inventory_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, ?total_inbound_quantity: Integer?, ?total_onhand_quantity: Integer?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary
-                    | (String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, Integer?, Integer?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary
-        def self.[]: (sku: String?, ?expiration_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, ?inventory_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, ?total_inbound_quantity: Integer?, ?total_onhand_quantity: Integer?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary
-                   | (String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, Integer?, Integer?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary
+        def self.new: (sku: String, ?expiration_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, ?inventory_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, ?total_inbound_quantity: Integer?, ?total_onhand_quantity: Integer?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary
+                    | (String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, Integer?, Integer?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary
+        def self.[]: (sku: String, ?expiration_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, ?inventory_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, ?total_inbound_quantity: Integer?, ?total_onhand_quantity: Integer?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary
+                   | (String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, Integer?, Integer?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventorySummary
 
         def self.members: () -> [ :sku, :expiration_details, :inventory_details, :total_inbound_quantity, :total_onhand_quantity ]
 
@@ -427,19 +427,19 @@ module Peddler
 
         attr_reader expiration_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?
         attr_reader inventory_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?
-        attr_reader sku: String?
+        attr_reader sku: String
         attr_reader total_inbound_quantity: Integer?
         attr_reader total_onhand_quantity: Integer?
 
         def members: () -> [ :sku, :expiration_details, :inventory_details, :total_inbound_quantity, :total_onhand_quantity ]
-        def to_h: () -> { sku: String?, expiration_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, inventory_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, total_inbound_quantity: Integer?, total_onhand_quantity: Integer? }
+        def to_h: () -> { sku: String, expiration_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, inventory_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryDetails?, total_inbound_quantity: Integer?, total_onhand_quantity: Integer? }
       end
 
       class MeasurementData < Data
-        def self.new: (weight: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight?, ?dimensions: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, ?volume: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
-                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
-        def self.[]: (weight: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight?, ?dimensions: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, ?volume: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
-                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
+        def self.new: (weight: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight, ?dimensions: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, ?volume: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
+                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
+        def self.[]: (weight: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight, ?dimensions: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, ?volume: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
+                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::MeasurementData
 
         def self.members: () -> [ :weight, :dimensions, :volume ]
 
@@ -447,100 +447,100 @@ module Peddler
 
         attr_reader dimensions: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?
         attr_reader volume: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume?
-        attr_reader weight: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight?
+        attr_reader weight: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
 
         def members: () -> [ :weight, :dimensions, :volume ]
-        def to_h: () -> { weight: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight?, dimensions: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, volume: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume? }
+        def to_h: () -> { weight: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight, dimensions: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions?, volume: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume? }
       end
 
       class OrderIneligibilityReason < Data
-        def self.new: (code: String?, description: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
-                    | (String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
-        def self.[]: (code: String?, description: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
-                   | (String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
+        def self.new: (code: String, description: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
+                    | (String, String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
+        def self.[]: (code: String, description: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
+                   | (String, String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
 
         def self.members: () -> [ :code, :description ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
 
-        attr_reader code: String?
-        attr_reader description: String?
+        attr_reader code: String
+        attr_reader description: String
 
         def members: () -> [ :code, :description ]
-        def to_h: () -> { code: String?, description: String? }
+        def to_h: () -> { code: String, description: String }
       end
 
       class OutboundShipmentSummary < Data
-        def self.new: (order_id: String?, shipment_id: String?, shipment_status: String?, ?created_at: Time?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
-                    | (String?, String?, String?, Time?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
-        def self.[]: (order_id: String?, shipment_id: String?, shipment_status: String?, ?created_at: Time?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
-                   | (String?, String?, String?, Time?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
+        def self.new: (order_id: String, shipment_id: String, shipment_status: String, ?created_at: Time?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
+                    | (String, String, String, Time?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
+        def self.[]: (order_id: String, shipment_id: String, shipment_status: String, ?created_at: Time?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
+                   | (String, String, String, Time?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
 
         def self.members: () -> [ :order_id, :shipment_id, :shipment_status, :created_at, :updated_at ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary
 
         attr_reader created_at: Time?
-        attr_reader order_id: String?
-        attr_reader shipment_id: String?
-        attr_reader shipment_status: String?
+        attr_reader order_id: String
+        attr_reader shipment_id: String
+        attr_reader shipment_status: String
         attr_reader updated_at: Time?
 
         def members: () -> [ :order_id, :shipment_id, :shipment_status, :created_at, :updated_at ]
-        def to_h: () -> { order_id: String?, shipment_id: String?, shipment_status: String?, created_at: Time?, updated_at: Time? }
+        def to_h: () -> { order_id: String, shipment_id: String, shipment_status: String, created_at: Time?, updated_at: Time? }
       end
 
       class PackageDimensions < Data
-        def self.new: (height: Float?, length: Float?, unit_of_measurement: String?, width: Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
-                    | (Float?, Float?, String?, Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
-        def self.[]: (height: Float?, length: Float?, unit_of_measurement: String?, width: Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
-                   | (Float?, Float?, String?, Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
+        def self.new: (height: Float, length: Float, unit_of_measurement: String, width: Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
+                    | (Float, Float, String, Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
+        def self.[]: (height: Float, length: Float, unit_of_measurement: String, width: Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
+                   | (Float, Float, String, Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
 
         def self.members: () -> [ :height, :length, :unit_of_measurement, :width ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageDimensions
 
-        attr_reader height: Float?
-        attr_reader length: Float?
-        attr_reader unit_of_measurement: String?
-        attr_reader width: Float?
+        attr_reader height: Float
+        attr_reader length: Float
+        attr_reader unit_of_measurement: String
+        attr_reader width: Float
 
         def members: () -> [ :height, :length, :unit_of_measurement, :width ]
-        def to_h: () -> { height: Float?, length: Float?, unit_of_measurement: String?, width: Float? }
+        def to_h: () -> { height: Float, length: Float, unit_of_measurement: String, width: Float }
       end
 
       class PackageVolume < Data
-        def self.new: (unit_of_measurement: String?, volume: Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
-                    | (String?, Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
-        def self.[]: (unit_of_measurement: String?, volume: Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
-                   | (String?, Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
+        def self.new: (unit_of_measurement: String, volume: Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
+                    | (String, Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
+        def self.[]: (unit_of_measurement: String, volume: Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
+                   | (String, Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
 
         def self.members: () -> [ :unit_of_measurement, :volume ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageVolume
 
-        attr_reader unit_of_measurement: String?
-        attr_reader volume: Float?
+        attr_reader unit_of_measurement: String
+        attr_reader volume: Float
 
         def members: () -> [ :unit_of_measurement, :volume ]
-        def to_h: () -> { unit_of_measurement: String?, volume: Float? }
+        def to_h: () -> { unit_of_measurement: String, volume: Float }
       end
 
       class PackageWeight < Data
-        def self.new: (unit_of_measurement: String?, weight: Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
-                    | (String?, Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
-        def self.[]: (unit_of_measurement: String?, weight: Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
-                   | (String?, Float?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
+        def self.new: (unit_of_measurement: String, weight: Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
+                    | (String, Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
+        def self.[]: (unit_of_measurement: String, weight: Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
+                   | (String, Float) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
 
         def self.members: () -> [ :unit_of_measurement, :weight ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::PackageWeight
 
-        attr_reader unit_of_measurement: String?
-        attr_reader weight: Float?
+        attr_reader unit_of_measurement: String
+        attr_reader weight: Float
 
         def members: () -> [ :unit_of_measurement, :weight ]
-        def to_h: () -> { unit_of_measurement: String?, weight: Float? }
+        def to_h: () -> { unit_of_measurement: String, weight: Float }
       end
 
       class PrepDetails < Data
@@ -597,10 +597,10 @@ module Peddler
       end
 
       class ProductQuantity < Data
-        def self.new: (quantity: Integer?, sku: String?, ?attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, ?expiration: Time?, ?prep_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductQuantity
-                    | (Integer?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, Time?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductQuantity
-        def self.[]: (quantity: Integer?, sku: String?, ?attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, ?expiration: Time?, ?prep_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductQuantity
-                   | (Integer?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, Time?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductQuantity
+        def self.new: (quantity: Integer, sku: String, ?attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, ?expiration: Time?, ?prep_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductQuantity
+                    | (Integer, String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, Time?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductQuantity
+        def self.[]: (quantity: Integer, sku: String, ?attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, ?expiration: Time?, ?prep_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductQuantity
+                   | (Integer, String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, Time?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductQuantity
 
         def self.members: () -> [ :quantity, :sku, :attributes, :expiration, :prep_details ]
 
@@ -609,18 +609,18 @@ module Peddler
         attr_reader attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?
         attr_reader expiration: Time?
         attr_reader prep_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails?
-        attr_reader quantity: Integer?
-        attr_reader sku: String?
+        attr_reader quantity: Integer
+        attr_reader sku: String
 
         def members: () -> [ :quantity, :sku, :attributes, :expiration, :prep_details ]
-        def to_h: () -> { quantity: Integer?, sku: String?, attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, expiration: Time?, prep_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails? }
+        def to_h: () -> { quantity: Integer, sku: String, attributes: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, expiration: Time?, prep_details: Peddler::APIs::AmazonWarehousingAndDistribution20240509::PrepDetails? }
       end
 
       class ReplenishmentOrder < Data
-        def self.new: (order_id: String?, outbound_shipments: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary]?, status: String?, ?confirmed_on: Time?, ?created_at: Time?, ?distribution_ineligible_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, ?eligible_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?shipped_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrder
-                    | (String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary]?, String?, Time?, Time?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrder
-        def self.[]: (order_id: String?, outbound_shipments: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary]?, status: String?, ?confirmed_on: Time?, ?created_at: Time?, ?distribution_ineligible_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, ?eligible_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?shipped_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrder
-                   | (String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary]?, String?, Time?, Time?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrder
+        def self.new: (order_id: String, outbound_shipments: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary], status: String, ?confirmed_on: Time?, ?created_at: Time?, ?distribution_ineligible_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, ?eligible_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?shipped_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrder
+                    | (String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary], String, Time?, Time?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrder
+        def self.[]: (order_id: String, outbound_shipments: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary], status: String, ?confirmed_on: Time?, ?created_at: Time?, ?distribution_ineligible_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, ?eligible_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?shipped_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, ?updated_at: Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrder
+                   | (String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary], String, Time?, Time?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, Time?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrder
 
         def self.members: () -> [ :order_id, :outbound_shipments, :status, :confirmed_on, :created_at, :distribution_ineligible_reasons, :eligible_products, :products, :shipped_products, :updated_at ]
 
@@ -630,15 +630,15 @@ module Peddler
         attr_reader created_at: Time?
         attr_reader distribution_ineligible_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?
         attr_reader eligible_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?
-        attr_reader order_id: String?
-        attr_reader outbound_shipments: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary]?
+        attr_reader order_id: String
+        attr_reader outbound_shipments: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary]
         attr_reader products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?
         attr_reader shipped_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?
-        attr_reader status: String?
+        attr_reader status: String
         attr_reader updated_at: Time?
 
         def members: () -> [ :order_id, :outbound_shipments, :status, :confirmed_on, :created_at, :distribution_ineligible_reasons, :eligible_products, :products, :shipped_products, :updated_at ]
-        def to_h: () -> { order_id: String?, outbound_shipments: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary]?, status: String?, confirmed_on: Time?, created_at: Time?, distribution_ineligible_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, eligible_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, shipped_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, updated_at: Time? }
+        def to_h: () -> { order_id: String, outbound_shipments: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::OutboundShipmentSummary], status: String, confirmed_on: Time?, created_at: Time?, distribution_ineligible_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionIneligibleReason]?, eligible_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, shipped_products: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionProduct]?, updated_at: Time? }
       end
 
       class ReplenishmentOrderCreationData < Data
@@ -676,19 +676,19 @@ module Peddler
       end
 
       class ReplenishmentOrderReference < Data
-        def self.new: (order_id: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
-                    | (String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
-        def self.[]: (order_id: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
-                   | (String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
+        def self.new: (order_id: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
+                    | (String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
+        def self.[]: (order_id: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
+                   | (String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
 
         def self.members: () -> [ :order_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ReplenishmentOrderReference
 
-        attr_reader order_id: String?
+        attr_reader order_id: String
 
         def members: () -> [ :order_id ]
-        def to_h: () -> { order_id: String? }
+        def to_h: () -> { order_id: String }
       end
 
       class ReplenishmentPreferences < Data
@@ -708,73 +708,73 @@ module Peddler
       end
 
       class SKUEligibility < Data
-        def self.new: (package_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String?, ?ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
-                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
-        def self.[]: (package_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String?, ?ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
-                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, String?, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
+        def self.new: (package_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity, status: String, ?ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
+                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity, String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
+        def self.[]: (package_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity, status: String, ?ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
+                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity, String, Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
 
         def self.members: () -> [ :package_quantity, :status, :ineligibility_reasons ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUEligibility
 
         attr_reader ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]?
-        attr_reader package_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?
-        attr_reader status: String?
+        attr_reader package_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
+        attr_reader status: String
 
         def members: () -> [ :package_quantity, :status, :ineligibility_reasons ]
-        def to_h: () -> { package_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String?, ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]? }
+        def to_h: () -> { package_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity, status: String, ineligibility_reasons: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason]? }
       end
 
       class SKUIneligibilityReason < Data
-        def self.new: (code: String?, description: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
-                    | (String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
-        def self.[]: (code: String?, description: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
-                   | (String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
+        def self.new: (code: String, description: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
+                    | (String, String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
+        def self.[]: (code: String, description: String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
+                   | (String, String) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
 
         def self.members: () -> [ :code, :description ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUIneligibilityReason
 
-        attr_reader code: String?
-        attr_reader description: String?
+        attr_reader code: String
+        attr_reader description: String
 
         def members: () -> [ :code, :description ]
-        def to_h: () -> { code: String?, description: String? }
+        def to_h: () -> { code: String, description: String }
       end
 
       class SKUQuantity < Data
-        def self.new: (expected_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String?, ?received_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
-                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
-        def self.[]: (expected_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String?, ?received_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
-                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
+        def self.new: (expected_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity, sku: String, ?received_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
+                    | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity, String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
+        def self.[]: (expected_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity, sku: String, ?received_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
+                   | (Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity, String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
 
         def self.members: () -> [ :expected_quantity, :sku, :received_quantity ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::SKUQuantity
 
-        attr_reader expected_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?
+        attr_reader expected_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity
         attr_reader received_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?
-        attr_reader sku: String?
+        attr_reader sku: String
 
         def members: () -> [ :expected_quantity, :sku, :received_quantity ]
-        def to_h: () -> { expected_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String?, received_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity? }
+        def to_h: () -> { expected_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity, sku: String, received_quantity: Peddler::APIs::AmazonWarehousingAndDistribution20240509::InventoryQuantity? }
       end
 
       class ShipmentLabels < Data
-        def self.new: (label_status: String?, ?label_download_url: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
-                    | (String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
-        def self.[]: (label_status: String?, ?label_download_url: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
-                   | (String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+        def self.new: (label_status: String, ?label_download_url: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+                    | (String, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+        def self.[]: (label_status: String, ?label_download_url: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+                   | (String, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
 
         def self.members: () -> [ :label_status, :label_download_url ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::ShipmentLabels
 
         attr_reader label_download_url: String?
-        attr_reader label_status: String?
+        attr_reader label_status: String
 
         def members: () -> [ :label_status, :label_download_url ]
-        def to_h: () -> { label_status: String?, label_download_url: String? }
+        def to_h: () -> { label_status: String, label_download_url: String? }
       end
 
       class ShipmentListing < Data
@@ -795,36 +795,36 @@ module Peddler
       end
 
       class TrackingDetails < Data
-        def self.new: (booking_id: String?, ?carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
-                    | (String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
-        def self.[]: (booking_id: String?, ?carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
-                   | (String?, Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
+        def self.new: (booking_id: String, ?carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
+                    | (String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
+        def self.[]: (booking_id: String, ?carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
+                   | (String, Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
 
         def self.members: () -> [ :booking_id, :carrier_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails
 
-        attr_reader booking_id: String?
+        attr_reader booking_id: String
         attr_reader carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode?
 
         def members: () -> [ :booking_id, :carrier_code ]
-        def to_h: () -> { booking_id: String?, carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode? }
+        def to_h: () -> { booking_id: String, carrier_code: Peddler::APIs::AmazonWarehousingAndDistribution20240509::CarrierCode? }
       end
 
       class TransportationDetails < Data
-        def self.new: (tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
-                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
-        def self.[]: (tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
-                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
+        def self.new: (tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
+                    | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
+        def self.[]: (tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
+                   | (Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
 
         def self.members: () -> [ :tracking_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::TransportationDetails
 
-        attr_reader tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]?
+        attr_reader tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]
 
         def members: () -> [ :tracking_details ]
-        def to_h: () -> { tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails]? }
+        def to_h: () -> { tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails] }
       end
 
       def cancel_inbound: (String, ?rate_limit: Float) -> Peddler::Response

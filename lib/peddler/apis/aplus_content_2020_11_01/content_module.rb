@@ -11,7 +11,7 @@ module Peddler
       # selects which content module types to use.
       ContentModule = Structure.new do
         # @return [String]
-        attribute(:content_module_type, String, from: "contentModuleType")
+        attribute(:content_module_type, String, null: false, from: "contentModuleType")
 
         # @return [StandardCompanyLogoModule]
         attribute?(:standard_company_logo, StandardCompanyLogoModule, from: "standardCompanyLogo")

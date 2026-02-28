@@ -11,11 +11,11 @@ module Peddler
       ReportDocument = Structure.new do
         # @return [String] The identifier for the report document. This identifier is unique only in combination with a
         #   seller ID.
-        attribute(:report_document_id, String, from: "reportDocumentId")
+        attribute(:report_document_id, String, null: false, from: "reportDocumentId")
 
         # @return [String] A presigned URL for the report document. If `compressionAlgorithm` is not returned, you can
         #   download the report directly from this URL. This URL expires after 5 minutes.
-        attribute(:url, String)
+        attribute(:url, String, null: false)
 
         # @return [String] If the report document contents have been compressed, the compression algorithm used is
         #   returned in this property and you must decompress the report when you download. Otherwise, you can download

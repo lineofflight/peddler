@@ -10,7 +10,7 @@ module Peddler
       # Schema for an individual `ListingOffersResponse`
       ListingOffersResponse = Structure.new do
         # @return [GetOffersResponse]
-        attribute(:body, GetOffersResponse)
+        attribute(:body, GetOffersResponse, null: false)
 
         # @return [HttpResponseHeaders]
         attribute?(:headers, HttpResponseHeaders)

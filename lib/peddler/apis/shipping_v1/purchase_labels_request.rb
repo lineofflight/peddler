@@ -10,10 +10,10 @@ module Peddler
       # The request schema for the purchaseLabels operation.
       PurchaseLabelsRequest = Structure.new do
         # @return [LabelSpecification]
-        attribute(:label_specification, LabelSpecification, from: "labelSpecification")
+        attribute(:label_specification, LabelSpecification, null: false, from: "labelSpecification")
 
         # @return [String]
-        attribute(:rate_id, String, from: "rateId")
+        attribute(:rate_id, String, null: false, from: "rateId")
       end
     end
   end

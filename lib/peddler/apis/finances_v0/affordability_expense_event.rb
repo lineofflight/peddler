@@ -10,13 +10,13 @@ module Peddler
       # An expense related to an affordability promotion.
       AffordabilityExpenseEvent = Structure.new do
         # @return [Money] Central Goods and Service Tax, charged and collected by the central government.
-        attribute(:tax_type_cgst, Money, from: "TaxTypeCGST")
+        attribute(:tax_type_cgst, Money, null: false, from: "TaxTypeCGST")
 
         # @return [Money] Integrated Goods and Service Tax, charged and collected by the central government.
-        attribute(:tax_type_igst, Money, from: "TaxTypeIGST")
+        attribute(:tax_type_igst, Money, null: false, from: "TaxTypeIGST")
 
         # @return [Money] State Goods and Service Tax, charged and collected by the state government.
-        attribute(:tax_type_sgst, Money, from: "TaxTypeSGST")
+        attribute(:tax_type_sgst, Money, null: false, from: "TaxTypeSGST")
 
         # @return [String] An Amazon-defined identifier for an order.
         attribute?(:amazon_order_id, String, from: "AmazonOrderId")

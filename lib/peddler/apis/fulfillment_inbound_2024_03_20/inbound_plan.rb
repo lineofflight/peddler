@@ -12,28 +12,28 @@ module Peddler
       InboundPlan = Structure.new do
         # @return [Time] The time at which the inbound plan was created. In [ISO
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime with pattern `yyyy-MM-ddTHH:mm:ssZ`.
-        attribute(:created_at, Time, from: "createdAt")
+        attribute(:created_at, Time, null: false, from: "createdAt")
 
         # @return [String] Identifier of an inbound plan.
-        attribute(:inbound_plan_id, String, from: "inboundPlanId")
+        attribute(:inbound_plan_id, String, null: false, from: "inboundPlanId")
 
         # @return [Time] The time at which the inbound plan was last updated. In [ISO
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
         #   `yyyy-MM-ddTHH:mm:ssZ`.
-        attribute(:last_updated_at, Time, from: "lastUpdatedAt")
+        attribute(:last_updated_at, Time, null: false, from: "lastUpdatedAt")
 
         # @return [Array<String>] A list of marketplace IDs.
-        attribute(:marketplace_ids, [String], from: "marketplaceIds")
+        attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
         # @return [String] Human-readable name of the inbound plan.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [Address]
-        attribute(:source_address, Address, from: "sourceAddress")
+        attribute(:source_address, Address, null: false, from: "sourceAddress")
 
         # @return [String] Current status of the inbound plan. Possible values: `ACTIVE`, `VOIDED`, `SHIPPED`,
         #   `ERRORED`.
-        attribute(:status, String)
+        attribute(:status, String, null: false)
 
         # @return [Array<PackingOptionSummary>] Packing options for the inbound plan. This property will be populated
         #   when it has been generated via the corresponding operation. If there is a chosen placement option, only

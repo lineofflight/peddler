@@ -11,10 +11,10 @@ module Peddler
       # Shipping options for a single package.
       ShippingOptions = Structure.new do
         # @return [String] The shipper type.
-        attribute(:ship_by, String, from: "shipBy")
+        attribute(:ship_by, String, null: false, from: "shipBy")
 
         # @return [String] An identifier for the shipping option.
-        attribute(:shipping_option_id, String, from: "shippingOptionId")
+        attribute(:shipping_option_id, String, null: false, from: "shippingOptionId")
 
         # @return [String] The carrier name for the offering.
         attribute?(:carrier_name, String, from: "carrierName")

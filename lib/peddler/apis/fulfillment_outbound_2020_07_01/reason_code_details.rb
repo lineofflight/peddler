@@ -10,10 +10,10 @@ module Peddler
       # A return reason code, a description, and an optional description translation.
       ReasonCodeDetails = Structure.new do
         # @return [String] A human readable description of the return reason code.
-        attribute(:description, String)
+        attribute(:description, String, null: false)
 
         # @return [String] A code that indicates a valid return reason.
-        attribute(:return_reason_code, String, from: "returnReasonCode")
+        attribute(:return_reason_code, String, null: false, from: "returnReasonCode")
 
         # @return [String] A translation of the description. The translation is in the language specified in the
         #   `language` request parameter.

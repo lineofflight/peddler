@@ -2,21 +2,21 @@ module Peddler
   module APIs
     class ApplicationIntegrations20240401 < API
       class CreateNotificationRequest < Data
-        def self.new: (notification_parameters: Hash[untyped, untyped]?, template_id: String?, ?marketplace_id: String?) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
-                    | (Hash[untyped, untyped]?, String?, String?) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
-        def self.[]: (notification_parameters: Hash[untyped, untyped]?, template_id: String?, ?marketplace_id: String?) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
-                   | (Hash[untyped, untyped]?, String?, String?) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
+        def self.new: (notification_parameters: Hash[untyped, untyped], template_id: String, ?marketplace_id: String?) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
+                    | (Hash[untyped, untyped], String, String?) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
+        def self.[]: (notification_parameters: Hash[untyped, untyped], template_id: String, ?marketplace_id: String?) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
+                   | (Hash[untyped, untyped], String, String?) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
 
         def self.members: () -> [ :notification_parameters, :template_id, :marketplace_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ApplicationIntegrations20240401::CreateNotificationRequest
 
         attr_reader marketplace_id: String?
-        attr_reader notification_parameters: Hash[untyped, untyped]?
-        attr_reader template_id: String?
+        attr_reader notification_parameters: Hash[untyped, untyped]
+        attr_reader template_id: String
 
         def members: () -> [ :notification_parameters, :template_id, :marketplace_id ]
-        def to_h: () -> { notification_parameters: Hash[untyped, untyped]?, template_id: String?, marketplace_id: String? }
+        def to_h: () -> { notification_parameters: Hash[untyped, untyped], template_id: String, marketplace_id: String? }
       end
 
       class CreateNotificationResponse < Data
@@ -36,70 +36,70 @@ module Peddler
       end
 
       class DeleteNotificationsRequest < Data
-        def self.new: (deletion_reason: String?, template_id: String?) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
-                    | (String?, String?) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
-        def self.[]: (deletion_reason: String?, template_id: String?) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
-                   | (String?, String?) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
+        def self.new: (deletion_reason: String, template_id: String) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
+                    | (String, String) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
+        def self.[]: (deletion_reason: String, template_id: String) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
+                   | (String, String) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
 
         def self.members: () -> [ :deletion_reason, :template_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ApplicationIntegrations20240401::DeleteNotificationsRequest
 
-        attr_reader deletion_reason: String?
-        attr_reader template_id: String?
+        attr_reader deletion_reason: String
+        attr_reader template_id: String
 
         def members: () -> [ :deletion_reason, :template_id ]
-        def to_h: () -> { deletion_reason: String?, template_id: String? }
+        def to_h: () -> { deletion_reason: String, template_id: String }
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ApplicationIntegrations20240401::Error
-                    | (String?, String?, String?) -> Peddler::APIs::ApplicationIntegrations20240401::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ApplicationIntegrations20240401::Error
-                   | (String?, String?, String?) -> Peddler::APIs::ApplicationIntegrations20240401::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ApplicationIntegrations20240401::Error
+                    | (String, String, String?) -> Peddler::APIs::ApplicationIntegrations20240401::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::ApplicationIntegrations20240401::Error
+                   | (String, String, String?) -> Peddler::APIs::ApplicationIntegrations20240401::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ApplicationIntegrations20240401::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::APIs::ApplicationIntegrations20240401::Error]?) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
-                    | (Array[Peddler::APIs::ApplicationIntegrations20240401::Error]?) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
-        def self.[]: (errors: Array[Peddler::APIs::ApplicationIntegrations20240401::Error]?) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
-                   | (Array[Peddler::APIs::ApplicationIntegrations20240401::Error]?) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
+        def self.new: (errors: Array[Peddler::APIs::ApplicationIntegrations20240401::Error]) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
+                    | (Array[Peddler::APIs::ApplicationIntegrations20240401::Error]) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::ApplicationIntegrations20240401::Error]) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
+                   | (Array[Peddler::APIs::ApplicationIntegrations20240401::Error]) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
 
         def self.members: () -> [ :errors ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ApplicationIntegrations20240401::ErrorList
 
-        attr_reader errors: Array[Peddler::APIs::ApplicationIntegrations20240401::Error]?
+        attr_reader errors: Array[Peddler::APIs::ApplicationIntegrations20240401::Error]
 
         def members: () -> [ :errors ]
-        def to_h: () -> { errors: Array[Peddler::APIs::ApplicationIntegrations20240401::Error]? }
+        def to_h: () -> { errors: Array[Peddler::APIs::ApplicationIntegrations20240401::Error] }
       end
 
       class RecordActionFeedbackRequest < Data
-        def self.new: (feedback_action_code: String?) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
-                    | (String?) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
-        def self.[]: (feedback_action_code: String?) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
-                   | (String?) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
+        def self.new: (feedback_action_code: String) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
+                    | (String) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
+        def self.[]: (feedback_action_code: String) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
+                   | (String) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
 
         def self.members: () -> [ :feedback_action_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ApplicationIntegrations20240401::RecordActionFeedbackRequest
 
-        attr_reader feedback_action_code: String?
+        attr_reader feedback_action_code: String
 
         def members: () -> [ :feedback_action_code ]
-        def to_h: () -> { feedback_action_code: String? }
+        def to_h: () -> { feedback_action_code: String }
       end
 
       def create_notification: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

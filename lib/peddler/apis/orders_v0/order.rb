@@ -10,19 +10,19 @@ module Peddler
       # Order information.
       Order = Structure.new do
         # @return [String] An Amazon-defined order identifier, in 3-7-7 format.
-        attribute(:amazon_order_id, String, from: "AmazonOrderId")
+        attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
         # @return [String] The date when the order was last updated.
         #
         # **Note**: `LastUpdateDate` is returned with an incorrect date for orders that were last updated before
         #   2009-04-01.
-        attribute(:last_update_date, String, from: "LastUpdateDate")
+        attribute(:last_update_date, String, null: false, from: "LastUpdateDate")
 
         # @return [String] The current order status.
-        attribute(:order_status, String, from: "OrderStatus")
+        attribute(:order_status, String, null: false, from: "OrderStatus")
 
         # @return [String] The date when the order was created.
-        attribute(:purchase_date, String, from: "PurchaseDate")
+        attribute(:purchase_date, String, null: false, from: "PurchaseDate")
 
         # @return [AutomatedShippingSettings] Contains information regarding the Shipping Settings Automaton program,
         #   such as whether the order's shipping settings were generated automatically, and what those settings are.

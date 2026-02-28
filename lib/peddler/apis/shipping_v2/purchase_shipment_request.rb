@@ -10,13 +10,13 @@ module Peddler
       # The request schema for the purchaseShipment operation.
       PurchaseShipmentRequest = Structure.new do
         # @return [String]
-        attribute(:rate_id, String, from: "rateId")
+        attribute(:rate_id, String, null: false, from: "rateId")
 
         # @return [String]
-        attribute(:request_token, String, from: "requestToken")
+        attribute(:request_token, String, null: false, from: "requestToken")
 
         # @return [RequestedDocumentSpecification]
-        attribute(:requested_document_specification, RequestedDocumentSpecification, from: "requestedDocumentSpecification")
+        attribute(:requested_document_specification, RequestedDocumentSpecification, null: false, from: "requestedDocumentSpecification")
 
         # @return [Hash] The additional inputs required to purchase a shipping offering, in JSON format. The JSON
         #   provided here must adhere to the JSON schema that is returned in the response to the getAdditionalInputs

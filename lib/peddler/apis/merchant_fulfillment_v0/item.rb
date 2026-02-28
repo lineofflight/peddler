@@ -10,10 +10,10 @@ module Peddler
       # An Amazon order item identifier and a quantity.
       Item = Structure.new do
         # @return [String]
-        attribute(:order_item_id, String, from: "OrderItemId")
+        attribute(:order_item_id, String, null: false, from: "OrderItemId")
 
         # @return [Integer]
-        attribute(:quantity, Integer, from: "Quantity")
+        attribute(:quantity, Integer, null: false, from: "Quantity")
 
         # @return [DangerousGoodsDetails]
         attribute?(:dangerous_goods_details, DangerousGoodsDetails, from: "DangerousGoodsDetails")

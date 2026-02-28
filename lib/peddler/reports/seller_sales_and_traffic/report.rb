@@ -15,13 +15,13 @@ module Peddler
       Report = Structure.new do
         # @return [Hash] Report summary including specified reporting date range, dateGranularity, and asinGranularity
         #   in the input.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
 
         # @return [Array<SalesAndTrafficByAsin>]
-        attribute(:sales_and_traffic_by_asin, [SalesAndTrafficByASIN], from: "salesAndTrafficByAsin")
+        attribute(:sales_and_traffic_by_asin, [SalesAndTrafficByASIN], null: false, from: "salesAndTrafficByAsin")
 
         # @return [Array<SalesAndTrafficByDate>]
-        attribute(:sales_and_traffic_by_date, [SalesAndTrafficByDate], from: "salesAndTrafficByDate")
+        attribute(:sales_and_traffic_by_date, [SalesAndTrafficByDate], null: false, from: "salesAndTrafficByDate")
       end
     end
   end

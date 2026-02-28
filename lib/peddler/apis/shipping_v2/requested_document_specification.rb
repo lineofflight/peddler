@@ -11,16 +11,16 @@ module Peddler
       # if the specified document specifications are not among those returned in the response to the getRates operation.
       RequestedDocumentSpecification = Structure.new do
         # @return [String]
-        attribute(:format, String)
+        attribute(:format, String, null: false)
 
         # @return [:boolean]
-        attribute(:need_file_joining, :boolean, from: "needFileJoining")
+        attribute(:need_file_joining, :boolean, null: false, from: "needFileJoining")
 
         # @return [Array<DocumentType>] A list of the document types requested.
-        attribute(:requested_document_types, Array, from: "requestedDocumentTypes")
+        attribute(:requested_document_types, Array, null: false, from: "requestedDocumentTypes")
 
         # @return [DocumentSize]
-        attribute(:size, DocumentSize)
+        attribute(:size, DocumentSize, null: false)
 
         # @return [Integer]
         attribute?(:dpi, Integer)

@@ -11,7 +11,7 @@ module Peddler
       FeaturedOfferExpectedPrice = Structure.new do
         # @return [Money] A computed listing price at or below which a seller can expect to become the featured offer
         #   (before applicable promotions).
-        attribute(:listing_price, Money, from: "listingPrice")
+        attribute(:listing_price, Money, null: false, from: "listingPrice")
 
         # @return [Points] The number of Amazon Points that are offered with the purchase of an item and the monetary
         #   value of these points.

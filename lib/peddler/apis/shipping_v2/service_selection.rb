@@ -10,7 +10,7 @@ module Peddler
       # Service Selection Criteria.
       ServiceSelection = Structure.new do
         # @return [Array<String>]
-        attribute(:service_id, [String], from: "serviceId")
+        attribute(:service_id, [String], null: false, from: "serviceId")
       end
     end
   end

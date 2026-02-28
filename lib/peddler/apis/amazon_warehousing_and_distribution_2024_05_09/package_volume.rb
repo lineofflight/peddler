@@ -10,10 +10,10 @@ module Peddler
       # Represents the volume of the package with a unit of measurement.
       PackageVolume = Structure.new do
         # @return [String] Unit of measurement for the package volume.
-        attribute(:unit_of_measurement, String, from: "unitOfMeasurement")
+        attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
 
         # @return [Float] The package volume value.
-        attribute(:volume, Float)
+        attribute(:volume, Float, null: false)
       end
     end
   end

@@ -11,14 +11,14 @@ module Peddler
       # submission and included in the Items section of this report.
       ItemSummary = Structure.new do
         # @return [Integer] Number of errors across all listing items created or updated by this feed submission.
-        attribute(:errors, Integer)
+        attribute(:errors, Integer, null: false)
 
         # @return [Integer] Number of listing items created or updated by this feed submission and included in the Items
         #   section of this report.
-        attribute(:items, Integer)
+        attribute(:items, Integer, null: false)
 
         # @return [Integer] Number of warnings across all listing items created or updated by this feed submission.
-        attribute(:warnings, Integer)
+        attribute(:warnings, Integer, null: false)
       end
     end
   end

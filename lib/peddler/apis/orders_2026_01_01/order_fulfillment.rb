@@ -12,7 +12,7 @@ module Peddler
       OrderFulfillment = Structure.new do
         # @return [String] The current status of the order in the fulfillment process, from pending to handover to
         #   carrier.
-        attribute(:fulfillment_status, String, from: "fulfillmentStatus")
+        attribute(:fulfillment_status, String, null: false, from: "fulfillmentStatus")
 
         # @return [DateTimeRange] The promised time period within which the order should be delivered to the customer.
         attribute?(:deliver_by_window, DateTimeRange, from: "deliverByWindow")

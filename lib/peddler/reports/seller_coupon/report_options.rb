@@ -12,11 +12,11 @@ module Peddler
       ReportOptions = Structure.new do
         # @return [Time] The start of a date-time range in UTC used for selecting coupons to report on. All coupons with
         #   a start date-time that falls within the range will be included.
-        attribute(:coupon_start_date_from, Time, from: "couponStartDateFrom")
+        attribute(:coupon_start_date_from, Time, null: false, from: "couponStartDateFrom")
 
         # @return [Time] The end of a date-time range in UTC used for selecting coupons to report on. All coupons with a
         #   start date-time that falls within the range will be included.
-        attribute(:coupon_start_date_to, Time, from: "couponStartDateTo")
+        attribute(:coupon_start_date_to, Time, null: false, from: "couponStartDateTo")
       end
     end
   end

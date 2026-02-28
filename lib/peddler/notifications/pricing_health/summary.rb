@@ -10,14 +10,14 @@ module Peddler
       Summary = Structure.new do
         # @return [Array<OfferCount>] A list that contains the total number of offers that are eligible for the Buy Box
         #   for the given conditions and fulfillment channels
-        attribute(:buy_box_eligible_offers, [OfferCount], from: "buyBoxEligibleOffers")
+        attribute(:buy_box_eligible_offers, [OfferCount], null: false, from: "buyBoxEligibleOffers")
 
         # @return [Array<OfferCount>] A list that contains the total number of offers for the item for the given
         #   conditions and fulfillment channels
-        attribute(:number_of_offers, [OfferCount], from: "numberOfOffers")
+        attribute(:number_of_offers, [OfferCount], null: false, from: "numberOfOffers")
 
         # @return [ReferencePrice]
-        attribute(:reference_price, ReferencePrice, from: "referencePrice")
+        attribute(:reference_price, ReferencePrice, null: false, from: "referencePrice")
 
         # @return [Array<BuyBoxPrice>] A list that contains the Buy Box price of the item for the given conditions
         attribute?(:buy_box_prices, [BuyBoxPrice], from: "buyBoxPrices")

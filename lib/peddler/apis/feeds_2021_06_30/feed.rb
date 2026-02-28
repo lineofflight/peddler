@@ -11,16 +11,16 @@ module Peddler
       # Detailed information about the feed.
       Feed = Structure.new do
         # @return [Time] The date and time when the feed was created, in ISO 8601 date time format.
-        attribute(:created_time, Time, from: "createdTime")
+        attribute(:created_time, Time, null: false, from: "createdTime")
 
         # @return [String] The identifier for the feed. This identifier is unique only in combination with a seller ID.
-        attribute(:feed_id, String, from: "feedId")
+        attribute(:feed_id, String, null: false, from: "feedId")
 
         # @return [String] The feed type.
-        attribute(:feed_type, String, from: "feedType")
+        attribute(:feed_type, String, null: false, from: "feedType")
 
         # @return [String] The processing status of the feed.
-        attribute(:processing_status, String, from: "processingStatus")
+        attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # @return [Array<String>] A list of identifiers for the marketplaces that the feed is applied to.
         attribute?(:marketplace_ids, [String], from: "marketplaceIds")

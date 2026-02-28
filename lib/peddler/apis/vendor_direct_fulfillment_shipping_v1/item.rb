@@ -11,10 +11,10 @@ module Peddler
       Item = Structure.new do
         # @return [Integer] Item Sequence Number for the item. This must be the same value as sent in order for a given
         #   item.
-        attribute(:item_sequence_number, Integer, from: "itemSequenceNumber")
+        attribute(:item_sequence_number, Integer, null: false, from: "itemSequenceNumber")
 
         # @return [ItemQuantity] Total item quantity shipped in this shipment.
-        attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")
+        attribute(:shipped_quantity, ItemQuantity, null: false, from: "shippedQuantity")
 
         # @return [String] Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or
         #   vendorProductIdentifier is required.

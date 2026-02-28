@@ -10,11 +10,11 @@ module Peddler
       # The marketplace attributes associated with the location.
       MarketplaceAttributes = Structure.new do
         # @return [String] The channel name associated with the location.
-        attribute(:channel_name, String, from: "channelName")
+        attribute(:channel_name, String, null: false, from: "channelName")
 
         # @return [String] The marketplace ID associated with the location. To find the ID for your marketplace, refer
         #   to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<String>] Marketplace channel-specific custom attributes for the order. These attributes are not
         #   mandatory and each channel can provide them differently.

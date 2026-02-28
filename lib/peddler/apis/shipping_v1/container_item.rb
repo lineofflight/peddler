@@ -10,18 +10,18 @@ module Peddler
       # Item in the container.
       ContainerItem = Structure.new do
         # @return [Float] The quantity of the items of this type in the container.
-        attribute(:quantity, Float)
+        attribute(:quantity, Float, null: false)
 
         # @return [String] A descriptive title of the item.
-        attribute(:title, String)
+        attribute(:title, String, null: false)
 
         # @return [Money] The unit price of an item of this type (the total value of this item type in the container is
         #   unitPrice x quantity).
-        attribute(:unit_price, Money, from: "unitPrice")
+        attribute(:unit_price, Money, null: false, from: "unitPrice")
 
         # @return [Weight] The unit weight of an item of this type (the total weight of this item type in the container
         #   is unitWeight x quantity).
-        attribute(:unit_weight, Weight, from: "unitWeight")
+        attribute(:unit_weight, Weight, null: false, from: "unitWeight")
       end
     end
   end

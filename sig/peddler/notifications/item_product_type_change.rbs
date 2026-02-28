@@ -2,43 +2,43 @@ module Peddler
   module Notifications
     module ItemProductTypeChange
       class Notification < Data
-        def self.new: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ItemProductTypeChange::Payload?, payload_version: String?) -> Peddler::Notifications::ItemProductTypeChange::Notification
-                    | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::ItemProductTypeChange::Payload?, String?) -> Peddler::Notifications::ItemProductTypeChange::Notification
-        def self.[]: (event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ItemProductTypeChange::Payload?, payload_version: String?) -> Peddler::Notifications::ItemProductTypeChange::Notification
-                   | (String?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::ItemProductTypeChange::Payload?, String?) -> Peddler::Notifications::ItemProductTypeChange::Notification
+        def self.new: (event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemProductTypeChange::Payload, payload_version: String) -> Peddler::Notifications::ItemProductTypeChange::Notification
+                    | (String, Hash[untyped, untyped], String, String, Peddler::Notifications::ItemProductTypeChange::Payload, String) -> Peddler::Notifications::ItemProductTypeChange::Notification
+        def self.[]: (event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemProductTypeChange::Payload, payload_version: String) -> Peddler::Notifications::ItemProductTypeChange::Notification
+                   | (String, Hash[untyped, untyped], String, String, Peddler::Notifications::ItemProductTypeChange::Payload, String) -> Peddler::Notifications::ItemProductTypeChange::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ItemProductTypeChange::Notification
 
-        attr_reader event_time: String?
-        attr_reader notification_metadata: Hash[untyped, untyped]?
-        attr_reader notification_type: String?
-        attr_reader notification_version: String?
-        attr_reader payload: Peddler::Notifications::ItemProductTypeChange::Payload?
-        attr_reader payload_version: String?
+        attr_reader event_time: String
+        attr_reader notification_metadata: Hash[untyped, untyped]
+        attr_reader notification_type: String
+        attr_reader notification_version: String
+        attr_reader payload: Peddler::Notifications::ItemProductTypeChange::Payload
+        attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: String?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ItemProductTypeChange::Payload?, payload_version: String? }
+        def to_h: () -> { event_time: String, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemProductTypeChange::Payload, payload_version: String }
       end
 
       class Payload < Data
-        def self.new: (asin: String?, current_product_type: String?, marketplace_id: String?, previous_product_type: String?) -> Peddler::Notifications::ItemProductTypeChange::Payload
-                    | (String?, String?, String?, String?) -> Peddler::Notifications::ItemProductTypeChange::Payload
-        def self.[]: (asin: String?, current_product_type: String?, marketplace_id: String?, previous_product_type: String?) -> Peddler::Notifications::ItemProductTypeChange::Payload
-                   | (String?, String?, String?, String?) -> Peddler::Notifications::ItemProductTypeChange::Payload
+        def self.new: (asin: String, current_product_type: String, marketplace_id: String, previous_product_type: String) -> Peddler::Notifications::ItemProductTypeChange::Payload
+                    | (String, String, String, String) -> Peddler::Notifications::ItemProductTypeChange::Payload
+        def self.[]: (asin: String, current_product_type: String, marketplace_id: String, previous_product_type: String) -> Peddler::Notifications::ItemProductTypeChange::Payload
+                   | (String, String, String, String) -> Peddler::Notifications::ItemProductTypeChange::Payload
 
         def self.members: () -> [ :asin, :current_product_type, :marketplace_id, :previous_product_type ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ItemProductTypeChange::Payload
 
-        attr_reader asin: String?
-        attr_reader current_product_type: String?
-        attr_reader marketplace_id: String?
-        attr_reader previous_product_type: String?
+        attr_reader asin: String
+        attr_reader current_product_type: String
+        attr_reader marketplace_id: String
+        attr_reader previous_product_type: String
 
         def members: () -> [ :asin, :current_product_type, :marketplace_id, :previous_product_type ]
-        def to_h: () -> { asin: String?, current_product_type: String?, marketplace_id: String?, previous_product_type: String? }
+        def to_h: () -> { asin: String, current_product_type: String, marketplace_id: String, previous_product_type: String }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::ItemProductTypeChange::Notification

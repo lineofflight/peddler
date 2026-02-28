@@ -9,10 +9,10 @@ module Peddler
     module FeePromotion
       PromotionInformation = Structure.new do
         # @return [String]
-        attribute(:fee_discount_type, String, from: "FeeDiscountType")
+        attribute(:fee_discount_type, String, null: false, from: "FeeDiscountType")
 
         # @return [String]
-        attribute(:fee_type, String, from: "FeeType")
+        attribute(:fee_type, String, null: false, from: "FeeType")
 
         # @return [FeeDiscountMonetaryAmount]
         attribute?(:fee_discount_monetary_amount, FeeDiscountMonetaryAmount, from: "FeeDiscountMonetaryAmount")

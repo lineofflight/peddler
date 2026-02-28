@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The status of the FOEP computation. Possible values include `VALID_FOEP`,
         #   `NO_COMPETING_OFFER`, `OFFER_NOT_ELIGIBLE`, `OFFER_NOT_FOUND`, and `ASIN_NOT_ELIGIBLE`. Additional values
         #   might be added in the future.
-        attribute(:result_status, String, from: "resultStatus")
+        attribute(:result_status, String, null: false, from: "resultStatus")
 
         # @return [FeaturedOffer] The offer that will likely be the featured offer if the target offer is priced above
         #   its FOEP. If the target offer is currently the featured offer, this property will be different than

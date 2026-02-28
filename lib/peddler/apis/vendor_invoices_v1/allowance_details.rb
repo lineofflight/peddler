@@ -10,10 +10,10 @@ module Peddler
       # Monetary and tax details of the allowance.
       AllowanceDetails = Structure.new do
         # @return [Money] Total monetary amount related to this allowance.
-        attribute(:allowance_amount, Money, from: "allowanceAmount")
+        attribute(:allowance_amount, Money, null: false, from: "allowanceAmount")
 
         # @return [String] Type of the allowance applied.
-        attribute(:type, String)
+        attribute(:type, String, null: false)
 
         # @return [String] Description of the allowance.
         attribute?(:description, String)

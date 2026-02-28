@@ -12,10 +12,10 @@ module Peddler
       # level.
       Containers = Structure.new do
         # @return [Array<ContainerIdentification>] A list of carton identifiers.
-        attribute(:container_identifiers, [ContainerIdentification], from: "containerIdentifiers")
+        attribute(:container_identifiers, [ContainerIdentification], null: false, from: "containerIdentifiers")
 
         # @return [String] The type of container.
-        attribute(:container_type, String, from: "containerType")
+        attribute(:container_type, String, null: false, from: "containerType")
 
         # @return [Integer] Number of cartons per layer on the pallet.
         attribute?(:block, Integer)

@@ -22,7 +22,7 @@ module Peddler
         #   applicable marketplace are non-buyable.
         #
         # * `SEARCH_SUPPRESSED` - This value indicates that the catalog item is hidden from search results.
-        attribute(:action, String)
+        attribute(:action, String, null: false)
       end
     end
   end

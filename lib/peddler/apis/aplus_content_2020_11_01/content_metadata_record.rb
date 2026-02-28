@@ -10,10 +10,10 @@ module Peddler
       # The metadata for an A+ Content document, with additional information for content management.
       ContentMetadataRecord = Structure.new do
         # @return [ContentMetadata]
-        attribute(:content_metadata, ContentMetadata, from: "contentMetadata")
+        attribute(:content_metadata, ContentMetadata, null: false, from: "contentMetadata")
 
         # @return [String]
-        attribute(:content_reference_key, String, from: "contentReferenceKey")
+        attribute(:content_reference_key, String, null: false, from: "contentReferenceKey")
       end
     end
   end

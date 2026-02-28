@@ -10,7 +10,7 @@ module Peddler
       # The A+ Content standard fixed-length list of text, usually presented as bullet points.
       StandardTextListBlock = Structure.new do
         # @return [Array<TextItem>]
-        attribute(:text_list, [TextItem], from: "textList")
+        attribute(:text_list, [TextItem], null: false, from: "textList")
       end
     end
   end

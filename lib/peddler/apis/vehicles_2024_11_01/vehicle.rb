@@ -10,13 +10,13 @@ module Peddler
       # Combinations of attributes and unique identifier that represents a vehicle in vehicle list.
       Vehicle = Structure.new do
         # @return [Array<VehicleIdentifiers>] Identifiers that can be used to identify the vehicle uniquely
-        attribute(:identifiers, [VehicleIdentifiers])
+        attribute(:identifiers, [VehicleIdentifiers], null: false)
 
         # @return [String] Vehicle Brand.
-        attribute(:make, String)
+        attribute(:make, String, null: false)
 
         # @return [String] Specific model of a vehicle.
-        attribute(:model, String)
+        attribute(:model, String, null: false)
 
         # @return [String] Body style of vehicle (example: Hatchback, Cabriolet).
         attribute?(:body_style, String, from: "bodyStyle")

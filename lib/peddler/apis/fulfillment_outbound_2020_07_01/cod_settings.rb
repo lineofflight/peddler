@@ -10,7 +10,7 @@ module Peddler
       # The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
       CODSettings = Structure.new do
         # @return [:boolean] When true, this fulfillment order requires a COD (Cash On Delivery) payment.
-        attribute(:cod_required, :boolean, from: "isCodRequired")
+        attribute(:cod_required, :boolean, null: false, from: "isCodRequired")
 
         # @return [Money] The amount of the COD charge to be collected from the recipient for a COD order.
         attribute?(:cod_charge, Money, from: "codCharge")

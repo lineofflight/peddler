@@ -10,36 +10,36 @@ module Peddler
       # The search query performance click data.
       SearchQueryPerformanceClickData = Structure.new do
         # @return [Integer] For a search query, the number of clicks for the current ASIN.
-        attribute(:asin_click_count, Integer, from: "asinClickCount")
+        attribute(:asin_click_count, Integer, null: false, from: "asinClickCount")
 
         # @return [Float] The fraction of clicks for the current ASIN in comparison to the total click count for the
         #   query.
-        attribute(:asin_click_share, Float, from: "asinClickShare")
+        attribute(:asin_click_share, Float, null: false, from: "asinClickShare")
 
         # @return [Money]
-        attribute(:asin_median_click_price, Money, from: "asinMedianClickPrice")
+        attribute(:asin_median_click_price, Money, null: false, from: "asinMedianClickPrice")
 
         # @return [Integer] For a search query, the number of ASIN clicks that originate from the search results page
         #   for any ASIN.
-        attribute(:total_click_count, Integer, from: "totalClickCount")
+        attribute(:total_click_count, Integer, null: false, from: "totalClickCount")
 
         # @return [Float] For a search query, the number of clicks divided by the search query volume.
-        attribute(:total_click_rate, Float, from: "totalClickRate")
+        attribute(:total_click_rate, Float, null: false, from: "totalClickRate")
 
         # @return [Money]
-        attribute(:total_median_click_price, Money, from: "totalMedianClickPrice")
+        attribute(:total_median_click_price, Money, null: false, from: "totalMedianClickPrice")
 
         # @return [Integer] The number of times customers click on any ASIN with the one-day delivery message from the
         #   search results page for the specific query.
-        attribute(:total_one_day_shipping_click_count, Integer, from: "totalOneDayShippingClickCount")
+        attribute(:total_one_day_shipping_click_count, Integer, null: false, from: "totalOneDayShippingClickCount")
 
         # @return [Integer] The number of times customers click on any ASIN with the same-day delivery message from the
         #   search results page for the specific query.
-        attribute(:total_same_day_shipping_click_count, Integer, from: "totalSameDayShippingClickCount")
+        attribute(:total_same_day_shipping_click_count, Integer, null: false, from: "totalSameDayShippingClickCount")
 
         # @return [Integer] The number of times customers click on any ASIN with the two-day delivery message from the
         #   search results page for the specific query.
-        attribute(:total_two_day_shipping_click_count, Integer, from: "totalTwoDayShippingClickCount")
+        attribute(:total_two_day_shipping_click_count, Integer, null: false, from: "totalTwoDayShippingClickCount")
       end
     end
   end

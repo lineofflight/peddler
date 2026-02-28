@@ -11,17 +11,17 @@ module Peddler
       Address = Structure.new do
         # @return [String] First line of the address. For Amazon label only vendors, this field will have the value
         #   `xxxxx` within the object `shipToParty`.
-        attribute(:address_line1, String, from: "addressLine1")
+        attribute(:address_line1, String, null: false, from: "addressLine1")
 
         # @return [String] The two digit country code. In ISO 3166-1 alpha-2 format.
-        attribute(:country_code, String, from: "countryCode")
+        attribute(:country_code, String, null: false, from: "countryCode")
 
         # @return [String] The name of the person, business or institution at that address. For Amazon label only
         #   vendors, this field will have the value `xxxxx` within the object `shipToParty`.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String] The state or region where person, business or institution is located.
-        attribute(:state_or_region, String, from: "stateOrRegion")
+        attribute(:state_or_region, String, null: false, from: "stateOrRegion")
 
         # @return [String] Additional address information, if required. For Amazon label only vendors, this field will
         #   have the value `xxxxx` within the object `shipToParty`.

@@ -10,10 +10,10 @@ module Peddler
       # Images for an item in the Amazon catalog for the indicated Amazon marketplace.
       ItemImagesByMarketplace = Structure.new do
         # @return [Array<ItemImage>] Images for an item in the Amazon catalog for the indicated Amazon marketplace.
-        attribute(:images, [ItemImage])
+        attribute(:images, [ItemImage], null: false)
 
         # @return [String] Amazon marketplace identifier.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
       end
     end
   end

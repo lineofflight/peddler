@@ -10,10 +10,10 @@ module Peddler
       # Details of tax amount applied.
       TaxDetails = Structure.new do
         # @return [Money] Total tax amount applied on invoice total or an item total.
-        attribute(:tax_amount, Money, from: "taxAmount")
+        attribute(:tax_amount, Money, null: false, from: "taxAmount")
 
         # @return [String] Type of the tax applied.
-        attribute(:tax_type, String, from: "taxType")
+        attribute(:tax_type, String, null: false, from: "taxType")
 
         # @return [String] Tax percentage applied. Percentage must be expressed in decimal.
         attribute?(:tax_rate, String, from: "taxRate")

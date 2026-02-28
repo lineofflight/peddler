@@ -10,17 +10,17 @@ module Peddler
       # Shipping address that represents the origin or destination location.
       Address = Structure.new do
         # @return [String] First line of the address text.
-        attribute(:address_line1, String, from: "addressLine1")
+        attribute(:address_line1, String, null: false, from: "addressLine1")
 
         # @return [String] Two-digit, ISO 3166-1 alpha-2 formatted country code where this address is located.
-        attribute(:country_code, String, from: "countryCode")
+        attribute(:country_code, String, null: false, from: "countryCode")
 
         # @return [String] Name of the person, business, or institution at this address.
-        attribute(:name, String)
+        attribute(:name, String, null: false)
 
         # @return [String] State or region where this address is located. Note that this is contextual to the specified
         #   country code.
-        attribute(:state_or_region, String, from: "stateOrRegion")
+        attribute(:state_or_region, String, null: false, from: "stateOrRegion")
 
         # @return [String] Optional second line of the address text.
         attribute?(:address_line2, String, from: "addressLine2")

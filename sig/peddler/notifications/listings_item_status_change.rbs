@@ -2,31 +2,31 @@ module Peddler
   module Notifications
     module ListingsItemStatusChange
       class Notification < Data
-        def self.new: (event_time: Time?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ListingsItemStatusChange::Payload?, payload_version: String?) -> Peddler::Notifications::ListingsItemStatusChange::Notification
-                    | (Time?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::ListingsItemStatusChange::Payload?, String?) -> Peddler::Notifications::ListingsItemStatusChange::Notification
-        def self.[]: (event_time: Time?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ListingsItemStatusChange::Payload?, payload_version: String?) -> Peddler::Notifications::ListingsItemStatusChange::Notification
-                   | (Time?, Hash[untyped, untyped]?, String?, String?, Peddler::Notifications::ListingsItemStatusChange::Payload?, String?) -> Peddler::Notifications::ListingsItemStatusChange::Notification
+        def self.new: (event_time: Time, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ListingsItemStatusChange::Payload, payload_version: String) -> Peddler::Notifications::ListingsItemStatusChange::Notification
+                    | (Time, Hash[untyped, untyped], String, String, Peddler::Notifications::ListingsItemStatusChange::Payload, String) -> Peddler::Notifications::ListingsItemStatusChange::Notification
+        def self.[]: (event_time: Time, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ListingsItemStatusChange::Payload, payload_version: String) -> Peddler::Notifications::ListingsItemStatusChange::Notification
+                   | (Time, Hash[untyped, untyped], String, String, Peddler::Notifications::ListingsItemStatusChange::Payload, String) -> Peddler::Notifications::ListingsItemStatusChange::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ListingsItemStatusChange::Notification
 
-        attr_reader event_time: Time?
-        attr_reader notification_metadata: Hash[untyped, untyped]?
-        attr_reader notification_type: String?
-        attr_reader notification_version: String?
-        attr_reader payload: Peddler::Notifications::ListingsItemStatusChange::Payload?
-        attr_reader payload_version: String?
+        attr_reader event_time: Time
+        attr_reader notification_metadata: Hash[untyped, untyped]
+        attr_reader notification_type: String
+        attr_reader notification_version: String
+        attr_reader payload: Peddler::Notifications::ListingsItemStatusChange::Payload
+        attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: Time?, notification_metadata: Hash[untyped, untyped]?, notification_type: String?, notification_version: String?, payload: Peddler::Notifications::ListingsItemStatusChange::Payload?, payload_version: String? }
+        def to_h: () -> { event_time: Time, notification_metadata: Hash[untyped, untyped], notification_type: String, notification_version: String, payload: Peddler::Notifications::ListingsItemStatusChange::Payload, payload_version: String }
       end
 
       class Payload < Data
-        def self.new: (seller_id: String?, sku: String?, status: Array[String]?, ?asin: String?, ?created_date: Time?, ?marketplace_id: String?) -> Peddler::Notifications::ListingsItemStatusChange::Payload
-                    | (String?, String?, Array[String]?, String?, Time?, String?) -> Peddler::Notifications::ListingsItemStatusChange::Payload
-        def self.[]: (seller_id: String?, sku: String?, status: Array[String]?, ?asin: String?, ?created_date: Time?, ?marketplace_id: String?) -> Peddler::Notifications::ListingsItemStatusChange::Payload
-                   | (String?, String?, Array[String]?, String?, Time?, String?) -> Peddler::Notifications::ListingsItemStatusChange::Payload
+        def self.new: (seller_id: String, sku: String, status: Array[String], ?asin: String?, ?created_date: Time?, ?marketplace_id: String?) -> Peddler::Notifications::ListingsItemStatusChange::Payload
+                    | (String, String, Array[String], String?, Time?, String?) -> Peddler::Notifications::ListingsItemStatusChange::Payload
+        def self.[]: (seller_id: String, sku: String, status: Array[String], ?asin: String?, ?created_date: Time?, ?marketplace_id: String?) -> Peddler::Notifications::ListingsItemStatusChange::Payload
+                   | (String, String, Array[String], String?, Time?, String?) -> Peddler::Notifications::ListingsItemStatusChange::Payload
 
         def self.members: () -> [ :seller_id, :sku, :status, :asin, :created_date, :marketplace_id ]
 
@@ -35,12 +35,12 @@ module Peddler
         attr_reader asin: String?
         attr_reader created_date: Time?
         attr_reader marketplace_id: String?
-        attr_reader seller_id: String?
-        attr_reader sku: String?
-        attr_reader status: Array[String]?
+        attr_reader seller_id: String
+        attr_reader sku: String
+        attr_reader status: Array[String]
 
         def members: () -> [ :seller_id, :sku, :status, :asin, :created_date, :marketplace_id ]
-        def to_h: () -> { seller_id: String?, sku: String?, status: Array[String]?, asin: String?, created_date: Time?, marketplace_id: String? }
+        def to_h: () -> { seller_id: String, sku: String, status: Array[String], asin: String?, created_date: Time?, marketplace_id: String? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::ListingsItemStatusChange::Notification

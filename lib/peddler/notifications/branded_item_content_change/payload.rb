@@ -10,7 +10,7 @@ module Peddler
       # Notification payload data
       Payload = Structure.new do
         # @return [String]
-        attribute(:asin, String, from: "Asin")
+        attribute(:asin, String, null: false, from: "Asin")
 
         # @return [Array<String>] The array of item attributes which changed. Possible values include bullet_point,
         #   item_name, product_description, and image-related attributes shown in the examples. NOTE: the attributes
@@ -18,13 +18,13 @@ module Peddler
         #   the product detail page. In a future release we may update them to mean that individual image attribute
         #   changed, but for now if any image changes all the image attributes will be present in the notification.
         #   Attribute names, descriptions, and requirements are available in the Product Type Definitions API.
-        attribute(:attributes_changed, [String], from: "AttributesChanged")
+        attribute(:attributes_changed, [String], null: false, from: "AttributesChanged")
 
         # @return [String]
-        attribute(:brand_name, String, from: "BrandName")
+        attribute(:brand_name, String, null: false, from: "BrandName")
 
         # @return [String]
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
       end
     end
   end

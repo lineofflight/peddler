@@ -11,47 +11,47 @@ module Peddler
       # Contains details about a coupon.
       CouponDetails = Structure.new do
         # @return [Array<AsinDetails>] Products associated with the coupon.
-        attribute(:asins, [ASINDetails])
+        attribute(:asins, [ASINDetails], null: false)
 
         # @return [Float] Percentage of the allocated budget that has been spent, equal to the budgetSpent divided by
         #   budget.
-        attribute(:budget_percentage_used, Float, from: "budgetPercentageUsed")
+        attribute(:budget_percentage_used, Float, null: false, from: "budgetPercentageUsed")
 
         # @return [Float] Total amount spent by the seller on the coupon, including clip fees and redemption fees.
         #   Currency value. Represents a gross value, including purchases that were returned or cancelled.
-        attribute(:budget_spent, Float, from: "budgetSpent")
+        attribute(:budget_spent, Float, null: false, from: "budgetSpent")
 
         # @return [Integer] Number of times the coupon has been applied on the product page by unique customers.
-        attribute(:clips, Integer)
+        attribute(:clips, Integer, null: false)
 
         # @return [String] Unique identifier of the coupon.
-        attribute(:coupon_id, String, from: "couponId")
+        attribute(:coupon_id, String, null: false, from: "couponId")
 
         # @return [String] The ISO 4217 currency code of all currency values in the coupon.
-        attribute(:currency_code, String, from: "currencyCode")
+        attribute(:currency_code, String, null: false, from: "currencyCode")
 
         # @return [String] Customer segment that the coupon is available to.
-        attribute(:customer_segment, String, from: "customerSegment")
+        attribute(:customer_segment, String, null: false, from: "customerSegment")
 
         # @return [Time] Coupon end date-time in UTC.
-        attribute(:end_date_time, Time, from: "endDateTime")
+        attribute(:end_date_time, Time, null: false, from: "endDateTime")
 
         # @return [String] Marketplace the coupon is running in.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] Merchant customer ID associated with the coupon.
-        attribute(:merchant_id, String, from: "merchantId")
+        attribute(:merchant_id, String, null: false, from: "merchantId")
 
         # @return [Integer] Number of times the coupon has been used for a purchase. Represents a gross value, including
         #   purchases that were returned or cancelled.
-        attribute(:redemptions, Integer)
+        attribute(:redemptions, Integer, null: false)
 
         # @return [Time] Coupon start date-time in UTC.
-        attribute(:start_date_time, Time, from: "startDateTime")
+        attribute(:start_date_time, Time, null: false, from: "startDateTime")
 
         # @return [Float] Total amount saved by customers redeeming the coupon. Currency value. Represents a gross
         #   value, including purchases that were returned or cancelled.
-        attribute(:total_discount, Float, from: "totalDiscount")
+        attribute(:total_discount, Float, null: false, from: "totalDiscount")
 
         # @return [Float] The budget allocated to the coupon to cover discount offering and clip/redemption fees.
         #   Currency value.

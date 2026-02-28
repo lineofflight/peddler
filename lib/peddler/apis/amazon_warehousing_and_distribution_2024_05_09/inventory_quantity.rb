@@ -10,10 +10,10 @@ module Peddler
       # Quantity of inventory with an associated measurement unit context.
       InventoryQuantity = Structure.new do
         # @return [Float] Quantity of the respective inventory.
-        attribute(:quantity, Float)
+        attribute(:quantity, Float, null: false)
 
         # @return [String] Unit of measurement for the inventory.
-        attribute(:unit_of_measurement, String, from: "unitOfMeasurement")
+        attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
       end
     end
   end

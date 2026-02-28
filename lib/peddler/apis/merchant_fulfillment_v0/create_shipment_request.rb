@@ -10,10 +10,10 @@ module Peddler
       # Request schema.
       CreateShipmentRequest = Structure.new do
         # @return [ShipmentRequestDetails] Shipment information required to create a shipment.
-        attribute(:shipment_request_details, ShipmentRequestDetails, from: "ShipmentRequestDetails")
+        attribute(:shipment_request_details, ShipmentRequestDetails, null: false, from: "ShipmentRequestDetails")
 
         # @return [String]
-        attribute(:shipping_service_id, String, from: "ShippingServiceId")
+        attribute(:shipping_service_id, String, null: false, from: "ShippingServiceId")
 
         # @return [String] Hazardous materials options for a package. Consult the terms and conditions for each carrier
         #   for more information about hazardous materials.

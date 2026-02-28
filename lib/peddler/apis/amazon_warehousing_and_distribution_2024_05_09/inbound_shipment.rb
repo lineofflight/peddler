@@ -11,22 +11,22 @@ module Peddler
       # Represents an AWD inbound shipment.
       InboundShipment = Structure.new do
         # @return [Address] Destination address for this shipment.
-        attribute(:destination_address, Address, from: "destinationAddress")
+        attribute(:destination_address, Address, null: false, from: "destinationAddress")
 
         # @return [String] The AWD inbound order ID that this inbound shipment belongs to.
-        attribute(:order_id, String, from: "orderId")
+        attribute(:order_id, String, null: false, from: "orderId")
 
         # @return [Address] Origin address for this shipment.
-        attribute(:origin_address, Address, from: "originAddress")
+        attribute(:origin_address, Address, null: false, from: "originAddress")
 
         # @return [Array<DistributionPackageQuantity>] Packages that are part of this shipment.
-        attribute(:shipment_container_quantities, [DistributionPackageQuantity], from: "shipmentContainerQuantities")
+        attribute(:shipment_container_quantities, [DistributionPackageQuantity], null: false, from: "shipmentContainerQuantities")
 
         # @return [String] Unique shipment ID.
-        attribute(:shipment_id, String, from: "shipmentId")
+        attribute(:shipment_id, String, null: false, from: "shipmentId")
 
         # @return [String] Current status of this shipment.
-        attribute(:shipment_status, String, from: "shipmentStatus")
+        attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
         # @return [CarrierCode] The shipment carrier code.
         attribute?(:carrier_code, CarrierCode, from: "carrierCode")

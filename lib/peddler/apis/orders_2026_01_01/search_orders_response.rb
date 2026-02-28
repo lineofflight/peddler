@@ -11,7 +11,7 @@ module Peddler
       # A list of orders.
       SearchOrdersResponse = Structure.new do
         # @return [Array<Order>] An array containing all orders that match the search criteria.
-        attribute(:orders, [Order])
+        attribute(:orders, [Order], null: false)
 
         # @return [Time] Only orders placed before the specified time are returned. The date must be in
         #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.

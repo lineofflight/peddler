@@ -11,21 +11,21 @@ module Peddler
       # Schema for an individual offer. Object in `OfferDetailList`.
       OfferDetail = Structure.new do
         # @return [:boolean] When true, the offer is fulfilled by Amazon.
-        attribute(:fulfilled_by_amazon, :boolean, from: "IsFulfilledByAmazon")
+        attribute(:fulfilled_by_amazon, :boolean, null: false, from: "IsFulfilledByAmazon")
 
         # @return [Money] The price of the item.
-        attribute(:listing_price, Money, from: "ListingPrice")
+        attribute(:listing_price, Money, null: false, from: "ListingPrice")
 
         # @return [Money] The shipping cost.
-        attribute(:shipping, Money, from: "Shipping")
+        attribute(:shipping, Money, null: false, from: "Shipping")
 
         # @return [DetailedShippingTimeType] The maximum time within which the item will likely be shipped once an order
         #   has been placed.
-        attribute(:shipping_time, DetailedShippingTimeType, from: "ShippingTime")
+        attribute(:shipping_time, DetailedShippingTimeType, null: false, from: "ShippingTime")
 
         # @return [String] The subcondition of the item. Subcondition values: New, Mint, Very Good, Good, Acceptable,
         #   Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
-        attribute(:sub_condition, String, from: "SubCondition")
+        attribute(:sub_condition, String, null: false, from: "SubCondition")
 
         # @return [String] Information about the condition of the item.
         attribute?(:condition_notes, String, from: "ConditionNotes")

@@ -12,7 +12,7 @@ module Peddler
       # left corner of the cropped image are set to (0,0) by default.
       ImageCropSpecification = Structure.new do
         # @return [ImageDimensions]
-        attribute(:size, ImageDimensions)
+        attribute(:size, ImageDimensions, null: false)
 
         # @return [ImageOffsets]
         attribute?(:offset, ImageOffsets)

@@ -47,21 +47,21 @@ module Peddler
       end
 
       class Error < Data
-        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ShipmentInvoicingV0::Error
-                    | (String?, String?, String?) -> Peddler::APIs::ShipmentInvoicingV0::Error
-        def self.[]: (code: String?, message: String?, ?details: String?) -> Peddler::APIs::ShipmentInvoicingV0::Error
-                   | (String?, String?, String?) -> Peddler::APIs::ShipmentInvoicingV0::Error
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ShipmentInvoicingV0::Error
+                    | (String, String, String?) -> Peddler::APIs::ShipmentInvoicingV0::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::ShipmentInvoicingV0::Error
+                   | (String, String, String?) -> Peddler::APIs::ShipmentInvoicingV0::Error
 
         def self.members: () -> [ :code, :message, :details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ShipmentInvoicingV0::Error
 
-        attr_reader code: String?
+        attr_reader code: String
         attr_reader details: String?
-        attr_reader message: String?
+        attr_reader message: String
 
         def members: () -> [ :code, :message, :details ]
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String, message: String, details: String? }
       end
 
       class ErrorList < Array[Error]
@@ -246,21 +246,21 @@ module Peddler
       end
 
       class SubmitInvoiceRequest < Data
-        def self.new: (content_md5_value: String?, invoice_content: String?, ?marketplace_id: String?) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
-                    | (String?, String?, String?) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
-        def self.[]: (content_md5_value: String?, invoice_content: String?, ?marketplace_id: String?) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
-                   | (String?, String?, String?) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
+        def self.new: (content_md5_value: String, invoice_content: String, ?marketplace_id: String?) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
+                    | (String, String, String?) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
+        def self.[]: (content_md5_value: String, invoice_content: String, ?marketplace_id: String?) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
+                   | (String, String, String?) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
 
         def self.members: () -> [ :content_md5_value, :invoice_content, :marketplace_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ShipmentInvoicingV0::SubmitInvoiceRequest
 
-        attr_reader content_md5_value: String?
-        attr_reader invoice_content: String?
+        attr_reader content_md5_value: String
+        attr_reader invoice_content: String
         attr_reader marketplace_id: String?
 
         def members: () -> [ :content_md5_value, :invoice_content, :marketplace_id ]
-        def to_h: () -> { content_md5_value: String?, invoice_content: String?, marketplace_id: String? }
+        def to_h: () -> { content_md5_value: String, invoice_content: String, marketplace_id: String? }
       end
 
       class SubmitInvoiceResponse < Data

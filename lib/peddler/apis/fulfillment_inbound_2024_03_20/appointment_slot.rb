@@ -11,10 +11,10 @@ module Peddler
       # The fulfillment center appointment slot for the transportation option.
       AppointmentSlot = Structure.new do
         # @return [String] An identifier to a self-ship appointment slot.
-        attribute(:slot_id, String, from: "slotId")
+        attribute(:slot_id, String, null: false, from: "slotId")
 
         # @return [AppointmentSlotTime]
-        attribute(:slot_time, AppointmentSlotTime, from: "slotTime")
+        attribute(:slot_time, AppointmentSlotTime, null: false, from: "slotTime")
       end
     end
   end

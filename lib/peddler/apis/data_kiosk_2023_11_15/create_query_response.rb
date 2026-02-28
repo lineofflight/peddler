@@ -11,7 +11,7 @@ module Peddler
       CreateQueryResponse = Structure.new do
         # @return [String] The identifier for the query. This identifier is unique only in combination with a selling
         #   partner account ID.
-        attribute(:query_id, String, from: "queryId")
+        attribute(:query_id, String, null: false, from: "queryId")
       end
     end
   end

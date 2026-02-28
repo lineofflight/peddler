@@ -11,11 +11,11 @@ module Peddler
       BrowseNodeAllStarRatingImpact = Structure.new do
         # @return [Float] The effect of the topic on the star rating of all products in the browse node. This value can
         #   be positive or negative.
-        attribute(:all_products, Float, from: "allProducts")
+        attribute(:all_products, Float, null: false, from: "allProducts")
 
         # @return [Float] The effect of the topic on the star rating of the top 25 percent of products in the browse
         #   node. This value can be positive or negative.
-        attribute(:top_twenty_five_percent_products, Float, from: "topTwentyFivePercentProducts")
+        attribute(:top_twenty_five_percent_products, Float, null: false, from: "topTwentyFivePercentProducts")
       end
     end
   end

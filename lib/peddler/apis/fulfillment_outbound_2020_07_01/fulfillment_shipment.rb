@@ -10,16 +10,16 @@ module Peddler
       # Delivery and item information for a shipment in a fulfillment order.
       FulfillmentShipment = Structure.new do
         # @return [String] A shipment identifier assigned by Amazon.
-        attribute(:amazon_shipment_id, String, from: "amazonShipmentId")
+        attribute(:amazon_shipment_id, String, null: false, from: "amazonShipmentId")
 
         # @return [String] An identifier for the fulfillment center from which the shipment is sent.
-        attribute(:fulfillment_center_id, String, from: "fulfillmentCenterId")
+        attribute(:fulfillment_center_id, String, null: false, from: "fulfillmentCenterId")
 
         # @return [Array<FulfillmentShipmentItem>]
-        attribute(:fulfillment_shipment_item, [FulfillmentShipmentItem], from: "fulfillmentShipmentItem")
+        attribute(:fulfillment_shipment_item, [FulfillmentShipmentItem], null: false, from: "fulfillmentShipmentItem")
 
         # @return [String] The current status of the shipment.
-        attribute(:fulfillment_shipment_status, String, from: "fulfillmentShipmentStatus")
+        attribute(:fulfillment_shipment_status, String, null: false, from: "fulfillmentShipmentStatus")
 
         # @return [String] The estimated arrival date and time of the shipment, in ISO 8601 date time format. Note that
         #   this value can change over time. If a shipment includes more than one package, `estimatedArrivalDate`

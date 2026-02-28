@@ -12,10 +12,10 @@ module Peddler
       # capacity types that are being queried.
       RangeSlotCapacityQuery = Structure.new do
         # @return [Time] End date time up to which the capacity slots are being requested in ISO 8601 format.
-        attribute(:end_date_time, Time, from: "endDateTime")
+        attribute(:end_date_time, Time, null: false, from: "endDateTime")
 
         # @return [Time] Start date time from which the capacity slots are being requested in ISO 8601 format.
-        attribute(:start_date_time, Time, from: "startDateTime")
+        attribute(:start_date_time, Time, null: false, from: "startDateTime")
 
         # @return [Array<CapacityType>] An array of capacity types which are being requested. Default value is
         #   `[SCHEDULED_CAPACITY]`.

@@ -10,13 +10,13 @@ module Peddler
       # Request schema.
       GetAdditionalSellerInputsRequest = Structure.new do
         # @return [String] An Amazon defined order identifier
-        attribute(:order_id, String, from: "OrderId")
+        attribute(:order_id, String, null: false, from: "OrderId")
 
         # @return [Address] The address from which to ship.
-        attribute(:ship_from_address, Address, from: "ShipFromAddress")
+        attribute(:ship_from_address, Address, null: false, from: "ShipFromAddress")
 
         # @return [String]
-        attribute(:shipping_service_id, String, from: "ShippingServiceId")
+        attribute(:shipping_service_id, String, null: false, from: "ShippingServiceId")
       end
     end
   end

@@ -13,16 +13,16 @@ module Peddler
       # / baseAmount
       Fee = Structure.new do
         # @return [Money] Displays actual value of the fee in numeric format.
-        attribute(:fee_amount, Money, from: "feeAmount")
+        attribute(:fee_amount, Money, null: false, from: "feeAmount")
 
         # @return [String] Unique identifier assigned to the Fee.
-        attribute(:fee_id, String, from: "feeId")
+        attribute(:fee_id, String, null: false, from: "feeId")
 
         # @return [String] The value of the fee in percentage format.
-        attribute(:fee_rate_value, String, from: "feeRateValue")
+        attribute(:fee_rate_value, String, null: false, from: "feeRateValue")
 
         # @return [String] Displays type of the Fee.
-        attribute(:fee_type, String, from: "feeType")
+        attribute(:fee_type, String, null: false, from: "feeType")
       end
     end
   end

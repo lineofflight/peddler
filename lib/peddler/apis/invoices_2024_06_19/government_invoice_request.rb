@@ -11,18 +11,18 @@ module Peddler
       GovernmentInvoiceRequest = Structure.new do
         # @return [String] Marketplace specific classification of the invoice type. Check 'invoiceType' options using
         #   'getInvoicesAttributes' operation.
-        attribute(:invoice_type, String, from: "invoiceType")
+        attribute(:invoice_type, String, null: false, from: "invoiceType")
 
         # @return [String] The government invoices creation request will match the national authoritative source of the
         #   given marketplace.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The unique shipment identifier to get an invoice for.
-        attribute(:shipment_id, String, from: "shipmentId")
+        attribute(:shipment_id, String, null: false, from: "shipmentId")
 
         # @return [String] Marketplace specific classification of the transaction type that originated the invoice.
         #   Check 'transactionType' options using 'getInvoicesAttributes' operation.
-        attribute(:transaction_type, String, from: "transactionType")
+        attribute(:transaction_type, String, null: false, from: "transactionType")
 
         # @return [Array<CarrierDetailsContext>] Object that contains additional invoice creation information
         attribute?(:contexts, [CarrierDetailsContext])

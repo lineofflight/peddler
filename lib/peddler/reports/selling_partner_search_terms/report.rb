@@ -13,10 +13,10 @@ module Peddler
       # 2021-06-19 as this would span two weeks.
       Report = Structure.new do
         # @return [Array<DetailsByDepartmentAndSearchTerm>]
-        attribute(:data_by_department_and_search_term, [DetailsByDepartmentAndSearchTerm], from: "dataByDepartmentAndSearchTerm")
+        attribute(:data_by_department_and_search_term, [DetailsByDepartmentAndSearchTerm], null: false, from: "dataByDepartmentAndSearchTerm")
 
         # @return [Hash] Summarizes the original report request.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end
   end

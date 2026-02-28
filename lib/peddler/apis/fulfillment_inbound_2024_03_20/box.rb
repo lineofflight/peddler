@@ -11,7 +11,7 @@ module Peddler
       # items.
       Box = Structure.new do
         # @return [String] Primary key to uniquely identify a Package (Box or Pallet).
-        attribute(:package_id, String, from: "packageId")
+        attribute(:package_id, String, null: false, from: "packageId")
 
         # @return [String] The ID provided by Amazon that identifies a given box. This ID is comprised of the external
         #   shipment ID (which is generated after transportation has been confirmed) and the index of the box.

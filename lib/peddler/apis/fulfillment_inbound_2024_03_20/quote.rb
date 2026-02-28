@@ -11,7 +11,7 @@ module Peddler
       # The estimated shipping cost associated with the transportation option.
       Quote = Structure.new do
         # @return [Money]
-        attribute(:cost, Money)
+        attribute(:cost, Money, null: false)
 
         # @return [Time] The time at which this transportation option quote expires. In [ISO
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime with pattern

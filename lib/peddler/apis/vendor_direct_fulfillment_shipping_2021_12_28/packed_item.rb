@@ -11,10 +11,10 @@ module Peddler
       PackedItem = Structure.new do
         # @return [Integer] The sequence number of the item. The number must be the same as the order number of the
         #   item.
-        attribute(:item_sequence_number, Integer, from: "itemSequenceNumber")
+        attribute(:item_sequence_number, Integer, null: false, from: "itemSequenceNumber")
 
         # @return [ItemQuantity] The total quantity of items that are packed in the shipment.
-        attribute(:packed_quantity, ItemQuantity, from: "packedQuantity")
+        attribute(:packed_quantity, ItemQuantity, null: false, from: "packedQuantity")
 
         # @return [String] The buyer's Amazon Standard Identification Number (ASIN) of an item. Either
         #   `buyerProductIdentifier` or `vendorProductIdentifier` is required.

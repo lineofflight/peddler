@@ -10,25 +10,25 @@ module Peddler
       # The postal address information.
       Address = Structure.new do
         # @return [String]
-        attribute(:address_line1, String, from: "AddressLine1")
+        attribute(:address_line1, String, null: false, from: "AddressLine1")
 
         # @return [String]
-        attribute(:city, String, from: "City")
+        attribute(:city, String, null: false, from: "City")
 
         # @return [String]
-        attribute(:country_code, String, from: "CountryCode")
+        attribute(:country_code, String, null: false, from: "CountryCode")
 
         # @return [String]
-        attribute(:email, String, from: "Email")
+        attribute(:email, String, null: false, from: "Email")
 
         # @return [String]
-        attribute(:name, String, from: "Name")
+        attribute(:name, String, null: false, from: "Name")
 
         # @return [String]
-        attribute(:phone, String, from: "Phone")
+        attribute(:phone, String, null: false, from: "Phone")
 
         # @return [String]
-        attribute(:postal_code, String, from: "PostalCode")
+        attribute(:postal_code, String, null: false, from: "PostalCode")
 
         # @return [String]
         attribute?(:address_line2, String, from: "AddressLine2")

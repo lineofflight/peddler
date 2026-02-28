@@ -9,7 +9,7 @@ module Peddler
     class AplusContent20201101
       PostContentDocumentRequest = Structure.new do
         # @return [ContentDocument]
-        attribute(:content_document, ContentDocument, from: "contentDocument")
+        attribute(:content_document, ContentDocument, null: false, from: "contentDocument")
       end
     end
   end

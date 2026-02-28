@@ -10,13 +10,13 @@ module Peddler
       # Address information for tracking the package.
       TrackingAddress = Structure.new do
         # @return [String] The city.
-        attribute(:city, String)
+        attribute(:city, String, null: false)
 
         # @return [String] The country.
-        attribute(:country, String)
+        attribute(:country, String, null: false)
 
         # @return [String] The state.
-        attribute(:state, String)
+        attribute(:state, String, null: false)
       end
     end
   end

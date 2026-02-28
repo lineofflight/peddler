@@ -15,10 +15,10 @@ module Peddler
         #
         # * 1 - New Buy Box Price.
         # * 2 - Used Buy Box Price.
-        attribute(:competitive_price_id, String, from: "CompetitivePriceId")
+        attribute(:competitive_price_id, String, null: false, from: "CompetitivePriceId")
 
         # @return [PriceType] Pricing information for a given CompetitivePriceId value.
-        attribute(:price, PriceType, from: "Price")
+        attribute(:price, PriceType, null: false, from: "Price")
 
         # @return [:boolean] Indicates whether or not the pricing information is for an offer listing that belongs to
         #   the requester. The requester is the seller associated with the SellerId that was submitted with the request.

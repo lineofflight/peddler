@@ -10,7 +10,7 @@ module Peddler
       # The `listPlacementOptions` response.
       ListPackingOptionsResponse = Structure.new do
         # @return [Array<PackingOption>] List of packing options.
-        attribute(:packing_options, [PackingOption], from: "packingOptions")
+        attribute(:packing_options, [PackingOption], null: false, from: "packingOptions")
 
         # @return [Pagination]
         attribute?(:pagination, Pagination)

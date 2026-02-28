@@ -11,7 +11,7 @@ module Peddler
       CreateReportScheduleResponse = Structure.new do
         # @return [String] The identifier for the report schedule. This identifier is unique only in combination with a
         #   seller ID.
-        attribute(:report_schedule_id, String, from: "reportScheduleId")
+        attribute(:report_schedule_id, String, null: false, from: "reportScheduleId")
       end
     end
   end

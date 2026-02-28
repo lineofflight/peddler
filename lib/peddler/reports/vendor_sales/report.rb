@@ -13,13 +13,13 @@ module Peddler
       Report = Structure.new do
         # @return [Hash] The report summary including reporting date range, distributor view, selling program, and last
         #   updated date in the input.
-        attribute(:report_specification, ReportSpecification, from: "reportSpecification")
+        attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
 
         # @return [Array<SalesAggregate>]
-        attribute(:sales_aggregate, [SalesAggregate], from: "salesAggregate")
+        attribute(:sales_aggregate, [SalesAggregate], null: false, from: "salesAggregate")
 
         # @return [Array<SalesByAsin>]
-        attribute(:sales_by_asin, [SalesByASIN], from: "salesByAsin")
+        attribute(:sales_by_asin, [SalesByASIN], null: false, from: "salesByAsin")
       end
     end
   end

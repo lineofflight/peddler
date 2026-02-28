@@ -10,7 +10,7 @@ module Peddler
       # An item.
       Product = Structure.new do
         # @return [IdentifierType]
-        attribute(:identifiers, IdentifierType, from: "Identifiers")
+        attribute(:identifiers, IdentifierType, null: false, from: "Identifiers")
 
         # @return [Array<Object>]
         attribute?(:attribute_sets, Array, from: "AttributeSets")

@@ -10,7 +10,7 @@ module Peddler
       # A standard headline and body text.
       StandardTextModule = Structure.new do
         # @return [ParagraphComponent]
-        attribute(:body, ParagraphComponent)
+        attribute(:body, ParagraphComponent, null: false)
 
         # @return [TextComponent]
         attribute?(:headline, TextComponent)

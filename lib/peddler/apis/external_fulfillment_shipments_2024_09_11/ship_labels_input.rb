@@ -10,7 +10,7 @@ module Peddler
       # Tracking details for multiple packages.
       ShipLabelsInput = Structure.new do
         # @return [Array<String>] The subset of package IDs used to generate a label.
-        attribute(:package_ids, [String], from: "packageIds")
+        attribute(:package_ids, [String], null: false, from: "packageIds")
 
         # @return [CourierSupportedAttributes]
         attribute?(:courier_supported_attributes, CourierSupportedAttributes, from: "courierSupportedAttributes")

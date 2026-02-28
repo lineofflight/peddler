@@ -10,13 +10,13 @@ module Peddler
       # The composition of the charge.
       ChargeBreakup = Structure.new do
         # @return [Amount] The base amount charged.
-        attribute(:base_amount, Amount, from: "baseAmount")
+        attribute(:base_amount, Amount, null: false, from: "baseAmount")
 
         # @return [Amount] The offer or coupon amount.
-        attribute(:discount_amount, Amount, from: "discountAmount")
+        attribute(:discount_amount, Amount, null: false, from: "discountAmount")
 
         # @return [Amount] The total amount after discount.
-        attribute(:net_amount, Amount, from: "netAmount")
+        attribute(:net_amount, Amount, null: false, from: "netAmount")
       end
     end
   end

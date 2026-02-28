@@ -10,7 +10,7 @@ module Peddler
       # A list of rich text content that is typically presented in a text box.
       ParagraphComponent = Structure.new do
         # @return [Array<TextComponent>]
-        attribute(:text_list, [TextComponent], from: "textList")
+        attribute(:text_list, [TextComponent], null: false, from: "textList")
       end
     end
   end

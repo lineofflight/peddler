@@ -10,17 +10,17 @@ module Peddler
       # Foreign exchange rate details displayed when transfer preview is requested.
       FxRateDetails = Structure.new do
         # @return [Float] This is the rate that will be market foreign exchange rate. For example: 1USD -> 86.0 INR.
-        attribute(:base_rate, Float, from: "baseRate")
+        attribute(:base_rate, Float, null: false, from: "baseRate")
 
         # @return [Float] Displays the foreign exchange rate which will be all rates and fees baked in (i.e; markup
         #   fees), example: market fx rate and international transaction fee.
-        attribute(:effective_fx_rate, Float, from: "effectiveFxRate")
+        attribute(:effective_fx_rate, Float, null: false, from: "effectiveFxRate")
 
         # @return [String] Unique identifier assigned to the fees/foreign exchange Rate of a transaction.
-        attribute(:fx_rate_id, String, from: "fxRateId")
+        attribute(:fx_rate_id, String, null: false, from: "fxRateId")
 
         # @return [String] Rate Direction can refer to the way final amount is calculated.
-        attribute(:rate_direction, String, from: "rateDirection")
+        attribute(:rate_direction, String, null: false, from: "rateDirection")
       end
     end
   end

@@ -10,10 +10,10 @@ module Peddler
       # The reason that the item is invalid for return.
       InvalidItemReason = Structure.new do
         # @return [String] A human readable description of the invalid item reason code.
-        attribute(:description, String)
+        attribute(:description, String, null: false)
 
         # @return [String]
-        attribute(:invalid_item_reason_code, String, from: "invalidItemReasonCode")
+        attribute(:invalid_item_reason_code, String, null: false, from: "invalidItemReasonCode")
       end
     end
   end

@@ -12,11 +12,11 @@ module Peddler
       CreateReportSpecification = Structure.new do
         # @return [Array<String>] A list of marketplace identifiers. The report document's contents will contain data
         #   for all of the specified marketplaces, unless the report type indicates otherwise.
-        attribute(:marketplace_ids, [String], from: "marketplaceIds")
+        attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
         # @return [String] The report type. Refer to [Report Type
         #   Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
-        attribute(:report_type, String, from: "reportType")
+        attribute(:report_type, String, null: false, from: "reportType")
 
         # @return [Time] The end of a date and time range, in {https://developer-docs.amazon.com/sp-api/docs/iso-8601
         #   ISO 8601} date time format, used for selecting the data to report. The default is now. The value must be
