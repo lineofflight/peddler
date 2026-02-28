@@ -40,11 +40,7 @@ module Peddler
         <% properties.each_with_index do |(prop_name, prop_def), index| -%>
           <%= "\n" if index > 0 -%>
           <%= format_property_comment(prop_def) %>
-          <% if required_properties.include?(prop_name) -%>
-          attribute(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if prop_def["x-non-null"] %>, null: false<% end %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-          <% else -%>
-          attribute?(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if prop_def["x-non-null"] %>, null: false<% end %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-          <% end -%>
+          <%= attribute_declaration_for(prop_name, prop_def) %>
         <% end -%>
       end
     end
@@ -62,11 +58,7 @@ module Peddler
 <% properties.each_with_index do |(prop_name, prop_def), index| -%>
 <%= "\n" if index > 0 -%>
         <%= format_property_comment(prop_def) %>
-<% if required_properties.include?(prop_name) -%>
-        attribute(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if prop_def["x-non-null"] %>, null: false<% end %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% else -%>
-        attribute?(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def, prop_name: prop_name) %><% if prop_def["x-non-null"] %>, null: false<% end %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% end -%>
+        <%= attribute_declaration_for(prop_name, prop_def) %>
 <% end -%>
       end
     end

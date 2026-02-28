@@ -32,6 +32,19 @@ module Generator
       Naming.class_name(name)
     end
 
+    def attribute_declaration_for(prop_name, prop_def)
+      name = attribute_name_for(prop_name, prop_def)
+      type = ruby_type_for(prop_def, prop_name: prop_name)
+      required = required_properties.include?(prop_name)
+      nullable = Array(prop_def["type"]).include?("null")
+
+      parts = [":#{name}", type]
+      parts << "null: false" if required ? !nullable : prop_def["x-non-null"]
+      parts << "from: \"#{prop_name}\"" if name != prop_name
+
+      "#{required ? "attribute" : "attribute?"}(#{parts.join(", ")})"
+    end
+
     def properties
       props = if definition["allOf"]
         merge_from_all_of("properties") { |props| props || {} }

@@ -439,5 +439,67 @@ module Generator
 
       assert_empty(type.required_properties)
     end
+
+    def test_attribute_declaration_required_non_nullable
+      definition = {
+        "type" => "object",
+        "required" => ["name"],
+        "properties" => { "name" => { "type" => "string" } },
+      }
+      type = Type.new("T", definition, API_NAME, { "definitions" => {} })
+
+      assert_equal("attribute(:name, String, null: false)", type.attribute_declaration_for("name", { "type" => "string" }))
+    end
+
+    def test_attribute_declaration_required_nullable
+      definition = {
+        "type" => "object",
+        "required" => ["name"],
+        "properties" => { "name" => { "type" => ["string", "null"] } },
+      }
+      type = Type.new("T", definition, API_NAME, { "definitions" => {} })
+
+      assert_equal("attribute(:name, String)", type.attribute_declaration_for("name", { "type" => ["string", "null"] }))
+    end
+
+    def test_attribute_declaration_optional
+      definition = {
+        "type" => "object",
+        "properties" => { "name" => { "type" => "string" } },
+      }
+      type = Type.new("T", definition, API_NAME, { "definitions" => {} })
+
+      assert_equal("attribute?(:name, String)", type.attribute_declaration_for("name", { "type" => "string" }))
+    end
+
+    def test_attribute_declaration_optional_non_null
+      definition = {
+        "type" => "object",
+        "properties" => { "name" => { "type" => "string", "x-non-null" => true } },
+      }
+      type = Type.new("T", definition, API_NAME, { "definitions" => {} })
+
+      assert_equal("attribute?(:name, String, null: false)", type.attribute_declaration_for("name", { "type" => "string", "x-non-null" => true }))
+    end
+
+    def test_attribute_declaration_with_name_remapping
+      definition = {
+        "type" => "object",
+        "properties" => { "OriginalName" => { "type" => "string" } },
+      }
+      type = Type.new("T", definition, API_NAME, { "definitions" => {} })
+
+      assert_equal('attribute?(:original_name, String, from: "OriginalName")', type.attribute_declaration_for("OriginalName", { "type" => "string" }))
+    end
+
+    def test_attribute_declaration_boolean_with_is_prefix
+      definition = {
+        "type" => "object",
+        "properties" => { "isActive" => { "type" => "boolean" } },
+      }
+      type = Type.new("T", definition, API_NAME, { "definitions" => {} })
+
+      assert_equal('attribute?(:active, :boolean, from: "isActive")', type.attribute_declaration_for("isActive", { "type" => "boolean" }))
+    end
   end
 end
