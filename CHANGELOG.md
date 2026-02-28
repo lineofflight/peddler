@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+## [5.3.1] - 2026-02-28
+
+### Fixed
+
+- Enforce non-null on required type attributes in generated code and RBS signatures
+
 ## [5.3.0] - 2026-02-26
 
 ### Added
@@ -557,6 +563,7 @@ All notable changes to this project will be documented in this file. This projec
 ## 1.0.0 - 2015-08-25
 
 [Unreleased]: https://github.com/hakanensari/peddler/compare/v5.3.0...HEAD
+[5.3.1]: https://github.com/hakanensari/peddler/compare/v5.3.0...v5.3.1
 [5.3.0]: https://github.com/hakanensari/peddler/compare/v5.2.0...v5.3.0
 [5.2.0]: https://github.com/hakanensari/peddler/compare/v5.1.0...v5.2.0
 [5.1.0]: https://github.com/hakanensari/peddler/compare/v5.0.0...v5.1.0
