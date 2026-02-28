@@ -18,6 +18,12 @@ module Peddler
         # @return [String] The requested marketplace.
         attribute(:marketplace_id, String, from: "marketplaceId")
 
+        # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
+        attribute?(:asin, String)
+
+        # @return [String] The unique SKU used by Amazon's fulfillment network.
+        attribute?(:fn_sku, String, from: "fnSku")
+
         # @return [Array<String>] A list of one or more reasons that the seller SKU is ineligible for the feature.
         #
         # Possible values:
@@ -26,9 +32,12 @@ module Peddler
         # * `INVALID_SKU`: There is an issue with the SKU provided.
         attribute?(:ineligible_reasons, [String], from: "ineligibleReasons")
 
-        # @return [FeatureSKU] Information about the SKU, including the count available, identifiers, and a list of
-        #   overlapping SKUs that share the same inventory pool.
-        attribute?(:sku_info, FeatureSKU, from: "skuInfo")
+        # @return [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's
+        #   SellerId, which is included with every operation that you submit.
+        attribute?(:seller_sku, String, from: "sellerSku")
+
+        # @return [Float] The number of SKUs available for this service.
+        attribute?(:sku_count, Float, from: "skuCount")
       end
     end
   end

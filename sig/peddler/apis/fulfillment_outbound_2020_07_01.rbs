@@ -877,24 +877,27 @@ module Peddler
       end
 
       class GetFeatureSKUResult < Data
-        def self.new: (feature_name: String?, eligible: bool?, marketplace_id: String?, ?ineligible_reasons: Array[String]?, ?sku_info: Peddler::APIs::FulfillmentOutbound20200701::FeatureSKU?) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
-                    | (String?, bool?, String?, Array[String]?, Peddler::APIs::FulfillmentOutbound20200701::FeatureSKU?) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
-        def self.[]: (feature_name: String?, eligible: bool?, marketplace_id: String?, ?ineligible_reasons: Array[String]?, ?sku_info: Peddler::APIs::FulfillmentOutbound20200701::FeatureSKU?) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
-                   | (String?, bool?, String?, Array[String]?, Peddler::APIs::FulfillmentOutbound20200701::FeatureSKU?) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
+        def self.new: (feature_name: String?, eligible: bool?, marketplace_id: String?, ?asin: String?, ?fn_sku: String?, ?ineligible_reasons: Array[String]?, ?seller_sku: String?, ?sku_count: Float?) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
+                    | (String?, bool?, String?, String?, String?, Array[String]?, String?, Float?) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
+        def self.[]: (feature_name: String?, eligible: bool?, marketplace_id: String?, ?asin: String?, ?fn_sku: String?, ?ineligible_reasons: Array[String]?, ?seller_sku: String?, ?sku_count: Float?) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
+                   | (String?, bool?, String?, String?, String?, Array[String]?, String?, Float?) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
 
-        def self.members: () -> [ :feature_name, :eligible, :marketplace_id, :ineligible_reasons, :sku_info ]
+        def self.members: () -> [ :feature_name, :eligible, :marketplace_id, :asin, :fn_sku, :ineligible_reasons, :seller_sku, :sku_count ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FulfillmentOutbound20200701::GetFeatureSKUResult
 
+        attr_reader asin: String?
         attr_reader eligible: bool?
         attr_reader feature_name: String?
+        attr_reader fn_sku: String?
         attr_reader ineligible_reasons: Array[String]?
         attr_reader marketplace_id: String?
-        attr_reader sku_info: Peddler::APIs::FulfillmentOutbound20200701::FeatureSKU?
+        attr_reader seller_sku: String?
+        attr_reader sku_count: Float?
 
         def eligible?: () -> bool
-        def members: () -> [ :feature_name, :eligible, :marketplace_id, :ineligible_reasons, :sku_info ]
-        def to_h: () -> { feature_name: String?, eligible: bool?, marketplace_id: String?, ineligible_reasons: Array[String]?, sku_info: Peddler::APIs::FulfillmentOutbound20200701::FeatureSKU? }
+        def members: () -> [ :feature_name, :eligible, :marketplace_id, :asin, :fn_sku, :ineligible_reasons, :seller_sku, :sku_count ]
+        def to_h: () -> { feature_name: String?, eligible: bool?, marketplace_id: String?, asin: String?, fn_sku: String?, ineligible_reasons: Array[String]?, seller_sku: String?, sku_count: Float? }
       end
 
       class GetFeaturesResponse < Data
