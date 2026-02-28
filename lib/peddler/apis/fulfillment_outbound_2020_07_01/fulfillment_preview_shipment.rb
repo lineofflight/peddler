@@ -15,16 +15,16 @@ module Peddler
         # @return [String] The earliest date that the shipment is expected to arrive at its destination.
         attribute?(:earliest_arrival_date, String, from: "earliestArrivalDate")
 
-        # @return [String] The earliest date that the shipment is expected to be sent from the fulfillment center. Must
-        #   be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+        # @return [String] The earliest date that the shipment is expected to be sent from the fulfillment center, in
+        #   ISO 8601 date time format.
         attribute?(:earliest_ship_date, String, from: "earliestShipDate")
 
-        # @return [String] The latest date that the shipment is expected to arrive at its destination. Must be in
-        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+        # @return [String] The latest date that the shipment is expected to arrive at its destination, in ISO 8601 date
+        #   time format.
         attribute?(:latest_arrival_date, String, from: "latestArrivalDate")
 
-        # @return [String] The latest date that the shipment is expected to be sent from the fulfillment center. Must be
-        #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+        # @return [String] The latest date that the shipment is expected to be sent from the fulfillment center, in ISO
+        #   8601 date time format.
         attribute?(:latest_ship_date, String, from: "latestShipDate")
 
         # @return [Array<String>] Provides additional insight into the shipment timeline when exact delivery dates are
