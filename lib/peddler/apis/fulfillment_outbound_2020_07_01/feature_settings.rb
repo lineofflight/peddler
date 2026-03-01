@@ -13,7 +13,9 @@ module Peddler
       # orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no
       # alternative carriers available. Using `BLOCK_AMZL` in an order request will take precedence over your Seller
       # Central account setting. To ship in non-Amazon branded packaging (blank boxes), set `featureName` to
-      # `BLANK_BOX`. To require a signature from the recipient upon delivery, set `featureName` to
+      # `BLANK_BOX`. To require items to be shipped in an overbox rather than in their original product packaging, set
+      # `featureName` to `OVERBOX`. To require a packing slip to be included with the order, set `featureName` to
+      # `PACKING_SLIP`. To require a signature from the recipient upon delivery, set `featureName` to
       # `SIGNATURE_CONFIRMATION`. Note that using signature confirmation features will incur additional fees on MCF
       # orders and are currently supported only in the US marketplace. To ensure all items in an order are delivered
       # together, set `featureName` to `DELIVER_TOGETHER`.
@@ -28,6 +30,8 @@ module Peddler
         #   unfulfilled or delayed deliveries if alternative carriers are unavailable. Using `BLOCK_AMZL` in an order
         #   request will take precedence over your Seller Central account setting.
         # - `BLANK_BOX`: Ships orders in non-Amazon branded packaging (blank boxes).
+        # - `OVERBOX`: Requires items to be shipped in an overbox rather than in their original product packaging.
+        # - `PACKING_SLIP`: Requires a packing slip to be included with the order.
         # - `SIGNATURE_CONFIRMATION`: Requires a signature from the recipient upon delivery.
         # - Note: Using signature confirmation features will incur additional fees on MCF orders and are currently
         #   supported only in the US marketplace.

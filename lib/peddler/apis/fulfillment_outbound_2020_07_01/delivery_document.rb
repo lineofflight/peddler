@@ -12,8 +12,8 @@ module Peddler
         # @return [String] The delivery document type. The only possible value is `DELIVERY_IMAGE`.
         attribute(:document_type, String, null: false, from: "documentType")
 
-        # @return [String] A URL that you can use to download the document. This URL has a `Content-Type` header. Note
-        #   that the URL expires after one hour. To get a new URL, you must call the API again.
+        # @return [String] A URL that is valid for one hour to download the document. In case of URL expiry, call the
+        #   API again to get a new url. The URL will have a Content-Type header.
         attribute?(:url, String)
       end
     end
