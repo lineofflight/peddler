@@ -3,15 +3,9 @@
 # This file is generated. Edit template if necessary.
 
 module Peddler
-<% if api_name.start_with?("notifications/") -%>
-  module Notifications
-    module <%= api_name.sub("notifications/", "").camelize %>
-<% elsif api_name.start_with?("reports/") -%>
-  module Reports
-    module <%= api_name.sub("reports/", "").camelize %>
-<% elsif api_name.start_with?("feeds/") -%>
-  module Feeds
-    module <%= api_name.sub("feeds/", "").camelize %>
+<% if namespace -%>
+  module <%= namespace %>
+    module <%= namespace_name %>
 <% else -%>
   module APIs
     class <%= api_name.camelize %>

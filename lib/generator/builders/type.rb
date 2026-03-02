@@ -14,6 +14,13 @@ module Generator
     include FileWriter
     include SchemaHelpers
 
+    NAMESPACES = {
+      "notifications" => "Notifications",
+      "reports" => "Reports",
+      "feeds" => "Feeds",
+      "data_kiosk" => "DataKiosk",
+    }.freeze
+
     attr_reader :name, :definition, :api_name, :specification
     attr_accessor :circular_dependencies, :cycle_edges
 
@@ -30,6 +37,17 @@ module Generator
 
     def class_name
       Naming.class_name(name)
+    end
+
+    def namespace
+      prefix = api_name.split("/", 2).first
+      NAMESPACES[prefix]
+    end
+
+    def namespace_name
+      return unless namespace
+
+      api_name.split("/", 2).last.camelize
     end
 
     def attribute_declaration_for(prop_name, prop_def)
@@ -65,16 +83,10 @@ module Generator
     end
 
     def library_name
-      # Use the acronym-transformed class name for filename to match Zeitwerk expectations
-      # This ensures filenames like "claim_proof_urls.rb" instead of "claim_proof_ur_ls.rb"
       filename = class_name.underscore
+      base = namespace ? "peddler/#{api_name}" : "peddler/apis/#{api_name}"
 
-      # For notification, report, feed, and data_kiosk nested types, use peddler/...
-      if api_name.start_with?("notifications/", "reports/", "feeds/", "data_kiosk/")
-        "peddler/#{api_name}/#{filename}"
-      else
-        "peddler/apis/#{api_name}/#{filename}"
-      end
+      "#{base}/#{filename}"
     end
 
     def ruby_type_for(prop_def, for_comment: false, for_rbs: false, prop_name: nil)
@@ -322,21 +334,12 @@ module Generator
 
     def structure_rbs_class_definition
       # Get the constant - Zeitwerk will autoload it
-      if api_name.start_with?("notifications/")
-        notification_name = api_name.sub("notifications/", "").camelize
-        klass = Peddler::Notifications.const_get(notification_name).const_get(class_name)
-      elsif api_name.start_with?("reports/")
-        report_name = api_name.sub("reports/", "").camelize
-        klass = Peddler::Reports.const_get(report_name).const_get(class_name)
-      elsif api_name.start_with?("feeds/")
-        feed_name = api_name.sub("feeds/", "").camelize
-        klass = Peddler::Feeds.const_get(feed_name).const_get(class_name)
-      elsif api_name.start_with?("data_kiosk/")
-        data_kiosk_name = api_name.sub("data_kiosk/", "").camelize
-        klass = Peddler::DataKiosk.const_get(data_kiosk_name).const_get(class_name)
+      parent = if namespace
+        Peddler.const_get(namespace).const_get(namespace_name)
       else
-        klass = Peddler::APIs.const_get(api_name.camelize).const_get(class_name)
+        Peddler::APIs.const_get(api_name.camelize)
       end
+      klass = parent.const_get(class_name)
 
       # Generate RBS using Structure::RBS
       rbs_content = Structure::RBS.emit(klass)
