@@ -16,11 +16,12 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      id-token: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0 # Full history for proper commit messages
+          fetch-depth: 0
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -35,6 +36,7 @@ jobs:
         run: bundle exec rake generate
 
       - name: Create Pull Request
+        id: create-pr
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.BOT_PAT }}
@@ -44,22 +46,9 @@ jobs:
             // Check for changes
             const status = execSync('git status --porcelain', { encoding: 'utf8' });
             if (!status.trim()) {
-              console.log('No changes detected, skipping PR creation');
+              console.log('No changes');
               return;
             }
-
-            // Get changed files (excluding untracked)
-            const changedFiles = status
-              .split('\n')
-              .filter(line => line && !line.startsWith('??'))
-              .map(line => line.substring(3));
-
-            // Extract API names from changed files
-            const apiUpdates = changedFiles
-              .filter(file => file.match(/lib\/peddler\/apis\/[^\/]*\.rb/))
-              .map(file => file.replace(/lib\/peddler\/apis\/(.*)\.rb/, '$1'))
-              .filter((name, index, arr) => arr.indexOf(name) === index)
-              .sort();
 
             // Configure git
             execSync('git config user.name "lineoffligbt"');
@@ -83,69 +72,34 @@ jobs:
             }
 
             execSync(`git checkout -b ${branchName}`);
-
-            // Create commit message
-            let commitMessage = 'Update Amazon models';
-            if (apiUpdates.length > 0) {
-              commitMessage += '\n\nUpdated APIs:\n' + apiUpdates.map(api => `- ${api}`).join('\n');
-            }
-
-            // Commit changes
             execSync('git add -A');
-            execSync(`git commit -m "${commitMessage}"`);
+            execSync('git commit -m "Update Amazon models"');
             execSync(`git push --set-upstream origin ${branchName}`);
 
-            // Create PR title and body
-            const prTitle = `Update Amazon models`;
-
-            // Build PR body with character limit handling
-            const apiList = apiUpdates.join(', ') || 'various APIs';
-            const baseBody = `This PR was automatically generated to update the Amazon SP-API models.
-
-            **APIs affected:** ${apiList}
-
-            **Changes include:**
-            `;
-
-            const maxLength = 65536;
-            const truncationMessage = '(truncated due to length)';
-
-            let filesList = changedFiles.map(file => `- ${file}`).join('\n');
-
-            // Calculate max allowed length for the complete body
-            const maxBodyLength = maxLength;
-            const currentLength = baseBody.length + filesList.length;
-
-            // Truncate if necessary
-            if (currentLength > maxBodyLength) {
-              const maxFilesListLength = maxBodyLength - baseBody.length - truncationMessage.length;
-              filesList = filesList.substring(0, maxFilesListLength);
-              // Find the last complete line
-              const lastNewline = filesList.lastIndexOf('\n');
-              if (lastNewline > 0) {
-                filesList = filesList.substring(0, lastNewline);
-              }
-              filesList += truncationMessage;
-            }
-
-            const prBody = baseBody + filesList;
-
-            // Create PR using GitHub API
             const { data: pr } = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: prTitle,
-              body: prBody,
+              title: 'Update Amazon models',
+              body: 'Summarizing changes...',
               head: branchName,
               base: 'main'
             });
 
             console.log(`Created PR #${pr.number}: ${pr.html_url}`);
+            core.setOutput('pr_number', pr.number);
 
-            // Add comment to trigger Claude
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: pr.number,
-              body: '@claude Summarize the changes - what\'s new, what\'s removed, and any breaking changes.'
-            });
+      - name: Install Claude Code
+        if: steps.create-pr.outputs.pr_number
+        run: curl -fsSL https://claude.ai/install.sh | bash
+
+      - name: Summarize changes
+        if: steps.create-pr.outputs.pr_number
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.BOT_PAT }}
+        run: |
+          ~/.local/bin/claude --print \
+            --max-turns 5 \
+            --allowedTools 'Read' 'Glob' 'Grep' 'Bash(gh pr diff:*)' 'Bash(gh pr edit:*)' \
+            --system-prompt 'Relaxed, direct, still professional tone. Be concise. No emojis.' \
+            "A nightly job has pulled in the latest Amazon SP-API specs and regenerated code. Review the diff in PR #${{ steps.create-pr.outputs.pr_number }} and update its description with a summary of what's new, removed, or breaking. Use plain text only."
