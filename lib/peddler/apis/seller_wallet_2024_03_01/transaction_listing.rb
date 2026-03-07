@@ -7,14 +7,15 @@ require "structure"
 module Peddler
   module APIs
     class SellerWallet20240301
-      # Struct that holds collection of transactions.
+      # A list of transactions.
       TransactionListing = Structure.new do
-        # @return [Array<Transaction>] Collection that holds Transaction
+        # @return [Array<Transaction>] A list of transactions.
         attribute(:transactions, [Transaction], null: false)
 
-        # @return [String] If present, use this pagination token to retrieve the next page of supply sources, if not
-        #   provided the API will return same response. The field will only be provided when the list is greater than
-        #   100.
+        # @return [String] A token that you use to retrieve the next page of results. The response includes
+        #   `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation
+        #   with this token and include the same arguments as the call that produced the token. To get a complete list,
+        #   call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
         attribute?(:next_page_token, String, from: "nextPageToken")
       end
     end

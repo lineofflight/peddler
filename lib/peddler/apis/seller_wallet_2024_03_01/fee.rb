@@ -7,21 +7,18 @@ require "structure"
 module Peddler
   module APIs
     class SellerWallet20240301
-      # If the fees is in baseAmount (sourceAccount) currency, effectiveRate = (baseAmount -
-      # sum(fees.feeAmount.currencyAmount)) * baseRate) / baseAmount. If the fees is in transferAmount
-      # (destinationAccount) currency, effectiveRate = (( baseAmount * baseRate ) - sum(fees.feeAmount.currencyAmount ))
-      # / baseAmount
+      # Details of the fee.
       Fee = Structure.new do
-        # @return [Money] Displays actual value of the fee in numeric format.
+        # @return [Money] The actual value of the fee in numeric format.
         attribute(:fee_amount, Money, null: false, from: "feeAmount")
 
-        # @return [String] Unique identifier assigned to the Fee.
+        # @return [String] The unique identifier assigned to the fee.
         attribute(:fee_id, String, null: false, from: "feeId")
 
         # @return [String] The value of the fee in percentage format.
         attribute(:fee_rate_value, String, null: false, from: "feeRateValue")
 
-        # @return [String] Displays type of the Fee.
+        # @return [String] The type of the fee.
         attribute(:fee_type, String, null: false, from: "feeType")
       end
     end

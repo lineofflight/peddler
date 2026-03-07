@@ -8,16 +8,18 @@ require "time"
 module Peddler
   module APIs
     class SellerWallet20240301
-      # Request body to initiate a transaction from a SW bank account to another customer defined bank account
+      # Request body to initiate a transaction from a Seller Wallet bank account to another customer-defined bank
+      # account.
       TransactionInitiationRequest = Structure.new do
-        # @return [TransactionInstrumentDetails] Destination bank account details of the transaction request
+        # @return [TransactionInstrumentDetails] Details of the destination bank account in the transaction request.
         attribute(:destination_transaction_instrument, TransactionInstrumentDetails, null: false, from: "destinationTransactionInstrument")
 
-        # @return [Time] The transaction initiation request time in date-time format
+        # @return [Time] The time at which the transaction was initiated in [ISO 8601 date time
+        #   format](https://developer-docs.amazon.com/sp-api/docs/iso-8601).
         attribute(:request_time, Time, null: false, from: "requestTime")
 
-        # @return [String] The unique identifier of the source Amazon SW bank account from where the money needs to be
-        #   debited
+        # @return [String] The unique identifier of the source Amazon Seller Wallet bank account from which the money is
+        #   debited.
         attribute(:source_account_id, String, null: false, from: "sourceAccountId")
 
         # @return [Money] The transaction amount in the source account's currency format. Requests that use a currency
@@ -29,8 +31,7 @@ module Peddler
         #   sensitive information other than VAT-ID.
         attribute?(:customer_payment_reference, String, from: "customerPaymentReference")
 
-        # @return [String] Optional field to specify the unique identifier of the destination bank account where the
-        #   money needs to be deposited
+        # @return [String] The unique identifier of the destination bank account where the money is deposited.
         attribute?(:destination_account_id, String, from: "destinationAccountId")
 
         # @return [PayeeContactInformation] The contact information of a payee.
