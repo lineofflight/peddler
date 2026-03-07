@@ -88,18 +88,17 @@ jobs:
             console.log(`Created PR #${pr.number}: ${pr.html_url}`);
             core.setOutput('pr_number', pr.number);
 
-      - name: Install Claude Code
-        if: steps.create-pr.outputs.pr_number
-        run: curl -fsSL https://claude.ai/install.sh | bash
-
       - name: Summarize changes
         if: steps.create-pr.outputs.pr_number
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GH_TOKEN: ${{ secrets.BOT_PAT }}
-        run: |
-          ~/.local/bin/claude --print \
-            --max-turns 5 \
-            --allowedTools 'Read' 'Glob' 'Grep' 'Bash(gh pr diff:*)' 'Bash(gh pr edit:*)' \
-            --system-prompt 'Relaxed, direct, still professional tone. Be concise. No emojis.' \
-            "A nightly job has pulled in the latest Amazon SP-API specs and regenerated code. Review the diff in PR #${{ steps.create-pr.outputs.pr_number }} and update its description with a summary of what's new, removed, or breaking. Use plain text only."
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ steps.create-pr.outputs.pr_number }}
+
+            A nightly job has pulled in the latest Amazon SP-API specs and regenerated code. Review the diff and update the PR description with a concise summary of what's new, removed, or breaking. Use plain text only, no markdown. The description will become a squash commit message.
+          claude_args: |
+            --model sonnet
+            --allowedTools "Bash(gh pr diff:*),Bash(gh pr edit:*),Bash(gh pr view:*)"
+            --system-prompt "Relaxed, direct, still professional tone. Be concise. No emojis."
