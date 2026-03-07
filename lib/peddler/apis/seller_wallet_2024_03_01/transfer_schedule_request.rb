@@ -7,34 +7,32 @@ require "structure"
 module Peddler
   module APIs
     class SellerWallet20240301
-      # Request body to initiate a scheduled transfer from a SW bank account to another customer defined bank account
+      # Request body to initiate a scheduled transfer from a Seller Wallet bank account to another customer-defined bank
+      # account.
       TransferScheduleRequest = Structure.new do
-        # @return [String] Optional field to specify the unique identifier of the destination bank account where the
-        #   money needs to be deposited
+        # @return [String] The unique identifier of the destination bank account where the money is deposited.
         attribute(:destination_account_id, String, null: false, from: "destinationAccountId")
 
-        # @return [TransactionInstrumentDetails] Destination bank account details of the transaction request
+        # @return [TransactionInstrumentDetails] Details of the destination bank account in the transaction request.
         attribute(:destination_transaction_instrument, TransactionInstrumentDetails, null: false, from: "destinationTransactionInstrument")
 
-        # @return [PaymentPreference] Payment preference of the scheduled transfer
+        # @return [PaymentPreference] The payment preference of the scheduled transfer.
         attribute(:payment_preference, PaymentPreference, null: false, from: "paymentPreference")
 
-        # @return [String] The unique identifier of the source Amazon SW bank account from where the money needs to be
-        #   debited
+        # @return [String] The unique identifier of the source Amazon Seller Wallet bank account from which money is
+        #   debited.
         attribute(:source_account_id, String, null: false, from: "sourceAccountId")
 
-        # @return [String] Represents 3 letter currency code in ISO 4217 standard format of the source payment method
-        #   country
+        # @return [String] The three-letter currency code of the source payment method country, in ISO 4217 format.
         attribute(:source_currency_code, String, null: false, from: "sourceCurrencyCode")
 
-        # @return [String] Type of the scheduled transaction
+        # @return [String] The type of the scheduled transaction.
         attribute(:transaction_type, String, null: false, from: "transactionType")
 
-        # @return [TransferScheduleInformation] Fields required for the scheduled transfer
+        # @return [TransferScheduleInformation] The configuration of the scheduled transfer.
         attribute(:transfer_schedule_information, TransferScheduleInformation, null: false, from: "transferScheduleInformation")
 
-        # @return [String] Type of the transaction schedule which is mandatory field in request body if a transfer
-        #   schedule needs to be updated
+        # @return [String] The type of transaction schedule. This field is required when you update a transfer schedule.
         attribute?(:transfer_schedule_status, String, from: "transferScheduleStatus")
       end
     end

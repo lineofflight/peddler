@@ -10,14 +10,14 @@ module Peddler
       # Details of an Amazon Seller Wallet bank account. This account is used to hold the money that a Seller Wallet
       # customer earns by selling items.
       BankAccount = Structure.new do
-        # @return [String] The two digit country code, in ISO 3166 format.
+        # @return [String] The two-digit country code in ISO 3166 format.
         attribute(:account_country_code, String, null: false, from: "accountCountryCode")
 
-        # @return [String] BankAccount currency code in ISO 4217 format
+        # @return [String] Bank account currency code in ISO 4217 format.
         attribute(:account_currency, String, null: false, from: "accountCurrency")
 
-        # @return [String] Last 3 digit of the bank account number, for all Amazon Seller Wallet account the value will
-        #   be three consecutive 0's
+        # @return [String] The last 3 digit of the bank account number. This value is three consecutive zeros for Amazon
+        #   Seller Wallet accounts.
         attribute(:bank_account_number_tail, String, null: false, from: "bankAccountNumberTail")
 
         # @return [String] Type of ownership of the bank account. This value is `SELF` for Amazon Seller Wallet
@@ -35,7 +35,7 @@ module Peddler
         #   is required.
         attribute?(:account_id, String, from: "accountId")
 
-        # @return [String] Bank account holder compliance status
+        # @return [String] The compliance status of the bank account holder.
         attribute?(:bank_account_holder_status, String, from: "bankAccountHolderStatus")
 
         # @return [String] The format in which the bank account number is provided for `THIRD_PARTY` transaction

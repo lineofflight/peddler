@@ -7,9 +7,9 @@ require "structure"
 module Peddler
   module APIs
     class SellerWallet20240301
-      # Struct that holds collection of accounts.
+      # A list of bank accounts.
       BankAccountListing = Structure.new do
-        # @return [Array<BankAccount>] Collection that holds BankAccount
+        # @return [Array<BankAccount>] A list of bank accounts.
         attribute(:accounts, [BankAccount], null: false)
       end
     end
