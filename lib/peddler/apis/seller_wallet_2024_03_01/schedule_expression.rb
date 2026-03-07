@@ -7,14 +7,13 @@ require "structure"
 module Peddler
   module APIs
     class SellerWallet20240301
-      # Parameters containing information of the expression that defines when the schedule runs. The following formats
-      # are supported.
+      # The configuration of the schedule.
       ScheduleExpression = Structure.new do
-        # @return [String] Field to specify type of the scheduled transfer
+        # @return [String] The type of the scheduled transfer.
         attribute(:schedule_expression_type, String, null: false, from: "scheduleExpressionType")
 
-        # @return [String] Field to specify recurrence of the scheduled transfer. Recurring frequency is mandatory if
-        #   scheduleExpressionType is set as RECURRING otherwise it should be empty field.
+        # @return [String] How often the scheduled transfer happens. This field is required if `scheduleExpressionType`
+        #   is `RECURRING`; otherwise it should be empty.
         attribute?(:recurring_frequency, String, from: "recurringFrequency")
       end
     end

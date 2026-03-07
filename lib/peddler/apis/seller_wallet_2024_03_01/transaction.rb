@@ -14,20 +14,20 @@ module Peddler
         #   debited.
         attribute(:account_id, String, null: false, from: "accountId")
 
-        # @return [Time] The last update date on the transaction
+        # @return [Time] The date of the most recent account balance update.
         attribute(:last_update_date, Time, null: false, from: "lastUpdateDate")
 
         # @return [String] A description of the transaction that the requester provides when they initiate the
         #   transaction.
         attribute(:transaction_description, String, null: false, from: "transactionDescription")
 
-        # @return [TransactionAccount] Destination bank account details in the transaction
+        # @return [TransactionAccount] The destination bank account details in the transaction.
         attribute(:transaction_destination_account, TransactionAccount, null: false, from: "transactionDestinationAccount")
 
-        # @return [String] The unique identifier provided by Amazon to the transaction
+        # @return [String] The unique identifier provided by Amazon to the transaction.
         attribute(:transaction_id, String, null: false, from: "transactionId")
 
-        # @return [Money] Specifies the amount for which the transfer was initiated
+        # @return [Money] The amount for which the transfer was initiated.
         attribute(:transaction_request_amount, Money, null: false, from: "transactionRequestAmount")
 
         # @return [Time] The date when the transaction was initiated.
@@ -37,33 +37,32 @@ module Peddler
         #   the customer used to start the transaction.
         attribute(:transaction_requester_source, String, null: false, from: "transactionRequesterSource")
 
-        # @return [String] Execution Status of the transaction
+        # @return [String] The status of the transaction.
         attribute(:transaction_status, String, null: false, from: "transactionStatus")
 
-        # @return [String] Type of the transaction
+        # @return [String] The type of the transaction.
         attribute(:transaction_type, String, null: false, from: "transactionType")
 
         # @return [TransferRatePreview] The fees and rates that apply to the transaction, as applicable.
         attribute(:transfer_rate_details, TransferRatePreview, null: false, from: "transferRateDetails")
 
-        # @return [Time] Expected completion date of a transaction, for existing active Payees (Trusted Beneficiaries)
-        #   it will be 24 hours but for new destination bank accounts the value could go up to 5 days
+        # @return [Time] The expected completion date of the transaction.
         attribute?(:expected_completion_date, Time, from: "expectedCompletionDate")
 
-        # @return [String] Amazon SW customer who requested the transaction
+        # @return [String] The Amazon Seller Wallet customer who requested the transaction.
         attribute?(:requester_name, String, from: "requesterName")
 
-        # @return [Time] Transaction completion date
+        # @return [Time] The transaction's completion date.
         attribute?(:transaction_actual_completion_date, Time, from: "transactionActualCompletionDate")
 
-        # @return [String] Description in case the transaction fails before completion
+        # @return [String] The reason the transaction failed, if applicable.
         attribute?(:transaction_failure_reason, String, from: "transactionFailureReason")
 
-        # @return [Money] Specifies the amount of completed transaction in the destination account currency, this will
-        #   be populated only for international transactions
+        # @return [Money] The amount of completed transaction in the destination account currency. This value is only
+        #   populated for international transactions
         attribute?(:transaction_final_amount, Money, from: "transactionFinalAmount")
 
-        # @return [TransactionAccount] Source bank account details in the transaction
+        # @return [TransactionAccount] The source bank account details in the transaction.
         attribute?(:transaction_source_account, TransactionAccount, from: "transactionSourceAccount")
       end
     end
