@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage = "https://github.com/lineofflight/peddler"
   gem.license  = "MIT"
 
-  gem.add_dependency("http", "~> 5.3")
+  gem.add_dependency("http", ">= 5.3", "< 7.0")
   gem.add_dependency("nokogiri", "~> 1.0")
   gem.add_dependency("structure", "~> 4.2")
   gem.add_dependency("zeitwerk", "~> 2.6")
