@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+### Changed
+
+- Drop support for Ruby 3.2
+
 ## [5.3.1] - 2026-02-28
 
 ### Fixed
