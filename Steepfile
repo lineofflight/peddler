@@ -8,6 +8,7 @@ target :lib do
   ignore "lib/generator"
 
   library(
+    "delegate",
     "json",
     "socket",
     "time",
