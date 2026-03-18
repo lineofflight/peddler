@@ -4,6 +4,8 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "http", ENV["HTTP_VERSION"] if ENV["HTTP_VERSION"]
+
 gem "activesupport"
 gem "graphql"
 gem "hana"

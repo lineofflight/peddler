@@ -39,8 +39,11 @@ jobs:
   test:
     strategy:
       matrix:
-        ruby: ["3.2", "3.3", "3.4", "4.0", "head"]
+        ruby: ["3.3", "3.4", "4.0", "head"]
+        http: ["~> 5.3", "~> 6.0"]
     runs-on: ubuntu-latest
+    env:
+      HTTP_VERSION: ${{ matrix.http }}
     steps:
       - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
