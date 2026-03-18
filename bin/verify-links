@@ -25,6 +25,8 @@ matches=$(
   } |
   # Extract URLs from the combined output
   grep -Eo 'https?://[^ )>,"]+' |
+  # Skip known-broken URLs from Amazon's OpenAPI specs
+  grep -v 'amazon.com/b2b/info/amazon-business' |
   # Remove trailing punctuation (period, single quote, closing tags)
   sed -E "s/[.'\`]+\$//; s/<\/a\$//; s/'\$//;" |
   uniq
