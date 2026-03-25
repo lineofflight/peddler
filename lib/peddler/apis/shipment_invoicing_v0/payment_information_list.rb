@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class ShipmentInvoicingV0
-      # List of payment transactions
+      # A list of payment transactions.
       class PaymentInformationList < Array
         class << self
           def parse(array)
