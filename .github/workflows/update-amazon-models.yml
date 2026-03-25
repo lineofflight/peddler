@@ -100,7 +100,7 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.create-pr.outputs.pr_number }}
 
-            A nightly job pulled in the latest Amazon SP-API specs and regenerated code. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown. The description will become a squash commit message.
+            A nightly job pulled in the latest Amazon SP-API specs and regenerated code. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown. The description will become a squash commit body, so don't repeat the PR title.
           claude_args: |
             --model sonnet
             --allowedTools "Bash(gh pr diff:*),Bash(gh pr edit:*),Bash(gh pr view:*)"
