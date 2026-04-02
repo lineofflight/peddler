@@ -54,10 +54,17 @@ check_url() {
         ;;
       5*)
         if ((i < max_retries)); then
-          sleep $retry_delay
+          sleep $((retry_delay * i))
         else
-          touch "$tmpdir/failed"
-          log_error "$response $url (after $max_retries retries)"
+          log_warn "$response $url (after $max_retries retries)"
+        fi
+        ;;
+      0)
+        # Connection timeout or network error
+        if ((i < max_retries)); then
+          sleep $((retry_delay * i))
+        else
+          log_warn "$response $url (after $max_retries retries)"
         fi
         ;;
       *)
