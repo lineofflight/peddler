@@ -12,7 +12,7 @@ module Peddler
       # an array, the result must match at least one element in the provided array.
       ListOfferMetricsRequestFilters = Structure.new do
         # @return [String] The marketplace identifier. The supported marketplaces for both sellers and vendors are US,
-        #   CA, ES, UK, FR, IT, IN, DE and JP. The supported marketplaces for vendors only are BR, AU, MX, AE and NL.
+        #   CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL.
         #   Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the
         #   identifier for the marketplace.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")

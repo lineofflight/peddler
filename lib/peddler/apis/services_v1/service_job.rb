@@ -25,6 +25,9 @@ module Peddler
         # @return [String] The marketplace identifier.
         attribute?(:marketplace_id, String, from: "marketplaceId")
 
+        # @return [Array<Payment>] A list that contains payment information for the service job.
+        attribute?(:payments, [Payment])
+
         # @return [Array<AppointmentTime>] A list of appointment windows preferred by the buyer. Included only if the
         #   buyer selected appointment windows when creating the order.
         attribute?(:preferred_appointment_times, [AppointmentTime], from: "preferredAppointmentTimes")

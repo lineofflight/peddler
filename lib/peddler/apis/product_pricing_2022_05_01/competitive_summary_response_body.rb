@@ -28,6 +28,9 @@ module Peddler
 
         # @return [Array<ReferencePrice>] A list of reference prices for the specified ASIN `marketplaceId` combination.
         attribute?(:reference_prices, [ReferencePrice], from: "referencePrices")
+
+        # @return [Array<SimilarItems>] A list of similar items for the specified ASIN `marketplaceId` combination.
+        attribute?(:similar_items, [SimilarItems], from: "similarItems")
       end
     end
   end

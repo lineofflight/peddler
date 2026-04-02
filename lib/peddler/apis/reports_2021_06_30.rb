@@ -147,12 +147,18 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param report_document_id [String] The identifier for the report document.
+      # @param enable_content_encoding_url_header [Boolean] When `true`, the Content-Encoding header on the returned URL
+      #   is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows
+      #   automatic decompression by HTTP clients.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_report_document(report_document_id, rate_limit: 0.0167)
+      def get_report_document(report_document_id, enable_content_encoding_url_header: nil, rate_limit: 0.0167)
         path = "/reports/2021-06-30/documents/#{percent_encode(report_document_id)}"
+        params = {
+          "enableContentEncodingUrlHeader" => enable_content_encoding_url_header,
+        }.compact
         parser = -> { ReportDocument }
-        get(path, rate_limit:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

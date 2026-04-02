@@ -217,7 +217,7 @@ module Peddler
       def create_report_schedule: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def get_report: (String, ?rate_limit: Float) -> Peddler::Response
 
-      def get_report_document: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_report_document: (String, ?enable_content_encoding_url_header: bool?, ?rate_limit: Float) -> Peddler::Response
       def get_report_schedule: (String, ?rate_limit: Float) -> Peddler::Response
       def get_report_schedules: (Array[String], ?rate_limit: Float) -> Peddler::Response
       def get_reports: (?report_types: Array[String]?, ?processing_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response

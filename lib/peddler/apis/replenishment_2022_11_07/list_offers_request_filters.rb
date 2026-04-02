@@ -11,7 +11,7 @@ module Peddler
       # that is an array, the result must match at least one element in the provided array.
       ListOffersRequestFilters = Structure.new do
         # @return [String] The marketplace identifier. The supported marketplaces for both sellers and vendors are US,
-        #   CA, ES, UK, FR, IT, IN, DE and JP. The supported marketplaces for vendors only are BR, AU, MX, AE and NL.
+        #   CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL.
         #   Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the
         #   identifier for the marketplace.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
@@ -21,6 +21,10 @@ module Peddler
 
         # @return [Array<String>] A list of Amazon Standard Identification Numbers (ASINs).
         attribute?(:asins, [String])
+
+        # @return [Array<String>] A list of delivery condition types to filter the results by. Results are filtered to
+        #   only include offers with the specified delivery conditions.
+        attribute?(:deliveries_conditions, [String], from: "deliveriesConditions")
 
         # @return [Array<EligibilityStatus>] A list of eligibilities associated with an offer.
         attribute?(:eligibilities, Array)

@@ -148,7 +148,7 @@ module Peddler
       # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
       #   `getServiceJobs` operation of the Services API.
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
-      # @param body [Hash]
+      # @param body [Hash] Input containing the resource details to be assigned to the appointment.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)

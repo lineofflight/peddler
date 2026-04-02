@@ -644,6 +644,40 @@ module Peddler
         def to_h: () -> { jobs: Array[Peddler::APIs::ServicesV1::ServiceJob]?, next_page_token: String?, previous_page_token: String?, total_result_size: Integer? }
       end
 
+      class MoneyAmount < Data
+        def self.new: (currency: String, value: Float) -> Peddler::APIs::ServicesV1::MoneyAmount
+                    | (String, Float) -> Peddler::APIs::ServicesV1::MoneyAmount
+        def self.[]: (currency: String, value: Float) -> Peddler::APIs::ServicesV1::MoneyAmount
+                   | (String, Float) -> Peddler::APIs::ServicesV1::MoneyAmount
+
+        def self.members: () -> [ :currency, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::MoneyAmount
+
+        attr_reader currency: String
+        attr_reader value: Float
+
+        def members: () -> [ :currency, :value ]
+        def to_h: () -> { currency: String, value: Float }
+      end
+
+      class Payment < Data
+        def self.new: (?amount: Peddler::APIs::ServicesV1::MoneyAmount?, ?instrument: String?) -> Peddler::APIs::ServicesV1::Payment
+                    | (Peddler::APIs::ServicesV1::MoneyAmount?, String?) -> Peddler::APIs::ServicesV1::Payment
+        def self.[]: (?amount: Peddler::APIs::ServicesV1::MoneyAmount?, ?instrument: String?) -> Peddler::APIs::ServicesV1::Payment
+                   | (Peddler::APIs::ServicesV1::MoneyAmount?, String?) -> Peddler::APIs::ServicesV1::Payment
+
+        def self.members: () -> [ :amount, :instrument ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::Payment
+
+        attr_reader amount: Peddler::APIs::ServicesV1::MoneyAmount?
+        attr_reader instrument: String?
+
+        def members: () -> [ :amount, :instrument ]
+        def to_h: () -> { amount: Peddler::APIs::ServicesV1::MoneyAmount?, instrument: String? }
+      end
+
       class Poa < Data
         def self.new: (?appointment_time: Peddler::APIs::ServicesV1::AppointmentTime?, ?poa_type: String?, ?technicians: Array[Peddler::APIs::ServicesV1::Technician]?, ?upload_time: Time?, ?uploading_technician: String?) -> Peddler::APIs::ServicesV1::Poa
                     | (Peddler::APIs::ServicesV1::AppointmentTime?, String?, Array[Peddler::APIs::ServicesV1::Technician]?, Time?, String?) -> Peddler::APIs::ServicesV1::Poa
@@ -859,12 +893,12 @@ module Peddler
       end
 
       class ServiceJob < Data
-        def self.new: (?appointments: Array[Peddler::APIs::ServicesV1::Appointment]?, ?associated_items: Array[Peddler::APIs::ServicesV1::AssociatedItem]?, ?buyer: Peddler::APIs::ServicesV1::Buyer?, ?create_time: Time?, ?marketplace_id: String?, ?preferred_appointment_times: Array[Peddler::APIs::ServicesV1::AppointmentTime]?, ?scope_of_work: Peddler::APIs::ServicesV1::ScopeOfWork?, ?seller: Peddler::APIs::ServicesV1::Seller?, ?service_job_id: String?, ?service_job_provider: Peddler::APIs::ServicesV1::ServiceJobProvider?, ?service_job_status: String?, ?service_location: Peddler::APIs::ServicesV1::ServiceLocation?, ?service_order_id: String?, ?store_id: String?) -> Peddler::APIs::ServicesV1::ServiceJob
-                    | (Array[Peddler::APIs::ServicesV1::Appointment]?, Array[Peddler::APIs::ServicesV1::AssociatedItem]?, Peddler::APIs::ServicesV1::Buyer?, Time?, String?, Array[Peddler::APIs::ServicesV1::AppointmentTime]?, Peddler::APIs::ServicesV1::ScopeOfWork?, Peddler::APIs::ServicesV1::Seller?, String?, Peddler::APIs::ServicesV1::ServiceJobProvider?, String?, Peddler::APIs::ServicesV1::ServiceLocation?, String?, String?) -> Peddler::APIs::ServicesV1::ServiceJob
-        def self.[]: (?appointments: Array[Peddler::APIs::ServicesV1::Appointment]?, ?associated_items: Array[Peddler::APIs::ServicesV1::AssociatedItem]?, ?buyer: Peddler::APIs::ServicesV1::Buyer?, ?create_time: Time?, ?marketplace_id: String?, ?preferred_appointment_times: Array[Peddler::APIs::ServicesV1::AppointmentTime]?, ?scope_of_work: Peddler::APIs::ServicesV1::ScopeOfWork?, ?seller: Peddler::APIs::ServicesV1::Seller?, ?service_job_id: String?, ?service_job_provider: Peddler::APIs::ServicesV1::ServiceJobProvider?, ?service_job_status: String?, ?service_location: Peddler::APIs::ServicesV1::ServiceLocation?, ?service_order_id: String?, ?store_id: String?) -> Peddler::APIs::ServicesV1::ServiceJob
-                   | (Array[Peddler::APIs::ServicesV1::Appointment]?, Array[Peddler::APIs::ServicesV1::AssociatedItem]?, Peddler::APIs::ServicesV1::Buyer?, Time?, String?, Array[Peddler::APIs::ServicesV1::AppointmentTime]?, Peddler::APIs::ServicesV1::ScopeOfWork?, Peddler::APIs::ServicesV1::Seller?, String?, Peddler::APIs::ServicesV1::ServiceJobProvider?, String?, Peddler::APIs::ServicesV1::ServiceLocation?, String?, String?) -> Peddler::APIs::ServicesV1::ServiceJob
+        def self.new: (?appointments: Array[Peddler::APIs::ServicesV1::Appointment]?, ?associated_items: Array[Peddler::APIs::ServicesV1::AssociatedItem]?, ?buyer: Peddler::APIs::ServicesV1::Buyer?, ?create_time: Time?, ?marketplace_id: String?, ?payments: Array[Peddler::APIs::ServicesV1::Payment]?, ?preferred_appointment_times: Array[Peddler::APIs::ServicesV1::AppointmentTime]?, ?scope_of_work: Peddler::APIs::ServicesV1::ScopeOfWork?, ?seller: Peddler::APIs::ServicesV1::Seller?, ?service_job_id: String?, ?service_job_provider: Peddler::APIs::ServicesV1::ServiceJobProvider?, ?service_job_status: String?, ?service_location: Peddler::APIs::ServicesV1::ServiceLocation?, ?service_order_id: String?, ?store_id: String?) -> Peddler::APIs::ServicesV1::ServiceJob
+                    | (Array[Peddler::APIs::ServicesV1::Appointment]?, Array[Peddler::APIs::ServicesV1::AssociatedItem]?, Peddler::APIs::ServicesV1::Buyer?, Time?, String?, Array[Peddler::APIs::ServicesV1::Payment]?, Array[Peddler::APIs::ServicesV1::AppointmentTime]?, Peddler::APIs::ServicesV1::ScopeOfWork?, Peddler::APIs::ServicesV1::Seller?, String?, Peddler::APIs::ServicesV1::ServiceJobProvider?, String?, Peddler::APIs::ServicesV1::ServiceLocation?, String?, String?) -> Peddler::APIs::ServicesV1::ServiceJob
+        def self.[]: (?appointments: Array[Peddler::APIs::ServicesV1::Appointment]?, ?associated_items: Array[Peddler::APIs::ServicesV1::AssociatedItem]?, ?buyer: Peddler::APIs::ServicesV1::Buyer?, ?create_time: Time?, ?marketplace_id: String?, ?payments: Array[Peddler::APIs::ServicesV1::Payment]?, ?preferred_appointment_times: Array[Peddler::APIs::ServicesV1::AppointmentTime]?, ?scope_of_work: Peddler::APIs::ServicesV1::ScopeOfWork?, ?seller: Peddler::APIs::ServicesV1::Seller?, ?service_job_id: String?, ?service_job_provider: Peddler::APIs::ServicesV1::ServiceJobProvider?, ?service_job_status: String?, ?service_location: Peddler::APIs::ServicesV1::ServiceLocation?, ?service_order_id: String?, ?store_id: String?) -> Peddler::APIs::ServicesV1::ServiceJob
+                   | (Array[Peddler::APIs::ServicesV1::Appointment]?, Array[Peddler::APIs::ServicesV1::AssociatedItem]?, Peddler::APIs::ServicesV1::Buyer?, Time?, String?, Array[Peddler::APIs::ServicesV1::Payment]?, Array[Peddler::APIs::ServicesV1::AppointmentTime]?, Peddler::APIs::ServicesV1::ScopeOfWork?, Peddler::APIs::ServicesV1::Seller?, String?, Peddler::APIs::ServicesV1::ServiceJobProvider?, String?, Peddler::APIs::ServicesV1::ServiceLocation?, String?, String?) -> Peddler::APIs::ServicesV1::ServiceJob
 
-        def self.members: () -> [ :appointments, :associated_items, :buyer, :create_time, :marketplace_id, :preferred_appointment_times, :scope_of_work, :seller, :service_job_id, :service_job_provider, :service_job_status, :service_location, :service_order_id, :store_id ]
+        def self.members: () -> [ :appointments, :associated_items, :buyer, :create_time, :marketplace_id, :payments, :preferred_appointment_times, :scope_of_work, :seller, :service_job_id, :service_job_provider, :service_job_status, :service_location, :service_order_id, :store_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::ServiceJob
 
@@ -873,6 +907,7 @@ module Peddler
         attr_reader buyer: Peddler::APIs::ServicesV1::Buyer?
         attr_reader create_time: Time?
         attr_reader marketplace_id: String?
+        attr_reader payments: Array[Peddler::APIs::ServicesV1::Payment]?
         attr_reader preferred_appointment_times: Array[Peddler::APIs::ServicesV1::AppointmentTime]?
         attr_reader scope_of_work: Peddler::APIs::ServicesV1::ScopeOfWork?
         attr_reader seller: Peddler::APIs::ServicesV1::Seller?
@@ -883,8 +918,8 @@ module Peddler
         attr_reader service_order_id: String?
         attr_reader store_id: String?
 
-        def members: () -> [ :appointments, :associated_items, :buyer, :create_time, :marketplace_id, :preferred_appointment_times, :scope_of_work, :seller, :service_job_id, :service_job_provider, :service_job_status, :service_location, :service_order_id, :store_id ]
-        def to_h: () -> { appointments: Array[Peddler::APIs::ServicesV1::Appointment]?, associated_items: Array[Peddler::APIs::ServicesV1::AssociatedItem]?, buyer: Peddler::APIs::ServicesV1::Buyer?, create_time: Time?, marketplace_id: String?, preferred_appointment_times: Array[Peddler::APIs::ServicesV1::AppointmentTime]?, scope_of_work: Peddler::APIs::ServicesV1::ScopeOfWork?, seller: Peddler::APIs::ServicesV1::Seller?, service_job_id: String?, service_job_provider: Peddler::APIs::ServicesV1::ServiceJobProvider?, service_job_status: String?, service_location: Peddler::APIs::ServicesV1::ServiceLocation?, service_order_id: String?, store_id: String? }
+        def members: () -> [ :appointments, :associated_items, :buyer, :create_time, :marketplace_id, :payments, :preferred_appointment_times, :scope_of_work, :seller, :service_job_id, :service_job_provider, :service_job_status, :service_location, :service_order_id, :store_id ]
+        def to_h: () -> { appointments: Array[Peddler::APIs::ServicesV1::Appointment]?, associated_items: Array[Peddler::APIs::ServicesV1::AssociatedItem]?, buyer: Peddler::APIs::ServicesV1::Buyer?, create_time: Time?, marketplace_id: String?, payments: Array[Peddler::APIs::ServicesV1::Payment]?, preferred_appointment_times: Array[Peddler::APIs::ServicesV1::AppointmentTime]?, scope_of_work: Peddler::APIs::ServicesV1::ScopeOfWork?, seller: Peddler::APIs::ServicesV1::Seller?, service_job_id: String?, service_job_provider: Peddler::APIs::ServicesV1::ServiceJobProvider?, service_job_status: String?, service_location: Peddler::APIs::ServicesV1::ServiceLocation?, service_order_id: String?, store_id: String? }
       end
 
       class ServiceJobProvider < Data
