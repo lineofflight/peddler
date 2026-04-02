@@ -10,7 +10,7 @@ module Peddler
       # The number of Amazon Points that are offered with the purchase of an item and the monetary value of these
       # points.
       Points = Structure.new do
-        # @return [Money] The monetary value of the Amazon Points.
+        # @return [Money] The monetary value of Amazon Points.
         attribute?(:points_monetary_value, Money, from: "pointsMonetaryValue")
 
         # @return [Integer] The number of Amazon Points.

@@ -171,7 +171,7 @@ module Peddler
       def create_feed_document: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def get_feed: (String, ?rate_limit: Float) -> Peddler::Response
 
-      def get_feed_document: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_feed_document: (String, ?enable_content_encoding_url_header: bool?, ?rate_limit: Float) -> Peddler::Response
       def get_feeds: (?feed_types: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?processing_statuses: Array[String]?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end

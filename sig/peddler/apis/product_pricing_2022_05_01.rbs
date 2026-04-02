@@ -112,12 +112,12 @@ module Peddler
       end
 
       class CompetitiveSummaryResponseBody < Data
-        def self.new: (asin: String, marketplace_id: String, ?errors: Array[Peddler::APIs::ProductPricing20220501::Error]?, ?featured_buying_options: Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, ?lowest_priced_offers: Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, ?reference_prices: Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
-                    | (String, String, Array[Peddler::APIs::ProductPricing20220501::Error]?, Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
-        def self.[]: (asin: String, marketplace_id: String, ?errors: Array[Peddler::APIs::ProductPricing20220501::Error]?, ?featured_buying_options: Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, ?lowest_priced_offers: Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, ?reference_prices: Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
-                   | (String, String, Array[Peddler::APIs::ProductPricing20220501::Error]?, Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
+        def self.new: (asin: String, marketplace_id: String, ?errors: Array[Peddler::APIs::ProductPricing20220501::Error]?, ?featured_buying_options: Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, ?lowest_priced_offers: Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, ?reference_prices: Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?, ?similar_items: Array[Peddler::APIs::ProductPricing20220501::SimilarItems]?) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
+                    | (String, String, Array[Peddler::APIs::ProductPricing20220501::Error]?, Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?, Array[Peddler::APIs::ProductPricing20220501::SimilarItems]?) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
+        def self.[]: (asin: String, marketplace_id: String, ?errors: Array[Peddler::APIs::ProductPricing20220501::Error]?, ?featured_buying_options: Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, ?lowest_priced_offers: Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, ?reference_prices: Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?, ?similar_items: Array[Peddler::APIs::ProductPricing20220501::SimilarItems]?) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
+                   | (String, String, Array[Peddler::APIs::ProductPricing20220501::Error]?, Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?, Array[Peddler::APIs::ProductPricing20220501::SimilarItems]?) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
 
-        def self.members: () -> [ :asin, :marketplace_id, :errors, :featured_buying_options, :lowest_priced_offers, :reference_prices ]
+        def self.members: () -> [ :asin, :marketplace_id, :errors, :featured_buying_options, :lowest_priced_offers, :reference_prices, :similar_items ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::CompetitiveSummaryResponseBody
 
@@ -127,9 +127,10 @@ module Peddler
         attr_reader lowest_priced_offers: Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?
         attr_reader marketplace_id: String
         attr_reader reference_prices: Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?
+        attr_reader similar_items: Array[Peddler::APIs::ProductPricing20220501::SimilarItems]?
 
-        def members: () -> [ :asin, :marketplace_id, :errors, :featured_buying_options, :lowest_priced_offers, :reference_prices ]
-        def to_h: () -> { asin: String, marketplace_id: String, errors: Array[Peddler::APIs::ProductPricing20220501::Error]?, featured_buying_options: Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, lowest_priced_offers: Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, reference_prices: Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]? }
+        def members: () -> [ :asin, :marketplace_id, :errors, :featured_buying_options, :lowest_priced_offers, :reference_prices, :similar_items ]
+        def to_h: () -> { asin: String, marketplace_id: String, errors: Array[Peddler::APIs::ProductPricing20220501::Error]?, featured_buying_options: Array[Peddler::APIs::ProductPricing20220501::FeaturedBuyingOption]?, lowest_priced_offers: Array[Peddler::APIs::ProductPricing20220501::LowestPricedOffer]?, reference_prices: Array[Peddler::APIs::ProductPricing20220501::ReferencePrice]?, similar_items: Array[Peddler::APIs::ProductPricing20220501::SimilarItems]? }
       end
 
       class CompetitiveSummaryResponseList < Array[CompetitiveSummaryResponse]
@@ -400,6 +401,22 @@ module Peddler
         def to_h: () -> { reason_phrase: String?, status_code: Integer? }
       end
 
+      class Item < Data
+        def self.new: (asin: String) -> Peddler::APIs::ProductPricing20220501::Item
+                    | (String) -> Peddler::APIs::ProductPricing20220501::Item
+        def self.[]: (asin: String) -> Peddler::APIs::ProductPricing20220501::Item
+                   | (String) -> Peddler::APIs::ProductPricing20220501::Item
+
+        def self.members: () -> [ :asin ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::Item
+
+        attr_reader asin: String
+
+        def members: () -> [ :asin ]
+        def to_h: () -> { asin: String }
+      end
+
       class LowestPricedOffer < Data
         def self.new: (lowest_priced_offers_input: Peddler::APIs::ProductPricing20220501::LowestPricedOffersInput, offers: Array[Peddler::APIs::ProductPricing20220501::Offer]) -> Peddler::APIs::ProductPricing20220501::LowestPricedOffer
                     | (Peddler::APIs::ProductPricing20220501::LowestPricedOffersInput, Array[Peddler::APIs::ProductPricing20220501::Offer]) -> Peddler::APIs::ProductPricing20220501::LowestPricedOffer
@@ -650,6 +667,22 @@ module Peddler
 
         def members: () -> [ :price, :shipping_option_type ]
         def to_h: () -> { price: Peddler::Money, shipping_option_type: String }
+      end
+
+      class SimilarItems < Data
+        def self.new: (?items: Array[Peddler::APIs::ProductPricing20220501::Item]?) -> Peddler::APIs::ProductPricing20220501::SimilarItems
+                    | (Array[Peddler::APIs::ProductPricing20220501::Item]?) -> Peddler::APIs::ProductPricing20220501::SimilarItems
+        def self.[]: (?items: Array[Peddler::APIs::ProductPricing20220501::Item]?) -> Peddler::APIs::ProductPricing20220501::SimilarItems
+                   | (Array[Peddler::APIs::ProductPricing20220501::Item]?) -> Peddler::APIs::ProductPricing20220501::SimilarItems
+
+        def self.members: () -> [ :items ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::SimilarItems
+
+        attr_reader items: Array[Peddler::APIs::ProductPricing20220501::Item]?
+
+        def members: () -> [ :items ]
+        def to_h: () -> { items: Array[Peddler::APIs::ProductPricing20220501::Item]? }
       end
 
       def get_competitive_summary: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
