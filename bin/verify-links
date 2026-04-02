@@ -48,7 +48,7 @@ check_url() {
         log_info "$response $url"
         return
         ;;
-      301|302)
+      301|302|429)
         log_warn "$response $url"
         return
         ;;
