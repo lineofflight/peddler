@@ -21,7 +21,7 @@ module Peddler
       #   marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param channel_name [String] The channel name associated with the location.
       # @param status [String] The status of shipment you want to include in the response. To retrieve all new
-      #   shipments, set this value to `ACCEPTED`.
+      #   shipments, set this value to `CREATED` or `ACCEPTED`.
       # @param last_updated_after [String] The response includes shipments whose latest update is after the specified
       #   time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param last_updated_before [String] The response includes shipments whose latest update is before the specified
