@@ -53,7 +53,7 @@ module Peddler
 
     # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
     # @see https://developer-docs.amazon.com/amazon-shipping/docs/connecting-to-the-selling-partner-api#step-3-add-headers-to-the-uri
-    # @return [HTTP::Client]
+    # @return [HTTP::Session]
     def http(rate_limit: nil)
       client = @http.headers(
         "Host" => endpoint_uri.host,
@@ -65,7 +65,7 @@ module Peddler
       return client if retries.zero? || rate_limit.nil?
 
       delay = sandbox? ? 0.2 : 1.0 / rate_limit
-      client.retriable(delay:, tries: retries + 1, retry_statuses: [429]) # steep:ignore NoMethod
+      client.retriable(delay:, tries: retries + 1, retry_statuses: [429])
     end
 
     private

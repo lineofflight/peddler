@@ -21,7 +21,7 @@ module Peddler
     def endpoint_uri: () -> URI::HTTPS
     def sandbox: () -> self
     def sandbox?: () -> bool
-    def http: (?rate_limit: Float?) -> HTTP::Client
+    def http: (?rate_limit: Float?) -> HTTP::Session
 
     private
 
