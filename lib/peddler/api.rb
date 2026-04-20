@@ -24,7 +24,7 @@ module Peddler
     # @param [String] access_token The access token for authentication
     # @param [Integer] retries The number of retries if throttled (default: 0)
     # @param [HTTP::Client] http HTTP client
-    def initialize(aws_region, access_token, retries: 0, http: HTTP)
+    def initialize(aws_region, access_token, retries: 0, http: HTTP::Client.new)
       @endpoint = Endpoint.find(aws_region)
       @access_token = access_token
       @retries = retries
