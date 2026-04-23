@@ -28,8 +28,8 @@ module Peddler
         # @return [String]
         attribute?(:aggregation_frequency, String, from: "aggregationFrequency")
 
-        # @return [Array<Metric>] The list of metrics requested. If no metric value is provided, data for all of the
-        #   metrics will be returned.
+        # @return [Array<Metric>] The list of metrics requested. If no metric value is provided, data for all metrics
+        #   will be returned.
         attribute?(:metrics, Array)
       end
     end
