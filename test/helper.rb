@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "support/silence_warnings"
+
 require "minitest/autorun"
 require "minitest/mock"
 
