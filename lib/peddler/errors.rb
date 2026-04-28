@@ -4,6 +4,7 @@ module Peddler
   # Container module for dynamically generated error classes
   module Errors
     class AccessDenied < Error; end
+    class InternalFailure < Error; end
     class InvalidGrant < Error; end
     class InvalidInput < Error; end
     class InvalidRequest < Error; end

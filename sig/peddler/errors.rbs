@@ -5,6 +5,9 @@ module Peddler
     class AccessDenied < Error
     end
 
+    class InternalFailure < Error
+    end
+
     class InvalidGrant < Error
     end
 
