@@ -19,6 +19,10 @@ module Peddler
         # @return [String] The carrier name for the offering.
         attribute?(:carrier_name, String, from: "carrierName")
 
+        # @return [HandoverLocation] The drop-off location details. This value is populated when `handoverMethod` is
+        #   `DROPOFF`.
+        attribute?(:handover_location, HandoverLocation, from: "handoverLocation")
+
         # @return [TimeWindow] The time window during which the package will be picked up.
         attribute?(:pickup_window, TimeWindow, from: "pickupWindow")
 

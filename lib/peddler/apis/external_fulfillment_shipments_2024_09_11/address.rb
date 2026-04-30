@@ -40,7 +40,10 @@ module Peddler
         # @return [String] The email address of the contact associated with the address.
         attribute?(:email, String)
 
-        # @return [String] The municiplaity where the person, business, or institution is located.
+        # @return [Geocodes] The geographic coordinates of the address.
+        attribute?(:geocodes, Geocodes)
+
+        # @return [String] The municipality where the person, business, or institution is located.
         attribute?(:municipality, String)
 
         # @return [String] The name of the person, business or institution at that address.

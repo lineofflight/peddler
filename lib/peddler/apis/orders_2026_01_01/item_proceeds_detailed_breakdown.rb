@@ -8,7 +8,7 @@ module Peddler
   module APIs
     class Orders20260101
       # Further granular breakdown of the subtotal of the proceeds breakdown, only available for TAX and DISCOUNT
-      # proceeds type.
+      # proceeds types.
       ItemProceedsDetailedBreakdown = Structure.new do
         # @return [String] Specific classification of the further granular breakdown.
         #

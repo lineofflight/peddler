@@ -15,8 +15,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/orders_2026-01-01.json
     class Orders20260101 < API
-      # Returns orders that are created or updated during the time period that you specify. You can filter the response
-      # for specific types of orders.
+      # Returns orders created or updated during the time period that you specify. You can filter the response for
+      # specific types of orders.
       #
       # @note This operation can make a static sandbox call.
       # @param created_after [String] The response includes orders created at or after this time. The date must be in
@@ -28,14 +28,14 @@ module Peddler
       #   `createdAfter` in the request, `createdBefore` is optional, and if provided must be equal to or after the
       #   `createdAfter` date and at least two minutes before the time of the request. If `createdBefore` is provided,
       #   neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided.
-      # @param last_updated_after [String] The response includes orders updated at or after this time. An update is
-      #   defined as any change made by Amazon or by the seller, including an update to the order status. The date must
-      #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: You must provide
-      #   exactly one of `createdAfter` and `lastUpdatedAfter`. If `lastUpdatedAfter` is provided, neither
-      #   `createdAfter` nor `createdBefore` may be provided.
+      # @param last_updated_after [String] The response includes orders updated at or after this time. An update is any
+      #   change made by Amazon or the seller, including changes to order status. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: You must provide exactly one
+      #   of `createdAfter` and `lastUpdatedAfter`. If `lastUpdatedAfter` is provided, neither `createdAfter` nor
+      #   `createdBefore` may be provided.
       # @param last_updated_before [String] The response includes orders updated at or before this time. An update is
-      #   defined as any change made by Amazon or by the seller, including an update to the order status. The date must
-      #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: If you include
+      #   any change made by Amazon or the seller, including changes to order status. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: If you include
       #   `lastUpdatedAfter` in the request, `lastUpdatedBefore` is optional, and if provided must be equal to or after
       #   the `lastUpdatedAfter` date and at least two minutes before the time of the request. If `lastUpdatedBefore` is
       #   provided, neither `createdAfter` nor `createdBefore` may be provided.
@@ -53,10 +53,11 @@ module Peddler
       #   you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not
       #   receive a `nextToken` value on the last page.
       # @param included_data [Array<String>] A list of datasets to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil,
         fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil,
-        pagination_token: nil, included_data: nil)
+        pagination_token: nil, included_data: nil, rate_limit: 0.0056)
         path = "/orders/2026-01-01/orders"
         params = {
           "createdAfter" => created_after,
@@ -71,7 +72,7 @@ module Peddler
           "includedData" => stringify_array(included_data),
         }.compact
         parser = -> { SearchOrdersResponse }
-        get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Returns the order that you specify.
@@ -79,14 +80,15 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier.
       # @param included_data [Array<String>] A list of datasets to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order(order_id, included_data: nil)
+      def get_order(order_id, included_data: nil, rate_limit: 0.5)
         path = "/orders/2026-01-01/orders/#{percent_encode(order_id)}"
         params = {
           "includedData" => stringify_array(included_data),
         }.compact
         parser = -> { GetOrderResponse }
-        get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

@@ -15,9 +15,10 @@ module Peddler
         # @return [String] Granular status information providing specific details about the package's current location
         #   and handling stage.
         #
-        # **Possible values:** - `PENDING_SCHEDULE` (Package awaiting pickup scheduling) - `PENDING_PICK_UP` (Package
-        #   ready for carrier collection from seller) - `PENDING_DROP_OFF` (Package awaiting seller delivery to carrier)
-        #   - `LABEL_CANCELLED` (Shipping label canceled by seller) - `PICKED_UP` (Package collected by carrier from
+        # **Possible values**:
+        # - `PENDING_SCHEDULE` (Package awaiting pickup scheduling) - `PENDING_PICK_UP` (Package ready for carrier
+        #   collection from seller) - `PENDING_DROP_OFF` (Package awaiting seller delivery to carrier) -
+        #   `LABEL_CANCELLED` (Shipping label canceled by seller) - `PICKED_UP` (Package collected by carrier from
         #   seller location) - `DROPPED_OFF` (Package delivered to carrier by seller) - `AT_ORIGIN_FC` (Package at
         #   originating fulfillment center) - `AT_DESTINATION_FC` (Package at destination fulfillment center) -
         #   `DELIVERED` (Package successfully delivered to recipient) - `REJECTED_BY_BUYER` (Package refused by intended

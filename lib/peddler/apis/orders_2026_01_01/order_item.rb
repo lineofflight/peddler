@@ -18,6 +18,10 @@ module Peddler
         # @return [Integer] The number of units of this item that the customer ordered.
         attribute(:quantity_ordered, Integer, null: false, from: "quantityOrdered")
 
+        # @return [Array<AssociatedOrderItem>] A list of order items associated with this item. For example, a value-add
+        #   service purchased with the product.
+        attribute?(:associated_order_items, [AssociatedOrderItem], from: "associatedOrderItems")
+
         # @return [ItemCancellation] The cancellation information of the order item.
         attribute?(:cancellation, ItemCancellation)
 
@@ -42,6 +46,9 @@ module Peddler
 
         # @return [ItemPromotion] Details about any discounts, coupons, or promotional offers applied to this item.
         attribute?(:promotion, ItemPromotion)
+
+        # @return [ItemTax] Tax-related information for this order item.
+        attribute?(:tax, ItemTax)
       end
     end
   end

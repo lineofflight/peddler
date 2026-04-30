@@ -11,6 +11,9 @@ module Peddler
       ItemPacking = Structure.new do
         # @return [GiftOption] Gift wrapping and messaging specified for this item.
         attribute?(:gift_option, GiftOption, from: "giftOption")
+
+        # @return [SerialNumberRequirement] Whether serial numbers must be provided for this line item.
+        attribute?(:serial_number_requirement, SerialNumberRequirement, from: "serialNumberRequirement")
       end
     end
   end
