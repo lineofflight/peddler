@@ -33,6 +33,9 @@ module Peddler
         #   either `REPLACEMENT` or `EXCHANGE`.
         attribute?(:original_shipment_info, ReplacedShipmentInfo, from: "originalShipmentInfo")
 
+        # @return [String] The payment method for the shipment.
+        attribute?(:payment_method, String, from: "paymentMethod")
+
         # @return [String] The source of the order operation.
         attribute?(:processing_source, String, from: "processingSource")
       end

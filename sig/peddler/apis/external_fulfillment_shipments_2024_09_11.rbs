@@ -2,12 +2,12 @@ module Peddler
   module APIs
     class ExternalFulfillmentShipments20240911 < API
       class Address < Data
-        def self.new: (postal_code: String, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?copy_emails: Array[String]?, ?country_code: String?, ?district: String?, ?email: String?, ?municipality: String?, ?name: String?, ?phone_number: String?, ?state: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
-                    | (String, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
-        def self.[]: (postal_code: String, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?copy_emails: Array[String]?, ?country_code: String?, ?district: String?, ?email: String?, ?municipality: String?, ?name: String?, ?phone_number: String?, ?state: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
-                   | (String, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+        def self.new: (postal_code: String, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?copy_emails: Array[String]?, ?country_code: String?, ?district: String?, ?email: String?, ?geocodes: Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes?, ?municipality: String?, ?name: String?, ?phone_number: String?, ?state: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+                    | (String, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes?, String?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+        def self.[]: (postal_code: String, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?copy_emails: Array[String]?, ?country_code: String?, ?district: String?, ?email: String?, ?geocodes: Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes?, ?municipality: String?, ?name: String?, ?phone_number: String?, ?state: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
+                   | (String, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes?, String?, String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
 
-        def self.members: () -> [ :postal_code, :address_line1, :address_line2, :address_line3, :address_type, :city, :copy_emails, :country_code, :district, :email, :municipality, :name, :phone_number, :state ]
+        def self.members: () -> [ :postal_code, :address_line1, :address_line2, :address_line3, :address_type, :city, :copy_emails, :country_code, :district, :email, :geocodes, :municipality, :name, :phone_number, :state ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Address
 
@@ -20,14 +20,15 @@ module Peddler
         attr_reader country_code: String?
         attr_reader district: String?
         attr_reader email: String?
+        attr_reader geocodes: Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes?
         attr_reader municipality: String?
         attr_reader name: String?
         attr_reader phone_number: String?
         attr_reader postal_code: String
         attr_reader state: String?
 
-        def members: () -> [ :postal_code, :address_line1, :address_line2, :address_line3, :address_type, :city, :copy_emails, :country_code, :district, :email, :municipality, :name, :phone_number, :state ]
-        def to_h: () -> { postal_code: String, address_line1: String?, address_line2: String?, address_line3: String?, address_type: String?, city: String?, copy_emails: Array[String]?, country_code: String?, district: String?, email: String?, municipality: String?, name: String?, phone_number: String?, state: String? }
+        def members: () -> [ :postal_code, :address_line1, :address_line2, :address_line3, :address_type, :city, :copy_emails, :country_code, :district, :email, :geocodes, :municipality, :name, :phone_number, :state ]
+        def to_h: () -> { postal_code: String, address_line1: String?, address_line2: String?, address_line3: String?, address_type: String?, city: String?, copy_emails: Array[String]?, country_code: String?, district: String?, email: String?, geocodes: Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes?, municipality: String?, name: String?, phone_number: String?, state: String? }
       end
 
       class Amount < Data
@@ -187,6 +188,23 @@ module Peddler
         def to_h: () -> { dimension_unit: String, value: String }
       end
 
+      class Distance < Data
+        def self.new: (distance_unit: String, value: String) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Distance
+                    | (String, String) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Distance
+        def self.[]: (distance_unit: String, value: String) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Distance
+                   | (String, String) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Distance
+
+        def self.members: () -> [ :distance_unit, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Distance
+
+        attr_reader distance_unit: String
+        attr_reader value: String
+
+        def members: () -> [ :distance_unit, :value ]
+        def to_h: () -> { distance_unit: String, value: String }
+      end
+
       class Document < Data
         def self.new: (?content: String?, ?format: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Document
                     | (String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Document
@@ -254,6 +272,24 @@ module Peddler
         def to_h: () -> { errors: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::Error] }
       end
 
+      class Geocodes < Data
+        def self.new: (latitude: String, longitude: String, ?elevation: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes
+                    | (String, String, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes
+        def self.[]: (latitude: String, longitude: String, ?elevation: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes
+                   | (String, String, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes
+
+        def self.members: () -> [ :latitude, :longitude, :elevation ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Geocodes
+
+        attr_reader elevation: String?
+        attr_reader latitude: String
+        attr_reader longitude: String
+
+        def members: () -> [ :latitude, :longitude, :elevation ]
+        def to_h: () -> { latitude: String, longitude: String, elevation: String? }
+      end
+
       class GiftAttributes < Data
         def self.new: (gift_message_presence: String, gift_wrap_requirement: String, ?gift_message: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?, ?gift_wrap_label: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes
                     | (String, String, Peddler::APIs::ExternalFulfillmentShipments20240911::Document?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::GiftAttributes
@@ -271,6 +307,24 @@ module Peddler
 
         def members: () -> [ :gift_message_presence, :gift_wrap_requirement, :gift_message, :gift_wrap_label ]
         def to_h: () -> { gift_message_presence: String, gift_wrap_requirement: String, gift_message: Peddler::APIs::ExternalFulfillmentShipments20240911::Document?, gift_wrap_label: String? }
+      end
+
+      class HandoverLocation < Data
+        def self.new: (?address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, ?distance: Peddler::APIs::ExternalFulfillmentShipments20240911::Distance?, ?map_url: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation
+                    | (Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, Peddler::APIs::ExternalFulfillmentShipments20240911::Distance?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation
+        def self.[]: (?address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, ?distance: Peddler::APIs::ExternalFulfillmentShipments20240911::Distance?, ?map_url: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation
+                   | (Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, Peddler::APIs::ExternalFulfillmentShipments20240911::Distance?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation
+
+        def self.members: () -> [ :address, :distance, :map_url ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation
+
+        attr_reader address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?
+        attr_reader distance: Peddler::APIs::ExternalFulfillmentShipments20240911::Distance?
+        attr_reader map_url: String?
+
+        def members: () -> [ :address, :distance, :map_url ]
+        def to_h: () -> { address: Peddler::APIs::ExternalFulfillmentShipments20240911::Address?, distance: Peddler::APIs::ExternalFulfillmentShipments20240911::Distance?, map_url: String? }
       end
 
       class InvoiceInfo < Data
@@ -639,23 +693,24 @@ module Peddler
       end
 
       class ShipLabelMetadata < Data
-        def self.new: (carrier_name: String, tracking_id: String, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?shipping_option_id: String?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
-                    | (String, String, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
-        def self.[]: (carrier_name: String, tracking_id: String, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?shipping_option_id: String?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
-                   | (String, String, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+        def self.new: (carrier_name: String, tracking_id: String, ?handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?shipping_option_id: String?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+                    | (String, String, Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+        def self.[]: (carrier_name: String, tracking_id: String, ?handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?shipping_option_id: String?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
+                   | (String, String, Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
 
-        def self.members: () -> [ :carrier_name, :tracking_id, :pickup_window, :shipping_option_id, :time_slot ]
+        def self.members: () -> [ :carrier_name, :tracking_id, :handover_location, :pickup_window, :shipping_option_id, :time_slot ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
 
         attr_reader carrier_name: String
+        attr_reader handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?
         attr_reader pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?
         attr_reader shipping_option_id: String?
         attr_reader time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?
         attr_reader tracking_id: String
 
-        def members: () -> [ :carrier_name, :tracking_id, :pickup_window, :shipping_option_id, :time_slot ]
-        def to_h: () -> { carrier_name: String, tracking_id: String, pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, shipping_option_id: String?, time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow? }
+        def members: () -> [ :carrier_name, :tracking_id, :handover_location, :pickup_window, :shipping_option_id, :time_slot ]
+        def to_h: () -> { carrier_name: String, tracking_id: String, handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, shipping_option_id: String?, time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow? }
       end
 
       class ShipLabelsInput < Data
@@ -741,12 +796,12 @@ module Peddler
       end
 
       class ShipmentInfo < Data
-        def self.new: (buyer_order_id: String, number_of_units: Integer, priority: String, shipment_type: String, ?order_placed_timestamp: String?, ?order_states_eligible_for_rejection: Array[String]?, ?original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, ?processing_source: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
-                    | (String, Integer, String, String, String?, Array[String]?, Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
-        def self.[]: (buyer_order_id: String, number_of_units: Integer, priority: String, shipment_type: String, ?order_placed_timestamp: String?, ?order_states_eligible_for_rejection: Array[String]?, ?original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, ?processing_source: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
-                   | (String, Integer, String, String, String?, Array[String]?, Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+        def self.new: (buyer_order_id: String, number_of_units: Integer, priority: String, shipment_type: String, ?order_placed_timestamp: String?, ?order_states_eligible_for_rejection: Array[String]?, ?original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, ?payment_method: String?, ?processing_source: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+                    | (String, Integer, String, String, String?, Array[String]?, Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+        def self.[]: (buyer_order_id: String, number_of_units: Integer, priority: String, shipment_type: String, ?order_placed_timestamp: String?, ?order_states_eligible_for_rejection: Array[String]?, ?original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, ?payment_method: String?, ?processing_source: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
+                   | (String, Integer, String, String, String?, Array[String]?, Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
 
-        def self.members: () -> [ :buyer_order_id, :number_of_units, :priority, :shipment_type, :order_placed_timestamp, :order_states_eligible_for_rejection, :original_shipment_info, :processing_source ]
+        def self.members: () -> [ :buyer_order_id, :number_of_units, :priority, :shipment_type, :order_placed_timestamp, :order_states_eligible_for_rejection, :original_shipment_info, :payment_method, :processing_source ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipmentInfo
 
@@ -755,12 +810,13 @@ module Peddler
         attr_reader order_placed_timestamp: String?
         attr_reader order_states_eligible_for_rejection: Array[String]?
         attr_reader original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?
+        attr_reader payment_method: String?
         attr_reader priority: String
         attr_reader processing_source: String?
         attr_reader shipment_type: String
 
-        def members: () -> [ :buyer_order_id, :number_of_units, :priority, :shipment_type, :order_placed_timestamp, :order_states_eligible_for_rejection, :original_shipment_info, :processing_source ]
-        def to_h: () -> { buyer_order_id: String, number_of_units: Integer, priority: String, shipment_type: String, order_placed_timestamp: String?, order_states_eligible_for_rejection: Array[String]?, original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, processing_source: String? }
+        def members: () -> [ :buyer_order_id, :number_of_units, :priority, :shipment_type, :order_placed_timestamp, :order_states_eligible_for_rejection, :original_shipment_info, :payment_method, :processing_source ]
+        def to_h: () -> { buyer_order_id: String, number_of_units: Integer, priority: String, shipment_type: String, order_placed_timestamp: String?, order_states_eligible_for_rejection: Array[String]?, original_shipment_info: Peddler::APIs::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, payment_method: String?, processing_source: String? }
       end
 
       class ShipmentLineItem < Data
@@ -849,23 +905,24 @@ module Peddler
       end
 
       class ShippingOptions < Data
-        def self.new: (ship_by: String, shipping_option_id: String, ?carrier_name: String?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
-                    | (String, String, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
-        def self.[]: (ship_by: String, shipping_option_id: String, ?carrier_name: String?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
-                   | (String, String, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+        def self.new: (ship_by: String, shipping_option_id: String, ?carrier_name: String?, ?handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+                    | (String, String, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+        def self.[]: (ship_by: String, shipping_option_id: String, ?carrier_name: String?, ?handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
+                   | (String, String, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
 
-        def self.members: () -> [ :ship_by, :shipping_option_id, :carrier_name, :pickup_window, :time_slot ]
+        def self.members: () -> [ :ship_by, :shipping_option_id, :carrier_name, :handover_location, :pickup_window, :time_slot ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShippingOptions
 
         attr_reader carrier_name: String?
+        attr_reader handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?
         attr_reader pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?
         attr_reader ship_by: String
         attr_reader shipping_option_id: String
         attr_reader time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?
 
-        def members: () -> [ :ship_by, :shipping_option_id, :carrier_name, :pickup_window, :time_slot ]
-        def to_h: () -> { ship_by: String, shipping_option_id: String, carrier_name: String?, pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow? }
+        def members: () -> [ :ship_by, :shipping_option_id, :carrier_name, :handover_location, :pickup_window, :time_slot ]
+        def to_h: () -> { ship_by: String, shipping_option_id: String, carrier_name: String?, handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow? }
       end
 
       class ShippingOptionsResponse < Data

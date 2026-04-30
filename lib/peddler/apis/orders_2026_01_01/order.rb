@@ -45,6 +45,9 @@ module Peddler
         #   **Note:** Only available for merchant-fulfilled (FBM) orders.
         attribute?(:packages, [OrderPackage])
 
+        # @return [OrderPayment] Payment information for the order.
+        attribute?(:payment, OrderPayment)
+
         # @return [OrderProceeds] Financial information about this order.
         attribute?(:proceeds, OrderProceeds)
 
@@ -52,11 +55,15 @@ module Peddler
         #   experience.
         #
         # **Possible values**: `AMAZON_BAZAAR`, `AMAZON_BUSINESS`, `AMAZON_EASY_SHIP`, `AMAZON_HAUL`,
-        #   `DELIVERY_BY_AMAZON`, `FBM_SHIP_PLUS`, `IN_STORE_PICK_UP`, `PREMIUM`, `PREORDER`, `PRIME`
+        #   `DELIVERY_BY_AMAZON`, `FBM_SHIP_PLUS`, `INVOICE_BY_AMAZON`, `IN_STORE_PICK_UP`, `PREMIUM`, `PREORDER`,
+        #   `PRIME`
         attribute?(:programs, [String])
 
         # @return [Recipient] Information about the person or location where this order should be delivered.
         attribute?(:recipient, Recipient)
+
+        # @return [OrderTax] Tax-related information for the order.
+        attribute?(:tax, OrderTax)
       end
     end
   end

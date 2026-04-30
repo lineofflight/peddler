@@ -16,6 +16,10 @@ module Peddler
         # @return [String] The tracking number of the package.
         attribute(:tracking_id, String, null: false, from: "trackingId")
 
+        # @return [HandoverLocation] The drop-off location details. This value is populated when `handoverMethod` is
+        #   `DROPOFF`.
+        attribute?(:handover_location, HandoverLocation, from: "handoverLocation")
+
         # @return [TimeWindow] The time window during which the package was picked up.
         attribute?(:pickup_window, TimeWindow, from: "pickupWindow")
 
