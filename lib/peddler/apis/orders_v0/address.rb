@@ -38,10 +38,10 @@ module Peddler
         # @return [String] The district.
         attribute?(:district, String, from: "District")
 
-        # @return [AddressExtendedFields] The container for address extended fields. For example, street name or street
-        #   number.
+        # @return [AddressExtendedFields] Extended address fields for additional address components including the street
+        #   name or number.
         #
-        # **Note**: This attribute is currently only available with Brazil shipping addresses.
+        # Note: Available for grocery sellers and Brazil shipping addresses.
         attribute?(:extended_fields, AddressExtendedFields, from: "ExtendedFields")
 
         # @return [String] The municipality.
