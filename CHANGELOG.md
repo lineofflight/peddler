@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+### Added
+
+- Optional `enableContentEncodingUrlHeader` parameter on Feeds and Reports document endpoints
+- New offer fields, filter, and metric in Replenishment 2022-11-07
+- `similar_items` field in Product Pricing 2022-05-01 competitive summary
+
 ### Changed
 
 - Drop support for Ruby 3.2
