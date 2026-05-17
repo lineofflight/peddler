@@ -1,5 +1,45 @@
 # Generator System
 
+## Why this generator exists
+
+Peddler generates its SP-API client from Amazon's specs with a hand-written
+generator rather than [openapi-generator][oag] or swagger-codegen. This is a
+deliberate, re-evaluated decision — not legacy inertia.
+
+**Why not an off-the-shelf generator:**
+
+- openapi-generator's Ruby generator does not support `oneOf`/`anyOf`/`allOf`
+  composition or AWS SigV4. SP-API specs lean on `allOf` (see
+  `builders/type.rb` `merge_from_all_of`) and `anyOf` (see
+  `parsers/json_schema_extractor.rb`). Closer to a hard blocker than a
+  quality preference.
+- Its Ruby output is an untyped generic client: no RBS, no `Structure`-typed
+  response models, no idiomatic naming. That typed surface is Peddler's value.
+- Amazon's own official SDK is openapi-generator-based but ships no Ruby
+  target.
+- Adopting it would still require a forked template set plus an SP-API
+  spec-preprocessing layer — not less maintenance than this generator.
+
+**What this generator does that a generic one will not:** unifies Amazon's
+many money shapes into one `Peddler::Money`; breaks only cycle-causing type
+edges with lazy string class names; applies JSON Patch to fix known Amazon
+schema bugs; parses rate limits out of documentation prose; emits RBS by
+introspecting generated classes via the `structure` gem; handles JSON
+notification/report/feed schemas and Data Kiosk GraphQL.
+
+**Maintenance contract:** generated code is committed and corresponds to the
+exact upstream spec revision recorded in `selling-partner-api-models.sha`.
+`bundle exec rake generate` reproduces against that pinned revision.
+`bundle exec rake generate:verify` regenerates at the pin and fails if output
+drifts from what is committed — so any generator refactor must keep output
+byte-identical (or land the intended change in the same commit). Advancing to
+newer Amazon specs is a deliberate act: `bundle exec rake generate:update`
+pulls latest, regenerates, and rewrites the pin in one step (this is what the
+nightly `update-models` workflow runs). Treat `generate:verify` as the source
+of truth, not unit tests of internals.
+
+[oag]: https://openapi-generator.tech/docs/generators/ruby/
+
 Entry point: `lib/generator.rb`
 
 Pipeline: Clone specs → Generate APIs/Notifications/Reports/Feeds → Generate RBS → Format
