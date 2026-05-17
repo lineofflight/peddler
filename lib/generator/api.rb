@@ -103,7 +103,7 @@ module Generator
 
     def types
       arr = []
-      openapi_spec["definitions"].each do |name, definition|
+      model["definitions"].each do |name, definition|
         # Skip non-object definitions but allow allOf compositions and arrays
         next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
         # Skip Money types as we use the custom Money type for these
@@ -111,7 +111,7 @@ module Generator
         # Skip types with ONLY additionalProperties (no defined properties) - they'll be referenced as Hash
         next if definition["additionalProperties"] && !definition["properties"] && !definition["allOf"]
 
-        arr << Type.new(name, definition, name_with_version, openapi_spec)
+        arr << Type.new(name, definition, name_with_version, model)
       end
       arr
     end
@@ -166,10 +166,6 @@ module Generator
       version == latest_version
     end
 
-    def convenience_method_name
-      name
-    end
-
     def operations
       @operations ||= begin
         ops = paths.flat_map { |path| path.operations(name_with_version) }.compact
@@ -178,7 +174,7 @@ module Generator
     end
 
     def type_names
-      openapi_spec["definitions"]
+      model["definitions"]
         .select { |name, def_| def_["type"] == "object" && !MoneyDetector.money_type?(name) && !def_["additionalProperties"] }
         .keys
         .sort
@@ -190,10 +186,6 @@ module Generator
 
     def file_path
       File.join(Config::BASE_PATH, "lib/#{library_name}.rb")
-    end
-
-    def openapi_spec
-      model
     end
 
     def github_model_filename

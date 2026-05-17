@@ -102,21 +102,15 @@ module Generator
             resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
             resolved_type != "Float" && !resolved_type.include?("Hash") && !resolved_type.include?("Array") &&
             resolved_type != "Money" && resolved_type != ":boolean"
-          # Check if THIS specific edge causes a cycle
-          if cycle_edges&.include?([name, resolved_type])
-            # Return as a string for lazy loading
-            return "\"#{resolved_type}\""
-          end
+          # Return as a string for lazy loading
+          return "\"#{resolved_type}\"" if cycle_edge?(resolved_type)
         end
 
         # Handle arrays containing cycle-causing types
-        if resolved_type.is_a?(String) && resolved_type =~ /^\[(.+)\]$/
-          inner_type = ::Regexp.last_match(1)
-          # Only use string class for actual cycles
-          if inner_type && cycle_edges&.include?([name, inner_type])
-            # Return as array with string class name for lazy loading
-            return "[\"#{inner_type}\"]"
-          end
+        if resolved_type.is_a?(String)
+          inner_type = array_inner_type(resolved_type)
+          # Return as array with string class name for lazy loading
+          return "[\"#{inner_type}\"]" if cycle_edge?(inner_type)
         end
       end
 
@@ -138,17 +132,6 @@ module Generator
       end.uniq
     end
 
-    def needs_money?
-      properties.any? do |_prop_name, prop_def|
-        if prop_def["$ref"]
-          type_name = prop_def["$ref"].split("/").last
-          MoneyDetector.money_type?(type_name)
-        else
-          false
-        end
-      end
-    end
-
     def uses_string_class_names?
       properties.any? do |_prop_name, prop_def|
         resolved_type = type_resolver.resolve(prop_def)
@@ -164,14 +147,11 @@ module Generator
           if resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
               resolved_type != "Float" && resolved_type != "Hash" && resolved_type != "Array" &&
               resolved_type != "Money" && resolved_type != ":boolean"
-            return true if cycle_edges&.include?([name, resolved_type])
+            return true if cycle_edge?(resolved_type)
           end
 
           # Handle arrays
-          if resolved_type =~ /^\[(.+)\]$/
-            inner_type = ::Regexp.last_match(1)
-            return true if inner_type && cycle_edges&.include?([name, inner_type])
-          end
+          return true if cycle_edge?(array_inner_type(resolved_type))
         end
 
         false
@@ -189,6 +169,18 @@ module Generator
     end
 
     private
+
+    # True when the [name, type] edge is one of the cycle-breaking edges, so the
+    # reference must be emitted as a lazy string class name rather than a constant.
+    def cycle_edge?(type)
+      !!(type && cycle_edges&.include?([name, type]))
+    end
+
+    # Inner element type of an array-shaped resolved type ("[Foo]" -> "Foo"), or
+    # nil when it is not an array shape.
+    def array_inner_type(resolved_type)
+      resolved_type[/^\[(.+)\]$/, 1] if resolved_type.is_a?(String)
+    end
 
     def sorted_properties(props)
       required = required_properties

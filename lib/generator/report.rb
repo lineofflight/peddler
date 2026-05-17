@@ -35,31 +35,11 @@ module Generator
       @schema = JSON.parse(File.read(file_path))
     end
 
-    def generate
-      written_files = []
-      all_types = []
-
-      # Generate nested types first
-      nested_results = generate_nested_types!
-      written_files.concat(nested_results[:files])
-      all_types.concat(nested_results[:types])
-
+    def generate_schema_types(written_files, all_types)
       # Generate main report type
       report_result = generate_report_type!
       written_files << report_result[:file]
       all_types << report_result[:type]
-
-      # Generate main convenience file
-      written_files << generate_main_file!
-
-      # Reload to pick up newly generated files for RBS introspection
-      IntrospectionLoader.reload
-      written_files << generate_rbs!(all_types)
-
-      # Batch format all written files
-      format_files(written_files)
-
-      Generator.logger.info("Generated report #{report_name.underscore}")
     end
 
     # Extract report name from filename

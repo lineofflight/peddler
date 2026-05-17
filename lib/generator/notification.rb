@@ -39,15 +39,7 @@ module Generator
       apply_json_patch!
     end
 
-    def generate
-      written_files = []
-      all_types = []
-
-      # Generate nested types first
-      nested_results = generate_nested_types!
-      written_files.concat(nested_results[:files])
-      all_types.concat(nested_results[:types])
-
+    def generate_schema_types(written_files, all_types)
       # Generate Payload and Notification as types
       payload_results = generate_payload_types!
       written_files.concat(payload_results[:files])
@@ -56,18 +48,6 @@ module Generator
       notification_result = generate_notification_type!
       written_files << notification_result[:file]
       all_types << notification_result[:type]
-
-      # Generate main convenience file
-      written_files << generate_main_file!
-
-      # Reload to pick up newly generated files for RBS introspection
-      IntrospectionLoader.reload
-      written_files << generate_rbs!(all_types)
-
-      # Batch format all written files
-      format_files(written_files)
-
-      Generator.logger.info("Generated notification #{notification_name.underscore}")
     end
 
     # Extract notification name from filename (e.g., "AnyOfferChangedNotification.json" => "AnyOfferChanged")

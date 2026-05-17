@@ -41,29 +41,9 @@ module Generator
       @graphql_schema = parse_graphql_schema(File.read(file_path))
     end
 
-    def generate
-      written_files = []
-      all_types = []
-
-      # Generate nested types first
-      nested_results = generate_nested_types!
-      written_files.concat(nested_results[:files])
-      all_types.concat(nested_results[:types])
-
-      # Generate main module file
-      written_files << generate_main_file!
-
+    def generate_supplementary_files(_written_files, _all_types)
       # Generate JSON introspection schema (don't format JSON files)
       generate_introspection_schema!
-
-      # Reload and generate RBS
-      IntrospectionLoader.reload
-      written_files << generate_rbs!(all_types)
-
-      # Format all files
-      format_files(written_files)
-
-      Generator.logger.info("Generated data_kiosk #{schema_name.underscore}")
     end
 
     # Extract schema name from filename

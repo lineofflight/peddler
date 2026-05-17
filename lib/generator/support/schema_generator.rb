@@ -54,6 +54,43 @@ module Generator
 
     # Instance-level shared methods
 
+    # Template method: generate every file for a single schema. Per-type
+    # specifics are supplied via the generate_schema_types and
+    # generate_supplementary_files hooks.
+    def generate
+      written_files = []
+      all_types = []
+
+      # Generate nested types first
+      nested_results = generate_nested_types!
+      written_files.concat(nested_results[:files])
+      all_types.concat(nested_results[:types])
+
+      generate_schema_types(written_files, all_types)
+
+      # Generate main convenience file
+      written_files << generate_main_file!
+
+      generate_supplementary_files(written_files, all_types)
+
+      # Reload to pick up newly generated files for RBS introspection
+      IntrospectionLoader.reload
+      written_files << generate_rbs!(all_types)
+
+      # Batch format all written files
+      format_files(written_files)
+
+      singular = self.class.schema_type.singularize
+      Generator.logger.info("Generated #{singular} #{send("#{singular}_name").underscore}")
+    end
+
+    # Hook: append the primary schema type(s) to written_files/all_types.
+    # Default no-op (Data Kiosk has no standalone main type).
+    def generate_schema_types(_written_files, _all_types); end
+
+    # Hook: generate extra files after the main convenience file. Default no-op.
+    def generate_supplementary_files(_written_files, _all_types); end
+
     # Generate main convenience file using ERB template
     def generate_main_file!
       content = ERB.new(main_template, trim_mode: "-").result(binding)
