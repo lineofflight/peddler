@@ -26,7 +26,23 @@ module Generator
 
     def setup
       IntrospectionLoader.setup
-      Specs.sync
+      Specs.sync(ref: Specs.pinned_sha)
+    end
+
+    def generated_paths
+      %w[
+        lib/peddler.rb
+        lib/peddler/apis
+        lib/peddler/notifications
+        lib/peddler/reports
+        lib/peddler/feeds
+        lib/peddler/data_kiosk
+        sig/peddler/apis
+        sig/peddler/notifications
+        sig/peddler/reports
+        sig/peddler/feeds
+        sig/peddler/data_kiosk
+      ]
     end
 
     def generate_apis
