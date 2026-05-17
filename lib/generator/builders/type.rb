@@ -138,17 +138,6 @@ module Generator
       end.uniq
     end
 
-    def needs_money?
-      properties.any? do |_prop_name, prop_def|
-        if prop_def["$ref"]
-          type_name = prop_def["$ref"].split("/").last
-          MoneyDetector.money_type?(type_name)
-        else
-          false
-        end
-      end
-    end
-
     def uses_string_class_names?
       properties.any? do |_prop_name, prop_def|
         resolved_type = type_resolver.resolve(prop_def)
