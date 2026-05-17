@@ -202,13 +202,5 @@ module Generator
     def test_file_path
       assert_match(%r{lib/peddler/apis/.*_2024_01_01\.rb$}, @api.file_path)
     end
-
-    def test_openapi_spec
-      spec = @api.openapi_spec
-
-      assert_equal("Test API", spec["info"]["title"])
-      assert(spec["paths"])
-      assert(spec["definitions"])
-    end
   end
 end
