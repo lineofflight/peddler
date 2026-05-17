@@ -67,6 +67,33 @@ namespace :generate do
   task entrypoints: :setup do
     Generator.generate_entrypoints
   end
+
+  desc "Pull latest Amazon specs, regenerate, and advance the pin"
+  task :update do
+    require_relative "lib/generator"
+    Generator::Specs.advance!
+    Generator.generate
+  end
+
+  desc "Regenerate at the pinned spec revision; fail if committed output drifts"
+  task verify: :generate do
+    require "open3"
+
+    paths = Generator.generated_paths
+    status_out, _err, status = Open3.capture3("git", "status", "--porcelain", "--", *paths)
+    raise "git status failed" unless status.success?
+
+    if status_out.strip.empty?
+      puts "Generated output matches committed code at pinned spec #{Generator::Specs.pinned_sha}."
+    else
+      diff_out, = Open3.capture2("git", "diff", "--", *paths)
+      warn "Generated output drifted from committed code:"
+      warn status_out
+      warn diff_out
+      abort "Generator verification failed: regeneration at the pinned spec changed " \
+        "committed output. Commit the intended change or investigate the regression."
+    end
+  end
 end
 
 task default: [:rubocop, :test, :steep]
