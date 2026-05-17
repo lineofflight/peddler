@@ -1,26 +1,43 @@
 # frozen_string_literal: true
 
+require "fileutils"
 require "open3"
 require_relative "support/logger"
 require_relative "support/config"
 
 module Generator
+  # Manages the local checkout of Amazon's selling-partner-api-models repo.
+  #
+  # Generation is reproducible: `sync(ref:)` checks out an exact revision (the
+  # pinned SHA for `generate`/`verify`). `advance!` is the only path that moves
+  # the pin forward, used by `rake generate:update` / the nightly workflow.
   class Specs
-    class << self
-      def sync
-        # Remove directory if it exists but is empty
-        if Dir.exist?(directory) && Dir.empty?(directory)
-          FileUtils.rm_rf(directory)
-        end
+    REPO_URL = "https://github.com/amzn/selling-partner-api-models.git"
+    PIN_FILE = File.join(Config::BASE_PATH, "selling-partner-api-models.sha")
 
-        if !Dir.exist?(directory)
-          clone!
-        elsif older_than_one_day?
-          Generator.logger.info("API models are over 1 day old, updating")
-          update!
-        else
-          Generator.logger.info("Existing API models found")
-        end
+    class << self
+      # Ensure the local clone exists and is checked out at +ref+.
+      def sync(ref:)
+        ensure_clone!
+        fetch!
+        checkout!(ref)
+        Generator.logger.info("Synced API models to #{ref}")
+      end
+
+      # Pull the latest upstream default branch, point the pin at it, and
+      # return the resolved SHA. Caller is responsible for regenerating.
+      def advance!
+        ensure_clone!
+        fetch!
+        checkout!("origin/HEAD")
+        sha = resolve_head
+        write_pin(sha)
+        Generator.logger.info("Advanced API models pin to #{sha}")
+        sha
+      end
+
+      def pinned_sha
+        File.read(PIN_FILE).strip
       end
 
       def directory
@@ -29,28 +46,39 @@ module Generator
 
       private
 
-      def clone!
+      def ensure_clone!
+        FileUtils.rm_rf(directory) if Dir.exist?(directory) && Dir.empty?(directory)
+        return if Dir.exist?(directory)
+
         Generator.logger.info("Cloning Amazon Selling Partner API models")
-        repo_url = "https://github.com/amzn/selling-partner-api-models.git"
-        _stdout, stderr, status = Open3.capture3("git", "clone", repo_url, directory)
-
-        raise "Failed to clone API models: #{stderr}" unless status.success?
+        run!("git", "clone", "--quiet", REPO_URL, directory)
       end
 
-      def update!
-        _stdout, stderr, status = Open3.capture3("git", "-C", directory, "pull")
-
-        raise "Failed to update API models: #{stderr}" unless status.success?
+      def fetch!
+        run!("git", "-C", directory, "fetch", "--quiet", "origin")
       end
 
-      def older_than_one_day?
-        git_dir = File.join(directory, ".git")
-        return false unless Dir.exist?(git_dir)
+      def checkout!(ref)
+        run!("git", "-C", directory, "-c", "advice.detachedHead=false", "checkout", "--quiet", ref)
+      end
 
-        fetch_head = File.join(git_dir, "FETCH_HEAD")
-        return true unless File.exist?(fetch_head)
+      def resolve_head
+        stdout, stderr, status = Open3.capture3("git", "-C", directory, "rev-parse", "HEAD")
+        raise "Failed to resolve API models HEAD: #{stderr}" unless status.success?
 
-        File.mtime(fetch_head) < Time.now - (24 * 60 * 60)
+        stdout.strip
+      end
+
+      def run!(*argv)
+        _stdout, stderr, status = Open3.capture3(*argv)
+        raise "Command failed (#{argv.join(" ")}): #{stderr}" unless status.success?
+      end
+
+      # Atomic: write to a sibling temp file, then rename into place.
+      def write_pin(sha)
+        tmp = "#{PIN_FILE}.tmp"
+        File.write(tmp, "#{sha}\n")
+        File.rename(tmp, PIN_FILE)
       end
     end
   end
