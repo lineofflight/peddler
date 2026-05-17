@@ -18,6 +18,14 @@ To begin using the Amazon SP-API, you must [register as a developer][register-as
 
 Add to your Gemfile.
 
+### Agent skill
+
+If you use a coding agent, install the peddler skill for SP-API spec research and Ruby usage help:
+
+```shell
+npx skills add lineofflight/peddler
+```
+
 ## Usage
 
 ### Authorization

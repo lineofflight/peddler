@@ -25,9 +25,8 @@ Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:r
 ## Key Concepts
 
 - APIs inherit from `Peddler::API`
-- Response: `.parse` (typed), `.dig`, `.to_h`, `.status`
-- Sandbox: `api.sandbox.method_name(...)`
 - Types nested by API version (e.g., `Peddler::APIs::CatalogItems20220401::Item`)
+- Consumer usage (auth, responses, errors, sandbox): see [`peddler` skill](skills/peddler/SKILL.md)
 
 ## Generator Workflow
 
@@ -42,12 +41,12 @@ Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:r
 - Assert `res.status.success?` for API responses
 - Pattern: `test/peddler/apis/catalog_items_2022_04_01_test.rb`
 
-## SP-API Specs
+## SP-API Specs & Research
 
-Local specs: `selling-partner-api-models/models/` (use `jq` to parse, `rg` to search)
+The [`peddler` skill](skills/peddler/SKILL.md) is the canonical source for
+SP-API spec/issue research and Ruby usage. Keep that guidance there, not here,
+so the two can't drift.
 
-## External Resources
-
-- [API Models](https://github.com/amzn/selling-partner-api-models) - OpenAPI specs and schemas
-- [GitHub Issues](https://github.com/amzn/selling-partner-api-models/issues) - Troubleshooting, workarounds, Amazon responses
-- [Official Documentation](https://developer-docs.amazon.com/sp-api/) - Use cases, guides, registration
+Generator-only: `rake generate` manages a local checkout of
+`selling-partner-api-models/` (gitignored, pinned by
+`selling-partner-api-models.sha`, not shipped in the gem).
