@@ -166,10 +166,6 @@ module Generator
       version == latest_version
     end
 
-    def convenience_method_name
-      name
-    end
-
     def operations
       @operations ||= begin
         ops = paths.flat_map { |path| path.operations(name_with_version) }.compact
