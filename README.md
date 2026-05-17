@@ -6,12 +6,6 @@ Peddler is automatically generated from the latest Open API models provided by A
 
 Peddler covers all SP-API endpoints, reports, notifications, and feeds. It's also lightweight: thanks to Zeitwerk, only the code you use gets loaded.
 
-To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials][view-credentials] to access your own or other selling partners' data.
-
-- [API docs][api-docs]
-- [OpenAPI models][openapi-models]
-- [API samples][api-samples]
-
 <img src="https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 830px" />
 
 ## Installation
@@ -29,6 +23,8 @@ npx skills add lineofflight/peddler
 ## Usage
 
 ### Authorization
+
+Before using Peddler, you must [register as a developer][register-as-developer], [register your application][register-application], and [obtain your Login with Amazon (LWA) credentials][view-credentials]; Amazon's [official SP-API code samples][api-samples] can help you get started.
 
 Set your LWA credentials in your environment.
 
@@ -357,7 +353,7 @@ bundle exec rake generate
 # Type check with Steep
 bundle exec steep check --severity-level=hint
 ```
-[api-docs]: https://developer.amazonservices.com/sp-api-docs/overview
+[api-docs]: https://developer-docs.amazon.com/sp-api/docs/welcome
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
 [openapi-models]: https://github.com/amzn/selling-partner-api-models
