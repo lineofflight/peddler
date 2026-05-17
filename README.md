@@ -2,7 +2,7 @@
 
 Peddler is a Ruby interface to the [Amazon Selling Partner API (SP-API)][api-docs]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
-Peddler is automatically generated from the latest Open API models provided by Amazon.
+Peddler is automatically generated from the latest Open API models provided by Amazon. A nightly job tracks Amazon's spec changes, so new endpoints and fields land shortly after Amazon publishes them. Model changes are not considered breaking and don't trigger a major version bump.
 
 Peddler covers all SP-API endpoints, reports, notifications, and feeds. It's also lightweight: thanks to Zeitwerk, only the code you use gets loaded.
 
@@ -82,6 +82,48 @@ class Seller
   end
 end
 ```
+
+### Restricted Data Tokens (RDT) and PII
+
+Some operations are restricted because they return Personally Identifiable Information (PII), such as a buyer's name and shipping address. To call one, exchange your access token for a Restricted Data Token (RDT) scoped to the specific resources you need, then pass the RDT in place of the access token.
+
+```ruby
+api = Peddler.tokens.new(aws_region, access_token)
+response = api.create_restricted_data_token({
+  "restrictedResources" => [
+    {
+      "method" => "GET",
+      "path" => "/orders/v0/orders/123-1234567-1234567/address",
+    },
+  ],
+})
+restricted_data_token = response.parse.restricted_data_token
+```
+
+Use the RDT exactly where you would normally pass the access token.
+
+```ruby
+api = Peddler.orders.new(aws_region, restricted_data_token)
+address = api.get_order_address("123-1234567-1234567").parse.payload.shipping_address
+```
+
+For the Orders API, also specify which `dataElements` you need (`buyerInfo`, `shippingAddress`, or `buyerTaxInformation`).
+
+```ruby
+api = Peddler.tokens.new(aws_region, access_token)
+response = api.create_restricted_data_token({
+  "restrictedResources" => [
+    {
+      "method" => "GET",
+      "path" => "/orders/v0/orders",
+      "dataElements" => ["buyerInfo", "shippingAddress"],
+    },
+  ],
+})
+restricted_data_token = response.parse.restricted_data_token
+```
+
+An RDT is valid for one hour. Like access tokens, cache and reuse it across calls. See the [Tokens API Use Case Guide][tokens-guide] for the full list of restricted operations.
 
 ### Rate limiting
 
@@ -315,4 +357,5 @@ bundle exec steep check --severity-level=hint
 [view-credentials]: https://developer-docs.amazon.com/sp-api/docs/viewing-your-application-information-and-credentials
 [authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
 [rate-limits]: https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits
+[tokens-guide]: https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide
 [httprb]: https://github.com/httprb/http
