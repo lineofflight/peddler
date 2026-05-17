@@ -96,7 +96,7 @@ Shared utilities, infrastructure, and mixins:
 
 ## How It Works
 
-1. **Sync Specs**: `Specs` orchestrator clones Amazon's selling-partner-api-models repo
+1. **Sync Specs**: `Specs` orchestrator checks out Amazon's selling-partner-api-models repo at the revision pinned in `selling-partner-api-models.sha`
 2. **Generate Code**: Each orchestrator (API, Notification, Report, Feed) reads JSON/OpenAPI specs and:
    - Extracts type definitions using `JsonSchemaExtractor` parser
    - Generates Ruby classes using `Type` builder
