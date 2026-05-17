@@ -33,7 +33,7 @@ jobs:
         run: bundle install
 
       - name: Generate code from API models
-        run: bundle exec rake generate
+        run: bundle exec rake generate:update
 
       - name: Create Pull Request
         id: create-pr
