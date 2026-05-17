@@ -40,31 +40,11 @@ module Generator
       @schema = JSON.parse(File.read(file_path))
     end
 
-    def generate
-      written_files = []
-      all_types = []
-
-      # Generate nested types first
-      nested_results = generate_nested_types!
-      written_files.concat(nested_results[:files])
-      all_types.concat(nested_results[:types])
-
+    def generate_schema_types(written_files, all_types)
       # Generate main feed type
       feed_result = generate_feed_type!
       written_files << feed_result[:file]
       all_types << feed_result[:type]
-
-      # Generate main convenience file
-      written_files << generate_main_file!
-
-      # Reload to pick up newly generated files for RBS introspection
-      IntrospectionLoader.reload
-      written_files << generate_rbs!(all_types)
-
-      # Batch format all written files
-      format_files(written_files)
-
-      Generator.logger.info("Generated feed #{feed_name.underscore}")
     end
 
     # Extract feed name from filename
