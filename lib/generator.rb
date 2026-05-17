@@ -30,18 +30,18 @@ module Generator
     end
 
     def generated_paths
-      %w[
-        lib/peddler.rb
-        lib/peddler/apis
-        lib/peddler/notifications
-        lib/peddler/reports
-        lib/peddler/feeds
-        lib/peddler/data_kiosk
-        sig/peddler/apis
-        sig/peddler/notifications
-        sig/peddler/reports
-        sig/peddler/feeds
-        sig/peddler/data_kiosk
+      [
+        "lib/peddler.rb",
+        "lib/peddler/apis",
+        "lib/peddler/notifications",
+        "lib/peddler/reports",
+        "lib/peddler/feeds",
+        "lib/peddler/data_kiosk",
+        "sig/peddler/apis",
+        "sig/peddler/notifications",
+        "sig/peddler/reports",
+        "sig/peddler/feeds",
+        "sig/peddler/data_kiosk",
       ]
     end
 
