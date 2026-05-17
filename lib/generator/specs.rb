@@ -31,7 +31,7 @@ module Generator
         fetch!
         checkout!("origin/HEAD")
         sha = resolve_head
-        File.write(PIN_FILE, "#{sha}\n")
+        write_pin(sha)
         Generator.logger.info("Advanced API models pin to #{sha}")
         sha
       end
@@ -72,6 +72,13 @@ module Generator
       def run!(*argv)
         _stdout, stderr, status = Open3.capture3(*argv)
         raise "Command failed (#{argv.join(" ")}): #{stderr}" unless status.success?
+      end
+
+      # Atomic: write to a sibling temp file, then rename into place.
+      def write_pin(sha)
+        tmp = "#{PIN_FILE}.tmp"
+        File.write(tmp, "#{sha}\n")
+        File.rename(tmp, PIN_FILE)
       end
     end
   end
