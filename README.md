@@ -14,7 +14,7 @@ Add to your Gemfile.
 
 ### Agent skill
 
-If you use a coding agent, install the peddler skill for SP-API spec research and Ruby usage help:
+If you use an agent, install the SP-API skill:
 
 ```shell
 npx skills add lineofflight/peddler

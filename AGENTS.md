@@ -26,7 +26,7 @@ Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:r
 
 - APIs inherit from `Peddler::API`
 - Types nested by API version (e.g., `Peddler::APIs::CatalogItems20220401::Item`)
-- Consumer usage (auth, responses, errors, sandbox): see [`peddler` skill](skills/peddler/SKILL.md)
+- Consumer usage (auth, responses, errors, sandbox): see [README](README.md#usage)
 
 ## Generator Workflow
 
@@ -43,9 +43,7 @@ Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:r
 
 ## SP-API Specs & Research
 
-The [`peddler` skill](skills/peddler/SKILL.md) is the canonical source for
-SP-API spec/issue research and Ruby usage. Keep that guidance there, not here,
-so the two can't drift.
+The [`sp-api-ruby` skill](skills/sp-api-ruby/SKILL.md) is the canonical source for SP-API spec/issue research. Keep that guidance there, not here, so the two can't drift.
 
 Generator-only: `rake generate` manages a local checkout of
 `selling-partner-api-models/` (gitignored, pinned by
