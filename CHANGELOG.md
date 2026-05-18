@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+## [5.4.0] - 2026-05-18
+
 ### Added
 
+- `InternalFailure` error class
 - Optional `enableContentEncodingUrlHeader` parameter on Feeds and Reports document endpoints
 - New offer fields, filter, and metric in Replenishment 2022-11-07
 - `similar_items` field in Product Pricing 2022-05-01 competitive summary
@@ -572,7 +575,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.3.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.4.0...HEAD
+[5.4.0]: https://github.com/hakanensari/peddler/compare/v5.3.1...v5.4.0
 [5.3.1]: https://github.com/hakanensari/peddler/compare/v5.3.0...v5.3.1
 [5.3.0]: https://github.com/hakanensari/peddler/compare/v5.2.0...v5.3.0
 [5.2.0]: https://github.com/hakanensari/peddler/compare/v5.1.0...v5.2.0
