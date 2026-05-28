@@ -15,24 +15,24 @@ module Peddler
         # @return [Integer] The number of items in the order.
         attribute(:quantity, Integer, null: false, from: "Quantity")
 
-        # @return [String] The seller-specific SKU for an item.
+        # @return [String] The seller-specific SKU identifier for an item.
         attribute(:seller_sku, String, null: false, from: "SellerSKU")
 
-        # @return [String] The unique identifier of the supply source. Will be null when there is no related
+        # @return [String] The unique identifier of the supply source. It will be null when there is no related
         #   information.
         attribute(:supply_source_id, String, from: "SupplySourceId")
 
-        # @return [:boolean] True when the buyer has requested cancelation.
+        # @return [:boolean] Information about whether or not a buyer requested cancellation. When true, the buyer has
+        #   requested cancellation.
         attribute?(:buyer_requested_cancel, :boolean, from: "IsBuyerRequestedCancel")
 
-        # @return [String] The start of the time period during which you have committed to fulfill the order.
+        # @return [String] The start of the time period within which you have committed to fulfill the order item.
         attribute?(:item_earliest_delivery_date, String, from: "ItemEarliestDeliveryDate")
 
-        # @return [String] The end of the time period during which you have committed to fulfill the order.
+        # @return [String] The end of the time period within which you have committed to fulfill the order item.
         attribute?(:item_latest_delivery_date, String, from: "ItemLatestDeliveryDate")
 
-        # @return [String] The current status of the order item. This field Will have a non-null value when items'
-        #   statuses are different.
+        # @return [String] The current status of the order item. Will display it when items' status are different.
         attribute?(:order_item_status, String, from: "OrderItemStatus")
 
         # @return [Integer] The number of items shipped.

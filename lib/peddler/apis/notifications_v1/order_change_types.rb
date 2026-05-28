@@ -5,8 +5,8 @@
 module Peddler
   module APIs
     class NotificationsV1
-      # A list of order change types to subscribe to (for example: `BuyerRequestedChange`). To receive notifications of
-      # all change types, do not provide this list.
+      # A list of order change types you can subscribe to (for example, `BuyerRequestedChange`). To receive
+      # notifications of all change types, do not provide this list.
       class OrderChangeTypes < Array
         class << self
           def parse(array)

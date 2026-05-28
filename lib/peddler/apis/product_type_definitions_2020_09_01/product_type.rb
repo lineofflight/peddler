@@ -9,7 +9,7 @@ module Peddler
     class ProductTypeDefinitions20200901
       # An Amazon product type with a definition available.
       ProductType = Structure.new do
-        # @return [String] The human-readable and localized description of the Amazon product type.
+        # @return [String] Human-readable and localized description of the Amazon product type.
         attribute(:display_name, String, null: false, from: "displayName")
 
         # @return [Array<String>] The Amazon marketplace identifiers for which the product type definition is available.

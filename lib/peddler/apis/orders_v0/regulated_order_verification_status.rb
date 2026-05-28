@@ -31,6 +31,11 @@ module Peddler
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
         attribute?(:review_date, String, from: "ReviewDate")
 
+        # @return [Array<ValidInterimStatusCode>] Valid interim status codes that may be used when populating
+        #   `InterimStatusDetail`. Each element contains a `StatusCode` identifier and its customer-facing
+        #   `StatusDescription`.
+        attribute?(:valid_interim_status_codes, [ValidInterimStatusCode], from: "ValidInterimStatusCodes")
+
         # @return [Array<ValidVerificationDetail>] A list of valid verification details that may be provided and the
         #   criteria required for when the verification detail can be provided.
         attribute?(:valid_verification_details, [ValidVerificationDetail], from: "ValidVerificationDetails")

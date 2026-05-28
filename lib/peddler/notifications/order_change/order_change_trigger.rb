@@ -7,13 +7,13 @@ require "structure"
 module Peddler
   module Notifications
     module OrderChange
-      # Details about what caused this ORDER_CHANGE notification to be sent.
+      # Details about what triggered this ORDER_CHANGE notification.
       OrderChangeTrigger = Structure.new do
-        # @return [String] The reason this ORDER_CHANGE notification was sent.
+        # @return [String] The reason for this ORDER_CHANGE notification.
         attribute(:change_reason, String, null: false, from: "ChangeReason")
 
-        # @return [String] The time of the change that caused this notification, in ISO-8601 date/time format. Will be
-        #   null when there is no related timestamp.
+        # @return [String] The timestamp for the change that caused this notification, presented in ISO-8601 date/time
+        #   format. It will be null when there is no related timestamp.
         attribute(:time_of_order_change, String, from: "TimeOfOrderChange")
       end
     end

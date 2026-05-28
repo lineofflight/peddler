@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+### Added
+
+- Amazon Warehousing and Distribution 2024-05-09: outbound order management (`list_outbounds`, `create_outbound`, `get_outbound`, `update_outbound`, `confirm_outbound`) and `get_label_page_types` for available label page types
+- Notifications v1: `send_test_notification` sandbox method; `filter_expression` field on `ProcessingDirective` for CEL-based payload filtering as an alternative to `event_filter`
+- Orders 2026-01-01: `fulfillment_orders` field on `Order` (EasyShip only); `breakdowns` field and new `OrderProceedsBreakdown` type on `OrderProceeds`
+- Orders v0: `approved_alternative_details` and `interim_status_detail` on `VerificationDetails`; `valid_interim_status_codes` on `RegulatedOrderVerificationStatus`
+- Services v1: `product_order_ids` and `tracking_ids` filter parameters on `get_service_jobs`; `linked_assets` field on `AssociatedItem` with new `LinkedAsset` type
+- Listings Restrictions 2021-08-01: optional `product_type` parameter on `get_listings_restrictions` for GTIN exemption evaluation
+- Product Type Definitions 2020-09-01: optional `parentage_level` parameter on `get_definitions_product_type`
+- Replenishment 2022-11-07: `filters` on `GetSellingPartnerMetrics` request; `brand_names`, `product_groups`, `skus`, and `fulfillment_channel_types` filters on `ListOfferMetrics` and `ListOffers`; `brand_name` and `product_group` fields on offer metrics response
+
+### Changed
+
+- Orders 2026-01-01: `ItemProceedsBreakdown` fields `subtotal` and `type` are now required
+
 ## [5.4.0] - 2026-05-18
 
 ### Added

@@ -16,8 +16,8 @@ module Peddler
         # @return [String] The name of the partner event source associated with the destination.
         attribute(:name, String, null: false)
 
-        # @return [String] The AWS region in which you receive the notifications. For AWS regions that are supported in
-        #   Amazon EventBridge, refer to [Amazon EventBridge endpoints and
+        # @return [String] The AWS region in which you receive the notifications. For AWS regions that Amazon
+        #   EventBridge supports, refer to [Amazon EventBridge endpoints and
         #   quotas](https://docs.aws.amazon.com/general/latest/gr/ev.html).
         attribute(:region, String, null: false)
       end

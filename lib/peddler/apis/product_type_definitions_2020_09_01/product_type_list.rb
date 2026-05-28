@@ -12,7 +12,7 @@ module Peddler
         # @return [String] Amazon product type version identifier.
         attribute(:product_type_version, String, null: false, from: "productTypeVersion")
 
-        # @return [Array<ProductType>]
+        # @return [Array<ProductType>] A list of product types.
         attribute(:product_types, [ProductType], null: false, from: "productTypes")
       end
     end

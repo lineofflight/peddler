@@ -18,8 +18,8 @@ module Peddler
         # @return [OrderChangeTrigger]
         attribute(:order_change_trigger, OrderChangeTrigger, null: false, from: "OrderChangeTrigger")
 
-        # @return [String] The type of order change that caused the notification to be sent. Possible values are
-        #   BuyerRequestedChange and OrderStatusChange.
+        # @return [String] Change type of this notification. The possible values include BuyerRequestedChange,
+        #   DeliveryTipChange, OrderStatusChange.
         attribute(:order_change_type, String, null: false, from: "OrderChangeType")
 
         # @return [String] The selling partner identifier.

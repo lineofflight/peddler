@@ -7,13 +7,13 @@ require "structure"
 module Peddler
   module APIs
     class NotificationsV1
-      # A `notificationType` specific filter. This object contains all of the currently available filters and properties
-      # that you can use to define a `notificationType` specific filter.
+      # A `notificationType` filter. This object contains all of the available filters and properties that you can use
+      # to define a `notificationType` specific filter.
       EventFilter = Structure.new do
-        # @return [String] An `eventFilterType` value that is supported by the specific `notificationType`. This is used
-        #   by the subscription service to determine the type of event filter. Refer to [Notification Type
-        #   Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values) to determine if an
-        #   `eventFilterType` is supported.
+        # @return [String] An `eventFilterType` value that the `notificationType` supports. The subscription service
+        #   uses the `eventFilterType` to determine the type of event filter. To determine if a specific
+        #   `notificationType` supports an `eventFilterType`, refer to [Notification Type Values](
+        #   https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
         attribute(:event_filter_type, String, null: false, from: "eventFilterType")
 
         # @return [AggregationSettings]

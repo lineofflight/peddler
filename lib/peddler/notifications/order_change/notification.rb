@@ -9,20 +9,21 @@ module Peddler
     module OrderChange
       # The notification response schema that comprises the entire JSON document for ORDER_CHANGE notification.
       Notification = Structure.new do
-        # @return [String] The time when this notification was published, in ISO-8601 date/time format.
+        # @return [String] The time when this notification was published, presented in ISO-8601 date/time format.
         attribute(:event_time, String, null: false, from: "EventTime")
 
         # @return [Hash] The notification metadata.
         attribute(:notification_metadata, Hash, null: false, from: "NotificationMetadata")
 
         # @return [String] The type of this notification, used to differentiate different notifications. Combined with
-        #   payload version, this controls the structure of the payload object.
+        #   payload version controls the structure of payload object.
         attribute(:notification_type, String, null: false, from: "NotificationType")
 
         # @return [String] The notification version.
         attribute(:notification_version, String, null: false, from: "NotificationVersion")
 
-        # @return [Payload] The payload for the ORDER_CHANGE notification.
+        # @return [Payload] The payload for this ORDER_CHANGE notification. It's unique for different event type and
+        #   will provide more in-depth information about this notification.
         attribute(:payload, Payload, null: false, from: "Payload")
 
         # @return [String] The payload version of the notification.

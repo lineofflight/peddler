@@ -88,24 +88,45 @@ module Peddler
       end
 
       class GetSellingPartnerMetricsRequest < Data
-        def self.new: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
-                    | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
-        def self.[]: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
-                   | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
+        def self.new: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?filters: Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters?, ?metrics: Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
+                    | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters?, Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
+        def self.[]: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?filters: Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters?, ?metrics: Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
+                   | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters?, Array[untyped]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
 
-        def self.members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :metrics ]
+        def self.members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :filters, :metrics ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequest
 
         attr_reader aggregation_frequency: String?
+        attr_reader filters: Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters?
         attr_reader marketplace_id: String
         attr_reader metrics: Array[untyped]?
         attr_reader program_types: Array[untyped]
         attr_reader time_interval: Peddler::APIs::Replenishment20221107::TimeInterval
         attr_reader time_period_type: String
 
-        def members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :metrics ]
-        def to_h: () -> { marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, aggregation_frequency: String?, metrics: Array[untyped]? }
+        def members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :filters, :metrics ]
+        def to_h: () -> { marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, aggregation_frequency: String?, filters: Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters?, metrics: Array[untyped]? }
+      end
+
+      class GetSellingPartnerMetricsRequestFilters < Data
+        def self.new: (?asins: Array[String]?, ?brand_names: Array[String]?, ?fulfillment_channel_types: Array[untyped]?, ?product_groups: Array[String]?, ?skus: Array[String]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters
+                    | (Array[String]?, Array[String]?, Array[untyped]?, Array[String]?, Array[String]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters
+        def self.[]: (?asins: Array[String]?, ?brand_names: Array[String]?, ?fulfillment_channel_types: Array[untyped]?, ?product_groups: Array[String]?, ?skus: Array[String]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters
+                   | (Array[String]?, Array[String]?, Array[untyped]?, Array[String]?, Array[String]?) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters
+
+        def self.members: () -> [ :asins, :brand_names, :fulfillment_channel_types, :product_groups, :skus ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::GetSellingPartnerMetricsRequestFilters
+
+        attr_reader asins: Array[String]?
+        attr_reader brand_names: Array[String]?
+        attr_reader fulfillment_channel_types: Array[untyped]?
+        attr_reader product_groups: Array[String]?
+        attr_reader skus: Array[String]?
+
+        def members: () -> [ :asins, :brand_names, :fulfillment_channel_types, :product_groups, :skus ]
+        def to_h: () -> { asins: Array[String]?, brand_names: Array[String]?, fulfillment_channel_types: Array[untyped]?, product_groups: Array[String]?, skus: Array[String]? }
       end
 
       class GetSellingPartnerMetricsResponse < Data
@@ -192,24 +213,28 @@ module Peddler
       end
 
       class ListOfferMetricsRequestFilters < Data
-        def self.new: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?asins: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
-                    | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
-        def self.[]: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?asins: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
-                   | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+        def self.new: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?asins: Array[String]?, ?brand_names: Array[String]?, ?fulfillment_channel_types: Array[untyped]?, ?product_groups: Array[String]?, ?skus: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+                    | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[String]?, Array[String]?, Array[untyped]?, Array[String]?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+        def self.[]: (marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, ?aggregation_frequency: String?, ?asins: Array[String]?, ?brand_names: Array[String]?, ?fulfillment_channel_types: Array[untyped]?, ?product_groups: Array[String]?, ?skus: Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
+                   | (String, Array[untyped], Peddler::APIs::Replenishment20221107::TimeInterval, String, String?, Array[String]?, Array[String]?, Array[untyped]?, Array[String]?, Array[String]?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
 
-        def self.members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :asins ]
+        def self.members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :asins, :brand_names, :fulfillment_channel_types, :product_groups, :skus ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsRequestFilters
 
         attr_reader aggregation_frequency: String?
         attr_reader asins: Array[String]?
+        attr_reader brand_names: Array[String]?
+        attr_reader fulfillment_channel_types: Array[untyped]?
         attr_reader marketplace_id: String
+        attr_reader product_groups: Array[String]?
         attr_reader program_types: Array[untyped]
+        attr_reader skus: Array[String]?
         attr_reader time_interval: Peddler::APIs::Replenishment20221107::TimeInterval
         attr_reader time_period_type: String
 
-        def members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :asins ]
-        def to_h: () -> { marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, aggregation_frequency: String?, asins: Array[String]? }
+        def members: () -> [ :marketplace_id, :program_types, :time_interval, :time_period_type, :aggregation_frequency, :asins, :brand_names, :fulfillment_channel_types, :product_groups, :skus ]
+        def to_h: () -> { marketplace_id: String, program_types: Array[untyped], time_interval: Peddler::APIs::Replenishment20221107::TimeInterval, time_period_type: String, aggregation_frequency: String?, asins: Array[String]?, brand_names: Array[String]?, fulfillment_channel_types: Array[untyped]?, product_groups: Array[String]?, skus: Array[String]? }
       end
 
       class ListOfferMetricsRequestPagination < Data
@@ -264,17 +289,18 @@ module Peddler
       end
 
       class ListOfferMetricsResponseOffer < Data
-        def self.new: (?active_subscriptions: Float?, ?asin: String?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?fulfillment_channel_type: String?, ?lost_revenue_due_to_oos: Float?, ?next30_day_shipped_subscription_units: Float?, ?next30_day_total_subscriptions_revenue: Float?, ?next60_day_shipped_subscription_units: Float?, ?next60_day_total_subscriptions_revenue: Float?, ?next90_day_shipped_subscription_units: Float?, ?next90_day_total_subscriptions_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?revenue_penetration: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?sku: String?, ?time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
-                    | (Float?, String?, Float?, String?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, String?, Peddler::APIs::Replenishment20221107::TimeInterval?, Float?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
-        def self.[]: (?active_subscriptions: Float?, ?asin: String?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?fulfillment_channel_type: String?, ?lost_revenue_due_to_oos: Float?, ?next30_day_shipped_subscription_units: Float?, ?next30_day_total_subscriptions_revenue: Float?, ?next60_day_shipped_subscription_units: Float?, ?next60_day_total_subscriptions_revenue: Float?, ?next90_day_shipped_subscription_units: Float?, ?next90_day_total_subscriptions_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?revenue_penetration: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?sku: String?, ?time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
-                   | (Float?, String?, Float?, String?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, String?, Peddler::APIs::Replenishment20221107::TimeInterval?, Float?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
+        def self.new: (?active_subscriptions: Float?, ?asin: String?, ?brand_name: String?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?fulfillment_channel_type: String?, ?lost_revenue_due_to_oos: Float?, ?next30_day_shipped_subscription_units: Float?, ?next30_day_total_subscriptions_revenue: Float?, ?next60_day_shipped_subscription_units: Float?, ?next60_day_total_subscriptions_revenue: Float?, ?next90_day_shipped_subscription_units: Float?, ?next90_day_total_subscriptions_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?product_group: String?, ?revenue_penetration: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?sku: String?, ?time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
+                    | (Float?, String?, String?, Float?, String?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, String?, Float?, Float?, Float?, String?, Peddler::APIs::Replenishment20221107::TimeInterval?, Float?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
+        def self.[]: (?active_subscriptions: Float?, ?asin: String?, ?brand_name: String?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?fulfillment_channel_type: String?, ?lost_revenue_due_to_oos: Float?, ?next30_day_shipped_subscription_units: Float?, ?next30_day_total_subscriptions_revenue: Float?, ?next60_day_shipped_subscription_units: Float?, ?next60_day_total_subscriptions_revenue: Float?, ?next90_day_shipped_subscription_units: Float?, ?next90_day_total_subscriptions_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?product_group: String?, ?revenue_penetration: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?sku: String?, ?time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
+                   | (Float?, String?, String?, Float?, String?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, String?, Float?, Float?, Float?, String?, Peddler::APIs::Replenishment20221107::TimeInterval?, Float?) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
 
-        def self.members: () -> [ :active_subscriptions, :asin, :coupons_revenue_penetration, :currency_code, :fulfillment_channel_type, :lost_revenue_due_to_oos, :next30_day_shipped_subscription_units, :next30_day_total_subscriptions_revenue, :next60_day_shipped_subscription_units, :next60_day_total_subscriptions_revenue, :next90_day_shipped_subscription_units, :next90_day_total_subscriptions_revenue, :not_delivered_due_to_oos, :revenue_penetration, :share_of_coupon_subscriptions, :shipped_subscription_units, :sku, :time_interval, :total_subscriptions_revenue ]
+        def self.members: () -> [ :active_subscriptions, :asin, :brand_name, :coupons_revenue_penetration, :currency_code, :fulfillment_channel_type, :lost_revenue_due_to_oos, :next30_day_shipped_subscription_units, :next30_day_total_subscriptions_revenue, :next60_day_shipped_subscription_units, :next60_day_total_subscriptions_revenue, :next90_day_shipped_subscription_units, :next90_day_total_subscriptions_revenue, :not_delivered_due_to_oos, :product_group, :revenue_penetration, :share_of_coupon_subscriptions, :shipped_subscription_units, :sku, :time_interval, :total_subscriptions_revenue ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Replenishment20221107::ListOfferMetricsResponseOffer
 
         attr_reader active_subscriptions: Float?
         attr_reader asin: String?
+        attr_reader brand_name: String?
         attr_reader coupons_revenue_penetration: Float?
         attr_reader currency_code: String?
         attr_reader fulfillment_channel_type: String?
@@ -286,6 +312,7 @@ module Peddler
         attr_reader next90_day_shipped_subscription_units: Float?
         attr_reader next90_day_total_subscriptions_revenue: Float?
         attr_reader not_delivered_due_to_oos: Float?
+        attr_reader product_group: String?
         attr_reader revenue_penetration: Float?
         attr_reader share_of_coupon_subscriptions: Float?
         attr_reader shipped_subscription_units: Float?
@@ -293,8 +320,8 @@ module Peddler
         attr_reader time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?
         attr_reader total_subscriptions_revenue: Float?
 
-        def members: () -> [ :active_subscriptions, :asin, :coupons_revenue_penetration, :currency_code, :fulfillment_channel_type, :lost_revenue_due_to_oos, :next30_day_shipped_subscription_units, :next30_day_total_subscriptions_revenue, :next60_day_shipped_subscription_units, :next60_day_total_subscriptions_revenue, :next90_day_shipped_subscription_units, :next90_day_total_subscriptions_revenue, :not_delivered_due_to_oos, :revenue_penetration, :share_of_coupon_subscriptions, :shipped_subscription_units, :sku, :time_interval, :total_subscriptions_revenue ]
-        def to_h: () -> { active_subscriptions: Float?, asin: String?, coupons_revenue_penetration: Float?, currency_code: String?, fulfillment_channel_type: String?, lost_revenue_due_to_oos: Float?, next30_day_shipped_subscription_units: Float?, next30_day_total_subscriptions_revenue: Float?, next60_day_shipped_subscription_units: Float?, next60_day_total_subscriptions_revenue: Float?, next90_day_shipped_subscription_units: Float?, next90_day_total_subscriptions_revenue: Float?, not_delivered_due_to_oos: Float?, revenue_penetration: Float?, share_of_coupon_subscriptions: Float?, shipped_subscription_units: Float?, sku: String?, time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, total_subscriptions_revenue: Float? }
+        def members: () -> [ :active_subscriptions, :asin, :brand_name, :coupons_revenue_penetration, :currency_code, :fulfillment_channel_type, :lost_revenue_due_to_oos, :next30_day_shipped_subscription_units, :next30_day_total_subscriptions_revenue, :next60_day_shipped_subscription_units, :next60_day_total_subscriptions_revenue, :next90_day_shipped_subscription_units, :next90_day_total_subscriptions_revenue, :not_delivered_due_to_oos, :product_group, :revenue_penetration, :share_of_coupon_subscriptions, :shipped_subscription_units, :sku, :time_interval, :total_subscriptions_revenue ]
+        def to_h: () -> { active_subscriptions: Float?, asin: String?, brand_name: String?, coupons_revenue_penetration: Float?, currency_code: String?, fulfillment_channel_type: String?, lost_revenue_due_to_oos: Float?, next30_day_shipped_subscription_units: Float?, next30_day_total_subscriptions_revenue: Float?, next60_day_shipped_subscription_units: Float?, next60_day_total_subscriptions_revenue: Float?, next90_day_shipped_subscription_units: Float?, next90_day_total_subscriptions_revenue: Float?, not_delivered_due_to_oos: Float?, product_group: String?, revenue_penetration: Float?, share_of_coupon_subscriptions: Float?, shipped_subscription_units: Float?, sku: String?, time_interval: Peddler::APIs::Replenishment20221107::TimeInterval?, total_subscriptions_revenue: Float? }
       end
 
       class ListOffersRequest < Data

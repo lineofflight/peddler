@@ -94,7 +94,7 @@ module Peddler
         def to_h: () -> { restrictions: Array[Peddler::APIs::ListingsRestrictions20210801::Restriction] }
       end
 
-      def get_listings_restrictions: (String, String, Array[String], ?condition_type: String?, ?reason_locale: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_listings_restrictions: (String, String, Array[String], ?condition_type: String?, ?reason_locale: String?, ?product_type: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

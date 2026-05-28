@@ -32,6 +32,9 @@ module Peddler
         #   buyer selected appointment windows when creating the order.
         attribute?(:preferred_appointment_times, [AppointmentTime], from: "preferredAppointmentTimes")
 
+        # @return [Array<String>] A list of associated product order IDs for the service job.
+        attribute?(:product_order_ids, [String], from: "productOrderIds")
+
         # @return [ScopeOfWork] The scope of work for the order.
         attribute?(:scope_of_work, ScopeOfWork, from: "scopeOfWork")
 
@@ -55,6 +58,9 @@ module Peddler
 
         # @return [String] The Amazon-defined identifier for the region scope.
         attribute?(:store_id, String, from: "storeId")
+
+        # @return [Array<String>] A list of associated product tracking IDs for the service job.
+        attribute?(:tracking_ids, [String], from: "trackingIds")
       end
     end
   end
