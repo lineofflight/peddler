@@ -97,7 +97,7 @@ module Peddler
         #   5% or above seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
         attribute?(:revenue_penetration_for5_plus_percent_seller_funding, Float, from: "revenuePenetrationFor5PlusPercentSellerFunding")
 
-        # @return [Float] The percentage of new subscriptions acquired through coupons. Applicable to `PERFORMANCE`
+        # @return [Float] The percentage of new subscriptions from coupons. Applicable to `PERFORMANCE`
         #   `timePeriodType`.
         attribute?(:share_of_coupon_subscriptions, Float, from: "shareOfCouponSubscriptions")
 
@@ -105,20 +105,20 @@ module Peddler
         #   `PERFORMANCE` and `FORECAST` `timePeriodType`.
         attribute?(:shipped_subscription_units, Float, from: "shippedSubscriptionUnits")
 
-        # @return [Float] Percentage of subscriptions created by offers with 0% seller-funded discount out of the total
-        #   number of new orders placed over the past 12 months
+        # @return [Float] Percentage of subscriptions from offers with 0% seller-funded discount out of the total number
+        #   of new orders placed over the past 12 months.
         attribute?(:signup_conversion_for0_percent_seller_funding, Float, from: "signupConversionFor0PercentSellerFunding")
 
-        # @return [Float] [Applicable only for Sellers] Percentage of subscriptions created by offers with 10%
-        #   seller-funded discount out of the total number of new orders placed over the past 12 months
+        # @return [Float] [Applicable only for Sellers] Percentage of subscriptions from offers with 10% seller-funded
+        #   discount out of the total number of new orders placed over the past 12 months.
         attribute?(:signup_conversion_for10_percent_seller_funding, Float, from: "signupConversionFor10PercentSellerFunding")
 
-        # @return [Float] [Applicable only for Sellers] Percentage of subscriptions created by offers with 5%
-        #   seller-funded discount out of the total number of new orders placed over the past 12 months
+        # @return [Float] [Applicable only for Sellers] Percentage of subscriptions from offers with 5% seller-funded
+        #   discount out of the total number of new orders placed over the past 12 months.
         attribute?(:signup_conversion_for5_percent_seller_funding, Float, from: "signupConversionFor5PercentSellerFunding")
 
-        # @return [Float] [Applicable only for Vendors] Percentage of subscriptions created by offers with 5% or above
-        #   seller-funded discount out of the total number of new orders placed over the past 12 months
+        # @return [Float] [Applicable only for Vendors] Percentage of subscriptions from offers with 5% or above
+        #   seller-funded discount out of the total number of new orders placed over the past 12 months.
         attribute?(:signup_conversion_for5_plus_percent_seller_funding, Float, from: "signupConversionFor5PlusPercentSellerFunding")
 
         # @return [Float] The average reorders per subscriber of the program over a period of 12 months. Applicable to

@@ -67,6 +67,28 @@ module Peddler
         def to_h: () -> { programs: Array[String] }
       end
 
+      class ApprovedAlternativeDetails < Array[ApprovedAttribute]
+        def self.parse: (Array[untyped]) -> ApprovedAlternativeDetails
+      end
+
+      class ApprovedAttribute < Data
+        def self.new: (approved_value: String, attribute_name: String, original_value: String) -> Peddler::APIs::OrdersV0::ApprovedAttribute
+                    | (String, String, String) -> Peddler::APIs::OrdersV0::ApprovedAttribute
+        def self.[]: (approved_value: String, attribute_name: String, original_value: String) -> Peddler::APIs::OrdersV0::ApprovedAttribute
+                   | (String, String, String) -> Peddler::APIs::OrdersV0::ApprovedAttribute
+
+        def self.members: () -> [ :approved_value, :attribute_name, :original_value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::ApprovedAttribute
+
+        attr_reader approved_value: String
+        attr_reader attribute_name: String
+        attr_reader original_value: String
+
+        def members: () -> [ :approved_value, :attribute_name, :original_value ]
+        def to_h: () -> { approved_value: String, attribute_name: String, original_value: String }
+      end
+
       class AssociatedItem < Data
         def self.new: (?association_type: String?, ?order_id: String?, ?order_item_id: String?) -> Peddler::APIs::OrdersV0::AssociatedItem
                     | (String?, String?, String?) -> Peddler::APIs::OrdersV0::AssociatedItem
@@ -477,6 +499,23 @@ module Peddler
 
         def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::OrdersV0::Error]?, payload: Peddler::APIs::OrdersV0::OrdersList? }
+      end
+
+      class InterimStatusDetail < Data
+        def self.new: (status_code: String, status_date_time: Time) -> Peddler::APIs::OrdersV0::InterimStatusDetail
+                    | (String, Time) -> Peddler::APIs::OrdersV0::InterimStatusDetail
+        def self.[]: (status_code: String, status_date_time: Time) -> Peddler::APIs::OrdersV0::InterimStatusDetail
+                   | (String, Time) -> Peddler::APIs::OrdersV0::InterimStatusDetail
+
+        def self.members: () -> [ :status_code, :status_date_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::InterimStatusDetail
+
+        attr_reader status_code: String
+        attr_reader status_date_time: Time
+
+        def members: () -> [ :status_code, :status_date_time ]
+        def to_h: () -> { status_code: String, status_date_time: Time }
       end
 
       class ItemBuyerInfo < Data
@@ -1011,12 +1050,12 @@ module Peddler
       end
 
       class RegulatedOrderVerificationStatus < Data
-        def self.new: (requires_merchant_action: bool, status: String, valid_rejection_reasons: Array[Peddler::APIs::OrdersV0::RejectionReason], ?external_reviewer_id: String?, ?rejection_reason: Peddler::APIs::OrdersV0::RejectionReason?, ?review_date: String?, ?valid_verification_details: Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
-                    | (bool, String, Array[Peddler::APIs::OrdersV0::RejectionReason], String?, Peddler::APIs::OrdersV0::RejectionReason?, String?, Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
-        def self.[]: (requires_merchant_action: bool, status: String, valid_rejection_reasons: Array[Peddler::APIs::OrdersV0::RejectionReason], ?external_reviewer_id: String?, ?rejection_reason: Peddler::APIs::OrdersV0::RejectionReason?, ?review_date: String?, ?valid_verification_details: Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
-                   | (bool, String, Array[Peddler::APIs::OrdersV0::RejectionReason], String?, Peddler::APIs::OrdersV0::RejectionReason?, String?, Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
+        def self.new: (requires_merchant_action: bool, status: String, valid_rejection_reasons: Array[Peddler::APIs::OrdersV0::RejectionReason], ?external_reviewer_id: String?, ?rejection_reason: Peddler::APIs::OrdersV0::RejectionReason?, ?review_date: String?, ?valid_interim_status_codes: Array[Peddler::APIs::OrdersV0::ValidInterimStatusCode]?, ?valid_verification_details: Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
+                    | (bool, String, Array[Peddler::APIs::OrdersV0::RejectionReason], String?, Peddler::APIs::OrdersV0::RejectionReason?, String?, Array[Peddler::APIs::OrdersV0::ValidInterimStatusCode]?, Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
+        def self.[]: (requires_merchant_action: bool, status: String, valid_rejection_reasons: Array[Peddler::APIs::OrdersV0::RejectionReason], ?external_reviewer_id: String?, ?rejection_reason: Peddler::APIs::OrdersV0::RejectionReason?, ?review_date: String?, ?valid_interim_status_codes: Array[Peddler::APIs::OrdersV0::ValidInterimStatusCode]?, ?valid_verification_details: Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
+                   | (bool, String, Array[Peddler::APIs::OrdersV0::RejectionReason], String?, Peddler::APIs::OrdersV0::RejectionReason?, String?, Array[Peddler::APIs::OrdersV0::ValidInterimStatusCode]?, Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
 
-        def self.members: () -> [ :requires_merchant_action, :status, :valid_rejection_reasons, :external_reviewer_id, :rejection_reason, :review_date, :valid_verification_details ]
+        def self.members: () -> [ :requires_merchant_action, :status, :valid_rejection_reasons, :external_reviewer_id, :rejection_reason, :review_date, :valid_interim_status_codes, :valid_verification_details ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::RegulatedOrderVerificationStatus
 
@@ -1025,12 +1064,13 @@ module Peddler
         attr_reader requires_merchant_action: bool
         attr_reader review_date: String?
         attr_reader status: String
+        attr_reader valid_interim_status_codes: Array[Peddler::APIs::OrdersV0::ValidInterimStatusCode]?
         attr_reader valid_rejection_reasons: Array[Peddler::APIs::OrdersV0::RejectionReason]
         attr_reader valid_verification_details: Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]?
 
-        def members: () -> [ :requires_merchant_action, :status, :valid_rejection_reasons, :external_reviewer_id, :rejection_reason, :review_date, :valid_verification_details ]
+        def members: () -> [ :requires_merchant_action, :status, :valid_rejection_reasons, :external_reviewer_id, :rejection_reason, :review_date, :valid_interim_status_codes, :valid_verification_details ]
         def requires_merchant_action?: () -> bool
-        def to_h: () -> { requires_merchant_action: bool, status: String, valid_rejection_reasons: Array[Peddler::APIs::OrdersV0::RejectionReason], external_reviewer_id: String?, rejection_reason: Peddler::APIs::OrdersV0::RejectionReason?, review_date: String?, valid_verification_details: Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]? }
+        def to_h: () -> { requires_merchant_action: bool, status: String, valid_rejection_reasons: Array[Peddler::APIs::OrdersV0::RejectionReason], external_reviewer_id: String?, rejection_reason: Peddler::APIs::OrdersV0::RejectionReason?, review_date: String?, valid_interim_status_codes: Array[Peddler::APIs::OrdersV0::ValidInterimStatusCode]?, valid_verification_details: Array[Peddler::APIs::OrdersV0::ValidVerificationDetail]? }
       end
 
       class RejectionReason < Data
@@ -1233,6 +1273,23 @@ module Peddler
         def to_h: () -> { external_reviewer_id: String, rejection_reason_id: String?, status: String?, verification_details: Peddler::APIs::OrdersV0::VerificationDetails? }
       end
 
+      class ValidInterimStatusCode < Data
+        def self.new: (status_code: String, status_description: String) -> Peddler::APIs::OrdersV0::ValidInterimStatusCode
+                    | (String, String) -> Peddler::APIs::OrdersV0::ValidInterimStatusCode
+        def self.[]: (status_code: String, status_description: String) -> Peddler::APIs::OrdersV0::ValidInterimStatusCode
+                   | (String, String) -> Peddler::APIs::OrdersV0::ValidInterimStatusCode
+
+        def self.members: () -> [ :status_code, :status_description ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::ValidInterimStatusCode
+
+        attr_reader status_code: String
+        attr_reader status_description: String
+
+        def members: () -> [ :status_code, :status_description ]
+        def to_h: () -> { status_code: String, status_description: String }
+      end
+
       class ValidVerificationDetail < Data
         def self.new: (valid_verification_statuses: Array[untyped], verification_detail_type: String) -> Peddler::APIs::OrdersV0::ValidVerificationDetail
                     | (Array[untyped], String) -> Peddler::APIs::OrdersV0::ValidVerificationDetail
@@ -1251,19 +1308,21 @@ module Peddler
       end
 
       class VerificationDetails < Data
-        def self.new: (?prescription_detail: Peddler::APIs::OrdersV0::PrescriptionDetail?) -> Peddler::APIs::OrdersV0::VerificationDetails
-                    | (Peddler::APIs::OrdersV0::PrescriptionDetail?) -> Peddler::APIs::OrdersV0::VerificationDetails
-        def self.[]: (?prescription_detail: Peddler::APIs::OrdersV0::PrescriptionDetail?) -> Peddler::APIs::OrdersV0::VerificationDetails
-                   | (Peddler::APIs::OrdersV0::PrescriptionDetail?) -> Peddler::APIs::OrdersV0::VerificationDetails
+        def self.new: (?approved_alternative_details: Array[Peddler::APIs::OrdersV0::ApprovedAttribute]?, ?interim_status_detail: Peddler::APIs::OrdersV0::InterimStatusDetail?, ?prescription_detail: Peddler::APIs::OrdersV0::PrescriptionDetail?) -> Peddler::APIs::OrdersV0::VerificationDetails
+                    | (Array[Peddler::APIs::OrdersV0::ApprovedAttribute]?, Peddler::APIs::OrdersV0::InterimStatusDetail?, Peddler::APIs::OrdersV0::PrescriptionDetail?) -> Peddler::APIs::OrdersV0::VerificationDetails
+        def self.[]: (?approved_alternative_details: Array[Peddler::APIs::OrdersV0::ApprovedAttribute]?, ?interim_status_detail: Peddler::APIs::OrdersV0::InterimStatusDetail?, ?prescription_detail: Peddler::APIs::OrdersV0::PrescriptionDetail?) -> Peddler::APIs::OrdersV0::VerificationDetails
+                   | (Array[Peddler::APIs::OrdersV0::ApprovedAttribute]?, Peddler::APIs::OrdersV0::InterimStatusDetail?, Peddler::APIs::OrdersV0::PrescriptionDetail?) -> Peddler::APIs::OrdersV0::VerificationDetails
 
-        def self.members: () -> [ :prescription_detail ]
+        def self.members: () -> [ :approved_alternative_details, :interim_status_detail, :prescription_detail ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::OrdersV0::VerificationDetails
 
+        attr_reader approved_alternative_details: Array[Peddler::APIs::OrdersV0::ApprovedAttribute]?
+        attr_reader interim_status_detail: Peddler::APIs::OrdersV0::InterimStatusDetail?
         attr_reader prescription_detail: Peddler::APIs::OrdersV0::PrescriptionDetail?
 
-        def members: () -> [ :prescription_detail ]
-        def to_h: () -> { prescription_detail: Peddler::APIs::OrdersV0::PrescriptionDetail? }
+        def members: () -> [ :approved_alternative_details, :interim_status_detail, :prescription_detail ]
+        def to_h: () -> { approved_alternative_details: Array[Peddler::APIs::OrdersV0::ApprovedAttribute]?, interim_status_detail: Peddler::APIs::OrdersV0::InterimStatusDetail?, prescription_detail: Peddler::APIs::OrdersV0::PrescriptionDetail? }
       end
 
       def confirm_shipment: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

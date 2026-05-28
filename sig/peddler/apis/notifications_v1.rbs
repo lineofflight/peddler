@@ -375,19 +375,54 @@ module Peddler
       end
 
       class ProcessingDirective < Data
-        def self.new: (?event_filter: Peddler::APIs::NotificationsV1::EventFilter?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
-                    | (Peddler::APIs::NotificationsV1::EventFilter?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
-        def self.[]: (?event_filter: Peddler::APIs::NotificationsV1::EventFilter?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
-                   | (Peddler::APIs::NotificationsV1::EventFilter?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
+        def self.new: (?event_filter: Peddler::APIs::NotificationsV1::EventFilter?, ?filter_expression: String?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
+                    | (Peddler::APIs::NotificationsV1::EventFilter?, String?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
+        def self.[]: (?event_filter: Peddler::APIs::NotificationsV1::EventFilter?, ?filter_expression: String?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
+                   | (Peddler::APIs::NotificationsV1::EventFilter?, String?) -> Peddler::APIs::NotificationsV1::ProcessingDirective
 
-        def self.members: () -> [ :event_filter ]
+        def self.members: () -> [ :event_filter, :filter_expression ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::ProcessingDirective
 
         attr_reader event_filter: Peddler::APIs::NotificationsV1::EventFilter?
+        attr_reader filter_expression: String?
 
-        def members: () -> [ :event_filter ]
-        def to_h: () -> { event_filter: Peddler::APIs::NotificationsV1::EventFilter? }
+        def members: () -> [ :event_filter, :filter_expression ]
+        def to_h: () -> { event_filter: Peddler::APIs::NotificationsV1::EventFilter?, filter_expression: String? }
+      end
+
+      class SendTestNotificationRequest < Data
+        def self.new: (?destination_id: String?, ?test_notification: Peddler::APIs::NotificationsV1::TestNotification?) -> Peddler::APIs::NotificationsV1::SendTestNotificationRequest
+                    | (String?, Peddler::APIs::NotificationsV1::TestNotification?) -> Peddler::APIs::NotificationsV1::SendTestNotificationRequest
+        def self.[]: (?destination_id: String?, ?test_notification: Peddler::APIs::NotificationsV1::TestNotification?) -> Peddler::APIs::NotificationsV1::SendTestNotificationRequest
+                   | (String?, Peddler::APIs::NotificationsV1::TestNotification?) -> Peddler::APIs::NotificationsV1::SendTestNotificationRequest
+
+        def self.members: () -> [ :destination_id, :test_notification ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::SendTestNotificationRequest
+
+        attr_reader destination_id: String?
+        attr_reader test_notification: Peddler::APIs::NotificationsV1::TestNotification?
+
+        def members: () -> [ :destination_id, :test_notification ]
+        def to_h: () -> { destination_id: String?, test_notification: Peddler::APIs::NotificationsV1::TestNotification? }
+      end
+
+      class SendTestNotificationResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: String?) -> Peddler::APIs::NotificationsV1::SendTestNotificationResponse
+                    | (Array[Peddler::APIs::NotificationsV1::Error]?, String?) -> Peddler::APIs::NotificationsV1::SendTestNotificationResponse
+        def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: String?) -> Peddler::APIs::NotificationsV1::SendTestNotificationResponse
+                   | (Array[Peddler::APIs::NotificationsV1::Error]?, String?) -> Peddler::APIs::NotificationsV1::SendTestNotificationResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::SendTestNotificationResponse
+
+        attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
+        attr_reader payload: String?
+
+        def members: () -> [ :errors, :payload ]
+        def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: String? }
       end
 
       class SqsResource < Data
@@ -425,6 +460,23 @@ module Peddler
         def to_h: () -> { destination_id: String, payload_version: String, subscription_id: String, processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective? }
       end
 
+      class TestNotification < Data
+        def self.new: (payload_version: String, ?test_scenario: String?) -> Peddler::APIs::NotificationsV1::TestNotification
+                    | (String, String?) -> Peddler::APIs::NotificationsV1::TestNotification
+        def self.[]: (payload_version: String, ?test_scenario: String?) -> Peddler::APIs::NotificationsV1::TestNotification
+                   | (String, String?) -> Peddler::APIs::NotificationsV1::TestNotification
+
+        def self.members: () -> [ :payload_version, :test_scenario ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::TestNotification
+
+        attr_reader payload_version: String
+        attr_reader test_scenario: String?
+
+        def members: () -> [ :payload_version, :test_scenario ]
+        def to_h: () -> { payload_version: String, test_scenario: String? }
+      end
+
       def create_destination: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def create_subscription: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
 
@@ -436,6 +488,8 @@ module Peddler
       def get_subscription: (String, ?payload_version: String?, ?rate_limit: Float) -> Peddler::Response
 
       def get_subscription_by_id: (String, String, ?rate_limit: Float) -> Peddler::Response
+
+      def send_test_notification: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

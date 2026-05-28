@@ -18,7 +18,8 @@ module Peddler
         attribute(:valid_verification_statuses, Array, null: false, from: "ValidVerificationStatuses")
 
         # @return [String] A supported type of verification detail. The type indicates which verification detail could
-        #   be shared while updating the regulated order. Valid value: `prescriptionDetail`.
+        #   be shared while updating the regulated order. Valid values: `prescriptionDetail`,
+        #   `approvedAlternativeDetails`, `interimStatusDetail`.
         attribute(:verification_detail_type, String, null: false, from: "VerificationDetailType")
       end
     end

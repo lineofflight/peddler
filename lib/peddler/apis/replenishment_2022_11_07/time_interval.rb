@@ -8,20 +8,23 @@ require "time"
 module Peddler
   module APIs
     class Replenishment20221107
-      # A date-time interval in ISO 8601 format which is used to compute metrics. Only the date is required, but you
-      # must pass the complete date and time value. For example, November 11, 2022 should be passed as
-      # "2022-11-11T00:00:00Z". Note that only data for the trailing 2 years is supported.
+      # A date-time interval in ISO 8601 format used to compute metrics. Only the date is required, but you must pass
+      # the complete date and time value. For example, November 11, 2022 should be passed as "2022-11-11T00:00:00Z".
+      # Note that only data for the trailing 2 years is supported.
       #
-      # **Note**: The `listOfferMetrics` operation only supports a time interval which covers a single unit of the
+      # **Note**: * The `listOfferMetrics` operation only supports a time interval which covers a single unit of the
       # aggregation frequency. For example, for a MONTH aggregation frequency, the duration of the interval between the
       # startDate and endDate can not be more than 1 month.
+      # * For the `getSellingPartnerMetrics` operation with DAY aggregation frequency, the time interval cannot exceed
+      # 31 days.
       TimeInterval = Structure.new do
         # @return [Time] When this object is used as a request parameter, the specified `endDate` is adjusted based on
         #   the aggregation frequency.
         #
+        # * For `DAY` the metric is computed up to the specific day indicated by the `endDate`.
         # * For `WEEK` the metric is computed up to the last day of the week (Sunday, based on ISO 8601) that contains
         #   the `endDate`.
-        # * For `MONTH`, the metric is computed up to the last day that contains the `endDate`.
+        # * For `MONTH`, the metric is computed up to the last day of the month that contains the `endDate`.
         # * For `QUARTER` the metric is computed up to the last day of the quarter that contains the `endDate`.
         # * For `YEAR` the metric is computed up to the last day of the year that contains the `endDate`.
         # Note: The end date may be adjusted to a lower value based on the data available in our system.
@@ -30,7 +33,8 @@ module Peddler
         # @return [Time] When this object is used as a request parameter, the specified `startDate` is adjusted based on
         #   the aggregation frequency.
         #
-        # * For `WEEK` the metric is computed from the first day of the week (Sunday, based on ISO 8601) that contains
+        # * For `DAY` the metric is computed from the specific day indicated by the `startDate`.
+        # * For `WEEK` the metric is computed from the first day of the week (Monday, based on ISO 8601) that contains
         #   the `startDate`.
         # * For `MONTH` the metric is computed from the first day of the month that contains the `startDate`.
         # * For `QUARTER` the metric is computed from the first day of the quarter that contains the `startDate`.

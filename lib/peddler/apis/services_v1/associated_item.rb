@@ -21,6 +21,9 @@ module Peddler
         # @return [String] The status of the item.
         attribute?(:item_status, String, from: "itemStatus")
 
+        # @return [Array<LinkedAsset>] A list of customer-owned assets on which the service must be performed.
+        attribute?(:linked_assets, [LinkedAsset], from: "linkedAssets")
+
         # @return [String] The Amazon-defined identifier for an order placed by the buyer in 3-7-7 format.
         attribute?(:order_id, String, from: "orderId")
 

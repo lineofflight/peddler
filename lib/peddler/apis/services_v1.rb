@@ -57,6 +57,10 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param service_order_ids [Array<String>] List of service order ids for the query you want to perform.Max values
       #   supported 20.
+      # @param product_order_ids [Array<String>] A list of up to 20 associated product order IDs. You can use these IDs
+      #   to query service jobs.
+      # @param tracking_ids [Array<String>] A list of up to 20 associated product tracking IDs. You can use these IDs to
+      #   query service jobs.
       # @param service_job_status [Array<String>] A list of one or more job status by which to filter the list of jobs.
       # @param page_token [String] String returned in the response of your previous request.
       # @param page_size [Integer] A non-negative integer that indicates the maximum number of jobs to return in the
@@ -87,13 +91,15 @@ module Peddler
       #   is 50.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_service_jobs(marketplace_ids, service_order_ids: nil, service_job_status: nil, page_token: nil,
-        page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil,
-        last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil,
-        required_skills: nil, store_ids: nil, rate_limit: 10.0)
+      def get_service_jobs(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil,
+        service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil,
+        created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil,
+        schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, rate_limit: 10.0)
         path = "/service/v1/serviceJobs"
         params = {
           "serviceOrderIds" => stringify_array(service_order_ids),
+          "productOrderIds" => stringify_array(product_order_ids),
+          "trackingIds" => stringify_array(tracking_ids),
           "serviceJobStatus" => stringify_array(service_job_status),
           "pageToken" => page_token,
           "pageSize" => page_size,

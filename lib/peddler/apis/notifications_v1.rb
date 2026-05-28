@@ -16,14 +16,15 @@ module Peddler
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     class NotificationsV1 < API
       # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
-      # is an optional parameter. When `payloadVersion` is not provided, it will return latest payload version
-      # subscription's information. You can use this API to get subscription information when you do not have a
+      # is an optional parameter. When you do not provide `payloadVersion`, the operation returns the latest payload
+      # version subscription's information. You can use this API to get subscription information when you do not have a
       # subscription identifier.
       #
       # @note This operation can make a static sandbox call.
-      # @param payload_version [String] The version of the payload object to be used in the notification.
       # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param payload_version [String] The version of the payload object to be used in the notification.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_subscription(notification_type, payload_version: nil, rate_limit: 1.0)
@@ -36,14 +37,15 @@ module Peddler
       end
 
       # Creates a subscription for the specified notification type to be delivered to the specified destination. Before
-      # you can subscribe, you must first create the destination by calling the `createDestination` operation. In cases
-      # where the specified notification type supports multiple payload versions, you can utilize this API to subscribe
+      # you can subscribe, you must first create the destination by calling the `createDestination` operation. If the
+      # notification type that you specify supports multiple payload versions, you can use this operation to subscribe
       # to a different payload version if you already have an existing subscription for a different payload version.
       #
       # @note This operation can make a static sandbox call.
-      # @param body [Hash]
+      # @param body [Hash] The request schema for the `createSubscription` operation.
       # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_subscription(body, notification_type, rate_limit: 1.0)
@@ -54,12 +56,14 @@ module Peddler
 
       # Returns information about a subscription for the specified notification type. The `getSubscriptionById`
       # operation is grantless. For more information, refer to [Grantless
-      # operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
+      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
+      # Developer Guide.
       #
       # @note This operation can make a static sandbox call.
       # @param subscription_id [String] The identifier for the subscription that you want to get.
       # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
@@ -72,12 +76,14 @@ module Peddler
       # subscription identifier can be for any subscription associated with your application. After you successfully
       # call this operation, notifications will stop being sent for the associated subscription. The
       # `deleteSubscriptionById` operation is grantless. For more information, refer to [Grantless
-      # operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
+      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
+      # Developer Guide.
       #
       # @note This operation can make a static sandbox call.
       # @param subscription_id [String] The identifier for the subscription that you want to delete.
       # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
@@ -86,8 +92,27 @@ module Peddler
         delete(path, rate_limit:, parser:)
       end
 
+      # Sends a mock notification of the specified type to your SQS. The `sendTestNotification` API is grantless. For
+      # more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash] The request schema for the `sendTestNotification` operation.
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def send_test_notification(body, notification_type, rate_limit: 1.0)
+        must_sandbox!
+
+        path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}/testNotification"
+        parser = -> { SendTestNotificationResponse }
+        post(path, body:, rate_limit:, parser:)
+      end
+
       # Returns information about all destinations. The `getDestinations` operation is grantless. For more information,
-      # refer to [Grantless operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
+      # refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the
+      # Selling Partner API Developer Guide.
       #
       # @note This operation can make a static sandbox call.
       # @param rate_limit [Float] Requests per second
@@ -100,10 +125,11 @@ module Peddler
 
       # Creates a destination resource to receive notifications. The `createDestination` operation is grantless. For
       # more information, refer to [Grantless
-      # operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
+      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
+      # Developer Guide.
       #
       # @note This operation can make a static sandbox call.
-      # @param body [Hash]
+      # @param body [Hash] The request schema for the `createDestination` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_destination(body, rate_limit: 1.0)
@@ -114,7 +140,8 @@ module Peddler
 
       # Returns information about the destination that you specify. The `getDestination` operation is grantless. For
       # more information, refer to [Grantless
-      # operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
+      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
+      # Developer Guide.
       #
       # @note This operation can make a static sandbox call.
       # @param destination_id [String] The identifier generated when you created the destination.
@@ -127,7 +154,8 @@ module Peddler
       end
 
       # Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information,
-      # refer to [Grantless operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
+      # refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the
+      # Selling Partner API Developer Guide.
       #
       # @note This operation can make a static sandbox call.
       # @param destination_id [String] The identifier for the destination that you want to delete.

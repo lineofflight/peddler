@@ -17,6 +17,9 @@ module Peddler
         # @return [String] The Amazon Standard Identification Number (ASIN).
         attribute?(:asin, String)
 
+        # @return [String] The brand name associated with the offer.
+        attribute?(:brand_name, String, from: "brandName")
+
         # @return [Float] The percentage of revenue from ASINs with coupons out of total revenue from all ASINs.
         #   Applicable to `PERFORMANCE` `timePeriodType`.
         attribute?(:coupons_revenue_penetration, Float, from: "couponsRevenuePenetration")
@@ -60,11 +63,15 @@ module Peddler
         #   time due to being out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
         attribute?(:not_delivered_due_to_oos, Float, from: "notDeliveredDueToOOS")
 
+        # @return [String] The product group associated with the offer. This property is only supported for vendors and
+        #   not for sellers.
+        attribute?(:product_group, String, from: "productGroup")
+
         # @return [Float] The percentage of total program revenue out of total product revenue. Applicable to
         #   `PERFORMANCE` `timePeriodType`.
         attribute?(:revenue_penetration, Float, from: "revenuePenetration")
 
-        # @return [Float] The percentage of new subscriptions acquired through coupons. Applicable to `PERFORMANCE`
+        # @return [Float] The percentage of new subscriptions from coupons. Applicable to `PERFORMANCE`
         #   `timePeriodType`.
         attribute?(:share_of_coupon_subscriptions, Float, from: "shareOfCouponSubscriptions")
 

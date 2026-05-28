@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class NotificationsV1
-      # Information about the destination created when you call the `createDestination` operation.
+      # Information about the destination you create when you call the `createDestination` operation.
       Destination = Structure.new do
         # @return [String] The destination identifier generated when you created the destination.
         attribute(:destination_id, String, null: false, from: "destinationId")

@@ -28,6 +28,11 @@ module Peddler
         # @return [String]
         attribute?(:aggregation_frequency, String, from: "aggregationFrequency")
 
+        # @return [GetSellingPartnerMetricsRequestFilters] Use these parameters to filter results. Any result must match
+        #   all provided parameters. For parameters that accept multiple values (arrays), the API returns results that
+        #   match at least one value in the array.
+        attribute?(:filters, GetSellingPartnerMetricsRequestFilters)
+
         # @return [Array<Metric>] The list of metrics requested. If no metric value is provided, data for all metrics
         #   will be returned.
         attribute?(:metrics, Array)

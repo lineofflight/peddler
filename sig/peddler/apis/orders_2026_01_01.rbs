@@ -225,6 +225,22 @@ module Peddler
         def to_h: () -> { exception_date: Date?, exception_date_type: String?, time_windows: Array[Peddler::APIs::Orders20260101::TimeWindow]? }
       end
 
+      class FulfillmentOrder < Data
+        def self.new: (fulfillment_order_id: String) -> Peddler::APIs::Orders20260101::FulfillmentOrder
+                    | (String) -> Peddler::APIs::Orders20260101::FulfillmentOrder
+        def self.[]: (fulfillment_order_id: String) -> Peddler::APIs::Orders20260101::FulfillmentOrder
+                   | (String) -> Peddler::APIs::Orders20260101::FulfillmentOrder
+
+        def self.members: () -> [ :fulfillment_order_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::FulfillmentOrder
+
+        attr_reader fulfillment_order_id: String
+
+        def members: () -> [ :fulfillment_order_id ]
+        def to_h: () -> { fulfillment_order_id: String }
+      end
+
       class GetOrderResponse < Data
         def self.new: (order: Peddler::APIs::Orders20260101::Order) -> Peddler::APIs::Orders20260101::GetOrderResponse
                     | (Peddler::APIs::Orders20260101::Order) -> Peddler::APIs::Orders20260101::GetOrderResponse
@@ -478,21 +494,21 @@ module Peddler
       end
 
       class ItemProceedsBreakdown < Data
-        def self.new: (?detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, ?subtotal: Peddler::Money?, ?type: String?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
-                    | (Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, Peddler::Money?, String?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
-        def self.[]: (?detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, ?subtotal: Peddler::Money?, ?type: String?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
-                   | (Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, Peddler::Money?, String?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+        def self.new: (subtotal: Peddler::Money, type: String, ?detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+                    | (Peddler::Money, String, Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+        def self.[]: (subtotal: Peddler::Money, type: String, ?detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
+                   | (Peddler::Money, String, Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
 
-        def self.members: () -> [ :detailed_breakdowns, :subtotal, :type ]
+        def self.members: () -> [ :subtotal, :type, :detailed_breakdowns ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemProceedsBreakdown
 
         attr_reader detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?
-        attr_reader subtotal: Peddler::Money?
-        attr_reader type: String?
+        attr_reader subtotal: Peddler::Money
+        attr_reader type: String
 
-        def members: () -> [ :detailed_breakdowns, :subtotal, :type ]
-        def to_h: () -> { detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]?, subtotal: Peddler::Money?, type: String? }
+        def members: () -> [ :subtotal, :type, :detailed_breakdowns ]
+        def to_h: () -> { subtotal: Peddler::Money, type: String, detailed_breakdowns: Array[Peddler::APIs::Orders20260101::ItemProceedsDetailedBreakdown]? }
       end
 
       class ItemProceedsDetailedBreakdown < Data
@@ -734,12 +750,12 @@ module Peddler
       end
 
       class Order < Data
-        def self.new: (created_time: Time, last_updated_time: Time, order_id: String, order_items: Array[Peddler::APIs::Orders20260101::OrderItem], sales_channel: Peddler::APIs::Orders20260101::SalesChannel, ?associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, ?buyer: Peddler::APIs::Orders20260101::Buyer?, ?fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, ?order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, ?packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, ?payment: Peddler::APIs::Orders20260101::OrderPayment?, ?proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, ?programs: Array[String]?, ?recipient: Peddler::APIs::Orders20260101::Recipient?, ?tax: Peddler::APIs::Orders20260101::OrderTax?) -> Peddler::APIs::Orders20260101::Order
-                    | (Time, Time, String, Array[Peddler::APIs::Orders20260101::OrderItem], Peddler::APIs::Orders20260101::SalesChannel, Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, Peddler::APIs::Orders20260101::Buyer?, Peddler::APIs::Orders20260101::OrderFulfillment?, Array[Peddler::APIs::Orders20260101::Alias]?, Array[Peddler::APIs::Orders20260101::OrderPackage]?, Peddler::APIs::Orders20260101::OrderPayment?, Peddler::APIs::Orders20260101::OrderProceeds?, Array[String]?, Peddler::APIs::Orders20260101::Recipient?, Peddler::APIs::Orders20260101::OrderTax?) -> Peddler::APIs::Orders20260101::Order
-        def self.[]: (created_time: Time, last_updated_time: Time, order_id: String, order_items: Array[Peddler::APIs::Orders20260101::OrderItem], sales_channel: Peddler::APIs::Orders20260101::SalesChannel, ?associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, ?buyer: Peddler::APIs::Orders20260101::Buyer?, ?fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, ?order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, ?packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, ?payment: Peddler::APIs::Orders20260101::OrderPayment?, ?proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, ?programs: Array[String]?, ?recipient: Peddler::APIs::Orders20260101::Recipient?, ?tax: Peddler::APIs::Orders20260101::OrderTax?) -> Peddler::APIs::Orders20260101::Order
-                   | (Time, Time, String, Array[Peddler::APIs::Orders20260101::OrderItem], Peddler::APIs::Orders20260101::SalesChannel, Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, Peddler::APIs::Orders20260101::Buyer?, Peddler::APIs::Orders20260101::OrderFulfillment?, Array[Peddler::APIs::Orders20260101::Alias]?, Array[Peddler::APIs::Orders20260101::OrderPackage]?, Peddler::APIs::Orders20260101::OrderPayment?, Peddler::APIs::Orders20260101::OrderProceeds?, Array[String]?, Peddler::APIs::Orders20260101::Recipient?, Peddler::APIs::Orders20260101::OrderTax?) -> Peddler::APIs::Orders20260101::Order
+        def self.new: (created_time: Time, last_updated_time: Time, order_id: String, order_items: Array[Peddler::APIs::Orders20260101::OrderItem], sales_channel: Peddler::APIs::Orders20260101::SalesChannel, ?associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, ?buyer: Peddler::APIs::Orders20260101::Buyer?, ?fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, ?fulfillment_orders: Array[Peddler::APIs::Orders20260101::FulfillmentOrder]?, ?order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, ?packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, ?payment: Peddler::APIs::Orders20260101::OrderPayment?, ?proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, ?programs: Array[String]?, ?recipient: Peddler::APIs::Orders20260101::Recipient?, ?tax: Peddler::APIs::Orders20260101::OrderTax?) -> Peddler::APIs::Orders20260101::Order
+                    | (Time, Time, String, Array[Peddler::APIs::Orders20260101::OrderItem], Peddler::APIs::Orders20260101::SalesChannel, Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, Peddler::APIs::Orders20260101::Buyer?, Peddler::APIs::Orders20260101::OrderFulfillment?, Array[Peddler::APIs::Orders20260101::FulfillmentOrder]?, Array[Peddler::APIs::Orders20260101::Alias]?, Array[Peddler::APIs::Orders20260101::OrderPackage]?, Peddler::APIs::Orders20260101::OrderPayment?, Peddler::APIs::Orders20260101::OrderProceeds?, Array[String]?, Peddler::APIs::Orders20260101::Recipient?, Peddler::APIs::Orders20260101::OrderTax?) -> Peddler::APIs::Orders20260101::Order
+        def self.[]: (created_time: Time, last_updated_time: Time, order_id: String, order_items: Array[Peddler::APIs::Orders20260101::OrderItem], sales_channel: Peddler::APIs::Orders20260101::SalesChannel, ?associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, ?buyer: Peddler::APIs::Orders20260101::Buyer?, ?fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, ?fulfillment_orders: Array[Peddler::APIs::Orders20260101::FulfillmentOrder]?, ?order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, ?packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, ?payment: Peddler::APIs::Orders20260101::OrderPayment?, ?proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, ?programs: Array[String]?, ?recipient: Peddler::APIs::Orders20260101::Recipient?, ?tax: Peddler::APIs::Orders20260101::OrderTax?) -> Peddler::APIs::Orders20260101::Order
+                   | (Time, Time, String, Array[Peddler::APIs::Orders20260101::OrderItem], Peddler::APIs::Orders20260101::SalesChannel, Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, Peddler::APIs::Orders20260101::Buyer?, Peddler::APIs::Orders20260101::OrderFulfillment?, Array[Peddler::APIs::Orders20260101::FulfillmentOrder]?, Array[Peddler::APIs::Orders20260101::Alias]?, Array[Peddler::APIs::Orders20260101::OrderPackage]?, Peddler::APIs::Orders20260101::OrderPayment?, Peddler::APIs::Orders20260101::OrderProceeds?, Array[String]?, Peddler::APIs::Orders20260101::Recipient?, Peddler::APIs::Orders20260101::OrderTax?) -> Peddler::APIs::Orders20260101::Order
 
-        def self.members: () -> [ :created_time, :last_updated_time, :order_id, :order_items, :sales_channel, :associated_orders, :buyer, :fulfillment, :order_aliases, :packages, :payment, :proceeds, :programs, :recipient, :tax ]
+        def self.members: () -> [ :created_time, :last_updated_time, :order_id, :order_items, :sales_channel, :associated_orders, :buyer, :fulfillment, :fulfillment_orders, :order_aliases, :packages, :payment, :proceeds, :programs, :recipient, :tax ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::Order
 
@@ -747,6 +763,7 @@ module Peddler
         attr_reader buyer: Peddler::APIs::Orders20260101::Buyer?
         attr_reader created_time: Time
         attr_reader fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?
+        attr_reader fulfillment_orders: Array[Peddler::APIs::Orders20260101::FulfillmentOrder]?
         attr_reader last_updated_time: Time
         attr_reader order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?
         attr_reader order_id: String
@@ -759,8 +776,8 @@ module Peddler
         attr_reader sales_channel: Peddler::APIs::Orders20260101::SalesChannel
         attr_reader tax: Peddler::APIs::Orders20260101::OrderTax?
 
-        def members: () -> [ :created_time, :last_updated_time, :order_id, :order_items, :sales_channel, :associated_orders, :buyer, :fulfillment, :order_aliases, :packages, :payment, :proceeds, :programs, :recipient, :tax ]
-        def to_h: () -> { created_time: Time, last_updated_time: Time, order_id: String, order_items: Array[Peddler::APIs::Orders20260101::OrderItem], sales_channel: Peddler::APIs::Orders20260101::SalesChannel, associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, buyer: Peddler::APIs::Orders20260101::Buyer?, fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, payment: Peddler::APIs::Orders20260101::OrderPayment?, proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, programs: Array[String]?, recipient: Peddler::APIs::Orders20260101::Recipient?, tax: Peddler::APIs::Orders20260101::OrderTax? }
+        def members: () -> [ :created_time, :last_updated_time, :order_id, :order_items, :sales_channel, :associated_orders, :buyer, :fulfillment, :fulfillment_orders, :order_aliases, :packages, :payment, :proceeds, :programs, :recipient, :tax ]
+        def to_h: () -> { created_time: Time, last_updated_time: Time, order_id: String, order_items: Array[Peddler::APIs::Orders20260101::OrderItem], sales_channel: Peddler::APIs::Orders20260101::SalesChannel, associated_orders: Array[Peddler::APIs::Orders20260101::AssociatedOrder]?, buyer: Peddler::APIs::Orders20260101::Buyer?, fulfillment: Peddler::APIs::Orders20260101::OrderFulfillment?, fulfillment_orders: Array[Peddler::APIs::Orders20260101::FulfillmentOrder]?, order_aliases: Array[Peddler::APIs::Orders20260101::Alias]?, packages: Array[Peddler::APIs::Orders20260101::OrderPackage]?, payment: Peddler::APIs::Orders20260101::OrderPayment?, proceeds: Peddler::APIs::Orders20260101::OrderProceeds?, programs: Array[String]?, recipient: Peddler::APIs::Orders20260101::Recipient?, tax: Peddler::APIs::Orders20260101::OrderTax? }
       end
 
       class OrderFulfillment < Data
@@ -851,19 +868,38 @@ module Peddler
       end
 
       class OrderProceeds < Data
-        def self.new: (?grand_total: Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
-                    | (Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
-        def self.[]: (?grand_total: Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
-                   | (Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
+        def self.new: (?breakdowns: Array[Peddler::APIs::Orders20260101::OrderProceedsBreakdown]?, ?grand_total: Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
+                    | (Array[Peddler::APIs::Orders20260101::OrderProceedsBreakdown]?, Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
+        def self.[]: (?breakdowns: Array[Peddler::APIs::Orders20260101::OrderProceedsBreakdown]?, ?grand_total: Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
+                   | (Array[Peddler::APIs::Orders20260101::OrderProceedsBreakdown]?, Peddler::Money?) -> Peddler::APIs::Orders20260101::OrderProceeds
 
-        def self.members: () -> [ :grand_total ]
+        def self.members: () -> [ :breakdowns, :grand_total ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::OrderProceeds
 
+        attr_reader breakdowns: Array[Peddler::APIs::Orders20260101::OrderProceedsBreakdown]?
         attr_reader grand_total: Peddler::Money?
 
-        def members: () -> [ :grand_total ]
-        def to_h: () -> { grand_total: Peddler::Money? }
+        def members: () -> [ :breakdowns, :grand_total ]
+        def to_h: () -> { breakdowns: Array[Peddler::APIs::Orders20260101::OrderProceedsBreakdown]?, grand_total: Peddler::Money? }
+      end
+
+      class OrderProceedsBreakdown < Data
+        def self.new: (subtotal: Peddler::Money, type: String, ?status: String?) -> Peddler::APIs::Orders20260101::OrderProceedsBreakdown
+                    | (Peddler::Money, String, String?) -> Peddler::APIs::Orders20260101::OrderProceedsBreakdown
+        def self.[]: (subtotal: Peddler::Money, type: String, ?status: String?) -> Peddler::APIs::Orders20260101::OrderProceedsBreakdown
+                   | (Peddler::Money, String, String?) -> Peddler::APIs::Orders20260101::OrderProceedsBreakdown
+
+        def self.members: () -> [ :subtotal, :type, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::OrderProceedsBreakdown
+
+        attr_reader status: String?
+        attr_reader subtotal: Peddler::Money
+        attr_reader type: String
+
+        def members: () -> [ :subtotal, :type, :status ]
+        def to_h: () -> { subtotal: Peddler::Money, type: String, status: String? }
       end
 
       class OrderTax < Data
