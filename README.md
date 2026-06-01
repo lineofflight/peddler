@@ -334,6 +334,10 @@ For complete method signatures, see [sig/peddler/apis/](sig/peddler/apis/)
 
 For a complete list of available APIs and their detailed documentation, refer to the [API models repository][openapi-models].
 
+## Best practices
+
+Writing efficient SP-API code? See the [best-practices checklist](skills/sp-api-ruby/best-practices.md) bundled with the agent skill: cutting call volume, batching, caching, API versions, reports, and per-API quirks.
+
 ## Development
 
 ```bash

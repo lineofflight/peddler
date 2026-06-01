@@ -4,23 +4,26 @@ Peddler is a Ruby library for Amazon's Selling Partner API (SP-API), using code 
 
 ## Critical: Generated vs. Manual Code
 
-**Never edit generated code** - changes will be overwritten:
+Never edit generated code; changes will be overwritten:
 - `lib/peddler/apis/`, `notifications/`, `reports/`, `feeds/`
 - `lib/peddler.rb`, `sig/peddler/{apis,notifications,reports,feeds}/*`
 
-**Safe to edit:**
+Safe to edit:
 - Core: `lib/peddler/*.rb`
 - Generator: `lib/generator/`
 - Tests: `test/`
 
 ## Commands
 
-- Test: `bundle exec ruby -Itest test/<path>_test.rb`
+- Test: `bundle exec ruby -Itest test/<path>_test.rb` (single file)
+- Full check: `bundle exec rake` (whole suite + lint); `bundle exec rake test` for tests only
 - Lint: `bundle exec rubocop <path>.rb -A`
 - Types: `bundle exec steep check`
-- Generate: `bundle exec rake generate` (runs in background, takes minutes)
+- Generate: `bundle exec rake generate`
 
 Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:reports`, `generate:feeds`, `generate:data_kiosk`
+
+Run above in background, some commands may takes minutes.
 
 ## Key Concepts
 
@@ -45,6 +48,4 @@ Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:r
 
 The [`sp-api-ruby` skill](skills/sp-api-ruby/SKILL.md) is the canonical source for SP-API spec/issue research. Keep that guidance there, not here, so the two can't drift.
 
-Generator-only: `rake generate` manages a local checkout of
-`selling-partner-api-models/` (gitignored, pinned by
-`selling-partner-api-models.sha`, not shipped in the gem).
+Generator-only: `rake generate` manages a local checkout of `selling-partner-api-models/` (gitignored, pinned by `selling-partner-api-models.sha`, not shipped in the gem).
