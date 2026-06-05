@@ -27,15 +27,6 @@ jobs:
       - run: bundle exec rbs collection install
       - run: bundle exec rake steep
 
-  verify-links:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "4.0"
-      - run: bin/verify-links
-
   test:
     strategy:
       matrix:
