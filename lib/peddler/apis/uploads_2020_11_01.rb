@@ -26,7 +26,7 @@ module Peddler
       #   create an upload destination for an Aplus content document, the `{resource}` would be
       #   `aplus/2020-11-01/contentDocuments` and the path would be
       #   `/uploads/2020-11-01/uploadDestinations/aplus/2020-11-01/contentDocuments`.
-      # @param content_type [String] The content type of the file you upload.
+      # @param content_type [String] The content type of the file you upload. This parameter is required for A+ content.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_upload_destination_for_resource(marketplace_ids, content_md5, resource, content_type: nil,
