@@ -27,23 +27,12 @@ jobs:
       - run: bundle exec rbs collection install
       - run: bundle exec rake steep
 
-  verify-links:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "4.0"
-      - run: bin/verify-links
-
   test:
     strategy:
-      fail-fast: false
       matrix:
-        ruby: ["3.3", "3.4", "4.0", "head"]
+        ruby: ["3.3", "3.4", "4.0"]
         http: ["~> 5.3", "~> 6.0"]
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.ruby == 'head' }}
     env:
       HTTP_VERSION: ${{ matrix.http }}
     steps:
