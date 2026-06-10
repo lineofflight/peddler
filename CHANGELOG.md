@@ -4,20 +4,21 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
-### Added
-
-- Amazon Warehousing and Distribution 2024-05-09: outbound order management (`list_outbounds`, `create_outbound`, `get_outbound`, `update_outbound`, `confirm_outbound`) and `get_label_page_types` for available label page types
-- Notifications v1: `send_test_notification` sandbox method; `filter_expression` field on `ProcessingDirective` for CEL-based payload filtering as an alternative to `event_filter`
-- Orders 2026-01-01: `fulfillment_orders` field on `Order` (EasyShip only); `breakdowns` field and new `OrderProceedsBreakdown` type on `OrderProceeds`
-- Orders v0: `approved_alternative_details` and `interim_status_detail` on `VerificationDetails`; `valid_interim_status_codes` on `RegulatedOrderVerificationStatus`
-- Services v1: `product_order_ids` and `tracking_ids` filter parameters on `get_service_jobs`; `linked_assets` field on `AssociatedItem` with new `LinkedAsset` type
-- Listings Restrictions 2021-08-01: optional `product_type` parameter on `get_listings_restrictions` for GTIN exemption evaluation
-- Product Type Definitions 2020-09-01: optional `parentage_level` parameter on `get_definitions_product_type`
-- Replenishment 2022-11-07: `filters` on `GetSellingPartnerMetrics` request; `brand_names`, `product_groups`, `skus`, and `fulfillment_channel_types` filters on `ListOfferMetrics` and `ListOffers`; `brand_name` and `product_group` fields on offer metrics response
-
 ### Changed
 
-- Orders 2026-01-01: `ItemProceedsBreakdown` fields `subtotal` and `type` are now required
+- Configure client retries (`retries` option) to use rate-limit-aware exponential backoff with randomized jitter on HTTP 429 (throttling) responses, and fallback standard exponential backoff for other transient (5xx and network) errors
+
+### Models
+
+- **Added**: Amazon Warehousing and Distribution 2024-05-09: outbound order management (`list_outbounds`, `create_outbound`, `get_outbound`, `update_outbound`, `confirm_outbound`) and `get_label_page_types` for available label page types
+- **Added**: Notifications v1: `send_test_notification` sandbox method; `filter_expression` field on `ProcessingDirective` for CEL-based payload filtering as an alternative to `event_filter`
+- **Added**: Orders 2026-01-01: `fulfillment_orders` field on `Order` (EasyShip only); `breakdowns` field and new `OrderProceedsBreakdown` type on `OrderProceeds`
+- **Added**: Orders v0: `approved_alternative_details` and `interim_status_detail` on `VerificationDetails`; `valid_interim_status_codes` on `RegulatedOrderVerificationStatus`
+- **Added**: Services v1: `product_order_ids` and `tracking_ids` filter parameters on `get_service_jobs`; `linked_assets` field on `AssociatedItem` with new `LinkedAsset` type
+- **Added**: Listings Restrictions 2021-08-01: optional `product_type` parameter on `get_listings_restrictions` for GTIN exemption evaluation
+- **Added**: Product Type Definitions 2020-09-01: optional `parentage_level` parameter on `get_definitions_product_type`
+- **Added**: Replenishment 2022-11-07: `filters` on `GetSellingPartnerMetrics` request; `brand_names`, `product_groups`, `skus`, and `fulfillment_channel_types` filters on `ListOfferMetrics` and `ListOffers`; `brand_name` and `product_group` fields on offer metrics response
+- **Changed**: Orders 2026-01-01: `ItemProceedsBreakdown` fields `subtotal` and `type` are now required
 
 ## [5.4.0] - 2026-05-18
 
@@ -25,12 +26,15 @@ All notable changes to this project will be documented in this file. This projec
 
 - `InternalFailure` error class
 - Optional `enableContentEncodingUrlHeader` parameter on Feeds and Reports document endpoints
-- New offer fields, filter, and metric in Replenishment 2022-11-07
-- `similar_items` field in Product Pricing 2022-05-01 competitive summary
 
 ### Changed
 
 - Drop support for Ruby 3.2
+
+### Models
+
+- **Added**: New offer fields, filter, and metric in Replenishment 2022-11-07
+- **Added**: `similar_items` field in Product Pricing 2022-05-01 competitive summary
 
 ## [5.3.1] - 2026-02-28
 
@@ -40,21 +44,18 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [5.3.0] - 2026-02-26
 
-### Added
+### Models
 
-- Add Data Kiosk Sales and Traffic 2024-04-24 query
-
-### Removed
-
-- Remove fulfillment plan endpoints from Orders v0
-- Remove shipment confirmation endpoints from Vendor Shipments v1
-- Remove Amazon Motors endpoints from Messaging v1
+- **Added**: Data Kiosk Sales and Traffic 2024-04-24 query
+- **Removed**: Fulfillment plan endpoints from Orders v0
+- **Removed**: Shipment confirmation endpoints from Vendor Shipments v1
+- **Removed**: Amazon Motors endpoints from Messaging v1
 
 ## [5.2.0] - 2026-01-29
 
-### Added
+### Models
 
-- Add Orders API 2026-01-01
+- **Added**: Orders API 2026-01-01
 
 ## [5.1.0] - 2026-01-26
 
@@ -70,7 +71,6 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
-- Add Data Kiosk API support with four schema versions
 - Type-safe parsing for Data Kiosk GraphQL responses
 - Parse SP-API notifications with type-safe data structures
 - Parse SP-API feed schemas with type-safe data structures
@@ -89,11 +89,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Fixed
 
-- Fix notification schemas marking optional fields as required
 - Fix Zeitwerk inflection for plural acronyms (URLs, APIs)
-- Fix incorrect type generation for B2B notification objects
-- Patch missing and incorrect data in notification schemas from Amazon's OpenAPI models
-- Separate colliding APIs in external-fulfillment and finances directories
 
 ### Removed
 
@@ -102,6 +98,14 @@ All notable changes to this project will be documented in this file. This projec
 - Remove `API#through` alias (use `API#via` instead)
 - Remove deprecated `Token::Error` class
 - Remove `typed` helpers (use `parse` directly)
+
+### Models
+
+- **Added**: Data Kiosk API support with four schema versions
+- **Fixed**: Notification schemas marking optional fields as required
+- **Fixed**: Incorrect type generation for B2B notification objects
+- **Fixed**: Patch missing and incorrect data in notification schemas from Amazon's OpenAPI models
+- **Fixed**: Separate colliding APIs in external-fulfillment and finances directories
 
 ## [4.9.0] - 2025-10-01
 

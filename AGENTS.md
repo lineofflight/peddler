@@ -44,6 +44,12 @@ Run above in background, some commands may takes minutes.
 - Assert `res.status.success?` for API responses
 - Pattern: `test/peddler/apis/catalog_items_2022_04_01_test.rb`
 
+## Changelog Guidelines
+
+When updating Amazon SP-API models or making core library changes, document the changes in `CHANGELOG.md` under the `## [Unreleased]` section following these rules:
+1. **Core Gem Changes**: Document library changes (such as client initialization, retries, parsing, and general features) under the standard SemVer headers (`### Added`, `### Changed`, `### Removed`).
+2. **SP-API Model Updates**: Group all auto-generated model updates (additions, modifications, and deprecations of Amazon specs) under a single `### Models` header. Use bullet points prefixed with `**Added**:`, `**Changed**:`, or `**Removed**:` to distinguish the type of update.
+
 ## SP-API Specs & Research
 
 The [`sp-api-ruby` skill](skills/sp-api-ruby/SKILL.md) is the canonical source for SP-API spec/issue research. Keep that guidance there, not here, so the two can't drift.

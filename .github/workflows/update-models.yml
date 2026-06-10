@@ -102,7 +102,7 @@ jobs:
 
             A nightly job pulled in the latest Amazon SP-API specs and regenerated code. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown. The description will become a squash commit body, so don't repeat the PR title.
 
-            Then, if any user-visible interface changed (new or removed methods, new parameters, new fields on response types), append concise entries to the [Unreleased] section of CHANGELOG.md. Commit and push to the PR branch.
+            Then, if any user-visible interface changed (new or removed methods, new parameters, new fields on response types), append concise entries to the [Unreleased] section of CHANGELOG.md under the `### Models` header. Format them as bullet points prefixed with `**Added**:`, `**Changed**:`, or `**Removed**:` to distinguish the update type. Commit and push to the PR branch.
           claude_args: |
             --model sonnet
             --allowedTools "Bash(gh pr diff:*),Bash(gh pr edit:*),Bash(gh pr view:*),Bash(git add:*),Bash(git commit:*),Bash(git push:*),Read,Edit"
