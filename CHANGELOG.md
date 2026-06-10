@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+## [5.5.0] - 2026-06-10
+
 ### Changed
 
 - Configure client retries (`retries` option) to use rate-limit-aware exponential backoff with randomized jitter on HTTP 429 (throttling) responses, and fallback standard exponential backoff for other transient (5xx and network) errors
@@ -594,7 +596,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.4.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v5.5.0...HEAD
+[5.5.0]: https://github.com/hakanensari/peddler/compare/v5.4.0...v5.5.0
 [5.4.0]: https://github.com/hakanensari/peddler/compare/v5.3.1...v5.4.0
 [5.3.1]: https://github.com/hakanensari/peddler/compare/v5.3.0...v5.3.1
 [5.3.0]: https://github.com/hakanensari/peddler/compare/v5.2.0...v5.3.0
