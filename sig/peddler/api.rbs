@@ -6,6 +6,8 @@ module Peddler
     class MustSandbox < StandardError
     end
 
+    TRANSIENT_STATUSES: Array[Integer]
+
     @access_token: String
     @endpoint: Endpoint
     @http: HTTP::Client

@@ -9,6 +9,8 @@ module Peddler
     class CannotSandbox < StandardError; end
     class MustSandbox < StandardError; end
 
+    TRANSIENT_STATUSES = [429, 500, 502, 503, 504].freeze
+
     # @return [Peddler::Endpoint]
     attr_reader :endpoint
 
@@ -62,10 +64,32 @@ module Peddler
         "X-Amz-Date" => timestamp,
       )
 
-      return client if retries.zero? || rate_limit.nil?
+      return client if retries.zero?
 
-      delay = sandbox? ? 0.2 : 1.0 / rate_limit
-      client.retriable(delay:, tries: retries + 1, retry_statuses: [429])
+      on_retry = ->(_req, _err, res) {
+        Thread.current[:peddler_last_retry_status] = res&.status
+      }
+
+      delay = ->(iteration) {
+        last_status = Thread.current[:peddler_last_retry_status]
+
+        if last_status == 429 && rate_limit
+          # Rate-limit-aware exponential backoff with jitter if throttled
+          # @see https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/
+          initial_delay = sandbox? ? 0.2 : 1.0 / rate_limit
+          (initial_delay * (2.0**(iteration - 1))) + (rand * 0.1)
+        else
+          # Standard backoff for network errors and 5xx
+          (2.0**(iteration - 1)) - 1 + rand
+        end
+      }
+
+      client.retriable(
+        tries: retries + 1,
+        delay: delay,
+        on_retry: on_retry,
+        retry_statuses: TRANSIENT_STATUSES,
+      )
     end
 
     private

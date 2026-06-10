@@ -197,6 +197,21 @@ rescue Peddler::Error => e
 end
 ```
 
+#### Rescuing Specific Errors
+
+Peddler raises specific pre-defined subclasses for common Amazon error codes (e.g., `Peddler::Errors::QuotaExceeded`, `Peddler::Errors::NotFound`, `Peddler::Errors::InvalidInput`).
+
+If Amazon returns an undocumented or newly introduced error code, Peddler dynamically instantiates a matching subclass under the `Peddler::Errors` namespace at runtime. To rescue a new specific subclass without causing a boot-time `NameError` in your application, define the class beforehand in an initializer:
+
+```ruby
+# config/initializers/peddler_errors.rb
+module Peddler
+  module Errors
+    class NewAmazonErrorCode < Error; end
+  end
+end
+```
+
 ### Available APIs
 
 Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is available in its respective version. Access APIs by calling methods on the Peddler module:
