@@ -57,6 +57,7 @@ module Peddler
     # @see https://developer-docs.amazon.com/amazon-shipping/docs/connecting-to-the-selling-partner-api#step-3-add-headers-to-the-uri
     # @return [HTTP::Session]
     def http(rate_limit: nil)
+      # @type var client: untyped
       client = @http.headers(
         "Host" => endpoint_uri.host,
         "User-Agent" => user_agent,

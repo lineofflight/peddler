@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix compatibility of `APIRetriableTest` with `http` gem version 5.x
+
 ## [5.5.0] - 2026-06-10
 
 ### Changed
