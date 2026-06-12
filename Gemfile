@@ -31,9 +31,5 @@ gem "vcr"
 gem "webmock"
 gem "yard"
 
-# Removed from stdlib
-# TODO: Remove when VCR updates to handle this natively
-gem "cgi" if RUBY_VERSION >= "3.5"
-
 # For exploratory code
 gem "csv"
