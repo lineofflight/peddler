@@ -54,7 +54,7 @@ The `Host` header (set in `http`) derives from `endpoint_uri`'s authority, inclu
 The override and Amazon's sandbox are mutually exclusive, and the sandbox guards step aside under an override:
 
 - `must_sandbox!` and `cannot_sandbox!` each begin with `return if base_url`. Once the caller owns the destination, Peddler's assertions about routing to Amazon's backends no longer apply, so every operation runs against the custom backend (the alternative — keying the guards off a boolean — blocks `must_sandbox!` ops *or* `cannot_sandbox!` ops against the mock, never neither).
-- The `.sandbox` setter raises `ArgumentError, "cannot use sandbox with a custom base_url"` when `base_url` is set. The constructor-keyword shape already prevents the reverse ordering (there is no `base_url` setter to chain after `.sandbox`).
+- The `.sandbox` setter raises `CannotSandbox, "cannot use sandbox with a custom base_url"` when `base_url` is set. The constructor-keyword shape already prevents the reverse ordering (there is no `base_url` setter to chain after `.sandbox`). It reuses the existing domain error rather than `ArgumentError` so all sandbox-misuse surfaces one rescuable type; the distinct message keeps it unambiguous against the guards' "cannot run in a sandbox".
 - `sandbox?` is unchanged and returns `false` on a base_url-only client. It is a predicate, so it answers rather than raises. This yields three clean states from two independent flags:
 
   | State | `base_url` | `sandbox?` | requests go to |
