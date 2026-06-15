@@ -9,18 +9,20 @@ module Peddler
     TRANSIENT_STATUSES: Array[Integer]
 
     @access_token: String
+    @base_url: URI::HTTP?
     @endpoint: Endpoint
     @http: HTTP::Client
     @retries: Integer
     @sandbox: bool
 
     attr_reader access_token: String
+    attr_reader base_url: URI::HTTP?
     attr_reader endpoint: Endpoint
     attr_reader retries: Integer
 
-    def initialize: (String aws_region, String access_token, ?retries: Integer, ?http: HTTP::Client) -> void
+    def initialize: (String aws_region, String access_token, ?retries: Integer, ?http: HTTP::Client, ?base_url: String?) -> void
 
-    def endpoint_uri: () -> URI::HTTPS
+    def endpoint_uri: () -> URI::HTTP
     def sandbox: () -> self
     def sandbox?: () -> bool
     def http: (?rate_limit: Float?) -> untyped
@@ -35,6 +37,7 @@ module Peddler
     def request: (Symbol method, String path, ?rate_limit: Float?, ?parser: untyped, **untyped) -> Response
     def cannot_sandbox!: () -> void
     def must_sandbox!: () -> void
+    def parse_base_url: (String? value) -> URI::HTTP?
     def user_agent: () -> String
     def timestamp: () -> String
     def percent_encode: (String component) -> String

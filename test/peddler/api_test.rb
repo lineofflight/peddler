@@ -19,6 +19,54 @@ module Peddler
       assert_includes(@api.sandbox.endpoint_uri.host, "sandbox")
     end
 
+    def test_base_url_overrides_endpoint_uri
+      api = API.new("eu-west-1", "access_token", base_url: "http://localhost:9001")
+
+      assert_equal("http://localhost:9001", api.endpoint_uri.to_s)
+    end
+
+    def test_base_url_accepts_https
+      api = API.new("eu-west-1", "access_token", base_url: "https://example.test")
+
+      assert_equal("https://example.test", api.endpoint_uri.to_s)
+    end
+
+    def test_base_url_does_not_mutate_across_calls
+      api = API.new("eu-west-1", "access_token", base_url: "http://localhost:9001")
+      api.endpoint_uri.path = "/mutated"
+
+      assert_equal("", api.endpoint_uri.path)
+    end
+
+    def test_base_url_reader
+      api = API.new("eu-west-1", "access_token", base_url: "http://localhost:9001")
+
+      assert_kind_of(URI::HTTP, api.base_url)
+    end
+
+    def test_base_url_rejects_url_without_scheme
+      assert_raises(ArgumentError) do
+        API.new("eu-west-1", "access_token", base_url: "localhost:9001")
+      end
+    end
+
+    def test_base_url_rejects_garbage
+      assert_raises(ArgumentError) do
+        API.new("eu-west-1", "access_token", base_url: "not a url")
+      end
+    end
+
+    def test_base_url_rejects_url_without_host
+      assert_raises(ArgumentError) do
+        API.new("eu-west-1", "access_token", base_url: "http://")
+      end
+    end
+
+    def test_nil_base_url_uses_production
+      assert_nil(@api.base_url)
+      assert_kind_of(URI::HTTPS, @api.endpoint_uri)
+    end
+
     def test_host_header
       assert(@api.http.default_options.headers["Host"])
     end

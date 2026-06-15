@@ -22,20 +22,28 @@ module Peddler
     # @return [Integer]
     attr_reader :retries
 
+    # @return [URI::HTTP, nil] Custom backend the client points at, if overridden.
+    #   Only the scheme, host, and port are used; any path is ignored.
+    attr_reader :base_url
+
     # @param [String] aws_region The AWS region to use for the endpoint
     # @param [String] access_token The access token for authentication
     # @param [Integer] retries The number of retries if throttled (default: 0)
     # @param [HTTP::Client] http HTTP client
-    def initialize(aws_region, access_token, retries: 0, http: HTTP::Client.new)
+    # @param [String, nil] base_url Custom base URL to override the Amazon endpoint
+    def initialize(aws_region, access_token, retries: 0, http: HTTP::Client.new, base_url: nil)
       @endpoint = Endpoint.find(aws_region)
       @access_token = access_token
       @retries = retries
       @http = http
       @sandbox = false
+      @base_url = parse_base_url(base_url)
     end
 
-    # @return [URI::HTTPS]
+    # @return [URI::HTTP]
     def endpoint_uri
+      return base_url.dup if base_url
+
       sandbox? ? endpoint.sandbox : endpoint.production
     end
 
@@ -130,6 +138,17 @@ module Peddler
 
     def must_sandbox!
       raise MustSandbox, "must run in a sandbox" unless sandbox?
+    end
+
+    def parse_base_url(value)
+      return unless value
+
+      uri = URI.parse(value)
+      return uri if uri.is_a?(URI::HTTP) && !uri.host.to_s.empty?
+
+      raise ArgumentError, "base_url must be a full http(s) URL, e.g. http://localhost:9001"
+    rescue URI::InvalidURIError
+      raise ArgumentError, "base_url must be a full http(s) URL, e.g. http://localhost:9001"
     end
 
     def user_agent
