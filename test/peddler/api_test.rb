@@ -151,6 +151,29 @@ module Peddler
       end
     end
 
+    def test_sandbox_with_base_url_raises
+      api = API.new("eu-west-1", "access_token", base_url: "http://localhost:9001")
+
+      assert_raises(ArgumentError) { api.sandbox }
+    end
+
+    def test_sandbox_predicate_false_with_base_url
+      api = API.new("eu-west-1", "access_token", base_url: "http://localhost:9001")
+
+      refute_predicate(api, :sandbox?)
+    end
+
+    def test_guards_bypassed_with_base_url
+      test_api_class = Class.new(API) do
+        def perform_must_sandbox_operation = must_sandbox!
+        def perform_cannot_sandbox_operation = cannot_sandbox!
+      end
+      api = test_api_class.new("eu-west-1", "access_token", base_url: "http://localhost:9001")
+
+      assert_nil(api.perform_must_sandbox_operation)
+      assert_nil(api.perform_cannot_sandbox_operation)
+    end
+
     def test_server_errors_always_raise
       # Mock HTTP client to return 500 error
       mock_http = Minitest::Mock.new

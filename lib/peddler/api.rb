@@ -52,6 +52,8 @@ module Peddler
     # @see https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox
     # @return [self]
     def sandbox
+      raise ArgumentError, "cannot use sandbox with a custom base_url" if base_url
+
       @sandbox = true
       self
     end
@@ -133,10 +135,14 @@ module Peddler
     end
 
     def cannot_sandbox!
+      return if base_url
+
       raise CannotSandbox, "cannot run in a sandbox" if sandbox?
     end
 
     def must_sandbox!
+      return if base_url
+
       raise MustSandbox, "must run in a sandbox" unless sandbox?
     end
 
