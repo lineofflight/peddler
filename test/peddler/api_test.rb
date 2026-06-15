@@ -154,7 +154,7 @@ module Peddler
     def test_sandbox_with_base_url_raises
       api = API.new("eu-west-1", "access_token", base_url: "http://localhost:9001")
 
-      assert_raises(ArgumentError) { api.sandbox }
+      assert_raises(API::CannotSandbox) { api.sandbox }
     end
 
     def test_sandbox_predicate_false_with_base_url

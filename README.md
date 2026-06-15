@@ -226,7 +226,7 @@ To point a client at a different backend entirely — a local mock, a recording 
 api = Peddler.orders_v0.new(aws_region, access_token, base_url: "http://localhost:9001")
 ```
 
-`base_url` overrides the destination for every request the client makes. It is mutually exclusive with `sandbox` (combining them raises `ArgumentError`), and `sandbox?` stays `false`. Only the scheme, host, and port of `base_url` are used; any path is ignored.
+`base_url` overrides the destination for every request the client makes. It is mutually exclusive with `sandbox` (combining them raises `CannotSandbox`), and `sandbox?` stays `false`. Only the scheme, host, and port of `base_url` are used; any path is ignored.
 
 ### Available APIs
 
