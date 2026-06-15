@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+### Added
+
+- Add `base_url` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
+
 ### Fixed
 
 - Fix compatibility of `APIRetriableTest` with `http` gem version 5.x

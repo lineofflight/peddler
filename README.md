@@ -212,6 +212,22 @@ module Peddler
 end
 ```
 
+### Sandbox and custom endpoints
+
+Switch a client to Amazon's hosted sandbox with `sandbox`:
+
+```ruby
+api = Peddler.orders_v0.new(aws_region, access_token).sandbox
+```
+
+To point a client at a different backend entirely — a local mock, a recording proxy, or Amazon's [Sample AI Sandbox for SP-API](https://github.com/amzn/selling-partner-api-samples/tree/main/local-ai-sandbox) (default `http://localhost:9001`) — pass `base_url`:
+
+```ruby
+api = Peddler.orders_v0.new(aws_region, access_token, base_url: "http://localhost:9001")
+```
+
+`base_url` overrides the destination for every request the client makes. It is mutually exclusive with `sandbox` (combining them raises `ArgumentError`), and `sandbox?` stays `false`. Only the scheme, host, and port of `base_url` are used; any path is ignored.
+
 ### Available APIs
 
 Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is available in its respective version. Access APIs by calling methods on the Peddler module:
