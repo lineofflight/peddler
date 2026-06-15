@@ -71,6 +71,16 @@ module Peddler
       assert(@api.http.default_options.headers["Host"])
     end
 
+    def test_host_header_includes_non_default_port
+      api = API.new("eu-west-1", "access_token", base_url: "http://localhost:9001")
+
+      assert_equal("localhost:9001", api.http.default_options.headers["Host"])
+    end
+
+    def test_host_header_omits_default_port
+      assert_equal("sellingpartnerapi-eu.amazon.com", @api.http.default_options.headers["Host"])
+    end
+
     def test_user_agent_header
       assert_includes(@api.http.default_options.headers["User-Agent"], "Peddler")
     end

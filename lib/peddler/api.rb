@@ -67,7 +67,7 @@ module Peddler
     def http(rate_limit: nil)
       # @type var client: untyped
       client = @http.headers(
-        "Host" => endpoint_uri.host,
+        "Host" => host_header,
         "User-Agent" => user_agent,
         "X-Amz-Access-Token" => access_token,
         "X-Amz-Date" => timestamp,
@@ -138,6 +138,12 @@ module Peddler
 
     def must_sandbox!
       raise MustSandbox, "must run in a sandbox" unless sandbox?
+    end
+
+    def host_header
+      uri = endpoint_uri
+      host = uri.host.to_s
+      uri.port == uri.default_port ? host : "#{host}:#{uri.port}"
     end
 
     def parse_base_url(value)

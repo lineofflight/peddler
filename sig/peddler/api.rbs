@@ -37,6 +37,7 @@ module Peddler
     def request: (Symbol method, String path, ?rate_limit: Float?, ?parser: untyped, **untyped) -> Response
     def cannot_sandbox!: () -> void
     def must_sandbox!: () -> void
+    def host_header: () -> String
     def parse_base_url: (String? value) -> URI::HTTP?
     def user_agent: () -> String
     def timestamp: () -> String
