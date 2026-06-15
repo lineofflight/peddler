@@ -367,7 +367,7 @@ For a complete list of available APIs and their detailed documentation, refer to
 
 ## Best practices
 
-Writing efficient SP-API code? See the [best-practices checklist](skills/sp-api-ruby/best-practices.md) bundled with the agent skill: cutting call volume, batching, caching, API versions, reports, and per-API quirks.
+Writing efficient SP-API code? See the [best-practices checklist](skills/working-with-sp-api/best-practices.md) bundled with the agent skill: cutting call volume, batching, caching, API versions, reports, and per-API quirks.
 
 ## Development
 
