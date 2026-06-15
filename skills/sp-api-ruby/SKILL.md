@@ -1,7 +1,7 @@
 ---
 name: sp-api-ruby
 description: >-
-  Use when researching an Amazon Selling Partner API (SP-API) endpoint (its schema, parameters, request/response shape, or known issues and workarounds in Amazon's OpenAPI models) or writing efficient SP-API code. If the project depends on the peddler gem, also anchor research to the spec the installed gem was generated from.
+  Use when researching an Amazon Selling Partner API (SP-API) endpoint (schema, parameters, request/response shape, or known issues and workarounds) or writing efficient SP-API code, including with the peddler Ruby gem.
 ---
 
 # SP-API spec research
@@ -28,13 +28,13 @@ gh api repos/amzn/selling-partner-api-models/contents/models/orders-api-model/or
 gh search issues --repo amzn/selling-partner-api-models "QuotaExceeded" --json number,title,url,state
 ```
 
-The companion repo `amzn/selling-partner-api-samples` holds reference implementations (per-use-case sample code in Python, Java, JS, C#, PHP) and discussions. The discussions are Amazon-authored guides worth searching: well-architected write-ups on call-volume reduction, 4xx handling, and the Orders v2026 migration, plus announcements like the local SP-API MCP (#382). Its issue tracker is sparse and mostly covers bugs in the sample code, so search the models repo for API workarounds, not this one.
+The companion repo `amzn/selling-partner-api-samples` holds reference implementations (per-use-case sample code in Python, Java, JS, C#, PHP) and discussions. The discussions are Amazon-authored guides worth searching: well-architected write-ups on call-volume reduction, 4xx handling, and the Orders v2026 migration. Its issue tracker is sparse and mostly covers bugs in the sample code, so search the models repo for API workarounds, not this one.
 
 ```bash
 # Browse per-use-case reference implementations to compare against peddler idioms
 gh api repos/amzn/selling-partner-api-samples/contents/use-cases --jq '.[].name'
 
-# Read a specific discussion by number (the SP-API MCP announcement is #382)
+# Read a specific discussion by number
 gh api repos/amzn/selling-partner-api-samples/discussions/<number>
 
 # Search discussions. There is no `gh search discussions` subcommand,
@@ -47,33 +47,23 @@ gh api graphql -f query='
   }' -f q='repo:amzn/selling-partner-api-samples best practices'
 ```
 
-Filenames carry the API version (`ordersV0.json`, `orders_2026-01-01.json`). Version identifiers change rarely, but Amazon edits the JSON content behind them on `main` constantly. Beware when a project pins an older snapshot.
+Filenames carry the API version (`ordersV0.json`, `orders_2026-01-01.json`). Version identifiers change rarely, but Amazon edits the JSON content behind them on `main` constantly.
 
-## Using the peddler gem? Anchor to the installed gem
+## Search the prose docs for behavior the schema omits
 
-peddler is generated from a pinned snapshot of these models, so its generated code, not Amazon's `main`, is the source of truth for what the installed gem can call:
+The OpenAPI models give you schema and parameters; they do not explain runtime behavior such as rate-limit values, data-availability delays, pagination semantics, or use-case guidance. That lives in Amazon's narrative docs at `developer-docs.amazon.com`, which no repo mirrors. Search it with your own web tools:
 
-```bash
-PEDDLER=$(ruby -r peddler -e 'print Gem.loaded_specs["peddler"].gem_dir')   # add `bundle exec` in a Bundler app
-ruby -r peddler -e 'puts Peddler::VERSION'
-ls "$PEDDLER/lib/peddler/apis"                                              # APIs and versions the gem exposes
+```
+WebSearch  query: "getOrders data availability delay"  allowed_domains: ["developer-docs.amazon.com"]
+# then WebFetch the most promising result and read the prose
 ```
 
-Operations, parameters, and types are in `"$PEDDLER/lib/peddler/apis/<file>.rb"` and `"$PEDDLER/sig/peddler/apis/"`. Read these before Amazon's spec: the pin freezes spec content at a commit and `main` has drifted within the same version. `grep '@see' "$PEDDLER/lib/peddler/apis/<file>.rb"` shows which spec a class came from, but the URL points at `main`. It locates the file; it does not pin content. Calling SP-API from Ruby (auth, responses, errors, the `Peddler.<api>` factory) is documented in peddler's README.
+Reach for this on "how does it behave / why is data missing", not "what is the schema."
+
+## Using the peddler gem?
+
+Research endpoints against the OpenAPI models as above; just know the installed gem can trail Amazon's current spec (an older gem version, or a recent edit peddler has not regenerated yet), so an operation or field in the spec may be missing from your version. Confirm against the gem's generated code (`lib/peddler/apis/`) when it matters. Calling SP-API from Ruby (auth, responses, errors, the `Peddler.<api>` factory) is documented in peddler's README.
 
 ## Writing efficient peddler code
 
-When writing or reviewing peddler code, not just researching specs, see [best-practices.md](best-practices.md) for concise guidance on cutting call volume, batching, caching, API versions, reports, and per-API quirks.
-
-## Quick reference
-
-| Need | Do this |
-|---|---|
-| Browse spec groups | `gh api .../contents/models --jq '.[].name'` |
-| Read a spec | `gh api .../<spec>.json -H "Accept: application/vnd.github.raw" --jq ...` |
-| Find workarounds | `gh search issues --repo amzn/selling-partner-api-models "<term>"` |
-| Reference implementations and discussions | `gh api repos/amzn/selling-partner-api-samples/contents/use-cases --jq '.[].name'` |
-| Search discussions | `gh api graphql -f query='...search(type: DISCUSSION...)' -f q='repo:amzn/selling-partner-api-samples <term>'` |
-| (peddler) installed version | `ruby -r peddler -e 'puts Peddler::VERSION'` |
-| (peddler) APIs the gem exposes | `ls "$PEDDLER/lib/peddler/apis"` |
-| (peddler) callable params/types | read `"$PEDDLER/lib/peddler/apis/<file>.rb"` or `sig/` |
+When writing or reviewing peddler code, not just researching specs, see [best-practices.md](best-practices.md) for cutting call volume, error and rate-limit handling, reports, caching, and per-API quirks.
