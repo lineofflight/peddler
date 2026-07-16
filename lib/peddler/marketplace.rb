@@ -38,7 +38,7 @@ module Peddler
   #   # @!attribute [r] country_name
   #   # @!attribute [r] selling_region
   #   class Peddler::Marketplace < Data; end
-  Marketplace = Data.define(:id, :country_code, :country_name, :selling_region) do
+  class Marketplace < Data.define(:id, :country_code, :country_name, :selling_region)
     class << self
       # Finds the marketplace for the given country code
       #
@@ -81,29 +81,27 @@ module Peddler
       MARKETPLACE_IDS.each_key do |country_code|
         method_name = country_code.downcase
         define_method(method_name) do
-          find(country_code) # steep:ignore
+          # @type self: singleton(Marketplace)
+          find(country_code)
         end
       end
 
       # Special alias for GB (Great Britain) -> UK
       define_method(:gb) do
-        find("GB") # steep:ignore
+        # @type self: singleton(Marketplace)
+        find("GB")
       end
     end
 
     # @return [Peddler::Endpoint]
-    # steep:ignore:start
     def endpoint
       Endpoint.find_by_selling_region(selling_region)
     end
-    # steep:ignore:end
 
     # @note So HTTP can encode
     # @return [String]
-    # steep:ignore:start
     def to_str
       id
     end
-    # steep:ignore:end
   end
 end

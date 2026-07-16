@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Peddler
-  Money = Data.define(:amount, :currency_code) do
+  class Money < Data.define(:amount, :currency_code)
     class << self
       def parse(value)
         return unless value
@@ -17,8 +17,8 @@ module Peddler
       end
     end
 
-    def to_d # steep:ignore
-      BigDecimal(amount) # steep:ignore
+    def to_d
+      BigDecimal(amount)
     end
   end
 end

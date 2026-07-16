@@ -3,9 +3,9 @@
 require "uri"
 
 module Peddler
-  Endpoint = Data.define(:aws_region, :selling_region, :host) do
+  class Endpoint < Data.define(:aws_region, :selling_region, :host)
     # @see https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints
-    REGIONS = { # steep:ignore
+    REGIONS = {
       "us-east-1" => {
         selling_region: "North America",
         host: "sellingpartnerapi-na.amazon.com",
@@ -23,12 +23,12 @@ module Peddler
     class << self
       # @return [Array<Endpoint>]
       def all
-        REGIONS.map { |aws_region, values| new(**values, aws_region: aws_region) } # steep:ignore
+        REGIONS.map { |aws_region, values| new(**values, aws_region: aws_region) }
       end
 
       # @param [String] aws_region
       def find(aws_region)
-        values = REGIONS.fetch(aws_region) do # steep:ignore
+        values = REGIONS.fetch(aws_region) do
           raise ArgumentError, "#{aws_region} not found"
         end
 
@@ -37,14 +37,13 @@ module Peddler
 
       # @param [String] selling_region
       def find_by_selling_region(selling_region)
-        aws_region, values = REGIONS.find { |_, v| v[:selling_region] == selling_region } || # steep:ignore
+        aws_region, values = REGIONS.find { |_, v| v[:selling_region] == selling_region } ||
           raise(ArgumentError, "#{selling_region} not found")
 
         new(**values, aws_region: aws_region)
       end
     end
 
-    # steep:ignore:start
     # @return [URI]
     def production
       URI::HTTPS.build(host: host)
@@ -54,6 +53,5 @@ module Peddler
     def sandbox
       URI::HTTPS.build(host: "sandbox.#{host}")
     end
-    # steep:ignore:end
   end
 end
