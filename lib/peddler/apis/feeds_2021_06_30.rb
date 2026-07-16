@@ -118,6 +118,6 @@ module Peddler
         parser = -> { FeedDocument }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

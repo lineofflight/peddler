@@ -9,12 +9,12 @@ module Peddler
     class FinancesV0
       # The response schema for the `listFinancialEvents` operation.
       ListFinancialEventsResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `listFinancialEvents` operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] One or more unexpected errors occurred during the `listFinancialEvents` operation.
+          attribute?(:errors, [Error])
 
-        # @return [ListFinancialEventsPayload] The payload for the `listFinancialEvents` operation.
-        attribute?(:payload, ListFinancialEventsPayload)
-      end
+          # @return [ListFinancialEventsPayload] The payload for the `listFinancialEvents` operation.
+          attribute?(:payload, ListFinancialEventsPayload)
+        end
     end
   end
 end

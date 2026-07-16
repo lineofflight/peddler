@@ -101,6 +101,6 @@ module Peddler
         parser = -> { GetDocumentResponse }
         get(path, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

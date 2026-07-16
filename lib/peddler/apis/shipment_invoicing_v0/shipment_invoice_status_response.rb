@@ -9,9 +9,9 @@ module Peddler
     class ShipmentInvoicingV0
       # The shipment invoice status response.
       ShipmentInvoiceStatusResponse = Structure.new do
-        # @return [ShipmentInvoiceStatusInfo]
-        attribute?(:shipments, ShipmentInvoiceStatusInfo, from: "Shipments")
-      end
+          # @return [ShipmentInvoiceStatusInfo]
+          attribute?(:shipments, ShipmentInvoiceStatusInfo, from: "Shipments")
+        end
     end
   end
 end

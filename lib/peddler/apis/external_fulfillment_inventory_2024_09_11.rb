@@ -22,6 +22,6 @@ module Peddler
         path = "/externalFulfillment/inventory/2024-09-11/inventories"
         post(path, body:)
       end
-    end
+          end
   end
 end

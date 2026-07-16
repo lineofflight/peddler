@@ -9,15 +9,15 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # The dimensions of a package.
       PackageDimensions = Structure.new do
-        # @return [Dimension] The height of the package.
-        attribute(:height, Dimension, null: false)
+          # @return [Dimension] The height of the package.
+          attribute(:height, Dimension, null: false)
 
-        # @return [Dimension] The length of the package.
-        attribute(:length, Dimension, null: false)
+          # @return [Dimension] The length of the package.
+          attribute(:length, Dimension, null: false)
 
-        # @return [Dimension] The width of the package.
-        attribute(:width, Dimension, null: false)
-      end
+          # @return [Dimension] The width of the package.
+          attribute(:width, Dimension, null: false)
+        end
     end
   end
 end

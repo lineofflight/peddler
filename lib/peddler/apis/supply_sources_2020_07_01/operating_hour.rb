@@ -9,12 +9,12 @@ module Peddler
     class SupplySources20200701
       # The operating hour schema
       OperatingHour = Structure.new do
-        # @return [String] The closing time, ISO 8601 formatted timestamp without date, HH:mm.
-        attribute?(:end_time, String, from: "endTime")
+          # @return [String] The closing time, ISO 8601 formatted timestamp without date, HH:mm.
+          attribute?(:end_time, String, from: "endTime")
 
-        # @return [String] The opening time, ISO 8601 formatted timestamp without date, HH:mm.
-        attribute?(:start_time, String, from: "startTime")
-      end
+          # @return [String] The opening time, ISO 8601 formatted timestamp without date, HH:mm.
+          attribute?(:start_time, String, from: "startTime")
+        end
     end
   end
 end

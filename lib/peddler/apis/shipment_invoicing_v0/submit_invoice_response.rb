@@ -9,9 +9,9 @@ module Peddler
     class ShipmentInvoicingV0
       # The response schema for the submitInvoice operation.
       SubmitInvoiceResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
-      end
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
+        end
     end
   end
 end

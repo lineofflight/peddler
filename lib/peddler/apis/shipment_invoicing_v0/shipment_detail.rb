@@ -10,51 +10,51 @@ module Peddler
     class ShipmentInvoicingV0
       # The information required by a selling partner to issue a shipment invoice.
       ShipmentDetail = Structure.new do
-        # @return [String] The Amazon-defined identifier for the order.
-        attribute?(:amazon_order_id, String, from: "AmazonOrderId")
+          # @return [String] The Amazon-defined identifier for the order.
+          attribute?(:amazon_order_id, String, from: "AmazonOrderId")
 
-        # @return [String] The Amazon-defined identifier for the shipment.
-        attribute?(:amazon_shipment_id, String, from: "AmazonShipmentId")
+          # @return [String] The Amazon-defined identifier for the shipment.
+          attribute?(:amazon_shipment_id, String, from: "AmazonShipmentId")
 
-        # @return [String] The county of the buyer.
-        attribute?(:buyer_county, String, from: "BuyerCounty")
+          # @return [String] The county of the buyer.
+          attribute?(:buyer_county, String, from: "BuyerCounty")
 
-        # @return [String] The name of the buyer.
-        attribute?(:buyer_name, String, from: "BuyerName")
+          # @return [String] The name of the buyer.
+          attribute?(:buyer_name, String, from: "BuyerName")
 
-        # @return [BuyerTaxInfo]
-        attribute?(:buyer_tax_info, BuyerTaxInfo, from: "BuyerTaxInfo")
+          # @return [BuyerTaxInfo]
+          attribute?(:buyer_tax_info, BuyerTaxInfo, from: "BuyerTaxInfo")
 
-        # @return [String] The identifier for the marketplace where the order was placed.
-        attribute?(:marketplace_id, String, from: "MarketplaceId")
+          # @return [String] The identifier for the marketplace where the order was placed.
+          attribute?(:marketplace_id, String, from: "MarketplaceId")
 
-        # @return [MarketplaceTaxInfo]
-        attribute?(:marketplace_tax_info, MarketplaceTaxInfo, from: "MarketplaceTaxInfo")
+          # @return [MarketplaceTaxInfo]
+          attribute?(:marketplace_tax_info, MarketplaceTaxInfo, from: "MarketplaceTaxInfo")
 
-        # @return [Array<String>]
-        attribute?(:payment_method_details, [String], from: "PaymentMethodDetails")
+          # @return [Array<String>]
+          attribute?(:payment_method_details, [String], from: "PaymentMethodDetails")
 
-        # @return [Array<PaymentInformation>]
-        attribute?(:payments, [PaymentInformation], from: "Payments")
+          # @return [Array<PaymentInformation>]
+          attribute?(:payments, [PaymentInformation], from: "Payments")
 
-        # @return [Time] The date and time when the order was created.
-        attribute?(:purchase_date, Time, from: "PurchaseDate")
+          # @return [Time] The date and time when the order was created.
+          attribute?(:purchase_date, Time, from: "PurchaseDate")
 
-        # @return [String] The seller’s friendly name registered in the marketplace.
-        attribute?(:seller_display_name, String, from: "SellerDisplayName")
+          # @return [String] The seller’s friendly name registered in the marketplace.
+          attribute?(:seller_display_name, String, from: "SellerDisplayName")
 
-        # @return [String] The seller identifier.
-        attribute?(:seller_id, String, from: "SellerId")
+          # @return [String] The seller identifier.
+          attribute?(:seller_id, String, from: "SellerId")
 
-        # @return [Array<ShipmentItem>]
-        attribute?(:shipment_items, [ShipmentItem], from: "ShipmentItems")
+          # @return [Array<ShipmentItem>]
+          attribute?(:shipment_items, [ShipmentItem], from: "ShipmentItems")
 
-        # @return [Address]
-        attribute?(:shipping_address, Address, from: "ShippingAddress")
+          # @return [Address]
+          attribute?(:shipping_address, Address, from: "ShippingAddress")
 
-        # @return [String] The Amazon-defined identifier for the warehouse.
-        attribute?(:warehouse_id, String, from: "WarehouseId")
-      end
+          # @return [String] The Amazon-defined identifier for the warehouse.
+          attribute?(:warehouse_id, String, from: "WarehouseId")
+        end
     end
   end
 end

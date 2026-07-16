@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInbound20240320
       # The `listPackingGroupBoxes` response.
       ListPackingGroupBoxesResponse = Structure.new do
-        # @return [Array<Box>] Provides the information about the list of boxes in the packing group.
-        attribute(:boxes, [Box], null: false)
+          # @return [Array<Box>] Provides the information about the list of boxes in the packing group.
+          attribute(:boxes, [Box], null: false)
 
-        # @return [Pagination]
-        attribute?(:pagination, Pagination)
-      end
+          # @return [Pagination]
+          attribute?(:pagination, Pagination)
+        end
     end
   end
 end

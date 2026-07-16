@@ -9,9 +9,9 @@ module Peddler
     class ProductFeesV0
       # Response schema.
       GetMyFeesEstimateResult = Structure.new do
-        # @return [FeesEstimateResult] The item's estimated fees.
-        attribute?(:fees_estimate_result, FeesEstimateResult, from: "FeesEstimateResult")
-      end
+          # @return [FeesEstimateResult] The item's estimated fees.
+          attribute?(:fees_estimate_result, FeesEstimateResult, from: "FeesEstimateResult")
+        end
     end
   end
 end

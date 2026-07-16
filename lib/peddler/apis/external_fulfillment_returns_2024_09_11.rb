@@ -40,7 +40,7 @@ module Peddler
       #   this operation until `nextToken` is null. Note that this operation can return empty pages.
       # @return [Peddler::Response] The API response
       def list_returns(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil,
-        created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil,
+      created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil,
         last_updated_before: nil, max_results: nil, next_token: nil)
         path = "/externalFulfillment/2024-09-11/returns"
         params = {
@@ -71,6 +71,6 @@ module Peddler
         parser = -> { Return }
         get(path, parser:)
       end
-    end
+          end
   end
 end

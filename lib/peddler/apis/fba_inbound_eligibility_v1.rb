@@ -35,6 +35,6 @@ module Peddler
         parser = -> { GetItemEligibilityPreviewResponse }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

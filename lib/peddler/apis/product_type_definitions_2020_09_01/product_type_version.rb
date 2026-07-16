@@ -9,17 +9,17 @@ module Peddler
     class ProductTypeDefinitions20200901
       # The version details for an Amazon product type.
       ProductTypeVersion = Structure.new do
-        # @return [:boolean] When true, the version indicated by the version identifier is the latest available for the
-        #   Amazon product type.
-        attribute(:latest, :boolean, null: false)
+          # @return [:boolean] When true, the version indicated by the version identifier is the latest available for the
+          #   Amazon product type.
+          attribute(:latest, :boolean, null: false)
 
-        # @return [String] Version identifier.
-        attribute(:version, String, null: false)
+          # @return [String] Version identifier.
+          attribute(:version, String, null: false)
 
-        # @return [:boolean] When true, the version indicated by the version identifier is the prerelease (release
-        #   candidate) for the Amazon product type.
-        attribute?(:release_candidate, :boolean, from: "releaseCandidate")
-      end
+          # @return [:boolean] When true, the version indicated by the version identifier is the prerelease (release
+          #   candidate) for the Amazon product type.
+          attribute?(:release_candidate, :boolean, from: "releaseCandidate")
+        end
     end
   end
 end

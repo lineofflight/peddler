@@ -9,24 +9,24 @@ module Peddler
     class AplusContent20201101
       # A standard image with several paragraphs and a bulleted list.
       StandardSingleImageHighlightsModule = Structure.new do
-        # @return [StandardHeaderTextListBlock]
-        attribute?(:bulleted_list_block, StandardHeaderTextListBlock, from: "bulletedListBlock")
+          # @return [StandardHeaderTextListBlock]
+          attribute?(:bulleted_list_block, StandardHeaderTextListBlock, from: "bulletedListBlock")
 
-        # @return [TextComponent]
-        attribute?(:headline, TextComponent)
+          # @return [TextComponent]
+          attribute?(:headline, TextComponent)
 
-        # @return [ImageComponent]
-        attribute?(:image, ImageComponent)
+          # @return [ImageComponent]
+          attribute?(:image, ImageComponent)
 
-        # @return [StandardTextBlock]
-        attribute?(:text_block1, StandardTextBlock, from: "textBlock1")
+          # @return [StandardTextBlock]
+          attribute?(:text_block1, StandardTextBlock, from: "textBlock1")
 
-        # @return [StandardTextBlock]
-        attribute?(:text_block2, StandardTextBlock, from: "textBlock2")
+          # @return [StandardTextBlock]
+          attribute?(:text_block2, StandardTextBlock, from: "textBlock2")
 
-        # @return [StandardTextBlock]
-        attribute?(:text_block3, StandardTextBlock, from: "textBlock3")
-      end
+          # @return [StandardTextBlock]
+          attribute?(:text_block3, StandardTextBlock, from: "textBlock3")
+        end
     end
   end
 end

@@ -9,9 +9,9 @@ module Peddler
     class EasyShip20220323
       # A list of packages.
       Packages = Structure.new do
-        # @return [Array<Package>] A list of packages.
-        attribute(:packages, [Package], null: false)
-      end
+          # @return [Array<Package>] A list of packages.
+          attribute(:packages, [Package], null: false)
+        end
     end
   end
 end

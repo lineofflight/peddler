@@ -116,6 +116,6 @@ module Peddler
         parser = -> { AddInventoryResponse }
         post(path, body:, parser:)
       end
-    end
+          end
   end
 end

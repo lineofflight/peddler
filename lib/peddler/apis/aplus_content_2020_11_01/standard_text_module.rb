@@ -9,12 +9,12 @@ module Peddler
     class AplusContent20201101
       # A standard headline and body text.
       StandardTextModule = Structure.new do
-        # @return [ParagraphComponent]
-        attribute(:body, ParagraphComponent, null: false)
+          # @return [ParagraphComponent]
+          attribute(:body, ParagraphComponent, null: false)
 
-        # @return [TextComponent]
-        attribute?(:headline, TextComponent)
-      end
+          # @return [TextComponent]
+          attribute?(:headline, TextComponent)
+        end
     end
   end
 end

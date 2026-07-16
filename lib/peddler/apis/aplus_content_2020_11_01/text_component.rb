@@ -9,12 +9,12 @@ module Peddler
     class AplusContent20201101
       # Rich text content.
       TextComponent = Structure.new do
-        # @return [String] The actual plain text.
-        attribute(:value, String, null: false)
+          # @return [String] The actual plain text.
+          attribute(:value, String, null: false)
 
-        # @return [Array<Decorator>]
-        attribute?(:decorator_set, [Decorator], from: "decoratorSet")
-      end
+          # @return [Array<Decorator>]
+          attribute?(:decorator_set, [Decorator], from: "decoratorSet")
+        end
     end
   end
 end

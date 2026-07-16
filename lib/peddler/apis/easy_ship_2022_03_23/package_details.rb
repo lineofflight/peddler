@@ -10,15 +10,15 @@ module Peddler
     class EasyShip20220323
       # Package details. Includes `packageItems`, `packageTimeSlot`, and `packageIdentifier`.
       PackageDetails = Structure.new do
-        # @return [TimeSlot]
-        attribute(:package_time_slot, TimeSlot, null: false, from: "packageTimeSlot")
+          # @return [TimeSlot]
+          attribute(:package_time_slot, TimeSlot, null: false, from: "packageTimeSlot")
 
-        # @return [String]
-        attribute?(:package_identifier, String, from: "packageIdentifier")
+          # @return [String]
+          attribute?(:package_identifier, String, from: "packageIdentifier")
 
-        # @return [Array<Item>]
-        attribute?(:package_items, [Item], from: "packageItems")
-      end
+          # @return [Array<Item>]
+          attribute?(:package_items, [Item], from: "packageItems")
+        end
     end
   end
 end

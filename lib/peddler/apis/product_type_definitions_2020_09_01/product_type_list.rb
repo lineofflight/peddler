@@ -9,12 +9,12 @@ module Peddler
     class ProductTypeDefinitions20200901
       # A list of Amazon product types with definitions available.
       ProductTypeList = Structure.new do
-        # @return [String] Amazon product type version identifier.
-        attribute(:product_type_version, String, null: false, from: "productTypeVersion")
+          # @return [String] Amazon product type version identifier.
+          attribute(:product_type_version, String, null: false, from: "productTypeVersion")
 
-        # @return [Array<ProductType>] A list of product types.
-        attribute(:product_types, [ProductType], null: false, from: "productTypes")
-      end
+          # @return [Array<ProductType>] A list of product types.
+          attribute(:product_types, [ProductType], null: false, from: "productTypes")
+        end
     end
   end
 end

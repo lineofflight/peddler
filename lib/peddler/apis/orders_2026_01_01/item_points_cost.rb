@@ -10,9 +10,9 @@ module Peddler
       # Information about Amazon Points granted with the purchase of an item, including both quantity and monetary
       # equivalent value.
       ItemPointsCost = Structure.new do
-        # @return [PointsGranted] Details of the Amazon Points granted, including count and monetary value.
-        attribute?(:points_granted, PointsGranted, from: "pointsGranted")
-      end
+          # @return [PointsGranted] Details of the Amazon Points granted, including count and monetary value.
+          attribute?(:points_granted, PointsGranted, from: "pointsGranted")
+        end
     end
   end
 end

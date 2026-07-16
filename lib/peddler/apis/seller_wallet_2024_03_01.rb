@@ -250,6 +250,6 @@ module Peddler
         parser = -> { DeleteTransferSchedule }
         delete(path, params:, parser:)
       end
-    end
+          end
   end
 end

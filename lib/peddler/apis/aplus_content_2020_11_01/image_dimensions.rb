@@ -10,12 +10,12 @@ module Peddler
       # The dimensions that extend from the top left corner of the image (this applies to cropped and uncropped images).
       # `ImageDimensions` units must be in pixels.
       ImageDimensions = Structure.new do
-        # @return [IntegerWithUnits]
-        attribute(:height, IntegerWithUnits, null: false)
+          # @return [IntegerWithUnits]
+          attribute(:height, IntegerWithUnits, null: false)
 
-        # @return [IntegerWithUnits]
-        attribute(:width, IntegerWithUnits, null: false)
-      end
+          # @return [IntegerWithUnits]
+          attribute(:width, IntegerWithUnits, null: false)
+        end
     end
   end
 end

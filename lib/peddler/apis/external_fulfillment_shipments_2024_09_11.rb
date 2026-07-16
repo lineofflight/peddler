@@ -169,6 +169,6 @@ module Peddler
         parser = -> { ShipLabelsResponse }
         put(path, body:, params:, parser:)
       end
-    end
+          end
   end
 end

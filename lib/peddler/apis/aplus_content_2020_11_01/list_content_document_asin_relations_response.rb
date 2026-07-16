@@ -8,9 +8,9 @@ module Peddler
   module APIs
     class AplusContent20201101
       ListContentDocumentASINRelationsResponse = Structure.new do
-        # @return [Array<AsinMetadata>]
-        attribute(:asin_metadata_set, [ASINMetadata], null: false, from: "asinMetadataSet")
-      end
+          # @return [Array<AsinMetadata>]
+          attribute(:asin_metadata_set, [ASINMetadata], null: false, from: "asinMetadataSet")
+        end
     end
   end
 end

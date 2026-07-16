@@ -9,9 +9,9 @@ module Peddler
     class ProductPricingV0
       # The request associated with the `getItemOffersBatch` API call.
       GetItemOffersBatchRequest = Structure.new do
-        # @return [Array<ItemOffersRequest>]
-        attribute?(:requests, [ItemOffersRequest])
-      end
+          # @return [Array<ItemOffersRequest>]
+          attribute?(:requests, [ItemOffersRequest])
+        end
     end
   end
 end

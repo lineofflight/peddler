@@ -9,12 +9,12 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # A dimension of a package.
       Dimension = Structure.new do
-        # @return [String] The unit of measurement of the dimension.
-        attribute(:dimension_unit, String, null: false, from: "dimensionUnit")
+          # @return [String] The unit of measurement of the dimension.
+          attribute(:dimension_unit, String, null: false, from: "dimensionUnit")
 
-        # @return [String] The numerical value of the dimension. Must be a positive value.
-        attribute(:value, String, null: false)
-      end
+          # @return [String] The numerical value of the dimension. Must be a positive value.
+          attribute(:value, String, null: false)
+        end
     end
   end
 end

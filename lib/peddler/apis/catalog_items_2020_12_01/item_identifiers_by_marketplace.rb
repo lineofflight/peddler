@@ -9,13 +9,13 @@ module Peddler
     class CatalogItems20201201
       # Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
       ItemIdentifiersByMarketplace = Structure.new do
-        # @return [Array<ItemIdentifier>] Identifiers associated with the item in the Amazon catalog for the indicated
-        #   Amazon marketplace.
-        attribute(:identifiers, [ItemIdentifier], null: false)
+          # @return [Array<ItemIdentifier>] Identifiers associated with the item in the Amazon catalog for the indicated
+          #   Amazon marketplace.
+          attribute(:identifiers, [ItemIdentifier], null: false)
 
-        # @return [String] Amazon marketplace identifier.
-        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
-      end
+          # @return [String] Amazon marketplace identifier.
+          attribute(:marketplace_id, String, null: false, from: "marketplaceId")
+        end
     end
   end
 end

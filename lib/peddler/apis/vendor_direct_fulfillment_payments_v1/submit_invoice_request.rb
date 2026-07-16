@@ -9,9 +9,9 @@ module Peddler
     class VendorDirectFulfillmentPaymentsV1
       # The request schema for the submitInvoice operation.
       SubmitInvoiceRequest = Structure.new do
-        # @return [Array<InvoiceDetail>] An array of invoice details to be submitted.
-        attribute?(:invoices, [InvoiceDetail])
-      end
+          # @return [Array<InvoiceDetail>] An array of invoice details to be submitted.
+          attribute?(:invoices, [InvoiceDetail])
+        end
     end
   end
 end

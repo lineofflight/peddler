@@ -9,10 +9,10 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509
       # Transportation details for the shipment.
       TransportationDetails = Structure.new do
-        # @return [Array<TrackingDetails>] Tracking details for the shipment. If using SPD transportation, this can be
-        #   for each case. If not using SPD transportation, this is a single tracking entry for the entire shipment.
-        attribute(:tracking_details, [TrackingDetails], null: false, from: "trackingDetails")
-      end
+          # @return [Array<TrackingDetails>] Tracking details for the shipment. If using SPD transportation, this can be
+          #   for each case. If not using SPD transportation, this is a single tracking entry for the entire shipment.
+          attribute(:tracking_details, [TrackingDetails], null: false, from: "trackingDetails")
+        end
     end
   end
 end

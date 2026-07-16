@@ -9,15 +9,15 @@ module Peddler
     class ShippingV2
       # A value-added service available for purchase with a shipment service offering.
       ValueAddedService = Structure.new do
-        # @return [Money] The cost of the value-added service.
-        attribute(:cost, Money, null: false)
+          # @return [Money] The cost of the value-added service.
+          attribute(:cost, Money, null: false)
 
-        # @return [String] The identifier for the value-added service.
-        attribute(:id, String, null: false)
+          # @return [String] The identifier for the value-added service.
+          attribute(:id, String, null: false)
 
-        # @return [String] The name of the value-added service.
-        attribute(:name, String, null: false)
-      end
+          # @return [String] The name of the value-added service.
+          attribute(:name, String, null: false)
+        end
     end
   end
 end

@@ -9,18 +9,18 @@ module Peddler
     class ServicesV1
       # Information about an upload destination.
       ServiceDocumentUploadDestination = Structure.new do
-        # @return [EncryptionDetails]
-        attribute(:encryption_details, EncryptionDetails, null: false, from: "encryptionDetails")
+          # @return [EncryptionDetails]
+          attribute(:encryption_details, EncryptionDetails, null: false, from: "encryptionDetails")
 
-        # @return [String] The unique identifier to be used by APIs that reference the upload destination.
-        attribute(:upload_destination_id, String, null: false, from: "uploadDestinationId")
+          # @return [String] The unique identifier to be used by APIs that reference the upload destination.
+          attribute(:upload_destination_id, String, null: false, from: "uploadDestinationId")
 
-        # @return [String] The URL to which to upload the file.
-        attribute(:url, String, null: false)
+          # @return [String] The URL to which to upload the file.
+          attribute(:url, String, null: false)
 
-        # @return [Hash] The headers to include in the upload request.
-        attribute?(:headers, Hash)
-      end
+          # @return [Hash] The headers to include in the upload request.
+          attribute?(:headers, Hash)
+        end
     end
   end
 end

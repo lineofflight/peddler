@@ -85,11 +85,11 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil,
-        shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil,
-        package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil,
-        estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil,
-        requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil,
-        scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil,
+      shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil,
+      package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil,
+      estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil,
+      requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil,
+      scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil,
         buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -144,7 +144,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil,
-        label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil,
+      label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil,
         seller_warehouse_code: nil, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -162,6 +162,6 @@ module Peddler
         parser = -> { GetShipmentLabels }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

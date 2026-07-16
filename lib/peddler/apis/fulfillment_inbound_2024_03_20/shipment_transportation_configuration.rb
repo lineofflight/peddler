@@ -9,22 +9,22 @@ module Peddler
     class FulfillmentInbound20240320
       # Details needed to generate the transportation options.
       ShipmentTransportationConfiguration = Structure.new do
-        # @return [WindowInput] The range of dates within which the seller intends to ship their items. This is the
-        #   pick-up date or 'ready to ship' date, not an estimated delivery date.
-        attribute(:ready_to_ship_window, WindowInput, null: false, from: "readyToShipWindow")
+          # @return [WindowInput] The range of dates within which the seller intends to ship their items. This is the
+          #   pick-up date or 'ready to ship' date, not an estimated delivery date.
+          attribute(:ready_to_ship_window, WindowInput, null: false, from: "readyToShipWindow")
 
-        # @return [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
-        attribute(:shipment_id, String, null: false, from: "shipmentId")
+          # @return [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+          attribute(:shipment_id, String, null: false, from: "shipmentId")
 
-        # @return [ContactInformation]
-        attribute?(:contact_information, ContactInformation, from: "contactInformation")
+          # @return [ContactInformation]
+          attribute?(:contact_information, ContactInformation, from: "contactInformation")
 
-        # @return [FreightInformation]
-        attribute?(:freight_information, FreightInformation, from: "freightInformation")
+          # @return [FreightInformation]
+          attribute?(:freight_information, FreightInformation, from: "freightInformation")
 
-        # @return [Array<PalletInput>] List of pallet configuration inputs.
-        attribute?(:pallets, [PalletInput])
-      end
+          # @return [Array<PalletInput>] List of pallet configuration inputs.
+          attribute?(:pallets, [PalletInput])
+        end
     end
   end
 end

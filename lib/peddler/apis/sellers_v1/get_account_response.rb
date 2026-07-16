@@ -9,12 +9,12 @@ module Peddler
     class SellersV1
       # The response schema for the `getAccount` operation.
       GetAccountResponse = Structure.new do
-        # @return [Array<Error>] The errors encountered by the `getAccount` operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] The errors encountered by the `getAccount` operation.
+          attribute?(:errors, [Error])
 
-        # @return [Account]
-        attribute?(:payload, Account)
-      end
+          # @return [Account]
+          attribute?(:payload, Account)
+        end
     end
   end
 end

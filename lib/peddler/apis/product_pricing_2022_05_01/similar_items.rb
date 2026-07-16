@@ -9,9 +9,9 @@ module Peddler
     class ProductPricing20220501
       # The summary of similar items for the specified ASIN `marketplaceId` combination.
       SimilarItems = Structure.new do
-        # @return [Array<Item>] A list of similar items for the specified ASIN `marketplaceId` combination.
-        attribute?(:items, [Item])
-      end
+          # @return [Array<Item>] A list of similar items for the specified ASIN `marketplaceId` combination.
+          attribute?(:items, [Item])
+        end
     end
   end
 end

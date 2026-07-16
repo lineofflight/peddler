@@ -9,9 +9,9 @@ module Peddler
     class Orders20260101
       # Order details.
       GetOrderResponse = Structure.new do
-        # @return [Order] All available information about the requested order.
-        attribute(:order, Order, null: false)
-      end
+          # @return [Order] All available information about the requested order.
+          attribute(:order, Order, null: false)
+        end
     end
   end
 end

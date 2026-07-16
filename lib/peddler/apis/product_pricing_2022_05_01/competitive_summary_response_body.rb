@@ -9,29 +9,29 @@ module Peddler
     class ProductPricing20220501
       # The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
       CompetitiveSummaryResponseBody = Structure.new do
-        # @return [String] The Amazon identifier for the item.
-        attribute(:asin, String, null: false)
+          # @return [String] The Amazon identifier for the item.
+          attribute(:asin, String, null: false)
 
-        # @return [String] A marketplace identifier.
-        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
+          # @return [String] A marketplace identifier.
+          attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [Array<Error>] A list of errors
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] A list of errors
+          attribute?(:errors, [Error])
 
-        # @return [Array<FeaturedBuyingOption>] A list of featured buying options for the specified ASIN `marketplaceId`
-        #   combination.
-        attribute?(:featured_buying_options, [FeaturedBuyingOption], from: "featuredBuyingOptions")
+          # @return [Array<FeaturedBuyingOption>] A list of featured buying options for the specified ASIN `marketplaceId`
+          #   combination.
+          attribute?(:featured_buying_options, [FeaturedBuyingOption], from: "featuredBuyingOptions")
 
-        # @return [Array<LowestPricedOffer>] A list of lowest priced offers for the specified ASIN `marketplaceId`
-        #   combination.
-        attribute?(:lowest_priced_offers, [LowestPricedOffer], from: "lowestPricedOffers")
+          # @return [Array<LowestPricedOffer>] A list of lowest priced offers for the specified ASIN `marketplaceId`
+          #   combination.
+          attribute?(:lowest_priced_offers, [LowestPricedOffer], from: "lowestPricedOffers")
 
-        # @return [Array<ReferencePrice>] A list of reference prices for the specified ASIN `marketplaceId` combination.
-        attribute?(:reference_prices, [ReferencePrice], from: "referencePrices")
+          # @return [Array<ReferencePrice>] A list of reference prices for the specified ASIN `marketplaceId` combination.
+          attribute?(:reference_prices, [ReferencePrice], from: "referencePrices")
 
-        # @return [Array<SimilarItems>] A list of similar items for the specified ASIN `marketplaceId` combination.
-        attribute?(:similar_items, [SimilarItems], from: "similarItems")
-      end
+          # @return [Array<SimilarItems>] A list of similar items for the specified ASIN `marketplaceId` combination.
+          attribute?(:similar_items, [SimilarItems], from: "similarItems")
+        end
     end
   end
 end

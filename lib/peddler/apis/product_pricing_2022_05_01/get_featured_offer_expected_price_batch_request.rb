@@ -9,9 +9,9 @@ module Peddler
     class ProductPricing20220501
       # The request body for the `getFeaturedOfferExpectedPriceBatch` operation.
       GetFeaturedOfferExpectedPriceBatchRequest = Structure.new do
-        # @return [Array<FeaturedOfferExpectedPriceRequest>]
-        attribute?(:requests, [FeaturedOfferExpectedPriceRequest])
-      end
+          # @return [Array<FeaturedOfferExpectedPriceRequest>]
+          attribute?(:requests, [FeaturedOfferExpectedPriceRequest])
+        end
     end
   end
 end

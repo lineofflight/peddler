@@ -9,12 +9,12 @@ module Peddler
     class ServicesV1
       # Response schema for the `getServiceJobs` operation.
       GetServiceJobsResponse = Structure.new do
-        # @return [Array<Error>] An unexpected condition occurred during the `getServiceJobs` operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] An unexpected condition occurred during the `getServiceJobs` operation.
+          attribute?(:errors, [Error])
 
-        # @return [JobListing] The payload for the `getServiceJobs` operation.
-        attribute?(:payload, JobListing)
-      end
+          # @return [JobListing] The payload for the `getServiceJobs` operation.
+          attribute?(:payload, JobListing)
+        end
     end
   end
 end

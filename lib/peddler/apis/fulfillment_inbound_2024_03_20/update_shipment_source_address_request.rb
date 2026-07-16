@@ -9,9 +9,9 @@ module Peddler
     class FulfillmentInbound20240320
       # The `UpdateShipmentSourceAddress` request.
       UpdateShipmentSourceAddressRequest = Structure.new do
-        # @return [AddressInput]
-        attribute(:address, AddressInput, null: false)
-      end
+          # @return [AddressInput]
+          attribute(:address, AddressInput, null: false)
+        end
     end
   end
 end

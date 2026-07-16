@@ -9,12 +9,12 @@ module Peddler
     class OrdersV0
       # The response schema for the `getOrder` operation.
       GetOrderResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `getOrder` operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] One or more unexpected errors occurred during the `getOrder` operation.
+          attribute?(:errors, [Error])
 
-        # @return [Order] The payload for the `getOrder` operation.
-        attribute?(:payload, Order)
-      end
+          # @return [Order] The payload for the `getOrder` operation.
+          attribute?(:payload, Order)
+        end
     end
   end
 end

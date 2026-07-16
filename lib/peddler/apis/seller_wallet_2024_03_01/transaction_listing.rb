@@ -9,15 +9,15 @@ module Peddler
     class SellerWallet20240301
       # A list of transactions.
       TransactionListing = Structure.new do
-        # @return [Array<Transaction>] A list of transactions.
-        attribute(:transactions, [Transaction], null: false)
+          # @return [Array<Transaction>] A list of transactions.
+          attribute(:transactions, [Transaction], null: false)
 
-        # @return [String] A token that you use to retrieve the next page of results. The response includes
-        #   `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation
-        #   with this token and include the same arguments as the call that produced the token. To get a complete list,
-        #   call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
-        attribute?(:next_page_token, String, from: "nextPageToken")
-      end
+          # @return [String] A token that you use to retrieve the next page of results. The response includes
+          #   `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation
+          #   with this token and include the same arguments as the call that produced the token. To get a complete list,
+          #   call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
+          attribute?(:next_page_token, String, from: "nextPageToken")
+        end
     end
   end
 end

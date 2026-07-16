@@ -11,12 +11,12 @@ module Peddler
       # with this token and include the same arguments as the call that produced the token. To get a complete list, call
       # this operation until `nextPageToken` is null. Note that this operation can return empty pages.
       AplusPaginatedResponse = Structure.new do
-        # @return [String]
-        attribute?(:next_page_token, String, from: "nextPageToken")
+          # @return [String]
+          attribute?(:next_page_token, String, from: "nextPageToken")
 
-        # @return [Array<Error>]
-        attribute?(:warnings, [Error])
-      end
+          # @return [Array<Error>]
+          attribute?(:warnings, [Error])
+        end
     end
   end
 end

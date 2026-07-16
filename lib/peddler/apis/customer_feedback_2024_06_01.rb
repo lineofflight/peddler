@@ -134,6 +134,6 @@ module Peddler
         parser = -> { BrowseNodeReturnTrendsResponse }
         get(path, params:, parser:)
       end
-    end
+          end
   end
 end

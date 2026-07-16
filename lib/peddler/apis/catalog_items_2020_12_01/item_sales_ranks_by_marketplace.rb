@@ -9,12 +9,12 @@ module Peddler
     class CatalogItems20201201
       # Sales ranks of an Amazon catalog item for the indicated Amazon marketplace.
       ItemSalesRanksByMarketplace = Structure.new do
-        # @return [String] Amazon marketplace identifier.
-        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
+          # @return [String] Amazon marketplace identifier.
+          attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [Array<ItemSalesRank>] Sales ranks of an Amazon catalog item for an Amazon marketplace.
-        attribute(:ranks, [ItemSalesRank], null: false)
-      end
+          # @return [Array<ItemSalesRank>] Sales ranks of an Amazon catalog item for an Amazon marketplace.
+          attribute(:ranks, [ItemSalesRank], null: false)
+        end
     end
   end
 end

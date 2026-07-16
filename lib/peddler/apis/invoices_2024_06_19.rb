@@ -197,7 +197,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoices(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil,
-        transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil,
+      transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil,
         sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, rate_limit: 0.1)
         path = "/tax/invoices/2024-06-19/invoices"
         params = {
@@ -237,6 +237,6 @@ module Peddler
         parser = -> { GetInvoiceResponse }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

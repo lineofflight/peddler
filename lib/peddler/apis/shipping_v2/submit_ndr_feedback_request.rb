@@ -9,15 +9,15 @@ module Peddler
     class ShippingV2
       # The request schema for the NdrFeedback operation
       SubmitNdrFeedbackRequest = Structure.new do
-        # @return [String]
-        attribute(:ndr_action, String, null: false, from: "ndrAction")
+          # @return [String]
+          attribute(:ndr_action, String, null: false, from: "ndrAction")
 
-        # @return [String]
-        attribute(:tracking_id, String, null: false, from: "trackingId")
+          # @return [String]
+          attribute(:tracking_id, String, null: false, from: "trackingId")
 
-        # @return [NdrRequestData]
-        attribute?(:ndr_request_data, NdrRequestData, from: "ndrRequestData")
-      end
+          # @return [NdrRequestData]
+          attribute?(:ndr_request_data, NdrRequestData, from: "ndrRequestData")
+        end
     end
   end
 end

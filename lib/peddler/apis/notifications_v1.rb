@@ -166,6 +166,6 @@ module Peddler
         parser = -> { DeleteDestinationResponse }
         delete(path, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

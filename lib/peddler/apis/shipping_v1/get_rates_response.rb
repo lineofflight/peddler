@@ -9,12 +9,12 @@ module Peddler
     class ShippingV1
       # The response schema for the getRates operation.
       GetRatesResponse = Structure.new do
-        # @return [Array<Error>] Encountered errors for the operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] Encountered errors for the operation.
+          attribute?(:errors, [Error])
 
-        # @return [GetRatesResult] The payload for getRates operation
-        attribute?(:payload, GetRatesResult)
-      end
+          # @return [GetRatesResult] The payload for getRates operation
+          attribute?(:payload, GetRatesResult)
+        end
     end
   end
 end

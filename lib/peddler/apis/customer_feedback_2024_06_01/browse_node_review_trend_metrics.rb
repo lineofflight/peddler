@@ -9,9 +9,9 @@ module Peddler
     class CustomerFeedback20240601
       # The browse node review topic metrics.
       BrowseNodeReviewTrendMetrics = Structure.new do
-        # @return [BrowseNodeAllOccurrence] The percent of reviews that mention the topic.
-        attribute(:occurrence_percentage, BrowseNodeAllOccurrence, null: false, from: "occurrencePercentage")
-      end
+          # @return [BrowseNodeAllOccurrence] The percent of reviews that mention the topic.
+          attribute(:occurrence_percentage, BrowseNodeAllOccurrence, null: false, from: "occurrencePercentage")
+        end
     end
   end
 end

@@ -9,12 +9,12 @@ module Peddler
     class AplusContent20201101
       # The A+ Content standard image and caption block.
       StandardImageCaptionBlock = Structure.new do
-        # @return [TextComponent]
-        attribute?(:caption, TextComponent)
+          # @return [TextComponent]
+          attribute?(:caption, TextComponent)
 
-        # @return [ImageComponent]
-        attribute?(:image, ImageComponent)
-      end
+          # @return [ImageComponent]
+          attribute?(:image, ImageComponent)
+        end
     end
   end
 end

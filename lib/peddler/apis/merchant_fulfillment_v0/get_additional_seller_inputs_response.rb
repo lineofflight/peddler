@@ -9,12 +9,12 @@ module Peddler
     class MerchantFulfillmentV0
       # Response schema.
       GetAdditionalSellerInputsResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
 
-        # @return [GetAdditionalSellerInputsResult]
-        attribute?(:payload, GetAdditionalSellerInputsResult)
-      end
+          # @return [GetAdditionalSellerInputsResult]
+          attribute?(:payload, GetAdditionalSellerInputsResult)
+        end
     end
   end
 end

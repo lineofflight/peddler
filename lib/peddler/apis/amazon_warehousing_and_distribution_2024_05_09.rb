@@ -366,6 +366,6 @@ module Peddler
         path = "/awd/2024-05-09/replenishmentOrders/#{percent_encode(order_id)}/confirmation"
         post(path)
       end
-    end
+          end
   end
 end

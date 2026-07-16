@@ -9,9 +9,9 @@ module Peddler
     class ShippingV2
       # The shipper instruction.
       ShipperInstruction = Structure.new do
-        # @return [String] The delivery notes for the shipment
-        attribute?(:delivery_notes, String, from: "deliveryNotes")
-      end
+          # @return [String] The delivery notes for the shipment
+          attribute?(:delivery_notes, String, from: "deliveryNotes")
+        end
     end
   end
 end

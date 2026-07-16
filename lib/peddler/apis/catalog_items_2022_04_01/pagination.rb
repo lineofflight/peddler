@@ -12,12 +12,12 @@ module Peddler
       # `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. There is no
       # `nextToken` in the pagination object on the last page.
       Pagination = Structure.new do
-        # @return [String] A token that you can use to retrieve the next page.
-        attribute?(:next_token, String, from: "nextToken")
+          # @return [String] A token that you can use to retrieve the next page.
+          attribute?(:next_token, String, from: "nextToken")
 
-        # @return [String] A token that you can use to retrieve the previous page.
-        attribute?(:previous_token, String, from: "previousToken")
-      end
+          # @return [String] A token that you can use to retrieve the previous page.
+          attribute?(:previous_token, String, from: "previousToken")
+        end
     end
   end
 end

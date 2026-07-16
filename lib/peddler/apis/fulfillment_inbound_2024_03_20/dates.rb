@@ -9,9 +9,9 @@ module Peddler
     class FulfillmentInbound20240320
       # Specifies the date that the seller expects their shipment will be shipped.
       Dates = Structure.new do
-        # @return [Window]
-        attribute?(:ready_to_ship_window, Window, from: "readyToShipWindow")
-      end
+          # @return [Window]
+          attribute?(:ready_to_ship_window, Window, from: "readyToShipWindow")
+        end
     end
   end
 end

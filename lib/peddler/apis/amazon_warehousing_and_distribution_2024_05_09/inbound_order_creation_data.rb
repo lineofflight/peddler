@@ -9,18 +9,18 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509
       # Payload for creating an inbound order.
       InboundOrderCreationData = Structure.new do
-        # @return [Address] Origin address from where the inbound order will be shipped.
-        attribute(:origin_address, Address, null: false, from: "originAddress")
+          # @return [Address] Origin address from where the inbound order will be shipped.
+          attribute(:origin_address, Address, null: false, from: "originAddress")
 
-        # @return [Array<DistributionPackageQuantity>] List of packages to be inbounded.
-        attribute(:packages_to_inbound, [DistributionPackageQuantity], null: false, from: "packagesToInbound")
+          # @return [Array<DistributionPackageQuantity>] List of packages to be inbounded.
+          attribute(:packages_to_inbound, [DistributionPackageQuantity], null: false, from: "packagesToInbound")
 
-        # @return [String] Reference ID that can be used to correlate the order with partner resources.
-        attribute?(:external_reference_id, String, from: "externalReferenceId")
+          # @return [String] Reference ID that can be used to correlate the order with partner resources.
+          attribute?(:external_reference_id, String, from: "externalReferenceId")
 
-        # @return [InboundPreferences]
-        attribute?(:preferences, InboundPreferences)
-      end
+          # @return [InboundPreferences]
+          attribute?(:preferences, InboundPreferences)
+        end
     end
   end
 end

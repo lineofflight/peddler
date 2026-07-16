@@ -13,13 +13,13 @@ module Peddler
       # For eligible orders, the default delivery preference will be to deliver the package unattended at the front
       # door, unless you specify otherwise.
       DeliveryPreferences = Structure.new do
-        # @return [String] Additional delivery instructions. For example, this could be instructions on how to enter a
-        #   building, nearby landmark or navigation instructions, or `Beware of dogs`.
-        attribute?(:delivery_instructions, String, from: "deliveryInstructions")
+          # @return [String] Additional delivery instructions. For example, this could be instructions on how to enter a
+          #   building, nearby landmark or navigation instructions, or `Beware of dogs`.
+          attribute?(:delivery_instructions, String, from: "deliveryInstructions")
 
-        # @return [DropOffLocation] The preferred location to leave packages at the destination address.
-        attribute?(:drop_off_location, DropOffLocation, from: "dropOffLocation")
-      end
+          # @return [DropOffLocation] The preferred location to leave packages at the destination address.
+          attribute?(:drop_off_location, DropOffLocation, from: "dropOffLocation")
+        end
     end
   end
 end

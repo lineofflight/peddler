@@ -9,19 +9,19 @@ module Peddler
     class ShippingV2
       # The value-added services available for purchase with a shipping service offering.
       AvailableValueAddedServiceGroup = Structure.new do
-        # @return [String] The name of the value-added service group.
-        attribute(:group_description, String, null: false, from: "groupDescription")
+          # @return [String] The name of the value-added service group.
+          attribute(:group_description, String, null: false, from: "groupDescription")
 
-        # @return [String] The type of the value-added service group.
-        attribute(:group_id, String, null: false, from: "groupId")
+          # @return [String] The type of the value-added service group.
+          attribute(:group_id, String, null: false, from: "groupId")
 
-        # @return [:boolean] When true, one or more of the value-added services listed must be specified.
-        attribute(:required, :boolean, null: false, from: "isRequired")
+          # @return [:boolean] When true, one or more of the value-added services listed must be specified.
+          attribute(:required, :boolean, null: false, from: "isRequired")
 
-        # @return [Array<ValueAddedService>] A list of optional value-added services available for purchase with a
-        #   shipping service offering.
-        attribute?(:value_added_services, [ValueAddedService], from: "valueAddedServices")
-      end
+          # @return [Array<ValueAddedService>] A list of optional value-added services available for purchase with a
+          #   shipping service offering.
+          attribute?(:value_added_services, [ValueAddedService], from: "valueAddedServices")
+        end
     end
   end
 end

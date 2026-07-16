@@ -158,6 +158,6 @@ module Peddler
         parser = -> { GetListingOffersBatchResponse }
         post(path, body:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

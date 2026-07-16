@@ -9,9 +9,9 @@ module Peddler
     class NotificationsV1
       # The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
       SqsResource = Structure.new do
-        # @return [String] The Amazon Resource Name (ARN) associated with the SQS queue.
-        attribute(:arn, String, null: false)
-      end
+          # @return [String] The Amazon Resource Name (ARN) associated with the SQS queue.
+          attribute(:arn, String, null: false)
+        end
     end
   end
 end

@@ -74,6 +74,6 @@ module Peddler
         parser = -> { Item }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

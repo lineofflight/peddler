@@ -9,12 +9,12 @@ module Peddler
     class Vehicles20241101
       # Represents a month in a specific year.
       MonthAndYear = Structure.new do
-        # @return [Float]
-        attribute?(:month, Float)
+          # @return [Float]
+          attribute?(:month, Float)
 
-        # @return [Float]
-        attribute?(:year, Float)
-      end
+          # @return [Float]
+          attribute?(:year, Float)
+        end
     end
   end
 end

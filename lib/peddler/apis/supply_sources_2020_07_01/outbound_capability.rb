@@ -9,21 +9,21 @@ module Peddler
     class SupplySources20200701
       # The outbound capability of a supply source.
       OutboundCapability = Structure.new do
-        # @return [DeliveryChannel]
-        attribute?(:delivery_channel, DeliveryChannel, from: "deliveryChannel")
+          # @return [DeliveryChannel]
+          attribute?(:delivery_channel, DeliveryChannel, from: "deliveryChannel")
 
-        # @return [:boolean]
-        attribute?(:supported, :boolean, from: "isSupported")
+          # @return [:boolean]
+          attribute?(:supported, :boolean, from: "isSupported")
 
-        # @return [OperationalConfiguration]
-        attribute?(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")
+          # @return [OperationalConfiguration]
+          attribute?(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")
 
-        # @return [PickupChannel]
-        attribute?(:pickup_channel, PickupChannel, from: "pickupChannel")
+          # @return [PickupChannel]
+          attribute?(:pickup_channel, PickupChannel, from: "pickupChannel")
 
-        # @return [ReturnLocation]
-        attribute?(:return_location, ReturnLocation, from: "returnLocation")
-      end
+          # @return [ReturnLocation]
+          attribute?(:return_location, ReturnLocation, from: "returnLocation")
+        end
     end
   end
 end

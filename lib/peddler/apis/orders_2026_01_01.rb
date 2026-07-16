@@ -56,7 +56,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil,
-        fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil,
+      fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil,
         pagination_token: nil, included_data: nil, rate_limit: 0.0056)
         path = "/orders/2026-01-01/orders"
         params = {
@@ -90,6 +90,6 @@ module Peddler
         parser = -> { GetOrderResponse }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

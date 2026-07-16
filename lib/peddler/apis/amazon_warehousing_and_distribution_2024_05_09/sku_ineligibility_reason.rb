@@ -9,12 +9,12 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509
       # Represents the ineligibility reason for one SKU.
       SKUIneligibilityReason = Structure.new do
-        # @return [String] Code for the SKU ineligibility.
-        attribute(:code, String, null: false)
+          # @return [String] Code for the SKU ineligibility.
+          attribute(:code, String, null: false)
 
-        # @return [String] Detailed description of the SKU ineligibility.
-        attribute(:description, String, null: false)
-      end
+          # @return [String] Detailed description of the SKU ineligibility.
+          attribute(:description, String, null: false)
+        end
     end
   end
 end

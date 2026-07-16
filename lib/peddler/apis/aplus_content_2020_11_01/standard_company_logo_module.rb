@@ -9,9 +9,9 @@ module Peddler
     class AplusContent20201101
       # The standard company logo image.
       StandardCompanyLogoModule = Structure.new do
-        # @return [ImageComponent]
-        attribute(:company_logo, ImageComponent, null: false, from: "companyLogo")
-      end
+          # @return [ImageComponent]
+          attribute(:company_logo, ImageComponent, null: false, from: "companyLogo")
+        end
     end
   end
 end

@@ -9,12 +9,12 @@ module Peddler
     class MessagingV1
       # The response schema for the GetAttributes operation.
       GetAttributesResponse = Structure.new do
-        # @return [Hash] The list of attributes related to the buyer.
-        attribute?(:buyer, Hash)
+          # @return [Hash] The list of attributes related to the buyer.
+          attribute?(:buyer, Hash)
 
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
-      end
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
+        end
     end
   end
 end

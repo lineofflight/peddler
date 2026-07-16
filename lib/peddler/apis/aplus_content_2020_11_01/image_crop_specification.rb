@@ -11,12 +11,12 @@ module Peddler
       # the original image size. If the image is cropped and you don't include offset values, the coordinates of the top
       # left corner of the cropped image are set to (0,0) by default.
       ImageCropSpecification = Structure.new do
-        # @return [ImageDimensions]
-        attribute(:size, ImageDimensions, null: false)
+          # @return [ImageDimensions]
+          attribute(:size, ImageDimensions, null: false)
 
-        # @return [ImageOffsets]
-        attribute?(:offset, ImageOffsets)
-      end
+          # @return [ImageOffsets]
+          attribute?(:offset, ImageOffsets)
+        end
     end
   end
 end

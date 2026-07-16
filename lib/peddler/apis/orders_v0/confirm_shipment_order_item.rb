@@ -9,15 +9,15 @@ module Peddler
     class OrdersV0
       # A single order item.
       ConfirmShipmentOrderItem = Structure.new do
-        # @return [String] The order item's unique identifier.
-        attribute(:order_item_id, String, null: false, from: "orderItemId")
+          # @return [String] The order item's unique identifier.
+          attribute(:order_item_id, String, null: false, from: "orderItemId")
 
-        # @return [Integer] The item's quantity.
-        attribute(:quantity, Integer, null: false)
+          # @return [Integer] The item's quantity.
+          attribute(:quantity, Integer, null: false)
 
-        # @return [Array<TransparencyCode>] The list of transparency codes.
-        attribute?(:transparency_codes, Array, from: "transparencyCodes")
-      end
+          # @return [Array<TransparencyCode>] The list of transparency codes.
+          attribute?(:transparency_codes, Array, from: "transparencyCodes")
+        end
     end
   end
 end

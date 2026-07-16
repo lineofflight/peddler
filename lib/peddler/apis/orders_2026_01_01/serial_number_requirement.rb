@@ -9,11 +9,11 @@ module Peddler
     class Orders20260101
       # Whether serial numbers must be provided for this line item.
       SerialNumberRequirement = Structure.new do
-        # @return [String] The requirement type for this request.
-        #
-        # **Possible values**: `REQUIRED`
-        attribute?(:requirement_type, String, from: "requirementType")
-      end
+          # @return [String] The requirement type for this request.
+          #
+          # **Possible values**: `REQUIRED`
+          attribute?(:requirement_type, String, from: "requirementType")
+        end
     end
   end
 end

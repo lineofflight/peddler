@@ -9,12 +9,12 @@ module Peddler
     class ProductPricingV0
       # Sales rank information for the item, by category
       SalesRankType = Structure.new do
-        # @return [String] Identifies the item category from which the sales rank is taken.
-        attribute(:product_category_id, String, null: false, from: "ProductCategoryId")
+          # @return [String] Identifies the item category from which the sales rank is taken.
+          attribute(:product_category_id, String, null: false, from: "ProductCategoryId")
 
-        # @return [Integer] The sales rank of the item within the item category.
-        attribute(:rank, Integer, null: false, from: "Rank")
-      end
+          # @return [Integer] The sales rank of the item within the item category.
+          attribute(:rank, Integer, null: false, from: "Rank")
+        end
     end
   end
 end

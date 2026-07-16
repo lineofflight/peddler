@@ -11,16 +11,16 @@ module Peddler
       # the scheduled packtages, an optional list of orders we couldn't schedule with the reason, and a pre-signed URL
       # for a ZIP file containing the associated shipping labels plus the documents enabled for your marketplace.
       CreateScheduledPackagesResponse = Structure.new do
-        # @return [String]
-        attribute?(:printable_documents_url, String, from: "printableDocumentsUrl")
+          # @return [String]
+          attribute?(:printable_documents_url, String, from: "printableDocumentsUrl")
 
-        # @return [Array<RejectedOrder>] A list of orders we couldn't scheduled on your behalf. Each element contains
-        #   the reason and details on the error.
-        attribute?(:rejected_orders, [RejectedOrder], from: "rejectedOrders")
+          # @return [Array<RejectedOrder>] A list of orders we couldn't scheduled on your behalf. Each element contains
+          #   the reason and details on the error.
+          attribute?(:rejected_orders, [RejectedOrder], from: "rejectedOrders")
 
-        # @return [Array<Package>] A list of packages. Refer to the `Package` object.
-        attribute?(:scheduled_packages, [Package], from: "scheduledPackages")
-      end
+          # @return [Array<Package>] A list of packages. Refer to the `Package` object.
+          attribute?(:scheduled_packages, [Package], from: "scheduledPackages")
+        end
     end
   end
 end

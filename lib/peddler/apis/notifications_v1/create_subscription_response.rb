@@ -9,12 +9,12 @@ module Peddler
     class NotificationsV1
       # The response schema for the `createSubscription` operation.
       CreateSubscriptionResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `createSubscription` operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] One or more unexpected errors occurred during the `createSubscription` operation.
+          attribute?(:errors, [Error])
 
-        # @return [Subscription] The payload for the `createSubscription` operation.
-        attribute?(:payload, Subscription)
-      end
+          # @return [Subscription] The payload for the `createSubscription` operation.
+          attribute?(:payload, Subscription)
+        end
     end
   end
 end

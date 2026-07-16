@@ -9,15 +9,15 @@ module Peddler
     class FulfillmentInbound20240320
       # The range of weights that are allowed for a package.
       WeightRange = Structure.new do
-        # @return [Float] Maximum allowed weight.
-        attribute(:maximum, Float, null: false)
+          # @return [Float] Maximum allowed weight.
+          attribute(:maximum, Float, null: false)
 
-        # @return [Float] Minimum allowed weight.
-        attribute(:minimum, Float, null: false)
+          # @return [Float] Minimum allowed weight.
+          attribute(:minimum, Float, null: false)
 
-        # @return [String]
-        attribute(:unit, String, null: false)
-      end
+          # @return [String]
+          attribute(:unit, String, null: false)
+        end
     end
   end
 end

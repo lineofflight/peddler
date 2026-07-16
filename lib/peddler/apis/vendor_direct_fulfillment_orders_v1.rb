@@ -75,6 +75,6 @@ module Peddler
         parser = -> { SubmitAcknowledgementResponse }
         post(path, body:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

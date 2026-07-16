@@ -9,12 +9,12 @@ module Peddler
     class CatalogItems20201201
       # Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
       ItemIdentifier = Structure.new do
-        # @return [String] Identifier.
-        attribute(:identifier, String, null: false)
+          # @return [String] Identifier.
+          attribute(:identifier, String, null: false)
 
-        # @return [String] Type of identifier, such as UPC, EAN, or ISBN.
-        attribute(:identifier_type, String, null: false, from: "identifierType")
-      end
+          # @return [String] Type of identifier, such as UPC, EAN, or ISBN.
+          attribute(:identifier_type, String, null: false, from: "identifierType")
+        end
     end
   end
 end

@@ -9,15 +9,15 @@ module Peddler
     class EasyShip20220323
       # The request schema for the `createScheduledPackage` operation.
       CreateScheduledPackageRequest = Structure.new do
-        # @return [String]
-        attribute(:amazon_order_id, String, null: false, from: "amazonOrderId")
+          # @return [String]
+          attribute(:amazon_order_id, String, null: false, from: "amazonOrderId")
 
-        # @return [String]
-        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
+          # @return [String]
+          attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [PackageDetails]
-        attribute(:package_details, PackageDetails, null: false, from: "packageDetails")
-      end
+          # @return [PackageDetails]
+          attribute(:package_details, PackageDetails, null: false, from: "packageDetails")
+        end
     end
   end
 end

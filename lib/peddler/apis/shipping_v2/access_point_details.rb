@@ -9,9 +9,9 @@ module Peddler
     class ShippingV2
       # AccessPointDetails object
       AccessPointDetails = Structure.new do
-        # @return [String]
-        attribute?(:access_point_id, String, from: "accessPointId")
-      end
+          # @return [String]
+          attribute?(:access_point_id, String, from: "accessPointId")
+        end
     end
   end
 end

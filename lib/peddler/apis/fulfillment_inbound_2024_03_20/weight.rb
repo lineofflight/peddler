@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInbound20240320
       # The weight of a package.
       Weight = Structure.new do
-        # @return [String]
-        attribute(:unit, String, null: false)
+          # @return [String]
+          attribute(:unit, String, null: false)
 
-        # @return [Float] Value of a weight.
-        attribute(:value, Float, null: false)
-      end
+          # @return [Float] Value of a weight.
+          attribute(:value, Float, null: false)
+        end
     end
   end
 end

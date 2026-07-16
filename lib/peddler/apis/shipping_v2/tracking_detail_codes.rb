@@ -9,14 +9,14 @@ module Peddler
     class ShippingV2
       # Contains detail codes that provide additional details related to the forward and return leg of the shipment.
       TrackingDetailCodes = Structure.new do
-        # @return [Array<DetailCodes>] Contains detail codes that provide additional details related to the forward leg
-        #   of the shipment.
-        attribute(:forward, Array, null: false)
+          # @return [Array<DetailCodes>] Contains detail codes that provide additional details related to the forward leg
+          #   of the shipment.
+          attribute(:forward, Array, null: false)
 
-        # @return [Array<DetailCodes>] Contains detail codes that provide additional details related to the return leg
-        #   of the shipment.
-        attribute(:returns, Array, null: false)
-      end
+          # @return [Array<DetailCodes>] Contains detail codes that provide additional details related to the return leg
+          #   of the shipment.
+          attribute(:returns, Array, null: false)
+        end
     end
   end
 end

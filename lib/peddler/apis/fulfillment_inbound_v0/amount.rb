@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInboundV0
       # The monetary value.
       Amount = Structure.new do
-        # @return [String]
-        attribute(:currency_code, String, null: false, from: "CurrencyCode")
+          # @return [String]
+          attribute(:currency_code, String, null: false, from: "CurrencyCode")
 
-        # @return [Float] The amount.
-        attribute(:value, Float, null: false, from: "Value")
-      end
+          # @return [Float] The amount.
+          attribute(:value, Float, null: false, from: "Value")
+        end
     end
   end
 end

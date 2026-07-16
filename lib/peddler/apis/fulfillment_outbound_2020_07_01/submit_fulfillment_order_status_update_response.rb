@@ -9,10 +9,10 @@ module Peddler
     class FulfillmentOutbound20200701
       # The response schema for the `SubmitFulfillmentOrderStatusUpdate` operation.
       SubmitFulfillmentOrderStatusUpdateResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `SubmitFulfillmentOrderStatusUpdate`
-        #   operation.
-        attribute?(:errors, [Error])
-      end
+          # @return [Array<Error>] One or more unexpected errors occurred during the `SubmitFulfillmentOrderStatusUpdate`
+          #   operation.
+          attribute?(:errors, [Error])
+        end
     end
   end
 end

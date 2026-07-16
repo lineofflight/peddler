@@ -10,9 +10,9 @@ module Peddler
       # A response that contains the reference identifier for the newly created or updated outbound order. This includes
       # an order ID.
       OutboundOrderReference = Structure.new do
-        # @return [String] outbound order ID.
-        attribute(:order_id, String, null: false, from: "orderId")
-      end
+          # @return [String] outbound order ID.
+          attribute(:order_id, String, null: false, from: "orderId")
+        end
     end
   end
 end

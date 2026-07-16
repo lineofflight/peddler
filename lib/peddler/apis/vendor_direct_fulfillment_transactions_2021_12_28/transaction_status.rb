@@ -9,9 +9,9 @@ module Peddler
     class VendorDirectFulfillmentTransactions20211228
       # The payload for the getTransactionStatus operation.
       TransactionStatus = Structure.new do
-        # @return [Transaction]
-        attribute?(:transaction_status, Transaction, from: "transactionStatus")
-      end
+          # @return [Transaction]
+          attribute?(:transaction_status, Transaction, from: "transactionStatus")
+        end
     end
   end
 end

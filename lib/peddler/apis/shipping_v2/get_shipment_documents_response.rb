@@ -9,9 +9,9 @@ module Peddler
     class ShippingV2
       # The response schema for the the getShipmentDocuments operation.
       GetShipmentDocumentsResponse = Structure.new do
-        # @return [GetShipmentDocumentsResult]
-        attribute?(:payload, GetShipmentDocumentsResult)
-      end
+          # @return [GetShipmentDocumentsResult]
+          attribute?(:payload, GetShipmentDocumentsResult)
+        end
     end
   end
 end

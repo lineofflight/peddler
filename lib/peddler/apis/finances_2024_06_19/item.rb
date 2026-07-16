@@ -9,22 +9,22 @@ module Peddler
     class Finances20240619
       # Additional information about the items in a transaction.
       Item = Structure.new do
-        # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
-        #   transaction.
-        attribute?(:breakdowns, [Breakdown])
+          # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
+          #   transaction.
+          attribute?(:breakdowns, [Breakdown])
 
-        # @return [Array<Context>] Additional Information about the item.
-        attribute?(:contexts, [Context])
+          # @return [Array<Context>] Additional Information about the item.
+          attribute?(:contexts, [Context])
 
-        # @return [String] A description of the items in a transaction.
-        attribute?(:description, String)
+          # @return [String] A description of the items in a transaction.
+          attribute?(:description, String)
 
-        # @return [Array<ItemRelatedIdentifier>] Related business identifiers of the item.
-        attribute?(:related_identifiers, [ItemRelatedIdentifier], from: "relatedIdentifiers")
+          # @return [Array<ItemRelatedIdentifier>] Related business identifiers of the item.
+          attribute?(:related_identifiers, [ItemRelatedIdentifier], from: "relatedIdentifiers")
 
-        # @return [Money] The total monetary amount of the item.
-        attribute?(:total_amount, Money, from: "totalAmount")
-      end
+          # @return [Money] The total monetary amount of the item.
+          attribute?(:total_amount, Money, from: "totalAmount")
+        end
     end
   end
 end

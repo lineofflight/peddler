@@ -12,12 +12,12 @@ module Peddler
       # less-than-truckload (LTL), freight full-truckload (FTL) palletized, freight FTL non-palletized, ocean
       # less-than-container-load (LCL), ocean full-container load (FCL), air small parcel, and air small parcel express.
       ShippingRequirements = Structure.new do
-        # @return [Array<String>] Available shipment modes for this shipping program.
-        attribute(:modes, [String], null: false)
+          # @return [Array<String>] Available shipment modes for this shipping program.
+          attribute(:modes, [String], null: false)
 
-        # @return [String] Shipping program for the option. Can be: `AMAZON_PARTNERED_CARRIER`, `USE_YOUR_OWN_CARRIER`.
-        attribute(:solution, String, null: false)
-      end
+          # @return [String] Shipping program for the option. Can be: `AMAZON_PARTNERED_CARRIER`, `USE_YOUR_OWN_CARRIER`.
+          attribute(:solution, String, null: false)
+        end
     end
   end
 end

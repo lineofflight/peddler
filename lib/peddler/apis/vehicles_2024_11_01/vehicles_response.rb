@@ -9,13 +9,13 @@ module Peddler
     class Vehicles20241101
       # Get paginated list of vehicle from Amazon's catalog
       VehiclesResponse = Structure.new do
-        # @return [Array<Vehicle>] List of vehicles from Amazon's catalog.
-        attribute(:vehicles, [Vehicle], null: false)
+          # @return [Array<Vehicle>] List of vehicles from Amazon's catalog.
+          attribute(:vehicles, [Vehicle], null: false)
 
-        # @return [Pagination] If available, the `nextToken` and/or `previousToken` values required to return paginated
-        #   results.
-        attribute?(:pagination, Pagination)
-      end
+          # @return [Pagination] If available, the `nextToken` and/or `previousToken` values required to return paginated
+          #   results.
+          attribute?(:pagination, Pagination)
+        end
     end
   end
 end

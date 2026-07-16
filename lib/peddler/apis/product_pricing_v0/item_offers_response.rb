@@ -9,18 +9,18 @@ module Peddler
     class ProductPricingV0
       # Schema for an individual `ItemOffersResponse`
       ItemOffersResponse = Structure.new do
-        # @return [GetOffersResponse]
-        attribute(:body, GetOffersResponse, null: false)
+          # @return [GetOffersResponse]
+          attribute(:body, GetOffersResponse, null: false)
 
-        # @return [ItemOffersRequestParams]
-        attribute(:request, ItemOffersRequestParams, null: false)
+          # @return [ItemOffersRequestParams]
+          attribute(:request, ItemOffersRequestParams, null: false)
 
-        # @return [HttpResponseHeaders]
-        attribute?(:headers, HttpResponseHeaders)
+          # @return [HttpResponseHeaders]
+          attribute?(:headers, HttpResponseHeaders)
 
-        # @return [GetOffersHttpStatusLine]
-        attribute?(:status, GetOffersHttpStatusLine)
-      end
+          # @return [GetOffersHttpStatusLine]
+          attribute?(:status, GetOffersHttpStatusLine)
+        end
     end
   end
 end

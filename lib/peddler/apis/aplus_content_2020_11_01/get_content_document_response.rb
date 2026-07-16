@@ -8,12 +8,12 @@ module Peddler
   module APIs
     class AplusContent20201101
       GetContentDocumentResponse = Structure.new do
-        # @return [ContentRecord]
-        attribute(:content_record, ContentRecord, null: false, from: "contentRecord")
+          # @return [ContentRecord]
+          attribute(:content_record, ContentRecord, null: false, from: "contentRecord")
 
-        # @return [Array<Error>]
-        attribute?(:warnings, [Error])
-      end
+          # @return [Array<Error>]
+          attribute?(:warnings, [Error])
+        end
     end
   end
 end

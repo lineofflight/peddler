@@ -9,9 +9,9 @@ module Peddler
     class Orders20260101
       # The cancellation information of the order item.
       ItemCancellation = Structure.new do
-        # @return [ItemCancellationRequest] Details of the cancellation request submitted for this order item.
-        attribute?(:cancellation_request, ItemCancellationRequest, from: "cancellationRequest")
-      end
+          # @return [ItemCancellationRequest] Details of the cancellation request submitted for this order item.
+          attribute?(:cancellation_request, ItemCancellationRequest, from: "cancellationRequest")
+        end
     end
   end
 end

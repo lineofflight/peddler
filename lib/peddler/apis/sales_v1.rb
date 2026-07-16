@@ -55,7 +55,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: "All",
-        fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, amazon_program: nil,
+      fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, amazon_program: nil,
         rate_limit: 0.5)
         path = "/sales/v1/orderMetrics"
         params = {
@@ -73,6 +73,6 @@ module Peddler
         parser = -> { GetOrderMetricsResponse }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

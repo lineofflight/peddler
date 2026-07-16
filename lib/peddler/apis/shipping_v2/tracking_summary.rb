@@ -9,12 +9,12 @@ module Peddler
     class ShippingV2
       # A package status summary.
       TrackingSummary = Structure.new do
-        # @return [String]
-        attribute?(:status, String)
+          # @return [String]
+          attribute?(:status, String)
 
-        # @return [TrackingDetailCodes]
-        attribute?(:tracking_detail_codes, TrackingDetailCodes, from: "trackingDetailCodes")
-      end
+          # @return [TrackingDetailCodes]
+          attribute?(:tracking_detail_codes, TrackingDetailCodes, from: "trackingDetailCodes")
+        end
     end
   end
 end

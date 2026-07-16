@@ -50,6 +50,6 @@ module Peddler
         parser = -> { GetInvoiceStatusResponse }
         get(path, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

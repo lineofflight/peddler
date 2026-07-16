@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentOutbound20200701
       # The time range within which something (for example, a delivery) will occur.
       DateRange = Structure.new do
-        # @return [String] The earliest point in a date range.
-        attribute(:earliest, String, null: false)
+          # @return [String] The earliest point in a date range.
+          attribute(:earliest, String, null: false)
 
-        # @return [String] The latest point in a date range.
-        attribute(:latest, String, null: false)
-      end
+          # @return [String] The latest point in a date range.
+          attribute(:latest, String, null: false)
+        end
     end
   end
 end

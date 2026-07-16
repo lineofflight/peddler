@@ -9,12 +9,12 @@ module Peddler
     class VendorDirectFulfillmentShippingV1
       # The response schema for the submitShippingLabelRequest operation.
       SubmitShippingLabelsResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
 
-        # @return [TransactionReference] The response payload for the submitShippingLabelRequest operation.
-        attribute?(:payload, TransactionReference)
-      end
+          # @return [TransactionReference] The response payload for the submitShippingLabelRequest operation.
+          attribute?(:payload, TransactionReference)
+        end
     end
   end
 end

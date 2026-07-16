@@ -18,19 +18,19 @@ module Peddler
       # In the preceding expressions, **fees** is equal to the sum of all `feeAmount.currencyAmount` values in the
       # `fees` array.
       TransferRatePreview = Structure.new do
-        # @return [Money] The base amount of the transaction.
-        attribute(:base_amount, Money, null: false, from: "baseAmount")
+          # @return [Money] The base amount of the transaction.
+          attribute(:base_amount, Money, null: false, from: "baseAmount")
 
-        # @return [Array<Fee>] A list of fees.
-        attribute(:fees, [Fee], null: false)
+          # @return [Array<Fee>] A list of fees.
+          attribute(:fees, [Fee], null: false)
 
-        # @return [FxRateDetails] The foreign exchange rate value of the transaction.
-        attribute(:fx_rate_details, FxRateDetails, null: false, from: "fxRateDetails")
+          # @return [FxRateDetails] The foreign exchange rate value of the transaction.
+          attribute(:fx_rate_details, FxRateDetails, null: false, from: "fxRateDetails")
 
-        # @return [Money] The final amount transferred, which includes both the fee deduction and currency conversion
-        #   rate.
-        attribute(:transfer_amount, Money, null: false, from: "transferAmount")
-      end
+          # @return [Money] The final amount transferred, which includes both the fee deduction and currency conversion
+          #   rate.
+          attribute(:transfer_amount, Money, null: false, from: "transferAmount")
+        end
     end
   end
 end

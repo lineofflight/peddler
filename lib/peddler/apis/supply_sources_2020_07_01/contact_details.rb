@@ -9,9 +9,9 @@ module Peddler
     class SupplySources20200701
       # The contact details
       ContactDetails = Structure.new do
-        # @return [Hash]
-        attribute?(:primary, Hash)
-      end
+          # @return [Hash]
+          attribute?(:primary, Hash)
+        end
     end
   end
 end

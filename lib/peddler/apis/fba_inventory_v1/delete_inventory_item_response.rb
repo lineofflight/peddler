@@ -9,9 +9,9 @@ module Peddler
     class FBAInventoryV1
       # The response schema for the DeleteInventoryItem operation.
       DeleteInventoryItemResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the DeleteInventoryItem operation.
-        attribute?(:errors, [Error])
-      end
+          # @return [Array<Error>] One or more unexpected errors occurred during the DeleteInventoryItem operation.
+          attribute?(:errors, [Error])
+        end
     end
   end
 end

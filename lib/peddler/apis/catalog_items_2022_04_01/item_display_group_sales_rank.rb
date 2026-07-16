@@ -9,18 +9,18 @@ module Peddler
     class CatalogItems20220401
       # Sales rank of an Amazon catalog item, grouped by website display group.
       ItemDisplayGroupSalesRank = Structure.new do
-        # @return [Integer] Sales rank.
-        attribute(:rank, Integer, null: false)
+          # @return [Integer] Sales rank.
+          attribute(:rank, Integer, null: false)
 
-        # @return [String] Name of the sales rank.
-        attribute(:title, String, null: false)
+          # @return [String] Name of the sales rank.
+          attribute(:title, String, null: false)
 
-        # @return [String] Name of the website display group that is associated with the sales rank
-        attribute(:website_display_group, String, null: false, from: "websiteDisplayGroup")
+          # @return [String] Name of the website display group that is associated with the sales rank
+          attribute(:website_display_group, String, null: false, from: "websiteDisplayGroup")
 
-        # @return [String] Corresponding Amazon retail website URL for the sales rank.
-        attribute?(:link, String)
-      end
+          # @return [String] Corresponding Amazon retail website URL for the sales rank.
+          attribute?(:link, String)
+        end
     end
   end
 end

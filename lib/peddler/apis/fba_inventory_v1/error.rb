@@ -9,15 +9,15 @@ module Peddler
     class FBAInventoryV1
       # An error response returned when the request is unsuccessful.
       Error = Structure.new do
-        # @return [String] An error code that identifies the type of error that occurred.
-        attribute(:code, String, null: false)
+          # @return [String] An error code that identifies the type of error that occurred.
+          attribute(:code, String, null: false)
 
-        # @return [String] Additional information that can help the caller understand or fix the issue.
-        attribute?(:details, String)
+          # @return [String] Additional information that can help the caller understand or fix the issue.
+          attribute?(:details, String)
 
-        # @return [String] A message that describes the error condition in a human-readable form.
-        attribute?(:message, String)
-      end
+          # @return [String] A message that describes the error condition in a human-readable form.
+          attribute?(:message, String)
+        end
     end
   end
 end

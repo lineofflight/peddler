@@ -9,9 +9,9 @@ module Peddler
     class ProductPricingV0
       # A list of error responses returned when a request is unsuccessful.
       Errors = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the operation.
-        attribute(:errors, [Error], null: false)
-      end
+          # @return [Array<Error>] One or more unexpected errors occurred during the operation.
+          attribute(:errors, [Error], null: false)
+        end
     end
   end
 end

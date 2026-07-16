@@ -9,12 +9,12 @@ module Peddler
     class VendorDirectFulfillmentInventoryV1
       # The response schema for the submitInventoryUpdate operation.
       SubmitInventoryUpdateResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
 
-        # @return [TransactionReference] The response payload for the submitInventoryUpdate operation.
-        attribute?(:payload, TransactionReference)
-      end
+          # @return [TransactionReference] The response payload for the submitInventoryUpdate operation.
+          attribute?(:payload, TransactionReference)
+        end
     end
   end
 end

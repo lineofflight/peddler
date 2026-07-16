@@ -9,12 +9,12 @@ module Peddler
     class SupplySources20200701
       # The capabilities of a supply source.
       SupplySourceCapabilities = Structure.new do
-        # @return [OutboundCapability]
-        attribute?(:outbound, OutboundCapability)
+          # @return [OutboundCapability]
+          attribute?(:outbound, OutboundCapability)
 
-        # @return [ServicesCapability]
-        attribute?(:services, ServicesCapability)
-      end
+          # @return [ServicesCapability]
+          attribute?(:services, ServicesCapability)
+        end
     end
   end
 end

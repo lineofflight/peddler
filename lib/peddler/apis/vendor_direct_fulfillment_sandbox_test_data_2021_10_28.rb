@@ -38,6 +38,6 @@ module Peddler
         parser = -> { TransactionStatus }
         get(path, parser:)
       end
-    end
+          end
   end
 end

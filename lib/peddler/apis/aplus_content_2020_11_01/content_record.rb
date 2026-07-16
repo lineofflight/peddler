@@ -9,15 +9,15 @@ module Peddler
     class AplusContent20201101
       # A content document with additional information for content management.
       ContentRecord = Structure.new do
-        # @return [String]
-        attribute(:content_reference_key, String, null: false, from: "contentReferenceKey")
+          # @return [String]
+          attribute(:content_reference_key, String, null: false, from: "contentReferenceKey")
 
-        # @return [ContentDocument]
-        attribute?(:content_document, ContentDocument, from: "contentDocument")
+          # @return [ContentDocument]
+          attribute?(:content_document, ContentDocument, from: "contentDocument")
 
-        # @return [ContentMetadata]
-        attribute?(:content_metadata, ContentMetadata, from: "contentMetadata")
-      end
+          # @return [ContentMetadata]
+          attribute?(:content_metadata, ContentMetadata, from: "contentMetadata")
+        end
     end
   end
 end

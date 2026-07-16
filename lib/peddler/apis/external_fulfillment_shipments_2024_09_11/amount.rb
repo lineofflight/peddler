@@ -9,12 +9,12 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # An amount of money, including units in the form of currency.
       Amount = Structure.new do
-        # @return [String] Three digit currency code in ISO 4217 format.
-        attribute(:currency_code, String, null: false, from: "currencyCode")
+          # @return [String] Three digit currency code in ISO 4217 format.
+          attribute(:currency_code, String, null: false, from: "currencyCode")
 
-        # @return [String] The amount of money.
-        attribute(:value, String, null: false)
-      end
+          # @return [String] The amount of money.
+          attribute(:value, String, null: false)
+        end
     end
   end
 end

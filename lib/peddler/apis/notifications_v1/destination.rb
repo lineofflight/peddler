@@ -9,15 +9,15 @@ module Peddler
     class NotificationsV1
       # Information about the destination you create when you call the `createDestination` operation.
       Destination = Structure.new do
-        # @return [String] The destination identifier generated when you created the destination.
-        attribute(:destination_id, String, null: false, from: "destinationId")
+          # @return [String] The destination identifier generated when you created the destination.
+          attribute(:destination_id, String, null: false, from: "destinationId")
 
-        # @return [String] The developer-defined name for this destination.
-        attribute(:name, String, null: false)
+          # @return [String] The developer-defined name for this destination.
+          attribute(:name, String, null: false)
 
-        # @return [DestinationResource] The resource that will receive notifications associated with this destination.
-        attribute(:resource, DestinationResource, null: false)
-      end
+          # @return [DestinationResource] The resource that will receive notifications associated with this destination.
+          attribute(:resource, DestinationResource, null: false)
+        end
     end
   end
 end

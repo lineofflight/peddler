@@ -9,12 +9,12 @@ module Peddler
     class MerchantFulfillmentV0
       # The payload for the `getAdditionalSellerInputs` operation.
       GetAdditionalSellerInputsResult = Structure.new do
-        # @return [Array<ItemLevelFields>]
-        attribute?(:item_level_fields_list, [ItemLevelFields], from: "ItemLevelFieldsList")
+          # @return [Array<ItemLevelFields>]
+          attribute?(:item_level_fields_list, [ItemLevelFields], from: "ItemLevelFieldsList")
 
-        # @return [Array<AdditionalInputs>]
-        attribute?(:shipment_level_fields, [AdditionalInputs], from: "ShipmentLevelFields")
-      end
+          # @return [Array<AdditionalInputs>]
+          attribute?(:shipment_level_fields, [AdditionalInputs], from: "ShipmentLevelFields")
+        end
     end
   end
 end

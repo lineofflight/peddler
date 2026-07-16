@@ -93,6 +93,6 @@ module Peddler
         parser = -> { ListingsItemSubmissionResponse }
         put(path, body:, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

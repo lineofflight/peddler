@@ -9,12 +9,12 @@ module Peddler
     class MerchantFulfillmentV0
       # Response schema.
       GetEligibleShipmentServicesResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during this operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] One or more unexpected errors occurred during this operation.
+          attribute?(:errors, [Error])
 
-        # @return [GetEligibleShipmentServicesResult]
-        attribute?(:payload, GetEligibleShipmentServicesResult)
-      end
+          # @return [GetEligibleShipmentServicesResult]
+          attribute?(:payload, GetEligibleShipmentServicesResult)
+        end
     end
   end
 end

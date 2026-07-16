@@ -45,6 +45,6 @@ module Peddler
         path = "/appIntegrations/2024-04-01/notifications/#{percent_encode(notification_id)}/feedback"
         post(path, body:, rate_limit:)
       end
-    end
+          end
   end
 end

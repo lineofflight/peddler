@@ -15,11 +15,11 @@ module Peddler
       # cost. Helps you to provide accurate and fast delivery dates to Amazon customers. You also receive protection
       # from late deliveries, a discount on expedited shipping rates, and cash back when you ship.
       AmazonPrograms = Structure.new do
-        # @return [Array<String>] A list of the programs that Amazon associates with the order item.
-        #
-        # **Possible values**: `SUBSCRIBE_AND_SAVE`, `FBM_SHIP_PLUS`
-        attribute(:programs, [String], null: false, from: "Programs")
-      end
+          # @return [Array<String>] A list of the programs that Amazon associates with the order item.
+          #
+          # **Possible values**: `SUBSCRIBE_AND_SAVE`, `FBM_SHIP_PLUS`
+          attribute(:programs, [String], null: false, from: "Programs")
+        end
     end
   end
 end

@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentOutbound20200701
       # Fee type and cost.
       Fee = Structure.new do
-        # @return [Money] The amount of the fee.
-        attribute(:amount, Money, null: false)
+          # @return [Money] The amount of the fee.
+          attribute(:amount, Money, null: false)
 
-        # @return [String] The type of fee.
-        attribute(:name, String, null: false)
-      end
+          # @return [String] The type of fee.
+          attribute(:name, String, null: false)
+        end
     end
   end
 end

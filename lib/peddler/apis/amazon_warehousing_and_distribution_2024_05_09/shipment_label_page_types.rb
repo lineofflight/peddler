@@ -9,12 +9,12 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509
       # Shipment label page types.
       ShipmentLabelPageTypes = Structure.new do
-        # @return [String] Status of label page types.
-        attribute(:label_status, String, null: false, from: "labelStatus")
+          # @return [String] Status of label page types.
+          attribute(:label_status, String, null: false, from: "labelStatus")
 
-        # @return [Array<PageType>] List of available page types.
-        attribute?(:page_types, Array, from: "pageTypes")
-      end
+          # @return [Array<PageType>] List of available page types.
+          attribute?(:page_types, Array, from: "pageTypes")
+        end
     end
   end
 end

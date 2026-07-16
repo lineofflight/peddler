@@ -225,6 +225,6 @@ module Peddler
         parser = -> { InvoiceResponse }
         post(path, body:, params:, parser:)
       end
-    end
+          end
   end
 end

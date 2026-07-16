@@ -9,9 +9,9 @@ module Peddler
     class ShippingV2
       # The response schema for the getRates operation.
       GetRatesResponse = Structure.new do
-        # @return [GetRatesResult]
-        attribute?(:payload, GetRatesResult)
-      end
+          # @return [GetRatesResult]
+          attribute?(:payload, GetRatesResult)
+        end
     end
   end
 end

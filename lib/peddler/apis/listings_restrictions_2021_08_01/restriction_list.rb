@@ -9,9 +9,9 @@ module Peddler
     class ListingsRestrictions20210801
       # A list of restrictions for the specified Amazon catalog item.
       RestrictionList = Structure.new do
-        # @return [Array<Restriction>] A list of restrictions.
-        attribute(:restrictions, [Restriction], null: false)
-      end
+          # @return [Array<Restriction>] A list of restrictions.
+          attribute(:restrictions, [Restriction], null: false)
+        end
     end
   end
 end

@@ -31,6 +31,6 @@ module Peddler
         parser = -> { VehiclesResponse }
         get(path, params:, parser:)
       end
-    end
+          end
   end
 end

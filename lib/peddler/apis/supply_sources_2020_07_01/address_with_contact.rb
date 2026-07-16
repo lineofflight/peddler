@@ -9,12 +9,12 @@ module Peddler
     class SupplySources20200701
       # The address and contact details.
       AddressWithContact = Structure.new do
-        # @return [Address]
-        attribute?(:address, Address)
+          # @return [Address]
+          attribute?(:address, Address)
 
-        # @return [ContactDetails]
-        attribute?(:contact_details, ContactDetails, from: "contactDetails")
-      end
+          # @return [ContactDetails]
+          attribute?(:contact_details, ContactDetails, from: "contactDetails")
+        end
     end
   end
 end

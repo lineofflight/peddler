@@ -11,24 +11,24 @@ module Peddler
       # parameter in a call to the `listContentDocumentAsinRelations` operation, the related ASINs are returned without
       # metadata.
       ASINMetadata = Structure.new do
-        # @return [String]
-        attribute(:asin, String, null: false)
+          # @return [String]
+          attribute(:asin, String, null: false)
 
-        # @return [Array<AsinBadge>]
-        attribute?(:badge_set, Array, from: "badgeSet")
+          # @return [Array<AsinBadge>]
+          attribute?(:badge_set, Array, from: "badgeSet")
 
-        # @return [Array<ContentReferenceKey>]
-        attribute?(:content_reference_key_set, Array, from: "contentReferenceKeySet")
+          # @return [Array<ContentReferenceKey>]
+          attribute?(:content_reference_key_set, Array, from: "contentReferenceKeySet")
 
-        # @return [String] The default image for the ASIN in the Amazon catalog.
-        attribute?(:image_url, String, from: "imageUrl")
+          # @return [String] The default image for the ASIN in the Amazon catalog.
+          attribute?(:image_url, String, from: "imageUrl")
 
-        # @return [String]
-        attribute?(:parent, String)
+          # @return [String]
+          attribute?(:parent, String)
 
-        # @return [String] The title for the ASIN in the Amazon catalog.
-        attribute?(:title, String)
-      end
+          # @return [String] The title for the ASIN in the Amazon catalog.
+          attribute?(:title, String)
+        end
     end
   end
 end

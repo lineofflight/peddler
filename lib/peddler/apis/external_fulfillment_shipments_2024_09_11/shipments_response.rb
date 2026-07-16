@@ -9,12 +9,12 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # The response of the `getShipments` operation.
       ShipmentsResponse = Structure.new do
-        # @return [Pagination] How to manage multiple pages of data.
-        attribute?(:pagination, Pagination)
+          # @return [Pagination] How to manage multiple pages of data.
+          attribute?(:pagination, Pagination)
 
-        # @return [Array<Shipment>] A list of shipments.
-        attribute?(:shipments, [Shipment])
-      end
+          # @return [Array<Shipment>] A list of shipments.
+          attribute?(:shipments, [Shipment])
+        end
     end
   end
 end

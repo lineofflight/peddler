@@ -25,6 +25,6 @@ module Peddler
         path = "/applications/2023-11-30/clientSecret"
         post(path, rate_limit:)
       end
-    end
+          end
   end
 end

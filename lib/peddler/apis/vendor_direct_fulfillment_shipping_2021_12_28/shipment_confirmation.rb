@@ -10,26 +10,26 @@ module Peddler
       # Represents the confirmation details of a shipment, including the purchase order number and other shipment
       # details.
       ShipmentConfirmation = Structure.new do
-        # @return [Array<Item>] Provide the details of the items in this shipment. If any of the item details field is
-        #   common at a package or a pallet level, then provide them at the corresponding package.
-        attribute(:items, [Item], null: false)
+          # @return [Array<Item>] Provide the details of the items in this shipment. If any of the item details field is
+          #   common at a package or a pallet level, then provide them at the corresponding package.
+          attribute(:items, [Item], null: false)
 
-        # @return [String] Purchase order number corresponding to the shipment.
-        attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
+          # @return [String] Purchase order number corresponding to the shipment.
+          attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
-        # @return [PartyIdentification] ID of the selling party or vendor.
-        attribute(:selling_party, PartyIdentification, null: false, from: "sellingParty")
+          # @return [PartyIdentification] ID of the selling party or vendor.
+          attribute(:selling_party, PartyIdentification, null: false, from: "sellingParty")
 
-        # @return [PartyIdentification] Warehouse code of vendor.
-        attribute(:ship_from_party, PartyIdentification, null: false, from: "shipFromParty")
+          # @return [PartyIdentification] Warehouse code of vendor.
+          attribute(:ship_from_party, PartyIdentification, null: false, from: "shipFromParty")
 
-        # @return [ShipmentDetails] Shipment information.
-        attribute(:shipment_details, ShipmentDetails, null: false, from: "shipmentDetails")
+          # @return [ShipmentDetails] Shipment information.
+          attribute(:shipment_details, ShipmentDetails, null: false, from: "shipmentDetails")
 
-        # @return [Array<Container>] Provide the details of the items in this shipment. If any of the item details field
-        #   is common at a package or a pallet level, then provide them at the corresponding package.
-        attribute?(:containers, [Container])
-      end
+          # @return [Array<Container>] Provide the details of the items in this shipment. If any of the item details field
+          #   is common at a package or a pallet level, then provide them at the corresponding package.
+          attribute?(:containers, [Container])
+        end
     end
   end
 end

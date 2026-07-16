@@ -9,9 +9,9 @@ module Peddler
     class ShippingV2
       # The response schema for the GetAccessPoints operation.
       GetAccessPointsResponse = Structure.new do
-        # @return [GetAccessPointsResult]
-        attribute?(:payload, GetAccessPointsResult)
-      end
+          # @return [GetAccessPointsResult]
+          attribute?(:payload, GetAccessPointsResult)
+        end
     end
   end
 end

@@ -10,9 +10,9 @@ module Peddler
     class ServicesV1
       # Input for add appointment operation.
       AddAppointmentRequest = Structure.new do
-        # @return [AppointmentTimeInput] Input appointment time details.
-        attribute(:appointment_time, AppointmentTimeInput, null: false, from: "appointmentTime")
-      end
+          # @return [AppointmentTimeInput] Input appointment time details.
+          attribute(:appointment_time, AppointmentTimeInput, null: false, from: "appointmentTime")
+        end
     end
   end
 end

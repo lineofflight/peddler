@@ -9,9 +9,9 @@ module Peddler
     class FulfillmentOutbound20200701
       # The request body schema for the `submitFulfillmentOrderStatusUpdate` operation.
       SubmitFulfillmentOrderStatusUpdateRequest = Structure.new do
-        # @return [String]
-        attribute?(:fulfillment_order_status, String, from: "fulfillmentOrderStatus")
-      end
+          # @return [String]
+          attribute?(:fulfillment_order_status, String, from: "fulfillmentOrderStatus")
+        end
     end
   end
 end

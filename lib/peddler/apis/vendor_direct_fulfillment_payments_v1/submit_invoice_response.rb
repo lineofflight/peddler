@@ -9,12 +9,12 @@ module Peddler
     class VendorDirectFulfillmentPaymentsV1
       # The response schema for the submitInvoice operation.
       SubmitInvoiceResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
 
-        # @return [TransactionReference] The response payload for the submitInvoice operation.
-        attribute?(:payload, TransactionReference)
-      end
+          # @return [TransactionReference] The response payload for the submitInvoice operation.
+          attribute?(:payload, TransactionReference)
+        end
     end
   end
 end

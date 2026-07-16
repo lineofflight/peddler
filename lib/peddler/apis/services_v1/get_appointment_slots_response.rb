@@ -9,12 +9,12 @@ module Peddler
     class ServicesV1
       # The response of fetching appointment slots based on service context.
       GetAppointmentSlotsResponse = Structure.new do
-        # @return [Array<Error>] Errors occurred in getting schedule.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] Errors occurred in getting schedule.
+          attribute?(:errors, [Error])
 
-        # @return [AppointmentSlotReport] The appointment slots fetched based on service context.
-        attribute?(:payload, AppointmentSlotReport)
-      end
+          # @return [AppointmentSlotReport] The appointment slots fetched based on service context.
+          attribute?(:payload, AppointmentSlotReport)
+        end
     end
   end
 end

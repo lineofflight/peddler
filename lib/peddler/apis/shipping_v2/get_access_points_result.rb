@@ -9,9 +9,9 @@ module Peddler
     class ShippingV2
       # The payload for the GetAccessPoints API.
       GetAccessPointsResult = Structure.new do
-        # @return [Hash]
-        attribute(:access_points_map, Hash, null: false, from: "accessPointsMap")
-      end
+          # @return [Hash]
+          attribute(:access_points_map, Hash, null: false, from: "accessPointsMap")
+        end
     end
   end
 end

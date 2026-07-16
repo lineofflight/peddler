@@ -9,9 +9,9 @@ module Peddler
     class ExternalFulfillmentInventory20240911
       # A list of inventory requests.
       BatchInventoryRequest = Structure.new do
-        # @return [Array<InventoryRequest>]
-        attribute?(:requests, [InventoryRequest])
-      end
+          # @return [Array<InventoryRequest>]
+          attribute?(:requests, [InventoryRequest])
+        end
     end
   end
 end

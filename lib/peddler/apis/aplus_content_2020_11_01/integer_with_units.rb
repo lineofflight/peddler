@@ -9,12 +9,12 @@ module Peddler
     class AplusContent20201101
       # A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
       IntegerWithUnits = Structure.new do
-        # @return [String] The unit of measurement.
-        attribute(:units, String, null: false)
+          # @return [String] The unit of measurement.
+          attribute(:units, String, null: false)
 
-        # @return [Integer] The dimension value.
-        attribute(:value, Integer, null: false)
-      end
+          # @return [Integer] The dimension value.
+          attribute(:value, Integer, null: false)
+        end
     end
   end
 end

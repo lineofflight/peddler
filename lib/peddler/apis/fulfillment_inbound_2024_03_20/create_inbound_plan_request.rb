@@ -9,19 +9,19 @@ module Peddler
     class FulfillmentInbound20240320
       # The `createInboundPlan` request.
       CreateInboundPlanRequest = Structure.new do
-        # @return [Array<String>] Marketplaces where the items need to be shipped to. Currently only one marketplace can
-        #   be selected in this request.
-        attribute(:destination_marketplaces, [String], null: false, from: "destinationMarketplaces")
+          # @return [Array<String>] Marketplaces where the items need to be shipped to. Currently only one marketplace can
+          #   be selected in this request.
+          attribute(:destination_marketplaces, [String], null: false, from: "destinationMarketplaces")
 
-        # @return [Array<ItemInput>] Items included in this plan.
-        attribute(:items, [ItemInput], null: false)
+          # @return [Array<ItemInput>] Items included in this plan.
+          attribute(:items, [ItemInput], null: false)
 
-        # @return [AddressInput]
-        attribute(:source_address, AddressInput, null: false, from: "sourceAddress")
+          # @return [AddressInput]
+          attribute(:source_address, AddressInput, null: false, from: "sourceAddress")
 
-        # @return [String] Name for the Inbound Plan. If one isn't provided, a default name will be provided.
-        attribute?(:name, String)
-      end
+          # @return [String] Name for the Inbound Plan. If one isn't provided, a default name will be provided.
+          attribute?(:name, String)
+        end
     end
   end
 end

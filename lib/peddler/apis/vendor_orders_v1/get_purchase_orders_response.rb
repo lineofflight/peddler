@@ -9,12 +9,12 @@ module Peddler
     class VendorOrdersV1
       # The response schema for the getPurchaseOrders operation.
       GetPurchaseOrdersResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
 
-        # @return [OrderList] A list of orders.
-        attribute?(:payload, OrderList)
-      end
+          # @return [OrderList] A list of orders.
+          attribute?(:payload, OrderList)
+        end
     end
   end
 end

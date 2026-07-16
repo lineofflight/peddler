@@ -10,12 +10,12 @@ module Peddler
       # The expiration date of the card used for payment. If the payment method is not `card`, the expiration date is
       # `null`.
       ExpiryDate = Structure.new do
-        # @return [String] The month the card expires expressed as a number from `1` to `12`.
-        attribute?(:month, String)
+          # @return [String] The month the card expires expressed as a number from `1` to `12`.
+          attribute?(:month, String)
 
-        # @return [String] Year
-        attribute?(:year, String)
-      end
+          # @return [String] Year
+          attribute?(:year, String)
+        end
     end
   end
 end

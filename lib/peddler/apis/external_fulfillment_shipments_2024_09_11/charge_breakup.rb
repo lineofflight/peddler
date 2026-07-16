@@ -9,15 +9,15 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # The composition of the charge.
       ChargeBreakup = Structure.new do
-        # @return [Amount] The base amount charged.
-        attribute(:base_amount, Amount, null: false, from: "baseAmount")
+          # @return [Amount] The base amount charged.
+          attribute(:base_amount, Amount, null: false, from: "baseAmount")
 
-        # @return [Amount] The offer or coupon amount.
-        attribute(:discount_amount, Amount, null: false, from: "discountAmount")
+          # @return [Amount] The offer or coupon amount.
+          attribute(:discount_amount, Amount, null: false, from: "discountAmount")
 
-        # @return [Amount] The total amount after discount.
-        attribute(:net_amount, Amount, null: false, from: "netAmount")
-      end
+          # @return [Amount] The total amount after discount.
+          attribute(:net_amount, Amount, null: false, from: "netAmount")
+        end
     end
   end
 end

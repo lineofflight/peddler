@@ -9,12 +9,12 @@ module Peddler
     class ShippingV2
       # The reason why a shipping service offering is ineligible.
       IneligibilityReason = Structure.new do
-        # @return [String]
-        attribute(:code, String, null: false)
+          # @return [String]
+          attribute(:code, String, null: false)
 
-        # @return [String] The ineligibility reason.
-        attribute(:message, String, null: false)
-      end
+          # @return [String] The ineligibility reason.
+          attribute(:message, String, null: false)
+        end
     end
   end
 end

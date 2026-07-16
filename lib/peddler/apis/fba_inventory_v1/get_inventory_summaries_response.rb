@@ -9,15 +9,15 @@ module Peddler
     class FBAInventoryV1
       # The Response schema.
       GetInventorySummariesResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the getInventorySummaries operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] One or more unexpected errors occurred during the getInventorySummaries operation.
+          attribute?(:errors, [Error])
 
-        # @return [Pagination]
-        attribute?(:pagination, Pagination)
+          # @return [Pagination]
+          attribute?(:pagination, Pagination)
 
-        # @return [GetInventorySummariesResult] The payload for the getInventorySummaries operation.
-        attribute?(:payload, GetInventorySummariesResult)
-      end
+          # @return [GetInventorySummariesResult] The payload for the getInventorySummaries operation.
+          attribute?(:payload, GetInventorySummariesResult)
+        end
     end
   end
 end

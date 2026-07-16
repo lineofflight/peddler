@@ -180,6 +180,6 @@ module Peddler
         parser = -> { GetPackingSlipResponse }
         get(path, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

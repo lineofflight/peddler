@@ -9,9 +9,9 @@ module Peddler
     class VendorTransactionStatusV1
       # Represents the status of a transaction.
       TransactionStatus = Structure.new do
-        # @return [Transaction]
-        attribute?(:transaction_status, Transaction, from: "transactionStatus")
-      end
+          # @return [Transaction]
+          attribute?(:transaction_status, Transaction, from: "transactionStatus")
+        end
     end
   end
 end

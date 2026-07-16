@@ -9,12 +9,12 @@ module Peddler
     class MerchantFulfillmentV0
       # The weight.
       Weight = Structure.new do
-        # @return [String]
-        attribute(:unit, String, null: false, from: "Unit")
+          # @return [String]
+          attribute(:unit, String, null: false, from: "Unit")
 
-        # @return [Float]
-        attribute(:value, Float, null: false, from: "Value")
-      end
+          # @return [Float]
+          attribute(:value, Float, null: false, from: "Value")
+        end
     end
   end
 end

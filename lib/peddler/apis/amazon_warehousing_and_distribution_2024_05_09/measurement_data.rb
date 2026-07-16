@@ -9,16 +9,16 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509
       # Package weight and dimension.
       MeasurementData = Structure.new do
-        # @return [PackageWeight] Weight of the package.
-        attribute(:weight, PackageWeight, null: false)
+          # @return [PackageWeight] Weight of the package.
+          attribute(:weight, PackageWeight, null: false)
 
-        # @return [PackageDimensions] Dimensions of the package. Dimensions are required when creating an inbound or
-        #   outbound order.
-        attribute?(:dimensions, PackageDimensions)
+          # @return [PackageDimensions] Dimensions of the package. Dimensions are required when creating an inbound or
+          #   outbound order.
+          attribute?(:dimensions, PackageDimensions)
 
-        # @return [PackageVolume] Volume of the package.
-        attribute?(:volume, PackageVolume)
-      end
+          # @return [PackageVolume] Volume of the package.
+          attribute?(:volume, PackageVolume)
+        end
     end
   end
 end

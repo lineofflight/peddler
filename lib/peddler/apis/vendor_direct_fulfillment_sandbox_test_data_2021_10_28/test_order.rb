@@ -9,9 +9,9 @@ module Peddler
     class VendorDirectFulfillmentSandboxTestData20211028
       # Error response returned when the request is unsuccessful.
       TestOrder = Structure.new do
-        # @return [String] An error code that identifies the type of error that occurred.
-        attribute(:order_id, String, null: false, from: "orderId")
-      end
+          # @return [String] An error code that identifies the type of error that occurred.
+          attribute(:order_id, String, null: false, from: "orderId")
+        end
     end
   end
 end

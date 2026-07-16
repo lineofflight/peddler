@@ -9,15 +9,15 @@ module Peddler
     class ShipmentInvoicingV0
       # Tax information about the buyer.
       BuyerTaxInfo = Structure.new do
-        # @return [String] The legal name of the company.
-        attribute?(:company_legal_name, String, from: "CompanyLegalName")
+          # @return [String] The legal name of the company.
+          attribute?(:company_legal_name, String, from: "CompanyLegalName")
 
-        # @return [Array<TaxClassification>]
-        attribute?(:tax_classifications, [TaxClassification], from: "TaxClassifications")
+          # @return [Array<TaxClassification>]
+          attribute?(:tax_classifications, [TaxClassification], from: "TaxClassifications")
 
-        # @return [String] The country or region imposing the tax.
-        attribute?(:taxing_region, String, from: "TaxingRegion")
-      end
+          # @return [String] The country or region imposing the tax.
+          attribute?(:taxing_region, String, from: "TaxingRegion")
+        end
     end
   end
 end

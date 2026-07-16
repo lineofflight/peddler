@@ -9,9 +9,9 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # The request schema of the `createPackages` operation.
       Packages = Structure.new do
-        # @return [Array<Package>] A list of packages.
-        attribute(:packages, [Package], null: false)
-      end
+          # @return [Array<Package>] A list of packages.
+          attribute(:packages, [Package], null: false)
+        end
     end
   end
 end

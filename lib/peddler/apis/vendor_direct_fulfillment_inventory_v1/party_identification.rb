@@ -9,9 +9,9 @@ module Peddler
     class VendorDirectFulfillmentInventoryV1
       # Name, address and tax details of a party.
       PartyIdentification = Structure.new do
-        # @return [String] Assigned identification for the party.
-        attribute(:party_id, String, null: false, from: "partyId")
-      end
+          # @return [String] Assigned identification for the party.
+          attribute(:party_id, String, null: false, from: "partyId")
+        end
     end
   end
 end

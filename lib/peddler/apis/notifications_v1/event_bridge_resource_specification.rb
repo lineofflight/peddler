@@ -9,13 +9,13 @@ module Peddler
     class NotificationsV1
       # The information required to create an Amazon EventBridge destination.
       EventBridgeResourceSpecification = Structure.new do
-        # @return [String] The identifier for the AWS account that is responsible for charges related to receiving
-        #   notifications.
-        attribute(:account_id, String, null: false, from: "accountId")
+          # @return [String] The identifier for the AWS account that is responsible for charges related to receiving
+          #   notifications.
+          attribute(:account_id, String, null: false, from: "accountId")
 
-        # @return [String] The AWS region in which you will be receiving the notifications.
-        attribute(:region, String, null: false)
-      end
+          # @return [String] The AWS region in which you will be receiving the notifications.
+          attribute(:region, String, null: false)
+        end
     end
   end
 end

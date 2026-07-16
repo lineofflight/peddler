@@ -9,12 +9,12 @@ module Peddler
     class VendorOrdersV1
       # The response schema for the getPurchaseOrdersStatus operation.
       GetPurchaseOrdersStatusResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
 
-        # @return [OrderListStatus] Current status of list of purchase orders.
-        attribute?(:payload, OrderListStatus)
-      end
+          # @return [OrderListStatus] Current status of list of purchase orders.
+          attribute?(:payload, OrderListStatus)
+        end
     end
   end
 end

@@ -9,9 +9,9 @@ module Peddler
     class DeliveryByAmazon20220701
       # The response schema for the submitInvoice operation.
       SubmitInvoiceResponse = Structure.new do
-        # @return [Array<Error>] A list of errors returned by this API.
-        attribute?(:errors, [Error])
-      end
+          # @return [Array<Error>] A list of errors returned by this API.
+          attribute?(:errors, [Error])
+        end
     end
   end
 end

@@ -9,9 +9,9 @@ module Peddler
     class FulfillmentInbound20240320
       # The `createMarketplaceItemLabels` response.
       CreateMarketplaceItemLabelsResponse = Structure.new do
-        # @return [Array<DocumentDownload>] Resources to download the requested document.
-        attribute(:document_downloads, [DocumentDownload], null: false, from: "documentDownloads")
-      end
+          # @return [Array<DocumentDownload>] Resources to download the requested document.
+          attribute(:document_downloads, [DocumentDownload], null: false, from: "documentDownloads")
+        end
     end
   end
 end

@@ -9,15 +9,15 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # Recommendations for a package
       RecommendedPackage = Structure.new do
-        # @return [PackageDimensions]
-        attribute(:dimensions, PackageDimensions, null: false)
+          # @return [PackageDimensions]
+          attribute(:dimensions, PackageDimensions, null: false)
 
-        # @return [Array<RecommendedPackageLineItem>]
-        attribute(:line_items, [RecommendedPackageLineItem], null: false, from: "lineItems")
+          # @return [Array<RecommendedPackageLineItem>]
+          attribute(:line_items, [RecommendedPackageLineItem], null: false, from: "lineItems")
 
-        # @return [Weight]
-        attribute(:weight, Weight, null: false)
-      end
+          # @return [Weight]
+          attribute(:weight, Weight, null: false)
+        end
     end
   end
 end

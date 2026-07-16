@@ -8,9 +8,9 @@ module Peddler
   module APIs
     class AplusContent20201101
       PostContentDocumentSuspendSubmissionResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:warnings, [Error])
-      end
+          # @return [Array<Error>]
+          attribute?(:warnings, [Error])
+        end
     end
   end
 end

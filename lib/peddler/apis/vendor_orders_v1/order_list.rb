@@ -9,12 +9,12 @@ module Peddler
     class VendorOrdersV1
       # A list of orders returned as response.
       OrderList = Structure.new do
-        # @return [Array<Order>] Represents an individual order within the OrderList.
-        attribute?(:orders, [Order])
+          # @return [Array<Order>] Represents an individual order within the OrderList.
+          attribute?(:orders, [Order])
 
-        # @return [Pagination]
-        attribute?(:pagination, Pagination)
-      end
+          # @return [Pagination]
+          attribute?(:pagination, Pagination)
+        end
     end
   end
 end

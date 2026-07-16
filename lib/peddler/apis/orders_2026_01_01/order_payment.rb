@@ -9,9 +9,9 @@ module Peddler
     class Orders20260101
       # Payment information about the order.
       OrderPayment = Structure.new do
-        # @return [Array<PaymentExecution>] A list of payment executions for the order.
-        attribute?(:payment_executions, [PaymentExecution], from: "paymentExecutions")
-      end
+          # @return [Array<PaymentExecution>] A list of payment executions for the order.
+          attribute?(:payment_executions, [PaymentExecution], from: "paymentExecutions")
+        end
     end
   end
 end

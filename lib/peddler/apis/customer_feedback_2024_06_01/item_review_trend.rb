@@ -9,12 +9,12 @@ module Peddler
     class CustomerFeedback20240601
       # The trend of review topic metrics for the requested item.
       ItemReviewTrend = Structure.new do
-        # @return [String] The name of the item review topic.
-        attribute(:topic, String, null: false)
+          # @return [String] The name of the item review topic.
+          attribute(:topic, String, null: false)
 
-        # @return [Array<ItemReviewTrendPoint>] The item's review trend metrics for the past six months.
-        attribute(:trend_metrics, [ItemReviewTrendPoint], null: false, from: "trendMetrics")
-      end
+          # @return [Array<ItemReviewTrendPoint>] The item's review trend metrics for the past six months.
+          attribute(:trend_metrics, [ItemReviewTrendPoint], null: false, from: "trendMetrics")
+        end
     end
   end
 end

@@ -9,17 +9,17 @@ module Peddler
     class Replenishment20221107
       # The request body for the `listOffers` operation.
       ListOffersRequest = Structure.new do
-        # @return [ListOffersRequestFilters] Use these parameters to filter results. Any result must match all provided
-        #   parameters. For parameters that accept multiple values (arrays), the API returns results that match at least
-        #   one value in the array.
-        attribute(:filters, ListOffersRequestFilters, null: false)
+          # @return [ListOffersRequestFilters] Use these parameters to filter results. Any result must match all provided
+          #   parameters. For parameters that accept multiple values (arrays), the API returns results that match at least
+          #   one value in the array.
+          attribute(:filters, ListOffersRequestFilters, null: false)
 
-        # @return [ListOffersRequestPagination] Use these parameters to paginate through the response.
-        attribute(:pagination, ListOffersRequestPagination, null: false)
+          # @return [ListOffersRequestPagination] Use these parameters to paginate through the response.
+          attribute(:pagination, ListOffersRequestPagination, null: false)
 
-        # @return [ListOffersRequestSort] Use these parameters to sort the response.
-        attribute?(:sort, ListOffersRequestSort)
-      end
+          # @return [ListOffersRequestSort] Use these parameters to sort the response.
+          attribute?(:sort, ListOffersRequestSort)
+        end
     end
   end
 end

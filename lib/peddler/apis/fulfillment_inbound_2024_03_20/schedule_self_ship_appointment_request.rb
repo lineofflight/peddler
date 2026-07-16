@@ -9,9 +9,9 @@ module Peddler
     class FulfillmentInbound20240320
       # The `scheduleSelfShipAppointment` request.
       ScheduleSelfShipAppointmentRequest = Structure.new do
-        # @return [String]
-        attribute?(:reason_comment, String, from: "reasonComment")
-      end
+          # @return [String]
+          attribute?(:reason_comment, String, from: "reasonComment")
+        end
     end
   end
 end

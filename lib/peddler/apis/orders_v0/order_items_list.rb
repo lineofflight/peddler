@@ -9,16 +9,16 @@ module Peddler
     class OrdersV0
       # The order items list along with the order ID.
       OrderItemsList = Structure.new do
-        # @return [String] An Amazon-defined order identifier, in 3-7-7 format.
-        attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
+          # @return [String] An Amazon-defined order identifier, in 3-7-7 format.
+          attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
-        # @return [Array<OrderItem>]
-        attribute(:order_items, [OrderItem], null: false, from: "OrderItems")
+          # @return [Array<OrderItem>]
+          attribute(:order_items, [OrderItem], null: false, from: "OrderItems")
 
-        # @return [String] When present and not empty, pass this string token in the next request to return the next
-        #   response page.
-        attribute?(:next_token, String, from: "NextToken")
-      end
+          # @return [String] When present and not empty, pass this string token in the next request to return the next
+          #   response page.
+          attribute?(:next_token, String, from: "NextToken")
+        end
     end
   end
 end

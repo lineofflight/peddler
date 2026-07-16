@@ -9,18 +9,18 @@ module Peddler
     class ProductFeesV0
       # An unexpected error occurred during this operation.
       FeesEstimateError = Structure.new do
-        # @return [String] An error code that identifies the type of error that occurred.
-        attribute(:code, String, null: false, from: "Code")
+          # @return [String] An error code that identifies the type of error that occurred.
+          attribute(:code, String, null: false, from: "Code")
 
-        # @return [Array<Object>]
-        attribute(:detail, Array, null: false, from: "Detail")
+          # @return [Array<Object>]
+          attribute(:detail, Array, null: false, from: "Detail")
 
-        # @return [String] A message that describes the error condition.
-        attribute(:message, String, null: false, from: "Message")
+          # @return [String] A message that describes the error condition.
+          attribute(:message, String, null: false, from: "Message")
 
-        # @return [String] An error type, identifying either the receiver or the sender as the originator of the error.
-        attribute(:type, String, null: false, from: "Type")
-      end
+          # @return [String] An error type, identifying either the receiver or the sender as the originator of the error.
+          attribute(:type, String, null: false, from: "Type")
+        end
     end
   end
 end

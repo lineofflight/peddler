@@ -9,9 +9,9 @@ module Peddler
     class FulfillmentInbound20240320
       # The `updateShipmentName` request.
       UpdateShipmentNameRequest = Structure.new do
-        # @return [String] A human-readable name to update the shipment name to.
-        attribute(:name, String, null: false)
-      end
+          # @return [String] A human-readable name to update the shipment name to.
+          attribute(:name, String, null: false)
+        end
     end
   end
 end

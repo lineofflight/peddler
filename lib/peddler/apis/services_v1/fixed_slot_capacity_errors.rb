@@ -9,9 +9,9 @@ module Peddler
     class ServicesV1
       # The error response schema for the `getFixedSlotCapacity` operation.
       FixedSlotCapacityErrors = Structure.new do
-        # @return [Array<Error>] Errors encountered during the `getFixedSlotCapacity` operation.
-        attribute?(:errors, [Error])
-      end
+          # @return [Array<Error>] Errors encountered during the `getFixedSlotCapacity` operation.
+          attribute?(:errors, [Error])
+        end
     end
   end
 end

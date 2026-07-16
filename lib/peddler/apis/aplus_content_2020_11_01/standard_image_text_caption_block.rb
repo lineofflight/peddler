@@ -10,12 +10,12 @@ module Peddler
       # The A+ Content standard image and text block, with a related caption. The caption might not display on all
       # devices.
       StandardImageTextCaptionBlock = Structure.new do
-        # @return [StandardImageTextBlock]
-        attribute?(:block, StandardImageTextBlock)
+          # @return [StandardImageTextBlock]
+          attribute?(:block, StandardImageTextBlock)
 
-        # @return [TextComponent]
-        attribute?(:caption, TextComponent)
-      end
+          # @return [TextComponent]
+          attribute?(:caption, TextComponent)
+        end
     end
   end
 end

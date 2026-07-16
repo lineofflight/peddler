@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInbound20240320
       # Tracking information for Less-Than-Truckload (LTL) and Small Parcel Delivery (SPD) shipments.
       TrackingDetails = Structure.new do
-        # @return [LtlTrackingDetail]
-        attribute?(:ltl_tracking_detail, LtlTrackingDetail, from: "ltlTrackingDetail")
+          # @return [LtlTrackingDetail]
+          attribute?(:ltl_tracking_detail, LtlTrackingDetail, from: "ltlTrackingDetail")
 
-        # @return [SpdTrackingDetail]
-        attribute?(:spd_tracking_detail, SpdTrackingDetail, from: "spdTrackingDetail")
-      end
+          # @return [SpdTrackingDetail]
+          attribute?(:spd_tracking_detail, SpdTrackingDetail, from: "spdTrackingDetail")
+        end
     end
   end
 end

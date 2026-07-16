@@ -9,12 +9,12 @@ module Peddler
     class VendorDirectFulfillmentShippingV1
       # Response payload with packing slip.
       GetPackingSlipResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
 
-        # @return [PackingSlip]
-        attribute?(:payload, PackingSlip)
-      end
+          # @return [PackingSlip]
+          attribute?(:payload, PackingSlip)
+        end
     end
   end
 end

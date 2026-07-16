@@ -10,9 +10,9 @@ module Peddler
       # Input segment for featured offer expected price. The segment contains the location information for which
       # featured offer expected price is requested.
       Segment = Structure.new do
-        # @return [SegmentDetails] Segment details
-        attribute?(:segment_details, SegmentDetails, from: "segmentDetails")
-      end
+          # @return [SegmentDetails] Segment details
+          attribute?(:segment_details, SegmentDetails, from: "segmentDetails")
+        end
     end
   end
 end

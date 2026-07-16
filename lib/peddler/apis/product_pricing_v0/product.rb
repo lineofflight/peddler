@@ -9,24 +9,24 @@ module Peddler
     class ProductPricingV0
       # An item.
       Product = Structure.new do
-        # @return [IdentifierType]
-        attribute(:identifiers, IdentifierType, null: false, from: "Identifiers")
+          # @return [IdentifierType]
+          attribute(:identifiers, IdentifierType, null: false, from: "Identifiers")
 
-        # @return [Array<Object>]
-        attribute?(:attribute_sets, Array, from: "AttributeSets")
+          # @return [Array<Object>]
+          attribute?(:attribute_sets, Array, from: "AttributeSets")
 
-        # @return [CompetitivePricingType]
-        attribute?(:competitive_pricing, CompetitivePricingType, from: "CompetitivePricing")
+          # @return [CompetitivePricingType]
+          attribute?(:competitive_pricing, CompetitivePricingType, from: "CompetitivePricing")
 
-        # @return [Array<OfferType>]
-        attribute?(:offers, [OfferType], from: "Offers")
+          # @return [Array<OfferType>]
+          attribute?(:offers, [OfferType], from: "Offers")
 
-        # @return [Array<Object>]
-        attribute?(:relationships, Array, from: "Relationships")
+          # @return [Array<Object>]
+          attribute?(:relationships, Array, from: "Relationships")
 
-        # @return [Array<SalesRankType>]
-        attribute?(:sales_rankings, [SalesRankType], from: "SalesRankings")
-      end
+          # @return [Array<SalesRankType>]
+          attribute?(:sales_rankings, [SalesRankType], from: "SalesRankings")
+        end
     end
   end
 end

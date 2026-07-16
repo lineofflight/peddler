@@ -9,9 +9,9 @@ module Peddler
     class ShippingV2
       # The Response for the GetCarrierAccountFormInputsResponse operation.
       GetCarrierAccountFormInputsResponse = Structure.new do
-        # @return [Array<LinkableCarrier>]
-        attribute?(:linkable_carriers_list, [LinkableCarrier], from: "linkableCarriersList")
-      end
+          # @return [Array<LinkableCarrier>]
+          attribute?(:linkable_carriers_list, [LinkableCarrier], from: "linkableCarriersList")
+        end
     end
   end
 end

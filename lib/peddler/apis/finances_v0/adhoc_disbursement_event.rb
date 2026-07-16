@@ -9,18 +9,18 @@ module Peddler
     class FinancesV0
       # An event related to an Adhoc Disbursement.
       AdhocDisbursementEvent = Structure.new do
-        # @return [String] The date and time when the financial event was posted.
-        attribute?(:posted_date, String, from: "PostedDate")
+          # @return [String] The date and time when the financial event was posted.
+          attribute?(:posted_date, String, from: "PostedDate")
 
-        # @return [Money] The amount of the transaction.
-        attribute?(:transaction_amount, Money, from: "TransactionAmount")
+          # @return [Money] The amount of the transaction.
+          attribute?(:transaction_amount, Money, from: "TransactionAmount")
 
-        # @return [String] The identifier for the transaction.
-        attribute?(:transaction_id, String, from: "TransactionId")
+          # @return [String] The identifier for the transaction.
+          attribute?(:transaction_id, String, from: "TransactionId")
 
-        # @return [String] The type of transaction. For example, "Disbursed to Amazon Gift Card balance".
-        attribute?(:transaction_type, String, from: "TransactionType")
-      end
+          # @return [String] The type of transaction. For example, "Disbursed to Amazon Gift Card balance".
+          attribute?(:transaction_type, String, from: "TransactionType")
+        end
     end
   end
 end

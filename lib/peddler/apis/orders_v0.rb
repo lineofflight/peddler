@@ -111,11 +111,11 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_orders(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil,
-        last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil,
-        buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil,
-        electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil,
-        actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil,
-        earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil,
+      last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil,
+      buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil,
+      electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil,
+      actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil,
+      earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil,
         latest_delivery_date_after: nil, rate_limit: 0.0167)
         path = "/orders/v0/orders"
         params = {
@@ -272,6 +272,6 @@ module Peddler
         body = payload
         post(path, body:, rate_limit:)
       end
-    end
+          end
   end
 end

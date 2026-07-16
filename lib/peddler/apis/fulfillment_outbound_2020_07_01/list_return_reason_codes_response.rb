@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentOutbound20200701
       # The response schema for the `listReturnReasonCodes` operation.
       ListReturnReasonCodesResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `listReturnReasonCodes` operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] One or more unexpected errors occurred during the `listReturnReasonCodes` operation.
+          attribute?(:errors, [Error])
 
-        # @return [ListReturnReasonCodesResult] The payload for the `listReturnReasonCodes` operation.
-        attribute?(:payload, ListReturnReasonCodesResult)
-      end
+          # @return [ListReturnReasonCodesResult] The payload for the `listReturnReasonCodes` operation.
+          attribute?(:payload, ListReturnReasonCodesResult)
+        end
     end
   end
 end

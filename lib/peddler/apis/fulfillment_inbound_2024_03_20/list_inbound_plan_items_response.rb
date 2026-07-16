@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInbound20240320
       # The `listInboundPlanItems` response.
       ListInboundPlanItemsResponse = Structure.new do
-        # @return [Array<Item>] The items in an inbound plan.
-        attribute(:items, [Item], null: false)
+          # @return [Array<Item>] The items in an inbound plan.
+          attribute(:items, [Item], null: false)
 
-        # @return [Pagination]
-        attribute?(:pagination, Pagination)
-      end
+          # @return [Pagination]
+          attribute?(:pagination, Pagination)
+        end
     end
   end
 end

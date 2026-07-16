@@ -9,15 +9,15 @@ module Peddler
     class ProductFeesV0
       # A product, marketplace, and proposed price used to request estimated fees.
       FeesEstimateByIdRequest = Structure.new do
-        # @return [String]
-        attribute(:id_type, String, null: false, from: "IdType")
+          # @return [String]
+          attribute(:id_type, String, null: false, from: "IdType")
 
-        # @return [String] The item identifier.
-        attribute(:id_value, String, null: false, from: "IdValue")
+          # @return [String] The item identifier.
+          attribute(:id_value, String, null: false, from: "IdValue")
 
-        # @return [FeesEstimateRequest]
-        attribute?(:fees_estimate_request, FeesEstimateRequest, from: "FeesEstimateRequest")
-      end
+          # @return [FeesEstimateRequest]
+          attribute?(:fees_estimate_request, FeesEstimateRequest, from: "FeesEstimateRequest")
+        end
     end
   end
 end

@@ -160,6 +160,6 @@ module Peddler
         parser = -> { ReportDocument }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

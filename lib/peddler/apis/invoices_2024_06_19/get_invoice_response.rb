@@ -9,9 +9,9 @@ module Peddler
     class Invoices20240619
       # Success.
       GetInvoiceResponse = Structure.new do
-        # @return [Invoice]
-        attribute?(:invoice, Invoice)
-      end
+          # @return [Invoice]
+          attribute?(:invoice, Invoice)
+        end
     end
   end
 end

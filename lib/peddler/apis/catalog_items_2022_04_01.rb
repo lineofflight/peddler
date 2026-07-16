@@ -43,7 +43,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_catalog_items(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"],
-        locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10,
+      locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10,
         page_token: nil, keywords_locale: nil, rate_limit: 2.0)
         path = "/catalog/2022-04-01/items"
         params = {
@@ -86,6 +86,6 @@ module Peddler
         parser = -> { Item }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

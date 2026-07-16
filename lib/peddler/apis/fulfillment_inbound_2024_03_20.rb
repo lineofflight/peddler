@@ -751,6 +751,6 @@ module Peddler
         parser = -> { InboundOperationStatus }
         get(path, parser:)
       end
-    end
+          end
   end
 end

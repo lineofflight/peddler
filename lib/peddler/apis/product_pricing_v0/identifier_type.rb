@@ -9,12 +9,12 @@ module Peddler
     class ProductPricingV0
       # Specifies the identifiers used to uniquely identify an item.
       IdentifierType = Structure.new do
-        # @return [ASINIdentifier] Indicates the item is identified by MarketPlaceId and ASIN.
-        attribute(:marketplace_asin, ASINIdentifier, null: false, from: "MarketplaceASIN")
+          # @return [ASINIdentifier] Indicates the item is identified by MarketPlaceId and ASIN.
+          attribute(:marketplace_asin, ASINIdentifier, null: false, from: "MarketplaceASIN")
 
-        # @return [SellerSKUIdentifier] Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.
-        attribute?(:sku_identifier, SellerSKUIdentifier, from: "SKUIdentifier")
-      end
+          # @return [SellerSKUIdentifier] Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.
+          attribute?(:sku_identifier, SellerSKUIdentifier, from: "SKUIdentifier")
+        end
     end
   end
 end

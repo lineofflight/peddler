@@ -9,12 +9,12 @@ module Peddler
     class VendorDirectFulfillmentOrders20211228
       # Represents a purchase order.
       Order = Structure.new do
-        # @return [String] The purchase order number for this order. Formatting Notes: alpha-numeric code.
-        attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
+          # @return [String] The purchase order number for this order. Formatting Notes: alpha-numeric code.
+          attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
-        # @return [OrderDetails] Purchase order details.
-        attribute?(:order_details, OrderDetails, from: "orderDetails")
-      end
+          # @return [OrderDetails] Purchase order details.
+          attribute?(:order_details, OrderDetails, from: "orderDetails")
+        end
     end
   end
 end

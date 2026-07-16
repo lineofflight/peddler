@@ -9,9 +9,9 @@ module Peddler
     class ShippingV1
       # The tracking summary.
       TrackingSummary = Structure.new do
-        # @return [String] The derived status based on the events in the eventHistory.
-        attribute?(:status, String)
-      end
+          # @return [String] The derived status based on the events in the eventHistory.
+          attribute?(:status, String)
+        end
     end
   end
 end

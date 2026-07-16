@@ -9,12 +9,12 @@ module Peddler
     class VendorDirectFulfillmentShippingV1
       # The weight.
       Weight = Structure.new do
-        # @return [String] The unit of measurement.
-        attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
+          # @return [String] The unit of measurement.
+          attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
-        # @return [String] The measurement value.
-        attribute(:value, String, null: false)
-      end
+          # @return [String] The measurement value.
+          attribute(:value, String, null: false)
+        end
     end
   end
 end

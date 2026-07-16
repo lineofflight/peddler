@@ -9,9 +9,9 @@ module Peddler
     class FBAInventoryV1
       # The response schema for the AddInventory operation.
       AddInventoryResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the AddInventory operation.
-        attribute?(:errors, [Error])
-      end
+          # @return [Array<Error>] One or more unexpected errors occurred during the AddInventory operation.
+          attribute?(:errors, [Error])
+        end
     end
   end
 end

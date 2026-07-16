@@ -9,12 +9,12 @@ module Peddler
     class ShippingV2
       # Liquid Volume.
       LiquidVolume = Structure.new do
-        # @return [String] The unit of measurement.
-        attribute(:unit, String, null: false)
+          # @return [String] The unit of measurement.
+          attribute(:unit, String, null: false)
 
-        # @return [Float] The measurement value.
-        attribute(:value, Float, null: false)
-      end
+          # @return [Float] The measurement value.
+          attribute(:value, Float, null: false)
+        end
     end
   end
 end

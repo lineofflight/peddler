@@ -18,29 +18,29 @@ module Peddler
       # * For the `getSellingPartnerMetrics` operation with DAY aggregation frequency, the time interval cannot exceed
       # 31 days.
       TimeInterval = Structure.new do
-        # @return [Time] When this object is used as a request parameter, the specified `endDate` is adjusted based on
-        #   the aggregation frequency.
-        #
-        # * For `DAY` the metric is computed up to the specific day indicated by the `endDate`.
-        # * For `WEEK` the metric is computed up to the last day of the week (Sunday, based on ISO 8601) that contains
-        #   the `endDate`.
-        # * For `MONTH`, the metric is computed up to the last day of the month that contains the `endDate`.
-        # * For `QUARTER` the metric is computed up to the last day of the quarter that contains the `endDate`.
-        # * For `YEAR` the metric is computed up to the last day of the year that contains the `endDate`.
-        # Note: The end date may be adjusted to a lower value based on the data available in our system.
-        attribute(:end_date, Time, null: false, from: "endDate")
+          # @return [Time] When this object is used as a request parameter, the specified `endDate` is adjusted based on
+          #   the aggregation frequency.
+          #
+          # * For `DAY` the metric is computed up to the specific day indicated by the `endDate`.
+          # * For `WEEK` the metric is computed up to the last day of the week (Sunday, based on ISO 8601) that contains
+          #   the `endDate`.
+          # * For `MONTH`, the metric is computed up to the last day of the month that contains the `endDate`.
+          # * For `QUARTER` the metric is computed up to the last day of the quarter that contains the `endDate`.
+          # * For `YEAR` the metric is computed up to the last day of the year that contains the `endDate`.
+          # Note: The end date may be adjusted to a lower value based on the data available in our system.
+          attribute(:end_date, Time, null: false, from: "endDate")
 
-        # @return [Time] When this object is used as a request parameter, the specified `startDate` is adjusted based on
-        #   the aggregation frequency.
-        #
-        # * For `DAY` the metric is computed from the specific day indicated by the `startDate`.
-        # * For `WEEK` the metric is computed from the first day of the week (Monday, based on ISO 8601) that contains
-        #   the `startDate`.
-        # * For `MONTH` the metric is computed from the first day of the month that contains the `startDate`.
-        # * For `QUARTER` the metric is computed from the first day of the quarter that contains the `startDate`.
-        # * For `YEAR` the metric is computed from the first day of the year that contains the `startDate`.
-        attribute(:start_date, Time, null: false, from: "startDate")
-      end
+          # @return [Time] When this object is used as a request parameter, the specified `startDate` is adjusted based on
+          #   the aggregation frequency.
+          #
+          # * For `DAY` the metric is computed from the specific day indicated by the `startDate`.
+          # * For `WEEK` the metric is computed from the first day of the week (Monday, based on ISO 8601) that contains
+          #   the `startDate`.
+          # * For `MONTH` the metric is computed from the first day of the month that contains the `startDate`.
+          # * For `QUARTER` the metric is computed from the first day of the quarter that contains the `startDate`.
+          # * For `YEAR` the metric is computed from the first day of the year that contains the `startDate`.
+          attribute(:start_date, Time, null: false, from: "startDate")
+        end
     end
   end
 end

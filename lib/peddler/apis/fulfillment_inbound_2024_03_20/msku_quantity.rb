@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInbound20240320
       # Represents an MSKU and the related quantity.
       MskuQuantity = Structure.new do
-        # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.
-        attribute(:msku, String, null: false)
+          # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.
+          attribute(:msku, String, null: false)
 
-        # @return [Integer] A positive integer.
-        attribute(:quantity, Integer, null: false)
-      end
+          # @return [Integer] A positive integer.
+          attribute(:quantity, Integer, null: false)
+        end
     end
   end
 end

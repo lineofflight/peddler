@@ -9,12 +9,12 @@ module Peddler
     class VendorShipmentsV1
       # Duration after manufacturing date during which the product is valid for consumption.
       Duration = Structure.new do
-        # @return [String] Unit for duration.
-        attribute(:duration_unit, String, null: false, from: "durationUnit")
+          # @return [String] Unit for duration.
+          attribute(:duration_unit, String, null: false, from: "durationUnit")
 
-        # @return [Integer] Value for the duration in terms of the durationUnit.
-        attribute(:duration_value, Integer, null: false, from: "durationValue")
-      end
+          # @return [Integer] Value for the duration in terms of the durationUnit.
+          attribute(:duration_value, Integer, null: false, from: "durationValue")
+        end
     end
   end
 end

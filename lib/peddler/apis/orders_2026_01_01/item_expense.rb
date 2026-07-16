@@ -9,9 +9,9 @@ module Peddler
     class Orders20260101
       # The expense information related to this specific item.
       ItemExpense = Structure.new do
-        # @return [ItemPointsCost] The cost of points.
-        attribute?(:points_cost, ItemPointsCost, from: "pointsCost")
-      end
+          # @return [ItemPointsCost] The cost of points.
+          attribute?(:points_cost, ItemPointsCost, from: "pointsCost")
+        end
     end
   end
 end

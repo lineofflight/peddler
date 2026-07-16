@@ -10,9 +10,9 @@ module Peddler
       # An event filter you can use to customize your subscription to send notifications for a specific
       # `orderChangeType`.
       OrderChangeTypeFilter = Structure.new do
-        # @return [Array<OrderChangeTypeEnum>]
-        attribute?(:order_change_types, Array, from: "orderChangeTypes")
-      end
+          # @return [Array<OrderChangeTypeEnum>]
+          attribute?(:order_change_types, Array, from: "orderChangeTypes")
+        end
     end
   end
 end

@@ -9,12 +9,12 @@ module Peddler
     class ProductPricing20220501
       # The shipping option available for the offer.
       ShippingOption = Structure.new do
-        # @return [Money] Shipping price for the offer.
-        attribute(:price, Money, null: false)
+          # @return [Money] Shipping price for the offer.
+          attribute(:price, Money, null: false)
 
-        # @return [String] The type of shipping option.
-        attribute(:shipping_option_type, String, null: false, from: "shippingOptionType")
-      end
+          # @return [String] The type of shipping option.
+          attribute(:shipping_option_type, String, null: false, from: "shippingOptionType")
+        end
     end
   end
 end

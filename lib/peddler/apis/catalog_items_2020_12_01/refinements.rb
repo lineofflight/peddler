@@ -9,12 +9,12 @@ module Peddler
     class CatalogItems20201201
       # Search refinements.
       Refinements = Structure.new do
-        # @return [Array<BrandRefinement>] Brand search refinements.
-        attribute(:brands, [BrandRefinement], null: false)
+          # @return [Array<BrandRefinement>] Brand search refinements.
+          attribute(:brands, [BrandRefinement], null: false)
 
-        # @return [Array<ClassificationRefinement>] Classification search refinements.
-        attribute(:classifications, [ClassificationRefinement], null: false)
-      end
+          # @return [Array<ClassificationRefinement>] Classification search refinements.
+          attribute(:classifications, [ClassificationRefinement], null: false)
+        end
     end
   end
 end

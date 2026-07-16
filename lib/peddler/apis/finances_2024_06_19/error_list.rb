@@ -9,9 +9,9 @@ module Peddler
     class Finances20240619
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
-        # @return [Array<Error>] The error responses that are returned when the request is unsuccessful.
-        attribute(:errors, [Error], null: false)
-      end
+          # @return [Array<Error>] The error responses that are returned when the request is unsuccessful.
+          attribute(:errors, [Error], null: false)
+        end
     end
   end
 end

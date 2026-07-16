@@ -9,12 +9,12 @@ module Peddler
     class ShipmentInvoicingV0
       # The tax classification for the entity.
       TaxClassification = Structure.new do
-        # @return [String] The type of tax.
-        attribute?(:name, String, from: "Name")
+          # @return [String] The type of tax.
+          attribute?(:name, String, from: "Name")
 
-        # @return [String] The entity's tax identifier.
-        attribute?(:value, String, from: "Value")
-      end
+          # @return [String] The entity's tax identifier.
+          attribute?(:value, String, from: "Value")
+        end
     end
   end
 end

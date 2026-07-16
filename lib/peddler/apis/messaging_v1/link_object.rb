@@ -9,12 +9,12 @@ module Peddler
     class MessagingV1
       # A Link object.
       LinkObject = Structure.new do
-        # @return [String] A URI for this object.
-        attribute(:href, String, null: false)
+          # @return [String] A URI for this object.
+          attribute(:href, String, null: false)
 
-        # @return [String] An identifier for this object.
-        attribute?(:name, String)
-      end
+          # @return [String] An identifier for this object.
+          attribute?(:name, String)
+        end
     end
   end
 end

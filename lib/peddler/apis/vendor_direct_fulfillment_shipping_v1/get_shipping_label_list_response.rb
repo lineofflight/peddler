@@ -9,12 +9,12 @@ module Peddler
     class VendorDirectFulfillmentShippingV1
       # The response schema for the getShippingLabels operation.
       GetShippingLabelListResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:errors, [Error])
+          # @return [Array<Error>]
+          attribute?(:errors, [Error])
 
-        # @return [ShippingLabelList] List of ship labels.
-        attribute?(:payload, ShippingLabelList)
-      end
+          # @return [ShippingLabelList] List of ship labels.
+          attribute?(:payload, ShippingLabelList)
+        end
     end
   end
 end

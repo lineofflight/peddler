@@ -85,6 +85,6 @@ module Peddler
         parser = -> { ErrorList }
         put(path, body:, parser:)
       end
-    end
+          end
   end
 end

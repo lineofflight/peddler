@@ -10,15 +10,15 @@ module Peddler
     class ShippingV1
       # An event of a shipment
       Event = Structure.new do
-        # @return [String]
-        attribute(:event_code, String, null: false, from: "eventCode")
+          # @return [String]
+          attribute(:event_code, String, null: false, from: "eventCode")
 
-        # @return [Time] The date and time of an event for a shipment.
-        attribute(:event_time, Time, null: false, from: "eventTime")
+          # @return [Time] The date and time of an event for a shipment.
+          attribute(:event_time, Time, null: false, from: "eventTime")
 
-        # @return [Location]
-        attribute?(:location, Location)
-      end
+          # @return [Location]
+          attribute?(:location, Location)
+        end
     end
   end
 end

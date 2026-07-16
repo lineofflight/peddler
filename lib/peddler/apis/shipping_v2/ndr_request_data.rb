@@ -12,13 +12,13 @@ module Peddler
       # rescheduleDate is a required field. Otherwise, if the NDR Action is REATTEMPT, additionalAddressNotes is a
       # required field.
       NdrRequestData = Structure.new do
-        # @return [String]
-        attribute?(:additional_address_notes, String, from: "additionalAddressNotes")
+          # @return [String]
+          attribute?(:additional_address_notes, String, from: "additionalAddressNotes")
 
-        # @return [Time] The date on which the Seller wants to reschedule shipment delivery, in ISO-8601 date/time
-        #   format
-        attribute?(:reschedule_date, Time, from: "rescheduleDate")
-      end
+          # @return [Time] The date on which the Seller wants to reschedule shipment delivery, in ISO-8601 date/time
+          #   format
+          attribute?(:reschedule_date, Time, from: "rescheduleDate")
+        end
     end
   end
 end

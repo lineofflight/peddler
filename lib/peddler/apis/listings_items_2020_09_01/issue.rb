@@ -9,18 +9,18 @@ module Peddler
     class ListingsItems20200901
       # An issue with a listings item.
       Issue = Structure.new do
-        # @return [String] An issue code that identifies the type of issue.
-        attribute(:code, String, null: false)
+          # @return [String] An issue code that identifies the type of issue.
+          attribute(:code, String, null: false)
 
-        # @return [String] A message that describes the issue.
-        attribute(:message, String, null: false)
+          # @return [String] A message that describes the issue.
+          attribute(:message, String, null: false)
 
-        # @return [String] The severity of the issue.
-        attribute(:severity, String, null: false)
+          # @return [String] The severity of the issue.
+          attribute(:severity, String, null: false)
 
-        # @return [String] Name of the attribute associated with the issue, if applicable.
-        attribute?(:attribute_name, String, from: "attributeName")
-      end
+          # @return [String] Name of the attribute associated with the issue, if applicable.
+          attribute?(:attribute_name, String, from: "attributeName")
+        end
     end
   end
 end

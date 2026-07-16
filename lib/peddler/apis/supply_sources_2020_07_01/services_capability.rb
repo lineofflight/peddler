@@ -9,12 +9,12 @@ module Peddler
     class SupplySources20200701
       # The services capability of a supply source.
       ServicesCapability = Structure.new do
-        # @return [:boolean] When true, `SupplySource` supports the Service capability.
-        attribute?(:supported, :boolean, from: "isSupported")
+          # @return [:boolean] When true, `SupplySource` supports the Service capability.
+          attribute?(:supported, :boolean, from: "isSupported")
 
-        # @return [OperationalConfiguration]
-        attribute?(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")
-      end
+          # @return [OperationalConfiguration]
+          attribute?(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")
+        end
     end
   end
 end

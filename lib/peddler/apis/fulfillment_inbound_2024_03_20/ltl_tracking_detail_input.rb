@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInbound20240320
       # Contains input information to update Less-Than-Truckload (LTL) tracking information.
       LtlTrackingDetailInput = Structure.new do
-        # @return [Array<String>] Number associated with the freight bill.
-        attribute(:freight_bill_number, [String], null: false, from: "freightBillNumber")
+          # @return [Array<String>] Number associated with the freight bill.
+          attribute(:freight_bill_number, [String], null: false, from: "freightBillNumber")
 
-        # @return [String] The number of the carrier shipment acknowledgement document.
-        attribute?(:bill_of_lading_number, String, from: "billOfLadingNumber")
-      end
+          # @return [String] The number of the carrier shipment acknowledgement document.
+          attribute?(:bill_of_lading_number, String, from: "billOfLadingNumber")
+        end
     end
   end
 end

@@ -92,8 +92,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_service_jobs(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil,
-        service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil,
-        created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil,
+      service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil,
+      created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil,
         schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, rate_limit: 10.0)
         path = "/service/v1/serviceJobs"
         params = {
@@ -344,6 +344,6 @@ module Peddler
         parser = -> { CreateServiceDocumentUploadDestination }
         post(path, body:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

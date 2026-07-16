@@ -164,9 +164,9 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_listings_items(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"],
-        identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil,
-        created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil,
-        with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC",
+      identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil,
+      created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil,
+      with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC",
         page_size: 10, page_token: nil, rate_limit: 5.0)
         path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}"
         params = {
@@ -192,6 +192,6 @@ module Peddler
         parser = -> { ItemSearchResults }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

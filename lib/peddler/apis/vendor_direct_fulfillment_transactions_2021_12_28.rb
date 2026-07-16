@@ -23,6 +23,6 @@ module Peddler
         parser = -> { TransactionStatus }
         get(path, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

@@ -9,17 +9,17 @@ module Peddler
     class ShipmentInvoicingV0
       # The request schema for the submitInvoice operation.
       SubmitInvoiceRequest = Structure.new do
-        # @return [String] MD5 sum for validating the invoice data. For more information about calculating this value,
-        #   see [Working with Content-MD5
-        #   Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
-        attribute(:content_md5_value, String, null: false, from: "ContentMD5Value")
+          # @return [String] MD5 sum for validating the invoice data. For more information about calculating this value,
+          #   see [Working with Content-MD5
+          #   Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
+          attribute(:content_md5_value, String, null: false, from: "ContentMD5Value")
 
-        # @return [String]
-        attribute(:invoice_content, String, null: false, from: "InvoiceContent")
+          # @return [String]
+          attribute(:invoice_content, String, null: false, from: "InvoiceContent")
 
-        # @return [String] An Amazon marketplace identifier.
-        attribute?(:marketplace_id, String, from: "MarketplaceId")
-      end
+          # @return [String] An Amazon marketplace identifier.
+          attribute?(:marketplace_id, String, from: "MarketplaceId")
+        end
     end
   end
 end

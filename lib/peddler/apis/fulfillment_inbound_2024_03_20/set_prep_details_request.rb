@@ -9,13 +9,13 @@ module Peddler
     class FulfillmentInbound20240320
       # The `setPrepDetails` request.
       SetPrepDetailsRequest = Structure.new do
-        # @return [String] The marketplace ID. For a list of possible values, refer to [Marketplace
-        #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
+          # @return [String] The marketplace ID. For a list of possible values, refer to [Marketplace
+          #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+          attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [Array<MskuPrepDetailInput>] A list of MSKUs and related prep details.
-        attribute(:msku_prep_details, [MskuPrepDetailInput], null: false, from: "mskuPrepDetails")
-      end
+          # @return [Array<MskuPrepDetailInput>] A list of MSKUs and related prep details.
+          attribute(:msku_prep_details, [MskuPrepDetailInput], null: false, from: "mskuPrepDetails")
+        end
     end
   end
 end

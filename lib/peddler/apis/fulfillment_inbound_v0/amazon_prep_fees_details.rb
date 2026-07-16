@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInboundV0
       # The fees for Amazon to prep goods for shipment.
       AmazonPrepFeesDetails = Structure.new do
-        # @return [Amount] The fee for Amazon to prepare 1 unit.
-        attribute?(:fee_per_unit, Amount, from: "FeePerUnit")
+          # @return [Amount] The fee for Amazon to prepare 1 unit.
+          attribute?(:fee_per_unit, Amount, from: "FeePerUnit")
 
-        # @return [String]
-        attribute?(:prep_instruction, String, from: "PrepInstruction")
-      end
+          # @return [String]
+          attribute?(:prep_instruction, String, from: "PrepInstruction")
+        end
     end
   end
 end

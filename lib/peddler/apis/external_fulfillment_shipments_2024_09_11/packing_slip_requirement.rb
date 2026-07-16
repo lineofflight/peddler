@@ -9,12 +9,12 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # Whether the packing slip is required to be attached to the shipment, and its corresponding status.
       PackingSlipRequirement = Structure.new do
-        # @return [String] Whether the packing slip is required to be attached to the shipment.
-        attribute?(:requirement, String)
+          # @return [String] Whether the packing slip is required to be attached to the shipment.
+          attribute?(:requirement, String)
 
-        # @return [String] The status of the packing slip that is attached to the shipment.
-        attribute?(:status, String)
-      end
+          # @return [String] The status of the packing slip that is attached to the shipment.
+          attribute?(:status, String)
+        end
     end
   end
 end

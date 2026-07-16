@@ -9,12 +9,12 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # A document, described by its file type and data.
       Document = Structure.new do
-        # @return [String] Base 64 encoded file contents.
-        attribute?(:content, String)
+          # @return [String] Base 64 encoded file contents.
+          attribute?(:content, String)
 
-        # @return [String] The type of the file.
-        attribute?(:format, String)
-      end
+          # @return [String] The type of the file.
+          attribute?(:format, String)
+        end
     end
   end
 end

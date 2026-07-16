@@ -9,12 +9,12 @@ module Peddler
     class FulfillmentInbound20240320
       # The `listShipmentPallets` response.
       ListShipmentPalletsResponse = Structure.new do
-        # @return [Array<Pallet>] The pallets in a shipment.
-        attribute(:pallets, [Pallet], null: false)
+          # @return [Array<Pallet>] The pallets in a shipment.
+          attribute(:pallets, [Pallet], null: false)
 
-        # @return [Pagination]
-        attribute?(:pagination, Pagination)
-      end
+          # @return [Pagination]
+          attribute?(:pagination, Pagination)
+        end
     end
   end
 end

@@ -9,15 +9,15 @@ module Peddler
     class ProductPricingV0
       # Common schema that present in `ItemOffersResponse` and `ListingOffersResponse`
       BatchOffersResponse = Structure.new do
-        # @return [GetOffersResponse]
-        attribute(:body, GetOffersResponse, null: false)
+          # @return [GetOffersResponse]
+          attribute(:body, GetOffersResponse, null: false)
 
-        # @return [HttpResponseHeaders]
-        attribute?(:headers, HttpResponseHeaders)
+          # @return [HttpResponseHeaders]
+          attribute?(:headers, HttpResponseHeaders)
 
-        # @return [GetOffersHttpStatusLine]
-        attribute?(:status, GetOffersHttpStatusLine)
-      end
+          # @return [GetOffersHttpStatusLine]
+          attribute?(:status, GetOffersHttpStatusLine)
+        end
     end
   end
 end

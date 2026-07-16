@@ -10,13 +10,13 @@ module Peddler
       # Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace
       # granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
       Granularity = Structure.new do
-        # @return [String] The granularity ID for the specified granularity type. When granularityType is Marketplace,
-        #   specify the marketplaceId.
-        attribute?(:granularity_id, String, from: "granularityId")
+          # @return [String] The granularity ID for the specified granularity type. When granularityType is Marketplace,
+          #   specify the marketplaceId.
+          attribute?(:granularity_id, String, from: "granularityId")
 
-        # @return [String] The granularity type for the inventory aggregation level.
-        attribute?(:granularity_type, String, from: "granularityType")
-      end
+          # @return [String] The granularity type for the inventory aggregation level.
+          attribute?(:granularity_type, String, from: "granularityType")
+        end
     end
   end
 end

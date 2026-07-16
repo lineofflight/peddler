@@ -9,9 +9,9 @@ module Peddler
     class Invoices20240619
       # Success.
       GovtInvoiceDocumentResponse = Structure.new do
-        # @return [InvoiceDocument]
-        attribute?(:invoice_document, InvoiceDocument, from: "invoiceDocument")
-      end
+          # @return [InvoiceDocument]
+          attribute?(:invoice_document, InvoiceDocument, from: "invoiceDocument")
+        end
     end
   end
 end

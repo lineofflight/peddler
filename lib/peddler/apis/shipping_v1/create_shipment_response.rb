@@ -9,12 +9,12 @@ module Peddler
     class ShippingV1
       # The response schema for the createShipment operation.
       CreateShipmentResponse = Structure.new do
-        # @return [Array<Error>] Encountered errors for the operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] Encountered errors for the operation.
+          attribute?(:errors, [Error])
 
-        # @return [CreateShipmentResult] The payload for createShipment operation
-        attribute?(:payload, CreateShipmentResult)
-      end
+          # @return [CreateShipmentResult] The payload for createShipment operation
+          attribute?(:payload, CreateShipmentResult)
+        end
     end
   end
 end

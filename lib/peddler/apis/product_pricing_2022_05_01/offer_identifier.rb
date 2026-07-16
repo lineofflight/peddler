@@ -9,22 +9,22 @@ module Peddler
     class ProductPricing20220501
       # Identifies an offer from a particular seller for a specified ASIN.
       OfferIdentifier = Structure.new do
-        # @return [String] The Amazon identifier for the item.
-        attribute(:asin, String, null: false)
+          # @return [String] The Amazon identifier for the item.
+          attribute(:asin, String, null: false)
 
-        # @return [String] A marketplace identifier.
-        attribute(:marketplace_id, String, null: false, from: "marketplaceId")
+          # @return [String] A marketplace identifier.
+          attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The fulfillment type for the offer.
-        attribute?(:fulfillment_type, String, from: "fulfillmentType")
+          # @return [String] The fulfillment type for the offer.
+          attribute?(:fulfillment_type, String, from: "fulfillmentType")
 
-        # @return [String] The seller identifier for the offer.
-        attribute?(:seller_id, String, from: "sellerId")
+          # @return [String] The seller identifier for the offer.
+          attribute?(:seller_id, String, from: "sellerId")
 
-        # @return [String] The seller SKU of the item. This will only be present for the target offer, which belongs to
-        #   the requesting seller.
-        attribute?(:sku, String)
-      end
+          # @return [String] The seller SKU of the item. This will only be present for the target offer, which belongs to
+          #   the requesting seller.
+          attribute?(:sku, String)
+        end
     end
   end
 end

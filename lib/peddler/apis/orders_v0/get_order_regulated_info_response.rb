@@ -9,12 +9,12 @@ module Peddler
     class OrdersV0
       # The response schema for the `getOrderRegulatedInfo` operation.
       GetOrderRegulatedInfoResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `getOrderRegulatedInfo` operation.
-        attribute?(:errors, [Error])
+          # @return [Array<Error>] One or more unexpected errors occurred during the `getOrderRegulatedInfo` operation.
+          attribute?(:errors, [Error])
 
-        # @return [OrderRegulatedInfo] The payload for the `getOrderRegulatedInfo` operation.
-        attribute?(:payload, OrderRegulatedInfo)
-      end
+          # @return [OrderRegulatedInfo] The payload for the `getOrderRegulatedInfo` operation.
+          attribute?(:payload, OrderRegulatedInfo)
+        end
     end
   end
 end

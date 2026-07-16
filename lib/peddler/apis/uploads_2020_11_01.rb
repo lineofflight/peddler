@@ -42,6 +42,6 @@ module Peddler
         parser = -> { CreateUploadDestinationResponse }
         post(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end

@@ -9,18 +9,18 @@ module Peddler
     class ServicesV1
       # The scope of work for the order.
       ScopeOfWork = Structure.new do
-        # @return [String] The Amazon Standard Identification Number (ASIN) of the service job.
-        attribute?(:asin, String)
+          # @return [String] The Amazon Standard Identification Number (ASIN) of the service job.
+          attribute?(:asin, String)
 
-        # @return [Integer] The number of service jobs.
-        attribute?(:quantity, Integer)
+          # @return [Integer] The number of service jobs.
+          attribute?(:quantity, Integer)
 
-        # @return [Array<String>] A list of skills required to perform the job.
-        attribute?(:required_skills, [String], from: "requiredSkills")
+          # @return [Array<String>] A list of skills required to perform the job.
+          attribute?(:required_skills, [String], from: "requiredSkills")
 
-        # @return [String] The title of the service job.
-        attribute?(:title, String)
-      end
+          # @return [String] The title of the service job.
+          attribute?(:title, String)
+        end
     end
   end
 end

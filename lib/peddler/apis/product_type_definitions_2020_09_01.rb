@@ -67,7 +67,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST",
-        requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil,
+      requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil,
         rate_limit: 5.0)
         path = "/definitions/2020-09-01/productTypes/#{percent_encode(product_type)}"
         params = {
@@ -82,6 +82,6 @@ module Peddler
         parser = -> { ProductTypeDefinition }
         get(path, params:, rate_limit:, parser:)
       end
-    end
+          end
   end
 end
