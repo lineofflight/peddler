@@ -26,7 +26,7 @@ module Peddler
     "SG" => { id: "A19VAU5U5O7RUS", country_name: "Singapore", selling_region: "Far East" },
     "AU" => { id: "A39IBJ37TRP1C6", country_name: "Australia", selling_region: "Far East" },
     "JP" => { id: "A1VC38T7YXB528", country_name: "Japan", selling_region: "Far East" },
-  }
+  }.freeze
 
   # @!parse
   #   # Wraps an Amazon marketplace

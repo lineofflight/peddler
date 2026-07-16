@@ -18,7 +18,7 @@ module Peddler
         selling_region: "Europe",
         host: "sellingpartnerapi-eu.amazon.com",
       },
-    }
+    }.freeze
 
     class << self
       # @return [Array<Endpoint>]

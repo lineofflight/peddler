@@ -14,3 +14,37 @@ AllCops:
 
 RBS:
   Enabled: true
+
+# The generator relies on `rubocop --autocorrect-all` to normalize generated
+# code. rubocop-shopify 3.0 disabled the cops below, letting the templates'
+# raw output drift; keep them enabled for generated code only, so its formatting
+# stays deterministic across gem versions. Hand-written code follows Shopify
+# defaults. The set is empirical: these are the cops that fire when formatting
+# freshly generated output.
+Layout/BlockAlignment:
+  Enabled: true
+  Include: &generated
+    - lib/peddler.rb
+    - lib/peddler/apis/**/*
+    - lib/peddler/data_kiosk/**/*
+    - lib/peddler/feeds/**/*
+    - lib/peddler/notifications/**/*
+    - lib/peddler/reports/**/*
+
+Layout/EndAlignment:
+  Enabled: true
+  Include: *generated
+
+Layout/ParameterAlignment:
+  Enabled: true
+  Include: *generated
+
+Style/Alias:
+  Enabled: true
+  Include: *generated
+
+# These tests assert that generated code contains literal `#{...}` text; the
+# cop's autocorrect would turn it into live interpolation.
+Lint/InterpolationCheck:
+  Exclude:
+    - test/generator/builders/operation_render_test.rb
