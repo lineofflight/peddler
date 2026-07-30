@@ -7,15 +7,15 @@ require "structure"
 module Peddler
   module APIs
     class Finances20240619
-      # Additional Information about the item.
+      # Additional information about the item.
       Context = Structure.new do
-        # @return [String]
+        # @return [String] The type of context.
         attribute(:context_type, String, null: false, from: "contextType")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String)
 
-        # @return [String] Channel details of related transaction.
+        # @return [String] The channel of the transaction. For example: `MFN`.
         attribute?(:channel, String)
 
         # @return [String] The deferral policy applied to the transaction.
@@ -32,7 +32,7 @@ module Peddler
         # @return [String] The release date of the transaction.
         attribute?(:maturity_date, String, from: "maturityDate")
 
-        # @return [String] The transaction's order type.
+        # @return [String] The order type of the transaction.
         attribute?(:order_type, String, from: "orderType")
 
         # @return [String] The date of the payment.

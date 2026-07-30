@@ -1,6 +1,23 @@
 module Peddler
   module APIs
     class ProductPricing20220501 < API
+      class AmountThreshold < Data
+        def self.new: (currency: Peddler::Money, type: String) -> Peddler::APIs::ProductPricing20220501::AmountThreshold
+                    | (Peddler::Money, String) -> Peddler::APIs::ProductPricing20220501::AmountThreshold
+        def self.[]: (currency: Peddler::Money, type: String) -> Peddler::APIs::ProductPricing20220501::AmountThreshold
+                   | (Peddler::Money, String) -> Peddler::APIs::ProductPricing20220501::AmountThreshold
+
+        def self.members: () -> [ :currency, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::AmountThreshold
+
+        attr_reader currency: Peddler::Money
+        attr_reader type: String
+
+        def members: () -> [ :currency, :type ]
+        def to_h: () -> { currency: Peddler::Money, type: String }
+      end
+
       class BatchRequest < Data
         def self.new: (method: String, uri: String, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?) -> Peddler::APIs::ProductPricing20220501::BatchRequest
                     | (String, String, Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::APIs::ProductPricing20220501::BatchRequest
@@ -452,12 +469,12 @@ module Peddler
       end
 
       class Offer < Data
-        def self.new: (condition: String, fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, ?points: Peddler::APIs::ProductPricing20220501::Points?, ?prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::APIs::ProductPricing20220501::Offer
-                    | (String, String, Peddler::Money, String, Peddler::APIs::ProductPricing20220501::Points?, Peddler::APIs::ProductPricing20220501::PrimeDetails?, Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::APIs::ProductPricing20220501::Offer
-        def self.[]: (condition: String, fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, ?points: Peddler::APIs::ProductPricing20220501::Points?, ?prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::APIs::ProductPricing20220501::Offer
-                   | (String, String, Peddler::Money, String, Peddler::APIs::ProductPricing20220501::Points?, Peddler::APIs::ProductPricing20220501::PrimeDetails?, Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::APIs::ProductPricing20220501::Offer
+        def self.new: (condition: String, fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, ?points: Peddler::APIs::ProductPricing20220501::Points?, ?prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, ?promotions: Array[Peddler::APIs::ProductPricing20220501::Promotion]?, ?shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::APIs::ProductPricing20220501::Offer
+                    | (String, String, Peddler::Money, String, Peddler::APIs::ProductPricing20220501::Points?, Peddler::APIs::ProductPricing20220501::PrimeDetails?, Array[Peddler::APIs::ProductPricing20220501::Promotion]?, Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::APIs::ProductPricing20220501::Offer
+        def self.[]: (condition: String, fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, ?points: Peddler::APIs::ProductPricing20220501::Points?, ?prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, ?promotions: Array[Peddler::APIs::ProductPricing20220501::Promotion]?, ?shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::APIs::ProductPricing20220501::Offer
+                   | (String, String, Peddler::Money, String, Peddler::APIs::ProductPricing20220501::Points?, Peddler::APIs::ProductPricing20220501::PrimeDetails?, Array[Peddler::APIs::ProductPricing20220501::Promotion]?, Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::APIs::ProductPricing20220501::Offer
 
-        def self.members: () -> [ :condition, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :shipping_options, :sub_condition ]
+        def self.members: () -> [ :condition, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :promotions, :shipping_options, :sub_condition ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::Offer
 
@@ -466,12 +483,13 @@ module Peddler
         attr_reader listing_price: Peddler::Money
         attr_reader points: Peddler::APIs::ProductPricing20220501::Points?
         attr_reader prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?
+        attr_reader promotions: Array[Peddler::APIs::ProductPricing20220501::Promotion]?
         attr_reader seller_id: String
         attr_reader shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?
         attr_reader sub_condition: String?
 
-        def members: () -> [ :condition, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :shipping_options, :sub_condition ]
-        def to_h: () -> { condition: String, fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, points: Peddler::APIs::ProductPricing20220501::Points?, prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
+        def members: () -> [ :condition, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :promotions, :shipping_options, :sub_condition ]
+        def to_h: () -> { condition: String, fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, points: Peddler::APIs::ProductPricing20220501::Points?, prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, promotions: Array[Peddler::APIs::ProductPricing20220501::Promotion]?, shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
       end
 
       class OfferIdentifier < Data
@@ -562,6 +580,113 @@ module Peddler
         def to_h: () -> { eligibility: String }
       end
 
+      class Promotion < Data
+        def self.new: (promotion_savings: Peddler::APIs::ProductPricing20220501::PromotionSavings, promotion_type: String, ?purchase_requirements: Peddler::APIs::ProductPricing20220501::PurchaseRequirements?) -> Peddler::APIs::ProductPricing20220501::Promotion
+                    | (Peddler::APIs::ProductPricing20220501::PromotionSavings, String, Peddler::APIs::ProductPricing20220501::PurchaseRequirements?) -> Peddler::APIs::ProductPricing20220501::Promotion
+        def self.[]: (promotion_savings: Peddler::APIs::ProductPricing20220501::PromotionSavings, promotion_type: String, ?purchase_requirements: Peddler::APIs::ProductPricing20220501::PurchaseRequirements?) -> Peddler::APIs::ProductPricing20220501::Promotion
+                   | (Peddler::APIs::ProductPricing20220501::PromotionSavings, String, Peddler::APIs::ProductPricing20220501::PurchaseRequirements?) -> Peddler::APIs::ProductPricing20220501::Promotion
+
+        def self.members: () -> [ :promotion_savings, :promotion_type, :purchase_requirements ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::Promotion
+
+        attr_reader promotion_savings: Peddler::APIs::ProductPricing20220501::PromotionSavings
+        attr_reader promotion_type: String
+        attr_reader purchase_requirements: Peddler::APIs::ProductPricing20220501::PurchaseRequirements?
+
+        def members: () -> [ :promotion_savings, :promotion_type, :purchase_requirements ]
+        def to_h: () -> { promotion_savings: Peddler::APIs::ProductPricing20220501::PromotionSavings, promotion_type: String, purchase_requirements: Peddler::APIs::ProductPricing20220501::PurchaseRequirements? }
+      end
+
+      class PromotionDiscount < Data
+        def self.new: (?amount_off: Peddler::Money?, ?percent_off: Float?, ?type: String?) -> Peddler::APIs::ProductPricing20220501::PromotionDiscount
+                    | (Peddler::Money?, Float?, String?) -> Peddler::APIs::ProductPricing20220501::PromotionDiscount
+        def self.[]: (?amount_off: Peddler::Money?, ?percent_off: Float?, ?type: String?) -> Peddler::APIs::ProductPricing20220501::PromotionDiscount
+                   | (Peddler::Money?, Float?, String?) -> Peddler::APIs::ProductPricing20220501::PromotionDiscount
+
+        def self.members: () -> [ :amount_off, :percent_off, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::PromotionDiscount
+
+        attr_reader amount_off: Peddler::Money?
+        attr_reader percent_off: Float?
+        attr_reader type: String?
+
+        def members: () -> [ :amount_off, :percent_off, :type ]
+        def to_h: () -> { amount_off: Peddler::Money?, percent_off: Float?, type: String? }
+      end
+
+      class PromotionSavings < Data
+        def self.new: (?discount: Peddler::APIs::ProductPricing20220501::PromotionDiscount?, ?discounted_price: Peddler::Money?) -> Peddler::APIs::ProductPricing20220501::PromotionSavings
+                    | (Peddler::APIs::ProductPricing20220501::PromotionDiscount?, Peddler::Money?) -> Peddler::APIs::ProductPricing20220501::PromotionSavings
+        def self.[]: (?discount: Peddler::APIs::ProductPricing20220501::PromotionDiscount?, ?discounted_price: Peddler::Money?) -> Peddler::APIs::ProductPricing20220501::PromotionSavings
+                   | (Peddler::APIs::ProductPricing20220501::PromotionDiscount?, Peddler::Money?) -> Peddler::APIs::ProductPricing20220501::PromotionSavings
+
+        def self.members: () -> [ :discount, :discounted_price ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::PromotionSavings
+
+        attr_reader discount: Peddler::APIs::ProductPricing20220501::PromotionDiscount?
+        attr_reader discounted_price: Peddler::Money?
+
+        def members: () -> [ :discount, :discounted_price ]
+        def to_h: () -> { discount: Peddler::APIs::ProductPricing20220501::PromotionDiscount?, discounted_price: Peddler::Money? }
+      end
+
+      class Promotions < Array[Promotion]
+        def self.parse: (Array[untyped]) -> Promotions
+      end
+
+      class PurchaseCondition < Data
+        def self.new: (?amount_threshold: Peddler::APIs::ProductPricing20220501::AmountThreshold?, ?quantity_threshold: Peddler::APIs::ProductPricing20220501::QuantityThreshold?) -> Peddler::APIs::ProductPricing20220501::PurchaseCondition
+                    | (Peddler::APIs::ProductPricing20220501::AmountThreshold?, Peddler::APIs::ProductPricing20220501::QuantityThreshold?) -> Peddler::APIs::ProductPricing20220501::PurchaseCondition
+        def self.[]: (?amount_threshold: Peddler::APIs::ProductPricing20220501::AmountThreshold?, ?quantity_threshold: Peddler::APIs::ProductPricing20220501::QuantityThreshold?) -> Peddler::APIs::ProductPricing20220501::PurchaseCondition
+                   | (Peddler::APIs::ProductPricing20220501::AmountThreshold?, Peddler::APIs::ProductPricing20220501::QuantityThreshold?) -> Peddler::APIs::ProductPricing20220501::PurchaseCondition
+
+        def self.members: () -> [ :amount_threshold, :quantity_threshold ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::PurchaseCondition
+
+        attr_reader amount_threshold: Peddler::APIs::ProductPricing20220501::AmountThreshold?
+        attr_reader quantity_threshold: Peddler::APIs::ProductPricing20220501::QuantityThreshold?
+
+        def members: () -> [ :amount_threshold, :quantity_threshold ]
+        def to_h: () -> { amount_threshold: Peddler::APIs::ProductPricing20220501::AmountThreshold?, quantity_threshold: Peddler::APIs::ProductPricing20220501::QuantityThreshold? }
+      end
+
+      class PurchaseRequirements < Data
+        def self.new: (?condition: Peddler::APIs::ProductPricing20220501::PurchaseCondition?) -> Peddler::APIs::ProductPricing20220501::PurchaseRequirements
+                    | (Peddler::APIs::ProductPricing20220501::PurchaseCondition?) -> Peddler::APIs::ProductPricing20220501::PurchaseRequirements
+        def self.[]: (?condition: Peddler::APIs::ProductPricing20220501::PurchaseCondition?) -> Peddler::APIs::ProductPricing20220501::PurchaseRequirements
+                   | (Peddler::APIs::ProductPricing20220501::PurchaseCondition?) -> Peddler::APIs::ProductPricing20220501::PurchaseRequirements
+
+        def self.members: () -> [ :condition ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::PurchaseRequirements
+
+        attr_reader condition: Peddler::APIs::ProductPricing20220501::PurchaseCondition?
+
+        def members: () -> [ :condition ]
+        def to_h: () -> { condition: Peddler::APIs::ProductPricing20220501::PurchaseCondition? }
+      end
+
+      class QuantityThreshold < Data
+        def self.new: (quantity: Integer, type: String) -> Peddler::APIs::ProductPricing20220501::QuantityThreshold
+                    | (Integer, String) -> Peddler::APIs::ProductPricing20220501::QuantityThreshold
+        def self.[]: (quantity: Integer, type: String) -> Peddler::APIs::ProductPricing20220501::QuantityThreshold
+                   | (Integer, String) -> Peddler::APIs::ProductPricing20220501::QuantityThreshold
+
+        def self.members: () -> [ :quantity, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::QuantityThreshold
+
+        attr_reader quantity: Integer
+        attr_reader type: String
+
+        def members: () -> [ :quantity, :type ]
+        def to_h: () -> { quantity: Integer, type: String }
+      end
+
       class ReferencePrice < Data
         def self.new: (name: String, price: Peddler::Money) -> Peddler::APIs::ProductPricing20220501::ReferencePrice
                     | (String, Peddler::Money) -> Peddler::APIs::ProductPricing20220501::ReferencePrice
@@ -629,12 +754,12 @@ module Peddler
       end
 
       class SegmentedFeaturedOffer < Data
-        def self.new: (condition: String, featured_offer_segments: Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, ?points: Peddler::APIs::ProductPricing20220501::Points?, ?prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
-                    | (String, Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], String, Peddler::Money, String, Peddler::APIs::ProductPricing20220501::Points?, Peddler::APIs::ProductPricing20220501::PrimeDetails?, Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
-        def self.[]: (condition: String, featured_offer_segments: Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, ?points: Peddler::APIs::ProductPricing20220501::Points?, ?prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
-                   | (String, Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], String, Peddler::Money, String, Peddler::APIs::ProductPricing20220501::Points?, Peddler::APIs::ProductPricing20220501::PrimeDetails?, Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
+        def self.new: (condition: String, featured_offer_segments: Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, ?points: Peddler::APIs::ProductPricing20220501::Points?, ?prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, ?promotions: Array[Peddler::APIs::ProductPricing20220501::Promotion]?, ?shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
+                    | (String, Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], String, Peddler::Money, String, Peddler::APIs::ProductPricing20220501::Points?, Peddler::APIs::ProductPricing20220501::PrimeDetails?, Array[Peddler::APIs::ProductPricing20220501::Promotion]?, Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
+        def self.[]: (condition: String, featured_offer_segments: Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, ?points: Peddler::APIs::ProductPricing20220501::Points?, ?prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, ?promotions: Array[Peddler::APIs::ProductPricing20220501::Promotion]?, ?shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
+                   | (String, Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], String, Peddler::Money, String, Peddler::APIs::ProductPricing20220501::Points?, Peddler::APIs::ProductPricing20220501::PrimeDetails?, Array[Peddler::APIs::ProductPricing20220501::Promotion]?, Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
 
-        def self.members: () -> [ :condition, :featured_offer_segments, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :shipping_options, :sub_condition ]
+        def self.members: () -> [ :condition, :featured_offer_segments, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :promotions, :shipping_options, :sub_condition ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ProductPricing20220501::SegmentedFeaturedOffer
 
@@ -644,12 +769,13 @@ module Peddler
         attr_reader listing_price: Peddler::Money
         attr_reader points: Peddler::APIs::ProductPricing20220501::Points?
         attr_reader prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?
+        attr_reader promotions: Array[Peddler::APIs::ProductPricing20220501::Promotion]?
         attr_reader seller_id: String
         attr_reader shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?
         attr_reader sub_condition: String?
 
-        def members: () -> [ :condition, :featured_offer_segments, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :shipping_options, :sub_condition ]
-        def to_h: () -> { condition: String, featured_offer_segments: Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, points: Peddler::APIs::ProductPricing20220501::Points?, prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
+        def members: () -> [ :condition, :featured_offer_segments, :fulfillment_type, :listing_price, :seller_id, :points, :prime_details, :promotions, :shipping_options, :sub_condition ]
+        def to_h: () -> { condition: String, featured_offer_segments: Array[Peddler::APIs::ProductPricing20220501::FeaturedOfferSegment], fulfillment_type: String, listing_price: Peddler::Money, seller_id: String, points: Peddler::APIs::ProductPricing20220501::Points?, prime_details: Peddler::APIs::ProductPricing20220501::PrimeDetails?, promotions: Array[Peddler::APIs::ProductPricing20220501::Promotion]?, shipping_options: Array[Peddler::APIs::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
       end
 
       class ShippingOption < Data

@@ -12,7 +12,7 @@ module Peddler
         # @return [Array<InvoiceError>] The errors that occurred during invoice creation.
         attribute?(:invoice_errors, [InvoiceError], from: "invoiceErrors")
 
-        # @return [String] Government Invoice ID of a successfully authorized invoice.
+        # @return [String] The Government Invoice ID of a successfully authorized invoice.
         attribute?(:invoice_external_document_id, String, from: "invoiceExternalDocumentId")
 
         # @return [String]

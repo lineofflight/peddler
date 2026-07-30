@@ -7,15 +7,15 @@ require "structure"
 module Peddler
   module APIs
     class ListingsItems20210801
-      # The image for the listings item.
+      # The listings item's image.
       ItemImage = Structure.new do
-        # @return [Integer] The height of the image in pixels.
+        # @return [Integer] The image's height, in pixels.
         attribute(:height, Integer, null: false)
 
-        # @return [String] The link, or URL, to the image.
+        # @return [String] The image's link or URL.
         attribute(:link, String, null: false)
 
-        # @return [Integer] The width of the image in pixels.
+        # @return [Integer] The image's width, in pixels.
         attribute(:width, Integer, null: false)
       end
     end

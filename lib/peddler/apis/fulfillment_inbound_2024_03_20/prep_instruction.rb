@@ -13,7 +13,8 @@ module Peddler
         attribute?(:fee, Money)
 
         # @return [String] In some situations, special preparations are required for items and this field reflects the
-        #   owner of the preparations. Options include `AMAZON`, `SELLER` or `NONE`.
+        #   owner of the preparations. Options include `AMAZON`, `SELLER` or `NONE`. `AMAZON` is not an accepted value
+        #   in the US marketplace.
         attribute?(:prep_owner, String, from: "prepOwner")
 
         # @return [String] Type of preparation that should be done.

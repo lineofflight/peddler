@@ -29,6 +29,9 @@ module Peddler
         # @return [PrimeDetails] Amazon Prime details.
         attribute?(:prime_details, PrimeDetails, from: "primeDetails")
 
+        # @return [Array<Promotion>] A list of live promotions with this offer
+        attribute?(:promotions, [Promotion])
+
         # @return [Array<ShippingOption>] A list of shipping options associated with this offer
         attribute?(:shipping_options, [ShippingOption], from: "shippingOptions")
 

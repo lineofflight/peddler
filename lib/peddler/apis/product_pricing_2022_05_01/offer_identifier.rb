@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The Amazon identifier for the item.
         attribute(:asin, String, null: false)
 
-        # @return [String] A marketplace identifier.
+        # @return [String] An Amazon store identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The fulfillment type for the offer.

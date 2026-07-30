@@ -18,7 +18,7 @@ module Peddler
 
         # @return [String] Describes the reasons for the transaction.
         #
-        # **Example:** 'Order Payment', 'Refund Order'
+        # **Example:** `Order Payment`, `Refund Order`
         attribute?(:description, String)
 
         # @return [Array<Item>] Additional information about the items in the transaction.

@@ -4,12 +4,12 @@
 
 module Peddler
   module APIs
-    class Transfers20240601
-      # The list of payment method types that are present.
-      class PaymentMethodTypeList < Array
+    class Finances20240619
+      # A list of balances.
+      class Balances < Array
         class << self
           def parse(array)
-            new(array)
+            new(array.map { |item| Balance.parse(item) })
           end
         end
       end

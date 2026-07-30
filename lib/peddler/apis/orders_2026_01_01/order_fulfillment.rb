@@ -28,6 +28,12 @@ module Peddler
         #   `SCHEDULED`, `STANDARD`.
         attribute?(:fulfillment_service_level, String, from: "fulfillmentServiceLevel")
 
+        # @return [DateTimeRange] The earliest time available to print the shipping label for the order. Printing is
+        #   available any time after the earliestDateTime. Response does not include a latestDateTime.
+        #
+        # Note: If blank, printing is available at any time.
+        attribute?(:label_printing_window, DateTimeRange, from: "labelPrintingWindow")
+
         # @return [DateTimeRange] The promised time period within which the order must be shipped to meet the customer's
         #   delivery expectations.
         attribute?(:ship_by_window, DateTimeRange, from: "shipByWindow")

@@ -7,9 +7,9 @@ require "structure"
 module Peddler
   module APIs
     class Invoices20240619
-      # An invoice creation error occurrence.
+      # An invoice creation error occurred.
       InvoiceError = Structure.new do
-        # @return [String] A text description of the error.
+        # @return [String] A description of the error.
         attribute?(:description, String)
 
         # @return [String] The code of the error.

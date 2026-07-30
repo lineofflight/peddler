@@ -19,6 +19,33 @@ module Peddler
         def to_h: () -> { channel: String?, order_type: String?, store_name: String? }
       end
 
+      class Balance < Data
+        type parse_data = { ?amount: untyped, ?as_of_date: untyped, ?balance_type: untyped, ?balances: Array[Peddler::APIs::Finances20240619::Balance | parse_data], ?last_updated_time: untyped, ?partner_metadata: untyped }
+        def self.new: (?amount: Peddler::Money?, ?as_of_date: String?, ?balance_type: String?, ?balances: Array[Peddler::APIs::Finances20240619::Balance]?, ?last_updated_time: Time?, ?partner_metadata: Peddler::APIs::Finances20240619::PartnerMetadata?) -> Peddler::APIs::Finances20240619::Balance
+                    | (Peddler::Money?, String?, String?, Array[Peddler::APIs::Finances20240619::Balance]?, Time?, Peddler::APIs::Finances20240619::PartnerMetadata?) -> Peddler::APIs::Finances20240619::Balance
+        def self.[]: (?amount: Peddler::Money?, ?as_of_date: String?, ?balance_type: String?, ?balances: Array[Peddler::APIs::Finances20240619::Balance]?, ?last_updated_time: Time?, ?partner_metadata: Peddler::APIs::Finances20240619::PartnerMetadata?) -> Peddler::APIs::Finances20240619::Balance
+                   | (Peddler::Money?, String?, String?, Array[Peddler::APIs::Finances20240619::Balance]?, Time?, Peddler::APIs::Finances20240619::PartnerMetadata?) -> Peddler::APIs::Finances20240619::Balance
+
+        def self.members: () -> [ :amount, :as_of_date, :balance_type, :balances, :last_updated_time, :partner_metadata ]
+
+        def self.parse: (?parse_data data) -> Peddler::APIs::Finances20240619::Balance
+                      | (?Hash[String, untyped] data) -> Peddler::APIs::Finances20240619::Balance
+
+        attr_reader amount: Peddler::Money?
+        attr_reader as_of_date: String?
+        attr_reader balance_type: String?
+        attr_reader balances: Array[Peddler::APIs::Finances20240619::Balance]?
+        attr_reader last_updated_time: Time?
+        attr_reader partner_metadata: Peddler::APIs::Finances20240619::PartnerMetadata?
+
+        def members: () -> [ :amount, :as_of_date, :balance_type, :balances, :last_updated_time, :partner_metadata ]
+        def to_h: () -> { amount: Peddler::Money?, as_of_date: String?, balance_type: String?, balances: Array[Peddler::APIs::Finances20240619::Balance]?, last_updated_time: Time?, partner_metadata: Peddler::APIs::Finances20240619::PartnerMetadata? }
+      end
+
+      class Balances < Array[Balance]
+        def self.parse: (Array[untyped]) -> Balances
+      end
+
       class Breakdown < Data
         type parse_data = { ?breakdown_amount: untyped, ?breakdown_type: untyped, ?breakdowns: Array[Peddler::APIs::Finances20240619::Breakdown | parse_data] }
         def self.new: (?breakdown_amount: Peddler::Money?, ?breakdown_type: String?, ?breakdowns: Array[Peddler::APIs::Finances20240619::Breakdown]?) -> Peddler::APIs::Finances20240619::Breakdown
@@ -190,6 +217,23 @@ module Peddler
         def self.parse: (Array[untyped]) -> Items
       end
 
+      class ListBalancesResponse < Data
+        def self.new: (?balances: Array[Peddler::APIs::Finances20240619::Balance]?, ?next_token: String?) -> Peddler::APIs::Finances20240619::ListBalancesResponse
+                    | (Array[Peddler::APIs::Finances20240619::Balance]?, String?) -> Peddler::APIs::Finances20240619::ListBalancesResponse
+        def self.[]: (?balances: Array[Peddler::APIs::Finances20240619::Balance]?, ?next_token: String?) -> Peddler::APIs::Finances20240619::ListBalancesResponse
+                   | (Array[Peddler::APIs::Finances20240619::Balance]?, String?) -> Peddler::APIs::Finances20240619::ListBalancesResponse
+
+        def self.members: () -> [ :balances, :next_token ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Finances20240619::ListBalancesResponse
+
+        attr_reader balances: Array[Peddler::APIs::Finances20240619::Balance]?
+        attr_reader next_token: String?
+
+        def members: () -> [ :balances, :next_token ]
+        def to_h: () -> { balances: Array[Peddler::APIs::Finances20240619::Balance]?, next_token: String? }
+      end
+
       class ListTransactionsResponse < Data
         def self.new: (?payload: Peddler::APIs::Finances20240619::TransactionsPayload?) -> Peddler::APIs::Finances20240619::ListTransactionsResponse
                     | (Peddler::APIs::Finances20240619::TransactionsPayload?) -> Peddler::APIs::Finances20240619::ListTransactionsResponse
@@ -221,6 +265,24 @@ module Peddler
 
         def members: () -> [ :marketplace_id, :marketplace_name ]
         def to_h: () -> { marketplace_id: String?, marketplace_name: String? }
+      end
+
+      class PartnerMetadata < Data
+        def self.new: (?account_type: String?, ?marketplace_id: String?, ?partner_id: String?) -> Peddler::APIs::Finances20240619::PartnerMetadata
+                    | (String?, String?, String?) -> Peddler::APIs::Finances20240619::PartnerMetadata
+        def self.[]: (?account_type: String?, ?marketplace_id: String?, ?partner_id: String?) -> Peddler::APIs::Finances20240619::PartnerMetadata
+                   | (String?, String?, String?) -> Peddler::APIs::Finances20240619::PartnerMetadata
+
+        def self.members: () -> [ :account_type, :marketplace_id, :partner_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Finances20240619::PartnerMetadata
+
+        attr_reader account_type: String?
+        attr_reader marketplace_id: String?
+        attr_reader partner_id: String?
+
+        def members: () -> [ :account_type, :marketplace_id, :partner_id ]
+        def to_h: () -> { account_type: String?, marketplace_id: String?, partner_id: String? }
       end
 
       class PaymentsContext < Data
@@ -300,6 +362,44 @@ module Peddler
         def to_h: () -> { account_type: String?, marketplace_id: String?, selling_partner_id: String? }
       end
 
+      class Summary < Data
+        def self.new: (?breakdowns: Array[Peddler::APIs::Finances20240619::Breakdown]?, ?net_proceeds: Peddler::Money?, ?partner_metadata: Peddler::APIs::Finances20240619::PartnerMetadata?, ?period_end: String?, ?period_start: String?, ?related_identifiers: Array[Peddler::APIs::Finances20240619::RelatedIdentifier]?) -> Peddler::APIs::Finances20240619::Summary
+                    | (Array[Peddler::APIs::Finances20240619::Breakdown]?, Peddler::Money?, Peddler::APIs::Finances20240619::PartnerMetadata?, String?, String?, Array[Peddler::APIs::Finances20240619::RelatedIdentifier]?) -> Peddler::APIs::Finances20240619::Summary
+        def self.[]: (?breakdowns: Array[Peddler::APIs::Finances20240619::Breakdown]?, ?net_proceeds: Peddler::Money?, ?partner_metadata: Peddler::APIs::Finances20240619::PartnerMetadata?, ?period_end: String?, ?period_start: String?, ?related_identifiers: Array[Peddler::APIs::Finances20240619::RelatedIdentifier]?) -> Peddler::APIs::Finances20240619::Summary
+                   | (Array[Peddler::APIs::Finances20240619::Breakdown]?, Peddler::Money?, Peddler::APIs::Finances20240619::PartnerMetadata?, String?, String?, Array[Peddler::APIs::Finances20240619::RelatedIdentifier]?) -> Peddler::APIs::Finances20240619::Summary
+
+        def self.members: () -> [ :breakdowns, :net_proceeds, :partner_metadata, :period_end, :period_start, :related_identifiers ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Finances20240619::Summary
+
+        attr_reader breakdowns: Array[Peddler::APIs::Finances20240619::Breakdown]?
+        attr_reader net_proceeds: Peddler::Money?
+        attr_reader partner_metadata: Peddler::APIs::Finances20240619::PartnerMetadata?
+        attr_reader period_end: String?
+        attr_reader period_start: String?
+        attr_reader related_identifiers: Array[Peddler::APIs::Finances20240619::RelatedIdentifier]?
+
+        def members: () -> [ :breakdowns, :net_proceeds, :partner_metadata, :period_end, :period_start, :related_identifiers ]
+        def to_h: () -> { breakdowns: Array[Peddler::APIs::Finances20240619::Breakdown]?, net_proceeds: Peddler::Money?, partner_metadata: Peddler::APIs::Finances20240619::PartnerMetadata?, period_end: String?, period_start: String?, related_identifiers: Array[Peddler::APIs::Finances20240619::RelatedIdentifier]? }
+      end
+
+      class SummaryResponse < Data
+        def self.new: (?next_token: String?, ?summaries: Array[Peddler::APIs::Finances20240619::Summary]?) -> Peddler::APIs::Finances20240619::SummaryResponse
+                    | (String?, Array[Peddler::APIs::Finances20240619::Summary]?) -> Peddler::APIs::Finances20240619::SummaryResponse
+        def self.[]: (?next_token: String?, ?summaries: Array[Peddler::APIs::Finances20240619::Summary]?) -> Peddler::APIs::Finances20240619::SummaryResponse
+                   | (String?, Array[Peddler::APIs::Finances20240619::Summary]?) -> Peddler::APIs::Finances20240619::SummaryResponse
+
+        def self.members: () -> [ :next_token, :summaries ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Finances20240619::SummaryResponse
+
+        attr_reader next_token: String?
+        attr_reader summaries: Array[Peddler::APIs::Finances20240619::Summary]?
+
+        def members: () -> [ :next_token, :summaries ]
+        def to_h: () -> { next_token: String?, summaries: Array[Peddler::APIs::Finances20240619::Summary]? }
+      end
+
       class TimeRangeContext < Data
         def self.new: (?end_time: String?, ?start_time: String?) -> Peddler::APIs::Finances20240619::TimeRangeContext
                     | (String?, String?) -> Peddler::APIs::Finances20240619::TimeRangeContext
@@ -365,6 +465,8 @@ module Peddler
         def to_h: () -> { next_token: String?, transactions: Array[Peddler::APIs::Finances20240619::Transaction]? }
       end
 
+      def list_balances: (?marketplace_ids: Array[String]?, ?balance_type: String?, ?account_type: String?, ?as_of_date: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def list_summary: (?marketplace_ids: Array[String]?, ?account_type: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?period_start: String?, ?period_end: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
       def list_transactions: (?posted_after: String?, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end

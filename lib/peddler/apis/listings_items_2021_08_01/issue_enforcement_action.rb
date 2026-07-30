@@ -19,7 +19,7 @@ module Peddler
         #   by Amazon.
         #
         # * `CATALOG_ITEM_REMOVED` - This catalog item is inactive on Amazon, and all offers against it in the
-        #   applicable marketplace are non-buyable.
+        #   applicable Amazon store are non-buyable.
         #
         # * `SEARCH_SUPPRESSED` - This value indicates that the catalog item is hidden from search results.
         attribute(:action, String, null: false)

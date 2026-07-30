@@ -9,10 +9,10 @@ module Peddler
     class ListingsItems20210801
       # The request body schema for the `putListingsItem` operation.
       ListingsItemPutRequest = Structure.new do
-        # @return [Hash] A JSON object containing structured listings item attribute data keyed by attribute name.
+        # @return [Hash] JSON object containing structured listings item attribute data keyed by attribute name.
         attribute(:attributes, Hash, null: false)
 
-        # @return [String] The Amazon product type of the listings item.
+        # @return [String] The listings item's Amazon product type.
         attribute(:product_type, String, null: false, from: "productType")
 
         # @return [String] The name of the requirements set for the provided data.

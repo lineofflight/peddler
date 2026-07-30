@@ -16,7 +16,7 @@ module Peddler
         #   product.
         attribute(:included_data, Array, null: false, from: "includedData")
 
-        # @return [String] A marketplace identifier.
+        # @return [String] An Amazon store identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] HTTP method type

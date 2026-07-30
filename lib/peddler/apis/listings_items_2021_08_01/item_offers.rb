@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class ListingsItems20210801
-      # Offer details for the listings item.
+      # The listings item's offer details.
       class ItemOffers < Array
         class << self
           def parse(array)

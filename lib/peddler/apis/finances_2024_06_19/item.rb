@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class Finances20240619
-      # Additional information about the items in a transaction.
+      # Additional information about an item in a transaction.
       Item = Structure.new do
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
         #   transaction.

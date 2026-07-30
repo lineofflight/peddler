@@ -8,22 +8,68 @@ module Peddler
     #
     # The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner
     # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
-    # you use to retrieve the information about Amazon product types needed to use the Listings Items API.
+    # you can use to retrieve the information about Amazon product types needed to use the Listings Items API.
     #
-    # For more information, see the [Listings Items API Use Case
+    # For more information, refer to the [Listings Items API Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2021-08-01-use-case-guide).
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json
     class ListingsItems20210801 < API
+      # Creates or fully-updates a draft listings item for a selling partner. Draft listings allow sellers to prepare
+      # product information before publishing to the live catalog.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
+      # @param body [Hash] The request body schema for the `putListingsItemDraft` operation.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def put_listings_item_draft(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
+        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}/draft"
+        params = {
+          "marketplaceIds" => stringify_array(marketplace_ids),
+          "issueLocale" => issue_locale,
+        }.compact
+        parser = -> { ListingsItemSubmissionResponse }
+        put(path, body:, params:, rate_limit:, parser:)
+      end
+
+      # Creates AI-generated suggestions for attributes in a listings item.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier. Must be a merchant account or a vendor code.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
+      #   Limited to 1 value for this use case. Valid values for the pilot are A2Q3Y263D00KWC (BR) and A33AVAJ2PDY3EV
+      #   (TR).
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
+      # @param body [Hash] The request body schema for the `putListingsItemSuggestions` operation.
+      # @return [Peddler::Response] The API response
+      def put_listings_item_suggestions(seller_id, sku, marketplace_ids, body, issue_locale: nil)
+        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}/suggestionSources"
+        params = {
+          "marketplaceIds" => stringify_array(marketplace_ids),
+          "issueLocale" => issue_locale,
+        }.compact
+        parser = -> { ListingsItemSubmissionResponse }
+        put(path, body:, params:, parser:)
+      end
+
       # Delete a listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
-      # @param sku [String] A selling partner provided identifier for an Amazon listing.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      #   of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
-      #   when a localization is not available in the specified locale.
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
@@ -40,11 +86,11 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
-      # @param sku [String] A selling partner provided identifier for an Amazon listing.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      #   of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
-      #   when a localization is not available in the specified locale.
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
       #   `summaries`.
       # @param rate_limit [Float] Requests per second
@@ -66,14 +112,14 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
-      # @param sku [String] A selling partner provided identifier for an Amazon listing.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
       #   `issues`.
-      # @param mode [String] The mode of operation for the request.
+      # @param mode [String] Describes the mode of operation for the request.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      #   of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
-      #   when a localization is not available in the specified locale.
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
       # @param body [Hash] The request body schema for the `patchListingsItem` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -94,14 +140,14 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
-      # @param sku [String] A selling partner provided identifier for an Amazon listing.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
       #   `issues`.
-      # @param mode [String] The mode of operation for the request.
+      # @param mode [String] Describes the mode of operation for the request.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      #   of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
-      #   when a localization is not available in the specified locale.
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
       # @param body [Hash] The request body schema for the `putListingsItem` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -122,11 +168,11 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
       # @param issue_locale [String] A locale that is used to localize issues. When not provided, the default language
-      #   code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not
+      #   code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not
       #   available in the specified locale, localized messages default to "en_US".
-      # @param included_data [Array<String>] A comma-delimited list of datasets that you want to include in the
+      # @param included_data [Array<String>] A comma-delimited list of data sets that you want to include in the
       #   response. Default: `summaries`.
       # @param identifiers [Array<String>] A comma-delimited list of product identifiers that you can use to search for
       #   listings items. **Note**: 1. This is required when you specify `identifiersType`. 2. You cannot use
