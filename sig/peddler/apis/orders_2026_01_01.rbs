@@ -292,19 +292,37 @@ module Peddler
       end
 
       class ItemCancellation < Data
-        def self.new: (?cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
-                    | (Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
-        def self.[]: (?cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
-                   | (Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
+        def self.new: (?cancellation_execution: Peddler::APIs::Orders20260101::ItemCancellationExecution?, ?cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
+                    | (Peddler::APIs::Orders20260101::ItemCancellationExecution?, Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
+        def self.[]: (?cancellation_execution: Peddler::APIs::Orders20260101::ItemCancellationExecution?, ?cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
+                   | (Peddler::APIs::Orders20260101::ItemCancellationExecution?, Peddler::APIs::Orders20260101::ItemCancellationRequest?) -> Peddler::APIs::Orders20260101::ItemCancellation
 
-        def self.members: () -> [ :cancellation_request ]
+        def self.members: () -> [ :cancellation_execution, :cancellation_request ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemCancellation
 
+        attr_reader cancellation_execution: Peddler::APIs::Orders20260101::ItemCancellationExecution?
         attr_reader cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest?
 
-        def members: () -> [ :cancellation_request ]
-        def to_h: () -> { cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest? }
+        def members: () -> [ :cancellation_execution, :cancellation_request ]
+        def to_h: () -> { cancellation_execution: Peddler::APIs::Orders20260101::ItemCancellationExecution?, cancellation_request: Peddler::APIs::Orders20260101::ItemCancellationRequest? }
+      end
+
+      class ItemCancellationExecution < Data
+        def self.new: (?cancel_reason: String?, ?cancelled_by: String?) -> Peddler::APIs::Orders20260101::ItemCancellationExecution
+                    | (String?, String?) -> Peddler::APIs::Orders20260101::ItemCancellationExecution
+        def self.[]: (?cancel_reason: String?, ?cancelled_by: String?) -> Peddler::APIs::Orders20260101::ItemCancellationExecution
+                   | (String?, String?) -> Peddler::APIs::Orders20260101::ItemCancellationExecution
+
+        def self.members: () -> [ :cancel_reason, :cancelled_by ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::ItemCancellationExecution
+
+        attr_reader cancel_reason: String?
+        attr_reader cancelled_by: String?
+
+        def members: () -> [ :cancel_reason, :cancelled_by ]
+        def to_h: () -> { cancel_reason: String?, cancelled_by: String? }
       end
 
       class ItemCancellationRequest < Data
@@ -781,12 +799,12 @@ module Peddler
       end
 
       class OrderFulfillment < Data
-        def self.new: (fulfillment_status: String, ?deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?fulfilled_by: String?, ?fulfillment_service_level: String?, ?ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
-                    | (String, Peddler::APIs::Orders20260101::DateTimeRange?, String?, String?, Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
-        def self.[]: (fulfillment_status: String, ?deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?fulfilled_by: String?, ?fulfillment_service_level: String?, ?ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
-                   | (String, Peddler::APIs::Orders20260101::DateTimeRange?, String?, String?, Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
+        def self.new: (fulfillment_status: String, ?deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?fulfilled_by: String?, ?fulfillment_service_level: String?, ?label_printing_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
+                    | (String, Peddler::APIs::Orders20260101::DateTimeRange?, String?, String?, Peddler::APIs::Orders20260101::DateTimeRange?, Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
+        def self.[]: (fulfillment_status: String, ?deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?fulfilled_by: String?, ?fulfillment_service_level: String?, ?label_printing_window: Peddler::APIs::Orders20260101::DateTimeRange?, ?ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
+                   | (String, Peddler::APIs::Orders20260101::DateTimeRange?, String?, String?, Peddler::APIs::Orders20260101::DateTimeRange?, Peddler::APIs::Orders20260101::DateTimeRange?) -> Peddler::APIs::Orders20260101::OrderFulfillment
 
-        def self.members: () -> [ :fulfillment_status, :deliver_by_window, :fulfilled_by, :fulfillment_service_level, :ship_by_window ]
+        def self.members: () -> [ :fulfillment_status, :deliver_by_window, :fulfilled_by, :fulfillment_service_level, :label_printing_window, :ship_by_window ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Orders20260101::OrderFulfillment
 
@@ -794,10 +812,11 @@ module Peddler
         attr_reader fulfilled_by: String?
         attr_reader fulfillment_service_level: String?
         attr_reader fulfillment_status: String
+        attr_reader label_printing_window: Peddler::APIs::Orders20260101::DateTimeRange?
         attr_reader ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange?
 
-        def members: () -> [ :fulfillment_status, :deliver_by_window, :fulfilled_by, :fulfillment_service_level, :ship_by_window ]
-        def to_h: () -> { fulfillment_status: String, deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, fulfilled_by: String?, fulfillment_service_level: String?, ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange? }
+        def members: () -> [ :fulfillment_status, :deliver_by_window, :fulfilled_by, :fulfillment_service_level, :label_printing_window, :ship_by_window ]
+        def to_h: () -> { fulfillment_status: String, deliver_by_window: Peddler::APIs::Orders20260101::DateTimeRange?, fulfilled_by: String?, fulfillment_service_level: String?, label_printing_window: Peddler::APIs::Orders20260101::DateTimeRange?, ship_by_window: Peddler::APIs::Orders20260101::DateTimeRange? }
       end
 
       class OrderItem < Data

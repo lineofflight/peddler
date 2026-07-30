@@ -1,0 +1,65 @@
+module Peddler
+  module Notifications
+    module TaxInvoiceExportStatusChange
+      class Notification < Data
+        def self.new: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::TaxInvoiceExportStatusChange::Payload, payload_version: String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Notification
+                    | (String, String, String, String, Peddler::Notifications::TaxInvoiceExportStatusChange::Payload, String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Notification
+        def self.[]: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::TaxInvoiceExportStatusChange::Payload, payload_version: String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Notification
+                   | (String, String, String, String, Peddler::Notifications::TaxInvoiceExportStatusChange::Payload, String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Notification
+
+        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Notification
+
+        attr_reader event_time: String
+        attr_reader notification_metadata: String
+        attr_reader notification_type: String
+        attr_reader notification_version: String
+        attr_reader payload: Peddler::Notifications::TaxInvoiceExportStatusChange::Payload
+        attr_reader payload_version: String
+
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+        def to_h: () -> { event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::TaxInvoiceExportStatusChange::Payload, payload_version: String }
+      end
+
+      class NotificationMetadata < Data
+        def self.new: (application_id: String, notification_id: String, publish_time: String, subscription_id: String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::NotificationMetadata
+                    | (String, String, String, String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::NotificationMetadata
+        def self.[]: (application_id: String, notification_id: String, publish_time: String, subscription_id: String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::NotificationMetadata
+                   | (String, String, String, String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::NotificationMetadata
+
+        def self.members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TaxInvoiceExportStatusChange::NotificationMetadata
+
+        attr_reader application_id: String
+        attr_reader notification_id: String
+        attr_reader publish_time: String
+        attr_reader subscription_id: String
+
+        def members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
+        def to_h: () -> { application_id: String, notification_id: String, publish_time: String, subscription_id: String }
+      end
+
+      class Payload < Data
+        def self.new: (export_id: String, marketplace_id: String, status: String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Payload
+                    | (String, String, String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Payload
+        def self.[]: (export_id: String, marketplace_id: String, status: String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Payload
+                   | (String, String, String) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Payload
+
+        def self.members: () -> [ :export_id, :marketplace_id, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Payload
+
+        attr_reader export_id: String
+        attr_reader marketplace_id: String
+        attr_reader status: String
+
+        def members: () -> [ :export_id, :marketplace_id, :status ]
+        def to_h: () -> { export_id: String, marketplace_id: String, status: String }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::TaxInvoiceExportStatusChange::Notification
+    end
+  end
+end

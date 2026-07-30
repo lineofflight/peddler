@@ -5,7 +5,7 @@
 module Peddler
   module APIs
     class ListingsItems20210801
-      # Summary details of a listings item.
+      # Summary details for a listings item.
       class ItemSummaries < Array
         class << self
           def parse(array)

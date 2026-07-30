@@ -23,7 +23,7 @@ module Generator
       # These are pre-defined types (especially common in B2B notifications)
       schema["definitions"]&.each do |type_name, type_def|
         # Skip special definitions that aren't actual types (case-insensitive)
-        next if ["notificationResponse", "payload"].any? { |skip| skip.casecmp?(type_name) }
+        next if ["notificationResponse", "payload", "notification"].any? { |skip| skip.casecmp?(type_name) }
         # Skip money-like types - they'll use the shared Money type
         next if MoneyDetector.money_like?(type_def)
         # Skip definitions that are just $ref aliases (no actual object structure)

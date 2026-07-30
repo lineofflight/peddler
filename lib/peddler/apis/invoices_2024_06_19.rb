@@ -15,15 +15,14 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace identifier.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoices_attributes(marketplace_id, rate_limit: 1.0)
+      def get_invoices_attributes(marketplace_id)
         path = "/tax/invoices/2024-06-19/attributes"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetInvoicesAttributesResponse }
-        get(path, params:, rate_limit:, parser:)
+        get(path, params:, parser:)
       end
 
       # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
@@ -31,24 +30,22 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param invoices_document_id [String] The export document identifier.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoices_document(invoices_document_id, rate_limit: 0.0167)
+      def get_invoices_document(invoices_document_id)
         path = "/tax/invoices/2024-06-19/documents/#{percent_encode(invoices_document_id)}"
         parser = -> { GetInvoicesDocumentResponse }
-        get(path, rate_limit:, parser:)
+        get(path, parser:)
       end
 
       # Creates an invoice export request.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the export request.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_invoices_export(body, rate_limit: 0.167)
+      def create_invoices_export(body)
         path = "/tax/invoices/2024-06-19/exports"
         parser = -> { ExportInvoicesResponse }
-        post(path, body:, rate_limit:, parser:)
+        post(path, body:, parser:)
       end
 
       # Returns invoice exports details for exports that match the filters that you specify.
@@ -67,10 +64,9 @@ module Peddler
       #   response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       #   The default value is the time of the request.
       # @param status [String] Return exports matching the status specified.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoices_exports(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil,
-        status: nil, rate_limit: 0.1)
+        status: nil)
         path = "/tax/invoices/2024-06-19/exports"
         params = {
           "marketplaceId" => marketplace_id,
@@ -81,47 +77,44 @@ module Peddler
           "status" => status,
         }.compact
         parser = -> { GetInvoicesExportsResponse }
-        get(path, params:, rate_limit:, parser:)
+        get(path, params:, parser:)
       end
 
       # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
       #
       # @note This operation can make a static sandbox call.
       # @param export_id [String] The unique identifier for the export.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoices_export(export_id, rate_limit: 2.0)
+      def get_invoices_export(export_id)
         path = "/tax/invoices/2024-06-19/exports/#{percent_encode(export_id)}"
         parser = -> { GetInvoicesExportResponse }
-        get(path, rate_limit:, parser:)
+        get(path, parser:)
       end
 
-      # Submits an asynchronous government invoice creation request.
+      # Submit an asynchronous request to create a government invoice.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the government invoice.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_government_invoice(body, rate_limit: 0.0167)
+      def create_government_invoice(body)
         path = "/tax/invoices/2024-06-19/governmentInvoiceRequests"
-        post(path, body:, rate_limit:)
+        post(path, body:)
       end
 
-      # Returns the status of an invoice generation request.
+      # Retrieve the status of an invoice generation request.
       #
       # @note This operation can make a static sandbox call.
-      # @param marketplace_id [String] The invoices status will match the marketplace that you specify.
-      # @param transaction_type [String] Marketplace specific classification of the transaction type that originated the
-      #   invoice. Check 'transactionType' options using 'getInvoicesAttributes' operation.
-      # @param shipment_id [String] The unique shipment identifier to get an invoice for.
-      # @param invoice_type [String] Marketplace specific classification of the invoice type. Check 'invoiceType'
-      #   options using 'getInvoicesAttributes' operation.
-      # @param inbound_plan_id [String] The unique InboundPlan identifier in which the shipment is contained and for
+      # @param marketplace_id [String] The marketplace of the invoice request.
+      # @param transaction_type [String] The marketplace-specific classification of the transaction type that originated
+      #   the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
+      # @param shipment_id [String] The unique shipment identifier for which to get an invoice.
+      # @param invoice_type [String] The marketplace-specific classification of the invoice type. Check `invoiceType`
+      #   options using the `getInvoicesAttributes` operation.
+      # @param inbound_plan_id [String] The unique inbound plan identifier in which the shipment is contained and for
       #   which the invoice will be created.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_government_invoice_status(marketplace_id, transaction_type, shipment_id, invoice_type,
-        inbound_plan_id: nil, rate_limit: 0.0167)
+        inbound_plan_id: nil)
         path = "/tax/invoices/2024-06-19/governmentInvoiceRequests"
         params = {
           "marketplaceId" => marketplace_id,
@@ -131,25 +124,24 @@ module Peddler
           "inboundPlanId" => inbound_plan_id,
         }.compact
         parser = -> { GovernmentInvoiceStatusResponse }
-        get(path, params:, rate_limit:, parser:)
+        get(path, params:, parser:)
       end
 
-      # Returns an invoiceDocument object containing an invoiceDocumentUrl .
+      # Retrieve the URL of an invoice document.
       #
       # @note This operation can make a static sandbox call.
-      # @param marketplace_id [String] The invoices returned will match the marketplace that you specify.
-      # @param transaction_type [String] Marketplace specific classification of the transaction type that originated the
-      #   invoice. Check 'transactionType' options using 'getInvoicesAttributes' operation.
-      # @param shipment_id [String] The unique shipment identifier to get an invoice for.
-      # @param invoice_type [String] Marketplace specific classification of the invoice type. Check 'invoiceType'
-      #   options using 'getInvoicesAttributes' operation.
-      # @param inbound_plan_id [String] The unique InboundPlan identifier in which the shipment is contained and for
+      # @param marketplace_id [String] The marketplace of the invoice.
+      # @param transaction_type [String] The marketplace-specific classification of the transaction type that originated
+      #   the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
+      # @param shipment_id [String] The unique shipment identifier for which to get an invoice.
+      # @param invoice_type [String] The marketplace-specific classification of the invoice type. Check `invoiceType`
+      #   options using the `getInvoicesAttributes` operation.
+      # @param inbound_plan_id [String] The unique inbound plan identifier in which the shipment is contained and for
       #   which the invoice will be created.
-      # @param file_format [String] Requested file format. Default is XML
-      # @param rate_limit [Float] Requests per second
+      # @param file_format [String] The file format of the invoice. The default is XML.
       # @return [Peddler::Response] The API response
       def get_government_invoice_document(marketplace_id, transaction_type, shipment_id, invoice_type,
-        inbound_plan_id: nil, file_format: nil, rate_limit: 0.0167)
+        inbound_plan_id: nil, file_format: nil)
         path = "/tax/invoices/2024-06-19/governmentInvoiceRequests/#{percent_encode(shipment_id)}"
         params = {
           "marketplaceId" => marketplace_id,
@@ -159,7 +151,7 @@ module Peddler
           "fileFormat" => file_format,
         }.compact
         parser = -> { GovtInvoiceDocumentResponse }
-        get(path, params:, rate_limit:, parser:)
+        get(path, params:, parser:)
       end
 
       # Returns invoice details for the invoices that match the filters that you specify.
@@ -194,11 +186,10 @@ module Peddler
       # @param external_invoice_id [String] Return invoices that match this external ID. This is typically the
       #   Government Invoice ID.
       # @param sort_by [String] The attribute by which you want to sort the invoices in the response.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoices(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil,
         transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil,
-        sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, rate_limit: 0.1)
+        sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil)
         path = "/tax/invoices/2024-06-19/invoices"
         params = {
           "transactionIdentifierName" => transaction_identifier_name,
@@ -217,7 +208,7 @@ module Peddler
           "sortBy" => sort_by,
         }.compact
         parser = -> { GetInvoicesResponse }
-        get(path, params:, rate_limit:, parser:)
+        get(path, params:, parser:)
       end
 
       # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
@@ -227,15 +218,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace from which you want the invoice.
       # @param invoice_id [String] The invoice identifier.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoice(marketplace_id, invoice_id, rate_limit: 2.0)
+      def get_invoice(marketplace_id, invoice_id)
         path = "/tax/invoices/2024-06-19/invoices/#{percent_encode(invoice_id)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
         parser = -> { GetInvoiceResponse }
-        get(path, params:, rate_limit:, parser:)
+        get(path, params:, parser:)
       end
     end
   end

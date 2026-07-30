@@ -67,6 +67,10 @@ module Peddler
 
   def self.finances_2024_06_19: () -> singleton(APIs::Finances20240619)
 
+  def self.finances_invoices: () -> singleton(APIs::FinancesInvoices20260625)
+
+  def self.finances_invoices_2026_06_25: () -> singleton(APIs::FinancesInvoices20260625)
+
   def self.finances_v0: () -> singleton(APIs::FinancesV0)
 
   def self.fulfillment_inbound: () -> singleton(APIs::FulfillmentInbound20240320)
@@ -75,9 +79,11 @@ module Peddler
 
   def self.fulfillment_inbound_v0: () -> singleton(APIs::FulfillmentInboundV0)
 
-  def self.fulfillment_outbound: () -> singleton(APIs::FulfillmentOutbound20200701)
+  def self.fulfillment_outbound: () -> singleton(APIs::FulfillmentOutbound20260704)
 
   def self.fulfillment_outbound_2020_07_01: () -> singleton(APIs::FulfillmentOutbound20200701)
+
+  def self.fulfillment_outbound_2026_07_04: () -> singleton(APIs::FulfillmentOutbound20260704)
 
   def self.invoices: () -> singleton(APIs::Invoices20240619)
 

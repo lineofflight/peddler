@@ -32,6 +32,9 @@ module Peddler
         #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
         #   `yyyy-MM-ddTHH:mmZ`.
         attribute(:valid_until, Time, null: false, from: "validUntil")
+
+        # @return [Array<Incentive>] Discounts for the offered option.
+        attribute?(:discounts, [Incentive])
       end
     end
   end

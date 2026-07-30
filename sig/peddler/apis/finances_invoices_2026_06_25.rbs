@@ -1,0 +1,301 @@
+module Peddler
+  module APIs
+    class FinancesInvoices20260625 < API
+      class BillingPeriod < Data
+        def self.new: (end_date: Time, start_date: Time) -> Peddler::APIs::FinancesInvoices20260625::BillingPeriod
+                    | (Time, Time) -> Peddler::APIs::FinancesInvoices20260625::BillingPeriod
+        def self.[]: (end_date: Time, start_date: Time) -> Peddler::APIs::FinancesInvoices20260625::BillingPeriod
+                   | (Time, Time) -> Peddler::APIs::FinancesInvoices20260625::BillingPeriod
+
+        def self.members: () -> [ :end_date, :start_date ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::BillingPeriod
+
+        attr_reader end_date: Time
+        attr_reader start_date: Time
+
+        def members: () -> [ :end_date, :start_date ]
+        def to_h: () -> { end_date: Time, start_date: Time }
+      end
+
+      class Breakdown < Data
+        type parse_data = { ?breakdown_amount: untyped, ?breakdown_type: untyped, ?breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown | parse_data] }
+        def self.new: (breakdown_amount: Peddler::Money, breakdown_type: String, ?breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?) -> Peddler::APIs::FinancesInvoices20260625::Breakdown
+                    | (Peddler::Money, String, Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?) -> Peddler::APIs::FinancesInvoices20260625::Breakdown
+        def self.[]: (breakdown_amount: Peddler::Money, breakdown_type: String, ?breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?) -> Peddler::APIs::FinancesInvoices20260625::Breakdown
+                   | (Peddler::Money, String, Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?) -> Peddler::APIs::FinancesInvoices20260625::Breakdown
+
+        def self.members: () -> [ :breakdown_amount, :breakdown_type, :breakdowns ]
+
+        def self.parse: (?parse_data data) -> Peddler::APIs::FinancesInvoices20260625::Breakdown
+                      | (?Hash[String, untyped] data) -> Peddler::APIs::FinancesInvoices20260625::Breakdown
+
+        attr_reader breakdown_amount: Peddler::Money
+        attr_reader breakdown_type: String
+        attr_reader breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?
+
+        def members: () -> [ :breakdown_amount, :breakdown_type, :breakdowns ]
+        def to_h: () -> { breakdown_amount: Peddler::Money, breakdown_type: String, breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]? }
+      end
+
+      class Error < Data
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::FinancesInvoices20260625::Error
+                    | (String, String, String?) -> Peddler::APIs::FinancesInvoices20260625::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::FinancesInvoices20260625::Error
+                   | (String, String, String?) -> Peddler::APIs::FinancesInvoices20260625::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::Error
+
+        attr_reader code: String
+        attr_reader details: String?
+        attr_reader message: String
+
+        def members: () -> [ :code, :message, :details ]
+        def to_h: () -> { code: String, message: String, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::FinancesInvoices20260625::Error]) -> Peddler::APIs::FinancesInvoices20260625::ErrorList
+                    | (Array[Peddler::APIs::FinancesInvoices20260625::Error]) -> Peddler::APIs::FinancesInvoices20260625::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::FinancesInvoices20260625::Error]) -> Peddler::APIs::FinancesInvoices20260625::ErrorList
+                   | (Array[Peddler::APIs::FinancesInvoices20260625::Error]) -> Peddler::APIs::FinancesInvoices20260625::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::FinancesInvoices20260625::Error]
+
+        def members: () -> [ :errors ]
+        def to_h: () -> { errors: Array[Peddler::APIs::FinancesInvoices20260625::Error] }
+      end
+
+      class GetInvoiceResponse < Data
+        def self.new: (?invoice_header: Peddler::APIs::FinancesInvoices20260625::InvoiceHeader?, ?invoice_items: Array[Peddler::APIs::FinancesInvoices20260625::InvoiceItem]?, ?next_token_for_line_items: String?) -> Peddler::APIs::FinancesInvoices20260625::GetInvoiceResponse
+                    | (Peddler::APIs::FinancesInvoices20260625::InvoiceHeader?, Array[Peddler::APIs::FinancesInvoices20260625::InvoiceItem]?, String?) -> Peddler::APIs::FinancesInvoices20260625::GetInvoiceResponse
+        def self.[]: (?invoice_header: Peddler::APIs::FinancesInvoices20260625::InvoiceHeader?, ?invoice_items: Array[Peddler::APIs::FinancesInvoices20260625::InvoiceItem]?, ?next_token_for_line_items: String?) -> Peddler::APIs::FinancesInvoices20260625::GetInvoiceResponse
+                   | (Peddler::APIs::FinancesInvoices20260625::InvoiceHeader?, Array[Peddler::APIs::FinancesInvoices20260625::InvoiceItem]?, String?) -> Peddler::APIs::FinancesInvoices20260625::GetInvoiceResponse
+
+        def self.members: () -> [ :invoice_header, :invoice_items, :next_token_for_line_items ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::GetInvoiceResponse
+
+        attr_reader invoice_header: Peddler::APIs::FinancesInvoices20260625::InvoiceHeader?
+        attr_reader invoice_items: Array[Peddler::APIs::FinancesInvoices20260625::InvoiceItem]?
+        attr_reader next_token_for_line_items: String?
+
+        def members: () -> [ :invoice_header, :invoice_items, :next_token_for_line_items ]
+        def to_h: () -> { invoice_header: Peddler::APIs::FinancesInvoices20260625::InvoiceHeader?, invoice_items: Array[Peddler::APIs::FinancesInvoices20260625::InvoiceItem]?, next_token_for_line_items: String? }
+      end
+
+      class GetInvoicesResponse < Data
+        def self.new: (?invoices: Array[Peddler::APIs::FinancesInvoices20260625::InvoiceHeader]?, ?next_token: String?, ?num_of_records: Integer?) -> Peddler::APIs::FinancesInvoices20260625::GetInvoicesResponse
+                    | (Array[Peddler::APIs::FinancesInvoices20260625::InvoiceHeader]?, String?, Integer?) -> Peddler::APIs::FinancesInvoices20260625::GetInvoicesResponse
+        def self.[]: (?invoices: Array[Peddler::APIs::FinancesInvoices20260625::InvoiceHeader]?, ?next_token: String?, ?num_of_records: Integer?) -> Peddler::APIs::FinancesInvoices20260625::GetInvoicesResponse
+                   | (Array[Peddler::APIs::FinancesInvoices20260625::InvoiceHeader]?, String?, Integer?) -> Peddler::APIs::FinancesInvoices20260625::GetInvoicesResponse
+
+        def self.members: () -> [ :invoices, :next_token, :num_of_records ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::GetInvoicesResponse
+
+        attr_reader invoices: Array[Peddler::APIs::FinancesInvoices20260625::InvoiceHeader]?
+        attr_reader next_token: String?
+        attr_reader num_of_records: Integer?
+
+        def members: () -> [ :invoices, :next_token, :num_of_records ]
+        def to_h: () -> { invoices: Array[Peddler::APIs::FinancesInvoices20260625::InvoiceHeader]?, next_token: String?, num_of_records: Integer? }
+      end
+
+      class InvoiceHeader < Data
+        def self.new: (creation_date: Time, invoice_amount: Peddler::Money, invoice_identifier: String, invoice_number: String, invoice_status: String, invoice_type: String, issue_date: Time, last_updated_date: Time, payee: Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, payer: Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, ?billing_period: Peddler::APIs::FinancesInvoices20260625::BillingPeriod?, ?due_date: Time?, ?invoice_amount_breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, ?invoice_settlement_breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, ?payment_terms: String?, ?related_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?) -> Peddler::APIs::FinancesInvoices20260625::InvoiceHeader
+                    | (Time, Peddler::Money, String, String, String, String, Time, Time, Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, Peddler::APIs::FinancesInvoices20260625::BillingPeriod?, Time?, Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, String?, Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?) -> Peddler::APIs::FinancesInvoices20260625::InvoiceHeader
+        def self.[]: (creation_date: Time, invoice_amount: Peddler::Money, invoice_identifier: String, invoice_number: String, invoice_status: String, invoice_type: String, issue_date: Time, last_updated_date: Time, payee: Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, payer: Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, ?billing_period: Peddler::APIs::FinancesInvoices20260625::BillingPeriod?, ?due_date: Time?, ?invoice_amount_breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, ?invoice_settlement_breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, ?payment_terms: String?, ?related_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?) -> Peddler::APIs::FinancesInvoices20260625::InvoiceHeader
+                   | (Time, Peddler::Money, String, String, String, String, Time, Time, Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, Peddler::APIs::FinancesInvoices20260625::BillingPeriod?, Time?, Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, String?, Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?) -> Peddler::APIs::FinancesInvoices20260625::InvoiceHeader
+
+        def self.members: () -> [ :creation_date, :invoice_amount, :invoice_identifier, :invoice_number, :invoice_status, :invoice_type, :issue_date, :last_updated_date, :payee, :payer, :billing_period, :due_date, :invoice_amount_breakdowns, :invoice_settlement_breakdowns, :payment_terms, :related_identifiers ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::InvoiceHeader
+
+        attr_reader billing_period: Peddler::APIs::FinancesInvoices20260625::BillingPeriod?
+        attr_reader creation_date: Time
+        attr_reader due_date: Time?
+        attr_reader invoice_amount: Peddler::Money
+        attr_reader invoice_amount_breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?
+        attr_reader invoice_identifier: String
+        attr_reader invoice_number: String
+        attr_reader invoice_settlement_breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?
+        attr_reader invoice_status: String
+        attr_reader invoice_type: String
+        attr_reader issue_date: Time
+        attr_reader last_updated_date: Time
+        attr_reader payee: Peddler::APIs::FinancesInvoices20260625::PartnerMetadata
+        attr_reader payer: Peddler::APIs::FinancesInvoices20260625::PartnerMetadata
+        attr_reader payment_terms: String?
+        attr_reader related_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?
+
+        def members: () -> [ :creation_date, :invoice_amount, :invoice_identifier, :invoice_number, :invoice_status, :invoice_type, :issue_date, :last_updated_date, :payee, :payer, :billing_period, :due_date, :invoice_amount_breakdowns, :invoice_settlement_breakdowns, :payment_terms, :related_identifiers ]
+        def to_h: () -> { creation_date: Time, invoice_amount: Peddler::Money, invoice_identifier: String, invoice_number: String, invoice_status: String, invoice_type: String, issue_date: Time, last_updated_date: Time, payee: Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, payer: Peddler::APIs::FinancesInvoices20260625::PartnerMetadata, billing_period: Peddler::APIs::FinancesInvoices20260625::BillingPeriod?, due_date: Time?, invoice_amount_breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, invoice_settlement_breakdowns: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, payment_terms: String?, related_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]? }
+      end
+
+      class InvoiceItem < Data
+        def self.new: (line_item_context: Peddler::APIs::FinancesInvoices20260625::LineItemContext, line_item_id: String, total_amount: Peddler::Money, ?quantity: Integer?, ?related_item_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?, ?tax_rate_codes: Array[String]?, ?total_amount_breakdown: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, ?unit_cost: Peddler::Money?) -> Peddler::APIs::FinancesInvoices20260625::InvoiceItem
+                    | (Peddler::APIs::FinancesInvoices20260625::LineItemContext, String, Peddler::Money, Integer?, Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?, Array[String]?, Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, Peddler::Money?) -> Peddler::APIs::FinancesInvoices20260625::InvoiceItem
+        def self.[]: (line_item_context: Peddler::APIs::FinancesInvoices20260625::LineItemContext, line_item_id: String, total_amount: Peddler::Money, ?quantity: Integer?, ?related_item_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?, ?tax_rate_codes: Array[String]?, ?total_amount_breakdown: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, ?unit_cost: Peddler::Money?) -> Peddler::APIs::FinancesInvoices20260625::InvoiceItem
+                   | (Peddler::APIs::FinancesInvoices20260625::LineItemContext, String, Peddler::Money, Integer?, Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?, Array[String]?, Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, Peddler::Money?) -> Peddler::APIs::FinancesInvoices20260625::InvoiceItem
+
+        def self.members: () -> [ :line_item_context, :line_item_id, :total_amount, :quantity, :related_item_identifiers, :tax_rate_codes, :total_amount_breakdown, :unit_cost ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::InvoiceItem
+
+        attr_reader line_item_context: Peddler::APIs::FinancesInvoices20260625::LineItemContext
+        attr_reader line_item_id: String
+        attr_reader quantity: Integer?
+        attr_reader related_item_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?
+        attr_reader tax_rate_codes: Array[String]?
+        attr_reader total_amount: Peddler::Money
+        attr_reader total_amount_breakdown: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?
+        attr_reader unit_cost: Peddler::Money?
+
+        def members: () -> [ :line_item_context, :line_item_id, :total_amount, :quantity, :related_item_identifiers, :tax_rate_codes, :total_amount_breakdown, :unit_cost ]
+        def to_h: () -> { line_item_context: Peddler::APIs::FinancesInvoices20260625::LineItemContext, line_item_id: String, total_amount: Peddler::Money, quantity: Integer?, related_item_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier]?, tax_rate_codes: Array[String]?, total_amount_breakdown: Array[Peddler::APIs::FinancesInvoices20260625::Breakdown]?, unit_cost: Peddler::Money? }
+      end
+
+      class ItemIdentifier < Data
+        def self.new: (item_identifier_name: String, item_identifier_value: String) -> Peddler::APIs::FinancesInvoices20260625::ItemIdentifier
+                    | (String, String) -> Peddler::APIs::FinancesInvoices20260625::ItemIdentifier
+        def self.[]: (item_identifier_name: String, item_identifier_value: String) -> Peddler::APIs::FinancesInvoices20260625::ItemIdentifier
+                   | (String, String) -> Peddler::APIs::FinancesInvoices20260625::ItemIdentifier
+
+        def self.members: () -> [ :item_identifier_name, :item_identifier_value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::ItemIdentifier
+
+        attr_reader item_identifier_name: String
+        attr_reader item_identifier_value: String
+
+        def members: () -> [ :item_identifier_name, :item_identifier_value ]
+        def to_h: () -> { item_identifier_name: String, item_identifier_value: String }
+      end
+
+      class LineItemContext < Data
+        def self.new: (line_item_type: String, ?item_description: String?, ?item_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::ItemIdentifier]?, ?matching_context: Peddler::APIs::FinancesInvoices20260625::MatchingContext?, ?service_charge_period: Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod?, ?service_charge_type: String?) -> Peddler::APIs::FinancesInvoices20260625::LineItemContext
+                    | (String, String?, Array[Peddler::APIs::FinancesInvoices20260625::ItemIdentifier]?, Peddler::APIs::FinancesInvoices20260625::MatchingContext?, Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod?, String?) -> Peddler::APIs::FinancesInvoices20260625::LineItemContext
+        def self.[]: (line_item_type: String, ?item_description: String?, ?item_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::ItemIdentifier]?, ?matching_context: Peddler::APIs::FinancesInvoices20260625::MatchingContext?, ?service_charge_period: Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod?, ?service_charge_type: String?) -> Peddler::APIs::FinancesInvoices20260625::LineItemContext
+                   | (String, String?, Array[Peddler::APIs::FinancesInvoices20260625::ItemIdentifier]?, Peddler::APIs::FinancesInvoices20260625::MatchingContext?, Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod?, String?) -> Peddler::APIs::FinancesInvoices20260625::LineItemContext
+
+        def self.members: () -> [ :line_item_type, :item_description, :item_identifiers, :matching_context, :service_charge_period, :service_charge_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::LineItemContext
+
+        attr_reader item_description: String?
+        attr_reader item_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::ItemIdentifier]?
+        attr_reader line_item_type: String
+        attr_reader matching_context: Peddler::APIs::FinancesInvoices20260625::MatchingContext?
+        attr_reader service_charge_period: Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod?
+        attr_reader service_charge_type: String?
+
+        def members: () -> [ :line_item_type, :item_description, :item_identifiers, :matching_context, :service_charge_period, :service_charge_type ]
+        def to_h: () -> { line_item_type: String, item_description: String?, item_identifiers: Array[Peddler::APIs::FinancesInvoices20260625::ItemIdentifier]?, matching_context: Peddler::APIs::FinancesInvoices20260625::MatchingContext?, service_charge_period: Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod?, service_charge_type: String? }
+      end
+
+      class MatchingContext < Data
+        def self.new: (matched_amount: Peddler::Money, matched_quantity: Integer, ?paid_amount: Peddler::Money?, ?paid_quantity: Integer?, ?price_variance: Peddler::Money?, ?quantity_variance: Integer?, ?variance_reasons: Array[Peddler::APIs::FinancesInvoices20260625::VarianceReason]?) -> Peddler::APIs::FinancesInvoices20260625::MatchingContext
+                    | (Peddler::Money, Integer, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Array[Peddler::APIs::FinancesInvoices20260625::VarianceReason]?) -> Peddler::APIs::FinancesInvoices20260625::MatchingContext
+        def self.[]: (matched_amount: Peddler::Money, matched_quantity: Integer, ?paid_amount: Peddler::Money?, ?paid_quantity: Integer?, ?price_variance: Peddler::Money?, ?quantity_variance: Integer?, ?variance_reasons: Array[Peddler::APIs::FinancesInvoices20260625::VarianceReason]?) -> Peddler::APIs::FinancesInvoices20260625::MatchingContext
+                   | (Peddler::Money, Integer, Peddler::Money?, Integer?, Peddler::Money?, Integer?, Array[Peddler::APIs::FinancesInvoices20260625::VarianceReason]?) -> Peddler::APIs::FinancesInvoices20260625::MatchingContext
+
+        def self.members: () -> [ :matched_amount, :matched_quantity, :paid_amount, :paid_quantity, :price_variance, :quantity_variance, :variance_reasons ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::MatchingContext
+
+        attr_reader matched_amount: Peddler::Money
+        attr_reader matched_quantity: Integer
+        attr_reader paid_amount: Peddler::Money?
+        attr_reader paid_quantity: Integer?
+        attr_reader price_variance: Peddler::Money?
+        attr_reader quantity_variance: Integer?
+        attr_reader variance_reasons: Array[Peddler::APIs::FinancesInvoices20260625::VarianceReason]?
+
+        def members: () -> [ :matched_amount, :matched_quantity, :paid_amount, :paid_quantity, :price_variance, :quantity_variance, :variance_reasons ]
+        def to_h: () -> { matched_amount: Peddler::Money, matched_quantity: Integer, paid_amount: Peddler::Money?, paid_quantity: Integer?, price_variance: Peddler::Money?, quantity_variance: Integer?, variance_reasons: Array[Peddler::APIs::FinancesInvoices20260625::VarianceReason]? }
+      end
+
+      class PartnerMetadata < Data
+        def self.new: (partner_id: String, partner_type: String, ?partner_address: String?, ?partner_entities: Array[String]?, ?partner_name: String?, ?tax_registration_number: String?) -> Peddler::APIs::FinancesInvoices20260625::PartnerMetadata
+                    | (String, String, String?, Array[String]?, String?, String?) -> Peddler::APIs::FinancesInvoices20260625::PartnerMetadata
+        def self.[]: (partner_id: String, partner_type: String, ?partner_address: String?, ?partner_entities: Array[String]?, ?partner_name: String?, ?tax_registration_number: String?) -> Peddler::APIs::FinancesInvoices20260625::PartnerMetadata
+                   | (String, String, String?, Array[String]?, String?, String?) -> Peddler::APIs::FinancesInvoices20260625::PartnerMetadata
+
+        def self.members: () -> [ :partner_id, :partner_type, :partner_address, :partner_entities, :partner_name, :tax_registration_number ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::PartnerMetadata
+
+        attr_reader partner_address: String?
+        attr_reader partner_entities: Array[String]?
+        attr_reader partner_id: String
+        attr_reader partner_name: String?
+        attr_reader partner_type: String
+        attr_reader tax_registration_number: String?
+
+        def members: () -> [ :partner_id, :partner_type, :partner_address, :partner_entities, :partner_name, :tax_registration_number ]
+        def to_h: () -> { partner_id: String, partner_type: String, partner_address: String?, partner_entities: Array[String]?, partner_name: String?, tax_registration_number: String? }
+      end
+
+      class RelatedIdentifier < Data
+        def self.new: (related_identifier_name: String, related_identifier_value: Array[String]) -> Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier
+                    | (String, Array[String]) -> Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier
+        def self.[]: (related_identifier_name: String, related_identifier_value: Array[String]) -> Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier
+                   | (String, Array[String]) -> Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier
+
+        def self.members: () -> [ :related_identifier_name, :related_identifier_value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::RelatedIdentifier
+
+        attr_reader related_identifier_name: String
+        attr_reader related_identifier_value: Array[String]
+
+        def members: () -> [ :related_identifier_name, :related_identifier_value ]
+        def to_h: () -> { related_identifier_name: String, related_identifier_value: Array[String] }
+      end
+
+      class ServiceChargePeriod < Data
+        def self.new: (end_date: Time, start_date: Time) -> Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod
+                    | (Time, Time) -> Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod
+        def self.[]: (end_date: Time, start_date: Time) -> Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod
+                   | (Time, Time) -> Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod
+
+        def self.members: () -> [ :end_date, :start_date ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::ServiceChargePeriod
+
+        attr_reader end_date: Time
+        attr_reader start_date: Time
+
+        def members: () -> [ :end_date, :start_date ]
+        def to_h: () -> { end_date: Time, start_date: Time }
+      end
+
+      class VarianceReason < Data
+        def self.new: (variance_type: String, ?defect_types: Array[String]?) -> Peddler::APIs::FinancesInvoices20260625::VarianceReason
+                    | (String, Array[String]?) -> Peddler::APIs::FinancesInvoices20260625::VarianceReason
+        def self.[]: (variance_type: String, ?defect_types: Array[String]?) -> Peddler::APIs::FinancesInvoices20260625::VarianceReason
+                   | (String, Array[String]?) -> Peddler::APIs::FinancesInvoices20260625::VarianceReason
+
+        def self.members: () -> [ :variance_type, :defect_types ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::FinancesInvoices20260625::VarianceReason
+
+        attr_reader defect_types: Array[String]?
+        attr_reader variance_type: String
+
+        def members: () -> [ :variance_type, :defect_types ]
+        def to_h: () -> { variance_type: String, defect_types: Array[String]? }
+      end
+
+      def get_invoice: (String, String, ?next_token_for_line_items: String?) -> Peddler::Response
+      def get_invoice_headers: (String, ?next_token: String?, ?from_issue_date: String?, ?to_issue_date: String?, ?invoices_modified_after: String?) -> Peddler::Response
+    end
+  end
+end

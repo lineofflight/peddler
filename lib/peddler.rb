@@ -34,9 +34,11 @@ module Peddler
     def feeds_2021_06_30 = APIs::Feeds20210630
     def finances_v0 = APIs::FinancesV0
     def finances_2024_06_19 = APIs::Finances20240619
+    def finances_invoices_2026_06_25 = APIs::FinancesInvoices20260625
     def fulfillment_inbound_v0 = APIs::FulfillmentInboundV0
     def fulfillment_inbound_2024_03_20 = APIs::FulfillmentInbound20240320
     def fulfillment_outbound_2020_07_01 = APIs::FulfillmentOutbound20200701
+    def fulfillment_outbound_2026_07_04 = APIs::FulfillmentOutbound20260704
     def invoices_2024_06_19 = APIs::Invoices20240619
     def listings_items_2020_09_01 = APIs::ListingsItems20200901
     def listings_items_2021_08_01 = APIs::ListingsItems20210801
@@ -95,8 +97,9 @@ module Peddler
     alias_method :fba_inventory, :fba_inventory_v1
     alias_method :feeds, :feeds_2021_06_30
     alias_method :finances, :finances_2024_06_19
+    alias_method :finances_invoices, :finances_invoices_2026_06_25
     alias_method :fulfillment_inbound, :fulfillment_inbound_2024_03_20
-    alias_method :fulfillment_outbound, :fulfillment_outbound_2020_07_01
+    alias_method :fulfillment_outbound, :fulfillment_outbound_2026_07_04
     alias_method :invoices, :invoices_2024_06_19
     alias_method :listings_items, :listings_items_2021_08_01
     alias_method :listings_restrictions, :listings_restrictions_2021_08_01

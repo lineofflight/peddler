@@ -35,6 +35,29 @@ module Peddler
         def to_h: () -> { errors: Array[Peddler::APIs::Transfers20240601::Error] }
       end
 
+      class ExpectedPayout < Data
+        def self.new: (partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata, status: String, ?account_tail: String?, ?amount: Peddler::Money?, ?payment_method: String?, ?period: Peddler::APIs::Transfers20240601::Period?, ?related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, ?scheduled_date: String?) -> Peddler::APIs::Transfers20240601::ExpectedPayout
+                    | (Peddler::APIs::Transfers20240601::PartnerMetadata, String, String?, Peddler::Money?, String?, Peddler::APIs::Transfers20240601::Period?, Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, String?) -> Peddler::APIs::Transfers20240601::ExpectedPayout
+        def self.[]: (partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata, status: String, ?account_tail: String?, ?amount: Peddler::Money?, ?payment_method: String?, ?period: Peddler::APIs::Transfers20240601::Period?, ?related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, ?scheduled_date: String?) -> Peddler::APIs::Transfers20240601::ExpectedPayout
+                   | (Peddler::APIs::Transfers20240601::PartnerMetadata, String, String?, Peddler::Money?, String?, Peddler::APIs::Transfers20240601::Period?, Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, String?) -> Peddler::APIs::Transfers20240601::ExpectedPayout
+
+        def self.members: () -> [ :partner_metadata, :status, :account_tail, :amount, :payment_method, :period, :related_identifiers, :scheduled_date ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::ExpectedPayout
+
+        attr_reader account_tail: String?
+        attr_reader amount: Peddler::Money?
+        attr_reader partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata
+        attr_reader payment_method: String?
+        attr_reader period: Peddler::APIs::Transfers20240601::Period?
+        attr_reader related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?
+        attr_reader scheduled_date: String?
+        attr_reader status: String
+
+        def members: () -> [ :partner_metadata, :status, :account_tail, :amount, :payment_method, :period, :related_identifiers, :scheduled_date ]
+        def to_h: () -> { partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata, status: String, account_tail: String?, amount: Peddler::Money?, payment_method: String?, period: Peddler::APIs::Transfers20240601::Period?, related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, scheduled_date: String? }
+      end
+
       class ExpiryDate < Data
         def self.new: (?month: String?, ?year: String?) -> Peddler::APIs::Transfers20240601::ExpiryDate
                     | (String?, String?) -> Peddler::APIs::Transfers20240601::ExpiryDate
@@ -101,6 +124,58 @@ module Peddler
         def to_h: () -> { payout_reference_id: String }
       end
 
+      class ListExpectedPayoutsResponse < Data
+        def self.new: (?expected_payouts: Array[Peddler::APIs::Transfers20240601::ExpectedPayout]?, ?next_token: String?) -> Peddler::APIs::Transfers20240601::ListExpectedPayoutsResponse
+                    | (Array[Peddler::APIs::Transfers20240601::ExpectedPayout]?, String?) -> Peddler::APIs::Transfers20240601::ListExpectedPayoutsResponse
+        def self.[]: (?expected_payouts: Array[Peddler::APIs::Transfers20240601::ExpectedPayout]?, ?next_token: String?) -> Peddler::APIs::Transfers20240601::ListExpectedPayoutsResponse
+                   | (Array[Peddler::APIs::Transfers20240601::ExpectedPayout]?, String?) -> Peddler::APIs::Transfers20240601::ListExpectedPayoutsResponse
+
+        def self.members: () -> [ :expected_payouts, :next_token ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::ListExpectedPayoutsResponse
+
+        attr_reader expected_payouts: Array[Peddler::APIs::Transfers20240601::ExpectedPayout]?
+        attr_reader next_token: String?
+
+        def members: () -> [ :expected_payouts, :next_token ]
+        def to_h: () -> { expected_payouts: Array[Peddler::APIs::Transfers20240601::ExpectedPayout]?, next_token: String? }
+      end
+
+      class ListPayoutsResponse < Data
+        def self.new: (?next_token: String?, ?payouts: Array[Peddler::APIs::Transfers20240601::Payout]?) -> Peddler::APIs::Transfers20240601::ListPayoutsResponse
+                    | (String?, Array[Peddler::APIs::Transfers20240601::Payout]?) -> Peddler::APIs::Transfers20240601::ListPayoutsResponse
+        def self.[]: (?next_token: String?, ?payouts: Array[Peddler::APIs::Transfers20240601::Payout]?) -> Peddler::APIs::Transfers20240601::ListPayoutsResponse
+                   | (String?, Array[Peddler::APIs::Transfers20240601::Payout]?) -> Peddler::APIs::Transfers20240601::ListPayoutsResponse
+
+        def self.members: () -> [ :next_token, :payouts ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::ListPayoutsResponse
+
+        attr_reader next_token: String?
+        attr_reader payouts: Array[Peddler::APIs::Transfers20240601::Payout]?
+
+        def members: () -> [ :next_token, :payouts ]
+        def to_h: () -> { next_token: String?, payouts: Array[Peddler::APIs::Transfers20240601::Payout]? }
+      end
+
+      class PartnerMetadata < Data
+        def self.new: (account_type: String, marketplace_id: String, partner_id: String) -> Peddler::APIs::Transfers20240601::PartnerMetadata
+                    | (String, String, String) -> Peddler::APIs::Transfers20240601::PartnerMetadata
+        def self.[]: (account_type: String, marketplace_id: String, partner_id: String) -> Peddler::APIs::Transfers20240601::PartnerMetadata
+                   | (String, String, String) -> Peddler::APIs::Transfers20240601::PartnerMetadata
+
+        def self.members: () -> [ :account_type, :marketplace_id, :partner_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::PartnerMetadata
+
+        attr_reader account_type: String
+        attr_reader marketplace_id: String
+        attr_reader partner_id: String
+
+        def members: () -> [ :account_type, :marketplace_id, :partner_id ]
+        def to_h: () -> { account_type: String, marketplace_id: String, partner_id: String }
+      end
+
       class PaymentMethodDetails < Data
         def self.new: (?account_holder_name: String?, ?assignment_type: String?, ?country_code: String?, ?expiry_date: Peddler::APIs::Transfers20240601::ExpiryDate?, ?payment_method_id: String?, ?payment_method_type: String?, ?tail: String?) -> Peddler::APIs::Transfers20240601::PaymentMethodDetails
                     | (String?, String?, String?, Peddler::APIs::Transfers20240601::ExpiryDate?, String?, String?, String?) -> Peddler::APIs::Transfers20240601::PaymentMethodDetails
@@ -127,12 +202,95 @@ module Peddler
         def self.parse: (Array[untyped]) -> PaymentMethodList
       end
 
-      class PaymentMethodTypeList < Array[untyped]
-        def self.parse: (Array[untyped]) -> PaymentMethodTypeList
+      class Payout < Data
+        def self.new: (current_status: String, id: String, partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata, status_history: Array[Peddler::APIs::Transfers20240601::PayoutStatusEntry], ?account_tail: String?, ?amount: Peddler::Money?, ?creation_date: String?, ?payment_method: String?, ?payment_rail: String?, ?period: Peddler::APIs::Transfers20240601::Period?, ?related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, ?trace_id: String?, ?type: String?) -> Peddler::APIs::Transfers20240601::Payout
+                    | (String, String, Peddler::APIs::Transfers20240601::PartnerMetadata, Array[Peddler::APIs::Transfers20240601::PayoutStatusEntry], String?, Peddler::Money?, String?, String?, String?, Peddler::APIs::Transfers20240601::Period?, Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, String?, String?) -> Peddler::APIs::Transfers20240601::Payout
+        def self.[]: (current_status: String, id: String, partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata, status_history: Array[Peddler::APIs::Transfers20240601::PayoutStatusEntry], ?account_tail: String?, ?amount: Peddler::Money?, ?creation_date: String?, ?payment_method: String?, ?payment_rail: String?, ?period: Peddler::APIs::Transfers20240601::Period?, ?related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, ?trace_id: String?, ?type: String?) -> Peddler::APIs::Transfers20240601::Payout
+                   | (String, String, Peddler::APIs::Transfers20240601::PartnerMetadata, Array[Peddler::APIs::Transfers20240601::PayoutStatusEntry], String?, Peddler::Money?, String?, String?, String?, Peddler::APIs::Transfers20240601::Period?, Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, String?, String?) -> Peddler::APIs::Transfers20240601::Payout
+
+        def self.members: () -> [ :current_status, :id, :partner_metadata, :status_history, :account_tail, :amount, :creation_date, :payment_method, :payment_rail, :period, :related_identifiers, :trace_id, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::Payout
+
+        attr_reader account_tail: String?
+        attr_reader amount: Peddler::Money?
+        attr_reader creation_date: String?
+        attr_reader current_status: String
+        attr_reader id: String
+        attr_reader partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata
+        attr_reader payment_method: String?
+        attr_reader payment_rail: String?
+        attr_reader period: Peddler::APIs::Transfers20240601::Period?
+        attr_reader related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?
+        attr_reader status_history: Array[Peddler::APIs::Transfers20240601::PayoutStatusEntry]
+        attr_reader trace_id: String?
+        attr_reader type: String?
+
+        def members: () -> [ :current_status, :id, :partner_metadata, :status_history, :account_tail, :amount, :creation_date, :payment_method, :payment_rail, :period, :related_identifiers, :trace_id, :type ]
+        def to_h: () -> { current_status: String, id: String, partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata, status_history: Array[Peddler::APIs::Transfers20240601::PayoutStatusEntry], account_tail: String?, amount: Peddler::Money?, creation_date: String?, payment_method: String?, payment_rail: String?, period: Peddler::APIs::Transfers20240601::Period?, related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, trace_id: String?, type: String? }
+      end
+
+      class PayoutStatusEntry < Data
+        def self.new: (last_updated_date: String, status: String, ?failure_reason: String?) -> Peddler::APIs::Transfers20240601::PayoutStatusEntry
+                    | (String, String, String?) -> Peddler::APIs::Transfers20240601::PayoutStatusEntry
+        def self.[]: (last_updated_date: String, status: String, ?failure_reason: String?) -> Peddler::APIs::Transfers20240601::PayoutStatusEntry
+                   | (String, String, String?) -> Peddler::APIs::Transfers20240601::PayoutStatusEntry
+
+        def self.members: () -> [ :last_updated_date, :status, :failure_reason ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::PayoutStatusEntry
+
+        attr_reader failure_reason: String?
+        attr_reader last_updated_date: String
+        attr_reader status: String
+
+        def members: () -> [ :last_updated_date, :status, :failure_reason ]
+        def to_h: () -> { last_updated_date: String, status: String, failure_reason: String? }
+      end
+
+      class Period < Data
+        def self.new: (start_date: String, ?end_date: String?) -> Peddler::APIs::Transfers20240601::Period
+                    | (String, String?) -> Peddler::APIs::Transfers20240601::Period
+        def self.[]: (start_date: String, ?end_date: String?) -> Peddler::APIs::Transfers20240601::Period
+                   | (String, String?) -> Peddler::APIs::Transfers20240601::Period
+
+        def self.members: () -> [ :start_date, :end_date ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::Period
+
+        attr_reader end_date: String?
+        attr_reader start_date: String
+
+        def members: () -> [ :start_date, :end_date ]
+        def to_h: () -> { start_date: String, end_date: String? }
+      end
+
+      class RelatedIdentifier < Data
+        def self.new: (related_identifier_name: String, related_identifier_value: String) -> Peddler::APIs::Transfers20240601::RelatedIdentifier
+                    | (String, String) -> Peddler::APIs::Transfers20240601::RelatedIdentifier
+        def self.[]: (related_identifier_name: String, related_identifier_value: String) -> Peddler::APIs::Transfers20240601::RelatedIdentifier
+                   | (String, String) -> Peddler::APIs::Transfers20240601::RelatedIdentifier
+
+        def self.members: () -> [ :related_identifier_name, :related_identifier_value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Transfers20240601::RelatedIdentifier
+
+        attr_reader related_identifier_name: String
+        attr_reader related_identifier_value: String
+
+        def members: () -> [ :related_identifier_name, :related_identifier_value ]
+        def to_h: () -> { related_identifier_name: String, related_identifier_value: String }
+      end
+
+      class RelatedIdentifiers < Array[RelatedIdentifier]
+        def self.parse: (Array[untyped]) -> RelatedIdentifiers
       end
 
       def get_payment_methods: (String, ?payment_method_types: Array[String]?, ?rate_limit: Float) -> Peddler::Response
       def initiate_payout: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
+      def list_expected_payouts: (?marketplace_ids: Array[String]?, ?account_type: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def list_payouts: (?marketplace_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?payout_id: String?, ?account_type: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

@@ -69,5 +69,13 @@ module Generator
       assert_equal("object", type_def["type"])
       assert_kind_of(Hash, type_def["properties"])
     end
+
+    def test_notification_with_root_notification_definition
+      spec = File.join(@spec_path, "TaxInvoiceExportStatusChange.json")
+      notification = Generator::Notification.new(spec)
+      files = notification.nested_type_files
+
+      refute_includes(files, "notification")
+    end
   end
 end

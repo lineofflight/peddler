@@ -40,12 +40,15 @@ module Peddler
         # @return [String] The severity of the issue.
         attribute(:severity, String, null: false)
 
-        # @return [Array<String>] The names of the attributes associated with the issue, if applicable.
+        # @return [Array<String>] Names of the attributes that are associated with the issue, if applicable.
         attribute?(:attribute_names, [String], from: "attributeNames")
 
-        # @return [IssueEnforcements] This field provides information about the enforcement actions taken by Amazon that
-        #   affect the publishing or status of a listing. It also includes details about any associated exemptions.
+        # @return [IssueEnforcements] Provides information about the enforcement actions taken by Amazon that affect the
+        #   publishing or status of a listing. It also includes details about any associated exemptions.
         attribute?(:enforcements, IssueEnforcements)
+
+        # @return [Array<String>] List of Amazon store identifiers.
+        attribute?(:marketplace_ids, [String], from: "marketplaceIds")
       end
     end
   end

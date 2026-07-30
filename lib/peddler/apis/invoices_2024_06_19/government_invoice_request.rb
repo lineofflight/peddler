@@ -9,25 +9,25 @@ module Peddler
     class Invoices20240619
       # Information required to create the government invoice.
       GovernmentInvoiceRequest = Structure.new do
-        # @return [String] Marketplace specific classification of the invoice type. Check 'invoiceType' options using
-        #   'getInvoicesAttributes' operation.
+        # @return [String] The marketplace-specific classification of the invoice type. Check `invoiceType` options
+        #   using the `getInvoicesAttributes` operation.
         attribute(:invoice_type, String, null: false, from: "invoiceType")
 
-        # @return [String] The government invoices creation request will match the national authoritative source of the
-        #   given marketplace.
+        # @return [String] The marketplace of the national authoritative source that will be on the government invoice
+        #   creation request.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The unique shipment identifier to get an invoice for.
+        # @return [String] The unique shipment identifier for which to get an invoice.
         attribute(:shipment_id, String, null: false, from: "shipmentId")
 
-        # @return [String] Marketplace specific classification of the transaction type that originated the invoice.
-        #   Check 'transactionType' options using 'getInvoicesAttributes' operation.
+        # @return [String] The marketplace-specific classification of the transaction type that originated the invoice.
+        #   Check `transactionType` options using the `getInvoicesAttributes` operation.
         attribute(:transaction_type, String, null: false, from: "transactionType")
 
-        # @return [Array<CarrierDetailsContext>] Object that contains additional invoice creation information
+        # @return [Array<CarrierDetailsContext>] Additional information for invoice creation.
         attribute?(:contexts, [CarrierDetailsContext])
 
-        # @return [String] The unique InboundPlan identifier in which the shipment is contained and for which the
+        # @return [String] The unique inbound plan identifier in which the shipment is contained and for which the
         #   invoice will be created.
         attribute?(:inbound_plan_id, String, from: "inboundPlanId")
       end

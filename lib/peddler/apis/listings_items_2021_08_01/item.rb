@@ -9,13 +9,13 @@ module Peddler
     class ListingsItems20210801
       # A listings item.
       Item = Structure.new do
-        # @return [String] A selling partner provided identifier for an Amazon listing.
+        # @return [String] A selling partner-provided identifier for an Amazon listing.
         attribute(:sku, String, null: false)
 
         # @return [Hash]
         attribute?(:attributes, Hash)
 
-        # @return [Array<FulfillmentAvailability>] The fulfillment availability for the listings item.
+        # @return [Array<FulfillmentAvailability>] The listings item's fulfillment availability.
         attribute?(:fulfillment_availability, [FulfillmentAvailability], from: "fulfillmentAvailability")
 
         # @return [Array<Issue>]
@@ -24,7 +24,7 @@ module Peddler
         # @return [Array<ItemOfferByMarketplace>]
         attribute?(:offers, [ItemOfferByMarketplace])
 
-        # @return [Array<ItemProcurement>] The vendor procurement information for the listings item.
+        # @return [Array<ItemProcurement>] The listings item's vendor procurement information.
         attribute?(:procurement, [ItemProcurement])
 
         # @return [Array<ItemProductTypeByMarketplace>]

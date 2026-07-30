@@ -12,6 +12,21 @@ All notable changes to this project will be documented in this file. This projec
 
 - Fix compatibility of `APIRetriableTest` with `http` gem version 5.x
 
+### Models
+
+- **Added**: Finances Invoices 2026-06-25: new API for retrieving invoice headers and invoice details (`get_invoice_headers`, `get_invoice`)
+- **Added**: Fulfillment Outbound 2026-07-04: new API for creating and managing fulfillment orders (`get_order_preview`, `get_offers`, `create_order`, `get_order`, `update_order`, `cancel_order`, `update_order_status`, `update_package`, `list_orders`)
+- **Changed**: The default `fulfillment_outbound` alias now points to Fulfillment Outbound 2026-07-04 instead of 2020-07-01; the previous version remains available as `fulfillment_outbound_2020_07_01`
+- **Added**: Finances 2024-06-19: `list_balances` and `list_summary` operations for retrieving account balances and financial summaries
+- **Added**: Transfers 2024-06-01: `list_payouts` and `list_expected_payouts` operations, with new `Payout`, `ExpectedPayout`, `Period`, `PartnerMetadata`, and `RelatedIdentifier` types
+- **Removed**: Transfers 2024-06-01: unused `PaymentMethodTypeList` type, replaced by `RelatedIdentifiers`
+- **Added**: Listings Items 2021-08-01: `put_listings_item_draft` and `put_listings_item_suggestions` operations for draft listings and AI-generated attribute suggestions, with supporting draft and suggestion types; `marketplace_ids` field on `Issue`
+- **Added**: Orders 2026-01-01: `cancellation_execution` field (new `ItemCancellationExecution` type) on `ItemCancellation`; `label_printing_window` field on `OrderFulfillment`
+- **Added**: Fulfillment Inbound 2024-03-20: explicit `rate_limit` parameter on all operations; `discounts` field on `DeliveryWindowOption`
+- **Changed**: Invoices 2024-06-19: removed the `rate_limit` parameter from all operations
+- **Added**: Product Pricing 2022-05-01: `promotions` field on `Offer` and `SegmentedFeaturedOffer`, backed by new `Promotion`, `PromotionDiscount`, `PromotionSavings`, `PurchaseCondition`, `PurchaseRequirements`, and threshold types
+- **Added**: Notifications: `TaxInvoiceExportStatusChange` and `TaxInvoiceIssuanceStatus` notification types
+
 ## [5.5.0] - 2026-06-10
 
 ### Changed
