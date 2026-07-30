@@ -47,7 +47,7 @@ module Peddler
         root = doc.root
         return {} unless root
 
-        Hash[root.element_children.collect { |e| [e.name, e.text] }]
+        root.element_children.to_h { |e| [e.name, e.text] }
       rescue NoMethodError
         {}
       end
