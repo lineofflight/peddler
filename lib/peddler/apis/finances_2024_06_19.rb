@@ -13,6 +13,8 @@ module Peddler
     class Finances20240619 < API
       # Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours.
       #
+      # **Note:** If you want to retrieve MFN orders in the US store, do not supply the `marketplaceId` parameter.
+      #
       # @note This operation can make a static sandbox call.
       # @param posted_after [String] The response includes financial events posted on or after this date. This date must
       #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must
@@ -66,7 +68,8 @@ module Peddler
       #   from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to
       #   [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param balance_type [String] The type of balance to include in the response. If omitted, all balance types may
-      #   be included in the response. **Possible values:** `AVAILABLE`, `RESERVED`, `TOTAL`
+      #   be included in the response. **Possible values:** `AVAILABLE`, `RESERVED`, `TOTAL`, `DEFERRED`,
+      #   `ACCOUNT_LEVEL_RESERVE`
       # @param account_type [String] The type of account to include in the response.
       # @param as_of_date [String] The date from which you want to retrieve balances. If provided, the response includes
       #   historical balances at the specified date. The value must be in [ISO
