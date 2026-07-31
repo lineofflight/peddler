@@ -13,9 +13,8 @@ module Peddler
     class ApplicationManagement20231130 < API
       # Rotates application client secrets for a developer application. Developers must register a destination queue in
       # the developer console before calling this operation. When this operation is called a new client secret is
-      # generated and sent to the developer-registered queue. For more information, refer to [Rotate your application
-      # client
-      # secret](https://developer-docs.amazon.com/sp-api/v0/docs/application-management-api-v2023-11-30-use-case-guide#tutorial-rotate-your-applications-client-secret).
+      # generated and sent to the developer-registered queue. For more information, refer to [Rotate your application's
+      # client secret](https://developer-docs.amazon.com/sp-api/docs/rotate-your-application-client-secret).
       #
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response

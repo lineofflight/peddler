@@ -15,52 +15,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json
     class ListingsItems20210801 < API
-      # Creates or fully-updates a draft listings item for a selling partner. Draft listings allow sellers to prepare
-      # product information before publishing to the live catalog.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
-      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
-      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
-      #   when localization is not available for the specified locale.
-      # @param body [Hash] The request body schema for the `putListingsItemDraft` operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def put_listings_item_draft(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
-        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}/draft"
-        params = {
-          "marketplaceIds" => stringify_array(marketplace_ids),
-          "issueLocale" => issue_locale,
-        }.compact
-        parser = -> { ListingsItemSubmissionResponse }
-        put(path, body:, params:, rate_limit:, parser:)
-      end
-
-      # Creates AI-generated suggestions for attributes in a listings item.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param seller_id [String] A selling partner identifier. Must be a merchant account or a vendor code.
-      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
-      #   Limited to 1 value for this use case. Valid values for the pilot are A2Q3Y263D00KWC (BR) and A33AVAJ2PDY3EV
-      #   (TR).
-      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
-      #   when localization is not available for the specified locale.
-      # @param body [Hash] The request body schema for the `putListingsItemSuggestions` operation.
-      # @return [Peddler::Response] The API response
-      def put_listings_item_suggestions(seller_id, sku, marketplace_ids, body, issue_locale: nil)
-        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}/suggestionSources"
-        params = {
-          "marketplaceIds" => stringify_array(marketplace_ids),
-          "issueLocale" => issue_locale,
-        }.compact
-        parser = -> { ListingsItemSubmissionResponse }
-        put(path, body:, params:, parser:)
-      end
-
       # Delete a listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.
