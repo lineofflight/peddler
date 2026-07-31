@@ -70,12 +70,49 @@ module Generator
       assert_kind_of(Hash, type_def["properties"])
     end
 
+    # Regression test for the "notification" entry in JsonSchemaExtractor's skip list:
+    # a "Notification" definition must not be extracted as a nested type, or it
+    # duplicates the top-level Notification class.
+    #
+    # No upstream schema currently has this shape. Amazon shipped it in July 2026 with
+    # TaxInvoiceExportStatusChange and TaxInvoiceIssuanceStatus, then withdrew both a
+    # day later. The guard and this test are kept in case those return; the fixture is
+    # inline because pinning it to a live schema is what broke when they were withdrawn.
     def test_notification_with_root_notification_definition
-      spec = File.join(@spec_path, "TaxInvoiceExportStatusChange.json")
-      notification = Generator::Notification.new(spec)
-      files = notification.nested_type_files
+      spec = {
+        "$ref" => "#/definitions/Notification",
+        "definitions" => {
+          "Notification" => {
+            "type" => "object",
+            "properties" => {
+              "notificationType" => { "type" => "string" },
+              "notificationMetadata" => { "$ref" => "#/definitions/NotificationMetadata" },
+              "payload" => { "$ref" => "#/definitions/Payload" },
+            },
+          },
+          "NotificationMetadata" => {
+            "type" => "object",
+            "properties" => { "applicationId" => { "type" => "string" } },
+          },
+          "Payload" => {
+            "type" => "object",
+            "properties" => { "exportId" => { "type" => "string" } },
+          },
+        },
+      }
+
+      temp_file = Tempfile.new(["RootRefNotification", ".json"])
+      temp_file.write(spec.to_json)
+      temp_file.rewind
+
+      files = Generator::Notification.new(temp_file.path).nested_type_files
 
       refute_includes(files, "notification")
+      # Sibling definitions are still extracted, so the assertion above is not vacuous
+      assert_includes(files, "notification_metadata")
+
+      temp_file.close
+      temp_file.unlink
     end
   end
 end
