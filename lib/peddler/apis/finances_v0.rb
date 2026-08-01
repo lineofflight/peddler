@@ -49,6 +49,8 @@ module Peddler
       # Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be
       # included in financial events.
       #
+      # **Note:** Deferred events don't appear in the `listFinancialEventsByGroupId` response until they are released.
+      #
       # **Note:** This operation only retrieves a group's data for the past two years. A request for data spanning more
       # than two years produces an empty response.
       #
@@ -86,6 +88,8 @@ module Peddler
 
       # Returns all financial events for the specified order. Orders from the last 48 hours might not be included in
       # financial events.
+      #
+      # **Note:** Deferred events don't appear in the `listFinancialEventsByOrderId` response until they are released.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
