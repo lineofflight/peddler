@@ -13,9 +13,9 @@ module Peddler
         #   supported EU marketplaces, the only account type is `Standard Orders`.
         attribute(:account_type, String, null: false, from: "accountType")
 
-        # @return [String] The identifier of the Amazon marketplace. This API supports the following marketplaces: DE,
-        #   FR, IT, ES, SE, NL, PL, and BE. For a list of possible marketplace IDs, refer to [Marketplace
-        #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        # @return [String] The identifier of the Amazon store. This API supports the following stores: DE, FR, IT, ES,
+        #   SE, NL, PL, and BE. For a list of possible store IDs, refer to [Store
+        #   Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
       end
     end
