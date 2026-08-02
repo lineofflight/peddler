@@ -202,6 +202,10 @@ module Peddler
         def self.parse: (Array[untyped]) -> PaymentMethodList
       end
 
+      class PaymentMethodTypeList < Array[untyped]
+        def self.parse: (Array[untyped]) -> PaymentMethodTypeList
+      end
+
       class Payout < Data
         def self.new: (current_status: String, id: String, partner_metadata: Peddler::APIs::Transfers20240601::PartnerMetadata, status_history: Array[Peddler::APIs::Transfers20240601::PayoutStatusEntry], ?account_tail: String?, ?amount: Peddler::Money?, ?creation_date: String?, ?payment_method: String?, ?payment_rail: String?, ?period: Peddler::APIs::Transfers20240601::Period?, ?related_identifiers: Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, ?trace_id: String?, ?type: String?) -> Peddler::APIs::Transfers20240601::Payout
                     | (String, String, Peddler::APIs::Transfers20240601::PartnerMetadata, Array[Peddler::APIs::Transfers20240601::PayoutStatusEntry], String?, Peddler::Money?, String?, String?, String?, Peddler::APIs::Transfers20240601::Period?, Array[Peddler::APIs::Transfers20240601::RelatedIdentifier]?, String?, String?) -> Peddler::APIs::Transfers20240601::Payout

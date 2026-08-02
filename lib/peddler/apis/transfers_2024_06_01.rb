@@ -25,33 +25,29 @@ module Peddler
         post(path, body:, rate_limit:, parser:)
       end
 
-      # Returns a list of payouts for the selling partner's account. Results can be filtered by `marketplaceIds`,
-      # `accountType`, date range (`createdAfter` and `createdBefore`), or a specific `payoutId`. By default, the API
-      # returns payouts for all available marketplaces and account types. Results are sorted in descending order of
-      # their creation dates.
+      # Retrieve a list of payouts for the selling partner's account. You can filter results by `marketplaceIds`,
+      # `accountType`, date range (`createdAfter` and `createdBefore`), or a specific `payoutId`. By default, the
+      # response includes payouts for all available marketplaces and account types. Results are grouped by the seller's
+      # account groups. Within each account group results are sorted by their creation date, with the most recent
+      # appearing first.
       #
       # @note This operation can make a static sandbox call.
-      # @param marketplace_ids [Array<String>] An optional query parameter that specifies the marketplaces from which to
-      #   retrieve payouts. The marketplace ID is a globally unique identifier assigned to each Amazon marketplace. When
-      #   provided, the response will only include payouts associated with the specified marketplaces. If omitted,
-      #   payouts from all applicable marketplaces may be returned. To find the marketplace ID for your region, refer to
-      #   [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # @param created_after [String] An optional query parameter to filter payouts created on or after this date-time.
-      #   When provided, the response will only include payouts with a creation date on or after the specified
-      #   date-time. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
-      #   date-time format. If omitted, no start date filter is applied.
-      # @param created_before [String] An optional query parameter to filter payouts created before this date-time. When
-      #   provided, the response will only include payouts with a creation date before the specified date-time
-      #   (exclusive). The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
-      #   date-time format. If omitted, no end date filter is applied.
-      # @param payout_id [String] An optional query parameter that specifies the payout to retrieve. When provided, the
-      #   response will only include the payout matching the specified identifier.
-      # @param account_type [String] An optional query parameter to filter payouts by a specific account type. When
-      #   provided, only payouts associated with the specified account type will be returned.
-      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
-      #   page size. To get the next page of results, call the operation with this token and include the same arguments
-      #   as the call that produced the token. To get a complete list, call this operation until `nextToken` is null.
-      #   Note that this operation can return empty pages.
+      # @param marketplace_ids [Array<String>] The Amazon stores from which to retrieve payouts. The Amazon store ID is
+      #   a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all
+      #   applicable stores. To find the Amazon store ID for your region, refer to [Store
+      #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+      # @param created_after [String] The response only includes payouts created on or after this date-time. The value
+      #   must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If
+      #   omitted, no start date filter is applied.
+      # @param created_before [String] The response only includes payouts created before this date-time. The value must
+      #   be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If
+      #   omitted, no end date filter is applied.
+      # @param payout_id [String] The response only includes the payout matching the specified identifier.
+      # @param account_type [String] The response only includes payouts associated with the specified account type.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the page size.
+      #   To get the next page of results, call the operation with this token and include the same arguments as the call
+      #   that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this
+      #   operation can return empty pages.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_payouts(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil,
@@ -72,9 +68,9 @@ module Peddler
       # Returns the list of payment methods for the seller, which can be filtered by method type.
       #
       # @note This operation can make a static sandbox call.
-      # @param marketplace_id [String] The identifier of the marketplace from which you want to retrieve payment
-      #   methods. For the list of possible marketplace identifiers, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param marketplace_id [String] The identifier of the Amazon store from which you want to retrieve payment
+      #   methods. For the list of store identifiers, refer to [Store
+      #   Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param payment_method_types [Array<String>] A comma-separated list of the payment method types you want to
       #   include in the response.
       # @param rate_limit [Float] Requests per second
@@ -93,14 +89,11 @@ module Peddler
       # parameters.
       #
       # @note This operation can make a static sandbox call.
-      # @param marketplace_ids [Array<String>] An optional query parameter that specifies the marketplaces from which to
-      #   retrieve expected payouts. The marketplace ID is a globally unique identifier assigned to each Amazon
-      #   marketplace. When provided, the response will only include expected payouts associated with the specified
-      #   marketplaces. If omitted, expected payouts from all applicable marketplaces may be returned. To find the
-      #   marketplace ID for your region, refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # @param account_type [String] An optional query parameter used to filter the response by a specific account type.
-      #   When provided, only expected payouts associated with the specified account type will be returned.
+      # @param marketplace_ids [Array<String>] The Amazon stores from which to retrieve payouts. The Amazon store ID is
+      #   a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all
+      #   applicable stores. To find the Amazon store ID for your region, refer to [Store
+      #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+      # @param account_type [String] The response only includes the accounts of the specified account type.
       # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
       #   page size. To get the next page of results, call the operation with this token and include the same arguments
       #   as the call that produced the token. To get a complete list, call this operation until `nextToken` is null.
