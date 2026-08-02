@@ -25,6 +25,8 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Fulfillment Inbound 2024-03-20: explicit `rate_limit` parameter on all operations; `discounts` field on `DeliveryWindowOption`
 - **Changed**: Invoices 2024-06-19: removed the `rate_limit` parameter from all operations
 - **Added**: Product Pricing 2022-05-01: `promotions` field on `Offer` and `SegmentedFeaturedOffer`, backed by new `Promotion`, `PromotionDiscount`, `PromotionSavings`, `PurchaseCondition`, `PurchaseRequirements`, and threshold types
+- **Removed**: Data Kiosk: removed the Sales and Traffic 2023-11-15 schema (`sales_and_traffic20231115`) and its generated types, deprecated by Amazon in favor of the 2024-04-24 version
+- **Added**: Transfers 2024-06-01: re-added the `PaymentMethodTypeList` type
 
 ## [5.5.0] - 2026-06-10
 
