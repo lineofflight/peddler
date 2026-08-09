@@ -13,6 +13,15 @@ module Generator
         Peddler::Acronyms.apply(camelized)
       end
 
+      # Convert an API parameter name to a Ruby identifier
+      # Amazon sometimes nests query parameters with dots (e.g., "carrierTracking.trackingNumber"),
+      # which underscore alone leaves as invalid Ruby.
+      # @param param_name [String] the parameter name
+      # @return [String] snake_case identifier safe to use as a method parameter
+      def parameter_name(param_name)
+        param_name.underscore.gsub(/[^a-z0-9_]/, "_")
+      end
+
       # Convert a property name to a Ruby attribute name
       # - Underscores the name
       # - Strips "is_" prefix from boolean attributes for idiomatic Ruby

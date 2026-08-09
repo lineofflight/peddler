@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../builders/operation"
+require_relative "../support/naming"
 
 module Generator
   class Path
@@ -27,7 +28,7 @@ module Generator
       # Use atomic grouping (?>...) to prevent ReDoS
       @path.gsub(/\{(?>([^}]+))\}/) do
         match = Regexp.last_match(1) or raise("No match found")
-        "\#{percent_encode(#{match.underscore})}"
+        "\#{percent_encode(#{Naming.parameter_name(match)})}"
       end
     end
 

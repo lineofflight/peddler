@@ -4,6 +4,7 @@ require "erb"
 require_relative "../support/config"
 require_relative "../support/formatter"
 require_relative "../support/file_writer"
+require_relative "../support/naming"
 require_relative "../builders/parameter_builder"
 
 module Generator
@@ -102,7 +103,7 @@ module Generator
 
         # Process parameters in the same order as Ruby generator
         params.each do |param|
-          param_name = param["name"]&.underscore
+          param_name = param["name"] && Naming.parameter_name(param["name"])
 
           # Special handling for rate_limit parameter
           if param_name == "rate_limit"
