@@ -12,9 +12,9 @@ module Peddler
     class VendorOrdersV1 < API
       # Returns a list of purchase orders created or changed during the time frame that you specify. You define the time
       # frame using the `createdAfter`, `createdBefore`, `changedAfter` and `changedBefore` parameters. The date range
-      # to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting
-      # `includeDetails` to false. You can then use the `getPurchaseOrder` operation to receive details for a specific
-      # purchase order.
+      # must not exceed 7 days and is available to pull data from the past 6 months. You can choose to get only the
+      # purchase order numbers by setting `includeDetails` to false. You can then use the `getPurchaseOrder` operation
+      # to receive details for a specific purchase order.
       #
       # @note This operation can make a static sandbox call.
       # @param limit [Integer] The limit to the number of records returned. Default value is 100 records.

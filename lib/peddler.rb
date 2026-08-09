@@ -64,6 +64,7 @@ module Peddler
     def solicitations_v1 = APIs::SolicitationsV1
     def supply_sources_2020_07_01 = APIs::SupplySources20200701
     def tokens_2021_03_01 = APIs::Tokens20210301
+    def tracking_2026_01_30 = APIs::Tracking20260130
     def transfers_2024_06_01 = APIs::Transfers20240601
     def uploads_2020_11_01 = APIs::Uploads20201101
     def vehicles_2024_11_01 = APIs::Vehicles20241101
@@ -121,6 +122,7 @@ module Peddler
     alias_method :solicitations, :solicitations_v1
     alias_method :supply_sources, :supply_sources_2020_07_01
     alias_method :tokens, :tokens_2021_03_01
+    alias_method :tracking, :tracking_2026_01_30
     alias_method :transfers, :transfers_2024_06_01
     alias_method :uploads, :uploads_2020_11_01
     alias_method :vehicles, :vehicles_2024_11_01

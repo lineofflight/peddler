@@ -248,12 +248,12 @@ module Peddler
       end
 
       class EventFilter < Data
-        def self.new: (event_filter_type: String, ?aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?) -> Peddler::APIs::NotificationsV1::EventFilter
-                    | (String, Peddler::APIs::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?) -> Peddler::APIs::NotificationsV1::EventFilter
-        def self.[]: (event_filter_type: String, ?aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?) -> Peddler::APIs::NotificationsV1::EventFilter
-                   | (String, Peddler::APIs::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?) -> Peddler::APIs::NotificationsV1::EventFilter
+        def self.new: (event_filter_type: String, ?aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?, ?tracking_identifier: Peddler::APIs::NotificationsV1::TrackingIdentifier?) -> Peddler::APIs::NotificationsV1::EventFilter
+                    | (String, Peddler::APIs::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?, Peddler::APIs::NotificationsV1::TrackingIdentifier?) -> Peddler::APIs::NotificationsV1::EventFilter
+        def self.[]: (event_filter_type: String, ?aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?, ?tracking_identifier: Peddler::APIs::NotificationsV1::TrackingIdentifier?) -> Peddler::APIs::NotificationsV1::EventFilter
+                   | (String, Peddler::APIs::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?, Peddler::APIs::NotificationsV1::TrackingIdentifier?) -> Peddler::APIs::NotificationsV1::EventFilter
 
-        def self.members: () -> [ :event_filter_type, :aggregation_settings, :marketplace_ids, :order_change_types ]
+        def self.members: () -> [ :event_filter_type, :aggregation_settings, :marketplace_ids, :order_change_types, :tracking_identifier ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::EventFilter
 
@@ -261,9 +261,10 @@ module Peddler
         attr_reader event_filter_type: String
         attr_reader marketplace_ids: Array[String]?
         attr_reader order_change_types: Array[untyped]?
+        attr_reader tracking_identifier: Peddler::APIs::NotificationsV1::TrackingIdentifier?
 
-        def members: () -> [ :event_filter_type, :aggregation_settings, :marketplace_ids, :order_change_types ]
-        def to_h: () -> { event_filter_type: String, aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, marketplace_ids: Array[String]?, order_change_types: Array[untyped]? }
+        def members: () -> [ :event_filter_type, :aggregation_settings, :marketplace_ids, :order_change_types, :tracking_identifier ]
+        def to_h: () -> { event_filter_type: String, aggregation_settings: Peddler::APIs::NotificationsV1::AggregationSettings?, marketplace_ids: Array[String]?, order_change_types: Array[untyped]?, tracking_identifier: Peddler::APIs::NotificationsV1::TrackingIdentifier? }
       end
 
       class GetDestinationResponse < Data
@@ -332,6 +333,40 @@ module Peddler
 
         def members: () -> [ :errors, :payload ]
         def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: Peddler::APIs::NotificationsV1::Subscription? }
+      end
+
+      class GetSubscriptionsPayload < Data
+        def self.new: (?next_token: String?, ?subscriptions: Array[Peddler::APIs::NotificationsV1::Subscription]?) -> Peddler::APIs::NotificationsV1::GetSubscriptionsPayload
+                    | (String?, Array[Peddler::APIs::NotificationsV1::Subscription]?) -> Peddler::APIs::NotificationsV1::GetSubscriptionsPayload
+        def self.[]: (?next_token: String?, ?subscriptions: Array[Peddler::APIs::NotificationsV1::Subscription]?) -> Peddler::APIs::NotificationsV1::GetSubscriptionsPayload
+                   | (String?, Array[Peddler::APIs::NotificationsV1::Subscription]?) -> Peddler::APIs::NotificationsV1::GetSubscriptionsPayload
+
+        def self.members: () -> [ :next_token, :subscriptions ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::GetSubscriptionsPayload
+
+        attr_reader next_token: String?
+        attr_reader subscriptions: Array[Peddler::APIs::NotificationsV1::Subscription]?
+
+        def members: () -> [ :next_token, :subscriptions ]
+        def to_h: () -> { next_token: String?, subscriptions: Array[Peddler::APIs::NotificationsV1::Subscription]? }
+      end
+
+      class GetSubscriptionsResponse < Data
+        def self.new: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::GetSubscriptionsPayload?) -> Peddler::APIs::NotificationsV1::GetSubscriptionsResponse
+                    | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::GetSubscriptionsPayload?) -> Peddler::APIs::NotificationsV1::GetSubscriptionsResponse
+        def self.[]: (?errors: Array[Peddler::APIs::NotificationsV1::Error]?, ?payload: Peddler::APIs::NotificationsV1::GetSubscriptionsPayload?) -> Peddler::APIs::NotificationsV1::GetSubscriptionsResponse
+                   | (Array[Peddler::APIs::NotificationsV1::Error]?, Peddler::APIs::NotificationsV1::GetSubscriptionsPayload?) -> Peddler::APIs::NotificationsV1::GetSubscriptionsResponse
+
+        def self.members: () -> [ :errors, :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::GetSubscriptionsResponse
+
+        attr_reader errors: Array[Peddler::APIs::NotificationsV1::Error]?
+        attr_reader payload: Peddler::APIs::NotificationsV1::GetSubscriptionsPayload?
+
+        def members: () -> [ :errors, :payload ]
+        def to_h: () -> { errors: Array[Peddler::APIs::NotificationsV1::Error]?, payload: Peddler::APIs::NotificationsV1::GetSubscriptionsPayload? }
       end
 
       class MarketplaceFilter < Data
@@ -460,6 +495,10 @@ module Peddler
         def to_h: () -> { destination_id: String, payload_version: String, subscription_id: String, processing_directive: Peddler::APIs::NotificationsV1::ProcessingDirective? }
       end
 
+      class Subscriptions < Array[Subscription]
+        def self.parse: (Array[untyped]) -> Subscriptions
+      end
+
       class TestNotification < Data
         def self.new: (payload_version: String, ?test_scenario: String?) -> Peddler::APIs::NotificationsV1::TestNotification
                     | (String, String?) -> Peddler::APIs::NotificationsV1::TestNotification
@@ -477,6 +516,43 @@ module Peddler
         def to_h: () -> { payload_version: String, test_scenario: String? }
       end
 
+      class TrackingFilter < Data
+        def self.new: (?tracking_identifier: Peddler::APIs::NotificationsV1::TrackingIdentifier?) -> Peddler::APIs::NotificationsV1::TrackingFilter
+                    | (Peddler::APIs::NotificationsV1::TrackingIdentifier?) -> Peddler::APIs::NotificationsV1::TrackingFilter
+        def self.[]: (?tracking_identifier: Peddler::APIs::NotificationsV1::TrackingIdentifier?) -> Peddler::APIs::NotificationsV1::TrackingFilter
+                   | (Peddler::APIs::NotificationsV1::TrackingIdentifier?) -> Peddler::APIs::NotificationsV1::TrackingFilter
+
+        def self.members: () -> [ :tracking_identifier ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::TrackingFilter
+
+        attr_reader tracking_identifier: Peddler::APIs::NotificationsV1::TrackingIdentifier?
+
+        def members: () -> [ :tracking_identifier ]
+        def to_h: () -> { tracking_identifier: Peddler::APIs::NotificationsV1::TrackingIdentifier? }
+      end
+
+      class TrackingIdentifier < Data
+        def self.new: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Hash[untyped, untyped]?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+                    | (String?, String?, Hash[untyped, untyped]?, String?, String?, String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+        def self.[]: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Hash[untyped, untyped]?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+                   | (String?, String?, Hash[untyped, untyped]?, String?, String?, String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+
+        def self.members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+
+        attr_reader acsin: String?
+        attr_reader aftn: String?
+        attr_reader carrier_tracking: Hash[untyped, untyped]?
+        attr_reader container_number: String?
+        attr_reader house_bill_of_lading_number: String?
+        attr_reader id: String?
+
+        def members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id ]
+        def to_h: () -> { acsin: String?, aftn: String?, carrier_tracking: Hash[untyped, untyped]?, container_number: String?, house_bill_of_lading_number: String?, id: String? }
+      end
+
       def create_destination: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def create_subscription: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
 
@@ -488,6 +564,7 @@ module Peddler
       def get_subscription: (String, ?payload_version: String?, ?rate_limit: Float) -> Peddler::Response
 
       def get_subscription_by_id: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def get_subscriptions: (Array[String], ?payload_version: String?, ?page_size: Integer?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
 
       def send_test_notification: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
     end
