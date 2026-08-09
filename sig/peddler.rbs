@@ -177,6 +177,10 @@ module Peddler
 
   def self.tokens_2021_03_01: () -> singleton(APIs::Tokens20210301)
 
+  def self.tracking: () -> singleton(APIs::Tracking20260130)
+
+  def self.tracking_2026_01_30: () -> singleton(APIs::Tracking20260130)
+
   def self.transfers: () -> singleton(APIs::Transfers20240601)
 
   def self.transfers_2024_06_01: () -> singleton(APIs::Transfers20240601)

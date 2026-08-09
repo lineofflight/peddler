@@ -24,6 +24,9 @@ module Peddler
 
         # @return [Array<OrderChangeTypeEnum>]
         attribute?(:order_change_types, Array, from: "orderChangeTypes")
+
+        # @return [TrackingIdentifier]
+        attribute?(:tracking_identifier, TrackingIdentifier, from: "trackingIdentifier")
       end
     end
   end

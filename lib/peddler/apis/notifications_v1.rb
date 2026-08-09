@@ -15,6 +15,39 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     class NotificationsV1 < API
+      # Returns information about subscriptions of the specified notification type. You can use this API to retrieve all
+      # subscriptions when multiple subscriptions exist for a notification type (for example, when using filter
+      # expressions).
+      #
+      # The operation returns all subscriptions for the caller's party.
+      #
+      # `payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns
+      # subscriptions across all payload versions.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param notification_types [Array<String>] A list of notification types to retrieve subscriptions for. Currently
+      #   limited to a single notification type per request. For more information about notification types, refer to the
+      #   [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param payload_version [String] The version of the payload object to be used in the notification.
+      # @param page_size [Integer] The maximum number of subscriptions to return per page. Minimum value is 30. Maximum
+      #   value is 100. Default is 30.
+      # @param next_token [String] A token to retrieve the next page of results. If this field is not empty in a
+      #   response, pass its value in the next request to retrieve the next page.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def get_subscriptions(notification_types, payload_version: nil, page_size: 30, next_token: nil, rate_limit: 1.0)
+        path = "/notifications/v1/subscriptions"
+        params = {
+          "notificationTypes" => stringify_array(notification_types),
+          "payloadVersion" => payload_version,
+          "pageSize" => page_size,
+          "nextToken" => next_token,
+        }.compact
+        parser = -> { GetSubscriptionsResponse }
+        get(path, params:, rate_limit:, parser:)
+      end
+
       # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
       # is an optional parameter. When you do not provide `payloadVersion`, the operation returns the latest payload
       # version subscription's information. You can use this API to get subscription information when you do not have a

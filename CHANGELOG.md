@@ -28,6 +28,8 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Product Pricing 2022-05-01: `promotions` field on `Offer` and `SegmentedFeaturedOffer`, backed by new `Promotion`, `PromotionDiscount`, `PromotionSavings`, `PurchaseCondition`, `PurchaseRequirements`, and threshold types
 - **Removed**: Data Kiosk: removed the Sales and Traffic 2023-11-15 schema (`sales_and_traffic20231115`) and its generated types, deprecated by Amazon in favor of the 2024-04-24 version
 - **Added**: Transfers 2024-06-01: re-added the `PaymentMethodTypeList` type
+- **Added**: Tracking 2026-01-30: new API for tracking shipments to and from Amazon-owned warehouses, fulfillment centers, and external warehouses (`get_shipment_tracking`)
+- **Added**: Notifications v1: `get_subscriptions` operation to list all subscriptions for a notification type; `tracking_identifier` field (new `TrackingFilter`/`TrackingIdentifier` types) on `EventFilter` for filtering shipment tracking milestone notifications; new `SHIPMENT_TRACKING_MILESTONE_CHANGED` notification type
 
 ## [5.5.0] - 2026-06-10
 

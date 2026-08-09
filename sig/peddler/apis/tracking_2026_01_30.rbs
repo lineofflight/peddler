@@ -1,0 +1,220 @@
+module Peddler
+  module APIs
+    class Tracking20260130 < API
+      class BoundedInterval < Data
+        def self.new: (end_time: String, start_time: String) -> Peddler::APIs::Tracking20260130::BoundedInterval
+                    | (String, String) -> Peddler::APIs::Tracking20260130::BoundedInterval
+        def self.[]: (end_time: String, start_time: String) -> Peddler::APIs::Tracking20260130::BoundedInterval
+                   | (String, String) -> Peddler::APIs::Tracking20260130::BoundedInterval
+
+        def self.members: () -> [ :end_time, :start_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::BoundedInterval
+
+        attr_reader end_time: String
+        attr_reader start_time: String
+
+        def members: () -> [ :end_time, :start_time ]
+        def to_h: () -> { end_time: String, start_time: String }
+      end
+
+      class CarrierTracking < Data
+        def self.new: (tracking_number: String, ?carrier_code: String?) -> Peddler::APIs::Tracking20260130::CarrierTracking
+                    | (String, String?) -> Peddler::APIs::Tracking20260130::CarrierTracking
+        def self.[]: (tracking_number: String, ?carrier_code: String?) -> Peddler::APIs::Tracking20260130::CarrierTracking
+                   | (String, String?) -> Peddler::APIs::Tracking20260130::CarrierTracking
+
+        def self.members: () -> [ :tracking_number, :carrier_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::CarrierTracking
+
+        attr_reader carrier_code: String?
+        attr_reader tracking_number: String
+
+        def members: () -> [ :tracking_number, :carrier_code ]
+        def to_h: () -> { tracking_number: String, carrier_code: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Tracking20260130::Error
+                    | (String, String, String?) -> Peddler::APIs::Tracking20260130::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Tracking20260130::Error
+                   | (String, String, String?) -> Peddler::APIs::Tracking20260130::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::Error
+
+        attr_reader code: String
+        attr_reader details: String?
+        attr_reader message: String
+
+        def members: () -> [ :code, :message, :details ]
+        def to_h: () -> { code: String, message: String, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::Tracking20260130::Error]) -> Peddler::APIs::Tracking20260130::ErrorList
+                    | (Array[Peddler::APIs::Tracking20260130::Error]) -> Peddler::APIs::Tracking20260130::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Tracking20260130::Error]) -> Peddler::APIs::Tracking20260130::ErrorList
+                   | (Array[Peddler::APIs::Tracking20260130::Error]) -> Peddler::APIs::Tracking20260130::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::Tracking20260130::Error]
+
+        def members: () -> [ :errors ]
+        def to_h: () -> { errors: Array[Peddler::APIs::Tracking20260130::Error] }
+      end
+
+      class GetShipmentTrackingResponse < Data
+        def self.new: (tracking_detail: Peddler::APIs::Tracking20260130::TrackingDetail) -> Peddler::APIs::Tracking20260130::GetShipmentTrackingResponse
+                    | (Peddler::APIs::Tracking20260130::TrackingDetail) -> Peddler::APIs::Tracking20260130::GetShipmentTrackingResponse
+        def self.[]: (tracking_detail: Peddler::APIs::Tracking20260130::TrackingDetail) -> Peddler::APIs::Tracking20260130::GetShipmentTrackingResponse
+                   | (Peddler::APIs::Tracking20260130::TrackingDetail) -> Peddler::APIs::Tracking20260130::GetShipmentTrackingResponse
+
+        def self.members: () -> [ :tracking_detail ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::GetShipmentTrackingResponse
+
+        attr_reader tracking_detail: Peddler::APIs::Tracking20260130::TrackingDetail
+
+        def members: () -> [ :tracking_detail ]
+        def to_h: () -> { tracking_detail: Peddler::APIs::Tracking20260130::TrackingDetail }
+      end
+
+      class TrackingDetail < Data
+        def self.new: (identifier: Peddler::APIs::Tracking20260130::TrackingIdentifier, milestone_history: Array[Peddler::APIs::Tracking20260130::TrackingMilestone], ?latest_milestone: Peddler::APIs::Tracking20260130::TrackingMilestone?, ?tracking_estimates: Array[Peddler::APIs::Tracking20260130::TrackingEstimate]?, ?tracking_url: String?) -> Peddler::APIs::Tracking20260130::TrackingDetail
+                    | (Peddler::APIs::Tracking20260130::TrackingIdentifier, Array[Peddler::APIs::Tracking20260130::TrackingMilestone], Peddler::APIs::Tracking20260130::TrackingMilestone?, Array[Peddler::APIs::Tracking20260130::TrackingEstimate]?, String?) -> Peddler::APIs::Tracking20260130::TrackingDetail
+        def self.[]: (identifier: Peddler::APIs::Tracking20260130::TrackingIdentifier, milestone_history: Array[Peddler::APIs::Tracking20260130::TrackingMilestone], ?latest_milestone: Peddler::APIs::Tracking20260130::TrackingMilestone?, ?tracking_estimates: Array[Peddler::APIs::Tracking20260130::TrackingEstimate]?, ?tracking_url: String?) -> Peddler::APIs::Tracking20260130::TrackingDetail
+                   | (Peddler::APIs::Tracking20260130::TrackingIdentifier, Array[Peddler::APIs::Tracking20260130::TrackingMilestone], Peddler::APIs::Tracking20260130::TrackingMilestone?, Array[Peddler::APIs::Tracking20260130::TrackingEstimate]?, String?) -> Peddler::APIs::Tracking20260130::TrackingDetail
+
+        def self.members: () -> [ :identifier, :milestone_history, :latest_milestone, :tracking_estimates, :tracking_url ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::TrackingDetail
+
+        attr_reader identifier: Peddler::APIs::Tracking20260130::TrackingIdentifier
+        attr_reader latest_milestone: Peddler::APIs::Tracking20260130::TrackingMilestone?
+        attr_reader milestone_history: Array[Peddler::APIs::Tracking20260130::TrackingMilestone]
+        attr_reader tracking_estimates: Array[Peddler::APIs::Tracking20260130::TrackingEstimate]?
+        attr_reader tracking_url: String?
+
+        def members: () -> [ :identifier, :milestone_history, :latest_milestone, :tracking_estimates, :tracking_url ]
+        def to_h: () -> { identifier: Peddler::APIs::Tracking20260130::TrackingIdentifier, milestone_history: Array[Peddler::APIs::Tracking20260130::TrackingMilestone], latest_milestone: Peddler::APIs::Tracking20260130::TrackingMilestone?, tracking_estimates: Array[Peddler::APIs::Tracking20260130::TrackingEstimate]?, tracking_url: String? }
+      end
+
+      class TrackingEstimate < Data
+        def self.new: (estimated_interval: Peddler::APIs::Tracking20260130::BoundedInterval, last_updated_time: String, type: String) -> Peddler::APIs::Tracking20260130::TrackingEstimate
+                    | (Peddler::APIs::Tracking20260130::BoundedInterval, String, String) -> Peddler::APIs::Tracking20260130::TrackingEstimate
+        def self.[]: (estimated_interval: Peddler::APIs::Tracking20260130::BoundedInterval, last_updated_time: String, type: String) -> Peddler::APIs::Tracking20260130::TrackingEstimate
+                   | (Peddler::APIs::Tracking20260130::BoundedInterval, String, String) -> Peddler::APIs::Tracking20260130::TrackingEstimate
+
+        def self.members: () -> [ :estimated_interval, :last_updated_time, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::TrackingEstimate
+
+        attr_reader estimated_interval: Peddler::APIs::Tracking20260130::BoundedInterval
+        attr_reader last_updated_time: String
+        attr_reader type: String
+
+        def members: () -> [ :estimated_interval, :last_updated_time, :type ]
+        def to_h: () -> { estimated_interval: Peddler::APIs::Tracking20260130::BoundedInterval, last_updated_time: String, type: String }
+      end
+
+      class TrackingIdentifier < Data
+        def self.new: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+                    | (String?, String?, Peddler::APIs::Tracking20260130::CarrierTracking?, String?, String?, String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+        def self.[]: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+                   | (String?, String?, Peddler::APIs::Tracking20260130::CarrierTracking?, String?, String?, String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+
+        def self.members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+
+        attr_reader acsin: String?
+        attr_reader aftn: String?
+        attr_reader carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?
+        attr_reader container_number: String?
+        attr_reader house_bill_of_lading_number: String?
+        attr_reader id: String?
+
+        def members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id ]
+        def to_h: () -> { acsin: String?, aftn: String?, carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, container_number: String?, house_bill_of_lading_number: String?, id: String? }
+      end
+
+      class TrackingMilestone < Data
+        def self.new: (occurred_at: String, status: Peddler::APIs::Tracking20260130::TrackingMilestoneStatus, ?location: Peddler::APIs::Tracking20260130::TrackingMilestoneLocation?) -> Peddler::APIs::Tracking20260130::TrackingMilestone
+                    | (String, Peddler::APIs::Tracking20260130::TrackingMilestoneStatus, Peddler::APIs::Tracking20260130::TrackingMilestoneLocation?) -> Peddler::APIs::Tracking20260130::TrackingMilestone
+        def self.[]: (occurred_at: String, status: Peddler::APIs::Tracking20260130::TrackingMilestoneStatus, ?location: Peddler::APIs::Tracking20260130::TrackingMilestoneLocation?) -> Peddler::APIs::Tracking20260130::TrackingMilestone
+                   | (String, Peddler::APIs::Tracking20260130::TrackingMilestoneStatus, Peddler::APIs::Tracking20260130::TrackingMilestoneLocation?) -> Peddler::APIs::Tracking20260130::TrackingMilestone
+
+        def self.members: () -> [ :occurred_at, :status, :location ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::TrackingMilestone
+
+        attr_reader location: Peddler::APIs::Tracking20260130::TrackingMilestoneLocation?
+        attr_reader occurred_at: String
+        attr_reader status: Peddler::APIs::Tracking20260130::TrackingMilestoneStatus
+
+        def members: () -> [ :occurred_at, :status, :location ]
+        def to_h: () -> { occurred_at: String, status: Peddler::APIs::Tracking20260130::TrackingMilestoneStatus, location: Peddler::APIs::Tracking20260130::TrackingMilestoneLocation? }
+      end
+
+      class TrackingMilestoneAddress < Data
+        def self.new: (?city: String?, ?country_code: String?, ?region: String?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneAddress
+                    | (String?, String?, String?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneAddress
+        def self.[]: (?city: String?, ?country_code: String?, ?region: String?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneAddress
+                   | (String?, String?, String?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneAddress
+
+        def self.members: () -> [ :city, :country_code, :region ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::TrackingMilestoneAddress
+
+        attr_reader city: String?
+        attr_reader country_code: String?
+        attr_reader region: String?
+
+        def members: () -> [ :city, :country_code, :region ]
+        def to_h: () -> { city: String?, country_code: String?, region: String? }
+      end
+
+      class TrackingMilestoneLocation < Data
+        def self.new: (?address: Peddler::APIs::Tracking20260130::TrackingMilestoneAddress?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneLocation
+                    | (Peddler::APIs::Tracking20260130::TrackingMilestoneAddress?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneLocation
+        def self.[]: (?address: Peddler::APIs::Tracking20260130::TrackingMilestoneAddress?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneLocation
+                   | (Peddler::APIs::Tracking20260130::TrackingMilestoneAddress?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneLocation
+
+        def self.members: () -> [ :address ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::TrackingMilestoneLocation
+
+        attr_reader address: Peddler::APIs::Tracking20260130::TrackingMilestoneAddress?
+
+        def members: () -> [ :address ]
+        def to_h: () -> { address: Peddler::APIs::Tracking20260130::TrackingMilestoneAddress? }
+      end
+
+      class TrackingMilestoneStatus < Data
+        def self.new: (code: String, description: String, ?sub_code: String?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneStatus
+                    | (String, String, String?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneStatus
+        def self.[]: (code: String, description: String, ?sub_code: String?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneStatus
+                   | (String, String, String?) -> Peddler::APIs::Tracking20260130::TrackingMilestoneStatus
+
+        def self.members: () -> [ :code, :description, :sub_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::TrackingMilestoneStatus
+
+        attr_reader code: String
+        attr_reader description: String
+        attr_reader sub_code: String?
+
+        def members: () -> [ :code, :description, :sub_code ]
+        def to_h: () -> { code: String, description: String, sub_code: String? }
+      end
+
+      def get_shipment_tracking: (?id: String?, ?acsin: String?, ?aftn: String?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?carrier_tracking_tracking_number: String?, ?carrier_tracking_carrier_code: String?, ?accept_language: String?) -> Peddler::Response
+    end
+  end
+end

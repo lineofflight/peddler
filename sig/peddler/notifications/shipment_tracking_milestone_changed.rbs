@@ -1,0 +1,26 @@
+module Peddler
+  module Notifications
+    module ShipmentTrackingMilestoneChanged
+      class Notification < Data
+        def self.new: (payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+                    | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+        def self.[]: (payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+                   | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+
+        def self.members: () -> [ :payload ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+
+        attr_reader payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload
+
+        def members: () -> [ :payload ]
+        def to_h: () -> { payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload }
+      end
+
+      class Payload < Data
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+    end
+  end
+end
