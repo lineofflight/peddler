@@ -130,5 +130,26 @@ module Generator
 
       assert_includes(method_def, 'included_data: ["summaries"]')
     end
+
+    def test_dotted_parameter_becomes_valid_ruby_identifier
+      operation_data = {
+        "operationId" => "getShipmentTracking",
+        "description" => "Track a shipment",
+        "parameters" => [
+          {
+            "name" => "carrierTracking.trackingNumber",
+            "in" => "query",
+            "type" => "string",
+            "required" => false,
+          },
+        ],
+      }
+
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
+
+      assert_includes(operation.method_definition, "carrier_tracking_tracking_number: nil")
+      # The query string still uses Amazon's dotted name
+      assert_equal({ "carrierTracking.trackingNumber" => "carrier_tracking_tracking_number" }, operation.query_params)
+    end
   end
 end

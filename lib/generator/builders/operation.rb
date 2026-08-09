@@ -62,7 +62,7 @@ module Generator
           items_type = param.dig("items", "type")
           param_type = items_type ? "Array<#{items_type.capitalize}>" : "Array"
         end
-        param_name = param["name"].underscore
+        param_name = Naming.parameter_name(param["name"])
         param_description = param["description"]&.gsub(/\s+/, " ")
         param_description = convert_html_links_to_yard(param_description) if param_description
         param_description = convert_doc_links_to_full_url(param_description) if param_description
@@ -87,7 +87,7 @@ module Generator
     def method_definition
       method_name = operation["operationId"].underscore
 
-      required_params = parameters.select { |p| p["required"] }&.map { |p| p["name"].underscore } || []
+      required_params = parameters.select { |p| p["required"] }&.map { |p| Naming.parameter_name(p["name"]) } || []
       optional_params = parameters.reject do |p|
         p["required"]
       end.map do |p|
@@ -104,7 +104,7 @@ module Generator
           default_value || "nil"
         end
 
-        "#{p["name"].underscore}: #{formatted_default}"
+        "#{Naming.parameter_name(p["name"])}: #{formatted_default}"
       end
       params = required_params + optional_params
 
@@ -121,13 +121,13 @@ module Generator
 
     def body_param_name
       body_param = parameters.find { |p| p["in"] == "body" }
-      body_param["name"].underscore if body_param
+      Naming.parameter_name(body_param["name"]) if body_param
     end
 
     def query_params
       hash = {}
       parameters.select { |p| p["in"] == "query" }.each do |p|
-        param_name = p["name"].underscore
+        param_name = Naming.parameter_name(p["name"])
         value = param_name
 
         # If parameter is array type, add array handling

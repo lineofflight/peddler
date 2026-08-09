@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. This projec
 ### Fixed
 
 - Fix compatibility of `APIRetriableTest` with `http` gem version 5.x
+- Sanitize API parameter names that are not valid Ruby identifiers (for example Amazon's dotted query parameters, `carrierTracking.trackingNumber`), which broke code generation; the query string still sends Amazon's original name
 
 ### Models
 
