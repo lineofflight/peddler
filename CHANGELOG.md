@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file. This projec
 ### Added
 
 - Add `base_url` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
+- Support pattern matching on errors by HTTP status, e.g. `case error in {status: 500..599}`
+
+### Changed
+
+- Improve error messages for degraded responses: keep Amazon's message when the code cannot become a class name, and fall back to the status line (e.g. `"429 Too Many Requests"`) when the body cannot be parsed
 
 ### Fixed
 

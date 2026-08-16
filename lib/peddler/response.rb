@@ -68,10 +68,7 @@ module Peddler
     # @return [void]
     # @raise [Peddler::Error] if the response indicates an error
     def raise_for_status!
-      return if status < 400
-
-      error = Error.build(__getobj__)
-      raise error || Error.new(status, __getobj__)
+      raise Error.build(__getobj__) if status >= 400
     end
   end
 end
