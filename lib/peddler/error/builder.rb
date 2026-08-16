@@ -14,7 +14,7 @@ module Peddler
       end
 
       def build
-        error_class.new(message || response.status.to_s, response)
+        error_class.new(message, response)
       end
 
       private
@@ -44,7 +44,7 @@ module Peddler
       end
 
       def message
-        extracted[1]
+        extracted[1] || response.status.to_s
       end
 
       # Code and message always come from the same body shape
