@@ -174,6 +174,41 @@ module Peddler
       assert_nil(api.perform_cannot_sandbox_operation)
     end
 
+    def test_exhausted_retries_raise_peddler_error
+      last_response = HTTP::Response.new(
+        body: JSON.dump({ "errors" => [{ "code" => "QuotaExceeded", "message" => "You exceeded your quota." }] }),
+        headers: { "Content-Type" => "application/json" },
+        status: 429,
+        version: nil,
+        request: nil,
+      )
+      err = HTTP::OutOfRetriesError.new("GET failed")
+      err.response = last_response
+      raising_http = Object.new
+      raising_http.define_singleton_method(:get) { |*| raise err }
+
+      @api.stub(:http, raising_http) do
+        error = assert_raises(Peddler::Errors::QuotaExceeded) do
+          @api.send(:get, "/test")
+        end
+
+        assert_equal(429, error.status)
+        assert_kind_of(HTTP::OutOfRetriesError, error.cause)
+      end
+    end
+
+    def test_exhausted_retries_without_response_reraise
+      err = HTTP::OutOfRetriesError.new("GET failed")
+      raising_http = Object.new
+      raising_http.define_singleton_method(:get) { |*| raise err }
+
+      @api.stub(:http, raising_http) do
+        assert_raises(HTTP::OutOfRetriesError) do
+          @api.send(:get, "/test")
+        end
+      end
+    end
+
     def test_server_errors_always_raise
       # Mock HTTP client to return 500 error
       mock_http = Minitest::Mock.new

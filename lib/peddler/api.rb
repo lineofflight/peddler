@@ -132,6 +132,10 @@ module Peddler
       http_response = http(rate_limit:).send(method, uri, **options)
 
       Response.wrap(http_response, parser:)
+    rescue HTTP::OutOfRetriesError => e
+      raise e unless e.response
+
+      raise Error.build(e.response)
     end
 
     def cannot_sandbox!
