@@ -1,13 +1,14 @@
 module Peddler
   class Error < StandardError
-    @response: HTTP::Response?
+    attr_reader response: HTTP::Response?
 
-    def self.build: (HTTP::Response response) -> Error?
+    def self.build: (HTTP::Response response) -> Error
+
+    def status: () -> Integer?
+    def deconstruct_keys: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
 
     private
 
-    def self.normalize_class_name: (String code) -> String
-    def self.parse_xml_error: (HTTP::Response response) -> Hash[String, untyped]
     def initialize: (?String | Integer | nil msg, ?HTTP::Response | nil response) -> void
   end
 end

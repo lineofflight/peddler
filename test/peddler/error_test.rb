@@ -104,19 +104,77 @@ module Peddler
       assert_kind_of(Errors::NotFound, error)
     end
 
-    def test_invalid_class_name
+    def test_invalid_class_name_falls_back_to_base_error
       response = mock_http_response(body: '{"errors":[{"code":"400","message":"Invalid Input"}]}')
       error = Error.build(response)
 
-      assert_nil(error)
+      assert_instance_of(Error, error)
+      assert_equal("Invalid Input", error.message)
     end
 
-    def test_xml_error_fallback
-      # Test that invalid XML gracefully returns nil when nokogiri can't parse it
+    def test_deconstruct_keys_returns_status
+      response = mock_http_response(
+        body: '{"errors":[{"code":"QuotaExceeded","message":"You exceeded your quota."}]}',
+        status: 429,
+      )
+      error = Error.build(response)
+
+      assert_equal({ status: 429 }, error.deconstruct_keys(nil))
+    end
+
+    def test_deconstruct_keys_without_response
+      error = Error.new("boom")
+
+      assert_nil(error.deconstruct_keys(nil)[:status])
+    end
+
+    def test_status_returns_http_status_code_as_integer
+      response = mock_http_response(
+        body: '{"errors":[{"code":"QuotaExceeded","message":"You exceeded your quota."}]}',
+        status: 429,
+      )
+      error = Error.build(response)
+
+      assert_instance_of(Integer, error.status)
+      assert_equal(429, error.status)
+    end
+
+    def test_status_without_response
+      error = Error.new("boom")
+
+      assert_nil(error.status)
+    end
+
+    def test_pattern_matches_status_range
+      response = mock_http_response(
+        body: '{"errors":[{"code":"InternalFailure","message":"We encountered an internal error."}]}',
+        status: 503,
+      )
+      error = Error.build(response)
+
+      matched = case error
+                in status: 500..599 then true
+                else false
+                end
+
+      assert(matched)
+    end
+
+    def test_unparseable_body_falls_back_to_base_error_with_status_message
       response = mock_http_response(body: "invalid xml content")
       error = Error.build(response)
 
-      assert_nil(error)
+      assert_instance_of(Error, error)
+      assert_equal("400 Bad Request", error.message)
+    end
+
+    def test_non_object_json_body_falls_back_to_base_error
+      # A body can be valid JSON without being an object, e.g. a bare number from a proxy
+      response = mock_http_response(body: "503", status: 503)
+      error = Error.build(response)
+
+      assert_instance_of(Error, error)
+      assert_equal("503 Service Unavailable", error.message)
     end
 
     private

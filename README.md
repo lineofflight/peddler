@@ -180,28 +180,26 @@ orders = response.dig("payload", "orders")
 
 ### Error Handling
 
-All HTTP errors (4xx and 5xx) raise `Peddler::Error` exceptions:
+All HTTP errors (4xx and 5xx) raise `Peddler::Error`. Errors expose Amazon's `message` and the underlying `response`, and support pattern matching on `status`:
 
 ```ruby
 begin
   response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
-  orders = response.parse["payload"]["orders"]
 rescue Peddler::Error => e
-  puts "API Error: #{e.message}"
-  puts "Status: #{e.response.status}"
-
-  # Handle retries for server errors
-  if e.response.status >= 500
-    # Retry logic here
+  case e
+  in status: 429
+    backoff_and_retry
+  in status: 500..599
+    retry_later
+  else
+    raise
   end
 end
 ```
 
 #### Rescuing Specific Errors
 
-Peddler raises specific pre-defined subclasses for common Amazon error codes (e.g., `Peddler::Errors::QuotaExceeded`, `Peddler::Errors::NotFound`, `Peddler::Errors::InvalidInput`).
-
-If Amazon returns an undocumented or newly introduced error code, Peddler dynamically instantiates a matching subclass under the `Peddler::Errors` namespace at runtime. To rescue a new specific subclass without causing a boot-time `NameError` in your application, define the class beforehand in an initializer:
+Peddler raises a specific subclass per Amazon error code and predefines one for every code we have seen Amazon return (e.g., `Peddler::Errors::QuotaExceeded`, `Peddler::Errors::InvalidInput`). Unknown codes get a subclass created at runtime; this is rare, and worth [reporting](https://github.com/lineofflight/peddler/issues) so we can predefine it. To rescue one without a boot-time `NameError`, define it beforehand:
 
 ```ruby
 # config/initializers/peddler_errors.rb
@@ -211,7 +209,6 @@ module Peddler
   end
 end
 ```
-
 ### Sandbox and custom endpoints
 
 Switch a client to Amazon's hosted sandbox with `sandbox`:

@@ -1,0 +1,24 @@
+module Peddler
+  class Error < StandardError
+    class Builder
+      @response: HTTP::Response
+      @payload: Hash[String, untyped]?
+      @extracted: [untyped, untyped]?
+
+      attr_reader response: HTTP::Response
+
+      def initialize: (HTTP::Response response) -> void
+      def build: () -> Error
+
+      private
+
+      def payload: () -> Hash[String, untyped]
+      def code: () -> untyped
+      def message: () -> untyped
+      def extracted: () -> [untyped, untyped]
+      def error_class: () -> Class
+      def class_name: () -> untyped
+      def xml_payload: () -> Hash[String, untyped]
+    end
+  end
+end
