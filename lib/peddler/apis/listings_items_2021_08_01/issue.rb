@@ -10,25 +10,6 @@ module Peddler
       # An issue with a listings item.
       Issue = Structure.new do
         # @return [Array<String>] List of issue categories.
-        #
-        # Possible values:
-        #
-        # * 'INVALID_ATTRIBUTE' - Indicating an invalid attribute in the listing.
-        #
-        # * 'MISSING_ATTRIBUTE' - Highlighting a missing attribute in the listing.
-        #
-        # * 'INVALID_IMAGE' - Signifying an invalid image in the listing.
-        #
-        # * 'MISSING_IMAGE' - Noting the absence of an image in the listing.
-        #
-        # * 'INVALID_PRICE' - Pertaining to issues with the listing's price-related attributes.
-        #
-        # * 'MISSING_PRICE' - Pointing out the absence of a price attribute in the listing.
-        #
-        # * 'DUPLICATE' - Identifying listings with potential duplicate problems, such as this ASIN potentially being a
-        #   duplicate of another ASIN.
-        #
-        # * 'QUALIFICATION_REQUIRED' - Indicating that the listing requires qualification-related approval.
         attribute(:categories, [String], null: false)
 
         # @return [String] An issue code that identifies the type of issue.
