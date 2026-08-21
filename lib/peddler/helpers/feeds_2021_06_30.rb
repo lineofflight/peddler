@@ -28,7 +28,7 @@ module Peddler
       # @param download_url [String] The signed url from the `get_feed_document` response.
       # @return [HTTP::Response] The API response containing the feed result document
       def download_result_feed_document(download_url)
-        http_response = HTTP.get(download_url)
+        http_response = HTTP.use(:auto_inflate).get(download_url)
         Response.wrap(http_response)
       end
     end

@@ -98,7 +98,7 @@ http_interactions:
           - max-age=47474747; includeSubDomains; preload
       body:
         encoding: UTF-8
-        string: '{"reportDocumentId":"amzn1.spdoc.1.4.eu.123456","url":"https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123456"}'
+        string: '{"reportDocumentId":"amzn1.spdoc.1.4.eu.123456","url":"https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123456","compressionAlgorithm":"GZIP"}'
     recorded_at: Mon, 02 Jun 2025 10:17:37 GMT
   - request:
       method: get
@@ -137,19 +137,35 @@ http_interactions:
         X-Amz-Version-Id:
           - ND0CQm0HJqgRMWiy46hbg1oV.R4W0eL1
         Content-Encoding:
-          - identity
+          - gzip
         Accept-Ranges:
           - bytes
         Content-Type:
           - text/plain; charset=Cp1252
         Content-Length:
-          - "2847"
+          - "689"
         Server:
           - AmazonS3
         Connection:
           - close
       body:
-        encoding: Windows-1252
-        string: "item-name\titem-description\tlisting-id\tseller-sku\tprice\tquantity\topen-date\timage-url\titem-is-marketplace\tproduct-id-type\tzshop-shipping-fee\titem-note\titem-condition\tzshop-category1\tzshop-browse-path\tzshop-storefront-feature\tasin1\tasin2\tasin3\twill-ship-internationally\texpedited-shipping\tzshop-boldface\tproduct-id\tbid-for-featured-placement\tadd-delete\tpending-quantity\tfulfillment-channel\nSample Listing Title One\tTest item description\t1234567890A\tSKU-001-TEST\t25.99\t5\t2024-01-15 10:00:00 UTC\t\ty\t1\t\tSample item note\t2\t\t\t\t1234567890\t\t\t\t\t\t1234567890\t\t\t0\tDEFAULT\nSample Listing Title Two\tAnother test description\t1234567890B\tSKU-002-TEST\t19.50\t3\t2024-01-16 11:00:00 UTC\t\ty\t1\t\t\t11\t\t\t\t2345678901\t\t\t\t\t\t2345678901\t\t\t0\tDEFAULT\nSample Listing Title Three\tThird test item\t1234567890C\tSKU-003-TEST\t35.00\t2\t2024-01-17 12:00:00 UTC\t\ty\t1\t\t\t2\t\t\t\t3456789012\t\t\t\t\t\t3456789012\t\t\t0\tDEFAULT\nSample Listing Title Four\tFourth test description\t1234567890D\tSKU-004-TEST\t12.99\t10\t2024-01-18 13:00:00 UTC\t\ty\t1\t\t\t1\t\t\t\t4567890123\t\t\t\t\t\t4567890123\t\t\t0\tDEFAULT\nSample Listing Title Five\tFifth sample item\t1234567890E\tSKU-005-TEST\t45.00\t1\t2024-01-19 14:00:00 UTC\t\ty\t1\t\t\t2\t\t\t\t5678901234\t\t\t\t\t\t5678901234\t\t\t0\tDEFAULT\nSample Listing Title Six\tSixth test item\t1234567890F\tSKU-006-TEST\t22.75\t7\t2024-01-20 15:00:00 UTC\t\ty\t1\t\tTest note\t11\t\t\t\t6789012345\t\t\t\t\t\t6789012345\t\t\t0\tDEFAULT\nSample Listing Title Seven\tSeventh description\t1234567890G\tSKU-007-TEST\t18.99\t4\t2024-01-21 16:00:00 UTC\t\ty\t1\t\t\t2\t\t\t\t7890123456\t\t\t\t\t\t7890123456\t\t\t0\tDEFAULT\nSample Listing Title Eight\tEighth test item\t1234567890H\tSKU-008-TEST\t39.99\t6\t2024-01-22 17:00:00 UTC\t\ty\t1\t\t\t1\t\t\t\t8901234567\t\t\t\t\t\t8901234567\t\t\t0\tDEFAULT\nSample Listing Title Nine\tNinth sample item\t1234567890I\tSKU-009-TEST\t29.50\t2\t2024-01-23 18:00:00 UTC\t\ty\t1\t\t\t11\t\t\t\t9012345678\t\t\t\t\t\t9012345678\t\t\t0\tDEFAULT\nSample Listing Title Ten\tTenth test description\t1234567890J\tSKU-010-TEST\t15.75\t8\t2024-01-24 19:00:00 UTC\t\ty\t1\t\t\t2\t\t\t\t0123456789\t\t\t\t\t\t0123456789\t\t\t0\tDEFAULT\n"
+        encoding: ASCII-8BIT
+        base64_string: |
+          H4sIAN8ZiGoAA4XUXXKbMBAA4OftKXQBeZAAY/qWJnb/Mu2D8QGIEUYTLKgQ
+          SdzTV3+GUNvBY2tYD6w+7UpwxY5Y5EcG3FwVrNtL3ireCKh5p7g4YF5Ax+qa
+          Sdw999BKvmfwp8+F4uoETcsELnKlnz/mB4Z7WbtMvMPHXD4z1da5fqCVTdHv
+          lU6G1all8LermhZ3FW9bM0fJPEA0yl/tG1FwC3H37vUkh0aeiI+fZPPaMdzm
+          qjpnU41kpWyE0vly1UsGeccFsSO1YwivvK7tvJgLxaTIzRR5XZ+AvbVMz8iK
+          gXWeqamLcroIeNILKRt5nqjAdplHJhTkRaHrWDO9EF2cwixvKFfZ16UGmPvw
+          vsqFYPWnbX5sa4YeXblRxpWOfgsGGesUMrVA79tCaBjFy2SVBnew/bnDQUBw
+          tt5mQONFmkIMNKAR1n+SGJHgc2C+aJfdA5yAAPjZbFpbbAr6MyYFuIgDeFhv
+          7naP2XVq9trAnU5VMYmUIV/XfvFa6rQkXcQBhKN2iQi50AIxAwxJiONN4jle
+          JfXmyiouC8czS3/nuveu0LnCeBEEuiiDK0GEXrps1QYFdaxJPMPaNL0EM6jq
+          o6o9eF3kq0ZNj0kw8laIhFfKZjiDJnS8STzH4y8MNrzUum7cMe9gaw+LHSyy
+          ZSOjK0UkulG2gRE51ySecW35G+jfuWj/oTYetfQngi6SGJIBRQNE4guUPWb2
+          KLjNNmhix5vEczz2wgTYUROvt/SrRya+pSvT0mhEEkSWNyo3SJaONolnaGt+
+          qBTY8XrxvnnXyh+E1LiWo4siktzYaQMjca5JPOP6xfWrTg83d9p370p9U+2L
+          YzygNERkdevFMThWDjaJ514cupOZ7eMH5/OHw5HANzM2O2414iJE0hvNHCip
+          s03i0fYP/of2H6IHAAA=
     recorded_at: Mon, 02 Jun 2025 10:17:37 GMT
 recorded_with: VCR 6.3.1

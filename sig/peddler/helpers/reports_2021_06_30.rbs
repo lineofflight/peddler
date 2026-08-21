@@ -4,7 +4,7 @@ module Peddler
       def download_report_document: (String report_document_id_or_url) -> Peddler::Response
 
       # This method is expected to be defined by the API class that includes this helper
-      def get_report_document: (String report_document_id) -> Peddler::Response
+      def get_report_document: (String report_document_id, ?enable_content_encoding_url_header: bool?) -> Peddler::Response
 
       private
 

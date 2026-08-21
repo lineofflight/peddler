@@ -82,6 +82,14 @@ module Peddler
         assert_predicate(res.status, :success?)
         assert(res.body)
       end
+
+      def test_download_compressed_result_feed_document
+        url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/321"
+        res = download_result_feed_document(url)
+
+        assert_predicate(res.status, :success?)
+        assert_equal("A34PPN1ZLYCOGT", JSON.parse(res.to_s).dig("header", "sellerId"))
+      end
     end
   end
 end

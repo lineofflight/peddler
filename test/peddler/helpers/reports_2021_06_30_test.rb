@@ -26,7 +26,7 @@ module Peddler
         assert_predicate(res.status, :success?)
       end
 
-      def test_download_compressed_report_document
+      def test_download_compressed_report_document_with_url
         url = "https://tortuga-prod-na.s3-external-1.amazonaws.com/123456"
         res = api.download_report_document(url)
 
@@ -42,6 +42,14 @@ module Peddler
         data = CSV.parse(gzip, **opts)
 
         assert_kind_of(CSV::Table, data)
+      end
+
+      def test_download_compressed_report_document_with_document_id
+        document_id = "amzn1.spdoc.1.4.eu.123456"
+        res = api.download_report_document(document_id)
+
+        assert_predicate(res.status, :success?)
+        assert_match(/\Aitem-name\titem-description/, res.to_s)
       end
 
       def test_download_report_document_client_error
