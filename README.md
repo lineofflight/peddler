@@ -6,7 +6,7 @@ Peddler is automatically generated from the latest Open API models provided by A
 
 Peddler covers all SP-API endpoints, reports, notifications, and feeds. It's also lightweight: thanks to Zeitwerk, only the code you use gets loaded.
 
-<img src="https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 830px" />
+<img src="https://github.com/lineofflight/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 830px" />
 
 ## Installation
 
