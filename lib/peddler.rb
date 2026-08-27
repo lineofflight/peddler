@@ -52,6 +52,7 @@ module Peddler
     def product_pricing_v0 = APIs::ProductPricingV0
     def product_pricing_2022_05_01 = APIs::ProductPricing20220501
     def product_type_definitions_2020_09_01 = APIs::ProductTypeDefinitions20200901
+    def promotions_2025_12_01 = APIs::Promotions20251201
     def replenishment_2022_11_07 = APIs::Replenishment20221107
     def reports_2021_06_30 = APIs::Reports20210630
     def sales_v1 = APIs::SalesV1
@@ -111,6 +112,7 @@ module Peddler
     alias_method :product_fees, :product_fees_v0
     alias_method :product_pricing, :product_pricing_2022_05_01
     alias_method :product_type_definitions, :product_type_definitions_2020_09_01
+    alias_method :promotions, :promotions_2025_12_01
     alias_method :replenishment, :replenishment_2022_11_07
     alias_method :reports, :reports_2021_06_30
     alias_method :sales, :sales_v1

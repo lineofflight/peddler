@@ -25,12 +25,12 @@ module Peddler
       end
 
       class DetailsByPromotion < Data
-        def self.new: (created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, ?amount_spent: Float?, ?amount_spent_currency_code: String?, ?funding_agreement_id: String?, ?glance_views: Integer?, ?merchant_id: String?, ?vendor_code: String?) -> Peddler::Reports::Promotion::DetailsByPromotion
-                    | (Time, String, Time, Array[Peddler::Reports::Promotion::DetailsByProduct], Time, String, String, String, Float, String, Time, String, String, Integer, Float?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::Promotion::DetailsByPromotion
-        def self.[]: (created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, ?amount_spent: Float?, ?amount_spent_currency_code: String?, ?funding_agreement_id: String?, ?glance_views: Integer?, ?merchant_id: String?, ?vendor_code: String?) -> Peddler::Reports::Promotion::DetailsByPromotion
-                   | (Time, String, Time, Array[Peddler::Reports::Promotion::DetailsByProduct], Time, String, String, String, Float, String, Time, String, String, Integer, Float?, String?, String?, Integer?, String?, String?) -> Peddler::Reports::Promotion::DetailsByPromotion
+        def self.new: (created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, ?amount_spent: Float?, ?amount_spent_currency_code: String?, ?funding_agreement_id: String?, ?glance_views: Integer?, ?merchant_id: String?, ?promotions_api_mapping_id: String?, ?vendor_code: String?) -> Peddler::Reports::Promotion::DetailsByPromotion
+                    | (Time, String, Time, Array[Peddler::Reports::Promotion::DetailsByProduct], Time, String, String, String, Float, String, Time, String, String, Integer, Float?, String?, String?, Integer?, String?, String?, String?) -> Peddler::Reports::Promotion::DetailsByPromotion
+        def self.[]: (created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, ?amount_spent: Float?, ?amount_spent_currency_code: String?, ?funding_agreement_id: String?, ?glance_views: Integer?, ?merchant_id: String?, ?promotions_api_mapping_id: String?, ?vendor_code: String?) -> Peddler::Reports::Promotion::DetailsByPromotion
+                   | (Time, String, Time, Array[Peddler::Reports::Promotion::DetailsByProduct], Time, String, String, String, Float, String, Time, String, String, Integer, Float?, String?, String?, Integer?, String?, String?, String?) -> Peddler::Reports::Promotion::DetailsByPromotion
 
-        def self.members: () -> [ :created_date_time, :creation_channel, :end_date_time, :included_products, :last_updated_date_time, :marketplace_id, :promotion_id, :promotion_name, :revenue, :revenue_currency_code, :start_date_time, :status, :type, :units_sold, :amount_spent, :amount_spent_currency_code, :funding_agreement_id, :glance_views, :merchant_id, :vendor_code ]
+        def self.members: () -> [ :created_date_time, :creation_channel, :end_date_time, :included_products, :last_updated_date_time, :marketplace_id, :promotion_id, :promotion_name, :revenue, :revenue_currency_code, :start_date_time, :status, :type, :units_sold, :amount_spent, :amount_spent_currency_code, :funding_agreement_id, :glance_views, :merchant_id, :promotions_api_mapping_id, :vendor_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::Promotion::DetailsByPromotion
 
@@ -47,6 +47,7 @@ module Peddler
         attr_reader merchant_id: String?
         attr_reader promotion_id: String
         attr_reader promotion_name: String
+        attr_reader promotions_api_mapping_id: String?
         attr_reader revenue: Float
         attr_reader revenue_currency_code: String
         attr_reader start_date_time: Time
@@ -55,8 +56,8 @@ module Peddler
         attr_reader units_sold: Integer
         attr_reader vendor_code: String?
 
-        def members: () -> [ :created_date_time, :creation_channel, :end_date_time, :included_products, :last_updated_date_time, :marketplace_id, :promotion_id, :promotion_name, :revenue, :revenue_currency_code, :start_date_time, :status, :type, :units_sold, :amount_spent, :amount_spent_currency_code, :funding_agreement_id, :glance_views, :merchant_id, :vendor_code ]
-        def to_h: () -> { created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, amount_spent: Float?, amount_spent_currency_code: String?, funding_agreement_id: String?, glance_views: Integer?, merchant_id: String?, vendor_code: String? }
+        def members: () -> [ :created_date_time, :creation_channel, :end_date_time, :included_products, :last_updated_date_time, :marketplace_id, :promotion_id, :promotion_name, :revenue, :revenue_currency_code, :start_date_time, :status, :type, :units_sold, :amount_spent, :amount_spent_currency_code, :funding_agreement_id, :glance_views, :merchant_id, :promotions_api_mapping_id, :vendor_code ]
+        def to_h: () -> { created_date_time: Time, creation_channel: String, end_date_time: Time, included_products: Array[Peddler::Reports::Promotion::DetailsByProduct], last_updated_date_time: Time, marketplace_id: String, promotion_id: String, promotion_name: String, revenue: Float, revenue_currency_code: String, start_date_time: Time, status: String, type: String, units_sold: Integer, amount_spent: Float?, amount_spent_currency_code: String?, funding_agreement_id: String?, glance_views: Integer?, merchant_id: String?, promotions_api_mapping_id: String?, vendor_code: String? }
       end
 
       class Report < Data

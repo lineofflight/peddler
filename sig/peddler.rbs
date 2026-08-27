@@ -131,6 +131,10 @@ module Peddler
 
   def self.product_type_definitions_2020_09_01: () -> singleton(APIs::ProductTypeDefinitions20200901)
 
+  def self.promotions: () -> singleton(APIs::Promotions20251201)
+
+  def self.promotions_2025_12_01: () -> singleton(APIs::Promotions20251201)
+
   def self.replenishment: () -> singleton(APIs::Replenishment20221107)
 
   def self.replenishment_2022_11_07: () -> singleton(APIs::Replenishment20221107)
