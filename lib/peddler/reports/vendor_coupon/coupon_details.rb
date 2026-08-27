@@ -59,6 +59,9 @@ module Peddler
         # @return [String] The name given to the coupon.
         attribute?(:name, String)
 
+        # @return [String] Unique identifier to cross-reference promotions with the Selling Partner Promotions API.
+        attribute?(:promotions_api_mapping_id, String, from: "promotionsApiMappingId")
+
         # @return [String] Message displayed with the coupon on the product page.
         attribute?(:website_message, String, from: "websiteMessage")
       end

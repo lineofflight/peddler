@@ -68,6 +68,9 @@ module Peddler
         # @return [String] The merchant customer ID associated with the promotion funding agreement. For sellers only.
         attribute?(:merchant_id, String, from: "merchantId")
 
+        # @return [String] Unique identifier to cross-reference promotions with the Selling Partner Promotions API.
+        attribute?(:promotions_api_mapping_id, String, from: "promotionsApiMappingId")
+
         # @return [String] The vendor code associated with the promotion funding agreement. For vendors only.
         attribute?(:vendor_code, String, from: "vendorCode")
       end

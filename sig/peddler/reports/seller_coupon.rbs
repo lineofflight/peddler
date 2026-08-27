@@ -18,12 +18,12 @@ module Peddler
       end
 
       class CouponDetails < Data
-        def self.new: (asins: Array[Peddler::Reports::SellerCoupon::ASINDetails], budget_percentage_used: Float, budget_spent: Float, clips: Integer, coupon_id: String, currency_code: String, customer_segment: String, end_date_time: Time, marketplace_id: String, merchant_id: String, redemptions: Integer, start_date_time: Time, total_discount: Float, ?budget: Float?, ?budget_remaining: Float?, ?discount_amount: Float?, ?discount_type: String?, ?name: String?, ?sales: Float?, ?website_message: String?) -> Peddler::Reports::SellerCoupon::CouponDetails
-                    | (Array[Peddler::Reports::SellerCoupon::ASINDetails], Float, Float, Integer, String, String, String, Time, String, String, Integer, Time, Float, Float?, Float?, Float?, String?, String?, Float?, String?) -> Peddler::Reports::SellerCoupon::CouponDetails
-        def self.[]: (asins: Array[Peddler::Reports::SellerCoupon::ASINDetails], budget_percentage_used: Float, budget_spent: Float, clips: Integer, coupon_id: String, currency_code: String, customer_segment: String, end_date_time: Time, marketplace_id: String, merchant_id: String, redemptions: Integer, start_date_time: Time, total_discount: Float, ?budget: Float?, ?budget_remaining: Float?, ?discount_amount: Float?, ?discount_type: String?, ?name: String?, ?sales: Float?, ?website_message: String?) -> Peddler::Reports::SellerCoupon::CouponDetails
-                   | (Array[Peddler::Reports::SellerCoupon::ASINDetails], Float, Float, Integer, String, String, String, Time, String, String, Integer, Time, Float, Float?, Float?, Float?, String?, String?, Float?, String?) -> Peddler::Reports::SellerCoupon::CouponDetails
+        def self.new: (asins: Array[Peddler::Reports::SellerCoupon::ASINDetails], budget_percentage_used: Float, budget_spent: Float, clips: Integer, coupon_id: String, currency_code: String, customer_segment: String, end_date_time: Time, marketplace_id: String, merchant_id: String, redemptions: Integer, start_date_time: Time, total_discount: Float, ?budget: Float?, ?budget_remaining: Float?, ?discount_amount: Float?, ?discount_type: String?, ?name: String?, ?promotions_api_mapping_id: String?, ?sales: Float?, ?website_message: String?) -> Peddler::Reports::SellerCoupon::CouponDetails
+                    | (Array[Peddler::Reports::SellerCoupon::ASINDetails], Float, Float, Integer, String, String, String, Time, String, String, Integer, Time, Float, Float?, Float?, Float?, String?, String?, String?, Float?, String?) -> Peddler::Reports::SellerCoupon::CouponDetails
+        def self.[]: (asins: Array[Peddler::Reports::SellerCoupon::ASINDetails], budget_percentage_used: Float, budget_spent: Float, clips: Integer, coupon_id: String, currency_code: String, customer_segment: String, end_date_time: Time, marketplace_id: String, merchant_id: String, redemptions: Integer, start_date_time: Time, total_discount: Float, ?budget: Float?, ?budget_remaining: Float?, ?discount_amount: Float?, ?discount_type: String?, ?name: String?, ?promotions_api_mapping_id: String?, ?sales: Float?, ?website_message: String?) -> Peddler::Reports::SellerCoupon::CouponDetails
+                   | (Array[Peddler::Reports::SellerCoupon::ASINDetails], Float, Float, Integer, String, String, String, Time, String, String, Integer, Time, Float, Float?, Float?, Float?, String?, String?, String?, Float?, String?) -> Peddler::Reports::SellerCoupon::CouponDetails
 
-        def self.members: () -> [ :asins, :budget_percentage_used, :budget_spent, :clips, :coupon_id, :currency_code, :customer_segment, :end_date_time, :marketplace_id, :merchant_id, :redemptions, :start_date_time, :total_discount, :budget, :budget_remaining, :discount_amount, :discount_type, :name, :sales, :website_message ]
+        def self.members: () -> [ :asins, :budget_percentage_used, :budget_spent, :clips, :coupon_id, :currency_code, :customer_segment, :end_date_time, :marketplace_id, :merchant_id, :redemptions, :start_date_time, :total_discount, :budget, :budget_remaining, :discount_amount, :discount_type, :name, :promotions_api_mapping_id, :sales, :website_message ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Reports::SellerCoupon::CouponDetails
 
@@ -42,14 +42,15 @@ module Peddler
         attr_reader marketplace_id: String
         attr_reader merchant_id: String
         attr_reader name: String?
+        attr_reader promotions_api_mapping_id: String?
         attr_reader redemptions: Integer
         attr_reader sales: Float?
         attr_reader start_date_time: Time
         attr_reader total_discount: Float
         attr_reader website_message: String?
 
-        def members: () -> [ :asins, :budget_percentage_used, :budget_spent, :clips, :coupon_id, :currency_code, :customer_segment, :end_date_time, :marketplace_id, :merchant_id, :redemptions, :start_date_time, :total_discount, :budget, :budget_remaining, :discount_amount, :discount_type, :name, :sales, :website_message ]
-        def to_h: () -> { asins: Array[Peddler::Reports::SellerCoupon::ASINDetails], budget_percentage_used: Float, budget_spent: Float, clips: Integer, coupon_id: String, currency_code: String, customer_segment: String, end_date_time: Time, marketplace_id: String, merchant_id: String, redemptions: Integer, start_date_time: Time, total_discount: Float, budget: Float?, budget_remaining: Float?, discount_amount: Float?, discount_type: String?, name: String?, sales: Float?, website_message: String? }
+        def members: () -> [ :asins, :budget_percentage_used, :budget_spent, :clips, :coupon_id, :currency_code, :customer_segment, :end_date_time, :marketplace_id, :merchant_id, :redemptions, :start_date_time, :total_discount, :budget, :budget_remaining, :discount_amount, :discount_type, :name, :promotions_api_mapping_id, :sales, :website_message ]
+        def to_h: () -> { asins: Array[Peddler::Reports::SellerCoupon::ASINDetails], budget_percentage_used: Float, budget_spent: Float, clips: Integer, coupon_id: String, currency_code: String, customer_segment: String, end_date_time: Time, marketplace_id: String, merchant_id: String, redemptions: Integer, start_date_time: Time, total_discount: Float, budget: Float?, budget_remaining: Float?, discount_amount: Float?, discount_type: String?, name: String?, promotions_api_mapping_id: String?, sales: Float?, website_message: String? }
       end
 
       class Report < Data
