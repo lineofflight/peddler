@@ -112,6 +112,18 @@ module Peddler
       assert_equal("Invalid Input", error.message)
     end
 
+    def test_unmintable_class_falls_back_to_base_error
+      response = mock_http_response(body: '{"errors":[{"code":"UnmintableCode","message":"Message"}]}')
+      raise_isolation_error = ->(*) { raise Ractor::IsolationError, "can not set constants" }
+
+      Errors.stub(:const_set, raise_isolation_error) do
+        error = Error.build(response)
+
+        assert_instance_of(Error, error)
+        assert_equal("Message", error.message)
+      end
+    end
+
     def test_deconstruct_keys_returns_status
       response = mock_http_response(
         body: '{"errors":[{"code":"QuotaExceeded","message":"You exceeded your quota."}]}',

@@ -43,5 +43,9 @@ module Peddler
         Endpoint.find_by_selling_region("Middle Earth")
       end
     end
+
+    def test_regions_ractor_shareable
+      assert(Ractor.shareable?(Endpoint::REGIONS))
+    end
   end
 end

@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file. This projec
 ### Changed
 
 - Improve error messages for degraded responses: keep Amazon's message when the code cannot become a class name, and fall back to the status line (e.g. `"429 Too Many Requests"`) when the body cannot be parsed
+- Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279))
+- Fall back to the base `Peddler::Error` when a dynamic error class cannot be defined inside a non-main Ractor, instead of leaking `Ractor::IsolationError` ([#279](https://github.com/lineofflight/peddler/issues/279))
 
 ### Fixed
 

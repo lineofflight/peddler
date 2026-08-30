@@ -59,6 +59,10 @@ module Peddler
       assert_equal("GB", Marketplace.gb.country_code)
     end
 
+    def test_marketplace_ids_ractor_shareable
+      assert(Ractor.shareable?(MARKETPLACE_IDS))
+    end
+
     private
 
     def country_code

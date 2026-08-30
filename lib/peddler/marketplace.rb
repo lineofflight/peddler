@@ -2,7 +2,7 @@
 
 module Peddler
   # @see https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
-  MARKETPLACE_IDS = {
+  MARKETPLACE_IDS = Ractor.make_shareable({
     "CA" => { id: "A2EUQ1WTGCTBG2", country_name: "Canada", selling_region: "North America" },
     "US" => { id: "ATVPDKIKX0DER", country_name: "United States", selling_region: "North America" },
     "MX" => { id: "A1AM78C64UM0Y8", country_name: "Mexico", selling_region: "North America" },
@@ -26,7 +26,7 @@ module Peddler
     "SG" => { id: "A19VAU5U5O7RUS", country_name: "Singapore", selling_region: "Far East" },
     "AU" => { id: "A39IBJ37TRP1C6", country_name: "Australia", selling_region: "Far East" },
     "JP" => { id: "A1VC38T7YXB528", country_name: "Japan", selling_region: "Far East" },
-  }.freeze
+  })
 
   # @!parse
   #   # Wraps an Amazon marketplace

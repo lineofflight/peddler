@@ -27,7 +27,7 @@ module Peddler
         else
           Errors.const_set(class_name, Class.new(Error))
         end
-      rescue NameError
+      rescue NameError, Ractor::IsolationError
         Error
       end
 
