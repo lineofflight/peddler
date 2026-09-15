@@ -1,7 +1,7 @@
 ---
 name: working-with-sp-api
 description: >-
-  Use when researching an Amazon Selling Partner API (SP-API) endpoint (schema, parameters, request/response shape, or known issues and workarounds) or writing efficient SP-API code, including with the peddler Ruby gem.
+  Use when researching an Amazon Selling Partner API (SP-API) endpoint (schema, parameters, request/response shape, or known issues and workarounds), writing efficient SP-API code including with the peddler Ruby gem, or reviewing code that touches SP-API integration for rate limits, notification idempotency, or credential/token handling.
 ---
 
 # SP-API spec research
