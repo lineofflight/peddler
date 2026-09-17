@@ -52,6 +52,6 @@ When updating Amazon SP-API models or making core library changes, document the 
 
 ## SP-API Specs & Research
 
-The [`working-with-sp-api` skill](skills/working-with-sp-api/SKILL.md) is the canonical source for SP-API spec/issue research. Keep that guidance there, not here, so the two can't drift.
+The [`amazon-sp-api` skill](skills/amazon-sp-api/SKILL.md) and [`building-with-peddler` skill](skills/building-with-peddler/SKILL.md) are the canonical sources for SP-API spec/issue research and Peddler usage. Keep that guidance there, not here, so the two can't drift.
 
 Generator-only: `rake generate` manages a local checkout of `selling-partner-api-models/` (gitignored, pinned by `selling-partner-api-models.sha`, not shipped in the gem).

@@ -12,13 +12,21 @@ Peddler covers all SP-API endpoints, reports, notifications, and feeds. It's als
 
 Add to your Gemfile.
 
-### Agent skill
+### Agent skills
 
-If you use an agent, install the SP-API skill:
+Install the skills for agents:
 
 ```shell
+# Install both skills
 npx skills add lineofflight/peddler
+
+# Or install individually
+npx skills add lineofflight/peddler -s building-with-peddler
+npx skills add lineofflight/peddler -s amazon-sp-api
 ```
+
+- `building-with-peddler`: Ruby integration, token caching, retries, and pagination.
+- `amazon-sp-api`: Language-agnostic OpenAPI spec research, issue hunting, and discussions.
 
 ## Usage
 
@@ -363,8 +371,8 @@ For complete method signatures, see [sig/peddler/apis/](sig/peddler/apis/)
 For a complete list of available APIs and their detailed documentation, refer to the [API models repository][openapi-models].
 
 ## Best practices
-
-Writing efficient SP-API code? See the [best-practices checklist](skills/working-with-sp-api/best-practices.md) bundled with the agent skill: cutting call volume, batching, caching, API versions, reports, and per-API quirks.
+ 
+Writing efficient SP-API code? See the [Peddler skill](skills/building-with-peddler/SKILL.md) and [Amazon SP-API skill](skills/amazon-sp-api/SKILL.md) for cutting call volume, batching, caching, API versions, reports, and error handling.
 
 ## Development
 
