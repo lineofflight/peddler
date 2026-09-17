@@ -42,6 +42,10 @@ module Generator
       expected = "Refer to {https://developer-docs.amazon.com/sp-api/docs/api-doc API Documentation}."
 
       assert_equal(expected, convert_doc_links_to_full_url(text))
+
+      malformed = "[[[\\(doc:foo"
+
+      assert_equal(malformed, convert_doc_links_to_full_url(malformed))
     end
 
     def test_convert_html_links_to_yard

@@ -113,7 +113,7 @@ module Generator
     end
 
     def convert_doc_links_to_full_url(text)
-      text.gsub(/\[([^\]]+)\]\(doc:([^)]+)\)/) do
+      text.gsub(/\[([^\[\]]+)\]\(doc:([^()\s]+)\)/) do
         link_text = Regexp.last_match(1)
         path = Regexp.last_match(2)
         url = "https://developer-docs.amazon.com/sp-api/docs/#{path}"
