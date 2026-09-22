@@ -38,6 +38,9 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Transfers 2024-06-01: re-added the `PaymentMethodTypeList` type
 - **Added**: Tracking 2026-01-30: new API for tracking shipments to and from Amazon-owned warehouses, fulfillment centers, and external warehouses (`get_shipment_tracking`)
 - **Added**: Notifications v1: `get_subscriptions` operation to list all subscriptions for a notification type; `tracking_identifier` field (new `TrackingFilter`/`TrackingIdentifier` types) on `EventFilter` for filtering shipment tracking milestone notifications; new `SHIPMENT_TRACKING_MILESTONE_CHANGED` notification type
+- **Added**: External Fulfillment Location 2026-07-30: new sandbox-only API for creating test locations and merchants (`create_sandbox_location`)
+- **Added**: External Fulfillment Shipments 2024-09-11: sandbox-only `create_sandbox_shipment` and `update_sandbox_shipment` operations for simulating order creation and shipment status, invoice, and transport capacity changes
+- **Changed**: External Fulfillment Shipments 2024-09-11: `status` parameter on `update_package_status` is now scoped to the Seller Flex program instead of being deprecated
 - **Added**: Promotions 2025-12-01: new API for searching and managing promotions (`search_promotions`, `get_promotion`, `get_selection`)
 - **Added**: Reports: `promotions_api_mapping_id` field on `DetailsByPromotion` (Promotion report), and on `CouponDetails` for both the Seller Coupon and Vendor Coupon reports, cross-referencing promotions with the new Promotions API
 
