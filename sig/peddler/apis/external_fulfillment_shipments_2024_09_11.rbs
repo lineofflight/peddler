@@ -149,6 +149,44 @@ module Peddler
         def to_h: () -> { carrier_name: String, tracking_id: String }
       end
 
+      class CreateSandboxShipmentRequest < Data
+        def self.new: (location_id: String, marketplace_channel: String, marketplace_id: String, shipping_type: String, ?line_item_count: String?, ?order_type: Array[String]?, ?quantity_count: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentRequest
+                    | (String, String, String, String, String?, Array[String]?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentRequest
+        def self.[]: (location_id: String, marketplace_channel: String, marketplace_id: String, shipping_type: String, ?line_item_count: String?, ?order_type: Array[String]?, ?quantity_count: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentRequest
+                   | (String, String, String, String, String?, Array[String]?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentRequest
+
+        def self.members: () -> [ :location_id, :marketplace_channel, :marketplace_id, :shipping_type, :line_item_count, :order_type, :quantity_count ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentRequest
+
+        attr_reader line_item_count: String?
+        attr_reader location_id: String
+        attr_reader marketplace_channel: String
+        attr_reader marketplace_id: String
+        attr_reader order_type: Array[String]?
+        attr_reader quantity_count: String?
+        attr_reader shipping_type: String
+
+        def members: () -> [ :location_id, :marketplace_channel, :marketplace_id, :shipping_type, :line_item_count, :order_type, :quantity_count ]
+        def to_h: () -> { location_id: String, marketplace_channel: String, marketplace_id: String, shipping_type: String, line_item_count: String?, order_type: Array[String]?, quantity_count: String? }
+      end
+
+      class CreateSandboxShipmentResponse < Data
+        def self.new: (?shipment_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentResponse
+                    | (String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentResponse
+        def self.[]: (?shipment_id: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentResponse
+                   | (String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentResponse
+
+        def self.members: () -> [ :shipment_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CreateSandboxShipmentResponse
+
+        attr_reader shipment_id: String?
+
+        def members: () -> [ :shipment_id ]
+        def to_h: () -> { shipment_id: String? }
+      end
+
       class CustomAttribute < Data
         def self.new: (?key: String?, ?type: String?, ?value: String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute
                     | (String?, String?, String?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::CustomAttribute
@@ -692,6 +730,24 @@ module Peddler
         def to_h: () -> { id: String, location_id: String, marketplace_attributes: Peddler::APIs::ExternalFulfillmentShipments20240911::MarketplaceAttributes, original_line_items: Array[Peddler::APIs::ExternalFulfillmentShipments20240911::OriginalLineItem]? }
       end
 
+      class SandboxShipmentUpdates < Data
+        def self.new: (?status: String?, ?sub_status: String?, ?timestamp: Time?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates
+                    | (String?, String?, Time?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates
+        def self.[]: (?status: String?, ?sub_status: String?, ?timestamp: Time?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates
+                   | (String?, String?, Time?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates
+
+        def self.members: () -> [ :status, :sub_status, :timestamp ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates
+
+        attr_reader status: String?
+        attr_reader sub_status: String?
+        attr_reader timestamp: Time?
+
+        def members: () -> [ :status, :sub_status, :timestamp ]
+        def to_h: () -> { status: String?, sub_status: String?, timestamp: Time? }
+      end
+
       class ShipLabelMetadata < Data
         def self.new: (carrier_name: String, tracking_id: String, ?handover_location: Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, ?pickup_window: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, ?shipping_option_id: String?, ?time_slot: Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
                     | (String, String, Peddler::APIs::ExternalFulfillmentShipments20240911::HandoverLocation?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?, String?, Peddler::APIs::ExternalFulfillmentShipments20240911::TimeWindow?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::ShipLabelMetadata
@@ -997,6 +1053,23 @@ module Peddler
         def to_h: () -> { end_time: Integer, start_time: Integer, handover_method: String? }
       end
 
+      class UpdateSandboxShipmentRequest < Data
+        def self.new: (update_type: String, ?updates: Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::UpdateSandboxShipmentRequest
+                    | (String, Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::UpdateSandboxShipmentRequest
+        def self.[]: (update_type: String, ?updates: Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::UpdateSandboxShipmentRequest
+                   | (String, Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates?) -> Peddler::APIs::ExternalFulfillmentShipments20240911::UpdateSandboxShipmentRequest
+
+        def self.members: () -> [ :update_type, :updates ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentShipments20240911::UpdateSandboxShipmentRequest
+
+        attr_reader update_type: String
+        attr_reader updates: Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates?
+
+        def members: () -> [ :update_type, :updates ]
+        def to_h: () -> { update_type: String, updates: Peddler::APIs::ExternalFulfillmentShipments20240911::SandboxShipmentUpdates? }
+      end
+
       class Weight < Data
         def self.new: (value: String, weight_unit: String) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Weight
                     | (String, String) -> Peddler::APIs::ExternalFulfillmentShipments20240911::Weight
@@ -1015,6 +1088,7 @@ module Peddler
       end
 
       def create_packages: (String, Hash[untyped, untyped]) -> Peddler::Response
+      def create_sandbox_shipment: (Hash[untyped, untyped]) -> Peddler::Response
 
       def generate_invoice: (String) -> Peddler::Response
 
@@ -1028,6 +1102,7 @@ module Peddler
       def retrieve_shipping_options: (String, String) -> Peddler::Response
       def update_package: (String, String, Hash[untyped, untyped]) -> Peddler::Response
       def update_package_status: (String, String, ?status: String?, ?body: Hash[untyped, untyped]?) -> Peddler::Response
+      def update_sandbox_shipment: (String, Hash[untyped, untyped]) -> Peddler::Response
     end
   end
 end

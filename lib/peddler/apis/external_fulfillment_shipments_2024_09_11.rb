@@ -15,7 +15,7 @@ module Peddler
       # Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered
       # based on the fulfillment node or the time of the shipments' last update.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param location_id [String] The Amazon channel location identifier for the shipments you want to retrieve.
       # @param marketplace_id [String] The marketplace ID associated with the location. To find the ID for your
       #   marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -49,9 +49,38 @@ module Peddler
         get(path, params:, parser:)
       end
 
+      # Creates a sandbox shipment to simulate order creation in the test environment. This operation is available only
+      # in the sandbox environment. The shipment is created with the specified configuration including shipping type and
+      # order type.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash] The request body for creating a sandbox shipment.
+      # @return [Peddler::Response] The API response
+      def create_sandbox_shipment(body)
+        must_sandbox!
+
+        path = "/externalFulfillment/2024-09-11/shipments"
+        parser = -> { CreateSandboxShipmentResponse }
+        post(path, body:, parser:)
+      end
+
+      # Updates a sandbox shipment on marketplace behalf. Supports status changes, invoice availability, and transport
+      # capacity updates.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The unique identifier of the shipment to update.
+      # @param body [Hash] The request body for updating a sandbox shipment.
+      # @return [Peddler::Response] The API response
+      def update_sandbox_shipment(shipment_id, body)
+        must_sandbox!
+
+        path = "/externalFulfillment/2024-09-11/shipments/#{percent_encode(shipment_id)}"
+        patch(path, body:)
+      end
+
       # Get a single shipment with the ID you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment you want to retrieve.
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
@@ -62,7 +91,7 @@ module Peddler
 
       # Confirm or reject the specified shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment you want to confirm or reject.
       # @param operation [String] The status of the shipment.
       # @param body [Hash] Information about the shipment and its line items.
@@ -77,7 +106,7 @@ module Peddler
 
       # Provide details about the packages in the specified shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment.
       # @param body [Hash] A list of packages in the shipment.
       # @return [Peddler::Response] The API response
@@ -88,7 +117,7 @@ module Peddler
 
       # Updates the details about the packages that will be used to fulfill the specified shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment to which the package belongs.
       # @param package_id [String] The ID of the package whose information you want to update.
       # @param body [Hash] The body of the request.
@@ -100,10 +129,11 @@ module Peddler
 
       # Updates the status of the packages.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment to which the package belongs.
       # @param package_id [String] The ID of the package whose status you want to update.
-      # @param status [String] **DEPRECATED**. Do not use. Package status is defined in the body parameter.
+      # @param status [String] **This field is only used for the Seller Flex program**. For the Self Delivery program,
+      #   package statuses are defined in the body parameter.
       # @param body [Hash] The body of the request.
       # @return [Peddler::Response] The API response
       def update_package_status(shipment_id, package_id, status: nil, body: nil)
@@ -117,7 +147,7 @@ module Peddler
       # Get a list of shipping options for a package in a shipment given the shipment's marketplace and channel. If the
       # marketplace and channel have a pre-determined shipping option, then this operation returns an empty response.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment to which the package belongs.
       # @param package_id [String] The ID of the package for which you want to retrieve shipping options.
       # @return [Peddler::Response] The API response
@@ -132,7 +162,7 @@ module Peddler
 
       # Get invoices for the shipment you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment whose invoice you want.
       # @return [Peddler::Response] The API response
       def generate_invoice(shipment_id)
@@ -143,7 +173,7 @@ module Peddler
 
       # Retrieve invoices for the shipment you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment whose invoice you want to retrieve.
       # @return [Peddler::Response] The API response
       def retrieve_invoice(shipment_id)
@@ -154,7 +184,7 @@ module Peddler
 
       # Generate and retrieve all shipping labels for one or more packages in the shipment you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment whose shipping labels you want to generate and retrieve.
       # @param shipping_option_id [String] The ID of the shipping option whose shipping labels you want.
       # @param operation [String] Specify whether you want to generate or regenerate a label.

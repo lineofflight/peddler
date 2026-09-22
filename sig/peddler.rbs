@@ -43,6 +43,10 @@ module Peddler
 
   def self.external_fulfillment_inventory_2024_09_11: () -> singleton(APIs::ExternalFulfillmentInventory20240911)
 
+  def self.external_fulfillment_location: () -> singleton(APIs::ExternalFulfillmentLocation20260730)
+
+  def self.external_fulfillment_location_2026_07_30: () -> singleton(APIs::ExternalFulfillmentLocation20260730)
+
   def self.external_fulfillment_returns: () -> singleton(APIs::ExternalFulfillmentReturns20240911)
 
   def self.external_fulfillment_returns_2024_09_11: () -> singleton(APIs::ExternalFulfillmentReturns20240911)

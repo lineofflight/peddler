@@ -1,0 +1,93 @@
+module Peddler
+  module APIs
+    class ExternalFulfillmentLocation20260730 < API
+      class CreateSandboxLocationRequest < Data
+        def self.new: (location_name: String, marketplace_id: String, merchant_ids: Array[String], ?channels: Array[String]?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationRequest
+                    | (String, String, Array[String], Array[String]?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationRequest
+        def self.[]: (location_name: String, marketplace_id: String, merchant_ids: Array[String], ?channels: Array[String]?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationRequest
+                   | (String, String, Array[String], Array[String]?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationRequest
+
+        def self.members: () -> [ :location_name, :marketplace_id, :merchant_ids, :channels ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationRequest
+
+        attr_reader channels: Array[String]?
+        attr_reader location_name: String
+        attr_reader marketplace_id: String
+        attr_reader merchant_ids: Array[String]
+
+        def members: () -> [ :location_name, :marketplace_id, :merchant_ids, :channels ]
+        def to_h: () -> { location_name: String, marketplace_id: String, merchant_ids: Array[String], channels: Array[String]? }
+      end
+
+      class CreateSandboxLocationResponse < Data
+        def self.new: (?location_ids: Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationResponse
+                    | (Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationResponse
+        def self.[]: (?location_ids: Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationResponse
+                   | (Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationResponse
+
+        def self.members: () -> [ :location_ids ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationResponse
+
+        attr_reader location_ids: Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap?
+
+        def members: () -> [ :location_ids ]
+        def to_h: () -> { location_ids: Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap? }
+      end
+
+      class Error < Data
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::Error
+                    | (String, String, String?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::Error
+                   | (String, String, String?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentLocation20260730::Error
+
+        attr_reader code: String
+        attr_reader details: String?
+        attr_reader message: String
+
+        def members: () -> [ :code, :message, :details ]
+        def to_h: () -> { code: String, message: String, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::ExternalFulfillmentLocation20260730::Error]) -> Peddler::APIs::ExternalFulfillmentLocation20260730::ErrorList
+                    | (Array[Peddler::APIs::ExternalFulfillmentLocation20260730::Error]) -> Peddler::APIs::ExternalFulfillmentLocation20260730::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::ExternalFulfillmentLocation20260730::Error]) -> Peddler::APIs::ExternalFulfillmentLocation20260730::ErrorList
+                   | (Array[Peddler::APIs::ExternalFulfillmentLocation20260730::Error]) -> Peddler::APIs::ExternalFulfillmentLocation20260730::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentLocation20260730::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::ExternalFulfillmentLocation20260730::Error]
+
+        def members: () -> [ :errors ]
+        def to_h: () -> { errors: Array[Peddler::APIs::ExternalFulfillmentLocation20260730::Error] }
+      end
+
+      class LocationIdMap < Data
+        def self.new: (?fba: String?, ?mfn: String?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap
+                    | (String?, String?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap
+        def self.[]: (?fba: String?, ?mfn: String?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap
+                   | (String?, String?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap
+
+        def self.members: () -> [ :fba, :mfn ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ExternalFulfillmentLocation20260730::LocationIdMap
+
+        attr_reader fba: String?
+        attr_reader mfn: String?
+
+        def members: () -> [ :fba, :mfn ]
+        def to_h: () -> { fba: String?, mfn: String? }
+      end
+
+      def create_sandbox_location: (Hash[untyped, untyped]) -> Peddler::Response
+    end
+  end
+end
