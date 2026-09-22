@@ -27,6 +27,7 @@ module Peddler
     def delivery_by_amazon_2022_07_01 = APIs::DeliveryByAmazon20220701
     def easy_ship_2022_03_23 = APIs::EasyShip20220323
     def external_fulfillment_inventory_2024_09_11 = APIs::ExternalFulfillmentInventory20240911
+    def external_fulfillment_location_2026_07_30 = APIs::ExternalFulfillmentLocation20260730
     def external_fulfillment_returns_2024_09_11 = APIs::ExternalFulfillmentReturns20240911
     def external_fulfillment_shipments_2024_09_11 = APIs::ExternalFulfillmentShipments20240911
     def fba_inbound_eligibility_v1 = APIs::FBAInboundEligibilityV1
@@ -93,6 +94,7 @@ module Peddler
     alias_method :delivery_by_amazon, :delivery_by_amazon_2022_07_01
     alias_method :easy_ship, :easy_ship_2022_03_23
     alias_method :external_fulfillment_inventory, :external_fulfillment_inventory_2024_09_11
+    alias_method :external_fulfillment_location, :external_fulfillment_location_2026_07_30
     alias_method :external_fulfillment_returns, :external_fulfillment_returns_2024_09_11
     alias_method :external_fulfillment_shipments, :external_fulfillment_shipments_2024_09_11
     alias_method :fba_inbound_eligibility, :fba_inbound_eligibility_v1
