@@ -34,6 +34,9 @@ module Peddler
         # Note: If blank, printing is available at any time.
         attribute?(:label_printing_window, DateTimeRange, from: "labelPrintingWindow")
 
+        # @return [PromiseCalculationInputs] The inputs used to calculate a promise date for this order.
+        attribute?(:promise_calculation_inputs, PromiseCalculationInputs, from: "promiseCalculationInputs")
+
         # @return [DateTimeRange] The promised time period within which the order must be shipped to meet the customer's
         #   delivery expectations.
         attribute?(:ship_by_window, DateTimeRange, from: "shipByWindow")

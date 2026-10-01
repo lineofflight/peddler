@@ -7,9 +7,8 @@ require "structure"
 module Peddler
   module APIs
     class AplusContent20201101
-      # A token that you use to retrieve the next page of results. To get the next page of results, call the operation
-      # with this token and include the same arguments as the call that produced the token. To get a complete list, call
-      # this operation until `nextPageToken` is null. Note that this operation can return empty pages.
+      # The base response data for paginated A+ Content operations. Individual operations may extend this with
+      # additional data. If `nextPageToken` is not returned, there are no more pages to return.
       AplusPaginatedResponse = Structure.new do
         # @return [String]
         attribute?(:next_page_token, String, from: "nextPageToken")

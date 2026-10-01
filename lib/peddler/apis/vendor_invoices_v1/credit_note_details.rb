@@ -23,6 +23,10 @@ module Peddler
         # @return [String] Date that a return is received by the vendor. It is mandatory for Returns Credit Note.
         attribute?(:goods_return_date, String, from: "goodsReturnDate")
 
+        # @return [String] Date of the original invoice that this credit note references. Pairs with
+        #   referenceInvoiceNumber.
+        attribute?(:original_invoice_date, String, from: "originalInvoiceDate")
+
         # @return [String] Original Invoice Number when sending a credit note relating to an existing invoice. One
         #   Invoice only to be processed per Credit Note. This is mandatory for AP Credit Notes.
         attribute?(:reference_invoice_number, String, from: "referenceInvoiceNumber")

@@ -694,9 +694,9 @@ module Peddler
         def to_h: () -> { sales_percentage: Float, fee_cap_amount: Peddler::Money? }
       end
 
-      def get_promotion: (String, ?included_data: Array[String]?, ?locale: String?) -> Peddler::Response
-      def get_selection: (String, String, Integer, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?) -> Peddler::Response
-      def search_promotions: (Array[String], ?locale: String?, ?statuses: Array[String]?, ?asins: Array[String]?, ?skus: Array[String]?, ?promotion_types: Array[String]?, ?start_date_before: String?, ?start_date_after: String?, ?end_date_before: String?, ?end_date_after: String?, ?update_date_after: String?, ?update_date_before: String?, ?pagination_token: String?, ?revision: String?, ?limit: Integer?, ?included_data: Array[String]?) -> Peddler::Response
+      def get_promotion: (String, ?included_data: Array[String]?, ?locale: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_selection: (String, String, Integer, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?, ?rate_limit: Float) -> Peddler::Response
+      def search_promotions: (Array[String], ?locale: String?, ?statuses: Array[String]?, ?asins: Array[String]?, ?skus: Array[String]?, ?promotion_types: Array[String]?, ?start_date_before: String?, ?start_date_after: String?, ?end_date_before: String?, ?end_date_after: String?, ?update_date_after: String?, ?update_date_before: String?, ?pagination_token: String?, ?revision: String?, ?limit: Integer?, ?included_data: Array[String]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

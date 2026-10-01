@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class AplusContent20201101
-      # The error response that is returned when the request is unsuccessful.
+      # Error response returned when the request is unsuccessful.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.
         attribute(:code, String, null: false)

@@ -67,6 +67,10 @@ module Peddler
 
   def self.feeds_2021_06_30: () -> singleton(APIs::Feeds20210630)
 
+  def self.finance_remittance: () -> singleton(APIs::FinanceRemittance20260317)
+
+  def self.finance_remittance_2026_03_17: () -> singleton(APIs::FinanceRemittance20260317)
+
   def self.finances: () -> singleton(APIs::Finances20240619)
 
   def self.finances_2024_06_19: () -> singleton(APIs::Finances20240619)
@@ -180,6 +184,10 @@ module Peddler
   def self.supply_sources: () -> singleton(APIs::SupplySources20200701)
 
   def self.supply_sources_2020_07_01: () -> singleton(APIs::SupplySources20200701)
+
+  def self.support: () -> singleton(APIs::Support20250201)
+
+  def self.support_2025_02_01: () -> singleton(APIs::Support20250201)
 
   def self.tokens: () -> singleton(APIs::Tokens20210301)
 

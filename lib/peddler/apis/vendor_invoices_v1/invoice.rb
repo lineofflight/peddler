@@ -38,11 +38,18 @@ module Peddler
         # @return [Array<AllowanceDetails>] Total allowance amount details for all line items.
         attribute?(:allowance_details, [AllowanceDetails], from: "allowanceDetails")
 
+        # @return [PartyIdentification] Name, address and tax details of the party that issues this invoice.
+        attribute?(:bill_from_party, PartyIdentification, from: "billFromParty")
+
         # @return [PartyIdentification] Name, address and tax details of the party to whom this invoice is issued.
         attribute?(:bill_to_party, PartyIdentification, from: "billToParty")
 
         # @return [Array<ChargeDetails>] Total charge amount details for all line items.
         attribute?(:charge_details, [ChargeDetails], from: "chargeDetails")
+
+        # @return [Money] Sum of all invoice line net amounts, excluding tax, charges and allowances. Provided for EU
+        #   e-invoice interoperability.
+        attribute?(:invoice_base_amount, Money, from: "invoiceBaseAmount")
 
         # @return [Array<InvoiceItem>] The list of invoice items.
         attribute?(:items, [InvoiceItem])
@@ -61,6 +68,19 @@ module Peddler
 
         # @return [Array<TaxDetails>] Total tax amount details for all line items.
         attribute?(:tax_details, [TaxDetails], from: "taxDetails")
+
+        # @return [String] The date on which the tax becomes chargeable, if different from the invoice date. When
+        #   absent, the invoice date applies.
+        attribute?(:tax_point_date, String, from: "taxPointDate")
+
+        # @return [PartyIdentification] Name, address and tax registration details of the supplier's fiscal or tax
+        #   representative, where one is required. Conditionally mandatory for applicable EU e-invoice scenarios.
+        attribute?(:tax_representative_party, PartyIdentification, from: "taxRepresentativeParty")
+
+        # @return [PartyIdentification] Name, address and tax registration details of the VAT group representative
+        #   member, when the supplier reports VAT as part of a VAT group. Conditionally mandatory for applicable EU
+        #   e-invoice scenarios.
+        attribute?(:vat_group_party, PartyIdentification, from: "vatGroupParty")
       end
     end
   end

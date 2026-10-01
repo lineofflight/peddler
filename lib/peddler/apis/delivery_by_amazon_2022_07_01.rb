@@ -7,7 +7,7 @@ module Peddler
     # Selling Partner API for Delivery Shipment Invoicing
     #
     # The Selling Partner API for Delivery Shipment Invoicing helps you programmatically retrieve shipment invoice
-    # information in the Brazil marketplace for a selling partner’s orders.
+    # information in the Brazil Amazon store for a selling partner’s orders.
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/delivery-by-amazon/deliveryShipmentInvoiceV2022-07-01.json
     class DeliveryByAmazon20220701 < API
@@ -17,7 +17,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The identifier for the order.
       # @param shipment_id [String] The identifier for the shipment.
-      # @param body [Hash] The request body that specifies invoice, program and marketplace values.
+      # @param body [Hash] The request body that specifies invoice, program and `marketplaceId` values.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_invoice(body, order_id: nil, shipment_id: nil, rate_limit: 1.133)
@@ -30,23 +30,27 @@ module Peddler
         post(path, body:, params:, rate_limit:, parser:)
       end
 
-      # Returns the invoice status for the order or shipment you specify. You must specify either an `orderId` or
-      # `shipmentId` as query parameter. If both parameters are supplied, `orderId` takes precedence over `shipmentId`.
+      # Returns the invoice status for the order or shipment you specify. You must specify either an `orderId`,
+      # `shipmentId`, or `invoiceId` as a query parameter. If multiple parameters are supplied, `orderId` takes
+      # precedence over `shipmentId`, which takes precedence over `invoiceId`.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The order identifier.
       # @param shipment_id [String] The shipment identifier.
-      # @param marketplace_id [String] The marketplace identifier.
+      # @param invoice_id [String] The invoice access key (NF-e access key for Brazilian invoices). Use this to retrieve
+      #   the status of a specific invoice.
+      # @param marketplace_id [String] The Amazon store identifier.
       # @param invoice_type [String] The invoice's type.
       # @param program_type [String] The Amazon program that seller is currently enrolled.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoice_status(marketplace_id, invoice_type, program_type, order_id: nil, shipment_id: nil,
-        rate_limit: 1.133)
+        invoice_id: nil, rate_limit: 1.133)
         path = "/delivery/2022-07-01/invoice/status"
         params = {
           "orderId" => order_id,
           "shipmentId" => shipment_id,
+          "invoiceId" => invoice_id,
           "marketplaceId" => marketplace_id,
           "invoiceType" => invoice_type,
           "programType" => program_type,

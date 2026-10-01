@@ -16,7 +16,7 @@ module Peddler
         # @return [String]
         attribute?(:asin, String)
 
-        # @return [:boolean] When true, indicates that this content block is visually highlighted.
+        # @return [:boolean] Determines whether this block of content is visually highlighted.
         attribute?(:highlight, :boolean)
 
         # @return [ImageComponent]

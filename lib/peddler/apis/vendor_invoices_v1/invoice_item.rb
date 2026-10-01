@@ -20,6 +20,10 @@ module Peddler
         #   are priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
         attribute(:net_cost, Money, null: false, from: "netCost")
 
+        # @return [Array<AdditionalDetails>] Line-level additional details provided by the selling party, e.g. tax
+        #   exemption reason code and text.
+        attribute?(:additional_details, [AdditionalDetails], from: "additionalDetails")
+
         # @return [Array<AllowanceDetails>] Individual allowance details per line item.
         attribute?(:allowance_details, [AllowanceDetails], from: "allowanceDetails")
 
@@ -35,6 +39,9 @@ module Peddler
 
         # @return [String] HSN Tax code. The HSN number cannot contain alphabets.
         attribute?(:hsn_code, String, from: "hsnCode")
+
+        # @return [String] Product or service description for the invoiced line item.
+        attribute?(:item_description, String, from: "itemDescription")
 
         # @return [String] This field represents weight unit of measure of items that are ordered by cases and
         #   supporting priced by weight.

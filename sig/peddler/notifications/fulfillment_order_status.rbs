@@ -1,81 +1,38 @@
 module Peddler
   module Notifications
     module FulfillmentOrderStatus
-      class FulfillmentOrderStatusNotification < Data
-        def self.new: (event_type: String, fulfillment_order_status: String, seller_fulfillment_order_id: String, status_updated_date_time: String, ?fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, ?fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, ?seller_id: String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
-                    | (String, String, String, String, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
-        def self.[]: (event_type: String, fulfillment_order_status: String, seller_fulfillment_order_id: String, status_updated_date_time: String, ?fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, ?fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, ?seller_id: String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
-                   | (String, String, String, String, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, String?) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
+      class Amount < Data
+        def self.new: (unit: String, value: String) -> Peddler::Notifications::FulfillmentOrderStatus::Amount
+                    | (String, String) -> Peddler::Notifications::FulfillmentOrderStatus::Amount
+        def self.[]: (unit: String, value: String) -> Peddler::Notifications::FulfillmentOrderStatus::Amount
+                   | (String, String) -> Peddler::Notifications::FulfillmentOrderStatus::Amount
 
-        def self.members: () -> [ :event_type, :fulfillment_order_status, :seller_fulfillment_order_id, :status_updated_date_time, :fulfillment_return_item, :fulfillment_shipment, :seller_id ]
+        def self.members: () -> [ :unit, :value ]
 
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::Amount
 
-        attr_reader event_type: String
-        attr_reader fulfillment_order_status: String
-        attr_reader fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?
-        attr_reader fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?
-        attr_reader seller_fulfillment_order_id: String
-        attr_reader seller_id: String?
-        attr_reader status_updated_date_time: String
+        attr_reader unit: String
+        attr_reader value: String
 
-        def members: () -> [ :event_type, :fulfillment_order_status, :seller_fulfillment_order_id, :status_updated_date_time, :fulfillment_return_item, :fulfillment_shipment, :seller_id ]
-        def to_h: () -> { event_type: String, fulfillment_order_status: String, seller_fulfillment_order_id: String, status_updated_date_time: String, fulfillment_return_item: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem?, fulfillment_shipment: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment?, seller_id: String? }
+        def members: () -> [ :unit, :value ]
+        def to_h: () -> { unit: String, value: String }
       end
 
-      class FulfillmentReturnItem < Data
-        def self.new: (received_date_time: String, returned_quantity: Integer, seller_sku: String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem
-                    | (String, Integer, String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem
-        def self.[]: (received_date_time: String, returned_quantity: Integer, seller_sku: String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem
-                   | (String, Integer, String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem
+      class Money < Data
+        def self.new: (amount: String, currency_code: String) -> Peddler::Notifications::FulfillmentOrderStatus::Money
+                    | (String, String) -> Peddler::Notifications::FulfillmentOrderStatus::Money
+        def self.[]: (amount: String, currency_code: String) -> Peddler::Notifications::FulfillmentOrderStatus::Money
+                   | (String, String) -> Peddler::Notifications::FulfillmentOrderStatus::Money
 
-        def self.members: () -> [ :received_date_time, :returned_quantity, :seller_sku ]
+        def self.members: () -> [ :amount, :currency_code ]
 
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentReturnItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::Money
 
-        attr_reader received_date_time: String
-        attr_reader returned_quantity: Integer
-        attr_reader seller_sku: String
+        attr_reader amount: String
+        attr_reader currency_code: String
 
-        def members: () -> [ :received_date_time, :returned_quantity, :seller_sku ]
-        def to_h: () -> { received_date_time: String, returned_quantity: Integer, seller_sku: String }
-      end
-
-      class FulfillmentShipment < Data
-        def self.new: (amazon_shipment_id: String, estimated_arrival_date_time: String, fulfillment_shipment_packages: Array[untyped], fulfillment_shipment_status: String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment
-                    | (String, String, Array[untyped], String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment
-        def self.[]: (amazon_shipment_id: String, estimated_arrival_date_time: String, fulfillment_shipment_packages: Array[untyped], fulfillment_shipment_status: String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment
-                   | (String, String, Array[untyped], String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment
-
-        def self.members: () -> [ :amazon_shipment_id, :estimated_arrival_date_time, :fulfillment_shipment_packages, :fulfillment_shipment_status ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipment
-
-        attr_reader amazon_shipment_id: String
-        attr_reader estimated_arrival_date_time: String
-        attr_reader fulfillment_shipment_packages: Array[untyped]
-        attr_reader fulfillment_shipment_status: String
-
-        def members: () -> [ :amazon_shipment_id, :estimated_arrival_date_time, :fulfillment_shipment_packages, :fulfillment_shipment_status ]
-        def to_h: () -> { amazon_shipment_id: String, estimated_arrival_date_time: String, fulfillment_shipment_packages: Array[untyped], fulfillment_shipment_status: String }
-      end
-
-      class FulfillmentShipmentPackage < Data
-        def self.new: (carrier_code: String, package_number: Integer, tracking_number: String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipmentPackage
-                    | (String, Integer, String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipmentPackage
-        def self.[]: (carrier_code: String, package_number: Integer, tracking_number: String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipmentPackage
-                   | (String, Integer, String) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipmentPackage
-
-        def self.members: () -> [ :carrier_code, :package_number, :tracking_number ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::FulfillmentShipmentPackage
-
-        attr_reader carrier_code: String
-        attr_reader package_number: Integer
-        attr_reader tracking_number: String
-
-        def members: () -> [ :carrier_code, :package_number, :tracking_number ]
-        def to_h: () -> { carrier_code: String, package_number: Integer, tracking_number: String }
+        def members: () -> [ :amount, :currency_code ]
+        def to_h: () -> { amount: String, currency_code: String }
       end
 
       class Notification < Data
@@ -100,19 +57,55 @@ module Peddler
       end
 
       class Payload < Data
-        def self.new: (fulfillment_order_status_notification: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
-                    | (Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
-        def self.[]: (fulfillment_order_status_notification: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
-                   | (Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
+        def self.new: (event_type: String, merchant_id: String, order: Hash[untyped, untyped], ?fulfillment_service_id: String?) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
+                    | (String, String, Hash[untyped, untyped], String?) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
+        def self.[]: (event_type: String, merchant_id: String, order: Hash[untyped, untyped], ?fulfillment_service_id: String?) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
+                   | (String, String, Hash[untyped, untyped], String?) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
 
-        def self.members: () -> [ :fulfillment_order_status_notification ]
+        def self.members: () -> [ :event_type, :merchant_id, :order, :fulfillment_service_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::Payload
 
-        attr_reader fulfillment_order_status_notification: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification
+        attr_reader event_type: String
+        attr_reader fulfillment_service_id: String?
+        attr_reader merchant_id: String
+        attr_reader order: Hash[untyped, untyped]
 
-        def members: () -> [ :fulfillment_order_status_notification ]
-        def to_h: () -> { fulfillment_order_status_notification: Peddler::Notifications::FulfillmentOrderStatus::FulfillmentOrderStatusNotification }
+        def members: () -> [ :event_type, :merchant_id, :order, :fulfillment_service_id ]
+        def to_h: () -> { event_type: String, merchant_id: String, order: Hash[untyped, untyped], fulfillment_service_id: String? }
+      end
+
+      class ProductIdentifier < Data
+        def self.new: (amazon_sku: String) -> Peddler::Notifications::FulfillmentOrderStatus::ProductIdentifier
+                    | (String) -> Peddler::Notifications::FulfillmentOrderStatus::ProductIdentifier
+        def self.[]: (amazon_sku: String) -> Peddler::Notifications::FulfillmentOrderStatus::ProductIdentifier
+                   | (String) -> Peddler::Notifications::FulfillmentOrderStatus::ProductIdentifier
+
+        def self.members: () -> [ :amazon_sku ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::ProductIdentifier
+
+        attr_reader amazon_sku: String
+
+        def members: () -> [ :amazon_sku ]
+        def to_h: () -> { amazon_sku: String }
+      end
+
+      class Tracking < Data
+        def self.new: (?amazon: Hash[untyped, untyped]?, ?carrier: Hash[untyped, untyped]?) -> Peddler::Notifications::FulfillmentOrderStatus::Tracking
+                    | (Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::Notifications::FulfillmentOrderStatus::Tracking
+        def self.[]: (?amazon: Hash[untyped, untyped]?, ?carrier: Hash[untyped, untyped]?) -> Peddler::Notifications::FulfillmentOrderStatus::Tracking
+                   | (Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::Notifications::FulfillmentOrderStatus::Tracking
+
+        def self.members: () -> [ :amazon, :carrier ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::FulfillmentOrderStatus::Tracking
+
+        attr_reader amazon: Hash[untyped, untyped]?
+        attr_reader carrier: Hash[untyped, untyped]?
+
+        def members: () -> [ :amazon, :carrier ]
+        def to_h: () -> { amazon: Hash[untyped, untyped]?, carrier: Hash[untyped, untyped]? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::FulfillmentOrderStatus::Notification

@@ -1,0 +1,3777 @@
+{
+  "data": {
+    "__schema": {
+      "queryType": {
+        "name": "Query"
+      },
+      "mutationType": null,
+      "subscriptionType": null,
+      "types": [
+        {
+          "kind": "OBJECT",
+          "name": "AccountHealth",
+          "description": "Account Health metric group. A null value for a given metric means that this metric is not yet available.",
+          "fields": [
+            {
+              "name": "accountHealthAtozClaimOrderCount",
+              "description": "Total number of orders with an A-to-z Guarantee claim that was not denied, applies to seller-fulfilled orders only.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthAtozGuaranteeClaimRate",
+              "description": "Ratio of orders with A-to-z Guarantee claims to total orders.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthChargebackClaimOrderCount",
+              "description": "Total number of orders that resulted in a credit card chargeback, applies to\nboth seller-fulfilled and amazon-fulfilled orders.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthChargebackClaimRate",
+              "description": "Ratio of orders with chargeback claims to total orders.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthLateShipmentOrderCount",
+              "description": "Number of seller-fulfilled orders where shipping confirmation was completed after the expected ship date.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthLateShipmentRate",
+              "description": "Percentage of total orders with late ship confirmation.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthNegativeFeedbackOrderCount",
+              "description": "Total number of orders that received negative feedback within a specific time\nperiod, applies to both seller-fulfilled and amazon-fulfilled orders.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthNegativeFeedbackRate",
+              "description": "Ratio of orders receiving negative feedback to total orders.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthOnTimeDeliveryDefectPackageCount",
+              "description": "Number of seller-fulfilled packages that were not delivered on time.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthOnTimeDeliveryDefectPackageUnits",
+              "description": "Number of units in seller-fulfilled packages that were not delivered on time.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthOnTimeDeliveryRate",
+              "description": "Percentage of seller-fulfilled items delivered by the 'Deliver by' date.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthOrderCount",
+              "description": "Total number of orders placed by customers within a specified time frame,\napplies to both seller-fulfilled and amazon-fulfilled orders.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthOrderDefectRate",
+              "description": "Percentage of orders with defects (negative feedback, A-to-z claims not denied, or chargebacks).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthPackageCount",
+              "description": "Number of seller-fulfilled shipments within a specific time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthPackageUnits",
+              "description": "Number of units in seller-fulfilled shipments within a specific time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthPreFulfillmentCancelOrderCount",
+              "description": "Number of seller-fulfilled orders cancelled by sellers.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthPreFulfillmentCancelRate",
+              "description": "Percentage of seller-cancelled orders during a given period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthRatingScore",
+              "description": "0-1,000 point scale indicating account suspension risk based on compliance with Amazon's selling policies.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthTotalOrderDefects",
+              "description": "Total number of order defects identified by Account Health Dashboard (a tool in Seller Central\nthat tracks a seller's compliance with Amazon's selling policies and performance metrics) within a specified time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthValidTrackingDefectPackageCount",
+              "description": "Number of defective shipments due to missing valid tracking information, applies to seller-fulfilled orders only.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accountHealthValidTrackingRate",
+              "description": "Percentage of packages with valid tracking over total packages shipped.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "regionDistinctCountDefectTypeT120Days",
+              "description": "Count of distinct defect types identified in the region over the past 120 days\n(snapshot data, always returns latest value).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "regionInaccurateProductDefectRateT120Days",
+              "description": "Regional defect rate for products with inaccurate product information over the\npast 120 days (snapshot data, always returns latest value).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "regionIncorrectLabelDefectRateT120Days",
+              "description": "Regional defect rate for products with incorrect labeling over the past 120\ndays (snapshot data, always returns latest value).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "regionLabelMissingDefectRateT120Days",
+              "description": "Regional defect rate for products with missing labels over the past 120 days (snapshot data, always returns latest value).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "regionOtherDefectsProductRelatedDefectRateT120Days",
+              "description": "Regional defect rate for other product-related defects not covered by specific\ncategories over the past 120 days (snapshot data, always returns latest value).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "regionResolvedDefectsUnitT120Days",
+              "description": "Number of regional product defect units that were resolved over the past 120 days.\nThis is snapshot data that reflects the current state at query time.\nWhen querying with daily or weekly granularity, the same latest value is returned for each time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "regionUnexpectedProductDefectRateT120Days",
+              "description": "Regional defect rate for unexpected product issues over the past 120 days (snapshot data, always returns latest value).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "AmazonAccountTypes",
+          "description": "The supported account types available for DataKiosk.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "MERCHANT",
+              "description": "Maps to MerchantAccountId.class",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PARTNER_ACCOUNT",
+              "description": "Maps to PartnerAccountId.class",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VENDOR_GROUP",
+              "description": "Maps to VendorGroupId.class",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Amount",
+          "description": "Monetary amount with the corresponding currency code.",
+          "fields": [
+            {
+              "name": "amount",
+              "description": "The amount.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "currencyCode",
+              "description": "Currency code of the amount in ISO 4217 format.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AmountWithBenchmarking",
+          "description": "Monetary amount with the corresponding currency code and time range benchmarking.",
+          "fields": [
+            {
+              "name": "amount",
+              "description": "The monetary amount and its currency code, in ISO 4217 format.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Amount",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "timeRangeBenchmarking",
+              "description": "Relevant benchmarking comparison.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TimeRangeBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Analytics_sellerAnalytics_2025_03_31",
+          "description": "Root type for Seller Analytics queries version 2025_03_31.",
+          "fields": [
+            {
+              "name": "sellerAnalyticsView",
+              "description": "A query to retrieve cross-domain seller analytics data for the seller's account,\naggregated by provided GroupByAttributes.",
+              "args": [
+                {
+                  "name": "startDate",
+                  "description": "The start date of the seller analytics data to retrieve. The start date must be no more than two years ago.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Date",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "endDate",
+                  "description": "The end date of the seller analytics data to retrieve.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Date",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "aggregateBy",
+                  "description": "Determines how the data is aggregated. For example: daily, weekly, or monthly.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "DateGranularity",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "currencyCode",
+                  "description": "Currency code for all monetary amounts in ISO 4217 format. If not provided, amounts are returned in USD.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "marketplaceId",
+                  "description": "The marketplace identifiers to retrieve cross-domain seller analytics.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "LIST",
+                      "name": null,
+                      "ofType": {
+                        "kind": "NON_NULL",
+                        "name": null,
+                        "ofType": {
+                          "kind": "SCALAR",
+                          "name": "String",
+                          "ofType": null
+                        }
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SellerAnalyticsView",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Boolean",
+          "description": "Represents `true` or `false` values.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CountMetrics",
+          "description": "Delivery speed-related count metrics for search performance.\nCaptures customer interactions (impressions, clicks, cart adds, purchases) filtered by shipping speed availability.",
+          "fields": [
+            {
+              "name": "shippingCartAdd",
+              "description": "Number of cart additions where the specified delivery speed option was available.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "shippingClick",
+              "description": "Number of clicks where the specified delivery speed option was available.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "shippingImpression",
+              "description": "Number of impressions where the specified delivery speed option was available.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "shippingPurchase",
+              "description": "Number of purchases where the specified delivery speed option was available.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Date",
+          "description": "RFC-3339 compliant Full Date Scalar. Example: \"2023-11-15\".",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "DateGranularity",
+          "description": "Date granularity used in aggregation.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "DAY",
+              "description": "Metrics are aggregated by day.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "WEEK",
+              "description": "Metrics are aggregated by week.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MONTH",
+              "description": "Metrics are aggregated by month.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Defects",
+          "description": "Defects metric group for return-defect analytics. A null value for a given\nmetric means that this metric is not yet available.",
+          "fields": [
+            {
+              "name": "topics",
+              "description": "Return-defect metrics grouped by defect topic.\nReturns an array of metrics per unique return-defect topic within the current grouping context.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ReturnDefectTopicMetrics",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalDefectFrequency",
+              "description": "Total frequency of return defects across all topics for the product (trailing six months). Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Float",
+          "description": "Represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FloatWithBenchmarking",
+          "description": "A custom type which supports time range benchmarking for native Float types.",
+          "fields": [
+            {
+              "name": "timeRangeBenchmarking",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TimeRangeBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "GroupByAttributes",
+          "description": "Group by attributes, essentially catalog attributes, some of which can be null, for example, group by brand.",
+          "fields": [
+            {
+              "name": "asin",
+              "description": "Amazon Standard Identification Number, used to uniquely identify products in Amazon's catalog.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "brand",
+              "description": "Brand name.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "brandCode",
+              "description": "Amazon brand code for the owning brand.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "encryptedMerchantCustomerId",
+              "description": "Masked version of internal merchant identifier using encryption algorithm.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fulfilmentChannel",
+              "description": "The fulfillment channel for the product, indicating whether it is fulfilled by Amazon (FBA) or by the seller (FBM).",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "marketplaceId",
+              "description": "The marketplace identifier for the associated metrics.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "msku",
+              "description": "Merchant Level Stock Keeping Unit.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "parentAsin",
+              "description": "Products with variations (size, color, etc.) have a Parent ASIN and Child\nASINs. The Parent ASIN represents the generic overall product\n(non-purchasable).",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "productGroup",
+              "description": "The product group which describes the business group, as defined by the Amazon\ncatalog, for example, PC, Wireless, Major Appliances.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "productTitle",
+              "description": "Product name.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Int",
+          "description": "Represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "IntWithBenchmarking",
+          "description": "A custom type which supports time range benchmarking for native Int types.",
+          "fields": [
+            {
+              "name": "timeRangeBenchmarking",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TimeRangeBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Lending",
+          "description": "Lending metric group. A null value for a given metric means that this metric is not yet available.",
+          "fields": [
+            {
+              "name": "disbursements",
+              "description": "Total monetary amount disbursed to the seller from Amazon for sales and other transactions.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "feedbackOrderCount",
+              "description": "Total number of orders that received customer feedback within a specified time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "primaryProductCategory",
+              "description": "Product category where seller achieved highest percentage of sales over past 12 months.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "primaryProductCategoryNetGMS",
+              "description": "Total Gross Merchandise Sales generated in seller's main product category as of current day.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "refundsOrderCount",
+              "description": "Total number of orders that resulted in refunds within a specified time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalBalanceByStandardOrders",
+              "description": "Total balance amount generated from standard order transactions.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalFbaInventoryValue",
+              "description": "Total worth of seller's inventory stored in FBA warehouses based on 15-day average selling price.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Long",
+          "description": "A Scalar for the primitive long type.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PriceAndCountMetrics",
+          "description": "Common price and count metrics shared by query and catalog search metrics.\nGroups impressions, clicks, cart adds, and purchases with their associated prices.",
+          "fields": [
+            {
+              "name": "cartAddsWithPrice",
+              "description": "Number of times added to cart from search results, with price at time of add.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UnitsWithValueAndBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "clicksWithPrice",
+              "description": "Number of clicks from search results, with price at time of click.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UnitsWithValueAndBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "impressionsWithPrice",
+              "description": "Number of times the product appeared in search results, with price at time of impression.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UnitsWithValueAndBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "oneDayMetrics",
+              "description": "Search performance metrics for products with one-day delivery option available.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CountMetrics",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "purchasesWithPrice",
+              "description": "Number of purchases from search results, with price at time of purchase.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UnitsWithValueAndBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sameDayMetrics",
+              "description": "Search performance metrics for products with same-day delivery option available.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CountMetrics",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "twoDayMetrics",
+              "description": "Search performance metrics for products with two-day delivery option available.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CountMetrics",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Promotion",
+          "description": null,
+          "fields": [
+            {
+              "name": "dealId",
+              "description": "Deal identifier.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dealOurPrice",
+              "description": "Price before cart based promotions such as Lightning Deals, POS promotions and Coupons.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dealTitle",
+              "description": "The title of the promotion.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionAsinStateType",
+              "description": "Promotion ASIN state type refers to the current status or availability of a promoted product on Amazon.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionConversionRate",
+              "description": "Promotion conversion rate refers to the percentage of units purchased (net of\ncancellations) for a product with an active promotion.\nIt's calculated as the number of units sold, minus any cancelled orders,\ndivided by the number of details page views for that promotion.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionDiscountAmt",
+              "description": "The difference between the price without the promotion (the Amazon landed\nprice) and the price after the promotion is applied to an item.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionDiscountPct",
+              "description": "Promotion discount % refers to the percentage discount that's applied to a product's price as part of a promotional offer.\nIt's calculated as the promotion's discount amount divided by the current price.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionEndDate",
+              "description": "Promotion end date refers to the date and time, in the local time zone for a\nstore, when a promotion becomes inactive in that store.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Date",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionGlanceViewCnt",
+              "description": "This attribute gives the total count of glance views of the Promotion applicable ASINS for that reporting period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionOrderedPrice",
+              "description": "Promotion price is the final selling price of an item after any promotions have been applied.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionOrderedUnitsWithRevenue",
+              "description": "Promotion Ordered Units refers to the total number of units ordered for products that have an active promotion,\nwith adjustments made for order cancellations and coupon orders. It is calculated as the count of net ordered units\nwhere promotion is active (number of units are set to zero if the order is canceled and to one for coupon orders).\n\nPromotion ordered revenue is the total money earned from selling products that were part of a promotional offer.\nIt includes the selling prices, shipping fees, taxes, and gift wrap charges,\nand subtracts the cost of any returned or refunded items.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UnitsWithValueAndBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionStartDate",
+              "description": "Promotion start date refers to the date and time, in the local time zone for a store, when a promotion becomes active.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Date",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionStatus",
+              "description": "Promotion status indicates if a promotion is approved, pending or rejected.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotionType",
+              "description": "Identifies the type of the promotion for ASIN level data. Example values are\nBest Deal, Deal of the Day, Lightning Deal, Sales Discount.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Query",
+          "description": "A root type for queries",
+          "fields": [
+            {
+              "name": "analytics_sellerAnalytics_2025_03_31",
+              "description": "API is versioned.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Analytics_sellerAnalytics_2025_03_31",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ReturnDefectTopicMetrics",
+          "description": "Return-defect metrics at the individual defect-topic level.",
+          "fields": [
+            {
+              "name": "returnDefectContribution",
+              "description": "Fraction (between 0 and 1) of the product's total return defects attributed to\nthis defect topic. Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "returnDefectFrequency",
+              "description": "Number of return defects reported for this defect topic (trailing six months). Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "returnDefectRecommendations",
+              "description": "Recommended actions to address the return defects associated with this topic. Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "returnDefectTopic",
+              "description": "Return-defect topic categorizing customer-reported product defects.\nThis field automatically groups results when selected, showing metrics per\nunique defect topic. Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Returns",
+          "description": "Returns metric group. A null value for a given metric means that this metric is not yet available.",
+          "fields": [
+            {
+              "name": "returnedRate",
+              "description": "Rate of returned units relative to shipped units for the selected time period,\nas a fraction between 0 and 1 (returned units / shipped units). Return data is\ncomputed with a delay of about 45 days, so the rate may appear low for recent\ndates. Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "returnedUnits",
+              "description": "Number of units returned by customers with a resolution (refund or\nreplacement), including returnless refunds, mapped to the day each unit was shipped.\nReturn data is computed with a delay of about 45 days, so the most recent ~45 days may be empty or incomplete.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalRefundAmount",
+              "description": "Total amount refunded to customers in the selected time period, including all\nrefunds, in the currency specified by the currencyCode argument (USD if not\nprovided). Refund data is computed with a delay of about 45 days, so the most\nrecent ~45 days may be empty or incomplete.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Reviews",
+          "description": "Reviews metric group. A null value for a given metric means that this metric is not yet available.",
+          "fields": [
+            {
+              "name": "criticalReviewRate",
+              "description": "Fraction (between 0 and 1) of customer reviews that are low-rating (critical),\ncalculated as lowRatingReviewCount divided by totalReviewCount. Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "displayRating",
+              "description": "Rounded star rating shown on the product detail page (1-5).\nReflects the overall rating state as of the requested date, not activity within the period.\nNull when the product has no ratings yet. Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lowRatingReviewCount",
+              "description": "Number of low-rating customer reviews (critical reviews) received for the product in the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rawRating",
+              "description": "Unrounded average star rating for the product (1-5).\nReflects the overall rating state as of the requested date, not activity within the period.\nNull when the product has no ratings yet. Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalRatingCount",
+              "description": "Total number of verified buyer reviews contributing to the product's star rating, as of\nthe requested date. Differs from totalReviewCount, which counts reviews received in the\nselected time period. Not supported under totals.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalReviewCount",
+              "description": "Total number of customer reviews received for the product in the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Sales",
+          "description": "Sales metric group. A null value for a given metric means that this metric is not yet available.",
+          "fields": [
+            {
+              "name": "averageSellingPrice",
+              "description": "The average price per unit in the selected time period, calculated by dividing\nnet orderedProductSales by net unitsOrdered (both adjusted for cancellations).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "averageSellingPriceB2B",
+              "description": "The average price of the units sold to Amazon Business customers, calculated\nby dividing the orderedProductSalesB2B by unitsOrderedB2B for the selected\ntime period. Note: This field is only populated if you are a B2B seller on Amazon.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "orderGMS",
+              "description": "Total monetary value of all orders after promotions and discounts, excluding canceled orders.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "orderedProductSales",
+              "description": "The amount of ordered product sales, calculated by multiplying the price of\nproducts and the number of units sold for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "orderedProductSalesB2B",
+              "description": "The amount of ordered product sales to Amazon Business customers, calculated\nby multiplying the price of products and the number of units sold for the\nselected time period. Note: This field is only populated if you are a B2B seller on Amazon.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ordersShippedWithRevenue",
+              "description": "The number of orders shipped in the selected time period as well as revenue generated.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UnitsWithValueAndBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsOrdered",
+              "description": "The number of units ordered.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsShipped",
+              "description": "The number of units shipped in the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsShippedB2B",
+              "description": "The number of units ordered by Amazon Business customers.\nNote: This field is only populated if you are a B2B seller on Amazon.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Search",
+          "description": "Search metric group for search-related analytics.",
+          "fields": [
+            {
+              "name": "catalog",
+              "description": "Catalog-level search metrics aggregated across all keywords.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SearchCatalogMetrics",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "query",
+              "description": "Query-level search metrics grouped by search keywords.\nReturns an array of metrics per unique keyword within the current grouping context.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SearchQueryMetrics",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SearchCatalogMetrics",
+          "description": "Search metrics at the catalog/ASIN level, aggregated across all keywords.",
+          "fields": [
+            {
+              "name": "clickRate",
+              "description": "Percentage of impressions that resulted in a click.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "conversionRate",
+              "description": "Percentage of impressions that resulted in a purchase.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "priceAndCountMetrics",
+              "description": "Core search metrics including impressions, clicks, cart adds, and purchases with price data.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PriceAndCountMetrics",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "trafficSales",
+              "description": "Total revenue generated from purchases attributed to search traffic.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AmountWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SearchQueryMetrics",
+          "description": "Search metrics at the query/keyword level.",
+          "fields": [
+            {
+              "name": "priceAndCountMetrics",
+              "description": "Core search metrics including impressions, clicks, cart adds, and purchases with price data.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PriceAndCountMetrics",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "queryKeyword",
+              "description": "Search query keyword entered by customers.\nThis field automatically groups results when selected, showing metrics per unique keyword.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SellerAnalyticsView",
+          "description": "The SellerAnalyticsView retrieves aggregated cross-domain seller analytics data based\non specified GroupByAttributes for the seller's account.",
+          "fields": [
+            {
+              "name": "endDate",
+              "description": "End date of the time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Date",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "metrics",
+              "description": "Metrics for the given time period, grouped by, for example, ASIN/SKU.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "SellerAnalyticsViewGroupedBy",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sellerAttributes",
+              "description": "Seller Attributes for the account. These are static attributes that don't change per metric or groupBy.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SellerAttributes",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "startDate",
+              "description": "Start date of the time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Date",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totals",
+              "description": "Totals (aggregate across all of the seller catalog) for the given time period.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SellerAnalyticsViewMetrics",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SellerAnalyticsViewGroupedBy",
+          "description": "SellerAnalytics view metrics grouped by the selected \"group by\" attributes, for example, brand, ASIN.",
+          "fields": [
+            {
+              "name": "groupByKey",
+              "description": "Group by attributes, for example, brand, ASIN.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "GroupByAttributes",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "metrics",
+              "description": "Metrics for the given time period, grouped by the attributes selected in the groupByKey.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SellerAnalyticsViewMetrics",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SellerAnalyticsViewMetrics",
+          "description": "Metrics broken down by metric groups, for example, Sales, Traffic, Promotion, AccountHealth, Lending, Search.",
+          "fields": [
+            {
+              "name": "accountHealth",
+              "description": "Account Health metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AccountHealth",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "defects",
+              "description": "Defects metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Defects",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lending",
+              "description": "Lending metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Lending",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "promotion",
+              "description": "Promotion metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Promotion",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "returns",
+              "description": "Returns metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Returns",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "reviews",
+              "description": "Reviews metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Reviews",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sales",
+              "description": "Sales metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Sales",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "search",
+              "description": "Search metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Search",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "traffic",
+              "description": "Traffic metric group.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Traffic",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SellerAttributes",
+          "description": "Seller-level attributes for the account. These are static and do not vary by\nmetric or groupBy. A null value means the attribute is not yet available.",
+          "fields": [
+            {
+              "name": "isBrandOwner",
+              "description": "Binary flag indicating whether the seller is registered as a brand owner in Amazon's Brand Registry.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isFBARegistered",
+              "description": "Binary flag indicating whether seller is registered for Amazon's FBA program.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sellerFraudStatus",
+              "description": "Fraud status of a merchant with default value of NormalStatus.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sellerStoreURL",
+              "description": "Web address of a merchant's online storefront on Amazon displaying all their listed ASINs.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sellerTenure",
+              "description": "Length of time a seller has been active on the Amazon marketplace, typically measured in days or months.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "String",
+          "description": "Represents textual data as UTF-8 character sequences. This type is most often used by GraphQL to represent free-form human-readable text.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "TimeRangeBenchmarking",
+          "description": "Benchmarking values applicable to WEEKLY and MONTHLY dateGranularity selections.\nFor example: WEEKLY supports two benchmarks (weekOverWeek and yearOverYear);\nMONTHLY supports two benchmarks (monthOverMonth and yearOverYear).",
+          "fields": [
+            {
+              "name": "monthOverMonth",
+              "description": "A metric that compares data from the current month to the previous month to measure performance changes.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "weekOverWeek",
+              "description": "A metric that compares data from the current week to the previous week to measure performance changes.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "yearOverYear",
+              "description": "A metric that compares data from the current period to the same period last year to measure performance changes.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Traffic",
+          "description": "Traffic metric group. A null value for a given metric means that this metric is not yet available.",
+          "fields": [
+            {
+              "name": "browserPageViews",
+              "description": "Browser page views are the number of times a user visited your Amazon.com browser pages for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "browserSessions",
+              "description": "Browser sessions are visits to your Amazon.com browser pages by a user. All\nbrowser activity within a 24-hour period is considered a browser session. For\nexample, if a user visits your pages using a browser multiple times within a\n24 hour period it is counted as a single browser session.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "conversationRatePct",
+              "description": "The conversion rate describes the successful transition of a customer from clicks to purchase.\nThis metric includes the percentage of purchases to clicks for ASINs originated from the search results page.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": true,
+              "deprecationReason": "No longer supported. Use conversionRatePct instead."
+            },
+            {
+              "name": "conversionRatePct",
+              "description": "The conversion rate describes the successful transition of a customer from clicks to purchase.\nThis metric includes the percentage of purchases to clicks for ASINs originated from the search results page.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "featureOfferGlanceViews",
+              "description": "Featured Offer glance views is the count of glance views where your product\nappeared as the Featured Offer on the search results page.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "featureOfferPct",
+              "description": "Featured Offer percentage shows how often your offer is the Featured Offer when customers can add to their cart.\nIt's calculated by dividing the number of times your offer is the Featured Offer\nby the number of times customers viewed it (that is, Glance Views).",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FloatWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "glanceViews",
+              "description": "Glance views is the number of times customers actively engage with your product detail page.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "glanceViewsB2B",
+              "description": "Glance views B2B is the number of times customers actively engage with your product detail page.\nNote: This field is only populated if you are a B2B seller on Amazon.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mobileAppPageViews",
+              "description": "Mobile app page views are the number of times a user visited your Amazon.com\nmobile app pages for the selected time period.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mobileAppSessions",
+              "description": "Mobile app sessions are visits to your Amazon.com mobile app pages by a user.\nAll mobile app activity within a 24-hour period is considered a mobile app\nsession. For example, if a user visits your pages using a mobile app multiple\ntimes within a 24 hour period it is counted as a single mobile app session.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pageViews",
+              "description": "Page views are the number of times a user visited your Amazon.com browser or\nmobile app pages for the selected time period. It is calculated as the sum of\nbrowserPageViews and mobileAppPageViews.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sessions",
+              "description": "Sessions are visits to your Amazon.com browser or mobile app pages by a user.\nAll browser and mobile app activity within a 24-hour period is considered a\nsession. It is calculated as the sum of browserSessions and mobileAppSessions.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "IntWithBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "TypeRights",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "type",
+              "description": "Union member type we are trying to access.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "require",
+              "description": "Rights to access above type.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UnitsWithValue",
+          "description": "Number of units with their corresponding monetary value.",
+          "fields": [
+            {
+              "name": "units",
+              "description": "Number of units.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": "Monetary value of the units.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Amount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UnitsWithValueAndBenchmarking",
+          "description": "Number of units with their corresponding monetary value and time range benchmarking.",
+          "fields": [
+            {
+              "name": "unitsTimeRangeBenchmarking",
+              "description": "Relevant time range benchmarking comparison for units.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TimeRangeBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitsWithValue",
+              "description": "Number of units and monetary value of the units.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "UnitsWithValue",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "valueTimeRangeBenchmarking",
+              "description": "Relevant time range benchmarking of the monetary value of units.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TimeRangeBenchmarking",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Directive",
+          "description": "A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\n\nIn some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.",
+          "fields": [
+            {
+              "name": "args",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__InputValue",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isRepeatable",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "locations",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "__DirectiveLocation",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "onField",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "Use `locations`."
+            },
+            {
+              "name": "onFragment",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "Use `locations`."
+            },
+            {
+              "name": "onOperation",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "Use `locations`."
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "__DirectiveLocation",
+          "description": "A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "QUERY",
+              "description": "Location adjacent to a query operation.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MUTATION",
+              "description": "Location adjacent to a mutation operation.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBSCRIPTION",
+              "description": "Location adjacent to a subscription operation.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FIELD",
+              "description": "Location adjacent to a field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FRAGMENT_DEFINITION",
+              "description": "Location adjacent to a fragment definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FRAGMENT_SPREAD",
+              "description": "Location adjacent to a fragment spread.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INLINE_FRAGMENT",
+              "description": "Location adjacent to an inline fragment.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VARIABLE_DEFINITION",
+              "description": "Location adjacent to a variable definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SCHEMA",
+              "description": "Location adjacent to a schema definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SCALAR",
+              "description": "Location adjacent to a scalar definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OBJECT",
+              "description": "Location adjacent to an object type definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FIELD_DEFINITION",
+              "description": "Location adjacent to a field definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ARGUMENT_DEFINITION",
+              "description": "Location adjacent to an argument definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INTERFACE",
+              "description": "Location adjacent to an interface definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNION",
+              "description": "Location adjacent to a union definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENUM",
+              "description": "Location adjacent to an enum definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENUM_VALUE",
+              "description": "Location adjacent to an enum value definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INPUT_OBJECT",
+              "description": "Location adjacent to an input object type definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INPUT_FIELD_DEFINITION",
+              "description": "Location adjacent to an input object field definition.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__EnumValue",
+          "description": "One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.",
+          "fields": [
+            {
+              "name": "deprecationReason",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isDeprecated",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Field",
+          "description": "Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.",
+          "fields": [
+            {
+              "name": "args",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__InputValue",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deprecationReason",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isDeprecated",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "type",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__InputValue",
+          "description": "Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.",
+          "fields": [
+            {
+              "name": "defaultValue",
+              "description": "A GraphQL-formatted string representing the default value for this input value.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deprecationReason",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isDeprecated",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "type",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Schema",
+          "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+          "fields": [
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "directives",
+              "description": "A list of all directives supported by this server.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__Directive",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mutationType",
+              "description": "If this server supports mutation, the type that mutation operations will be rooted at.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "queryType",
+              "description": "The type that query operations will be rooted at.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "subscriptionType",
+              "description": "If this server support subscription, the type that subscription operations will be rooted at.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "types",
+              "description": "A list of all types supported by this server.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__Type",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Type",
+          "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name and description, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+          "fields": [
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "enumValues",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__EnumValue",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fields",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Field",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "inputFields",
+              "description": null,
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__InputValue",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "interfaces",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Type",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isOneOf",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "kind",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "__TypeKind",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ofType",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "possibleTypes",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Type",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "specifiedByURL",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "__TypeKind",
+          "description": "An enum describing what kind of type a given `__Type` is.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "SCALAR",
+              "description": "Indicates this type is a scalar.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OBJECT",
+              "description": "Indicates this type is an object. `fields` and `interfaces` are valid fields.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INTERFACE",
+              "description": "Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNION",
+              "description": "Indicates this type is a union. `possibleTypes` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENUM",
+              "description": "Indicates this type is an enum. `enumValues` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INPUT_OBJECT",
+              "description": "Indicates this type is an input object. `inputFields` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "LIST",
+              "description": "Indicates this type is a list. `ofType` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NON_NULL",
+              "description": "Indicates this type is a non-null. `ofType` is a valid field.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        }
+      ],
+      "directives": [
+        {
+          "name": "deprecated",
+          "description": "Marks an element of a GraphQL schema as no longer supported.",
+          "locations": [
+            "FIELD_DEFINITION",
+            "ENUM_VALUE",
+            "ARGUMENT_DEFINITION",
+            "INPUT_FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "reason",
+              "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted in [Markdown](https://daringfireball.net/projects/markdown/).",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": "\"No longer supported\""
+            }
+          ]
+        },
+        {
+          "name": "domainGroupBy",
+          "description": "A directive which indicates that selecting this field will automatically group query results by its unique values.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": []
+        },
+        {
+          "name": "domainResolver",
+          "description": "A directive which is used to specify which sdp instance type executes the\noperations associated with the schema it is configured for.",
+          "locations": [
+            "OBJECT"
+          ],
+          "args": [
+            {
+              "name": "sdpInstanceType",
+              "description": "The sdp instance type that will execute the GraphQL resolvers.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "include",
+          "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
+          "locations": [
+            "FIELD",
+            "FRAGMENT_SPREAD",
+            "INLINE_FRAGMENT"
+          ],
+          "args": [
+            {
+              "name": "if",
+              "description": "Included when true.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "oneOf",
+          "description": "Requires that exactly one field must be supplied and that field must not be `null`.",
+          "locations": [
+            "INPUT_OBJECT"
+          ],
+          "args": []
+        },
+        {
+          "name": "paamRights",
+          "description": "A directive which is used to enforce PAAM rights.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "require",
+              "description": "A list of PAAM rights that Data Kiosk authorizes merchant account requests\nagainst. Requesters must have at least one right from the list to be\nauthorized for the associated field/query.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "interest",
+              "description": "An optional list of PAAM rights that Data Kiosk will not authorize against,\nbut should be included in the PAAM TA token. These rights are meant to be\nevaluated by the dataset owners for business logic or data redaction.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "paamUnionTypeRights",
+          "description": "A directive which is used to enforce PAAM rights on union member types. When\nquerying a union type, these rights prevent callers from getting union member\ntypes they are not authorized to access.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "memberTypes",
+              "description": "A list of TypeRights objects, each containing a union member type and the PAAM rights necessary to access it.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "TypeRights",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "resultRetention",
+          "description": "This directive specifies the retention duration of a query containing a\nparticular field. When a query contains multiple fields with different\nretentions, the shortest (minimum) retention is applied to the query. The\nretention of a query's resulting documents always matches the retention of the query.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "duration",
+              "description": "An ISO 8601 duration.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "skip",
+          "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
+          "locations": [
+            "FIELD",
+            "FRAGMENT_SPREAD",
+            "INLINE_FRAGMENT"
+          ],
+          "args": [
+            {
+              "name": "if",
+              "description": "Skipped when true.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "specifiedBy",
+          "description": "Exposes a URL that specifies the behavior of this scalar.",
+          "locations": [
+            "SCALAR"
+          ],
+          "args": [
+            {
+              "name": "url",
+              "description": "The URL that specifies the behavior of this scalar.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "supplementalRights",
+          "description": "A directive which is used to enforce supplemental rights.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "require",
+              "description": "A list of supplemental rights that Data Kiosk authorizes non-merchant account\nrequests against. Requesters must have at least one right from the list to be\nauthorized for the associated field/query.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "supplementalUnionTypeRights",
+          "description": "A directive which is used to enforce supplemental rights on union member types.\nWhen querying a union type, these rights prevent callers from getting union\nmember types they are not authorized to access.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "memberTypes",
+              "description": "A list of TypeRights objects, each containing a union member type and the supplemental rights necessary to access it.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "TypeRights",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "supportedAccountTypes",
+          "description": "A directive which is used to specify which account types are supported for a\ngiven operation and must be applied at the operation level.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "types",
+              "description": "A list of Amazon account types to support.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "AmazonAccountTypes",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "name": "supportedConverters",
+          "description": "Declares the converters that consumers are allowed to request for this\noperation, identified by SDP instance type. When a query requests a converter\nvia `@convert(withSdpInstanceType: ...)`, Data Kiosk permits the request only if\nthat SDP instance type is listed here; any converter not declared is rejected at\nrequest ingestion. Applies per operation (query field), not per domain — place\nit on the query operation field.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": [
+            {
+              "name": "sdpInstanceTypes",
+              "description": "The SDP instance types (e.g. `amzn1.sdp.1.type.1.fbmsConverter`) of the\nconverters allowed for this operation. A converter transforms the JSONL output\nof the operation's domain document processor into another format (for example,\nCSV). Must list at least one type, with no duplicates.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

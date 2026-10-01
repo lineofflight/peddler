@@ -5,6 +5,39 @@ module Peddler
         def self.parse: (Array[untyped]) -> ASINBadgeSet
       end
 
+      class ASINImage < Data
+        def self.new: (product_asin: Peddler::APIs::AplusContent20201101::TextComponent, product_image: Peddler::APIs::AplusContent20201101::ImageComponent) -> Peddler::APIs::AplusContent20201101::ASINImage
+                    | (Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::ImageComponent) -> Peddler::APIs::AplusContent20201101::ASINImage
+        def self.[]: (product_asin: Peddler::APIs::AplusContent20201101::TextComponent, product_image: Peddler::APIs::AplusContent20201101::ImageComponent) -> Peddler::APIs::AplusContent20201101::ASINImage
+                   | (Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::ImageComponent) -> Peddler::APIs::AplusContent20201101::ASINImage
+
+        def self.members: () -> [ :product_asin, :product_image ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ASINImage
+
+        attr_reader product_asin: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader product_image: Peddler::APIs::AplusContent20201101::ImageComponent
+
+        def members: () -> [ :product_asin, :product_image ]
+        def to_h: () -> { product_asin: Peddler::APIs::AplusContent20201101::TextComponent, product_image: Peddler::APIs::AplusContent20201101::ImageComponent }
+      end
+
+      class ASINImages < Data
+        def self.new: (asin_image: Peddler::APIs::AplusContent20201101::ASINImage) -> Peddler::APIs::AplusContent20201101::ASINImages
+                    | (Peddler::APIs::AplusContent20201101::ASINImage) -> Peddler::APIs::AplusContent20201101::ASINImages
+        def self.[]: (asin_image: Peddler::APIs::AplusContent20201101::ASINImage) -> Peddler::APIs::AplusContent20201101::ASINImages
+                   | (Peddler::APIs::AplusContent20201101::ASINImage) -> Peddler::APIs::AplusContent20201101::ASINImages
+
+        def self.members: () -> [ :asin_image ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ASINImages
+
+        attr_reader asin_image: Peddler::APIs::AplusContent20201101::ASINImage
+
+        def members: () -> [ :asin_image ]
+        def to_h: () -> { asin_image: Peddler::APIs::AplusContent20201101::ASINImage }
+      end
+
       class ASINMetadata < Data
         def self.new: (asin: String, ?badge_set: Array[untyped]?, ?content_reference_key_set: Array[untyped]?, ?image_url: String?, ?parent: String?, ?title: String?) -> Peddler::APIs::AplusContent20201101::ASINMetadata
                     | (String, Array[untyped]?, Array[untyped]?, String?, String?, String?) -> Peddler::APIs::AplusContent20201101::ASINMetadata
@@ -65,6 +98,183 @@ module Peddler
 
         def members: () -> [ :warnings ]
         def to_h: () -> { warnings: Array[Peddler::APIs::AplusContent20201101::Error]? }
+      end
+
+      class BrandStoryAboutModule < Data
+        def self.new: (logo_image: Peddler::APIs::AplusContent20201101::ImageComponent, ?slogan: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryAboutModule
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryAboutModule
+        def self.[]: (logo_image: Peddler::APIs::AplusContent20201101::ImageComponent, ?slogan: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryAboutModule
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryAboutModule
+
+        def self.members: () -> [ :logo_image, :slogan, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::BrandStoryAboutModule
+
+        attr_reader logo_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader slogan: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :logo_image, :slogan, :title ]
+        def to_h: () -> { logo_image: Peddler::APIs::AplusContent20201101::ImageComponent, slogan: Peddler::APIs::AplusContent20201101::ParagraphComponent?, title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class BrandStoryFourASINModule < Data
+        def self.new: (asin_images: Array[Peddler::APIs::AplusContent20201101::ASINImages], title: Peddler::APIs::AplusContent20201101::TextComponent, ?brand_store_id: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule
+                    | (Array[Peddler::APIs::AplusContent20201101::ASINImages], Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule
+        def self.[]: (asin_images: Array[Peddler::APIs::AplusContent20201101::ASINImages], title: Peddler::APIs::AplusContent20201101::TextComponent, ?brand_store_id: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule
+                   | (Array[Peddler::APIs::AplusContent20201101::ASINImages], Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule
+
+        def self.members: () -> [ :asin_images, :title, :brand_store_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule
+
+        attr_reader asin_images: Array[Peddler::APIs::AplusContent20201101::ASINImages]
+        attr_reader brand_store_id: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent
+
+        def members: () -> [ :asin_images, :title, :brand_store_id ]
+        def to_h: () -> { asin_images: Array[Peddler::APIs::AplusContent20201101::ASINImages], title: Peddler::APIs::AplusContent20201101::TextComponent, brand_store_id: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class BrandStoryImageWithLogoModule < Data
+        def self.new: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule
+        def self.[]: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule
+
+        def self.members: () -> [ :desktop_image, :mobile_image, :description, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :desktop_image, :mobile_image, :description, :title ]
+        def to_h: () -> { desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class BrandStoryMediaAssetModule < Data
+        def self.new: (image: Peddler::APIs::AplusContent20201101::ImageComponent, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule
+        def self.[]: (image: Peddler::APIs::AplusContent20201101::ImageComponent, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule
+
+        def self.members: () -> [ :image, :description, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :image, :description, :title ]
+        def to_h: () -> { image: Peddler::APIs::AplusContent20201101::ImageComponent, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class BrandStoryQuestionsModule < Data
+        def self.new: (question_answer_pairs: Array[Peddler::APIs::AplusContent20201101::QuestionAnswerPairs]) -> Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule
+                    | (Array[Peddler::APIs::AplusContent20201101::QuestionAnswerPairs]) -> Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule
+        def self.[]: (question_answer_pairs: Array[Peddler::APIs::AplusContent20201101::QuestionAnswerPairs]) -> Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule
+                   | (Array[Peddler::APIs::AplusContent20201101::QuestionAnswerPairs]) -> Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule
+
+        def self.members: () -> [ :question_answer_pairs ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule
+
+        attr_reader question_answer_pairs: Array[Peddler::APIs::AplusContent20201101::QuestionAnswerPairs]
+
+        def members: () -> [ :question_answer_pairs ]
+        def to_h: () -> { question_answer_pairs: Array[Peddler::APIs::AplusContent20201101::QuestionAnswerPairs] }
+      end
+
+      class ComparisonFields < Data
+        def self.new: (comparison_field: Peddler::APIs::AplusContent20201101::PlainTextItem) -> Peddler::APIs::AplusContent20201101::ComparisonFields
+                    | (Peddler::APIs::AplusContent20201101::PlainTextItem) -> Peddler::APIs::AplusContent20201101::ComparisonFields
+        def self.[]: (comparison_field: Peddler::APIs::AplusContent20201101::PlainTextItem) -> Peddler::APIs::AplusContent20201101::ComparisonFields
+                   | (Peddler::APIs::AplusContent20201101::PlainTextItem) -> Peddler::APIs::AplusContent20201101::ComparisonFields
+
+        def self.members: () -> [ :comparison_field ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ComparisonFields
+
+        attr_reader comparison_field: Peddler::APIs::AplusContent20201101::PlainTextItem
+
+        def members: () -> [ :comparison_field ]
+        def to_h: () -> { comparison_field: Peddler::APIs::AplusContent20201101::PlainTextItem }
+      end
+
+      class ComparisonMetrics < Data
+        def self.new: (comparison_row: Peddler::APIs::AplusContent20201101::ComparisonRow) -> Peddler::APIs::AplusContent20201101::ComparisonMetrics
+                    | (Peddler::APIs::AplusContent20201101::ComparisonRow) -> Peddler::APIs::AplusContent20201101::ComparisonMetrics
+        def self.[]: (comparison_row: Peddler::APIs::AplusContent20201101::ComparisonRow) -> Peddler::APIs::AplusContent20201101::ComparisonMetrics
+                   | (Peddler::APIs::AplusContent20201101::ComparisonRow) -> Peddler::APIs::AplusContent20201101::ComparisonMetrics
+
+        def self.members: () -> [ :comparison_row ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ComparisonMetrics
+
+        attr_reader comparison_row: Peddler::APIs::AplusContent20201101::ComparisonRow
+
+        def members: () -> [ :comparison_row ]
+        def to_h: () -> { comparison_row: Peddler::APIs::AplusContent20201101::ComparisonRow }
+      end
+
+      class ComparisonProduct < Data
+        def self.new: (?desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?position: Integer?, ?product_asin: Peddler::APIs::AplusContent20201101::TextComponent?, ?product_title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ComparisonProduct
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent?, Peddler::APIs::AplusContent20201101::ImageComponent?, Integer?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ComparisonProduct
+        def self.[]: (?desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?position: Integer?, ?product_asin: Peddler::APIs::AplusContent20201101::TextComponent?, ?product_title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ComparisonProduct
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent?, Peddler::APIs::AplusContent20201101::ImageComponent?, Integer?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ComparisonProduct
+
+        def self.members: () -> [ :desktop_image, :mobile_image, :position, :product_asin, :product_title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ComparisonProduct
+
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent?
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent?
+        attr_reader position: Integer?
+        attr_reader product_asin: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader product_title: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :desktop_image, :mobile_image, :position, :product_asin, :product_title ]
+        def to_h: () -> { desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent?, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent?, position: Integer?, product_asin: Peddler::APIs::AplusContent20201101::TextComponent?, product_title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class ComparisonProducts < Data
+        def self.new: (comparison_product: Peddler::APIs::AplusContent20201101::ComparisonProduct) -> Peddler::APIs::AplusContent20201101::ComparisonProducts
+                    | (Peddler::APIs::AplusContent20201101::ComparisonProduct) -> Peddler::APIs::AplusContent20201101::ComparisonProducts
+        def self.[]: (comparison_product: Peddler::APIs::AplusContent20201101::ComparisonProduct) -> Peddler::APIs::AplusContent20201101::ComparisonProducts
+                   | (Peddler::APIs::AplusContent20201101::ComparisonProduct) -> Peddler::APIs::AplusContent20201101::ComparisonProducts
+
+        def self.members: () -> [ :comparison_product ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ComparisonProducts
+
+        attr_reader comparison_product: Peddler::APIs::AplusContent20201101::ComparisonProduct
+
+        def members: () -> [ :comparison_product ]
+        def to_h: () -> { comparison_product: Peddler::APIs::AplusContent20201101::ComparisonProduct }
+      end
+
+      class ComparisonRow < Data
+        def self.new: (?additional_info: Peddler::APIs::AplusContent20201101::TextComponent?, ?comparison_fields: Array[Peddler::APIs::AplusContent20201101::ComparisonFields]?, ?comparison_type: Peddler::APIs::AplusContent20201101::TextComponent?, ?metric_name: Peddler::APIs::AplusContent20201101::TextComponent?, ?position: Integer?) -> Peddler::APIs::AplusContent20201101::ComparisonRow
+                    | (Peddler::APIs::AplusContent20201101::TextComponent?, Array[Peddler::APIs::AplusContent20201101::ComparisonFields]?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Integer?) -> Peddler::APIs::AplusContent20201101::ComparisonRow
+        def self.[]: (?additional_info: Peddler::APIs::AplusContent20201101::TextComponent?, ?comparison_fields: Array[Peddler::APIs::AplusContent20201101::ComparisonFields]?, ?comparison_type: Peddler::APIs::AplusContent20201101::TextComponent?, ?metric_name: Peddler::APIs::AplusContent20201101::TextComponent?, ?position: Integer?) -> Peddler::APIs::AplusContent20201101::ComparisonRow
+                   | (Peddler::APIs::AplusContent20201101::TextComponent?, Array[Peddler::APIs::AplusContent20201101::ComparisonFields]?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Integer?) -> Peddler::APIs::AplusContent20201101::ComparisonRow
+
+        def self.members: () -> [ :additional_info, :comparison_fields, :comparison_type, :metric_name, :position ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ComparisonRow
+
+        attr_reader additional_info: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader comparison_fields: Array[Peddler::APIs::AplusContent20201101::ComparisonFields]?
+        attr_reader comparison_type: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader metric_name: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader position: Integer?
+
+        def members: () -> [ :additional_info, :comparison_fields, :comparison_type, :metric_name, :position ]
+        def to_h: () -> { additional_info: Peddler::APIs::AplusContent20201101::TextComponent?, comparison_fields: Array[Peddler::APIs::AplusContent20201101::ComparisonFields]?, comparison_type: Peddler::APIs::AplusContent20201101::TextComponent?, metric_name: Peddler::APIs::AplusContent20201101::TextComponent?, position: Integer? }
       end
 
       class ContentBadgeSet < Array[untyped]
@@ -133,16 +343,40 @@ module Peddler
       end
 
       class ContentModule < Data
-        def self.new: (content_module_type: String, ?standard_company_logo: Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, ?standard_comparison_table: Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, ?standard_four_image_text: Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, ?standard_four_image_text_quadrant: Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, ?standard_header_image_text: Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, ?standard_image_sidebar: Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, ?standard_image_text_overlay: Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, ?standard_multiple_image_text: Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, ?standard_product_description: Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, ?standard_single_image_highlights: Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, ?standard_single_image_specs_detail: Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, ?standard_single_side_image: Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, ?standard_tech_specs: Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, ?standard_text: Peddler::APIs::AplusContent20201101::StandardTextModule?, ?standard_three_image_text: Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::APIs::AplusContent20201101::ContentModule
-                    | (String, Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, Peddler::APIs::AplusContent20201101::StandardTextModule?, Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::APIs::AplusContent20201101::ContentModule
-        def self.[]: (content_module_type: String, ?standard_company_logo: Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, ?standard_comparison_table: Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, ?standard_four_image_text: Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, ?standard_four_image_text_quadrant: Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, ?standard_header_image_text: Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, ?standard_image_sidebar: Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, ?standard_image_text_overlay: Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, ?standard_multiple_image_text: Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, ?standard_product_description: Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, ?standard_single_image_highlights: Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, ?standard_single_image_specs_detail: Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, ?standard_single_side_image: Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, ?standard_tech_specs: Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, ?standard_text: Peddler::APIs::AplusContent20201101::StandardTextModule?, ?standard_three_image_text: Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::APIs::AplusContent20201101::ContentModule
-                   | (String, Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, Peddler::APIs::AplusContent20201101::StandardTextModule?, Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::APIs::AplusContent20201101::ContentModule
+        def self.new: (content_module_type: String, ?brand_story_about: Peddler::APIs::AplusContent20201101::BrandStoryAboutModule?, ?brand_story_four_asin: Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule?, ?brand_story_image_with_logo: Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule?, ?brand_story_media_asset: Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule?, ?brand_story_questions: Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule?, ?premium_comparison_carousel: Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule?, ?premium_comparison_scroller: Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule?, ?premium_dual_image_text: Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule?, ?premium_faq: Peddler::APIs::AplusContent20201101::PremiumFaqModule?, ?premium_four_column_images: Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule?, ?premium_full_background_image: Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule?, ?premium_full_background_text: Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule?, ?premium_hero_video: Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule?, ?premium_hotspot_image: Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule?, ?premium_hotspot_image_text: Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule?, ?premium_image_carousel: Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule?, ?premium_image_text: Peddler::APIs::AplusContent20201101::PremiumImageTextModule?, ?premium_navigation_carousel: Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule?, ?premium_regimen_carousel: Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule?, ?premium_tech_specs: Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule?, ?premium_text: Peddler::APIs::AplusContent20201101::PremiumTextModule?, ?premium_three_column_comparison: Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule?, ?premium_video_image_carousel: Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule?, ?premium_video_text: Peddler::APIs::AplusContent20201101::PremiumVideoTextModule?, ?standard_company_logo: Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, ?standard_comparison_table: Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, ?standard_four_image_text: Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, ?standard_four_image_text_quadrant: Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, ?standard_header_image_text: Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, ?standard_image_sidebar: Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, ?standard_image_text_overlay: Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, ?standard_multiple_image_text: Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, ?standard_product_description: Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, ?standard_single_image_highlights: Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, ?standard_single_image_specs_detail: Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, ?standard_single_side_image: Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, ?standard_tech_specs: Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, ?standard_text: Peddler::APIs::AplusContent20201101::StandardTextModule?, ?standard_three_image_text: Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::APIs::AplusContent20201101::ContentModule
+                    | (String, Peddler::APIs::AplusContent20201101::BrandStoryAboutModule?, Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule?, Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule?, Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule?, Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule?, Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule?, Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule?, Peddler::APIs::AplusContent20201101::PremiumFaqModule?, Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule?, Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule?, Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule?, Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule?, Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule?, Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule?, Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumImageTextModule?, Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule?, Peddler::APIs::AplusContent20201101::PremiumTextModule?, Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule?, Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumVideoTextModule?, Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, Peddler::APIs::AplusContent20201101::StandardTextModule?, Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::APIs::AplusContent20201101::ContentModule
+        def self.[]: (content_module_type: String, ?brand_story_about: Peddler::APIs::AplusContent20201101::BrandStoryAboutModule?, ?brand_story_four_asin: Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule?, ?brand_story_image_with_logo: Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule?, ?brand_story_media_asset: Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule?, ?brand_story_questions: Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule?, ?premium_comparison_carousel: Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule?, ?premium_comparison_scroller: Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule?, ?premium_dual_image_text: Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule?, ?premium_faq: Peddler::APIs::AplusContent20201101::PremiumFaqModule?, ?premium_four_column_images: Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule?, ?premium_full_background_image: Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule?, ?premium_full_background_text: Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule?, ?premium_hero_video: Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule?, ?premium_hotspot_image: Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule?, ?premium_hotspot_image_text: Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule?, ?premium_image_carousel: Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule?, ?premium_image_text: Peddler::APIs::AplusContent20201101::PremiumImageTextModule?, ?premium_navigation_carousel: Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule?, ?premium_regimen_carousel: Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule?, ?premium_tech_specs: Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule?, ?premium_text: Peddler::APIs::AplusContent20201101::PremiumTextModule?, ?premium_three_column_comparison: Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule?, ?premium_video_image_carousel: Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule?, ?premium_video_text: Peddler::APIs::AplusContent20201101::PremiumVideoTextModule?, ?standard_company_logo: Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, ?standard_comparison_table: Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, ?standard_four_image_text: Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, ?standard_four_image_text_quadrant: Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, ?standard_header_image_text: Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, ?standard_image_sidebar: Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, ?standard_image_text_overlay: Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, ?standard_multiple_image_text: Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, ?standard_product_description: Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, ?standard_single_image_highlights: Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, ?standard_single_image_specs_detail: Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, ?standard_single_side_image: Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, ?standard_tech_specs: Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, ?standard_text: Peddler::APIs::AplusContent20201101::StandardTextModule?, ?standard_three_image_text: Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::APIs::AplusContent20201101::ContentModule
+                   | (String, Peddler::APIs::AplusContent20201101::BrandStoryAboutModule?, Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule?, Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule?, Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule?, Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule?, Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule?, Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule?, Peddler::APIs::AplusContent20201101::PremiumFaqModule?, Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule?, Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule?, Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule?, Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule?, Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule?, Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule?, Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumImageTextModule?, Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule?, Peddler::APIs::AplusContent20201101::PremiumTextModule?, Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule?, Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule?, Peddler::APIs::AplusContent20201101::PremiumVideoTextModule?, Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, Peddler::APIs::AplusContent20201101::StandardTextModule?, Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?) -> Peddler::APIs::AplusContent20201101::ContentModule
 
-        def self.members: () -> [ :content_module_type, :standard_company_logo, :standard_comparison_table, :standard_four_image_text, :standard_four_image_text_quadrant, :standard_header_image_text, :standard_image_sidebar, :standard_image_text_overlay, :standard_multiple_image_text, :standard_product_description, :standard_single_image_highlights, :standard_single_image_specs_detail, :standard_single_side_image, :standard_tech_specs, :standard_text, :standard_three_image_text ]
+        def self.members: () -> [ :content_module_type, :brand_story_about, :brand_story_four_asin, :brand_story_image_with_logo, :brand_story_media_asset, :brand_story_questions, :premium_comparison_carousel, :premium_comparison_scroller, :premium_dual_image_text, :premium_faq, :premium_four_column_images, :premium_full_background_image, :premium_full_background_text, :premium_hero_video, :premium_hotspot_image, :premium_hotspot_image_text, :premium_image_carousel, :premium_image_text, :premium_navigation_carousel, :premium_regimen_carousel, :premium_tech_specs, :premium_text, :premium_three_column_comparison, :premium_video_image_carousel, :premium_video_text, :standard_company_logo, :standard_comparison_table, :standard_four_image_text, :standard_four_image_text_quadrant, :standard_header_image_text, :standard_image_sidebar, :standard_image_text_overlay, :standard_multiple_image_text, :standard_product_description, :standard_single_image_highlights, :standard_single_image_specs_detail, :standard_single_side_image, :standard_tech_specs, :standard_text, :standard_three_image_text ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ContentModule
 
+        attr_reader brand_story_about: Peddler::APIs::AplusContent20201101::BrandStoryAboutModule?
+        attr_reader brand_story_four_asin: Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule?
+        attr_reader brand_story_image_with_logo: Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule?
+        attr_reader brand_story_media_asset: Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule?
+        attr_reader brand_story_questions: Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule?
         attr_reader content_module_type: String
+        attr_reader premium_comparison_carousel: Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule?
+        attr_reader premium_comparison_scroller: Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule?
+        attr_reader premium_dual_image_text: Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule?
+        attr_reader premium_faq: Peddler::APIs::AplusContent20201101::PremiumFaqModule?
+        attr_reader premium_four_column_images: Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule?
+        attr_reader premium_full_background_image: Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule?
+        attr_reader premium_full_background_text: Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule?
+        attr_reader premium_hero_video: Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule?
+        attr_reader premium_hotspot_image: Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule?
+        attr_reader premium_hotspot_image_text: Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule?
+        attr_reader premium_image_carousel: Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule?
+        attr_reader premium_image_text: Peddler::APIs::AplusContent20201101::PremiumImageTextModule?
+        attr_reader premium_navigation_carousel: Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule?
+        attr_reader premium_regimen_carousel: Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule?
+        attr_reader premium_tech_specs: Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule?
+        attr_reader premium_text: Peddler::APIs::AplusContent20201101::PremiumTextModule?
+        attr_reader premium_three_column_comparison: Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule?
+        attr_reader premium_video_image_carousel: Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule?
+        attr_reader premium_video_text: Peddler::APIs::AplusContent20201101::PremiumVideoTextModule?
         attr_reader standard_company_logo: Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?
         attr_reader standard_comparison_table: Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?
         attr_reader standard_four_image_text: Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?
@@ -159,8 +393,8 @@ module Peddler
         attr_reader standard_text: Peddler::APIs::AplusContent20201101::StandardTextModule?
         attr_reader standard_three_image_text: Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule?
 
-        def members: () -> [ :content_module_type, :standard_company_logo, :standard_comparison_table, :standard_four_image_text, :standard_four_image_text_quadrant, :standard_header_image_text, :standard_image_sidebar, :standard_image_text_overlay, :standard_multiple_image_text, :standard_product_description, :standard_single_image_highlights, :standard_single_image_specs_detail, :standard_single_side_image, :standard_tech_specs, :standard_text, :standard_three_image_text ]
-        def to_h: () -> { content_module_type: String, standard_company_logo: Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, standard_comparison_table: Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, standard_four_image_text: Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, standard_four_image_text_quadrant: Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, standard_header_image_text: Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, standard_image_sidebar: Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, standard_image_text_overlay: Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, standard_multiple_image_text: Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, standard_product_description: Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, standard_single_image_highlights: Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, standard_single_image_specs_detail: Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, standard_single_side_image: Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, standard_tech_specs: Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, standard_text: Peddler::APIs::AplusContent20201101::StandardTextModule?, standard_three_image_text: Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule? }
+        def members: () -> [ :content_module_type, :brand_story_about, :brand_story_four_asin, :brand_story_image_with_logo, :brand_story_media_asset, :brand_story_questions, :premium_comparison_carousel, :premium_comparison_scroller, :premium_dual_image_text, :premium_faq, :premium_four_column_images, :premium_full_background_image, :premium_full_background_text, :premium_hero_video, :premium_hotspot_image, :premium_hotspot_image_text, :premium_image_carousel, :premium_image_text, :premium_navigation_carousel, :premium_regimen_carousel, :premium_tech_specs, :premium_text, :premium_three_column_comparison, :premium_video_image_carousel, :premium_video_text, :standard_company_logo, :standard_comparison_table, :standard_four_image_text, :standard_four_image_text_quadrant, :standard_header_image_text, :standard_image_sidebar, :standard_image_text_overlay, :standard_multiple_image_text, :standard_product_description, :standard_single_image_highlights, :standard_single_image_specs_detail, :standard_single_side_image, :standard_tech_specs, :standard_text, :standard_three_image_text ]
+        def to_h: () -> { content_module_type: String, brand_story_about: Peddler::APIs::AplusContent20201101::BrandStoryAboutModule?, brand_story_four_asin: Peddler::APIs::AplusContent20201101::BrandStoryFourASINModule?, brand_story_image_with_logo: Peddler::APIs::AplusContent20201101::BrandStoryImageWithLogoModule?, brand_story_media_asset: Peddler::APIs::AplusContent20201101::BrandStoryMediaAssetModule?, brand_story_questions: Peddler::APIs::AplusContent20201101::BrandStoryQuestionsModule?, premium_comparison_carousel: Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule?, premium_comparison_scroller: Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule?, premium_dual_image_text: Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule?, premium_faq: Peddler::APIs::AplusContent20201101::PremiumFaqModule?, premium_four_column_images: Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule?, premium_full_background_image: Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule?, premium_full_background_text: Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule?, premium_hero_video: Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule?, premium_hotspot_image: Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule?, premium_hotspot_image_text: Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule?, premium_image_carousel: Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule?, premium_image_text: Peddler::APIs::AplusContent20201101::PremiumImageTextModule?, premium_navigation_carousel: Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule?, premium_regimen_carousel: Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule?, premium_tech_specs: Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule?, premium_text: Peddler::APIs::AplusContent20201101::PremiumTextModule?, premium_three_column_comparison: Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule?, premium_video_image_carousel: Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule?, premium_video_text: Peddler::APIs::AplusContent20201101::PremiumVideoTextModule?, standard_company_logo: Peddler::APIs::AplusContent20201101::StandardCompanyLogoModule?, standard_comparison_table: Peddler::APIs::AplusContent20201101::StandardComparisonTableModule?, standard_four_image_text: Peddler::APIs::AplusContent20201101::StandardFourImageTextModule?, standard_four_image_text_quadrant: Peddler::APIs::AplusContent20201101::StandardFourImageTextQuadrantModule?, standard_header_image_text: Peddler::APIs::AplusContent20201101::StandardHeaderImageTextModule?, standard_image_sidebar: Peddler::APIs::AplusContent20201101::StandardImageSidebarModule?, standard_image_text_overlay: Peddler::APIs::AplusContent20201101::StandardImageTextOverlayModule?, standard_multiple_image_text: Peddler::APIs::AplusContent20201101::StandardMultipleImageTextModule?, standard_product_description: Peddler::APIs::AplusContent20201101::StandardProductDescriptionModule?, standard_single_image_highlights: Peddler::APIs::AplusContent20201101::StandardSingleImageHighlightsModule?, standard_single_image_specs_detail: Peddler::APIs::AplusContent20201101::StandardSingleImageSpecsDetailModule?, standard_single_side_image: Peddler::APIs::AplusContent20201101::StandardSingleSideImageModule?, standard_tech_specs: Peddler::APIs::AplusContent20201101::StandardTechSpecsModule?, standard_text: Peddler::APIs::AplusContent20201101::StandardTextModule?, standard_three_image_text: Peddler::APIs::AplusContent20201101::StandardThreeImageTextModule? }
       end
 
       class ContentModuleList < Array[ContentModule]
@@ -189,6 +423,43 @@ module Peddler
         def self.parse: (Array[untyped]) -> ContentReferenceKeySet
       end
 
+      class CreateMediaRequest < Data
+        def self.new: (media_type: String, ?descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, ?media_id: String?, ?related_media: Array[Peddler::APIs::AplusContent20201101::RelatedMediaInput]?, ?title: String?, ?upload_destination_id: String?) -> Peddler::APIs::AplusContent20201101::CreateMediaRequest
+                    | (String, Array[Peddler::APIs::AplusContent20201101::Description]?, String?, Array[Peddler::APIs::AplusContent20201101::RelatedMediaInput]?, String?, String?) -> Peddler::APIs::AplusContent20201101::CreateMediaRequest
+        def self.[]: (media_type: String, ?descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, ?media_id: String?, ?related_media: Array[Peddler::APIs::AplusContent20201101::RelatedMediaInput]?, ?title: String?, ?upload_destination_id: String?) -> Peddler::APIs::AplusContent20201101::CreateMediaRequest
+                   | (String, Array[Peddler::APIs::AplusContent20201101::Description]?, String?, Array[Peddler::APIs::AplusContent20201101::RelatedMediaInput]?, String?, String?) -> Peddler::APIs::AplusContent20201101::CreateMediaRequest
+
+        def self.members: () -> [ :media_type, :descriptions, :media_id, :related_media, :title, :upload_destination_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::CreateMediaRequest
+
+        attr_reader descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?
+        attr_reader media_id: String?
+        attr_reader media_type: String
+        attr_reader related_media: Array[Peddler::APIs::AplusContent20201101::RelatedMediaInput]?
+        attr_reader title: String?
+        attr_reader upload_destination_id: String?
+
+        def members: () -> [ :media_type, :descriptions, :media_id, :related_media, :title, :upload_destination_id ]
+        def to_h: () -> { media_type: String, descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, media_id: String?, related_media: Array[Peddler::APIs::AplusContent20201101::RelatedMediaInput]?, title: String?, upload_destination_id: String? }
+      end
+
+      class CreateMediaResponse < Data
+        def self.new: (?warnings: Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::CreateMediaResponse
+                    | (Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::CreateMediaResponse
+        def self.[]: (?warnings: Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::CreateMediaResponse
+                   | (Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::CreateMediaResponse
+
+        def self.members: () -> [ :warnings ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::CreateMediaResponse
+
+        attr_reader warnings: Array[Peddler::APIs::AplusContent20201101::Error]?
+
+        def members: () -> [ :warnings ]
+        def to_h: () -> { warnings: Array[Peddler::APIs::AplusContent20201101::Error]? }
+      end
+
       class Decorator < Data
         def self.new: (?depth: Integer?, ?length: Integer?, ?offset: Integer?, ?type: String?) -> Peddler::APIs::AplusContent20201101::Decorator
                     | (Integer?, Integer?, Integer?, String?) -> Peddler::APIs::AplusContent20201101::Decorator
@@ -210,6 +481,27 @@ module Peddler
 
       class DecoratorSet < Array[Decorator]
         def self.parse: (Array[untyped]) -> DecoratorSet
+      end
+
+      class Description < Data
+        def self.new: (locale: String, value: String) -> Peddler::APIs::AplusContent20201101::Description
+                    | (String, String) -> Peddler::APIs::AplusContent20201101::Description
+        def self.[]: (locale: String, value: String) -> Peddler::APIs::AplusContent20201101::Description
+                   | (String, String) -> Peddler::APIs::AplusContent20201101::Description
+
+        def self.members: () -> [ :locale, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::Description
+
+        attr_reader locale: String
+        attr_reader value: String
+
+        def members: () -> [ :locale, :value ]
+        def to_h: () -> { locale: String, value: String }
+      end
+
+      class DescriptionList < Array[Description]
+        def self.parse: (Array[untyped]) -> DescriptionList
       end
 
       class Error < Data
@@ -246,6 +538,39 @@ module Peddler
         def to_h: () -> { errors: Array[Peddler::APIs::AplusContent20201101::Error] }
       end
 
+      class Faq < Data
+        def self.new: (answer: Peddler::APIs::AplusContent20201101::ParagraphComponent, question: Peddler::APIs::AplusContent20201101::ParagraphComponent) -> Peddler::APIs::AplusContent20201101::Faq
+                    | (Peddler::APIs::AplusContent20201101::ParagraphComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent) -> Peddler::APIs::AplusContent20201101::Faq
+        def self.[]: (answer: Peddler::APIs::AplusContent20201101::ParagraphComponent, question: Peddler::APIs::AplusContent20201101::ParagraphComponent) -> Peddler::APIs::AplusContent20201101::Faq
+                   | (Peddler::APIs::AplusContent20201101::ParagraphComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent) -> Peddler::APIs::AplusContent20201101::Faq
+
+        def self.members: () -> [ :answer, :question ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::Faq
+
+        attr_reader answer: Peddler::APIs::AplusContent20201101::ParagraphComponent
+        attr_reader question: Peddler::APIs::AplusContent20201101::ParagraphComponent
+
+        def members: () -> [ :answer, :question ]
+        def to_h: () -> { answer: Peddler::APIs::AplusContent20201101::ParagraphComponent, question: Peddler::APIs::AplusContent20201101::ParagraphComponent }
+      end
+
+      class Faqs < Data
+        def self.new: (faq: Peddler::APIs::AplusContent20201101::Faq) -> Peddler::APIs::AplusContent20201101::Faqs
+                    | (Peddler::APIs::AplusContent20201101::Faq) -> Peddler::APIs::AplusContent20201101::Faqs
+        def self.[]: (faq: Peddler::APIs::AplusContent20201101::Faq) -> Peddler::APIs::AplusContent20201101::Faqs
+                   | (Peddler::APIs::AplusContent20201101::Faq) -> Peddler::APIs::AplusContent20201101::Faqs
+
+        def self.members: () -> [ :faq ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::Faqs
+
+        attr_reader faq: Peddler::APIs::AplusContent20201101::Faq
+
+        def members: () -> [ :faq ]
+        def to_h: () -> { faq: Peddler::APIs::AplusContent20201101::Faq }
+      end
+
       class GetContentDocumentResponse < Data
         def self.new: (content_record: Peddler::APIs::AplusContent20201101::ContentRecord, ?warnings: Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::GetContentDocumentResponse
                     | (Peddler::APIs::AplusContent20201101::ContentRecord, Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::GetContentDocumentResponse
@@ -261,6 +586,95 @@ module Peddler
 
         def members: () -> [ :content_record, :warnings ]
         def to_h: () -> { content_record: Peddler::APIs::AplusContent20201101::ContentRecord, warnings: Array[Peddler::APIs::AplusContent20201101::Error]? }
+      end
+
+      class GetMediaResponse < Data
+        def self.new: (?warnings: Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::GetMediaResponse
+                    | (Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::GetMediaResponse
+        def self.[]: (?warnings: Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::GetMediaResponse
+                   | (Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::GetMediaResponse
+
+        def self.members: () -> [ :warnings ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::GetMediaResponse
+
+        attr_reader warnings: Array[Peddler::APIs::AplusContent20201101::Error]?
+
+        def members: () -> [ :warnings ]
+        def to_h: () -> { warnings: Array[Peddler::APIs::AplusContent20201101::Error]? }
+      end
+
+      class ImageCarouselPanel < Data
+        def self.new: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, position: Integer, ?asin: Peddler::APIs::AplusContent20201101::TextComponent?, ?button_text: Peddler::APIs::AplusContent20201101::TextComponent?, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanel
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Integer, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanel
+        def self.[]: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, position: Integer, ?asin: Peddler::APIs::AplusContent20201101::TextComponent?, ?button_text: Peddler::APIs::AplusContent20201101::TextComponent?, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanel
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Integer, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanel
+
+        def self.members: () -> [ :desktop_image, :mobile_image, :position, :asin, :button_text, :description, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanel
+
+        attr_reader asin: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader button_text: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader position: Integer
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :desktop_image, :mobile_image, :position, :asin, :button_text, :description, :title ]
+        def to_h: () -> { desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, position: Integer, asin: Peddler::APIs::AplusContent20201101::TextComponent?, button_text: Peddler::APIs::AplusContent20201101::TextComponent?, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class ImageCarouselPanels < Data
+        def self.new: (image_panel: Peddler::APIs::AplusContent20201101::ImageCarouselPanel) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanels
+                    | (Peddler::APIs::AplusContent20201101::ImageCarouselPanel) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanels
+        def self.[]: (image_panel: Peddler::APIs::AplusContent20201101::ImageCarouselPanel) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanels
+                   | (Peddler::APIs::AplusContent20201101::ImageCarouselPanel) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanels
+
+        def self.members: () -> [ :image_panel ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ImageCarouselPanels
+
+        attr_reader image_panel: Peddler::APIs::AplusContent20201101::ImageCarouselPanel
+
+        def members: () -> [ :image_panel ]
+        def to_h: () -> { image_panel: Peddler::APIs::AplusContent20201101::ImageCarouselPanel }
+      end
+
+      class ImageColumn < Data
+        def self.new: (image: Peddler::APIs::AplusContent20201101::ImageComponent, position: Integer, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageColumn
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Integer, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageColumn
+        def self.[]: (image: Peddler::APIs::AplusContent20201101::ImageComponent, position: Integer, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageColumn
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Integer, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageColumn
+
+        def self.members: () -> [ :image, :position, :description, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ImageColumn
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader position: Integer
+
+        def members: () -> [ :image, :position, :description, :headline ]
+        def to_h: () -> { image: Peddler::APIs::AplusContent20201101::ImageComponent, position: Integer, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class ImageColumns < Data
+        def self.new: (image_column: Peddler::APIs::AplusContent20201101::ImageColumn) -> Peddler::APIs::AplusContent20201101::ImageColumns
+                    | (Peddler::APIs::AplusContent20201101::ImageColumn) -> Peddler::APIs::AplusContent20201101::ImageColumns
+        def self.[]: (image_column: Peddler::APIs::AplusContent20201101::ImageColumn) -> Peddler::APIs::AplusContent20201101::ImageColumns
+                   | (Peddler::APIs::AplusContent20201101::ImageColumn) -> Peddler::APIs::AplusContent20201101::ImageColumns
+
+        def self.members: () -> [ :image_column ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ImageColumns
+
+        attr_reader image_column: Peddler::APIs::AplusContent20201101::ImageColumn
+
+        def members: () -> [ :image_column ]
+        def to_h: () -> { image_column: Peddler::APIs::AplusContent20201101::ImageColumn }
       end
 
       class ImageComponent < Data
@@ -315,6 +729,42 @@ module Peddler
         def to_h: () -> { height: Peddler::APIs::AplusContent20201101::IntegerWithUnits, width: Peddler::APIs::AplusContent20201101::IntegerWithUnits }
       end
 
+      class ImageHotSpot < Data
+        def self.new: (mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, title: Peddler::APIs::AplusContent20201101::TextComponent, x_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, y_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, ?description: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageHotSpot
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageHotSpot
+        def self.[]: (mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, title: Peddler::APIs::AplusContent20201101::TextComponent, x_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, y_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, ?description: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageHotSpot
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ImageHotSpot
+
+        def self.members: () -> [ :mobile_image, :title, :x_coordinate, :y_coordinate, :description ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ImageHotSpot
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader x_coordinate: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader y_coordinate: Peddler::APIs::AplusContent20201101::TextComponent
+
+        def members: () -> [ :mobile_image, :title, :x_coordinate, :y_coordinate, :description ]
+        def to_h: () -> { mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, title: Peddler::APIs::AplusContent20201101::TextComponent, x_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, y_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, description: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class ImageHotSpots < Data
+        def self.new: (image_hot_spot: Peddler::APIs::AplusContent20201101::ImageHotSpot) -> Peddler::APIs::AplusContent20201101::ImageHotSpots
+                    | (Peddler::APIs::AplusContent20201101::ImageHotSpot) -> Peddler::APIs::AplusContent20201101::ImageHotSpots
+        def self.[]: (image_hot_spot: Peddler::APIs::AplusContent20201101::ImageHotSpot) -> Peddler::APIs::AplusContent20201101::ImageHotSpots
+                   | (Peddler::APIs::AplusContent20201101::ImageHotSpot) -> Peddler::APIs::AplusContent20201101::ImageHotSpots
+
+        def self.members: () -> [ :image_hot_spot ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ImageHotSpots
+
+        attr_reader image_hot_spot: Peddler::APIs::AplusContent20201101::ImageHotSpot
+
+        def members: () -> [ :image_hot_spot ]
+        def to_h: () -> { image_hot_spot: Peddler::APIs::AplusContent20201101::ImageHotSpot }
+      end
+
       class ImageOffsets < Data
         def self.new: (x: Peddler::APIs::AplusContent20201101::IntegerWithUnits, y: Peddler::APIs::AplusContent20201101::IntegerWithUnits) -> Peddler::APIs::AplusContent20201101::ImageOffsets
                     | (Peddler::APIs::AplusContent20201101::IntegerWithUnits, Peddler::APIs::AplusContent20201101::IntegerWithUnits) -> Peddler::APIs::AplusContent20201101::ImageOffsets
@@ -330,6 +780,41 @@ module Peddler
 
         def members: () -> [ :x, :y ]
         def to_h: () -> { x: Peddler::APIs::AplusContent20201101::IntegerWithUnits, y: Peddler::APIs::AplusContent20201101::IntegerWithUnits }
+      end
+
+      class ImageTextHotSpot < Data
+        def self.new: (mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, title: Peddler::APIs::AplusContent20201101::TextComponent, x_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, y_coordinate: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpot
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpot
+        def self.[]: (mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, title: Peddler::APIs::AplusContent20201101::TextComponent, x_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, y_coordinate: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpot
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpot
+
+        def self.members: () -> [ :mobile_image, :title, :x_coordinate, :y_coordinate ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpot
+
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader x_coordinate: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader y_coordinate: Peddler::APIs::AplusContent20201101::TextComponent
+
+        def members: () -> [ :mobile_image, :title, :x_coordinate, :y_coordinate ]
+        def to_h: () -> { mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, title: Peddler::APIs::AplusContent20201101::TextComponent, x_coordinate: Peddler::APIs::AplusContent20201101::TextComponent, y_coordinate: Peddler::APIs::AplusContent20201101::TextComponent }
+      end
+
+      class ImageTextHotSpots < Data
+        def self.new: (image_text_hot_spot: Peddler::APIs::AplusContent20201101::ImageTextHotSpot) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpots
+                    | (Peddler::APIs::AplusContent20201101::ImageTextHotSpot) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpots
+        def self.[]: (image_text_hot_spot: Peddler::APIs::AplusContent20201101::ImageTextHotSpot) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpots
+                   | (Peddler::APIs::AplusContent20201101::ImageTextHotSpot) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpots
+
+        def self.members: () -> [ :image_text_hot_spot ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ImageTextHotSpots
+
+        attr_reader image_text_hot_spot: Peddler::APIs::AplusContent20201101::ImageTextHotSpot
+
+        def members: () -> [ :image_text_hot_spot ]
+        def to_h: () -> { image_text_hot_spot: Peddler::APIs::AplusContent20201101::ImageTextHotSpot }
       end
 
       class IntegerWithUnits < Data
@@ -349,6 +834,30 @@ module Peddler
         def to_h: () -> { units: String, value: Integer }
       end
 
+      class Issue < Data
+        def self.new: (categories: Array[String], code: String, message: String, severity: String, ?property_names: Array[String]?) -> Peddler::APIs::AplusContent20201101::Issue
+                    | (Array[String], String, String, String, Array[String]?) -> Peddler::APIs::AplusContent20201101::Issue
+        def self.[]: (categories: Array[String], code: String, message: String, severity: String, ?property_names: Array[String]?) -> Peddler::APIs::AplusContent20201101::Issue
+                   | (Array[String], String, String, String, Array[String]?) -> Peddler::APIs::AplusContent20201101::Issue
+
+        def self.members: () -> [ :categories, :code, :message, :severity, :property_names ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::Issue
+
+        attr_reader categories: Array[String]
+        attr_reader code: String
+        attr_reader message: String
+        attr_reader property_names: Array[String]?
+        attr_reader severity: String
+
+        def members: () -> [ :categories, :code, :message, :severity, :property_names ]
+        def to_h: () -> { categories: Array[String], code: String, message: String, severity: String, property_names: Array[String]? }
+      end
+
+      class IssueList < Array[Issue]
+        def self.parse: (Array[untyped]) -> IssueList
+      end
+
       class ListContentDocumentASINRelationsResponse < Data
         def self.new: (asin_metadata_set: Array[Peddler::APIs::AplusContent20201101::ASINMetadata]) -> Peddler::APIs::AplusContent20201101::ListContentDocumentASINRelationsResponse
                     | (Array[Peddler::APIs::AplusContent20201101::ASINMetadata]) -> Peddler::APIs::AplusContent20201101::ListContentDocumentASINRelationsResponse
@@ -365,8 +874,127 @@ module Peddler
         def to_h: () -> { asin_metadata_set: Array[Peddler::APIs::AplusContent20201101::ASINMetadata] }
       end
 
+      class Media < Data
+        def self.new: (media_id: String, media_type: String, status: Array[untyped], title: String, ?descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, ?issues: Array[Peddler::APIs::AplusContent20201101::Issue]?, ?media_url: String?, ?related_media: Array[Peddler::APIs::AplusContent20201101::RelatedMedia]?) -> Peddler::APIs::AplusContent20201101::Media
+                    | (String, String, Array[untyped], String, Array[Peddler::APIs::AplusContent20201101::Description]?, Array[Peddler::APIs::AplusContent20201101::Issue]?, String?, Array[Peddler::APIs::AplusContent20201101::RelatedMedia]?) -> Peddler::APIs::AplusContent20201101::Media
+        def self.[]: (media_id: String, media_type: String, status: Array[untyped], title: String, ?descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, ?issues: Array[Peddler::APIs::AplusContent20201101::Issue]?, ?media_url: String?, ?related_media: Array[Peddler::APIs::AplusContent20201101::RelatedMedia]?) -> Peddler::APIs::AplusContent20201101::Media
+                   | (String, String, Array[untyped], String, Array[Peddler::APIs::AplusContent20201101::Description]?, Array[Peddler::APIs::AplusContent20201101::Issue]?, String?, Array[Peddler::APIs::AplusContent20201101::RelatedMedia]?) -> Peddler::APIs::AplusContent20201101::Media
+
+        def self.members: () -> [ :media_id, :media_type, :status, :title, :descriptions, :issues, :media_url, :related_media ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::Media
+
+        attr_reader descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?
+        attr_reader issues: Array[Peddler::APIs::AplusContent20201101::Issue]?
+        attr_reader media_id: String
+        attr_reader media_type: String
+        attr_reader media_url: String?
+        attr_reader related_media: Array[Peddler::APIs::AplusContent20201101::RelatedMedia]?
+        attr_reader status: Array[untyped]
+        attr_reader title: String
+
+        def members: () -> [ :media_id, :media_type, :status, :title, :descriptions, :issues, :media_url, :related_media ]
+        def to_h: () -> { media_id: String, media_type: String, status: Array[untyped], title: String, descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, issues: Array[Peddler::APIs::AplusContent20201101::Issue]?, media_url: String?, related_media: Array[Peddler::APIs::AplusContent20201101::RelatedMedia]? }
+      end
+
+      class MediaInfo < Data
+        def self.new: (media_id: String, media_type: String, status: Array[untyped], title: String, ?descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, ?issues: Array[Peddler::APIs::AplusContent20201101::Issue]?, ?media_url: String?) -> Peddler::APIs::AplusContent20201101::MediaInfo
+                    | (String, String, Array[untyped], String, Array[Peddler::APIs::AplusContent20201101::Description]?, Array[Peddler::APIs::AplusContent20201101::Issue]?, String?) -> Peddler::APIs::AplusContent20201101::MediaInfo
+        def self.[]: (media_id: String, media_type: String, status: Array[untyped], title: String, ?descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, ?issues: Array[Peddler::APIs::AplusContent20201101::Issue]?, ?media_url: String?) -> Peddler::APIs::AplusContent20201101::MediaInfo
+                   | (String, String, Array[untyped], String, Array[Peddler::APIs::AplusContent20201101::Description]?, Array[Peddler::APIs::AplusContent20201101::Issue]?, String?) -> Peddler::APIs::AplusContent20201101::MediaInfo
+
+        def self.members: () -> [ :media_id, :media_type, :status, :title, :descriptions, :issues, :media_url ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::MediaInfo
+
+        attr_reader descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?
+        attr_reader issues: Array[Peddler::APIs::AplusContent20201101::Issue]?
+        attr_reader media_id: String
+        attr_reader media_type: String
+        attr_reader media_url: String?
+        attr_reader status: Array[untyped]
+        attr_reader title: String
+
+        def members: () -> [ :media_id, :media_type, :status, :title, :descriptions, :issues, :media_url ]
+        def to_h: () -> { media_id: String, media_type: String, status: Array[untyped], title: String, descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, issues: Array[Peddler::APIs::AplusContent20201101::Issue]?, media_url: String? }
+      end
+
+      class MediaInput < Data
+        def self.new: (media_type: String, ?media_id: String?, ?title: String?, ?upload_destination_id: String?) -> Peddler::APIs::AplusContent20201101::MediaInput
+                    | (String, String?, String?, String?) -> Peddler::APIs::AplusContent20201101::MediaInput
+        def self.[]: (media_type: String, ?media_id: String?, ?title: String?, ?upload_destination_id: String?) -> Peddler::APIs::AplusContent20201101::MediaInput
+                   | (String, String?, String?, String?) -> Peddler::APIs::AplusContent20201101::MediaInput
+
+        def self.members: () -> [ :media_type, :media_id, :title, :upload_destination_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::MediaInput
+
+        attr_reader media_id: String?
+        attr_reader media_type: String
+        attr_reader title: String?
+        attr_reader upload_destination_id: String?
+
+        def members: () -> [ :media_type, :media_id, :title, :upload_destination_id ]
+        def to_h: () -> { media_type: String, media_id: String?, title: String?, upload_destination_id: String? }
+      end
+
       class MessageSet < Array[Error]
         def self.parse: (Array[untyped]) -> MessageSet
+      end
+
+      class MetricValueItem < Data
+        def self.new: (?metric_name: Peddler::APIs::AplusContent20201101::TextComponent?, ?metric_value: Peddler::APIs::AplusContent20201101::ParagraphComponent?) -> Peddler::APIs::AplusContent20201101::MetricValueItem
+                    | (Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::ParagraphComponent?) -> Peddler::APIs::AplusContent20201101::MetricValueItem
+        def self.[]: (?metric_name: Peddler::APIs::AplusContent20201101::TextComponent?, ?metric_value: Peddler::APIs::AplusContent20201101::ParagraphComponent?) -> Peddler::APIs::AplusContent20201101::MetricValueItem
+                   | (Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::ParagraphComponent?) -> Peddler::APIs::AplusContent20201101::MetricValueItem
+
+        def self.members: () -> [ :metric_name, :metric_value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::MetricValueItem
+
+        attr_reader metric_name: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader metric_value: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+
+        def members: () -> [ :metric_name, :metric_value ]
+        def to_h: () -> { metric_name: Peddler::APIs::AplusContent20201101::TextComponent?, metric_value: Peddler::APIs::AplusContent20201101::ParagraphComponent? }
+      end
+
+      class NavigationCarouselPanel < Data
+        def self.new: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, nav_text: Peddler::APIs::AplusContent20201101::TextComponent, position: Integer, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?subtitle: Peddler::APIs::AplusContent20201101::TextComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanel
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Integer, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanel
+        def self.[]: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, nav_text: Peddler::APIs::AplusContent20201101::TextComponent, position: Integer, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?subtitle: Peddler::APIs::AplusContent20201101::TextComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanel
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Integer, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanel
+
+        def self.members: () -> [ :desktop_image, :mobile_image, :nav_text, :position, :description, :subtitle, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanel
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader nav_text: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader position: Integer
+        attr_reader subtitle: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :desktop_image, :mobile_image, :nav_text, :position, :description, :subtitle, :title ]
+        def to_h: () -> { desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, nav_text: Peddler::APIs::AplusContent20201101::TextComponent, position: Integer, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, subtitle: Peddler::APIs::AplusContent20201101::TextComponent?, title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class NavigationCarouselPanels < Data
+        def self.new: (navigation_panel: Peddler::APIs::AplusContent20201101::NavigationCarouselPanel) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanels
+                    | (Peddler::APIs::AplusContent20201101::NavigationCarouselPanel) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanels
+        def self.[]: (navigation_panel: Peddler::APIs::AplusContent20201101::NavigationCarouselPanel) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanels
+                   | (Peddler::APIs::AplusContent20201101::NavigationCarouselPanel) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanels
+
+        def self.members: () -> [ :navigation_panel ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::NavigationCarouselPanels
+
+        attr_reader navigation_panel: Peddler::APIs::AplusContent20201101::NavigationCarouselPanel
+
+        def members: () -> [ :navigation_panel ]
+        def to_h: () -> { navigation_panel: Peddler::APIs::AplusContent20201101::NavigationCarouselPanel }
       end
 
       class ParagraphComponent < Data
@@ -499,6 +1127,355 @@ module Peddler
         def to_h: () -> { warnings: Array[Peddler::APIs::AplusContent20201101::Error]? }
       end
 
+      class PremiumComparisonCarouselModule < Data
+        def self.new: (comparison_metrics: Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], comparison_products: Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], headline: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule
+                    | (Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule
+        def self.[]: (comparison_metrics: Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], comparison_products: Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], headline: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule
+                   | (Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule
+
+        def self.members: () -> [ :comparison_metrics, :comparison_products, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumComparisonCarouselModule
+
+        attr_reader comparison_metrics: Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics]
+        attr_reader comparison_products: Array[Peddler::APIs::AplusContent20201101::ComparisonProducts]
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent
+
+        def members: () -> [ :comparison_metrics, :comparison_products, :headline ]
+        def to_h: () -> { comparison_metrics: Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], comparison_products: Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], headline: Peddler::APIs::AplusContent20201101::TextComponent }
+      end
+
+      class PremiumComparisonScrollerModule < Data
+        def self.new: (comparison_products: Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], comparison_rows: Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], headline: Peddler::APIs::AplusContent20201101::TextComponent, ?show_atc: bool?, ?show_prices: bool?, ?show_reviews: bool?) -> Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule
+                    | (Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], Peddler::APIs::AplusContent20201101::TextComponent, bool?, bool?, bool?) -> Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule
+        def self.[]: (comparison_products: Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], comparison_rows: Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], headline: Peddler::APIs::AplusContent20201101::TextComponent, ?show_atc: bool?, ?show_prices: bool?, ?show_reviews: bool?) -> Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule
+                   | (Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], Peddler::APIs::AplusContent20201101::TextComponent, bool?, bool?, bool?) -> Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule
+
+        def self.members: () -> [ :comparison_products, :comparison_rows, :headline, :show_atc, :show_prices, :show_reviews ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumComparisonScrollerModule
+
+        attr_reader comparison_products: Array[Peddler::APIs::AplusContent20201101::ComparisonProducts]
+        attr_reader comparison_rows: Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics]
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader show_atc: bool?
+        attr_reader show_prices: bool?
+        attr_reader show_reviews: bool?
+
+        def members: () -> [ :comparison_products, :comparison_rows, :headline, :show_atc, :show_prices, :show_reviews ]
+        def show_atc?: () -> bool
+        def show_prices?: () -> bool
+        def show_reviews?: () -> bool
+        def to_h: () -> { comparison_products: Array[Peddler::APIs::AplusContent20201101::ComparisonProducts], comparison_rows: Array[Peddler::APIs::AplusContent20201101::ComparisonMetrics], headline: Peddler::APIs::AplusContent20201101::TextComponent, show_atc: bool?, show_prices: bool?, show_reviews: bool? }
+      end
+
+      class PremiumDualImageTextModule < Data
+        def self.new: (columns: Array[Peddler::APIs::AplusContent20201101::ImageColumns], ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule
+                    | (Array[Peddler::APIs::AplusContent20201101::ImageColumns], Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule
+        def self.[]: (columns: Array[Peddler::APIs::AplusContent20201101::ImageColumns], ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule
+                   | (Array[Peddler::APIs::AplusContent20201101::ImageColumns], Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule
+
+        def self.members: () -> [ :columns, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumDualImageTextModule
+
+        attr_reader columns: Array[Peddler::APIs::AplusContent20201101::ImageColumns]
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :columns, :headline ]
+        def to_h: () -> { columns: Array[Peddler::APIs::AplusContent20201101::ImageColumns], headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumFaqModule < Data
+        def self.new: (faqs: Array[Peddler::APIs::AplusContent20201101::Faqs], ?color_type: String?) -> Peddler::APIs::AplusContent20201101::PremiumFaqModule
+                    | (Array[Peddler::APIs::AplusContent20201101::Faqs], String?) -> Peddler::APIs::AplusContent20201101::PremiumFaqModule
+        def self.[]: (faqs: Array[Peddler::APIs::AplusContent20201101::Faqs], ?color_type: String?) -> Peddler::APIs::AplusContent20201101::PremiumFaqModule
+                   | (Array[Peddler::APIs::AplusContent20201101::Faqs], String?) -> Peddler::APIs::AplusContent20201101::PremiumFaqModule
+
+        def self.members: () -> [ :faqs, :color_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumFaqModule
+
+        attr_reader color_type: String?
+        attr_reader faqs: Array[Peddler::APIs::AplusContent20201101::Faqs]
+
+        def members: () -> [ :faqs, :color_type ]
+        def to_h: () -> { faqs: Array[Peddler::APIs::AplusContent20201101::Faqs], color_type: String? }
+      end
+
+      class PremiumFourColumnImagesModule < Data
+        def self.new: (columns: Array[Peddler::APIs::AplusContent20201101::ImageColumns], ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule
+                    | (Array[Peddler::APIs::AplusContent20201101::ImageColumns], Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule
+        def self.[]: (columns: Array[Peddler::APIs::AplusContent20201101::ImageColumns], ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule
+                   | (Array[Peddler::APIs::AplusContent20201101::ImageColumns], Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule
+
+        def self.members: () -> [ :columns, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumFourColumnImagesModule
+
+        attr_reader columns: Array[Peddler::APIs::AplusContent20201101::ImageColumns]
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :columns, :headline ]
+        def to_h: () -> { columns: Array[Peddler::APIs::AplusContent20201101::ImageColumns], headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumFullBackgroundImageModule < Data
+        def self.new: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, ?footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule
+        def self.[]: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, ?footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule
+
+        def self.members: () -> [ :desktop_image, :mobile_image, :footer, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundImageModule
+
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent
+
+        def members: () -> [ :desktop_image, :mobile_image, :footer, :headline ]
+        def to_h: () -> { desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumFullBackgroundTextModule < Data
+        def self.new: (color_type: String, desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, position_type: String, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?, ?subheadline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule
+                    | (String, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, String, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule
+        def self.[]: (color_type: String, desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, position_type: String, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?, ?subheadline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule
+                   | (String, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, String, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule
+
+        def self.members: () -> [ :color_type, :desktop_image, :mobile_image, :position_type, :description, :headline, :subheadline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumFullBackgroundTextModule
+
+        attr_reader color_type: String
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader position_type: String
+        attr_reader subheadline: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :color_type, :desktop_image, :mobile_image, :position_type, :description, :headline, :subheadline ]
+        def to_h: () -> { color_type: String, desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, position_type: String, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, headline: Peddler::APIs::AplusContent20201101::TextComponent?, subheadline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumHeroVideoModule < Data
+        def self.new: (hero_video: Peddler::APIs::AplusContent20201101::VideoComponent, ?footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule
+                    | (Peddler::APIs::AplusContent20201101::VideoComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule
+        def self.[]: (hero_video: Peddler::APIs::AplusContent20201101::VideoComponent, ?footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule
+                   | (Peddler::APIs::AplusContent20201101::VideoComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule
+
+        def self.members: () -> [ :hero_video, :footer, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumHeroVideoModule
+
+        attr_reader footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader hero_video: Peddler::APIs::AplusContent20201101::VideoComponent
+
+        def members: () -> [ :hero_video, :footer, :headline ]
+        def to_h: () -> { hero_video: Peddler::APIs::AplusContent20201101::VideoComponent, footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumHotspotImageModule < Data
+        def self.new: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, hot_spots: Array[Peddler::APIs::AplusContent20201101::ImageHotSpots]) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Array[Peddler::APIs::AplusContent20201101::ImageHotSpots]) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule
+        def self.[]: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, hot_spots: Array[Peddler::APIs::AplusContent20201101::ImageHotSpots]) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Array[Peddler::APIs::AplusContent20201101::ImageHotSpots]) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule
+
+        def self.members: () -> [ :desktop_image, :hot_spots ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageModule
+
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader hot_spots: Array[Peddler::APIs::AplusContent20201101::ImageHotSpots]
+
+        def members: () -> [ :desktop_image, :hot_spots ]
+        def to_h: () -> { desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, hot_spots: Array[Peddler::APIs::AplusContent20201101::ImageHotSpots] }
+      end
+
+      class PremiumHotspotImageTextModule < Data
+        def self.new: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, headline: Peddler::APIs::AplusContent20201101::TextComponent, hot_spots: Array[Peddler::APIs::AplusContent20201101::ImageTextHotSpots], ?main_description: Peddler::APIs::AplusContent20201101::ParagraphComponent?) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Array[Peddler::APIs::AplusContent20201101::ImageTextHotSpots], Peddler::APIs::AplusContent20201101::ParagraphComponent?) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule
+        def self.[]: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, headline: Peddler::APIs::AplusContent20201101::TextComponent, hot_spots: Array[Peddler::APIs::AplusContent20201101::ImageTextHotSpots], ?main_description: Peddler::APIs::AplusContent20201101::ParagraphComponent?) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Array[Peddler::APIs::AplusContent20201101::ImageTextHotSpots], Peddler::APIs::AplusContent20201101::ParagraphComponent?) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule
+
+        def self.members: () -> [ :desktop_image, :headline, :hot_spots, :main_description ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumHotspotImageTextModule
+
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader hot_spots: Array[Peddler::APIs::AplusContent20201101::ImageTextHotSpots]
+        attr_reader main_description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+
+        def members: () -> [ :desktop_image, :headline, :hot_spots, :main_description ]
+        def to_h: () -> { desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, headline: Peddler::APIs::AplusContent20201101::TextComponent, hot_spots: Array[Peddler::APIs::AplusContent20201101::ImageTextHotSpots], main_description: Peddler::APIs::AplusContent20201101::ParagraphComponent? }
+      end
+
+      class PremiumImageCarouselModule < Data
+        def self.new: (carousel_cards: Array[Peddler::APIs::AplusContent20201101::ImageCarouselPanels], ?footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule
+                    | (Array[Peddler::APIs::AplusContent20201101::ImageCarouselPanels], Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule
+        def self.[]: (carousel_cards: Array[Peddler::APIs::AplusContent20201101::ImageCarouselPanels], ?footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule
+                   | (Array[Peddler::APIs::AplusContent20201101::ImageCarouselPanels], Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule
+
+        def self.members: () -> [ :carousel_cards, :footer, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumImageCarouselModule
+
+        attr_reader carousel_cards: Array[Peddler::APIs::AplusContent20201101::ImageCarouselPanels]
+        attr_reader footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :carousel_cards, :footer, :headline ]
+        def to_h: () -> { carousel_cards: Array[Peddler::APIs::AplusContent20201101::ImageCarouselPanels], footer: Peddler::APIs::AplusContent20201101::ParagraphComponent?, headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumImageTextModule < Data
+        def self.new: (headline: Peddler::APIs::AplusContent20201101::TextComponent, image: Peddler::APIs::AplusContent20201101::ImageComponent, position_type: String, ?body_text: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?subheadline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumImageTextModule
+                    | (Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::ImageComponent, String, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumImageTextModule
+        def self.[]: (headline: Peddler::APIs::AplusContent20201101::TextComponent, image: Peddler::APIs::AplusContent20201101::ImageComponent, position_type: String, ?body_text: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?subheadline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumImageTextModule
+                   | (Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::ImageComponent, String, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumImageTextModule
+
+        def self.members: () -> [ :headline, :image, :position_type, :body_text, :subheadline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumImageTextModule
+
+        attr_reader body_text: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader position_type: String
+        attr_reader subheadline: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :headline, :image, :position_type, :body_text, :subheadline ]
+        def to_h: () -> { headline: Peddler::APIs::AplusContent20201101::TextComponent, image: Peddler::APIs::AplusContent20201101::ImageComponent, position_type: String, body_text: Peddler::APIs::AplusContent20201101::ParagraphComponent?, subheadline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumNavigationCarouselModule < Data
+        def self.new: (carousel_cards: Array[Peddler::APIs::AplusContent20201101::NavigationCarouselPanels]) -> Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule
+                    | (Array[Peddler::APIs::AplusContent20201101::NavigationCarouselPanels]) -> Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule
+        def self.[]: (carousel_cards: Array[Peddler::APIs::AplusContent20201101::NavigationCarouselPanels]) -> Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule
+                   | (Array[Peddler::APIs::AplusContent20201101::NavigationCarouselPanels]) -> Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule
+
+        def self.members: () -> [ :carousel_cards ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumNavigationCarouselModule
+
+        attr_reader carousel_cards: Array[Peddler::APIs::AplusContent20201101::NavigationCarouselPanels]
+
+        def members: () -> [ :carousel_cards ]
+        def to_h: () -> { carousel_cards: Array[Peddler::APIs::AplusContent20201101::NavigationCarouselPanels] }
+      end
+
+      class PremiumRegimenCarouselModule < Data
+        def self.new: (carousel_cards: Array[Peddler::APIs::AplusContent20201101::RegimenCarouselPanels], ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule
+                    | (Array[Peddler::APIs::AplusContent20201101::RegimenCarouselPanels], Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule
+        def self.[]: (carousel_cards: Array[Peddler::APIs::AplusContent20201101::RegimenCarouselPanels], ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule
+                   | (Array[Peddler::APIs::AplusContent20201101::RegimenCarouselPanels], Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule
+
+        def self.members: () -> [ :carousel_cards, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumRegimenCarouselModule
+
+        attr_reader carousel_cards: Array[Peddler::APIs::AplusContent20201101::RegimenCarouselPanels]
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :carousel_cards, :headline ]
+        def to_h: () -> { carousel_cards: Array[Peddler::APIs::AplusContent20201101::RegimenCarouselPanels], headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumTechSpecsModule < Data
+        def self.new: (headline: Peddler::APIs::AplusContent20201101::TextComponent, tech_specs: Array[Peddler::APIs::AplusContent20201101::TechSpecs], ?column_count: Integer?) -> Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule
+                    | (Peddler::APIs::AplusContent20201101::TextComponent, Array[Peddler::APIs::AplusContent20201101::TechSpecs], Integer?) -> Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule
+        def self.[]: (headline: Peddler::APIs::AplusContent20201101::TextComponent, tech_specs: Array[Peddler::APIs::AplusContent20201101::TechSpecs], ?column_count: Integer?) -> Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule
+                   | (Peddler::APIs::AplusContent20201101::TextComponent, Array[Peddler::APIs::AplusContent20201101::TechSpecs], Integer?) -> Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule
+
+        def self.members: () -> [ :headline, :tech_specs, :column_count ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumTechSpecsModule
+
+        attr_reader column_count: Integer?
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader tech_specs: Array[Peddler::APIs::AplusContent20201101::TechSpecs]
+
+        def members: () -> [ :headline, :tech_specs, :column_count ]
+        def to_h: () -> { headline: Peddler::APIs::AplusContent20201101::TextComponent, tech_specs: Array[Peddler::APIs::AplusContent20201101::TechSpecs], column_count: Integer? }
+      end
+
+      class PremiumTextModule < Data
+        def self.new: (description: Peddler::APIs::AplusContent20201101::ParagraphComponent, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumTextModule
+                    | (Peddler::APIs::AplusContent20201101::ParagraphComponent, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumTextModule
+        def self.[]: (description: Peddler::APIs::AplusContent20201101::ParagraphComponent, ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumTextModule
+                   | (Peddler::APIs::AplusContent20201101::ParagraphComponent, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumTextModule
+
+        def self.members: () -> [ :description, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumTextModule
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :description, :headline ]
+        def to_h: () -> { description: Peddler::APIs::AplusContent20201101::ParagraphComponent, headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumThreeColumnComparisonModule < Data
+        def self.new: (comparison_products: Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct], comparison_rows: Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow], headline: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule
+                    | (Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct], Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow], Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule
+        def self.[]: (comparison_products: Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct], comparison_rows: Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow], headline: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule
+                   | (Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct], Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow], Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule
+
+        def self.members: () -> [ :comparison_products, :comparison_rows, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumThreeColumnComparisonModule
+
+        attr_reader comparison_products: Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct]
+        attr_reader comparison_rows: Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow]
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent
+
+        def members: () -> [ :comparison_products, :comparison_rows, :headline ]
+        def to_h: () -> { comparison_products: Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct], comparison_rows: Array[Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow], headline: Peddler::APIs::AplusContent20201101::TextComponent }
+      end
+
+      class PremiumVideoImageCarouselModule < Data
+        def self.new: (carousel_cards: Array[Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels], ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule
+                    | (Array[Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels], Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule
+        def self.[]: (carousel_cards: Array[Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels], ?headline: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule
+                   | (Array[Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels], Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule
+
+        def self.members: () -> [ :carousel_cards, :headline ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumVideoImageCarouselModule
+
+        attr_reader carousel_cards: Array[Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels]
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :carousel_cards, :headline ]
+        def to_h: () -> { carousel_cards: Array[Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels], headline: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class PremiumVideoTextModule < Data
+        def self.new: (headline: Peddler::APIs::AplusContent20201101::TextComponent, position_type: String, video: Peddler::APIs::AplusContent20201101::VideoComponent, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumVideoTextModule
+                    | (Peddler::APIs::AplusContent20201101::TextComponent, String, Peddler::APIs::AplusContent20201101::VideoComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumVideoTextModule
+        def self.[]: (headline: Peddler::APIs::AplusContent20201101::TextComponent, position_type: String, video: Peddler::APIs::AplusContent20201101::VideoComponent, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumVideoTextModule
+                   | (Peddler::APIs::AplusContent20201101::TextComponent, String, Peddler::APIs::AplusContent20201101::VideoComponent, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::PremiumVideoTextModule
+
+        def self.members: () -> [ :headline, :position_type, :video, :description, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::PremiumVideoTextModule
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader headline: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader position_type: String
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader video: Peddler::APIs::AplusContent20201101::VideoComponent
+
+        def members: () -> [ :headline, :position_type, :video, :description, :title ]
+        def to_h: () -> { headline: Peddler::APIs::AplusContent20201101::TextComponent, position_type: String, video: Peddler::APIs::AplusContent20201101::VideoComponent, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
       class PublishRecord < Data
         def self.new: (asin: String, content_reference_key: String, content_type: String, locale: String, marketplace_id: String, ?content_sub_type: String?) -> Peddler::APIs::AplusContent20201101::PublishRecord
                     | (String, String, String, String, String, String?) -> Peddler::APIs::AplusContent20201101::PublishRecord
@@ -522,6 +1499,122 @@ module Peddler
 
       class PublishRecordList < Array[PublishRecord]
         def self.parse: (Array[untyped]) -> PublishRecordList
+      end
+
+      class QuestionAnswerPair < Data
+        def self.new: (answer: Peddler::APIs::AplusContent20201101::ParagraphComponent, question: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPair
+                    | (Peddler::APIs::AplusContent20201101::ParagraphComponent, Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPair
+        def self.[]: (answer: Peddler::APIs::AplusContent20201101::ParagraphComponent, question: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPair
+                   | (Peddler::APIs::AplusContent20201101::ParagraphComponent, Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPair
+
+        def self.members: () -> [ :answer, :question ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPair
+
+        attr_reader answer: Peddler::APIs::AplusContent20201101::ParagraphComponent
+        attr_reader question: Peddler::APIs::AplusContent20201101::TextComponent
+
+        def members: () -> [ :answer, :question ]
+        def to_h: () -> { answer: Peddler::APIs::AplusContent20201101::ParagraphComponent, question: Peddler::APIs::AplusContent20201101::TextComponent }
+      end
+
+      class QuestionAnswerPairs < Data
+        def self.new: (question_answer_pair: Peddler::APIs::AplusContent20201101::QuestionAnswerPair) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPairs
+                    | (Peddler::APIs::AplusContent20201101::QuestionAnswerPair) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPairs
+        def self.[]: (question_answer_pair: Peddler::APIs::AplusContent20201101::QuestionAnswerPair) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPairs
+                   | (Peddler::APIs::AplusContent20201101::QuestionAnswerPair) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPairs
+
+        def self.members: () -> [ :question_answer_pair ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::QuestionAnswerPairs
+
+        attr_reader question_answer_pair: Peddler::APIs::AplusContent20201101::QuestionAnswerPair
+
+        def members: () -> [ :question_answer_pair ]
+        def to_h: () -> { question_answer_pair: Peddler::APIs::AplusContent20201101::QuestionAnswerPair }
+      end
+
+      class RegimenCarouselPanel < Data
+        def self.new: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, nav_text: Peddler::APIs::AplusContent20201101::TextComponent, position: Integer, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanel
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Integer, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanel
+        def self.[]: (desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, nav_text: Peddler::APIs::AplusContent20201101::TextComponent, position: Integer, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanel
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::ImageComponent, Peddler::APIs::AplusContent20201101::TextComponent, Integer, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanel
+
+        def self.members: () -> [ :desktop_image, :mobile_image, :nav_text, :position, :description, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanel
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent
+        attr_reader nav_text: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader position: Integer
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :desktop_image, :mobile_image, :nav_text, :position, :description, :title ]
+        def to_h: () -> { desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent, nav_text: Peddler::APIs::AplusContent20201101::TextComponent, position: Integer, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class RegimenCarouselPanels < Data
+        def self.new: (regimen_panel: Peddler::APIs::AplusContent20201101::RegimenCarouselPanel) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanels
+                    | (Peddler::APIs::AplusContent20201101::RegimenCarouselPanel) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanels
+        def self.[]: (regimen_panel: Peddler::APIs::AplusContent20201101::RegimenCarouselPanel) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanels
+                   | (Peddler::APIs::AplusContent20201101::RegimenCarouselPanel) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanels
+
+        def self.members: () -> [ :regimen_panel ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::RegimenCarouselPanels
+
+        attr_reader regimen_panel: Peddler::APIs::AplusContent20201101::RegimenCarouselPanel
+
+        def members: () -> [ :regimen_panel ]
+        def to_h: () -> { regimen_panel: Peddler::APIs::AplusContent20201101::RegimenCarouselPanel }
+      end
+
+      class RelatedMedia < Data
+        def self.new: (association_type: String, media: Peddler::APIs::AplusContent20201101::MediaInfo, status: Array[untyped], title: String, ?issues: Array[Peddler::APIs::AplusContent20201101::Issue]?) -> Peddler::APIs::AplusContent20201101::RelatedMedia
+                    | (String, Peddler::APIs::AplusContent20201101::MediaInfo, Array[untyped], String, Array[Peddler::APIs::AplusContent20201101::Issue]?) -> Peddler::APIs::AplusContent20201101::RelatedMedia
+        def self.[]: (association_type: String, media: Peddler::APIs::AplusContent20201101::MediaInfo, status: Array[untyped], title: String, ?issues: Array[Peddler::APIs::AplusContent20201101::Issue]?) -> Peddler::APIs::AplusContent20201101::RelatedMedia
+                   | (String, Peddler::APIs::AplusContent20201101::MediaInfo, Array[untyped], String, Array[Peddler::APIs::AplusContent20201101::Issue]?) -> Peddler::APIs::AplusContent20201101::RelatedMedia
+
+        def self.members: () -> [ :association_type, :media, :status, :title, :issues ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::RelatedMedia
+
+        attr_reader association_type: String
+        attr_reader issues: Array[Peddler::APIs::AplusContent20201101::Issue]?
+        attr_reader media: Peddler::APIs::AplusContent20201101::MediaInfo
+        attr_reader status: Array[untyped]
+        attr_reader title: String
+
+        def members: () -> [ :association_type, :media, :status, :title, :issues ]
+        def to_h: () -> { association_type: String, media: Peddler::APIs::AplusContent20201101::MediaInfo, status: Array[untyped], title: String, issues: Array[Peddler::APIs::AplusContent20201101::Issue]? }
+      end
+
+      class RelatedMediaInput < Data
+        def self.new: (association_type: String, media: Peddler::APIs::AplusContent20201101::MediaInput, title: String) -> Peddler::APIs::AplusContent20201101::RelatedMediaInput
+                    | (String, Peddler::APIs::AplusContent20201101::MediaInput, String) -> Peddler::APIs::AplusContent20201101::RelatedMediaInput
+        def self.[]: (association_type: String, media: Peddler::APIs::AplusContent20201101::MediaInput, title: String) -> Peddler::APIs::AplusContent20201101::RelatedMediaInput
+                   | (String, Peddler::APIs::AplusContent20201101::MediaInput, String) -> Peddler::APIs::AplusContent20201101::RelatedMediaInput
+
+        def self.members: () -> [ :association_type, :media, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::RelatedMediaInput
+
+        attr_reader association_type: String
+        attr_reader media: Peddler::APIs::AplusContent20201101::MediaInput
+        attr_reader title: String
+
+        def members: () -> [ :association_type, :media, :title ]
+        def to_h: () -> { association_type: String, media: Peddler::APIs::AplusContent20201101::MediaInput, title: String }
+      end
+
+      class RelatedMediaInputList < Array[RelatedMediaInput]
+        def self.parse: (Array[untyped]) -> RelatedMediaInputList
+      end
+
+      class RelatedMediaList < Array[RelatedMedia]
+        def self.parse: (Array[untyped]) -> RelatedMediaList
       end
 
       class SearchContentDocumentsResponse < Data
@@ -971,6 +2064,39 @@ module Peddler
         def to_h: () -> { block1: Peddler::APIs::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::APIs::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::APIs::AplusContent20201101::StandardImageTextBlock?, headline: Peddler::APIs::AplusContent20201101::TextComponent? }
       end
 
+      class TechSpec < Data
+        def self.new: (spec_key: Peddler::APIs::AplusContent20201101::TextComponent, spec_value: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::TechSpec
+                    | (Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::TechSpec
+        def self.[]: (spec_key: Peddler::APIs::AplusContent20201101::TextComponent, spec_value: Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::TechSpec
+                   | (Peddler::APIs::AplusContent20201101::TextComponent, Peddler::APIs::AplusContent20201101::TextComponent) -> Peddler::APIs::AplusContent20201101::TechSpec
+
+        def self.members: () -> [ :spec_key, :spec_value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::TechSpec
+
+        attr_reader spec_key: Peddler::APIs::AplusContent20201101::TextComponent
+        attr_reader spec_value: Peddler::APIs::AplusContent20201101::TextComponent
+
+        def members: () -> [ :spec_key, :spec_value ]
+        def to_h: () -> { spec_key: Peddler::APIs::AplusContent20201101::TextComponent, spec_value: Peddler::APIs::AplusContent20201101::TextComponent }
+      end
+
+      class TechSpecs < Data
+        def self.new: (tech_spec: Peddler::APIs::AplusContent20201101::TechSpec) -> Peddler::APIs::AplusContent20201101::TechSpecs
+                    | (Peddler::APIs::AplusContent20201101::TechSpec) -> Peddler::APIs::AplusContent20201101::TechSpecs
+        def self.[]: (tech_spec: Peddler::APIs::AplusContent20201101::TechSpec) -> Peddler::APIs::AplusContent20201101::TechSpecs
+                   | (Peddler::APIs::AplusContent20201101::TechSpec) -> Peddler::APIs::AplusContent20201101::TechSpecs
+
+        def self.members: () -> [ :tech_spec ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::TechSpecs
+
+        attr_reader tech_spec: Peddler::APIs::AplusContent20201101::TechSpec
+
+        def members: () -> [ :tech_spec ]
+        def to_h: () -> { tech_spec: Peddler::APIs::AplusContent20201101::TechSpec }
+      end
+
       class TextComponent < Data
         def self.new: (value: String, ?decorator_set: Array[Peddler::APIs::AplusContent20201101::Decorator]?) -> Peddler::APIs::AplusContent20201101::TextComponent
                     | (String, Array[Peddler::APIs::AplusContent20201101::Decorator]?) -> Peddler::APIs::AplusContent20201101::TextComponent
@@ -1005,6 +2131,75 @@ module Peddler
         def to_h: () -> { position: Integer, text: Peddler::APIs::AplusContent20201101::TextComponent }
       end
 
+      class ThreeColumnComparisonProduct < Data
+        def self.new: (?image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?position: Integer?, ?product_asin: Peddler::APIs::AplusContent20201101::TextComponent?, ?product_title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct
+                    | (Peddler::APIs::AplusContent20201101::ImageComponent?, Integer?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct
+        def self.[]: (?image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?position: Integer?, ?product_asin: Peddler::APIs::AplusContent20201101::TextComponent?, ?product_title: Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct
+                   | (Peddler::APIs::AplusContent20201101::ImageComponent?, Integer?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct
+
+        def self.members: () -> [ :image, :position, :product_asin, :product_title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonProduct
+
+        attr_reader image: Peddler::APIs::AplusContent20201101::ImageComponent?
+        attr_reader position: Integer?
+        attr_reader product_asin: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader product_title: Peddler::APIs::AplusContent20201101::TextComponent?
+
+        def members: () -> [ :image, :position, :product_asin, :product_title ]
+        def to_h: () -> { image: Peddler::APIs::AplusContent20201101::ImageComponent?, position: Integer?, product_asin: Peddler::APIs::AplusContent20201101::TextComponent?, product_title: Peddler::APIs::AplusContent20201101::TextComponent? }
+      end
+
+      class ThreeColumnComparisonRow < Data
+        def self.new: (?metric_values: Array[Peddler::APIs::AplusContent20201101::MetricValueItem]?, ?position: Integer?) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow
+                    | (Array[Peddler::APIs::AplusContent20201101::MetricValueItem]?, Integer?) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow
+        def self.[]: (?metric_values: Array[Peddler::APIs::AplusContent20201101::MetricValueItem]?, ?position: Integer?) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow
+                   | (Array[Peddler::APIs::AplusContent20201101::MetricValueItem]?, Integer?) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow
+
+        def self.members: () -> [ :metric_values, :position ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::ThreeColumnComparisonRow
+
+        attr_reader metric_values: Array[Peddler::APIs::AplusContent20201101::MetricValueItem]?
+        attr_reader position: Integer?
+
+        def members: () -> [ :metric_values, :position ]
+        def to_h: () -> { metric_values: Array[Peddler::APIs::AplusContent20201101::MetricValueItem]?, position: Integer? }
+      end
+
+      class UpdateMediaRequest < Data
+        def self.new: (?descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, ?title: String?) -> Peddler::APIs::AplusContent20201101::UpdateMediaRequest
+                    | (Array[Peddler::APIs::AplusContent20201101::Description]?, String?) -> Peddler::APIs::AplusContent20201101::UpdateMediaRequest
+        def self.[]: (?descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, ?title: String?) -> Peddler::APIs::AplusContent20201101::UpdateMediaRequest
+                   | (Array[Peddler::APIs::AplusContent20201101::Description]?, String?) -> Peddler::APIs::AplusContent20201101::UpdateMediaRequest
+
+        def self.members: () -> [ :descriptions, :title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::UpdateMediaRequest
+
+        attr_reader descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?
+        attr_reader title: String?
+
+        def members: () -> [ :descriptions, :title ]
+        def to_h: () -> { descriptions: Array[Peddler::APIs::AplusContent20201101::Description]?, title: String? }
+      end
+
+      class UpdateMediaResponse < Data
+        def self.new: (?warnings: Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::UpdateMediaResponse
+                    | (Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::UpdateMediaResponse
+        def self.[]: (?warnings: Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::UpdateMediaResponse
+                   | (Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::UpdateMediaResponse
+
+        def self.members: () -> [ :warnings ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::UpdateMediaResponse
+
+        attr_reader warnings: Array[Peddler::APIs::AplusContent20201101::Error]?
+
+        def members: () -> [ :warnings ]
+        def to_h: () -> { warnings: Array[Peddler::APIs::AplusContent20201101::Error]? }
+      end
+
       class ValidateContentDocumentASINRelationsResponse < Data
         def self.new: (errors: Array[Peddler::APIs::AplusContent20201101::Error], ?warnings: Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::ValidateContentDocumentASINRelationsResponse
                     | (Array[Peddler::APIs::AplusContent20201101::Error], Array[Peddler::APIs::AplusContent20201101::Error]?) -> Peddler::APIs::AplusContent20201101::ValidateContentDocumentASINRelationsResponse
@@ -1022,9 +2217,69 @@ module Peddler
         def to_h: () -> { errors: Array[Peddler::APIs::AplusContent20201101::Error], warnings: Array[Peddler::APIs::AplusContent20201101::Error]? }
       end
 
+      class VideoComponent < Data
+        def self.new: (image_crop_specification: Peddler::APIs::AplusContent20201101::ImageCropSpecification, image_media_id: String, video_media_id: String) -> Peddler::APIs::AplusContent20201101::VideoComponent
+                    | (Peddler::APIs::AplusContent20201101::ImageCropSpecification, String, String) -> Peddler::APIs::AplusContent20201101::VideoComponent
+        def self.[]: (image_crop_specification: Peddler::APIs::AplusContent20201101::ImageCropSpecification, image_media_id: String, video_media_id: String) -> Peddler::APIs::AplusContent20201101::VideoComponent
+                   | (Peddler::APIs::AplusContent20201101::ImageCropSpecification, String, String) -> Peddler::APIs::AplusContent20201101::VideoComponent
+
+        def self.members: () -> [ :image_crop_specification, :image_media_id, :video_media_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::VideoComponent
+
+        attr_reader image_crop_specification: Peddler::APIs::AplusContent20201101::ImageCropSpecification
+        attr_reader image_media_id: String
+        attr_reader video_media_id: String
+
+        def members: () -> [ :image_crop_specification, :image_media_id, :video_media_id ]
+        def to_h: () -> { image_crop_specification: Peddler::APIs::AplusContent20201101::ImageCropSpecification, image_media_id: String, video_media_id: String }
+      end
+
+      class VideoImageCarouselPanel < Data
+        def self.new: (position: Integer, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?position_type: String?, ?subheadline: Peddler::APIs::AplusContent20201101::TextComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?, ?video: Peddler::APIs::AplusContent20201101::VideoComponent?) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel
+                    | (Integer, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::ImageComponent?, Peddler::APIs::AplusContent20201101::ImageComponent?, String?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::VideoComponent?) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel
+        def self.[]: (position: Integer, ?description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, ?desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent?, ?position_type: String?, ?subheadline: Peddler::APIs::AplusContent20201101::TextComponent?, ?title: Peddler::APIs::AplusContent20201101::TextComponent?, ?video: Peddler::APIs::AplusContent20201101::VideoComponent?) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel
+                   | (Integer, Peddler::APIs::AplusContent20201101::ParagraphComponent?, Peddler::APIs::AplusContent20201101::ImageComponent?, Peddler::APIs::AplusContent20201101::ImageComponent?, String?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::TextComponent?, Peddler::APIs::AplusContent20201101::VideoComponent?) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel
+
+        def self.members: () -> [ :position, :description, :desktop_image, :mobile_image, :position_type, :subheadline, :title, :video ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel
+
+        attr_reader description: Peddler::APIs::AplusContent20201101::ParagraphComponent?
+        attr_reader desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent?
+        attr_reader mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent?
+        attr_reader position: Integer
+        attr_reader position_type: String?
+        attr_reader subheadline: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader title: Peddler::APIs::AplusContent20201101::TextComponent?
+        attr_reader video: Peddler::APIs::AplusContent20201101::VideoComponent?
+
+        def members: () -> [ :position, :description, :desktop_image, :mobile_image, :position_type, :subheadline, :title, :video ]
+        def to_h: () -> { position: Integer, description: Peddler::APIs::AplusContent20201101::ParagraphComponent?, desktop_image: Peddler::APIs::AplusContent20201101::ImageComponent?, mobile_image: Peddler::APIs::AplusContent20201101::ImageComponent?, position_type: String?, subheadline: Peddler::APIs::AplusContent20201101::TextComponent?, title: Peddler::APIs::AplusContent20201101::TextComponent?, video: Peddler::APIs::AplusContent20201101::VideoComponent? }
+      end
+
+      class VideoImageCarouselPanels < Data
+        def self.new: (video_carousel_panel: Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels
+                    | (Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels
+        def self.[]: (video_carousel_panel: Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels
+                   | (Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels
+
+        def self.members: () -> [ :video_carousel_panel ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::AplusContent20201101::VideoImageCarouselPanels
+
+        attr_reader video_carousel_panel: Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel
+
+        def members: () -> [ :video_carousel_panel ]
+        def to_h: () -> { video_carousel_panel: Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel }
+      end
+
       def create_content_document: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
+      def create_media: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def get_content_document: (String, String, Array[String], ?rate_limit: Float) -> Peddler::Response
 
+      def get_media: (String, ?associated_media_id: String?, ?rate_limit: Float) -> Peddler::Response
       def list_content_document_asin_relations: (String, String, ?included_data_set: Array[String]?, ?asin_set: Array[String]?, ?page_token: String?, ?rate_limit: Float) -> Peddler::Response
 
       def post_content_document_approval_submission: (String, String, ?rate_limit: Float) -> Peddler::Response
@@ -1036,6 +2291,7 @@ module Peddler
       def search_content_publish_records: (String, String, ?page_token: String?, ?rate_limit: Float) -> Peddler::Response
       def update_content_document: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
+      def update_media: (String, Hash[untyped, untyped], ?associated_media_id: String?, ?rate_limit: Float) -> Peddler::Response
       def validate_content_document_asin_relations: (String, Hash[untyped, untyped], ?asin_set: Array[String]?, ?rate_limit: Float) -> Peddler::Response
     end
   end

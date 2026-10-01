@@ -39,7 +39,7 @@ module Peddler
 
         # @return [Array<FulfillmentOrder>] The list of fulfillment orders associated with this customer order. Each
         #   entry corresponds to one fulfillment unit created by Amazon for this order. **Note:** Only available for
-        #   EasyShip orders at present.
+        #   Easy Ship and Seller Flex.
         attribute?(:fulfillment_orders, [FulfillmentOrder], from: "fulfillmentOrders")
 
         # @return [Array<Alias>] Alternative identifiers that can be used to reference this order, such as

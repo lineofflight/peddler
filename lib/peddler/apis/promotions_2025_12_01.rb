@@ -45,11 +45,12 @@ module Peddler
       #   diverges.
       # @param limit [Integer] The maximum number of response results per page.
       # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_promotions(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil,
         promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil,
         update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20,
-        included_data: nil)
+        included_data: nil, rate_limit: 0.1)
         path = "/promotions/2025-12-01/promotions"
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
@@ -70,7 +71,7 @@ module Peddler
           "includedData" => stringify_array(included_data),
         }.compact
         parser = -> { SearchPromotionsResponse }
-        get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Retrieve details of a specified promotion.
@@ -80,15 +81,16 @@ module Peddler
       # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
       # @param locale [String] The locale of the promotion. Formatted as an ISO 639 language code, followed by an
       #   underscore, followed by an ISO 3166-1 alpha-2 country code.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_promotion(promotion_id, included_data: nil, locale: "en_US")
+      def get_promotion(promotion_id, included_data: nil, locale: "en_US", rate_limit: 0.1)
         path = "/promotions/2025-12-01/promotions/#{percent_encode(promotion_id)}"
         params = {
           "includedData" => stringify_array(included_data),
           "locale" => locale,
         }.compact
         parser = -> { GetPromotionResponse }
-        get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
 
       # Retrieve up to 100 product items that are associated with a specified promotion. This operation only supports
@@ -110,9 +112,10 @@ module Peddler
       #   operation can return empty pages.
       # @param limit [Integer] The maximum number of response results per page.
       # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_selection(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20,
-        included_data: nil)
+        included_data: nil, rate_limit: 0.1)
         path = "/promotions/2025-12-01/promotions/#{percent_encode(promotion_id)}/selections/#{percent_encode(selection_id)}"
         params = {
           "revisionId" => revision_id,
@@ -122,7 +125,7 @@ module Peddler
           "includedData" => stringify_array(included_data),
         }.compact
         parser = -> { GetSelectionResponse }
-        get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

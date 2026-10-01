@@ -124,12 +124,12 @@ module Peddler
       end
 
       class TrackingIdentifier < Data
-        def self.new: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
-                    | (String?, String?, Peddler::APIs::Tracking20260130::CarrierTracking?, String?, String?, String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
-        def self.[]: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
-                   | (String?, String?, Peddler::APIs::Tracking20260130::CarrierTracking?, String?, String?, String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+        def self.new: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?, ?pro_number: String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+                    | (String?, String?, Peddler::APIs::Tracking20260130::CarrierTracking?, String?, String?, String?, String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+        def self.[]: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?, ?pro_number: String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
+                   | (String?, String?, Peddler::APIs::Tracking20260130::CarrierTracking?, String?, String?, String?, String?) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
 
-        def self.members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id ]
+        def self.members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id, :pro_number ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Tracking20260130::TrackingIdentifier
 
@@ -139,9 +139,10 @@ module Peddler
         attr_reader container_number: String?
         attr_reader house_bill_of_lading_number: String?
         attr_reader id: String?
+        attr_reader pro_number: String?
 
-        def members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id ]
-        def to_h: () -> { acsin: String?, aftn: String?, carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, container_number: String?, house_bill_of_lading_number: String?, id: String? }
+        def members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id, :pro_number ]
+        def to_h: () -> { acsin: String?, aftn: String?, carrier_tracking: Peddler::APIs::Tracking20260130::CarrierTracking?, container_number: String?, house_bill_of_lading_number: String?, id: String?, pro_number: String? }
       end
 
       class TrackingMilestone < Data
@@ -214,7 +215,7 @@ module Peddler
         def to_h: () -> { code: String, description: String, sub_code: String? }
       end
 
-      def get_shipment_tracking: (?id: String?, ?acsin: String?, ?aftn: String?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?carrier_tracking_tracking_number: String?, ?carrier_tracking_carrier_code: String?, ?accept_language: String?) -> Peddler::Response
+      def get_shipment_tracking: (?id: String?, ?acsin: String?, ?aftn: String?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?pro_number: String?, ?carrier_tracking_tracking_number: String?, ?carrier_tracking_carrier_code: String?, ?accept_language: String?) -> Peddler::Response
     end
   end
 end
