@@ -1,3 +1,4 @@
 [workspace]
-members = ["crates/peddler"]
+members = ["crates/peddler", "crates/peddler-ruby"]
+default-members = ["crates/peddler"]
 resolver = "3"

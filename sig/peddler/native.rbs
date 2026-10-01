@@ -1,0 +1,33 @@
+module Peddler
+  module Native
+    class TransportError < StandardError
+    end
+
+    class TimeoutError < TransportError
+    end
+
+    class ForkError < StandardError
+    end
+
+    class Engine
+      def self.new: (String base_url, String access_token, Numeric timeout) -> Engine
+      def request: (String method, String path, Array[[String, String]] query, String? body) -> [Integer, Array[[String, String]], String]
+    end
+
+    class Response
+      @json: untyped
+      attr_reader status: Integer
+      attr_reader headers: Array[[String, String]]
+      attr_reader body: String
+
+      def initialize: (Integer status, Array[[String, String]] headers, String body) -> void
+      def json: () -> untyped
+    end
+  end
+
+  class Client
+    @engine: Native::Engine
+    def initialize: (base_url: String, access_token: String, ?timeout: Numeric) -> void
+    def request: (String method, String path, ?params: Hash[String | Symbol, String | Integer | Float | bool], ?body: String | Hash[untyped, untyped] | Array[untyped] | nil) -> Native::Response
+  end
+end
