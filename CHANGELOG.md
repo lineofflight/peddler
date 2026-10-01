@@ -42,6 +42,18 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: External Fulfillment Shipments 2024-09-11: sandbox-only `create_sandbox_shipment` and `update_sandbox_shipment` operations for simulating order creation and shipment status, invoice, and transport capacity changes
 - **Changed**: External Fulfillment Shipments 2024-09-11: `status` parameter on `update_package_status` is now scoped to the Seller Flex program instead of being deprecated
 - **Added**: Promotions 2025-12-01: new API for searching and managing promotions (`search_promotions`, `get_promotion`, `get_selection`)
+- **Added**: Support 2025-02-01: new API for support cases (`list_cases`, `get_case`, `list_contacts`)
+- **Added**: Finance Remittance 2026-03-17: new API for remittances (`get_remittance_headers`, `get_remittance`)
+- **Added**: Data Kiosk: Seller Analytics 2025-03-31 schema (`seller_analytics20250331`) with generated types
+- **Added**: Notifications: `TaxInvoiceExportStatusChange`, `TaxInvoiceIssuanceEligibilityStatusChange`, and `TaxInvoiceIssuanceStatus` notification types
+- **Changed**: Notifications: reworked the Fulfillment Order Status payload and notification types
+- **Removed**: Notifications: `FulfillmentOrderStatusNotification`, `FulfillmentShipment`, `FulfillmentShipmentPackage`, and `FulfillmentReturnItem` types from Fulfillment Order Status
+- **Added**: A+ Content 2020-11-01: `create_media`, `get_media`, and `update_media` operations; Premium and Brand Story modules on `ContentModule`
+- **Added**: Invoices 2024-06-19: `warehouse_code` parameter on invoice operations
+- **Added**: Vendor Invoices v1 and Vendor Direct Fulfillment Payments v1: additional party identifications, allowance details, and new party, tax, and date fields on invoices
+- **Added**: Orders 2026-01-01: `promise_calculation_inputs` field on `FulfillmentOrder`; `asin` and `purchase_price` on `AssociatedOrderItem`
+- **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`
+- **Added**: Promotions 2025-12-01: `rate_limit` parameter on `get_promotion`
 - **Added**: Reports: `promotions_api_mapping_id` field on `DetailsByPromotion` (Promotion report), and on `CouponDetails` for both the Seller Coupon and Vendor Coupon reports, cross-referencing promotions with the new Promotions API
 
 ## [5.5.0] - 2026-06-10
