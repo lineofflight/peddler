@@ -278,3 +278,63 @@ fn model_only_cli_requires_an_explicit_separate_output_root() {
         assert!(!root.path().join("crates").exists());
     }
 }
+
+#[cfg(unix)]
+#[test]
+fn unresolved_parent_traversal_through_symlink_cannot_overwrite_integrated_modules() {
+    let root = repository();
+    let base = tempfile::tempdir().unwrap();
+    fs::create_dir(root.path().join("subdir")).unwrap();
+    std::os::unix::fs::symlink(root.path().join("subdir"), base.path().join("alias")).unwrap();
+    let output_root = base.path().join("alias/missing/../..");
+    assert!(output_root.canonicalize().is_err());
+    let integrated = root.path().join("crates/peddler/src/apis/mod.rs");
+    fs::create_dir_all(integrated.parent().unwrap()).unwrap();
+    fs::write(&integrated, "// integrated declaration sentinel\n").unwrap();
+    let modified = fs::metadata(&integrated).unwrap().modified().unwrap();
+    for check in [false, true] {
+        let mut args = vec!["--output-root", output_root.to_str().unwrap()];
+        if check {
+            args.push("--check");
+        }
+        let output = cli(root.path(), &args);
+        assert!(
+            !output.status.success(),
+            "unsafe output accepted; sentinel retained: {}",
+            fs::read_to_string(&integrated).unwrap() == "// integrated declaration sentinel\n"
+        );
+        assert!(String::from_utf8_lossy(&output.stderr).contains("unresolved parent traversal"));
+        assert_eq!(
+            fs::read_to_string(&integrated).unwrap(),
+            "// integrated declaration sentinel\n"
+        );
+        assert_eq!(
+            fs::metadata(&integrated).unwrap().modified().unwrap(),
+            modified
+        );
+        assert!(!root.path().join("subdir/missing").exists());
+    }
+}
+
+#[cfg(unix)]
+#[test]
+fn existing_symlink_to_separate_export_root_remains_supported() {
+    let root = repository();
+    let destination = tempfile::tempdir().unwrap();
+    let base = tempfile::tempdir().unwrap();
+    let alias = base.path().join("export");
+    std::os::unix::fs::symlink(destination.path(), &alias).unwrap();
+    let output = cli(root.path(), &["--output-root", alias.to_str().unwrap()]);
+    assert!(
+        output.status.success(),
+        "{}",
+        String::from_utf8_lossy(&output.stderr)
+    );
+    assert!(
+        destination
+            .path()
+            .join("crates/peddler/src/apis/mod.rs")
+            .exists()
+    );
+    assert!(!root.path().join("crates").exists());
+}

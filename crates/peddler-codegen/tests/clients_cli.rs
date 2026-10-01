@@ -216,3 +216,51 @@ fn unsupported_request_bodies_and_missing_success_models_fail_generation() {
         json!("#/definitions/Missing");
     assert!(peddler_codegen::clients::render(&missing, &APIS[0]).is_err());
 }
+
+#[test]
+fn formatted_parameters_leave_no_partial_generated_outputs() {
+    for array_item in [false, true] {
+        let root = repository();
+        let checkout = root.path().join("selling-partner-api-models");
+        let mut changed = spec("getCatalogItem");
+        let parameters = &mut changed["paths"]["/items/{asin}"]["get"]["parameters"];
+        if array_item {
+            parameters[1]["items"]["format"] = json!("date-time");
+        } else {
+            parameters[0]["format"] = json!("date-time");
+        }
+        fs::write(
+            checkout.join("models").join(APIS[0].source),
+            changed.to_string(),
+        )
+        .unwrap();
+        git(&checkout, &["add", "."]);
+        git(
+            &checkout,
+            &[
+                "-c",
+                "commit.gpgsign=false",
+                "commit",
+                "--quiet",
+                "-m",
+                "formatted",
+            ],
+        );
+        fs::write(
+            root.path().join("selling-partner-api-models.sha"),
+            git(&checkout, &["rev-parse", "HEAD"]) + "\n",
+        )
+        .unwrap();
+        let destination = tempfile::tempdir().unwrap();
+        let output = cli(root.path(), destination.path(), false);
+        assert!(
+            !output.status.success(),
+            "unsupported formatted parameter generated successfully"
+        );
+        assert!(
+            String::from_utf8_lossy(&output.stderr)
+                .contains("unsupported selected parameter format")
+        );
+        assert!(!destination.path().join("crates").exists());
+    }
+}

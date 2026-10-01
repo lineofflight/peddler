@@ -50,3 +50,34 @@ fn unsupported_selected_parameter_shapes_fail_instead_of_guessing() {
     defaults["paths"]["/items/{asin}"]["get"]["parameters"][2]["default"] = json!(["bad,value"]);
     assert!(clients::render(&defaults, &APIS[0]).is_err());
 }
+
+#[test]
+fn scalar_parameter_formats_cannot_change_the_public_string_facade_types() {
+    for location in ["path", "query"] {
+        let mut changed = spec();
+        let parameters = changed["paths"]["/items/{asin}"]["get"]["parameters"]
+            .as_array_mut()
+            .unwrap();
+        if location == "path" {
+            parameters[0]["format"] = json!("date-time");
+        } else {
+            parameters
+                .push(json!({"name":"locale","in":"query","type":"string","format":"date-time"}));
+        }
+        let error = clients::render(&changed, &APIS[0])
+            .err()
+            .expect("formatted string parameter must fail before client emission");
+        assert!(error.0.contains("unsupported selected parameter format"));
+    }
+}
+
+#[test]
+fn csv_array_item_formats_cannot_change_the_public_string_vector_types() {
+    let mut changed = spec();
+    changed["paths"]["/items/{asin}"]["get"]["parameters"][1]["items"]["format"] =
+        json!("date-time");
+    let error = clients::render(&changed, &APIS[0])
+        .err()
+        .expect("formatted CSV array items must fail before client emission");
+    assert!(error.0.contains("unsupported selected parameter format"));
+}

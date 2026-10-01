@@ -45,7 +45,7 @@ fn run() -> Result<(), GenerationError> {
     }
     if models_only
         && (output_root.is_none()
-            || normalized_path(output_root.as_ref().unwrap())? == normalized_path(&root)?)
+            || checked_output_path(output_root.as_ref().unwrap())? == root.canonicalize()?)
     {
         return Err(GenerationError(
             "--models-only requires --output-root distinct from --root".into(),
@@ -134,27 +134,24 @@ fn git(checkout: &Path, args: &[&str]) -> Result<String, GenerationError> {
     String::from_utf8(output.stdout).map_err(|error| GenerationError(error.to_string()))
 }
 
-// Existing paths resolve symlinks. Nonexistent export roots are compared after
-// lexical normalization so aliases such as a missing directory followed by ..
-// cannot replace the integrated SDK's module declarations.
-fn normalized_path(path: &Path) -> Result<PathBuf, GenerationError> {
-    let absolute = if path.is_absolute() {
+// Resolve existing destinations through the filesystem. Reject parent traversal
+// when a missing component prevents resolution: lexical removal of .. can give
+// a different destination from traversal through a symlink during file writes.
+fn checked_output_path(path: &Path) -> Result<PathBuf, GenerationError> {
+    if let Ok(canonical) = path.canonicalize() {
+        return Ok(canonical);
+    }
+    if path
+        .components()
+        .any(|component| component == std::path::Component::ParentDir)
+    {
+        return Err(GenerationError(
+            "--models-only requires --output-root distinct from --root; unresolved parent traversal is not allowed".into(),
+        ));
+    }
+    Ok(if path.is_absolute() {
         path.to_path_buf()
     } else {
         std::env::current_dir()?.join(path)
-    };
-    let mut normalized = PathBuf::new();
-    for component in absolute.components() {
-        match component {
-            std::path::Component::CurDir => {}
-            std::path::Component::ParentDir => {
-                normalized.pop();
-            }
-            component => normalized.push(component.as_os_str()),
-        }
-    }
-    Ok(path
-        .canonicalize()
-        .or_else(|_| normalized.canonicalize())
-        .unwrap_or(normalized))
+    })
 }

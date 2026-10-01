@@ -54,6 +54,13 @@ pub fn render(spec: &Value, api: &ApiSpec) -> Result<RenderedClient, GenerationE
             .ok_or_else(|| GenerationError("missing parameter name".into()))?
             .to_owned();
         let schema = &parameter["schema"];
+        // These facades accept String/Vec<String>; formatted schemas can make
+        // Progenitor emit DateTime, UUID or binary parameter types instead.
+        if schema.get("format").is_some() || schema["items"].get("format").is_some() {
+            return Err(GenerationError(format!(
+                "unsupported selected parameter format {name}"
+            )));
+        }
         match (parameter["in"].as_str(), schema["type"].as_str()) {
             (Some("path"), Some("string")) if parameter["required"] == true => {}
             (Some("query"), Some("string")) => {}
