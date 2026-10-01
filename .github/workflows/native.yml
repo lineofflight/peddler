@@ -18,6 +18,32 @@ jobs:
       - run: cargo test -p peddler --locked
       - run: cargo clippy -p peddler --all-targets --locked -- -D warnings
 
+  generation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0"
+          bundler-cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tools/openapi/package-lock.json
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal --component clippy
+          rustup default stable
+      - name: Sync pinned specs and install locked converter
+        run: bundle exec rake generate:rust:setup
+      - run: cargo test -p peddler-codegen --locked
+      - run: cargo clippy -p peddler-codegen --all-targets --locked -- -D warnings
+      - name: Check deterministic committed output
+        run: |
+          cargo run -p peddler-codegen --locked -- --root . --check
+          cargo run -p peddler-codegen --locked -- --root . --check
+
   ruby:
     strategy:
       fail-fast: false
