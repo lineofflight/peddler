@@ -1,4 +1,4 @@
-use peddler_codegen::{GenerationError, generate, manifest::APIS};
+use peddler_codegen::{GenerationError, generate, generate_models, manifest::APIS};
 use std::{
     fs,
     io::Write,
@@ -17,6 +17,7 @@ fn run() -> Result<(), GenerationError> {
     let mut root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
     let mut output_root = None;
     let mut check = false;
+    let mut models_only = false;
     let mut args = std::env::args_os().skip(1);
     while let Some(arg) = args.next() {
         if arg == "--root" || arg == "--output-root" {
@@ -31,6 +32,8 @@ fn run() -> Result<(), GenerationError> {
             } else {
                 output_root = Some(PathBuf::from(path));
             }
+        } else if arg == "--models-only" {
+            models_only = true;
         } else if arg == "--check" {
             check = true;
         } else {
@@ -39,6 +42,14 @@ fn run() -> Result<(), GenerationError> {
                 arg.to_string_lossy()
             )));
         }
+    }
+    if models_only
+        && (output_root.is_none()
+            || normalized_path(output_root.as_ref().unwrap())? == normalized_path(&root)?)
+    {
+        return Err(GenerationError(
+            "--models-only requires --output-root distinct from --root".into(),
+        ));
     }
     let revision = fs::read_to_string(root.join("selling-partner-api-models.sha"))?;
     let revision = revision.trim();
@@ -68,7 +79,11 @@ fn run() -> Result<(), GenerationError> {
     tracked_args.extend(sources.iter().map(String::as_str));
     git(&checkout, &tracked_args)
         .map_err(|_| GenerationError("selected spec files are untracked or missing".into()))?;
-    let output = generate(&checkout.join("models"), revision)?;
+    let output = if models_only {
+        generate_models(&checkout.join("models"), revision)?
+    } else {
+        generate(&checkout.join("models"), revision)?
+    };
     let dest = output_root.unwrap_or(root);
     if check {
         let drifted: Vec<_> = output
@@ -117,4 +132,29 @@ fn git(checkout: &Path, args: &[&str]) -> Result<String, GenerationError> {
         )));
     }
     String::from_utf8(output.stdout).map_err(|error| GenerationError(error.to_string()))
+}
+
+// Existing paths resolve symlinks. Nonexistent export roots are compared after
+// lexical normalization so aliases such as a missing directory followed by ..
+// cannot replace the integrated SDK's module declarations.
+fn normalized_path(path: &Path) -> Result<PathBuf, GenerationError> {
+    let absolute = if path.is_absolute() {
+        path.to_path_buf()
+    } else {
+        std::env::current_dir()?.join(path)
+    };
+    let mut normalized = PathBuf::new();
+    for component in absolute.components() {
+        match component {
+            std::path::Component::CurDir => {}
+            std::path::Component::ParentDir => {
+                normalized.pop();
+            }
+            component => normalized.push(component.as_os_str()),
+        }
+    }
+    Ok(path
+        .canonicalize()
+        .or_else(|_| normalized.canonicalize())
+        .unwrap_or(normalized))
 }

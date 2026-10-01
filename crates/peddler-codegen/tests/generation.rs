@@ -1,4 +1,4 @@
-use peddler_codegen::generate;
+use peddler_codegen::generate_models as generate;
 use serde_json::json;
 use std::{
     fs,
@@ -75,6 +75,9 @@ fn repository() -> TempDir {
 
 fn cli(root: &Path, extra: &[&str]) -> Output {
     Command::new(env!("CARGO_BIN_EXE_peddler-codegen"))
+        .arg("--models-only")
+        .arg("--output-root")
+        .arg(root.join("model-export"))
         .arg("--root")
         .arg(root)
         .args(extra)
@@ -146,7 +149,9 @@ fn cli_generates_twice_and_checks_without_writing() {
 #[test]
 fn check_detects_missing_and_drifted_outputs_without_mutation() {
     let root = repository();
-    let missing = root.path().join("crates/peddler/src/apis/mod.rs");
+    let missing = root
+        .path()
+        .join("model-export/crates/peddler/src/apis/mod.rs");
     let result = cli(root.path(), &["--check"]);
     assert!(!result.status.success());
     assert!(!missing.exists());
@@ -175,7 +180,7 @@ fn mismatched_revision_is_rejected_before_writing() {
     let result = cli(root.path(), &[]);
     assert!(!result.status.success());
     assert!(String::from_utf8_lossy(&result.stderr).contains("revision"));
-    assert!(!root.path().join("crates").exists());
+    assert!(!root.path().join("model-export/crates").exists());
 }
 
 #[test]
@@ -187,7 +192,7 @@ fn modified_and_untracked_selected_sources_are_rejected() {
     let result = cli(root.path(), &[]);
     assert!(!result.status.success());
     assert!(String::from_utf8_lossy(&result.stderr).contains("modified"));
-    assert!(!root.path().join("crates").exists());
+    assert!(!root.path().join("model-export/crates").exists());
     git(&checkout, &["checkout", "--", "models"]);
     git(
         &checkout,
@@ -195,7 +200,7 @@ fn modified_and_untracked_selected_sources_are_rejected() {
     );
     let result = cli(root.path(), &[]);
     assert!(!result.status.success());
-    assert!(!root.path().join("crates").exists());
+    assert!(!root.path().join("model-export/crates").exists());
 }
 
 #[test]
@@ -240,5 +245,36 @@ fn invalid_second_schema_does_not_leave_partial_outputs() {
     let result = cli(root.path(), &[]);
     assert!(!result.status.success());
     assert!(String::from_utf8_lossy(&result.stderr).contains("definitions"));
-    assert!(!root.path().join("crates").exists());
+    assert!(!root.path().join("model-export/crates").exists());
+}
+
+#[test]
+fn model_only_cli_requires_an_explicit_separate_output_root() {
+    let root = repository();
+    let mut destinations = vec![
+        None,
+        Some(root.path().to_path_buf()),
+        Some(root.path().join(".")),
+        Some(root.path().join("missing/..")),
+    ];
+    #[cfg(unix)]
+    {
+        let alias = root.path().join("same-root");
+        std::os::unix::fs::symlink(root.path(), &alias).unwrap();
+        destinations.push(Some(alias));
+    }
+    for output_root in destinations {
+        let mut command = Command::new(env!("CARGO_BIN_EXE_peddler-codegen"));
+        command.arg("--root").arg(root.path()).arg("--models-only");
+        if let Some(path) = output_root {
+            command.arg("--output-root").arg(path);
+        }
+        let output = command.output().unwrap();
+        assert!(!output.status.success());
+        assert!(
+            String::from_utf8_lossy(&output.stderr)
+                .contains("--models-only requires --output-root distinct from --root")
+        );
+        assert!(!root.path().join("crates").exists());
+    }
 }

@@ -4,6 +4,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+pub mod clients;
 pub mod manifest;
 pub mod models;
 
@@ -32,7 +33,7 @@ impl From<serde_json::Error> for GenerationError {
 
 /// Render all selected models without reading Git metadata or writing files.
 /// `spec_dir` is the checkout's `models` directory; output paths are repository-relative.
-pub fn generate(
+pub fn generate_models(
     spec_dir: &Path,
     revision: &str,
 ) -> Result<BTreeMap<PathBuf, String>, GenerationError> {
@@ -83,4 +84,41 @@ fn format_tokens(tokens: impl quote::ToTokens) -> Result<String, GenerationError
     let file = syn::parse2(tokens.to_token_stream())
         .map_err(|error| GenerationError(error.to_string()))?;
     Ok(prettyplease::unparse(&file))
+}
+
+/// Render models and selected wire clients after installing tools/openapi.
+pub fn generate(
+    spec_dir: &Path,
+    revision: &str,
+) -> Result<BTreeMap<PathBuf, String>, GenerationError> {
+    let mut output = generate_models(spec_dir, revision)?;
+    let base = Path::new("crates/peddler/src/apis");
+    let root = output.get_mut(&base.join("mod.rs")).unwrap();
+    root.push_str("\npub use crate::operation::execute;\n");
+    for api in manifest::APIS {
+        let spec = serde_json::from_slice(&fs::read(spec_dir.join(api.source))?)?;
+        let rendered = clients::render(&spec, api)?;
+        let prefix = notice(revision, api.source);
+        output.insert(
+            base.join(api.module).join("wire.rs"),
+            format!("{prefix}{}", rendered.wire),
+        );
+        output.insert(
+            base.join(api.module).join("metadata.rs"),
+            format!("{prefix}{}", clients::metadata(&rendered)?),
+        );
+        let facade = quote::format_ident!("{}", api.facade);
+        let module = quote::quote! {
+            pub mod models;
+            pub(crate) mod metadata;
+            #[allow(dead_code, unused_imports, clippy::all)]
+            pub(crate) mod wire;
+            pub use crate::operation::#facade::*;
+        };
+        output.insert(
+            base.join(api.module).join("mod.rs"),
+            format!("{prefix}{}", format_tokens(module)?),
+        );
+    }
+    Ok(output)
 }

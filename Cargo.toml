@@ -1,4 +1,8 @@
 [workspace]
 members = ["crates/peddler", "crates/peddler-ruby", "crates/peddler-codegen"]
+exclude = ["third_party/progenitor-impl"]
 default-members = ["crates/peddler"]
 resolver = "3"
+
+[patch.crates-io]
+progenitor-impl = { path = "third_party/progenitor-impl" }

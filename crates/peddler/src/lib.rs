@@ -3,6 +3,9 @@
 #[rustfmt::skip]
 pub mod apis;
 
+mod operation;
+pub use operation::TypedResponse;
+
 use reqwest::{Method, Url, header::HeaderValue};
 use std::time::Duration;
 
@@ -109,6 +112,66 @@ impl Client {
         })
     }
 
+    fn prepare_generated(
+        &self,
+        request: &mut reqwest::Request,
+        csv_names: &[&str],
+    ) -> Result<(), Error> {
+        let url = request.url();
+        if url.origin() != self.origin.origin()
+            || !url.username().is_empty()
+            || url.password().is_some()
+            || url.fragment().is_some()
+        {
+            return Err(Error::InvalidRequest);
+        }
+        // Discard per-request overrides so the shared client's timeout applies.
+        *request.timeout_mut() = None;
+        // Canonicalize individual segments, never decode the whole path. A raw
+        // caller %2F was already escaped by Progenitor to %252F and stays literal.
+        const SEGMENT: &percent_encoding::AsciiSet = &percent_encoding::NON_ALPHANUMERIC
+            .remove(b'-')
+            .remove(b'_')
+            .remove(b'.')
+            .remove(b'~');
+        let path = request
+            .url()
+            .path()
+            .split('/')
+            .map(|segment| {
+                let bytes = percent_encoding::percent_decode_str(segment).collect::<Vec<_>>();
+                percent_encoding::percent_encode(&bytes, SEGMENT).to_string()
+            })
+            .collect::<Vec<_>>()
+            .join("/");
+        request.url_mut().set_path(&path);
+        if request.url().query().is_some() {
+            let mut pairs: Vec<(String, String)> = Vec::new();
+            for (key, value) in request.url().query_pairs() {
+                if csv_names.contains(&key.as_ref())
+                    && let Some((_, previous)) = pairs.iter_mut().find(|(name, _)| name == &key)
+                {
+                    previous.push(',');
+                    previous.push_str(&value);
+                    continue;
+                }
+                pairs.push((key.into_owned(), value.into_owned()));
+            }
+            request.url_mut().set_query(None);
+            if !pairs.is_empty() {
+                request.url_mut().query_pairs_mut().extend_pairs(pairs);
+            }
+        }
+        request
+            .headers_mut()
+            .insert("x-amz-access-token", self.access_token.clone());
+        request.headers_mut().insert(
+            reqwest::header::ACCEPT,
+            HeaderValue::from_static("application/json"),
+        );
+        Ok(())
+    }
+
     pub async fn execute(&self, request: Request) -> Result<Response, Error> {
         if !request.path.starts_with('/')
             || request.path.starts_with("//")
@@ -146,23 +209,7 @@ impl Client {
                 .body(body);
         }
         let response = builder.send().await.map_err(classify_transport)?;
-        let status = response.status().as_u16();
-        let headers = response
-            .headers()
-            .iter()
-            .map(|(name, value)| {
-                (
-                    name.as_str().to_owned(),
-                    String::from_utf8_lossy(value.as_bytes()).into_owned(),
-                )
-            })
-            .collect();
-        let body = response.bytes().await.map_err(classify_transport)?.to_vec();
-        Ok(Response {
-            status,
-            headers,
-            body,
-        })
+        operation::collect(Ok(progenitor_client::ResponseValue::stream(response))).await
     }
 }
 

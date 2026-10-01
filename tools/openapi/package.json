@@ -1,0 +1,5 @@
+{
+  "name": "peddler-openapi-conversion",
+  "private": true,
+  "dependencies": {"swagger2openapi": "7.0.8"}
+}

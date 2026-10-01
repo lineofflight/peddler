@@ -4,3 +4,5 @@
 
 pub mod catalog_items_2022_04_01;
 pub mod listings_items_2021_08_01;
+
+pub use crate::operation::execute;
