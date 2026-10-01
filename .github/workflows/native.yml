@@ -1,0 +1,45 @@
+name: Native preview
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+          rustup default stable
+      - run: cargo fmt --all --check
+      - run: cargo test -p peddler --locked
+      - run: cargo clippy -p peddler --all-targets --locked -- -D warnings
+
+  ruby:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["3.3", "3.4", "4.0"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal --component clippy
+          rustup default stable
+      - run: ruby tools/export_native_fixtures.rb --check
+      - run: bundle exec rake native:build native:test
+      - name: Check independent entrypoint
+        run: >-
+          bundle exec ruby -Ilib -Itmp/native -e
+          'require "peddler/native"; abort "http.rb loaded" if defined?(HTTP)'
+      - name: Lint binding
+        if: matrix.ruby == '4.0'
+        run: RUBY="$(ruby -rrbconfig -e 'print RbConfig.ruby')" cargo clippy --workspace --all-targets --locked -- -D warnings

@@ -8,3 +8,5 @@ rbs_collection.lock.yaml
 selling-partner-api-models
 test/config.json
 vendor
+/target/
+/tmp/native/

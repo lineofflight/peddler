@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+- Add a local-development Rust transport and opt-in `peddler/native` Ruby client for the next major release; see [preview usage and roadmap](crates/peddler/README.md)
 - Add `base_url` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
 - Support pattern matching on errors by HTTP status, e.g. `case error in {status: 500..599}`
 
