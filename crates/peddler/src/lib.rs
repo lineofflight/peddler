@@ -1,5 +1,8 @@
 //! Shared asynchronous SP-API transport. HTTP error statuses remain responses.
 
+#[rustfmt::skip]
+pub mod apis;
+
 use reqwest::{Method, Url, header::HeaderValue};
 use std::time::Duration;
 
