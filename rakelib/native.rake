@@ -22,7 +22,7 @@ namespace :native do
   desc "Run native tests (requires native:build first)"
   task :test do
     # A separate process deadline also catches a callback stuck holding the GVL.
-    pid = Process.spawn(RbConfig.ruby, "-Ilib", "-Itmp/native", "test_native/client_test.rb")
+    pid = Process.spawn(RbConfig.ruby, "-Ilib", "-Itmp/native", "test_native/run.rb")
     begin
       _, status = Timeout.timeout(60) { Process.wait2(pid) }
       abort "native tests failed" unless status.success?

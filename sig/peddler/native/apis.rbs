@@ -1,0 +1,20 @@
+module Peddler
+  module Native
+    class CatalogItems20220401
+      @engine: Engine
+      def initialize: (Engine engine) -> void
+      def get_catalog_item: (asin: String, marketplace_ids: Array[String], ?included_data: Array[String]?, ?locale: String?) -> Response
+    end
+
+    class ListingsItems20210801
+      @engine: Engine
+      def initialize: (Engine engine) -> void
+      def patch_listings_item: (seller_id: String, sku: String, marketplace_ids: Array[String], body: Hash[untyped, untyped], ?included_data: Array[String]?, ?mode: String?, ?issue_locale: String?) -> Response
+    end
+  end
+
+  class Client
+    def catalog_items_2022_04_01: () -> Native::CatalogItems20220401
+    def listings_items_2021_08_01: () -> Native::ListingsItems20210801
+  end
+end

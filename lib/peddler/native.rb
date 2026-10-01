@@ -54,3 +54,5 @@ module Peddler
     end
   end
 end
+
+require_relative "native/apis"

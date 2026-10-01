@@ -12,6 +12,7 @@ module Peddler
     class Engine
       def self.new: (String base_url, String access_token, Numeric timeout) -> Engine
       def request: (String method, String path, Array[[String, String]] query, String? body) -> [Integer, Array[[String, String]], String]
+      def operation: (String operation, String arguments) -> [Integer, Array[[String, String]], String]
     end
 
     class Response

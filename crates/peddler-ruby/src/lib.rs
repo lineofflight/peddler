@@ -100,6 +100,30 @@ impl Engine {
         query: Vec<(String, String)>,
         body: Option<RString>,
     ) -> Result<ResponseParts, Error> {
+        // SAFETY: the GVL is held; copy bytes before any Ruby call or GVL release.
+        let body = body.map(|value| unsafe { value.as_slice().to_vec() });
+        Self::execute(
+            ruby,
+            engine,
+            Work::Raw(Request {
+                method,
+                path,
+                query,
+                body,
+            }),
+        )
+    }
+
+    fn operation(
+        ruby: &Ruby,
+        engine: &Self,
+        name: String,
+        arguments: String,
+    ) -> Result<ResponseParts, Error> {
+        Self::execute(ruby, engine, Work::Operation { name, arguments })
+    }
+
+    fn execute(ruby: &Ruby, engine: &Self, work: Work) -> Result<ResponseParts, Error> {
         if engine.pid != std::process::id() {
             return Err(native_error(
                 ruby,
@@ -107,19 +131,12 @@ impl Engine {
                 "create a new client after fork",
             ));
         }
-        // SAFETY: the GVL is held; copy bytes before any Ruby call or GVL release.
-        let body = body.map(|value| unsafe { value.as_slice().to_vec() });
         // Separate allocation: the unblock callback's shared AtomicBool reference
         // never aliases the run callback's mutable Invocation reference.
         let cancelled = Box::new(AtomicBool::new(false));
         let mut invocation = Box::new(Invocation {
             state: Arc::clone(&engine.state),
-            request: Some(Request {
-                method,
-                path,
-                query,
-                body,
-            }),
+            work: Some(work),
             cancelled: &*cancelled,
             result: None,
         });
@@ -164,15 +181,20 @@ enum Failure {
     Panic,
 }
 
+enum Work {
+    Raw(Request),
+    Operation { name: String, arguments: String },
+}
+
 struct Invocation {
     state: Arc<State>,
-    request: Option<Request>,
+    work: Option<Work>,
     cancelled: *const AtomicBool,
     result: Option<Result<Response, Failure>>,
 }
 
 unsafe extern "C" fn unblock(data: *mut c_void) {
-    // SAFETY: request keeps the allocation alive until without_gvl returns.
+    // SAFETY: execute keeps the allocation alive until without_gvl returns.
     unsafe { &*data.cast::<AtomicBool>() }.store(true, Ordering::Relaxed);
 }
 
@@ -180,12 +202,19 @@ unsafe extern "C" fn run(data: *mut c_void) -> *mut c_void {
     // SAFETY: only this callback accesses Invocation until without_gvl returns.
     let invocation = unsafe { &mut *data.cast::<Invocation>() };
     let outcome = catch_unwind(AssertUnwindSafe(|| {
-        let request = invocation.request.take().expect("invocation runs once");
-        // SAFETY: request owns this separate allocation for the entire call.
+        let work = invocation.work.take().expect("invocation runs once");
+        // SAFETY: execute owns this separate allocation for the entire call.
         let cancelled = unsafe { &*invocation.cancelled };
         invocation.state.runtime.as_ref().expect("runtime alive").block_on(async {
             tokio::select! {
-                result = invocation.state.client.execute(request) => result.map_err(Failure::Transport),
+                result = async {
+                    match work {
+                        Work::Raw(request) => invocation.state.client.execute(request).await,
+                        Work::Operation { name, arguments } => {
+                            peddler::apis::execute(&invocation.state.client, &name, &arguments).await
+                        }
+                    }
+                } => result.map_err(Failure::Transport),
                 () = async {
                     while !cancelled.load(Ordering::Relaxed) {
                         tokio::time::sleep(Duration::from_millis(5)).await;
@@ -219,5 +248,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     let engine = native.define_class("Engine", ruby.class_object())?;
     engine.define_singleton_method("new", function!(Engine::new, 3))?;
     engine.define_method("request", method!(Engine::request, 4))?;
+    engine.define_method("operation", method!(Engine::operation, 2))?;
     Ok(())
 }
