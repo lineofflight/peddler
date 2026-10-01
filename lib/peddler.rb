@@ -33,6 +33,7 @@ module Peddler
     def fba_inbound_eligibility_v1 = APIs::FBAInboundEligibilityV1
     def fba_inventory_v1 = APIs::FBAInventoryV1
     def feeds_2021_06_30 = APIs::Feeds20210630
+    def finance_remittance_2026_03_17 = APIs::FinanceRemittance20260317
     def finances_v0 = APIs::FinancesV0
     def finances_2024_06_19 = APIs::Finances20240619
     def finances_invoices_2026_06_25 = APIs::FinancesInvoices20260625
@@ -65,6 +66,7 @@ module Peddler
     def shipping_v2 = APIs::ShippingV2
     def solicitations_v1 = APIs::SolicitationsV1
     def supply_sources_2020_07_01 = APIs::SupplySources20200701
+    def support_2025_02_01 = APIs::Support20250201
     def tokens_2021_03_01 = APIs::Tokens20210301
     def tracking_2026_01_30 = APIs::Tracking20260130
     def transfers_2024_06_01 = APIs::Transfers20240601
@@ -100,6 +102,7 @@ module Peddler
     alias_method :fba_inbound_eligibility, :fba_inbound_eligibility_v1
     alias_method :fba_inventory, :fba_inventory_v1
     alias_method :feeds, :feeds_2021_06_30
+    alias_method :finance_remittance, :finance_remittance_2026_03_17
     alias_method :finances, :finances_2024_06_19
     alias_method :finances_invoices, :finances_invoices_2026_06_25
     alias_method :fulfillment_inbound, :fulfillment_inbound_2024_03_20
@@ -125,6 +128,7 @@ module Peddler
     alias_method :shipping, :shipping_v2
     alias_method :solicitations, :solicitations_v1
     alias_method :supply_sources, :supply_sources_2020_07_01
+    alias_method :support, :support_2025_02_01
     alias_method :tokens, :tokens_2021_03_01
     alias_method :tracking, :tracking_2026_01_30
     alias_method :transfers, :transfers_2024_06_01

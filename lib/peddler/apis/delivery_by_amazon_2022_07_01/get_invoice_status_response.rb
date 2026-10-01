@@ -20,6 +20,12 @@ module Peddler
 
         # @return [String] The current processing status of a shipment invoice.
         attribute?(:invoice_status, String, from: "invoiceStatus")
+
+        # @return [Array<InvoiceStatus>] List of individual invoice statuses for the order.
+        attribute?(:invoices, [InvoiceStatus])
+
+        # @return [String] The invoicing status of the order, considering the aggregated results of all invoices sent.
+        attribute?(:order_invoicing_status, String, from: "orderInvoicingStatus")
       end
     end
   end

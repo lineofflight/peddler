@@ -9,7 +9,8 @@ module Peddler
     class Orders20260101
       # The cancellation information of the order item.
       ItemCancellation = Structure.new do
-        # @return [ItemCancellationExecution] Details of how the cancellation was executed for this order item.
+        # @return [ItemCancellationExecution] Details about how the cancellation request was processed for this order
+        #   item.
         attribute?(:cancellation_execution, ItemCancellationExecution, from: "cancellationExecution")
 
         # @return [ItemCancellationRequest] Details of the cancellation request submitted for this order item.

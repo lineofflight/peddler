@@ -97,12 +97,12 @@ module Peddler
       end
 
       class ExportInvoicesRequest < Data
-        def self.new: (marketplace_id: String, ?date_end: Date?, ?date_start: Date?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
-                    | (String, Date?, Date?, String?, String?, String?, String?, Array[String]?, Peddler::APIs::Invoices20240619::TransactionIdentifier?, String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
-        def self.[]: (marketplace_id: String, ?date_end: Date?, ?date_start: Date?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
-                   | (String, Date?, Date?, String?, String?, String?, String?, Array[String]?, Peddler::APIs::Invoices20240619::TransactionIdentifier?, String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
+        def self.new: (marketplace_id: String, ?date_end: Date?, ?date_start: Date?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?, ?warehouse_code: String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
+                    | (String, Date?, Date?, String?, String?, String?, String?, Array[String]?, Peddler::APIs::Invoices20240619::TransactionIdentifier?, String?, String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
+        def self.[]: (marketplace_id: String, ?date_end: Date?, ?date_start: Date?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?, ?warehouse_code: String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
+                   | (String, Date?, Date?, String?, String?, String?, String?, Array[String]?, Peddler::APIs::Invoices20240619::TransactionIdentifier?, String?, String?) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
 
-        def self.members: () -> [ :marketplace_id, :date_end, :date_start, :external_invoice_id, :file_format, :invoice_type, :series, :statuses, :transaction_identifier, :transaction_type ]
+        def self.members: () -> [ :marketplace_id, :date_end, :date_start, :external_invoice_id, :file_format, :invoice_type, :series, :statuses, :transaction_identifier, :transaction_type, :warehouse_code ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Invoices20240619::ExportInvoicesRequest
 
@@ -116,9 +116,10 @@ module Peddler
         attr_reader statuses: Array[String]?
         attr_reader transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?
         attr_reader transaction_type: String?
+        attr_reader warehouse_code: String?
 
-        def members: () -> [ :marketplace_id, :date_end, :date_start, :external_invoice_id, :file_format, :invoice_type, :series, :statuses, :transaction_identifier, :transaction_type ]
-        def to_h: () -> { marketplace_id: String, date_end: Date?, date_start: Date?, external_invoice_id: String?, file_format: String?, invoice_type: String?, series: String?, statuses: Array[String]?, transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, transaction_type: String? }
+        def members: () -> [ :marketplace_id, :date_end, :date_start, :external_invoice_id, :file_format, :invoice_type, :series, :statuses, :transaction_identifier, :transaction_type, :warehouse_code ]
+        def to_h: () -> { marketplace_id: String, date_end: Date?, date_start: Date?, external_invoice_id: String?, file_format: String?, invoice_type: String?, series: String?, statuses: Array[String]?, transaction_identifier: Peddler::APIs::Invoices20240619::TransactionIdentifier?, transaction_type: String?, warehouse_code: String? }
       end
 
       class ExportInvoicesResponse < Data
@@ -407,13 +408,13 @@ module Peddler
       def get_government_invoice_document: (String, String, String, String, ?inbound_plan_id: String?, ?file_format: String?) -> Peddler::Response
       def get_government_invoice_status: (String, String, String, String, ?inbound_plan_id: String?) -> Peddler::Response
 
-      def get_invoice: (String, String) -> Peddler::Response
-      def get_invoices: (String, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?) -> Peddler::Response
-      def get_invoices_attributes: (String) -> Peddler::Response
-      def get_invoices_document: (String) -> Peddler::Response
+      def get_invoice: (String, String, ?warehouse_code: String?) -> Peddler::Response
+      def get_invoices: (String, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?, ?warehouse_code: String?) -> Peddler::Response
+      def get_invoices_attributes: (String, ?warehouse_code: String?) -> Peddler::Response
+      def get_invoices_document: (String, ?warehouse_code: String?) -> Peddler::Response
 
-      def get_invoices_export: (String) -> Peddler::Response
-      def get_invoices_exports: (String, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?) -> Peddler::Response
+      def get_invoices_export: (String, ?warehouse_code: String?) -> Peddler::Response
+      def get_invoices_exports: (String, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?, ?warehouse_code: String?) -> Peddler::Response
     end
   end
 end

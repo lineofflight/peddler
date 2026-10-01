@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class AplusContent20201101
-      # A standard image with paragraphs, a bulleted list, and extra space for technical details.
+      # A standard image with paragraphs and a bulleted list, and extra space for technical details.
       StandardSingleImageSpecsDetailModule = Structure.new do
         # @return [StandardTextBlock]
         attribute?(:description_block1, StandardTextBlock, from: "descriptionBlock1")

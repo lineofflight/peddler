@@ -15,11 +15,14 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace identifier.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @return [Peddler::Response] The API response
-      def get_invoices_attributes(marketplace_id)
+      def get_invoices_attributes(marketplace_id, warehouse_code: nil)
         path = "/tax/invoices/2024-06-19/attributes"
         params = {
           "marketplaceId" => marketplace_id,
+          "warehouseCode" => warehouse_code,
         }.compact
         parser = -> { GetInvoicesAttributesResponse }
         get(path, params:, parser:)
@@ -30,11 +33,16 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param invoices_document_id [String] The export document identifier.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @return [Peddler::Response] The API response
-      def get_invoices_document(invoices_document_id)
+      def get_invoices_document(invoices_document_id, warehouse_code: nil)
         path = "/tax/invoices/2024-06-19/documents/#{percent_encode(invoices_document_id)}"
+        params = {
+          "warehouseCode" => warehouse_code,
+        }.compact
         parser = -> { GetInvoicesDocumentResponse }
-        get(path, parser:)
+        get(path, params:, parser:)
       end
 
       # Creates an invoice export request.
@@ -64,9 +72,11 @@ module Peddler
       #   response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       #   The default value is the time of the request.
       # @param status [String] Return exports matching the status specified.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @return [Peddler::Response] The API response
       def get_invoices_exports(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil,
-        status: nil)
+        status: nil, warehouse_code: nil)
         path = "/tax/invoices/2024-06-19/exports"
         params = {
           "marketplaceId" => marketplace_id,
@@ -75,6 +85,7 @@ module Peddler
           "pageSize" => page_size,
           "dateEnd" => date_end,
           "status" => status,
+          "warehouseCode" => warehouse_code,
         }.compact
         parser = -> { GetInvoicesExportsResponse }
         get(path, params:, parser:)
@@ -84,11 +95,16 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param export_id [String] The unique identifier for the export.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @return [Peddler::Response] The API response
-      def get_invoices_export(export_id)
+      def get_invoices_export(export_id, warehouse_code: nil)
         path = "/tax/invoices/2024-06-19/exports/#{percent_encode(export_id)}"
+        params = {
+          "warehouseCode" => warehouse_code,
+        }.compact
         parser = -> { GetInvoicesExportResponse }
-        get(path, parser:)
+        get(path, params:, parser:)
       end
 
       # Submit an asynchronous request to create a government invoice.
@@ -186,10 +202,12 @@ module Peddler
       # @param external_invoice_id [String] Return invoices that match this external ID. This is typically the
       #   Government Invoice ID.
       # @param sort_by [String] The attribute by which you want to sort the invoices in the response.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @return [Peddler::Response] The API response
       def get_invoices(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil,
         transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil,
-        sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil)
+        sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil)
         path = "/tax/invoices/2024-06-19/invoices"
         params = {
           "transactionIdentifierName" => transaction_identifier_name,
@@ -206,6 +224,7 @@ module Peddler
           "statuses" => stringify_array(statuses),
           "externalInvoiceId" => external_invoice_id,
           "sortBy" => sort_by,
+          "warehouseCode" => warehouse_code,
         }.compact
         parser = -> { GetInvoicesResponse }
         get(path, params:, parser:)
@@ -218,11 +237,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace from which you want the invoice.
       # @param invoice_id [String] The invoice identifier.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @return [Peddler::Response] The API response
-      def get_invoice(marketplace_id, invoice_id)
+      def get_invoice(marketplace_id, invoice_id, warehouse_code: nil)
         path = "/tax/invoices/2024-06-19/invoices/#{percent_encode(invoice_id)}"
         params = {
           "marketplaceId" => marketplace_id,
+          "warehouseCode" => warehouse_code,
         }.compact
         parser = -> { GetInvoiceResponse }
         get(path, params:, parser:)

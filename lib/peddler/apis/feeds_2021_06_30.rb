@@ -74,7 +74,7 @@ module Peddler
         delete(path, rate_limit:)
       end
 
-      # Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.
+      # Returns feed details (including the `feedDocumentId`, if available) for the feed that you specify.
       #
       # @note This operation can make a static sandbox call.
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller

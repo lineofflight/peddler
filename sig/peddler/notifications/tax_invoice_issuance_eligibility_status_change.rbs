@@ -1,0 +1,66 @@
+module Peddler
+  module Notifications
+    module TaxInvoiceIssuanceEligibilityStatusChange
+      class Notification < Data
+        def self.new: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload, payload_version: String) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Notification
+                    | (String, String, String, String, Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload, String) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Notification
+        def self.[]: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload, payload_version: String) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Notification
+                   | (String, String, String, String, Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload, String) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Notification
+
+        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Notification
+
+        attr_reader event_time: String
+        attr_reader notification_metadata: String
+        attr_reader notification_type: String
+        attr_reader notification_version: String
+        attr_reader payload: Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload
+        attr_reader payload_version: String
+
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+        def to_h: () -> { event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload, payload_version: String }
+      end
+
+      class NotificationMetadata < Data
+        def self.new: (application_id: String, notification_id: String, publish_time: String, subscription_id: String) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::NotificationMetadata
+                    | (String, String, String, String) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::NotificationMetadata
+        def self.[]: (application_id: String, notification_id: String, publish_time: String, subscription_id: String) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::NotificationMetadata
+                   | (String, String, String, String) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::NotificationMetadata
+
+        def self.members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::NotificationMetadata
+
+        attr_reader application_id: String
+        attr_reader notification_id: String
+        attr_reader publish_time: String
+        attr_reader subscription_id: String
+
+        def members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
+        def to_h: () -> { application_id: String, notification_id: String, publish_time: String, subscription_id: String }
+      end
+
+      class Payload < Data
+        def self.new: (marketplace_id: String, operation: String, status: String, ?message: Array[untyped]?) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload
+                    | (String, String, String, Array[untyped]?) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload
+        def self.[]: (marketplace_id: String, operation: String, status: String, ?message: Array[untyped]?) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload
+                   | (String, String, String, Array[untyped]?) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload
+
+        def self.members: () -> [ :marketplace_id, :operation, :status, :message ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Payload
+
+        attr_reader marketplace_id: String
+        attr_reader message: Array[untyped]?
+        attr_reader operation: String
+        attr_reader status: String
+
+        def members: () -> [ :marketplace_id, :operation, :status, :message ]
+        def to_h: () -> { marketplace_id: String, operation: String, status: String, message: Array[untyped]? }
+      end
+
+      def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::TaxInvoiceIssuanceEligibilityStatusChange::Notification
+    end
+  end
+end

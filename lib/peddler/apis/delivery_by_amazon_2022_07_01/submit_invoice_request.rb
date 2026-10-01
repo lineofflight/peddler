@@ -20,7 +20,7 @@ module Peddler
         # @return [String] The type of an invoice.
         attribute(:invoice_type, String, null: false, from: "invoiceType")
 
-        # @return [String] An Amazon marketplace identifier.
+        # @return [String] An Amazon store identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [String] The Amazon program that the seller is currently enrolled.

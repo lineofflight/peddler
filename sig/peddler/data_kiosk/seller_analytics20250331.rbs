@@ -1,0 +1,564 @@
+module Peddler
+  module DataKiosk
+    module SellerAnalytics20250331
+      class AccountHealth < Data
+        def self.new: (?account_health_atoz_claim_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_atoz_guarantee_claim_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_chargeback_claim_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_chargeback_claim_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_late_shipment_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_late_shipment_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_negative_feedback_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_negative_feedback_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_on_time_delivery_defect_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_on_time_delivery_defect_package_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_on_time_delivery_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_order_defect_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_package_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_pre_fulfillment_cancel_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_pre_fulfillment_cancel_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_rating_score: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_total_order_defects: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_valid_tracking_defect_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_valid_tracking_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_distinct_count_defect_type_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?region_inaccurate_product_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_incorrect_label_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_label_missing_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_other_defects_product_related_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_resolved_defects_unit_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?region_unexpected_product_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth
+        def self.[]: (?account_health_atoz_claim_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_atoz_guarantee_claim_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_chargeback_claim_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_chargeback_claim_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_late_shipment_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_late_shipment_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_negative_feedback_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_negative_feedback_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_on_time_delivery_defect_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_on_time_delivery_defect_package_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_on_time_delivery_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_order_defect_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_package_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_pre_fulfillment_cancel_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_pre_fulfillment_cancel_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?account_health_rating_score: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_total_order_defects: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_valid_tracking_defect_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?account_health_valid_tracking_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_distinct_count_defect_type_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?region_inaccurate_product_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_incorrect_label_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_label_missing_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_other_defects_product_related_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?region_resolved_defects_unit_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?region_unexpected_product_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth
+
+        def self.members: () -> [ :account_health_atoz_claim_order_count, :account_health_atoz_guarantee_claim_rate, :account_health_chargeback_claim_order_count, :account_health_chargeback_claim_rate, :account_health_late_shipment_order_count, :account_health_late_shipment_rate, :account_health_negative_feedback_order_count, :account_health_negative_feedback_rate, :account_health_on_time_delivery_defect_package_count, :account_health_on_time_delivery_defect_package_units, :account_health_on_time_delivery_rate, :account_health_order_count, :account_health_order_defect_rate, :account_health_package_count, :account_health_package_units, :account_health_pre_fulfillment_cancel_order_count, :account_health_pre_fulfillment_cancel_rate, :account_health_rating_score, :account_health_total_order_defects, :account_health_valid_tracking_defect_package_count, :account_health_valid_tracking_rate, :region_distinct_count_defect_type_t120_days, :region_inaccurate_product_defect_rate_t120_days, :region_incorrect_label_defect_rate_t120_days, :region_label_missing_defect_rate_t120_days, :region_other_defects_product_related_defect_rate_t120_days, :region_resolved_defects_unit_t120_days, :region_unexpected_product_defect_rate_t120_days ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth
+
+        attr_reader account_health_atoz_claim_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_atoz_guarantee_claim_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader account_health_chargeback_claim_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_chargeback_claim_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader account_health_late_shipment_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_late_shipment_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader account_health_negative_feedback_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_negative_feedback_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader account_health_on_time_delivery_defect_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_on_time_delivery_defect_package_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_on_time_delivery_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader account_health_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_order_defect_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader account_health_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_package_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_pre_fulfillment_cancel_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_pre_fulfillment_cancel_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader account_health_rating_score: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_total_order_defects: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_valid_tracking_defect_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader account_health_valid_tracking_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader region_distinct_count_defect_type_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader region_inaccurate_product_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader region_incorrect_label_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader region_label_missing_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader region_other_defects_product_related_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader region_resolved_defects_unit_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader region_unexpected_product_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+
+        def members: () -> [ :account_health_atoz_claim_order_count, :account_health_atoz_guarantee_claim_rate, :account_health_chargeback_claim_order_count, :account_health_chargeback_claim_rate, :account_health_late_shipment_order_count, :account_health_late_shipment_rate, :account_health_negative_feedback_order_count, :account_health_negative_feedback_rate, :account_health_on_time_delivery_defect_package_count, :account_health_on_time_delivery_defect_package_units, :account_health_on_time_delivery_rate, :account_health_order_count, :account_health_order_defect_rate, :account_health_package_count, :account_health_package_units, :account_health_pre_fulfillment_cancel_order_count, :account_health_pre_fulfillment_cancel_rate, :account_health_rating_score, :account_health_total_order_defects, :account_health_valid_tracking_defect_package_count, :account_health_valid_tracking_rate, :region_distinct_count_defect_type_t120_days, :region_inaccurate_product_defect_rate_t120_days, :region_incorrect_label_defect_rate_t120_days, :region_label_missing_defect_rate_t120_days, :region_other_defects_product_related_defect_rate_t120_days, :region_resolved_defects_unit_t120_days, :region_unexpected_product_defect_rate_t120_days ]
+        def to_h: () -> { account_health_atoz_claim_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_atoz_guarantee_claim_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, account_health_chargeback_claim_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_chargeback_claim_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, account_health_late_shipment_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_late_shipment_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, account_health_negative_feedback_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_negative_feedback_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, account_health_on_time_delivery_defect_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_on_time_delivery_defect_package_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_on_time_delivery_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, account_health_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_order_defect_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, account_health_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_package_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_pre_fulfillment_cancel_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_pre_fulfillment_cancel_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, account_health_rating_score: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_total_order_defects: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_valid_tracking_defect_package_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, account_health_valid_tracking_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, region_distinct_count_defect_type_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, region_inaccurate_product_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, region_incorrect_label_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, region_label_missing_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, region_other_defects_product_related_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, region_resolved_defects_unit_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, region_unexpected_product_defect_rate_t120_days: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking? }
+      end
+
+      class Amount < Data
+        def self.new: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::Amount
+                    | (Float?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::Amount
+        def self.[]: (?amount: Float?, ?currency_code: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::Amount
+                   | (Float?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::Amount
+
+        def self.members: () -> [ :amount, :currency_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Amount
+
+        attr_reader amount: Float?
+        attr_reader currency_code: String?
+
+        def members: () -> [ :amount, :currency_code ]
+        def to_h: () -> { amount: Float?, currency_code: String? }
+      end
+
+      class AmountWithBenchmarking < Data
+        def self.new: (?amount: Peddler::DataKiosk::SellerAnalytics20250331::Amount?, ?time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::Amount?, Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking
+        def self.[]: (?amount: Peddler::DataKiosk::SellerAnalytics20250331::Amount?, ?time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::Amount?, Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking
+
+        def self.members: () -> [ :amount, :time_range_benchmarking ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking
+
+        attr_reader amount: Peddler::DataKiosk::SellerAnalytics20250331::Amount?
+        attr_reader time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?
+
+        def members: () -> [ :amount, :time_range_benchmarking ]
+        def to_h: () -> { amount: Peddler::DataKiosk::SellerAnalytics20250331::Amount?, time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking? }
+      end
+
+      class AnalyticsSelleranalytics20250331 < Data
+        def self.new: (?seller_analytics_view: Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView]?) -> Peddler::DataKiosk::SellerAnalytics20250331::AnalyticsSelleranalytics20250331
+                    | (Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView]?) -> Peddler::DataKiosk::SellerAnalytics20250331::AnalyticsSelleranalytics20250331
+        def self.[]: (?seller_analytics_view: Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView]?) -> Peddler::DataKiosk::SellerAnalytics20250331::AnalyticsSelleranalytics20250331
+                   | (Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView]?) -> Peddler::DataKiosk::SellerAnalytics20250331::AnalyticsSelleranalytics20250331
+
+        def self.members: () -> [ :seller_analytics_view ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::AnalyticsSelleranalytics20250331
+
+        attr_reader seller_analytics_view: Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView]?
+
+        def members: () -> [ :seller_analytics_view ]
+        def to_h: () -> { seller_analytics_view: Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView]? }
+      end
+
+      class CountMetrics < Data
+        def self.new: (?shipping_cart_add: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?shipping_click: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?shipping_impression: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?shipping_purchase: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics
+        def self.[]: (?shipping_cart_add: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?shipping_click: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?shipping_impression: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?shipping_purchase: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics
+
+        def self.members: () -> [ :shipping_cart_add, :shipping_click, :shipping_impression, :shipping_purchase ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics
+
+        attr_reader shipping_cart_add: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader shipping_click: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader shipping_impression: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader shipping_purchase: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+
+        def members: () -> [ :shipping_cart_add, :shipping_click, :shipping_impression, :shipping_purchase ]
+        def to_h: () -> { shipping_cart_add: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, shipping_click: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, shipping_impression: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, shipping_purchase: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking? }
+      end
+
+      class Defects < Data
+        def self.new: (?topics: Array[Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics]?, ?total_defect_frequency: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Defects
+                    | (Array[Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics]?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Defects
+        def self.[]: (?topics: Array[Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics]?, ?total_defect_frequency: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Defects
+                   | (Array[Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics]?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Defects
+
+        def self.members: () -> [ :topics, :total_defect_frequency ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Defects
+
+        attr_reader topics: Array[Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics]?
+        attr_reader total_defect_frequency: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+
+        def members: () -> [ :topics, :total_defect_frequency ]
+        def to_h: () -> { topics: Array[Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics]?, total_defect_frequency: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking? }
+      end
+
+      class FloatWithBenchmarking < Data
+        def self.new: (?time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, ?value: Float?) -> Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, Float?) -> Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking
+        def self.[]: (?time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, ?value: Float?) -> Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, Float?) -> Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking
+
+        def self.members: () -> [ :time_range_benchmarking, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking
+
+        attr_reader time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?
+        attr_reader value: Float?
+
+        def members: () -> [ :time_range_benchmarking, :value ]
+        def to_h: () -> { time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, value: Float? }
+      end
+
+      class GroupByAttributes < Data
+        def self.new: (?asin: String?, ?brand: String?, ?brand_code: String?, ?encrypted_merchant_customer_id: String?, ?fulfilment_channel: String?, ?marketplace_id: String?, ?msku: String?, ?parent_asin: String?, ?product_group: String?, ?product_title: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes
+        def self.[]: (?asin: String?, ?brand: String?, ?brand_code: String?, ?encrypted_merchant_customer_id: String?, ?fulfilment_channel: String?, ?marketplace_id: String?, ?msku: String?, ?parent_asin: String?, ?product_group: String?, ?product_title: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes
+                   | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes
+
+        def self.members: () -> [ :asin, :brand, :brand_code, :encrypted_merchant_customer_id, :fulfilment_channel, :marketplace_id, :msku, :parent_asin, :product_group, :product_title ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes
+
+        attr_reader asin: String?
+        attr_reader brand: String?
+        attr_reader brand_code: String?
+        attr_reader encrypted_merchant_customer_id: String?
+        attr_reader fulfilment_channel: String?
+        attr_reader marketplace_id: String?
+        attr_reader msku: String?
+        attr_reader parent_asin: String?
+        attr_reader product_group: String?
+        attr_reader product_title: String?
+
+        def members: () -> [ :asin, :brand, :brand_code, :encrypted_merchant_customer_id, :fulfilment_channel, :marketplace_id, :msku, :parent_asin, :product_group, :product_title ]
+        def to_h: () -> { asin: String?, brand: String?, brand_code: String?, encrypted_merchant_customer_id: String?, fulfilment_channel: String?, marketplace_id: String?, msku: String?, parent_asin: String?, product_group: String?, product_title: String? }
+      end
+
+      class IntWithBenchmarking < Data
+        def self.new: (?time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, ?value: Integer?) -> Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, Integer?) -> Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking
+        def self.[]: (?time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, ?value: Integer?) -> Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, Integer?) -> Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking
+
+        def self.members: () -> [ :time_range_benchmarking, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking
+
+        attr_reader time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?
+        attr_reader value: Integer?
+
+        def members: () -> [ :time_range_benchmarking, :value ]
+        def to_h: () -> { time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, value: Integer? }
+      end
+
+      class Lending < Data
+        def self.new: (?disbursements: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?feedback_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?primary_product_category: String?, ?primary_product_category_net_gms: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?refunds_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?total_balance_by_standard_orders: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?total_fba_inventory_value: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Lending
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, String?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Lending
+        def self.[]: (?disbursements: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?feedback_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?primary_product_category: String?, ?primary_product_category_net_gms: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?refunds_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?total_balance_by_standard_orders: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?total_fba_inventory_value: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Lending
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, String?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Lending
+
+        def self.members: () -> [ :disbursements, :feedback_order_count, :primary_product_category, :primary_product_category_net_gms, :refunds_order_count, :total_balance_by_standard_orders, :total_fba_inventory_value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Lending
+
+        attr_reader disbursements: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader feedback_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader primary_product_category: String?
+        attr_reader primary_product_category_net_gms: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader refunds_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader total_balance_by_standard_orders: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader total_fba_inventory_value: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+
+        def members: () -> [ :disbursements, :feedback_order_count, :primary_product_category, :primary_product_category_net_gms, :refunds_order_count, :total_balance_by_standard_orders, :total_fba_inventory_value ]
+        def to_h: () -> { disbursements: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, feedback_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, primary_product_category: String?, primary_product_category_net_gms: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, refunds_order_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, total_balance_by_standard_orders: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, total_fba_inventory_value: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking? }
+      end
+
+      class PriceAndCountMetrics < Data
+        def self.new: (?cart_adds_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?clicks_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?impressions_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?one_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, ?purchases_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?same_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, ?two_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics
+        def self.[]: (?cart_adds_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?clicks_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?impressions_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?one_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, ?purchases_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?same_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, ?two_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics
+
+        def self.members: () -> [ :cart_adds_with_price, :clicks_with_price, :impressions_with_price, :one_day_metrics, :purchases_with_price, :same_day_metrics, :two_day_metrics ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics
+
+        attr_reader cart_adds_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?
+        attr_reader clicks_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?
+        attr_reader impressions_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?
+        attr_reader one_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?
+        attr_reader purchases_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?
+        attr_reader same_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?
+        attr_reader two_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?
+
+        def members: () -> [ :cart_adds_with_price, :clicks_with_price, :impressions_with_price, :one_day_metrics, :purchases_with_price, :same_day_metrics, :two_day_metrics ]
+        def to_h: () -> { cart_adds_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, clicks_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, impressions_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, one_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, purchases_with_price: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, same_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics?, two_day_metrics: Peddler::DataKiosk::SellerAnalytics20250331::CountMetrics? }
+      end
+
+      class Promotion < Data
+        def self.new: (?deal_id: String?, ?deal_our_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?deal_title: String?, ?promotion_asin_state_type: String?, ?promotion_conversion_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?promotion_discount_amt: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?promotion_discount_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?promotion_end_date: String?, ?promotion_glance_view_cnt: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?promotion_ordered_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?promotion_ordered_units_with_revenue: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?promotion_start_date: String?, ?promotion_status: String?, ?promotion_type: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::Promotion
+                    | (String?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, String?, String?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, String?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, String?, String?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::Promotion
+        def self.[]: (?deal_id: String?, ?deal_our_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?deal_title: String?, ?promotion_asin_state_type: String?, ?promotion_conversion_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?promotion_discount_amt: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?promotion_discount_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?promotion_end_date: String?, ?promotion_glance_view_cnt: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?promotion_ordered_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?promotion_ordered_units_with_revenue: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?promotion_start_date: String?, ?promotion_status: String?, ?promotion_type: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::Promotion
+                   | (String?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, String?, String?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, String?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, String?, String?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::Promotion
+
+        def self.members: () -> [ :deal_id, :deal_our_price, :deal_title, :promotion_asin_state_type, :promotion_conversion_rate, :promotion_discount_amt, :promotion_discount_pct, :promotion_end_date, :promotion_glance_view_cnt, :promotion_ordered_price, :promotion_ordered_units_with_revenue, :promotion_start_date, :promotion_status, :promotion_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Promotion
+
+        attr_reader deal_id: String?
+        attr_reader deal_our_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader deal_title: String?
+        attr_reader promotion_asin_state_type: String?
+        attr_reader promotion_conversion_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader promotion_discount_amt: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader promotion_discount_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader promotion_end_date: String?
+        attr_reader promotion_glance_view_cnt: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader promotion_ordered_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader promotion_ordered_units_with_revenue: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?
+        attr_reader promotion_start_date: String?
+        attr_reader promotion_status: String?
+        attr_reader promotion_type: String?
+
+        def members: () -> [ :deal_id, :deal_our_price, :deal_title, :promotion_asin_state_type, :promotion_conversion_rate, :promotion_discount_amt, :promotion_discount_pct, :promotion_end_date, :promotion_glance_view_cnt, :promotion_ordered_price, :promotion_ordered_units_with_revenue, :promotion_start_date, :promotion_status, :promotion_type ]
+        def to_h: () -> { deal_id: String?, deal_our_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, deal_title: String?, promotion_asin_state_type: String?, promotion_conversion_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, promotion_discount_amt: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, promotion_discount_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, promotion_end_date: String?, promotion_glance_view_cnt: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, promotion_ordered_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, promotion_ordered_units_with_revenue: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, promotion_start_date: String?, promotion_status: String?, promotion_type: String? }
+      end
+
+      class ReturnDefectTopicMetrics < Data
+        def self.new: (?return_defect_contribution: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?return_defect_frequency: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?return_defect_recommendations: String?, ?return_defect_topic: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, String?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics
+        def self.[]: (?return_defect_contribution: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?return_defect_frequency: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?return_defect_recommendations: String?, ?return_defect_topic: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, String?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics
+
+        def self.members: () -> [ :return_defect_contribution, :return_defect_frequency, :return_defect_recommendations, :return_defect_topic ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::ReturnDefectTopicMetrics
+
+        attr_reader return_defect_contribution: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader return_defect_frequency: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader return_defect_recommendations: String?
+        attr_reader return_defect_topic: String?
+
+        def members: () -> [ :return_defect_contribution, :return_defect_frequency, :return_defect_recommendations, :return_defect_topic ]
+        def to_h: () -> { return_defect_contribution: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, return_defect_frequency: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, return_defect_recommendations: String?, return_defect_topic: String? }
+      end
+
+      class Returns < Data
+        def self.new: (?returned_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?returned_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?total_refund_amount: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Returns
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Returns
+        def self.[]: (?returned_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?returned_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?total_refund_amount: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Returns
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Returns
+
+        def self.members: () -> [ :returned_rate, :returned_units, :total_refund_amount ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Returns
+
+        attr_reader returned_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader returned_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader total_refund_amount: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+
+        def members: () -> [ :returned_rate, :returned_units, :total_refund_amount ]
+        def to_h: () -> { returned_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, returned_units: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, total_refund_amount: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking? }
+      end
+
+      class Reviews < Data
+        def self.new: (?critical_review_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?display_rating: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?low_rating_review_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?raw_rating: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?total_rating_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?total_review_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Reviews
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Reviews
+        def self.[]: (?critical_review_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?display_rating: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?low_rating_review_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?raw_rating: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?total_rating_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?total_review_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Reviews
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Reviews
+
+        def self.members: () -> [ :critical_review_rate, :display_rating, :low_rating_review_count, :raw_rating, :total_rating_count, :total_review_count ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Reviews
+
+        attr_reader critical_review_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader display_rating: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader low_rating_review_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader raw_rating: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader total_rating_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader total_review_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+
+        def members: () -> [ :critical_review_rate, :display_rating, :low_rating_review_count, :raw_rating, :total_rating_count, :total_review_count ]
+        def to_h: () -> { critical_review_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, display_rating: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, low_rating_review_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, raw_rating: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, total_rating_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, total_review_count: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking? }
+      end
+
+      class Sales < Data
+        def self.new: (?average_selling_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?average_selling_price_b2b: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?order_gms: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?ordered_product_sales: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?orders_shipped_with_revenue: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?units_ordered: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?units_shipped: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?units_shipped_b2b: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Sales
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Sales
+        def self.[]: (?average_selling_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?average_selling_price_b2b: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?order_gms: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?ordered_product_sales: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?ordered_product_sales_b2b: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ?orders_shipped_with_revenue: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, ?units_ordered: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?units_shipped: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?units_shipped_b2b: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Sales
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Sales
+
+        def self.members: () -> [ :average_selling_price, :average_selling_price_b2b, :order_gms, :ordered_product_sales, :ordered_product_sales_b2b, :orders_shipped_with_revenue, :units_ordered, :units_shipped, :units_shipped_b2b ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Sales
+
+        attr_reader average_selling_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader average_selling_price_b2b: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader order_gms: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader ordered_product_sales: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader ordered_product_sales_b2b: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+        attr_reader orders_shipped_with_revenue: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?
+        attr_reader units_ordered: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader units_shipped: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader units_shipped_b2b: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+
+        def members: () -> [ :average_selling_price, :average_selling_price_b2b, :order_gms, :ordered_product_sales, :ordered_product_sales_b2b, :orders_shipped_with_revenue, :units_ordered, :units_shipped, :units_shipped_b2b ]
+        def to_h: () -> { average_selling_price: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, average_selling_price_b2b: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, order_gms: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ordered_product_sales: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, ordered_product_sales_b2b: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?, orders_shipped_with_revenue: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking?, units_ordered: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, units_shipped: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, units_shipped_b2b: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking? }
+      end
+
+      class Search < Data
+        def self.new: (?catalog: Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics?, ?query: Array[Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics]?) -> Peddler::DataKiosk::SellerAnalytics20250331::Search
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics?, Array[Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics]?) -> Peddler::DataKiosk::SellerAnalytics20250331::Search
+        def self.[]: (?catalog: Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics?, ?query: Array[Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics]?) -> Peddler::DataKiosk::SellerAnalytics20250331::Search
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics?, Array[Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics]?) -> Peddler::DataKiosk::SellerAnalytics20250331::Search
+
+        def self.members: () -> [ :catalog, :query ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Search
+
+        attr_reader catalog: Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics?
+        attr_reader query: Array[Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics]?
+
+        def members: () -> [ :catalog, :query ]
+        def to_h: () -> { catalog: Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics?, query: Array[Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics]? }
+      end
+
+      class SearchCatalogMetrics < Data
+        def self.new: (?click_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?conversion_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?price_and_count_metrics: Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, ?traffic_sales: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics
+        def self.[]: (?click_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?conversion_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?price_and_count_metrics: Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, ?traffic_sales: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics
+
+        def self.members: () -> [ :click_rate, :conversion_rate, :price_and_count_metrics, :traffic_sales ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchCatalogMetrics
+
+        attr_reader click_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader conversion_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader price_and_count_metrics: Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?
+        attr_reader traffic_sales: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking?
+
+        def members: () -> [ :click_rate, :conversion_rate, :price_and_count_metrics, :traffic_sales ]
+        def to_h: () -> { click_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, conversion_rate: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, price_and_count_metrics: Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, traffic_sales: Peddler::DataKiosk::SellerAnalytics20250331::AmountWithBenchmarking? }
+      end
+
+      class SearchQueryMetrics < Data
+        def self.new: (?price_and_count_metrics: Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, ?query_keyword: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics
+        def self.[]: (?price_and_count_metrics: Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, ?query_keyword: String?) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, String?) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics
+
+        def self.members: () -> [ :price_and_count_metrics, :query_keyword ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::SearchQueryMetrics
+
+        attr_reader price_and_count_metrics: Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?
+        attr_reader query_keyword: String?
+
+        def members: () -> [ :price_and_count_metrics, :query_keyword ]
+        def to_h: () -> { price_and_count_metrics: Peddler::DataKiosk::SellerAnalytics20250331::PriceAndCountMetrics?, query_keyword: String? }
+      end
+
+      class SellerAnalyticsView < Data
+        def self.new: (?end_date: String?, ?metrics: Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy]?, ?seller_attributes: Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes?, ?start_date: String?, ?totals: Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView
+                    | (String?, Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy]?, Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes?, String?, Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView
+        def self.[]: (?end_date: String?, ?metrics: Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy]?, ?seller_attributes: Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes?, ?start_date: String?, ?totals: Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView
+                   | (String?, Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy]?, Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes?, String?, Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView
+
+        def self.members: () -> [ :end_date, :metrics, :seller_attributes, :start_date, :totals ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsView
+
+        attr_reader end_date: String?
+        attr_reader metrics: Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy]?
+        attr_reader seller_attributes: Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes?
+        attr_reader start_date: String?
+        attr_reader totals: Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?
+
+        def members: () -> [ :end_date, :metrics, :seller_attributes, :start_date, :totals ]
+        def to_h: () -> { end_date: String?, metrics: Array[Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy]?, seller_attributes: Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes?, start_date: String?, totals: Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics? }
+      end
+
+      class SellerAnalyticsViewGroupedBy < Data
+        def self.new: (?group_by_key: Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes?, ?metrics: Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes?, Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy
+        def self.[]: (?group_by_key: Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes?, ?metrics: Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes?, Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy
+
+        def self.members: () -> [ :group_by_key, :metrics ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewGroupedBy
+
+        attr_reader group_by_key: Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes?
+        attr_reader metrics: Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics?
+
+        def members: () -> [ :group_by_key, :metrics ]
+        def to_h: () -> { group_by_key: Peddler::DataKiosk::SellerAnalytics20250331::GroupByAttributes?, metrics: Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics? }
+      end
+
+      class SellerAnalyticsViewMetrics < Data
+        def self.new: (?account_health: Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth?, ?defects: Peddler::DataKiosk::SellerAnalytics20250331::Defects?, ?lending: Peddler::DataKiosk::SellerAnalytics20250331::Lending?, ?promotion: Peddler::DataKiosk::SellerAnalytics20250331::Promotion?, ?returns: Peddler::DataKiosk::SellerAnalytics20250331::Returns?, ?reviews: Peddler::DataKiosk::SellerAnalytics20250331::Reviews?, ?sales: Peddler::DataKiosk::SellerAnalytics20250331::Sales?, ?search: Peddler::DataKiosk::SellerAnalytics20250331::Search?, ?traffic: Peddler::DataKiosk::SellerAnalytics20250331::Traffic?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth?, Peddler::DataKiosk::SellerAnalytics20250331::Defects?, Peddler::DataKiosk::SellerAnalytics20250331::Lending?, Peddler::DataKiosk::SellerAnalytics20250331::Promotion?, Peddler::DataKiosk::SellerAnalytics20250331::Returns?, Peddler::DataKiosk::SellerAnalytics20250331::Reviews?, Peddler::DataKiosk::SellerAnalytics20250331::Sales?, Peddler::DataKiosk::SellerAnalytics20250331::Search?, Peddler::DataKiosk::SellerAnalytics20250331::Traffic?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics
+        def self.[]: (?account_health: Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth?, ?defects: Peddler::DataKiosk::SellerAnalytics20250331::Defects?, ?lending: Peddler::DataKiosk::SellerAnalytics20250331::Lending?, ?promotion: Peddler::DataKiosk::SellerAnalytics20250331::Promotion?, ?returns: Peddler::DataKiosk::SellerAnalytics20250331::Returns?, ?reviews: Peddler::DataKiosk::SellerAnalytics20250331::Reviews?, ?sales: Peddler::DataKiosk::SellerAnalytics20250331::Sales?, ?search: Peddler::DataKiosk::SellerAnalytics20250331::Search?, ?traffic: Peddler::DataKiosk::SellerAnalytics20250331::Traffic?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth?, Peddler::DataKiosk::SellerAnalytics20250331::Defects?, Peddler::DataKiosk::SellerAnalytics20250331::Lending?, Peddler::DataKiosk::SellerAnalytics20250331::Promotion?, Peddler::DataKiosk::SellerAnalytics20250331::Returns?, Peddler::DataKiosk::SellerAnalytics20250331::Reviews?, Peddler::DataKiosk::SellerAnalytics20250331::Sales?, Peddler::DataKiosk::SellerAnalytics20250331::Search?, Peddler::DataKiosk::SellerAnalytics20250331::Traffic?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics
+
+        def self.members: () -> [ :account_health, :defects, :lending, :promotion, :returns, :reviews, :sales, :search, :traffic ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAnalyticsViewMetrics
+
+        attr_reader account_health: Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth?
+        attr_reader defects: Peddler::DataKiosk::SellerAnalytics20250331::Defects?
+        attr_reader lending: Peddler::DataKiosk::SellerAnalytics20250331::Lending?
+        attr_reader promotion: Peddler::DataKiosk::SellerAnalytics20250331::Promotion?
+        attr_reader returns: Peddler::DataKiosk::SellerAnalytics20250331::Returns?
+        attr_reader reviews: Peddler::DataKiosk::SellerAnalytics20250331::Reviews?
+        attr_reader sales: Peddler::DataKiosk::SellerAnalytics20250331::Sales?
+        attr_reader search: Peddler::DataKiosk::SellerAnalytics20250331::Search?
+        attr_reader traffic: Peddler::DataKiosk::SellerAnalytics20250331::Traffic?
+
+        def members: () -> [ :account_health, :defects, :lending, :promotion, :returns, :reviews, :sales, :search, :traffic ]
+        def to_h: () -> { account_health: Peddler::DataKiosk::SellerAnalytics20250331::AccountHealth?, defects: Peddler::DataKiosk::SellerAnalytics20250331::Defects?, lending: Peddler::DataKiosk::SellerAnalytics20250331::Lending?, promotion: Peddler::DataKiosk::SellerAnalytics20250331::Promotion?, returns: Peddler::DataKiosk::SellerAnalytics20250331::Returns?, reviews: Peddler::DataKiosk::SellerAnalytics20250331::Reviews?, sales: Peddler::DataKiosk::SellerAnalytics20250331::Sales?, search: Peddler::DataKiosk::SellerAnalytics20250331::Search?, traffic: Peddler::DataKiosk::SellerAnalytics20250331::Traffic? }
+      end
+
+      class SellerAttributes < Data
+        def self.new: (?is_brand_owner: String?, ?is_fba_registered: String?, ?seller_fraud_status: String?, ?seller_store_url: String?, ?seller_tenure: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes
+                    | (String?, String?, String?, String?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes
+        def self.[]: (?is_brand_owner: String?, ?is_fba_registered: String?, ?seller_fraud_status: String?, ?seller_store_url: String?, ?seller_tenure: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes
+                   | (String?, String?, String?, String?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes
+
+        def self.members: () -> [ :is_brand_owner, :is_fba_registered, :seller_fraud_status, :seller_store_url, :seller_tenure ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::SellerAttributes
+
+        attr_reader is_brand_owner: String?
+        attr_reader is_fba_registered: String?
+        attr_reader seller_fraud_status: String?
+        attr_reader seller_store_url: String?
+        attr_reader seller_tenure: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+
+        def members: () -> [ :is_brand_owner, :is_fba_registered, :seller_fraud_status, :seller_store_url, :seller_tenure ]
+        def to_h: () -> { is_brand_owner: String?, is_fba_registered: String?, seller_fraud_status: String?, seller_store_url: String?, seller_tenure: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking? }
+      end
+
+      class TimeRangeBenchmarking < Data
+        def self.new: (?month_over_month: Float?, ?week_over_week: Float?, ?year_over_year: Float?) -> Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking
+                    | (Float?, Float?, Float?) -> Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking
+        def self.[]: (?month_over_month: Float?, ?week_over_week: Float?, ?year_over_year: Float?) -> Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking
+                   | (Float?, Float?, Float?) -> Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking
+
+        def self.members: () -> [ :month_over_month, :week_over_week, :year_over_year ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking
+
+        attr_reader month_over_month: Float?
+        attr_reader week_over_week: Float?
+        attr_reader year_over_year: Float?
+
+        def members: () -> [ :month_over_month, :week_over_week, :year_over_year ]
+        def to_h: () -> { month_over_month: Float?, week_over_week: Float?, year_over_year: Float? }
+      end
+
+      class Traffic < Data
+        def self.new: (?browser_page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?browser_sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?conversation_rate_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?conversion_rate_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?feature_offer_glance_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?feature_offer_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?glance_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?glance_views_b2b: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?mobile_app_page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?mobile_app_sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Traffic
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Traffic
+        def self.[]: (?browser_page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?browser_sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?conversation_rate_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?conversion_rate_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?feature_offer_glance_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?feature_offer_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, ?glance_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?glance_views_b2b: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?mobile_app_page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?mobile_app_sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, ?sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Traffic
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::Traffic
+
+        def self.members: () -> [ :browser_page_views, :browser_sessions, :conversation_rate_pct, :conversion_rate_pct, :feature_offer_glance_views, :feature_offer_pct, :glance_views, :glance_views_b2b, :mobile_app_page_views, :mobile_app_sessions, :page_views, :sessions ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::Traffic
+
+        attr_reader browser_page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader browser_sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader conversation_rate_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader conversion_rate_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader feature_offer_glance_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader feature_offer_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?
+        attr_reader glance_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader glance_views_b2b: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader mobile_app_page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader mobile_app_sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+        attr_reader sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?
+
+        def members: () -> [ :browser_page_views, :browser_sessions, :conversation_rate_pct, :conversion_rate_pct, :feature_offer_glance_views, :feature_offer_pct, :glance_views, :glance_views_b2b, :mobile_app_page_views, :mobile_app_sessions, :page_views, :sessions ]
+        def to_h: () -> { browser_page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, browser_sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, conversation_rate_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, conversion_rate_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, feature_offer_glance_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, feature_offer_pct: Peddler::DataKiosk::SellerAnalytics20250331::FloatWithBenchmarking?, glance_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, glance_views_b2b: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, mobile_app_page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, mobile_app_sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, page_views: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking?, sessions: Peddler::DataKiosk::SellerAnalytics20250331::IntWithBenchmarking? }
+      end
+
+      class UnitsWithValue < Data
+        def self.new: (?units: String?, ?value: Peddler::DataKiosk::SellerAnalytics20250331::Amount?) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue
+                    | (String?, Peddler::DataKiosk::SellerAnalytics20250331::Amount?) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue
+        def self.[]: (?units: String?, ?value: Peddler::DataKiosk::SellerAnalytics20250331::Amount?) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue
+                   | (String?, Peddler::DataKiosk::SellerAnalytics20250331::Amount?) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue
+
+        def self.members: () -> [ :units, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue
+
+        attr_reader units: String?
+        attr_reader value: Peddler::DataKiosk::SellerAnalytics20250331::Amount?
+
+        def members: () -> [ :units, :value ]
+        def to_h: () -> { units: String?, value: Peddler::DataKiosk::SellerAnalytics20250331::Amount? }
+      end
+
+      class UnitsWithValueAndBenchmarking < Data
+        def self.new: (?units_time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, ?units_with_value: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue?, ?value_time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking
+                    | (Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue?, Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking
+        def self.[]: (?units_time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, ?units_with_value: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue?, ?value_time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking
+                   | (Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue?, Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking
+
+        def self.members: () -> [ :units_time_range_benchmarking, :units_with_value, :value_time_range_benchmarking ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValueAndBenchmarking
+
+        attr_reader units_time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?
+        attr_reader units_with_value: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue?
+        attr_reader value_time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?
+
+        def members: () -> [ :units_time_range_benchmarking, :units_with_value, :value_time_range_benchmarking ]
+        def to_h: () -> { units_time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking?, units_with_value: Peddler::DataKiosk::SellerAnalytics20250331::UnitsWithValue?, value_time_range_benchmarking: Peddler::DataKiosk::SellerAnalytics20250331::TimeRangeBenchmarking? }
+      end
+
+      def self.schema: () -> Hash[String, untyped]
+    end
+  end
+end

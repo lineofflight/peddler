@@ -15,7 +15,7 @@ module Peddler
         # @return [TextComponent]
         attribute?(:headline, TextComponent)
 
-        # @return [Integer] The number of tables you want present. Features are evenly divided between the tables.
+        # @return [Integer] The number of tables to present. Features are evenly divided between the tables.
         attribute?(:table_count, Integer, from: "tableCount")
       end
     end

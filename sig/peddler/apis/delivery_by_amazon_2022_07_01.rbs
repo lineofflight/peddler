@@ -24,12 +24,12 @@ module Peddler
       end
 
       class GetInvoiceStatusResponse < Data
-        def self.new: (?amazon_order_id: String?, ?amazon_shipment_id: String?, ?errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, ?invoice_status: String?) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
-                    | (String?, String?, Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, String?) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
-        def self.[]: (?amazon_order_id: String?, ?amazon_shipment_id: String?, ?errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, ?invoice_status: String?) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
-                   | (String?, String?, Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, String?) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
+        def self.new: (?amazon_order_id: String?, ?amazon_shipment_id: String?, ?errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, ?invoice_status: String?, ?invoices: Array[Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus]?, ?order_invoicing_status: String?) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
+                    | (String?, String?, Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, String?, Array[Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus]?, String?) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
+        def self.[]: (?amazon_order_id: String?, ?amazon_shipment_id: String?, ?errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, ?invoice_status: String?, ?invoices: Array[Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus]?, ?order_invoicing_status: String?) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
+                   | (String?, String?, Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, String?, Array[Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus]?, String?) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
 
-        def self.members: () -> [ :amazon_order_id, :amazon_shipment_id, :errors, :invoice_status ]
+        def self.members: () -> [ :amazon_order_id, :amazon_shipment_id, :errors, :invoice_status, :invoices, :order_invoicing_status ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::DeliveryByAmazon20220701::GetInvoiceStatusResponse
 
@@ -37,9 +37,28 @@ module Peddler
         attr_reader amazon_shipment_id: String?
         attr_reader errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?
         attr_reader invoice_status: String?
+        attr_reader invoices: Array[Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus]?
+        attr_reader order_invoicing_status: String?
 
-        def members: () -> [ :amazon_order_id, :amazon_shipment_id, :errors, :invoice_status ]
-        def to_h: () -> { amazon_order_id: String?, amazon_shipment_id: String?, errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, invoice_status: String? }
+        def members: () -> [ :amazon_order_id, :amazon_shipment_id, :errors, :invoice_status, :invoices, :order_invoicing_status ]
+        def to_h: () -> { amazon_order_id: String?, amazon_shipment_id: String?, errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]?, invoice_status: String?, invoices: Array[Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus]?, order_invoicing_status: String? }
+      end
+
+      class InvoiceStatus < Data
+        def self.new: (id: String, status: String) -> Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus
+                    | (String, String) -> Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus
+        def self.[]: (id: String, status: String) -> Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus
+                   | (String, String) -> Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus
+
+        def self.members: () -> [ :id, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::DeliveryByAmazon20220701::InvoiceStatus
+
+        attr_reader id: String
+        attr_reader status: String
+
+        def members: () -> [ :id, :status ]
+        def to_h: () -> { id: String, status: String }
       end
 
       class SubmitInvoiceRequest < Data
@@ -78,7 +97,7 @@ module Peddler
         def to_h: () -> { errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]? }
       end
 
-      def get_invoice_status: (String, String, String, ?order_id: String?, ?shipment_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_invoice_status: (String, String, String, ?order_id: String?, ?shipment_id: String?, ?invoice_id: String?, ?rate_limit: Float) -> Peddler::Response
       def submit_invoice: (Hash[untyped, untyped], ?order_id: String?, ?shipment_id: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end

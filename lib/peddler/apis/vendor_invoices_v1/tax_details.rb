@@ -15,7 +15,8 @@ module Peddler
         # @return [String] Type of the tax applied.
         attribute(:tax_type, String, null: false, from: "taxType")
 
-        # @return [String] Tax percentage applied. Percentage must be expressed in decimal.
+        # @return [String] Tax percentage applied. Expressed as a whole-percent integer string. For example, "20" for
+        #   20% VAT.
         attribute?(:tax_rate, String, from: "taxRate")
 
         # @return [Money] The invoice amount that is taxable at the rate specified in the tax rate field.

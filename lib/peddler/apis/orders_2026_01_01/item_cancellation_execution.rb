@@ -7,15 +7,14 @@ require "structure"
 module Peddler
   module APIs
     class Orders20260101
-      # Details of how the cancellation was executed for a specific order item, including who performed the cancellation
-      # and the reason.
+      # Detailed information about how the cancellation was processed for a specific order item.
       ItemCancellationExecution = Structure.new do
-        # @return [String] Explanation provided for why the cancellation was executed.
+        # @return [String] The provided explanation for why the cancellation occurred.
         attribute?(:cancel_reason, String, from: "cancelReason")
 
-        # @return [String] Entity that executed the cancellation for this item.
+        # @return [String] The entity that executed the cancellation for this item.
         #
-        # **Possible values**: `BUYER`, `MERCHANT`, `AMAZON`
+        # **Possible values**: `BUYER`, `MERCHANT`, `AMAZON`.
         attribute?(:cancelled_by, String, from: "cancelledBy")
       end
     end

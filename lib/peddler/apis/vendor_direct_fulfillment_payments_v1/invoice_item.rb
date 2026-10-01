@@ -22,6 +22,13 @@ module Peddler
         # @return [String] The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
         attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
+        # @return [Array<AdditionalDetails>] Line-level additional details provided by the selling party, e.g. tax
+        #   exemption reason code and text.
+        attribute?(:additional_details, [AdditionalDetails], from: "additionalDetails")
+
+        # @return [Array<AllowanceDetails>] Individual allowance details per line item.
+        attribute?(:allowance_details, [AllowanceDetails], from: "allowanceDetails")
+
         # @return [String] Buyer's standard identification number (ASIN) of an item.
         attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
 
@@ -30,6 +37,9 @@ module Peddler
 
         # @return [String] Harmonized System of Nomenclature (HSN) tax code. The HSN number cannot contain alphabets.
         attribute?(:hsn_code, String, from: "hsnCode")
+
+        # @return [String] Product or service description for the invoiced line item.
+        attribute?(:item_description, String, from: "itemDescription")
 
         # @return [Array<TaxDetail>] Individual tax details per line item.
         attribute?(:tax_details, [TaxDetail], from: "taxDetails")
