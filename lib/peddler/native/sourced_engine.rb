@@ -31,6 +31,7 @@ module Peddler
       def initialize(engine, source)
         @engine = engine
         @source = source
+        @pid = Process.pid
       end
 
       # A source is the caller's object and may hold a refresh token, so nothing of it is shown.
@@ -95,7 +96,10 @@ module Peddler
 
       private
 
+      # The source is the caller's code and may use a socket the child inherited, so the process is checked first.
       def view
+        raise ForkError, "create a new client after fork" unless Process.pid == @pid
+
         @engine.with_access_token(Native.access_token(@source.call))
       end
     end

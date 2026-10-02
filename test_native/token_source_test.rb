@@ -156,6 +156,49 @@ class TokenSourceTest < NativeTest
     assert_match(/sensitive-refresh/, source.inspect, "the source itself does show its field")
   end
 
+  def test_a_parent_built_client_does_not_call_its_source_in_a_forked_child
+    skip "fork unavailable" unless Process.respond_to?(:fork)
+
+    serve_keep_alive do |url, accepted, _requests|
+      calls = 0
+      instance = Peddler::Client.new(base_url: url, access_token: -> { "token-#{calls += 1}" })
+
+      assert_equal(200, instance.request("GET", "/").status)
+      reader, writer = IO.pipe
+      pid = fork do
+        reader.close
+        results = [
+          -> { instance.request("GET", "/") },
+          -> { instance.orders_v0.get_order(order_id: "1") },
+          -> { instance.orders_v0.get_orders_pages(marketplace_ids: ["UK"]).first },
+          -> { instance.wait_for_report("r1") },
+          -> { instance.download_report_document("d1") },
+        ].map do |call|
+          call.call
+          "accepted"
+        rescue Peddler::ForkError
+          "guarded"
+        end
+        writer.write(JSON.generate([results, calls]))
+        writer.close
+        exit!(0)
+      end
+      writer.close
+
+      assert(reader.wait_readable(10), "fork deadline")
+      # The child saw the 1 call the parent made before the fork and made none of its own.
+      assert_equal([["guarded"] * 5, 1], JSON.parse(reader.read))
+      Process.wait(pid)
+
+      assert_equal(200, instance.request("GET", "/").status)
+      assert_equal(2, calls)
+      assert_equal(1, accepted.size)
+    ensure
+      reader&.close
+      writer&.close unless writer&.closed?
+    end
+  end
+
   def test_an_engine_without_a_token_fails_closed
     serve_keep_alive do |url, accepted, _requests|
       template = Peddler::Native.const_get(:Engine).from_config(JSON.generate(base_url: url))

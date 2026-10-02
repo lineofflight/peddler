@@ -42,6 +42,7 @@ module Peddler
     class SourcedEngine
       @engine: Engine
       @source: _TokenSource
+      @pid: Integer
 
       def initialize: (Engine engine, _TokenSource source) -> void
       def inspect: () -> String
