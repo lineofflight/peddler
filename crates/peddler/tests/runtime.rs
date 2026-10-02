@@ -4,8 +4,15 @@ use peddler::{
         catalog_items_2022_04_01::{GetCatalogItemParams, get_catalog_item},
         tokens_2021_03_01::{CreateRestrictedDataTokenParams, create_restricted_data_token},
     },
+    auth::{AuthError, TokenSource},
 };
-use std::time::{Duration, Instant};
+use std::{
+    sync::{
+        Arc,
+        atomic::{AtomicUsize, Ordering},
+    },
+    time::{Duration, Instant},
+};
 use tokio::{
     io::{AsyncReadExt, AsyncWriteExt},
     net::TcpListener,
@@ -208,6 +215,114 @@ async fn views_send_their_own_token_and_a_restricted_data_token_is_an_ordinary_c
     }
     assert!(!format!("{restricted:?} {seller_b:?}").contains("rdt-one"));
     assert!(!format!("{restricted:?} {seller_b:?}").contains("seller-b"));
+}
+/// A source that hands out token-1, token-2 and so on, and the number of times it was asked.
+fn counting_source() -> (TokenSource, Arc<AtomicUsize>) {
+    let asked = Arc::new(AtomicUsize::new(0));
+    let count = asked.clone();
+    let source = TokenSource::new(move || {
+        let number = count.fetch_add(1, Ordering::SeqCst) + 1;
+        async move { Ok(format!("token-{number}")) }
+    });
+    (source, asked)
+}
+#[tokio::test]
+async fn a_token_source_is_asked_once_per_attempt_so_a_retry_sends_a_fresh_token() {
+    let (base, api) = server(vec![
+        (429, vec![("Retry-After", "0")], "throttled"),
+        (200, vec![], "{}"),
+        (503, vec![("Retry-After", "0")], "busy"),
+        (200, vec![], "{}"),
+        (200, vec![], "{}"),
+    ])
+    .await;
+    let (source, asked) = counting_source();
+    let mut config = ClientConfig::new(base, source);
+    config.retry.max_retries = 1;
+    let client = Client::with_config(config).unwrap();
+    assert_eq!(asked.load(Ordering::SeqCst), 0, "construction asks nothing");
+    assert_eq!(client.execute(request("GET")).await.unwrap().status, 200);
+    let catalog = GetCatalogItemParams::new("ASIN".into(), vec!["UK".into()]);
+    assert_eq!(
+        get_catalog_item(&client, catalog).await.unwrap().raw.status,
+        200
+    );
+    // A view pins a plain token and stops asking the source.
+    let pinned = client.with_access_token("pinned").unwrap();
+    pinned.execute(request("GET")).await.unwrap();
+    let requests = api.await.unwrap();
+    let tokens: Vec<_> = requests
+        .iter()
+        .map(|request| header(request, "x-amz-access-token").unwrap())
+        .collect();
+    assert_eq!(
+        tokens,
+        ["token-1", "token-2", "token-3", "token-4", "pinned"]
+    );
+    assert_eq!(asked.load(Ordering::SeqCst), 4);
+    assert!(!format!("{client:?} {pinned:?}").contains("token-"));
+}
+#[tokio::test]
+async fn a_failing_token_source_is_the_auth_error_and_sends_nothing() {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let base = format!("http://{}", listener.local_addr().unwrap());
+    let rejected = AuthError::Rejected {
+        status: 400,
+        code: Some("invalid_grant".into()),
+    };
+    type Reply = Result<String, AuthError>;
+    let replies: [(Reply, Error); 4] = [
+        (Err(rejected.clone()), Error::Authentication(rejected)),
+        (
+            Err(AuthError::Transport),
+            Error::Authentication(AuthError::Transport),
+        ),
+        (
+            Ok(String::new()),
+            Error::Authentication(AuthError::InvalidResponse),
+        ),
+        (
+            Ok("source-secret\r\nx: y".into()),
+            Error::Authentication(AuthError::InvalidResponse),
+        ),
+    ];
+    for (reply, expected) in replies {
+        let asked = Arc::new(AtomicUsize::new(0));
+        let count = asked.clone();
+        let source = TokenSource::new(move || {
+            count.fetch_add(1, Ordering::SeqCst);
+            let reply = reply.clone();
+            async move { reply }
+        });
+        let mut config = ClientConfig::new(base.clone(), source);
+        config.retry.max_retries = 3;
+        let client = Client::with_config(config).unwrap();
+        let error = client.execute(request("GET")).await.unwrap_err();
+        assert_eq!(error, expected);
+        assert!(!format!("{error} {error:?}").contains("source-secret"));
+        let catalog = GetCatalogItemParams::new("ASIN".into(), vec!["UK".into()]);
+        assert_eq!(
+            get_catalog_item(&client, catalog).await.unwrap_err(),
+            expected
+        );
+        // Asked once per call: the source itself is never retried.
+        assert_eq!(asked.load(Ordering::SeqCst), 2);
+    }
+    // The deadline of a call covers a source that never answers.
+    let stuck = TokenSource::new(std::future::pending::<Result<String, AuthError>>);
+    let mut config = ClientConfig::new(base, stuck);
+    config.timeout = Duration::from_millis(30);
+    let client = Client::with_config(config).unwrap();
+    assert_eq!(
+        client.execute(request("GET")).await.unwrap_err(),
+        Error::Timeout
+    );
+    assert!(
+        tokio::time::timeout(Duration::from_millis(30), listener.accept())
+            .await
+            .is_err(),
+        "no request reaches the server"
+    );
 }
 #[tokio::test]
 async fn invalid_input_performs_no_http() {

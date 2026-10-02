@@ -4,8 +4,8 @@ module Peddler
     PAGINATIONS: Hash[String, Pagination]
 
     class AmazonWarehousingAndDistribution20240509
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_inbound: (order_id: String) -> Response
       def check_inbound_eligibility: (body: untyped) -> Response
       def confirm_inbound: (order_id: String) -> Response
@@ -34,8 +34,8 @@ module Peddler
     end
 
     class AplusContent20201101
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_content_document: (marketplace_id: String, body: untyped) -> Response
       def create_media: (body: untyped) -> Response
       def get_content_document: (content_reference_key: String, marketplace_id: String, included_data_set: Array[String]) -> Response
@@ -55,44 +55,44 @@ module Peddler
     end
 
     class ApplicationIntegrations20240401
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_notification: (body: untyped) -> Response
       def delete_notifications: (body: untyped) -> Response
       def record_action_feedback: (notification_id: String, body: untyped) -> Response
     end
 
     class ApplicationManagement20231130
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def rotate_application_client_secret: () -> Response
     end
 
     class CatalogItemsV0
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def list_catalog_categories: (marketplace_id: String, ?asin: String?, ?seller_sku: String?) -> Response
     end
 
     class CatalogItems20201201
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_catalog_item: (asin: String, marketplace_ids: Array[String], ?included_data: Array[String]?, ?locale: String?) -> Response
       def search_catalog_items: (keywords: Array[String], marketplace_ids: Array[String], ?included_data: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?locale: String?) -> Response
       def search_catalog_items_pages: (keywords: Array[String], marketplace_ids: Array[String], ?included_data: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?locale: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
     end
 
     class CatalogItems20220401
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_catalog_item: (asin: String, marketplace_ids: Array[String], ?included_data: Array[String]?, ?locale: String?) -> Response
       def search_catalog_items: (?identifiers: Array[String]?, ?identifiers_type: String?, marketplace_ids: Array[String], ?included_data: Array[String]?, ?locale: String?, ?seller_id: String?, ?keywords: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?) -> Response
       def search_catalog_items_pages: (?identifiers: Array[String]?, ?identifiers_type: String?, marketplace_ids: Array[String], ?included_data: Array[String]?, ?locale: String?, ?seller_id: String?, ?keywords: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
     end
 
     class CustomerFeedback20240601
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_browse_node_return_topics: (browse_node_id: String, marketplace_id: String) -> Response
       def get_browse_node_return_trends: (browse_node_id: String, marketplace_id: String) -> Response
       def get_browse_node_review_topics: (browse_node_id: String, marketplace_id: String, sort_by: String) -> Response
@@ -103,8 +103,8 @@ module Peddler
     end
 
     class DataKiosk20231115
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_query: (query_id: String) -> Response
       def create_query: (body: untyped) -> Response
       def get_document: (document_id: String) -> Response
@@ -114,15 +114,15 @@ module Peddler
     end
 
     class DeliveryByAmazon20220701
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_invoice_status: (?order_id: String?, ?shipment_id: String?, ?invoice_id: String?, marketplace_id: String, invoice_type: String, program_type: String) -> Response
       def submit_invoice: (?order_id: String?, ?shipment_id: String?, body: untyped) -> Response
     end
 
     class EasyShip20220323
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_scheduled_package: (body: untyped) -> Response
       def create_scheduled_package_bulk: (body: untyped) -> Response
       def get_scheduled_package: (amazon_order_id: String, marketplace_id: String) -> Response
@@ -131,28 +131,28 @@ module Peddler
     end
 
     class ExternalFulfillmentInventory20240911
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def batch_inventory: (body: untyped) -> Response
     end
 
     class ExternalFulfillmentLocation20260730
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_sandbox_location: (body: untyped) -> Response
     end
 
     class ExternalFulfillmentReturns20240911
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_return: (return_id: String) -> Response
       def list_returns: (?return_location_id: String?, ?rma_id: String?, ?status: String?, ?reverse_tracking_id: String?, ?created_since: String?, ?created_until: String?, ?last_updated_since: String?, ?last_updated_until: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?next_token: String?) -> Response
       def list_returns_pages: (?return_location_id: String?, ?rma_id: String?, ?status: String?, ?reverse_tracking_id: String?, ?created_since: String?, ?created_until: String?, ?last_updated_since: String?, ?last_updated_until: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
     end
 
     class ExternalFulfillmentShipments20240911
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_packages: (shipment_id: String, body: untyped) -> Response
       def create_sandbox_shipment: (body: untyped) -> Response
       def generate_invoice: (shipment_id: String) -> Response
@@ -169,14 +169,14 @@ module Peddler
     end
 
     class FbaInboundEligibilityV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_item_eligibility_preview: (?marketplace_ids: Array[String]?, asin: String, program: String) -> Response
     end
 
     class FbaInventoryV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def add_inventory: (x_amzn_idempotency_token: String, body: untyped) -> Response
       def create_inventory_item: (body: untyped) -> Response
       def delete_inventory_item: (seller_sku: String, marketplace_id: String) -> Response
@@ -185,8 +185,8 @@ module Peddler
     end
 
     class Feeds20210630
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_feed: (feed_id: String) -> Response
       def create_feed: (body: untyped) -> Response
       def create_feed_document: (body: untyped) -> Response
@@ -197,8 +197,8 @@ module Peddler
     end
 
     class FinanceRemittance20260317
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_remittance: (unique_payment_id: String, marketplace_id: String, ?next_token_for_line_items: String?) -> Response
       def get_remittance_pages: (unique_payment_id: String, marketplace_id: String, ?next_token_for_line_items: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
       def get_remittance_headers: (marketplace_id: String, ?start_date: String?, ?end_date: String?, ?next_token: String?) -> Response
@@ -206,8 +206,8 @@ module Peddler
     end
 
     class FinancesInvoices20260625
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_invoice: (marketplace_id: String, invoice_identifier: String, ?next_token_for_line_items: String?) -> Response
       def get_invoice_pages: (marketplace_id: String, invoice_identifier: String, ?next_token_for_line_items: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
       def get_invoice_headers: (?next_token: String?, marketplace_id: String, ?from_issue_date: String?, ?to_issue_date: String?, ?invoices_modified_after: String?) -> Response
@@ -215,8 +215,8 @@ module Peddler
     end
 
     class FinancesV0
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def list_financial_event_groups: (?max_results_per_page: Integer?, ?financial_event_group_started_before: String?, ?financial_event_group_started_after: String?, ?next_token: String?) -> Response
       def list_financial_event_groups_pages: (?max_results_per_page: Integer?, ?financial_event_group_started_before: String?, ?financial_event_group_started_after: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
       def list_financial_events: (?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?) -> Response
@@ -228,8 +228,8 @@ module Peddler
     end
 
     class Finances20240619
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def list_balances: (?marketplace_ids: Array[String]?, ?balance_type: String?, ?account_type: String?, ?as_of_date: String?, ?next_token: String?) -> Response
       def list_balances_pages: (?marketplace_ids: Array[String]?, ?balance_type: String?, ?account_type: String?, ?as_of_date: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
       def list_summary: (?marketplace_ids: Array[String]?, ?account_type: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?period_start: String?, ?period_end: String?, ?next_token: String?) -> Response
@@ -239,8 +239,8 @@ module Peddler
     end
 
     class Transfers20240601
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_payment_methods: (marketplace_id: String, ?payment_method_types: Array[String]?) -> Response
       def initiate_payout: (body: untyped) -> Response
       def list_expected_payouts: (?marketplace_ids: Array[String]?, ?account_type: String?, ?next_token: String?) -> Response
@@ -250,8 +250,8 @@ module Peddler
     end
 
     class FulfillmentInboundV0
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_bill_of_lading: (shipment_id: String) -> Response
       def get_labels: (shipment_id: String, page_type: String, label_type: String, ?number_of_packages: Integer?, ?package_labels_to_print: Array[String]?, ?number_of_pallets: Integer?, ?page_size: Integer?, ?page_start_index: Integer?) -> Response
       def get_prep_instructions: (ship_to_country_code: String, ?seller_sku_list: Array[String]?, ?asin_list: Array[String]?) -> Response
@@ -263,8 +263,8 @@ module Peddler
     end
 
     class FulfillmentInbound20240320
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_inbound_plan: (inbound_plan_id: String) -> Response
       def cancel_self_ship_appointment: (inbound_plan_id: String, shipment_id: String, body: untyped) -> Response
       def confirm_delivery_window_options: (inbound_plan_id: String, shipment_id: String, delivery_window_option_id: String) -> Response
@@ -328,8 +328,8 @@ module Peddler
     end
 
     class FulfillmentOutbound20200701
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_fulfillment_order: (seller_fulfillment_order_id: String) -> Response
       def create_fulfillment_order: (body: untyped) -> Response
       def create_fulfillment_return: (seller_fulfillment_order_id: String, body: untyped) -> Response
@@ -349,8 +349,8 @@ module Peddler
     end
 
     class FulfillmentOutbound20260704
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_order: (?x_amzn_fulfillment_service_id: String?, order_id: String) -> Response
       def create_order: (?x_amzn_fulfillment_service_id: String?, body: untyped) -> Response
       def get_offers: (?x_amzn_fulfillment_service_id: String?, body: untyped) -> Response
@@ -364,8 +364,8 @@ module Peddler
     end
 
     class Invoices20240619
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_government_invoice: (body: untyped) -> Response
       def create_invoices_export: (body: untyped) -> Response
       def get_government_invoice_document: (marketplace_id: String, transaction_type: String, shipment_id: String, invoice_type: String, ?inbound_plan_id: String?, ?file_format: String?) -> Response
@@ -381,16 +381,16 @@ module Peddler
     end
 
     class ListingsItems20200901
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def delete_listings_item: (seller_id: String, sku: String, marketplace_ids: Array[String], ?issue_locale: String?) -> Response
       def patch_listings_item: (seller_id: String, sku: String, marketplace_ids: Array[String], ?issue_locale: String?, body: untyped) -> Response
       def put_listings_item: (seller_id: String, sku: String, marketplace_ids: Array[String], ?issue_locale: String?, body: untyped) -> Response
     end
 
     class ListingsItems20210801
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def delete_listings_item: (seller_id: String, sku: String, marketplace_ids: Array[String], ?issue_locale: String?) -> Response
       def get_listings_item: (seller_id: String, sku: String, marketplace_ids: Array[String], ?issue_locale: String?, ?included_data: Array[String]?) -> Response
       def patch_listings_item: (seller_id: String, sku: String, marketplace_ids: Array[String], ?included_data: Array[String]?, ?mode: String?, ?issue_locale: String?, body: untyped) -> Response
@@ -400,14 +400,14 @@ module Peddler
     end
 
     class ListingsRestrictions20210801
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_listings_restrictions: (asin: String, ?condition_type: String?, seller_id: String, marketplace_ids: Array[String], ?reason_locale: String?, ?product_type: String?) -> Response
     end
 
     class MerchantFulfillmentV0
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_shipment: (shipment_id: String) -> Response
       def create_shipment: (body: untyped) -> Response
       def get_additional_seller_inputs: (body: untyped) -> Response
@@ -416,8 +416,8 @@ module Peddler
     end
 
     class MessagingV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def confirm_customization_details: (amazon_order_id: String, marketplace_ids: Array[String], body: untyped) -> Response
       def create_confirm_delivery_details: (amazon_order_id: String, marketplace_ids: Array[String], body: untyped) -> Response
       def create_confirm_order_details: (amazon_order_id: String, marketplace_ids: Array[String], body: untyped) -> Response
@@ -432,8 +432,8 @@ module Peddler
     end
 
     class NotificationsV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_destination: (body: untyped) -> Response
       def create_subscription: (notification_type: String, body: untyped) -> Response
       def delete_destination: (destination_id: String) -> Response
@@ -448,8 +448,8 @@ module Peddler
     end
 
     class OrdersV0
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def confirm_shipment: (order_id: String, body: untyped) -> Response
       def get_order: (order_id: String) -> Response
       def get_order_address: (order_id: String) -> Response
@@ -466,24 +466,24 @@ module Peddler
     end
 
     class Orders20260101
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_order: (order_id: String, ?included_data: Array[String]?) -> Response
       def search_orders: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?) -> Response
       def search_orders_pages: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?, ?max_pages: Integer?) -> Enumerator[Response, void]
     end
 
     class ProductFeesV0
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_my_fees_estimate_for_asin: (asin: String, body: untyped) -> Response
       def get_my_fees_estimate_for_sku: (seller_sku: String, body: untyped) -> Response
       def get_my_fees_estimates: (body: untyped) -> Response
     end
 
     class ProductPricingV0
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_competitive_pricing: (marketplace_id: String, ?asins: Array[String]?, ?skus: Array[String]?, item_type: String, ?customer_type: String?) -> Response
       def get_item_offers: (marketplace_id: String, item_condition: String, asin: String, ?customer_type: String?) -> Response
       def get_item_offers_batch: (body: untyped) -> Response
@@ -493,22 +493,22 @@ module Peddler
     end
 
     class ProductPricing20220501
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_competitive_summary: (body: untyped) -> Response
       def get_featured_offer_expected_price_batch: (body: untyped) -> Response
     end
 
     class ProductTypeDefinitions20200901
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_definitions_product_type: (product_type: String, ?seller_id: String?, marketplace_ids: Array[String], ?product_type_version: String?, ?requirements: String?, ?requirements_enforced: String?, ?locale: String?, ?parentage_level: String?) -> Response
       def search_definitions_product_types: (?keywords: Array[String]?, marketplace_ids: Array[String], ?item_name: String?, ?locale: String?, ?search_locale: String?) -> Response
     end
 
     class Promotions20251201
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_promotion: (promotion_id: String, ?included_data: Array[String]?, ?locale: String?) -> Response
       def get_selection: (promotion_id: String, selection_id: String, revision_id: Integer, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?) -> Response
       def get_selection_pages: (promotion_id: String, selection_id: String, revision_id: Integer, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?, ?max_pages: Integer?) -> Enumerator[Response, void]
@@ -517,16 +517,16 @@ module Peddler
     end
 
     class Replenishment20221107
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_selling_partner_metrics: (?body: untyped?) -> Response
       def list_offer_metrics: (?body: untyped?) -> Response
       def list_offers: (?body: untyped?) -> Response
     end
 
     class Reports20210630
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_report: (report_id: String) -> Response
       def cancel_report_schedule: (report_schedule_id: String) -> Response
       def create_report: (body: untyped) -> Response
@@ -540,14 +540,14 @@ module Peddler
     end
 
     class SalesV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_order_metrics: (marketplace_ids: Array[String], interval: String, ?granularity_time_zone: String?, granularity: String, ?buyer_type: String?, ?fulfillment_network: String?, ?first_day_of_week: String?, ?asin: String?, ?sku: String?, ?amazon_program: String?) -> Response
     end
 
     class SellerWallet20240301
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_transaction: (dest_account_digital_signature: String, amount_digital_signature: String, marketplace_id: String, body: untyped) -> Response
       def create_transfer_schedule: (dest_account_digital_signature: String, amount_digital_signature: String, marketplace_id: String, body: untyped) -> Response
       def delete_schedule_transaction: (transfer_schedule_id: String, marketplace_id: String) -> Response
@@ -565,15 +565,15 @@ module Peddler
     end
 
     class SellersV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_account: () -> Response
       def get_marketplace_participations: () -> Response
     end
 
     class ServicesV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def add_appointment_for_service_job_by_service_job_id: (service_job_id: String, body: untyped) -> Response
       def assign_appointment_resources: (service_job_id: String, appointment_id: String, body: untyped) -> Response
       def cancel_reservation: (reservation_id: String, marketplace_ids: Array[String]) -> Response
@@ -597,16 +597,16 @@ module Peddler
     end
 
     class ShipmentInvoicingV0
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_invoice_status: (shipment_id: String) -> Response
       def get_shipment_details: (shipment_id: String) -> Response
       def submit_invoice: (shipment_id: String, body: untyped) -> Response
     end
 
     class ShippingV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_shipment: (shipment_id: String) -> Response
       def create_shipment: (body: untyped) -> Response
       def get_account: () -> Response
@@ -619,8 +619,8 @@ module Peddler
     end
 
     class ShippingV2
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def cancel_shipment: (shipment_id: String, ?x_amzn_shipping_business_id: String?) -> Response
       def create_claim: (?x_amzn_shipping_business_id: String?, body: untyped) -> Response
       def direct_purchase_shipment: (?x_amzn_idempotency_key: String?, ?locale: String?, ?x_amzn_shipping_business_id: String?, body: untyped) -> Response
@@ -644,15 +644,15 @@ module Peddler
     end
 
     class SolicitationsV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_product_review_and_seller_feedback_solicitation: (amazon_order_id: String, marketplace_ids: Array[String]) -> Response
       def get_solicitation_actions_for_order: (amazon_order_id: String, marketplace_ids: Array[String]) -> Response
     end
 
     class SupplySources20200701
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def archive_supply_source: (supply_source_id: String) -> Response
       def create_supply_source: (body: untyped) -> Response
       def get_supply_source: (supply_source_id: String) -> Response
@@ -663,8 +663,8 @@ module Peddler
     end
 
     class Support20250201
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_case: (case_id: String) -> Response
       def list_cases: (body: untyped) -> Response
       def list_cases_pages: (body: untyped, ?max_pages: Integer?) -> Enumerator[Response, void]
@@ -673,39 +673,39 @@ module Peddler
     end
 
     class Tokens20210301
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_restricted_data_token: (body: untyped) -> Response
     end
 
     class Tracking20260130
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_shipment_tracking: (?id: String?, ?acsin: String?, ?aftn: String?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?pro_number: String?, ?carrier_tracking_tracking_number: String?, ?carrier_tracking_carrier_code: String?, ?accept_language: String?) -> Response
     end
 
     class Uploads20201101
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_upload_destination_for_resource: (marketplace_ids: Array[String], content_md5: String, resource: String, ?content_type: String?) -> Response
     end
 
     class Vehicles20241101
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_vehicles: (?page_token: String?, marketplace_id: String, vehicle_type: String, ?updated_after: String?) -> Response
       def get_vehicles_pages: (?page_token: String?, marketplace_id: String, vehicle_type: String, ?updated_after: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
     end
 
     class VendorDirectFulfillmentInventoryV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def submit_inventory_update: (warehouse_id: String, body: untyped) -> Response
     end
 
     class VendorDirectFulfillmentOrdersV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_order: (purchase_order_number: String) -> Response
       def get_orders: (?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, created_after: String, created_before: String, ?sort_order: String?, ?next_token: String?, ?include_details: bool?) -> Response
       def get_orders_pages: (?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, created_after: String, created_before: String, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?max_pages: Integer?) -> Enumerator[Response, void]
@@ -713,8 +713,8 @@ module Peddler
     end
 
     class VendorDirectFulfillmentOrders20211228
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_order: (purchase_order_number: String) -> Response
       def get_orders: (?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, created_after: String, created_before: String, ?sort_order: String?, ?next_token: String?, ?include_details: bool?) -> Response
       def get_orders_pages: (?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, created_after: String, created_before: String, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?max_pages: Integer?) -> Enumerator[Response, void]
@@ -722,21 +722,21 @@ module Peddler
     end
 
     class VendorDirectFulfillmentPaymentsV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def submit_invoice: (body: untyped) -> Response
     end
 
     class VendorDirectFulfillmentSandboxTestData20211028
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def generate_order_scenarios: (body: untyped) -> Response
       def get_order_scenarios: (transaction_id: String) -> Response
     end
 
     class VendorDirectFulfillmentShippingV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_customer_invoice: (purchase_order_number: String) -> Response
       def get_customer_invoices: (?ship_from_party_id: String?, ?limit: Integer?, created_after: String, created_before: String, ?sort_order: String?, ?next_token: String?) -> Response
       def get_customer_invoices_pages: (?ship_from_party_id: String?, ?limit: Integer?, created_after: String, created_before: String, ?sort_order: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
@@ -752,8 +752,8 @@ module Peddler
     end
 
     class VendorDirectFulfillmentShipping20211228
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def create_container_label: (body: untyped) -> Response
       def create_shipping_labels: (purchase_order_number: String, body: untyped) -> Response
       def get_customer_invoice: (purchase_order_number: String) -> Response
@@ -771,26 +771,26 @@ module Peddler
     end
 
     class VendorDirectFulfillmentTransactionsV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_transaction_status: (transaction_id: String) -> Response
     end
 
     class VendorDirectFulfillmentTransactions20211228
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_transaction_status: (transaction_id: String) -> Response
     end
 
     class VendorInvoicesV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def submit_invoices: (body: untyped) -> Response
     end
 
     class VendorOrdersV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_purchase_order: (purchase_order_number: String) -> Response
       def get_purchase_orders: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: bool?, ?purchase_order_state: String?, ?ordering_vendor_code: String?) -> Response
       def get_purchase_orders_pages: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: bool?, ?purchase_order_state: String?, ?ordering_vendor_code: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
@@ -800,8 +800,8 @@ module Peddler
     end
 
     class VendorShipmentsV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_shipment_details: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?shipment_confirmed_before: String?, ?shipment_confirmed_after: String?, ?package_label_created_before: String?, ?package_label_created_after: String?, ?shipped_before: String?, ?shipped_after: String?, ?estimated_delivery_before: String?, ?estimated_delivery_after: String?, ?shipment_delivery_before: String?, ?shipment_delivery_after: String?, ?requested_pick_up_before: String?, ?requested_pick_up_after: String?, ?scheduled_pick_up_before: String?, ?scheduled_pick_up_after: String?, ?current_shipment_status: String?, ?vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?buyer_warehouse_code: String?, ?seller_warehouse_code: String?) -> Response
       def get_shipment_details_pages: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?shipment_confirmed_before: String?, ?shipment_confirmed_after: String?, ?package_label_created_before: String?, ?package_label_created_after: String?, ?shipped_before: String?, ?shipped_after: String?, ?estimated_delivery_before: String?, ?estimated_delivery_after: String?, ?shipment_delivery_before: String?, ?shipment_delivery_after: String?, ?requested_pick_up_before: String?, ?requested_pick_up_after: String?, ?scheduled_pick_up_before: String?, ?scheduled_pick_up_after: String?, ?current_shipment_status: String?, ?vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?buyer_warehouse_code: String?, ?seller_warehouse_code: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
       def get_shipment_labels: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?label_created_after: String?, ?label_created_before: String?, ?buyer_reference_number: String?, ?vendor_shipment_identifier: String?, ?seller_warehouse_code: String?) -> Response
@@ -811,8 +811,8 @@ module Peddler
     end
 
     class VendorTransactionStatusV1
-      @engine: Engine
-      def initialize: (Engine engine) -> void
+      @engine: engine
+      def initialize: (engine engine) -> void
       def get_transaction: (transaction_id: String) -> Response
     end
   end

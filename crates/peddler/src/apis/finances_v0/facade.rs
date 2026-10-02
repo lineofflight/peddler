@@ -77,7 +77,7 @@ pub async fn list_financial_event_groups(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -86,6 +86,7 @@ pub async fn list_financial_event_groups(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -208,7 +209,7 @@ pub async fn list_financial_events(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -217,6 +218,7 @@ pub async fn list_financial_events(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -335,7 +337,7 @@ pub async fn list_financial_events_by_group_id(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -344,6 +346,7 @@ pub async fn list_financial_events_by_group_id(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -439,7 +442,7 @@ pub async fn list_financial_events_by_order_id(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -448,6 +451,7 @@ pub async fn list_financial_events_by_order_id(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

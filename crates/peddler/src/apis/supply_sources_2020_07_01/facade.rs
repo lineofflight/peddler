@@ -31,7 +31,7 @@ pub async fn archive_supply_source(
     let raw = client
         .run(
             "DELETE",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -40,6 +40,7 @@ pub async fn archive_supply_source(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -76,7 +77,7 @@ pub async fn create_supply_source<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -86,6 +87,7 @@ pub async fn create_supply_source<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -123,7 +125,7 @@ pub async fn get_supply_source(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -132,6 +134,7 @@ pub async fn get_supply_source(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -191,7 +194,7 @@ pub async fn get_supply_sources(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -200,6 +203,7 @@ pub async fn get_supply_sources(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -278,7 +282,7 @@ pub async fn update_supply_source<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -288,6 +292,7 @@ pub async fn update_supply_source<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -340,7 +345,7 @@ pub async fn update_supply_source_status<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -350,6 +355,7 @@ pub async fn update_supply_source_status<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

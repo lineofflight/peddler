@@ -30,7 +30,7 @@ pub async fn create_destination<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -40,6 +40,7 @@ pub async fn create_destination<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -82,7 +83,7 @@ pub async fn create_subscription<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -92,6 +93,7 @@ pub async fn create_subscription<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -131,7 +133,7 @@ pub async fn delete_destination(
     let raw = client
         .run(
             "DELETE",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -140,6 +142,7 @@ pub async fn delete_destination(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -186,7 +189,7 @@ pub async fn delete_subscription_by_id(
     let raw = client
         .run(
             "DELETE",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -195,6 +198,7 @@ pub async fn delete_subscription_by_id(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -234,7 +238,7 @@ pub async fn get_destination(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -243,6 +247,7 @@ pub async fn get_destination(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -278,7 +283,7 @@ pub async fn get_destinations(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -287,6 +292,7 @@ pub async fn get_destinations(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -331,7 +337,7 @@ pub async fn get_subscription(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -340,6 +346,7 @@ pub async fn get_subscription(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -390,7 +397,7 @@ pub async fn get_subscription_by_id(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -399,6 +406,7 @@ pub async fn get_subscription_by_id(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -477,7 +485,7 @@ pub async fn get_subscriptions(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -486,6 +494,7 @@ pub async fn get_subscriptions(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -560,7 +569,7 @@ pub async fn send_test_notification<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -570,6 +579,7 @@ pub async fn send_test_notification<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

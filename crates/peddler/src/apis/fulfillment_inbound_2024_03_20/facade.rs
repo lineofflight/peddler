@@ -37,7 +37,7 @@ pub async fn cancel_inbound_plan(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -46,6 +46,7 @@ pub async fn cancel_inbound_plan(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -110,7 +111,7 @@ pub async fn cancel_self_ship_appointment<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -120,6 +121,7 @@ pub async fn cancel_self_ship_appointment<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -197,7 +199,7 @@ pub async fn confirm_delivery_window_options(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -206,6 +208,7 @@ pub async fn confirm_delivery_window_options(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -269,7 +272,7 @@ pub async fn confirm_packing_option(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -278,6 +281,7 @@ pub async fn confirm_packing_option(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -338,7 +342,7 @@ pub async fn confirm_placement_option(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -347,6 +351,7 @@ pub async fn confirm_placement_option(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -427,7 +432,7 @@ pub async fn confirm_shipment_content_update_preview(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -436,6 +441,7 @@ pub async fn confirm_shipment_content_update_preview(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -489,7 +495,7 @@ pub async fn confirm_transportation_options<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -499,6 +505,7 @@ pub async fn confirm_transportation_options<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -536,7 +543,7 @@ pub async fn create_inbound_plan<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -546,6 +553,7 @@ pub async fn create_inbound_plan<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -582,7 +590,7 @@ pub async fn create_marketplace_item_labels<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -592,6 +600,7 @@ pub async fn create_marketplace_item_labels<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -650,7 +659,7 @@ pub async fn generate_delivery_window_options(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -659,6 +668,7 @@ pub async fn generate_delivery_window_options(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -703,7 +713,7 @@ pub async fn generate_packing_options(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -712,6 +722,7 @@ pub async fn generate_packing_options(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -760,7 +771,7 @@ pub async fn generate_placement_options<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -770,6 +781,7 @@ pub async fn generate_placement_options<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -838,7 +850,7 @@ pub async fn generate_self_ship_appointment_slots<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -848,6 +860,7 @@ pub async fn generate_self_ship_appointment_slots<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -917,7 +930,7 @@ pub async fn generate_shipment_content_update_previews<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -927,6 +940,7 @@ pub async fn generate_shipment_content_update_previews<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -977,7 +991,7 @@ pub async fn generate_transportation_options<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -987,6 +1001,7 @@ pub async fn generate_transportation_options<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1046,7 +1061,7 @@ pub async fn get_delivery_challan_document(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1055,6 +1070,7 @@ pub async fn get_delivery_challan_document(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1099,7 +1115,7 @@ pub async fn get_inbound_operation_status(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1108,6 +1124,7 @@ pub async fn get_inbound_operation_status(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1151,7 +1168,7 @@ pub async fn get_inbound_plan(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1160,6 +1177,7 @@ pub async fn get_inbound_plan(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1246,7 +1264,7 @@ pub async fn get_self_ship_appointment_slots(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1255,6 +1273,7 @@ pub async fn get_self_ship_appointment_slots(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1343,7 +1362,7 @@ pub async fn get_shipment(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1352,6 +1371,7 @@ pub async fn get_shipment(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1428,7 +1448,7 @@ pub async fn get_shipment_content_update_preview(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1437,6 +1457,7 @@ pub async fn get_shipment_content_update_preview(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1528,7 +1549,7 @@ pub async fn list_delivery_window_options(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1537,6 +1558,7 @@ pub async fn list_delivery_window_options(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1640,7 +1662,7 @@ pub async fn list_inbound_plan_boxes(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1649,6 +1671,7 @@ pub async fn list_inbound_plan_boxes(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1751,7 +1774,7 @@ pub async fn list_inbound_plan_items(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1760,6 +1783,7 @@ pub async fn list_inbound_plan_items(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1862,7 +1886,7 @@ pub async fn list_inbound_plan_pallets(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1871,6 +1895,7 @@ pub async fn list_inbound_plan_pallets(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2001,7 +2026,7 @@ pub async fn list_inbound_plans(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2010,6 +2035,7 @@ pub async fn list_inbound_plans(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2104,7 +2130,7 @@ pub async fn list_item_compliance_details(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2113,6 +2139,7 @@ pub async fn list_item_compliance_details(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2200,7 +2227,7 @@ pub async fn list_packing_group_boxes(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2209,6 +2236,7 @@ pub async fn list_packing_group_boxes(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2325,7 +2353,7 @@ pub async fn list_packing_group_items(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2334,6 +2362,7 @@ pub async fn list_packing_group_items(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2437,7 +2466,7 @@ pub async fn list_packing_options(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2446,6 +2475,7 @@ pub async fn list_packing_options(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2547,7 +2577,7 @@ pub async fn list_placement_options(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2556,6 +2586,7 @@ pub async fn list_placement_options(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2643,7 +2674,7 @@ pub async fn list_prep_details(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2652,6 +2683,7 @@ pub async fn list_prep_details(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2739,7 +2771,7 @@ pub async fn list_shipment_boxes(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2748,6 +2780,7 @@ pub async fn list_shipment_boxes(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2866,7 +2899,7 @@ pub async fn list_shipment_content_update_previews(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -2875,6 +2908,7 @@ pub async fn list_shipment_content_update_previews(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -2991,7 +3025,7 @@ pub async fn list_shipment_items(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -3000,6 +3034,7 @@ pub async fn list_shipment_items(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3115,7 +3150,7 @@ pub async fn list_shipment_pallets(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -3124,6 +3159,7 @@ pub async fn list_shipment_pallets(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3250,7 +3286,7 @@ pub async fn list_transportation_options(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -3259,6 +3295,7 @@ pub async fn list_transportation_options(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3376,7 +3413,7 @@ pub async fn schedule_self_ship_appointment<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -3386,6 +3423,7 @@ pub async fn schedule_self_ship_appointment<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3437,7 +3475,7 @@ pub async fn set_packing_information<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -3447,6 +3485,7 @@ pub async fn set_packing_information<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3484,7 +3523,7 @@ pub async fn set_prep_details<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -3494,6 +3533,7 @@ pub async fn set_prep_details<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3542,7 +3582,7 @@ pub async fn update_inbound_plan_name<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -3552,6 +3592,7 @@ pub async fn update_inbound_plan_name<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3601,7 +3642,7 @@ pub async fn update_item_compliance_details<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -3611,6 +3652,7 @@ pub async fn update_item_compliance_details<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3676,7 +3718,7 @@ pub async fn update_shipment_name<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -3686,6 +3728,7 @@ pub async fn update_shipment_name<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3752,7 +3795,7 @@ pub async fn update_shipment_source_address<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -3762,6 +3805,7 @@ pub async fn update_shipment_source_address<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -3828,7 +3872,7 @@ pub async fn update_shipment_tracking_details<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -3838,6 +3882,7 @@ pub async fn update_shipment_tracking_details<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

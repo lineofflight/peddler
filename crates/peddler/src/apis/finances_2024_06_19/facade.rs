@@ -76,7 +76,7 @@ pub async fn list_balances(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -85,6 +85,7 @@ pub async fn list_balances(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -221,7 +222,7 @@ pub async fn list_summary(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -230,6 +231,7 @@ pub async fn list_summary(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -363,7 +365,7 @@ pub async fn list_transactions(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -372,6 +374,7 @@ pub async fn list_transactions(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

@@ -31,7 +31,7 @@ pub async fn get_case(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -40,6 +40,7 @@ pub async fn get_case(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -76,7 +77,7 @@ pub async fn list_cases<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -86,6 +87,7 @@ pub async fn list_cases<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -185,7 +187,7 @@ pub async fn list_contacts(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -194,6 +196,7 @@ pub async fn list_contacts(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

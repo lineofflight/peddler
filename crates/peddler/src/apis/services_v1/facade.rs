@@ -42,7 +42,7 @@ pub async fn add_appointment_for_service_job_by_service_job_id<B: serde::Seriali
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -52,6 +52,7 @@ pub async fn add_appointment_for_service_job_by_service_job_id<B: serde::Seriali
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -118,7 +119,7 @@ pub async fn assign_appointment_resources<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -128,6 +129,7 @@ pub async fn assign_appointment_resources<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -191,7 +193,7 @@ pub async fn cancel_reservation(
     let raw = client
         .run(
             "DELETE",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -200,6 +202,7 @@ pub async fn cancel_reservation(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -262,7 +265,7 @@ pub async fn cancel_service_job_by_service_job_id(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -271,6 +274,7 @@ pub async fn cancel_service_job_by_service_job_id(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -321,7 +325,7 @@ pub async fn complete_service_job_by_service_job_id(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -330,6 +334,7 @@ pub async fn complete_service_job_by_service_job_id(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -381,7 +386,7 @@ pub async fn create_reservation<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -391,6 +396,7 @@ pub async fn create_reservation<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -431,7 +437,7 @@ pub async fn create_service_document_upload_destination<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -441,6 +447,7 @@ pub async fn create_service_document_upload_destination<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -521,7 +528,7 @@ pub async fn get_appointment_slots(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -530,6 +537,7 @@ pub async fn get_appointment_slots(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -611,7 +619,7 @@ pub async fn get_appointmment_slots_by_job_id(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -620,6 +628,7 @@ pub async fn get_appointmment_slots_by_job_id(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -700,7 +709,7 @@ pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -710,6 +719,7 @@ pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -810,7 +820,7 @@ pub async fn get_range_slot_capacity<B: serde::Serialize>(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -820,6 +830,7 @@ pub async fn get_range_slot_capacity<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -890,7 +901,7 @@ pub async fn get_service_job_by_service_job_id(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -899,6 +910,7 @@ pub async fn get_service_job_by_service_job_id(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1134,7 +1146,7 @@ pub async fn get_service_jobs(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -1143,6 +1155,7 @@ pub async fn get_service_jobs(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1284,7 +1297,7 @@ pub async fn reschedule_appointment_for_service_job_by_service_job_id<
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -1294,6 +1307,7 @@ pub async fn reschedule_appointment_for_service_job_by_service_job_id<
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1361,7 +1375,7 @@ pub async fn set_appointment_fulfillment_data<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -1371,6 +1385,7 @@ pub async fn set_appointment_fulfillment_data<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1440,7 +1455,7 @@ pub async fn update_reservation<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -1450,6 +1465,7 @@ pub async fn update_reservation<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },
@@ -1519,7 +1535,7 @@ pub async fn update_schedule<B: serde::Serialize>(
     let raw = client
         .run(
             "PUT",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
@@ -1529,6 +1545,7 @@ pub async fn update_schedule<B: serde::Serialize>(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

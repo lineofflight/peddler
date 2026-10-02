@@ -204,11 +204,11 @@ pub(crate) fn rust(
         } else {
             source.push_str("let omit_body = false;\n")
         }
-        writeln!(source,"let raw = client.run({:?}, || {{ let params=&params; let empty_queries=empty_queries.clone();",op.method).unwrap();
+        writeln!(source,"let raw = client.run({:?}, |token| {{ let params=&params; let empty_queries=empty_queries.clone();",op.method).unwrap();
         if body.is_some() {
             source.push_str("let body=body.clone();\n")
         }
-        source.push_str("async move { let wire=wire::Client::new_with_client(client.origin.as_str().trim_end_matches('/'), client.http.clone(), WireContext {client:client.clone(),empty_queries,omit_body});\n");
+        source.push_str("async move { let wire=wire::Client::new_with_client(client.origin.as_str().trim_end_matches('/'), client.http.clone(), WireContext {client:client.clone(),token,empty_queries,omit_body});\n");
         writeln!(source, "let mut request=wire.{}();", op.name).unwrap();
         for p in &op.parameters {
             let method = if p.location == "header" {
@@ -482,7 +482,7 @@ pub(crate) fn ruby(
             "    class {class}\n      def initialize(engine)\n        @engine = engine\n      end\n"
         )
         .unwrap();
-        writeln!(rbs,"    class {class}\n      @engine: Engine\n      def initialize: (Engine engine) -> void").unwrap();
+        writeln!(rbs,"    class {class}\n      @engine: engine\n      def initialize: (engine engine) -> void").unwrap();
         for op in &client.operations {
             let keywords = op
                 .parameters

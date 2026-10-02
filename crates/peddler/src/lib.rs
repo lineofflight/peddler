@@ -21,6 +21,7 @@ pub mod workflows;
 mod operation;
 pub use operation::{DecodeError, TypedResponse};
 
+use auth::{AuthError, TokenSource};
 use policy::RetryPolicy;
 use reqwest::{Method, Url, header::HeaderValue};
 use std::{future::Future, time::Duration};
@@ -70,10 +71,50 @@ impl Pool {
     }
 }
 
+/// The access token a client sends: a value, or a source it asks before every attempt.
+#[derive(Clone)]
+pub enum AccessToken {
+    Static(String),
+    Source(TokenSource),
+}
+
+impl std::fmt::Debug for AccessToken {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(match self {
+            Self::Static(_) => "Static([redacted])",
+            Self::Source(_) => "Source",
+        })
+    }
+}
+
+impl From<&str> for AccessToken {
+    fn from(token: &str) -> Self {
+        Self::Static(token.into())
+    }
+}
+
+impl From<&String> for AccessToken {
+    fn from(token: &String) -> Self {
+        Self::Static(token.clone())
+    }
+}
+
+impl From<String> for AccessToken {
+    fn from(token: String) -> Self {
+        Self::Static(token)
+    }
+}
+
+impl From<TokenSource> for AccessToken {
+    fn from(source: TokenSource) -> Self {
+        Self::Source(source)
+    }
+}
+
 /// Construction performs no HTTP.
 pub struct ClientConfig {
     pub base_url: String,
-    pub access_token: String,
+    pub access_token: AccessToken,
     /// One deadline for a call: every attempt, the body and the retry delays.
     pub timeout: Duration,
     pub retry: RetryPolicy,
@@ -83,7 +124,7 @@ pub struct ClientConfig {
     pub pool: Option<Pool>,
 }
 impl ClientConfig {
-    pub fn new(base_url: impl Into<String>, access_token: impl Into<String>) -> Self {
+    pub fn new(base_url: impl Into<String>, access_token: impl Into<AccessToken>) -> Self {
         Self {
             base_url: base_url.into(),
             access_token: access_token.into(),
@@ -96,12 +137,12 @@ impl ClientConfig {
 }
 
 /// A base URL and an access token on a connection pool. Clones share the pool.
-/// The client never fetches, refreshes or caches a token.
+/// The client never fetches, refreshes or caches a token itself.
 #[derive(Clone)]
 pub struct Client {
     http: reqwest::Client,
     origin: Url,
-    access_token: HeaderValue,
+    token: Token,
     user_agent: Option<HeaderValue>,
     retry: RetryPolicy,
     timeout: Duration,
@@ -111,6 +152,12 @@ impl std::fmt::Debug for Client {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("Client").finish_non_exhaustive()
     }
+}
+
+#[derive(Clone)]
+enum Token {
+    Static(HeaderValue),
+    Source(TokenSource),
 }
 
 #[derive(Debug)]
@@ -133,6 +180,8 @@ pub enum Error {
     InvalidRequest,
     Timeout,
     Transport,
+    /// A token source failed or returned something that can't be sent.
+    Authentication(AuthError),
 }
 
 impl std::fmt::Display for Error {
@@ -141,6 +190,7 @@ impl std::fmt::Display for Error {
             Self::InvalidRequest => "invalid request",
             Self::Timeout => "request timed out",
             Self::Transport => "transport failed",
+            Self::Authentication(_) => "authentication failed",
         })
     }
 }
@@ -207,10 +257,14 @@ impl Client {
             Some(pool) => pool,
             None => Pool::new()?,
         };
+        let token = match access_token {
+            AccessToken::Static(token) => Token::Static(token_header(&token)?),
+            AccessToken::Source(source) => Token::Source(source),
+        };
         Ok(Self {
             http: pool.http,
             origin,
-            access_token: token_header(&access_token)?,
+            token,
             user_agent,
             retry,
             timeout,
@@ -221,14 +275,26 @@ impl Client {
     /// seller, a rotated token, or a restricted data token for a few calls.
     pub fn with_access_token(&self, access_token: &str) -> Result<Self, Error> {
         let mut view = self.clone();
-        view.access_token = token_header(access_token)?;
+        view.token = Token::Static(token_header(access_token)?);
         Ok(view)
     }
 
-    /// Runs `send` once per attempt under one deadline that also covers retry delays.
+    /// The token for one attempt. A source is asked every time and never retried.
+    async fn token(&self) -> Result<HeaderValue, Error> {
+        match &self.token {
+            Token::Static(token) => Ok(token.clone()),
+            Token::Source(source) => {
+                let token = source.token().await.map_err(Error::Authentication)?;
+                token_header(&token).map_err(|_| Error::Authentication(AuthError::InvalidResponse))
+            }
+        }
+    }
+
+    /// Runs `send` once per attempt, with that attempt's token, under one deadline
+    /// that also covers asking a token source and the retry delays.
     pub(crate) async fn run<F, Fut>(&self, method: &str, send: F) -> Result<Response, Error>
     where
-        F: Fn() -> Fut,
+        F: Fn(HeaderValue) -> Fut,
         Fut: Future<Output = Result<Response, Error>>,
     {
         let deadline = tokio::time::Instant::now()
@@ -237,7 +303,7 @@ impl Client {
         tokio::time::timeout_at(deadline, async {
             let mut retry_index = 0;
             loop {
-                let response = send().await?;
+                let response = send(self.token().await?).await?;
                 let Some(delay) =
                     self.retry
                         .retry_delay(method, response.status, &response.headers, retry_index)
@@ -259,6 +325,7 @@ impl Client {
         &self,
         request: &mut reqwest::Request,
         csv_names: &[&str],
+        token: &HeaderValue,
     ) -> Result<(), Error> {
         let url = request.url();
         if url.origin() != self.origin.origin()
@@ -305,7 +372,7 @@ impl Client {
                 request.url_mut().query_pairs_mut().extend_pairs(pairs);
             }
         }
-        self.authorize(request.headers_mut());
+        self.authorize(request.headers_mut(), token);
         request.headers_mut().insert(
             reqwest::header::ACCEPT,
             HeaderValue::from_static("application/json"),
@@ -315,8 +382,8 @@ impl Client {
 
     /// What only the Selling Partner API receives: the token, the time of this
     /// attempt and a wrapper's User-Agent. Never LWA or signed URLs.
-    fn authorize(&self, headers: &mut reqwest::header::HeaderMap) {
-        headers.insert("x-amz-access-token", self.access_token.clone());
+    fn authorize(&self, headers: &mut reqwest::header::HeaderMap, token: &HeaderValue) {
+        headers.insert("x-amz-access-token", token.clone());
         headers.insert("x-amz-date", amz_date());
         if let Some(user_agent) = &self.user_agent {
             headers.insert(reqwest::header::USER_AGENT, user_agent.clone());
@@ -370,10 +437,10 @@ impl Client {
                 .body(body);
         }
         let buffered = builder.build().map_err(|_| Error::InvalidRequest)?;
-        self.run(&method_name, || {
+        self.run(&method_name, |token| {
             let mut request = buffered.try_clone().expect("buffered body is repeatable");
             async move {
-                self.authorize(request.headers_mut());
+                self.authorize(request.headers_mut(), &token);
                 let response = self
                     .http
                     .execute(request)

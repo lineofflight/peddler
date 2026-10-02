@@ -106,7 +106,7 @@ module Peddler
     def test_a_token_that_is_not_utf8_never_reaches_a_message_or_cause
       error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", access_token: "seller-access-\xFF") }
 
-      assert_equal("invalid configuration", error.message)
+      assert_equal("invalid access token", error.message)
       assert_nil(error.cause)
       refute_match(/seller-access/, error.full_message(highlight: false))
 
@@ -117,6 +117,16 @@ module Peddler
         assert_nil(error.cause)
         refute_match(/seller-access/, error.full_message(highlight: false))
       end
+    end
+
+    def test_accepts_a_token_source_and_does_not_call_it_until_a_request
+      source = -> { raise "asked too early" }
+      client = Client.new(region: "eu-west-1", access_token: source)
+
+      assert_instance_of(Client, client.sandbox)
+      assert_instance_of(Client, client.with_access_token("token").with_access_token(source))
+      assert_respond_to(client, :orders)
+      assert_nil(config(region: "eu-west-1", access_token: source)["access_token"])
     end
 
     def test_construction_performs_no_network_access

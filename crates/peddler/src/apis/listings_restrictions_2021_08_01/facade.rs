@@ -80,7 +80,7 @@ pub async fn get_listings_restrictions(
     let raw = client
         .run(
             "GET",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -89,6 +89,7 @@ pub async fn get_listings_restrictions(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

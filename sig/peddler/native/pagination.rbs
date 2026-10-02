@@ -30,7 +30,7 @@ module Peddler
     attr_reader output: String
     attr_reader continuation: Continuation
     def initialize: (operation: String, input: String, output: String, ?continuation: Continuation) -> void
-    def pages: (Native::Engine engine, Hash[String | Symbol, untyped] arguments, ?max_pages: Integer?) -> Enumerator[Response, void]
+    def pages: (Native::engine engine, Hash[String | Symbol, untyped] arguments, ?max_pages: Integer?) -> Enumerator[Response, void]
 
     private
 

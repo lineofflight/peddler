@@ -5,11 +5,38 @@
 
 use futures_util::StreamExt;
 use reqwest::{Url, header::HeaderValue};
-use std::{fmt, time::Duration};
+use std::{fmt, future::Future, pin::Pin, sync::Arc, time::Duration};
 use tokio::time::Instant;
 
 mod lwa;
 pub use lwa::{LwaClient, LwaTokens};
+
+type TokenFuture = Pin<Box<dyn Future<Output = Result<String, AuthError>> + Send>>;
+
+/// Supplies an access token on request. A client built with one asks it before every
+/// attempt and keeps nothing it returns: caching and refreshing belong to the source.
+#[derive(Clone)]
+pub struct TokenSource(Arc<dyn Fn() -> TokenFuture + Send + Sync>);
+
+impl TokenSource {
+    pub fn new<F, Fut>(source: F) -> Self
+    where
+        F: Fn() -> Fut + Send + Sync + 'static,
+        Fut: Future<Output = Result<String, AuthError>> + Send + 'static,
+    {
+        Self(Arc::new(move || Box::pin(source())))
+    }
+
+    pub(crate) fn token(&self) -> TokenFuture {
+        (self.0)()
+    }
+}
+
+impl fmt::Debug for TokenSource {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("TokenSource").finish_non_exhaustive()
+    }
+}
 
 const BODY_LIMIT: usize = 64 * 1024;
 

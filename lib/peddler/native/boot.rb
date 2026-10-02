@@ -44,6 +44,7 @@ module Peddler
   end
 end
 
+require_relative "sourced_engine"
 require_relative "pagination"
 require_relative "apis"
 require_relative "documents"

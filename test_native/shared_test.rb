@@ -55,7 +55,9 @@ class SharedTest < NativeTest
   def test_fork_child_builds_fresh_shared_state_and_the_parent_keeps_its_own
     skip "fork unavailable" unless Process.respond_to?(:fork)
 
-    serve_keep_alive do |url, accepted, requests|
+    tokens = JSON.generate(access_token: "from-lwa", token_type: "bearer", expires_in: 3600)
+    responder = ->(_method, target, *) { [200, target == "/auth" ? tokens : "{}"] }
+    serve_keep_alive(responder: responder) do |url, accepted, requests|
       instance = client(url)
       lwa = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "#{url}/auth")
 
@@ -78,7 +80,9 @@ class SharedTest < NativeTest
         fresh = Peddler::Client.new(base_url: url, access_token: "child-secret")
         results << fresh.request("GET", "/child").status
         results << fresh.with_access_token("child-view").request("GET", "/child").status
-        instance = lwa = fresh = nil
+        fresh_lwa = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "#{url}/auth")
+        results << fresh_lwa.refresh(refresh_token: "refresh").access_token
+        instance = lwa = fresh = fresh_lwa = nil
         GC.start
         writer.write(JSON.generate(results))
         writer.close
@@ -87,16 +91,16 @@ class SharedTest < NativeTest
       writer.close
 
       assert(reader.wait_readable(10), "fork deadline")
-      assert_equal(["guarded", "guarded", "guarded", "guarded", 200, 200], JSON.parse(reader.read))
+      assert_equal(["guarded", "guarded", "guarded", "guarded", 200, 200, "from-lwa"], JSON.parse(reader.read))
       Process.wait(pid)
 
       assert_predicate($?, :success?)
       # The parent still works, on the connection it opened before the fork.
       assert_equal(200, instance.request("GET", "/parent").status)
-      seen = Array.new(4) { requests.pop }
+      seen = Array.new(5) { requests.pop }
 
-      assert_equal(["/parent", "/child", "/child", "/parent"], seen.map { |_, target, _, _| target })
-      assert_equal(["local-secret", "child-secret", "child-view", "local-secret"],
+      assert_equal(["/parent", "/child", "/child", "/auth", "/parent"], seen.map { |_, target, _, _| target })
+      assert_equal(["local-secret", "child-secret", "child-view", nil, "local-secret"],
         seen.map { |_, _, headers, _| headers["x-amz-access-token"] })
       # One connection for the parent and one for the child, which never used the inherited one.
       assert_equal(2, accepted.size)

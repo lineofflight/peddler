@@ -55,26 +55,19 @@ pub(crate) fn decode_status<T: DeserializeOwned>(
     serde_json::from_slice(&raw.body).map_err(DecodeError::Json)
 }
 
-/// Per-attempt context: Progenitor 0.15 drops empty query arrays and treats all
-/// request bodies as required. Adapt only these omissions in the shared pre hook.
+/// Per-attempt context: the token of this attempt, and what Progenitor 0.15 gets wrong.
+/// It drops empty query arrays and treats all request bodies as required. Adapt only
+/// these omissions in the shared pre hook.
 #[derive(Clone, Debug)]
 pub struct WireContext {
     pub client: Client,
+    pub token: reqwest::header::HeaderValue,
     pub empty_queries: Vec<&'static str>,
     pub omit_body: bool,
 }
-impl From<Client> for WireContext {
-    fn from(client: Client) -> Self {
-        Self {
-            client,
-            empty_queries: Vec::new(),
-            omit_body: false,
-        }
-    }
-}
 impl WireContext {
     pub fn prepare(&self, request: &mut reqwest::Request, csv: &[&str]) -> Result<(), Error> {
-        self.client.prepare_generated(request, csv)?;
+        self.client.prepare_generated(request, csv, &self.token)?;
         if self.omit_body {
             *request.body_mut() = None;
             for header in [
@@ -260,6 +253,15 @@ mod tests {
         net::TcpListener,
     };
 
+    fn context(client: Client) -> WireContext {
+        WireContext {
+            client,
+            token: reqwest::header::HeaderValue::from_static("attempt-secret"),
+            empty_queries: Vec::new(),
+            omit_body: false,
+        }
+    }
+
     #[tokio::test]
     async fn foreign_generated_origin_is_rejected_before_network_or_token_injection() {
         let home = TcpListener::bind("127.0.0.1:0").await.unwrap();
@@ -270,7 +272,7 @@ mod tests {
         )
         .unwrap();
         let base = format!("http://{}", foreign.local_addr().unwrap());
-        let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner.into());
+        let wire = wire::Client::new_with_client(&base, inner.http.clone(), context(inner));
         let mut request =
             reqwest::Request::new(reqwest::Method::GET, reqwest::Url::parse(&base).unwrap());
         let info = OperationInfo {
@@ -304,7 +306,7 @@ mod tests {
         let base = format!("http://{}", listener.local_addr().unwrap());
         let inner =
             Client::with_timeout(&base, "timeout-secret", Duration::from_millis(30)).unwrap();
-        let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner.into());
+        let wire = wire::Client::new_with_client(&base, inner.http.clone(), context(inner));
         let mut request =
             reqwest::Request::new(reqwest::Method::GET, reqwest::Url::parse(&base).unwrap());
         *request.timeout_mut() = Some(Duration::from_secs(20));

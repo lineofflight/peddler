@@ -66,7 +66,7 @@ pub async fn create_upload_destination_for_resource(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -75,6 +75,7 @@ pub async fn create_upload_destination_for_resource(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

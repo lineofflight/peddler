@@ -11,10 +11,18 @@ module Peddler
   # @example
   #   client = Peddler::Client.new(region: "eu-west-1", access_token: token)
   #   client.orders_v0.get_orders(marketplace_ids: Peddler::Marketplace.ids("UK"))
+  # @example A token source, asked before every request
+  #   client = Peddler::Client.new(region: "eu-west-1", access_token: -> {
+  #     Rails.cache.fetch(key, expires_in: 55.minutes) { lwa.refresh(refresh_token: token).access_token }
+  #   })
   class Client
     # Every client in a process shares one connection pool, so building one per job is cheap.
     #
-    # @param [String] access_token a Login with Amazon access token or a restricted data token
+    # The token may be a String or a source: anything that responds to `call` and returns the token. A source is
+    # called before each request the client starts (every operation, every page of a `*_pages` enumerator), from
+    # whichever thread makes the call, so it must be thread-safe. `wait_for_*` and the document helpers call it once.
+    #
+    # @param [String, #call] access_token a Login with Amazon access token or a restricted data token, or its source
     # @param [String] region the AWS region of the selling region, unless base_url is given
     # @param [String] base_url a custom destination instead of Amazon's endpoint for a region
     # @param [Boolean] sandbox whether to call Amazon's sandbox for the region
@@ -30,9 +38,12 @@ module Peddler
         @endpoint = endpoint = Endpoint.find(region)
         base_url = (@sandbox ? endpoint.sandbox : endpoint.production).to_s
       end
-      config = { base_url: base_url, access_token: access_token, timeout: timeout, retries: retries,
-        retry_delay: retry_delay, max_retry_delay: max_retry_delay, user_agent: Native.user_agent }
-      @engine = Native.engine(generate(config) || raise(ArgumentError, "invalid configuration"))
+      source = Native.token_source(access_token)
+      config = { base_url: base_url, access_token: source ? nil : Native.access_token(access_token),
+        timeout: timeout, retries: retries, retry_delay: retry_delay, max_retry_delay: max_retry_delay,
+        user_agent: Native.user_agent }
+      engine = Native.engine(generate(config) || raise(ArgumentError, "invalid configuration"))
+      @engine = source ? Native.sourced_engine(engine, source) : engine
     end
 
     # A view of this client that sends another access token
@@ -42,15 +53,12 @@ module Peddler
     # @example
     #   rdt = client.tokens.create_restricted_data_token(body: { restrictedResources: resources }).parse
     #   client.with_access_token(rdt.restricted_data_token).orders_v0.get_order_address(order_id: id)
-    # @param [String] access_token
+    # @param [String, #call] access_token a token or its source, as in {#initialize}
     # @return [Peddler::Client]
     def with_access_token(access_token)
-      unless access_token.is_a?(String) && access_token.valid_encoding? &&
-          (access_token.encoding == Encoding::UTF_8 || access_token.ascii_only?)
-        raise ArgumentError, "invalid access token"
-      end
-
-      view(@engine.with_access_token(access_token))
+      source = Native.token_source(access_token)
+      engine = @engine.with_access_token(source ? nil : Native.access_token(access_token))
+      view(source ? Native.sourced_engine(engine, source) : engine)
     end
 
     # A view of this client that calls Amazon's sandbox for its region

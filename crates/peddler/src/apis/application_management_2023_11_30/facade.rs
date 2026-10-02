@@ -29,7 +29,7 @@ pub async fn rotate_application_client_secret(
     let raw = client
         .run(
             "POST",
-            || {
+            |token| {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
@@ -38,6 +38,7 @@ pub async fn rotate_application_client_secret(
                         client.http.clone(),
                         WireContext {
                             client: client.clone(),
+                            token,
                             empty_queries,
                             omit_body,
                         },

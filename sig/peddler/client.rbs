@@ -1,12 +1,12 @@
 module Peddler
   class Client
-    @engine: Native::Engine
+    @engine: Native::engine
     @endpoint: Endpoint?
     @sandbox: bool
     @sandbox_view: Client?
 
-    def initialize: (access_token: String, ?region: String?, ?base_url: String?, ?sandbox: boolish, ?timeout: Numeric, ?retries: Integer, ?retry_delay: Numeric, ?max_retry_delay: Numeric) -> void
-    def with_access_token: (String access_token) -> Client
+    def initialize: (access_token: String | Native::_TokenSource, ?region: String?, ?base_url: String?, ?sandbox: boolish, ?timeout: Numeric, ?retries: Integer, ?retry_delay: Numeric, ?max_retry_delay: Numeric) -> void
+    def with_access_token: (String | Native::_TokenSource access_token) -> Client
     def sandbox: () -> Client
     def sandbox?: () -> bool
     def pages: (Pagination pagination, Hash[String | Symbol, untyped] arguments, ?max_pages: Integer?) -> Enumerator[Response, void]
@@ -15,6 +15,6 @@ module Peddler
     private
 
     def generate: (untyped value) -> String?
-    def view: (Native::Engine engine, ?sandbox: bool) -> Client
+    def view: (Native::engine engine, ?sandbox: bool) -> Client
   end
 end

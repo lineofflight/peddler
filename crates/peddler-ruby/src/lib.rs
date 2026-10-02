@@ -1,7 +1,11 @@
 //! Owned-data Ruby boundary. Only the blocking callback runs without the GVL.
 
 use magnus::{Error, RModule, RString, Ruby, function, method, prelude::*};
-use peddler::{Client, ClientConfig, Pool, Request, Response, policy::RetryPolicy};
+use peddler::{
+    AccessToken, Client, ClientConfig, Pool, Request, Response,
+    auth::{AuthError, TokenSource},
+    policy::RetryPolicy,
+};
 use std::{
     mem::ManuallyDrop,
     sync::{Arc, Mutex},
@@ -169,6 +173,7 @@ fn transport_error(ruby: &Ruby, error: peddler::Error) -> Error {
         peddler::Error::InvalidRequest => Error::new(ruby.exception_arg_error(), "invalid request"),
         peddler::Error::Timeout => native_error(ruby, "TimeoutError", "request timed out"),
         peddler::Error::Transport => native_error(ruby, "TransportError", "transport failed"),
+        peddler::Error::Authentication(error) => lwa::error(ruby, error),
     }
 }
 
@@ -184,7 +189,7 @@ impl Engine {
             shared(ruby)?,
             Config {
                 base_url,
-                access_token,
+                access_token: Some(access_token),
                 timeout,
                 retries: 0,
                 retry_delay: default_delay(),
@@ -226,7 +231,13 @@ impl Engine {
         Self::view(ruby, engine, |config| config.base_url = base_url)
     }
 
-    fn with_access_token(ruby: &Ruby, engine: &Self, access_token: String) -> Result<Self, Error> {
+    /// Without a token the view is a template: Ruby asks a token source before each
+    /// request and sends it through a further view.
+    fn with_access_token(
+        ruby: &Ruby,
+        engine: &Self,
+        access_token: Option<String>,
+    ) -> Result<Self, Error> {
         Self::view(ruby, engine, |config| config.access_token = access_token)
     }
 
@@ -322,7 +333,9 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
 #[serde(deny_unknown_fields)]
 struct Config {
     base_url: String,
-    access_token: String,
+    /// Absent when Ruby holds a token source, which is never called from Rust.
+    #[serde(default)]
+    access_token: Option<String>,
     #[serde(default = "default_timeout")]
     timeout: f64,
     #[serde(default)]
@@ -346,7 +359,12 @@ impl Config {
     fn client(&self, pool: &Pool) -> Result<Client, peddler::Error> {
         let seconds =
             |value| Duration::try_from_secs_f64(value).map_err(|_| peddler::Error::InvalidRequest);
-        let mut config = ClientConfig::new(self.base_url.clone(), self.access_token.clone());
+        let token = match &self.access_token {
+            Some(token) => AccessToken::Static(token.clone()),
+            // A request on the template itself has no token to send and fails closed.
+            None => TokenSource::new(|| async { Err(AuthError::InvalidConfig) }).into(),
+        };
+        let mut config = ClientConfig::new(self.base_url.clone(), token);
         config.timeout = seconds(self.timeout)?;
         config.retry = RetryPolicy {
             max_retries: self.retries,

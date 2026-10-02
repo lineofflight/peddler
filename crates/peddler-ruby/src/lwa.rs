@@ -40,7 +40,7 @@ fn auth_error(ruby: &Ruby, error: AuthError) -> Error {
     }
 }
 
-fn error(ruby: &Ruby, error: AuthError) -> Error {
+pub(super) fn error(ruby: &Ruby, error: AuthError) -> Error {
     match error {
         AuthError::InvalidConfig => Error::new(ruby.exception_arg_error(), error.to_string()),
         AuthError::Timeout => native_error(ruby, "TimeoutError", &error.to_string()),
