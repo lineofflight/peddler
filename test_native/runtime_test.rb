@@ -175,6 +175,19 @@ class RuntimeTest < NativeTest
     end
   end
 
+  def test_rebased_engine_keeps_its_credentials_and_targets_the_new_origin
+    engine = client("http://127.0.0.1:1").instance_variable_get(:@engine)
+
+    serve(handler: lambda { |socket, _first, headers, _body|
+      assert_equal("local-secret", headers["x-amz-access-token"])
+      respond(socket)
+    }) do |url|
+      assert_equal(200, engine.with_base_url(url).request("GET", "/", [], nil).first)
+    end
+    error = assert_raises(ArgumentError) { engine.with_base_url("https://user:local-secret@example.com") }
+    refute_match(/local-secret/, error.message)
+  end
+
   def test_manually_constructed_response_uses_rust_status_classification
     response = Peddler::Response.new(404, [["x-amzn-requestid", "manual-id"]], '{"errors":[{"code":"NotFound"}]}')
     error = assert_raises(Peddler::Error) { response.raise_for_status! }
