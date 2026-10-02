@@ -43,6 +43,7 @@ module Peddler
 
       def lead: (Refresh refresh) -> String
       def follow: (Refresh refresh) -> String
+      def replica: (StandardError error) -> StandardError
       def now: () -> Float
     end
 

@@ -239,6 +239,63 @@ class LwaTokenSourceTest < NativeTest
     assert_equal(["access"], later.uniq)
   end
 
+  def test_each_waiter_raises_an_error_of_its_own
+    gate = Queue.new
+    serve_lwa(gate: gate, rejections: ["invalid_grant"]) do |url, exchanges, _requests|
+      source = lwa(url).token_source(refresh_token: "sensitive-refresh")
+      rescued = lambda do
+        source.call
+      rescue Peddler::AuthenticationError => error
+        error
+      end
+      leader = Thread.new(&rescued)
+      Timeout.timeout(5) { sleep(0.01) while exchanges.empty? }
+      # This waiter calls while it handles a failure of its own, which Ruby attaches as the cause of what it raises.
+      waiter = Thread.new do
+        raise IOError, "the waiter's own failure"
+      rescue IOError
+        rescued.call
+      end
+      wait_until_asleep([leader, waiter])
+      gate << true
+      led, waited = leader.value, waiter.value
+
+      assert_equal(1, exchanges.size)
+      refute_same(led, waited)
+      assert_nil(led.cause, "a waiter changed the cause the leader's caller sees")
+      assert_instance_of(IOError, waited.cause)
+      assert_equal([led.class, led.message, led.status, led.code], [waited.class, waited.message, waited.status, waited.code])
+      assert_equal(["invalid_grant", 401], [waited.code, waited.status])
+      refute_equal(led.backtrace, waited.backtrace)
+    ensure
+      10.times { gate << true }
+    end
+  end
+
+  def test_a_waiter_gets_its_own_transport_error
+    started = Queue.new
+    serve(handler: lambda { |socket, *|
+      started << true
+      socket.wait_readable(5)
+    }) do |url|
+      source = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: url, timeout: 0.3).token_source(refresh_token: "refresh")
+      rescued = lambda do
+        source.call
+      rescue Peddler::TransportError => error
+        error
+      end
+      leader = Thread.new(&rescued)
+      Timeout.timeout(3) { started.pop }
+      waiter = Thread.new(&rescued)
+      led, waited = leader.value, waiter.value
+
+      assert_instance_of(Peddler::TimeoutError, led)
+      assert_instance_of(Peddler::TimeoutError, waited)
+      refute_same(led, waited)
+      assert_equal(led.message, waited.message)
+    end
+  end
+
   def test_inspect_shows_no_secret_and_arguments_are_checked
     serve_lwa do |url, _exchanges, _requests|
       helper = lwa(url)

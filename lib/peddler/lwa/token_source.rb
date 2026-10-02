@@ -6,7 +6,8 @@ module Peddler
     #
     # Build one with {Peddler::LWA#token_source} and pass it to {Peddler::Client} as `access_token:`. It refreshes
     # only when called, on the calling thread, and callers that arrive during a refresh wait for it and share its
-    # result. A failed refresh is not kept: the callers waiting on it get its error and the next call tries again.
+    # result. A failed refresh is not kept: the callers waiting on it raise the same error, each an object of its
+    # own, and the next call tries again.
     #
     # It is in-process only. Several processes each refresh for themselves, so pass the client a source of your own,
     # such as a lambda around a shared cache, when they should share a token. Create it after `fork`: one created
@@ -79,10 +80,18 @@ module Peddler
       def follow(refresh)
         @mutex.synchronize { @finished.wait(@mutex) until refresh.done }
         error = refresh.error
-        raise error if error
+        raise replica(error) if error
 
         # The thread that was refreshing was interrupted before it had a result, so ask again.
         refresh.token || call
+      end
+
+      # A waiter raises an error of its own, so its backtrace and cause are its own and nobody else's change.
+      def replica(error)
+        case error
+        when AuthenticationError then error.class.new(error.message, error.status, code: error.code)
+        else error.class.new(error.message)
+        end
       end
 
       def now
