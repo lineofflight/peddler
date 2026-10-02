@@ -178,6 +178,58 @@ class RuntimeTest < NativeTest
     end
   end
 
+  def test_grantless_client_posts_client_credentials_and_sends_the_returned_token
+    exchanges = Queue.new
+    serve(handler: lambda { |socket, first, _headers, body|
+      form = URI.decode_www_form(body).to_h
+
+      assert_equal("POST", first[0])
+      assert_equal(["client_credentials", "sellingpartnerapi::notifications"], form.values_at("grant_type", "scope"))
+      assert_equal(["grantless-id", "grantless-secret"], form.values_at("client_id", "client_secret"))
+      refute(form.key?("refresh_token"))
+      exchanges << true
+      respond(socket, body: JSON.generate(access_token: "grantless", token_type: "bearer", expires_in: 3600))
+    }) do |lwa|
+      serve(count: 2, handler: lambda { |socket, _first, headers, _body|
+        assert_equal("grantless", headers["x-amz-access-token"])
+        respond(socket)
+      }) do |url|
+        instance = Peddler::Client.new(base_url: url, client_id: "grantless-id", client_secret: "grantless-secret",
+          scope: "sellingpartnerapi::notifications", lwa_endpoint: lwa)
+
+        assert_equal(200, instance.notifications_v1.get_destinations.status)
+        assert_equal(200, instance.request("GET", "/").status)
+      end
+    end
+
+    assert_equal(1, exchanges.size)
+  end
+
+  def test_sandbox_view_is_built_once_and_shares_one_token_exchange
+    exchanges = Queue.new
+    serve(handler: lambda { |socket, *|
+      exchanges << true
+      respond(socket, body: JSON.generate(access_token: "sandbox-token", token_type: "bearer", expires_in: 3600))
+    }) do |lwa|
+      serve(count: 2, handler: lambda { |socket, _first, headers, _body|
+        assert_equal("sandbox-token", headers["x-amz-access-token"])
+        respond(socket)
+      }) do |url|
+        # A region whose sandbox host is the loopback server; production is never contacted.
+        endpoint = Struct.new(:production, :sandbox).new(URI("http://127.0.0.1:1"), URI(url))
+        instance = Peddler::Endpoint.stub(:find, endpoint) do
+          Peddler::Client.new(region: "eu-west-1", client_id: "dummy", client_secret: "dummy-secret",
+            refresh_token: "dummy-refresh", lwa_endpoint: lwa)
+        end
+
+        assert_same(instance.sandbox, instance.sandbox)
+        2.times { assert_equal(200, instance.sandbox.request("GET", "/").status) }
+      end
+    end
+
+    assert_equal(1, exchanges.size)
+  end
+
   def test_rebased_engine_keeps_its_credentials_and_targets_the_new_origin
     engine = client("http://127.0.0.1:1").instance_variable_get(:@engine)
 

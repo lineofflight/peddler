@@ -53,7 +53,8 @@ module Peddler
       endpoint = @endpoint
       raise ArgumentError, "cannot use sandbox with a custom base_url" unless endpoint
 
-      view(@engine.with_base_url(endpoint.sandbox.to_s), sandbox: true)
+      # One view per client, so its token and rate limit state carry across calls.
+      @sandbox_view ||= view(@engine.with_base_url(endpoint.sandbox.to_s), sandbox: true)
     end
 
     # @return [Boolean]

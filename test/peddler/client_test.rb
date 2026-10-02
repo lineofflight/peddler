@@ -32,6 +32,7 @@ module Peddler
       assert_instance_of(Client, view)
       refute_same(client, view)
       assert_same(view, view.sandbox)
+      assert_same(view, client.sandbox)
     end
 
     def test_restricted_views_keep_the_sandbox_setting
