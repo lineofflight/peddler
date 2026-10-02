@@ -4,8 +4,6 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "http", ENV["HTTP_VERSION"] if ENV["HTTP_VERSION"]
-
 gem "activesupport"
 gem "graphql"
 gem "hana"
@@ -29,8 +27,6 @@ gem "rubocop-rake"
 gem "rubocop-shopify"
 gem "ruby-lsp"
 gem "steep"
-gem "vcr"
-gem "webmock"
 gem "yard"
 
 # For exploratory code
