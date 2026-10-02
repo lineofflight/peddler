@@ -9,29 +9,36 @@ class WorkflowsTest < NativeTest
     31, 139, 8, 0, 0, 0, 0, 0, 2, 255, 171, 86, 170, 80, 178, 50, 172, 229, 2, 0, 21, 240, 49, 80, 8, 0, 0, 0,
   ].pack("C*")
 
-  # Unbounded loopback server. The handler receives the socket, request line parts, headers,
-  # body and base URL. Every request is logged as [path, headers, body].
+  # Loopback server with the shared fixture's deadlines: 5s per connection, 10s of accepting.
+  # The handler receives the socket, request line parts, headers, body and base URL. Every
+  # request is logged as [path, headers, body, verb].
   def route_server(handler)
     listener = TCPServer.new("127.0.0.1", 0)
     base = "http://127.0.0.1:#{listener.addr[1]}"
     log = []
     lock = Mutex.new
     workers = []
+    stopping = false
     acceptor = Thread.new do
-      loop do
-        workers << Thread.new(listener.accept) do |connection|
-          request_line = connection.gets("\r\n")
-          next unless request_line
+      accept_deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + 10
+      until stopping || Process.clock_gettime(Process::CLOCK_MONOTONIC) > accept_deadline
+        next unless listener.wait_readable(0.1)
 
-          first = request_line.split
-          headers = {}
-          while (line = connection.gets("\r\n")) != "\r\n"
-            key, value = line.split(":", 2)
-            headers[key.downcase] = value.strip
+        workers << Thread.new(listener.accept) do |connection|
+          Timeout.timeout(5) do
+            request_line = connection.gets("\r\n")
+            next unless request_line
+
+            first = request_line.split
+            headers = {}
+            while (line = connection.gets("\r\n")) != "\r\n"
+              key, value = line.split(":", 2)
+              headers[key.downcase] = value.strip
+            end
+            body = connection.read(headers.fetch("content-length", "0").to_i)
+            lock.synchronize { log << [first[1], headers, body, first[0]] }
+            handler.call(connection, first, headers, body, base)
           end
-          body = connection.read(headers.fetch("content-length", "0").to_i)
-          lock.synchronize { log << [first[1], headers, body, first[0]] }
-          handler.call(connection, first, headers, body, base)
         rescue Errno::EPIPE, Errno::ECONNRESET
           nil
         ensure
@@ -43,6 +50,8 @@ class WorkflowsTest < NativeTest
     end
     yield(base, -> { lock.synchronize { log.dup } })
   ensure
+    stopping = true
+    acceptor&.join(2)
     acceptor&.kill
     workers&.each(&:kill)
     workers&.each(&:join)
@@ -257,10 +266,24 @@ class WorkflowsTest < NativeTest
 
   def test_thread_kill_releases_the_gvl_stops_polling_and_the_client_recovers
     polls = Queue.new
-    route_server(->(socket, *) { polls << true && respond(socket, body: report("IN_PROGRESS")) }) do |url, requests|
+    status = "IN_PROGRESS"
+    handler = lambda do |socket, *|
+      polls << true
+      respond(socket, body: report(status))
+    end
+    route_server(handler) do |url, requests|
       instance = client(url)
       thread = Thread.new { instance.wait_for_report("r1", interval: 0.02, timeout: 30) }
-      polls.pop
+      thread.report_on_exception = false
+      # A wait that dies before polling fails here with its own error instead of hanging.
+      polled = nil
+      50.times do
+        break if (polled = polls.pop(timeout: 0.1))
+
+        thread.value unless thread.alive?
+      end
+
+      assert(polled, "wait never polled")
       ticks = 0
       ticker = Thread.new do
         20.times do
@@ -278,9 +301,11 @@ class WorkflowsTest < NativeTest
       sleep(0.2)
 
       assert_equal(stopped, requests.call.size)
-    end
-    route_server(->(socket, *) { respond(socket, body: report("DONE")) }) do |url, _|
-      assert_equal("DONE", client(url).wait_for_report("r1", interval: 0.01, timeout: 2).json.fetch("processingStatus"))
+
+      status = "DONE"
+      response = instance.wait_for_report("r1", interval: 0.01, timeout: 2)
+
+      assert_equal("DONE", response.json.fetch("processingStatus"))
     end
   end
 

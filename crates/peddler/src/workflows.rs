@@ -468,6 +468,8 @@ where
     }
     let deadline = deadline(options.timeout)?;
     loop {
+        // A late timer wake must not start one more poll after the deadline.
+        remaining(deadline)?;
         let typed = timeout_at(deadline, fetch())
             .await
             .map_err(|_| WorkflowError::Timeout)?
