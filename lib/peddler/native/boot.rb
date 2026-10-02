@@ -19,8 +19,7 @@ module Peddler
         LwaEngine.new(client_id, client_secret, timeout, endpoint)
       end
 
-      # Identifies the gem to the Selling Partner API, in the form v5 sent. LWA and signed URLs get the same
-      # without the host name.
+      # Identifies the gem to the Selling Partner API. LWA and signed URLs get the same without the host name.
       #
       # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
       def user_agent
