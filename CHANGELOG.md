@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file. This projec
 
 - Add the three Login with Amazon grants to `Peddler::LWA` and the Rust `LwaClient`: `refresh`, `client_credentials` and `exchange_authorization_code`. Each makes one bounded, cancellable request, keeps nothing and returns tokens that redact themselves in `inspect`
 - Add `Peddler::Client#with_access_token` and the Rust `Client::with_access_token`: a view that sends another token on the same connection pool, for another seller, a rotated token or a restricted data token
+- Accept a token source as `access_token:`: anything that responds to `call` and returns the token, such as a lambda around your cache. The client calls it before each request it starts, including each page of a `*_pages` enumerator, and keeps nothing it returns. `wait_for_*` and the document ID helpers call it once. The Rust client takes a `TokenSource` and asks it before every attempt
+- Add `Peddler::AuthenticationError#code`: what Login with Amazon names as the problem (`invalid_client`, `invalid_grant`, `invalid_scope` and so on), next to `status`. The Rust `AuthError::Rejected` carries the same code
 
 - Prepare native packaging: a source gem that compiles the Rust extension at install time and fat platform gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu` (Ruby 3.3, 3.4 and 4.0), built with `rb_sys` and rake-compiler; nothing is published yet. The loader selects the build for the running Ruby or fails clearly; see [native extension](README.md#native-extension)
 - Prepare the `peddler` Rust crate (0.1.0) for crates.io with MIT metadata and an explicit package list; it builds offline from the extracted package without Node, Ruby or the spec checkout
