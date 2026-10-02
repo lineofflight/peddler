@@ -431,6 +431,59 @@ async fn rejection_names_the_problem_and_keeps_nothing_else() {
     task.await.unwrap();
 }
 
+/// Answers 401 with a body that starts and never finishes, then holds the socket.
+async fn stalled_rejection() -> (String, mpsc::Receiver<()>, JoinHandle<()>) {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (sent, arrived) = mpsc::channel(1);
+    let task = tokio::spawn(async move {
+        let (mut socket, _) = listener.accept().await.unwrap();
+        read_request(&mut socket).await;
+        socket
+            .write_all(b"HTTP/1.1 401 Test\r\nContent-Length: 1000\r\n\r\n{\"error\":\"invalid_cl")
+            .await
+            .unwrap();
+        sent.send(()).await.unwrap();
+        let mut byte = [0];
+        let _ = socket.read(&mut byte).await;
+    });
+    (origin, arrived, task)
+}
+
+#[tokio::test]
+async fn rejection_with_a_stalled_body_keeps_its_status_and_gives_up_on_the_code() {
+    let rejected = AuthError::Rejected {
+        status: 401,
+        code: None,
+    };
+    // The body is given about 2 seconds, far less than this call's 30.
+    let (origin, mut arrived, task) = stalled_rejection().await;
+    let client = lwa(&origin, Duration::from_secs(30));
+    let call = tokio::spawn(async move { client.refresh("private-input").await });
+    arrived.recv().await.unwrap();
+    tokio::time::sleep(Duration::from_millis(50)).await;
+    tokio::time::pause();
+    tokio::time::advance(Duration::from_millis(2100)).await;
+    tokio::time::resume();
+    let result = tokio::time::timeout(Duration::from_secs(5), call).await;
+    let result = result.expect("the stalled body held the call").unwrap();
+    assert_eq!(result.unwrap_err(), rejected);
+    task.abort();
+    // The body never gets past the call's own deadline, and the status still survives.
+    let (origin, _arrived, task) = stalled_rejection().await;
+    let started = std::time::Instant::now();
+    let result = lwa(&origin, Duration::from_millis(300))
+        .client_credentials("scope")
+        .await;
+    assert_eq!(result.unwrap_err(), rejected);
+    assert!(
+        started.elapsed() < Duration::from_millis(1500),
+        "{:?}",
+        started.elapsed()
+    );
+    task.abort();
+}
+
 #[tokio::test]
 async fn body_timeout_and_cancellation_close_socket_then_recover() {
     for (grant, cancel) in [

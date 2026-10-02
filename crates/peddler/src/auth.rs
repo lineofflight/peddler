@@ -44,6 +44,9 @@ impl fmt::Debug for TokenSource {
 }
 
 const BODY_LIMIT: usize = 64 * 1024;
+/// How long the body of a rejection may take. The status is known by then, and the
+/// body only adds the code.
+const REJECTION_BODY_TIMEOUT: Duration = Duration::from_secs(2);
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum AuthError {
@@ -129,11 +132,15 @@ fn check_lifetime(seconds: u64, start: Instant) -> Result<(), AuthError> {
 
 async fn read_response<T: serde::de::DeserializeOwned>(
     response: reqwest::Response,
+    deadline: Instant,
 ) -> Result<T, AuthError> {
     let status = response.status();
     if !status.is_success() {
-        // Nothing else of a rejection is kept: not the description, not the body.
-        let code = read_body(response).await.ok().and_then(error_code);
+        // Nothing else of a rejection is kept: not the description, not the body. A body
+        // that stalls, also up to the call's own deadline, costs the code and not the status.
+        let limit = deadline.min(Instant::now() + REJECTION_BODY_TIMEOUT);
+        let body = tokio::time::timeout_at(limit, read_body(response)).await;
+        let code = body.ok().and_then(Result::ok).and_then(error_code);
         return Err(AuthError::Rejected {
             status: status.as_u16(),
             code,

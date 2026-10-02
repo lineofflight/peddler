@@ -149,7 +149,10 @@ impl LwaClient {
     /// One POST under one deadline that also covers the body. Never retried.
     async fn grant(&self, fields: &[(&str, &str)]) -> Result<LwaTokens, AuthError> {
         let start = Instant::now();
-        tokio::time::timeout(self.config.timeout, async {
+        let deadline = start
+            .checked_add(self.config.timeout)
+            .ok_or(AuthError::InvalidConfig)?;
+        tokio::time::timeout_at(deadline, async {
             let response = self
                 .config
                 .http
@@ -159,7 +162,7 @@ impl LwaClient {
                 .send()
                 .await
                 .map_err(transport)?;
-            let tokens: LwaTokens = read_response(response).await?;
+            let tokens: LwaTokens = read_response(response, deadline).await?;
             if !tokens.token_type.eq_ignore_ascii_case("bearer") {
                 return Err(AuthError::InvalidResponse);
             }
