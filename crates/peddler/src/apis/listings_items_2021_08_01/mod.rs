@@ -6,4 +6,5 @@ pub mod models;
 pub(crate) mod metadata;
 #[allow(dead_code, unused_imports, clippy::all)]
 pub(crate) mod wire;
-pub use crate::operation::listings::*;
+mod facade;
+pub use facade::*;

@@ -1,29 +1,3 @@
-/// Selected operations retained until full wire generation.
-pub struct ApiSpec {
-    pub module: &'static str,
-    pub source: &'static str,
-    pub operation: &'static str,
-    pub facade: &'static str,
-}
-
-pub const WIRE_APIS: &[ApiSpec] = &[
-    ApiSpec {
-        module: "catalog_items_2022_04_01",
-        operation: "getCatalogItem",
-        facade: "catalog",
-        source: "catalog-items-api-model/catalogItems_2022-04-01.json",
-    },
-    ApiSpec {
-        module: "listings_items_2021_08_01",
-        operation: "patchListingsItem",
-        facade: "listings",
-        source: "listings-items-api-model/listingsItems_2021-08-01.json",
-    },
-];
-
-// Compatibility for selected wire-client callers. Model generation uses ALL_APIS.
-pub use WIRE_APIS as APIS;
-
 /// Pinned API model inventory, using the established Ruby family/version names.
 pub struct ModelSpec {
     pub source: &'static str,

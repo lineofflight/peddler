@@ -3,3 +3,8 @@
 // Source: external-fulfillment/externalFulfillmentReturns_2024-09-11.json
 
 pub mod models;
+pub(crate) mod metadata;
+#[allow(dead_code, unused_imports, clippy::all)]
+pub(crate) mod wire;
+mod facade;
+pub use facade::*;

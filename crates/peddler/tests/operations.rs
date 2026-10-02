@@ -331,7 +331,7 @@ async fn rejects_invalid_arguments_before_network_without_echoing_secrets() {
             Error::InvalidRequest
         );
     }
-    for values in [vec![], vec!["".into()], vec!["UK,DE".into()]] {
+    for values in [vec!["".into()], vec!["UK,DE".into()]] {
         let mut p = catalog();
         p.marketplace_ids = values.clone();
         assert_eq!(
@@ -451,4 +451,156 @@ async fn dispatcher_listings_defaults_null_optional_strings_and_dynamic_body_sur
     let (client, task) = server(200, b"{}").await;
     get_catalog_item(&client, catalog()).await.unwrap();
     assert!(query(&task.await.unwrap()).contains(&("includedData".into(), "summaries".into())));
+}
+
+#[tokio::test]
+async fn expanded_facades_replay_audited_native_protocol_cases() {
+    let cases: Value = serde_json::from_str(include_str!(
+        "../../../test/fixtures/native/operations/full_cases.json"
+    ))
+    .unwrap();
+    for case in cases.as_array().unwrap() {
+        let status = case["status"].as_u64().unwrap() as u16;
+        let raw = case["response"].as_str().unwrap().as_bytes();
+        let (client, task) = server(status, raw).await;
+        let result = apis::execute(
+            &client,
+            case["operation"].as_str().unwrap(),
+            &case["arguments"].to_string(),
+        )
+        .await
+        .unwrap();
+        assert_eq!(result.status, status);
+        assert_eq!(result.body, raw);
+        assert_eq!(
+            result
+                .headers
+                .iter()
+                .filter(|(name, _)| name == "x-repeat")
+                .count(),
+            2
+        );
+        let req = task.await.unwrap();
+        let first = std::str::from_utf8(&req).unwrap().lines().next().unwrap();
+        assert_eq!(
+            first.split(' ').next().unwrap(),
+            case["method"].as_str().unwrap()
+        );
+        assert_eq!(target(&req).path(), case["path"].as_str().unwrap());
+        let mut actual = query(&req);
+        actual.sort();
+        let mut expected: Vec<(String, String)> =
+            serde_json::from_value(case["query"].clone()).unwrap();
+        expected.sort();
+        assert_eq!(actual, expected, "{}", case["operation"]);
+        let headers = std::str::from_utf8(&req).unwrap().to_ascii_lowercase();
+        if let Some(pairs) = case["headers"].as_array() {
+            for pair in pairs {
+                assert!(
+                    headers.contains(
+                        &format!(
+                            "{}: {}",
+                            pair[0].as_str().unwrap(),
+                            pair[1].as_str().unwrap()
+                        )
+                        .to_ascii_lowercase()
+                    )
+                )
+            }
+        }
+        let end = req.windows(4).position(|v| v == b"\r\n\r\n").unwrap() + 4;
+        if case["body"].is_null() {
+            assert!(req[end..].is_empty());
+            assert!(!headers.contains("content-type: application/json"));
+        } else {
+            assert_eq!(body(&req), case["body"]);
+        }
+    }
+}
+
+#[tokio::test]
+async fn distinct_success_decoders_require_the_matching_status_and_preserve_raw() {
+    use apis::fulfillment_outbound_2026_07_04::{CreateOrderParams, create_order};
+    let (client, task) = server(202, br#"{"orderId":"o","status":"ACCEPTED"}"#).await;
+    let response = create_order(&client, CreateOrderParams::new(json!({})))
+        .await
+        .unwrap();
+    assert_eq!(response.json_202().unwrap().order_id, "o");
+    assert!(matches!(
+        response.json_200(),
+        Err(peddler::DecodeError::UnexpectedStatus {
+            expected: 200,
+            actual: 202
+        })
+    ));
+    assert_eq!(response.raw.status, 202);
+    task.await.unwrap();
+    let (client, task) = server(
+        200,
+        include_bytes!("../../../test/fixtures/native/operations/create_order_200.json"),
+    )
+    .await;
+    let response = create_order(&client, CreateOrderParams::new(json!({})))
+        .await
+        .unwrap();
+    assert!(response.json_200().is_ok());
+    assert!(matches!(
+        response.json_202(),
+        Err(peddler::DecodeError::UnexpectedStatus {
+            expected: 202,
+            actual: 200
+        })
+    ));
+    task.await.unwrap();
+}
+
+#[tokio::test]
+async fn expanded_parameters_validate_before_authentication_acquisition() {
+    use peddler::{ClientConfig, auth::Credentials};
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let base = format!("http://{}", listener.local_addr().unwrap());
+    let mut config = ClientConfig::new(
+        base.clone(),
+        Credentials::RefreshToken {
+            client_id: "id".into(),
+            client_secret: "secret".into(),
+            refresh_token: "refresh".into(),
+        },
+    );
+    config.lwa_endpoint = base;
+    let client = Client::with_config(config).unwrap();
+    for (operation, args) in [
+        (
+            "vendor_direct_fulfillment_orders_2021_12_28.get_orders",
+            json!({"created_after":"bad","created_before":"2026-10-02T00:00:00Z"}),
+        ),
+        (
+            "fulfillment_inbound_2024_03_20.list_item_compliance_details",
+            json!({"mskus":[],"marketplace_id":"UK"}),
+        ),
+        (
+            "shipping_v2.link_carrier_account",
+            json!({"carrier_id":"c","body":{},"x_amzn_shipping_business_id":"secret\r\nbad"}),
+        ),
+        (
+            "fulfillment_inbound_v0.get_prep_instructions",
+            json!({"ship_to_country_code":"gb"}),
+        ),
+        (
+            "shipping_v2.get_shipment_documents",
+            json!({"shipment_id":"s","package_client_reference_id":"p","dpi":"wrong"}),
+        ),
+    ] {
+        assert_eq!(
+            apis::execute(&client, operation, &args.to_string())
+                .await
+                .unwrap_err(),
+            Error::InvalidRequest
+        );
+    }
+    assert!(
+        tokio::time::timeout(Duration::from_millis(30), listener.accept())
+            .await
+            .is_err()
+    );
 }

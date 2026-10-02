@@ -1,13 +1,12 @@
-# Rust core and native Ruby preview
+# Rust SDK and native Ruby APIs
 
-Local-development preview of Peddler's next major release. The shared Rust SDK owns transport, authentication, request policy and 2 operations; Ruby calls the same Rust dispatcher through a thin native binding. Both APIs may change. Workspace crates are version 0.1.0 with publishing disabled.
+Peddler's next major release implementation. The shared Rust SDK owns transport, authentication, request policy and all 384 operations across 70 API versions; Ruby calls the same Rust dispatcher through a thin native binding. Workspace crates are version 0.1.0 with publishing disabled.
 
 ## Implemented scope
 
-- Catalog Items 2022-04-01: `getCatalogItem`.
-- Listings Items 2021-08-01: `patchListingsItem`.
+All 70 namespaces and 2620 named API definitions at the repository pin are generated. Every operation has a concrete `*Params` struct and a public async function. Rust dispatch accepts `api_version.snake_case_operation`; Ruby exposes real keyword methods on 70 `Peddler::Native` classes, with version accessors and 58 latest-family aliases on `Peddler::Client`.
 
-Each operation has 1 referenced success model. Typify generates the 74 models from these 2 API definition sets; Progenitor generates private wire clients. Thin ergonomic Rust and Ruby facades are handwritten. Other operations in those definitions are not exposed. Broader corpus probes are research evidence, not production coverage.
+The committed [operation inventory](../peddler-codegen/operation-inventory.json) records every source, key, method, path, parameter and success status. Shipping V2's duplicate upstream ID keeps POST as `link_carrier_account` and exposes PUT as `link_carrier_account_put`.
 
 Ordinary core builds use committed output and need no generator, Node, Ruby or spec checkout:
 
@@ -58,9 +57,24 @@ let params = listings::PatchListingsItemParams::new(
 let response = listings::patch_listings_item(&client, params).await?;
 ```
 
-Dynamic bodies retain unknown members, empty arrays and nulls by JSON meaning, rather than original whitespace or key order. Typed models accept unknown enum strings. Optional arrays distinguish `Some(vec![])` from `None`, but omitted and null both decode to `None`; raw JSON retains all states. Parameter constructors default `included_data` to `["summaries"]` or `["issues"]`; set it to `None` to omit the query. String parameters permit future enum values. Invalid path identifiers, CSV members and nonobject Listings bodies fail before network access.
+Dynamic bodies retain unknown members, empty arrays and nulls by JSON meaning, rather than original whitespace or key order. Typed models accept unknown enum strings. Optional arrays distinguish `Some(vec![])` from `None`, but omitted and null both decode to `None`; raw JSON retains all states. Parameter constructors retain schema defaults, including `included_data` as `["summaries"]` or `["issues"]`; set it to `None` to omit the query. String parameters permit future enum values. Invalid path identifiers, scalar formats/patterns/bounds, headers, CSV members and wrong body shapes fail before acquiring authorization. Required arrays require values unless the schema explicitly permits 0 items; optional arrays honor `minItems`. Explicit allowed empty query arrays emit an empty value, while `None` omits them. Repeated `mskus` arrays retain each value and allow commas. Body facades accept serializable objects or arrays according to the declared top-level shape; nested fields stay flexible.
 
 `TypedResponse<T>::json()` decodes lazily. HTTP errors, unexpected statuses and malformed JSON remain raw responses; parsing can fail separately. `Client::execute(Request)` still supports raw requests. The default timeout is 30 seconds; `Client::with_timeout` accepts a `Duration`. The total deadline includes rate waits, token refresh, retries and response-body collection. Failures distinguish sanitized `Error::InvalidRequest`, `Error::Timeout`, `Error::Transport` and `Error::Authentication(AuthError)`. Authentication errors retain only classification and rejected status, never server bodies.
+
+Operations with only empty or schemaless successes return `Response`. Multiple success shapes expose status-specific lazy decoders that check the status before parsing:
+
+```rust
+use peddler::apis::fulfillment_outbound_2026_07_04 as outbound;
+let response = outbound::create_order(&client,
+    outbound::CreateOrderParams::new(serde_json::json!({"lineItems": []}))).await?;
+match response.raw.status {
+    200 => { let order = response.json_200()?; },
+    202 => { let accepted = response.json_202()?; },
+    _ => { response.raw.error_for_status()?; },
+}
+```
+
+No execution path eagerly parses response JSON. Empty-parameter operations use `Params::new()`; optional bodies default to absence. The dispatcher selects a function pointer, then constructs a boxed handler in a separate operation function to bound native-thread stack use. Direct typed calls remain unboxed.
 
 ## Authentication and policy
 
@@ -133,7 +147,7 @@ bundle exec rake native:build native:test
 bundle exec ruby -Ilib -Itmp/native -e 'require "peddler/native"'
 ```
 
-The build copies the extension into `tmp/native` and respects `CARGO_TARGET_DIR`. Run local scripts with `bundle exec ruby -Ilib -Itmp/native script.rb`. Load the preview in a fresh process with its independent entrypoint:
+The build copies the extension into `tmp/native` and respects `CARGO_TARGET_DIR`. Run local scripts with `bundle exec ruby -Ilib -Itmp/native script.rb`. Load the native APIs in a fresh process with its independent entrypoint:
 
 ```ruby
 require "peddler/native"
@@ -143,7 +157,7 @@ client = Peddler::Client.new(
   access_token: ENV.fetch("SP_API_ACCESS_TOKEN"),
   timeout: 30,
 )
-response = client.catalog_items_2022_04_01.get_catalog_item(
+response = client.catalog_items.get_catalog_item(
   asin: "188864544X", marketplace_ids: ["A1F83G8C2ARO7P"])
 puts response.status
 item = response.json if response.status == 200
@@ -180,7 +194,7 @@ Transport failures raise `Peddler::Native::TransportError`; timeouts raise its
 `TimeoutError` subclass. Authentication failures raise
 `Peddler::Native::AuthenticationError`, with optional rejected `status` and a
 sanitized message. Each native client owns 1 Tokio worker shared with restricted
-views. Create clients after fork; inherited clients raise `Peddler::Native::ForkError`. Base URLs must be HTTP(S) origins without credentials, query, fragment or a non-root path. The preview entrypoint loads independently of HTTP.rb; there is no HTTP.rb compatibility adapter.
+views. Create clients after fork; inherited clients raise `Peddler::Native::ForkError`. Base URLs must be HTTP(S) origins without credentials, query, fragment or a non-root path. The native entrypoint loads independently of HTTP.rb; there is no HTTP.rb compatibility adapter.
 
 ## Generation decision
 
@@ -202,7 +216,7 @@ bundle exec rake generate:rust:verify
 
 CI configures Ubuntu core checks without Ruby setup, a separate generation job with Ruby/Node/spec setup, and native Ruby 3.3/3.4/4.0 jobs. Configured jobs are not evidence of completed remote runs.
 
-Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Pagination, streaming, full facade generation and broader API coverage remain work for later stages. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.
+Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Pagination remains work for later stages. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.
 
 ## Native signed document transfers
 

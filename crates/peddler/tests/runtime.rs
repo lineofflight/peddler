@@ -433,3 +433,44 @@ async fn generated_get_uses_retry_policy_and_retains_final_error() {
     assert_eq!(last.body, b"unparsed");
     assert_eq!(api.await.unwrap().len(), 3);
 }
+
+#[tokio::test]
+async fn full_generated_sellers_operation_uses_lwa_and_safe_retry_runner() {
+    use peddler::apis::sellers_v1::{
+        GetMarketplaceParticipationsParams, get_marketplace_participations,
+    };
+    let (lwa, auth) = server(vec![(
+        200,
+        vec![],
+        r#"{"access_token":"full-token","token_type":"bearer","expires_in":3600}"#,
+    )])
+    .await;
+    let (base, api) = server(vec![
+        (503, vec![("Retry-After", "0")], "temporary"),
+        (200, vec![], "{\"payload\":[]}"),
+    ])
+    .await;
+    let mut c = config(base, lwa);
+    c.policy.retry.max_retries = 1;
+    c.policy.rate_limits.insert(
+        "sellers_v1.get_marketplace_participations".into(),
+        RateLimit {
+            rate_per_second: 1000.0,
+            burst: 2,
+        },
+    );
+    let client = Client::with_config(c).unwrap();
+    let response =
+        get_marketplace_participations(&client, GetMarketplaceParticipationsParams::new())
+            .await
+            .unwrap();
+    assert_eq!(response.raw.status, 200);
+    assert!(response.json().unwrap().payload.unwrap().is_empty());
+    let requests = api.await.unwrap();
+    assert_eq!(requests.len(), 2);
+    for request in requests {
+        assert!(request.starts_with("GET /sellers/v1/marketplaceParticipations "));
+        assert!(request.contains("x-amz-access-token: full-token"));
+    }
+    assert_eq!(auth.await.unwrap().len(), 1);
+}

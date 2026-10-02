@@ -2,8 +2,22 @@
 // Amazon SP-API models revision: 3677bb9d96f4450e6843f1f8207005e925d5c867
 // Source: listings-items-api-model/listingsItems_2021-08-01.json
 
-pub(crate) type ResponseModel = super::models::ListingsItemSubmissionResponse;
-pub(crate) const CSV_QUERY_NAMES: &[&str] = &["marketplaceIds", "includedData"];
-pub(crate) fn included_data_default() -> Option<Vec<String>> {
-    Some(vec!["issues".to_owned()])
+pub(crate) fn csv_query_names(operation: &str) -> &'static [&'static str] {
+    match operation {
+        "delete_listings_item" => &["marketplaceIds"],
+        "get_listings_item" => &["marketplaceIds", "includedData"],
+        "patch_listings_item" => &["marketplaceIds", "includedData"],
+        "put_listings_item" => &["marketplaceIds", "includedData"],
+        "search_listings_items" => {
+            &[
+                "marketplaceIds",
+                "includedData",
+                "identifiers",
+                "withIssueSeverity",
+                "withStatus",
+                "withoutStatus",
+            ]
+        }
+        _ => &[],
+    }
 }

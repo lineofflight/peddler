@@ -2,8 +2,19 @@
 // Amazon SP-API models revision: 3677bb9d96f4450e6843f1f8207005e925d5c867
 // Source: catalog-items-api-model/catalogItems_2022-04-01.json
 
-pub(crate) type ResponseModel = super::models::Item;
-pub(crate) const CSV_QUERY_NAMES: &[&str] = &["marketplaceIds", "includedData"];
-pub(crate) fn included_data_default() -> Option<Vec<String>> {
-    Some(vec!["summaries".to_owned()])
+pub(crate) fn csv_query_names(operation: &str) -> &'static [&'static str] {
+    match operation {
+        "get_catalog_item" => &["marketplaceIds", "includedData"],
+        "search_catalog_items" => {
+            &[
+                "identifiers",
+                "marketplaceIds",
+                "includedData",
+                "keywords",
+                "brandNames",
+                "classificationIds",
+            ]
+        }
+        _ => &[],
+    }
 }

@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+- Expose all 384 SP-API operations across 70 versions in Rust and native Ruby, with schema defaults, keyword methods, 58 latest aliases, raw responses and lazy typed decoding
+
 - Add native LWA authorization-code onboarding with redacted token results and bounded, cancellable requests
 
 - Add native signed-URL document streaming with Rust GZIP/JSONL/TSV parsing, bounded whole JSON and IO uploads with backpressure, cancellation and fork guards

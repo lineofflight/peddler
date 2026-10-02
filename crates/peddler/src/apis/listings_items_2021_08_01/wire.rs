@@ -53,7 +53,7 @@ Version: 2021-08-01*/
 pub struct Client {
     pub(crate) baseurl: String,
     pub(crate) client: reqwest::Client,
-    pub(crate) inner: crate::Client,
+    pub(crate) inner: crate::operation::WireContext,
 }
 impl Client {
     /// Create a new client.
@@ -61,7 +61,7 @@ impl Client {
     /// `baseurl` is the base URL provided to the internal
     /// `reqwest::Client`, and should include a scheme and hostname,
     /// as well as port and a path stem if applicable.
-    pub fn new(baseurl: &str, inner: crate::Client) -> Self {
+    pub fn new(baseurl: &str, inner: crate::operation::WireContext) -> Self {
         #[cfg(not(target_arch = "wasm32"))]
         let client = {
             let dur = ::std::time::Duration::from_secs(15u64);
@@ -80,7 +80,7 @@ impl Client {
     pub fn new_with_client(
         baseurl: &str,
         client: reqwest::Client,
-        inner: crate::Client,
+        inner: crate::operation::WireContext,
     ) -> Self {
         Self {
             baseurl: baseurl.to_string(),
@@ -89,7 +89,7 @@ impl Client {
         }
     }
 }
-impl ClientInfo<crate::Client> for Client {
+impl ClientInfo<crate::operation::WireContext> for Client {
     fn api_version() -> &'static str {
         "2021-08-01"
     }
@@ -99,12 +99,177 @@ impl ClientInfo<crate::Client> for Client {
     fn client(&self) -> &reqwest::Client {
         &self.client
     }
-    fn inner(&self) -> &crate::Client {
+    fn inner(&self) -> &crate::operation::WireContext {
         &self.inner
     }
 }
-impl ClientHooks<crate::Client> for &Client {}
+impl ClientHooks<crate::operation::WireContext> for &Client {}
 impl Client {
+    /**Search for and return a list of selling partner listings items and their respective details.
+
+**Usage Plan:**
+
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 5 |
+
+The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+
+Sends a `GET` request to `/listings/2021-08-01/items/{sellerId}`
+
+Arguments:
+- `seller_id`: A selling partner identifier, such as a merchant account or vendor code.
+- `created_after`: A date-time that is used to filter listing items. The response includes listings items that were created at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+- `created_before`: A date-time that is used to filter listing items. The response includes listings items that were created at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+- `identifiers`: A comma-delimited list of product identifiers that you can use to search for listings items.
+
+**Note**:
+1. This is required when you specify `identifiersType`.
+2. You cannot use 'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
+- `identifiers_type`: A type of product identifiers that you can use to search for listings items.
+
+**Note**:
+This is required when `identifiers` is provided.
+- `included_data`: A comma-delimited list of data sets that you want to include in the response. Default: `summaries`.
+- `issue_locale`: A locale that is used to localize issues. When not provided, the default language code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available in the specified locale, localized messages default to "en_US".
+- `last_updated_after`: A date-time that is used to filter listing items. The response includes listings items that were last updated at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+- `last_updated_before`: A date-time that is used to filter listing items. The response includes listings items that were last updated at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+- `marketplace_ids`: A comma-delimited list of Amazon store identifiers for the request.
+- `package_hierarchy_sku`: Filter results to include listing items that contain or are contained by the specified SKU.
+
+**Note**: You cannot use `packageHierarchySku` if you include `identifiers` or `variationParentSku` in your request.
+- `page_size`: The number of results that you want to include on each page.
+- `page_token`: A token that you can use to fetch a specific page when there are multiple pages of results.
+- `sort_by`: An attribute by which to sort the returned listing items.
+- `sort_order`: The order in which to sort the result items.
+- `variation_parent_sku`: Filters results to include listing items that are variation children of the specified SKU.
+
+**Note**: You cannot use `variationParentSku` if you include `identifiers` or `packageHierarchySku` in your request.
+- `with_issue_severity`: Filter results to include only listing items that have issues that match one or more of the specified severity levels.
+- `with_status`: Filter results to include only listing items that have the specified status.
+- `without_status`: Filter results to include only listing items that don't contain the specified statuses.
+```ignore
+let response = client.search_listings_items()
+    .seller_id(seller_id)
+    .created_after(created_after)
+    .created_before(created_before)
+    .identifiers(identifiers)
+    .identifiers_type(identifiers_type)
+    .included_data(included_data)
+    .issue_locale(issue_locale)
+    .last_updated_after(last_updated_after)
+    .last_updated_before(last_updated_before)
+    .marketplace_ids(marketplace_ids)
+    .package_hierarchy_sku(package_hierarchy_sku)
+    .page_size(page_size)
+    .page_token(page_token)
+    .sort_by(sort_by)
+    .sort_order(sort_order)
+    .variation_parent_sku(variation_parent_sku)
+    .with_issue_severity(with_issue_severity)
+    .with_status(with_status)
+    .without_status(without_status)
+    .send()
+    .await;
+```*/
+    pub fn search_listings_items(&self) -> builder::SearchListingsItems<'_> {
+        builder::SearchListingsItems::new(self)
+    }
+    /**Returns details about a listings item for a selling partner.
+
+**Usage Plan:**
+
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 10 |
+
+The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.
+
+Sends a `GET` request to `/listings/2021-08-01/items/{sellerId}/{sku}`
+
+Arguments:
+- `seller_id`: A selling partner identifier, such as a merchant account or vendor code.
+- `sku`: A selling partner-provided identifier for an Amazon listing.
+- `included_data`: A comma-delimited list of data sets to include in the response. Default: `summaries`.
+- `issue_locale`: A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
+- `marketplace_ids`: A comma-delimited list of Amazon store identifiers for the request.
+```ignore
+let response = client.get_listings_item()
+    .seller_id(seller_id)
+    .sku(sku)
+    .included_data(included_data)
+    .issue_locale(issue_locale)
+    .marketplace_ids(marketplace_ids)
+    .send()
+    .await;
+```*/
+    pub fn get_listings_item(&self) -> builder::GetListingsItem<'_> {
+        builder::GetListingsItem::new(self)
+    }
+    /**Creates a new or fully-updates an existing listings item for a selling partner.
+
+**Usage Plan:**
+
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 10 |
+
+The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.
+
+Sends a `PUT` request to `/listings/2021-08-01/items/{sellerId}/{sku}`
+
+Arguments:
+- `seller_id`: A selling partner identifier, such as a merchant account or vendor code.
+- `sku`: A selling partner-provided identifier for an Amazon listing.
+- `included_data`: A comma-delimited list of data sets to include in the response. Default: `issues`.
+- `issue_locale`: A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
+- `marketplace_ids`: A comma-delimited list of Amazon store identifiers for the request.
+- `mode`: Describes the mode of operation for the request.
+- `body`: The request body schema for the `putListingsItem` operation.
+```ignore
+let response = client.put_listings_item()
+    .seller_id(seller_id)
+    .sku(sku)
+    .included_data(included_data)
+    .issue_locale(issue_locale)
+    .marketplace_ids(marketplace_ids)
+    .mode(mode)
+    .body(body)
+    .send()
+    .await;
+```*/
+    pub fn put_listings_item(&self) -> builder::PutListingsItem<'_> {
+        builder::PutListingsItem::new(self)
+    }
+    /**Delete a listings item for a selling partner.
+
+**Usage Plan:**
+
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 5 |
+
+The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.
+
+Sends a `DELETE` request to `/listings/2021-08-01/items/{sellerId}/{sku}`
+
+Arguments:
+- `seller_id`: A selling partner identifier, such as a merchant account or vendor code.
+- `sku`: A selling partner-provided identifier for an Amazon listing.
+- `issue_locale`: A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
+- `marketplace_ids`: A comma-delimited list of Amazon store identifiers for the request.
+```ignore
+let response = client.delete_listings_item()
+    .seller_id(seller_id)
+    .sku(sku)
+    .issue_locale(issue_locale)
+    .marketplace_ids(marketplace_ids)
+    .send()
+    .await;
+```*/
+    pub fn delete_listings_item(&self) -> builder::DeleteListingsItem<'_> {
+        builder::DeleteListingsItem::new(self)
+    }
     /**Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
 
 **Usage Plan:**
@@ -150,6 +315,902 @@ pub mod builder {
         encode_path, ByteStream, ClientInfo, ClientHooks, Error, OperationInfo,
         RequestBuilderExt, ResponseValue,
     };
+    /**Builder for [`Client::search_listings_items`]
+
+[`Client::search_listings_items`]: super::Client::search_listings_items*/
+    #[derive(Debug, Clone)]
+    pub struct SearchListingsItems<'a> {
+        client: &'a super::Client,
+        seller_id: Result<::std::string::String, String>,
+        created_after: Result<Option<::std::string::String>, String>,
+        created_before: Result<Option<::std::string::String>, String>,
+        identifiers: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        identifiers_type: Result<Option<::std::string::String>, String>,
+        included_data: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        issue_locale: Result<Option<::std::string::String>, String>,
+        last_updated_after: Result<Option<::std::string::String>, String>,
+        last_updated_before: Result<Option<::std::string::String>, String>,
+        marketplace_ids: Result<::std::vec::Vec<::std::string::String>, String>,
+        package_hierarchy_sku: Result<Option<::std::string::String>, String>,
+        page_size: Result<Option<i64>, String>,
+        page_token: Result<Option<::std::string::String>, String>,
+        sort_by: Result<Option<::std::string::String>, String>,
+        sort_order: Result<Option<::std::string::String>, String>,
+        variation_parent_sku: Result<Option<::std::string::String>, String>,
+        with_issue_severity: Result<
+            Option<::std::vec::Vec<::std::string::String>>,
+            String,
+        >,
+        with_status: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        without_status: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+    }
+    impl<'a> SearchListingsItems<'a> {
+        pub fn new(client: &'a super::Client) -> Self {
+            Self {
+                client: client,
+                seller_id: Err("seller_id was not initialized".to_string()),
+                created_after: Ok(None),
+                created_before: Ok(None),
+                identifiers: Ok(None),
+                identifiers_type: Ok(None),
+                included_data: Ok(None),
+                issue_locale: Ok(None),
+                last_updated_after: Ok(None),
+                last_updated_before: Ok(None),
+                marketplace_ids: Err("marketplace_ids was not initialized".to_string()),
+                package_hierarchy_sku: Ok(None),
+                page_size: Ok(None),
+                page_token: Ok(None),
+                sort_by: Ok(None),
+                sort_order: Ok(None),
+                variation_parent_sku: Ok(None),
+                with_issue_severity: Ok(None),
+                with_status: Ok(None),
+                without_status: Ok(None),
+            }
+        }
+        pub fn seller_id<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.seller_id = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for seller_id failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn created_after<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.created_after = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for created_after failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn created_before<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.created_before = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for created_before failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn identifiers<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.identifiers = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for identifiers failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn identifiers_type<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.identifiers_type = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for identifiers_type failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn included_data<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.included_data = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for included_data failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn issue_locale<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.issue_locale = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for issue_locale failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn last_updated_after<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.last_updated_after = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for last_updated_after failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn last_updated_before<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.last_updated_before = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for last_updated_before failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn marketplace_ids<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.marketplace_ids = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for marketplace_ids failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn package_hierarchy_sku<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.package_hierarchy_sku = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for package_hierarchy_sku failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn page_size<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<i64>,
+        {
+            self.page_size = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| "conversion to `i64` for page_size failed".to_string());
+            self
+        }
+        pub fn page_token<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.page_token = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for page_token failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn sort_by<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.sort_by = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for sort_by failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn sort_order<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.sort_order = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for sort_order failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn variation_parent_sku<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.variation_parent_sku = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for variation_parent_sku failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn with_issue_severity<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.with_issue_severity = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for with_issue_severity failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn with_status<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.with_status = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for with_status failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn without_status<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.without_status = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for without_status failed"
+                        .to_string()
+                });
+            self
+        }
+        ///Sends a `GET` request to `/listings/2021-08-01/items/{sellerId}`
+        pub async fn send(self) -> Result<ResponseValue<ByteStream>, Error<ByteStream>> {
+            let Self {
+                client,
+                seller_id,
+                created_after,
+                created_before,
+                identifiers,
+                identifiers_type,
+                included_data,
+                issue_locale,
+                last_updated_after,
+                last_updated_before,
+                marketplace_ids,
+                package_hierarchy_sku,
+                page_size,
+                page_token,
+                sort_by,
+                sort_order,
+                variation_parent_sku,
+                with_issue_severity,
+                with_status,
+                without_status,
+            } = self;
+            let seller_id = seller_id.map_err(Error::InvalidRequest)?;
+            let created_after = created_after.map_err(Error::InvalidRequest)?;
+            let created_before = created_before.map_err(Error::InvalidRequest)?;
+            let identifiers = identifiers.map_err(Error::InvalidRequest)?;
+            let identifiers_type = identifiers_type.map_err(Error::InvalidRequest)?;
+            let included_data = included_data.map_err(Error::InvalidRequest)?;
+            let issue_locale = issue_locale.map_err(Error::InvalidRequest)?;
+            let last_updated_after = last_updated_after.map_err(Error::InvalidRequest)?;
+            let last_updated_before = last_updated_before
+                .map_err(Error::InvalidRequest)?;
+            let marketplace_ids = marketplace_ids.map_err(Error::InvalidRequest)?;
+            let package_hierarchy_sku = package_hierarchy_sku
+                .map_err(Error::InvalidRequest)?;
+            let page_size = page_size.map_err(Error::InvalidRequest)?;
+            let page_token = page_token.map_err(Error::InvalidRequest)?;
+            let sort_by = sort_by.map_err(Error::InvalidRequest)?;
+            let sort_order = sort_order.map_err(Error::InvalidRequest)?;
+            let variation_parent_sku = variation_parent_sku
+                .map_err(Error::InvalidRequest)?;
+            let with_issue_severity = with_issue_severity
+                .map_err(Error::InvalidRequest)?;
+            let with_status = with_status.map_err(Error::InvalidRequest)?;
+            let without_status = without_status.map_err(Error::InvalidRequest)?;
+            let url = format!(
+                "{}/listings/2021-08-01/items/{}", client.baseurl, encode_path(&
+                seller_id.to_string()),
+            );
+            let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+            header_map
+                .append(
+                    ::reqwest::header::HeaderName::from_static("api-version"),
+                    ::reqwest::header::HeaderValue::from_static(
+                        super::Client::api_version(),
+                    ),
+                );
+            #[allow(unused_mut)]
+            let mut request = client
+                .client
+                .get(url)
+                .query(
+                    &progenitor_client::QueryParam::new("createdAfter", &created_after),
+                )
+                .query(
+                    &progenitor_client::QueryParam::new("createdBefore", &created_before),
+                )
+                .query(&progenitor_client::QueryParam::new("identifiers", &identifiers))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "identifiersType",
+                        &identifiers_type,
+                    ),
+                )
+                .query(
+                    &progenitor_client::QueryParam::new("includedData", &included_data),
+                )
+                .query(&progenitor_client::QueryParam::new("issueLocale", &issue_locale))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "lastUpdatedAfter",
+                        &last_updated_after,
+                    ),
+                )
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "lastUpdatedBefore",
+                        &last_updated_before,
+                    ),
+                )
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "marketplaceIds",
+                        &marketplace_ids,
+                    ),
+                )
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "packageHierarchySku",
+                        &package_hierarchy_sku,
+                    ),
+                )
+                .query(&progenitor_client::QueryParam::new("pageSize", &page_size))
+                .query(&progenitor_client::QueryParam::new("pageToken", &page_token))
+                .query(&progenitor_client::QueryParam::new("sortBy", &sort_by))
+                .query(&progenitor_client::QueryParam::new("sortOrder", &sort_order))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "variationParentSku",
+                        &variation_parent_sku,
+                    ),
+                )
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "withIssueSeverity",
+                        &with_issue_severity,
+                    ),
+                )
+                .query(&progenitor_client::QueryParam::new("withStatus", &with_status))
+                .query(
+                    &progenitor_client::QueryParam::new("withoutStatus", &without_status),
+                )
+                .headers(header_map)
+                .build()?;
+            let info = OperationInfo {
+                operation_id: "search_listings_items",
+            };
+            client.pre(&mut request, &info).await?;
+            let result = client.exec(request, &info).await;
+            client.post(&result, &info).await?;
+            let response = result?;
+            match response.status().as_u16() {
+                200u16 => Ok(ResponseValue::stream(response)),
+                400u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                403u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                404u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                413u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                415u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                429u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                500u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                503u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                _ => Err(Error::UnexpectedResponse(response)),
+            }
+        }
+    }
+    /**Builder for [`Client::get_listings_item`]
+
+[`Client::get_listings_item`]: super::Client::get_listings_item*/
+    #[derive(Debug, Clone)]
+    pub struct GetListingsItem<'a> {
+        client: &'a super::Client,
+        seller_id: Result<::std::string::String, String>,
+        sku: Result<::std::string::String, String>,
+        included_data: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        issue_locale: Result<Option<::std::string::String>, String>,
+        marketplace_ids: Result<::std::vec::Vec<::std::string::String>, String>,
+    }
+    impl<'a> GetListingsItem<'a> {
+        pub fn new(client: &'a super::Client) -> Self {
+            Self {
+                client: client,
+                seller_id: Err("seller_id was not initialized".to_string()),
+                sku: Err("sku was not initialized".to_string()),
+                included_data: Ok(None),
+                issue_locale: Ok(None),
+                marketplace_ids: Err("marketplace_ids was not initialized".to_string()),
+            }
+        }
+        pub fn seller_id<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.seller_id = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for seller_id failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn sku<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.sku = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for sku failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn included_data<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.included_data = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for included_data failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn issue_locale<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.issue_locale = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for issue_locale failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn marketplace_ids<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.marketplace_ids = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for marketplace_ids failed"
+                        .to_string()
+                });
+            self
+        }
+        ///Sends a `GET` request to `/listings/2021-08-01/items/{sellerId}/{sku}`
+        pub async fn send(self) -> Result<ResponseValue<ByteStream>, Error<ByteStream>> {
+            let Self {
+                client,
+                seller_id,
+                sku,
+                included_data,
+                issue_locale,
+                marketplace_ids,
+            } = self;
+            let seller_id = seller_id.map_err(Error::InvalidRequest)?;
+            let sku = sku.map_err(Error::InvalidRequest)?;
+            let included_data = included_data.map_err(Error::InvalidRequest)?;
+            let issue_locale = issue_locale.map_err(Error::InvalidRequest)?;
+            let marketplace_ids = marketplace_ids.map_err(Error::InvalidRequest)?;
+            let url = format!(
+                "{}/listings/2021-08-01/items/{}/{}", client.baseurl, encode_path(&
+                seller_id.to_string()), encode_path(& sku.to_string()),
+            );
+            let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+            header_map
+                .append(
+                    ::reqwest::header::HeaderName::from_static("api-version"),
+                    ::reqwest::header::HeaderValue::from_static(
+                        super::Client::api_version(),
+                    ),
+                );
+            #[allow(unused_mut)]
+            let mut request = client
+                .client
+                .get(url)
+                .query(
+                    &progenitor_client::QueryParam::new("includedData", &included_data),
+                )
+                .query(&progenitor_client::QueryParam::new("issueLocale", &issue_locale))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "marketplaceIds",
+                        &marketplace_ids,
+                    ),
+                )
+                .headers(header_map)
+                .build()?;
+            let info = OperationInfo {
+                operation_id: "get_listings_item",
+            };
+            client.pre(&mut request, &info).await?;
+            let result = client.exec(request, &info).await;
+            client.post(&result, &info).await?;
+            let response = result?;
+            match response.status().as_u16() {
+                200u16 => Ok(ResponseValue::stream(response)),
+                400u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                403u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                404u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                413u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                415u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                429u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                500u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                503u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                _ => Err(Error::UnexpectedResponse(response)),
+            }
+        }
+    }
+    /**Builder for [`Client::put_listings_item`]
+
+[`Client::put_listings_item`]: super::Client::put_listings_item*/
+    #[derive(Debug, Clone)]
+    pub struct PutListingsItem<'a> {
+        client: &'a super::Client,
+        seller_id: Result<::std::string::String, String>,
+        sku: Result<::std::string::String, String>,
+        included_data: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        issue_locale: Result<Option<::std::string::String>, String>,
+        marketplace_ids: Result<::std::vec::Vec<::std::string::String>, String>,
+        mode: Result<Option<::std::string::String>, String>,
+        body: Result<::serde_json::Value, String>,
+    }
+    impl<'a> PutListingsItem<'a> {
+        pub fn new(client: &'a super::Client) -> Self {
+            Self {
+                client: client,
+                seller_id: Err("seller_id was not initialized".to_string()),
+                sku: Err("sku was not initialized".to_string()),
+                included_data: Ok(None),
+                issue_locale: Ok(None),
+                marketplace_ids: Err("marketplace_ids was not initialized".to_string()),
+                mode: Ok(None),
+                body: Err("body was not initialized".to_string()),
+            }
+        }
+        pub fn seller_id<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.seller_id = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for seller_id failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn sku<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.sku = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for sku failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn included_data<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.included_data = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for included_data failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn issue_locale<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.issue_locale = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for issue_locale failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn marketplace_ids<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.marketplace_ids = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for marketplace_ids failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn mode<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.mode = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for mode failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn body<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::serde_json::Value>,
+        {
+            self.body = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: serde_json :: Value` for body failed".to_string()
+                });
+            self
+        }
+        ///Sends a `PUT` request to `/listings/2021-08-01/items/{sellerId}/{sku}`
+        pub async fn send(self) -> Result<ResponseValue<ByteStream>, Error<ByteStream>> {
+            let Self {
+                client,
+                seller_id,
+                sku,
+                included_data,
+                issue_locale,
+                marketplace_ids,
+                mode,
+                body,
+            } = self;
+            let seller_id = seller_id.map_err(Error::InvalidRequest)?;
+            let sku = sku.map_err(Error::InvalidRequest)?;
+            let included_data = included_data.map_err(Error::InvalidRequest)?;
+            let issue_locale = issue_locale.map_err(Error::InvalidRequest)?;
+            let marketplace_ids = marketplace_ids.map_err(Error::InvalidRequest)?;
+            let mode = mode.map_err(Error::InvalidRequest)?;
+            let body = body.map_err(Error::InvalidRequest)?;
+            let url = format!(
+                "{}/listings/2021-08-01/items/{}/{}", client.baseurl, encode_path(&
+                seller_id.to_string()), encode_path(& sku.to_string()),
+            );
+            let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+            header_map
+                .append(
+                    ::reqwest::header::HeaderName::from_static("api-version"),
+                    ::reqwest::header::HeaderValue::from_static(
+                        super::Client::api_version(),
+                    ),
+                );
+            #[allow(unused_mut)]
+            let mut request = client
+                .client
+                .put(url)
+                .json(&body)
+                .query(
+                    &progenitor_client::QueryParam::new("includedData", &included_data),
+                )
+                .query(&progenitor_client::QueryParam::new("issueLocale", &issue_locale))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "marketplaceIds",
+                        &marketplace_ids,
+                    ),
+                )
+                .query(&progenitor_client::QueryParam::new("mode", &mode))
+                .headers(header_map)
+                .build()?;
+            let info = OperationInfo {
+                operation_id: "put_listings_item",
+            };
+            client.pre(&mut request, &info).await?;
+            let result = client.exec(request, &info).await;
+            client.post(&result, &info).await?;
+            let response = result?;
+            match response.status().as_u16() {
+                200u16 => Ok(ResponseValue::stream(response)),
+                400u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                403u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                413u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                415u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                429u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                500u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                503u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                _ => Err(Error::UnexpectedResponse(response)),
+            }
+        }
+    }
+    /**Builder for [`Client::delete_listings_item`]
+
+[`Client::delete_listings_item`]: super::Client::delete_listings_item*/
+    #[derive(Debug, Clone)]
+    pub struct DeleteListingsItem<'a> {
+        client: &'a super::Client,
+        seller_id: Result<::std::string::String, String>,
+        sku: Result<::std::string::String, String>,
+        issue_locale: Result<Option<::std::string::String>, String>,
+        marketplace_ids: Result<::std::vec::Vec<::std::string::String>, String>,
+    }
+    impl<'a> DeleteListingsItem<'a> {
+        pub fn new(client: &'a super::Client) -> Self {
+            Self {
+                client: client,
+                seller_id: Err("seller_id was not initialized".to_string()),
+                sku: Err("sku was not initialized".to_string()),
+                issue_locale: Ok(None),
+                marketplace_ids: Err("marketplace_ids was not initialized".to_string()),
+            }
+        }
+        pub fn seller_id<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.seller_id = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for seller_id failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn sku<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.sku = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for sku failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn issue_locale<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.issue_locale = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for issue_locale failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn marketplace_ids<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.marketplace_ids = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for marketplace_ids failed"
+                        .to_string()
+                });
+            self
+        }
+        ///Sends a `DELETE` request to `/listings/2021-08-01/items/{sellerId}/{sku}`
+        pub async fn send(self) -> Result<ResponseValue<ByteStream>, Error<ByteStream>> {
+            let Self { client, seller_id, sku, issue_locale, marketplace_ids } = self;
+            let seller_id = seller_id.map_err(Error::InvalidRequest)?;
+            let sku = sku.map_err(Error::InvalidRequest)?;
+            let issue_locale = issue_locale.map_err(Error::InvalidRequest)?;
+            let marketplace_ids = marketplace_ids.map_err(Error::InvalidRequest)?;
+            let url = format!(
+                "{}/listings/2021-08-01/items/{}/{}", client.baseurl, encode_path(&
+                seller_id.to_string()), encode_path(& sku.to_string()),
+            );
+            let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+            header_map
+                .append(
+                    ::reqwest::header::HeaderName::from_static("api-version"),
+                    ::reqwest::header::HeaderValue::from_static(
+                        super::Client::api_version(),
+                    ),
+                );
+            #[allow(unused_mut)]
+            let mut request = client
+                .client
+                .delete(url)
+                .query(&progenitor_client::QueryParam::new("issueLocale", &issue_locale))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "marketplaceIds",
+                        &marketplace_ids,
+                    ),
+                )
+                .headers(header_map)
+                .build()?;
+            let info = OperationInfo {
+                operation_id: "delete_listings_item",
+            };
+            client.pre(&mut request, &info).await?;
+            let result = client.exec(request, &info).await;
+            client.post(&result, &info).await?;
+            let response = result?;
+            match response.status().as_u16() {
+                200u16 => Ok(ResponseValue::stream(response)),
+                400u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                403u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                413u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                415u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                429u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                500u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                503u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                _ => Err(Error::UnexpectedResponse(response)),
+            }
+        }
+    }
     /**Builder for [`Client::patch_listings_item`]
 
 [`Client::patch_listings_item`]: super::Client::patch_listings_item*/
@@ -162,7 +1223,7 @@ pub mod builder {
         issue_locale: Result<Option<::std::string::String>, String>,
         marketplace_ids: Result<::std::vec::Vec<::std::string::String>, String>,
         mode: Result<Option<::std::string::String>, String>,
-        body: Result<serde_json::Value, String>,
+        body: Result<::serde_json::Value, String>,
     }
     impl<'a> PatchListingsItem<'a> {
         pub fn new(client: &'a super::Client) -> Self {
@@ -254,12 +1315,12 @@ pub mod builder {
         }
         pub fn body<V>(mut self, value: V) -> Self
         where
-            V: std::convert::TryInto<serde_json::Value>,
+            V: std::convert::TryInto<::serde_json::Value>,
         {
             self.body = value
                 .try_into()
                 .map_err(|_| {
-                    "conversion to `serde_json :: Value` for body failed".to_string()
+                    "conversion to `:: serde_json :: Value` for body failed".to_string()
                 });
             self
         }

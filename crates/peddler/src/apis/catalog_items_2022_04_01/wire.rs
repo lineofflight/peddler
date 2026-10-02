@@ -53,7 +53,7 @@ Version: 2022-04-01*/
 pub struct Client {
     pub(crate) baseurl: String,
     pub(crate) client: reqwest::Client,
-    pub(crate) inner: crate::Client,
+    pub(crate) inner: crate::operation::WireContext,
 }
 impl Client {
     /// Create a new client.
@@ -61,7 +61,7 @@ impl Client {
     /// `baseurl` is the base URL provided to the internal
     /// `reqwest::Client`, and should include a scheme and hostname,
     /// as well as port and a path stem if applicable.
-    pub fn new(baseurl: &str, inner: crate::Client) -> Self {
+    pub fn new(baseurl: &str, inner: crate::operation::WireContext) -> Self {
         #[cfg(not(target_arch = "wasm32"))]
         let client = {
             let dur = ::std::time::Duration::from_secs(15u64);
@@ -80,7 +80,7 @@ impl Client {
     pub fn new_with_client(
         baseurl: &str,
         client: reqwest::Client,
-        inner: crate::Client,
+        inner: crate::operation::WireContext,
     ) -> Self {
         Self {
             baseurl: baseurl.to_string(),
@@ -89,7 +89,7 @@ impl Client {
         }
     }
 }
-impl ClientInfo<crate::Client> for Client {
+impl ClientInfo<crate::operation::WireContext> for Client {
     fn api_version() -> &'static str {
         "2022-04-01"
     }
@@ -99,12 +99,57 @@ impl ClientInfo<crate::Client> for Client {
     fn client(&self) -> &reqwest::Client {
         &self.client
     }
-    fn inner(&self) -> &crate::Client {
+    fn inner(&self) -> &crate::operation::WireContext {
         &self.inner
     }
 }
-impl ClientHooks<crate::Client> for &Client {}
+impl ClientHooks<crate::operation::WireContext> for &Client {}
 impl Client {
+    /**Search for a list of Amazon catalog items and item-related information. You can search by identifier or by keywords.
+
+**Usage Plan:**
+
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 2 |
+
+The `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+
+Sends a `GET` request to `/catalog/2022-04-01/items`
+
+Arguments:
+- `brand_names`: A comma-delimited list of brand names that you can use to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`.
+- `classification_ids`: A comma-delimited list of classification identifiers that you can use to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`.
+- `identifiers`: A comma-delimited list of product identifiers that you can use to search the Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
+- `identifiers_type`: The type of product identifiers that you can use to search the Amazon catalog. **Note:** `identifiersType` is required when `identifiers` is in the request.
+- `included_data`: A comma-delimited list of datasets to include in the response.
+- `keywords`: A comma-delimited list of keywords that you can use to search the Amazon catalog. **Note:** You cannot include `keywords` and `identifiers` in the same request.
+- `keywords_locale`: The language of the keywords that are included in queries based on `keywords`. Defaults to the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`.
+- `locale`: The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
+- `marketplace_ids`: A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+- `page_size`: The number of results to include on each page.
+- `page_token`: A token that you can use to fetch a specific page when there are multiple pages of results.
+- `seller_id`: A selling partner identifier, such as a seller account or vendor code. **Note:** Required when `identifiersType` is `SKU`.
+```ignore
+let response = client.search_catalog_items()
+    .brand_names(brand_names)
+    .classification_ids(classification_ids)
+    .identifiers(identifiers)
+    .identifiers_type(identifiers_type)
+    .included_data(included_data)
+    .keywords(keywords)
+    .keywords_locale(keywords_locale)
+    .locale(locale)
+    .marketplace_ids(marketplace_ids)
+    .page_size(page_size)
+    .page_token(page_token)
+    .seller_id(seller_id)
+    .send()
+    .await;
+```*/
+    pub fn search_catalog_items(&self) -> builder::SearchCatalogItems<'_> {
+        builder::SearchCatalogItems::new(self)
+    }
     /**Retrieves details for an item in the Amazon catalog.
 
 **Usage Plan:**
@@ -144,6 +189,297 @@ pub mod builder {
         encode_path, ByteStream, ClientInfo, ClientHooks, Error, OperationInfo,
         RequestBuilderExt, ResponseValue,
     };
+    /**Builder for [`Client::search_catalog_items`]
+
+[`Client::search_catalog_items`]: super::Client::search_catalog_items*/
+    #[derive(Debug, Clone)]
+    pub struct SearchCatalogItems<'a> {
+        client: &'a super::Client,
+        brand_names: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        classification_ids: Result<
+            Option<::std::vec::Vec<::std::string::String>>,
+            String,
+        >,
+        identifiers: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        identifiers_type: Result<Option<::std::string::String>, String>,
+        included_data: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        keywords: Result<Option<::std::vec::Vec<::std::string::String>>, String>,
+        keywords_locale: Result<Option<::std::string::String>, String>,
+        locale: Result<Option<::std::string::String>, String>,
+        marketplace_ids: Result<::std::vec::Vec<::std::string::String>, String>,
+        page_size: Result<Option<i64>, String>,
+        page_token: Result<Option<::std::string::String>, String>,
+        seller_id: Result<Option<::std::string::String>, String>,
+    }
+    impl<'a> SearchCatalogItems<'a> {
+        pub fn new(client: &'a super::Client) -> Self {
+            Self {
+                client: client,
+                brand_names: Ok(None),
+                classification_ids: Ok(None),
+                identifiers: Ok(None),
+                identifiers_type: Ok(None),
+                included_data: Ok(None),
+                keywords: Ok(None),
+                keywords_locale: Ok(None),
+                locale: Ok(None),
+                marketplace_ids: Err("marketplace_ids was not initialized".to_string()),
+                page_size: Ok(None),
+                page_token: Ok(None),
+                seller_id: Ok(None),
+            }
+        }
+        pub fn brand_names<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.brand_names = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for brand_names failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn classification_ids<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.classification_ids = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for classification_ids failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn identifiers<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.identifiers = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for identifiers failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn identifiers_type<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.identifiers_type = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for identifiers_type failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn included_data<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.included_data = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for included_data failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn keywords<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.keywords = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for keywords failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn keywords_locale<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.keywords_locale = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for keywords_locale failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn locale<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.locale = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for locale failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn marketplace_ids<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+        {
+            self.marketplace_ids = value
+                .try_into()
+                .map_err(|_| {
+                    "conversion to `:: std :: vec :: Vec < :: std :: string :: String >` for marketplace_ids failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn page_size<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<i64>,
+        {
+            self.page_size = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| "conversion to `i64` for page_size failed".to_string());
+            self
+        }
+        pub fn page_token<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.page_token = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for page_token failed"
+                        .to_string()
+                });
+            self
+        }
+        pub fn seller_id<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<::std::string::String>,
+        {
+            self.seller_id = value
+                .try_into()
+                .map(Some)
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for seller_id failed"
+                        .to_string()
+                });
+            self
+        }
+        ///Sends a `GET` request to `/catalog/2022-04-01/items`
+        pub async fn send(self) -> Result<ResponseValue<ByteStream>, Error<ByteStream>> {
+            let Self {
+                client,
+                brand_names,
+                classification_ids,
+                identifiers,
+                identifiers_type,
+                included_data,
+                keywords,
+                keywords_locale,
+                locale,
+                marketplace_ids,
+                page_size,
+                page_token,
+                seller_id,
+            } = self;
+            let brand_names = brand_names.map_err(Error::InvalidRequest)?;
+            let classification_ids = classification_ids.map_err(Error::InvalidRequest)?;
+            let identifiers = identifiers.map_err(Error::InvalidRequest)?;
+            let identifiers_type = identifiers_type.map_err(Error::InvalidRequest)?;
+            let included_data = included_data.map_err(Error::InvalidRequest)?;
+            let keywords = keywords.map_err(Error::InvalidRequest)?;
+            let keywords_locale = keywords_locale.map_err(Error::InvalidRequest)?;
+            let locale = locale.map_err(Error::InvalidRequest)?;
+            let marketplace_ids = marketplace_ids.map_err(Error::InvalidRequest)?;
+            let page_size = page_size.map_err(Error::InvalidRequest)?;
+            let page_token = page_token.map_err(Error::InvalidRequest)?;
+            let seller_id = seller_id.map_err(Error::InvalidRequest)?;
+            let url = format!("{}/catalog/2022-04-01/items", client.baseurl,);
+            let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+            header_map
+                .append(
+                    ::reqwest::header::HeaderName::from_static("api-version"),
+                    ::reqwest::header::HeaderValue::from_static(
+                        super::Client::api_version(),
+                    ),
+                );
+            #[allow(unused_mut)]
+            let mut request = client
+                .client
+                .get(url)
+                .query(&progenitor_client::QueryParam::new("brandNames", &brand_names))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "classificationIds",
+                        &classification_ids,
+                    ),
+                )
+                .query(&progenitor_client::QueryParam::new("identifiers", &identifiers))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "identifiersType",
+                        &identifiers_type,
+                    ),
+                )
+                .query(
+                    &progenitor_client::QueryParam::new("includedData", &included_data),
+                )
+                .query(&progenitor_client::QueryParam::new("keywords", &keywords))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "keywordsLocale",
+                        &keywords_locale,
+                    ),
+                )
+                .query(&progenitor_client::QueryParam::new("locale", &locale))
+                .query(
+                    &progenitor_client::QueryParam::new(
+                        "marketplaceIds",
+                        &marketplace_ids,
+                    ),
+                )
+                .query(&progenitor_client::QueryParam::new("pageSize", &page_size))
+                .query(&progenitor_client::QueryParam::new("pageToken", &page_token))
+                .query(&progenitor_client::QueryParam::new("sellerId", &seller_id))
+                .headers(header_map)
+                .build()?;
+            let info = OperationInfo {
+                operation_id: "search_catalog_items",
+            };
+            client.pre(&mut request, &info).await?;
+            let result = client.exec(request, &info).await;
+            client.post(&result, &info).await?;
+            let response = result?;
+            match response.status().as_u16() {
+                200u16 => Ok(ResponseValue::stream(response)),
+                400u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                403u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                404u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                413u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                415u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                429u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                500u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                503u16 => Err(Error::ErrorResponse(ResponseValue::stream(response))),
+                _ => Err(Error::UnexpectedResponse(response)),
+            }
+        }
+    }
     /**Builder for [`Client::get_catalog_item`]
 
 [`Client::get_catalog_item`]: super::Client::get_catalog_item*/

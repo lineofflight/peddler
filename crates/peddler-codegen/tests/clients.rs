@@ -1,83 +1,103 @@
-use peddler_codegen::{clients, manifest::APIS};
+use peddler_codegen::{clients, manifest::ALL_APIS};
 use serde_json::{Value, json};
 fn spec() -> Value {
-    json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Catalog","version":"1"},"paths":{"/items/{asin}":{"get":{"operationId":"getCatalogItem","parameters":[{"name":"asin","in":"path","required":true,"type":"string"},{"name":"marketplaceIds","in":"query","required":true,"type":"array","items":{"type":"string"},"collectionFormat":"csv"},{"name":"includedData","in":"query","type":"array","items":{"type":"string","enum":["summaries"]},"collectionFormat":"csv","default":["summaries"]}],"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}},"post":{"operationId":"ignored","responses":{"200":{"description":"ok"}}}},},"definitions":{"Item":{"type":"object","properties":{"asin":{"type":"string"}}}}})
+    json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
+        "/items/{asin}":{"get":{"operationId":"getItem","parameters":[
+            {"name":"asin","in":"path","required":true,"type":"string"},
+            {"name":"marketplaceIds","in":"query","required":true,"type":"array","items":{"type":"string"},"collectionFormat":"csv"},
+            {"name":"includedData","in":"query","type":"array","items":{"type":"string"},"default":["summaries"]},
+            {"name":"mskus","in":"query","type":"array","items":{"type":"string"},"collectionFormat":"multi"},
+            {"name":"enabled","in":"query","type":"boolean"},
+            {"name":"count","in":"query","type":"integer","format":"int32"},
+            {"name":"at","in":"query","type":"string","format":"date-time"},
+            {"name":"x-test","in":"header","type":"string"}],
+            "responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"204":{"description":"empty"}}}},
+        "/empty":{"post":{"operationId":"empty","parameters":[],"responses":{"200":{"description":"empty"}}}}
+    },"definitions":{"Item":{"type":"object","properties":{"asin":{"type":"string"}}}}})
 }
 #[test]
-fn selected_clients_follow_spec_paths_query_names_defaults_and_response_refs() {
-    let original = spec();
-    let first = clients::render(&original, &APIS[0]).unwrap();
-    let mut changed = original.clone();
-    let mut operation = changed["paths"]["/items/{asin}"]["get"].take();
-    operation["parameters"][1]["name"] = json!("stores");
-    operation["parameters"][2]["default"] = json!(["images", "future"]);
-    operation["responses"]["200"]["schema"]["$ref"] = json!("#/definitions/FutureItem");
-    changed["definitions"]["FutureItem"] =
-        json!({"type":"object","properties":{"future":{"type":"string"}}});
-    changed["paths"] = json!({"/changed/{asin}":{"get":operation}});
-    let next = clients::render(&changed, &APIS[0]).unwrap();
-    assert_ne!(first.wire, next.wire);
-    assert!(next.wire.contains("/changed/"));
-    assert!(next.wire.contains("\"stores\""));
-    assert_eq!(next.csv_query_names, vec!["stores", "includedData"]);
+fn all_operations_keep_per_operation_shapes_and_builder_forwarding() {
+    let value = spec();
+    let rendered = clients::render(&value, &ALL_APIS[0]).unwrap();
+    assert_eq!(rendered.operations.len(), 2);
+    assert!(rendered.wire.contains("pub fn empty"));
+    assert!(rendered.wire.contains("ResponseValue<ByteStream>"));
+    let item = rendered
+        .operations
+        .iter()
+        .find(|op| op.name == "get_item")
+        .unwrap();
     assert_eq!(
-        next.included_data_default,
-        Some(vec!["images".into(), "future".into()])
+        item.csv_query_names(),
+        vec!["marketplaceIds", "includedData"]
     );
-    assert_eq!(next.success_model, "FutureItem");
-    assert!(!next.wire.contains("pub fn ignored"));
-    assert!(next.wire.contains("crate::Client"));
-    assert!(next.wire.contains("ResponseValue<ByteStream>"));
+    assert_eq!(item.successes.len(), 2);
+    let facade = clients::facade(&rendered, &ALL_APIS[0]).unwrap();
+    assert!(facade.contains("pub struct EmptyParams"));
+    assert!(facade.contains("pub count: Option<i32>"));
+    assert!(facade.contains("pub enabled: Option<bool>"));
+    assert!(facade.contains(".x_test("));
+    assert!(facade.contains(".run("));
+    assert!(facade.contains("json_200"));
     assert_eq!(
-        clients::render(&original, &APIS[0]).unwrap().wire,
-        first.wire
+        rendered.wire,
+        clients::render(&value, &ALL_APIS[0]).unwrap().wire
     );
 }
 #[test]
-fn unsupported_selected_parameter_shapes_fail_instead_of_guessing() {
-    for (field, value) in [
-        ("collectionFormat", json!("multi")),
-        ("type", json!("integer")),
-    ] {
-        let mut value_spec = spec();
-        value_spec["paths"]["/items/{asin}"]["get"]["parameters"][1][field] = value;
-        assert!(clients::render(&value_spec, &APIS[0]).is_err());
-    }
-    let mut missing = spec();
-    missing["paths"] = json!({});
-    assert!(clients::render(&missing, &APIS[0]).is_err());
-    let mut defaults = spec();
-    defaults["paths"]["/items/{asin}"]["get"]["parameters"][2]["default"] = json!(["bad,value"]);
-    assert!(clients::render(&defaults, &APIS[0]).is_err());
+fn unsupported_parameters_and_invalid_defaults_fail_before_rendering() {
+    let mut value = spec();
+    value["paths"]["/items/{asin}"]["get"]["parameters"][1]["collectionFormat"] = json!("ssv");
+    assert!(clients::render(&value, &ALL_APIS[0]).is_err());
+    let mut value = spec();
+    value["paths"]["/items/{asin}"]["get"]["parameters"][2]["default"] = json!(["bad,value"]);
+    assert!(clients::render(&value, &ALL_APIS[0]).is_err());
+}
+#[test]
+fn scalar_csv_default_is_normalized_to_its_declared_array_type() {
+    let mut value = spec();
+    value["paths"]["/items/{asin}"]["get"]["parameters"][2]["default"] = json!("summaries");
+    let api = ALL_APIS
+        .iter()
+        .find(|api| api.module == "catalog_items_2020_12_01")
+        .unwrap();
+    assert!(clients::render(&value, &ALL_APIS[0]).is_err());
+    let rendered = clients::render(&value, api).unwrap();
+    let item = rendered
+        .operations
+        .iter()
+        .find(|op| op.name == "get_item")
+        .unwrap();
+    assert_eq!(item.parameters[2].schema["default"], json!(["summaries"]));
+}
+#[test]
+fn duplicate_ids_preserve_post_and_expose_put_with_a_method_suffix() {
+    let mut value = spec();
+    let operation = value["paths"]["/empty"]["post"].clone();
+    value["paths"]["/empty"]["put"] = operation;
+    let rendered = clients::render(&value, &ALL_APIS[0]).unwrap();
+    assert_eq!(
+        rendered
+            .operations
+            .iter()
+            .map(|op| op.name.as_str())
+            .collect::<Vec<_>>(),
+        vec!["empty", "empty_put", "get_item"]
+    );
+    assert!(rendered.wire.contains("pub fn empty_put"));
 }
 
 #[test]
-fn scalar_parameter_formats_cannot_change_the_public_string_facade_types() {
-    for location in ["path", "query"] {
-        let mut changed = spec();
-        let parameters = changed["paths"]["/items/{asin}"]["get"]["parameters"]
-            .as_array_mut()
-            .unwrap();
-        if location == "path" {
-            parameters[0]["format"] = json!("date-time");
-        } else {
-            parameters
-                .push(json!({"name":"locale","in":"query","type":"string","format":"date-time"}));
-        }
-        let error = clients::render(&changed, &APIS[0])
-            .err()
-            .expect("formatted string parameter must fail before client emission");
-        assert!(error.0.contains("unsupported selected parameter format"));
-    }
+fn malformed_scalar_defaults_fail_generation_before_runtime_construction() {
+    let mut value = spec();
+    value["paths"]["/items/{asin}"]["get"]["parameters"][4]["default"] = json!("not-a-boolean");
+    assert!(clients::render(&value, &ALL_APIS[0]).is_err());
 }
-
 #[test]
-fn csv_array_item_formats_cannot_change_the_public_string_vector_types() {
-    let mut changed = spec();
-    changed["paths"]["/items/{asin}"]["get"]["parameters"][1]["items"]["format"] =
-        json!("date-time");
-    let error = clients::render(&changed, &APIS[0])
-        .err()
-        .expect("formatted CSV array items must fail before client emission");
-    assert!(error.0.contains("unsupported selected parameter format"));
+fn bodyless_success_status_does_not_offer_json_even_with_an_upstream_schema() {
+    let mut value = spec();
+    value["paths"]["/empty"]["post"]["responses"] =
+        json!({"204":{"description":"bodyless","schema":{"type":"string"}}});
+    let rendered = clients::render(&value, &ALL_APIS[0]).unwrap();
+    assert_eq!(rendered.operations[0].successes, vec![(204, None)]);
 }

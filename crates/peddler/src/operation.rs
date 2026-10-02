@@ -1,8 +1,8 @@
-//! Ergonomic facades over the selected, crate-private Progenitor wire clients.
+//! Shared raw response collection and pre-authorization facade validation.
 use crate::{Client, Error, Response, classify_transport};
 use futures_util::StreamExt;
 use progenitor_client::{ByteStream, ResponseValue};
-use serde::{Serialize, de::DeserializeOwned};
+use serde::de::DeserializeOwned;
 use std::marker::PhantomData;
 
 #[derive(Debug)]
@@ -16,46 +16,185 @@ impl<T: DeserializeOwned> TypedResponse<T> {
     }
 }
 impl<T> TypedResponse<T> {
+    pub(crate) fn new(raw: Response) -> Self {
+        Self {
+            raw,
+            model: PhantomData,
+        }
+    }
     pub fn into_raw(self) -> Response {
         self.raw
     }
 }
-
-pub async fn execute(client: &Client, operation: &str, arguments: &str) -> Result<Response, Error> {
-    match operation {
-        "catalog_items_2022_04_01.get_catalog_item" => {
-            let params = serde_json::from_str(arguments).map_err(|_| Error::InvalidRequest)?;
-            Ok(catalog::get_catalog_item(client, params).await?.into_raw())
+#[derive(Debug)]
+pub enum DecodeError {
+    UnexpectedStatus { expected: u16, actual: u16 },
+    Json(serde_json::Error),
+}
+impl std::fmt::Display for DecodeError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::UnexpectedStatus { expected, actual } => {
+                write!(f, "expected status {expected}, received {actual}")
+            }
+            Self::Json(error) => error.fmt(f),
         }
-        "listings_items_2021_08_01.patch_listings_item" => {
-            let params: listings::PatchListingsItemParams =
-                serde_json::from_str(arguments).map_err(|_| Error::InvalidRequest)?;
-            Ok(listings::patch_listings_item(client, params)
-                .await?
-                .into_raw())
-        }
-        _ => Err(Error::InvalidRequest),
     }
 }
+impl std::error::Error for DecodeError {}
+pub(crate) fn decode_status<T: DeserializeOwned>(
+    raw: &Response,
+    expected: u16,
+) -> Result<T, DecodeError> {
+    if raw.status != expected {
+        return Err(DecodeError::UnexpectedStatus {
+            expected,
+            actual: raw.status,
+        });
+    }
+    serde_json::from_slice(&raw.body).map_err(DecodeError::Json)
+}
 
-fn validate_segment(value: &str) -> Result<(), Error> {
-    if value.is_empty() || matches!(value, "." | "..") {
-        Err(Error::InvalidRequest)
-    } else {
+/// Per-attempt context: Progenitor 0.15 drops empty query arrays and treats all
+/// request bodies as required. Adapt only these omissions in the shared pre hook.
+#[derive(Clone, Debug)]
+pub struct WireContext {
+    pub client: Client,
+    pub empty_queries: Vec<&'static str>,
+    pub omit_body: bool,
+}
+impl From<Client> for WireContext {
+    fn from(client: Client) -> Self {
+        Self {
+            client,
+            empty_queries: Vec::new(),
+            omit_body: false,
+        }
+    }
+}
+impl WireContext {
+    pub fn prepare(&self, request: &mut reqwest::Request, csv: &[&str]) -> Result<(), Error> {
+        self.client.prepare_generated(request, csv)?;
+        if self.omit_body {
+            *request.body_mut() = None;
+            for header in [
+                reqwest::header::CONTENT_TYPE,
+                reqwest::header::CONTENT_LENGTH,
+                reqwest::header::TRANSFER_ENCODING,
+            ] {
+                request.headers_mut().remove(header);
+            }
+        }
+        if !self.empty_queries.is_empty() {
+            request
+                .url_mut()
+                .query_pairs_mut()
+                .extend_pairs(self.empty_queries.iter().map(|name| (*name, "")));
+        }
         Ok(())
     }
 }
-fn validate_array(values: &[String]) -> Result<(), Error> {
-    if values.is_empty() || values.iter().any(|v| v.is_empty() || v.contains(',')) {
-        Err(Error::InvalidRequest)
-    } else {
-        Ok(())
-    }
+
+/// Validate schema parameter constraints before acquiring authorization. String
+/// enums stay open; formats and patterns constrain the actual wire representation.
+pub(crate) fn validate_parameter(
+    value: serde_json::Value,
+    location: &str,
+    schema: &str,
+    required: bool,
+    csv: bool,
+) -> Result<(), Error> {
+    let schema: serde_json::Value =
+        serde_json::from_str(schema).map_err(|_| Error::InvalidRequest)?;
+    validate_value(&value, location, &schema, required, csv)
 }
-fn validate_arrays(required: &[String], optional: &Option<Vec<String>>) -> Result<(), Error> {
-    validate_array(required)?;
-    if let Some(values) = optional {
-        validate_array(values)?;
+fn validate_value(
+    value: &serde_json::Value,
+    location: &str,
+    schema: &serde_json::Value,
+    required: bool,
+    csv: bool,
+) -> Result<(), Error> {
+    let invalid = || Error::InvalidRequest;
+    match schema["type"].as_str() {
+        Some("array") => {
+            let values = value.as_array().ok_or_else(invalid)?;
+            let minimum = schema["minItems"].as_u64().unwrap_or(u64::from(required));
+            if values.len() < minimum as usize {
+                return Err(invalid());
+            }
+            if let Some(maximum) = schema["maxItems"].as_u64()
+                && values.len() > maximum as usize
+            {
+                return Err(invalid());
+            }
+            for value in values {
+                if value
+                    .as_str()
+                    .is_none_or(|s| s.is_empty() || (csv && s.contains(',')))
+                {
+                    return Err(invalid());
+                }
+                validate_value(value, "query", &schema["items"], false, false)?;
+            }
+        }
+        Some("string") => {
+            let text = value.as_str().ok_or_else(invalid)?;
+            if location == "path" && (text.is_empty() || matches!(text, "." | "..")) {
+                return Err(invalid());
+            }
+            let length = text.chars().count() as u64;
+            if schema["minLength"].as_u64().is_some_and(|min| length < min)
+                || schema["maxLength"].as_u64().is_some_and(|max| length > max)
+            {
+                return Err(invalid());
+            }
+            match schema["format"].as_str() {
+                Some("date-time") if chrono::DateTime::parse_from_rfc3339(text).is_err() => {
+                    return Err(invalid());
+                }
+                Some("date")
+                    if text.len() != 10
+                        || chrono::NaiveDate::parse_from_str(text, "%Y-%m-%d").is_err() =>
+                {
+                    return Err(invalid());
+                }
+                Some("[A-Z]{2}")
+                    if text.len() != 2 || !text.bytes().all(|b| b.is_ascii_uppercase()) =>
+                {
+                    return Err(invalid());
+                }
+                _ => (),
+            }
+            if let Some(pattern) = schema["pattern"].as_str()
+                && regress::Regex::new(pattern)
+                    .map_err(|_| invalid())?
+                    .find(text)
+                    .is_none()
+            {
+                return Err(invalid());
+            }
+        }
+        Some("boolean") if !value.is_boolean() => return Err(invalid()),
+        Some("integer" | "number") => {
+            let number = value
+                .as_f64()
+                .filter(|n| n.is_finite())
+                .ok_or_else(invalid)?;
+            if schema["minimum"].as_f64().is_some_and(|min| {
+                number < min || (schema["exclusiveMinimum"] == true && number == min)
+            }) || schema["maximum"].as_f64().is_some_and(|max| {
+                number > max || (schema["exclusiveMaximum"] == true && number == max)
+            }) {
+                return Err(invalid());
+            }
+        }
+        _ => (),
+    }
+    if location == "header"
+        && reqwest::header::HeaderValue::from_str(value.as_str().unwrap_or("")).is_err()
+    {
+        return Err(invalid());
     }
     Ok(())
 }
@@ -98,174 +237,6 @@ pub(crate) async fn collect(
     })
 }
 
-pub mod catalog {
-    use super::*;
-    use crate::apis::catalog_items_2022_04_01::{metadata, wire};
-    #[derive(Clone, Debug, serde::Deserialize)]
-    #[serde(deny_unknown_fields)]
-    pub struct GetCatalogItemParams {
-        pub asin: String,
-        pub marketplace_ids: Vec<String>,
-        #[serde(default = "metadata::included_data_default")]
-        pub included_data: Option<Vec<String>>,
-        pub locale: Option<String>,
-    }
-    impl GetCatalogItemParams {
-        pub fn new(asin: String, marketplace_ids: Vec<String>) -> Self {
-            Self {
-                asin,
-                marketplace_ids,
-                included_data: metadata::included_data_default(),
-                locale: None,
-            }
-        }
-    }
-    pub async fn get_catalog_item(
-        client: &Client,
-        params: GetCatalogItemParams,
-    ) -> Result<TypedResponse<metadata::ResponseModel>, Error> {
-        validate_segment(&params.asin)?;
-        validate_arrays(&params.marketplace_ids, &params.included_data)?;
-        let raw = client
-            .run(
-                "catalog_items_2022_04_01.get_catalog_item",
-                "GET",
-                |snapshot| {
-                    let params = params.clone();
-                    async move {
-                        let wire = wire::Client::new_with_client(
-                            snapshot.origin.as_str().trim_end_matches('/'),
-                            snapshot.http.clone(),
-                            snapshot.clone(),
-                        );
-                        let mut request = wire
-                            .get_catalog_item()
-                            .asin(params.asin.clone())
-                            .marketplace_ids(params.marketplace_ids.clone());
-                        if let Some(included) = params.included_data.clone() {
-                            request = request.included_data(included);
-                        }
-                        if let Some(locale) = params.locale.clone() {
-                            request = request.locale(locale);
-                        }
-                        collect(request.send().await).await
-                    }
-                },
-            )
-            .await?;
-        Ok(TypedResponse {
-            raw,
-            model: PhantomData,
-        })
-    }
-}
-
-pub mod listings {
-    use super::*;
-    use crate::apis::listings_items_2021_08_01::{metadata, wire};
-    #[derive(Clone, Debug, serde::Deserialize)]
-    #[serde(deny_unknown_fields)]
-    pub struct PatchListingsItemParams<B = serde_json::Value> {
-        pub seller_id: String,
-        pub sku: String,
-        pub marketplace_ids: Vec<String>,
-        pub body: B,
-        #[serde(default = "metadata::included_data_default")]
-        pub included_data: Option<Vec<String>>,
-        pub mode: Option<String>,
-        pub issue_locale: Option<String>,
-    }
-    impl<B> PatchListingsItemParams<B> {
-        pub fn new(seller_id: String, sku: String, marketplace_ids: Vec<String>, body: B) -> Self {
-            Self {
-                seller_id,
-                sku,
-                marketplace_ids,
-                body,
-                included_data: metadata::included_data_default(),
-                mode: None,
-                issue_locale: None,
-            }
-        }
-    }
-    pub async fn patch_listings_item<B: Serialize>(
-        client: &Client,
-        params: PatchListingsItemParams<B>,
-    ) -> Result<TypedResponse<metadata::ResponseModel>, Error> {
-        validate_segment(&params.seller_id)?;
-        validate_segment(&params.sku)?;
-        validate_arrays(&params.marketplace_ids, &params.included_data)?;
-        let body = serde_json::to_value(&params.body).map_err(|_| Error::InvalidRequest)?;
-        if !body.is_object() {
-            return Err(Error::InvalidRequest);
-        }
-        let raw = client
-            .run(
-                "listings_items_2021_08_01.patch_listings_item",
-                "PATCH",
-                |snapshot| {
-                    let body = body.clone();
-                    let params = &params;
-                    async move {
-                        let wire = wire::Client::new_with_client(
-                            snapshot.origin.as_str().trim_end_matches('/'),
-                            snapshot.http.clone(),
-                            snapshot.clone(),
-                        );
-                        let mut request = wire
-                            .patch_listings_item()
-                            .seller_id(params.seller_id.clone())
-                            .sku(params.sku.clone())
-                            .marketplace_ids(params.marketplace_ids.clone())
-                            .body(body);
-                        if let Some(included) = params.included_data.clone() {
-                            request = request.included_data(included);
-                        }
-                        if let Some(mode) = params.mode.clone() {
-                            request = request.mode(mode);
-                        }
-                        if let Some(locale) = params.issue_locale.clone() {
-                            request = request.issue_locale(locale);
-                        }
-                        collect(request.send().await).await
-                    }
-                },
-            )
-            .await?;
-        Ok(TypedResponse {
-            raw,
-            model: PhantomData,
-        })
-    }
-}
-
-// Progenitor 0.15.0 supplies an &Client fallback hook implementation. Implementing
-// the trait on Client overrides it; this version has no HooksMode::Expected.
-macro_rules! wire_hooks {
-    ($module:ident) => {
-        impl progenitor_client::ClientHooks<crate::Client> for crate::apis::$module::wire::Client {
-            async fn pre<E>(
-                &self,
-                request: &mut reqwest::Request,
-                _info: &progenitor_client::OperationInfo,
-            ) -> Result<(), progenitor_client::Error<E>> {
-                self.inner
-                    .prepare_generated(request, crate::apis::$module::metadata::CSV_QUERY_NAMES)
-                    .map_err(|_| progenitor_client::Error::InvalidRequest("invalid request".into()))
-            }
-            async fn exec(
-                &self,
-                request: reqwest::Request,
-                _info: &progenitor_client::OperationInfo,
-            ) -> reqwest::Result<reqwest::Response> {
-                self.inner.http.execute(request).await
-            }
-        }
-    };
-}
-wire_hooks!(catalog_items_2022_04_01);
-wire_hooks!(listings_items_2021_08_01);
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -289,7 +260,7 @@ mod tests {
         let base = format!("http://{}", foreign.local_addr().unwrap());
         let mut inner = inner;
         inner.access_token = Some(inner.auth.token(None).await.unwrap());
-        let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner);
+        let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner.into());
         let mut request =
             reqwest::Request::new(reqwest::Method::GET, reqwest::Url::parse(&base).unwrap());
         let info = OperationInfo {
@@ -325,7 +296,7 @@ mod tests {
             Client::with_timeout(&base, "timeout-secret", Duration::from_millis(30)).unwrap();
         let mut inner = inner;
         inner.access_token = Some(inner.auth.token(None).await.unwrap());
-        let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner);
+        let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner.into());
         let mut request =
             reqwest::Request::new(reqwest::Method::GET, reqwest::Url::parse(&base).unwrap());
         *request.timeout_mut() = Some(Duration::from_secs(20));

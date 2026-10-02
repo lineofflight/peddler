@@ -5,6 +5,7 @@ use std::{
 };
 
 pub mod clients;
+mod facades;
 pub mod manifest;
 pub mod models;
 pub mod supplemental;
@@ -88,40 +89,61 @@ fn format_tokens(tokens: impl quote::ToTokens) -> Result<String, GenerationError
     Ok(prettyplease::unparse(&file))
 }
 
-/// Render models and selected wire clients after installing tools/openapi.
+/// Render all pinned models, wire clients, public facades, dispatch and Ruby.
 pub fn generate(
     spec_dir: &Path,
     revision: &str,
 ) -> Result<BTreeMap<PathBuf, String>, GenerationError> {
     let mut output = generate_models(spec_dir, revision)?;
     let base = Path::new("crates/peddler/src/apis");
-    let root = output.get_mut(&base.join("mod.rs")).unwrap();
-    root.push_str("\npub use crate::operation::execute;\n");
-    for api in manifest::WIRE_APIS {
+    output
+        .get_mut(&base.join("mod.rs"))
+        .unwrap()
+        .push_str("\npub mod dispatch;\npub use dispatch::execute;\n");
+    let mut clients = Vec::new();
+    for api in manifest::ALL_APIS {
         let spec = serde_json::from_slice(&fs::read(spec_dir.join(api.source))?)?;
         let rendered = clients::render(&spec, api)?;
         let prefix = notice(revision, api.source);
-        output.insert(
-            base.join(api.module).join("wire.rs"),
-            format!("{prefix}{}", rendered.wire),
-        );
-        output.insert(
-            base.join(api.module).join("metadata.rs"),
-            format!("{prefix}{}", clients::metadata(&rendered)?),
-        );
-        let facade = quote::format_ident!("{}", api.facade);
+        for (name, content) in [
+            ("wire.rs", rendered.wire.clone()),
+            ("metadata.rs", clients::metadata(&rendered)?),
+            ("facade.rs", clients::facade(&rendered, api)?),
+        ] {
+            output.insert(
+                base.join(api.module).join(name),
+                format!("{prefix}{content}"),
+            );
+        }
         let module = quote::quote! {
             pub mod models;
             pub(crate) mod metadata;
             #[allow(dead_code, unused_imports, clippy::all)]
             pub(crate) mod wire;
-            pub use crate::operation::#facade::*;
+            mod facade;
+            pub use facade::*;
         };
         output.insert(
             base.join(api.module).join("mod.rs"),
             format!("{prefix}{}", format_tokens(module)?),
         );
+        clients.push((api, rendered));
     }
+    output.insert(
+        base.join("dispatch.rs"),
+        format!(
+            "{}{}",
+            notice(revision, "all operations"),
+            facades::dispatch(&clients)?
+        ),
+    );
+    let (ruby, rbs) = facades::ruby(&clients);
+    output.insert(PathBuf::from("lib/peddler/native/apis.rb"), ruby);
+    output.insert(PathBuf::from("sig/peddler/native/apis.rbs"), rbs);
+    output.insert(
+        PathBuf::from("crates/peddler-codegen/operation-inventory.json"),
+        facades::inventory(&clients, revision)?,
+    );
     output.extend(generate_supplemental(
         spec_dir
             .parent()

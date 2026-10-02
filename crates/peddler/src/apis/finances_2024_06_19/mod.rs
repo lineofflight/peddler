@@ -3,3 +3,8 @@
 // Source: finances-api-model/finances_2024-06-19.json
 
 pub mod models;
+pub(crate) mod metadata;
+#[allow(dead_code, unused_imports, clippy::all)]
+pub(crate) mod wire;
+mod facade;
+pub use facade::*;

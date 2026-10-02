@@ -73,4 +73,5 @@ pub mod vendor_orders_v1;
 pub mod vendor_shipments_v1;
 pub mod vendor_transaction_status_v1;
 
-pub use crate::operation::execute;
+pub mod dispatch;
+pub use dispatch::execute;

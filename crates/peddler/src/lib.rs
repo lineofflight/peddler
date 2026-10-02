@@ -17,7 +17,7 @@ pub mod documents;
 pub mod policy;
 
 mod operation;
-pub use operation::TypedResponse;
+pub use operation::{DecodeError, TypedResponse};
 
 use auth::{AuthError, AuthManager, Credentials, RestrictedScope};
 use policy::{PolicyConfig, RequestPolicy};
