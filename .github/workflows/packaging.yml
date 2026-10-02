@@ -117,7 +117,13 @@ jobs:
       # The action's gem-path output looks for "*-<platform>.gem", which misses the
       # "-gnu" suffix added to Linux gems, so locate the gem here.
       - id: gem
-        run: echo "path=$(ls pkg/peddler-*-${{ matrix.platform }}*.gem)" >> "$GITHUB_OUTPUT"
+        run: |
+          path="$(ls pkg/peddler-*-${{ matrix.platform }}*.gem)"
+          if [ "$(printf '%s\n' "$path" | wc -l)" -ne 1 ]; then
+            echo "expected exactly one gem for ${{ matrix.platform }}, found: $path" >&2
+            exit 1
+          fi
+          echo "path=$path" >> "$GITHUB_OUTPUT"
       - run: ruby tools/gem_audit.rb "${{ steps.gem.outputs.path }}"
       - uses: actions/upload-artifact@v4
         with:

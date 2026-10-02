@@ -1,4 +1,4 @@
-name: Native preview
+name: Native crates
 
 on: [push, pull_request]
 
@@ -44,28 +44,20 @@ jobs:
           cargo run -p peddler-codegen --locked -- --root . --check
           cargo run -p peddler-codegen --locked -- --root . --check
 
-  ruby:
-    strategy:
-      fail-fast: false
-      matrix:
-        ruby: ["3.3", "3.4", "4.0"]
+  binding:
+    # ci.yml builds the extension and runs the whole suite for each Ruby. This job
+    # covers only what it does not: the shared-fixture export and the binding lint.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: "4.0"
           bundler-cache: true
       - name: Set up Rust
         run: |
           rustup toolchain install stable --profile minimal --component clippy
           rustup default stable
       - run: ruby tools/export_native_fixtures.rb --check
-      - run: bundle exec rake native:build native:test
-      - name: Check independent entrypoint
-        run: >-
-          bundle exec ruby -Ilib -Itmp/native -e
-          'require "peddler/native"; abort "http.rb loaded" if defined?(HTTP)'
       - name: Lint binding
-        if: matrix.ruby == '4.0'
         run: RUBY="$(ruby -rrbconfig -e 'print RbConfig.ruby')" cargo clippy --workspace --all-targets --locked -- -D warnings

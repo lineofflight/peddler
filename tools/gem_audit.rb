@@ -14,6 +14,8 @@ CLOSURE = ["Cargo.lock", "crates/peddler-ruby/extconf.rb", "third_party/progenit
 RUST = %r{\A(Cargo\.|crates/|third_party/)}
 BINARY = %r{\Alib/peddler/(\d+\.\d+/)?peddler_native\.(bundle|so)\z}
 
+abort("usage: ruby tools/gem_audit.rb pkg/peddler-*.gem") if ARGV.empty?
+
 problems = ARGV.flat_map do |path|
   spec = Gem::Package.new(path).spec
   files = []
@@ -26,6 +28,7 @@ problems = ARGV.flat_map do |path|
     found << "#{path}: source gem ships binaries" unless binaries.empty?
   else
     found << "#{path}: platform gem has no binary" if binaries.empty?
+    found << "#{path}: Linux gem is not -gnu (#{spec.platform})" if spec.platform.os == "linux" && spec.platform.version != "gnu"
     found << "#{path}: platform gem ships Rust sources" if files.any? { |file| file.match?(RUST) }
     found << "#{path}: platform gem declares rb_sys" if spec.runtime_dependencies.any? { |dep| dep.name == "rb_sys" }
     found << "#{path}: platform gem is not bound to a Ruby range" unless spec.required_ruby_version.to_s.include?("<")

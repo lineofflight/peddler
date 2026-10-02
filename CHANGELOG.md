@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file. This projec
 
 - Add native LWA authorization-code onboarding with redacted token results and bounded, cancellable requests
 
-- Prepare native packaging: a source gem that compiles the Rust extension at install time and fat platform gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux` and `x86_64-linux` (Ruby 3.3, 3.4 and 4.0), built with `rb_sys` and rake-compiler; nothing is published yet. The loader selects the build for the running Ruby or fails clearly; see [native extension](README.md#native-extension)
+- Prepare native packaging: a source gem that compiles the Rust extension at install time and fat platform gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu` (Ruby 3.3, 3.4 and 4.0), built with `rb_sys` and rake-compiler; nothing is published yet. The loader selects the build for the running Ruby or fails clearly; see [native extension](README.md#native-extension)
 - Prepare the `peddler` Rust crate (0.1.0) for crates.io with MIT metadata and an explicit package list; it builds offline from the extracted package without Node, Ruby or the spec checkout
 
 - Add native signed-URL document streaming with Rust GZIP/JSONL/TSV parsing, bounded whole JSON and IO uploads with backpressure, cancellation and fork guards
