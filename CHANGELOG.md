@@ -30,11 +30,26 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changed
 
+- Make the native layer the root of the gem. `require "peddler"` loads the Rust extension, and `Peddler::Client` is the only entry point: `Peddler::Client.new(region: "eu-west-1", refresh_token: token)`, then `client.orders_v0.get_orders(...)`, `client.orders` for the latest version and `client.sandbox` for a sandbox view. The client requests and refreshes access tokens itself; `client_id` and `client_secret` default to `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET`
+- Take keyword arguments in every operation method; required arguments are no longer positional
+- Raise `Peddler::Error` on every 4xx and 5xx response, from operations, `client.request`, paginated enumerators and the document ID helpers, also after retries are exhausted. `Peddler::Error` is one generic class with `status`, `code`, `request_id` and `response`; match on `status` and `code`. `Response#raise_for_status!` stays and returns the response on 2xx
+- Return the native `Peddler::Response` everywhere: `status` is an Integer, `headers` an array of pairs and `body` a String. `json`, `to_h`, `dig` and typed `parse` work on it
+- Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models and the lookup `parse` uses
+- Make `Peddler::LWA` the authorization-code client: `Peddler::LWA.new.exchange_authorization_code(code:, redirect_uri:)` returns `Peddler::LWA::Tokens`
+- Move the native classes to the root namespace: `Peddler::TransportError`, `Peddler::TimeoutError`, `Peddler::AuthenticationError`, `Peddler::ForkError`, `Peddler::DocumentError`, `Peddler::DocumentTimeoutError`, `Peddler::PaginationError`, `Peddler::WorkflowError`, `Peddler::WorkflowTimeoutError`, `Peddler::Document`, `Peddler::Pagination`, `Peddler::Continuation` and `Peddler::FeedDocumentUpload`. None of them descends from `Peddler::Error`
 - Bump the gem to 6.0.0. Add a runtime dependency on `bigdecimal` (no longer a default gem since Ruby 3.4), which native document parsing requires
 
 - Improve error messages for degraded responses: keep Amazon's message when the code cannot become a class name, and fall back to the status line (e.g. `"429 Too Many Requests"`) when the body cannot be parsed
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279))
 - Fall back to the base `Peddler::Error` when a dynamic error class cannot be defined inside a non-main Ractor, instead of leaking `Ractor::IsolationError` ([#279](https://github.com/lineofflight/peddler/issues/279))
+
+### Removed
+
+- Remove the HTTP runtime: `Peddler::API`, the generated client classes (`Peddler::APIs::OrdersV0.new(aws_region, access_token)`), the `Peddler.orders_v0`-style accessors, `Peddler::LWA.request` and `Peddler::LWAToken`
+- Remove the HTTP document helpers (`upload_feed_document`, `download_result_feed_document`, and `download_report_document` and `download_query_document` given a URL); use `client.upload_document`, `client.download_document` and the document ID helpers
+- Remove `Peddler::Errors` and the error classes minted from Amazon's codes; rescue `Peddler::Error` and match on `code`
+- Remove `kind` from API errors and `WorkflowHTTPError`; a failed metadata lookup raises `Peddler::Error`
+- Remove the `http` and `nokogiri` dependencies
 
 ### Fixed
 
