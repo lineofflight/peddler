@@ -32,7 +32,7 @@ All notable changes to this project will be documented in this file. This projec
 
 - Make the native layer the root of the gem. `require "peddler"` loads the Rust extension, and `Peddler::Client` is the only entry point: `Peddler::Client.new(region: "eu-west-1", refresh_token: token)`, then `client.orders_v0.get_orders(...)`, `client.orders` for the latest version and `client.sandbox` for a sandbox view. The client requests and refreshes access tokens itself; `client_id` and `client_secret` default to `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET`
 - Take keyword arguments in every operation method; required arguments are no longer positional
-- Raise `Peddler::Error` on every 4xx and 5xx response, from operations, `client.request`, paginated enumerators and the document ID helpers, also after retries are exhausted. `Peddler::Error` is one generic class with `status`, `code`, `request_id` and `response`; match on `status` and `code`. `Response#raise_for_status!` stays and returns the response on 2xx
+- Raise `Peddler::Error` on every API response outside 2xx, from operations, `client.request`, paginated enumerators and the document ID helpers, also after retries are exhausted. `Peddler::Error` is one generic class with `status`, `code`, `request_id` and `response`; match on `status` and `code`. `Response#raise_for_status!` stays and returns the response on 2xx
 - Return the native `Peddler::Response` everywhere: `status` is an Integer, `headers` an array of pairs and `body` a String. `json`, `to_h`, `dig` and typed `parse` work on it
 - Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models and the lookup `parse` uses
 - Make `Peddler::LWA` the authorization-code client: `Peddler::LWA.new.exchange_authorization_code(code:, redirect_uri:)` returns `Peddler::LWA::Tokens`
@@ -49,6 +49,8 @@ All notable changes to this project will be documented in this file. This projec
 - Remove the HTTP document helpers (`upload_feed_document`, `download_result_feed_document`, and `download_report_document` and `download_query_document` given a URL); use `client.upload_document`, `client.download_document` and the document ID helpers
 - Remove `Peddler::Errors` and the error classes minted from Amazon's codes; rescue `Peddler::Error` and match on `code`
 - Remove `kind` from API errors and `WorkflowHTTPError`; a failed metadata lookup raises `Peddler::Error`
+- Remove the sandbox guards (`cannot_sandbox!`, `must_sandbox!`, `Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox`); Amazon rejects those calls itself
+- Remove `Response#parsable?`; `parse` returns the Hash when the operation has no typed model
 - Remove the `http` and `nokogiri` dependencies
 
 ### Fixed
