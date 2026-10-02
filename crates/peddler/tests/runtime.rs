@@ -474,3 +474,96 @@ async fn full_generated_sellers_operation_uses_lwa_and_safe_retry_runner() {
     }
     assert_eq!(auth.await.unwrap().len(), 1);
 }
+
+fn header<'a>(request: &'a str, name: &str) -> Option<&'a str> {
+    request
+        .lines()
+        .find_map(|line| line.strip_prefix(name)?.strip_prefix(": "))
+}
+// The form v5 sent and Amazon's connection guide shows: 20250911T221313Z.
+fn is_amz_date(value: &str) -> bool {
+    value.len() == 16
+        && value.bytes().enumerate().all(|(index, byte)| match index {
+            8 => byte == b'T',
+            15 => byte == b'Z',
+            _ => byte.is_ascii_digit(),
+        })
+}
+
+#[tokio::test]
+async fn every_api_attempt_carries_its_own_x_amz_date_and_lwa_carries_none() {
+    let (lwa, auth) = server(vec![(
+        200,
+        vec![],
+        r#"{"access_token":"fresh-token","token_type":"bearer","expires_in":3600}"#,
+    )])
+    .await;
+    let (base, api) = server(vec![
+        (429, vec![("Retry-After", "1")], "first"),
+        (200, vec![], "{}"),
+        (200, vec![], "{}"),
+    ])
+    .await;
+    let mut c = config(base, lwa);
+    c.policy.retry.max_retries = 1;
+    let client = Client::with_config(c).unwrap();
+    assert_eq!(client.execute(request("GET")).await.unwrap().status, 200);
+    get_catalog_item(
+        &client,
+        GetCatalogItemParams::new("ASIN".into(), vec!["UK".into()]),
+    )
+    .await
+    .unwrap();
+    let requests = api.await.unwrap();
+    let dates: Vec<_> = requests
+        .iter()
+        .map(|request| header(request, "x-amz-date").expect("x-amz-date"))
+        .collect();
+    assert_eq!(dates.len(), 3);
+    assert!(dates.iter().all(|date| is_amz_date(date)), "{dates:?}");
+    // The retry waited a second, so a header set once per request would repeat.
+    assert_ne!(dates[0], dates[1]);
+    for request in auth.await.unwrap() {
+        assert_eq!(header(&request, "x-amz-date"), None);
+    }
+}
+
+#[tokio::test]
+async fn user_agent_is_the_crates_own_unless_the_caller_identifies_itself() {
+    let (base, api) = server(vec![(200, vec![], "{}"), (200, vec![], "{}")]).await;
+    let own = Client::new(&base, "static").unwrap();
+    own.execute(request("GET")).await.unwrap();
+    let (lwa, auth) = server(vec![(
+        200,
+        vec![],
+        r#"{"access_token":"fresh-token","token_type":"bearer","expires_in":3600}"#,
+    )])
+    .await;
+    let mut c = config(base.clone(), lwa);
+    c.user_agent = Some("Peddler/6.0.0 (Language=Ruby; host)".into());
+    let wrapped = Client::with_config(c).unwrap();
+    wrapped.execute(request("GET")).await.unwrap();
+    let requests = api.await.unwrap();
+    assert_eq!(
+        header(&requests[0], "user-agent"),
+        Some(concat!(
+            "Peddler/",
+            env!("CARGO_PKG_VERSION"),
+            " (Language=Rust)"
+        ))
+    );
+    assert_eq!(
+        header(&requests[1], "user-agent"),
+        Some("Peddler/6.0.0 (Language=Ruby; host)")
+    );
+    assert_eq!(
+        header(&auth.await.unwrap()[0], "user-agent"),
+        Some("Peddler/6.0.0 (Language=Ruby; host)")
+    );
+    let mut invalid = ClientConfig::new(base, Credentials::AccessToken("static".into()));
+    invalid.user_agent = Some("bad\r\nvalue".into());
+    assert_eq!(
+        Client::with_config(invalid).unwrap_err(),
+        Error::InvalidRequest
+    );
+}

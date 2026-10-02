@@ -7,14 +7,17 @@ require_relative "test_helper"
 class RuntimeTest < NativeTest
   def test_refresh_shared_across_ruby_threads_and_generated_calls
     calls = Queue.new
-    serve(handler: lambda { |socket, first, _headers, body|
+    serve(handler: lambda { |socket, first, headers, body|
       assert_equal("POST", first[0])
       assert_equal("refresh_token", URI.decode_www_form(body).to_h.fetch("grant_type"))
+      refute(headers.key?("x-amz-date"))
+      assert_equal(gem_user_agent, headers["user-agent"])
       calls << true
       respond(socket, body: JSON.generate(access_token: "fresh", token_type: "bearer", expires_in: 3600))
     }) do |lwa|
       serve(count: 6, handler: lambda { |socket, _first, headers, _body|
         assert_equal("fresh", headers.fetch("x-amz-access-token"))
+        assert_match(AMZ_DATE, headers["x-amz-date"])
         respond(socket)
       }) do |url|
         instance = Peddler::Client.new(base_url: url, client_id: "dummy", client_secret: "dummy-secret", refresh_token: "dummy-refresh", lwa_endpoint: lwa)

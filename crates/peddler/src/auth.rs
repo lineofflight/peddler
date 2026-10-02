@@ -266,6 +266,7 @@ impl AuthManager {
                     .http
                     .post(url)
                     .header("x-amz-access-token", token)
+                    .header("x-amz-date", crate::amz_date())
                     .json(&body)
                     .send()
                     .await

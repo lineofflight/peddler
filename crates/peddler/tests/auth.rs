@@ -153,6 +153,27 @@ fn onboarding_body() -> Value {
 }
 
 #[tokio::test]
+async fn onboarding_identifies_a_wrapper_by_its_user_agent() {
+    let body = json!({"access_token":"onboard-access","refresh_token":"onboard-refresh","token_type":"bearer","expires_in":3600}).to_string();
+    let (origin, task) = server(vec![(200, body)]).await;
+    let endpoint = format!("{origin}/auth");
+    let timeout = Duration::from_secs(2);
+    let agent = "Peddler/6.0.0 (Language=Ruby; host)";
+    LwaClient::with_user_agent("id", "secret", &endpoint, timeout, agent)
+        .unwrap()
+        .exchange_authorization_code("code", None)
+        .await
+        .unwrap();
+    let requests = task.await.unwrap();
+    assert!(requests[0].contains(&format!("user-agent: {agent}\r\n")));
+    assert!(!requests[0].contains("x-amz-date"));
+    assert_eq!(
+        LwaClient::with_user_agent("id", "secret", &endpoint, timeout, "bad\r\nvalue").unwrap_err(),
+        AuthError::InvalidConfig
+    );
+}
+
+#[tokio::test]
 async fn onboarding_validates_inputs_and_every_required_response_field() {
     assert!(LwaClient::new("id", "secret").is_ok());
     for (id, secret, endpoint, timeout) in [
@@ -423,8 +444,10 @@ async fn rdt_bootstrap_uses_lwa_and_canonical_scope_identity() {
     for request in &requests[1..] {
         assert!(request.starts_with("POST /tokens/2021-03-01/restrictedDataToken HTTP/1.1\r\n"));
         assert!(request.contains("x-amz-access-token: lwa-secret\r\n"));
+        assert!(request.contains("\r\nx-amz-date: "));
         assert!(!request.contains("rdt-one"));
     }
+    assert!(!requests[0].contains("x-amz-date"));
     assert_eq!(
         serde_json::from_str::<Value>(requests[1].split_once("\r\n\r\n").unwrap().1).unwrap(),
         json!({"restrictedResources":[{"method":"GET","path":"/orders/{orderId}/address","dataElements":["buyerInfo","shippingAddress"]},{"method":"POST","path":"/orders/{orderId}/buyer","dataElements":[]}]})

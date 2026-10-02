@@ -67,6 +67,7 @@ async fn signed_query_duplicate_headers_and_no_token() {
     let request = String::from_utf8(task.await.unwrap()).unwrap();
     assert!(request.starts_with("GET /file?z=%2f&a=1&a=2&sig=secret+value HTTP/1.1"));
     assert!(!request.to_lowercase().contains("x-amz-access-token"));
+    assert!(!request.to_lowercase().contains("x-amz-date"));
     assert!(!request.contains("SECRET_API_TOKEN"));
 }
 use futures_util::TryStreamExt;

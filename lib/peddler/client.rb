@@ -36,7 +36,8 @@ module Peddler
       end
       config = { base_url: base_url, access_token: access_token, client_id: client_id, client_secret: client_secret,
         refresh_token: refresh_token, scope: scope, timeout: timeout, retries: retries, retry_delay: retry_delay,
-        max_retry_delay: max_retry_delay, rate_limits: rate_limits, lwa_endpoint: lwa_endpoint }
+        max_retry_delay: max_retry_delay, rate_limits: rate_limits, lwa_endpoint: lwa_endpoint,
+        user_agent: Native.user_agent }
       @engine = Native.engine(JSON.generate(config))
     rescue JSON::GeneratorError
       raise ArgumentError, "invalid configuration"

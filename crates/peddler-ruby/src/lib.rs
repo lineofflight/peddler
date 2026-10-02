@@ -170,6 +170,7 @@ impl Engine {
                 max_retry_delay: default_timeout(),
                 rate_limits: BTreeMap::new(),
                 lwa_endpoint: default_lwa(),
+                user_agent: None,
             },
         )
     }
@@ -415,6 +416,9 @@ struct Config {
     rate_limits: BTreeMap<String, RateConfig>,
     #[serde(default = "default_lwa")]
     lwa_endpoint: String,
+    /// How the gem identifies itself. Without one, requests carry the Rust crate's own.
+    #[serde(default)]
+    user_agent: Option<String>,
 }
 #[derive(Clone, serde::Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -462,6 +466,7 @@ impl Config {
         let mut client = ClientConfig::new(config.base_url, credentials);
         client.timeout = Duration::try_from_secs_f64(config.timeout).map_err(|_| invalid())?;
         client.lwa_endpoint = config.lwa_endpoint;
+        client.user_agent = config.user_agent;
         client.policy = PolicyConfig {
             retry: RetryPolicy {
                 max_retries: config.retries,

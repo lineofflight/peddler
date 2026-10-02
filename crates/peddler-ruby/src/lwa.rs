@@ -55,11 +55,13 @@ impl LwaEngine {
         client_secret: String,
         timeout: f64,
         endpoint: String,
+        user_agent: String,
     ) -> Result<Self, Error> {
         let timeout = Duration::try_from_secs_f64(timeout)
             .map_err(|_| error(ruby, AuthError::InvalidConfig))?;
-        let client = LwaClient::with_config(&client_id, &client_secret, &endpoint, timeout)
-            .map_err(|e| error(ruby, e))?;
+        let client =
+            LwaClient::with_user_agent(&client_id, &client_secret, &endpoint, timeout, &user_agent)
+                .map_err(|e| error(ruby, e))?;
         let runtime = Builder::new_multi_thread()
             .worker_threads(1)
             .enable_all()
@@ -112,7 +114,7 @@ impl LwaEngine {
 }
 pub(super) fn init(ruby: &Ruby, native: RModule) -> Result<(), Error> {
     let engine = native.define_class("LwaEngine", ruby.class_object())?;
-    engine.define_singleton_method("new", function!(LwaEngine::new, 4))?;
+    engine.define_singleton_method("new", function!(LwaEngine::new, 5))?;
     engine.define_method(
         "exchange_authorization_code",
         method!(LwaEngine::exchange, 2),

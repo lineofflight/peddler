@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "socket"
 require_relative "loader"
 Peddler::Native::Loader.require_extension
 
@@ -15,7 +16,14 @@ module Peddler
       end
 
       def lwa_engine(client_id, client_secret, timeout, endpoint)
-        LwaEngine.new(client_id, client_secret, timeout, endpoint)
+        LwaEngine.new(client_id, client_secret, timeout, endpoint, user_agent)
+      end
+
+      # Identifies the gem on every request, in the form v5 sent
+      #
+      # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
+      def user_agent
+        "Peddler/#{VERSION} (Language=Ruby; #{Socket.gethostname.gsub(/[^\x20-\x7E]/, "")})"
       end
     end
   end

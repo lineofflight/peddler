@@ -23,6 +23,8 @@ class ClientTest < NativeTest
         assert_equal(request["path"], raw_path)
         assert_equal(request["query"], URI.decode_www_form(query || ""))
         assert_equal("local-secret", headers["x-amz-access-token"])
+        assert_match(AMZ_DATE, headers["x-amz-date"])
+        assert_equal(gem_user_agent, headers["user-agent"])
         assert_equal(body || "", received)
         assert_equal("application/json", headers["content-type"]) if body
         respond(socket, status: response["status"], headers: response["headers"],

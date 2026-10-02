@@ -35,6 +35,8 @@ pub struct ClientConfig {
     pub timeout: Duration,
     pub lwa_endpoint: String,
     pub policy: PolicyConfig,
+    /// Replaces the crate's own User-Agent, for a wrapper that identifies itself.
+    pub user_agent: Option<String>,
 }
 impl ClientConfig {
     pub fn new(base_url: impl Into<String>, credentials: Credentials) -> Self {
@@ -44,6 +46,7 @@ impl ClientConfig {
             timeout: Duration::from_secs(30),
             lwa_endpoint: DEFAULT_LWA_ENDPOINT.into(),
             policy: PolicyConfig::default(),
+            user_agent: None,
         }
     }
 }
@@ -124,6 +127,7 @@ impl Client {
             timeout,
             lwa_endpoint,
             policy,
+            user_agent,
         } = config;
         // Check the original text too: URL parsing normalizes backslashes,
         // userinfo and dot segments that callers must not supply as an origin.
@@ -144,7 +148,10 @@ impl Client {
         if origin.host_str().is_none() || origin.path() != "/" {
             return Err(Error::InvalidRequest);
         }
-        let http = build_http(timeout).map_err(|_| Error::Transport)?;
+        if let Some(value) = &user_agent {
+            HeaderValue::from_str(value).map_err(|_| Error::InvalidRequest)?;
+        }
+        let http = build_http(timeout, user_agent.as_deref()).map_err(|_| Error::Transport)?;
         let auth = AuthManager::new(http.clone(), &base_url, credentials, &lwa_endpoint)
             .map_err(classify_auth)?;
         let policy = RequestPolicy::new(policy).map_err(|_| Error::InvalidRequest)?;
@@ -269,6 +276,7 @@ impl Client {
             "x-amz-access-token",
             self.access_token.clone().ok_or(Error::InvalidRequest)?,
         );
+        request.headers_mut().insert("x-amz-date", amz_date());
         request.headers_mut().insert(
             reqwest::header::ACCEPT,
             HeaderValue::from_static("application/json"),
@@ -350,6 +358,7 @@ impl Client {
                     "x-amz-access-token",
                     snapshot.access_token.ok_or(Error::InvalidRequest)?,
                 );
+                request.headers_mut().insert("x-amz-date", amz_date());
                 let response = snapshot
                     .http
                     .execute(request)
@@ -380,7 +389,17 @@ fn classify_auth(error: AuthError) -> Error {
     }
 }
 
-fn build_http(timeout: Duration) -> Result<reqwest::Client, reqwest::Error> {
+/// The time of an attempt, in the form Amazon's connection guide shows. Only requests
+/// to the Selling Partner API carry it, never LWA or signed URLs.
+pub(crate) fn amz_date() -> HeaderValue {
+    let now = chrono::DateTime::<chrono::Utc>::from(std::time::SystemTime::now());
+    HeaderValue::from_str(&now.format("%Y%m%dT%H%M%SZ").to_string()).expect("ASCII timestamp")
+}
+
+fn build_http(
+    timeout: Duration,
+    user_agent: Option<&str>,
+) -> Result<reqwest::Client, reqwest::Error> {
     reqwest::Client::builder()
         .timeout(timeout)
         .redirect(reqwest::redirect::Policy::none())
@@ -389,10 +408,10 @@ fn build_http(timeout: Duration) -> Result<reqwest::Client, reqwest::Error> {
         .no_brotli()
         .no_deflate()
         .no_zstd()
-        .user_agent(concat!(
+        .user_agent(user_agent.unwrap_or(concat!(
             "Peddler/",
             env!("CARGO_PKG_VERSION"),
             " (Language=Rust)"
-        ))
+        )))
         .build()
 }

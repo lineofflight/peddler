@@ -59,6 +59,14 @@ class NativeTest < Minitest::Test
     socket.write(body)
   end
 
+  # What every request through the gem identifies itself as, in the form v5 sent
+  def gem_user_agent
+    "Peddler/#{Peddler::VERSION} (Language=Ruby; #{Socket.gethostname})"
+  end
+
+  # The x-amz-date form v5 sent and Amazon's connection guide shows
+  AMZ_DATE = /\A\d{8}T\d{6}Z\z/
+
   def client(url, **options)
     Peddler::Client.new(base_url: url, access_token: "local-secret", **options)
   end

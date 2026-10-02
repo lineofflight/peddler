@@ -17,6 +17,8 @@ class OperationsTest < NativeTest
       assert_equal(request["path"], first[1].split("?", 2)[0])
       assert_equal(request["query"].sort, URI.decode_www_form(first[1].split("?", 2)[1]).sort)
       assert_equal("local-secret", headers["x-amz-access-token"])
+      assert_match(AMZ_DATE, headers["x-amz-date"])
+      assert_equal(gem_user_agent, headers["user-agent"])
       assert_empty(body)
       respond(socket, status: response["status"], headers: response["headers"],
         body: Base64.strict_decode64(response["body_base64"]))
@@ -335,6 +337,7 @@ class OperationsTest
         assert_equal(example.fetch("path"), first[1].split("?", 2)[0])
         assert_equal(example.fetch("query").sort, URI.decode_www_form(first[1].split("?", 2)[1] || "").sort)
         example.fetch("headers", []).each { |name, value| assert_equal(value, headers[name]) }
+        assert_match(AMZ_DATE, headers["x-amz-date"])
         if example["body"].nil?
           assert_empty(body)
           refute_equal("application/json", headers["content-type"])

@@ -21,6 +21,7 @@ module Peddler
     def self.response_metadata: (Integer status, Array[[String, String]] headers, String body) -> error_metadata?
     def self.engine: (String config) -> Engine
     def self.lwa_engine: (String client_id, String client_secret, Numeric timeout, String endpoint) -> LwaEngine
+    def self.user_agent: () -> String
 
     class Engine
       def self.new: (String base_url, String access_token, Numeric timeout) -> Engine
@@ -33,7 +34,7 @@ module Peddler
     end
 
     class LwaEngine
-      def self.new: (String client_id, String client_secret, Numeric timeout, String endpoint) -> LwaEngine
+      def self.new: (String client_id, String client_secret, Numeric timeout, String endpoint, String user_agent) -> LwaEngine
       def exchange_authorization_code: (String code, String? redirect_uri) -> [String, String, String, Integer]
     end
   end

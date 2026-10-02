@@ -20,6 +20,8 @@ class LwaTest < NativeTest
       assert_equal("POST", first[0])
       assert_equal("application/x-www-form-urlencoded", headers["content-type"])
       refute(headers.key?("x-amz-access-token"))
+      refute(headers.key?("x-amz-date"))
+      assert_equal(gem_user_agent, headers["user-agent"])
       refute(headers.key?("authorization"))
       refute_equal("application/json", headers["accept"])
       calls << body

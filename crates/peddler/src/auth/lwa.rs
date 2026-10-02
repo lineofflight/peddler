@@ -57,6 +57,34 @@ impl LwaClient {
         lwa_endpoint: &str,
         timeout: Duration,
     ) -> Result<Self, AuthError> {
+        Self::build(client_id, client_secret, lwa_endpoint, timeout, None)
+    }
+
+    /// Like `with_config`, for a wrapper that identifies itself with its own User-Agent.
+    pub fn with_user_agent(
+        client_id: &str,
+        client_secret: &str,
+        lwa_endpoint: &str,
+        timeout: Duration,
+        user_agent: &str,
+    ) -> Result<Self, AuthError> {
+        reqwest::header::HeaderValue::from_str(user_agent).map_err(|_| AuthError::InvalidConfig)?;
+        Self::build(
+            client_id,
+            client_secret,
+            lwa_endpoint,
+            timeout,
+            Some(user_agent),
+        )
+    }
+
+    fn build(
+        client_id: &str,
+        client_secret: &str,
+        lwa_endpoint: &str,
+        timeout: Duration,
+        user_agent: Option<&str>,
+    ) -> Result<Self, AuthError> {
         if client_id.trim().is_empty()
             || client_secret.trim().is_empty()
             || timeout.is_zero()
@@ -65,7 +93,7 @@ impl LwaClient {
             return Err(AuthError::InvalidConfig);
         }
         let endpoint = endpoint(lwa_endpoint, false)?;
-        let http = crate::build_http(timeout).map_err(transport)?;
+        let http = crate::build_http(timeout, user_agent).map_err(transport)?;
         Ok(Self {
             config: Arc::new(Config {
                 http,

@@ -494,6 +494,11 @@ async fn expanded_facades_replay_audited_native_protocol_cases() {
         expected.sort();
         assert_eq!(actual, expected, "{}", case["operation"]);
         let headers = std::str::from_utf8(&req).unwrap().to_ascii_lowercase();
+        assert!(
+            headers.contains("\r\nx-amz-date: "),
+            "{}",
+            case["operation"]
+        );
         if let Some(pairs) = case["headers"].as_array() {
             for pair in pairs {
                 assert!(
