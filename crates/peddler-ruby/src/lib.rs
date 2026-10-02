@@ -1,6 +1,8 @@
 //! Owned-data Ruby boundary. Only the blocking callback runs without the GVL.
 
-use magnus::{Error, RModule, RString, Ruby, TryConvert, function, method, prelude::*};
+use magnus::{
+    Error, RModule, RString, Ruby, TryConvert, Value, function, method, prelude::*, typed_data::Obj,
+};
 use peddler::{
     AccessToken, Client, ClientConfig, Pool, Request, Response,
     auth::{AuthError, TokenSource},
@@ -114,6 +116,9 @@ struct State {
 #[magnus::wrap(class = "Peddler::Native::Engine", free_immediately)]
 struct Engine(ForkOwned<Arc<State>>);
 
+/// The instance variable that holds an engine's token source, when it has one.
+const TOKEN_SOURCE: &str = "@token_source";
+
 /// A constant of the `Peddler` module.
 fn peddler_const<T: TryConvert>(ruby: &Ruby, name: &str) -> Result<T, Error> {
     ruby.class_object()
@@ -163,23 +168,64 @@ impl Engine {
         Self::build(ruby, state.shared, config)
     }
 
-    fn with_base_url(ruby: &Ruby, engine: &Self, base_url: String) -> Result<Self, Error> {
-        Self::view(ruby, engine, |config| config.base_url = base_url)
+    /// Keeps the token source, if the engine has one.
+    fn with_base_url(
+        ruby: &Ruby,
+        rb_self: Obj<Self>,
+        base_url: String,
+    ) -> Result<Obj<Self>, Error> {
+        let view = ruby.obj_wrap(Self::view(ruby, &rb_self, |config| {
+            config.base_url = base_url
+        })?);
+        if let Some(source) = rb_self.ivar_get::<_, Option<Value>>(TOKEN_SOURCE)? {
+            view.ivar_set(TOKEN_SOURCE, source)?;
+        }
+        Ok(view)
     }
 
-    /// Without a token the view is a template: Ruby asks a token source before each
-    /// request and sends it through a further view.
-    fn with_access_token(
+    fn with_access_token(ruby: &Ruby, engine: &Self, access_token: String) -> Result<Self, Error> {
+        Self::view(ruby, engine, |config| {
+            config.access_token = Some(access_token)
+        })
+    }
+
+    /// A view without a token of its own that asks `source` before each call that sends
+    /// one.
+    fn with_token_source(
         ruby: &Ruby,
-        engine: &Self,
-        access_token: Option<String>,
-    ) -> Result<Self, Error> {
-        Self::view(ruby, engine, |config| config.access_token = access_token)
+        rb_self: Obj<Self>,
+        source: Value,
+    ) -> Result<Obj<Self>, Error> {
+        let view = ruby.obj_wrap(Self::view(ruby, &rb_self, |config| {
+            config.access_token = None
+        })?);
+        view.ivar_set(TOKEN_SOURCE, source)?;
+        Ok(view)
+    }
+
+    /// The client for one call. The fork guard runs first: a source is the caller's code
+    /// and may use a socket the child inherited. Then the source, if the engine has one,
+    /// is asked on this thread with the GVL held, and its token goes into a view of the
+    /// client that the call drops.
+    fn client(ruby: &Ruby, rb_self: Obj<Self>) -> Result<(Client, &'static Shared), Error> {
+        let state = rb_self.0.get(ruby)?;
+        let Some(source) = rb_self.ivar_get::<_, Option<Value>>(TOKEN_SOURCE)? else {
+            return Ok((state.client.clone(), state.shared));
+        };
+        let token: Value = source.funcall("call", ())?;
+        // Raises the fixed ArgumentError that a token given to the client gets.
+        let token: String =
+            peddler_const::<RModule>(ruby, "Native")?.funcall("access_token", (token,))?;
+        let client = state
+            .client
+            .with_access_token(&token)
+            .map_err(|error| transport_error(ruby, error))?;
+        Ok((client, state.shared))
     }
 
     fn request(
         ruby: &Ruby,
-        engine: &Self,
+        rb_self: Obj<Self>,
         method: String,
         path: String,
         query: Vec<(String, String)>,
@@ -189,7 +235,7 @@ impl Engine {
         let body = body.map(|value| unsafe { value.as_slice().to_vec() });
         Self::execute(
             ruby,
-            engine,
+            rb_self,
             Work::Raw(Request {
                 method,
                 path,
@@ -201,20 +247,20 @@ impl Engine {
 
     fn operation(
         ruby: &Ruby,
-        engine: &Self,
+        rb_self: Obj<Self>,
         name: String,
         arguments: String,
     ) -> Result<ResponseParts, Error> {
-        Self::execute(ruby, engine, Work::Operation { name, arguments })
+        Self::execute(ruby, rb_self, Work::Operation { name, arguments })
     }
 
-    fn execute(ruby: &Ruby, engine: &Self, work: Work) -> Result<ResponseParts, Error> {
-        let state = Arc::clone(engine.0.get(ruby)?);
-        let result = gvl::wait(ruby, "TransportError", state.shared, async move {
+    fn execute(ruby: &Ruby, rb_self: Obj<Self>, work: Work) -> Result<ResponseParts, Error> {
+        let (client, shared) = Self::client(ruby, rb_self)?;
+        let result = gvl::wait(ruby, "TransportError", shared, async move {
             match work {
-                Work::Raw(request) => state.client.execute(request).await,
+                Work::Raw(request) => client.execute(request).await,
                 Work::Operation { name, arguments } => {
-                    peddler::apis::execute(&state.client, &name, &arguments).await
+                    peddler::apis::execute(&client, &name, &arguments).await
                 }
             }
             .map(Completed::new)
@@ -239,6 +285,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     engine.define_singleton_method("from_config", function!(Engine::from_config, 1))?;
     engine.define_method("with_base_url", method!(Engine::with_base_url, 1))?;
     engine.define_method("with_access_token", method!(Engine::with_access_token, 1))?;
+    engine.define_method("with_token_source", method!(Engine::with_token_source, 1))?;
     engine.define_method("request", method!(Engine::request, 4))?;
     engine.define_method("operation", method!(Engine::operation, 2))?;
     documents::init(ruby, native, engine)?;
@@ -251,7 +298,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
 #[serde(deny_unknown_fields)]
 struct Config {
     base_url: String,
-    /// Absent when Ruby holds a token source, which is never called from Rust.
+    /// Absent when the engine asks a token source before each call.
     access_token: Option<String>,
     timeout: f64,
     retries: u32,

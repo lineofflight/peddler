@@ -2,7 +2,7 @@
 //! under one deadline; Ruby wraps the owned outputs and feeds upload chunks.
 use super::{Completed, Engine, ResponseParts, documents, gvl, native_error, peddler_const};
 use documents::{Config, Document, Upload};
-use magnus::{Error, RClass, Ruby, method, prelude::*};
+use magnus::{Error, RClass, Ruby, method, prelude::*, typed_data::Obj};
 use peddler::{
     documents::{Error as DocumentError, UploadOptions},
     workflows::{DocumentKind, WaitOptions, WorkflowError},
@@ -51,16 +51,15 @@ fn kind(ruby: &Ruby, name: &str) -> Result<DocumentKind, Error> {
 
 fn download(
     ruby: &Ruby,
-    engine: &Engine,
+    engine: Obj<Engine>,
     kind_name: String,
     id: String,
     config: String,
 ) -> Result<Document, Error> {
-    let state = engine.0.get(ruby)?;
+    let (client, shared) = Engine::client(ruby, engine)?;
     let kind = kind(ruby, &kind_name)?;
     let options = Config::parse(ruby, &config)?;
-    let workflows = state.client.workflows();
-    let shared = state.shared;
+    let workflows = client.workflows();
     let download = gvl::wait(ruby, "WorkflowError", shared, async move {
         workflows.download(kind, &id, options).await
     })?
@@ -70,21 +69,21 @@ fn download(
 
 fn wait(
     ruby: &Ruby,
-    engine: &Engine,
+    engine: Obj<Engine>,
     kind_name: String,
     id: String,
     interval: f64,
     timeout: f64,
 ) -> Result<ResponseParts, Error> {
-    let state = engine.0.get(ruby)?;
+    let (client, shared) = Engine::client(ruby, engine)?;
     let kind = kind(ruby, &kind_name)?;
     let invalid = || Error::new(ruby.exception_arg_error(), "invalid workflow configuration");
     let options = WaitOptions {
         interval: Duration::try_from_secs_f64(interval).map_err(|_| invalid())?,
         timeout: Duration::try_from_secs_f64(timeout).map_err(|_| invalid())?,
     };
-    let workflows = state.client.workflows();
-    let result = gvl::wait(ruby, "WorkflowError", state.shared, async move {
+    let workflows = client.workflows();
+    let result = gvl::wait(ruby, "WorkflowError", shared, async move {
         workflows.wait(kind, &id, options).await.map(Completed::new)
     })?;
     let completed = result.map_err(|error| workflow_error(ruby, error))?;
@@ -95,26 +94,26 @@ fn wait(
 /// is only read after this returns, so invalid metadata never consumes it.
 fn start_feed_upload(
     ruby: &Ruby,
-    engine: &Engine,
+    engine: Obj<Engine>,
     content_type: String,
     config: String,
     content_length: Option<u64>,
 ) -> Result<Upload, Error> {
-    let state = engine.0.get(ruby)?;
+    let (client, shared) = Engine::client(ruby, engine)?;
     let options = UploadOptions {
         transfer: Config::parse(ruby, &config)?,
         content_type: content_type.clone(),
         headers: Vec::new(),
         content_length,
     };
-    let workflows = state.client.workflows();
+    let workflows = client.workflows();
     let create = options.clone();
-    let target = gvl::wait(ruby, "WorkflowError", state.shared, async move {
+    let target = gvl::wait(ruby, "WorkflowError", shared, async move {
         workflows.create_feed_document(&content_type, &create).await
     })?
     .map_err(|error| workflow_error(ruby, error))?;
     let id = target.document_id.clone();
-    Upload::spawn(state.shared, Some(id), move |source| async move {
+    Upload::spawn(shared, Some(id), move |source| async move {
         match target.upload(source, options).await {
             Ok(uploaded) => Ok(uploaded.response),
             Err(WorkflowError::Upload { error, .. }) => Err(error),

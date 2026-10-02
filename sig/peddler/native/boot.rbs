@@ -12,8 +12,8 @@ module Peddler
 
     type tokens = [String, String?, String, Integer]
 
-    # What the facade calls: a native engine, or the stand-in that asks a token source first
-    type engine = Engine | SourcedEngine
+    # What the generated facades take
+    type engine = Engine
 
     # Anything that returns the access token when called
     interface _TokenSource
@@ -22,34 +22,13 @@ module Peddler
 
     def self.access_token: (untyped value) -> String
     def self.token_source: (untyped value) -> _TokenSource?
-    def self.sourced_engine: (Engine engine, _TokenSource source) -> SourcedEngine
-
-    class SourcedEngine
-      @engine: Engine
-      @source: _TokenSource
-      @pid: Integer
-
-      def initialize: (Engine engine, _TokenSource source) -> void
-      def inspect: () -> String
-      def with_base_url: (String base_url) -> SourcedEngine
-      def with_access_token: (String? access_token) -> Engine
-      def request: (String method, String path, Array[[String, String]] query, String? body) -> response_parts
-      def operation: (String operation, String arguments) -> response_parts
-      def download_document: (String url, String config) -> DocumentHandle
-      def start_document_upload: (String url, String config, String content_type, Array[[String, String]] headers, Integer? content_length) -> UploadHandle
-      def download_workflow_document: (String kind, String id, String config) -> DocumentHandle
-      def wait_for: (String kind, String id, Float interval, Float timeout) -> response_parts
-      def start_feed_document_upload: (String content_type, String config, Integer? content_length) -> UploadHandle
-
-      private
-
-      def view: () -> Engine
-    end
 
     class Engine
       def self.from_config: (String config) -> Engine
       def with_base_url: (String base_url) -> Engine
-      def with_access_token: (String? access_token) -> Engine
+      def with_access_token: (String access_token) -> Engine
+      def with_token_source: (_TokenSource source) -> Engine
+      def inspect: () -> String
       def request: (String method, String path, Array[[String, String]] query, String? body) -> response_parts
       def operation: (String operation, String arguments) -> response_parts
     end

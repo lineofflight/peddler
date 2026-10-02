@@ -43,7 +43,7 @@ module Peddler
         timeout: timeout, retries: retries, retry_delay: retry_delay, max_retry_delay: max_retry_delay,
         user_agent: Native.user_agent }
       engine = Native.engine(Native.generate(config) || raise(ArgumentError, "invalid configuration"))
-      @engine = source ? Native.sourced_engine(engine, source) : engine
+      @engine = source ? engine.with_token_source(source) : engine
     end
 
     # A view of this client that sends another access token
@@ -57,8 +57,7 @@ module Peddler
     # @return [Peddler::Client]
     def with_access_token(access_token)
       source = Native.token_source(access_token)
-      engine = @engine.with_access_token(source ? nil : Native.access_token(access_token))
-      view(source ? Native.sourced_engine(engine, source) : engine)
+      view(source ? @engine.with_token_source(source) : @engine.with_access_token(Native.access_token(access_token)))
     end
 
     # A view of this client that calls Amazon's sandbox for its region

@@ -20,6 +20,19 @@ module Peddler
         LwaEngine.new(client_id, client_secret, timeout, endpoint)
       end
 
+      # A token is a non-empty String of valid UTF-8, whether it is given or a source returns it. The error never
+      # shows the value.
+      def access_token(value)
+        raise ArgumentError, "invalid access token" unless utf8_text?(value) && !value.empty?
+
+        value
+      end
+
+      # The value, if it is a token source: anything that responds to call
+      def token_source(value)
+        value if value.respond_to?(:call)
+      end
+
       # A String of valid UTF-8 as it is. Unlike valid_utf8_string?, it doesn't accept text another encoding could
       # convert.
       def utf8_text?(value)
@@ -45,10 +58,14 @@ module Peddler
         "Peddler/#{VERSION} (Language=Ruby; #{Socket.gethostname.gsub(/[^\x20-\x7E]/, "")})"
       end
     end
+
+    # An engine may hold a token source, and a source may hold a refresh token, so nothing of it is shown.
+    class Engine
+      def inspect = "#<Peddler::Native::Engine>"
+    end
   end
 end
 
-require_relative "sourced_engine"
 require_relative "pagination"
 require_relative "apis"
 require_relative "documents"
