@@ -4,7 +4,7 @@ require_relative "response_model"
 
 module Generator
   class Operation
-    attr_reader :verb, :operation
+    attr_reader :verb
 
     def initialize(verb, operation)
       @verb = verb
@@ -22,5 +22,9 @@ module Generator
     def response_model
       @response_model ||= ResponseModel.new(operation).build
     end
+
+    private
+
+    attr_reader :operation
   end
 end

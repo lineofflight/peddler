@@ -58,7 +58,6 @@ Pipeline: Clone specs → Generate APIs/Notifications/Reports/Feeds → Generate
 Classes that construct/build generated code:
 - **`type.rb`** - Build type classes (used by all generators above)
 - **`operation.rb`** - Read an operation's response model for the parser lookup
-- **`parameter_builder.rb`** - Build parameter lists for API operations
 - **`response_model.rb`** - Build response model metadata for operations
 
 ### Parsers (`parsers/`)
@@ -70,7 +69,6 @@ Classes that parse/extract information from specs:
 Classes that resolve/translate between representations:
 - **`type_resolver.rb`** - Resolve OpenAPI types to Ruby types
 - **`api_name_resolver.rb`** - Resolve API names from file paths
-- **`version_selector.rb`** - Select latest version from multiple API versions
 
 ### Analyzers (`analyzers/`)
 Classes that analyze code structure:

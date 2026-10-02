@@ -2,14 +2,12 @@
 
 require "erb"
 require_relative "../support/config"
-require_relative "../support/formatter"
 require_relative "../support/file_writer"
 
 module Generator
   module RBS
     # Generates one RBS file per API with its parser lookup and type definitions
     class Unified
-      include Formatter
       include FileWriter
 
       attr_reader :api, :api_name, :api_types
