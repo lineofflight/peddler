@@ -156,6 +156,13 @@ class TokenSourceTest < NativeTest
     assert_match(/sensitive-refresh/, source.inspect, "the source itself does show its field")
   end
 
+  def test_the_stand_in_mirrors_every_native_engine_entry_point
+    engine = Peddler::Native.const_get(:Engine)
+    stand_in = Peddler::Native.const_get(:SourcedEngine)
+
+    assert_empty(engine.instance_methods(false) - stand_in.instance_methods(false))
+  end
+
   def test_a_parent_built_client_does_not_call_its_source_in_a_forked_child
     skip "fork unavailable" unless Process.respond_to?(:fork)
 
