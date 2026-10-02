@@ -89,6 +89,33 @@ class OperationsTest < NativeTest
     end
   end
 
+  def test_named_listings_method_preserves_large_integer_tokens_on_the_wire
+    serve(handler: lambda { |socket, _first, _headers, body|
+      respond(socket)
+
+      assert_equal('{"values":[18446744073709551617,-9223372036854775809]}', body)
+    }) do |url|
+      result = client(url).listings_items_2021_08_01.patch_listings_item(seller_id: "seller", sku: "sku",
+        marketplace_ids: ["UK"], body: { values: [18_446_744_073_709_551_617, -9_223_372_036_854_775_809] })
+
+      assert_equal(200, result.status)
+    end
+  end
+
+  def test_engine_operation_preserves_raw_number_tokens_on_the_wire
+    arguments = '{"seller_id":"seller","sku":"sku","marketplace_ids":["UK"],"body":{"values":[18446744073709551617,-9223372036854775809,0.12345678901234567890123456789]}}'
+    serve(handler: lambda { |socket, _first, _headers, body|
+      respond(socket)
+
+      assert_equal('{"values":[18446744073709551617,-9223372036854775809,0.12345678901234567890123456789]}', body)
+    }) do |url|
+      engine = Peddler::Native::Engine.new(url, "local-secret", 5)
+      status, = engine.operation(LISTINGS, arguments)
+
+      assert_equal(200, status)
+    end
+  end
+
   def test_explicit_null_omits_optional_array_and_catalog_locale_is_encoded
     serve(handler: lambda { |socket, first, *|
       assert_equal("/catalog/2022-04-01/items/%252F", first[1].split("?", 2)[0])

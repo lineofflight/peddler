@@ -242,6 +242,24 @@ async fn dynamic_body_preserves_unknown_members_empty_arrays_and_null() {
     );
 }
 #[tokio::test]
+async fn dispatcher_preserves_dynamic_number_tokens_on_the_wire() {
+    let arguments = r#"{"seller_id":"seller","sku":"sku","marketplace_ids":["UK"],"body":{"values":[18446744073709551617,-9223372036854775809,0.12345678901234567890123456789]}}"#;
+    let (client, task) = server(200, b"{}").await;
+    apis::execute(
+        &client,
+        "listings_items_2021_08_01.patch_listings_item",
+        arguments,
+    )
+    .await
+    .unwrap();
+    let request = task.await.unwrap();
+    let end = request.windows(4).position(|v| v == b"\r\n\r\n").unwrap() + 4;
+    assert_eq!(
+        std::str::from_utf8(&request[end..]).unwrap(),
+        r#"{"values":[18446744073709551617,-9223372036854775809,0.12345678901234567890123456789]}"#
+    );
+}
+#[tokio::test]
 async fn all_http_statuses_and_malformed_json_remain_raw_responses() {
     for (status, raw) in [
         (200, b"not JSON".as_slice()),
