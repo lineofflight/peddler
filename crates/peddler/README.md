@@ -278,15 +278,16 @@ Early non-2xx rejection preserves the raw response and stops feeding the source.
 Uploads never retry. The reply is `Native::Response`, with repeated headers,
 bounded binary body and `body_truncated?`; `raise_for_status!` uses Rust metadata.
 
-Format, compression, byte/record/row limit, source and length failures raise
-`Native::DocumentError`. Deadline expiry raises its subclass
+Format, compression, byte/record/row limit and length failures raise
+`Native::DocumentError`. A source failure raises `Native::DocumentError` with
+the source's exception as its cause. Deadline expiry raises its subclass
 `Native::DocumentTimeoutError`. Thread interruption cancels work, drops active
 sockets and lets the same client start another transfer. Closing a document
-cancels an active read. A stream
-remains valid after parent Client GC; every native handle rejects inherited state
-with ForkError after fork, so construct a new Client in the child. A Ruby source
-read that blocks must return or be interrupted before the calling Ruby method can
-return, while the background transfer deadline still cancels HTTP work.
+cancels an active read. A stream remains valid after parent Client GC; every
+native handle rejects inherited state with ForkError after fork, so construct a
+new Client in the child. A Ruby source read that blocks must return or be
+interrupted before the calling Ruby method can return, while the background
+transfer deadline still cancels HTTP work.
 
 A local memory probe generates and consumes bytes incrementally, retaining no
 whole fixture or emitted rows:

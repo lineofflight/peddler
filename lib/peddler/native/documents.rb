@@ -36,7 +36,7 @@ module Peddler
           end
           JSON.generate(options)
         rescue JSON::GeneratorError, TypeError
-          raise ArgumentError, "invalid document configuration"
+          raise ArgumentError, "invalid document configuration", cause: nil
         end
       end
     end
@@ -52,7 +52,7 @@ module Peddler
           end
           value
         rescue ArgumentError, RangeError
-          raise DocumentError, "document decimal is out of range"
+          raise DocumentError, "document decimal is out of range", cause: nil
         end
       end
     end

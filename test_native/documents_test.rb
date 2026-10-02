@@ -244,12 +244,15 @@ class DocumentsTest < NativeTest
         error = assert_raises(Peddler::Native::DocumentError) { instance.upload_document(url, "abc", content_type: "text/plain", content_length: length) }
         assert_match(/length mismatch/, error.message)
       end
+      source_exception = RuntimeError.new("private-secret IO URL")
       source = Object.new
-      source.define_singleton_method(:read) { |_|
+      source.define_singleton_method(:read) do |_|
         sleep(0.02)
-        raise "private-secret IO URL" }
+        raise source_exception
+      end
       error = assert_raises(Peddler::Native::DocumentError) { instance.upload_document(url, source, content_type: "text/plain") }
       refute_match(/private-secret/, error.message)
+      assert_same(source_exception, error.cause)
     end
   end
 
@@ -575,6 +578,16 @@ class DocumentsTest < NativeTest
       error = assert_raises(ArgumentError) { document.json(max_bytes: 1 << 70) }
       assert_equal("invalid document configuration", error.message)
     end
+  end
+
+  def test_invalid_url_and_out_of_range_limit
+    instance = client("http://127.0.0.1:1")
+    error = assert_raises(ArgumentError) { instance.download_document("bad-url") }
+    assert_equal("invalid document URL", error.message)
+    error = assert_raises(ArgumentError) { instance.download_document("https://example.com/private", max_bytes: 1 << 65) }
+    assert_equal("invalid document configuration", error.message)
+    error = assert_raises(ArgumentError) { instance.upload_document("bad-url", "", content_type: "text/plain") }
+    assert_equal("invalid document URL", error.message)
   end
 
   def test_caller_block_exceptions_retain_identity_and_active_causes
