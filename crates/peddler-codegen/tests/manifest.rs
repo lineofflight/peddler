@@ -48,7 +48,7 @@ fn committed_operation_inventory_covers_every_pinned_namespace_and_distinct_key(
         serde_json::from_str(include_str!("../operation-inventory.json")).unwrap();
     assert_eq!(
         inventory["revision"],
-        "3677bb9d96f4450e6843f1f8207005e925d5c867"
+        include_str!("../../../selling-partner-api-models.sha").trim()
     );
     let apis = inventory["apis"].as_array().unwrap();
     assert_eq!(apis.len(), 70);

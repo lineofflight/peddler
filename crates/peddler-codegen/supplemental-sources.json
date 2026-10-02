@@ -3,7 +3,6 @@
     "family": "reports",
     "module": "account_health_report_2020_11_18",
     "path": "schemas/reports/accountHealthReport-2020-11-18.json",
-    "sha256": "718838d0e1010081410e98f7b7c3573269155807edb427fe9791c1537fdb0008",
     "definitions": 9,
     "graphql_named_type_count": null
   },
@@ -11,7 +10,6 @@
     "family": "reports",
     "module": "b2b_product_opportunities_not_yet_on_amazon_report_2020_11_19",
     "path": "schemas/reports/b2bProductOpportunitiesNotYetOnAmazonReport-2020-11-19.json",
-    "sha256": "f61dc1c349df6cbe5851c2fcd2d41d1fce6ef5a11af03e1d405dc367a118485b",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -19,7 +17,6 @@
     "family": "reports",
     "module": "b2b_product_opportunities_recommended_for_you_report_2020_11_19",
     "path": "schemas/reports/b2bProductOpportunitiesRecommendedForYouReport-2020-11-19.json",
-    "sha256": "1b51a3d52fd09abb3c82acb22d223e42411840bb31919651a7a7d49ada39c83f",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -27,7 +24,6 @@
     "family": "reports",
     "module": "end_user_data",
     "path": "schemas/reports/endUserDataReport.json",
-    "sha256": "0e229e83206d126332b05e569d67292cabdfb188c1ef695d657ecc19db9cce17",
     "definitions": 2,
     "graphql_named_type_count": null
   },
@@ -35,7 +31,6 @@
     "family": "reports",
     "module": "marketplace_asin_page_view_metrics",
     "path": "schemas/reports/marketplaceAsinPageViewMetrics.json",
-    "sha256": "edb8497f60d11ea371c9b6e2f451a992f8eaa1d8e608ffa9ef47a667d89bcdf5",
     "definitions": 1,
     "graphql_named_type_count": null
   },
@@ -43,7 +38,6 @@
     "family": "reports",
     "module": "promotion",
     "path": "schemas/reports/promotionReport.json",
-    "sha256": "1ff4688762fe63c7232249c4d84465c7f819d83e42879b21095ef60b43a5935d",
     "definitions": 2,
     "graphql_named_type_count": null
   },
@@ -51,7 +45,6 @@
     "family": "reports",
     "module": "seller_coupon",
     "path": "schemas/reports/sellerCouponReport.json",
-    "sha256": "ff6230505051d3791d09438c388f48e010893c125db8997877f4032f75349166",
     "definitions": 2,
     "graphql_named_type_count": null
   },
@@ -59,7 +52,6 @@
     "family": "reports",
     "module": "seller_sales_and_traffic",
     "path": "schemas/reports/sellerSalesAndTrafficReport.json",
-    "sha256": "912c0d01073c4770f8bbd1e24f5553afa197920ac12b37d2b59726118c21105d",
     "definitions": 7,
     "graphql_named_type_count": null
   },
@@ -67,7 +59,6 @@
     "family": "reports",
     "module": "selling_partner_market_basket_analysis",
     "path": "schemas/reports/sellingPartnerMarketBasketAnalysisReport.json",
-    "sha256": "d3764e14bb934462873816e5516e79ac5b4dc018f20005da9c8d4da1275f3663",
     "definitions": 1,
     "graphql_named_type_count": null
   },
@@ -75,7 +66,6 @@
     "family": "reports",
     "module": "selling_partner_repeat_purchase",
     "path": "schemas/reports/sellingPartnerRepeatPurchaseReport.json",
-    "sha256": "79a3995ab1ca6cd52ba354753d8b732083ac6bd7a1767d7db34df54877963bb1",
     "definitions": 1,
     "graphql_named_type_count": null
   },
@@ -83,7 +73,6 @@
     "family": "reports",
     "module": "selling_partner_search_catalog_performance",
     "path": "schemas/reports/sellingPartnerSearchCatalogPerformanceReport.json",
-    "sha256": "7cb09e4b494cc7a37c811f2266a096e3dc331e73a18609c3659ef920462b53be",
     "definitions": 6,
     "graphql_named_type_count": null
   },
@@ -91,7 +80,6 @@
     "family": "reports",
     "module": "selling_partner_search_query_performance",
     "path": "schemas/reports/sellingPartnerSearchQueryPerformanceReport.json",
-    "sha256": "19033f718f54f7d2f9d2ecdbfd2b8ca7c9c7aaadc1049924281b496ec339ccd7",
     "definitions": 7,
     "graphql_named_type_count": null
   },
@@ -99,7 +87,6 @@
     "family": "reports",
     "module": "selling_partner_search_terms",
     "path": "schemas/reports/sellingPartnerSearchTermsReport.json",
-    "sha256": "6ca8ee05a011b8c277302b1e0d91b5cbe1f6650f40a841605009722d50dbd225",
     "definitions": 1,
     "graphql_named_type_count": null
   },
@@ -107,7 +94,6 @@
     "family": "reports",
     "module": "vendor_coupon",
     "path": "schemas/reports/vendorCouponReport.json",
-    "sha256": "b37d1de710d366d413fbd9d06048224a5789b23359cb2eedfc4a032c69ecf5ab",
     "definitions": 3,
     "graphql_named_type_count": null
   },
@@ -115,7 +101,6 @@
     "family": "reports",
     "module": "vendor_forecasting",
     "path": "schemas/reports/vendorForecastingReport.json",
-    "sha256": "1250bb78629ccf510c16a81124854f52c97ebb88317eb3120f003ae6db7970f8",
     "definitions": 1,
     "graphql_named_type_count": null
   },
@@ -123,7 +108,6 @@
     "family": "reports",
     "module": "vendor_inventory",
     "path": "schemas/reports/vendorInventoryReport.json",
-    "sha256": "c2effe145b7f0ee6e552bec18bb05964643349618c415d0dc188c5c04b843d76",
     "definitions": 4,
     "graphql_named_type_count": null
   },
@@ -131,7 +115,6 @@
     "family": "reports",
     "module": "vendor_net_pure_product_margin",
     "path": "schemas/reports/vendorNetPureProductMarginReport.json",
-    "sha256": "8da55c9d8e312b2e5b40a850498ceb93ab1f073d53e56bb255a51a937f0c97c9",
     "definitions": 2,
     "graphql_named_type_count": null
   },
@@ -139,7 +122,6 @@
     "family": "reports",
     "module": "vendor_real_time_inventory",
     "path": "schemas/reports/vendorRealTimeInventoryReport.json",
-    "sha256": "788fcf67787995be8473f6956c1bc6c253aa375787772997fae346f17911c10e",
     "definitions": 1,
     "graphql_named_type_count": null
   },
@@ -147,7 +129,6 @@
     "family": "reports",
     "module": "vendor_real_time_sales",
     "path": "schemas/reports/vendorRealTimeSalesReport.json",
-    "sha256": "fcc087b10cf8f87866771a94bc17d8c3308b86cd6ddb1adfc3a81860dec92ed0",
     "definitions": 1,
     "graphql_named_type_count": null
   },
@@ -155,7 +136,6 @@
     "family": "reports",
     "module": "vendor_real_time_traffic",
     "path": "schemas/reports/vendorRealTimeTrafficReport.json",
-    "sha256": "01bdc42a4ddca5e5287f8fc32e1730c10dbb448f15ea2318880b8249499609f0",
     "definitions": 1,
     "graphql_named_type_count": null
   },
@@ -163,7 +143,6 @@
     "family": "reports",
     "module": "vendor_sales",
     "path": "schemas/reports/vendorSalesReport.json",
-    "sha256": "e92f5072c086331a13a48c6755bbc709fbbb6a3702bebb77ba4678be795aaed9",
     "definitions": 3,
     "graphql_named_type_count": null
   },
@@ -171,7 +150,6 @@
     "family": "reports",
     "module": "vendor_traffic",
     "path": "schemas/reports/vendorTrafficReport.json",
-    "sha256": "fad79af9e6bd91bf329d0be88030ed1426d91195ea5e830eb00cbf634cbc276d",
     "definitions": 2,
     "graphql_named_type_count": null
   },
@@ -179,7 +157,6 @@
     "family": "feeds",
     "module": "listings_feed_message_schema",
     "path": "schemas/feeds/listings-feed-message-schema-v2.json",
-    "sha256": "352ede68b5f16aba7946edc11e5ec7f02b84c9700cf40945fe6ed895b2d523f2",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -187,7 +164,6 @@
     "family": "feeds",
     "module": "listings_feed_processing_report_schema",
     "path": "schemas/feeds/listings-feed-processing-report-schema-v2.json",
-    "sha256": "03daac9d3fa97d729efb3f3c2836c664036a8ef32a9829363d8026bb097178fd",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -195,7 +171,6 @@
     "family": "feeds",
     "module": "listings_feed_schema",
     "path": "schemas/feeds/listings-feed-schema-v2.json",
-    "sha256": "9f6c00a109f086c269427ae1bc4afe1f9ba49ff8df46de9de939fa2c9f00e1ef",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -203,7 +178,6 @@
     "family": "notifications",
     "module": "any_offer_changed",
     "path": "schemas/notifications/AnyOfferChangedNotification.json",
-    "sha256": "edab77de10143f23e99aea5e3b5132eeeb8ca9928ce43a4b175a7297a073280d",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -211,7 +185,6 @@
     "family": "notifications",
     "module": "b2b_any_offer_changed",
     "path": "schemas/notifications/B2bAnyOfferChangedNotification.json",
-    "sha256": "a0099a53d9a58181180f3eb97f75844180675c0779396b86e733042a27093271",
     "definitions": 26,
     "graphql_named_type_count": null
   },
@@ -219,7 +192,6 @@
     "family": "notifications",
     "module": "branded_item_content_change",
     "path": "schemas/notifications/BrandedItemContentChangeNotification.json",
-    "sha256": "e44173753c15620ccac95a1ce912d4c1f4e7b5f0097da2964611ed6060042aff",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -227,7 +199,6 @@
     "family": "notifications",
     "module": "data_kiosk_query_processing_finished",
     "path": "schemas/notifications/DataKioskQueryProcessingFinishedNotification.json",
-    "sha256": "ada3088a3c687b558aad64cf51726b6c7f85b10d2fd5d03e6a05e7593158aa7d",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -235,7 +206,6 @@
     "family": "notifications",
     "module": "detail_page_traffic_event",
     "path": "schemas/notifications/DetailPageTrafficEventNotification.json",
-    "sha256": "a29270d5ee193e20052993b3761e6b06abfbebf592c6d24768389a404dac8739",
     "definitions": 4,
     "graphql_named_type_count": null
   },
@@ -243,7 +213,6 @@
     "family": "notifications",
     "module": "fba_inventory_availability_change",
     "path": "schemas/notifications/FBAInventoryAvailabilityChangeNotification.json",
-    "sha256": "c7af32a2f027c7db517cc1cdec76db2afe051fb218e4ce3497dc565cd67df842",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -251,7 +220,6 @@
     "family": "notifications",
     "module": "fba_outbound_shipment_status",
     "path": "schemas/notifications/FBAOutboundShipmentStatusNotification.json",
-    "sha256": "e095cd4ea7281a40ca0d5ac6d2d1ca739999d827bf6da8ada496c9d10811bf4c",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -259,7 +227,6 @@
     "family": "notifications",
     "module": "fee_promotion",
     "path": "schemas/notifications/FeePromotionNotification.json",
-    "sha256": "337fbad618a559f364b20e41df9d493c40d18d00af8168e7e4ecd612c34ab628",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -267,7 +234,6 @@
     "family": "notifications",
     "module": "feed_processing_finished",
     "path": "schemas/notifications/FeedProcessingFinishedNotification.json",
-    "sha256": "1fb37ef302b3a1ef3e6242f9d6fadce84e8fc0ebb30989aa2c8796f1870005c4",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -275,7 +241,6 @@
     "family": "notifications",
     "module": "fulfillment_order_status",
     "path": "schemas/notifications/FulfillmentOrderStatusNotification.json",
-    "sha256": "8b1e82623d9a046e22a693769e0f35e3e30572afd041e4b80ebccd4b51e063ab",
     "definitions": 7,
     "graphql_named_type_count": null
   },
@@ -283,7 +248,6 @@
     "family": "notifications",
     "module": "item_inventory_event_change",
     "path": "schemas/notifications/ItemInventoryEventChangeNotification.json",
-    "sha256": "1e7f3414138efa86c9c6c4a72aa6a6fe2b0ee073ef6067cd8a4b2b251b5ef70c",
     "definitions": 4,
     "graphql_named_type_count": null
   },
@@ -291,7 +255,6 @@
     "family": "notifications",
     "module": "item_product_type_change",
     "path": "schemas/notifications/ItemProductTypeChangeNotification.json",
-    "sha256": "5d65d74701d5606e6d8b81993d24c1cf2ce1cf4b397306bcd4f712672dfca4cb",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -299,7 +262,6 @@
     "family": "notifications",
     "module": "item_sales_event_change",
     "path": "schemas/notifications/ItemSalesEventChangeNotification.json",
-    "sha256": "ab746bea8405bf32dc1229bf007458e13b9167148fd42f1ebf47e695449869db",
     "definitions": 4,
     "graphql_named_type_count": null
   },
@@ -307,7 +269,6 @@
     "family": "notifications",
     "module": "listings_item_issues_change",
     "path": "schemas/notifications/ListingsItemIssuesChangeNotification.json",
-    "sha256": "5dcbd36d446707712a9c82fca869ffb86d103eb611244261d64427e60ca3fe9f",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -315,7 +276,6 @@
     "family": "notifications",
     "module": "listings_item_issues_change_notification_2023_12_13",
     "path": "schemas/notifications/ListingsItemIssuesChangeNotification_2023-12-13.json",
-    "sha256": "1808d77a46c66f363c333b2ca0b7ea511ae2fc8d9344205d1ee60e7b848ec165",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -323,7 +283,6 @@
     "family": "notifications",
     "module": "listings_item_mfn_quantity_change",
     "path": "schemas/notifications/ListingsItemMfnQuantityChange.json",
-    "sha256": "f4e1c1fbe02c499ad1321b80714321211f8c2ee06179442e0805af1820154164",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -331,7 +290,6 @@
     "family": "notifications",
     "module": "listings_item_status_change",
     "path": "schemas/notifications/ListingsItemStatusChangeNotification.json",
-    "sha256": "0b6a6a24411f81e57d753eaf191c4e45a1ccd5b73a64471f7bef0b233fdb4edd",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -339,7 +297,6 @@
     "family": "notifications",
     "module": "order_change",
     "path": "schemas/notifications/OrderChangeNotification.json",
-    "sha256": "f6ab36175ddd363d80a39964708f44ba311879ce603bdebd66e33740e87f5b9c",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -347,7 +304,6 @@
     "family": "notifications",
     "module": "pricing_health",
     "path": "schemas/notifications/PricingHealthNotification.json",
-    "sha256": "9e029ef028c696320e3abd6509c9085fbb0efd7fbdb2d9ece79f20551f4afa57",
     "definitions": 21,
     "graphql_named_type_count": null
   },
@@ -355,7 +311,6 @@
     "family": "notifications",
     "module": "product_type_definitions_change",
     "path": "schemas/notifications/ProductTypeDefinitionsChangeNotification.json",
-    "sha256": "eb71e197fa966c8de17da426d3f6c74906d4366165b64de5d2bbc4f6bd7969fa",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -363,7 +318,6 @@
     "family": "notifications",
     "module": "report_processing_finished",
     "path": "schemas/notifications/ReportProcessingFinishedNotification.json",
-    "sha256": "e61c27a7b367e07541af0ccda3245342ed48e4e0a9670d7a9e9e09da4083e151",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -371,7 +325,6 @@
     "family": "notifications",
     "module": "shipment_tracking_milestone_changed",
     "path": "schemas/notifications/ShipmentTrackingMilestoneChangedNotification.json",
-    "sha256": "2939c14a12e2475d7c0b81d8f4c985d2a32eefcb6afe7c3e1f78344bf259771a",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -379,7 +332,6 @@
     "family": "notifications",
     "module": "tax_invoice_export_status_change",
     "path": "schemas/notifications/TaxInvoiceExportStatusChange.json",
-    "sha256": "b6215c2be56a48eaf3fc3a618fdcb059f01917a9cfc0624671c6fc00cd8c326d",
     "definitions": 3,
     "graphql_named_type_count": null
   },
@@ -387,7 +339,6 @@
     "family": "notifications",
     "module": "tax_invoice_issuance_eligibility_status_change",
     "path": "schemas/notifications/TaxInvoiceIssuanceEligibilityStatusChangeNotification.json",
-    "sha256": "d3e0275be78912f4a20481a4042c16bd2b15f049a2adb6c5cff546a06d7e5e74",
     "definitions": 3,
     "graphql_named_type_count": null
   },
@@ -395,7 +346,6 @@
     "family": "notifications",
     "module": "tax_invoice_issuance_status",
     "path": "schemas/notifications/TaxInvoiceIssuanceStatusNotification.json",
-    "sha256": "4012841a52fcbe6564bf2d29c83beba9627591b07e4423b0a52fc19b41e8220c",
     "definitions": 3,
     "graphql_named_type_count": null
   },
@@ -403,7 +353,6 @@
     "family": "notifications",
     "module": "transaction_update",
     "path": "schemas/notifications/TransactionUpdateNotification.json",
-    "sha256": "8f373651138c8b626d52ea8664a977ac992b8cfcb9d9480d53a2067fd9f3594c",
     "definitions": 0,
     "graphql_named_type_count": null
   },
@@ -411,7 +360,6 @@
     "family": "data_kiosk",
     "module": "economics20240315",
     "path": "schemas/data-kiosk/analytics_economics_2024_03_15.graphql",
-    "sha256": "3e25dd8a34bdba0da1dbb6753c0785e1ddb2a6e6f15a5b374ec8b1c4b72f504c",
     "definitions": null,
     "graphql_named_type_count": 31
   },
@@ -419,7 +367,6 @@
     "family": "data_kiosk",
     "module": "sales_and_traffic20240424",
     "path": "schemas/data-kiosk/analytics_salesAndTraffic_2024_04_24.graphql",
-    "sha256": "a416c7fc114947d62678088397c01dd4a2d1db9c7c457d09311e6c4a0ba64f46",
     "definitions": null,
     "graphql_named_type_count": 15
   },
@@ -427,7 +374,6 @@
     "family": "data_kiosk",
     "module": "seller_analytics20250331",
     "path": "schemas/data-kiosk/analytics_sellerAnalytics_2025_03_31.graphql",
-    "sha256": "e6ee9f1e516094ebc56d78b7451e2a234790735a0fe913f551eb47ee7b4ad638",
     "definitions": null,
     "graphql_named_type_count": 33
   },
@@ -435,7 +381,6 @@
     "family": "data_kiosk",
     "module": "vendor_analytics20240930",
     "path": "schemas/data-kiosk/analytics_vendorAnalytics_2024_09_30.graphql",
-    "sha256": "581a5183dcd07b8082ec064dc320854784af101c0117cf2898a3338f7a78e533",
     "definitions": null,
     "graphql_named_type_count": 26
   }

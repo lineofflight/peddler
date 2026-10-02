@@ -2,7 +2,6 @@
 use crate::{GenerationError, models};
 use serde::Deserialize;
 use serde_json::{Value, json};
-use sha2::{Digest, Sha256};
 use std::{
     collections::{BTreeMap, BTreeSet},
     fs,
@@ -10,14 +9,11 @@ use std::{
     process::Command,
 };
 
-pub const PIN: &str = "3677bb9d96f4450e6843f1f8207005e925d5c867";
-
 #[derive(Debug, Deserialize)]
 pub struct Source {
     pub family: String,
     pub module: String,
     pub path: String,
-    pub sha256: String,
 }
 
 pub fn sources() -> Vec<Source> {
@@ -80,7 +76,7 @@ pub fn generate_supplemental(
                 continue;
             }
         };
-        let mut notice = crate::notice(revision, &source.path);
+        let mut notice = crate::notice(&source.path);
         if source.family == "notifications"
             && PATCHES.iter().any(|(name, _)| *name == source.module)
         {
@@ -112,7 +108,7 @@ pub fn generate_supplemental(
             Path::new("crates/peddler/src").join(&family).join("mod.rs"),
             format!(
                 "{}{}",
-                crate::notice(revision, &format!("all {family} schemas")),
+                crate::notice(&format!("all {family} schemas")),
                 crate::format_tokens(quote::quote!(#(pub mod #names;)*))?
             ),
         );
@@ -438,9 +434,11 @@ pub fn verify_sources(checkout: &Path, revision: &str) -> Result<(), GenerationE
         .collect();
     let expected: BTreeSet<_> = sources.iter().map(|source| source.path.clone()).collect();
     if actual != expected {
-        return Err(GenerationError(
-            "pinned supplemental inventory mismatch".into(),
-        ));
+        return Err(GenerationError(format!(
+            "pinned supplemental inventory mismatch; missing: {:?}; extra: {:?}",
+            expected.difference(&actual).collect::<Vec<_>>(),
+            actual.difference(&expected).collect::<Vec<_>>()
+        )));
     }
     let mut args = vec!["status", "--porcelain", "--untracked-files=all", "--"];
     args.extend(sources.iter().map(|source| source.path.as_str()));
@@ -452,19 +450,6 @@ pub fn verify_sources(checkout: &Path, revision: &str) -> Result<(), GenerationE
     let mut args = vec!["ls-files", "--error-unmatch", "--"];
     args.extend(sources.iter().map(|source| source.path.as_str()));
     git(checkout, &args)?;
-    for source in &sources {
-        if revision == PIN
-            && format!(
-                "{:x}",
-                Sha256::digest(fs::read(checkout.join(&source.path))?)
-            ) != source.sha256
-        {
-            return Err(GenerationError(format!(
-                "source hash mismatch: {}",
-                source.path
-            )));
-        }
-    }
     let root = checkout
         .parent()
         .ok_or_else(|| GenerationError("checkout requires parent".into()))?;

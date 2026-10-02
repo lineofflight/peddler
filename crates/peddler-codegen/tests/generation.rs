@@ -110,11 +110,12 @@ fn generation_renders_all_definition_sets_deterministically() {
         expected.into_iter().collect()
     );
     for (path, content) in &first {
-        assert!(content.contains("test-revision"), "{}", path.display());
+        assert!(!content.contains("test-revision"), "{}", path.display());
         syn::parse_file(content).unwrap();
     }
+    // Headers carry no revision, so a pin move changes only files whose content changed.
     let other_revision = generate(specs.path(), "another-revision").unwrap();
-    assert_ne!(first, other_revision);
+    assert_eq!(first, other_revision);
 }
 
 #[test]
