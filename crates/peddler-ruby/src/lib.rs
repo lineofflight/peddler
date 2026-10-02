@@ -7,15 +7,16 @@ use peddler::{
     policy::RetryPolicy,
 };
 use std::{
-    mem::ManuallyDrop,
     sync::{Arc, Mutex},
     time::Duration,
 };
 
 mod documents;
+mod fork;
 mod gvl;
 mod lwa;
 mod workflows;
+use fork::ForkOwned;
 use tokio::runtime::{Builder, Runtime};
 
 /// Amazon's error code, request ID and message, for a response outside 2xx.
@@ -121,45 +122,6 @@ struct State {
     shared: &'static Shared,
     // Kept so a view with another origin or token can be built without Ruby holding secrets.
     config: Config,
-}
-
-/// What a native handle holds. Only the process that created it may reach it.
-struct ForkOwned<T> {
-    pid: u32,
-    value: ManuallyDrop<T>,
-}
-
-impl<T> ForkOwned<T> {
-    fn new(value: T) -> Self {
-        Self {
-            pid: std::process::id(),
-            value: ManuallyDrop::new(value),
-        }
-    }
-
-    /// The value, once the fork guard has passed. There is no other way to it.
-    fn get(&self, ruby: &Ruby) -> Result<&T, Error> {
-        if self.pid != std::process::id() {
-            return Err(native_error(
-                ruby,
-                "ForkError",
-                "create a new client after fork",
-            ));
-        }
-        Ok(&self.value)
-    }
-}
-
-impl<T> Drop for ForkOwned<T> {
-    fn drop(&mut self) {
-        if self.pid == std::process::id() {
-            // SAFETY: the value is dropped exactly once, only in its creator
-            // process. A fork child must leak all inherited state, including the
-            // reqwest client, sockets and the runtime: their destructors may touch
-            // inherited locks.
-            unsafe { ManuallyDrop::drop(&mut self.value) };
-        }
-    }
 }
 
 #[magnus::wrap(class = "Peddler::Native::Engine", free_immediately)]
