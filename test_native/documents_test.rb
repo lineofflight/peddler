@@ -128,6 +128,107 @@ class DocumentsTest < NativeTest
     end
   end
 
+  CP1252 = "name\tprice\ncaf\xE9\t5\nm\xFCller\t\x805\n".b
+  CP1252_ROWS = [["name", "price"], ["café", "5"], ["müller", "€5"]].freeze
+
+  def paced(socket, chunks, headers: [])
+    socket.write("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n")
+    headers.each { |key, value| socket.write("#{key}: #{value}\r\n") }
+    socket.write("\r\n")
+    chunks.each do |chunk|
+      socket.write("#{chunk.bytesize.to_s(16)}\r\n#{chunk}\r\n")
+      socket.flush
+      sleep 0.03
+    end
+    socket.write("0\r\n\r\n")
+  end
+
+  def read_tsv(chunks, content_type: nil, headers: [], **options)
+    headers += [["Content-Type", content_type]] if content_type
+    result = nil
+    serve(handler: ->(socket, *) { paced(socket, chunks, headers: headers) }) do |url|
+      document = client(url).download_document(url)
+      result = block_given? ? yield(document) : document.each_tsv(**options).to_a
+    end
+    result
+  end
+
+  def test_legacy_charset_labels_decode_to_utf8
+    ["Cp1252", "ISO-8859-1", "windows-1252"].each do |label|
+      rows = read_tsv([CP1252], content_type: "text/plain; charset=#{label}")
+
+      assert_equal(CP1252_ROWS, rows, label)
+      assert(rows.flatten.all? { |field| field.encoding == Encoding::UTF_8 && field.valid_encoding? })
+    end
+  end
+
+  def test_shift_jis_character_split_across_chunks
+    chunks = ["a\t\x93".b, "\xFA\x96".b, "\x7B\nb\t\x82".b, "\xA0\n".b]
+
+    assert_equal([["a", "日本"], ["b", "あ"]], read_tsv(chunks, content_type: "text/plain; charset=Shift_JIS"))
+    assert_equal([["a", "日本"], ["b", "あ"]], read_tsv(chunks, content_type: "text/plain; charset=Cp932"))
+  end
+
+  def test_gzip_with_legacy_charset
+    buffer = StringIO.new
+    gzip = Zlib::GzipWriter.new(buffer)
+    gzip.write(CP1252)
+    gzip.close
+    chunks = buffer.string.b.bytes.each_slice(7).map { |bytes| bytes.pack("C*") }
+    rows = read_tsv(chunks, content_type: "text/plain; charset=Cp1252", headers: [["Content-Encoding", "gzip"]])
+
+    assert_equal(CP1252_ROWS, rows)
+  end
+
+  def test_no_charset_is_utf8_and_stray_byte_fails
+    assert_equal([["é", "€"]], read_tsv(["é\t€\n".b]))
+    assert_raises(Peddler::DocumentError) { read_tsv(["caf\xE9\t1\n".b]) }
+  end
+
+  def test_unknown_label_and_invalid_bytes_raise_without_content
+    error = assert_raises(Peddler::DocumentError) { read_tsv(["SECRET\t1\n"], content_type: "text/plain; charset=SECRET-9") }
+
+    assert_equal("unsupported document charset", error.message)
+    error = assert_raises(Peddler::DocumentError) { read_tsv(["SECRET\t1\n"], charset: "SECRET-9") }
+
+    assert_equal("unsupported document charset", error.message)
+    error = assert_raises(Peddler::DocumentError) { read_tsv(["SECRET\x81 \n".b], content_type: "text/plain; charset=Shift_JIS") }
+
+    refute_match(/SECRET/, error.message)
+  end
+
+  def test_charset_override_beats_header_and_missing_header
+    assert_equal(CP1252_ROWS, read_tsv([CP1252], content_type: "text/plain; charset=utf-8", charset: "cp1252"))
+    assert_equal(CP1252_ROWS, read_tsv([CP1252], charset: "Cp1252"))
+    assert_raises(ArgumentError) { read_tsv([CP1252], charset: 1) }
+  end
+
+  def test_charset_reader_and_raw_chunks
+    read_tsv([CP1252], content_type: "text/plain; charset=Cp1252") do |document|
+      assert_equal("Cp1252", document.charset)
+      assert_equal(CP1252, document.each_chunk.to_a.join)
+    end
+    read_tsv(["a\n"]) { |document| assert_nil(document.charset) }
+  end
+
+  def test_utf8_byte_order_mark_is_dropped
+    assert_equal([["a", "b"]], read_tsv(["\xEF".b, "\xBB\xBFa\tb\n".b]))
+  end
+
+  def test_recorded_gzip_cp1252_report_replays
+    body = File.binread(File.expand_path("../crates/peddler/tests/fixtures/cp1252_report.tsv.gz", __dir__))
+    # The recorded body is ASCII only, so this proves the headers and the pipeline, not decoding.
+    serve(handler: lambda { |socket, *|
+      respond(socket, headers: [["Content-Type", "text/plain; charset=Cp1252"], ["Content-Encoding", "gzip"]], body: body)
+    }) do |url|
+      rows = client(url).download_document(url).each_tsv(consistent_fields: true).to_a
+
+      assert_equal(11, rows.size)
+      assert_equal(["item-name", "item-description", "listing-id"], rows.first.first(3))
+      assert_equal("SKU-001-TEST", rows[1][3])
+    end
+  end
+
   def raw_server(count: 1, handler:)
     server = TCPServer.new("127.0.0.1", 0)
     workers = []

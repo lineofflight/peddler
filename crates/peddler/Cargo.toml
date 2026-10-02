@@ -30,6 +30,7 @@ bytes = "1"
 async-stream = "0.3"
 async-compression = { version = "0.4", features = ["tokio", "gzip"] }
 csv-core = "0.1"
+encoding_rs = "0.8"
 tokio-util = { version = "0.7", features = ["io"] }
 
 [dev-dependencies]

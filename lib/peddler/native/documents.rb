@@ -93,6 +93,7 @@ module Peddler
 
     def status = @handle.status
     def headers = @handle.headers
+    def charset = @handle.charset
     def error_body = @handle.error_body
     def error_body_truncated? = @handle.error_body_truncated?
     def closed? = @handle.closed?
@@ -103,7 +104,7 @@ module Peddler
       return enum_for(:each_chunk) unless block_given?
 
       begin
-        while (chunk = @handle.next_row("chunks", false))
+        while (chunk = @handle.next_row("chunks", false, nil))
           yield chunk
         end
       ensure
@@ -116,7 +117,7 @@ module Peddler
       return enum_for(:each_jsonl) unless block_given?
 
       begin
-        while (record = @handle.next_row("jsonl", false))
+        while (record = @handle.next_row("jsonl", false, nil))
           yield JSON.parse(record, decimal_class: Native::DocumentDecimal, max_nesting: false)
         end
       ensure
@@ -125,14 +126,15 @@ module Peddler
       self
     end
 
-    def each_tsv(consistent_fields: false)
-      return enum_for(:each_tsv, consistent_fields: consistent_fields) unless block_given?
+    def each_tsv(consistent_fields: false, charset: nil)
+      return enum_for(:each_tsv, consistent_fields: consistent_fields, charset: charset) unless block_given?
 
       begin
         unless consistent_fields == true || consistent_fields == false
           raise ArgumentError, "invalid document configuration"
         end
-        while (row = @handle.next_row("tsv", consistent_fields))
+        raise ArgumentError, "invalid document configuration" unless charset.nil? || Native.valid_utf8_string?(charset)
+        while (row = @handle.next_row("tsv", consistent_fields, charset))
           yield row
         end
       ensure

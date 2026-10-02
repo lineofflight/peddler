@@ -911,3 +911,290 @@ async fn early_upload_rejection_preserves_raw_response_with_declared_length() {
     assert_eq!(response.body, b"BAD");
     task.await.unwrap();
 }
+
+// Charset decoding.
+
+/// One HTTP chunk per part, flushed and paused so each arrives on its own.
+async fn parts_server(parts: Vec<Vec<u8>>, headers: &str) -> (String, tokio::task::JoinHandle<()>) {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let url = format!("http://{}", listener.local_addr().unwrap());
+    let header = format!("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n{headers}\r\n");
+    let task = tokio::spawn(async move {
+        let (mut socket, _) = listener.accept().await.unwrap();
+        let mut request = Vec::new();
+        while !request.windows(4).any(|w| w == b"\r\n\r\n") {
+            let mut byte = [0];
+            socket.read_exact(&mut byte).await.unwrap();
+            request.push(byte[0]);
+        }
+        if socket.write_all(header.as_bytes()).await.is_err() {
+            return;
+        }
+        for part in parts {
+            let mut frame = format!("{:x}\r\n", part.len()).into_bytes();
+            frame.extend_from_slice(&part);
+            frame.extend_from_slice(b"\r\n");
+            if socket.write_all(&frame).await.is_err() || socket.flush().await.is_err() {
+                return;
+            }
+            tokio::time::sleep(Duration::from_millis(30)).await;
+        }
+        let _ = socket.write_all(b"0\r\n\r\n").await;
+    });
+    (url, task)
+}
+async fn tsv(
+    parts: Vec<Vec<u8>>,
+    headers: &str,
+    charset: Option<&str>,
+) -> Result<Vec<Vec<String>>, Error> {
+    let (url, task) = parts_server(parts, headers).await;
+    let doc = client(&url)
+        .documents()
+        .download(&url, TransferOptions::default())
+        .await
+        .unwrap();
+    let rows = match charset {
+        Some(label) => doc.into_tsv_with_charset(false, label),
+        None => doc.into_tsv(false),
+    }
+    .try_collect::<Vec<_>>()
+    .await;
+    let _ = task.await;
+    rows
+}
+fn cp1252() -> Vec<u8> {
+    b"name\tprice\ncaf\xE9\t5\xA0\xE2\x82\nm\xFCller\t\x805\n".to_vec()
+}
+fn cp1252_rows() -> Vec<Vec<String>> {
+    vec![
+        vec!["name".into(), "price".into()],
+        vec!["caf\u{e9}".into(), "5\u{a0}\u{e2}\u{201a}".into()],
+        vec!["m\u{fc}ller".into(), "\u{20ac}5".into()],
+    ]
+}
+
+#[tokio::test]
+async fn cp1252_and_iso_8859_1_labels_decode_to_utf8() {
+    for label in ["Cp1252", "ISO-8859-1", "windows-1252", "latin1"] {
+        let headers = format!("Content-Type: text/plain; charset={label}\r\n");
+        let rows = tsv(vec![cp1252()], &headers, None).await.unwrap();
+        assert_eq!(rows[1][0], "caf\u{e9}", "{label}");
+        assert_eq!(rows[2][0], "m\u{fc}ller", "{label}");
+    }
+    let rows = tsv(
+        vec![cp1252()],
+        "Content-Type: text/plain; charset=\"Cp1252\"\r\n",
+        None,
+    )
+    .await
+    .unwrap();
+    assert_eq!(rows, cp1252_rows());
+}
+
+#[tokio::test]
+async fn shift_jis_character_split_across_chunks_decodes() {
+    // "日本" is 93 FA 96 7B in Shift_JIS; split inside each character.
+    let body = vec![
+        b"a\t\x93".to_vec(),
+        b"\xFA\x96".to_vec(),
+        b"\x7B\nb\t\x82".to_vec(),
+        b"\xA0\n".to_vec(),
+    ];
+    for label in ["Shift_JIS", "windows-31j", "Cp932"] {
+        let headers = format!("Content-Type: text/plain; charset={label}\r\n");
+        let rows = tsv(body.clone(), &headers, None).await.unwrap();
+        assert_eq!(
+            rows,
+            vec![vec!["a", "\u{65e5}\u{672c}"], vec!["b", "\u{3042}"]],
+            "{label}"
+        );
+    }
+}
+
+#[tokio::test]
+async fn gzip_and_legacy_charset_together() {
+    use async_compression::tokio::bufread::GzipEncoder;
+    let mut gzip = Vec::new();
+    let body = cp1252();
+    GzipEncoder::new(&body[..])
+        .read_to_end(&mut gzip)
+        .await
+        .unwrap();
+    let parts = gzip.chunks(7).map(<[u8]>::to_vec).collect();
+    let rows = tsv(
+        parts,
+        "Content-Type: text/plain; charset=Cp1252\r\nContent-Encoding: gzip\r\n",
+        None,
+    )
+    .await
+    .unwrap();
+    assert_eq!(rows, cp1252_rows());
+}
+
+#[tokio::test]
+async fn no_charset_means_utf8_and_stray_bytes_fail() {
+    let ok = tsv(vec!["é\t€\n".as_bytes().to_vec()], "", None)
+        .await
+        .unwrap();
+    assert_eq!(ok, vec![vec!["é", "€"]]);
+    let error = tsv(vec![b"caf\xE9\t1\n".to_vec()], "", None)
+        .await
+        .unwrap_err();
+    assert_eq!(error, Error::Format);
+}
+
+#[tokio::test]
+async fn unknown_label_and_invalid_bytes_are_fixed_errors() {
+    let secret = b"SECRET\t1\n".to_vec();
+    let error = tsv(
+        vec![secret.clone()],
+        "Content-Type: text/plain; charset=SECRET-9\r\n",
+        None,
+    )
+    .await
+    .unwrap_err();
+    assert_eq!(error, Error::UnsupportedCharset);
+    assert_eq!(error.to_string(), "unsupported document charset");
+    let error = tsv(vec![secret], "", Some("SECRET-9")).await.unwrap_err();
+    assert_eq!(error, Error::UnsupportedCharset);
+    // 0x81 0x20 is not a valid Shift_JIS sequence; a lone lead byte at EOF is not either.
+    for body in [b"a\x81 \n".to_vec(), b"a\t\x93".to_vec()] {
+        let error = tsv(
+            vec![body],
+            "Content-Type: text/plain; charset=Shift_JIS\r\n",
+            None,
+        )
+        .await
+        .unwrap_err();
+        assert_eq!(error, Error::Format);
+    }
+}
+
+#[tokio::test]
+async fn override_wins_over_header_and_missing_header() {
+    let rows = tsv(
+        vec![cp1252()],
+        "Content-Type: text/plain; charset=utf-8\r\n",
+        Some("cp1252"),
+    )
+    .await
+    .unwrap();
+    assert_eq!(rows, cp1252_rows());
+    let rows = tsv(vec![cp1252()], "", Some("Cp1252")).await.unwrap();
+    assert_eq!(rows, cp1252_rows());
+}
+
+#[tokio::test]
+async fn charset_reader_reports_the_header_label() {
+    for (headers, expected) in [
+        (
+            "Content-Type: text/plain; charset=Cp1252\r\n",
+            Some("Cp1252"),
+        ),
+        (
+            "Content-Type: text/plain; Charset=\"utf-8\"\r\n",
+            Some("utf-8"),
+        ),
+        ("Content-Type: text/plain\r\n", None),
+        ("", None),
+    ] {
+        let (url, task) = parts_server(vec![b"a\n".to_vec()], headers).await;
+        let doc = client(&url)
+            .documents()
+            .download(&url, TransferOptions::default())
+            .await
+            .unwrap();
+        assert_eq!(doc.charset().as_deref(), expected);
+        drop(doc.into_chunks());
+        let _ = task.await;
+    }
+}
+
+#[tokio::test]
+async fn utf8_byte_order_mark_is_dropped_even_when_split() {
+    let rows = tsv(vec![b"\xEF".to_vec(), b"\xBB\xBFa\tb\n".to_vec()], "", None)
+        .await
+        .unwrap();
+    assert_eq!(rows, vec![vec!["a", "b"]]);
+}
+
+#[tokio::test]
+async fn chunks_stay_raw_bytes_and_jsonl_stays_utf8() {
+    let (url, task) = parts_server(
+        vec![cp1252()],
+        "Content-Type: text/plain; charset=Cp1252\r\n",
+    )
+    .await;
+    let chunks = client(&url)
+        .documents()
+        .download(&url, TransferOptions::default())
+        .await
+        .unwrap()
+        .into_chunks()
+        .try_collect::<Vec<_>>()
+        .await
+        .unwrap();
+    assert_eq!(chunks.concat(), cp1252());
+    task.await.unwrap();
+}
+
+#[tokio::test]
+async fn limits_count_bytes_after_decoding_for_records() {
+    // 2 Cp1252 bytes become 6 UTF-8 bytes (euro sign x2), which exceeds a 5 byte record.
+    let (url, task) = parts_server(
+        vec![b"\x80\x80\n".to_vec()],
+        "Content-Type: text/plain; charset=Cp1252\r\n",
+    )
+    .await;
+    let error = client(&url)
+        .documents()
+        .download(
+            &url,
+            TransferOptions {
+                max_record_bytes: 5,
+                ..Default::default()
+            },
+        )
+        .await
+        .unwrap()
+        .into_tsv(false)
+        .try_collect::<Vec<_>>()
+        .await
+        .unwrap_err();
+    assert_eq!(error, Error::RecordLimit);
+    let _ = task.await;
+}
+
+#[tokio::test]
+async fn recorded_gzip_cp1252_report_replays() {
+    // Recorded from SP-API: Content-Type "text/plain; charset=Cp1252",
+    // Content-Encoding gzip. The recorded body is ASCII only.
+    let body = std::fs::read(concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/tests/fixtures/cp1252_report.tsv.gz"
+    ))
+    .unwrap();
+    let (url, task) = chunked_server(
+        body,
+        "Content-Type: text/plain; charset=Cp1252\r\nContent-Encoding: gzip\r\n",
+    )
+    .await;
+    let rows = client(&url)
+        .documents()
+        .download(&url, TransferOptions::default())
+        .await
+        .unwrap()
+        .into_tsv(true)
+        .try_collect::<Vec<_>>()
+        .await
+        .unwrap();
+    assert_eq!(rows.len(), 11);
+    assert_eq!(
+        &rows[0][..3],
+        ["item-name", "item-description", "listing-id"]
+    );
+    assert_eq!(rows[1][0], "Sample Listing Title One");
+    assert_eq!(rows[1][3], "SKU-001-TEST");
+    task.await.unwrap();
+}

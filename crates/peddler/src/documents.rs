@@ -2,6 +2,7 @@
 //!
 //! Download bodies are streamed, including incremental GZIP decoding. JSONL skips
 //! whitespace-only lines; TSV uses the csv-core grammar with tab delimiters.
+//! TSV text is decoded from the `Content-Type` charset (or a caller override) to UTF-8.
 //! Record limits bound raw record buffers and TSV materialized field storage.
 //! Whole JSON decoding is explicitly buffered and requires its own byte limit.
 //! Synchronous parsing checks deadline expiry after completion; it cannot preempt
@@ -9,6 +10,7 @@
 
 use async_compression::tokio::bufread::GzipDecoder;
 use bytes::Bytes;
+use encoding_rs::{Decoder, DecoderResult, Encoding};
 use futures_util::{Stream, StreamExt, TryStreamExt};
 use reqwest::{
     Url,
@@ -38,6 +40,7 @@ pub enum Error {
     InvalidUrl,
     InvalidHeader,
     UnsupportedEncoding,
+    UnsupportedCharset,
     Timeout,
     Transport,
     Compression,
@@ -57,6 +60,7 @@ impl fmt::Display for Error {
             Self::InvalidUrl => "invalid document URL",
             Self::InvalidHeader => "invalid document header",
             Self::UnsupportedEncoding => "unsupported document encoding",
+            Self::UnsupportedCharset => "unsupported document charset",
             Self::Timeout => "document transfer timed out",
             Self::Transport => "document transport failed",
             Self::Compression => "invalid compressed document",
@@ -193,6 +197,10 @@ impl Download {
     pub fn error_body_truncated(&self) -> bool {
         self.error_body_truncated
     }
+    /// The `charset` parameter of the response `Content-Type`, as sent.
+    pub fn charset(&self) -> Option<String> {
+        header_charset(&self.headers)
+    }
     pub fn into_chunks(self) -> DocumentStream<Bytes> {
         self.body
     }
@@ -275,11 +283,35 @@ impl Download {
         })
     }
 
-    /// RFC-style quoted TSV. Blank lines are ignored by csv-core. UTF-8 required.
+    /// RFC-style quoted TSV. Blank lines are ignored by csv-core. Text is decoded
+    /// with the `Content-Type` charset, UTF-8 when there is none. Rows are UTF-8.
     /// Set `consistent_fields` to require the first row's field count thereafter.
-    pub fn into_tsv(mut self, consistent_fields: bool) -> DocumentStream<Vec<String>> {
+    pub fn into_tsv(self, consistent_fields: bool) -> DocumentStream<Vec<String>> {
+        let charset = self.charset();
+        self.tsv(consistent_fields, charset)
+    }
+
+    /// Like `into_tsv`, with `charset` taking precedence over the header.
+    pub fn into_tsv_with_charset(
+        self,
+        consistent_fields: bool,
+        charset: &str,
+    ) -> DocumentStream<Vec<String>> {
+        self.tsv(consistent_fields, Some(charset.to_owned()))
+    }
+
+    fn tsv(
+        mut self,
+        consistent_fields: bool,
+        charset: Option<String>,
+    ) -> DocumentStream<Vec<String>> {
         Box::pin(async_stream::try_stream! {
             self.success()?;
+            let mut decoder = match charset.as_deref() {
+                Some(label) => resolve_charset(label)?.new_decoder_with_bom_removal(),
+                None => encoding_rs::UTF_8.new_decoder_with_bom_removal(),
+            };
+            let mut text = Vec::new();
             let mut parser = csv_core::ReaderBuilder::new().delimiter(b'\t').build();
             let mut field = Vec::new();
             let mut fields = Vec::new();
@@ -291,7 +323,10 @@ impl Download {
             loop {
                 let chunk = self.body.next().await.transpose()?;
                 let eof = chunk.is_none();
-                let mut input = chunk.as_deref().unwrap_or_default();
+                decode_into(&mut decoder, chunk.as_deref().unwrap_or_default(), eof, &mut text)?;
+                // csv-core reads empty input as EOF; a split character decodes to none.
+                if text.is_empty() && !eof { continue; }
+                let mut input = &text[..];
                 loop {
                     check_deadline(self.deadline)?;
                     let (result, used, produced) = parser.read_field(input, &mut output);
@@ -571,6 +606,50 @@ fn signed_url(text: &str) -> Result<Url, Error> {
         return Err(Error::InvalidUrl);
     }
     Ok(url)
+}
+/// Charset labels Amazon uses that the WHATWG table lacks.
+const CHARSET_ALIASES: &[(&str, &str)] = &[("cp932", "shift_jis")];
+
+fn header_charset(headers: &HeaderMap) -> Option<String> {
+    let value = headers.get(CONTENT_TYPE)?.to_str().ok()?;
+    value.split(';').skip(1).find_map(|parameter| {
+        let (name, value) = parameter.split_once('=')?;
+        name.trim()
+            .eq_ignore_ascii_case("charset")
+            .then(|| value.trim().trim_matches('"').to_owned())
+    })
+}
+fn resolve_charset(label: &str) -> Result<&'static Encoding, Error> {
+    let label = label.trim();
+    let label = CHARSET_ALIASES
+        .iter()
+        .find(|(alias, _)| alias.eq_ignore_ascii_case(label))
+        .map_or(label, |(_, target)| target);
+    Encoding::for_label(label.as_bytes())
+        .filter(|encoding| *encoding != encoding_rs::REPLACEMENT)
+        .ok_or(Error::UnsupportedCharset)
+}
+/// Replace `out` with the UTF-8 for `input`. Invalid input is an error, never U+FFFD.
+/// The decoder keeps a character split across calls; `last` flushes it.
+fn decode_into(
+    decoder: &mut Decoder,
+    input: &[u8],
+    last: bool,
+    out: &mut Vec<u8>,
+) -> Result<(), Error> {
+    let capacity = decoder
+        .max_utf8_buffer_length_without_replacement(input.len())
+        .ok_or(Error::Format)?;
+    out.clear();
+    out.resize(capacity, 0);
+    let (result, _, written) = decoder.decode_to_utf8_without_replacement(input, out, last);
+    match result {
+        DecoderResult::InputEmpty => {
+            out.truncate(written);
+            Ok(())
+        }
+        _ => Err(Error::Format),
+    }
 }
 fn encoding(headers: &HeaderMap, compression: Compression) -> Result<bool, Error> {
     let mut values = headers.get_all(CONTENT_ENCODING).iter();

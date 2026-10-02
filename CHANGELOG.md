@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+- Decode TSV documents from the `Content-Type` charset (such as Cp1252 or Shift_JIS) to UTF-8 in `each_tsv` and the Rust reader, with a `charset:` override and a `Document#charset` reader
+
 - Add explicit pagination to the Rust/native preview: a lazy Rust `Stream` of raw pages and a Ruby `Enumerator` per mapped operation (`*_pages`), with `max_pages`, repeated-token detection and an opt-in generic `Pagination` mapping; 79 operations are mapped and 12 candidates are excluded with reasons in `pagination.json`
 
 - Add Rust and native Ruby document ID helpers: download report, feed and Data Kiosk documents by ID, wait for reports, feeds and queries, and create and upload feed documents, all under one deadline

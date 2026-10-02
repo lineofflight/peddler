@@ -10,6 +10,7 @@ module Peddler
     def initialize: (Native::DocumentHandle handle) -> void
     def status: () -> Integer
     def headers: () -> Array[[String, String]]
+    def charset: () -> String?
     def error_body: () -> String?
     def error_body_truncated?: () -> bool
     def close: () -> void
@@ -19,8 +20,8 @@ module Peddler
                   | () -> Enumerator[String, Document]
     def each_jsonl: () { (untyped row) -> void } -> Document
                   | () -> Enumerator[untyped, Document]
-    def each_tsv: (?consistent_fields: bool) { (Array[String] row) -> void } -> Document
-                | (?consistent_fields: bool) -> Enumerator[Array[String], Document]
+    def each_tsv: (?consistent_fields: bool, ?charset: String?) { (Array[String] row) -> void } -> Document
+                | (?consistent_fields: bool, ?charset: String?) -> Enumerator[Array[String], Document]
     def json: (max_bytes: Integer) -> untyped
   end
 
@@ -42,11 +43,12 @@ module Peddler
     class DocumentHandle
       def status: () -> Integer
       def headers: () -> Array[[String, String]]
+      def charset: () -> String?
       def error_body: () -> String?
       def error_body_truncated?: () -> bool
       def close: () -> void
       def closed?: () -> bool
-      def next_row: (String mode, bool consistent_fields) -> untyped
+      def next_row: (String mode, bool consistent_fields, String? charset) -> untyped
       def json: (Integer max_bytes) -> String
     end
 

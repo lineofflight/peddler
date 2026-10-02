@@ -115,6 +115,7 @@ struct DocumentOwner {
     close_signal: Arc<Notify>,
     status: u16,
     headers: Vec<(String, String)>,
+    charset: Option<String>,
     error_body: Option<Vec<u8>>,
     truncated: bool,
 }
@@ -184,6 +185,7 @@ impl Document {
             owner: ManuallyDrop::new(DocumentOwner {
                 status: download.status(),
                 headers: headers(download.headers()),
+                charset: download.charset(),
                 error_body: download.error_body().map(<[u8]>::to_vec),
                 truncated: download.error_body_truncated(),
                 runtime,
@@ -216,6 +218,10 @@ impl Document {
     fn headers(ruby: &Ruby, document: &Self) -> Result<Vec<(String, String)>, Error> {
         guard(ruby, document.pid)?;
         Ok(document.owner.headers.clone())
+    }
+    fn charset(ruby: &Ruby, document: &Self) -> Result<Option<String>, Error> {
+        guard(ruby, document.pid)?;
+        Ok(document.owner.charset.clone())
     }
     fn error_body(ruby: &Ruby, document: &Self) -> Result<Option<RString>, Error> {
         guard(ruby, document.pid)?;
@@ -250,12 +256,16 @@ impl Document {
         document: &Self,
         mode: String,
         consistent: bool,
+        charset: Option<String>,
     ) -> Result<Option<magnus::Value>, Error> {
         let (mut lease, state) = Self::take(ruby, document)?;
         let mut state = match (mode.as_str(), state) {
             ("chunks", StreamState::Fresh(value)) => StreamState::Chunks((*value).into_chunks()),
             ("jsonl", StreamState::Fresh(value)) => StreamState::Jsonl((*value).into_jsonl()),
-            ("tsv", StreamState::Fresh(value)) => StreamState::Tsv((*value).into_tsv(consistent)),
+            ("tsv", StreamState::Fresh(value)) => StreamState::Tsv(match charset {
+                Some(label) => (*value).into_tsv_with_charset(consistent, &label),
+                None => (*value).into_tsv(consistent),
+            }),
             ("chunks", state @ StreamState::Chunks(_))
             | ("jsonl", state @ StreamState::Jsonl(_))
             | ("tsv", state @ StreamState::Tsv(_)) => state,
@@ -574,9 +584,10 @@ pub(super) fn init(
     document.define_method("closed?", method!(Document::closed, 0))?;
     document.define_method("status", method!(Document::status, 0))?;
     document.define_method("headers", method!(Document::headers, 0))?;
+    document.define_method("charset", method!(Document::charset, 0))?;
     document.define_method("error_body", method!(Document::error_body, 0))?;
     document.define_method("error_body_truncated?", method!(Document::truncated, 0))?;
-    document.define_method("next_row", method!(Document::next, 2))?;
+    document.define_method("next_row", method!(Document::next, 3))?;
     document.define_method("json", method!(Document::json, 1))?;
     let upload = native.define_class("UploadHandle", ruby.class_object())?;
     upload.define_method("completed?", method!(Upload::completed, 0))?;
