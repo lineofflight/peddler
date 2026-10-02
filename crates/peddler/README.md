@@ -280,9 +280,9 @@ bounded binary body and `body_truncated?`; `raise_for_status!` uses Rust metadat
 
 Format, compression, byte/record/row limit, source and length failures raise
 `Native::DocumentError`. Deadline expiry raises its subclass
-`Native::DocumentTimeoutError`. Source failures omit the original exception and
-cause. Thread interruption cancels work, drops active sockets and lets the same
-client start another transfer. Closing a document cancels an active read. A stream
+`Native::DocumentTimeoutError`. Thread interruption cancels work, drops active
+sockets and lets the same client start another transfer. Closing a document
+cancels an active read. A stream
 remains valid after parent Client GC; every native handle rejects inherited state
 with ForkError after fork, so construct a new Client in the child. A Ruby source
 read that blocks must return or be interrupted before the calling Ruby method can

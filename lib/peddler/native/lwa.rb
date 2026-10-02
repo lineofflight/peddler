@@ -29,25 +29,21 @@ module Peddler
       def initialize(client_id:, client_secret:, timeout: 30, lwa_endpoint: DEFAULT_ENDPOINT)
         unless text?(client_id) && text?(client_secret) && text?(lwa_endpoint) &&
             (timeout.is_a?(Integer) || timeout.is_a?(Float)) && timeout.finite? && timeout.positive?
-          raise ArgumentError, "invalid authentication configuration", cause: nil
+          raise ArgumentError, "invalid authentication configuration"
         end
 
         @engine = LwaEngine.new(client_id, client_secret, timeout, lwa_endpoint)
-      rescue ArgumentError, TransportError => error
-        raise_sanitized(error)
       end
 
       # Omit redirect_uri only for SDK-originated grants; otherwise provide the
       # exact URI used during authorization. Authorization codes aren't retried.
       def exchange_authorization_code(code:, redirect_uri: nil)
         unless text?(code) && (redirect_uri.nil? || text?(redirect_uri))
-          raise ArgumentError, "invalid authentication configuration", cause: nil
+          raise ArgumentError, "invalid authentication configuration"
         end
 
         access_token, refresh_token, token_type, expires_in = @engine.exchange_authorization_code(code, redirect_uri)
         LwaTokens.new(access_token, refresh_token, token_type, expires_in)
-      rescue ArgumentError, AuthenticationError, TransportError, ForkError => error
-        raise_sanitized(error)
       end
 
       def inspect = "#<Peddler::Native::LWA>"
@@ -58,19 +54,6 @@ module Peddler
       def text?(value)
         value.is_a?(String) && value.valid_encoding? &&
           (value.encoding == Encoding::UTF_8 || value.ascii_only?)
-      end
-
-      def raise_sanitized(error)
-        raise error unless error.instance_variable_defined?(:@peddler_native_lwa_error)
-
-        fresh = if error.is_a?(AuthenticationError)
-          error.class.new(error.message, error.status)
-        else
-          error.class.new(error.message)
-        end
-        backtrace = error.backtrace
-        fresh.set_backtrace(backtrace) if backtrace
-        raise fresh, cause: nil
       end
     end
   end

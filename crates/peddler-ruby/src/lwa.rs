@@ -1,6 +1,6 @@
 //! Owned authorization-code work using the shared protected GVL executor.
-use super::{RuntimeOwner, gvl};
-use magnus::{Error, Exception, RModule, Ruby, function, method, prelude::*};
+use super::{RuntimeOwner, gvl, native_error};
+use magnus::{Error, RModule, Ruby, function, method, prelude::*};
 use peddler::auth::{AuthError, LwaClient};
 use std::{mem::ManuallyDrop, sync::Arc, time::Duration};
 use tokio::runtime::Builder;
@@ -24,41 +24,29 @@ impl Drop for LwaEngine {
     }
 }
 
-fn error(ruby: &Ruby, error: AuthError) -> Error {
-    let name = match error {
-        AuthError::InvalidConfig => "ArgumentError",
-        AuthError::Timeout => "TimeoutError",
-        AuthError::Transport => "TransportError",
-        _ => "AuthenticationError",
-    };
+fn auth_error(ruby: &Ruby, error: AuthError) -> Error {
+    let message = error.to_string();
     let status = match error {
         AuthError::Rejected(status) => Some(status),
         _ => None,
     };
-    marked_error(ruby, name, &error.to_string(), status)
+    let class = ruby
+        .class_object()
+        .const_get::<_, RModule>("Peddler")
+        .and_then(|m| m.const_get::<_, RModule>("Native"))
+        .and_then(|m| m.const_get::<_, magnus::RClass>("AuthenticationError"));
+    match class.and_then(|c| c.funcall::<_, _, magnus::Exception>("new", (message, status))) {
+        Ok(e) => Error::from(e),
+        Err(e) => e,
+    }
 }
-fn marked_error(ruby: &Ruby, name: &str, message: &str, status: Option<u16>) -> Error {
-    let exception = (|| -> Result<Exception, Error> {
-        let class = if name == "ArgumentError" {
-            ruby.exception_arg_error().as_r_class()
-        } else {
-            ruby.class_object()
-                .const_get::<_, RModule>("Peddler")?
-                .const_get::<_, RModule>("Native")?
-                .const_get(name)?
-        };
-        let exception: Exception = if name == "AuthenticationError" {
-            class.funcall("new", (message, status))?
-        } else {
-            class.funcall("new", (message,))?
-        };
-        let _: magnus::Value =
-            exception.funcall("instance_variable_set", ("@peddler_native_lwa_error", true))?;
-        Ok(exception)
-    })();
-    match exception {
-        Ok(exception) => Error::from(exception),
-        Err(error) => error,
+
+fn error(ruby: &Ruby, error: AuthError) -> Error {
+    match error {
+        AuthError::InvalidConfig => Error::new(ruby.exception_arg_error(), error.to_string()),
+        AuthError::Timeout => native_error(ruby, "TimeoutError", &error.to_string()),
+        AuthError::Transport => native_error(ruby, "TransportError", &error.to_string()),
+        _ => auth_error(ruby, error),
     }
 }
 impl LwaEngine {
@@ -96,11 +84,10 @@ impl LwaEngine {
     ) -> Result<(String, String, String, u64), Error> {
         // Check before reading any inherited Rust state, including Arc counts.
         if engine.pid != std::process::id() {
-            return Err(marked_error(
+            return Err(native_error(
                 ruby,
                 "ForkError",
                 "create a new client after fork",
-                None,
             ));
         }
         let state = Arc::clone(&engine.state);
@@ -114,8 +101,7 @@ impl LwaEngine {
                     .exchange_authorization_code(&code, redirect_uri.as_deref())
                     .await
             },
-        )
-        .map_err(mark_wait_error)?;
+        )?;
         let tokens = result.map_err(|e| error(ruby, e))?;
         Ok((
             tokens.access_token,
@@ -123,22 +109,6 @@ impl LwaEngine {
             tokens.token_type,
             tokens.expires_in,
         ))
-    }
-}
-fn mark_wait_error(error: Error) -> Error {
-    // Captured Ruby exceptions and nonlocal jumps preserve their identity.
-    let magnus::error::ErrorType::Error(class, message) = error.error_type() else {
-        return error;
-    };
-    let marked = (|| -> Result<Exception, Error> {
-        let exception: Exception = class.funcall("new", (message.as_ref(),))?;
-        let _: magnus::Value =
-            exception.funcall("instance_variable_set", ("@peddler_native_lwa_error", true))?;
-        Ok(exception)
-    })();
-    match marked {
-        Ok(exception) => Error::from(exception),
-        Err(error) => error,
     }
 }
 pub(super) fn init(ruby: &Ruby, native: RModule) -> Result<(), Error> {

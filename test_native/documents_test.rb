@@ -84,12 +84,11 @@ class DocumentsTest < NativeTest
     instance = client("http://127.0.0.1:1")
     [{ unknown_secret: 1 }, { compression: "gzip" }, { timeout: 0 }, { max_bytes: 0 }, { max_records: 1.5 }].each do |options|
       error = assert_raises(ArgumentError) { instance.download_document("https://example.com/private-secret", **options) }
-      refute_match(/private-secret|unknown_secret/, error.full_message)
+      refute_match(/private-secret|unknown_secret/, error.message)
     end
     serve(handler: ->(socket, *) { respond(socket, body: 'private-secret invalid JSON') }) do |url|
       error = assert_raises(Peddler::Native::DocumentError) { client(url).download_document(url).each_jsonl.to_a }
-      refute_match(/private-secret/, error.full_message)
-      assert_nil(error.cause)
+      refute_match(/private-secret/, error.message)
     end
   end
 
@@ -250,8 +249,7 @@ class DocumentsTest < NativeTest
         sleep(0.02)
         raise "private-secret IO URL" }
       error = assert_raises(Peddler::Native::DocumentError) { instance.upload_document(url, source, content_type: "text/plain") }
-      refute_match(/private-secret/, error.full_message)
-      assert_nil(error.cause)
+      refute_match(/private-secret/, error.message)
     end
   end
 
@@ -367,8 +365,7 @@ class DocumentsTest < NativeTest
     }) do |url|
       instance = client(url)
       stream = instance.download_document("#{url}/slow", timeout: 0.03)
-      error = assert_raises(Peddler::Native::DocumentTimeoutError) { stream.each_chunk { sleep(0.05) } }
-      assert_nil(error.cause)
+      assert_raises(Peddler::Native::DocumentTimeoutError) { stream.each_chunk { sleep(0.05) } }
       assert_predicate(stream, :closed?)
       assert_equal("recovered", instance.download_document(url).each_chunk.to_a.join)
     end
@@ -537,8 +534,7 @@ class DocumentsTest < NativeTest
       instance = client(url)
       ["overflow", "underflow"].each do |path|
         error = assert_raises(Peddler::Native::DocumentError) { instance.download_document("#{url}/#{path}").each_jsonl.to_a }
-        refute_match(/secret|999999/, error.full_message)
-        assert_nil(error.cause)
+        refute_match(/secret|999999/, error.message)
       end
     end
   end
@@ -549,130 +545,35 @@ class DocumentsTest < NativeTest
     yield sensitive
   end
 
-  def test_translated_download_errors_clear_active_exception_causes
+  def test_download_document_invalid_url_encoding
     instance = client("http://127.0.0.1:1")
-    engine = instance.instance_variable_get(:@engine)
-    calls = [
-      -> { instance.download_document("bad-url") },
-      -> { instance.download_document("https://example.com/private", max_bytes: 1 << 65) },
-      -> { engine.download_document("bad-url", "{}") },
-    ]
-    calls.each do |call|
-      sensitive_rescue do |sensitive|
-        error = assert_raises(ArgumentError, &call)
-        assert_nil(error.cause)
-        refute_match(/signed-url-header-body-secret/, error.full_message)
-        assert_same(sensitive, $!, "the surrounding rescue context must be restored")
-      end
-    end
+    error = assert_raises(ArgumentError) { instance.download_document("http://127.0.0.1:1/\xFF") }
+    assert_equal("invalid document URL", error.message)
   end
 
-  def test_translated_stream_errors_clear_active_exception_causes
-    serve(count: 3, handler: ->(socket, *) { respond(socket, body: "private-invalid-json") }) do |url|
-      instance = client(url)
-      sensitive_rescue do
-        document = instance.download_document(url)
-        error = assert_raises(Peddler::Native::DocumentError) { document.each_jsonl.to_a }
-        assert_nil(error.cause)
-        refute_match(/signed-url-header-body-secret|private-invalid-json/, error.full_message)
-        assert_predicate(document, :closed?)
-      end
-      sensitive_rescue do
-        document = instance.download_document(url)
-        error = assert_raises(Peddler::Native::DocumentError) { document.json(max_bytes: 1) }
-        assert_nil(error.cause)
-        refute_match(/signed-url-header-body-secret/, error.full_message)
-      end
-      sensitive_rescue do
-        handle = instance.instance_variable_get(:@engine).download_document(url, "{}")
-        error = assert_raises(Peddler::Native::DocumentError) { handle.next_row("jsonl", false) }
-        assert_nil(error.cause)
-        refute_match(/signed-url-header-body-secret/, error.full_message)
-        handle.close
-      end
-    end
-  end
-
-  def test_translated_upload_errors_clear_active_exception_causes
+  def test_upload_document_overflow_content_length
     instance = client("http://127.0.0.1:1")
-    sensitive_rescue do
-      error = assert_raises(ArgumentError) { instance.upload_document("bad-url", "", content_type: "text/plain") }
-      assert_nil(error.cause)
-      refute_match(/signed-url-header-body-secret/, error.full_message)
-    end
-    engine = instance.instance_variable_get(:@engine)
-    sensitive_rescue do
-      error = assert_raises(ArgumentError) { engine.start_document_upload("bad-url", '{"unknown":true}', "text/plain", [], nil) }
-      assert_nil(error.cause)
-      refute_match(/signed-url-header-body-secret/, error.full_message)
-      upload = engine.start_document_upload("bad-url", "{}", "text/plain", [], nil)
-      error = assert_raises(ArgumentError) { upload.finish }
-      assert_nil(error.cause)
-      refute_match(/signed-url-header-body-secret/, error.full_message)
-      upload.close
-    end
-    raw_server(handler: ->(socket, *) { socket.read }) do |url|
-      sensitive_rescue do
-        error = assert_raises(Peddler::Native::DocumentError) { client(url).upload_document(url, "abc", content_type: "text/plain", content_length: 2) }
-        assert_nil(error.cause)
-        refute_match(/signed-url-header-body-secret/, error.full_message)
-      end
-    end
+    error = assert_raises(ArgumentError) { instance.upload_document("http://127.0.0.1:1", "x", content_type: "text/plain", content_length: 1 << 70) }
+    assert_equal("invalid document upload configuration", error.message)
   end
 
-  def test_download_document_invalid_url_encoding_clears_active_exception_causes
+  def test_upload_document_invalid_header_encoding
     instance = client("http://127.0.0.1:1")
-    sensitive_rescue do |sensitive|
-      error = assert_raises(ArgumentError) { instance.download_document("http://127.0.0.1:1/\xFF") }
-      assert_nil(error.cause)
-      refute_match(/signed-url-header-body-secret/, error.full_message)
-      assert_same(sensitive, $!, "the surrounding rescue context must be restored")
-    end
+    error = assert_raises(ArgumentError) { instance.upload_document("http://127.0.0.1:1", "x", content_type: "text/plain", headers: { "x-a" => "\xFF" }) }
+    assert_equal("invalid document upload configuration", error.message)
   end
 
-  def test_upload_document_overflow_content_length_clears_active_exception_causes
+  def test_upload_document_invalid_content_type_encoding
     instance = client("http://127.0.0.1:1")
-    url = "http://127.0.0.1:1"
-    sensitive_rescue do |sensitive|
-      error = assert_raises(ArgumentError) { instance.upload_document(url, "x", content_type: "text/plain", content_length: 1 << 70) }
-      assert_nil(error.cause)
-      refute_match(/signed-url-header-body-secret/, error.full_message)
-      assert_same(sensitive, $!, "the surrounding rescue context must be restored")
-    end
+    error = assert_raises(ArgumentError) { instance.upload_document("http://127.0.0.1:1", "x", content_type: "\xFF") }
+    assert_equal("invalid document upload configuration", error.message)
   end
 
-  def test_upload_document_invalid_header_encoding_clears_active_exception_causes
-    instance = client("http://127.0.0.1:1")
-    url = "http://127.0.0.1:1"
-    sensitive_rescue do |sensitive|
-      error = assert_raises(ArgumentError) { instance.upload_document(url, "x", content_type: "text/plain", headers: { "x-a" => "\xFF" }) }
-      assert_nil(error.cause)
-      refute_match(/signed-url-header-body-secret/, error.full_message)
-      assert_same(sensitive, $!, "the surrounding rescue context must be restored")
-    end
-  end
-
-  def test_upload_document_invalid_content_type_encoding_clears_active_exception_causes
-    instance = client("http://127.0.0.1:1")
-    url = "http://127.0.0.1:1"
-    sensitive_rescue do |sensitive|
-      error = assert_raises(ArgumentError) { instance.upload_document(url, "x", content_type: "\xFF") }
-      assert_nil(error.cause)
-      refute_match(/signed-url-header-body-secret/, error.full_message)
-      assert_same(sensitive, $!, "the surrounding rescue context must be restored")
-    end
-  end
-
-  def test_document_json_overflow_max_bytes_clears_active_exception_causes
+  def test_document_json_overflow_max_bytes
     serve(handler: ->(socket, *) { respond(socket, body: "{}") }) do |url|
-      instance = client(url)
-      document = instance.download_document(url)
-      sensitive_rescue do |sensitive|
-        error = assert_raises(ArgumentError) { document.json(max_bytes: 1 << 70) }
-        assert_nil(error.cause)
-        refute_match(/signed-url-header-body-secret/, error.full_message)
-        assert_same(sensitive, $!, "the surrounding rescue context must be restored")
-      end
+      document = client(url).download_document(url)
+      error = assert_raises(ArgumentError) { document.json(max_bytes: 1 << 70) }
+      assert_equal("invalid document configuration", error.message)
     end
   end
 

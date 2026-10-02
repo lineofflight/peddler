@@ -27,7 +27,6 @@ module Peddler
       private
 
       def text?: (untyped value) -> bool
-      def raise_sanitized: (ArgumentError | TransportError | AuthenticationError | ForkError error) -> bot
     end
   end
 end

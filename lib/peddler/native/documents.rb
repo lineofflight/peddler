@@ -18,44 +18,13 @@ module Peddler
       end
     end
 
-    # Native rb_exc_raise attaches an active rescue exception. Clear that cause
-    # at the final Ruby boundary only when Rust explicitly marked the error.
-    module DocumentErrorBoundary
-      class << self
-        def wrap(klass, names)
-          names.each do |name|
-            native_method = klass.instance_method(name)
-            klass.define_method(name) do |*arguments|
-              native_method.bind_call(self, *arguments)
-            rescue StandardError => error
-              if error.instance_variable_defined?(:@peddler_document_error)
-                error.remove_instance_variable(:@peddler_document_error)
-                translated = error.class.new(error.message)
-                error.instance_variables.each do |name|
-                  translated.instance_variable_set(name, error.instance_variable_get(name))
-                end
-                backtrace = error.backtrace
-                translated.set_backtrace(backtrace) if backtrace
-                Kernel.raise translated, cause: nil
-              end
-              Kernel.raise error
-            end
-          end
-        end
-      end
-    end
-    DocumentErrorBoundary.wrap(Engine, [:download_document, :start_document_upload])
-    DocumentErrorBoundary.wrap(DocumentHandle, [:close, :closed?, :status, :headers, :error_body,
-      :error_body_truncated?, :next_row, :json])
-    DocumentErrorBoundary.wrap(UploadHandle, [:completed?, :push, :finish, :close])
-
     module TransferConfig
       class << self
         def json(options)
           compressions = [:auto, :none, :gzip]
           limits = [:max_bytes, :max_record_bytes, :max_records, :max_response_bytes]
           unless (options.keys - (limits + [:timeout, :compression])).empty?
-            raise ArgumentError, "invalid document configuration", cause: nil
+            raise ArgumentError, "invalid document configuration"
           end
           options.each do |key, value|
             valid = case key
@@ -63,11 +32,11 @@ module Peddler
             when :compression then compressions.include?(value)
             else value.is_a?(Integer) && value.positive? && value <= UINT64_MAX
             end
-            raise ArgumentError, "invalid document configuration", cause: nil unless valid
+            raise ArgumentError, "invalid document configuration" unless valid
           end
           JSON.generate(options)
         rescue JSON::GeneratorError, TypeError
-          raise ArgumentError, "invalid document configuration", cause: nil
+          raise ArgumentError, "invalid document configuration"
         end
       end
     end
@@ -79,11 +48,11 @@ module Peddler
           value = BigDecimal(text)
           significand = text.split(/[eE]/, 2).first || ""
           if !value.finite? || (value.zero? && significand.match?(/[1-9]/))
-            raise DocumentError, "document decimal is out of range", cause: nil
+            raise DocumentError, "document decimal is out of range"
           end
           value
         rescue ArgumentError, RangeError
-          raise DocumentError, "document decimal is out of range", cause: nil
+          raise DocumentError, "document decimal is out of range"
         end
       end
     end
@@ -132,7 +101,7 @@ module Peddler
 
         begin
           unless consistent_fields == true || consistent_fields == false
-            raise ArgumentError, "invalid document configuration", cause: nil
+            raise ArgumentError, "invalid document configuration"
           end
           while (row = @handle.next_row("tsv", consistent_fields))
             yield row
@@ -145,7 +114,7 @@ module Peddler
 
       def json(max_bytes:)
         unless max_bytes.is_a?(Integer) && max_bytes.positive? && max_bytes <= UINT64_MAX
-          raise ArgumentError, "invalid document configuration", cause: nil
+          raise ArgumentError, "invalid document configuration"
         end
         JSON.parse(@handle.json(max_bytes), decimal_class: DocumentDecimal, max_nesting: false)
       ensure
@@ -170,7 +139,7 @@ module Peddler
 
   class Client
     def download_document(url, **transfer_options)
-      raise ArgumentError, "invalid document URL", cause: nil unless Native.valid_utf8_string?(url)
+      raise ArgumentError, "invalid document URL" unless Native.valid_utf8_string?(url)
 
       document = Native::Document.new(@engine.download_document(url, Native::TransferConfig.json(transfer_options)))
       return document unless block_given?
@@ -187,7 +156,7 @@ module Peddler
           headers.all? { |key, value| Native.valid_utf8_string?(key) && Native.valid_utf8_string?(value) } &&
           (content_length.nil? || (content_length.is_a?(Integer) && content_length >= 0 && content_length <= Native::UINT64_MAX)) &&
           (source.is_a?(String) || source.respond_to?(:read))
-        raise ArgumentError, "invalid document upload configuration", cause: nil
+        raise ArgumentError, "invalid document upload configuration"
       end
       upload = @engine.start_document_upload(url, Native::TransferConfig.json(transfer_options), content_type, headers.to_a, content_length)
       begin
@@ -201,12 +170,12 @@ module Peddler
             begin
               source.read(64 * 1024)
             rescue StandardError
-              raise Native::DocumentError, "document upload source failed", cause: nil
+              raise Native::DocumentError, "document upload source failed"
             end
           end
           break if chunk.nil? || chunk == ""
           unless chunk.is_a?(String) && chunk.bytesize <= 64 * 1024
-            raise Native::DocumentError, "document upload source failed", cause: nil
+            raise Native::DocumentError, "document upload source failed"
           end
           break unless upload.push(chunk)
         end

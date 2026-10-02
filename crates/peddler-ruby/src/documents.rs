@@ -2,15 +2,12 @@
 use super::{Completed, Engine, Response, RuntimeOwner, gvl, native_error};
 use bytes::Bytes;
 use futures_util::{FutureExt, StreamExt};
-use magnus::{
-    Error, IntoValue, RClass, RModule, RString, Ruby, error::ErrorType, method, prelude::*,
-};
+use magnus::{Error, IntoValue, RClass, RModule, RString, Ruby, method, prelude::*};
 use peddler::documents::{
     Compression, DocumentStream, Download, Error as DocumentError, TransferOptions, UploadOptions,
     UploadResponse,
 };
 use std::{
-    future::Future,
     mem::ManuallyDrop,
     panic::AssertUnwindSafe,
     sync::{Arc, Mutex},
@@ -21,62 +18,32 @@ use tokio::{
     task::AbortHandle,
 };
 
-// Mark only Rust-created errors. The Ruby method boundary clears causes at the
-// final raise, while captured Ruby exceptions and jump tags pass through intact.
-fn mark_error(_ruby: &Ruby, error: Error) -> Error {
-    let ErrorType::Error(class, message) = error.error_type() else {
-        return error;
-    };
-    let exception = class.funcall::<_, _, magnus::Exception>("new", (message.as_ref(),));
-    match exception {
-        Ok(exception) => match exception.funcall::<_, _, magnus::Value>(
-            "instance_variable_set",
-            ("@peddler_document_error", true),
-        ) {
-            Ok(_) => Error::from(exception),
-            Err(error) => error,
-        },
-        Err(error) => error,
-    }
-}
-
-fn wait<F, T>(ruby: &Ruby, runtime: Arc<RuntimeOwner>, future: F) -> Result<T, Error>
-where
-    F: Future<Output = T> + Send + 'static,
-    T: Send + 'static,
-{
-    gvl::wait(ruby, "DocumentError", runtime, future).map_err(|error| mark_error(ruby, error))
-}
-
 fn error(ruby: &Ruby, error: DocumentError) -> Error {
     let message = error.to_string();
-    let error = match error {
+    match error {
         DocumentError::InvalidConfig | DocumentError::InvalidUrl | DocumentError::InvalidHeader => {
             Error::new(ruby.exception_arg_error(), message)
         }
         DocumentError::Timeout => native_error(ruby, "DocumentTimeoutError", &message),
         _ => native_error(ruby, "DocumentError", &message),
-    };
-    mark_error(ruby, error)
+    }
 }
 fn guard(ruby: &Ruby, pid: u32) -> Result<(), Error> {
     if pid != std::process::id() {
-        Err(mark_error(
+        Err(native_error(
             ruby,
-            native_error(ruby, "ForkError", "create a new client after fork"),
+            "ForkError",
+            "create a new client after fork",
         ))
     } else {
         Ok(())
     }
 }
 fn misuse(ruby: &Ruby) -> Error {
-    mark_error(
+    native_error(
         ruby,
-        native_error(
-            ruby,
-            "DocumentError",
-            "document is closed, busy or already consumed in another mode",
-        ),
+        "DocumentError",
+        "document is closed, busy or already consumed in another mode",
     )
 }
 fn headers(values: &http::HeaderMap) -> Vec<(String, String)> {
@@ -204,7 +171,7 @@ impl Document {
         let options = Config::parse(ruby, &json)?;
         let client = engine.state.client.documents();
         let runtime = Arc::clone(&engine.state.runtime);
-        let download = wait(ruby, Arc::clone(&runtime), async move {
+        let download = gvl::wait(ruby, "DocumentError", Arc::clone(&runtime), async move {
             client.download(&url, options).await
         })?
         .map_err(|e| error(ruby, e))?;
@@ -292,31 +259,36 @@ impl Document {
         };
         let closed = Arc::clone(&document.owner.stream);
         let signal = Arc::clone(&document.owner.close_signal);
-        let (state, row) = wait(ruby, Arc::clone(&document.owner.runtime), async move {
-            let read = async {
-                match &mut state {
-                    StreamState::Chunks(stream) => stream
-                        .next()
-                        .await
-                        .transpose()
-                        .map(|row| row.map(Row::Chunk)),
-                    StreamState::Jsonl(stream) => stream
-                        .next()
-                        .await
-                        .transpose()
-                        .map(|row| row.map(|value| Row::Json(value.to_string()))),
-                    StreamState::Tsv(stream) => {
-                        stream.next().await.transpose().map(|row| row.map(Row::Tsv))
+        let (state, row) = gvl::wait(
+            ruby,
+            "DocumentError",
+            Arc::clone(&document.owner.runtime),
+            async move {
+                let read = async {
+                    match &mut state {
+                        StreamState::Chunks(stream) => stream
+                            .next()
+                            .await
+                            .transpose()
+                            .map(|row| row.map(Row::Chunk)),
+                        StreamState::Jsonl(stream) => stream
+                            .next()
+                            .await
+                            .transpose()
+                            .map(|row| row.map(|value| Row::Json(value.to_string()))),
+                        StreamState::Tsv(stream) => {
+                            stream.next().await.transpose().map(|row| row.map(Row::Tsv))
+                        }
+                        _ => unreachable!(),
                     }
-                    _ => unreachable!(),
-                }
-            };
-            let row = tokio::select! {
-                row = read => row,
-                () = wait_closed(closed, signal) => Err(DocumentError::Transport),
-            };
-            (state, row)
-        })?;
+                };
+                let row = tokio::select! {
+                    row = read => row,
+                    () = wait_closed(closed, signal) => Err(DocumentError::Transport),
+                };
+                (state, row)
+            },
+        )?;
         let row = row.map_err(|e| error(ruby, e))?;
         if row.is_some() {
             lease.restore(state);
@@ -334,12 +306,17 @@ impl Document {
         };
         let closed = Arc::clone(&document.owner.stream);
         let signal = Arc::clone(&document.owner.close_signal);
-        let result = wait(ruby, Arc::clone(&document.owner.runtime), async move {
-            tokio::select! {
-                result = (*value).json(limit) => result,
-                () = wait_closed(closed, signal) => Err(DocumentError::Transport),
-            }
-        })?;
+        let result = gvl::wait(
+            ruby,
+            "DocumentError",
+            Arc::clone(&document.owner.runtime),
+            async move {
+                tokio::select! {
+                    result = (*value).json(limit) => result,
+                    () = wait_closed(closed, signal) => Err(DocumentError::Transport),
+                }
+            },
+        )?;
         result
             .map(|value| value.to_string())
             .map_err(|e| error(ruby, e))
@@ -495,25 +472,36 @@ impl Upload {
         let sender = upload.owner.sender.lock().unwrap().as_ref().cloned();
         let sender = sender.ok_or_else(|| misuse(ruby))?;
         let completion = Arc::clone(&upload.owner.completion);
-        wait(ruby, Arc::clone(&upload.owner.runtime), async move {
-            tokio::select! { biased;
-                () = completion.ready() => false,
-                permit = sender.reserve() => match permit { Ok(permit) => { permit.send(data); true }, Err(_) => false },
-            }
-        })
+        gvl::wait(
+            ruby,
+            "DocumentError",
+            Arc::clone(&upload.owner.runtime),
+            async move {
+                tokio::select! { biased;
+                    () = completion.ready() => false,
+                    permit = sender.reserve() => match permit { Ok(permit) => { permit.send(data); true }, Err(_) => false },
+                }
+            },
+        )
     }
     fn finish(ruby: &Ruby, upload: &Self) -> Result<UploadParts, Error> {
         guard(ruby, upload.pid)?;
         let sender = upload.owner.sender.lock().unwrap().take();
         drop(sender);
         let completion = Arc::clone(&upload.owner.completion);
-        let response = wait(ruby, Arc::clone(&upload.owner.runtime), async move {
-            completion.ready().await;
-            match std::mem::replace(&mut *completion.result.lock().unwrap(), UploadState::Taken) {
-                UploadState::Ready(result) => result,
-                _ => Err(DocumentError::UploadSource),
-            }
-        })?
+        let response = gvl::wait(
+            ruby,
+            "DocumentError",
+            Arc::clone(&upload.owner.runtime),
+            async move {
+                completion.ready().await;
+                match std::mem::replace(&mut *completion.result.lock().unwrap(), UploadState::Taken)
+                {
+                    UploadState::Ready(result) => result,
+                    _ => Err(DocumentError::UploadSource),
+                }
+            },
+        )?
         .map_err(|e| error(ruby, e))?;
         let truncated = response.body_truncated;
         let completed = Completed::new(Response {
