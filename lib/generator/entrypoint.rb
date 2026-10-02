@@ -28,10 +28,8 @@ module Generator
     def generate
       written_files = []
 
-      # Generate main entrypoint file
       written_files << write_file(file_path, render_template)
 
-      # Generate entrypoint signature
       written_files << RBS::Entrypoint.new.generate
 
       format_files(written_files)

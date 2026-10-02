@@ -31,7 +31,6 @@ module Generator
       def generate
         cleanup!
 
-        # Generate each API in parallel
         Parallel.each(apis, &:generate)
       end
 
@@ -82,7 +81,6 @@ module Generator
       api_types = types
       return [] if api_types.empty?
 
-      # Detect circular dependencies across all types for this API
       detector = CircularDependencyDetector.new(api_types)
       detector.detect
       api_types.each do |type|
@@ -90,17 +88,14 @@ module Generator
         type.cycle_edges = detector.cycle_edges
       end
 
-      # Generate each type Ruby file
       api_types.each do |type|
         @written_files << type.generate
       end
 
-      # Store types for RBS generation
       @api_types = api_types
     end
 
     def generate_rbs!
-      # Generate unified RBS file with both API operations and type definitions
       @written_files << RBS::Unified.new(self, name_with_version, @api_types || []).generate
     end
 
@@ -109,7 +104,6 @@ module Generator
       model["definitions"].each do |name, definition|
         # Skip non-object definitions but allow allOf compositions and arrays
         next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
-        # Skip Money types as we use the custom Money type for these
         next if MoneyDetector.money_type?(name)
         # Skip types with ONLY additionalProperties (no defined properties) - they'll be referenced as Hash
         next if definition["additionalProperties"] && !definition["properties"] && !definition["allOf"]

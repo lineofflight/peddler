@@ -41,13 +41,11 @@ module Generator
         sorted_types = api_types.sort_by(&:class_name)
         sorted_types.each do |type|
           class_def = type.rbs_class_definition
-          # Indent the class definition with 6 spaces (inside the API module)
           indented_class = indent(class_def, 6)
           lines << indented_class
-          lines << "" # Add blank line between classes
+          lines << ""
         end
 
-        # Remove trailing blank line if present
         lines.pop if lines.last == ""
 
         lines << "    end"

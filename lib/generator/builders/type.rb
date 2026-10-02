@@ -97,19 +97,15 @@ module Generator
 
       # Only use string class names for the specific edges that cause cycles
       unless for_comment
-        # Handle direct references
         if resolved_type.is_a?(String) &&
             resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
             resolved_type != "Float" && !resolved_type.include?("Hash") && !resolved_type.include?("Array") &&
             resolved_type != "Money" && resolved_type != ":boolean"
-          # Return as a string for lazy loading
           return "\"#{resolved_type}\"" if cycle_edge?(resolved_type)
         end
 
-        # Handle arrays containing cycle-causing types
         if resolved_type.is_a?(String)
           inner_type = array_inner_type(resolved_type)
-          # Return as array with string class name for lazy loading
           return "[\"#{inner_type}\"]" if cycle_edge?(inner_type)
         end
       end
@@ -136,21 +132,18 @@ module Generator
       properties.any? do |_prop_name, prop_def|
         resolved_type = type_resolver.resolve(prop_def)
 
-        # Check for self-references
         if resolved_type == class_name || resolved_type == "[#{class_name}]"
           return true
         end
 
         # Check for cycle-causing edges
         if resolved_type.is_a?(String)
-          # Handle direct types
           if resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
               resolved_type != "Float" && resolved_type != "Hash" && resolved_type != "Array" &&
               resolved_type != "Money" && resolved_type != ":boolean"
             return true if cycle_edge?(resolved_type)
           end
 
-          # Handle arrays
           return true if cycle_edge?(array_inner_type(resolved_type))
         end
 
@@ -229,11 +222,9 @@ module Generator
       return dependencies unless prop_def.is_a?(Hash)
 
       if prop_def["$ref"]
-        # Extract type name from $ref like "#/definitions/LowestPricedOffersInput"
         type_name = prop_def["$ref"].split("/").last
         dependencies << type_name
       end
-      # Extract dependencies from array items
       if prop_def["type"] == "array" && prop_def["items"].is_a?(Hash) && prop_def["items"]["$ref"]
         item_type = prop_def["items"]["$ref"].split("/").last
         dependencies << item_type
@@ -330,7 +321,6 @@ module Generator
     end
 
     def structure_rbs_class_definition
-      # Get the constant - Zeitwerk will autoload it
       parent = if namespace
         Peddler.const_get(namespace).const_get(namespace_name)
       else
@@ -338,7 +328,6 @@ module Generator
       end
       klass = parent.const_get(class_name)
 
-      # Generate RBS using Structure::RBS
       rbs_content = Structure::RBS.emit(klass)
       raise "Structure::RBS.emit returned nil for #{api_name.camelize}::#{class_name}" unless rbs_content
 
@@ -351,10 +340,8 @@ module Generator
     end
 
     def array_rbs_class_definition
-      # Generate the array class definition inline (no template needed)
       item_type = array_item_type
       if item_type && generated_type?(item_type)
-        # Apply acronym transformations to item type
         item_class_name = Naming.class_name(item_type)
         <<~RBS
           class #{class_name} < Array[#{item_class_name}]
