@@ -817,3 +817,68 @@ async fn parse_and_writer_errors_do_not_include_document_contents() {
     );
     task.await.unwrap();
 }
+
+#[tokio::test]
+async fn concatenated_gzip_members_decode_as_one_layer() {
+    let member = vec![
+        31, 139, 8, 0, 0, 0, 0, 0, 2, 255, 171, 86, 170, 80, 178, 50, 172, 229, 2, 0, 21, 240, 49,
+        80, 8, 0, 0, 0,
+    ];
+    let (url, task) = chunked_server(
+        [member.clone(), member.clone()].concat(),
+        "Content-Encoding: gzip\r\n",
+    )
+    .await;
+    let rows = client(&url)
+        .documents()
+        .download(
+            &url,
+            TransferOptions {
+                compression: Compression::Gzip,
+                ..Default::default()
+            },
+        )
+        .await
+        .unwrap()
+        .into_jsonl()
+        .try_collect::<Vec<_>>()
+        .await
+        .unwrap();
+    assert_eq!(
+        rows,
+        vec![serde_json::json!({"x":1}), serde_json::json!({"x":1})]
+    );
+    task.await.unwrap();
+}
+
+async fn trailing_gzip_error(tail: Vec<u8>) {
+    let member = vec![
+        31, 139, 8, 0, 0, 0, 0, 0, 2, 255, 171, 86, 170, 80, 178, 50, 172, 229, 2, 0, 21, 240, 49,
+        80, 8, 0, 0, 0,
+    ];
+    let (url, task) = chunked_server([member, tail].concat(), "Content-Encoding: gzip\r\n").await;
+    let error = client(&url)
+        .documents()
+        .download(&url, TransferOptions::default())
+        .await
+        .unwrap()
+        .into_chunks()
+        .try_collect::<Vec<_>>()
+        .await
+        .unwrap_err();
+    assert_eq!(error, Error::Compression);
+    assert!(std::error::Error::source(&error).is_none());
+    task.await.unwrap();
+}
+#[tokio::test]
+async fn gzip_corrupt_trailing_member_is_rejected() {
+    trailing_gzip_error(b"secret corrupt trailing bytes".to_vec()).await;
+}
+#[tokio::test]
+async fn gzip_truncated_trailing_member_is_rejected() {
+    trailing_gzip_error(vec![
+        31, 139, 8, 0, 0, 0, 0, 0, 2, 255, 171, 86, 170, 80, 178, 50, 172, 229, 2, 0, 21, 240, 49,
+        80,
+    ])
+    .await;
+}

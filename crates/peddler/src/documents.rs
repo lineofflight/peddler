@@ -4,6 +4,8 @@
 //! whitespace-only lines; TSV uses the csv-core grammar with tab delimiters.
 //! Record limits bound raw record buffers and TSV materialized field storage.
 //! Whole JSON decoding is explicitly buffered and requires its own byte limit.
+//! Synchronous parsing checks deadline expiry after completion; it cannot preempt
+//! CPU work. GZIP consumes every member and validates trailing input.
 
 use async_compression::tokio::bufread::GzipDecoder;
 use bytes::Bytes;
@@ -214,12 +216,14 @@ impl Download {
                 .await
                 .map_err(|_| Error::Timeout)?
                 .map_err(|_| Error::Writer)?;
+            check_deadline(self.deadline)?;
             written += chunk.len() as u64;
         }
         timeout_at(self.deadline, writer.flush())
             .await
             .map_err(|_| Error::Timeout)?
             .map_err(|_| Error::Writer)?;
+        check_deadline(self.deadline)?;
         Ok(written)
     }
 
@@ -234,7 +238,9 @@ impl Download {
             extend_bounded(&mut bytes, &chunk?, max_bytes, Error::ByteLimit)?;
         }
         check_deadline(self.deadline)?;
-        serde_json::from_slice(&bytes).map_err(|_| Error::Format)
+        let result = serde_json::from_slice(&bytes).map_err(|_| Error::Format);
+        check_deadline(self.deadline)?;
+        result
     }
 
     /// Whitespace-only JSONL lines are skipped and don't count toward max_records.
@@ -251,7 +257,9 @@ impl Download {
                         if !record.iter().all(u8::is_ascii_whitespace) {
                             rows += 1;
                             if rows > self.options.max_records { Err(Error::RowLimit)?; }
-                            yield serde_json::from_slice(&record).map_err(|_| Error::Format)?;
+                            let result = serde_json::from_slice(&record).map_err(|_| Error::Format);
+                            check_deadline(self.deadline)?;
+                            yield result?;
                         }
                         record.clear();
                     } else { extend_bounded(&mut record, &[byte], self.options.max_record_bytes, Error::RecordLimit)?; }
@@ -260,7 +268,9 @@ impl Download {
             if !record.iter().all(u8::is_ascii_whitespace) {
                 check_deadline(self.deadline)?;
                 if rows >= self.options.max_records { Err(Error::RowLimit)?; }
-                yield serde_json::from_slice(&record).map_err(|_| Error::Format)?;
+                let result = serde_json::from_slice(&record).map_err(|_| Error::Format);
+                check_deadline(self.deadline)?;
+                yield result?;
             }
         })
     }
@@ -300,7 +310,9 @@ impl Download {
                                 if rows > self.options.max_records { Err(Error::RowLimit)?; }
                                 if consistent_fields && expected.is_some_and(|count| count != fields.len()) { Err(Error::Format)?; }
                                 expected = Some(fields.len());
-                                yield std::mem::take(&mut fields);
+                                let row = std::mem::take(&mut fields);
+                                check_deadline(self.deadline)?;
+                                yield row;
                                 raw_bytes = 0; materialized = 0;
                             }
                         }
@@ -363,7 +375,9 @@ impl DocumentClient {
             .map_err(|error| io::Error::other(transport(error)));
         let reader = StreamReader::new(source);
         let reader: Pin<Box<dyn AsyncRead + Send>> = if gzip {
-            Box::pin(GzipDecoder::new(BufReader::new(reader)))
+            let mut decoder = GzipDecoder::new(BufReader::new(reader));
+            decoder.multiple_members(true);
+            Box::pin(decoder)
         } else {
             Box::pin(reader)
         };
@@ -681,4 +695,74 @@ fn upload_headers(options: &UploadOptions) -> Result<HeaderMap, Error> {
         );
     }
     Ok(headers)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::{
+        future::Future,
+        task::{Context, Poll},
+    };
+
+    struct ExpiringWriter {
+        expire_on_flush: bool,
+        flushes: usize,
+    }
+    impl ExpiringWriter {
+        fn expire(cx: &mut Context<'_>) {
+            // Tokio advances its paused clock before advance() yields. Poll once
+            // to model synchronous work expiring while still returning Ready.
+            let mut advance = Box::pin(tokio::time::advance(Duration::from_secs(2)));
+            let _ = advance.as_mut().poll(cx);
+        }
+    }
+    impl AsyncWrite for ExpiringWriter {
+        fn poll_write(
+            self: Pin<&mut Self>,
+            cx: &mut Context<'_>,
+            bytes: &[u8],
+        ) -> Poll<io::Result<usize>> {
+            if !self.expire_on_flush {
+                Self::expire(cx);
+            }
+            Poll::Ready(Ok(bytes.len()))
+        }
+        fn poll_flush(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<io::Result<()>> {
+            self.flushes += 1;
+            if self.expire_on_flush {
+                Self::expire(cx);
+            }
+            Poll::Ready(Ok(()))
+        }
+        fn poll_shutdown(self: Pin<&mut Self>, _: &mut Context<'_>) -> Poll<io::Result<()>> {
+            Poll::Ready(Ok(()))
+        }
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn ready_writer_completion_cannot_escape_the_absolute_deadline() {
+        for expire_on_flush in [false, true] {
+            let document = Download {
+                status: 200,
+                headers: HeaderMap::new(),
+                body: Box::pin(futures_util::stream::iter([Ok(Bytes::from_static(
+                    b"data",
+                ))])),
+                error_body: None,
+                error_body_truncated: false,
+                options: TransferOptions::default(),
+                deadline: Instant::now() + Duration::from_secs(1),
+            };
+            let mut writer = ExpiringWriter {
+                expire_on_flush,
+                flushes: 0,
+            };
+            assert_eq!(
+                document.copy_to(&mut writer).await.unwrap_err(),
+                Error::Timeout
+            );
+            assert_eq!(writer.flushes, usize::from(expire_on_flush));
+        }
+    }
 }
