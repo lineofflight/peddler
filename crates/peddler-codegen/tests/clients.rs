@@ -32,7 +32,7 @@ fn all_operations_keep_per_operation_shapes_and_builder_forwarding() {
         vec!["marketplaceIds", "includedData"]
     );
     assert_eq!(item.successes.len(), 2);
-    let facade = clients::facade(&rendered, &ALL_APIS[0], &[]).unwrap();
+    let facade = clients::facade(&rendered, &[]).unwrap();
     assert!(facade.contains("pub struct EmptyParams"));
     assert!(facade.contains("pub count: Option<i32>"));
     assert!(facade.contains("pub enabled: Option<bool>"));

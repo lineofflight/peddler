@@ -1,7 +1,7 @@
 //! Report, feed and Data Kiosk document lifecycle helpers.
 //!
-//! Metadata requests use the generated operations, so they share authentication,
-//! rate buckets and request policy. Signed document transfers use the existing
+//! Metadata requests use the generated operations, so they carry the client's access
+//! token and follow its retry policy. Signed document transfers use the
 //! credential-free document client. Each helper takes one explicit total deadline
 //! (`TransferOptions::timeout`, `UploadOptions::transfer.timeout` or
 //! `WaitOptions::timeout`), measured from the call. Time spent on metadata is
@@ -102,7 +102,7 @@ impl FeedDocumentTarget {
 pub enum WorkflowError {
     /// Invalid identifier, content type, interval, timeout or transfer limits.
     InvalidConfig,
-    /// Metadata request failed before an HTTP response (auth, transport, policy).
+    /// Metadata request failed before an HTTP response.
     Request(ClientError),
     /// Metadata response had an unexpected status. Raw response retained.
     Http(Response),
@@ -184,7 +184,7 @@ impl fmt::Debug for WorkflowError {
 }
 impl std::error::Error for WorkflowError {}
 
-/// Cheap view over a [`Client`], sharing its pool, credentials and policy.
+/// Cheap view over a [`Client`], sharing its pool, access token and retry policy.
 #[derive(Clone, Debug)]
 pub struct Workflows {
     client: Client,

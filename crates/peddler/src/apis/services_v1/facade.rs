@@ -41,18 +41,17 @@ pub async fn add_appointment_for_service_job_by_service_job_id<B: serde::Seriali
     }
     let raw = client
         .run(
-            "services_v1.add_appointment_for_service_job_by_service_job_id",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -118,18 +117,17 @@ pub async fn assign_appointment_resources<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "services_v1.assign_appointment_resources",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -192,17 +190,16 @@ pub async fn cancel_reservation(
     let omit_body = false;
     let raw = client
         .run(
-            "services_v1.cancel_reservation",
             "DELETE",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -264,17 +261,16 @@ pub async fn cancel_service_job_by_service_job_id(
     let omit_body = false;
     let raw = client
         .run(
-            "services_v1.cancel_service_job_by_service_job_id",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -324,17 +320,16 @@ pub async fn complete_service_job_by_service_job_id(
     let omit_body = false;
     let raw = client
         .run(
-            "services_v1.complete_service_job_by_service_job_id",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -385,18 +380,17 @@ pub async fn create_reservation<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "services_v1.create_reservation",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -436,18 +430,17 @@ pub async fn create_service_document_upload_destination<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "services_v1.create_service_document_upload_destination",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -527,17 +520,16 @@ pub async fn get_appointment_slots(
     let omit_body = false;
     let raw = client
         .run(
-            "services_v1.get_appointment_slots",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -618,17 +610,16 @@ pub async fn get_appointmment_slots_by_job_id(
     let omit_body = false;
     let raw = client
         .run(
-            "services_v1.get_appointmment_slots_by_job_id",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -708,18 +699,17 @@ pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "services_v1.get_fixed_slot_capacity",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -819,18 +809,17 @@ pub async fn get_range_slot_capacity<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "services_v1.get_range_slot_capacity",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -900,17 +889,16 @@ pub async fn get_service_job_by_service_job_id(
     let omit_body = false;
     let raw = client
         .run(
-            "services_v1.get_service_job_by_service_job_id",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1145,17 +1133,16 @@ pub async fn get_service_jobs(
     let omit_body = false;
     let raw = client
         .run(
-            "services_v1.get_service_jobs",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1296,18 +1283,17 @@ pub async fn reschedule_appointment_for_service_job_by_service_job_id<
     }
     let raw = client
         .run(
-            "services_v1.reschedule_appointment_for_service_job_by_service_job_id",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1374,18 +1360,17 @@ pub async fn set_appointment_fulfillment_data<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "services_v1.set_appointment_fulfillment_data",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1454,18 +1439,17 @@ pub async fn update_reservation<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "services_v1.update_reservation",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1534,18 +1518,17 @@ pub async fn update_schedule<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "services_v1.update_schedule",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },

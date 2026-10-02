@@ -1,5 +1,5 @@
 //! Native document handles: owned streams, shared runtime and bounded uploads.
-use super::{Completed, Engine, Response, RuntimeOwner, gvl, native_error};
+use super::{Completed, Engine, Response, Shared, gvl, native_error};
 use bytes::Bytes;
 use futures_util::{FutureExt, StreamExt};
 use magnus::{Error, IntoValue, RClass, RModule, RString, Ruby, method, prelude::*};
@@ -110,7 +110,7 @@ enum StreamState {
     Closed,
 }
 struct DocumentOwner {
-    runtime: Arc<RuntimeOwner>,
+    shared: &'static Shared,
     stream: Arc<Mutex<StreamState>>,
     close_signal: Arc<Notify>,
     status: u16,
@@ -171,15 +171,15 @@ impl Document {
         guard(ruby, engine.pid)?;
         let options = Config::parse(ruby, &json)?;
         let client = engine.state.client.documents();
-        let runtime = Arc::clone(&engine.state.runtime);
-        let download = gvl::wait(ruby, "DocumentError", Arc::clone(&runtime), async move {
+        let shared = engine.state.shared;
+        let download = gvl::wait(ruby, "DocumentError", shared, async move {
             client.download(&url, options).await
         })?
         .map_err(|e| error(ruby, e))?;
-        Ok(Self::from_download(engine.pid, runtime, download))
+        Ok(Self::from_download(engine.pid, shared, download))
     }
     /// Shared by raw URL downloads and the ID-based workflow downloads.
-    pub(super) fn from_download(pid: u32, runtime: Arc<RuntimeOwner>, download: Download) -> Self {
+    pub(super) fn from_download(pid: u32, shared: &'static Shared, download: Download) -> Self {
         Self {
             pid,
             owner: ManuallyDrop::new(DocumentOwner {
@@ -188,7 +188,7 @@ impl Document {
                 charset: download.charset(),
                 error_body: download.error_body().map(<[u8]>::to_vec),
                 truncated: download.error_body_truncated(),
-                runtime,
+                shared,
                 stream: Arc::new(Mutex::new(StreamState::Fresh(Box::new(download)))),
                 close_signal: Arc::new(Notify::new()),
             }),
@@ -273,36 +273,31 @@ impl Document {
         };
         let closed = Arc::clone(&document.owner.stream);
         let signal = Arc::clone(&document.owner.close_signal);
-        let (state, row) = gvl::wait(
-            ruby,
-            "DocumentError",
-            Arc::clone(&document.owner.runtime),
-            async move {
-                let read = async {
-                    match &mut state {
-                        StreamState::Chunks(stream) => stream
-                            .next()
-                            .await
-                            .transpose()
-                            .map(|row| row.map(Row::Chunk)),
-                        StreamState::Jsonl(stream) => stream
-                            .next()
-                            .await
-                            .transpose()
-                            .map(|row| row.map(|value| Row::Json(value.to_string()))),
-                        StreamState::Tsv(stream) => {
-                            stream.next().await.transpose().map(|row| row.map(Row::Tsv))
-                        }
-                        _ => unreachable!(),
+        let (state, row) = gvl::wait(ruby, "DocumentError", document.owner.shared, async move {
+            let read = async {
+                match &mut state {
+                    StreamState::Chunks(stream) => stream
+                        .next()
+                        .await
+                        .transpose()
+                        .map(|row| row.map(Row::Chunk)),
+                    StreamState::Jsonl(stream) => stream
+                        .next()
+                        .await
+                        .transpose()
+                        .map(|row| row.map(|value| Row::Json(value.to_string()))),
+                    StreamState::Tsv(stream) => {
+                        stream.next().await.transpose().map(|row| row.map(Row::Tsv))
                     }
-                };
-                let row = tokio::select! {
-                    row = read => row,
-                    () = wait_closed(closed, signal) => Err(DocumentError::Transport),
-                };
-                (state, row)
-            },
-        )?;
+                    _ => unreachable!(),
+                }
+            };
+            let row = tokio::select! {
+                row = read => row,
+                () = wait_closed(closed, signal) => Err(DocumentError::Transport),
+            };
+            (state, row)
+        })?;
         let row = row.map_err(|e| error(ruby, e))?;
         if row.is_some() {
             lease.restore(state);
@@ -320,17 +315,12 @@ impl Document {
         };
         let closed = Arc::clone(&document.owner.stream);
         let signal = Arc::clone(&document.owner.close_signal);
-        let result = gvl::wait(
-            ruby,
-            "DocumentError",
-            Arc::clone(&document.owner.runtime),
-            async move {
-                tokio::select! {
-                    result = (*value).json(limit) => result,
-                    () = wait_closed(closed, signal) => Err(DocumentError::Transport),
-                }
-            },
-        )?;
+        let result = gvl::wait(ruby, "DocumentError", document.owner.shared, async move {
+            tokio::select! {
+                result = (*value).json(limit) => result,
+                () = wait_closed(closed, signal) => Err(DocumentError::Transport),
+            }
+        })?;
         result
             .map(|value| value.to_string())
             .map_err(|e| error(ruby, e))
@@ -381,7 +371,7 @@ type UploadParts = (
     bool,
 );
 struct UploadOwner {
-    runtime: Arc<RuntimeOwner>,
+    shared: &'static Shared,
     document_id: Option<String>,
     sender: Mutex<Option<mpsc::Sender<Bytes>>>,
     completion: Arc<Completion>,
@@ -439,7 +429,7 @@ impl Upload {
         F: FnOnce(UploadSource) -> Fut,
         Fut: std::future::Future<Output = Result<UploadResponse, DocumentError>> + Send + 'static,
     {
-        let runtime = Arc::clone(&engine.state.runtime);
+        let shared = engine.state.shared;
         let (sender, receiver) = mpsc::channel::<Bytes>(1);
         let completion = Arc::new(Completion {
             result: Mutex::new(UploadState::Pending),
@@ -453,31 +443,27 @@ impl Upload {
                 .map(|value| (Ok::<_, ()>(value), receiver))
         });
         let work = make(Box::pin(source));
-        let worker = runtime
-            .runtime
-            .as_ref()
-            .expect("runtime alive")
-            .spawn(async move {
-                let result = match AssertUnwindSafe(work).catch_unwind().await {
-                    Ok(result) => result,
-                    Err(payload) => {
-                        std::mem::forget(payload);
-                        Err(DocumentError::Transport)
-                    }
-                };
-                let mut state = target.result.lock().unwrap();
-                if matches!(*state, UploadState::Pending) {
-                    *state = UploadState::Ready(result);
+        let worker = shared.runtime.spawn(async move {
+            let result = match AssertUnwindSafe(work).catch_unwind().await {
+                Ok(result) => result,
+                Err(payload) => {
+                    std::mem::forget(payload);
+                    Err(DocumentError::Transport)
                 }
-                drop(state);
-                target.notify.notify_waiters();
-            });
+            };
+            let mut state = target.result.lock().unwrap();
+            if matches!(*state, UploadState::Pending) {
+                *state = UploadState::Ready(result);
+            }
+            drop(state);
+            target.notify.notify_waiters();
+        });
         let abort = worker.abort_handle();
         drop(worker);
         Ok(Self {
             pid: engine.pid,
             owner: ManuallyDrop::new(UploadOwner {
-                runtime,
+                shared,
                 document_id,
                 sender: Mutex::new(Some(sender)),
                 completion,
@@ -507,36 +493,25 @@ impl Upload {
         let sender = upload.owner.sender.lock().unwrap().as_ref().cloned();
         let sender = sender.ok_or_else(|| misuse(ruby))?;
         let completion = Arc::clone(&upload.owner.completion);
-        gvl::wait(
-            ruby,
-            "DocumentError",
-            Arc::clone(&upload.owner.runtime),
-            async move {
-                tokio::select! { biased;
-                    () = completion.ready() => false,
-                    permit = sender.reserve() => match permit { Ok(permit) => { permit.send(data); true }, Err(_) => false },
-                }
-            },
-        )
+        gvl::wait(ruby, "DocumentError", upload.owner.shared, async move {
+            tokio::select! { biased;
+                () = completion.ready() => false,
+                permit = sender.reserve() => match permit { Ok(permit) => { permit.send(data); true }, Err(_) => false },
+            }
+        })
     }
     fn finish(ruby: &Ruby, upload: &Self) -> Result<UploadParts, Error> {
         guard(ruby, upload.pid)?;
         let sender = upload.owner.sender.lock().unwrap().take();
         drop(sender);
         let completion = Arc::clone(&upload.owner.completion);
-        let response = gvl::wait(
-            ruby,
-            "DocumentError",
-            Arc::clone(&upload.owner.runtime),
-            async move {
-                completion.ready().await;
-                match std::mem::replace(&mut *completion.result.lock().unwrap(), UploadState::Taken)
-                {
-                    UploadState::Ready(result) => result,
-                    _ => Err(DocumentError::UploadSource),
-                }
-            },
-        )?
+        let response = gvl::wait(ruby, "DocumentError", upload.owner.shared, async move {
+            completion.ready().await;
+            match std::mem::replace(&mut *completion.result.lock().unwrap(), UploadState::Taken) {
+                UploadState::Ready(result) => result,
+                _ => Err(DocumentError::UploadSource),
+            }
+        })?
         .map_err(|e| error(ruby, e))?;
         let truncated = response.body_truncated;
         let completed = Completed::new(Response {
@@ -595,6 +570,6 @@ pub(super) fn init(
     upload.define_method("finish", method!(Upload::finish, 0))?;
     upload.define_method("close", method!(Upload::close, 0))?;
     upload.define_method("document_id", method!(Upload::document_id, 0))?;
-    // No public constructors: handles originate from an authenticated Engine pool.
+    // No public constructors: handles originate from an Engine.
     Ok(())
 }

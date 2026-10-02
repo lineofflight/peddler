@@ -44,17 +44,16 @@ pub async fn cancel_shipment(
     let omit_body = false;
     let raw = client
         .run(
-            "shipping_v2.cancel_shipment",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -107,18 +106,17 @@ pub async fn create_claim<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.create_claim",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -183,18 +181,17 @@ pub async fn direct_purchase_shipment<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.direct_purchase_shipment",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -259,18 +256,17 @@ pub async fn generate_collection_form<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.generate_collection_form",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -354,17 +350,16 @@ pub async fn get_access_points(
     let omit_body = false;
     let raw = client
         .run(
-            "shipping_v2.get_access_points",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -428,17 +423,16 @@ pub async fn get_additional_inputs(
     let omit_body = false;
     let raw = client
         .run(
-            "shipping_v2.get_additional_inputs",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -491,17 +485,16 @@ pub async fn get_carrier_account_form_inputs(
     let omit_body = false;
     let raw = client
         .run(
-            "shipping_v2.get_carrier_account_form_inputs",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -553,18 +546,17 @@ pub async fn get_carrier_accounts<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.get_carrier_accounts",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -618,17 +610,16 @@ pub async fn get_collection_form(
     let omit_body = false;
     let raw = client
         .run(
-            "shipping_v2.get_collection_form",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -682,18 +673,17 @@ pub async fn get_collection_form_history<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.get_collection_form_history",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -746,18 +736,17 @@ pub async fn get_rates<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.get_rates",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -830,17 +819,16 @@ pub async fn get_shipment_documents(
     let omit_body = false;
     let raw = client
         .run(
-            "shipping_v2.get_shipment_documents",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -911,17 +899,16 @@ pub async fn get_tracking(
     let omit_body = false;
     let raw = client
         .run(
-            "shipping_v2.get_tracking",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -975,18 +962,17 @@ pub async fn get_unmanifested_shipments<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.get_unmanifested_shipments",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1046,18 +1032,17 @@ pub async fn link_carrier_account<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.link_carrier_account",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1118,18 +1103,17 @@ pub async fn link_carrier_account_put<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.link_carrier_account_put",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1183,18 +1167,17 @@ pub async fn one_click_shipment<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.one_click_shipment",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1253,18 +1236,17 @@ pub async fn purchase_shipment<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.purchase_shipment",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1320,18 +1302,17 @@ pub async fn submit_ndr_feedback<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.submit_ndr_feedback",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -1391,18 +1372,17 @@ pub async fn unlink_carrier_account<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "shipping_v2.unlink_carrier_account",
             "PUT",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },

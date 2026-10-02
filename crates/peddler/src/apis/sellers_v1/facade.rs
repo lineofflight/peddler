@@ -28,17 +28,16 @@ pub async fn get_account(
     let omit_body = false;
     let raw = client
         .run(
-            "sellers_v1.get_account",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -72,17 +71,16 @@ pub async fn get_marketplace_participations(
     let omit_body = false;
     let raw = client
         .run(
-            "sellers_v1.get_marketplace_participations",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },

@@ -35,18 +35,17 @@ pub async fn submit_inventory_update<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "vendor_direct_fulfillment_inventory_v1.submit_inventory_update",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },

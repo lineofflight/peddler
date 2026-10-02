@@ -29,18 +29,17 @@ pub async fn create_destination<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "notifications_v1.create_destination",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -82,18 +81,17 @@ pub async fn create_subscription<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "notifications_v1.create_subscription",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -132,17 +130,16 @@ pub async fn delete_destination(
     let omit_body = false;
     let raw = client
         .run(
-            "notifications_v1.delete_destination",
             "DELETE",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -188,17 +185,16 @@ pub async fn delete_subscription_by_id(
     let omit_body = false;
     let raw = client
         .run(
-            "notifications_v1.delete_subscription_by_id",
             "DELETE",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -237,17 +233,16 @@ pub async fn get_destination(
     let omit_body = false;
     let raw = client
         .run(
-            "notifications_v1.get_destination",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -282,17 +277,16 @@ pub async fn get_destinations(
     let omit_body = false;
     let raw = client
         .run(
-            "notifications_v1.get_destinations",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -336,17 +330,16 @@ pub async fn get_subscription(
     let omit_body = false;
     let raw = client
         .run(
-            "notifications_v1.get_subscription",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -396,17 +389,16 @@ pub async fn get_subscription_by_id(
     let omit_body = false;
     let raw = client
         .run(
-            "notifications_v1.get_subscription_by_id",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -484,17 +476,16 @@ pub async fn get_subscriptions(
     let omit_body = false;
     let raw = client
         .run(
-            "notifications_v1.get_subscriptions",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -568,18 +559,17 @@ pub async fn send_test_notification<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "notifications_v1.send_test_notification",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },

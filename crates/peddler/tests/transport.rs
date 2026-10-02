@@ -266,6 +266,10 @@ fn rejects_invalid_origins_tokens_and_zero_timeout() {
         "https://example.com#fragment",
         "https:\\example.com",
         "https://example.com/../",
+        "https://example.com\\",
+        " https://example.com",
+        // The access token never travels over plain HTTP beyond loopback.
+        "http://example.com",
     ] {
         assert_eq!(
             Client::new(origin, TOKEN).unwrap_err(),

@@ -96,16 +96,18 @@ serve(->(socket) { reply(socket, body: '{"asin":"B000TEST"}') }) do |url, reques
   check(requests.first[:headers]["x-amz-access-token"] == "smoke-token", "access token header is sent")
 end
 
-# Managed LWA authentication.
-serve(->(socket) { reply(socket, body: '{"access_token":"managed-token","expires_in":3600,"token_type":"bearer"}') }) do |lwa, lwa_requests|
+# Login with Amazon: one request for a token, which the client then sends as given.
+serve(->(socket) { reply(socket, body: '{"access_token":"fresh-token","expires_in":3600,"token_type":"bearer"}') }) do |lwa, lwa_requests|
+  tokens = Peddler::LWA.new(client_id: "smoke-id", client_secret: "smoke-secret", lwa_endpoint: lwa)
+    .refresh(refresh_token: "smoke-refresh")
+  form = URI.decode_www_form(lwa_requests.first[:body]).to_h
+  check(form["grant_type"] == "refresh_token" && form["refresh_token"] == "smoke-refresh", "LWA refresh request is well formed")
   serve(->(socket) { reply(socket) }, ->(socket) { reply(socket) }) do |url, requests|
-    client = Peddler::Client.new(base_url: url, client_id: "smoke-id", client_secret: "smoke-secret",
-      refresh_token: "smoke-refresh", lwa_endpoint: lwa)
-    2.times { client.request("GET", "/probe") }
-    form = URI.decode_www_form(lwa_requests.first[:body]).to_h
-    check(form["grant_type"] == "refresh_token" && form["refresh_token"] == "smoke-refresh", "LWA refresh request is well formed")
-    check(requests.map { |request| request[:headers]["x-amz-access-token"] } == ["managed-token"] * 2 && lwa_requests.one?,
-      "managed token is cached across requests")
+    client = Peddler::Client.new(base_url: url, access_token: tokens.access_token)
+    client.request("GET", "/probe")
+    client.with_access_token("other-token").request("GET", "/probe")
+    check(requests.map { |request| request[:headers]["x-amz-access-token"] } == ["fresh-token", "other-token"],
+      "the client sends the token it is given, and a view sends its own")
   end
 end
 

@@ -2,7 +2,7 @@
 name = "peddler"
 version = "0.1.0"
 edition = "2024"
-description = "Rust client for Amazon's Selling Partner API (SP-API) with built-in authentication, rate limiting and retries"
+description = "Rust client for Amazon's Selling Partner API (SP-API) with typed operations, retries and document transfers"
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/lineofflight/peddler"
@@ -22,7 +22,7 @@ progenitor-client = "=0.15.0"
 futures-util = "0.3"
 regress = "0.12"
 percent-encoding = "2"
-tokio = { version = "1", features = ["time", "sync", "io-util"] }
+tokio = { version = "1", features = ["time", "io-util"] }
 httpdate = "1"
 fastrand = "2"
 
@@ -35,4 +35,4 @@ tokio-util = { version = "0.7", features = ["io"] }
 
 [dev-dependencies]
 base64 = "0.22"
-tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "io-util", "time", "test-util"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "io-util", "sync", "time", "test-util"] }

@@ -1,21 +1,12 @@
-//! Independent operation token buckets and conservative HTTP retry decisions.
+//! Conservative HTTP retry decisions.
 //!
 //! Callers own HTTP execution and the logical deadline covering all waits.
 //! Configuration permits at most 10 retries, positive delays and max >= base.
 
 use std::{
-    collections::BTreeMap,
     fmt,
-    sync::{Arc, Mutex},
     time::{Duration, SystemTime},
 };
-use tokio::{sync::Notify, time::Instant};
-
-#[derive(Clone, Copy, Debug)]
-pub struct RateLimit {
-    pub rate_per_second: f64,
-    pub burst: u32,
-}
 
 #[derive(Clone, Debug)]
 pub struct RetryPolicy {
@@ -34,12 +25,6 @@ impl Default for RetryPolicy {
     }
 }
 
-#[derive(Clone, Debug, Default)]
-pub struct PolicyConfig {
-    pub retry: RetryPolicy,
-    pub rate_limits: BTreeMap<String, RateLimit>,
-}
-
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct PolicyError;
 
@@ -51,130 +36,16 @@ impl fmt::Display for PolicyError {
 
 impl std::error::Error for PolicyError {}
 
-/// Clones share buckets; separate constructions never share token state.
-#[derive(Clone)]
-pub struct RequestPolicy {
-    retry: RetryPolicy,
-    buckets: Arc<BTreeMap<String, Bucket>>,
-}
-
-struct Bucket {
-    state: Mutex<BucketState>,
-    changed: Notify,
-}
-
-struct BucketState {
-    rate: f64,
-    burst: f64,
-    tokens: f64,
-    updated: Instant,
-}
-
-impl BucketState {
-    fn refill(&mut self, now: Instant) {
-        self.tokens = (self.tokens + now.duration_since(self.updated).as_secs_f64() * self.rate)
-            .min(self.burst);
-        self.updated = now;
-    }
-}
-
-fn valid_rate(rate: f64) -> bool {
-    rate.is_finite()
-        && rate > 0.0
-        && Duration::try_from_secs_f64(1.0 / rate)
-            .ok()
-            .is_some_and(|wait| Instant::now().checked_add(wait).is_some())
-}
-
-impl RequestPolicy {
-    pub fn new(config: PolicyConfig) -> Result<Self, PolicyError> {
-        if config.retry.max_retries > 10
-            || config.retry.base_delay.is_zero()
-            || config.retry.max_delay.is_zero()
-            || config.retry.max_delay < config.retry.base_delay
-            || config
-                .rate_limits
-                .values()
-                .any(|limit| limit.burst == 0 || !valid_rate(limit.rate_per_second))
+impl RetryPolicy {
+    pub fn validate(&self) -> Result<(), PolicyError> {
+        if self.max_retries > 10
+            || self.base_delay.is_zero()
+            || self.max_delay.is_zero()
+            || self.max_delay < self.base_delay
         {
             return Err(PolicyError);
         }
-        let buckets = config
-            .rate_limits
-            .into_iter()
-            .map(|(operation, limit)| {
-                (
-                    operation,
-                    Bucket {
-                        state: Mutex::new(BucketState {
-                            rate: limit.rate_per_second,
-                            burst: f64::from(limit.burst),
-                            tokens: f64::from(limit.burst),
-                            updated: Instant::now(),
-                        }),
-                        changed: Notify::new(),
-                    },
-                )
-            })
-            .collect();
-        Ok(Self {
-            retry: config.retry,
-            buckets: Arc::new(buckets),
-        })
-    }
-
-    /// Waiting never reserves future tokens, so cancellation needs no cleanup.
-    pub async fn acquire(&self, operation: &str) {
-        let Some(bucket) = self.buckets.get(operation) else {
-            return;
-        };
-        loop {
-            let changed = bucket.changed.notified();
-            tokio::pin!(changed);
-            // Register before inspecting state so an update cannot be missed.
-            changed.as_mut().enable();
-            let wait = {
-                let mut state = bucket.state.lock().unwrap_or_else(|e| e.into_inner());
-                state.refill(Instant::now());
-                if state.tokens >= 1.0 {
-                    state.tokens -= 1.0;
-                    return;
-                }
-                let seconds = (1.0 - state.tokens) / state.rate;
-                // Bound each timer even when a valid rate implies a very long
-                // wait. Recheck tokens and observations after each timer.
-                Duration::from_secs_f64(seconds.min(86_400.0)).max(Duration::from_nanos(1))
-            };
-            let sleep = tokio::time::sleep(wait);
-            tokio::pin!(sleep);
-            let _ = futures_util::future::select(sleep, changed).await;
-        }
-    }
-
-    /// Only configured buckets change; observed rate never changes the burst.
-    pub fn observe(&self, operation: &str, headers: &[(String, String)]) {
-        let Some(bucket) = self.buckets.get(operation) else {
-            return;
-        };
-        let Some(rate) = headers
-            .iter()
-            .filter(|(name, _)| name.eq_ignore_ascii_case("x-amzn-RateLimit-Limit"))
-            .find_map(|(_, value)| {
-                value
-                    .trim()
-                    .parse::<f64>()
-                    .ok()
-                    .filter(|rate| valid_rate(*rate))
-            })
-        else {
-            return;
-        };
-        {
-            let mut state = bucket.state.lock().unwrap_or_else(|e| e.into_inner());
-            state.refill(Instant::now());
-            state.rate = rate;
-        }
-        bucket.changed.notify_waiters();
+        Ok(())
     }
 
     /// Index 0 is the first retry. Only GET, HEAD and OPTIONS are replayable.
@@ -204,16 +75,15 @@ impl RequestPolicy {
     fn retry_cap(&self, method: &str, status: u16, index: u32) -> Option<Duration> {
         if !matches!(method, "GET" | "HEAD" | "OPTIONS")
             || !matches!(status, 429 | 500 | 502 | 503 | 504)
-            || index >= self.retry.max_retries
+            || index >= self.max_retries
         {
             return None;
         }
         Some(
-            self.retry
-                .base_delay
-                .checked_mul(1 << index)
-                .unwrap_or(self.retry.max_delay)
-                .min(self.retry.max_delay),
+            1u32.checked_shl(index)
+                .and_then(|factor| self.base_delay.checked_mul(factor))
+                .unwrap_or(self.max_delay)
+                .min(self.max_delay),
         )
     }
 
@@ -244,7 +114,7 @@ impl RequestPolicy {
                         .map(|date| date.duration_since(now).unwrap_or(Duration::ZERO))
                 };
             if let Some(server_delay) = server_delay {
-                if server_delay > self.retry.max_delay {
+                if server_delay > self.max_delay {
                     return None;
                 }
                 delay = delay.max(server_delay);
@@ -259,16 +129,12 @@ mod tests {
     use super::*;
     use std::time::{Duration, SystemTime};
 
-    fn retry(base: Duration, max: Duration) -> RequestPolicy {
-        RequestPolicy::new(PolicyConfig {
-            retry: RetryPolicy {
-                max_retries: 10,
-                base_delay: base,
-                max_delay: max,
-            },
-            ..PolicyConfig::default()
-        })
-        .unwrap()
+    fn retry(base: Duration, max: Duration) -> RetryPolicy {
+        RetryPolicy {
+            max_retries: 10,
+            base_delay: base,
+            max_delay: max,
+        }
     }
 
     #[test]

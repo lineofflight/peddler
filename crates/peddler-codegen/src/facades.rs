@@ -42,7 +42,6 @@ fn response_type(op: &Operation) -> String {
 }
 pub(crate) fn rust(
     client: &RenderedClient,
-    api: &ModelSpec,
     pagination: &[&Resolved],
 ) -> Result<String, GenerationError> {
     let mut source = String::from(
@@ -205,12 +204,11 @@ pub(crate) fn rust(
         } else {
             source.push_str("let omit_body = false;\n")
         }
-        let key = format!("{}.{}", api.module, op.name);
-        writeln!(source,"let raw = client.run({key:?}, {:?}, |snapshot| {{ let params=&params; let empty_queries=empty_queries.clone();",op.method).unwrap();
+        writeln!(source,"let raw = client.run({:?}, || {{ let params=&params; let empty_queries=empty_queries.clone();",op.method).unwrap();
         if body.is_some() {
             source.push_str("let body=body.clone();\n")
         }
-        source.push_str("async move { let wire=wire::Client::new_with_client(snapshot.origin.as_str().trim_end_matches('/'), snapshot.http.clone(), WireContext {client:snapshot.clone(),empty_queries,omit_body});\n");
+        source.push_str("async move { let wire=wire::Client::new_with_client(client.origin.as_str().trim_end_matches('/'), client.http.clone(), WireContext {client:client.clone(),empty_queries,omit_body});\n");
         writeln!(source, "let mut request=wire.{}();", op.name).unwrap();
         for p in &op.parameters {
             let method = if p.location == "header" {
@@ -279,7 +277,7 @@ pub(crate) fn rust(
         }
     }
     // Progenitor consumes snake_case OperationInfo, so CSV metadata is looked up
-    // per operation. exec is only entered from the shared policy runner.
+    // per operation. exec is only entered from the shared retry runner.
     source.push_str("impl progenitor_client::ClientHooks<WireContext> for wire::Client {\nasync fn pre<E>(&self, request:&mut reqwest::Request, info:&progenitor_client::OperationInfo)->Result<(),progenitor_client::Error<E>> { self.inner.prepare(request,super::metadata::csv_query_names(info.operation_id)).map_err(|_|progenitor_client::Error::InvalidRequest(\"invalid request\".into())) }\nasync fn exec(&self, request:reqwest::Request, _info:&progenitor_client::OperationInfo)->reqwest::Result<reqwest::Response> {self.inner.client.http.execute(request).await}\n}\n");
     // Generated forwarding uses clones uniformly and some operations have no
     // optional fields, typed decoders or parameters at all.
@@ -290,8 +288,8 @@ pub(crate) fn rust(
 }
 /// A private continuation operation for APIs whose token replaces every other
 /// parameter: it sends the token and path parameters only, so the initial
-/// request's required filters are not demanded again. It is still run under
-/// the original operation key, so policy, auth and timeouts are unchanged.
+/// request's required filters are not demanded again. It runs through the same
+/// client, so the token, retries and timeout are unchanged.
 fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(), GenerationError> {
     let token = &mapped.mapping.input[1..];
     let kept: Vec<&Parameter> = op
@@ -360,8 +358,8 @@ fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(),
     };
     writeln!(
         source,
-        "let path = {call};\nclient.execute_json_operation({:?}, crate::Request {{ method: {:?}.into(), path, query: vec![({wire:?}.into(), params.{token})], body: None }}).await\n}}",
-        mapped.key, op.method
+        "let path = {call};\nclient.execute_json(crate::Request {{ method: {:?}.into(), path, query: vec![({wire:?}.into(), params.{token})], body: None }}).await\n}}",
+        op.method
     )
     .unwrap();
     Ok(())

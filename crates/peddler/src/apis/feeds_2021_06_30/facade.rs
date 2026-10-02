@@ -30,17 +30,16 @@ pub async fn cancel_feed(
     let omit_body = false;
     let raw = client
         .run(
-            "feeds_2021_06_30.cancel_feed",
             "DELETE",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -76,18 +75,17 @@ pub async fn create_feed<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "feeds_2021_06_30.create_feed",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -123,18 +121,17 @@ pub async fn create_feed_document<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "feeds_2021_06_30.create_feed_document",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -171,17 +168,16 @@ pub async fn get_feed(
     let omit_body = false;
     let raw = client
         .run(
-            "feeds_2021_06_30.get_feed",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -226,17 +222,16 @@ pub async fn get_feed_document(
     let omit_body = false;
     let raw = client
         .run(
-            "feeds_2021_06_30.get_feed_document",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -370,17 +365,16 @@ pub async fn get_feeds(
     let omit_body = false;
     let raw = client
         .run(
-            "feeds_2021_06_30.get_feeds",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -454,15 +448,12 @@ pub(crate) async fn get_feeds_continue(
     )?;
     let path = "/feeds/2021-06-30/feeds".to_owned();
     client
-        .execute_json_operation(
-            "feeds_2021_06_30.get_feeds",
-            crate::Request {
-                method: "GET".into(),
-                path,
-                query: vec![("nextToken".into(), params.next_token)],
-                body: None,
-            },
-        )
+        .execute_json(crate::Request {
+            method: "GET".into(),
+            path,
+            query: vec![("nextToken".into(), params.next_token)],
+            body: None,
+        })
         .await
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {

@@ -114,7 +114,7 @@ pub fn generate(
         for (name, content) in [
             ("wire.rs", rendered.wire.clone()),
             ("metadata.rs", clients::metadata(rendered)?),
-            ("facade.rs", clients::facade(rendered, api, &mapped)?),
+            ("facade.rs", clients::facade(rendered, &mapped)?),
         ] {
             output.insert(
                 base.join(api.module).join(name),

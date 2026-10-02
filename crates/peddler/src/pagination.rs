@@ -3,7 +3,7 @@
 //! A [`Pagination`] names the operation, the argument that carries the token
 //! and the response field that returns the next one. Nothing is inferred from
 //! names at runtime. Each page goes through the normal operation runner, so
-//! authorization, rate limits, retries and timeouts apply per page.
+//! the access token, retries and the timeout apply per page.
 use crate::{Client, Error, Response};
 use futures_util::{Stream, stream};
 use serde_json::{Map, Value};

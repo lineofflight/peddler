@@ -1,13 +1,12 @@
 //! Owned-data Ruby boundary. Only the blocking callback runs without the GVL.
 
 use magnus::{Error, RModule, RString, Ruby, function, method, prelude::*};
-use peddler::{
-    Client, ClientConfig, Request, Response,
-    auth::{Credentials, RestrictedScope},
-    policy::{PolicyConfig, RateLimit, RetryPolicy},
+use peddler::{Client, ClientConfig, Pool, Request, Response, policy::RetryPolicy};
+use std::{
+    mem::ManuallyDrop,
+    sync::{Arc, Mutex},
+    time::Duration,
 };
-use std::collections::BTreeMap;
-use std::{mem::ManuallyDrop, sync::Arc, time::Duration};
 
 mod documents;
 mod gvl;
@@ -73,24 +72,68 @@ fn response_metadata(
     .metadata
 }
 
-struct State {
-    client: Client,
-    runtime: Arc<RuntimeOwner>,
-    // Kept so a view for another destination can be built without Ruby holding secrets.
-    config: Config,
-    scope: Option<RestrictedScope>,
-}
-struct RuntimeOwner {
-    runtime: Option<Runtime>,
+/// The Tokio runtime and the connection pool every client in a process shares.
+struct Shared {
+    runtime: Runtime,
+    pool: Pool,
 }
 
-impl Drop for RuntimeOwner {
-    fn drop(&mut self) {
-        if let Some(runtime) = self.runtime.take() {
-            // GC must never wait on Tokio's blocking pool (e.g. DNS).
-            runtime.shutdown_background();
-        }
+impl Shared {
+    /// Leaked on purpose: it lives as long as its process, and a forked child must
+    /// never drop the one it inherited.
+    fn build(user_agent: &str) -> Option<&'static Self> {
+        let runtime = Builder::new_multi_thread()
+            .worker_threads(1)
+            .enable_all()
+            .build()
+            .ok()?;
+        let pool = Pool::with_user_agent(user_agent).ok()?;
+        Some(Box::leak(Box::new(Self { runtime, pool })))
     }
+}
+
+// The process that built the shared state, and the state.
+static SHARED: Mutex<Option<(u32, &'static Shared)>> = Mutex::new(None);
+
+/// The shared state of the calling process, built on first use. After a fork the
+/// child builds its own: the inherited runtime has no threads there and is never
+/// touched again.
+fn shared(ruby: &Ruby) -> Result<&'static Shared, Error> {
+    let pid = std::process::id();
+    let current = |slot: &Option<(u32, &'static Shared)>| match *slot {
+        Some((owner, shared)) if owner == pid => Some(shared),
+        _ => None,
+    };
+    // The lock is never held across a call into Ruby, so a fork never inherits it locked.
+    let lock = || SHARED.lock().unwrap_or_else(|error| error.into_inner());
+    if let Some(shared) = current(&lock()) {
+        return Ok(shared);
+    }
+    let version: String = ruby
+        .class_object()
+        .const_get::<_, RModule>("Peddler")?
+        .const_get("VERSION")?;
+    // LWA and signed URLs get this. Ruby adds the host name for the Selling Partner API.
+    let user_agent = format!("Peddler/{version} (Language=Ruby)");
+    let built = {
+        let mut slot = lock();
+        current(&slot).or_else(|| {
+            let built = Shared::build(&user_agent);
+            if let Some(shared) = built {
+                *slot = Some((pid, shared));
+            }
+            built
+        })
+    };
+    built.ok_or_else(|| native_error(ruby, "TransportError", "runtime initialization failed"))
+}
+
+/// A light view: an origin, a token, a timeout and a retry policy on the shared pool.
+struct State {
+    client: Client,
+    shared: &'static Shared,
+    // Kept so a view with another origin or token can be built without Ruby holding secrets.
+    config: Config,
 }
 
 #[magnus::wrap(class = "Peddler::Native::Engine", free_immediately)]
@@ -126,23 +169,6 @@ fn transport_error(ruby: &Ruby, error: peddler::Error) -> Error {
         peddler::Error::InvalidRequest => Error::new(ruby.exception_arg_error(), "invalid request"),
         peddler::Error::Timeout => native_error(ruby, "TimeoutError", "request timed out"),
         peddler::Error::Transport => native_error(ruby, "TransportError", "transport failed"),
-        peddler::Error::Authentication(auth) => {
-            let status = match auth {
-                peddler::auth::AuthError::Rejected(status) => Some(status),
-                _ => None,
-            };
-            let exception = ruby
-                .class_object()
-                .const_get::<_, RModule>("Peddler")
-                .and_then(|m| m.const_get::<_, magnus::RClass>("AuthenticationError"))
-                .and_then(|c| {
-                    c.funcall::<_, _, magnus::Exception>("new", ("authentication failed", status))
-                });
-            match exception {
-                Ok(e) => Error::from(e),
-                Err(e) => e,
-            }
-        }
     }
 }
 
@@ -153,46 +179,31 @@ impl Engine {
         access_token: String,
         timeout: f64,
     ) -> Result<Self, Error> {
-        Duration::try_from_secs_f64(timeout)
-            .map_err(|_| Error::new(ruby.exception_arg_error(), "invalid timeout"))?;
-        Self::from_parsed(
+        Self::build(
             ruby,
+            shared(ruby)?,
             Config {
                 base_url,
-                access_token: Some(access_token),
-                client_id: None,
-                client_secret: None,
-                refresh_token: None,
-                scope: None,
+                access_token,
                 timeout,
                 retries: 0,
                 retry_delay: default_delay(),
                 max_retry_delay: default_timeout(),
-                rate_limits: BTreeMap::new(),
-                lwa_endpoint: default_lwa(),
                 user_agent: None,
             },
         )
     }
 
-    fn from_parsed(ruby: &Ruby, config: Config) -> Result<Self, Error> {
+    fn build(ruby: &Ruby, shared: &'static Shared, config: Config) -> Result<Self, Error> {
         let client = config
-            .client()
+            .client(&shared.pool)
             .map_err(|error| transport_error(ruby, error))?;
-        let runtime = Builder::new_multi_thread()
-            .worker_threads(1)
-            .enable_all()
-            .build()
-            .map_err(|_| native_error(ruby, "TransportError", "runtime initialization failed"))?;
         Ok(Self {
             pid: std::process::id(),
             state: ManuallyDrop::new(Arc::new(State {
                 client,
-                runtime: Arc::new(RuntimeOwner {
-                    runtime: Some(runtime),
-                }),
+                shared,
                 config,
-                scope: None,
             })),
         })
     }
@@ -200,61 +211,23 @@ impl Engine {
     fn from_config(ruby: &Ruby, json: String) -> Result<Self, Error> {
         let config: Config = serde_json::from_str(&json)
             .map_err(|_| Error::new(ruby.exception_arg_error(), "invalid configuration"))?;
-        Self::from_parsed(ruby, config)
+        Self::build(ruby, shared(ruby)?, config)
     }
 
-    /// The same configuration and restricted scope against another origin. Token and
-    /// rate limit state start fresh; the runtime is shared.
-    fn with_base_url(ruby: &Ruby, engine: &Self, base_url: String) -> Result<Self, Error> {
-        if engine.pid != std::process::id() {
-            return Err(native_error(
-                ruby,
-                "ForkError",
-                "create a new client after fork",
-            ));
-        }
+    /// The same configuration with one change, on the same pool and runtime.
+    fn view(ruby: &Ruby, engine: &Self, change: impl FnOnce(&mut Config)) -> Result<Self, Error> {
+        documents::guard(ruby, engine.pid)?;
         let mut config = engine.state.config.clone();
-        config.base_url = base_url;
-        let scope = engine.state.scope.clone();
-        let client = config.client().and_then(|client| match scope.clone() {
-            Some(scope) => client.restricted(scope),
-            None => Ok(client),
-        });
-        Ok(Self {
-            pid: engine.pid,
-            state: ManuallyDrop::new(Arc::new(State {
-                client: client.map_err(|error| transport_error(ruby, error))?,
-                runtime: Arc::clone(&engine.state.runtime),
-                config,
-                scope,
-            })),
-        })
+        change(&mut config);
+        Self::build(ruby, engine.state.shared, config)
     }
 
-    fn restricted(ruby: &Ruby, engine: &Self, json: String) -> Result<Self, Error> {
-        if engine.pid != std::process::id() {
-            return Err(native_error(
-                ruby,
-                "ForkError",
-                "create a new client after fork",
-            ));
-        }
-        let scope: RestrictedScope = serde_json::from_str(&json)
-            .map_err(|_| Error::new(ruby.exception_arg_error(), "invalid restricted scope"))?;
-        let client = engine
-            .state
-            .client
-            .restricted(scope.clone())
-            .map_err(|e| transport_error(ruby, e))?;
-        Ok(Self {
-            pid: engine.pid,
-            state: ManuallyDrop::new(Arc::new(State {
-                client,
-                runtime: Arc::clone(&engine.state.runtime),
-                config: engine.state.config.clone(),
-                scope: Some(scope),
-            })),
-        })
+    fn with_base_url(ruby: &Ruby, engine: &Self, base_url: String) -> Result<Self, Error> {
+        Self::view(ruby, engine, |config| config.base_url = base_url)
+    }
+
+    fn with_access_token(ruby: &Ruby, engine: &Self, access_token: String) -> Result<Self, Error> {
+        Self::view(ruby, engine, |config| config.access_token = access_token)
     }
 
     fn request(
@@ -270,41 +243,12 @@ impl Engine {
         Self::execute(
             ruby,
             engine,
-            Work::Raw {
-                operation: "raw".into(),
-                request: Request {
-                    method,
-                    path,
-                    query,
-                    body,
-                },
-            },
-        )
-    }
-
-    fn request_with_operation(
-        ruby: &Ruby,
-        engine: &Self,
-        operation: String,
-        method: String,
-        path: String,
-        query: Vec<(String, String)>,
-        body: Option<RString>,
-    ) -> Result<ResponseParts, Error> {
-        // SAFETY: the GVL is held; copy bytes before any Ruby call or GVL release.
-        let body = body.map(|value| unsafe { value.as_slice().to_vec() });
-        Self::execute(
-            ruby,
-            engine,
-            Work::Raw {
-                operation,
-                request: Request {
-                    method,
-                    path,
-                    query,
-                    body,
-                },
-            },
+            Work::Raw(Request {
+                method,
+                path,
+                query,
+                body,
+            }),
         )
     }
 
@@ -318,23 +262,11 @@ impl Engine {
     }
 
     fn execute(ruby: &Ruby, engine: &Self, work: Work) -> Result<ResponseParts, Error> {
-        if engine.pid != std::process::id() {
-            return Err(native_error(
-                ruby,
-                "ForkError",
-                "create a new client after fork",
-            ));
-        }
+        documents::guard(ruby, engine.pid)?;
         let state = Arc::clone(&engine.state);
-        let runtime = Arc::clone(&state.runtime);
-        let result = gvl::wait(ruby, "TransportError", runtime, async move {
+        let result = gvl::wait(ruby, "TransportError", state.shared, async move {
             match work {
-                Work::Raw { operation, request } => {
-                    state
-                        .client
-                        .execute_with_operation(&operation, request)
-                        .await
-                }
+                Work::Raw(request) => state.client.execute(request).await,
                 Work::Operation { name, arguments } => {
                     peddler::apis::execute(&state.client, &name, &arguments).await
                 }
@@ -354,7 +286,7 @@ impl Engine {
 }
 
 enum Work {
-    Raw { operation: String, request: Request },
+    Raw(Request),
     Operation { name: String, arguments: String },
 }
 
@@ -377,12 +309,8 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     engine.define_singleton_method("new", function!(Engine::new, 3))?;
     engine.define_singleton_method("from_config", function!(Engine::from_config, 1))?;
     engine.define_method("with_base_url", method!(Engine::with_base_url, 1))?;
-    engine.define_method("restricted", method!(Engine::restricted, 1))?;
+    engine.define_method("with_access_token", method!(Engine::with_access_token, 1))?;
     engine.define_method("request", method!(Engine::request, 4))?;
-    engine.define_method(
-        "request_with_operation",
-        method!(Engine::request_with_operation, 5),
-    )?;
     engine.define_method("operation", method!(Engine::operation, 2))?;
     documents::init(ruby, peddler, native, engine)?;
     workflows::init(ruby, peddler, engine)?;
@@ -394,16 +322,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
 #[serde(deny_unknown_fields)]
 struct Config {
     base_url: String,
-    #[serde(default)]
-    access_token: Option<String>,
-    #[serde(default)]
-    client_id: Option<String>,
-    #[serde(default)]
-    client_secret: Option<String>,
-    #[serde(default)]
-    refresh_token: Option<String>,
-    #[serde(default)]
-    scope: Option<String>,
+    access_token: String,
     #[serde(default = "default_timeout")]
     timeout: f64,
     #[serde(default)]
@@ -412,19 +331,10 @@ struct Config {
     retry_delay: f64,
     #[serde(default = "default_timeout")]
     max_retry_delay: f64,
-    #[serde(default)]
-    rate_limits: BTreeMap<String, RateConfig>,
-    #[serde(default = "default_lwa")]
-    lwa_endpoint: String,
-    /// How the gem identifies itself. Without one, requests carry the Rust crate's own.
+    /// How the gem identifies itself to the Selling Partner API. Without one, requests
+    /// carry the pool's.
     #[serde(default)]
     user_agent: Option<String>,
-}
-#[derive(Clone, serde::Deserialize)]
-#[serde(deny_unknown_fields)]
-struct RateConfig {
-    rate: f64,
-    burst: u32,
 }
 fn default_timeout() -> f64 {
     30.0
@@ -432,63 +342,19 @@ fn default_timeout() -> f64 {
 fn default_delay() -> f64 {
     0.2
 }
-fn default_lwa() -> String {
-    peddler::DEFAULT_LWA_ENDPOINT.into()
-}
 impl Config {
-    fn client(&self) -> Result<Client, peddler::Error> {
-        let config = self.clone();
-        let invalid = || peddler::Error::InvalidRequest;
-        let credentials = match (
-            config.access_token,
-            config.client_id,
-            config.client_secret,
-            config.refresh_token,
-            config.scope,
-        ) {
-            (Some(token), None, None, None, None) => Credentials::AccessToken(token),
-            (None, Some(client_id), Some(client_secret), Some(refresh_token), None) => {
-                Credentials::RefreshToken {
-                    client_id,
-                    client_secret,
-                    refresh_token,
-                }
-            }
-            (None, Some(client_id), Some(client_secret), None, Some(scope)) => {
-                Credentials::ClientCredentials {
-                    client_id,
-                    client_secret,
-                    scope,
-                }
-            }
-            _ => return Err(invalid()),
+    fn client(&self, pool: &Pool) -> Result<Client, peddler::Error> {
+        let seconds =
+            |value| Duration::try_from_secs_f64(value).map_err(|_| peddler::Error::InvalidRequest);
+        let mut config = ClientConfig::new(self.base_url.clone(), self.access_token.clone());
+        config.timeout = seconds(self.timeout)?;
+        config.retry = RetryPolicy {
+            max_retries: self.retries,
+            base_delay: seconds(self.retry_delay)?,
+            max_delay: seconds(self.max_retry_delay)?,
         };
-        let mut client = ClientConfig::new(config.base_url, credentials);
-        client.timeout = Duration::try_from_secs_f64(config.timeout).map_err(|_| invalid())?;
-        client.lwa_endpoint = config.lwa_endpoint;
-        client.user_agent = config.user_agent;
-        client.policy = PolicyConfig {
-            retry: RetryPolicy {
-                max_retries: config.retries,
-                base_delay: Duration::try_from_secs_f64(config.retry_delay)
-                    .map_err(|_| invalid())?,
-                max_delay: Duration::try_from_secs_f64(config.max_retry_delay)
-                    .map_err(|_| invalid())?,
-            },
-            rate_limits: config
-                .rate_limits
-                .into_iter()
-                .map(|(key, value)| {
-                    (
-                        key,
-                        RateLimit {
-                            rate_per_second: value.rate,
-                            burst: value.burst,
-                        },
-                    )
-                })
-                .collect(),
-        };
-        Client::with_config(client)
+        config.user_agent = self.user_agent.clone();
+        config.pool = Some(pool.clone());
+        Client::with_config(config)
     }
 }

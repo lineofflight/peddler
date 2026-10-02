@@ -21,45 +21,89 @@ pub mod workflows;
 mod operation;
 pub use operation::{DecodeError, TypedResponse};
 
-use auth::{AuthError, AuthManager, Credentials, RestrictedScope};
-use policy::{PolicyConfig, RequestPolicy};
+use policy::RetryPolicy;
 use reqwest::{Method, Url, header::HeaderValue};
 use std::{future::Future, time::Duration};
 
 pub const DEFAULT_LWA_ENDPOINT: &str = "https://api.amazon.com/auth/o2/token";
 
-/// Authentication and policy configuration. Construction performs no HTTP.
+/// One HTTP connection pool. Clones share it, and so do the clients built on it.
+#[derive(Clone)]
+pub struct Pool {
+    http: reqwest::Client,
+}
+
+impl std::fmt::Debug for Pool {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Pool").finish_non_exhaustive()
+    }
+}
+
+impl Pool {
+    pub fn new() -> Result<Self, Error> {
+        Self::build(concat!(
+            "Peddler/",
+            env!("CARGO_PKG_VERSION"),
+            " (Language=Rust)"
+        ))
+    }
+
+    /// Replaces the crate's own User-Agent, for a wrapper that identifies itself.
+    pub fn with_user_agent(user_agent: &str) -> Result<Self, Error> {
+        HeaderValue::from_str(user_agent).map_err(|_| Error::InvalidRequest)?;
+        Self::build(user_agent)
+    }
+
+    // Timeouts are set per request, so clients with different ones can share a pool.
+    fn build(user_agent: &str) -> Result<Self, Error> {
+        let http = reqwest::Client::builder()
+            .redirect(reqwest::redirect::Policy::none())
+            .retry(reqwest::retry::never())
+            .no_gzip()
+            .no_brotli()
+            .no_deflate()
+            .no_zstd()
+            .user_agent(user_agent)
+            .build()
+            .map_err(|_| Error::Transport)?;
+        Ok(Self { http })
+    }
+}
+
+/// Construction performs no HTTP.
 pub struct ClientConfig {
     pub base_url: String,
-    pub credentials: Credentials,
+    pub access_token: String,
+    /// One deadline for a call: every attempt, the body and the retry delays.
     pub timeout: Duration,
-    pub lwa_endpoint: String,
-    pub policy: PolicyConfig,
-    /// Replaces the crate's own User-Agent, for a wrapper that identifies itself.
+    pub retry: RetryPolicy,
+    /// Sent to the Selling Partner API in place of the pool's User-Agent.
     pub user_agent: Option<String>,
+    /// An existing pool to share. Without one the client creates its own.
+    pub pool: Option<Pool>,
 }
 impl ClientConfig {
-    pub fn new(base_url: impl Into<String>, credentials: Credentials) -> Self {
+    pub fn new(base_url: impl Into<String>, access_token: impl Into<String>) -> Self {
         Self {
             base_url: base_url.into(),
-            credentials,
+            access_token: access_token.into(),
             timeout: Duration::from_secs(30),
-            lwa_endpoint: DEFAULT_LWA_ENDPOINT.into(),
-            policy: PolicyConfig::default(),
+            retry: RetryPolicy::default(),
             user_agent: None,
+            pool: None,
         }
     }
 }
 
-/// Clones share the same HTTP connection pool.
+/// A base URL and an access token on a connection pool. Clones share the pool.
+/// The client never fetches, refreshes or caches a token.
 #[derive(Clone)]
 pub struct Client {
     http: reqwest::Client,
     origin: Url,
-    access_token: Option<HeaderValue>,
-    auth: AuthManager,
-    policy: RequestPolicy,
-    restricted_scope: Option<RestrictedScope>,
+    access_token: HeaderValue,
+    user_agent: Option<HeaderValue>,
+    retry: RetryPolicy,
     timeout: Duration,
 }
 
@@ -89,7 +133,6 @@ pub enum Error {
     InvalidRequest,
     Timeout,
     Transport,
-    Authentication(AuthError),
 }
 
 impl std::fmt::Display for Error {
@@ -98,7 +141,6 @@ impl std::fmt::Display for Error {
             Self::InvalidRequest => "invalid request",
             Self::Timeout => "request timed out",
             Self::Transport => "transport failed",
-            Self::Authentication(_) => "authentication failed",
         })
     }
 }
@@ -107,7 +149,7 @@ impl std::error::Error for Error {}
 
 impl Client {
     pub fn new(base_url: &str, access_token: &str) -> Result<Self, Error> {
-        Self::with_timeout(base_url, access_token, Duration::from_secs(30))
+        Self::with_config(ClientConfig::new(base_url, access_token))
     }
 
     pub fn with_timeout(
@@ -115,7 +157,7 @@ impl Client {
         access_token: &str,
         timeout: Duration,
     ) -> Result<Self, Error> {
-        let mut config = ClientConfig::new(base_url, Credentials::AccessToken(access_token.into()));
+        let mut config = ClientConfig::new(base_url, access_token);
         config.timeout = timeout;
         Self::with_config(config)
     }
@@ -123,11 +165,11 @@ impl Client {
     pub fn with_config(config: ClientConfig) -> Result<Self, Error> {
         let ClientConfig {
             base_url,
-            credentials,
+            access_token,
             timeout,
-            lwa_endpoint,
-            policy,
+            retry,
             user_agent,
+            pool,
         } = config;
         // Check the original text too: URL parsing normalizes backslashes,
         // userinfo and dot segments that callers must not supply as an origin.
@@ -145,70 +187,61 @@ impl Client {
             return Err(Error::InvalidRequest);
         }
         let origin = Url::parse(&base_url).map_err(|_| Error::InvalidRequest)?;
-        if origin.host_str().is_none() || origin.path() != "/" {
+        let loopback = origin.host_str().is_some_and(|host| {
+            host == "localhost"
+                || host
+                    .trim_matches(['[', ']'])
+                    .parse::<std::net::IpAddr>()
+                    .is_ok_and(|ip| ip.is_loopback())
+        });
+        // The access token is only ever sent over HTTPS, or HTTP to a loopback host.
+        if origin.host_str().is_none() || origin.path() != "/" || (scheme == "http" && !loopback) {
             return Err(Error::InvalidRequest);
         }
-        if let Some(value) = &user_agent {
-            HeaderValue::from_str(value).map_err(|_| Error::InvalidRequest)?;
-        }
-        let http = build_http(timeout, user_agent.as_deref()).map_err(|_| Error::Transport)?;
-        let auth = AuthManager::new(http.clone(), &base_url, credentials, &lwa_endpoint)
-            .map_err(classify_auth)?;
-        let policy = RequestPolicy::new(policy).map_err(|_| Error::InvalidRequest)?;
+        let user_agent = user_agent
+            .map(|value| HeaderValue::from_str(&value))
+            .transpose()
+            .map_err(|_| Error::InvalidRequest)?;
+        retry.validate().map_err(|_| Error::InvalidRequest)?;
+        let pool = match pool {
+            Some(pool) => pool,
+            None => Pool::new()?,
+        };
         Ok(Self {
-            http,
+            http: pool.http,
             origin,
-            access_token: None,
-            auth,
-            policy,
-            restricted_scope: None,
+            access_token: token_header(&access_token)?,
+            user_agent,
+            retry,
             timeout,
         })
     }
 
-    pub fn restricted(&self, scope: RestrictedScope) -> Result<Self, Error> {
-        scope.validate().map_err(classify_auth)?;
+    /// A view with another access token that shares the pool and the policy: another
+    /// seller, a rotated token, or a restricted data token for a few calls.
+    pub fn with_access_token(&self, access_token: &str) -> Result<Self, Error> {
         let mut view = self.clone();
-        view.restricted_scope = Some(scope);
-        view.access_token = None;
+        view.access_token = token_header(access_token)?;
         Ok(view)
     }
 
-    pub(crate) async fn run<F, Fut>(
-        &self,
-        operation: &str,
-        method: &str,
-        send: F,
-    ) -> Result<Response, Error>
+    /// Runs `send` once per attempt under one deadline that also covers retry delays.
+    pub(crate) async fn run<F, Fut>(&self, method: &str, send: F) -> Result<Response, Error>
     where
-        F: Fn(Client) -> Fut,
+        F: Fn() -> Fut,
         Fut: Future<Output = Result<Response, Error>>,
     {
-        if operation.is_empty() {
-            return Err(Error::InvalidRequest);
-        }
         let deadline = tokio::time::Instant::now()
             .checked_add(self.timeout)
             .ok_or(Error::InvalidRequest)?;
         tokio::time::timeout_at(deadline, async {
             let mut retry_index = 0;
             loop {
-                self.policy.acquire(operation).await;
-                let token = self
-                    .auth
-                    .token(self.restricted_scope.as_ref())
-                    .await
-                    .map_err(classify_auth)?;
-                let mut snapshot = self.clone();
-                snapshot.access_token = Some(token);
-                let response = send(snapshot).await?;
-                self.policy.observe(operation, &response.headers);
-                let Some(delay) = self.policy.retry_delay(
-                    method,
-                    response.status,
-                    &response.headers,
-                    retry_index,
-                ) else {
+                let response = send().await?;
+                let Some(delay) =
+                    self.retry
+                        .retry_delay(method, response.status, &response.headers, retry_index)
+                else {
                     return Ok(response);
                 };
                 if delay >= deadline.saturating_duration_since(tokio::time::Instant::now()) {
@@ -235,8 +268,8 @@ impl Client {
         {
             return Err(Error::InvalidRequest);
         }
-        // Discard per-request overrides so the shared client's timeout applies.
-        *request.timeout_mut() = None;
+        // Discard per-request overrides so the client's timeout applies.
+        *request.timeout_mut() = Some(self.timeout);
         // Canonicalize individual segments, never decode the whole path. A raw
         // caller %2F was already escaped by Progenitor to %252F and stays literal.
         const SEGMENT: &percent_encoding::AsciiSet = &percent_encoding::NON_ALPHANUMERIC
@@ -272,11 +305,7 @@ impl Client {
                 request.url_mut().query_pairs_mut().extend_pairs(pairs);
             }
         }
-        request.headers_mut().insert(
-            "x-amz-access-token",
-            self.access_token.clone().ok_or(Error::InvalidRequest)?,
-        );
-        request.headers_mut().insert("x-amz-date", amz_date());
+        self.authorize(request.headers_mut());
         request.headers_mut().insert(
             reqwest::header::ACCEPT,
             HeaderValue::from_static("application/json"),
@@ -284,36 +313,26 @@ impl Client {
         Ok(())
     }
 
-    pub async fn execute(&self, request: Request) -> Result<Response, Error> {
-        self.execute_with_operation("raw", request).await
-    }
-
-    pub async fn execute_with_operation(
-        &self,
-        operation: &str,
-        request: Request,
-    ) -> Result<Response, Error> {
-        self.execute_inner(operation, request, false).await
-    }
-
-    /// Like `execute_with_operation`, with the `Accept` header generated calls send.
-    pub(crate) async fn execute_json_operation(
-        &self,
-        operation: &str,
-        request: Request,
-    ) -> Result<Response, Error> {
-        self.execute_inner(operation, request, true).await
-    }
-
-    async fn execute_inner(
-        &self,
-        operation: &str,
-        request: Request,
-        accept_json: bool,
-    ) -> Result<Response, Error> {
-        if operation.is_empty() {
-            return Err(Error::InvalidRequest);
+    /// What only the Selling Partner API receives: the token, the time of this
+    /// attempt and a wrapper's User-Agent. Never LWA or signed URLs.
+    fn authorize(&self, headers: &mut reqwest::header::HeaderMap) {
+        headers.insert("x-amz-access-token", self.access_token.clone());
+        headers.insert("x-amz-date", amz_date());
+        if let Some(user_agent) = &self.user_agent {
+            headers.insert(reqwest::header::USER_AGENT, user_agent.clone());
         }
+    }
+
+    pub async fn execute(&self, request: Request) -> Result<Response, Error> {
+        self.execute_inner(request, false).await
+    }
+
+    /// Like `execute`, with the `Accept` header generated calls send.
+    pub(crate) async fn execute_json(&self, request: Request) -> Result<Response, Error> {
+        self.execute_inner(request, true).await
+    }
+
+    async fn execute_inner(&self, request: Request, accept_json: bool) -> Result<Response, Error> {
         if !request.path.starts_with('/')
             || request.path.starts_with("//")
             || request
@@ -341,7 +360,7 @@ impl Client {
             url.query_pairs_mut().extend_pairs(&request.query);
         }
         let method_name = method.as_str().to_owned();
-        let mut builder = self.http.request(method, url);
+        let mut builder = self.http.request(method, url).timeout(self.timeout);
         if accept_json {
             builder = builder.header(reqwest::header::ACCEPT, "application/json");
         }
@@ -351,15 +370,11 @@ impl Client {
                 .body(body);
         }
         let buffered = builder.build().map_err(|_| Error::InvalidRequest)?;
-        self.run(operation, &method_name, |snapshot| {
+        self.run(&method_name, || {
             let mut request = buffered.try_clone().expect("buffered body is repeatable");
             async move {
-                request.headers_mut().insert(
-                    "x-amz-access-token",
-                    snapshot.access_token.ok_or(Error::InvalidRequest)?,
-                );
-                request.headers_mut().insert("x-amz-date", amz_date());
-                let response = snapshot
+                self.authorize(request.headers_mut());
+                let response = self
                     .http
                     .execute(request)
                     .await
@@ -380,15 +395,6 @@ fn classify_transport(error: reqwest::Error) -> Error {
     }
 }
 
-fn classify_auth(error: AuthError) -> Error {
-    match error {
-        AuthError::Timeout => Error::Timeout,
-        AuthError::Transport => Error::Transport,
-        AuthError::InvalidConfig => Error::InvalidRequest,
-        error => Error::Authentication(error),
-    }
-}
-
 /// The time of an attempt, in the form Amazon's connection guide shows. Only requests
 /// to the Selling Partner API carry it, never LWA or signed URLs.
 pub(crate) fn amz_date() -> HeaderValue {
@@ -396,22 +402,12 @@ pub(crate) fn amz_date() -> HeaderValue {
     HeaderValue::from_str(&now.format("%Y%m%dT%H%M%SZ").to_string()).expect("ASCII timestamp")
 }
 
-fn build_http(
-    timeout: Duration,
-    user_agent: Option<&str>,
-) -> Result<reqwest::Client, reqwest::Error> {
-    reqwest::Client::builder()
-        .timeout(timeout)
-        .redirect(reqwest::redirect::Policy::none())
-        .retry(reqwest::retry::never())
-        .no_gzip()
-        .no_brotli()
-        .no_deflate()
-        .no_zstd()
-        .user_agent(user_agent.unwrap_or(concat!(
-            "Peddler/",
-            env!("CARGO_PKG_VERSION"),
-            " (Language=Rust)"
-        )))
-        .build()
+/// A token must be usable as a header value. It is never logged.
+fn token_header(value: &str) -> Result<HeaderValue, Error> {
+    if value.trim().is_empty() {
+        return Err(Error::InvalidRequest);
+    }
+    let mut token = HeaderValue::from_str(value).map_err(|_| Error::InvalidRequest)?;
+    token.set_sensitive(true);
+    Ok(token)
 }

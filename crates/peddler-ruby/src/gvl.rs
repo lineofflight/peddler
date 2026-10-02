@@ -1,19 +1,16 @@
 //! Protected, owned-work GVL release shared by requests and document transfers.
-use super::{RuntimeOwner, native_error};
+use super::{Shared, native_error};
 use magnus::{Error, Ruby, rb_sys::AsRawValue};
 use std::{
     ffi::c_void,
     future::Future,
     panic::{AssertUnwindSafe, catch_unwind},
-    sync::{
-        Arc,
-        atomic::{AtomicBool, Ordering},
-    },
+    sync::atomic::{AtomicBool, Ordering},
     time::Duration,
 };
 
 struct Invocation<F, T> {
-    runtime: Arc<RuntimeOwner>,
+    shared: &'static Shared,
     future: Option<F>,
     cancelled: *const AtomicBool,
     result: Option<Result<T, ()>>,
@@ -22,7 +19,7 @@ struct Invocation<F, T> {
 pub(super) fn wait<F, T>(
     ruby: &Ruby,
     failure_class: &str,
-    runtime: Arc<RuntimeOwner>,
+    shared: &'static Shared,
     future: F,
 ) -> Result<T, Error>
 where
@@ -32,7 +29,7 @@ where
     // Allocations stay outside protect so Ruby longjmp cannot skip their Drop.
     let cancelled = Box::new(AtomicBool::new(false));
     let mut invocation = Box::new(Invocation {
-        runtime,
+        shared,
         future: Some(future),
         cancelled: &*cancelled,
         result: None,
@@ -70,7 +67,7 @@ unsafe extern "C" fn run<F: Future<Output = T> + Send + 'static, T: Send + 'stat
         let future = invocation.future.take().expect("work runs once");
         // SAFETY: separate atomic outlives this callback.
         let cancelled = unsafe { &*invocation.cancelled };
-        invocation.runtime.runtime.as_ref().expect("runtime alive").block_on(async {
+        invocation.shared.runtime.block_on(async {
             tokio::select! {
                 result = future => Ok(result),
                 () = async { while !cancelled.load(Ordering::Relaxed) { tokio::time::sleep(Duration::from_millis(5)).await; } } => Err(()),

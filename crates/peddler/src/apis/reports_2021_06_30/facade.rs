@@ -30,17 +30,16 @@ pub async fn cancel_report(
     let omit_body = false;
     let raw = client
         .run(
-            "reports_2021_06_30.cancel_report",
             "DELETE",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -77,17 +76,16 @@ pub async fn cancel_report_schedule(
     let omit_body = false;
     let raw = client
         .run(
-            "reports_2021_06_30.cancel_report_schedule",
             "DELETE",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -124,18 +122,17 @@ pub async fn create_report<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "reports_2021_06_30.create_report",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -171,18 +168,17 @@ pub async fn create_report_schedule<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "reports_2021_06_30.create_report_schedule",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -219,17 +215,16 @@ pub async fn get_report(
     let omit_body = false;
     let raw = client
         .run(
-            "reports_2021_06_30.get_report",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -274,17 +269,16 @@ pub async fn get_report_document(
     let omit_body = false;
     let raw = client
         .run(
-            "reports_2021_06_30.get_report_document",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -328,17 +322,16 @@ pub async fn get_report_schedule(
     let omit_body = false;
     let raw = client
         .run(
-            "reports_2021_06_30.get_report_schedule",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -385,17 +378,16 @@ pub async fn get_report_schedules(
     let omit_body = false;
     let raw = client
         .run(
-            "reports_2021_06_30.get_report_schedules",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -523,17 +515,16 @@ pub async fn get_reports(
     let omit_body = false;
     let raw = client
         .run(
-            "reports_2021_06_30.get_reports",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -607,15 +598,12 @@ pub(crate) async fn get_reports_continue(
     )?;
     let path = "/reports/2021-06-30/reports".to_owned();
     client
-        .execute_json_operation(
-            "reports_2021_06_30.get_reports",
-            crate::Request {
-                method: "GET".into(),
-                path,
-                query: vec![("nextToken".into(), params.next_token)],
-                body: None,
-            },
-        )
+        .execute_json(crate::Request {
+            method: "GET".into(),
+            path,
+            query: vec![("nextToken".into(), params.next_token)],
+            body: None,
+        })
         .await
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {

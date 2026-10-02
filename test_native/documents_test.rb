@@ -24,7 +24,7 @@ class DocumentsTest < NativeTest
       assert_equal("/file?a=%2f&b=+&a=%2F", first[1])
       refute(headers.key?("x-amz-access-token"))
       refute(headers.key?("x-amz-date"))
-      assert_equal(gem_user_agent, headers["user-agent"])
+      assert_equal(hostless_user_agent, headers["user-agent"])
       chunked(socket, buffer.string.bytes.each_slice(3).map { |bytes| bytes.pack("C*") }, headers: [["Content-Encoding", "gzip"], ["x-repeat", "a"], ["x-repeat", "b"]])
     }) do |url|
       instance = client(url)
@@ -279,6 +279,7 @@ class DocumentsTest < NativeTest
       assert_equal("signed", headers.fetch("x-signed"))
       refute(headers.key?("x-amz-access-token"))
       refute(headers.key?("x-amz-date"))
+      assert_equal(hostless_user_agent, headers["user-agent"])
       assert_equal(payload, body)
       respond(socket, status: 400, headers: [["x-repeat", "a"], ["x-repeat", "b"]], body: "reply-too-long")
     }) do |url|

@@ -560,20 +560,10 @@ async fn distinct_success_decoders_require_the_matching_status_and_preserve_raw(
 }
 
 #[tokio::test]
-async fn expanded_parameters_validate_before_authentication_acquisition() {
-    use peddler::{ClientConfig, auth::Credentials};
+async fn expanded_parameters_validate_before_any_request() {
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let base = format!("http://{}", listener.local_addr().unwrap());
-    let mut config = ClientConfig::new(
-        base.clone(),
-        Credentials::RefreshToken {
-            client_id: "id".into(),
-            client_secret: "secret".into(),
-            refresh_token: "refresh".into(),
-        },
-    );
-    config.lwa_endpoint = base;
-    let client = Client::with_config(config).unwrap();
+    let client = Client::new(&base, "token").unwrap();
     for (operation, args) in [
         (
             "vendor_direct_fulfillment_orders_2021_12_28.get_orders",

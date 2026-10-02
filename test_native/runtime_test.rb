@@ -5,61 +5,49 @@ require_relative "test_helper"
 # Each test checks one real request lifecycle.
 # rubocop:disable Minitest/MultipleAssertions
 class RuntimeTest < NativeTest
-  def test_refresh_shared_across_ruby_threads_and_generated_calls
-    calls = Queue.new
-    serve(handler: lambda { |socket, first, headers, body|
-      assert_equal("POST", first[0])
-      assert_equal("refresh_token", URI.decode_www_form(body).to_h.fetch("grant_type"))
-      refute(headers.key?("x-amz-date"))
+  def test_supplied_token_is_sent_across_ruby_threads_and_generated_calls
+    serve(count: 6, handler: lambda { |socket, _first, headers, _body|
+      assert_equal("local-secret", headers.fetch("x-amz-access-token"))
+      assert_match(AMZ_DATE, headers["x-amz-date"])
       assert_equal(gem_user_agent, headers["user-agent"])
-      calls << true
-      respond(socket, body: JSON.generate(access_token: "fresh", token_type: "bearer", expires_in: 3600))
-    }) do |lwa|
-      serve(count: 6, handler: lambda { |socket, _first, headers, _body|
-        assert_equal("fresh", headers.fetch("x-amz-access-token"))
-        assert_match(AMZ_DATE, headers["x-amz-date"])
-        respond(socket)
-      }) do |url|
-        instance = Peddler::Client.new(base_url: url, client_id: "dummy", client_secret: "dummy-secret", refresh_token: "dummy-refresh", lwa_endpoint: lwa)
-        threads = Array.new(6) do |index|
-          Thread.new do
-            if index.even?
-              instance.request("GET", "/")
-            else
-              instance.catalog_items_2022_04_01.get_catalog_item(asin: "ASIN", marketplace_ids: ["UK"])
-            end
+      respond(socket)
+    }) do |url|
+      instance = client(url)
+      threads = Array.new(6) do |index|
+        Thread.new do
+          if index.even?
+            instance.request("GET", "/")
+          else
+            instance.catalog_items_2022_04_01.get_catalog_item(asin: "ASIN", marketplace_ids: ["UK"])
           end
         end
-
-        threads.each { |thread| assert_equal(200, thread.value.status) }
       end
-    end
 
-    assert_equal(1, calls.size)
+      threads.each { |thread| assert_equal(200, thread.value.status) }
+    end
   end
 
-  def test_restricted_views_reuse_token_and_pool
-    count = 0
-    serve(count: 3, handler: lambda { |socket, first, headers, body|
-      count += 1
+  def test_restricted_data_token_is_an_ordinary_call_whose_result_a_view_sends
+    serve(count: 4, handler: lambda { |socket, first, headers, body|
       if first[1] == "/tokens/2021-03-01/restrictedDataToken"
+        assert_equal("POST", first[0])
         assert_equal("local-secret", headers.fetch("x-amz-access-token"))
         assert_equal("GET", JSON.parse(body).fetch("restrictedResources")[0].fetch("method"))
         respond(socket, body: JSON.generate(restrictedDataToken: "rdt", expiresIn: 3600))
       else
-        assert_equal("rdt", headers.fetch("x-amz-access-token"))
+        assert_equal(first[1] == "/private" ? "rdt" : "local-secret", headers.fetch("x-amz-access-token"))
         respond(socket)
       end
     }) do |url|
       instance = client(url)
-      2.times do
-        view = instance.restricted(resources: [{ method: "GET", path: "/private" }])
+      token = instance.tokens.create_restricted_data_token(body: { restrictedResources: [{ method: "GET", path: "/private" }] })
+        .parse.restricted_data_token
+      view = instance.with_access_token(token)
 
-        assert_equal(200, view.request("GET", "/private").status)
-      end
+      # Nothing is cached: the view sends what it was given, and the client keeps its own token.
+      2.times { assert_equal(200, view.request("GET", "/private").status) }
+      assert_equal(200, instance.request("GET", "/").status)
     end
-
-    assert_equal(3, count)
   end
 
   def test_status_errors_preserve_binary_body_and_duplicate_headers
@@ -85,37 +73,50 @@ class RuntimeTest < NativeTest
   end
 
   def test_configuration_rejection_is_sanitized_and_performs_no_http
-    [{}, { access_token: "dummy", client_id: "dummy" }, { client_id: "dummy", client_secret: "dummy" },
-      { client_id: "dummy", client_secret: "dummy", refresh_token: "dummy", scope: "dummy" },
-      { access_token: "dummy", retries: -1 }, { access_token: "dummy", rate_limits: { raw: { rate: 0, burst: 1 } } }].each do |options|
-      error = assert_raises(ArgumentError) { Peddler::Client.new(base_url: "http://127.0.0.1:1", **options) }
+    [{}, { access_token: nil }, { access_token: "" }, { access_token: "dummy\n" },
+      { access_token: "dummy", retries: -1 }, { access_token: "dummy", retries: 11 },
+      { access_token: "dummy", retry_delay: 0 }, { access_token: "dummy", retry_delay: 31 },
+      { access_token: "dummy", max_retry_delay: 0 }, { access_token: "dummy", timeout: 0 }].each do |options|
+      error = assert_raises(ArgumentError, options.inspect) { Peddler::Client.new(base_url: "http://127.0.0.1:1", **options) }
       refute_match(/dummy/, error.message)
     end
     error = assert_raises(ArgumentError) { Peddler::Native.const_get(:Engine).from_config('{"secret":"dummy-secret"}') }
     refute_match(/dummy-secret|secret/, error.message)
   end
 
-  def test_raw_operation_routes_rate_limits_and_preserves_final_retry_body
-    serve(count: 2, handler: ->(socket, *) { respond(socket, status: 429, headers: [["Retry-After", "1"]], body: "retained") }) do |url|
-      instance = client(url, timeout: 0.03, retries: 1, rate_limits: { slow: { rate: 0.1, burst: 1 } })
+  def test_final_retry_body_is_preserved_when_the_backoff_exceeds_the_deadline
+    serve(handler: ->(socket, *) { respond(socket, status: 429, headers: [["Retry-After", "1"]], body: "retained") }) do |url|
+      instance = client(url, timeout: 0.03, retries: 1)
 
-      # After the retry policy is exhausted, the last response raises like any other.
-      assert_equal("retained", assert_raises(Peddler::Error) { instance.request("GET", "/", operation: "slow") }.response.body)
-      assert_raises(Peddler::TimeoutError) { instance.request("GET", "/", operation: "slow") }
-      assert_equal("retained", assert_raises(Peddler::Error) { instance.request("GET", "/", operation: "other") }.response.body)
+      # Amazon asks for a longer wait than the deadline allows, so the last response raises like any other.
+      assert_equal("retained", assert_raises(Peddler::Error) { instance.request("GET", "/") }.response.body)
     end
   end
 
-  def test_restricted_view_survives_parent_gc_and_rejects_inherited_state
-    serve(count: 2, handler: lambda { |socket, first, *_|
-      if first[1].start_with?("/tokens/")
-        respond(socket, body: JSON.generate(restrictedDataToken: "rdt", expiresIn: 3600))
-      else
-        respond(socket)
-      end
+  def test_retries_a_throttled_get_but_never_a_write
+    replies = [[429, "throttled"], [200, "{}"], [429, "write-throttled"]]
+    seen = Queue.new
+    serve(count: 3, handler: lambda { |socket, first, headers, _body|
+      seen << [first[0], headers["x-amz-access-token"]]
+      status, body = replies.shift
+      respond(socket, status: status, headers: [["Retry-After", "0"]], body: body)
+    }) do |url|
+      instance = client(url, retries: 2, retry_delay: 0.01)
+
+      assert_equal(200, instance.request("GET", "/").status)
+      assert_equal("write-throttled", assert_raises(Peddler::Error) { instance.request("POST", "/", body: {}) }.response.body)
+    end
+
+    assert_equal([["GET", "local-secret"], ["GET", "local-secret"], ["POST", "local-secret"]], Array.new(3) { seen.pop })
+  end
+
+  def test_token_view_survives_parent_gc_and_rejects_inherited_state
+    serve(handler: lambda { |socket, _first, headers, _body|
+      assert_equal("other-secret", headers["x-amz-access-token"])
+      respond(socket)
     }) do |url|
       instance = client(url)
-      view = instance.restricted(resources: [{ method: "GET", path: "/" }])
+      view = instance.with_access_token("other-secret")
       instance = nil
       GC.start
 
@@ -124,7 +125,7 @@ class RuntimeTest < NativeTest
       pid = fork do
         reader.close
         begin
-          view.restricted(resources: [{ method: "GET", path: "/" }])
+          view.with_access_token("child-secret")
           writer.write("failed")
         rescue Peddler::ForkError
           writer.write("guarded")
@@ -137,31 +138,6 @@ class RuntimeTest < NativeTest
       assert_equal("guarded", reader.read)
       Process.wait(pid)
       reader.close
-    end
-  end
-
-  def test_interrupted_auth_refresh_closes_socket_and_client_recovers
-    started = Queue.new
-    calls = 0
-    serve(count: 2, handler: lambda { |socket, *|
-      calls += 1
-      if calls == 1
-        started << true
-
-        assert_nil(socket.read(1))
-      else
-        respond(socket, body: JSON.generate(access_token: "recovered", token_type: "bearer", expires_in: 3600))
-      end
-    }) do |lwa|
-      serve(handler: ->(socket, *) { respond(socket) }) do |url|
-        instance = Peddler::Client.new(base_url: url, client_id: "dummy", client_secret: "dummy", refresh_token: "dummy", lwa_endpoint: lwa)
-        thread = Thread.new { instance.request("GET", "/") }
-        started.pop
-        thread.kill
-        thread.join
-
-        assert_equal(200, instance.request("GET", "/").status)
-      end
     end
   end
 
@@ -178,56 +154,20 @@ class RuntimeTest < NativeTest
     end
   end
 
-  def test_grantless_client_posts_client_credentials_and_sends_the_returned_token
-    exchanges = Queue.new
-    serve(handler: lambda { |socket, first, _headers, body|
-      form = URI.decode_www_form(body).to_h
-
-      assert_equal("POST", first[0])
-      assert_equal(["client_credentials", "sellingpartnerapi::notifications"], form.values_at("grant_type", "scope"))
-      assert_equal(["grantless-id", "grantless-secret"], form.values_at("client_id", "client_secret"))
-      refute(form.key?("refresh_token"))
-      exchanges << true
-      respond(socket, body: JSON.generate(access_token: "grantless", token_type: "bearer", expires_in: 3600))
-    }) do |lwa|
-      serve(count: 2, handler: lambda { |socket, _first, headers, _body|
-        assert_equal("grantless", headers["x-amz-access-token"])
-        respond(socket)
-      }) do |url|
-        instance = Peddler::Client.new(base_url: url, client_id: "grantless-id", client_secret: "grantless-secret",
-          scope: "sellingpartnerapi::notifications", lwa_endpoint: lwa)
-
-        assert_equal(200, instance.notifications_v1.get_destinations.status)
-        assert_equal(200, instance.request("GET", "/").status)
+  def test_sandbox_view_is_built_once_and_sends_the_same_token
+    serve(count: 3, handler: lambda { |socket, _first, headers, _body|
+      respond(socket, body: JSON.generate(token: headers["x-amz-access-token"]))
+    }) do |url|
+      # A region whose sandbox host is the loopback server; production is never contacted.
+      endpoint = Struct.new(:production, :sandbox).new(URI("http://127.0.0.1:1"), URI(url))
+      instance = Peddler::Endpoint.stub(:find, endpoint) do
+        Peddler::Client.new(region: "eu-west-1", access_token: "sandbox-token")
       end
+
+      assert_same(instance.sandbox, instance.sandbox)
+      2.times { assert_equal("sandbox-token", instance.sandbox.request("GET", "/").json["token"]) }
+      assert_equal("rotated", instance.with_access_token("rotated").sandbox.request("GET", "/").json["token"])
     end
-
-    assert_equal(1, exchanges.size)
-  end
-
-  def test_sandbox_view_is_built_once_and_shares_one_token_exchange
-    exchanges = Queue.new
-    serve(handler: lambda { |socket, *|
-      exchanges << true
-      respond(socket, body: JSON.generate(access_token: "sandbox-token", token_type: "bearer", expires_in: 3600))
-    }) do |lwa|
-      serve(count: 2, handler: lambda { |socket, _first, headers, _body|
-        assert_equal("sandbox-token", headers["x-amz-access-token"])
-        respond(socket)
-      }) do |url|
-        # A region whose sandbox host is the loopback server; production is never contacted.
-        endpoint = Struct.new(:production, :sandbox).new(URI("http://127.0.0.1:1"), URI(url))
-        instance = Peddler::Endpoint.stub(:find, endpoint) do
-          Peddler::Client.new(region: "eu-west-1", client_id: "dummy", client_secret: "dummy-secret",
-            refresh_token: "dummy-refresh", lwa_endpoint: lwa)
-        end
-
-        assert_same(instance.sandbox, instance.sandbox)
-        2.times { assert_equal(200, instance.sandbox.request("GET", "/").status) }
-      end
-    end
-
-    assert_equal(1, exchanges.size)
   end
 
   def test_rebased_engine_keeps_its_credentials_and_targets_the_new_origin
@@ -250,15 +190,6 @@ class RuntimeTest < NativeTest
     assert_equal(404, error.status)
     assert_equal("NotFound", error.code)
     assert_equal("manual-id", error.request_id)
-  end
-
-  def test_authentication_error_has_status_and_redacts_server_body
-    serve(handler: ->(socket, *) { respond(socket, status: 401, body: "dummy-secret") }) do |lwa|
-      instance = Peddler::Client.new(base_url: "http://127.0.0.1:1", client_id: "dummy", client_secret: "dummy-secret", refresh_token: "dummy", lwa_endpoint: lwa)
-      error = assert_raises(Peddler::AuthenticationError) { instance.request("GET", "/") }
-      assert_equal(401, error.status)
-      refute_match(/dummy/, error.message)
-    end
   end
 end
 # rubocop:enable Minitest/MultipleAssertions

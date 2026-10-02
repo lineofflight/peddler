@@ -47,7 +47,12 @@ async fn signed_query_duplicate_headers_and_no_token() {
         Duration::ZERO,
     )
     .await;
-    let doc = client(&url)
+    // A wrapper names its host to the Selling Partner API only, never to a signed URL.
+    let mut config = peddler::ClientConfig::new(&url, "SECRET_API_TOKEN");
+    config.user_agent = Some("Wrapper/1 (Language=Test; private-host)".into());
+    config.pool = Some(peddler::Pool::with_user_agent("Wrapper/1 (Language=Test)").unwrap());
+    let doc = Client::with_config(config)
+        .unwrap()
         .documents()
         .download(
             &format!("{url}/file?z=%2f&a=1&a=2&sig=secret+value"),
@@ -69,6 +74,8 @@ async fn signed_query_duplicate_headers_and_no_token() {
     assert!(!request.to_lowercase().contains("x-amz-access-token"));
     assert!(!request.to_lowercase().contains("x-amz-date"));
     assert!(!request.contains("SECRET_API_TOKEN"));
+    assert!(request.contains("user-agent: Wrapper/1 (Language=Test)\r\n"));
+    assert!(!request.contains("private-host"));
 }
 use futures_util::TryStreamExt;
 

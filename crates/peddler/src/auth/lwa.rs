@@ -1,5 +1,6 @@
-//! Authorization-code onboarding, independent of seller credentials and caches.
-use super::{AuthError, endpoint, expiring_token, header_token, read_response, transport};
+//! The three Login with Amazon grants, one request each.
+use super::{AuthError, check_lifetime, check_token, endpoint, read_response, transport};
+use crate::Pool;
 use reqwest::Url;
 use serde::Deserialize;
 use std::{fmt, sync::Arc, time::Duration};
@@ -25,10 +26,11 @@ impl fmt::Debug for LwaClient {
 }
 
 /// Explicit fields expose credentials; formatting always redacts both tokens.
+/// `refresh_token` is present when LWA sends one.
 #[derive(Clone, Deserialize)]
 pub struct LwaTokens {
     pub access_token: String,
-    pub refresh_token: String,
+    pub refresh_token: Option<String>,
     pub token_type: String,
     pub expires_in: u64,
 }
@@ -57,33 +59,17 @@ impl LwaClient {
         lwa_endpoint: &str,
         timeout: Duration,
     ) -> Result<Self, AuthError> {
-        Self::build(client_id, client_secret, lwa_endpoint, timeout, None)
+        let pool = Pool::new().map_err(|_| AuthError::Transport)?;
+        Self::with_pool(&pool, client_id, client_secret, lwa_endpoint, timeout)
     }
 
-    /// Like `with_config`, for a wrapper that identifies itself with its own User-Agent.
-    pub fn with_user_agent(
+    /// Like `with_config`, on a connection pool shared with other clients.
+    pub fn with_pool(
+        pool: &Pool,
         client_id: &str,
         client_secret: &str,
         lwa_endpoint: &str,
         timeout: Duration,
-        user_agent: &str,
-    ) -> Result<Self, AuthError> {
-        reqwest::header::HeaderValue::from_str(user_agent).map_err(|_| AuthError::InvalidConfig)?;
-        Self::build(
-            client_id,
-            client_secret,
-            lwa_endpoint,
-            timeout,
-            Some(user_agent),
-        )
-    }
-
-    fn build(
-        client_id: &str,
-        client_secret: &str,
-        lwa_endpoint: &str,
-        timeout: Duration,
-        user_agent: Option<&str>,
     ) -> Result<Self, AuthError> {
         if client_id.trim().is_empty()
             || client_secret.trim().is_empty()
@@ -92,17 +78,43 @@ impl LwaClient {
         {
             return Err(AuthError::InvalidConfig);
         }
-        let endpoint = endpoint(lwa_endpoint, false)?;
-        let http = crate::build_http(timeout, user_agent).map_err(transport)?;
         Ok(Self {
             config: Arc::new(Config {
-                http,
-                endpoint,
+                http: pool.http.clone(),
+                endpoint: endpoint(lwa_endpoint)?,
                 client_id: client_id.into(),
                 client_secret: client_secret.into(),
                 timeout,
             }),
         })
+    }
+
+    /// Exchange a seller's refresh token for an access token.
+    pub async fn refresh(&self, refresh_token: &str) -> Result<LwaTokens, AuthError> {
+        if refresh_token.trim().is_empty() {
+            return Err(AuthError::InvalidConfig);
+        }
+        self.grant(&[
+            ("grant_type", "refresh_token"),
+            ("client_id", &self.config.client_id),
+            ("client_secret", &self.config.client_secret),
+            ("refresh_token", refresh_token),
+        ])
+        .await
+    }
+
+    /// Request an access token for grantless operations.
+    pub async fn client_credentials(&self, scope: &str) -> Result<LwaTokens, AuthError> {
+        if scope.trim().is_empty() {
+            return Err(AuthError::InvalidConfig);
+        }
+        self.grant(&[
+            ("grant_type", "client_credentials"),
+            ("client_id", &self.config.client_id),
+            ("client_secret", &self.config.client_secret),
+            ("scope", scope),
+        ])
+        .await
     }
 
     /// Omit redirect_uri only for SDK-originated grants. Otherwise pass the
@@ -127,13 +139,23 @@ impl LwaClient {
         if let Some(uri) = redirect_uri {
             fields.push(("redirect_uri", uri));
         }
+        let tokens = self.grant(&fields).await?;
+        if tokens.refresh_token.is_none() {
+            return Err(AuthError::InvalidResponse);
+        }
+        Ok(tokens)
+    }
+
+    /// One POST under one deadline that also covers the body. Never retried.
+    async fn grant(&self, fields: &[(&str, &str)]) -> Result<LwaTokens, AuthError> {
         let start = Instant::now();
         tokio::time::timeout(self.config.timeout, async {
             let response = self
                 .config
                 .http
                 .post(self.config.endpoint.clone())
-                .form(&fields)
+                .timeout(self.config.timeout)
+                .form(fields)
                 .send()
                 .await
                 .map_err(transport)?;
@@ -141,8 +163,11 @@ impl LwaClient {
             if !tokens.token_type.eq_ignore_ascii_case("bearer") {
                 return Err(AuthError::InvalidResponse);
             }
-            expiring_token(tokens.access_token.clone(), tokens.expires_in, start)?;
-            header_token(&tokens.refresh_token)?;
+            check_token(&tokens.access_token)?;
+            check_lifetime(tokens.expires_in, start)?;
+            if let Some(token) = &tokens.refresh_token {
+                check_token(token)?;
+            }
             Ok(tokens)
         })
         .await

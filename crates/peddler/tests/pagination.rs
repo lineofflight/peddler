@@ -2,14 +2,12 @@ use futures_util::StreamExt;
 use peddler::{
     Client, ClientConfig, Response,
     apis::{self, orders_v0},
-    auth::Credentials,
     pagination::{Continuation, Pagination, PaginationError, pages},
-    policy::RateLimit,
 };
 use serde_json::{Value, json};
 use std::{
     sync::{Arc, Mutex},
-    time::{Duration, Instant},
+    time::Duration,
 };
 use tokio::{
     io::{AsyncReadExt, AsyncWriteExt},
@@ -369,12 +367,7 @@ async fn transport_failure_is_a_sanitized_request_error_and_ends_the_stream() {
 }
 
 #[tokio::test]
-async fn auth_retry_and_rate_limit_apply_to_every_page() {
-    let lwa = serve(vec![(
-        200,
-        r#"{"access_token":"managed-token","token_type":"bearer","expires_in":3600}"#.into(),
-    )])
-    .await;
+async fn the_token_and_retries_apply_to_every_page() {
     let api = serve(vec![
         (503, "busy".into()),
         (200, r#"{"payload":{"NextToken":"A"}}"#.into()),
@@ -382,26 +375,10 @@ async fn auth_retry_and_rate_limit_apply_to_every_page() {
         (200, r#"{"payload":{}}"#.into()),
     ])
     .await;
-    let mut config = ClientConfig::new(
-        api.url.clone(),
-        Credentials::RefreshToken {
-            client_id: "id".into(),
-            client_secret: "secret".into(),
-            refresh_token: "refresh".into(),
-        },
-    );
-    config.lwa_endpoint = lwa.url.clone();
-    config.policy.retry.max_retries = 1;
-    config.policy.retry.base_delay = Duration::from_millis(1);
-    config.policy.rate_limits.insert(
-        "orders_v0.get_orders".into(),
-        RateLimit {
-            rate_per_second: 10.0,
-            burst: 1,
-        },
-    );
+    let mut config = ClientConfig::new(api.url.clone(), "supplied-token");
+    config.retry.max_retries = 1;
+    config.retry.base_delay = Duration::from_millis(1);
     let client = Client::with_config(config).unwrap();
-    let started = Instant::now();
     let statuses: Vec<u16> = pages(
         &client,
         apis::pagination::mapping("orders_v0.get_orders").unwrap(),
@@ -417,14 +394,7 @@ async fn auth_retry_and_rate_limit_apply_to_every_page() {
     assert!(
         recorded
             .iter()
-            .all(|r| r.headers.contains("x-amz-access-token: managed-token"))
-    );
-    assert_eq!(lwa.recorded().len(), 1, "one managed token for all pages");
-    // 4 acquisitions at 10/s with a burst of 1 need at least 3 refills.
-    assert!(
-        started.elapsed() >= Duration::from_millis(250),
-        "{:?}",
-        started.elapsed()
+            .all(|r| r.headers.contains("x-amz-access-token: supplied-token"))
     );
 }
 

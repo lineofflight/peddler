@@ -413,10 +413,9 @@ fn convert(spec: &Value) -> Result<Value, GenerationError> {
 }
 pub fn facade(
     client: &RenderedClient,
-    api: &ModelSpec,
     pagination: &[&crate::pagination::Resolved],
 ) -> Result<String, GenerationError> {
-    crate::facades::rust(client, api, pagination)
+    crate::facades::rust(client, pagination)
 }
 pub(crate) fn metadata(client: &RenderedClient) -> Result<String, GenerationError> {
     let cases = client.operations.iter().map(|op| {

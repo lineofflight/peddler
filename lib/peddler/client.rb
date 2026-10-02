@@ -5,23 +5,23 @@ require "json"
 module Peddler
   # The Selling Partner API client
   #
+  # The client sends the access token it is given. It never requests, refreshes or caches one: get tokens from
+  # {Peddler::LWA} and keep them where your application can share them.
+  #
   # @example
-  #   client = Peddler::Client.new(region: "eu-west-1", refresh_token: seller.refresh_token)
+  #   client = Peddler::Client.new(region: "eu-west-1", access_token: token)
   #   client.orders_v0.get_orders(marketplace_ids: Peddler::Marketplace.ids("UK"))
   class Client
-    DEFAULT_LWA_ENDPOINT = "https://api.amazon.com/auth/o2/token"
-
+    # Every client in a process shares one connection pool, so building one per job is cheap.
+    #
+    # @param [String] access_token a Login with Amazon access token or a restricted data token
     # @param [String] region the AWS region of the selling region, unless base_url is given
     # @param [String] base_url a custom destination instead of Amazon's endpoint for a region
     # @param [Boolean] sandbox whether to call Amazon's sandbox for the region
-    # @param [String] refresh_token a seller's refresh token; the client requests and refreshes access tokens
-    # @param [String] access_token a static access token, instead of a refresh token
-    # @param [String] scope the scope of a grantless operation, instead of a refresh token
-    # @param [String] client_id defaults to LWA_CLIENT_ID in the environment
-    # @param [String] client_secret defaults to LWA_CLIENT_SECRET in the environment
-    def initialize(region: nil, base_url: nil, sandbox: false, refresh_token: nil, access_token: nil, scope: nil,
-      client_id: nil, client_secret: nil, timeout: 30, retries: 0, retry_delay: 0.2, max_retry_delay: 30,
-      rate_limits: {}, lwa_endpoint: DEFAULT_LWA_ENDPOINT)
+    # @param [Numeric] timeout seconds for a whole call, including retries
+    # @param [Integer] retries how often to retry a throttled or failed GET
+    def initialize(access_token:, region: nil, base_url: nil, sandbox: false, timeout: 30, retries: 0,
+      retry_delay: 0.2, max_retry_delay: 30)
       raise ArgumentError, "provide either region or base_url" unless region.nil? ^ base_url.nil?
       raise ArgumentError, "cannot use sandbox with a custom base_url" if base_url && sandbox
 
@@ -30,17 +30,27 @@ module Peddler
         @endpoint = endpoint = Endpoint.find(region)
         base_url = (@sandbox ? endpoint.sandbox : endpoint.production).to_s
       end
-      if refresh_token || scope
-        client_id ||= ENV["LWA_CLIENT_ID"]
-        client_secret ||= ENV["LWA_CLIENT_SECRET"]
-        raise ArgumentError, "missing client_id: pass client_id: or set LWA_CLIENT_ID" if client_id.to_s.empty?
-        raise ArgumentError, "missing client_secret: pass client_secret: or set LWA_CLIENT_SECRET" if client_secret.to_s.empty?
-      end
-      config = { base_url: base_url, access_token: access_token, client_id: client_id, client_secret: client_secret,
-        refresh_token: refresh_token, scope: scope, timeout: timeout, retries: retries, retry_delay: retry_delay,
-        max_retry_delay: max_retry_delay, rate_limits: rate_limits, lwa_endpoint: lwa_endpoint,
-        user_agent: Native.user_agent }
+      config = { base_url: base_url, access_token: access_token, timeout: timeout, retries: retries,
+        retry_delay: retry_delay, max_retry_delay: max_retry_delay, user_agent: Native.user_agent }
       @engine = Native.engine(generate(config) || raise(ArgumentError, "invalid configuration"))
+    end
+
+    # A view of this client that sends another access token
+    #
+    # Use it for another seller, a rotated token, or a restricted data token for a few calls.
+    #
+    # @example
+    #   rdt = client.tokens.create_restricted_data_token(body: { restrictedResources: resources }).parse
+    #   client.with_access_token(rdt.restricted_data_token).orders_v0.get_order_address(order_id: id)
+    # @param [String] access_token
+    # @return [Peddler::Client]
+    def with_access_token(access_token)
+      unless access_token.is_a?(String) && access_token.valid_encoding? &&
+          (access_token.encoding == Encoding::UTF_8 || access_token.ascii_only?)
+        raise ArgumentError, "invalid access token"
+      end
+
+      view(@engine.with_access_token(access_token))
     end
 
     # A view of this client that calls Amazon's sandbox for its region
@@ -53,20 +63,12 @@ module Peddler
       endpoint = @endpoint
       raise ArgumentError, "cannot use sandbox with a custom base_url" unless endpoint
 
-      # One view per client, so its token and rate limit state carry across calls.
       @sandbox_view ||= view(@engine.with_base_url(endpoint.sandbox.to_s), sandbox: true)
     end
 
     # @return [Boolean]
     def sandbox?
       @sandbox
-    end
-
-    def restricted(resources:, target_application: nil)
-      scope = generate(resources: resources, target_application: target_application)
-      raise ArgumentError, "invalid restricted scope" unless scope
-
-      view(@engine.restricted(scope))
     end
 
     def request(method, path, params: {}, body: nil, operation: "raw")
@@ -93,7 +95,7 @@ module Peddler
       end
       raise TypeError, "operation must be a string" unless operation.is_a?(String)
 
-      Response.from_parts(@engine.request_with_operation(operation, method, path, query.to_a, payload), operation)
+      Response.from_parts(@engine.request(method, path, query.to_a, payload), operation)
     end
 
     # Lazily enumerates raw pages for an explicit Pagination mapping.

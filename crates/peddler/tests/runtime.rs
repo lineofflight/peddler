@@ -1,10 +1,11 @@
 use peddler::{
     Client, ClientConfig, Error, Request,
-    apis::catalog_items_2022_04_01::{GetCatalogItemParams, get_catalog_item},
-    auth::{Credentials, RestrictedResource, RestrictedScope},
-    policy::RateLimit,
+    apis::{
+        catalog_items_2022_04_01::{GetCatalogItemParams, get_catalog_item},
+        tokens_2021_03_01::{CreateRestrictedDataTokenParams, create_restricted_data_token},
+    },
 };
-use std::time::Duration;
+use std::time::{Duration, Instant};
 use tokio::{
     io::{AsyncReadExt, AsyncWriteExt},
     net::TcpListener,
@@ -71,28 +72,15 @@ fn request(method: &str) -> Request {
         body: None,
     }
 }
-fn config(base: String, lwa: String) -> ClientConfig {
-    let mut c = ClientConfig::new(
-        base,
-        Credentials::RefreshToken {
-            client_id: "dummy-id".into(),
-            client_secret: "dummy-secret".into(),
-            refresh_token: "dummy-refresh".into(),
-        },
-    );
-    c.lwa_endpoint = lwa;
-    c
+fn retrying(base: String, max_retries: u32) -> ClientConfig {
+    let mut config = ClientConfig::new(base, "static");
+    config.retry.max_retries = max_retries;
+    config
 }
 #[tokio::test]
-async fn raw_generated_and_concurrent_clones_share_one_refresh() {
-    let (lwa, auth) = server(vec![(
-        200,
-        vec![],
-        r#"{"access_token":"fresh-token","token_type":"bearer","expires_in":3600}"#,
-    )])
-    .await;
+async fn raw_generated_and_concurrent_clones_send_the_supplied_token() {
     let (base, api) = server(vec![(200, vec![], "{}"); 8]).await;
-    let client = Client::with_config(config(base, lwa)).unwrap();
+    let client = Client::new(&base, "supplied-token").unwrap();
     let mut tasks = vec![];
     for n in 0..8 {
         let c = client.clone();
@@ -112,9 +100,8 @@ async fn raw_generated_and_concurrent_clones_share_one_refresh() {
     for t in tasks {
         t.await.unwrap();
     }
-    assert_eq!(auth.await.unwrap().len(), 1);
     for r in api.await.unwrap() {
-        assert!(r.contains("x-amz-access-token: fresh-token"));
+        assert!(r.contains("x-amz-access-token: supplied-token"));
     }
 }
 #[tokio::test]
@@ -125,9 +112,7 @@ async fn retry_safe_get_but_never_patch_and_keep_final_response() {
         (429, vec![("x-repeat", "a"), ("x-repeat", "b")], "last"),
     ])
     .await;
-    let mut c = ClientConfig::new(base, Credentials::AccessToken("static".into()));
-    c.policy.retry.max_retries = 2;
-    let client = Client::with_config(c).unwrap();
+    let client = Client::with_config(retrying(base, 2)).unwrap();
     assert_eq!(client.execute(request("GET")).await.unwrap().body, b"ok");
     let final_response = client.execute(request("PATCH")).await.unwrap();
     assert_eq!(final_response.body, b"last");
@@ -135,42 +120,54 @@ async fn retry_safe_get_but_never_patch_and_keep_final_response() {
     assert_eq!(api.await.unwrap().len(), 3);
 }
 #[tokio::test]
-async fn deadline_includes_rate_wait_and_excessive_backoff_returns_last_response() {
-    let (base, api) = server(vec![
-        (200, vec![], "ok"),
-        (429, vec![("Retry-After", "1")], "retain"),
-    ])
-    .await;
-    let mut c = ClientConfig::new(base, Credentials::AccessToken("static".into()));
+async fn backoff_longer_than_the_deadline_returns_the_last_response() {
+    let (base, api) = server(vec![(429, vec![("Retry-After", "1")], "retain")]).await;
+    let mut c = retrying(base, 1);
     c.timeout = Duration::from_millis(50);
-    c.policy.retry.max_retries = 1;
-    c.policy.rate_limits.insert(
-        "slow".into(),
-        RateLimit {
-            rate_per_second: 0.1,
-            burst: 1,
-        },
-    );
     let client = Client::with_config(c).unwrap();
-    client
-        .execute_with_operation("slow", request("GET"))
-        .await
-        .unwrap();
-    assert_eq!(
-        client
-            .execute_with_operation("slow", request("GET"))
-            .await
-            .unwrap_err(),
-        Error::Timeout
-    );
     assert_eq!(
         client.execute(request("GET")).await.unwrap().body,
         b"retain"
     );
+    assert_eq!(api.await.unwrap().len(), 1);
+}
+#[tokio::test]
+async fn one_deadline_covers_every_attempt_and_the_retry_delay() {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let base = format!("http://{}", listener.local_addr().unwrap());
+    let api = tokio::spawn(async move {
+        let mut buf = [0; 4096];
+        let (mut socket, _) = listener.accept().await.unwrap();
+        assert!(socket.read(&mut buf).await.unwrap() > 0);
+        tokio::time::sleep(Duration::from_millis(300)).await;
+        socket
+            .write_all(b"HTTP/1.1 503 Test\r\nContent-Length: 0\r\nConnection: close\r\n\r\n")
+            .await
+            .unwrap();
+        // The second attempt is never answered and is cut off by the first one's deadline.
+        let (mut socket, _) = listener.accept().await.unwrap();
+        assert!(socket.read(&mut buf).await.unwrap() > 0);
+        assert_eq!(socket.read(&mut buf).await.unwrap(), 0);
+    });
+    let mut c = retrying(base, 3);
+    c.timeout = Duration::from_millis(500);
+    c.retry.base_delay = Duration::from_millis(1);
+    let client = Client::with_config(c).unwrap();
+    let started = Instant::now();
+    assert_eq!(
+        client.execute(request("GET")).await.unwrap_err(),
+        Error::Timeout
+    );
+    // A deadline per attempt would have allowed 300 + 500 milliseconds.
+    assert!(
+        started.elapsed() < Duration::from_millis(700),
+        "{:?}",
+        started.elapsed()
+    );
     api.await.unwrap();
 }
 #[tokio::test]
-async fn restricted_views_reuse_canonical_tokens_and_base_bootstrap() {
+async fn views_send_their_own_token_and_a_restricted_data_token_is_an_ordinary_call() {
     let (base, api) = server(vec![
         (
             200,
@@ -179,63 +176,44 @@ async fn restricted_views_reuse_canonical_tokens_and_base_bootstrap() {
         ),
         (200, vec![], "ok"),
         (200, vec![], "ok"),
-        (
-            200,
-            vec![],
-            r#"{"restrictedDataToken":"rdt-two","expiresIn":3600}"#,
-        ),
         (200, vec![], "ok"),
     ])
     .await;
     let client = Client::new(&base, "base-token").unwrap();
-    let scope = RestrictedScope {
-        resources: vec![RestrictedResource {
-            method: "GET".into(),
-            path: "/test".into(),
-            data_elements: vec![],
-        }],
-        target_application: None,
-    };
-    client
-        .restricted(scope.clone())
-        .unwrap()
-        .execute(request("GET"))
+    let scope = serde_json::json!({"restrictedResources":[{"method":"GET","path":"/test"}]});
+    let token = create_restricted_data_token(&client, CreateRestrictedDataTokenParams::new(scope))
         .await
-        .unwrap();
-    client
-        .restricted(scope.clone())
         .unwrap()
-        .execute(request("GET"))
-        .await
-        .unwrap();
-    let mut other = scope;
-    other.target_application = Some("other-app".into());
-    client
-        .restricted(other)
+        .json()
         .unwrap()
-        .execute(request("GET"))
-        .await
+        .restricted_data_token
         .unwrap();
+    let restricted = client.with_access_token(&token).unwrap();
+    restricted.execute(request("GET")).await.unwrap();
+    let seller_b = client.with_access_token("seller-b").unwrap();
+    seller_b.execute(request("GET")).await.unwrap();
+    // The original client is unchanged, and nothing was cached or fetched for a view.
+    client.execute(request("GET")).await.unwrap();
     let requests = api.await.unwrap();
+    assert!(requests[0].starts_with("POST /tokens/2021-03-01/restrictedDataToken "));
     assert!(requests[0].contains("x-amz-access-token: base-token"));
-    assert!(requests[3].contains("x-amz-access-token: base-token"));
     assert!(requests[1].contains("x-amz-access-token: rdt-one"));
-    assert!(requests[2].contains("x-amz-access-token: rdt-one"));
-    assert!(requests[4].contains("x-amz-access-token: rdt-two"));
+    assert!(requests[2].contains("x-amz-access-token: seller-b"));
+    assert!(requests[3].contains("x-amz-access-token: base-token"));
+    for invalid in ["", " ", "bad\r\ntoken"] {
+        assert_eq!(
+            client.with_access_token(invalid).unwrap_err(),
+            Error::InvalidRequest
+        );
+    }
+    assert!(!format!("{restricted:?} {seller_b:?}").contains("rdt-one"));
+    assert!(!format!("{restricted:?} {seller_b:?}").contains("seller-b"));
 }
 #[tokio::test]
-async fn invalid_input_does_not_fetch_tokens_and_failed_refresh_recovers() {
-    let (lwa, auth) = server(vec![
-        (401, vec![], "dummy-secret"),
-        (
-            200,
-            vec![],
-            r#"{"access_token":"recovered","token_type":"bearer","expires_in":3600}"#,
-        ),
-    ])
-    .await;
-    let (base, api) = server(vec![(200, vec![], "ok")]).await;
-    let client = Client::with_config(config(base, lwa)).unwrap();
+async fn invalid_input_performs_no_http() {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let base = format!("http://{}", listener.local_addr().unwrap());
+    let client = Client::new(&base, "static").unwrap();
     let mut invalid = request("GET");
     invalid.path = "//foreign".into();
     assert_eq!(
@@ -251,97 +229,18 @@ async fn invalid_input_does_not_fetch_tokens_and_failed_refresh_recovers() {
         .unwrap_err(),
         Error::InvalidRequest
     );
-    assert_eq!(
-        client
-            .execute_with_operation("", request("GET"))
+    assert!(
+        tokio::time::timeout(Duration::from_millis(30), listener.accept())
             .await
-            .unwrap_err(),
-        Error::InvalidRequest
+            .is_err()
     );
-    let err = client.execute(request("GET")).await.unwrap_err();
-    assert!(matches!(err, Error::Authentication(_)));
-    assert!(!format!("{err:?}").contains("dummy-secret"));
-    client.execute(request("GET")).await.unwrap();
-    assert_eq!(auth.await.unwrap().len(), 2);
-    api.await.unwrap();
-}
-
-#[tokio::test]
-async fn token_is_refreshed_after_rate_wait_and_retry_backoff() {
-    let token1 = r#"{"access_token":"first","token_type":"bearer","expires_in":1}"#;
-    let token2 = r#"{"access_token":"second","token_type":"bearer","expires_in":3600}"#;
-    let (lwa, auth) = server(vec![(200, vec![], token1), (200, vec![], token2)]).await;
-    let (base, api) = server(vec![
-        (429, vec![("Retry-After", "1")], "retry"),
-        (200, vec![], "ok"),
-    ])
-    .await;
-    let mut c = config(base, lwa);
-    c.policy.retry.max_retries = 1;
-    c.policy.rate_limits.insert(
-        "raw".into(),
-        RateLimit {
-            rate_per_second: 1.0,
-            burst: 1,
-        },
-    );
-    let client = Client::with_config(c).unwrap();
-    client.execute(request("GET")).await.unwrap();
-    assert_eq!(auth.await.unwrap().len(), 2);
-    let requests = api.await.unwrap();
-    assert!(requests[0].contains("x-amz-access-token: first"));
-    assert!(requests[1].contains("x-amz-access-token: second"));
 }
 #[tokio::test]
-async fn rate_wait_refreshes_expired_token_and_other_operations_are_independent() {
-    let (lwa, auth) = server(vec![
-        (
-            200,
-            vec![],
-            r#"{"access_token":"first","token_type":"bearer","expires_in":1}"#,
-        ),
-        (
-            200,
-            vec![],
-            r#"{"access_token":"second","token_type":"bearer","expires_in":3600}"#,
-        ),
-    ])
-    .await;
-    let (base, api) = server(vec![(200, vec![], "ok"); 3]).await;
-    let mut c = config(base, lwa);
-    c.policy.rate_limits.insert(
-        "slow".into(),
-        RateLimit {
-            rate_per_second: 0.9,
-            burst: 1,
-        },
-    );
-    let client = Client::with_config(c).unwrap();
-    client
-        .execute_with_operation("slow", request("GET"))
-        .await
-        .unwrap();
-    tokio::time::timeout(
-        Duration::from_millis(100),
-        client.execute_with_operation("separate", request("GET")),
-    )
-    .await
-    .unwrap()
-    .unwrap();
-    client
-        .execute_with_operation("slow", request("GET"))
-        .await
-        .unwrap();
-    let requests = api.await.unwrap();
-    assert!(requests[2].contains("x-amz-access-token: second"));
-    assert_eq!(auth.await.unwrap().len(), 2);
-}
-#[tokio::test]
-async fn cancelled_refresh_closes_socket_and_recovers() {
+async fn cancelled_request_closes_socket_and_client_recovers() {
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let lwa = format!("http://{}", listener.local_addr().unwrap());
+    let base = format!("http://{}", listener.local_addr().unwrap());
     let (started, waiting) = tokio::sync::oneshot::channel();
-    let auth = tokio::spawn(async move {
+    let api = tokio::spawn(async move {
         let (mut socket, _) = listener.accept().await.unwrap();
         let mut buf = [0; 4096];
         assert!(socket.read(&mut buf).await.unwrap() > 0);
@@ -353,20 +252,12 @@ async fn cancelled_refresh_closes_socket_and_recovers() {
         );
         let (mut socket, _) = listener.accept().await.unwrap();
         assert!(socket.read(&mut buf).await.unwrap() > 0);
-        let body = r#"{"access_token":"recovered","token_type":"bearer","expires_in":3600}"#;
         socket
-            .write_all(
-                format!(
-                    "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}",
-                    body.len()
-                )
-                .as_bytes(),
-            )
+            .write_all(b"HTTP/1.1 200 OK\r\nContent-Length: 2\r\nConnection: close\r\n\r\nok")
             .await
             .unwrap();
     });
-    let (base, api) = server(vec![(200, vec![], "ok")]).await;
-    let client = Client::with_config(config(base, lwa)).unwrap();
+    let client = Client::new(&base, "static").unwrap();
     let clone = client.clone();
     let task = tokio::spawn(async move { clone.execute(request("GET")).await });
     waiting.await.unwrap();
@@ -376,27 +267,24 @@ async fn cancelled_refresh_closes_socket_and_recovers() {
         .await
         .unwrap()
         .unwrap();
-    auth.await.unwrap();
     api.await.unwrap();
 }
 #[tokio::test]
-async fn overall_deadline_cancels_auth_socket() {
+async fn overall_deadline_closes_the_socket() {
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let lwa = format!("http://{}", listener.local_addr().unwrap());
-    let auth = tokio::spawn(async move {
+    let base = format!("http://{}", listener.local_addr().unwrap());
+    let api = tokio::spawn(async move {
         let (mut socket, _) = listener.accept().await.unwrap();
         let mut buf = [0; 4096];
         assert!(socket.read(&mut buf).await.unwrap() > 0);
         assert_eq!(socket.read(&mut buf).await.unwrap(), 0);
     });
-    let mut c = config("http://127.0.0.1:1".into(), lwa);
-    c.timeout = Duration::from_millis(30);
-    let client = Client::with_config(c).unwrap();
+    let client = Client::with_timeout(&base, "static", Duration::from_millis(30)).unwrap();
     assert_eq!(
         client.execute(request("GET")).await.unwrap_err(),
         Error::Timeout
     );
-    auth.await.unwrap();
+    api.await.unwrap();
 }
 
 #[tokio::test]
@@ -407,8 +295,7 @@ async fn generated_get_uses_retry_policy_and_retains_final_error() {
         (503, vec![("Retry-After", "2")], "unparsed"),
     ])
     .await;
-    let mut c = ClientConfig::new(base, Credentials::AccessToken("static".into()));
-    c.policy.retry.max_retries = 1;
+    let mut c = retrying(base, 1);
     c.timeout = Duration::from_secs(1);
     let client = Client::with_config(c).unwrap();
     assert_eq!(
@@ -435,31 +322,16 @@ async fn generated_get_uses_retry_policy_and_retains_final_error() {
 }
 
 #[tokio::test]
-async fn full_generated_sellers_operation_uses_lwa_and_safe_retry_runner() {
+async fn full_generated_sellers_operation_uses_the_safe_retry_runner() {
     use peddler::apis::sellers_v1::{
         GetMarketplaceParticipationsParams, get_marketplace_participations,
     };
-    let (lwa, auth) = server(vec![(
-        200,
-        vec![],
-        r#"{"access_token":"full-token","token_type":"bearer","expires_in":3600}"#,
-    )])
-    .await;
     let (base, api) = server(vec![
         (503, vec![("Retry-After", "0")], "temporary"),
         (200, vec![], "{\"payload\":[]}"),
     ])
     .await;
-    let mut c = config(base, lwa);
-    c.policy.retry.max_retries = 1;
-    c.policy.rate_limits.insert(
-        "sellers_v1.get_marketplace_participations".into(),
-        RateLimit {
-            rate_per_second: 1000.0,
-            burst: 2,
-        },
-    );
-    let client = Client::with_config(c).unwrap();
+    let client = Client::with_config(retrying(base, 1)).unwrap();
     let response =
         get_marketplace_participations(&client, GetMarketplaceParticipationsParams::new())
             .await
@@ -470,9 +342,8 @@ async fn full_generated_sellers_operation_uses_lwa_and_safe_retry_runner() {
     assert_eq!(requests.len(), 2);
     for request in requests {
         assert!(request.starts_with("GET /sellers/v1/marketplaceParticipations "));
-        assert!(request.contains("x-amz-access-token: full-token"));
+        assert!(request.contains("x-amz-access-token: static"));
     }
-    assert_eq!(auth.await.unwrap().len(), 1);
 }
 
 fn header<'a>(request: &'a str, name: &str) -> Option<&'a str> {
@@ -491,22 +362,14 @@ fn is_amz_date(value: &str) -> bool {
 }
 
 #[tokio::test]
-async fn every_api_attempt_carries_its_own_x_amz_date_and_lwa_carries_none() {
-    let (lwa, auth) = server(vec![(
-        200,
-        vec![],
-        r#"{"access_token":"fresh-token","token_type":"bearer","expires_in":3600}"#,
-    )])
-    .await;
+async fn every_api_attempt_carries_its_own_x_amz_date() {
     let (base, api) = server(vec![
         (429, vec![("Retry-After", "1")], "first"),
         (200, vec![], "{}"),
         (200, vec![], "{}"),
     ])
     .await;
-    let mut c = config(base, lwa);
-    c.policy.retry.max_retries = 1;
-    let client = Client::with_config(c).unwrap();
+    let client = Client::with_config(retrying(base, 1)).unwrap();
     assert_eq!(client.execute(request("GET")).await.unwrap().status, 200);
     get_catalog_item(
         &client,
@@ -523,26 +386,23 @@ async fn every_api_attempt_carries_its_own_x_amz_date_and_lwa_carries_none() {
     assert!(dates.iter().all(|date| is_amz_date(date)), "{dates:?}");
     // The retry waited a second, so a header set once per request would repeat.
     assert_ne!(dates[0], dates[1]);
-    for request in auth.await.unwrap() {
-        assert_eq!(header(&request, "x-amz-date"), None);
-    }
 }
 
 #[tokio::test]
 async fn user_agent_is_the_crates_own_unless_the_caller_identifies_itself() {
-    let (base, api) = server(vec![(200, vec![], "{}"), (200, vec![], "{}")]).await;
+    let (base, api) = server(vec![(200, vec![], "{}"); 3]).await;
     let own = Client::new(&base, "static").unwrap();
     own.execute(request("GET")).await.unwrap();
-    let (lwa, auth) = server(vec![(
-        200,
-        vec![],
-        r#"{"access_token":"fresh-token","token_type":"bearer","expires_in":3600}"#,
-    )])
-    .await;
-    let mut c = config(base.clone(), lwa);
+    let mut c = ClientConfig::new(base.clone(), "static");
     c.user_agent = Some("Peddler/6.0.0 (Language=Ruby; host)".into());
     let wrapped = Client::with_config(c).unwrap();
     wrapped.execute(request("GET")).await.unwrap();
+    get_catalog_item(
+        &wrapped.with_access_token("other").unwrap(),
+        GetCatalogItemParams::new("ASIN".into(), vec!["UK".into()]),
+    )
+    .await
+    .unwrap();
     let requests = api.await.unwrap();
     assert_eq!(
         header(&requests[0], "user-agent"),
@@ -552,15 +412,13 @@ async fn user_agent_is_the_crates_own_unless_the_caller_identifies_itself() {
             " (Language=Rust)"
         ))
     );
-    assert_eq!(
-        header(&requests[1], "user-agent"),
-        Some("Peddler/6.0.0 (Language=Ruby; host)")
-    );
-    assert_eq!(
-        header(&auth.await.unwrap()[0], "user-agent"),
-        Some("Peddler/6.0.0 (Language=Ruby; host)")
-    );
-    let mut invalid = ClientConfig::new(base, Credentials::AccessToken("static".into()));
+    for request in &requests[1..] {
+        assert_eq!(
+            header(request, "user-agent"),
+            Some("Peddler/6.0.0 (Language=Ruby; host)")
+        );
+    }
+    let mut invalid = ClientConfig::new(base, "static");
     invalid.user_agent = Some("bad\r\nvalue".into());
     assert_eq!(
         Client::with_config(invalid).unwrap_err(),

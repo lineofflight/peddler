@@ -7,7 +7,7 @@ use peddler::{
     documents::{Error as DocumentError, UploadOptions},
     workflows::{WaitOptions, WorkflowError},
 };
-use std::{sync::Arc, time::Duration};
+use std::time::Duration;
 
 fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
     let message = error.to_string();
@@ -61,8 +61,8 @@ fn download(
     guard(ruby, engine.pid)?;
     let options = Config::parse(ruby, &config)?;
     let workflows = engine.state.client.workflows();
-    let runtime = Arc::clone(&engine.state.runtime);
-    let download = gvl::wait(ruby, "WorkflowError", Arc::clone(&runtime), async move {
+    let shared = engine.state.shared;
+    let download = gvl::wait(ruby, "WorkflowError", shared, async move {
         match kind {
             Kind::Report => workflows.download_report_document(&id, options).await,
             Kind::Feed => workflows.download_feed_document(&id, options).await,
@@ -70,7 +70,7 @@ fn download(
         }
     })?
     .map_err(|error| workflow_error(ruby, error))?;
-    Ok(Document::from_download(engine.pid, runtime, download))
+    Ok(Document::from_download(engine.pid, shared, download))
 }
 fn download_report(
     ruby: &Ruby,
@@ -112,8 +112,7 @@ fn wait(
         timeout: Duration::try_from_secs_f64(timeout).map_err(|_| invalid())?,
     };
     let workflows = engine.state.client.workflows();
-    let runtime = Arc::clone(&engine.state.runtime);
-    let result = gvl::wait(ruby, "WorkflowError", runtime, async move {
+    let result = gvl::wait(ruby, "WorkflowError", engine.state.shared, async move {
         match kind {
             Kind::Report => workflows
                 .wait_for_report(&id, options)
@@ -183,9 +182,8 @@ fn start_feed_upload(
         content_length,
     };
     let workflows = engine.state.client.workflows();
-    let runtime = Arc::clone(&engine.state.runtime);
     let create = options.clone();
-    let target = gvl::wait(ruby, "WorkflowError", runtime, async move {
+    let target = gvl::wait(ruby, "WorkflowError", engine.state.shared, async move {
         workflows.create_feed_document(&content_type, &create).await
     })?
     .map_err(|error| workflow_error(ruby, error))?;

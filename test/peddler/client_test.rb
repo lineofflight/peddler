@@ -35,10 +35,19 @@ module Peddler
       assert_same(view, client.sandbox)
     end
 
-    def test_restricted_views_keep_the_sandbox_setting
+    def test_token_views_keep_the_region_and_the_sandbox_setting
       client = Client.new(region: "eu-west-1", access_token: "token", sandbox: true)
+      view = client.with_access_token("other")
 
-      assert_predicate(client.restricted(resources: [{ method: "GET", path: "/orders/v0/orders" }]), :sandbox?)
+      assert_instance_of(Client, view)
+      refute_same(client, view)
+      assert_predicate(view, :sandbox?)
+      assert_same(view, view.sandbox)
+
+      production = Client.new(region: "eu-west-1", access_token: "token").with_access_token("other")
+
+      refute_predicate(production, :sandbox?)
+      assert_predicate(production.sandbox, :sandbox?)
     end
 
     def test_base_url_overrides_the_destination
@@ -68,123 +77,100 @@ module Peddler
       end
     end
 
-    def test_refresh_token_defaults_the_application_credentials_from_the_environment
-      with_env("LWA_CLIENT_ID" => "env-id", "LWA_CLIENT_SECRET" => "env-secret") do
-        defaults = config(region: "eu-west-1", refresh_token: "refresh")
+    def test_requires_an_access_token
+      error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1") }
 
-        assert_equal(["env-id", "env-secret", "refresh"], defaults.values_at("client_id", "client_secret", "refresh_token"))
-        assert_equal("explicit-id", config(region: "eu-west-1", refresh_token: "refresh", client_id: "explicit-id")["client_id"])
+      assert_match(/access_token/, error.message)
+      [nil, "", " ", 1].each do |token|
+        assert_raises(ArgumentError, token.inspect) { Client.new(region: "eu-west-1", access_token: token) }
       end
     end
 
-    def test_scope_defaults_the_application_credentials_from_the_environment
-      with_env("LWA_CLIENT_ID" => "env-id", "LWA_CLIENT_SECRET" => "env-secret") do
-        grantless = config(region: "eu-west-1", scope: "sellingpartnerapi::notifications")
-
-        assert_equal(["env-id", "env-secret"], grantless.values_at("client_id", "client_secret"))
-        assert_equal("sellingpartnerapi::notifications", grantless["scope"])
-      end
-    end
-
-    def test_access_token_ignores_the_environment
-      with_env("LWA_CLIENT_ID" => "env-id", "LWA_CLIENT_SECRET" => "env-secret") do
-        static = config(region: "eu-west-1", access_token: "token")
-
-        assert_equal("token", static["access_token"])
-        assert_nil(static["client_id"])
-        assert_nil(static["client_secret"])
-      end
-    end
-
-    def test_missing_or_conflicting_credentials
-      with_env("LWA_CLIENT_ID" => nil, "LWA_CLIENT_SECRET" => nil) do
-        [
-          {},
-          { refresh_token: "refresh" },
-          { access_token: "token", refresh_token: "refresh" },
-          { access_token: "token", client_id: "id" },
-          { refresh_token: "refresh", scope: "scope", client_id: "id", client_secret: "secret" },
-        ].each do |credentials|
-          error = assert_raises(ArgumentError, credentials.inspect) { Client.new(region: "eu-west-1", **credentials) }
-
-          refute_match(/token|refresh|secret/, error.message)
+    # The client no longer fetches tokens or limits its own rate: Peddler::LWA and the application do.
+    def test_rejects_the_keywords_of_the_removed_managed_state
+      {
+        refresh_token: "seller-refresh", client_id: "app-id", client_secret: "app-secret",
+        scope: "sellingpartnerapi::notifications", rate_limits: {}, lwa_endpoint: "http://localhost:1",
+      }.each do |keyword, value|
+        error = assert_raises(ArgumentError, keyword.to_s) do
+          Client.new(region: "eu-west-1", access_token: "token", keyword => value)
         end
+
+        assert_match(/unknown keyword: :#{keyword}/, error.message)
+        refute_match(/seller-refresh|app-id|app-secret|notifications/, error.message)
       end
+      refute_respond_to(Client.new(region: "eu-west-1", access_token: "token"), :restricted)
+      refute(Client.const_defined?(:DEFAULT_LWA_ENDPOINT))
     end
 
-    def test_names_the_missing_application_credential
-      with_env("LWA_CLIENT_ID" => nil, "LWA_CLIENT_SECRET" => nil) do
-        [{ refresh_token: "seller-refresh" }, { scope: "sellingpartnerapi::notifications" }].each do |grant|
-          error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", **grant) }
-
-          assert_match(/client_id.*LWA_CLIENT_ID/, error.message)
-          error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", client_id: "app-id", **grant) }
-
-          assert_match(/client_secret.*LWA_CLIENT_SECRET/, error.message)
-          refute_match(/app-id|seller-refresh|notifications/, error.message)
-        end
-      end
-      with_env("LWA_CLIENT_ID" => "", "LWA_CLIENT_SECRET" => "env-secret") do
-        error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", refresh_token: "seller-refresh") }
-
-        assert_match(/LWA_CLIENT_ID/, error.message)
-        refute_match(/env-secret|seller-refresh/, error.message)
-      end
-    end
-
-    def test_a_credential_that_is_not_utf8_never_reaches_a_message_or_cause
-      error = assert_raises(ArgumentError) do
-        Client.new(region: "eu-west-1", client_id: "app-id", client_secret: "app-secret", refresh_token: "seller-refresh-\xFF")
-      end
+    def test_a_token_that_is_not_utf8_never_reaches_a_message_or_cause
+      error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", access_token: "seller-access-\xFF") }
 
       assert_equal("invalid configuration", error.message)
       assert_nil(error.cause)
-      refute_match(/seller-refresh|app-secret|app-id/, error.full_message(highlight: false))
-    end
+      refute_match(/seller-access/, error.full_message(highlight: false))
 
-    def test_a_restricted_resource_that_is_not_utf8_never_reaches_a_message_or_cause
       client = Client.new(region: "eu-west-1", access_token: "token")
-      error = assert_raises(ArgumentError) do
-        client.restricted(resources: [{ method: "GET", path: "/orders/v0/orders/private-\xFF" }])
-      end
+      ["seller-access-\xFF", "seller-access-\xFF".b, "seller-access\r\n", "", " ", nil, :token].each do |token|
+        error = assert_raises(ArgumentError, token.inspect) { client.with_access_token(token) }
 
-      assert_equal("invalid restricted scope", error.message)
-      assert_nil(error.cause)
-      refute_match(/private/, error.full_message(highlight: false))
+        assert_nil(error.cause)
+        refute_match(/seller-access/, error.full_message(highlight: false))
+      end
     end
 
     def test_construction_performs_no_network_access
-      client = Client.new(region: "eu-west-1", client_id: "id", client_secret: "secret", refresh_token: "refresh")
+      client = Client.new(region: "eu-west-1", access_token: "token")
 
       assert_respond_to(client, :orders_v0)
       assert_respond_to(client, :orders)
+      assert_respond_to(client.with_access_token("other"), :orders)
     end
 
     def test_inspect_shows_no_credentials
-      client = Client.new(region: "eu-west-1", client_id: "app-id", client_secret: "app-secret", refresh_token: "seller-refresh")
+      client = Client.new(region: "eu-west-1", access_token: "seller-access")
 
-      refute_match(/app-id|app-secret|seller-refresh/, client.inspect)
-      refute_match(/app-id|app-secret|seller-refresh/, client.sandbox.inspect)
+      [client, client.sandbox, client.with_access_token("other-access")].each do |instance|
+        refute_match(/seller-access|other-access/, instance.inspect)
+      end
     end
 
-    def test_keeps_policy_options
+    def test_keeps_policy_options_and_nothing_else
       policy = config(region: "eu-west-1", access_token: "token", timeout: 5, retries: 2, retry_delay: 0.5,
-        max_retry_delay: 10, rate_limits: { "orders_v0.get_orders" => { rate: 0.5, burst: 1 } }, lwa_endpoint: "http://localhost:1")
+        max_retry_delay: 10)
 
-      assert_equal([5, 2, 0.5, 10, "http://localhost:1"],
-        policy.values_at("timeout", "retries", "retry_delay", "max_retry_delay", "lwa_endpoint"))
-      assert_equal({ "orders_v0.get_orders" => { "rate" => 0.5, "burst" => 1 } }, policy["rate_limits"])
+      assert_equal([5, 2, 0.5, 10], policy.values_at("timeout", "retries", "retry_delay", "max_retry_delay"))
+      assert_equal(
+        ["access_token", "base_url", "max_retry_delay", "retries", "retry_delay", "timeout", "user_agent"],
+        policy.keys.sort,
+      )
     end
 
     def test_lwa_defaults_the_application_credentials_from_the_environment
       with_env("LWA_CLIENT_ID" => "env-id", "LWA_CLIENT_SECRET" => "env-secret") do
         assert_instance_of(LWA, LWA.new)
-        assert_respond_to(LWA.new, :exchange_authorization_code)
+        [:refresh, :client_credentials, :exchange_authorization_code].each { |grant| assert_respond_to(LWA.new, grant) }
       end
-      with_env("LWA_CLIENT_ID" => nil, "LWA_CLIENT_SECRET" => nil) do
-        assert_raises(ArgumentError) { LWA.new }
-      end
+
       refute_respond_to(LWA, :request)
+    end
+
+    def test_lwa_names_the_missing_application_credential
+      with_env("LWA_CLIENT_ID" => nil, "LWA_CLIENT_SECRET" => nil) do
+        error = assert_raises(ArgumentError) { LWA.new }
+
+        assert_match(/client_id.*LWA_CLIENT_ID/, error.message)
+        error = assert_raises(ArgumentError) { LWA.new(client_id: "app-id") }
+
+        assert_match(/client_secret.*LWA_CLIENT_SECRET/, error.message)
+        refute_match(/app-id/, error.message)
+      end
+      with_env("LWA_CLIENT_ID" => "", "LWA_CLIENT_SECRET" => "env-secret") do
+        error = assert_raises(ArgumentError) { LWA.new }
+
+        assert_match(/LWA_CLIENT_ID/, error.message)
+        refute_match(/env-secret/, error.message)
+      end
     end
 
     private

@@ -29,18 +29,17 @@ pub async fn generate_order_scenarios<B: serde::Serialize>(
     }
     let raw = client
         .run(
-            "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios",
             "POST",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 let body = body.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },
@@ -77,17 +76,16 @@ pub async fn get_order_scenarios(
     let omit_body = false;
     let raw = client
         .run(
-            "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios",
             "GET",
-            |snapshot| {
+            || {
                 let params = &params;
                 let empty_queries = empty_queries.clone();
                 async move {
                     let wire = wire::Client::new_with_client(
-                        snapshot.origin.as_str().trim_end_matches('/'),
-                        snapshot.http.clone(),
+                        client.origin.as_str().trim_end_matches('/'),
+                        client.http.clone(),
                         WireContext {
-                            client: snapshot.clone(),
+                            client: client.clone(),
                             empty_queries,
                             omit_body,
                         },

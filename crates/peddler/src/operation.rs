@@ -1,4 +1,4 @@
-//! Shared raw response collection and pre-authorization facade validation.
+//! Shared raw response collection and facade validation before any request.
 use crate::{Client, Error, Response, classify_transport};
 use futures_util::StreamExt;
 use progenitor_client::{ByteStream, ResponseValue};
@@ -107,7 +107,7 @@ pub(crate) fn encode_segment(value: &str) -> String {
     percent_encoding::utf8_percent_encode(value, SEGMENT).to_string()
 }
 
-/// Validate schema parameter constraints before acquiring authorization. String
+/// Validate schema parameter constraints before any request. String
 /// enums stay open; formats and patterns constrain the actual wire representation.
 pub(crate) fn validate_parameter(
     value: serde_json::Value,
@@ -270,8 +270,6 @@ mod tests {
         )
         .unwrap();
         let base = format!("http://{}", foreign.local_addr().unwrap());
-        let mut inner = inner;
-        inner.access_token = Some(inner.auth.token(None).await.unwrap());
         let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner.into());
         let mut request =
             reqwest::Request::new(reqwest::Method::GET, reqwest::Url::parse(&base).unwrap());
@@ -306,8 +304,6 @@ mod tests {
         let base = format!("http://{}", listener.local_addr().unwrap());
         let inner =
             Client::with_timeout(&base, "timeout-secret", Duration::from_millis(30)).unwrap();
-        let mut inner = inner;
-        inner.access_token = Some(inner.auth.token(None).await.unwrap());
         let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner.into());
         let mut request =
             reqwest::Request::new(reqwest::Method::GET, reqwest::Url::parse(&base).unwrap());

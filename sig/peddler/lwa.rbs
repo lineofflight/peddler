@@ -6,22 +6,25 @@ module Peddler
 
     class Tokens
       attr_reader access_token: String
-      attr_reader refresh_token: String
+      attr_reader refresh_token: String?
       attr_reader token_type: String
       attr_reader expires_in: Integer
-      def initialize: (String access_token, String refresh_token, String token_type, Integer expires_in) -> void
-      def to_h: () -> { access_token: String, refresh_token: String, token_type: String, expires_in: Integer }
+      def initialize: (String access_token, String? refresh_token, String token_type, Integer expires_in) -> void
+      def to_h: () -> { access_token: String, refresh_token: String?, token_type: String, expires_in: Integer }
       def inspect: () -> String
       def to_s: () -> String
     end
 
     def initialize: (?client_id: String?, ?client_secret: String?, ?timeout: Numeric, ?lwa_endpoint: String) -> void
+    def refresh: (refresh_token: String) -> Tokens
+    def client_credentials: (scope: String) -> Tokens
     def exchange_authorization_code: (code: String, ?redirect_uri: String?) -> Tokens
     def inspect: () -> String
     def to_s: () -> String
 
     private
 
+    def tokens: (Native::tokens parts) -> Tokens
     def text?: (untyped value) -> bool
   end
 end
