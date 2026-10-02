@@ -331,13 +331,16 @@ async fn onboarding_body_timeout_and_cancellation_close_socket_then_recover() {
             tokio::spawn(async move { pending.exchange_authorization_code("code", None).await });
         arrived.recv().await.unwrap();
         if cancel {
+            tokio::time::sleep(Duration::from_millis(10)).await;
             call.abort();
             assert!(call.await.unwrap_err().is_cancelled());
         } else {
             assert_eq!(call.await.unwrap().unwrap_err(), AuthError::Timeout);
         }
+        let recovery =
+            LwaClient::with_config("id", "secret", &origin, Duration::from_secs(5)).unwrap();
         assert_eq!(
-            client
+            recovery
                 .exchange_authorization_code("new-code", None)
                 .await
                 .unwrap()
