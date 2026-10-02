@@ -256,12 +256,22 @@ fn remaining(deadline: Instant) -> Result<Duration, WorkflowError> {
         Ok(left)
     }
 }
-/// Decode a metadata reply that must carry exactly `status`.
-fn decode<T: DeserializeOwned>(typed: TypedResponse<T>, status: u16) -> Result<T, WorkflowError> {
+/// One metadata request under the deadline. The reply must carry exactly `status`
+/// and decode. The model comes with the response it was read from.
+async fn metadata<T: DeserializeOwned>(
+    deadline: Instant,
+    status: u16,
+    call: impl Future<Output = Result<TypedResponse<T>, ClientError>>,
+) -> Result<(T, TypedResponse<T>), WorkflowError> {
+    let typed = timeout_at(deadline, call)
+        .await
+        .map_err(|_| WorkflowError::Timeout)?
+        .map_err(request_error)?;
     if typed.raw.status != status {
         return Err(WorkflowError::Http(typed.into_raw()));
     }
-    typed.json().map_err(|_| WorkflowError::Metadata)
+    let model = typed.json().map_err(|_| WorkflowError::Metadata)?;
+    Ok((model, typed))
 }
 
 impl Workflows {
@@ -272,14 +282,12 @@ impl Workflows {
     ) -> Result<Download, WorkflowError> {
         let id = id(document_id)?;
         let deadline = Self::start(&options)?;
-        let typed = timeout_at(
+        let (document, _) = metadata(
             deadline,
+            200,
             reports::get_report_document(&self.client, reports::GetReportDocumentParams::new(id)),
         )
-        .await
-        .map_err(|_| WorkflowError::Timeout)?
-        .map_err(request_error)?;
-        let document = decode(typed, 200)?;
+        .await?;
         let declared = declared(document.compression_algorithm.as_deref())?;
         self.transfer(deadline, options, &document.url, declared)
             .await
@@ -292,14 +300,12 @@ impl Workflows {
     ) -> Result<Download, WorkflowError> {
         let id = id(document_id)?;
         let deadline = Self::start(&options)?;
-        let typed = timeout_at(
+        let (document, _) = metadata(
             deadline,
+            200,
             feeds::get_feed_document(&self.client, feeds::GetFeedDocumentParams::new(id)),
         )
-        .await
-        .map_err(|_| WorkflowError::Timeout)?
-        .map_err(request_error)?;
-        let document = decode(typed, 200)?;
+        .await?;
         let declared = declared(document.compression_algorithm.as_deref())?;
         self.transfer(deadline, options, &document.url, declared)
             .await
@@ -314,14 +320,12 @@ impl Workflows {
         let id = id(document_id)?;
         let deadline = Self::start(&options)?;
         resolve(options.compression, Declared::Header)?;
-        let typed = timeout_at(
+        let (document, _) = metadata(
             deadline,
+            200,
             kiosk::get_document(&self.client, kiosk::GetDocumentParams::new(id)),
         )
-        .await
-        .map_err(|_| WorkflowError::Timeout)?
-        .map_err(request_error)?;
-        let document = decode(typed, 200)?;
+        .await?;
         self.transfer(deadline, options, &document.document_url, Declared::Header)
             .await
     }
@@ -402,8 +406,9 @@ impl Workflows {
         checked.content_type = content_type.to_owned();
         documents::check_upload(&checked).map_err(|_| WorkflowError::InvalidConfig)?;
         let deadline = deadline(options.transfer.timeout)?;
-        let typed = timeout_at(
+        let (created, _) = metadata(
             deadline,
+            201,
             feeds::create_feed_document(
                 &self.client,
                 feeds::CreateFeedDocumentParams::new(
@@ -411,10 +416,7 @@ impl Workflows {
                 ),
             ),
         )
-        .await
-        .map_err(|_| WorkflowError::Timeout)?
-        .map_err(request_error)?;
-        let created = decode(typed, 201)?;
+        .await?;
         if created.feed_document_id.is_empty() || created.url.is_empty() {
             return Err(WorkflowError::Metadata);
         }
@@ -470,14 +472,7 @@ where
     loop {
         // A late timer wake must not start one more poll after the deadline.
         remaining(deadline)?;
-        let typed = timeout_at(deadline, fetch())
-            .await
-            .map_err(|_| WorkflowError::Timeout)?
-            .map_err(request_error)?;
-        if typed.raw.status != 200 {
-            return Err(WorkflowError::Http(typed.into_raw()));
-        }
-        let value = typed.json().map_err(|_| WorkflowError::Metadata)?;
+        let (value, typed) = metadata(deadline, 200, fetch()).await?;
         match status(&value).as_str() {
             "DONE" | "CANCELLED" | "FATAL" => return Ok(typed),
             "IN_QUEUE" | "IN_PROGRESS" => {}
