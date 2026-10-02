@@ -1,6 +1,6 @@
 //! Owned-data Ruby boundary. Only the blocking callback runs without the GVL.
 
-use magnus::{Error, RModule, RString, Ruby, function, method, prelude::*};
+use magnus::{Error, RModule, RString, Ruby, TryConvert, function, method, prelude::*};
 use peddler::{
     AccessToken, Client, ClientConfig, Pool, Request, Response,
     auth::{AuthError, TokenSource},
@@ -99,10 +99,7 @@ fn shared(ruby: &Ruby) -> Result<&'static Shared, Error> {
     if let Some(shared) = current(&lock()) {
         return Ok(shared);
     }
-    let version: String = ruby
-        .class_object()
-        .const_get::<_, RModule>("Peddler")?
-        .const_get("VERSION")?;
+    let version: String = peddler_const(ruby, "VERSION")?;
     // LWA and signed URLs get this. Ruby adds the host name for the Selling Partner API.
     let user_agent = format!("Peddler/{version} (Language=Ruby)");
     let built = {
@@ -168,12 +165,15 @@ impl<T> Drop for ForkOwned<T> {
 #[magnus::wrap(class = "Peddler::Native::Engine", free_immediately)]
 struct Engine(ForkOwned<Arc<State>>);
 
+/// A constant of the `Peddler` module.
+fn peddler_const<T: TryConvert>(ruby: &Ruby, name: &str) -> Result<T, Error> {
+    ruby.class_object()
+        .const_get::<_, RModule>("Peddler")?
+        .const_get(name)
+}
+
 fn native_error(ruby: &Ruby, name: &str, message: &str) -> Error {
-    let class = ruby
-        .class_object()
-        .const_get::<_, RModule>("Peddler")
-        .and_then(|module| module.const_get(name));
-    match class {
+    match peddler_const(ruby, name) {
         Ok(class) => Error::new(class, message.to_owned()),
         Err(error) => error,
     }

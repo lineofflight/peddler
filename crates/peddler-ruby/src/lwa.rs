@@ -1,5 +1,5 @@
 //! Login with Amazon grants on the shared runtime and pool, one request each.
-use super::{ForkOwned, Shared, gvl, native_error, shared};
+use super::{ForkOwned, Shared, gvl, native_error, peddler_const, shared};
 use magnus::{Error, RModule, Ruby, function, method, prelude::*};
 use peddler::auth::{AuthError, LwaClient};
 use std::time::Duration;
@@ -16,10 +16,7 @@ fn auth_error(ruby: &Ruby, error: AuthError) -> Error {
         AuthError::Rejected { status, code } => (Some(status), code),
         _ => (None, None),
     };
-    let class = ruby
-        .class_object()
-        .const_get::<_, RModule>("Peddler")
-        .and_then(|m| m.const_get::<_, magnus::RClass>("AuthenticationError"));
+    let class = peddler_const::<magnus::RClass>(ruby, "AuthenticationError");
     let arguments = (message, status, magnus::kwargs!("code" => code));
     match class.and_then(|c| c.funcall::<_, _, magnus::Exception>("new", arguments)) {
         Ok(e) => Error::from(e),

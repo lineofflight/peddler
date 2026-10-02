@@ -1,6 +1,6 @@
 //! Document ID lifecycle helpers. Metadata, polling and transfer start run in Rust
 //! under one deadline; Ruby wraps the owned outputs and feeds upload chunks.
-use super::{Completed, Engine, ResponseParts, documents, gvl, native_error};
+use super::{Completed, Engine, ResponseParts, documents, gvl, native_error, peddler_const};
 use documents::{Config, Document, Upload};
 use magnus::{Error, RClass, RModule, Ruby, method, prelude::*};
 use peddler::{
@@ -21,10 +21,7 @@ fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
             }
             // An HTTP error from a metadata lookup raises as any failed API response does.
             let parts = completed.into_parts(ruby);
-            let raised = ruby
-                .class_object()
-                .const_get::<_, RModule>("Peddler")
-                .and_then(|module| module.const_get::<_, RClass>("Response"))
+            let raised = peddler_const::<RClass>(ruby, "Response")
                 .and_then(|class| class.funcall::<_, _, magnus::Value>("from_parts", (parts,)));
             match raised {
                 Ok(_) => native_error(ruby, "WorkflowError", &message),
