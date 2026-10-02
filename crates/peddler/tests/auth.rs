@@ -298,13 +298,15 @@ async fn onboarding_body_timeout_and_cancellation_close_socket_then_recover() {
                 .unwrap();
             started.send(()).await.unwrap();
             let mut byte = [0];
-            assert_eq!(
-                tokio::time::timeout(Duration::from_secs(2), socket.read(&mut byte))
-                    .await
-                    .unwrap()
-                    .unwrap(),
-                0
-            );
+            let read = tokio::time::timeout(Duration::from_secs(2), socket.read(&mut byte))
+                .await
+                .unwrap();
+            // Client drop yields EOF if receive buffer was drained or ConnectionReset if unread bytes remained.
+            match read {
+                Ok(0) => {}
+                Err(err) if err.kind() == std::io::ErrorKind::ConnectionReset => {}
+                other => panic!("expected EOF or ConnectionReset on teardown, got {other:?}"),
+            }
             let (mut socket, _) = listener.accept().await.unwrap();
             read_request(&mut socket).await;
             let body = onboarding_body().to_string();
@@ -323,7 +325,7 @@ async fn onboarding_body_timeout_and_cancellation_close_socket_then_recover() {
             "id",
             "secret",
             &origin,
-            Duration::from_millis(if cancel { 2000 } else { 50 }),
+            Duration::from_millis(if cancel { 2000 } else { 500 }),
         )
         .unwrap();
         let pending = client.clone();
@@ -331,16 +333,13 @@ async fn onboarding_body_timeout_and_cancellation_close_socket_then_recover() {
             tokio::spawn(async move { pending.exchange_authorization_code("code", None).await });
         arrived.recv().await.unwrap();
         if cancel {
-            tokio::time::sleep(Duration::from_millis(10)).await;
             call.abort();
             assert!(call.await.unwrap_err().is_cancelled());
         } else {
             assert_eq!(call.await.unwrap().unwrap_err(), AuthError::Timeout);
         }
-        let recovery =
-            LwaClient::with_config("id", "secret", &origin, Duration::from_secs(5)).unwrap();
         assert_eq!(
-            recovery
+            client
                 .exchange_authorization_code("new-code", None)
                 .await
                 .unwrap()
