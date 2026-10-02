@@ -44,18 +44,17 @@ jobs:
       # Advances selling-partner-api-models.sha, then regenerates the whole corpus: the Ruby
       # models and the Rust crate (models, facades, dispatch, pagination table, Ruby facades
       # and operation-inventory.json). The Rust step installs the locked converter (npm ci)
-      # and builds with --locked.
+      # and builds with --locked. A pin move that only changes spec content needs no other
+      # edit. Adding or removing a spec file (the manifest) or a new token-like field
+      # (pagination.json) fails this step with the generator's own error and no PR is opened.
       - name: Regenerate Ruby and Rust output at the new pin
-        run: bundle exec rake generate:update
-
-      # The Rust generator reads the committed manifest (ALL_APIS), supplemental-sources.json,
-      # the PIN constant and pagination.json. Nothing here rewrites them, so a new API, a
-      # removed spec file or an unmapped pagination field fails the step above.
+        shell: bash
+        run: bundle exec rake generate:update 2>&1 | tee "$RUNNER_TEMP/generate.log"
 
       # Peddler 6 has no Ruby API classes. Generation must not bring them back.
       - name: Refuse regenerated HTTP API classes
         run: |
-          if grep -rEl '(<|include|extend) +(::)?(Peddler::)?API\b|require +"http"|HTTP\.' lib/peddler.rb lib/peddler/apis sig/peddler.rbs sig/peddler/apis; then
+          if grep -rEl '^\s*class \w+ < (Peddler::)?API\b|^\s*require "http"' lib/peddler.rb lib/peddler/apis sig/peddler.rbs sig/peddler/apis; then
             echo "Generated Ruby code references the removed HTTP API classes." >&2
             exit 1
           fi
@@ -70,16 +69,21 @@ jobs:
           {
             echo "### Model update failed"
             echo
-            echo "No pull request was opened. Generation stopped at the new Amazon spec revision."
+            echo "No pull request was opened. The fix has to travel with the pin move, so it cannot be"
+            echo "made at the current pin:"
             echo
-            echo "- Pagination: the generator fails when an operation has a token-like parameter or"
-            echo "  response field that \`crates/peddler-codegen/pagination.json\` neither maps nor"
-            echo "  excludes. Map it or exclude it with a reason, in a normal pull request on main."
-            echo "- Inventory: a new or removed spec file fails the pinned inventory check. Update"
-            echo "  \`crates/peddler-codegen/src/manifest.rs\` and"
-            echo "  \`crates/peddler-codegen/supplemental-sources.json\` by hand."
-            echo "- The PIN constant in \`crates/peddler-codegen/src/supplemental.rs\` stays at the"
-            echo "  reviewed revision. Source hashes are only checked at that revision."
+            echo "1. Run \`bundle exec rake generate:update\` locally."
+            echo "2. Edit \`crates/peddler-codegen/pagination.json\` (map or exclude a new token-like"
+            echo "   field, with a reason) or the manifest in \`crates/peddler-codegen/src/manifest.rs\`"
+            echo "   (a new or removed API or schema file)."
+            echo "3. Run \`bundle exec rake generate\`."
+            echo "4. Open 1 pull request with everything."
+            echo
+            echo "The generator said:"
+            echo
+            echo '```'
+            tail -n 30 "$RUNNER_TEMP/generate.log" 2>/dev/null || echo "(no generator output; an earlier step failed)"
+            echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Create Pull Request
@@ -147,10 +151,10 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.create-pr.outputs.pr_number }}
 
-            A nightly job pulled in the latest Amazon SP-API specs and regenerated the Ruby and Rust code, including the operation inventory and the pin file. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown. The description will become a squash commit body, so don't repeat the PR title.
+            A nightly job pulled in the latest Amazon SP-API specs and regenerated the Ruby and Rust code, including the operation inventory and the pin file. GitHub refuses PR diffs above 300 files, so read the change locally: run `git diff --stat origin/main...HEAD` for the overview and `git diff origin/main...HEAD -- <path>` for specific files. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown. The description will become a squash commit body, so don't repeat the PR title.
 
             Then, if any user-visible interface changed (new or removed methods, new parameters, new fields on response types), append concise entries to the [Unreleased] section of CHANGELOG.md under the `### Models` header. Format them as bullet points prefixed with `**Added**:`, `**Changed**:`, or `**Removed**:` to distinguish the update type. Commit and push to the PR branch.
           claude_args: |
             --model sonnet
-            --allowedTools "Bash(gh pr diff:*),Bash(gh pr edit:*),Bash(gh pr view:*),Bash(git add:*),Bash(git commit:*),Bash(git push:*),Read,Edit"
+            --allowedTools "Bash(gh pr diff:*),Bash(git diff:*),Bash(gh pr edit:*),Bash(gh pr view:*),Bash(git add:*),Bash(git commit:*),Bash(git push:*),Read,Edit"
             --system-prompt "Relaxed, direct, still professional tone. Be concise. No emojis."

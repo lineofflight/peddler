@@ -43,6 +43,7 @@ jobs:
         run: |
           rustup toolchain install stable --profile minimal
           rustup default stable
+      - run: bundle exec rake generate:setup
       - name: Build the extension and run the suite
         run: bundle exec rake test
       - name: Check that requiring peddler leaves HTTP undefined
