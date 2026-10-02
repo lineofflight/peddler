@@ -54,6 +54,15 @@ module Peddler
       assert_equal(payload, Response.new(200, [], body, nil, operation: "unknown_api.unknown").parse)
     end
 
+    def test_parse_returns_the_hash_of_an_error_response
+      body = '{"errors":[{"code":"NotFound","message":"Item not found"}]}'
+      response = Response.new(404, [], body, operation: "catalog_items_2022_04_01.get_catalog_item")
+      error = assert_raises(Error) { response.raise_for_status! }
+
+      assert_equal(JSON.parse(body), error.response.parse)
+      assert_equal("NotFound", error.response.parse.dig("errors", 0, "code"))
+    end
+
     def test_parse_maps_camel_case_keys_to_snake_case_attributes
       body = '{"feedId":"50029018011","feedType":"POST_PRODUCT_DATA","createdTime":"2024-03-11T13:16:24.630Z","processingStatus":"DONE"}'
       feed = Response.new(200, [], body, nil, operation: "feeds_2021_06_30.get_feed").parse

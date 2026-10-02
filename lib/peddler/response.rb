@@ -70,9 +70,9 @@ module Peddler
 
     # Parses the body into the typed model of the operation
     #
-    # @return [Object] the typed model, or the Hash when the operation has none
+    # @return [Object] the typed model, or the Hash when the operation has none or the response is an error
     def parse
-      model = parser
+      model = parser unless @metadata
       model ? model.parse(to_h) : to_h
     end
 
