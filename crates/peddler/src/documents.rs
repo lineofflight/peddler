@@ -107,7 +107,7 @@ impl Default for TransferOptions {
     }
 }
 impl TransferOptions {
-    fn deadline(&self) -> Result<Instant, Error> {
+    pub(crate) fn deadline(&self) -> Result<Instant, Error> {
         if self.timeout.is_zero()
             || self.max_bytes == 0
             || self.max_record_bytes == 0
@@ -513,6 +513,22 @@ impl DocumentClient {
     }
 }
 
+/// Validate a signed URL without retaining it.
+pub(crate) fn check_url(text: &str) -> Result<(), Error> {
+    signed_url(text).map(|_| ())
+}
+/// Validate everything about an upload that does not need the source or network.
+pub(crate) fn check_upload(options: &UploadOptions) -> Result<(), Error> {
+    options.transfer.deadline()?;
+    upload_headers(options)?;
+    if options
+        .content_length
+        .is_some_and(|length| length > options.transfer.max_bytes)
+    {
+        return Err(Error::ByteLimit);
+    }
+    Ok(())
+}
 fn signed_url(text: &str) -> Result<Url, Error> {
     if text
         .chars()

@@ -16,6 +16,7 @@ pub mod auth;
 pub mod documents;
 pub mod pagination;
 pub mod policy;
+pub mod workflows;
 
 mod operation;
 pub use operation::{DecodeError, TypedResponse};
