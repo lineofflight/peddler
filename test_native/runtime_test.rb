@@ -183,13 +183,17 @@ class RuntimeTest < NativeTest
     refute_match(/local-secret/, error.message)
   end
 
-  def test_manually_constructed_response_uses_rust_status_classification
-    response = Peddler::Response.new(404, [["x-amzn-requestid", "manual-id"]], '{"errors":[{"code":"NotFound"}]}')
-    error = assert_raises(Peddler::Error) { response.raise_for_status! }
-    assert_same(response, error.response)
-    assert_equal(404, error.status)
-    assert_equal("NotFound", error.code)
-    assert_equal("manual-id", error.request_id)
+  def test_message_falls_back_when_the_body_has_none
+    bodies = { "" => nil, "invalid xml content" => nil, "503" => nil, '{"errors":[]}' => nil,
+               '{"errors":[{"code":"InternalFailure"}]}' => "InternalFailure" }
+    bodies.each do |body, code|
+      serve(handler: ->(socket, *) { respond(socket, status: 503, body: body) }) do |url|
+        error = assert_raises(Peddler::Error) { client(url).request("GET", "/") }
+
+        assert_equal("request failed with status 503", error.message, body)
+        assert_equal([503, code, nil], [error.status, error.code, error.request_id], body)
+      end
+    end
   end
 end
 # rubocop:enable Minitest/MultipleAssertions

@@ -56,7 +56,7 @@ module Peddler
 
     def test_parse_returns_the_hash_of_an_error_response
       body = '{"errors":[{"code":"NotFound","message":"Item not found"}]}'
-      response = Response.new(404, [], body, operation: "catalog_items_2022_04_01.get_catalog_item")
+      response = Response.new(404, [], body, ["NotFound", nil, "Item not found"], operation: "catalog_items_2022_04_01.get_catalog_item")
       error = assert_raises(Error) { response.raise_for_status! }
 
       assert_equal(JSON.parse(body), error.response.parse)
@@ -82,7 +82,7 @@ module Peddler
 
     def test_raise_for_status_raises_outside_2xx
       [400, 404, 429, 500, 503].each do |status|
-        response = Response.new(status, [], "")
+        response = Response.new(status, [], "", [nil, nil, nil])
         error = assert_raises(Error) { response.raise_for_status! }
 
         assert_same(response, error.response)

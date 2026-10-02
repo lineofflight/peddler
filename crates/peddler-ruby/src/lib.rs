@@ -53,29 +53,6 @@ impl Completed {
     }
 }
 
-// Three-part manually constructed Ruby responses use a bounded owned helper.
-// Network response metadata is computed by Completed outside the GVL instead.
-fn response_metadata(
-    status: u16,
-    headers: Vec<(String, String)>,
-    body: RString,
-) -> Option<ErrorMetadata> {
-    const LIMIT: usize = 64 * 1024;
-    // SAFETY: this entrypoint holds the GVL, and copies before any Ruby call.
-    let bytes = unsafe { body.as_slice() };
-    let body = if bytes.len() <= LIMIT {
-        bytes.to_vec()
-    } else {
-        Vec::new()
-    };
-    Completed::new(Response {
-        status,
-        headers,
-        body,
-    })
-    .metadata
-}
-
 /// The Tokio runtime and the connection pool every client in a process shares.
 struct Shared {
     runtime: Runtime,
@@ -294,7 +271,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "AuthenticationError",
         ruby.exception_standard_error().as_r_class(),
     )?;
-    native.define_singleton_method("response_metadata", function!(response_metadata, 3))?;
     let engine = native.define_class("Engine", ruby.class_object())?;
     engine.define_singleton_method("from_config", function!(Engine::from_config, 1))?;
     engine.define_method("with_base_url", method!(Engine::with_base_url, 1))?;

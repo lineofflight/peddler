@@ -11,7 +11,7 @@ module Peddler
 
     def self.from_parts: (Native::response_parts parts, ?String? operation) -> Response
     def self.from_document_parts: (Native::document_parts parts) -> Response
-    def initialize: (Integer status, Array[[String, String]] headers, String body, ?(Native::error_metadata? | :unclassified) metadata, ?operation: String?, ?body_truncated: bool) -> void
+    def initialize: (Integer status, Array[[String, String]] headers, String body, ?Native::error_metadata? metadata, ?operation: String?, ?body_truncated: bool) -> void
     def raise_for_status!: () -> self
     def body_truncated?: () -> bool
     def json: () -> untyped

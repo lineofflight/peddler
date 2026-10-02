@@ -7,8 +7,7 @@ require "helper"
 module Peddler
   class ErrorTest < Minitest::Test
     def test_readers
-      error = build(429, '{"errors":[{"code":"QuotaExceeded","message":"You exceeded your quota."}]}',
-        [["x-amzn-RequestId", "abc-123"]])
+      error = build(429, code: "QuotaExceeded", request_id: "abc-123", message: "You exceeded your quota.")
 
       assert_equal(429, error.status)
       assert_equal("QuotaExceeded", error.code)
@@ -17,14 +16,13 @@ module Peddler
       assert_equal("You exceeded your quota.", error.message)
     end
 
-    def test_message_falls_back_when_the_body_has_none
-      ["", "invalid xml content", "503", '{"errors":[]}', '{"errors":[{"code":"InternalFailure"}]}'].each do |body|
-        assert_equal("request failed with status 503", build(503, body).message, body)
-      end
+    def test_message_falls_back_when_amazon_sends_none
+      assert_equal("request failed with status 503", build(503).message)
+      assert_equal("request failed with status 503", build(503, code: "InternalFailure").message)
     end
 
     def test_code_and_request_id_are_nil_when_amazon_sends_none
-      error = build(500, "oops")
+      error = build(500)
 
       assert_nil(error.code)
       assert_nil(error.request_id)
@@ -32,7 +30,7 @@ module Peddler
 
     def test_is_one_class_whatever_the_code
       ["InvalidInput", "NotFound", "QuotaExceeded", "NOT_FOUND", "400"].each do |code|
-        assert_instance_of(Error, build(400, JSON.generate(errors: [{ code: code, message: "message" }])))
+        assert_instance_of(Error, build(400, code: code, message: "message"))
       end
       assert_equal(StandardError, Error.superclass)
     end
@@ -49,7 +47,7 @@ module Peddler
     end
 
     def test_constructs_with_a_response_code_and_request_id
-      response = Response.new(404, [], "{}")
+      response = Response.new(404, [], "{}", ["NotFound", "abc", nil])
       error = Error.new("gone", response, code: "NotFound", request_id: "abc")
 
       assert_same(response, error.response)
@@ -57,7 +55,7 @@ module Peddler
     end
 
     def test_deconstruct_keys_exposes_status_and_code_only
-      error = build(429, '{"errors":[{"code":"QuotaExceeded","message":"You exceeded your quota."}]}')
+      error = build(429, code: "QuotaExceeded", message: "You exceeded your quota.")
 
       assert_equal({ status: 429, code: "QuotaExceeded" }, error.deconstruct_keys(nil))
       assert_equal({ status: 429 }, error.deconstruct_keys([:status]))
@@ -66,26 +64,26 @@ module Peddler
     end
 
     def test_pattern_matches_status
-      assert_equal(:backoff, classify(build(429, "")))
+      assert_equal(:backoff, classify(build(429)))
     end
 
     def test_pattern_matches_code
-      assert_equal(:backoff, classify(build(400, '{"errors":[{"code":"QuotaExceeded","message":"m"}]}')))
+      assert_equal(:backoff, classify(build(400, code: "QuotaExceeded", message: "m")))
     end
 
     def test_pattern_matches_status_range
-      assert_equal(:retry_later, classify(build(503, "")))
-      assert_equal(:give_up, classify(build(404, "")))
+      assert_equal(:retry_later, classify(build(503)))
+      assert_equal(:give_up, classify(build(404)))
     end
 
     def test_does_not_expose_kind
-      refute_respond_to(build(404, ""), :kind)
+      refute_respond_to(build(404), :kind)
     end
 
     private
 
-    def build(status, body, headers = [])
-      assert_raises(Error) { Response.new(status, headers, body).raise_for_status! }
+    def build(status, code: nil, request_id: nil, message: nil)
+      assert_raises(Error) { Response.new(status, [], "", [code, request_id, message]).raise_for_status! }
     end
 
     def classify(error)

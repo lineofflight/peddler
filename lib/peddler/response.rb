@@ -32,11 +32,11 @@ module Peddler
       end
     end
 
-    def initialize(status, headers, body, metadata = :unclassified, operation: nil, body_truncated: false)
+    def initialize(status, headers, body, metadata = nil, operation: nil, body_truncated: false)
       @status = status
       @headers = headers
       @body = body
-      @metadata = metadata == :unclassified ? Native.response_metadata(status, headers, body) : metadata
+      @metadata = metadata
       @operation = operation
       @body_truncated = body_truncated
     end
