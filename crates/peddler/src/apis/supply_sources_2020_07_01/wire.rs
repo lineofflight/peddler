@@ -216,7 +216,7 @@ pub mod builder {
     pub struct GetSupplySources<'a> {
         client: &'a super::Client,
         next_page_token: Result<Option<::std::string::String>, String>,
-        page_size: Result<Option<f64>, String>,
+        page_size: Result<Option<::std::string::String>, String>,
     }
     impl<'a> GetSupplySources<'a> {
         pub fn new(client: &'a super::Client) -> Self {
@@ -241,12 +241,15 @@ pub mod builder {
         }
         pub fn page_size<V>(mut self, value: V) -> Self
         where
-            V: std::convert::TryInto<f64>,
+            V: std::convert::TryInto<::std::string::String>,
         {
             self.page_size = value
                 .try_into()
                 .map(Some)
-                .map_err(|_| "conversion to `f64` for page_size failed".to_string());
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for page_size failed"
+                        .to_string()
+                });
             self
         }
         ///Sends a `GET` request to `/supplySources/2020-07-01/supplySources`

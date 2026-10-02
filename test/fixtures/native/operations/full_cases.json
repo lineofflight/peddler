@@ -298,6 +298,67 @@
     "response": "{}"
   },
   {
+    "operation": "shipping_v2.get_shipment_documents",
+    "arguments": {
+      "shipment_id": "s",
+      "package_client_reference_id": "p",
+      "dpi": 300
+    },
+    "method": "GET",
+    "path": "/shipping/v2/shipments/s/documents",
+    "query": [
+      [
+        "dpi",
+        "300"
+      ],
+      [
+        "packageClientReferenceId",
+        "p"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "supply_sources_2020_07_01.get_supply_sources",
+    "arguments": {},
+    "method": "GET",
+    "path": "/supplySources/2020-07-01/supplySources",
+    "query": [
+      [
+        "pageSize",
+        "10"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "shipping_v2.get_shipment_documents",
+    "arguments": {
+      "shipment_id": "s",
+      "package_client_reference_id": "p",
+      "dpi": 1000000000000000000000
+    },
+    "method": "GET",
+    "path": "/shipping/v2/shipments/s/documents",
+    "query": [
+      [
+        "dpi",
+        "1000000000000000000000"
+      ],
+      [
+        "packageClientReferenceId",
+        "p"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
     "operation": "product_fees_v0.get_my_fees_estimates",
     "arguments": {
       "body": []

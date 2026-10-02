@@ -147,10 +147,7 @@ pub(crate) fn rust(client: &RenderedClient, api: &ModelSpec) -> Result<String, G
             // Validate serialized primitive values to keep one shared validator
             // for scalar formats, bounds, patterns, headers and array rules.
             if p.required {
-                let borrow = if matches!(
-                    p.schema["type"].as_str(),
-                    Some("boolean" | "integer" | "number")
-                ) {
+                let borrow = if matches!(p.schema["type"].as_str(), Some("boolean" | "integer")) {
                     ""
                 } else {
                     "&"
@@ -218,6 +215,22 @@ pub(crate) fn rust(client: &RenderedClient, api: &ModelSpec) -> Result<String, G
             };
             if p.location == "body" {
                 source.push_str("request=request.body(body);\n")
+            } else if p.schema["type"] == "number" {
+                if p.required {
+                    writeln!(
+                        source,
+                        "request=request.{method}(params.{}.to_string());",
+                        p.name
+                    )
+                    .unwrap()
+                } else {
+                    writeln!(
+                        source,
+                        "if let Some(value)=&params.{} {{ request=request.{method}(value.to_string()); }}",
+                        p.name
+                    )
+                    .unwrap()
+                }
             } else if p.required {
                 writeln!(
                     source,

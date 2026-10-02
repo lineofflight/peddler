@@ -961,7 +961,7 @@ pub mod builder {
     #[derive(Debug, Clone)]
     pub struct GetTransferPreview<'a> {
         client: &'a super::Client,
-        base_amount: Result<f64, String>,
+        base_amount: Result<::std::string::String, String>,
         destination_country_code: Result<::std::string::String, String>,
         destination_currency_code: Result<::std::string::String, String>,
         marketplace_id: Result<::std::string::String, String>,
@@ -990,11 +990,14 @@ pub mod builder {
         }
         pub fn base_amount<V>(mut self, value: V) -> Self
         where
-            V: std::convert::TryInto<f64>,
+            V: std::convert::TryInto<::std::string::String>,
         {
             self.base_amount = value
                 .try_into()
-                .map_err(|_| "conversion to `f64` for base_amount failed".to_string());
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for base_amount failed"
+                        .to_string()
+                });
             self
         }
         pub fn destination_country_code<V>(mut self, value: V) -> Self

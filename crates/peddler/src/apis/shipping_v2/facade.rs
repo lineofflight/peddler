@@ -781,7 +781,7 @@ pub struct GetShipmentDocumentsParams {
     pub shipment_id: String,
     pub package_client_reference_id: String,
     pub format: Option<String>,
-    pub dpi: Option<f64>,
+    pub dpi: Option<serde_json::Number>,
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetShipmentDocumentsParams {
@@ -855,8 +855,8 @@ pub async fn get_shipment_documents(
                     if let Some(value) = params.format.clone() {
                         request = request.format(value);
                     }
-                    if let Some(value) = params.dpi.clone() {
-                        request = request.dpi(value);
+                    if let Some(value) = &params.dpi {
+                        request = request.dpi(value.to_string());
                     }
                     if let Some(value) = params.x_amzn_shipping_business_id.clone() {
                         request = request.x_amzn_shipping_business_id(value);

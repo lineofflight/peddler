@@ -71,20 +71,55 @@ fn scalar_csv_default_is_normalized_to_its_declared_array_type() {
     assert_eq!(item.parameters[2].schema["default"], json!(["summaries"]));
 }
 #[test]
-fn duplicate_ids_preserve_post_and_expose_put_with_a_method_suffix() {
+fn arbitrary_duplicate_operation_ids_fail_generation() {
     let mut value = spec();
     let operation = value["paths"]["/empty"]["post"].clone();
     value["paths"]["/empty"]["put"] = operation;
-    let rendered = clients::render(&value, &ALL_APIS[0]).unwrap();
-    assert_eq!(
+    let Err(err) = clients::render(&value, &ALL_APIS[0]) else {
+        panic!("expected error");
+    };
+    assert!(err.0.contains("duplicate operationId empty"));
+}
+
+#[test]
+fn duplicate_methods_on_different_paths_fail_generation() {
+    let mut value = spec();
+    let operation = value["paths"]["/empty"]["post"].clone();
+    value["paths"]["/other"] = json!({"post": operation});
+    let Err(err) = clients::render(&value, &ALL_APIS[0]) else {
+        panic!("expected error");
+    };
+    assert!(err.0.contains("duplicate operationId empty"));
+}
+
+#[test]
+fn shipping_v2_link_carrier_account_put_is_renamed_to_expose_distinct_operations() {
+    let mut value = spec();
+    let api = ALL_APIS
+        .iter()
+        .find(|api| api.module == "shipping_v2")
+        .unwrap();
+    let mut post_op = value["paths"]["/empty"]["post"].clone();
+    post_op["operationId"] = json!("linkCarrierAccount");
+    let put_op = post_op.clone();
+    value["paths"]["/shipping/v2/carrierAccounts"] = json!({
+        "post": post_op,
+        "put": put_op,
+    });
+    let rendered = clients::render(&value, api).unwrap();
+    assert!(
         rendered
             .operations
             .iter()
-            .map(|op| op.name.as_str())
-            .collect::<Vec<_>>(),
-        vec!["empty", "empty_put", "get_item"]
+            .any(|op| op.name == "link_carrier_account")
     );
-    assert!(rendered.wire.contains("pub fn empty_put"));
+    assert!(
+        rendered
+            .operations
+            .iter()
+            .any(|op| op.name == "link_carrier_account_put")
+    );
+    assert!(rendered.wire.contains("pub fn link_carrier_account_put"));
 }
 
 #[test]

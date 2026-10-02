@@ -348,7 +348,7 @@ pub struct GetTransferPreviewParams {
     pub source_currency_code: String,
     pub destination_country_code: String,
     pub destination_currency_code: String,
-    pub base_amount: f64,
+    pub base_amount: serde_json::Number,
     pub marketplace_id: String,
 }
 impl GetTransferPreviewParams {
@@ -357,7 +357,7 @@ impl GetTransferPreviewParams {
         source_currency_code: String,
         destination_country_code: String,
         destination_currency_code: String,
-        base_amount: f64,
+        base_amount: serde_json::Number,
         marketplace_id: String,
     ) -> Self {
         Self {
@@ -396,7 +396,7 @@ pub async fn get_transfer_preview(
         validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
     }
     {
-        let value = serde_json::to_value(params.base_amount)
+        let value = serde_json::to_value(&params.base_amount)
             .map_err(|_| Error::InvalidRequest)?;
         validate_parameter(value, "query", "{\"type\":\"number\"}", true, false)?;
     }
@@ -436,7 +436,7 @@ pub async fn get_transfer_preview(
                         .destination_currency_code(
                             params.destination_currency_code.clone(),
                         );
-                    request = request.base_amount(params.base_amount.clone());
+                    request = request.base_amount(params.base_amount.to_string());
                     request = request.marketplace_id(params.marketplace_id.clone());
                     collect(request.send().await).await
                 }

@@ -149,7 +149,7 @@ pub async fn get_supply_source(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-fn get_supply_sources_page_size_default() -> Option<f64> {
+fn get_supply_sources_page_size_default() -> Option<serde_json::Number> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -157,7 +157,7 @@ fn get_supply_sources_page_size_default() -> Option<f64> {
 pub struct GetSupplySourcesParams {
     pub next_page_token: Option<String>,
     #[serde(default = "get_supply_sources_page_size_default")]
-    pub page_size: Option<f64>,
+    pub page_size: Option<serde_json::Number>,
 }
 impl GetSupplySourcesParams {
     pub fn new() -> Self {
@@ -213,8 +213,8 @@ pub async fn get_supply_sources(
                     if let Some(value) = params.next_page_token.clone() {
                         request = request.next_page_token(value);
                     }
-                    if let Some(value) = params.page_size.clone() {
-                        request = request.page_size(value);
+                    if let Some(value) = &params.page_size {
+                        request = request.page_size(value.to_string());
                     }
                     collect(request.send().await).await
                 }

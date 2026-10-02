@@ -2485,7 +2485,7 @@ pub mod builder {
     pub struct GetShipmentDocuments<'a> {
         client: &'a super::Client,
         shipment_id: Result<::std::string::String, String>,
-        dpi: Result<Option<f64>, String>,
+        dpi: Result<Option<::std::string::String>, String>,
         format: Result<Option<::std::string::String>, String>,
         package_client_reference_id: Result<::std::string::String, String>,
         x_amzn_shipping_business_id: Result<Option<::std::string::String>, String>,
@@ -2517,12 +2517,15 @@ pub mod builder {
         }
         pub fn dpi<V>(mut self, value: V) -> Self
         where
-            V: std::convert::TryInto<f64>,
+            V: std::convert::TryInto<::std::string::String>,
         {
             self.dpi = value
                 .try_into()
                 .map(Some)
-                .map_err(|_| "conversion to `f64` for dpi failed".to_string());
+                .map_err(|_| {
+                    "conversion to `:: std :: string :: String` for dpi failed"
+                        .to_string()
+                });
             self
         }
         pub fn format<V>(mut self, value: V) -> Self

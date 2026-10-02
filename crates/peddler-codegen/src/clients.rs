@@ -60,21 +60,19 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
     let paths = converted["paths"]
         .as_object_mut()
         .ok_or_else(|| GenerationError("missing paths".into()))?;
-    let mut preferred = std::collections::BTreeMap::new();
+    let mut counts = std::collections::BTreeMap::new();
     for methods in paths.values() {
         for (method, operation) in methods.as_object().into_iter().flatten() {
-            if let Some(id) = operation["operationId"].as_str() {
-                let entry = preferred
-                    .entry(id.to_owned())
-                    .or_insert((0usize, method.clone()));
-                entry.0 += 1;
-                if method == "post" {
-                    entry.1 = method.clone();
-                }
+            if ["get", "post", "put", "patch", "delete", "head", "options"]
+                .contains(&method.as_str())
+                && let Some(id) = operation["operationId"].as_str()
+            {
+                *counts.entry(id.to_owned()).or_insert(0usize) += 1;
             }
         }
     }
     let mut operations = Vec::new();
+    let mut seen_wire_ids = std::collections::BTreeSet::new();
     for (path, methods) in paths {
         let path_parameters = methods
             .get("parameters")
@@ -90,11 +88,29 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
             let Some(id) = value["operationId"].as_str().map(str::to_owned) else {
                 continue;
             };
-            let wire_id = if preferred[&id].0 > 1 && preferred[&id].1 != *method {
-                format!("{id}_{method}")
+            let wire_id = if counts.get(&id).copied().unwrap_or(0) > 1 {
+                if api.module == "shipping_v2" && id == "linkCarrierAccount" && method == "put" {
+                    format!("{id}_{method}")
+                } else if api.module == "shipping_v2"
+                    && id == "linkCarrierAccount"
+                    && method == "post"
+                {
+                    id.clone()
+                } else {
+                    return Err(GenerationError(format!(
+                        "{}: duplicate operationId {id}",
+                        api.module
+                    )));
+                }
             } else {
                 id.clone()
             };
+            if !seen_wire_ids.insert(wire_id.clone()) {
+                return Err(GenerationError(format!(
+                    "{}: duplicate operationId {id}",
+                    api.module
+                )));
+            }
             value["operationId"] = json!(wire_id);
             let mut parameters = path_parameters.clone();
             for parameter in value["parameters"].as_array().into_iter().flatten() {
@@ -172,7 +188,7 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                     Some("integer") => {
                         json!({"type":"integer","format":if schema["format"] == "int32" {"int32"} else {"int64"}})
                     }
-                    Some("number") => json!({"type":"number","format":"double"}),
+                    Some("number") => json!({"type":"string"}),
                     Some(kind @ ("string" | "boolean")) => json!({"type":kind}),
                     _ => return Err(GenerationError("unsupported parameter schema".into())),
                 };
@@ -324,7 +340,7 @@ pub(crate) fn rust_type(p: &Parameter) -> Result<String, GenerationError> {
         Some("boolean") => "bool",
         Some("integer") if p.schema["format"] == "int32" => "i32",
         Some("integer") => "i64",
-        Some("number") => "f64",
+        Some("number") => "serde_json::Number",
         Some("array") => "Vec<String>",
         _ => {
             return Err(GenerationError(format!(
