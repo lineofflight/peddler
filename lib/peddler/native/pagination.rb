@@ -97,14 +97,7 @@ module Peddler
     end
 
     def generate(arguments)
-      json = begin
-        JSON.generate(arguments)
-      rescue JSON::GeneratorError
-        nil
-      end
-      raise ArgumentError, "invalid arguments" unless json
-
-      json
+      Native.generate(arguments) || raise(ArgumentError, "invalid arguments")
     end
 
     def token_in(arguments)

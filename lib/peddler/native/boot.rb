@@ -19,6 +19,24 @@ module Peddler
         LwaEngine.new(client_id, client_secret, timeout, endpoint)
       end
 
+      # A String of valid UTF-8 as it is. Unlike valid_utf8_string?, it doesn't accept text another encoding could
+      # convert.
+      def utf8_text?(value)
+        value.is_a?(String) && value.valid_encoding? && (value.encoding == Encoding::UTF_8 || value.ascii_only?)
+      end
+
+      def positive_seconds?(value)
+        (value.is_a?(Integer) || value.is_a?(Float)) && value.finite? && value > 0
+      end
+
+      # Returns nil when the value can't be encoded. The generator's error quotes the value, which may be a
+      # credential, so callers raise their own error outside this rescue, where it can't become the cause.
+      def generate(value)
+        JSON.generate(value)
+      rescue JSON::GeneratorError, TypeError
+        nil
+      end
+
       # Identifies the gem to the Selling Partner API. LWA and signed URLs get the same without the host name.
       #
       # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests

@@ -44,8 +44,8 @@ module Peddler
       unless client_secret && client_secret != ""
         raise ArgumentError, "missing client_secret: pass client_secret: or set LWA_CLIENT_SECRET"
       end
-      unless text?(client_id) && text?(client_secret) && text?(lwa_endpoint) &&
-          (timeout.is_a?(Integer) || timeout.is_a?(Float)) && timeout.finite? && timeout.positive?
+      unless Native.utf8_text?(client_id) && Native.utf8_text?(client_secret) && Native.utf8_text?(lwa_endpoint) &&
+          Native.positive_seconds?(timeout)
         raise ArgumentError, "invalid authentication configuration"
       end
 
@@ -56,7 +56,7 @@ module Peddler
     #
     # @return [Tokens]
     def refresh(refresh_token:)
-      raise ArgumentError, "invalid authentication configuration" unless text?(refresh_token)
+      raise ArgumentError, "invalid authentication configuration" unless Native.utf8_text?(refresh_token)
 
       tokens(@engine.refresh(refresh_token))
     end
@@ -66,7 +66,7 @@ module Peddler
     # @see https://developer-docs.amazon.com/sp-api/docs/grantless-operations
     # @return [Tokens]
     def client_credentials(scope:)
-      raise ArgumentError, "invalid authentication configuration" unless text?(scope)
+      raise ArgumentError, "invalid authentication configuration" unless Native.utf8_text?(scope)
 
       tokens(@engine.client_credentials(scope))
     end
@@ -83,7 +83,7 @@ module Peddler
       raise ArgumentError, "provide either refresh_token or scope" unless refresh_token.nil? ^ scope.nil?
 
       value = refresh_token || scope
-      raise ArgumentError, "invalid authentication configuration" unless value && text?(value) && !value.strip.empty?
+      raise ArgumentError, "invalid authentication configuration" unless value && Native.utf8_text?(value) && !value.strip.empty?
 
       refresh_token ? TokenSource.new { refresh(refresh_token: value) } : TokenSource.new { client_credentials(scope: value) }
     end
@@ -93,7 +93,7 @@ module Peddler
     #
     # @return [Tokens]
     def exchange_authorization_code(code:, redirect_uri: nil)
-      unless text?(code) && (redirect_uri.nil? || text?(redirect_uri))
+      unless Native.utf8_text?(code) && (redirect_uri.nil? || Native.utf8_text?(redirect_uri))
         raise ArgumentError, "invalid authentication configuration"
       end
 
@@ -108,11 +108,6 @@ module Peddler
     def tokens(parts)
       access_token, refresh_token, token_type, expires_in = parts
       Tokens.new(access_token, refresh_token, token_type, expires_in)
-    end
-
-    def text?(value)
-      value.is_a?(String) && value.valid_encoding? &&
-        (value.encoding == Encoding::UTF_8 || value.ascii_only?)
     end
   end
 end

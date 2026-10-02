@@ -42,7 +42,7 @@ module Peddler
       config = { base_url: base_url, access_token: source ? nil : Native.access_token(access_token),
         timeout: timeout, retries: retries, retry_delay: retry_delay, max_retry_delay: max_retry_delay,
         user_agent: Native.user_agent }
-      engine = Native.engine(generate(config) || raise(ArgumentError, "invalid configuration"))
+      engine = Native.engine(Native.generate(config) || raise(ArgumentError, "invalid configuration"))
       @engine = source ? Native.sourced_engine(engine, source) : engine
     end
 
@@ -112,14 +112,6 @@ module Peddler
     end
 
     private
-
-    # Returns nil when the value can't be encoded. The generator's error quotes the value, which may be a
-    # credential, so the caller raises outside this rescue and the error never becomes a cause.
-    def generate(value)
-      JSON.generate(value)
-    rescue JSON::GeneratorError
-      nil
-    end
 
     def view(engine, sandbox: @sandbox)
       view = self.class.allocate

@@ -58,6 +58,5 @@ module Peddler
     private
 
     def tokens: (Native::tokens parts) -> Tokens
-    def text?: (untyped value) -> bool
   end
 end

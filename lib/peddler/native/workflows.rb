@@ -28,10 +28,6 @@ module Peddler
       def valid_identifier?(value)
         valid_utf8_string?(value) && !value.empty?
       end
-
-      def positive_seconds?(value)
-        (value.is_a?(Integer) || value.is_a?(Float)) && value.finite? && value > 0
-      end
     end
   end
 
@@ -61,9 +57,7 @@ module Peddler
     end
 
     def create_and_upload_feed_document(source, content_type:, content_length: nil, **transfer_options)
-      unless Native.valid_identifier?(content_type) &&
-          (content_length.nil? || (content_length.is_a?(Integer) && content_length >= 0 && content_length <= Native::UINT64_MAX)) &&
-          (source.is_a?(String) || source.respond_to?(:read))
+      unless Native.valid_identifier?(content_type) && Native::Uploads.valid?(source, content_length)
         raise ArgumentError, "invalid document upload configuration"
       end
       upload = @engine.start_feed_document_upload(content_type, Native::TransferConfig.json(transfer_options), content_length)
@@ -81,17 +75,10 @@ module Peddler
 
     private
 
-    def workflow_download(method, document_id, transfer_options)
+    def workflow_download(method, document_id, transfer_options, &block)
       raise ArgumentError, "invalid document identifier" unless Native.valid_identifier?(document_id)
 
-      document = Document.new(@engine.public_send(method, document_id, Native::TransferConfig.json(transfer_options)))
-      return document unless block_given?
-
-      begin
-        yield document
-      ensure
-        document.close
-      end
+      open_document(@engine.public_send(method, document_id, Native::TransferConfig.json(transfer_options)), &block)
     end
 
     def workflow_wait(method, operation, id, interval, timeout)

@@ -6,10 +6,7 @@ module Peddler
       # A token is a non-empty String of valid UTF-8, whether it is given or a source returns it. The error never
       # shows the value.
       def access_token(value)
-        unless value.is_a?(String) && !value.empty? && value.valid_encoding? &&
-            (value.encoding == Encoding::UTF_8 || value.ascii_only?)
-          raise ArgumentError, "invalid access token"
-        end
+        raise ArgumentError, "invalid access token" unless utf8_text?(value) && !value.empty?
 
         value
       end

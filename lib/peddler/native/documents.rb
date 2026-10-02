@@ -28,15 +28,13 @@ module Peddler
           end
           options.each do |key, value|
             valid = case key
-            when :timeout then (value.is_a?(Integer) || value.is_a?(Float)) && value.finite? && value > 0
+            when :timeout then Native.positive_seconds?(value)
             when :compression then compressions.include?(value)
             else value.is_a?(Integer) && value.positive? && value <= UINT64_MAX
             end
             raise ArgumentError, "invalid document configuration" unless valid
           end
-          JSON.generate(options)
-        rescue JSON::GeneratorError, TypeError
-          raise ArgumentError, "invalid document configuration", cause: nil
+          Native.generate(options) || raise(ArgumentError, "invalid document configuration")
         end
       end
     end
@@ -61,6 +59,12 @@ module Peddler
       CHUNK_BYTES = 64 * 1024
 
       class << self
+        # A String or read(length) source, and a length that fits in 64 bits when one is declared
+        def valid?(source, content_length)
+          (content_length.nil? || (content_length.is_a?(Integer) && content_length >= 0 && content_length <= UINT64_MAX)) &&
+            (source.is_a?(String) || source.respond_to?(:read))
+        end
+
         # Feed an upload handle from a String or read(length) source until the source ends
         # or the transfer completes early. Source exceptions stay the cause of a fixed error.
         def drain(upload, source)
@@ -100,47 +104,22 @@ module Peddler
     def close = @handle.close
     def inspect = "#<Peddler::Document>"
 
-    def each_chunk
-      return enum_for(:each_chunk) unless block_given?
+    def each_chunk(&block)
+      return enum_for(:each_chunk) unless block
 
-      begin
-        while (chunk = @handle.next_row("chunks", false, nil))
-          yield chunk
-        end
-      ensure
-        close
-      end
-      self
+      each_row("chunks", &block)
     end
 
     def each_jsonl
       return enum_for(:each_jsonl) unless block_given?
 
-      begin
-        while (record = @handle.next_row("jsonl", false, nil))
-          yield JSON.parse(record, decimal_class: Native::DocumentDecimal, max_nesting: false)
-        end
-      ensure
-        close
-      end
-      self
+      each_row("jsonl") { |record| yield JSON.parse(record, decimal_class: Native::DocumentDecimal, max_nesting: false) }
     end
 
-    def each_tsv(consistent_fields: false, charset: nil)
-      return enum_for(:each_tsv, consistent_fields: consistent_fields, charset: charset) unless block_given?
+    def each_tsv(consistent_fields: false, charset: nil, &block)
+      return enum_for(:each_tsv, consistent_fields: consistent_fields, charset: charset) unless block
 
-      begin
-        unless consistent_fields == true || consistent_fields == false
-          raise ArgumentError, "invalid document configuration"
-        end
-        raise ArgumentError, "invalid document configuration" unless charset.nil? || Native.valid_utf8_string?(charset)
-        while (row = @handle.next_row("tsv", consistent_fields, charset))
-          yield row
-        end
-      ensure
-        close
-      end
-      self
+      each_row("tsv", consistent_fields, charset, &block)
     end
 
     def json(max_bytes:)
@@ -151,27 +130,36 @@ module Peddler
     ensure
       close
     end
+
+    private
+
+    # Yields each row, then closes the document, also when the arguments are invalid or the block breaks or raises
+    def each_row(mode, consistent_fields = false, charset = nil)
+      unless (consistent_fields == true || consistent_fields == false) &&
+          (charset.nil? || Native.valid_utf8_string?(charset))
+        raise ArgumentError, "invalid document configuration"
+      end
+
+      while (row = @handle.next_row(mode, consistent_fields, charset))
+        yield row
+      end
+      self
+    ensure
+      close
+    end
   end
 
   class Client
-    def download_document(url, **transfer_options)
+    def download_document(url, **transfer_options, &block)
       raise ArgumentError, "invalid document URL" unless Native.valid_utf8_string?(url)
 
-      document = Document.new(@engine.download_document(url, Native::TransferConfig.json(transfer_options)))
-      return document unless block_given?
-
-      begin
-        yield document
-      ensure
-        document.close
-      end
+      open_document(@engine.download_document(url, Native::TransferConfig.json(transfer_options)), &block)
     end
 
     def upload_document(url, source, content_type:, headers: {}, content_length: nil, **transfer_options)
       unless Native.valid_utf8_string?(url) && Native.valid_utf8_string?(content_type) && headers.is_a?(Hash) &&
           headers.all? { |key, value| Native.valid_utf8_string?(key) && Native.valid_utf8_string?(value) } &&
-          (content_length.nil? || (content_length.is_a?(Integer) && content_length >= 0 && content_length <= Native::UINT64_MAX)) &&
-          (source.is_a?(String) || source.respond_to?(:read))
+          Native::Uploads.valid?(source, content_length)
         raise ArgumentError, "invalid document upload configuration"
       end
       upload = @engine.start_document_upload(url, Native::TransferConfig.json(transfer_options), content_type, headers.to_a, content_length)
@@ -180,6 +168,20 @@ module Peddler
         Response.from_document_parts(upload.finish)
       ensure
         upload.close
+      end
+    end
+
+    private
+
+    # The document, or what the block returns with the document closed after it
+    def open_document(handle)
+      document = Document.new(handle)
+      return document unless block_given?
+
+      begin
+        yield document
+      ensure
+        document.close
       end
     end
   end

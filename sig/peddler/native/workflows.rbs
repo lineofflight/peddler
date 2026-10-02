@@ -23,6 +23,7 @@ module Peddler
   module Native
     module Uploads
       CHUNK_BYTES: Integer
+      def self.valid?: (untyped source, untyped content_length) -> bool
       def self.drain: (UploadHandle upload, String | (_DocumentIO & Object) source) -> void
     end
 
@@ -41,7 +42,6 @@ module Peddler
     end
 
     def self.valid_identifier?: (untyped value) -> bool
-    def self.positive_seconds?: (untyped value) -> bool
   end
 
   class Client
