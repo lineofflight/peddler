@@ -1,74 +1,88 @@
 # frozen_string_literal: true
 
-require "delegate"
-require "forwardable"
+require "json"
 
 module Peddler
-  # Wraps HTTP::Response to allow custom parsing
-  #
-  # Delegates all unimplemented methods to the wrapped HTTP::Response object.
-  class Response < SimpleDelegator
-    extend Forwardable
+  class Response
+    # @return [Integer]
+    attr_reader :status
 
-    # @return [nil, #parse] Optional parser for the response
-    attr_reader :parser
+    # @return [Array<Array(String, String)>]
+    attr_reader :headers
 
-    # @!method dig(*key)
-    #   Delegates to the Hash returned by {#to_h} to extract a nested
-    #   value specified by the sequence of keys
-    #
-    #   @param [String] key one or more keys
-    #   @see https://docs.ruby-lang.org/en/4.0/Hash.html#method-i-dig
-    def_delegator :to_h, :dig
+    # @return [String]
+    attr_reader :body
 
     class << self
-      # Wraps an HTTP response with error checking
+      # Builds the response of an API call, raising if it is an HTTP error
       #
-      # @param [HTTP::Response] response The HTTP response to wrap
-      # @param [nil, #parse] parser Optional parser for the response
-      # @return [Response] A wrapped response
-      # @raise [Peddler::Error] if the response indicates an error
-      def wrap(response, parser: nil)
-        wrapped = new(response, parser:)
-        wrapped.raise_for_status!
-        wrapped
+      # @!visibility private
+      # @raise [Peddler::Error]
+      def from_parts(parts, operation = nil)
+        status, headers, body, metadata = parts
+        new(status, headers, body, metadata, operation: operation).raise_for_status!
+      end
+
+      # Builds the reply of a signed-URL transfer, which stays inspectable when it is a rejection
+      #
+      # @!visibility private
+      def from_document_parts(parts)
+        status, headers, body, metadata, truncated = parts
+        new(status, headers, body, metadata, body_truncated: truncated)
       end
     end
 
-    # Creates a new Response wrapper
-    #
-    # @param [HTTP::Response] http_response The HTTP response to wrap
-    # @param [nil, #parse] parser Optional parser for the response
-    def initialize(http_response, parser: nil)
-      super(http_response)
-      @parser = parser
+    def initialize(status, headers, body, metadata = :unclassified, operation: nil, body_truncated: false)
+      @status = status
+      @headers = headers
+      @body = body
+      @metadata = metadata == :unclassified ? Native.response_metadata(status, headers, body) : metadata
+      @operation = operation
+      @body_truncated = body_truncated
     end
 
-    # @return [Boolean] Whether this response can be parsed into typed objects
-    def parsable?
-      !parser.nil?
-    end
-
-    # Parses the response with typed Data objects
-    #
-    # @return [Object] Parsed response with type information, or Hash if no parser
-    def parse
-      parsable? ? parser.call.parse(to_h) : to_h
-    end
-
-    # Converts the response body to a Hash
-    #
-    # @return [Hash]
-    def to_h
-      __getobj__.parse
-    end
-
-    # Raises an error if the HTTP response status indicates failure
-    #
-    # @return [void]
-    # @raise [Peddler::Error] if the response indicates an error
+    # @return [self]
+    # @raise [Peddler::Error] if the status is outside 2xx
     def raise_for_status!
-      raise Error.build(__getobj__) if status >= 400
+      return self unless @metadata
+
+      code, request_id, message = @metadata
+      raise Error.new(message || "request failed with status #{status}", self, code: code, request_id: request_id)
+    end
+
+    # Only document uploads can truncate a bounded reply body.
+    def body_truncated?
+      @body_truncated == true
+    end
+
+    # @return [Hash]
+    def json
+      return @json if defined?(@json)
+
+      @json = JSON.parse(body)
+    end
+    alias_method :to_h, :json
+
+    # Extracts a nested value from the parsed body
+    def dig(*keys)
+      to_h.dig(*keys)
+    end
+
+    # Parses the body into the typed model of the operation
+    #
+    # @return [Object] the typed model, or the Hash when the operation has none
+    def parse
+      model = parser
+      model ? model.parse(to_h) : to_h
+    end
+
+    private
+
+    def parser
+      operation = @operation or return
+      parsers = APIs::PARSERS[operation[/\A[^.]+/]] or return
+
+      parsers.call[operation]&.call
     end
   end
 end

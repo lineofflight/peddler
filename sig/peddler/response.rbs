@@ -1,23 +1,26 @@
 module Peddler
-  class Response < SimpleDelegator
-    extend Forwardable
+  class Response
+    @json: untyped
+    @metadata: Native::error_metadata?
+    @operation: String?
+    @body_truncated: bool
 
-    @parser: untyped
+    attr_reader status: Integer
+    attr_reader headers: Array[[String, String]]
+    attr_reader body: String
 
-    def self.wrap: (HTTP::Response response, ?parser: untyped) -> Response
-
-    attr_reader parser: untyped
-    def initialize: (HTTP::Response http_response, ?parser: untyped) -> void
-
-    def dig: (untyped, *untyped) -> untyped
-    def parsable?: () -> bool
+    def self.from_parts: (Native::response_parts parts, ?String? operation) -> Response
+    def self.from_document_parts: (Native::document_parts parts) -> Response
+    def initialize: (Integer status, Array[[String, String]] headers, String body, ?(Native::error_metadata? | :unclassified) metadata, ?operation: String?, ?body_truncated: bool) -> void
+    def raise_for_status!: () -> self
+    def body_truncated?: () -> bool
+    def json: () -> untyped
+    def to_h: () -> untyped
+    def dig: (*untyped keys) -> untyped
     def parse: () -> untyped
-    def raise_for_status!: () -> void
-    def status: () -> Integer
-    def to_h: () -> Hash[String, untyped]
 
     private
 
-    def raise: (*untyped) -> bot
+    def parser: () -> untyped
   end
 end

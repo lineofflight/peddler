@@ -1,0 +1,20 @@
+module Peddler
+  class Client
+    DEFAULT_LWA_ENDPOINT: String
+
+    @engine: Native::Engine
+    @endpoint: Endpoint?
+    @sandbox: bool
+
+    def initialize: (?region: String?, ?base_url: String?, ?sandbox: boolish, ?refresh_token: String?, ?access_token: String?, ?scope: String?, ?client_id: String?, ?client_secret: String?, ?timeout: Numeric, ?retries: Integer, ?retry_delay: Numeric, ?max_retry_delay: Numeric, ?rate_limits: Hash[String | Symbol, { rate: Float, burst: Integer }], ?lwa_endpoint: String) -> void
+    def sandbox: () -> Client
+    def sandbox?: () -> bool
+    def restricted: (resources: Array[Hash[Symbol | String, untyped]], ?target_application: String?) -> Client
+    def pages: (Pagination pagination, Hash[String | Symbol, untyped] arguments, ?max_pages: Integer?) -> Enumerator[Response, void]
+    def request: (String method, String path, ?params: Hash[String | Symbol, String | Integer | Float | bool], ?body: String | Hash[untyped, untyped] | Array[untyped] | nil, ?operation: String) -> Response
+
+    private
+
+    def view: (Native::Engine engine, ?sandbox: bool) -> Client
+  end
+end

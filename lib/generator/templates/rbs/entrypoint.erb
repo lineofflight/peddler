@@ -1,11 +1,7 @@
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
 module Peddler
-  <%- api_methods.each do |api| -%>
-  def self.<%= api[:name] %>: () -> singleton(APIs::<%= api[:class_name] %>)
-  <%- end -%>
-
-  <%- apis_with_latest_version.each do |name, api| -%>
-  def self.<%= name %>: () -> singleton(APIs::<%= api.class_name %>)
-  <%- end -%>
+  module APIs
+    PARSERS: Hash[String, ^() -> Hash[String, ^() -> untyped]]
+  end
 end

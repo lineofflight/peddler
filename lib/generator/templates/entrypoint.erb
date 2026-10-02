@@ -11,16 +11,21 @@ if File.exist?("#{__dir__}/generator.rb")
   loader.ignore("#{__dir__}/generator.rb")
   loader.ignore("#{__dir__}/generator")
 end
+# The native layer loads eagerly below. Compiled extensions ship in lib/peddler/<ruby minor>/.
+loader.ignore("#{__dir__}/peddler/native.rb")
+loader.ignore("#{__dir__}/peddler/native")
+loader.ignore("#{__dir__}/peddler/[0-9]*")
 loader.setup
 
-module Peddler
-  class << self
-<% apis.each do |api| -%>
-    def <%= api.name_with_version %> = APIs::<%= api.class_name %>
-<% end -%>
+require "peddler/native/boot"
 
-<% apis_with_latest_version.each do |api_name, api| -%>
-    alias <%= api_name %> <%= api.name_with_version %>
+module Peddler
+  module APIs
+    # Each API's typed model lookup, by the API part of a native operation key
+    PARSERS = {
+<% apis.each do |api| -%>
+      "<%= api.name_with_version %>" => -> { <%= api.class_name %>::PARSERS },
 <% end -%>
+    }.freeze
   end
 end

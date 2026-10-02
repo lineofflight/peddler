@@ -1,23 +1,27 @@
 module Peddler
-  # Requests Login with Amazon (LWA) access tokens for SP-API authorization
   class LWA
-    URL: String
+    DEFAULT_ENDPOINT: String
 
-    @client_id: String?
-    @client_secret: String?
-    @options: Hash[Symbol, untyped]
+    @engine: Native::LwaEngine
 
-    def self.request: (?client_id: String?, ?client_secret: String?, **untyped options) -> Response
-    attr_reader client_id: String?
-    attr_reader client_secret: String?
-    attr_reader options: Hash[Symbol, untyped]
+    class Tokens
+      attr_reader access_token: String
+      attr_reader refresh_token: String
+      attr_reader token_type: String
+      attr_reader expires_in: Integer
+      def initialize: (String access_token, String refresh_token, String token_type, Integer expires_in) -> void
+      def to_h: () -> { access_token: String, refresh_token: String, token_type: String, expires_in: Integer }
+      def inspect: () -> String
+      def to_s: () -> String
+    end
 
-    def initialize: (?client_id: String?, ?client_secret: String?, **untyped options) -> void
-    def request: () -> Response
+    def initialize: (?client_id: String?, ?client_secret: String?, ?timeout: Numeric, ?lwa_endpoint: String) -> void
+    def exchange_authorization_code: (code: String, ?redirect_uri: String?) -> Tokens
+    def inspect: () -> String
+    def to_s: () -> String
 
     private
 
-    def grant_type: () -> String?
-    def params: () -> Hash[Symbol, untyped]
+    def text?: (untyped value) -> bool
   end
 end

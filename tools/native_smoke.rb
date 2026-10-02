@@ -32,7 +32,7 @@ if binary
   end
 end
 
-require "peddler/native"
+require "peddler"
 
 spec = Gem.loaded_specs.fetch("peddler")
 extensions = $LOADED_FEATURES.grep(/peddler_native\.(bundle|so)\z/)
@@ -46,7 +46,7 @@ if binary
   check(match && (match[1].nil? || match[1] == abi), "binary is the Ruby #{abi} build (#{extensions.first[/lib\/peddler.*/]})")
 end
 check(spec.version.to_s.match?(/\A\d+\.\d+\.\d+\z/), "installed gem version is #{spec.version}")
-check(!defined?(HTTP), "HTTP.rb is not loaded by peddler/native")
+check(!defined?(HTTP), "HTTP.rb is not loaded by peddler")
 
 # Serves each queued handler once, in order, on a loopback port.
 def serve(*handlers)

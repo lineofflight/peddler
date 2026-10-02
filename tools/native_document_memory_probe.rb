@@ -3,7 +3,7 @@
 # Local synthetic transfer. Both server and sink contribute to process RSS.
 require "socket"
 require "zlib"
-require "peddler/native"
+require "peddler"
 
 megabytes = Integer(ARGV.fetch(0, "128"))
 mode = ARGV.fetch(1, "raw")

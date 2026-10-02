@@ -1,43 +1,45 @@
 # frozen_string_literal: true
 
 module Peddler
+  # An HTTP error response from the Selling Partner API
+  #
+  # Transport, authentication, pagination, document and workflow failures have their own classes and don't descend
+  # from this one.
   class Error < StandardError
-    # @return [HTTP::Response, nil]
+    # @return [Peddler::Response, nil]
     attr_reader :response
 
-    class << self
-      # Builds the error a failed (4xx or 5xx) response represents
-      #
-      # @!visibility private
-      # @param [HTTP::Response] response
-      # @return [Error]
-      def build(response)
-        Builder.new(response).build
-      end
-    end
+    # @return [String, nil] Amazon's error code
+    attr_reader :code
 
-    def initialize(msg = nil, response = nil)
+    # @return [String, nil]
+    attr_reader :request_id
+
+    def initialize(message = nil, response = nil, code: nil, request_id: nil)
       @response = response
-      super(msg)
+      @code = code
+      @request_id = request_id
+      super(message)
     end
 
     # @return [Integer, nil]
     def status
-      response&.status&.code
+      response&.status
     end
 
-    # Supports pattern matching on status
+    # Supports pattern matching on status and code
     #
     # @example
     #   case error
     #   in status: 429 then backoff
-    #   in status: 500..599 then retry
+    #   in code: "QuotaExceeded" then backoff
+    #   in status: 500.. then retry_later
     #   end
     #
     # @param [Array<Symbol>, nil] keys
     # @return [Hash]
     def deconstruct_keys(keys)
-      hash = { status: status }
+      hash = { status: status, code: code }
       keys ? hash.slice(*keys) : hash
     end
   end

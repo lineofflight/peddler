@@ -33,7 +33,6 @@ fn auth_error(ruby: &Ruby, error: AuthError) -> Error {
     let class = ruby
         .class_object()
         .const_get::<_, RModule>("Peddler")
-        .and_then(|m| m.const_get::<_, RModule>("Native"))
         .and_then(|m| m.const_get::<_, magnus::RClass>("AuthenticationError"));
     match class.and_then(|c| c.funcall::<_, _, magnus::Exception>("new", (message, status))) {
         Ok(e) => Error::from(e),

@@ -1,0 +1,40 @@
+module Peddler
+  class TransportError < StandardError
+  end
+
+  class TimeoutError < TransportError
+  end
+
+  class ForkError < StandardError
+  end
+
+  class AuthenticationError < StandardError
+    @status: Integer?
+    attr_reader status: Integer?
+    def initialize: (String message, ?Integer? status) -> void
+  end
+
+  module Native
+    type error_metadata = [String?, String?, String?]
+    type response_parts = [Integer, Array[[String, String]], String, error_metadata?]
+
+    def self.response_metadata: (Integer status, Array[[String, String]] headers, String body) -> error_metadata?
+    def self.engine: (String config) -> Engine
+    def self.lwa_engine: (String client_id, String client_secret, Numeric timeout, String endpoint) -> LwaEngine
+
+    class Engine
+      def self.new: (String base_url, String access_token, Numeric timeout) -> Engine
+      def self.from_config: (String config) -> Engine
+      def with_base_url: (String base_url) -> Engine
+      def restricted: (String scope) -> Engine
+      def request: (String method, String path, Array[[String, String]] query, String? body) -> response_parts
+      def request_with_operation: (String operation, String method, String path, Array[[String, String]] query, String? body) -> response_parts
+      def operation: (String operation, String arguments) -> response_parts
+    end
+
+    class LwaEngine
+      def self.new: (String client_id, String client_secret, Numeric timeout, String endpoint) -> LwaEngine
+      def exchange_authorization_code: (String code, String? redirect_uri) -> [String, String, String, Integer]
+    end
+  end
+end

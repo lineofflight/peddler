@@ -556,12 +556,17 @@ impl Upload {
         Ok(())
     }
 }
-pub(super) fn init(ruby: &Ruby, native: RModule, engine: RClass) -> Result<(), Error> {
-    let error = native.define_class(
+pub(super) fn init(
+    ruby: &Ruby,
+    peddler: RModule,
+    native: RModule,
+    engine: RClass,
+) -> Result<(), Error> {
+    let error = peddler.define_class(
         "DocumentError",
         ruby.exception_standard_error().as_r_class(),
     )?;
-    native.define_class("DocumentTimeoutError", error)?;
+    peddler.define_class("DocumentTimeoutError", error)?;
     engine.define_method("download_document", method!(Document::download, 2))?;
     engine.define_method("start_document_upload", method!(Upload::start, 5))?;
     let document = native.define_class("DocumentHandle", ruby.class_object())?;

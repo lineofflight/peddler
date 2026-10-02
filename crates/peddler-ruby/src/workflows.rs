@@ -16,25 +16,23 @@ fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
         WorkflowError::Request(error) => super::transport_error(ruby, error),
         WorkflowError::Http(response) => {
             let completed = Completed::new(response);
-            let class = ruby
+            if completed.metadata.is_none() {
+                return native_error(ruby, "WorkflowError", &message);
+            }
+            // An HTTP error from a metadata lookup raises as any failed API response does.
+            let parts: ResponseParts = (
+                completed.response.status,
+                completed.response.headers,
+                ruby.str_from_slice(&completed.response.body),
+                completed.metadata,
+            );
+            let raised = ruby
                 .class_object()
                 .const_get::<_, RModule>("Peddler")
-                .and_then(|module| module.const_get::<_, RModule>("Native"))
-                .and_then(|module| module.const_get::<_, RClass>("WorkflowHTTPError"));
-            let exception = class.and_then(|class| {
-                class.funcall::<_, _, magnus::Exception>(
-                    "new",
-                    (
-                        message,
-                        completed.response.status,
-                        completed.response.headers,
-                        ruby.str_from_slice(&completed.response.body),
-                        completed.metadata,
-                    ),
-                )
-            });
-            match exception {
-                Ok(exception) => Error::from(exception),
+                .and_then(|module| module.const_get::<_, RClass>("Response"))
+                .and_then(|class| class.funcall::<_, _, magnus::Value>("from_parts", (parts,)));
+            match raised {
+                Ok(_) => native_error(ruby, "WorkflowError", &message),
                 Err(error) => error,
             }
         }
@@ -201,12 +199,12 @@ fn start_feed_upload(
     })
 }
 
-pub(super) fn init(ruby: &Ruby, native: RModule, engine: RClass) -> Result<(), Error> {
-    let error = native.define_class(
+pub(super) fn init(ruby: &Ruby, peddler: RModule, engine: RClass) -> Result<(), Error> {
+    let error = peddler.define_class(
         "WorkflowError",
         ruby.exception_standard_error().as_r_class(),
     )?;
-    native.define_class("WorkflowTimeoutError", error)?;
+    peddler.define_class("WorkflowTimeoutError", error)?;
     engine.define_method("download_report_document", method!(download_report, 2))?;
     engine.define_method("download_feed_document", method!(download_feed, 2))?;
     engine.define_method("download_query_document", method!(download_query, 2))?;

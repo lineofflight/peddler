@@ -57,71 +57,6 @@ module Peddler
       end
     end
 
-    class Document
-      def initialize(handle)
-        @handle = handle
-      end
-
-      def status = @handle.status
-      def headers = @handle.headers
-      def error_body = @handle.error_body
-      def error_body_truncated? = @handle.error_body_truncated?
-      def closed? = @handle.closed?
-      def close = @handle.close
-      def inspect = "#<Peddler::Native::Document>"
-
-      def each_chunk
-        return enum_for(:each_chunk) unless block_given?
-
-        begin
-          while (chunk = @handle.next_row("chunks", false))
-            yield chunk
-          end
-        ensure
-          close
-        end
-        self
-      end
-
-      def each_jsonl
-        return enum_for(:each_jsonl) unless block_given?
-
-        begin
-          while (record = @handle.next_row("jsonl", false))
-            yield JSON.parse(record, decimal_class: DocumentDecimal, max_nesting: false)
-          end
-        ensure
-          close
-        end
-        self
-      end
-
-      def each_tsv(consistent_fields: false)
-        return enum_for(:each_tsv, consistent_fields: consistent_fields) unless block_given?
-
-        begin
-          unless consistent_fields == true || consistent_fields == false
-            raise ArgumentError, "invalid document configuration"
-          end
-          while (row = @handle.next_row("tsv", consistent_fields))
-            yield row
-          end
-        ensure
-          close
-        end
-        self
-      end
-
-      def json(max_bytes:)
-        unless max_bytes.is_a?(Integer) && max_bytes.positive? && max_bytes <= UINT64_MAX
-          raise ArgumentError, "invalid document configuration"
-        end
-        JSON.parse(@handle.json(max_bytes), decimal_class: DocumentDecimal, max_nesting: false)
-      ensure
-        close
-      end
-    end
-
     module Uploads
       CHUNK_BYTES = 64 * 1024
 
@@ -149,19 +84,70 @@ module Peddler
         end
       end
     end
+  end
 
-    class Response
-      # Only document uploads can truncate a bounded reply body.
-      def body_truncated? = @body_truncated == true
+  class Document
+    def initialize(handle)
+      @handle = handle
+    end
 
-      class << self
-        def from_document_parts(parts)
-          status, headers, body, metadata, truncated = parts
-          response = new(status, headers, body, metadata)
-          response.instance_variable_set(:@body_truncated, truncated)
-          response
+    def status = @handle.status
+    def headers = @handle.headers
+    def error_body = @handle.error_body
+    def error_body_truncated? = @handle.error_body_truncated?
+    def closed? = @handle.closed?
+    def close = @handle.close
+    def inspect = "#<Peddler::Document>"
+
+    def each_chunk
+      return enum_for(:each_chunk) unless block_given?
+
+      begin
+        while (chunk = @handle.next_row("chunks", false))
+          yield chunk
         end
+      ensure
+        close
       end
+      self
+    end
+
+    def each_jsonl
+      return enum_for(:each_jsonl) unless block_given?
+
+      begin
+        while (record = @handle.next_row("jsonl", false))
+          yield JSON.parse(record, decimal_class: Native::DocumentDecimal, max_nesting: false)
+        end
+      ensure
+        close
+      end
+      self
+    end
+
+    def each_tsv(consistent_fields: false)
+      return enum_for(:each_tsv, consistent_fields: consistent_fields) unless block_given?
+
+      begin
+        unless consistent_fields == true || consistent_fields == false
+          raise ArgumentError, "invalid document configuration"
+        end
+        while (row = @handle.next_row("tsv", consistent_fields))
+          yield row
+        end
+      ensure
+        close
+      end
+      self
+    end
+
+    def json(max_bytes:)
+      unless max_bytes.is_a?(Integer) && max_bytes.positive? && max_bytes <= Native::UINT64_MAX
+        raise ArgumentError, "invalid document configuration"
+      end
+      JSON.parse(@handle.json(max_bytes), decimal_class: Native::DocumentDecimal, max_nesting: false)
+    ensure
+      close
     end
   end
 
@@ -169,7 +155,7 @@ module Peddler
     def download_document(url, **transfer_options)
       raise ArgumentError, "invalid document URL" unless Native.valid_utf8_string?(url)
 
-      document = Native::Document.new(@engine.download_document(url, Native::TransferConfig.json(transfer_options)))
+      document = Document.new(@engine.download_document(url, Native::TransferConfig.json(transfer_options)))
       return document unless block_given?
 
       begin
@@ -189,7 +175,7 @@ module Peddler
       upload = @engine.start_document_upload(url, Native::TransferConfig.json(transfer_options), content_type, headers.to_a, content_length)
       begin
         Native::Uploads.drain(upload, source)
-        Native::Response.from_document_parts(upload.finish)
+        Response.from_document_parts(upload.finish)
       ensure
         upload.close
       end

@@ -15,7 +15,8 @@ mod lwa;
 mod workflows;
 use tokio::runtime::{Builder, Runtime};
 
-type ErrorMetadata = (String, Option<String>, Option<String>);
+/// Amazon's error code, request ID and message, for a response outside 2xx.
+type ErrorMetadata = (Option<String>, Option<String>, Option<String>);
 type ResponseParts = (u16, Vec<(String, String)>, RString, Option<ErrorMetadata>);
 struct Completed {
     response: Response,
@@ -29,19 +30,20 @@ impl Completed {
                 metadata: None,
             },
             Err(error) => {
-                use peddler::api_error::ApiErrorKind::*;
-                let kind = match error.kind {
-                    Unauthorized => "unauthorized",
-                    Forbidden => "forbidden",
-                    NotFound => "not_found",
-                    Throttled => "throttled",
-                    Server => "server",
-                    Client => "client",
-                    UnexpectedStatus => "unexpected_status",
-                };
+                let message = serde_json::from_slice::<serde_json::Value>(&error.response.body)
+                    .ok()
+                    .and_then(|value| {
+                        value
+                            .get("errors")?
+                            .as_array()?
+                            .first()?
+                            .get("message")?
+                            .as_str()
+                            .map(str::to_owned)
+                    });
                 Self {
                     response: error.response,
-                    metadata: Some((kind.into(), error.code, error.request_id)),
+                    metadata: Some((error.code, error.request_id, message)),
                 }
             }
         }
@@ -74,6 +76,9 @@ fn response_metadata(
 struct State {
     client: Client,
     runtime: Arc<RuntimeOwner>,
+    // Kept so a view for another destination can be built without Ruby holding secrets.
+    config: Config,
+    scope: Option<RestrictedScope>,
 }
 struct RuntimeOwner {
     runtime: Option<Runtime>,
@@ -109,7 +114,6 @@ fn native_error(ruby: &Ruby, name: &str, message: &str) -> Error {
     let class = ruby
         .class_object()
         .const_get::<_, RModule>("Peddler")
-        .and_then(|module| module.const_get::<_, RModule>("Native"))
         .and_then(|module| module.const_get(name));
     match class {
         Ok(class) => Error::new(class, message.to_owned()),
@@ -130,7 +134,6 @@ fn transport_error(ruby: &Ruby, error: peddler::Error) -> Error {
             let exception = ruby
                 .class_object()
                 .const_get::<_, RModule>("Peddler")
-                .and_then(|m| m.const_get::<_, RModule>("Native"))
                 .and_then(|m| m.const_get::<_, magnus::RClass>("AuthenticationError"))
                 .and_then(|c| {
                     c.funcall::<_, _, magnus::Exception>("new", ("authentication failed", status))
@@ -150,14 +153,31 @@ impl Engine {
         access_token: String,
         timeout: f64,
     ) -> Result<Self, Error> {
-        let duration = Duration::try_from_secs_f64(timeout)
+        Duration::try_from_secs_f64(timeout)
             .map_err(|_| Error::new(ruby.exception_arg_error(), "invalid timeout"))?;
-        let client = Client::with_timeout(&base_url, &access_token, duration)
-            .map_err(|error| transport_error(ruby, error))?;
-        Self::from_client(ruby, client)
+        Self::from_parsed(
+            ruby,
+            Config {
+                base_url,
+                access_token: Some(access_token),
+                client_id: None,
+                client_secret: None,
+                refresh_token: None,
+                scope: None,
+                timeout,
+                retries: 0,
+                retry_delay: default_delay(),
+                max_retry_delay: default_timeout(),
+                rate_limits: BTreeMap::new(),
+                lwa_endpoint: default_lwa(),
+            },
+        )
     }
 
-    fn from_client(ruby: &Ruby, client: Client) -> Result<Self, Error> {
+    fn from_parsed(ruby: &Ruby, config: Config) -> Result<Self, Error> {
+        let client = config
+            .client()
+            .map_err(|error| transport_error(ruby, error))?;
         let runtime = Builder::new_multi_thread()
             .worker_threads(1)
             .enable_all()
@@ -170,6 +190,8 @@ impl Engine {
                 runtime: Arc::new(RuntimeOwner {
                     runtime: Some(runtime),
                 }),
+                config,
+                scope: None,
             })),
         })
     }
@@ -177,10 +199,35 @@ impl Engine {
     fn from_config(ruby: &Ruby, json: String) -> Result<Self, Error> {
         let config: Config = serde_json::from_str(&json)
             .map_err(|_| Error::new(ruby.exception_arg_error(), "invalid configuration"))?;
-        let client = config
-            .client()
-            .map_err(|error| transport_error(ruby, error))?;
-        Self::from_client(ruby, client)
+        Self::from_parsed(ruby, config)
+    }
+
+    /// The same configuration and restricted scope against another origin. Token and
+    /// rate limit state start fresh; the runtime is shared.
+    fn with_base_url(ruby: &Ruby, engine: &Self, base_url: String) -> Result<Self, Error> {
+        if engine.pid != std::process::id() {
+            return Err(native_error(
+                ruby,
+                "ForkError",
+                "create a new client after fork",
+            ));
+        }
+        let mut config = engine.state.config.clone();
+        config.base_url = base_url;
+        let scope = engine.state.scope.clone();
+        let client = config.client().and_then(|client| match scope.clone() {
+            Some(scope) => client.restricted(scope),
+            None => Ok(client),
+        });
+        Ok(Self {
+            pid: engine.pid,
+            state: ManuallyDrop::new(Arc::new(State {
+                client: client.map_err(|error| transport_error(ruby, error))?,
+                runtime: Arc::clone(&engine.state.runtime),
+                config,
+                scope,
+            })),
+        })
     }
 
     fn restricted(ruby: &Ruby, engine: &Self, json: String) -> Result<Self, Error> {
@@ -196,13 +243,15 @@ impl Engine {
         let client = engine
             .state
             .client
-            .restricted(scope)
+            .restricted(scope.clone())
             .map_err(|e| transport_error(ruby, e))?;
         Ok(Self {
             pid: engine.pid,
             state: ManuallyDrop::new(Arc::new(State {
                 client,
                 runtime: Arc::clone(&engine.state.runtime),
+                config: engine.state.config.clone(),
+                scope: Some(scope),
             })),
         })
     }
@@ -312,13 +361,13 @@ enum Work {
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let peddler = ruby.define_module("Peddler")?;
     let native = peddler.define_module("Native")?;
-    let error = native.define_class(
+    let error = peddler.define_class(
         "TransportError",
         ruby.exception_standard_error().as_r_class(),
     )?;
-    native.define_class("TimeoutError", error)?;
-    native.define_class("ForkError", ruby.exception_standard_error().as_r_class())?;
-    native.define_class(
+    peddler.define_class("TimeoutError", error)?;
+    peddler.define_class("ForkError", ruby.exception_standard_error().as_r_class())?;
+    peddler.define_class(
         "AuthenticationError",
         ruby.exception_standard_error().as_r_class(),
     )?;
@@ -326,6 +375,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     let engine = native.define_class("Engine", ruby.class_object())?;
     engine.define_singleton_method("new", function!(Engine::new, 3))?;
     engine.define_singleton_method("from_config", function!(Engine::from_config, 1))?;
+    engine.define_method("with_base_url", method!(Engine::with_base_url, 1))?;
     engine.define_method("restricted", method!(Engine::restricted, 1))?;
     engine.define_method("request", method!(Engine::request, 4))?;
     engine.define_method(
@@ -333,13 +383,13 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         method!(Engine::request_with_operation, 5),
     )?;
     engine.define_method("operation", method!(Engine::operation, 2))?;
-    documents::init(ruby, native, engine)?;
-    workflows::init(ruby, native, engine)?;
+    documents::init(ruby, peddler, native, engine)?;
+    workflows::init(ruby, peddler, engine)?;
     lwa::init(ruby, native)?;
     Ok(())
 }
 
-#[derive(serde::Deserialize)]
+#[derive(Clone, serde::Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Config {
     base_url: String,
@@ -366,7 +416,7 @@ struct Config {
     #[serde(default = "default_lwa")]
     lwa_endpoint: String,
 }
-#[derive(serde::Deserialize)]
+#[derive(Clone, serde::Deserialize)]
 #[serde(deny_unknown_fields)]
 struct RateConfig {
     rate: f64,
@@ -382,14 +432,15 @@ fn default_lwa() -> String {
     peddler::DEFAULT_LWA_ENDPOINT.into()
 }
 impl Config {
-    fn client(self) -> Result<Client, peddler::Error> {
+    fn client(&self) -> Result<Client, peddler::Error> {
+        let config = self.clone();
         let invalid = || peddler::Error::InvalidRequest;
         let credentials = match (
-            self.access_token,
-            self.client_id,
-            self.client_secret,
-            self.refresh_token,
-            self.scope,
+            config.access_token,
+            config.client_id,
+            config.client_secret,
+            config.refresh_token,
+            config.scope,
         ) {
             (Some(token), None, None, None, None) => Credentials::AccessToken(token),
             (None, Some(client_id), Some(client_secret), Some(refresh_token), None) => {
@@ -408,17 +459,18 @@ impl Config {
             }
             _ => return Err(invalid()),
         };
-        let mut config = ClientConfig::new(self.base_url, credentials);
-        config.timeout = Duration::try_from_secs_f64(self.timeout).map_err(|_| invalid())?;
-        config.lwa_endpoint = self.lwa_endpoint;
-        config.policy = PolicyConfig {
+        let mut client = ClientConfig::new(config.base_url, credentials);
+        client.timeout = Duration::try_from_secs_f64(config.timeout).map_err(|_| invalid())?;
+        client.lwa_endpoint = config.lwa_endpoint;
+        client.policy = PolicyConfig {
             retry: RetryPolicy {
-                max_retries: self.retries,
-                base_delay: Duration::try_from_secs_f64(self.retry_delay).map_err(|_| invalid())?,
-                max_delay: Duration::try_from_secs_f64(self.max_retry_delay)
+                max_retries: config.retries,
+                base_delay: Duration::try_from_secs_f64(config.retry_delay)
+                    .map_err(|_| invalid())?,
+                max_delay: Duration::try_from_secs_f64(config.max_retry_delay)
                     .map_err(|_| invalid())?,
             },
-            rate_limits: self
+            rate_limits: config
                 .rate_limits
                 .into_iter()
                 .map(|(key, value)| {
@@ -432,6 +484,6 @@ impl Config {
                 })
                 .collect(),
         };
-        Client::with_config(config)
+        Client::with_config(client)
     }
 }

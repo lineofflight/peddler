@@ -1,15 +1,34 @@
 module Peddler
+  class DocumentError < StandardError
+  end
+
+  class DocumentTimeoutError < DocumentError
+  end
+
+  class Document
+    @handle: Native::DocumentHandle
+    def initialize: (Native::DocumentHandle handle) -> void
+    def status: () -> Integer
+    def headers: () -> Array[[String, String]]
+    def error_body: () -> String?
+    def error_body_truncated?: () -> bool
+    def close: () -> void
+    def closed?: () -> bool
+    def inspect: () -> String
+    def each_chunk: () { (String chunk) -> void } -> Document
+                  | () -> Enumerator[String, Document]
+    def each_jsonl: () { (untyped row) -> void } -> Document
+                  | () -> Enumerator[untyped, Document]
+    def each_tsv: (?consistent_fields: bool) { (Array[String] row) -> void } -> Document
+                | (?consistent_fields: bool) -> Enumerator[Array[String], Document]
+    def json: (max_bytes: Integer) -> untyped
+  end
+
   module Native
     UINT64_MAX: Integer
     def self.valid_utf8_string?: (untyped value) -> bool
 
     type document_parts = [Integer, Array[[String, String]], String, error_metadata?, bool]
-
-    class DocumentError < StandardError
-    end
-
-    class DocumentTimeoutError < DocumentError
-    end
 
     module TransferConfig
       def self.json: (Hash[Symbol, untyped] options) -> String
@@ -41,31 +60,6 @@ module Peddler
     module DocumentDecimal
       def self.try_convert: (String text) -> BigDecimal
     end
-
-    class Document
-      @handle: DocumentHandle
-      def initialize: (DocumentHandle handle) -> void
-      def status: () -> Integer
-      def headers: () -> Array[[String, String]]
-      def error_body: () -> String?
-      def error_body_truncated?: () -> bool
-      def close: () -> void
-      def closed?: () -> bool
-      def inspect: () -> String
-      def each_chunk: () { (String chunk) -> void } -> Document
-                    | () -> Enumerator[String, Document]
-      def each_jsonl: () { (untyped row) -> void } -> Document
-                    | () -> Enumerator[untyped, Document]
-      def each_tsv: (?consistent_fields: bool) { (Array[String] row) -> void } -> Document
-                  | (?consistent_fields: bool) -> Enumerator[Array[String], Document]
-      def json: (max_bytes: Integer) -> untyped
-    end
-
-    class Response
-      @body_truncated: bool?
-      def body_truncated?: () -> bool
-      def self.from_document_parts: (document_parts parts) -> Response
-    end
   end
 
   interface _DocumentIO
@@ -73,8 +67,8 @@ module Peddler
   end
 
   class Client
-    def download_document: [T] (String url, **untyped transfer_options) { (Native::Document document) -> T } -> T
-                         | (String url, **untyped transfer_options) -> Native::Document
-    def upload_document: (String url, String | (_DocumentIO & Object) source, content_type: String, ?headers: Hash[String, String], ?content_length: Integer?, **untyped transfer_options) -> Native::Response
+    def download_document: [T] (String url, **untyped transfer_options) { (Document document) -> T } -> T
+                         | (String url, **untyped transfer_options) -> Document
+    def upload_document: (String url, String | (_DocumentIO & Object) source, content_type: String, ?headers: Hash[String, String], ?content_length: Integer?, **untyped transfer_options) -> Response
   end
 end

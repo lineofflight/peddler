@@ -1,14 +1,15 @@
 module Peddler
   class Error < StandardError
-    attr_reader response: HTTP::Response?
+    @response: Response?
+    @code: String?
+    @request_id: String?
 
-    def self.build: (HTTP::Response response) -> Error
+    attr_reader response: Response?
+    attr_reader code: String?
+    attr_reader request_id: String?
 
+    def initialize: (?String? message, ?Response? response, ?code: String?, ?request_id: String?) -> void
     def status: () -> Integer?
     def deconstruct_keys: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
-
-    private
-
-    def initialize: (?String | Integer | nil msg, ?HTTP::Response | nil response) -> void
   end
 end
