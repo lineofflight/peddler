@@ -404,8 +404,8 @@ impl Workflows {
     ) -> Result<FeedDocumentTarget, WorkflowError> {
         let mut checked = options.clone();
         checked.content_type = content_type.to_owned();
-        documents::check_upload(&checked).map_err(|_| WorkflowError::InvalidConfig)?;
-        let deadline = deadline(options.transfer.timeout)?;
+        let deadline =
+            documents::check_upload(&checked).map_err(|_| WorkflowError::InvalidConfig)?;
         let (created, _) = metadata(
             deadline,
             201,

@@ -21,8 +21,8 @@ use std::{
     fmt, io,
     pin::Pin,
     sync::{
-        Arc,
-        atomic::{AtomicU8, AtomicU64, Ordering},
+        Arc, OnceLock,
+        atomic::{AtomicU64, Ordering},
     },
     time::Duration,
 };
@@ -418,12 +418,6 @@ impl DocumentClient {
         let deadline = options.transfer.deadline()?;
         let url = signed_url(url)?;
         let headers = upload_headers(&options)?;
-        if options
-            .content_length
-            .is_some_and(|length| length > options.transfer.max_bytes)
-        {
-            return Err(Error::ByteLimit);
-        }
         let mut source = Box::pin(source);
         // A zero Content-Length may prevent HTTP from polling the body at all.
         if options.content_length == Some(0) {
@@ -438,36 +432,38 @@ impl DocumentClient {
             }
         }
         let count = Arc::new(AtomicU64::new(0));
-        let failure = Arc::new(AtomicU8::new(0));
+        // HTTP reports a failed body only as a transport error, so the body keeps its own.
+        let failure = Arc::new(OnceLock::new());
         let sent = count.clone();
         let failed = failure.clone();
         let length = options.content_length;
         let max_bytes = options.transfer.max_bytes;
         let body = async_stream::stream! {
+            let fail = |error| -> Result<Bytes, Error> { let _ = failed.set(error); Err(error) };
             loop {
                 let next = match timeout_at(deadline, source.next()).await {
                     Ok(next) => next,
-                    Err(_) => { failed.store(4, Ordering::SeqCst); yield Err(Error::Timeout); break; }
+                    Err(_) => { yield fail(Error::Timeout); break; }
                 };
                 match next {
                     Some(Ok(chunk)) => {
                         let previous = sent.load(Ordering::SeqCst);
-                        let Some(total) = previous.checked_add(chunk.len() as u64) else { failed.store(2, Ordering::SeqCst); yield Err(Error::ByteLimit); break; };
-                        if total > max_bytes { failed.store(2, Ordering::SeqCst); yield Err(Error::ByteLimit); break; }
-                        if length.is_some_and(|length| total > length) { failed.store(3, Ordering::SeqCst); yield Err(Error::LengthMismatch); break; }
+                        let Some(total) = previous.checked_add(chunk.len() as u64) else { yield fail(Error::ByteLimit); break; };
+                        if total > max_bytes { yield fail(Error::ByteLimit); break; }
+                        if length.is_some_and(|length| total > length) { yield fail(Error::LengthMismatch); break; }
                         // Don't let HTTP stop polling at Content-Length before
                         // checking the source's final EOF. Hold only this chunk.
                         if length == Some(total) {
                             let final_error = loop {
                                 match timeout_at(deadline, source.next()).await {
-                                    Err(_) => break Some((4, Error::Timeout)),
-                                    Ok(Some(Err(_))) => break Some((1, Error::UploadSource)),
-                                    Ok(Some(Ok(extra))) if !extra.is_empty() => break Some((3, Error::LengthMismatch)),
+                                    Err(_) => break Some(Error::Timeout),
+                                    Ok(Some(Err(_))) => break Some(Error::UploadSource),
+                                    Ok(Some(Ok(extra))) if !extra.is_empty() => break Some(Error::LengthMismatch),
                                     Ok(Some(Ok(_))) => {},
                                     Ok(None) => break None,
                                 }
                             };
-                            if let Some((code, error)) = final_error { failed.store(code, Ordering::SeqCst); yield Err(error); break; }
+                            if let Some(error) = final_error { yield fail(error); break; }
                             sent.store(total, Ordering::SeqCst);
                             yield Ok(chunk);
                             break;
@@ -475,9 +471,9 @@ impl DocumentClient {
                         sent.store(total, Ordering::SeqCst);
                         yield Ok(chunk);
                     }
-                    Some(Err(_)) => { failed.store(1, Ordering::SeqCst); yield Err(Error::UploadSource); break; }
+                    Some(Err(_)) => { yield fail(Error::UploadSource); break; }
                     None => {
-                        if length.is_some_and(|length| sent.load(Ordering::SeqCst) != length) { failed.store(3, Ordering::SeqCst); yield Err(Error::LengthMismatch); }
+                        if length.is_some_and(|length| sent.load(Ordering::SeqCst) != length) { yield fail(Error::LengthMismatch); }
                         break;
                     }
                 }
@@ -495,15 +491,8 @@ impl DocumentClient {
         let result = timeout_at(deadline, request.send())
             .await
             .map_err(|_| Error::Timeout)?;
-        let failure = match failure.load(Ordering::SeqCst) {
-            1 => Some(Error::UploadSource),
-            2 => Some(Error::ByteLimit),
-            3 => Some(Error::LengthMismatch),
-            4 => Some(Error::Timeout),
-            _ => None,
-        };
-        if let Some(error) = failure {
-            return Err(error);
+        if let Some(error) = failure.get() {
+            return Err(*error);
         }
         let response = result.map_err(transport)?;
         if response.status().is_success()
@@ -528,17 +517,12 @@ impl DocumentClient {
 pub(crate) fn check_url(text: &str) -> Result<(), Error> {
     signed_url(text).map(|_| ())
 }
-/// Validate everything about an upload that does not need the source or network.
-pub(crate) fn check_upload(options: &UploadOptions) -> Result<(), Error> {
-    options.transfer.deadline()?;
+/// Validate everything about an upload that does not need the source or network,
+/// and start its deadline.
+pub(crate) fn check_upload(options: &UploadOptions) -> Result<Instant, Error> {
+    let deadline = options.transfer.deadline()?;
     upload_headers(options)?;
-    if options
-        .content_length
-        .is_some_and(|length| length > options.transfer.max_bytes)
-    {
-        return Err(Error::ByteLimit);
-    }
-    Ok(())
+    Ok(deadline)
 }
 /// HTTPS, or HTTP to a loopback host, with the query that signs it.
 fn signed_url(text: &str) -> Result<Url, Error> {
@@ -701,6 +685,7 @@ fn extend_bounded(
     bytes.extend_from_slice(more);
     Ok(())
 }
+/// The headers of an upload. The declared length is checked after them.
 fn upload_headers(options: &UploadOptions) -> Result<HeaderMap, Error> {
     if options.content_type.is_empty() {
         return Err(Error::InvalidHeader);
@@ -733,6 +718,12 @@ fn upload_headers(options: &UploadOptions) -> Result<HeaderMap, Error> {
             name,
             HeaderValue::from_str(value).map_err(|_| Error::InvalidHeader)?,
         );
+    }
+    if options
+        .content_length
+        .is_some_and(|length| length > options.transfer.max_bytes)
+    {
+        return Err(Error::ByteLimit);
     }
     Ok(headers)
 }
