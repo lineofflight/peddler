@@ -2,7 +2,7 @@
 //! under one deadline; Ruby wraps the owned outputs and feeds upload chunks.
 use super::{Completed, Engine, ResponseParts, documents, gvl, native_error, peddler_const};
 use documents::{Config, Document, Upload};
-use magnus::{Error, RClass, RModule, Ruby, method, prelude::*};
+use magnus::{Error, RClass, Ruby, method, prelude::*};
 use peddler::{
     documents::{Error as DocumentError, UploadOptions},
     workflows::{DocumentKind, WaitOptions, WorkflowError},
@@ -123,12 +123,7 @@ fn start_feed_upload(
     })
 }
 
-pub(super) fn init(ruby: &Ruby, peddler: RModule, engine: RClass) -> Result<(), Error> {
-    let error = peddler.define_class(
-        "WorkflowError",
-        ruby.exception_standard_error().as_r_class(),
-    )?;
-    peddler.define_class("WorkflowTimeoutError", error)?;
+pub(super) fn init(engine: RClass) -> Result<(), Error> {
     engine.define_method("download_workflow_document", method!(download, 3))?;
     engine.define_method("wait_for", method!(wait, 4))?;
     engine.define_method("start_feed_document_upload", method!(start_feed_upload, 3))?;

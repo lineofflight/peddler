@@ -76,6 +76,30 @@ module Peddler
       assert_equal(:give_up, classify(build(404)))
     end
 
+    # Every error class of the gem, its superclass and the methods it adds. Where a class is defined must not change
+    # any of them.
+    def test_error_hierarchy
+      errors = Peddler.constants.sort.filter_map do |name|
+        value = Peddler.const_get(name)
+        [name, value.superclass, value.instance_methods(false).sort] if value.is_a?(Class) && value < Exception
+      end
+      expected = [
+        [:AuthenticationError, StandardError, [:code, :status]],
+        [:DocumentError, StandardError, [:document_id, :with_document_id]],
+        [:DocumentTimeoutError, DocumentError, []],
+        [:Error, StandardError, [:code, :deconstruct_keys, :request_id, :response, :status]],
+        [:ForkError, StandardError, []],
+        [:PaginationError, StandardError, [:reason]],
+        [:TimeoutError, TransportError, []],
+        [:TransportError, StandardError, []],
+        [:WorkflowError, StandardError, []],
+        [:WorkflowTimeoutError, WorkflowError, []],
+      ]
+
+      assert_equal(expected, errors)
+      assert_equal([:message, :status, :code], AuthenticationError.instance_method(:initialize).parameters.map(&:last))
+    end
+
     def test_does_not_expose_kind
       refute_respond_to(build(404), :kind)
     end

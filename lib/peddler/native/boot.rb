@@ -2,6 +2,7 @@
 
 require "json"
 require "socket"
+require_relative "errors"
 require_relative "loader"
 Peddler::Native::Loader.require_extension
 
@@ -43,20 +44,6 @@ module Peddler
       def user_agent
         "Peddler/#{VERSION} (Language=Ruby; #{Socket.gethostname.gsub(/[^\x20-\x7E]/, "")})"
       end
-    end
-  end
-
-  class AuthenticationError
-    # @return [Integer, nil] the HTTP status when Login with Amazon rejected the request
-    attr_reader :status
-
-    # @return [String, nil] what Login with Amazon names as the problem, such as "invalid_client" or "invalid_grant"
-    attr_reader :code
-
-    def initialize(message, status = nil, code: nil)
-      @status = status
-      @code = code
-      super(message)
     end
   end
 end

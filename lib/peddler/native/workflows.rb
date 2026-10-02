@@ -1,16 +1,6 @@
 # frozen_string_literal: true
 
 module Peddler
-  class DocumentError
-    # Set when an upload fails after its feed document was created.
-    attr_reader :document_id
-
-    def with_document_id(document_id)
-      @document_id = document_id
-      self
-    end
-  end
-
   # Outcome of create_and_upload_feed_document. The upload response may be a rejection.
   class FeedDocumentUpload
     attr_reader :document_id, :response

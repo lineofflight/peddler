@@ -33,23 +33,10 @@ impl Completed {
                 response,
                 metadata: None,
             },
-            Err(error) => {
-                let message = serde_json::from_slice::<serde_json::Value>(&error.response.body)
-                    .ok()
-                    .and_then(|value| {
-                        value
-                            .get("errors")?
-                            .as_array()?
-                            .first()?
-                            .get("message")?
-                            .as_str()
-                            .map(str::to_owned)
-                    });
-                Self {
-                    response: error.response,
-                    metadata: Some((error.code, error.request_id, message)),
-                }
-            }
+            Err(error) => Self {
+                response: error.response,
+                metadata: Some((error.code, error.request_id, error.message)),
+            },
         }
     }
 
@@ -248,24 +235,14 @@ enum Work {
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let peddler = ruby.define_module("Peddler")?;
     let native = peddler.define_module("Native")?;
-    let error = peddler.define_class(
-        "TransportError",
-        ruby.exception_standard_error().as_r_class(),
-    )?;
-    peddler.define_class("TimeoutError", error)?;
-    peddler.define_class("ForkError", ruby.exception_standard_error().as_r_class())?;
-    peddler.define_class(
-        "AuthenticationError",
-        ruby.exception_standard_error().as_r_class(),
-    )?;
     let engine = native.define_class("Engine", ruby.class_object())?;
     engine.define_singleton_method("from_config", function!(Engine::from_config, 1))?;
     engine.define_method("with_base_url", method!(Engine::with_base_url, 1))?;
     engine.define_method("with_access_token", method!(Engine::with_access_token, 1))?;
     engine.define_method("request", method!(Engine::request, 4))?;
     engine.define_method("operation", method!(Engine::operation, 2))?;
-    documents::init(ruby, peddler, native, engine)?;
-    workflows::init(ruby, peddler, engine)?;
+    documents::init(ruby, native, engine)?;
+    workflows::init(engine)?;
     lwa::init(ruby, native)?;
     Ok(())
 }

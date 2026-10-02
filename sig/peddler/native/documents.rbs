@@ -1,10 +1,4 @@
 module Peddler
-  class DocumentError < StandardError
-  end
-
-  class DocumentTimeoutError < DocumentError
-  end
-
   class Document
     @handle: Native::DocumentHandle
     def initialize: (Native::DocumentHandle handle) -> void

@@ -1,17 +1,6 @@
 # frozen_string_literal: true
 
 module Peddler
-  # Raised after the last good page when a following page can't be requested.
-  # Messages never include tokens, bodies or arguments.
-  class PaginationError < StandardError
-    attr_reader :reason
-
-    def initialize(reason)
-      @reason = reason
-      super("#{reason.to_s.tr("_", " ")} in pagination response")
-    end
-  end
-
   # How arguments change after the first page. By default every argument
   # carries over and only the token is replaced.
   class Continuation

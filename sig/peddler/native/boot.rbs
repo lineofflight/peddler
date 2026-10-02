@@ -1,21 +1,4 @@
 module Peddler
-  class TransportError < StandardError
-  end
-
-  class TimeoutError < TransportError
-  end
-
-  class ForkError < StandardError
-  end
-
-  class AuthenticationError < StandardError
-    @status: Integer?
-    @code: String?
-    attr_reader status: Integer?
-    attr_reader code: String?
-    def initialize: (String message, ?Integer? status, ?code: String?) -> void
-  end
-
   module Native
     type error_metadata = [String?, String?, String?]
     type response_parts = [Integer, Array[[String, String]], String, error_metadata?]

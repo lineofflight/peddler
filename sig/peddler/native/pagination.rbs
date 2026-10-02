@@ -1,10 +1,4 @@
 module Peddler
-  class PaginationError < StandardError
-    @reason: Symbol
-    attr_reader reason: Symbol
-    def initialize: (Symbol reason) -> void
-  end
-
   class Continuation
     @operation: String?
     @keep: Array[String]?

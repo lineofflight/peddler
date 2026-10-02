@@ -1,16 +1,4 @@
 module Peddler
-  class WorkflowError < StandardError
-  end
-
-  class WorkflowTimeoutError < WorkflowError
-  end
-
-  class DocumentError < StandardError
-    @document_id: String?
-    attr_reader document_id: String?
-    def with_document_id: (String document_id) -> self
-  end
-
   class FeedDocumentUpload
     @document_id: String
     @response: Response

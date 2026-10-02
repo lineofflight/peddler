@@ -43,6 +43,7 @@ fn extracts_amazon_code_without_exposing_response_in_formatting() {
     let body = br#"{"errors":[{"code":"code-secret","message":"message-secret"}]}"#;
     let error = response(403, body).error_for_status().unwrap_err();
     assert_eq!(error.code.as_deref(), Some("code-secret"));
+    assert_eq!(error.message.as_deref(), Some("message-secret"));
     assert_eq!(error.response.body, body);
     for rendered in [format!("{error}"), format!("{error:?}")] {
         for secret in [
@@ -73,6 +74,7 @@ fn malformed_or_missing_fields_are_optional() {
         .error_for_status()
         .unwrap_err();
         assert_eq!(error.code, None);
+        assert_eq!(error.message, None);
         assert_eq!(error.request_id, None);
     }
 }

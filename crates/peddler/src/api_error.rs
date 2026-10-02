@@ -7,6 +7,8 @@ pub struct ApiError {
     pub response: Response,
     pub code: Option<String>,
     pub request_id: Option<String>,
+    /// The `message` of the first entry in `errors`, as Amazon sent it.
+    pub message: Option<String>,
 }
 
 impl fmt::Debug for ApiError {
@@ -26,21 +28,18 @@ impl fmt::Display for ApiError {
 impl std::error::Error for ApiError {}
 
 impl Response {
+    // The error carries the whole response, which is the point of it.
+    #[allow(clippy::result_large_err)]
     pub fn error_for_status(self) -> Result<Self, ApiError> {
         if (200..=299).contains(&self.status) {
             return Ok(self);
         }
-        let code = serde_json::from_slice::<serde_json::Value>(&self.body)
-            .ok()
-            .and_then(|value| {
-                value
-                    .get("errors")?
-                    .as_array()?
-                    .first()?
-                    .get("code")?
-                    .as_str()
-                    .map(str::to_owned)
-            });
+        let body = serde_json::from_slice::<serde_json::Value>(&self.body).ok();
+        let first = body
+            .as_ref()
+            .and_then(|value| value.get("errors")?.as_array()?.first());
+        let field = |name| Some(first?.get(name)?.as_str()?.to_owned());
+        let (code, message) = (field("code"), field("message"));
         let request_id = self
             .headers
             .iter()
@@ -50,6 +49,7 @@ impl Response {
             response: self,
             code,
             request_id,
+            message,
         })
     }
 }

@@ -1,0 +1,39 @@
+module Peddler
+  class TransportError < StandardError
+  end
+
+  class TimeoutError < TransportError
+  end
+
+  class ForkError < StandardError
+  end
+
+  class AuthenticationError < StandardError
+    @status: Integer?
+    @code: String?
+    attr_reader status: Integer?
+    attr_reader code: String?
+    def initialize: (String message, ?Integer? status, ?code: String?) -> void
+  end
+
+  class DocumentError < StandardError
+    @document_id: String?
+    attr_reader document_id: String?
+    def with_document_id: (String document_id) -> self
+  end
+
+  class DocumentTimeoutError < DocumentError
+  end
+
+  class WorkflowError < StandardError
+  end
+
+  class WorkflowTimeoutError < WorkflowError
+  end
+
+  class PaginationError < StandardError
+    @reason: Symbol
+    attr_reader reason: Symbol
+    def initialize: (Symbol reason) -> void
+  end
+end
