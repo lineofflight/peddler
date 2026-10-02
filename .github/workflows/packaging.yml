@@ -114,11 +114,15 @@ jobs:
         with:
           platform: ${{ matrix.platform }}
           ruby-versions: "3.3,3.4,4.0"
-      - run: ruby tools/gem_audit.rb "${{ steps.cross-gem.outputs.gem-path }}"
+      # The action's gem-path output looks for "*-<platform>.gem", which misses the
+      # "-gnu" suffix added to Linux gems, so locate the gem here.
+      - id: gem
+        run: echo "path=$(ls pkg/peddler-*-${{ matrix.platform }}*.gem)" >> "$GITHUB_OUTPUT"
+      - run: ruby tools/gem_audit.rb "${{ steps.gem.outputs.path }}"
       - uses: actions/upload-artifact@v4
         with:
           name: gem-${{ matrix.platform }}
-          path: ${{ steps.cross-gem.outputs.gem-path }}
+          path: ${{ steps.gem.outputs.path }}
 
   smoke:
     needs: cross-gem

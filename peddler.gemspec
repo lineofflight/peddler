@@ -34,7 +34,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency("bigdecimal", ">= 3.1", "< 5")
   gem.add_dependency("http", ">= 5.3", "< 7.0")
   gem.add_dependency("nokogiri", "~> 1.0")
-  gem.add_dependency("rb_sys", "~> 0.9.124")
+  gem.add_dependency("rb_sys", "~> 0.9.130")
   gem.add_dependency("structure", "~> 4.2")
   gem.add_dependency("zeitwerk", "~> 2.6")
 

@@ -19,9 +19,9 @@ Add to your Gemfile.
 
 Peddler 6 includes a Rust extension. Nothing is published yet; this describes how releases are prepared.
 
-**Platform gems** are planned for macOS (arm64, x86_64) and glibc Linux (aarch64, x86_64). Each bundles builds for Ruby 3.3, 3.4 and 4.0 under `lib/peddler/<major.minor>/` and needs no compiler, Rust or Node. They are built with `rb_sys` and rake-compiler in the `rb-sys-dock` containers. Alpine/musl and Windows are not supported.
+**Platform gems** are planned for macOS (arm64, x86_64) and glibc Linux (aarch64, x86_64). Each bundles builds for Ruby 3.3, 3.4 and 4.0 under `lib/peddler/<major.minor>/` and needs no compiler, Rust or Node. They are built with `rb_sys` and rake-compiler in the `rb-sys-dock` containers. Linux gems are named `-linux-gnu`, so Alpine/musl hosts do not select them and fall back to the source gem. Windows is not supported.
 
-**Source gem** is used on any other platform or Ruby version. It compiles the extension during `gem install` and needs:
+**Source gem** is used on any other platform (including musl) or Ruby version. It compiles the extension during `gem install` and needs:
 
 - a current stable Rust toolchain (`rustup`; built and tested with 1.98.1) with `cargo` on `PATH`
 - Ruby headers (`ruby-dev` or `ruby-devel` on Linux)

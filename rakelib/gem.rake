@@ -10,15 +10,24 @@ GEMSPEC = Gem::Specification.load(File.expand_path("../peddler.gemspec", __dir__
 # `rake native:<platform> gem` with RUBY_CC_VERSION=3.3:3.4:4.0 builds the fat
 # platform gem with binaries in lib/peddler/<ruby minor>/; it needs the
 # rb-sys-dock containers (see .github/workflows/packaging.yml).
-RbSys::ExtensionTask.new("peddler_native", GEMSPEC) do |ext|
-  ext.ext_dir = "crates/peddler-ruby"
-  ext.lib_dir = "lib/peddler"
-  ext.cross_compile = true
-  ext.cross_platform = ["arm64-darwin", "x86_64-darwin", "aarch64-linux", "x86_64-linux"]
-  # Platform gems carry binaries only; drop everything that exists for the Rust build.
-  ext.cross_compiling do |spec|
-    spec.files.reject! { |file| file.match?(%r{\A(Cargo\.|crates/|third_party/)}) }
-    spec.extensions.clear
+# The extension task asks cargo for package metadata when it is defined, so it
+# is skipped on machines without Rust. Other rake tasks keep working.
+cargo = ENV.fetch("PATH", "").split(File::PATH_SEPARATOR).any? { |dir| File.executable?(File.join(dir, "cargo")) }
+if cargo
+  RbSys::ExtensionTask.new("peddler_native", GEMSPEC) do |ext|
+    ext.ext_dir = "crates/peddler-ruby"
+    ext.lib_dir = "lib/peddler"
+    ext.cross_compile = true
+    ext.cross_platform = ["arm64-darwin", "x86_64-darwin", "aarch64-linux", "x86_64-linux"]
+    ext.cross_compiling do |spec|
+      # Platform gems carry binaries only; drop everything that exists for the Rust build.
+      spec.files.reject! { |file| file.match?(%r{\A(Cargo\.|crates/|third_party/)}) }
+      spec.extensions.clear
+      # Only glibc Linux is supported. A plain "-linux" gem would also be picked by musl hosts.
+      if spec.platform.os == "linux" && spec.platform.version.nil?
+        spec.platform = Gem::Platform.new([spec.platform.cpu, "linux", "gnu"])
+      end
+    end
   end
 end
 

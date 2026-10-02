@@ -13,7 +13,7 @@ module Peddler
     # A build for another Ruby minor is never loaded.
     module Loader
       EXTENSION = "peddler_native"
-      DIR = File.expand_path("..", __dir__)
+      DIR = File.expand_path("../..", __FILE__)
 
       class << self
         def require_extension(dir: DIR, abi: RUBY_VERSION[/\A\d+\.\d+/], dlext: RbConfig::CONFIG["DLEXT"],
