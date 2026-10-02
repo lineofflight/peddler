@@ -5,13 +5,47 @@ require "peddler_native"
 
 module Peddler
   module Native
+    class AuthenticationError
+      attr_reader :status
+
+      def initialize(message, status = nil)
+        @status = status
+        super(message)
+      end
+    end
+
+    class APIError < StandardError
+      attr_reader :response, :code, :request_id, :kind
+
+      def initialize(response, metadata)
+        @response = response
+        @kind, @code, @request_id = metadata
+        super("API response status #{response.status} (#{kind})")
+      end
+    end
+
     class Response
       attr_reader :status, :headers, :body
 
-      def initialize(status, headers, body)
+      class << self
+        def from_parts(parts)
+          status, headers, body, metadata = parts
+          new(status, headers, body, metadata)
+        end
+      end
+
+      def initialize(status, headers, body, metadata = :unclassified)
         @status = status
         @headers = headers
         @body = body
+        @metadata = metadata == :unclassified ? Native.response_metadata(status, headers, body) : metadata
+      end
+
+      def raise_for_status!
+        metadata = @metadata
+        raise APIError.new(self, metadata) if metadata
+
+        self
       end
 
       def json
@@ -23,11 +57,28 @@ module Peddler
   end
 
   class Client
-    def initialize(base_url:, access_token:, timeout: 30)
-      @engine = Native::Engine.new(base_url, access_token, timeout)
+    DEFAULT_LWA_ENDPOINT = "https://api.amazon.com/auth/o2/token"
+
+    def initialize(base_url:, access_token: nil, client_id: nil, client_secret: nil, refresh_token: nil, scope: nil,
+      timeout: 30, retries: 0, retry_delay: 0.2, max_retry_delay: 30, rate_limits: {}, lwa_endpoint: DEFAULT_LWA_ENDPOINT)
+      config = { base_url: base_url, access_token: access_token, client_id: client_id, client_secret: client_secret,
+        refresh_token: refresh_token, scope: scope, timeout: timeout, retries: retries, retry_delay: retry_delay,
+        max_retry_delay: max_retry_delay, rate_limits: rate_limits, lwa_endpoint: lwa_endpoint }
+      @engine = Native::Engine.from_config(JSON.generate(config))
+    rescue JSON::GeneratorError
+      raise ArgumentError, "invalid configuration"
     end
 
-    def request(method, path, params: {}, body: nil)
+    def restricted(resources:, target_application: nil)
+      engine = @engine.restricted(JSON.generate(resources: resources, target_application: target_application))
+      view = self.class.allocate
+      view.instance_variable_set(:@engine, engine)
+      view
+    rescue JSON::GeneratorError
+      raise ArgumentError, "invalid restricted scope"
+    end
+
+    def request(method, path, params: {}, body: nil, operation: "raw")
       raise TypeError, "method and path must be strings" unless method.is_a?(String) && path.is_a?(String)
       raise ArgumentError, "params must be a hash" unless params.is_a?(Hash)
 
@@ -49,8 +100,9 @@ module Peddler
       when Hash, Array then JSON.generate(body)
       else raise ArgumentError, "body must be a string, hash, array or nil"
       end
-      status, headers, response_body = @engine.request(method, path, query.to_a, payload)
-      Native::Response.new(status, headers, response_body)
+      raise TypeError, "operation must be a string" unless operation.is_a?(String)
+
+      Native::Response.from_parts(@engine.request_with_operation(operation, method, path, query.to_a, payload))
     end
   end
 end

@@ -8,6 +8,9 @@ Peddler covers all SP-API endpoints, reports, notifications, and feeds. It's als
 
 <img src="https://github.com/lineofflight/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 830px" />
 
+The next-major Rust/native preview supports shared LWA refresh, restricted-data
+tokens, opt-in rate limits and safe retries. See [preview usage and limits](crates/peddler/README.md).
+
 ## Installation
 
 Add to your Gemfile.

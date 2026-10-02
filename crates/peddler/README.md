@@ -1,6 +1,6 @@
 # Rust core and native Ruby preview
 
-Local-development preview of Peddler's next major release. The shared Rust SDK owns transport and 2 operations; Ruby calls the same Rust dispatcher through a thin native binding. Both APIs may change. Workspace crates are version 0.1.0 with publishing disabled.
+Local-development preview of Peddler's next major release. The shared Rust SDK owns transport, authentication, request policy and 2 operations; Ruby calls the same Rust dispatcher through a thin native binding. Both APIs may change. Workspace crates are version 0.1.0 with publishing disabled.
 
 ## Implemented scope
 
@@ -18,7 +18,7 @@ cargo clippy -p peddler --all-targets --locked -- -D warnings
 
 ## Rust usage
 
-Use a local path dependency: `peddler = { path = "/path/to/peddler/crates/peddler" }`. Async calls require a Tokio runtime with I/O and timers enabled. Client clones share the existing connection pool; operation functions use that transport too.
+Use a local path dependency: `peddler = { path = "/path/to/peddler/crates/peddler" }`. Async calls require a Tokio runtime with I/O and timers enabled. Client clones and restricted views share the connection pool, token caches and rate buckets. Operation functions and raw requests use the same authentication and policy runner.
 
 ```rust
 use peddler::{Client, apis::{catalog_items_2022_04_01 as catalog,
@@ -60,7 +60,51 @@ let response = listings::patch_listings_item(&client, params).await?;
 
 Dynamic bodies retain unknown members, empty arrays and nulls by JSON meaning, rather than original whitespace or key order. Typed models accept unknown enum strings. Optional arrays distinguish `Some(vec![])` from `None`, but omitted and null both decode to `None`; raw JSON retains all states. Parameter constructors default `included_data` to `["summaries"]` or `["issues"]`; set it to `None` to omit the query. String parameters permit future enum values. Invalid path identifiers, CSV members and nonobject Listings bodies fail before network access.
 
-`TypedResponse<T>::json()` decodes lazily. HTTP errors, unexpected statuses and malformed JSON remain raw responses; parsing can fail separately. `Client::execute(Request)` still supports raw requests. The default timeout is 30 seconds; `Client::with_timeout` accepts a `Duration`. Failures distinguish sanitized `Error::InvalidRequest`, `Error::Timeout` and `Error::Transport`.
+`TypedResponse<T>::json()` decodes lazily. HTTP errors, unexpected statuses and malformed JSON remain raw responses; parsing can fail separately. `Client::execute(Request)` still supports raw requests. The default timeout is 30 seconds; `Client::with_timeout` accepts a `Duration`. The total deadline includes rate waits, token refresh, retries and response-body collection. Failures distinguish sanitized `Error::InvalidRequest`, `Error::Timeout`, `Error::Transport` and `Error::Authentication(AuthError)`. Authentication errors retain only classification and rejected status, never server bodies.
+
+## Authentication and policy
+
+`Client::new` and `with_timeout` accept a static token. Use `Client::with_config(ClientConfig)` for refresh-token or grantless LWA authentication:
+
+```rust
+use peddler::{Client, ClientConfig, auth::Credentials};
+let mut config = ClientConfig::new("https://sellingpartnerapi-eu.amazon.com",
+    Credentials::RefreshToken {
+        client_id: "application-id".into(),
+        client_secret: "application-secret".into(),
+        refresh_token: "seller-refresh-token".into(),
+    });
+config.policy.retry.max_retries = 2;
+let client = Client::with_config(config)?;
+```
+
+Construction validates configuration without HTTP. The default LWA endpoint is
+`https://api.amazon.com/auth/o2/token`; `lwa_endpoint` supports a loopback test
+server. HTTPS and explicit HTTP loopback origins are accepted. LWA refresh-token
+and client-credentials grants coalesce concurrent refreshes, cache tokens and
+refresh before expiry. Dropping the last refresh waiter releases abandoned HTTP
+work; other waiters can continue their shared refresh.
+
+`client.restricted(RestrictedScope)` returns an immutable view using RDT. Scope
+validation is local; matching canonical scopes reuse their cached token, changed
+resources or target applications use separate entries. RDT bootstrap uses the
+base LWA/static token. Views share authentication, pool and request policy.
+
+Policy is disabled by default. `PolicyConfig` accepts fully qualified operation
+keys, such as `catalog_items_2022_04_01.get_catalog_item`, with `RateLimit` rate
+and burst. Raw requests use `raw`; `execute_with_operation(key, request)` selects
+another bucket. Observed Amazon rates update configured buckets. Retries apply
+only to GET/HEAD/OPTIONS on 429/500/502/503/504, with bounded jitter and
+Retry-After. PATCH, 401/403, transport and authentication failures never retry.
+A backoff exceeding the remaining deadline returns the last raw response.
+
+`response.error_for_status()` opts into Rust API-error classification and keeps
+status, duplicate headers and body bytes. It extracts optional code/request ID
+without exposing server bodies in error formatting.
+
+Authorization-code onboarding still uses the existing Ruby `Peddler::LWA` helper
+in the legacy entrypoint. A shared Rust/native authorization-code exchange is a
+required follow-up before the next-major entrypoint migration.
 
 ## Native Ruby usage
 
@@ -95,7 +139,31 @@ puts response.body.bytesize
 
 Set the 2 environment variables to your loopback server and dummy token for local testing. Ruby forwards argument envelopes to Rust, which owns validation and wire construction. `included_data` defaults match Rust; pass `nil` to omit it. Responses expose integer `status`, repeated header pairs and ASCII-8BIT `body`; `json` parses lazily and caches. HTTP 4xx/5xx remain responses. The raw `client.request(method, path, params: {}, body: nil)` interface remains available. Raw query values must be scalar strings, finite numbers or booleans; CSV values are strings there.
 
-Transport failures raise `Peddler::Native::TransportError`; timeouts raise its `TimeoutError` subclass. Each native client uses 1 Tokio worker. Create clients after fork; inherited clients raise `Peddler::Native::ForkError`. Base URLs must be HTTP(S) origins without credentials, query, fragment or a non-root path. The preview entrypoint loads independently of HTTP.rb; there is no HTTP.rb compatibility adapter.
+Use `client_id:`, `client_secret:` and exactly one of `refresh_token:` or `scope:`
+in place of `access_token:` for LWA authentication. Set `retries:`, `retry_delay:`
+and `max_retry_delay:` to opt into safe retries. `rate_limits:` maps operation
+keys to `{ rate: Float, burst: Integer }`. For example:
+
+```ruby
+client = Peddler::Client.new(base_url: ENV.fetch("SP_API_BASE_URL"),
+  client_id: ENV.fetch("LWA_CLIENT_ID"), client_secret: ENV.fetch("LWA_CLIENT_SECRET"),
+  refresh_token: ENV.fetch("SP_API_REFRESH_TOKEN"), retries: 2,
+  rate_limits: { "catalog_items_2022_04_01.get_catalog_item" => { rate: 2.0, burst: 2 } })
+restricted = client.restricted(resources: [{ method: "GET", path: "/orders/v0/orders/{orderId}/address" }])
+response = restricted.request("GET", "/orders/v0/orders/example/address")
+response.raise_for_status! # Returns self on 2xx, otherwise raises Native::APIError.
+```
+
+`Native::APIError` exposes `response`, `kind`, optional `code` and `request_id`.
+HTTP errors remain ordinary responses until `raise_for_status!` is called. Rust
+computes this metadata outside the GVL. Raw `request` accepts `operation:` to
+route a configured bucket, defaulting to `raw`.
+
+Transport failures raise `Peddler::Native::TransportError`; timeouts raise its
+`TimeoutError` subclass. Authentication failures raise
+`Peddler::Native::AuthenticationError`, with optional rejected `status` and a
+sanitized message. Each native client owns 1 Tokio worker shared with restricted
+views. Create clients after fork; inherited clients raise `Peddler::Native::ForkError`. Base URLs must be HTTP(S) origins without credentials, query, fragment or a non-root path. The preview entrypoint loads independently of HTTP.rb; there is no HTTP.rb compatibility adapter.
 
 ## Generation decision
 
@@ -117,4 +185,4 @@ bundle exec rake generate:rust:verify
 
 CI configures Ubuntu core checks without Ruby setup, a separate generation job with Ruby/Node/spec setup, and native Ruby 3.3/3.4/4.0 jobs. Configured jobs are not evidence of completed remote runs.
 
-Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Token refresh, retries, rate limiting, pagination, streaming, full facade generation and broader API coverage remain work for later stages. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.
+Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Pagination, streaming, full facade generation and broader API coverage remain work for later stages. Authorization-code exchange through the shared Rust/native runtime must land before entrypoint migration. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.

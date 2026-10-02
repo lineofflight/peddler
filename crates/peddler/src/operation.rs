@@ -101,7 +101,7 @@ pub(crate) async fn collect(
 pub mod catalog {
     use super::*;
     use crate::apis::catalog_items_2022_04_01::{metadata, wire};
-    #[derive(Debug, serde::Deserialize)]
+    #[derive(Clone, Debug, serde::Deserialize)]
     #[serde(deny_unknown_fields)]
     pub struct GetCatalogItemParams {
         pub asin: String,
@@ -126,23 +126,35 @@ pub mod catalog {
     ) -> Result<TypedResponse<metadata::ResponseModel>, Error> {
         validate_segment(&params.asin)?;
         validate_arrays(&params.marketplace_ids, &params.included_data)?;
-        let wire = wire::Client::new_with_client(
-            client.origin.as_str().trim_end_matches('/'),
-            client.http.clone(),
-            client.clone(),
-        );
-        let mut request = wire
-            .get_catalog_item()
-            .asin(params.asin)
-            .marketplace_ids(params.marketplace_ids);
-        if let Some(included) = params.included_data {
-            request = request.included_data(included);
-        }
-        if let Some(locale) = params.locale {
-            request = request.locale(locale);
-        }
+        let raw = client
+            .run(
+                "catalog_items_2022_04_01.get_catalog_item",
+                "GET",
+                |snapshot| {
+                    let params = params.clone();
+                    async move {
+                        let wire = wire::Client::new_with_client(
+                            snapshot.origin.as_str().trim_end_matches('/'),
+                            snapshot.http.clone(),
+                            snapshot.clone(),
+                        );
+                        let mut request = wire
+                            .get_catalog_item()
+                            .asin(params.asin.clone())
+                            .marketplace_ids(params.marketplace_ids.clone());
+                        if let Some(included) = params.included_data.clone() {
+                            request = request.included_data(included);
+                        }
+                        if let Some(locale) = params.locale.clone() {
+                            request = request.locale(locale);
+                        }
+                        collect(request.send().await).await
+                    }
+                },
+            )
+            .await?;
         Ok(TypedResponse {
-            raw: collect(request.send().await).await?,
+            raw,
             model: PhantomData,
         })
     }
@@ -151,7 +163,7 @@ pub mod catalog {
 pub mod listings {
     use super::*;
     use crate::apis::listings_items_2021_08_01::{metadata, wire};
-    #[derive(Debug, serde::Deserialize)]
+    #[derive(Clone, Debug, serde::Deserialize)]
     #[serde(deny_unknown_fields)]
     pub struct PatchListingsItemParams<B = serde_json::Value> {
         pub seller_id: String,
@@ -183,32 +195,45 @@ pub mod listings {
         validate_segment(&params.seller_id)?;
         validate_segment(&params.sku)?;
         validate_arrays(&params.marketplace_ids, &params.included_data)?;
-        let body = serde_json::to_value(params.body).map_err(|_| Error::InvalidRequest)?;
+        let body = serde_json::to_value(&params.body).map_err(|_| Error::InvalidRequest)?;
         if !body.is_object() {
             return Err(Error::InvalidRequest);
         }
-        let wire = wire::Client::new_with_client(
-            client.origin.as_str().trim_end_matches('/'),
-            client.http.clone(),
-            client.clone(),
-        );
-        let mut request = wire
-            .patch_listings_item()
-            .seller_id(params.seller_id)
-            .sku(params.sku)
-            .marketplace_ids(params.marketplace_ids)
-            .body(body);
-        if let Some(included) = params.included_data {
-            request = request.included_data(included);
-        }
-        if let Some(mode) = params.mode {
-            request = request.mode(mode);
-        }
-        if let Some(locale) = params.issue_locale {
-            request = request.issue_locale(locale);
-        }
+        let raw = client
+            .run(
+                "listings_items_2021_08_01.patch_listings_item",
+                "PATCH",
+                |snapshot| {
+                    let body = body.clone();
+                    let params = &params;
+                    async move {
+                        let wire = wire::Client::new_with_client(
+                            snapshot.origin.as_str().trim_end_matches('/'),
+                            snapshot.http.clone(),
+                            snapshot.clone(),
+                        );
+                        let mut request = wire
+                            .patch_listings_item()
+                            .seller_id(params.seller_id.clone())
+                            .sku(params.sku.clone())
+                            .marketplace_ids(params.marketplace_ids.clone())
+                            .body(body);
+                        if let Some(included) = params.included_data.clone() {
+                            request = request.included_data(included);
+                        }
+                        if let Some(mode) = params.mode.clone() {
+                            request = request.mode(mode);
+                        }
+                        if let Some(locale) = params.issue_locale.clone() {
+                            request = request.issue_locale(locale);
+                        }
+                        collect(request.send().await).await
+                    }
+                },
+            )
+            .await?;
         Ok(TypedResponse {
-            raw: collect(request.send().await).await?,
+            raw,
             model: PhantomData,
         })
     }
@@ -262,6 +287,8 @@ mod tests {
         )
         .unwrap();
         let base = format!("http://{}", foreign.local_addr().unwrap());
+        let mut inner = inner;
+        inner.access_token = Some(inner.auth.token(None).await.unwrap());
         let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner);
         let mut request =
             reqwest::Request::new(reqwest::Method::GET, reqwest::Url::parse(&base).unwrap());
@@ -296,6 +323,8 @@ mod tests {
         let base = format!("http://{}", listener.local_addr().unwrap());
         let inner =
             Client::with_timeout(&base, "timeout-secret", Duration::from_millis(30)).unwrap();
+        let mut inner = inner;
+        inner.access_token = Some(inner.auth.token(None).await.unwrap());
         let wire = wire::Client::new_with_client(&base, inner.http.clone(), inner);
         let mut request =
             reqwest::Request::new(reqwest::Method::GET, reqwest::Url::parse(&base).unwrap());

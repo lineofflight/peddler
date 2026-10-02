@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+- Add shared LWA refresh and client-credentials authentication, restricted-data-token views, opt-in rate limits and safe status retries to the Rust/native preview; total deadlines include authentication and waits
+- Add opt-in native `Response#raise_for_status!` with Rust API-error classification and preserved raw response bytes
+
 - Add deterministic Rust model and Progenitor wire-client generation, with typed Rust and native Ruby facades for Catalog Items `getCatalogItem` and Listings Items `patchListingsItem`; regenerate with `rake generate:rust` and check without rewriting with `rake generate:rust:verify`
 - Add a local-development Rust transport and opt-in `peddler/native` Ruby client for the next major release; see [preview usage and roadmap](crates/peddler/README.md)
 - Add `base_url` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints

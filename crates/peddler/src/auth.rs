@@ -112,6 +112,34 @@ struct Slot {
     token: Option<Token>,
     flight: Option<Flight>,
     generation: u64,
+    waiters: usize,
+}
+// Cancel abandoned refresh work when its last caller leaves. Keep the shared
+// flight while any waiter remains, including the base waiter held by RDT work.
+struct FlightLease {
+    slot: Arc<Mutex<Slot>>,
+    generation: u64,
+}
+impl Drop for FlightLease {
+    fn drop(&mut self) {
+        let abandoned = {
+            let Ok(mut state) = self.slot.lock() else {
+                return;
+            };
+            if state.generation != self.generation {
+                return;
+            }
+            state.waiters -= 1;
+            if state.waiters == 0 {
+                state.flight.take()
+            } else {
+                None
+            }
+        };
+        // Dropping a flight can release sockets or nested base-token leases.
+        // Their cleanup must run without holding this slot's mutex.
+        drop(abandoned);
+    }
 }
 struct ScopeEntry {
     slot: Arc<Mutex<Slot>>,
@@ -308,8 +336,14 @@ async fn cached(
         if state.flight.is_none() {
             state.generation = state.generation.wrapping_add(1);
             state.flight = Some(make().shared());
+            state.waiters = 0;
         }
+        state.waiters += 1;
         (state.flight.as_ref().unwrap().clone(), state.generation)
+    };
+    let _lease = FlightLease {
+        slot: slot.clone(),
+        generation,
     };
     let result = flight.await;
     {

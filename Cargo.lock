@@ -890,6 +890,8 @@ dependencies = [
  "peddler",
  "rb-sys",
  "rb-sys-env",
+ "serde",
+ "serde_json",
  "tokio",
 ]
 

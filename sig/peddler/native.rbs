@@ -1,9 +1,32 @@
 module Peddler
   module Native
+    def self.response_metadata: (Integer status, Array[[String, String]] headers, String body) -> error_metadata?
+
     class TransportError < StandardError
     end
 
     class TimeoutError < TransportError
+    end
+
+    class AuthenticationError < StandardError
+      @status: Integer?
+      attr_reader status: Integer?
+      def initialize: (String message, ?Integer? status) -> void
+    end
+
+    type error_metadata = [String, String?, String?]
+    type response_parts = [Integer, Array[[String, String]], String, error_metadata?]
+
+    class APIError < StandardError
+      @response: Response
+      @code: String?
+      @request_id: String?
+      @kind: String
+      attr_reader response: Response
+      attr_reader code: String?
+      attr_reader request_id: String?
+      attr_reader kind: String
+      def initialize: (Response response, error_metadata metadata) -> void
     end
 
     class ForkError < StandardError
@@ -11,24 +34,32 @@ module Peddler
 
     class Engine
       def self.new: (String base_url, String access_token, Numeric timeout) -> Engine
-      def request: (String method, String path, Array[[String, String]] query, String? body) -> [Integer, Array[[String, String]], String]
-      def operation: (String operation, String arguments) -> [Integer, Array[[String, String]], String]
+      def self.from_config: (String config) -> Engine
+      def restricted: (String scope) -> Engine
+      def request: (String method, String path, Array[[String, String]] query, String? body) -> response_parts
+      def request_with_operation: (String operation, String method, String path, Array[[String, String]] query, String? body) -> response_parts
+      def operation: (String operation, String arguments) -> response_parts
     end
 
     class Response
       @json: untyped
+      @metadata: error_metadata?
       attr_reader status: Integer
       attr_reader headers: Array[[String, String]]
       attr_reader body: String
 
-      def initialize: (Integer status, Array[[String, String]] headers, String body) -> void
+      def self.from_parts: (response_parts parts) -> Response
+      def initialize: (Integer status, Array[[String, String]] headers, String body, ?(error_metadata? | :unclassified) metadata) -> void
+      def raise_for_status!: () -> Response
       def json: () -> untyped
     end
   end
 
   class Client
     @engine: Native::Engine
-    def initialize: (base_url: String, access_token: String, ?timeout: Numeric) -> void
-    def request: (String method, String path, ?params: Hash[String | Symbol, String | Integer | Float | bool], ?body: String | Hash[untyped, untyped] | Array[untyped] | nil) -> Native::Response
+    DEFAULT_LWA_ENDPOINT: String
+    def initialize: (base_url: String, ?access_token: String?, ?client_id: String?, ?client_secret: String?, ?refresh_token: String?, ?scope: String?, ?timeout: Numeric, ?retries: Integer, ?retry_delay: Numeric, ?max_retry_delay: Numeric, ?rate_limits: Hash[String | Symbol, { rate: Float, burst: Integer }], ?lwa_endpoint: String) -> void
+    def restricted: (resources: Array[Hash[Symbol | String, untyped]], ?target_application: String?) -> Client
+    def request: (String method, String path, ?params: Hash[String | Symbol, String | Integer | Float | bool], ?body: String | Hash[untyped, untyped] | Array[untyped] | nil, ?operation: String) -> Native::Response
   end
 end

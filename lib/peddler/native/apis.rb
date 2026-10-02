@@ -10,8 +10,7 @@ module Peddler
 
       def get_catalog_item(asin:, marketplace_ids:, included_data: ["summaries"], locale: nil)
         arguments = JSON.generate(asin: asin, marketplace_ids: marketplace_ids, included_data: included_data, locale: locale)
-        status, headers, body = @engine.operation("catalog_items_2022_04_01.get_catalog_item", arguments)
-        Response.new(status, headers, body)
+        Response.from_parts(@engine.operation("catalog_items_2022_04_01.get_catalog_item", arguments))
       end
     end
 
@@ -23,8 +22,7 @@ module Peddler
       def patch_listings_item(seller_id:, sku:, marketplace_ids:, body:, included_data: ["issues"], mode: nil, issue_locale: nil)
         arguments = JSON.generate(seller_id: seller_id, sku: sku, marketplace_ids: marketplace_ids, body: body,
           included_data: included_data, mode: mode, issue_locale: issue_locale)
-        status, headers, response_body = @engine.operation("listings_items_2021_08_01.patch_listings_item", arguments)
-        Response.new(status, headers, response_body)
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", arguments))
       end
     end
   end

@@ -448,7 +448,11 @@ async fn coalesces_success_and_failure_without_retrying() {
 async fn cancelled_waiters_preserve_refresh_and_all_waiters_can_recover() {
     for cancel_all in [false, true] {
         let gate = Arc::new(Notify::new());
-        let mut server = gated_server(vec![(200, lwa("recovered", 120), Some(gate.clone()))]).await;
+        let mut responses = vec![(200, lwa("recovered", 120), Some(gate.clone()))];
+        if cancel_all {
+            responses.push((200, lwa("recovered", 120), None));
+        }
+        let mut server = gated_server(responses).await;
         let manager = AuthManager::new(
             http(),
             &server.origin,
@@ -473,6 +477,9 @@ async fn cancelled_waiters_preserve_refresh_and_all_waiters_can_recover() {
         gate.notify_one();
         assert_eq!(next.await.unwrap().unwrap(), "recovered");
         assert_eq!(manager.token(None).await.unwrap(), "recovered");
+        if cancel_all {
+            server.requests.recv().await.unwrap();
+        }
         assert!(server.requests.try_recv().is_err());
     }
 }
