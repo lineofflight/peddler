@@ -105,17 +105,6 @@ module Generator
       assert_match(/A test API for testing purposes/, @api.description)
     end
 
-    def test_operations_count
-      assert_equal(2, @api.operations.size)
-    end
-
-    def test_operations_have_correct_operation_ids
-      operation_ids = @api.operations.map(&:operation_id)
-
-      assert_includes(operation_ids, "getTest")
-      assert_includes(operation_ids, "getTestById")
-    end
-
     def test_paths
       assert_equal(2, @api.paths.size)
     end
@@ -125,33 +114,18 @@ module Generator
       assert_match(/\.json$/, @api.github_model_filename)
     end
 
-    def test_duplicate_operation_handling
-      spec_with_duplicate = @test_spec.dup
-      # Add a duplicate operation with different HTTP verb
-      spec_with_duplicate["paths"]["/test"]["post"] = {
-        "operationId" => "getTest", # Same operationId as GET
-        "description" => "Post test data",
-        "responses" => { "200" => { "description" => "Success" } },
-      }
-
-      temp_file = Tempfile.new(["duplicate", ".json"])
-      temp_file.write(spec_with_duplicate.to_json)
-      temp_file.rewind
-
-      api = API.new(temp_file.path)
-
-      # Suppress logger output during this test
-      old_level = Generator.logger.level
-      Generator.logger.level = Logger::ERROR
-
-      # Should raise an error for unhandled duplicates
-      assert_raises(RuntimeError) do
-        api.operations
+    def test_parsers_use_native_keys
+      @api.define_singleton_method(:native_keys) do
+        { ["/test", "GET"] => "test_2024_01_01.get_test" }
       end
-    ensure
-      Generator.logger.level = old_level
-      temp_file.close
-      temp_file.unlink
+
+      assert_equal({ "test_2024_01_01.get_test" => "TestResponse" }, @api.parsers)
+    end
+
+    def test_parsers_reject_operation_missing_from_inventory
+      @api.define_singleton_method(:native_keys) { {} }
+
+      assert_raises(RuntimeError) { @api.parsers }
     end
 
     def test_file_path

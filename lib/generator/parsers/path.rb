@@ -6,7 +6,7 @@ module Generator
   class Path
     HTTP_METHODS = ["delete", "get", "patch", "post", "put"].freeze
 
-    attr_reader :methods
+    attr_reader :path, :methods
 
     def initialize(path, methods)
       @path = path

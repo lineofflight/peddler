@@ -23,6 +23,8 @@ module Generator
     include FileWriter
     include Formatter
 
+    INVENTORY = "crates/peddler-codegen/operation-inventory.json"
+
     attr_reader :file
 
     class << self
@@ -149,25 +151,21 @@ module Generator
       [name, version].join("_")
     end
 
-    def operations
-      @operations ||= begin
-        ops = paths.flat_map(&:operations).compact
-        deduplicate_operations(ops)
-      end
-    end
-
-    # Typed success models by native operation key. When two verbs share an operation ID, the native
-    # facade keeps the name for one and appends the verb to the other.
+    # Typed success models by native operation key. The Rust generator owns the keys, so they are
+    # read from its inventory by path and method.
     def parsers
-      primary = operations.to_h { |op| [op.operation_id.underscore, op.verb] }
+      keys = native_keys
 
-      paths.flat_map(&:operations).filter_map do |op|
-        next unless op.has_typed_response?
+      paths.flat_map do |path|
+        path.operations.filter_map do |op|
+          next unless op.has_typed_response?
 
-        method_name = op.operation_id.underscore
-        method_name = "#{method_name}_#{op.verb}" unless primary[method_name] == op.verb
+          key = keys.fetch([path.path, op.verb.upcase]) do
+            raise "#{path.path} #{op.verb} of #{name_with_version} is missing from #{INVENTORY}"
+          end
 
-        ["#{name_with_version}.#{method_name}", Naming.class_name(op.response_model[:model])]
+          [key, Naming.class_name(op.response_model[:model])]
+        end
       end.sort.to_h
     end
 
@@ -186,44 +184,20 @@ module Generator
 
     private
 
-    def deduplicate_operations(ops)
-      # Group by operation ID
-      operation_map = ops.group_by { |op| op.operation["operationId"].underscore }
-
-      # Find duplicates
-      duplicates = operation_map.select { |_, ops| ops.size > 1 }
-
-      if duplicates.any?
-        duplicates.each do |method_name, ops|
-          verbs = ops.map(&:verb).join(", ")
-          Generator.logger.warn("Found duplicate operation in #{name_with_version}: #{method_name} (#{verbs})")
-        end
-      end
-
-      # Handle duplicates
-      duplicates.each do |method_name, ops|
-        if name_with_version == "shipping_v2" && method_name == "link_carrier_account"
-          # Special case for ShippingV2's link_carrier_account - choose POST version
-          post_op = ops.find { |op| op.verb == "post" }
-          operation_map[method_name] = [post_op] if post_op
-        else
-          # For any other duplicates, raise an error
-          verbs = ops.map(&:verb).join(", ")
-          raise "Error: Found duplicate operation '#{method_name}' in #{name_with_version} " \
-            "with HTTP verbs: #{verbs}. Please handle this case specifically."
-        end
-      end
-
-      # Return flattened list of operations with duplicates resolved
-      operation_map.values.flatten
-    end
-
     def render
       ERB.new(template, trim_mode: "-").result(binding)
     end
 
     def template
       File.read(Config.template_path("api"))
+    end
+
+    def native_keys
+      inventory = JSON.parse(File.read(File.join(Config::BASE_PATH, INVENTORY)))
+      api = inventory["apis"].find { |entry| entry["module"] == name_with_version }
+      raise "#{name_with_version} is missing from #{INVENTORY}" unless api
+
+      api["operations"].to_h { |op| [[op["path"], op["method"]], op["key"]] }
     end
 
     def model
