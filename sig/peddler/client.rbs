@@ -16,6 +16,7 @@ module Peddler
 
     private
 
+    def generate: (untyped value) -> String?
     def view: (Native::Engine engine, ?sandbox: bool) -> Client
   end
 end

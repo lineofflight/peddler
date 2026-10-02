@@ -33,14 +33,14 @@ module Peddler
       if refresh_token || scope
         client_id ||= ENV["LWA_CLIENT_ID"]
         client_secret ||= ENV["LWA_CLIENT_SECRET"]
+        raise ArgumentError, "missing client_id: pass client_id: or set LWA_CLIENT_ID" if client_id.to_s.empty?
+        raise ArgumentError, "missing client_secret: pass client_secret: or set LWA_CLIENT_SECRET" if client_secret.to_s.empty?
       end
       config = { base_url: base_url, access_token: access_token, client_id: client_id, client_secret: client_secret,
         refresh_token: refresh_token, scope: scope, timeout: timeout, retries: retries, retry_delay: retry_delay,
         max_retry_delay: max_retry_delay, rate_limits: rate_limits, lwa_endpoint: lwa_endpoint,
         user_agent: Native.user_agent }
-      @engine = Native.engine(JSON.generate(config))
-    rescue JSON::GeneratorError
-      raise ArgumentError, "invalid configuration"
+      @engine = Native.engine(generate(config) || raise(ArgumentError, "invalid configuration"))
     end
 
     # A view of this client that calls Amazon's sandbox for its region
@@ -63,9 +63,10 @@ module Peddler
     end
 
     def restricted(resources:, target_application: nil)
-      view(@engine.restricted(JSON.generate(resources: resources, target_application: target_application)))
-    rescue JSON::GeneratorError
-      raise ArgumentError, "invalid restricted scope"
+      scope = generate(resources: resources, target_application: target_application)
+      raise ArgumentError, "invalid restricted scope" unless scope
+
+      view(@engine.restricted(scope))
     end
 
     def request(method, path, params: {}, body: nil, operation: "raw")
@@ -101,6 +102,14 @@ module Peddler
     end
 
     private
+
+    # Returns nil when the value can't be encoded. The generator's error quotes the value, which may be a
+    # credential, so the caller raises outside this rescue and the error never becomes a cause.
+    def generate(value)
+      JSON.generate(value)
+    rescue JSON::GeneratorError
+      nil
+    end
 
     def view(engine, sandbox: @sandbox)
       view = self.class.allocate

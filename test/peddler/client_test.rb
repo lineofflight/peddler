@@ -112,6 +112,47 @@ module Peddler
       end
     end
 
+    def test_names_the_missing_application_credential
+      with_env("LWA_CLIENT_ID" => nil, "LWA_CLIENT_SECRET" => nil) do
+        [{ refresh_token: "seller-refresh" }, { scope: "sellingpartnerapi::notifications" }].each do |grant|
+          error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", **grant) }
+
+          assert_match(/client_id.*LWA_CLIENT_ID/, error.message)
+          error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", client_id: "app-id", **grant) }
+
+          assert_match(/client_secret.*LWA_CLIENT_SECRET/, error.message)
+          refute_match(/app-id|seller-refresh|notifications/, error.message)
+        end
+      end
+      with_env("LWA_CLIENT_ID" => "", "LWA_CLIENT_SECRET" => "env-secret") do
+        error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", refresh_token: "seller-refresh") }
+
+        assert_match(/LWA_CLIENT_ID/, error.message)
+        refute_match(/env-secret|seller-refresh/, error.message)
+      end
+    end
+
+    def test_a_credential_that_is_not_utf8_never_reaches_a_message_or_cause
+      error = assert_raises(ArgumentError) do
+        Client.new(region: "eu-west-1", client_id: "app-id", client_secret: "app-secret", refresh_token: "seller-refresh-\xFF")
+      end
+
+      assert_equal("invalid configuration", error.message)
+      assert_nil(error.cause)
+      refute_match(/seller-refresh|app-secret|app-id/, error.full_message(highlight: false))
+    end
+
+    def test_a_restricted_resource_that_is_not_utf8_never_reaches_a_message_or_cause
+      client = Client.new(region: "eu-west-1", access_token: "token")
+      error = assert_raises(ArgumentError) do
+        client.restricted(resources: [{ method: "GET", path: "/orders/v0/orders/private-\xFF" }])
+      end
+
+      assert_equal("invalid restricted scope", error.message)
+      assert_nil(error.cause)
+      refute_match(/private/, error.full_message(highlight: false))
+    end
+
     def test_construction_performs_no_network_access
       client = Client.new(region: "eu-west-1", client_id: "id", client_secret: "secret", refresh_token: "refresh")
 
