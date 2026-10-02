@@ -44,8 +44,8 @@ module Peddler
       class << self
         def try_convert(text)
           value = BigDecimal(text)
-          significand = text.split(/[eE]/, 2).first || ""
-          if !value.finite? || (value.zero? && significand.match?(/[1-9]/))
+          # Only a zero needs its significand: a nonzero one means the value underflowed.
+          if !value.finite? || (value.zero? && (text.split(/[eE]/, 2).first || "").match?(/[1-9]/))
             raise DocumentError, "document decimal is out of range"
           end
           value
