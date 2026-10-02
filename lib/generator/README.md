@@ -64,7 +64,7 @@ Classes that construct/build generated code:
 ### Parsers (`parsers/`)
 Classes that parse/extract information from specs:
 - **`json_schema_extractor.rb`** - Extract nested types from JSON schemas
-- **`path.rb`** - Parse OpenAPI path definitions into operations
+- **`path.rb`** - Collect the operations of an OpenAPI path
 
 ### Resolvers (`resolvers/`)
 Classes that resolve/translate between representations:

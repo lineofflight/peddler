@@ -24,19 +24,6 @@ module Generator
       assert_equal(expected, split_long_comment_line(line))
     end
 
-    def test_format_method_definition
-      method_name = "example_method"
-      params = ["param1", "param2", "param3"]
-      expected = "def example_method(param1, param2, param3)"
-
-      assert_equal(expected, format_method_definition(method_name, params))
-
-      params = ["param1", "param2", "param3", "param4: nil", "param5: nil", "param6: nil"]
-      expected = "def example_method(param1, param2, param3, param4: nil,\n  param5: nil, param6: nil)"
-
-      assert_equal(expected, format_method_definition(method_name, params, max_line_length: 60))
-    end
-
     def test_convert_doc_links_to_full_url
       text = "Refer to [API Documentation](doc:api-doc)."
       expected = "Refer to {https://developer-docs.amazon.com/sp-api/docs/api-doc API Documentation}."

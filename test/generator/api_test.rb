@@ -105,32 +105,6 @@ module Generator
       assert_match(/A test API for testing purposes/, @api.description)
     end
 
-    def test_type_names
-      assert_equal(["TestItem", "TestResponse"], @api.type_names)
-    end
-
-    def test_type_names_excludes_money
-      spec_with_money = @test_spec.dup
-      spec_with_money["definitions"]["Money"] = {
-        "type" => "object",
-        "properties" => {
-          "currencyCode" => { "type" => "string" },
-          "amount" => { "type" => "string" },
-        },
-      }
-
-      temp_file = Tempfile.new(["with-money", ".json"])
-      temp_file.write(spec_with_money.to_json)
-      temp_file.rewind
-
-      api = API.new(temp_file.path)
-
-      refute_includes(api.type_names, "Money")
-
-      temp_file.close
-      temp_file.unlink
-    end
-
     def test_operations_count
       assert_equal(2, @api.operations.size)
     end
@@ -144,25 +118,6 @@ module Generator
 
     def test_paths
       assert_equal(2, @api.paths.size)
-      # Path objects have a path attribute
-      paths = @api.paths
-
-      assert(paths.any? { |p| p.path == "/test" })
-      # Path class converts {id} to #{percent_encode(id)}
-      assert(paths.any? { |p| p.path == "/test/\#{percent_encode(id)}" })
-    end
-
-    def test_has_helper
-      # Should return false for our test API
-      refute_predicate(@api, :has_helper?)
-    end
-
-    def test_helper_class_name
-      assert_match(/^Peddler::Helpers::.*20240101$/, @api.helper_class_name)
-    end
-
-    def test_helper_library_name
-      assert_match(%r{^peddler/helpers/.*_2024_01_01$}, @api.helper_library_name)
     end
 
     def test_github_model_filename

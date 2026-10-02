@@ -93,25 +93,6 @@ module Generator
       all_lines.empty? ? " " * base_indent + "#" : all_lines.join("\n")
     end
 
-    def format_method_definition(method_name, params, base_indent: 0, max_line_length: MAX_LINE_LENGTH)
-      max_width = max_line_length - base_indent
-
-      current_line = ["def #{method_name}("]
-      lines = []
-      params.each do |param|
-        if (current_line + ["#{param},"]).join.size <= max_width
-          current_line << param + ", "
-        else
-          lines << " " * base_indent + current_line.join.strip
-          current_line = ["  " + param + ", "]
-        end
-      end
-      joined = current_line.join
-      lines << " " * base_indent + (joined[..-3] || "") + ")"
-
-      lines.join("\n")
-    end
-
     def convert_doc_links_to_full_url(text)
       text.gsub(/\[([^\[\]]+)\]\(doc:([^()\s]+)\)/) do
         link_text = Regexp.last_match(1)

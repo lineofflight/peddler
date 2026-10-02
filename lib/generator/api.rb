@@ -14,7 +14,6 @@ require_relative "support/naming"
 require_relative "parsers/path"
 require_relative "resolvers/type_resolver"
 require_relative "resolvers/api_name_resolver"
-require_relative "resolvers/version_selector"
 require_relative "builders/type"
 require_relative "analyzers/circular_dependency_detector"
 require_relative "rbs/unified"
@@ -134,18 +133,6 @@ module Generator
       "peddler/apis/#{name_with_version}"
     end
 
-    def has_helper?
-      File.exist?("lib/" + helper_library_name + ".rb")
-    end
-
-    def helper_class_name
-      "Peddler::Helpers::#{name_with_version.camelize}"
-    end
-
-    def helper_library_name
-      "peddler/helpers/#{name_with_version}"
-    end
-
     def class_name
       name_with_version.camelize
     end
@@ -162,15 +149,9 @@ module Generator
       [name, version].join("_")
     end
 
-    def latest_version?
-      all_apis = self.class.apis.select { |api| api.name == name }
-      latest_version = VersionSelector.find_latest_version(all_apis.map(&:version))
-      version == latest_version
-    end
-
     def operations
       @operations ||= begin
-        ops = paths.flat_map { |path| path.operations(name_with_version) }.compact
+        ops = paths.flat_map(&:operations).compact
         deduplicate_operations(ops)
       end
     end
@@ -180,7 +161,7 @@ module Generator
     def parsers
       primary = operations.to_h { |op| [op.operation_id.underscore, op.verb] }
 
-      paths.flat_map { |path| path.operations(name_with_version) }.filter_map do |op|
+      paths.flat_map(&:operations).filter_map do |op|
         next unless op.has_typed_response?
 
         method_name = op.operation_id.underscore
@@ -188,13 +169,6 @@ module Generator
 
         ["#{name_with_version}.#{method_name}", Naming.class_name(op.response_model[:model])]
       end.sort.to_h
-    end
-
-    def type_names
-      model["definitions"]
-        .select { |name, def_| def_["type"] == "object" && !MoneyDetector.money_type?(name) && !def_["additionalProperties"] }
-        .keys
-        .sort
     end
 
     def paths
