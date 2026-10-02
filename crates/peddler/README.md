@@ -196,6 +196,67 @@ Transport failures raise `Peddler::Native::TransportError`; timeouts raise its
 sanitized message. Each native client owns 1 Tokio worker shared with restricted
 views. Create clients after fork; inherited clients raise `Peddler::Native::ForkError`. Base URLs must be HTTP(S) origins without credentials, query, fragment or a non-root path. The native entrypoint loads independently of HTTP.rb; there is no HTTP.rb compatibility adapter.
 
+## Pagination
+
+Pagination is explicit. [`pagination.json`](../peddler-codegen/pagination.json) maps 79 operations to the argument that carries the token and the response field that returns the next one, and lists 12 candidate operations it excludes, each with a reason. Generation resolves every operation, argument and response path against the pinned specs, and fails if an operation with a continuation-like field is neither mapped nor excluded. Nothing is inferred from names at runtime.
+
+Rust streams raw pages lazily. Each page runs through the normal operation runner, so authorization, rate limits, retries and the timeout apply per page. Pages are fetched one at a time and nothing runs in the background; dropping the stream stops fetching.
+
+```rust
+use futures_util::StreamExt;
+use peddler::apis::orders_v0::{GetOrdersParams, get_orders_pages};
+
+let params = GetOrdersParams::new(vec!["ATVPDKIKX0DER".into()]);
+let mut pages = get_orders_pages(&client, params, None); // max_pages: None is unbounded
+while let Some(page) = pages.next().await {
+    let page = page?; // Result<Response, PaginationError>
+    println!("{}", page.status);
+}
+```
+
+`max_pages` caps requests; `Some(0)` makes none. An absent, null or empty response token ends the stream. An HTTP error page is yielded once and ends it without decoding. A repeated token (including the one you started with), a non-string token or a malformed 2xx body yields the page and then one `PaginationError`. Errors never include tokens, bodies or arguments. Caller arguments are serialized once and never mutated.
+
+Continuations keep every argument and replace only the token, except where the pinned docs say otherwise:
+
+- `get_feeds`, `get_reports` and the 3 A+ Content search and relation operations take the token as the only parameter. Their continuations send the token (and A+ path arguments) alone, which also avoids re-sending defaults and required filters. A+ uses a private generated adapter operation under the original operation key, so policy is unchanged.
+- Inbound V0 `get_shipments` and `get_shipment_items` continue with `query_type: "NEXT_TOKEN"` and drop their date and shipment filters.
+- `support_2025_02_01.list_cases` carries the token in the POST body (`/body/nextToken`) and follows empty pages.
+
+Excluded candidates include Data Kiosk `get_query` (its token starts another query), Promotions `get_promotion` (4 nested selection tokens), Replenishment `list_offers` and `list_offer_metrics` (numeric offsets), Inbound V0 `get_labels` (numeric start index), and the non-pagination Shipping `requestToken`, FBA idempotency header and restricted data token. Inbound V0 `get_shipment_items_by_shipment_id` returns a `NextToken`, but the pinned docs do not say where to send it, so opt in explicitly:
+
+```rust
+use peddler::pagination::{Continuation, Pagination, pages};
+
+let mapping = Pagination {
+    operation: "fulfillment_inbound_v0.get_shipment_items_by_shipment_id".into(),
+    input: "/next_token".into(),
+    output: "/payload/NextToken".into(),
+    continuation: Continuation {
+        operation: Some("fulfillment_inbound_v0.get_shipment_items".into()),
+        keep: Some(vec!["marketplace_id".into()]),
+        set: vec![("query_type".into(), "NEXT_TOKEN".into())],
+        ..Continuation::default()
+    },
+};
+let stream = pages(&client, mapping, &serde_json::json!({"shipment_id": "FBA1", "marketplace_id": "ATVPDKIKX0DER"}), None);
+```
+
+Pointers use native snake_case argument keys; body keys keep the schema's spelling. `Continuation` can change the operation, `keep` only listed top-level arguments, `drop` some and `set` others.
+
+Ruby returns a rewindable `Enumerator` of `Peddler::Native::Response` from each generated `*_pages` method, which accepts the operation's keywords plus `max_pages:`. Each `each` starts over from the first page. Pages come from the same Engine operation runner, so `break`, `first` and abandoning an external enumerator never fetch another page. A pagination failure raises `Peddler::Native::PaginationError` (`reason` is `:malformed_response`, `:invalid_token` or `:repeated_token`) after the last good page.
+
+```ruby
+client.orders_v0.get_orders_pages(marketplace_ids: ["ATVPDKIKX0DER"]).each do |page|
+  page.raise_for_status!
+  puts page.json.dig("payload", "Orders").size
+end
+
+mapping = Peddler::Native::Pagination.new(operation: "...", input: "/next_token", output: "/payload/NextToken")
+client.pages(mapping, { shipment_id: "FBA1" }, max_pages: 3)
+```
+
+The shared loopback cases in `test/fixtures/native/pagination/cases.json` replay through both the Rust stream and the Ruby enumerator.
+
 ## Generation decision
 
 Use Typify `=0.8.0` for models and Progenitor `=0.15.0` for wire clients, with swagger2openapi `=7.0.8` converting Swagger. A shared pre-hook applies CSV query grouping, canonical path escaping, origin checks, auth and timeout policy. Generated clients reuse the runtime's reqwest handle. See [generator instructions](../peddler-codegen/README.md) for pins, deterministic checks and the exact vendored raw-response patch.
@@ -216,7 +277,7 @@ bundle exec rake generate:rust:verify
 
 CI configures Ubuntu core checks without Ruby setup, a separate generation job with Ruby/Node/spec setup, and native Ruby 3.3/3.4/4.0 jobs. Configured jobs are not evidence of completed remote runs.
 
-Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Pagination remains work for later stages. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.
+Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.
 
 ## Native signed document transfers
 

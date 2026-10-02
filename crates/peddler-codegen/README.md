@@ -23,7 +23,7 @@ cargo run -p peddler-codegen --locked -- --root .
 cargo run -p peddler-codegen --locked -- --root . --check
 ```
 
-Running generation twice produces the same 355 files: 70 model/module/wire/metadata/facade sets, the API root and dispatcher, Ruby facades/signatures and the operation inventory. `manifest::ALL_APIS` explicitly records the pinned source path, Rust module, Ruby family/version and latest membership for 58 families. The CLI validates that inventory against tracked API JSON files at the pin. Do not edit committed output in `crates/peddler/src/apis` by hand. Models-only export requires a separate destination to protect integrated module declarations:
+Running generation twice produces the same 356 files: 70 model/module/wire/metadata/facade sets, the API root, dispatcher and pagination table, Ruby facades/signatures and the operation inventory. `manifest::ALL_APIS` explicitly records the pinned source path, Rust module, Ruby family/version and latest membership for 58 families. The CLI validates that inventory against tracked API JSON files at the pin. Do not edit committed output in `crates/peddler/src/apis` by hand. Models-only export requires a separate destination to protect integrated module declarations:
 
 ```sh
 cargo run -p peddler-codegen --locked -- --root . --models-only --output-root tmp/model-export
@@ -31,6 +31,10 @@ cargo run -p peddler-codegen --locked -- --root . --models-only --output-root tm
 ```
 
 Existing destinations are canonicalized; equivalent root/symlink destinations are rejected. If a missing component prevents canonicalization, unresolved parent traversal is rejected. Use a separate destination without `..` or create it first.
+
+## Pagination metadata
+
+`pagination.json` is the only source of pagination: per-operation token argument, response token path and continuation behavior, plus excluded candidates with reasons. Generation resolves each reference against the pinned specs and fails when an operation with a continuation-like parameter or field is neither mapped nor excluded. A missing file means no mappings, which keeps synthetic test repositories generating. Mappings that need a continuation without the initial request's required arguments set `adapter`, which emits a private `<operation>.continue` dispatch entry.
 
 ## Toolchain and scope
 

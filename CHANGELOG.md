@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+- Add explicit pagination to the Rust/native preview: a lazy Rust `Stream` of raw pages and a Ruby `Enumerator` per mapped operation (`*_pages`), with `max_pages`, repeated-token detection and an opt-in generic `Pagination` mapping; 79 operations are mapped and 12 candidates are excluded with reasons in `pagination.json`
+
 - Expose all 384 SP-API operations across 70 versions in Rust and native Ruby, with schema defaults, keyword methods, 58 latest aliases, raw responses and lazy typed decoding
 
 - Add native LWA authorization-code onboarding with redacted token results and bounded, cancellable requests
