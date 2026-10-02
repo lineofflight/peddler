@@ -93,7 +93,7 @@ fn default_cli_generates_all_model_and_selected_wire_files_and_nonmutating_check
         revision.trim(),
     )
     .unwrap();
-    assert_eq!(rendered.len(), 414);
+    assert_eq!(rendered.len(), 415);
     for (path, content) in &rendered {
         if path.extension().is_some_and(|ext| ext == "rs") {
             syn::parse_file(content).unwrap();

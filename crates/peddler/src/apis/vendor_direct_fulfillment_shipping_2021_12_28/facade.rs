@@ -290,6 +290,29 @@ pub async fn get_customer_invoices(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_customer_invoices_pages<'a>(
+    client: &'a Client,
+    params: GetCustomerInvoicesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices"
+                .to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPackingSlipParams {
@@ -465,6 +488,29 @@ pub async fn get_packing_slips(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_packing_slips_pages<'a>(
+    client: &'a Client,
+    params: GetPackingSlipsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips"
+                .to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShippingLabelParams {
@@ -639,6 +685,29 @@ pub async fn get_shipping_labels(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn get_shipping_labels_pages<'a>(
+    client: &'a Client,
+    params: GetShippingLabelsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels"
+                .to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]

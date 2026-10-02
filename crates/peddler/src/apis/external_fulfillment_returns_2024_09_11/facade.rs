@@ -257,6 +257,28 @@ pub async fn list_returns(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_returns_pages<'a>(
+    client: &'a Client,
+    params: ListReturnsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "external_fulfillment_returns_2024_09_11.list_returns".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(
         &self,

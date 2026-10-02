@@ -95,6 +95,16 @@ impl WireContext {
     }
 }
 
+/// Percent-encodes one path segment the way generated requests canonicalize it.
+pub(crate) fn encode_segment(value: &str) -> String {
+    const SEGMENT: &percent_encoding::AsciiSet = &percent_encoding::NON_ALPHANUMERIC
+        .remove(b'-')
+        .remove(b'_')
+        .remove(b'.')
+        .remove(b'~');
+    percent_encoding::utf8_percent_encode(value, SEGMENT).to_string()
+}
+
 /// Validate schema parameter constraints before acquiring authorization. String
 /// enums stay open; formats and patterns constrain the actual wire representation.
 pub(crate) fn validate_parameter(

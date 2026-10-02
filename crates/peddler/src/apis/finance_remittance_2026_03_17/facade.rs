@@ -75,6 +75,28 @@ pub async fn get_remittance(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_remittance_pages<'a>(
+    client: &'a Client,
+    params: GetRemittanceParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finance_remittance_2026_03_17.get_remittance".to_owned(),
+            input: "/next_token_for_line_items".to_owned(),
+            output: "/nextTokenForLineItems".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetRemittanceHeadersParams {
@@ -150,6 +172,28 @@ pub async fn get_remittance_headers(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn get_remittance_headers_pages<'a>(
+    client: &'a Client,
+    params: GetRemittanceHeadersParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finance_remittance_2026_03_17.get_remittance_headers".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(

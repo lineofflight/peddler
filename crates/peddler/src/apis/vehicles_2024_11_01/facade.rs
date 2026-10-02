@@ -89,6 +89,28 @@ pub async fn get_vehicles(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_vehicles_pages<'a>(
+    client: &'a Client,
+    params: GetVehiclesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "vehicles_2024_11_01.get_vehicles".to_owned(),
+            input: "/page_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(
         &self,

@@ -519,6 +519,28 @@ pub async fn get_subscriptions(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_subscriptions_pages<'a>(
+    client: &'a Client,
+    params: GetSubscriptionsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "notifications_v1.get_subscriptions".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SendTestNotificationParams<B = serde_json::Value> {

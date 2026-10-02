@@ -114,6 +114,28 @@ pub async fn list_balances(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_balances_pages<'a>(
+    client: &'a Client,
+    params: ListBalancesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_2024_06_19.list_balances".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListSummaryParams {
@@ -244,6 +266,28 @@ pub async fn list_summary(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_summary_pages<'a>(
+    client: &'a Client,
+    params: ListSummaryParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_2024_06_19.list_summary".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListTransactionsParams {
@@ -364,6 +408,28 @@ pub async fn list_transactions(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_transactions_pages<'a>(
+    client: &'a Client,
+    params: ListTransactionsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_2024_06_19.list_transactions".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(

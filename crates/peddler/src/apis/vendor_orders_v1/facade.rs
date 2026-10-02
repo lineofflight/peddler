@@ -270,6 +270,28 @@ pub async fn get_purchase_orders(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_purchase_orders_pages<'a>(
+    client: &'a Client,
+    params: GetPurchaseOrdersParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "vendor_orders_v1.get_purchase_orders".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPurchaseOrdersStatusParams {
@@ -486,6 +508,28 @@ pub async fn get_purchase_orders_status(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn get_purchase_orders_status_pages<'a>(
+    client: &'a Client,
+    params: GetPurchaseOrdersStatusParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "vendor_orders_v1.get_purchase_orders_status".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]

@@ -437,6 +437,29 @@ pub async fn get_shipments(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_shipments_pages<'a>(
+    client: &'a Client,
+    params: GetShipmentsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "external_fulfillment_shipments_2024_09_11.get_shipments"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ProcessShipmentParams<B = serde_json::Value> {

@@ -104,9 +104,15 @@ module Peddler
 
       Native::Response.from_parts(@engine.request_with_operation(operation, method, path, query.to_a, payload))
     end
+
+    # Lazily enumerates raw pages for an explicit Native::Pagination mapping.
+    def pages(pagination, arguments, max_pages: nil)
+      pagination.pages(@engine, arguments, max_pages: max_pages)
+    end
   end
 end
 
+require_relative "native/pagination"
 require_relative "native/apis"
 
 require_relative "native/documents"

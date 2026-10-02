@@ -75,6 +75,28 @@ pub async fn get_invoice(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_invoice_pages<'a>(
+    client: &'a Client,
+    params: GetInvoiceParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_invoices_2026_06_25.get_invoice".to_owned(),
+            input: "/next_token_for_line_items".to_owned(),
+            output: "/nextTokenForLineItems".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoiceHeadersParams {
@@ -177,6 +199,28 @@ pub async fn get_invoice_headers(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn get_invoice_headers_pages<'a>(
+    client: &'a Client,
+    params: GetInvoiceHeadersParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_invoices_2026_06_25.get_invoice_headers".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(

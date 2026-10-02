@@ -223,6 +223,28 @@ pub async fn get_supply_sources(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_supply_sources_pages<'a>(
+    client: &'a Client,
+    params: GetSupplySourcesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "supply_sources_2020_07_01.get_supply_sources".to_owned(),
+            input: "/next_page_token".to_owned(),
+            output: "/nextPageToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateSupplySourceParams<B = serde_json::Value> {

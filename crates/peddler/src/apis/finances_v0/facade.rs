@@ -118,6 +118,28 @@ pub async fn list_financial_event_groups(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_financial_event_groups_pages<'a>(
+    client: &'a Client,
+    params: ListFinancialEventGroupsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_v0.list_financial_event_groups".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/NextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_financial_events_max_results_per_page_default() -> Option<i32> {
     Some(serde_json::from_str("100").expect("validated schema default"))
 }
@@ -221,6 +243,28 @@ pub async fn list_financial_events(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_financial_events_pages<'a>(
+    client: &'a Client,
+    params: ListFinancialEventsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_v0.list_financial_events".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/NextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 fn list_financial_events_by_group_id_max_results_per_page_default() -> Option<i32> {
     Some(serde_json::from_str("100").expect("validated schema default"))
@@ -329,6 +373,28 @@ pub async fn list_financial_events_by_group_id(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_financial_events_by_group_id_pages<'a>(
+    client: &'a Client,
+    params: ListFinancialEventsByGroupIdParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_v0.list_financial_events_by_group_id".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/NextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_financial_events_by_order_id_max_results_per_page_default() -> Option<i32> {
     Some(serde_json::from_str("100").expect("validated schema default"))
 }
@@ -405,6 +471,28 @@ pub async fn list_financial_events_by_order_id(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_financial_events_by_order_id_pages<'a>(
+    client: &'a Client,
+    params: ListFinancialEventsByOrderIdParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "finances_v0.list_financial_events_by_order_id".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/NextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(

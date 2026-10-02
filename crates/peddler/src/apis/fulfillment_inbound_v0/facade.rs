@@ -380,6 +380,30 @@ pub async fn get_shipment_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_shipment_items_pages<'a>(
+    client: &'a Client,
+    params: GetShipmentItemsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_v0.get_shipment_items".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/NextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![
+                    "last_updated_after".to_owned(), "last_updated_before".to_owned()
+                ],
+                set: vec![("query_type".to_owned(), serde_json::json!("NEXT_TOKEN"))],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentItemsByShipmentIdParams {
@@ -575,6 +599,31 @@ pub async fn get_shipments(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn get_shipments_pages<'a>(
+    client: &'a Client,
+    params: GetShipmentsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_v0.get_shipments".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/NextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![
+                    "shipment_status_list".to_owned(), "shipment_id_list".to_owned(),
+                    "last_updated_after".to_owned(), "last_updated_before".to_owned()
+                ],
+                set: vec![("query_type".to_owned(), serde_json::json!("NEXT_TOKEN"))],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(

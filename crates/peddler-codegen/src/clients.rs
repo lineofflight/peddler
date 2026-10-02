@@ -411,8 +411,12 @@ fn convert(spec: &Value) -> Result<Value, GenerationError> {
     }
     Ok(serde_json::from_slice(&output.stdout)?)
 }
-pub fn facade(client: &RenderedClient, api: &ModelSpec) -> Result<String, GenerationError> {
-    crate::facades::rust(client, api)
+pub fn facade(
+    client: &RenderedClient,
+    api: &ModelSpec,
+    pagination: &[&crate::pagination::Resolved],
+) -> Result<String, GenerationError> {
+    crate::facades::rust(client, api, pagination)
 }
 pub(crate) fn metadata(client: &RenderedClient) -> Result<String, GenerationError> {
     let cases = client.operations.iter().map(|op| {

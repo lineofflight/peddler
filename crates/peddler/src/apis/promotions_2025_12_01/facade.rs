@@ -230,6 +230,28 @@ pub async fn get_selection(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_selection_pages<'a>(
+    client: &'a Client,
+    params: GetSelectionParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "promotions_2025_12_01.get_selection".to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/selection/selectionDetails/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn search_promotions_locale_default() -> Option<String> {
     Some(serde_json::from_str("\"en_US\"").expect("validated schema default"))
 }
@@ -533,6 +555,28 @@ pub async fn search_promotions(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn search_promotions_pages<'a>(
+    client: &'a Client,
+    params: SearchPromotionsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "promotions_2025_12_01.search_promotions".to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(

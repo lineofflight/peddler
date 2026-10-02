@@ -102,6 +102,28 @@ pub async fn list_cases<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_cases_pages<'a, B: serde::Serialize>(
+    client: &'a Client,
+    params: ListCasesParams<B>,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "support_2025_02_01.list_cases".to_owned(),
+            input: "/body/nextToken".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_contacts_max_results_default() -> Option<i32> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -197,6 +219,28 @@ pub async fn list_contacts(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_contacts_pages<'a>(
+    client: &'a Client,
+    params: ListContactsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "support_2025_02_01.list_contacts".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(

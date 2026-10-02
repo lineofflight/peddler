@@ -1295,6 +1295,29 @@ pub async fn get_self_ship_appointment_slots(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_self_ship_appointment_slots_pages<'a>(
+    client: &'a Client,
+    params: GetSelfShipAppointmentSlotsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentParams {
@@ -1557,6 +1580,29 @@ pub async fn list_delivery_window_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_delivery_window_options_pages<'a>(
+    client: &'a Client,
+    params: ListDeliveryWindowOptionsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_delivery_window_options"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_inbound_plan_boxes_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -1645,6 +1691,29 @@ pub async fn list_inbound_plan_boxes(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_inbound_plan_boxes_pages<'a>(
+    client: &'a Client,
+    params: ListInboundPlanBoxesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 fn list_inbound_plan_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
@@ -1735,6 +1804,29 @@ pub async fn list_inbound_plan_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_inbound_plan_items_pages<'a>(
+    client: &'a Client,
+    params: ListInboundPlanItemsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_inbound_plan_items"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_inbound_plan_pallets_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -1823,6 +1915,29 @@ pub async fn list_inbound_plan_pallets(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_inbound_plan_pallets_pages<'a>(
+    client: &'a Client,
+    params: ListInboundPlanPalletsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 fn list_inbound_plans_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
@@ -1948,6 +2063,28 @@ pub async fn list_inbound_plans(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_inbound_plans_pages<'a>(
+    client: &'a Client,
+    params: ListInboundPlansParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_inbound_plans".to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
@@ -2121,6 +2258,29 @@ pub async fn list_packing_group_boxes(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_packing_group_boxes_pages<'a>(
+    client: &'a Client,
+    params: ListPackingGroupBoxesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_packing_group_boxes"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_packing_group_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -2224,6 +2384,29 @@ pub async fn list_packing_group_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_packing_group_items_pages<'a>(
+    client: &'a Client,
+    params: ListPackingGroupItemsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_packing_group_items"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_packing_options_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -2313,6 +2496,28 @@ pub async fn list_packing_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_packing_options_pages<'a>(
+    client: &'a Client,
+    params: ListPackingOptionsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_packing_options".to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_placement_options_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -2401,6 +2606,29 @@ pub async fn list_placement_options(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_placement_options_pages<'a>(
+    client: &'a Client,
+    params: ListPlacementOptionsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_placement_options"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
@@ -2574,6 +2802,28 @@ pub async fn list_shipment_boxes(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_shipment_boxes_pages<'a>(
+    client: &'a Client,
+    params: ListShipmentBoxesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_shipment_boxes".to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_shipment_content_update_previews_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -2680,6 +2930,29 @@ pub async fn list_shipment_content_update_previews(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_shipment_content_update_previews_pages<'a>(
+    client: &'a Client,
+    params: ListShipmentContentUpdatePreviewsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_shipment_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -2783,6 +3056,28 @@ pub async fn list_shipment_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_shipment_items_pages<'a>(
+    client: &'a Client,
+    params: ListShipmentItemsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_shipment_items".to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 fn list_shipment_pallets_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
@@ -2885,6 +3180,28 @@ pub async fn list_shipment_pallets(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_shipment_pallets_pages<'a>(
+    client: &'a Client,
+    params: ListShipmentPalletsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_shipment_pallets".to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 fn list_transportation_options_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
@@ -3004,6 +3321,29 @@ pub async fn list_transportation_options(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_transportation_options_pages<'a>(
+    client: &'a Client,
+    params: ListTransportationOptionsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_inbound_2024_03_20.list_transportation_options"
+                .to_owned(),
+            input: "/pagination_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]

@@ -204,6 +204,28 @@ pub async fn list_expected_payouts(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_expected_payouts_pages<'a>(
+    client: &'a Client,
+    params: ListExpectedPayoutsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "transfers_2024_06_01.list_expected_payouts".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListPayoutsParams {
@@ -324,6 +346,28 @@ pub async fn list_payouts(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_payouts_pages<'a>(
+    client: &'a Client,
+    params: ListPayoutsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "transfers_2024_06_01.list_payouts".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(

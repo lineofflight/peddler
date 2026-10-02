@@ -3,6 +3,7 @@ use crate::{
     GenerationError,
     clients::{Operation, Parameter, RenderedClient, pascal, rust_type},
     manifest::ModelSpec,
+    pagination::{self, Resolved},
 };
 use serde_json::{Value, json};
 use std::fmt::Write;
@@ -39,7 +40,11 @@ fn response_type(op: &Operation) -> String {
         "Response".into()
     }
 }
-pub(crate) fn rust(client: &RenderedClient, api: &ModelSpec) -> Result<String, GenerationError> {
+pub(crate) fn rust(
+    client: &RenderedClient,
+    api: &ModelSpec,
+    pagination: &[&Resolved],
+) -> Result<String, GenerationError> {
     let mut source = String::from(
         "use crate::{Client, Error, Response};\nuse crate::operation::{collect, TypedResponse, DecodeError, WireContext, validate_parameter};\nuse super::wire;\n",
     );
@@ -256,6 +261,22 @@ pub(crate) fn rust(client: &RenderedClient, api: &ModelSpec) -> Result<String, G
             writeln!(source, "Ok({response} {{raw}})").unwrap()
         }
         source.push_str("}\n");
+        if let Some(mapped) = pagination.iter().find(|r| r.name == op.name) {
+            let params_ty = if body.is_some() {
+                format!("{}Params<B>", pascal(&op.name))
+            } else {
+                format!("{}Params", pascal(&op.name))
+            };
+            let generics = if body.is_some() {
+                "<'a, B: serde::Serialize>"
+            } else {
+                "<'a>"
+            };
+            writeln!(source,"pub fn {}_pages{generics}(client:&'a Client, params:{params_ty}, max_pages: Option<usize>)->crate::pagination::PageStream<'a> {{ crate::pagination::pages(client, {}, &params, max_pages) }}",op.name,pagination::rust_expression(mapped)).unwrap();
+            if mapped.mapping.continuation.adapter {
+                adapter(&mut source, op, mapped)?;
+            }
+        }
     }
     // Progenitor consumes snake_case OperationInfo, so CSV metadata is looked up
     // per operation. exec is only entered from the shared policy runner.
@@ -267,8 +288,96 @@ pub(crate) fn rust(client: &RenderedClient, api: &ModelSpec) -> Result<String, G
         format(source)?
     ))
 }
+/// A private continuation operation for APIs whose token replaces every other
+/// parameter: it sends the token and path parameters only, so the initial
+/// request's required filters are not demanded again. It is still run under
+/// the original operation key, so policy, auth and timeouts are unchanged.
+fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(), GenerationError> {
+    let token = &mapped.mapping.input[1..];
+    let kept: Vec<&Parameter> = op
+        .parameters
+        .iter()
+        .filter(|p| p.location == "path" || p.name == token)
+        .collect();
+    if kept.iter().any(|p| p.schema["type"] != "string") {
+        return Err(GenerationError(format!(
+            "{}: adapter arguments must be strings",
+            op.name
+        )));
+    }
+    let strukt = format!("{}ContinueParams", pascal(&op.name));
+    writeln!(
+        source,
+        "#[derive(serde::Deserialize)]\n#[serde(deny_unknown_fields)]\npub(crate) struct {strukt} {{"
+    )
+    .unwrap();
+    for p in &kept {
+        writeln!(source, "pub {}: String,", p.name).unwrap();
+    }
+    source.push_str("}\n");
+    writeln!(
+        source,
+        "pub(crate) async fn {}_continue(client:&Client, params:{strukt})->Result<Response,Error> {{",
+        op.name
+    )
+    .unwrap();
+    for p in &kept {
+        let schema = serde_json::to_string(&p.schema)?;
+        writeln!(source,"validate_parameter(serde_json::Value::String(params.{}.clone()), {:?}, {schema:?}, true, false)?;",p.name,p.location).unwrap();
+    }
+    let mut template = String::new();
+    let mut arguments = Vec::new();
+    let mut rest = op.path.as_str();
+    while let Some((before, after)) = rest.split_once('{') {
+        let (name, tail) = after
+            .split_once('}')
+            .ok_or_else(|| GenerationError(format!("{}: malformed path", op.name)))?;
+        let p = op
+            .parameters
+            .iter()
+            .find(|p| p.location == "path" && p.wire_name == name)
+            .ok_or_else(|| GenerationError(format!("{}: unknown path parameter", op.name)))?;
+        template.push_str(before);
+        template.push_str("{}");
+        arguments.push(format!(
+            "crate::operation::encode_segment(&params.{})",
+            p.name
+        ));
+        rest = tail;
+    }
+    template.push_str(rest);
+    let wire = op
+        .parameters
+        .iter()
+        .find(|p| p.name == token)
+        .expect("resolved token")
+        .wire_name
+        .clone();
+    let call = if arguments.is_empty() {
+        format!("{template:?}.to_owned()")
+    } else {
+        format!("format!({template:?}, {})", arguments.join(", "))
+    };
+    writeln!(
+        source,
+        "let path = {call};\nclient.execute_with_operation({:?}, crate::Request {{ method: {:?}.into(), path, query: vec![({wire:?}.into(), params.{token})], body: None }}).await\n}}",
+        mapped.key, op.method
+    )
+    .unwrap();
+    Ok(())
+}
+pub(crate) fn pagination_table(resolved: &[Resolved]) -> Result<String, GenerationError> {
+    let entries = resolved
+        .iter()
+        .map(|r| format!("{},", pagination::rust_expression(r)))
+        .collect::<String>();
+    format(format!(
+        "/// Every explicit pagination mapping, from `pagination.json`.\npub fn mappings() -> Vec<crate::pagination::Pagination> {{ vec![{entries}] }}\npub fn mapping(operation: &str) -> Option<crate::pagination::Pagination> {{ mappings().into_iter().find(|p| p.operation == operation) }}\n"
+    ))
+}
 pub(crate) fn dispatch(
     clients: &[(&ModelSpec, RenderedClient)],
+    resolved: &[Resolved],
 ) -> Result<String, GenerationError> {
     let mut source = String::from(
         "type OperationFuture<'a> = std::pin::Pin<Box<dyn std::future::Future<Output=Result<crate::Response,crate::Error>> + Send + 'a>>;\ntype Handler = for<'a> fn(&'a crate::Client, &'a str)->OperationFuture<'a>;\npub fn execute<'a>(client:&'a crate::Client, operation:&str, arguments:&'a str)->OperationFuture<'a> { let handler: Handler = match operation {\n",
@@ -285,7 +394,15 @@ pub(crate) fn dispatch(
             .unwrap();
         }
     }
+    for r in resolved {
+        if let Some(key) = r.adapter_key() {
+            writeln!(source, "{key:?} => {}_{}_continue,", r.module, r.name).unwrap();
+        }
+    }
     source.push_str("_=>return Box::pin(std::future::ready(Err(crate::Error::InvalidRequest))), }; handler(client,arguments) }\n");
+    for r in resolved.iter().filter(|r| r.adapter_key().is_some()) {
+        writeln!(source,"fn {m}_{n}_continue<'a>(client:&'a crate::Client,arguments:&'a str)->OperationFuture<'a> {{ Box::pin(async move {{ let params:crate::apis::{m}::{p}ContinueParams=serde_json::from_str(arguments).map_err(|_|crate::Error::InvalidRequest)?; crate::apis::{m}::{n}_continue(client,params).await }}) }}",m=r.module,n=r.name,p=pascal(&r.name)).unwrap();
+    }
     for (api, client) in clients {
         for op in &client.operations {
             let params = pascal(&op.name) + "Params";
@@ -338,13 +455,28 @@ fn ruby_default(value: &Value) -> String {
         _ => value.to_string(),
     }
 }
-pub(crate) fn ruby(clients: &[(&ModelSpec, RenderedClient)]) -> (String, String) {
+pub(crate) fn ruby(
+    clients: &[(&ModelSpec, RenderedClient)],
+    resolved: &[Resolved],
+) -> (String, String) {
     let mut ruby = String::from(
         "# frozen_string_literal: true\n\n# Generated by peddler-codegen. Do not edit.\nmodule Peddler\n  module Native\n",
     );
     let mut rbs = String::from(
         "# Generated by peddler-codegen. Do not edit.\nmodule Peddler\n  module Native\n",
     );
+    ruby.push_str("    PAGINATIONS = {\n");
+    for r in resolved {
+        writeln!(
+            ruby,
+            "      {:?} => {},",
+            r.key,
+            pagination::ruby_expression(r)
+        )
+        .unwrap();
+    }
+    ruby.push_str("    }.freeze\n\n");
+    rbs.push_str("    PAGINATIONS: Hash[String, Pagination]\n\n");
     for (api, client) in clients {
         let class = pascal(api.module);
         writeln!(
@@ -412,6 +544,28 @@ pub(crate) fn ruby(clients: &[(&ModelSpec, RenderedClient)]) -> (String, String)
                 .collect::<Vec<_>>()
                 .join(", ");
             writeln!(rbs, "      def {}: ({sig}) -> Response", op.name).unwrap();
+            if let Some(mapped) = resolved
+                .iter()
+                .find(|r| r.module == api.module && r.name == op.name)
+            {
+                let signature = if keywords.is_empty() {
+                    "max_pages: nil".to_owned()
+                } else {
+                    format!("{keywords}, max_pages: nil")
+                };
+                writeln!(ruby,"      def {}_pages({signature})\n{annotation}        arguments = {arguments}\n        PAGINATIONS.fetch({:?}).pages(@engine, arguments, max_pages: max_pages)\n      end\n",op.name,mapped.key).unwrap();
+                let sig = if sig.is_empty() {
+                    "?max_pages: Integer?".to_owned()
+                } else {
+                    format!("{sig}, ?max_pages: Integer?")
+                };
+                writeln!(
+                    rbs,
+                    "      def {}_pages: ({sig}) -> Enumerator[Response, void]",
+                    op.name
+                )
+                .unwrap();
+            }
         }
         ruby.truncate(ruby.trim_end().len());
         ruby.push_str("\n    end\n\n");
@@ -443,7 +597,9 @@ pub(crate) fn ruby(clients: &[(&ModelSpec, RenderedClient)]) -> (String, String)
 pub(crate) fn inventory(
     clients: &[(&ModelSpec, RenderedClient)],
     revision: &str,
+    resolved: &[Resolved],
+    source: &pagination::Source,
 ) -> Result<String, GenerationError> {
-    let apis=clients.iter().map(|(api,client)|json!({"source":api.source,"module":api.module,"family":api.family,"version":api.version,"latest":api.latest,"ruby_class":pascal(api.module),"operations":client.operations.iter().map(|op|json!({"id":op.id,"key":format!("{}.{}",api.module,op.name),"method":op.method,"path":op.path,"parameters":op.parameters.iter().map(|p|json!({"name":p.name,"wire_name":p.wire_name,"in":p.location,"required":p.required,"csv":p.csv,"schema":p.schema,"body_type":p.body_type})).collect::<Vec<_>>(),"successes":op.successes.iter().map(|(status,model)|json!({"status":status,"model":model})).collect::<Vec<_>>()})).collect::<Vec<_>>()})).collect::<Vec<_>>();
+    let apis=clients.iter().map(|(api,client)|json!({"source":api.source,"module":api.module,"family":api.family,"version":api.version,"latest":api.latest,"ruby_class":pascal(api.module),"operations":client.operations.iter().map(|op|json!({"id":op.id,"key":format!("{}.{}",api.module,op.name),"method":op.method,"path":op.path,"parameters":op.parameters.iter().map(|p|json!({"name":p.name,"wire_name":p.wire_name,"in":p.location,"required":p.required,"csv":p.csv,"schema":p.schema,"body_type":p.body_type})).collect::<Vec<_>>(),"successes":op.successes.iter().map(|(status,model)|json!({"status":status,"model":model})).collect::<Vec<_>>(),"pagination":resolved.iter().find(|r|r.module==api.module&&r.name==op.name).map(|r|json!({"input":r.mapping.input,"output":r.mapping.output,"continuation":{"operation":r.continuation_operation,"keep":r.mapping.continuation.keep,"drop":r.mapping.continuation.drop,"set":r.mapping.continuation.set,"adapter":r.mapping.continuation.adapter}})),"pagination_exclusion":source.exclusions.iter().find(|e|e.operation==format!("{}.{}",api.module,op.name)).map(|e|e.reason.clone())})).collect::<Vec<_>>()})).collect::<Vec<_>>();
     Ok(serde_json::to_string_pretty(&json!({"revision":revision,"apis":apis}))? + "\n")
 }

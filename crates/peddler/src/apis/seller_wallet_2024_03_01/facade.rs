@@ -623,6 +623,28 @@ pub async fn list_account_transactions(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn list_account_transactions_pages<'a>(
+    client: &'a Client,
+    params: ListAccountTransactionsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "seller_wallet_2024_03_01.list_account_transactions".to_owned(),
+            input: "/next_page_token".to_owned(),
+            output: "/nextPageToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListAccountsParams {
@@ -735,6 +757,28 @@ pub async fn list_transfer_schedules(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_transfer_schedules_pages<'a>(
+    client: &'a Client,
+    params: ListTransferSchedulesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "seller_wallet_2024_03_01.list_transfer_schedules".to_owned(),
+            input: "/next_page_token".to_owned(),
+            output: "/nextPageToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]

@@ -956,9 +956,94 @@ pub fn execute<'a>(
         "vendor_transaction_status_v1.get_transaction" => {
             vendor_transaction_status_v1_get_transaction
         }
+        "aplus_content_2020_11_01.list_content_document_asin_relations.continue" => {
+            aplus_content_2020_11_01_list_content_document_asin_relations_continue
+        }
+        "aplus_content_2020_11_01.search_content_documents.continue" => {
+            aplus_content_2020_11_01_search_content_documents_continue
+        }
+        "aplus_content_2020_11_01.search_content_publish_records.continue" => {
+            aplus_content_2020_11_01_search_content_publish_records_continue
+        }
+        "feeds_2021_06_30.get_feeds.continue" => feeds_2021_06_30_get_feeds_continue,
+        "reports_2021_06_30.get_reports.continue" => {
+            reports_2021_06_30_get_reports_continue
+        }
         _ => return Box::pin(std::future::ready(Err(crate::Error::InvalidRequest))),
     };
     handler(client, arguments)
+}
+fn aplus_content_2020_11_01_list_content_document_asin_relations_continue<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::aplus_content_2020_11_01::ListContentDocumentAsinRelationsContinueParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        crate::apis::aplus_content_2020_11_01::list_content_document_asin_relations_continue(
+                client,
+                params,
+            )
+            .await
+    })
+}
+fn aplus_content_2020_11_01_search_content_documents_continue<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::aplus_content_2020_11_01::SearchContentDocumentsContinueParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        crate::apis::aplus_content_2020_11_01::search_content_documents_continue(
+                client,
+                params,
+            )
+            .await
+    })
+}
+fn aplus_content_2020_11_01_search_content_publish_records_continue<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::aplus_content_2020_11_01::SearchContentPublishRecordsContinueParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        crate::apis::aplus_content_2020_11_01::search_content_publish_records_continue(
+                client,
+                params,
+            )
+            .await
+    })
+}
+fn feeds_2021_06_30_get_feeds_continue<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::feeds_2021_06_30::GetFeedsContinueParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        crate::apis::feeds_2021_06_30::get_feeds_continue(client, params).await
+    })
+}
+fn reports_2021_06_30_get_reports_continue<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::reports_2021_06_30::GetReportsContinueParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        crate::apis::reports_2021_06_30::get_reports_continue(client, params).await
+    })
 }
 fn amazon_warehousing_and_distribution_2024_05_09_cancel_inbound<'a>(
     client: &'a crate::Client,

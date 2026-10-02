@@ -8,6 +8,7 @@ pub mod clients;
 mod facades;
 pub mod manifest;
 pub mod models;
+pub mod pagination;
 pub mod supplemental;
 pub use supplemental::generate_supplemental;
 
@@ -99,16 +100,27 @@ pub fn generate(
     output
         .get_mut(&base.join("mod.rs"))
         .unwrap()
-        .push_str("\npub mod dispatch;\npub use dispatch::execute;\n");
+        .push_str("\npub mod dispatch;\npub use dispatch::execute;\npub mod pagination;\n");
     let mut clients = Vec::new();
+    let mut specs = BTreeMap::new();
     for api in manifest::ALL_APIS {
-        let spec = serde_json::from_slice(&fs::read(spec_dir.join(api.source))?)?;
-        let rendered = clients::render(&spec, api)?;
+        let spec: serde_json::Value =
+            serde_json::from_slice(&fs::read(spec_dir.join(api.source))?)?;
+        clients.push((api, clients::render(&spec, api)?));
+        specs.insert(api.module, spec);
+    }
+    let source = match spec_dir.parent().and_then(Path::parent) {
+        Some(root) => pagination::load(root)?,
+        None => pagination::Source::default(),
+    };
+    let resolved = pagination::resolve(&source, &clients, &specs)?;
+    for (api, rendered) in &clients {
         let prefix = notice(revision, api.source);
+        let mapped: Vec<_> = resolved.iter().filter(|r| r.module == api.module).collect();
         for (name, content) in [
             ("wire.rs", rendered.wire.clone()),
-            ("metadata.rs", clients::metadata(&rendered)?),
-            ("facade.rs", clients::facade(&rendered, api)?),
+            ("metadata.rs", clients::metadata(rendered)?),
+            ("facade.rs", clients::facade(rendered, api, &mapped)?),
         ] {
             output.insert(
                 base.join(api.module).join(name),
@@ -127,22 +139,29 @@ pub fn generate(
             base.join(api.module).join("mod.rs"),
             format!("{prefix}{}", format_tokens(module)?),
         );
-        clients.push((api, rendered));
     }
     output.insert(
         base.join("dispatch.rs"),
         format!(
             "{}{}",
             notice(revision, "all operations"),
-            facades::dispatch(&clients)?
+            facades::dispatch(&clients, &resolved)?
         ),
     );
-    let (ruby, rbs) = facades::ruby(&clients);
+    output.insert(
+        base.join("pagination.rs"),
+        format!(
+            "{}{}",
+            notice(revision, "pagination.json"),
+            facades::pagination_table(&resolved)?
+        ),
+    );
+    let (ruby, rbs) = facades::ruby(&clients, &resolved);
     output.insert(PathBuf::from("lib/peddler/native/apis.rb"), ruby);
     output.insert(PathBuf::from("sig/peddler/native/apis.rbs"), rbs);
     output.insert(
         PathBuf::from("crates/peddler-codegen/operation-inventory.json"),
-        facades::inventory(&clients, revision)?,
+        facades::inventory(&clients, revision, &resolved, &source)?,
     );
     output.extend(generate_supplemental(
         spec_dir

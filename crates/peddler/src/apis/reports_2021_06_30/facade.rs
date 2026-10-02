@@ -568,6 +568,57 @@ pub async fn get_reports(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_reports_pages<'a>(
+    client: &'a Client,
+    params: GetReportsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "reports_2021_06_30.get_reports".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: Some("reports_2021_06_30.get_reports.continue".to_owned()),
+                keep: Some(vec![]),
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
+#[derive(serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+pub(crate) struct GetReportsContinueParams {
+    pub next_token: String,
+}
+pub(crate) async fn get_reports_continue(
+    client: &Client,
+    params: GetReportsContinueParams,
+) -> Result<Response, Error> {
+    validate_parameter(
+        serde_json::Value::String(params.next_token.clone()),
+        "query",
+        "{\"type\":\"string\"}",
+        true,
+        false,
+    )?;
+    let path = "/reports/2021-06-30/reports".to_owned();
+    client
+        .execute_with_operation(
+            "reports_2021_06_30.get_reports",
+            crate::Request {
+                method: "GET".into(),
+                path,
+                query: vec![("nextToken".into(), params.next_token)],
+                body: None,
+            },
+        )
+        .await
+}
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(
         &self,

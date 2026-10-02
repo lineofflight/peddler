@@ -14,6 +14,7 @@ pub mod data_kiosk;
 pub mod api_error;
 pub mod auth;
 pub mod documents;
+pub mod pagination;
 pub mod policy;
 
 mod operation;

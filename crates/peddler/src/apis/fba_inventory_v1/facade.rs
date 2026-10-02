@@ -323,6 +323,28 @@ pub async fn get_inventory_summaries(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_inventory_summaries_pages<'a>(
+    client: &'a Client,
+    params: GetInventorySummariesParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fba_inventory_v1.get_inventory_summaries".to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/pagination/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 impl progenitor_client::ClientHooks<WireContext> for wire::Client {
     async fn pre<E>(
         &self,

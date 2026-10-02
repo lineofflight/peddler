@@ -9,6 +9,8 @@
           "id": "cancelInbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -34,6 +36,8 @@
           "id": "checkInboundEligibility",
           "key": "amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -59,6 +63,8 @@
           "id": "confirmInbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.confirm_inbound",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -84,6 +90,8 @@
           "id": "confirmOutbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.confirm_outbound",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -109,6 +117,8 @@
           "id": "confirmReplenishmentOrder",
           "key": "amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -134,6 +144,8 @@
           "id": "createInbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.create_inbound",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -159,6 +171,8 @@
           "id": "createOutbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.create_outbound",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -184,6 +198,8 @@
           "id": "createReplenishmentOrder",
           "key": "amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -209,6 +225,8 @@
           "id": "getInbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.get_inbound",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -234,6 +252,8 @@
           "id": "getInboundShipment",
           "key": "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -275,6 +295,8 @@
           "id": "getInboundShipmentLabels",
           "key": "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -329,6 +351,8 @@
           "id": "getLabelPageTypes",
           "key": "amazon_warehousing_and_distribution_2024_05_09.get_label_page_types",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -355,6 +379,8 @@
           "id": "getOutbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.get_outbound",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -380,6 +406,8 @@
           "id": "getReplenishmentOrder",
           "key": "amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -405,6 +433,18 @@
           "id": "listInboundShipments",
           "key": "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -519,6 +559,18 @@
           "id": "listInventory",
           "key": "amazon_warehousing_and_distribution_2024_05_09.list_inventory",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -600,6 +652,18 @@
           "id": "listOutbounds",
           "key": "amazon_warehousing_and_distribution_2024_05_09.list_outbounds",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -679,6 +743,18 @@
           "id": "listReplenishmentOrders",
           "key": "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -758,6 +834,8 @@
           "id": "updateInbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.update_inbound",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -794,6 +872,8 @@
           "id": "updateInboundShipmentTransportDetails",
           "key": "amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -831,6 +911,8 @@
           "id": "updateOutbound",
           "key": "amazon_warehousing_and_distribution_2024_05_09.update_outbound",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -877,6 +959,8 @@
           "id": "createContentDocument",
           "key": "aplus_content_2020_11_01.create_content_document",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -914,6 +998,8 @@
           "id": "createMedia",
           "key": "aplus_content_2020_11_01.create_media",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -943,6 +1029,8 @@
           "id": "getContentDocument",
           "key": "aplus_content_2020_11_01.get_content_document",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1011,6 +1099,8 @@
           "id": "getMedia",
           "key": "aplus_content_2020_11_01.get_media",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1047,6 +1137,20 @@
           "id": "listContentDocumentAsinRelations",
           "key": "aplus_content_2020_11_01.list_content_document_asin_relations",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": true,
+              "drop": [],
+              "keep": [
+                "content_reference_key"
+              ],
+              "operation": "aplus_content_2020_11_01.list_content_document_asin_relations.continue",
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1138,6 +1242,8 @@
           "id": "postContentDocumentApprovalSubmission",
           "key": "aplus_content_2020_11_01.post_content_document_approval_submission",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1176,6 +1282,8 @@
           "id": "postContentDocumentAsinRelations",
           "key": "aplus_content_2020_11_01.post_content_document_asin_relations",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1225,6 +1333,8 @@
           "id": "postContentDocumentSuspendSubmission",
           "key": "aplus_content_2020_11_01.post_content_document_suspend_submission",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1263,6 +1373,18 @@
           "id": "searchContentDocuments",
           "key": "aplus_content_2020_11_01.search_content_documents",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": true,
+              "drop": [],
+              "keep": [],
+              "operation": "aplus_content_2020_11_01.search_content_documents.continue",
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1301,6 +1423,18 @@
           "id": "searchContentPublishRecords",
           "key": "aplus_content_2020_11_01.search_content_publish_records",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": true,
+              "drop": [],
+              "keep": [],
+              "operation": "aplus_content_2020_11_01.search_content_publish_records.continue",
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1351,6 +1485,8 @@
           "id": "updateContentDocument",
           "key": "aplus_content_2020_11_01.update_content_document",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1400,6 +1536,8 @@
           "id": "updateMedia",
           "key": "aplus_content_2020_11_01.update_media",
           "method": "PATCH",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1447,6 +1585,8 @@
           "id": "validateContentDocumentAsinRelations",
           "key": "aplus_content_2020_11_01.validate_content_document_asin_relations",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1510,6 +1650,8 @@
           "id": "createNotification",
           "key": "application_integrations_2024_04_01.create_notification",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -1535,6 +1677,8 @@
           "id": "deleteNotifications",
           "key": "application_integrations_2024_04_01.delete_notifications",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -1560,6 +1704,8 @@
           "id": "recordActionFeedback",
           "key": "application_integrations_2024_04_01.record_action_feedback",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1606,6 +1752,8 @@
           "id": "rotateApplicationClientSecret",
           "key": "application_management_2023_11_30.rotate_application_client_secret",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [],
           "path": "/applications/2023-11-30/clientSecret",
           "successes": [
@@ -1629,6 +1777,8 @@
           "id": "listCatalogCategories",
           "key": "catalog_items_v0.list_catalog_categories",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1686,6 +1836,8 @@
           "id": "getCatalogItem",
           "key": "catalog_items_2020_12_01.get_catalog_item",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1797,6 +1949,18 @@
           "id": "searchCatalogItems",
           "key": "catalog_items_2020_12_01.search_catalog_items",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -1980,6 +2144,8 @@
           "id": "getCatalogItem",
           "key": "catalog_items_2022_04_01.get_catalog_item",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2101,6 +2267,18 @@
           "id": "searchCatalogItems",
           "key": "catalog_items_2022_04_01.search_catalog_items",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2347,6 +2525,8 @@
           "id": "getBrowseNodeReturnTopics",
           "key": "customer_feedback_2024_06_01.get_browse_node_return_topics",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2387,6 +2567,8 @@
           "id": "getBrowseNodeReturnTrends",
           "key": "customer_feedback_2024_06_01.get_browse_node_return_trends",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2427,6 +2609,8 @@
           "id": "getBrowseNodeReviewTopics",
           "key": "customer_feedback_2024_06_01.get_browse_node_review_topics",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2495,6 +2679,8 @@
           "id": "getBrowseNodeReviewTrends",
           "key": "customer_feedback_2024_06_01.get_browse_node_review_trends",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2535,6 +2721,8 @@
           "id": "getItemBrowseNode",
           "key": "customer_feedback_2024_06_01.get_item_browse_node",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2575,6 +2763,8 @@
           "id": "getItemReviewTopics",
           "key": "customer_feedback_2024_06_01.get_item_review_topics",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2643,6 +2833,8 @@
           "id": "getItemReviewTrends",
           "key": "customer_feedback_2024_06_01.get_item_review_trends",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2693,6 +2885,8 @@
           "id": "cancelQuery",
           "key": "data_kiosk_2023_11_15.cancel_query",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2718,6 +2912,8 @@
           "id": "createQuery",
           "key": "data_kiosk_2023_11_15.create_query",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": "The body paginationToken starts a new asynchronous query for the next result page. It is a document lifecycle step, not a stream of createQuery responses.",
           "parameters": [
             {
               "body_type": "object",
@@ -2743,6 +2939,8 @@
           "id": "getDocument",
           "key": "data_kiosk_2023_11_15.get_document",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2768,6 +2966,18 @@
           "id": "getQueries",
           "key": "data_kiosk_2023_11_15.get_queries",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2875,6 +3085,8 @@
           "id": "getQuery",
           "key": "data_kiosk_2023_11_15.get_query",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": "Its pagination.nextToken is for creating another asynchronous query with createQuery paginationToken and the original query. It is not a getQuery page loop.",
           "parameters": [
             {
               "body_type": null,
@@ -2910,6 +3122,8 @@
           "id": "getInvoiceStatus",
           "key": "delivery_by_amazon_2022_07_01.get_invoice_status",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -2998,6 +3212,8 @@
           "id": "submitInvoice",
           "key": "delivery_by_amazon_2022_07_01.submit_invoice",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3055,6 +3271,8 @@
           "id": "createScheduledPackage",
           "key": "easy_ship_2022_03_23.create_scheduled_package",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -3080,6 +3298,8 @@
           "id": "createScheduledPackageBulk",
           "key": "easy_ship_2022_03_23.create_scheduled_package_bulk",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -3105,6 +3325,8 @@
           "id": "getScheduledPackage",
           "key": "easy_ship_2022_03_23.get_scheduled_package",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3145,6 +3367,8 @@
           "id": "listHandoverSlots",
           "key": "easy_ship_2022_03_23.list_handover_slots",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -3170,6 +3394,8 @@
           "id": "updateScheduledPackages",
           "key": "easy_ship_2022_03_23.update_scheduled_packages",
           "method": "PATCH",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -3205,6 +3431,8 @@
           "id": "batchInventory",
           "key": "external_fulfillment_inventory_2024_09_11.batch_inventory",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -3240,6 +3468,8 @@
           "id": "createSandboxLocation",
           "key": "external_fulfillment_location_2026_07_30.create_sandbox_location",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -3275,6 +3505,8 @@
           "id": "getReturn",
           "key": "external_fulfillment_returns_2024_09_11.get_return",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3300,6 +3532,18 @@
           "id": "listReturns",
           "key": "external_fulfillment_returns_2024_09_11.list_returns",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3481,6 +3725,8 @@
           "id": "createPackages",
           "key": "external_fulfillment_shipments_2024_09_11.create_packages",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3517,6 +3763,8 @@
           "id": "createSandboxShipment",
           "key": "external_fulfillment_shipments_2024_09_11.create_sandbox_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -3542,6 +3790,8 @@
           "id": "generateInvoice",
           "key": "external_fulfillment_shipments_2024_09_11.generate_invoice",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3567,6 +3817,8 @@
           "id": "generateShipLabels",
           "key": "external_fulfillment_shipments_2024_09_11.generate_ship_labels",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3629,6 +3881,8 @@
           "id": "getShipment",
           "key": "external_fulfillment_shipments_2024_09_11.get_shipment",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3654,6 +3908,18 @@
           "id": "getShipments",
           "key": "external_fulfillment_shipments_2024_09_11.get_shipments",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3774,6 +4040,8 @@
           "id": "processShipment",
           "key": "external_fulfillment_shipments_2024_09_11.process_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3825,6 +4093,8 @@
           "id": "retrieveInvoice",
           "key": "external_fulfillment_shipments_2024_09_11.retrieve_invoice",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3850,6 +4120,8 @@
           "id": "retrieveShippingOptions",
           "key": "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3886,6 +4158,8 @@
           "id": "updatePackage",
           "key": "external_fulfillment_shipments_2024_09_11.update_package",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3933,6 +4207,8 @@
           "id": "updatePackageStatus",
           "key": "external_fulfillment_shipments_2024_09_11.update_package_status",
           "method": "PATCH",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -3994,6 +4270,8 @@
           "id": "updateSandboxShipment",
           "key": "external_fulfillment_shipments_2024_09_11.update_sandbox_shipment",
           "method": "PATCH",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4040,6 +4318,8 @@
           "id": "getItemEligibilityPreview",
           "key": "fba_inbound_eligibility_v1.get_item_eligibility_preview",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4105,6 +4385,8 @@
           "id": "addInventory",
           "key": "fba_inventory_v1.add_inventory",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": "x-amzn-idempotency-token is an idempotency header, not pagination.",
           "parameters": [
             {
               "body_type": null,
@@ -4141,6 +4423,8 @@
           "id": "createInventoryItem",
           "key": "fba_inventory_v1.create_inventory_item",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -4166,6 +4450,8 @@
           "id": "deleteInventoryItem",
           "key": "fba_inventory_v1.delete_inventory_item",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4202,6 +4488,18 @@
           "id": "getInventorySummaries",
           "key": "fba_inventory_v1.get_inventory_summaries",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4327,6 +4625,8 @@
           "id": "cancelFeed",
           "key": "feeds_2021_06_30.cancel_feed",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4352,6 +4652,8 @@
           "id": "createFeed",
           "key": "feeds_2021_06_30.create_feed",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -4377,6 +4679,8 @@
           "id": "createFeedDocument",
           "key": "feeds_2021_06_30.create_feed_document",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -4402,6 +4706,8 @@
           "id": "getFeed",
           "key": "feeds_2021_06_30.get_feed",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4427,6 +4733,8 @@
           "id": "getFeedDocument",
           "key": "feeds_2021_06_30.get_feed_document",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4463,6 +4771,18 @@
           "id": "getFeeds",
           "key": "feeds_2021_06_30.get_feeds",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": true,
+              "drop": [],
+              "keep": [],
+              "operation": "feeds_2021_06_30.get_feeds.continue",
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4612,6 +4932,18 @@
           "id": "getRemittance",
           "key": "finance_remittance_2026_03_17.get_remittance",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token_for_line_items",
+            "output": "/nextTokenForLineItems"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4659,6 +4991,18 @@
           "id": "getRemittanceHeaders",
           "key": "finance_remittance_2026_03_17.get_remittance_headers",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4727,6 +5071,18 @@
           "id": "getInvoice",
           "key": "finances_invoices_2026_06_25.get_invoice",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token_for_line_items",
+            "output": "/nextTokenForLineItems"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4774,6 +5130,18 @@
           "id": "getInvoiceHeaders",
           "key": "finances_invoices_2026_06_25.get_invoice_headers",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4856,6 +5224,18 @@
           "id": "listFinancialEventGroups",
           "key": "finances_v0.list_financial_event_groups",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4920,6 +5300,18 @@
           "id": "listFinancialEvents",
           "key": "finances_v0.list_financial_events",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -4984,6 +5376,18 @@
           "id": "listFinancialEventsByGroupId",
           "key": "finances_v0.list_financial_events_by_group_id",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5059,6 +5463,18 @@
           "id": "listFinancialEventsByOrderId",
           "key": "finances_v0.list_financial_events_by_order_id",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5120,6 +5536,18 @@
           "id": "listBalances",
           "key": "finances_2024_06_19.list_balances",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5193,6 +5621,18 @@
           "id": "listSummary",
           "key": "finances_2024_06_19.list_summary",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5289,6 +5729,18 @@
           "id": "listTransactions",
           "key": "finances_2024_06_19.list_transactions",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5392,6 +5844,8 @@
           "id": "getPaymentMethods",
           "key": "transfers_2024_06_01.get_payment_methods",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5452,6 +5906,8 @@
           "id": "initiatePayout",
           "key": "transfers_2024_06_01.initiate_payout",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -5477,6 +5933,18 @@
           "id": "listExpectedPayouts",
           "key": "transfers_2024_06_01.list_expected_payouts",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5527,6 +5995,18 @@
           "id": "listPayouts",
           "key": "transfers_2024_06_01.list_payouts",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5622,6 +6102,8 @@
           "id": "getBillOfLading",
           "key": "fulfillment_inbound_v0.get_bill_of_lading",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5647,6 +6129,8 @@
           "id": "getLabels",
           "key": "fulfillment_inbound_v0.get_labels",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": "PageStartIndex is a numeric request index. The response has no continuation field to follow.",
           "parameters": [
             {
               "body_type": null,
@@ -5771,6 +6255,8 @@
           "id": "getPrepInstructions",
           "key": "fulfillment_inbound_v0.get_prep_instructions",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5827,6 +6313,23 @@
           "id": "getShipmentItems",
           "key": "fulfillment_inbound_v0.get_shipment_items",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [
+                "last_updated_after",
+                "last_updated_before"
+              ],
+              "keep": null,
+              "operation": null,
+              "set": {
+                "query_type": "NEXT_TOKEN"
+              }
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -5902,6 +6405,8 @@
           "id": "getShipmentItemsByShipmentId",
           "key": "fulfillment_inbound_v0.get_shipment_items_by_shipment_id",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": "The response NextToken says only to pass it in the next request. The operation has no token input, and the pinned docs do not say it continues through getShipmentItems with QueryType=NEXT_TOKEN. Callers can opt in with an explicit generic mapping.",
           "parameters": [
             {
               "body_type": null,
@@ -5938,6 +6443,25 @@
           "id": "getShipments",
           "key": "fulfillment_inbound_v0.get_shipments",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [
+                "shipment_status_list",
+                "shipment_id_list",
+                "last_updated_after",
+                "last_updated_before"
+              ],
+              "keep": null,
+              "operation": null,
+              "set": {
+                "query_type": "NEXT_TOKEN"
+              }
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6112,6 +6636,8 @@
           "id": "cancelInboundPlan",
           "key": "fulfillment_inbound_2024_03_20.cancel_inbound_plan",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6140,6 +6666,8 @@
           "id": "cancelSelfShipAppointment",
           "key": "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6193,6 +6721,8 @@
           "id": "confirmDeliveryWindowOptions",
           "key": "fulfillment_inbound_2024_03_20.confirm_delivery_window_options",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6249,6 +6779,8 @@
           "id": "confirmPackingOption",
           "key": "fulfillment_inbound_2024_03_20.confirm_packing_option",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6291,6 +6823,8 @@
           "id": "confirmPlacementOption",
           "key": "fulfillment_inbound_2024_03_20.confirm_placement_option",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6333,6 +6867,8 @@
           "id": "confirmShipmentContentUpdatePreview",
           "key": "fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6389,6 +6925,8 @@
           "id": "confirmTransportationOptions",
           "key": "fulfillment_inbound_2024_03_20.confirm_transportation_options",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6428,6 +6966,8 @@
           "id": "createInboundPlan",
           "key": "fulfillment_inbound_2024_03_20.create_inbound_plan",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -6453,6 +6993,8 @@
           "id": "createMarketplaceItemLabels",
           "key": "fulfillment_inbound_2024_03_20.create_marketplace_item_labels",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -6478,6 +7020,8 @@
           "id": "generateDeliveryWindowOptions",
           "key": "fulfillment_inbound_2024_03_20.generate_delivery_window_options",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6520,6 +7064,8 @@
           "id": "generatePackingOptions",
           "key": "fulfillment_inbound_2024_03_20.generate_packing_options",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6548,6 +7094,8 @@
           "id": "generatePlacementOptions",
           "key": "fulfillment_inbound_2024_03_20.generate_placement_options",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6587,6 +7135,8 @@
           "id": "generateSelfShipAppointmentSlots",
           "key": "fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6640,6 +7190,8 @@
           "id": "generateShipmentContentUpdatePreviews",
           "key": "fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6693,6 +7245,8 @@
           "id": "generateTransportationOptions",
           "key": "fulfillment_inbound_2024_03_20.generate_transportation_options",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6732,6 +7286,8 @@
           "id": "getDeliveryChallanDocument",
           "key": "fulfillment_inbound_2024_03_20.get_delivery_challan_document",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6774,6 +7330,8 @@
           "id": "getInboundOperationStatus",
           "key": "fulfillment_inbound_2024_03_20.get_inbound_operation_status",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6802,6 +7360,8 @@
           "id": "getInboundPlan",
           "key": "fulfillment_inbound_2024_03_20.get_inbound_plan",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6830,6 +7390,18 @@
           "id": "getSelfShipAppointmentSlots",
           "key": "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6899,6 +7471,8 @@
           "id": "getShipment",
           "key": "fulfillment_inbound_2024_03_20.get_shipment",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6941,6 +7515,8 @@
           "id": "getShipmentContentUpdatePreview",
           "key": "fulfillment_inbound_2024_03_20.get_shipment_content_update_preview",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -6997,6 +7573,18 @@
           "id": "listDeliveryWindowOptions",
           "key": "fulfillment_inbound_2024_03_20.list_delivery_window_options",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7066,6 +7654,18 @@
           "id": "listInboundPlanBoxes",
           "key": "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7121,6 +7721,18 @@
           "id": "listInboundPlanItems",
           "key": "fulfillment_inbound_2024_03_20.list_inbound_plan_items",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7176,6 +7788,18 @@
           "id": "listInboundPlanPallets",
           "key": "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7231,6 +7855,18 @@
           "id": "listInboundPlans",
           "key": "fulfillment_inbound_2024_03_20.list_inbound_plans",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7318,6 +7954,8 @@
           "id": "listItemComplianceDetails",
           "key": "fulfillment_inbound_2024_03_20.list_item_compliance_details",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7363,6 +8001,18 @@
           "id": "listPackingGroupBoxes",
           "key": "fulfillment_inbound_2024_03_20.list_packing_group_boxes",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7432,6 +8082,18 @@
           "id": "listPackingGroupItems",
           "key": "fulfillment_inbound_2024_03_20.list_packing_group_items",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7501,6 +8163,18 @@
           "id": "listPackingOptions",
           "key": "fulfillment_inbound_2024_03_20.list_packing_options",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7556,6 +8230,18 @@
           "id": "listPlacementOptions",
           "key": "fulfillment_inbound_2024_03_20.list_placement_options",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7611,6 +8297,8 @@
           "id": "listPrepDetails",
           "key": "fulfillment_inbound_2024_03_20.list_prep_details",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7656,6 +8344,18 @@
           "id": "listShipmentBoxes",
           "key": "fulfillment_inbound_2024_03_20.list_shipment_boxes",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7725,6 +8425,18 @@
           "id": "listShipmentContentUpdatePreviews",
           "key": "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7794,6 +8506,18 @@
           "id": "listShipmentItems",
           "key": "fulfillment_inbound_2024_03_20.list_shipment_items",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7863,6 +8587,18 @@
           "id": "listShipmentPallets",
           "key": "fulfillment_inbound_2024_03_20.list_shipment_pallets",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -7932,6 +8668,18 @@
           "id": "listTransportationOptions",
           "key": "fulfillment_inbound_2024_03_20.list_transportation_options",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8015,6 +8763,8 @@
           "id": "scheduleSelfShipAppointment",
           "key": "fulfillment_inbound_2024_03_20.schedule_self_ship_appointment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8082,6 +8832,8 @@
           "id": "setPackingInformation",
           "key": "fulfillment_inbound_2024_03_20.set_packing_information",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8121,6 +8873,8 @@
           "id": "setPrepDetails",
           "key": "fulfillment_inbound_2024_03_20.set_prep_details",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -8146,6 +8900,8 @@
           "id": "updateInboundPlanName",
           "key": "fulfillment_inbound_2024_03_20.update_inbound_plan_name",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8185,6 +8941,8 @@
           "id": "updateItemComplianceDetails",
           "key": "fulfillment_inbound_2024_03_20.update_item_compliance_details",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8223,6 +8981,8 @@
           "id": "updateShipmentName",
           "key": "fulfillment_inbound_2024_03_20.update_shipment_name",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8276,6 +9036,8 @@
           "id": "updateShipmentSourceAddress",
           "key": "fulfillment_inbound_2024_03_20.update_shipment_source_address",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8329,6 +9091,8 @@
           "id": "updateShipmentTrackingDetails",
           "key": "fulfillment_inbound_2024_03_20.update_shipment_tracking_details",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8392,6 +9156,8 @@
           "id": "cancelFulfillmentOrder",
           "key": "fulfillment_outbound_2020_07_01.cancel_fulfillment_order",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8418,6 +9184,8 @@
           "id": "createFulfillmentOrder",
           "key": "fulfillment_outbound_2020_07_01.create_fulfillment_order",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -8443,6 +9211,8 @@
           "id": "createFulfillmentReturn",
           "key": "fulfillment_outbound_2020_07_01.create_fulfillment_return",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8479,6 +9249,8 @@
           "id": "deliveryOffers",
           "key": "fulfillment_outbound_2020_07_01.delivery_offers",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -8504,6 +9276,18 @@
           "id": "getFeatureInventory",
           "key": "fulfillment_outbound_2020_07_01.get_feature_inventory",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8563,6 +9347,8 @@
           "id": "getFeatureSKU",
           "key": "fulfillment_outbound_2020_07_01.get_feature_sku",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8610,6 +9396,8 @@
           "id": "getFeatures",
           "key": "fulfillment_outbound_2020_07_01.get_features",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8635,6 +9423,8 @@
           "id": "getFulfillmentOrder",
           "key": "fulfillment_outbound_2020_07_01.get_fulfillment_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8661,6 +9451,8 @@
           "id": "getFulfillmentPreview",
           "key": "fulfillment_outbound_2020_07_01.get_fulfillment_preview",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -8686,6 +9478,8 @@
           "id": "getPackageTrackingDetails",
           "key": "fulfillment_outbound_2020_07_01.get_package_tracking_details",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8712,6 +9506,18 @@
           "id": "listAllFulfillmentOrders",
           "key": "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8749,6 +9555,8 @@
           "id": "listReturnReasonCodes",
           "key": "fulfillment_outbound_2020_07_01.list_return_reason_codes",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8807,6 +9615,8 @@
           "id": "submitFulfillmentOrderStatusUpdate",
           "key": "fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8844,6 +9654,8 @@
           "id": "updateFulfillmentOrder",
           "key": "fulfillment_outbound_2020_07_01.update_fulfillment_order",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8891,6 +9703,8 @@
           "id": "cancelOrder",
           "key": "fulfillment_outbound_2026_07_04.cancel_order",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8929,6 +9743,8 @@
           "id": "createOrder",
           "key": "fulfillment_outbound_2026_07_04.create_order",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -8970,6 +9786,8 @@
           "id": "getOffers",
           "key": "fulfillment_outbound_2026_07_04.get_offers",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9007,6 +9825,8 @@
           "id": "getOrder",
           "key": "fulfillment_outbound_2026_07_04.get_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9060,6 +9880,8 @@
           "id": "getOrderPreview",
           "key": "fulfillment_outbound_2026_07_04.get_order_preview",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9097,6 +9919,18 @@
           "id": "listOrders",
           "key": "fulfillment_outbound_2026_07_04.list_orders",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9161,6 +9995,8 @@
           "id": "updateOrder",
           "key": "fulfillment_outbound_2026_07_04.update_order",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9210,6 +10046,8 @@
           "id": "updateOrderStatus",
           "key": "fulfillment_outbound_2026_07_04.update_order_status",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9259,6 +10097,8 @@
           "id": "updatePackage",
           "key": "fulfillment_outbound_2026_07_04.update_package",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9329,6 +10169,8 @@
           "id": "createGovernmentInvoice",
           "key": "invoices_2024_06_19.create_government_invoice",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -9354,6 +10196,8 @@
           "id": "createInvoicesExport",
           "key": "invoices_2024_06_19.create_invoices_export",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -9379,6 +10223,8 @@
           "id": "getGovernmentInvoiceDocument",
           "key": "invoices_2024_06_19.get_government_invoice_document",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9459,6 +10305,8 @@
           "id": "getGovernmentInvoiceStatus",
           "key": "invoices_2024_06_19.get_government_invoice_status",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9528,6 +10376,8 @@
           "id": "getInvoice",
           "key": "invoices_2024_06_19.get_invoice",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9575,6 +10425,18 @@
           "id": "getInvoices",
           "key": "invoices_2024_06_19.get_invoices",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9767,6 +10629,8 @@
           "id": "getInvoicesAttributes",
           "key": "invoices_2024_06_19.get_invoices_attributes",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9803,6 +10667,8 @@
           "id": "getInvoicesDocument",
           "key": "invoices_2024_06_19.get_invoices_document",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9839,6 +10705,8 @@
           "id": "getInvoicesExport",
           "key": "invoices_2024_06_19.get_invoices_export",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9875,6 +10743,18 @@
           "id": "getInvoicesExports",
           "key": "invoices_2024_06_19.get_invoices_exports",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -9984,6 +10864,8 @@
           "id": "deleteListingsItem",
           "key": "listings_items_2020_09_01.delete_listings_item",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -10045,6 +10927,8 @@
           "id": "patchListingsItem",
           "key": "listings_items_2020_09_01.patch_listings_item",
           "method": "PATCH",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -10117,6 +11001,8 @@
           "id": "putListingsItem",
           "key": "listings_items_2020_09_01.put_listings_item",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -10199,6 +11085,8 @@
           "id": "deleteListingsItem",
           "key": "listings_items_2021_08_01.delete_listings_item",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -10261,6 +11149,8 @@
           "id": "getListingsItem",
           "key": "listings_items_2021_08_01.get_listings_item",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -10383,6 +11273,8 @@
           "id": "patchListingsItem",
           "key": "listings_items_2021_08_01.patch_listings_item",
           "method": "PATCH",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -10500,6 +11392,8 @@
           "id": "putListingsItem",
           "key": "listings_items_2021_08_01.put_listings_item",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -10618,6 +11512,18 @@
           "id": "searchListingsItems",
           "key": "listings_items_2021_08_01.search_listings_items",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -10987,6 +11893,8 @@
           "id": "getListingsRestrictions",
           "key": "listings_restrictions_2021_08_01.get_listings_restrictions",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11095,6 +12003,8 @@
           "id": "cancelShipment",
           "key": "merchant_fulfillment_v0.cancel_shipment",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11121,6 +12031,8 @@
           "id": "createShipment",
           "key": "merchant_fulfillment_v0.create_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -11146,6 +12058,8 @@
           "id": "getAdditionalSellerInputs",
           "key": "merchant_fulfillment_v0.get_additional_seller_inputs",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -11171,6 +12085,8 @@
           "id": "getEligibleShipmentServices",
           "key": "merchant_fulfillment_v0.get_eligible_shipment_services",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -11196,6 +12112,8 @@
           "id": "getShipment",
           "key": "merchant_fulfillment_v0.get_shipment",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11232,6 +12150,8 @@
           "id": "confirmCustomizationDetails",
           "key": "messaging_v1.confirm_customization_details",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11283,6 +12203,8 @@
           "id": "createConfirmDeliveryDetails",
           "key": "messaging_v1.create_confirm_delivery_details",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11334,6 +12256,8 @@
           "id": "createConfirmOrderDetails",
           "key": "messaging_v1.create_confirm_order_details",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11385,6 +12309,8 @@
           "id": "createConfirmServiceDetails",
           "key": "messaging_v1.create_confirm_service_details",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11436,6 +12362,8 @@
           "id": "createDigitalAccessKey",
           "key": "messaging_v1.create_digital_access_key",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11487,6 +12415,8 @@
           "id": "createLegalDisclosure",
           "key": "messaging_v1.create_legal_disclosure",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11538,6 +12468,8 @@
           "id": "createUnexpectedProblem",
           "key": "messaging_v1.create_unexpected_problem",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11589,6 +12521,8 @@
           "id": "CreateWarranty",
           "key": "messaging_v1.create_warranty",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11640,6 +12574,8 @@
           "id": "GetAttributes",
           "key": "messaging_v1.get_attributes",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11680,6 +12616,8 @@
           "id": "getMessagingActionsForOrder",
           "key": "messaging_v1.get_messaging_actions_for_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11720,6 +12658,8 @@
           "id": "sendInvoice",
           "key": "messaging_v1.send_invoice",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11781,6 +12721,8 @@
           "id": "createDestination",
           "key": "notifications_v1.create_destination",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -11806,6 +12748,8 @@
           "id": "createSubscription",
           "key": "notifications_v1.create_subscription",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11842,6 +12786,8 @@
           "id": "deleteDestination",
           "key": "notifications_v1.delete_destination",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11867,6 +12813,8 @@
           "id": "deleteSubscriptionById",
           "key": "notifications_v1.delete_subscription_by_id",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11903,6 +12851,8 @@
           "id": "getDestination",
           "key": "notifications_v1.get_destination",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11928,6 +12878,8 @@
           "id": "getDestinations",
           "key": "notifications_v1.get_destinations",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [],
           "path": "/notifications/v1/destinations",
           "successes": [
@@ -11941,6 +12893,8 @@
           "id": "getSubscription",
           "key": "notifications_v1.get_subscription",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -11977,6 +12931,8 @@
           "id": "getSubscriptionById",
           "key": "notifications_v1.get_subscription_by_id",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12013,6 +12969,18 @@
           "id": "getSubscriptions",
           "key": "notifications_v1.get_subscriptions",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12079,6 +13047,8 @@
           "id": "sendTestNotification",
           "key": "notifications_v1.send_test_notification",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12125,6 +13095,8 @@
           "id": "confirmShipment",
           "key": "orders_v0.confirm_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12161,6 +13133,8 @@
           "id": "getOrder",
           "key": "orders_v0.get_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12186,6 +13160,8 @@
           "id": "getOrderAddress",
           "key": "orders_v0.get_order_address",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12211,6 +13187,8 @@
           "id": "getOrderBuyerInfo",
           "key": "orders_v0.get_order_buyer_info",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12236,6 +13214,18 @@
           "id": "getOrderItems",
           "key": "orders_v0.get_order_items",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12272,6 +13262,18 @@
           "id": "getOrderItemsBuyerInfo",
           "key": "orders_v0.get_order_items_buyer_info",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12308,6 +13310,8 @@
           "id": "getOrderRegulatedInfo",
           "key": "orders_v0.get_order_regulated_info",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12333,6 +13337,18 @@
           "id": "getOrders",
           "key": "orders_v0.get_orders",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/NextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12612,6 +13628,8 @@
           "id": "updateShipmentStatus",
           "key": "orders_v0.update_shipment_status",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12648,6 +13666,8 @@
           "id": "updateVerificationStatus",
           "key": "orders_v0.update_verification_status",
           "method": "PATCH",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12694,6 +13714,8 @@
           "id": "getOrder",
           "key": "orders_2026_01_01.get_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -12792,6 +13814,18 @@
           "id": "searchOrders",
           "key": "orders_2026_01_01.search_orders",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13055,6 +14089,8 @@
           "id": "getMyFeesEstimateForASIN",
           "key": "product_fees_v0.get_my_fees_estimate_for_asin",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13091,6 +14127,8 @@
           "id": "getMyFeesEstimateForSKU",
           "key": "product_fees_v0.get_my_fees_estimate_for_sku",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13127,6 +14165,8 @@
           "id": "getMyFeesEstimates",
           "key": "product_fees_v0.get_my_fees_estimates",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "array",
@@ -13162,6 +14202,8 @@
           "id": "getCompetitivePricing",
           "key": "product_pricing_v0.get_competitive_pricing",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13247,6 +14289,8 @@
           "id": "getItemOffers",
           "key": "product_pricing_v0.get_item_offers",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13316,6 +14360,8 @@
           "id": "getItemOffersBatch",
           "key": "product_pricing_v0.get_item_offers_batch",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -13341,6 +14387,8 @@
           "id": "getListingOffers",
           "key": "product_pricing_v0.get_listing_offers",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13410,6 +14458,8 @@
           "id": "getListingOffersBatch",
           "key": "product_pricing_v0.get_listing_offers_batch",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -13435,6 +14485,8 @@
           "id": "getPricing",
           "key": "product_pricing_v0.get_pricing",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13548,6 +14600,8 @@
           "id": "getCompetitiveSummary",
           "key": "product_pricing_2022_05_01.get_competitive_summary",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -13573,6 +14627,8 @@
           "id": "getFeaturedOfferExpectedPriceBatch",
           "key": "product_pricing_2022_05_01.get_featured_offer_expected_price_batch",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -13608,6 +14664,8 @@
           "id": "getDefinitionsProductType",
           "key": "product_type_definitions_2020_09_01.get_definitions_product_type",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13771,6 +14829,8 @@
           "id": "searchDefinitionsProductTypes",
           "key": "product_type_definitions_2020_09_01.search_definitions_product_types",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -13856,6 +14916,8 @@
           "id": "getPromotion",
           "key": "promotions_2025_12_01.get_promotion",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": "The response has four nested selection tokens and the operation has no matching token input. Selections page through getSelection.",
           "parameters": [
             {
               "body_type": null,
@@ -13913,6 +14975,18 @@
           "id": "getSelection",
           "key": "promotions_2025_12_01.get_selection",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/selection/selectionDetails/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14017,6 +15091,18 @@
           "id": "searchPromotions",
           "key": "promotions_2025_12_01.search_promotions",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14275,6 +15361,8 @@
           "id": "getSellingPartnerMetrics",
           "key": "replenishment_2022_11_07.get_selling_partner_metrics",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -14300,6 +15388,8 @@
           "id": "listOfferMetrics",
           "key": "replenishment_2022_11_07.list_offer_metrics",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": "Numeric limit/offset in the request body and only totalResults in the response. No continuation token is returned.",
           "parameters": [
             {
               "body_type": "object",
@@ -14325,6 +15415,8 @@
           "id": "listOffers",
           "key": "replenishment_2022_11_07.list_offers",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": "Numeric limit/offset in the request body and only totalResults in the response. No continuation token is returned.",
           "parameters": [
             {
               "body_type": "object",
@@ -14360,6 +15452,8 @@
           "id": "cancelReport",
           "key": "reports_2021_06_30.cancel_report",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14385,6 +15479,8 @@
           "id": "cancelReportSchedule",
           "key": "reports_2021_06_30.cancel_report_schedule",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14410,6 +15506,8 @@
           "id": "createReport",
           "key": "reports_2021_06_30.create_report",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -14435,6 +15533,8 @@
           "id": "createReportSchedule",
           "key": "reports_2021_06_30.create_report_schedule",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -14460,6 +15560,8 @@
           "id": "getReport",
           "key": "reports_2021_06_30.get_report",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14485,6 +15587,8 @@
           "id": "getReportDocument",
           "key": "reports_2021_06_30.get_report_document",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14521,6 +15625,8 @@
           "id": "getReportSchedule",
           "key": "reports_2021_06_30.get_report_schedule",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14546,6 +15652,8 @@
           "id": "getReportSchedules",
           "key": "reports_2021_06_30.get_report_schedules",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14576,6 +15684,18 @@
           "id": "getReports",
           "key": "reports_2021_06_30.get_reports",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": true,
+              "drop": [],
+              "keep": [],
+              "operation": "reports_2021_06_30.get_reports.continue",
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14725,6 +15845,8 @@
           "id": "getOrderMetrics",
           "key": "sales_v1.get_order_metrics",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14884,6 +16006,8 @@
           "id": "createTransaction",
           "key": "seller_wallet_2024_03_01.create_transaction",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -14942,6 +16066,8 @@
           "id": "createTransferSchedule",
           "key": "seller_wallet_2024_03_01.create_transfer_schedule",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15000,6 +16126,8 @@
           "id": "deleteScheduleTransaction",
           "key": "seller_wallet_2024_03_01.delete_schedule_transaction",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15036,6 +16164,8 @@
           "id": "getAccount",
           "key": "seller_wallet_2024_03_01.get_account",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15072,6 +16202,8 @@
           "id": "getTransaction",
           "key": "seller_wallet_2024_03_01.get_transaction",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15108,6 +16240,8 @@
           "id": "getTransferPreview",
           "key": "seller_wallet_2024_03_01.get_transfer_preview",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15188,6 +16322,8 @@
           "id": "getTransferSchedule",
           "key": "seller_wallet_2024_03_01.get_transfer_schedule",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15224,6 +16360,8 @@
           "id": "listAccountBalances",
           "key": "seller_wallet_2024_03_01.list_account_balances",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15260,6 +16398,18 @@
           "id": "listAccountTransactions",
           "key": "seller_wallet_2024_03_01.list_account_transactions",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_page_token",
+            "output": "/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15307,6 +16457,8 @@
           "id": "listAccounts",
           "key": "seller_wallet_2024_03_01.list_accounts",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15332,6 +16484,18 @@
           "id": "listTransferSchedules",
           "key": "seller_wallet_2024_03_01.list_transfer_schedules",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_page_token",
+            "output": "/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15379,6 +16543,8 @@
           "id": "updateTransferSchedule",
           "key": "seller_wallet_2024_03_01.update_transfer_schedule",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15447,6 +16613,8 @@
           "id": "getAccount",
           "key": "sellers_v1.get_account",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [],
           "path": "/sellers/v1/account",
           "successes": [
@@ -15460,6 +16628,8 @@
           "id": "getMarketplaceParticipations",
           "key": "sellers_v1.get_marketplace_participations",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [],
           "path": "/sellers/v1/marketplaceParticipations",
           "successes": [
@@ -15483,6 +16653,8 @@
           "id": "addAppointmentForServiceJobByServiceJobId",
           "key": "services_v1.add_appointment_for_service_job_by_service_job_id",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15521,6 +16693,8 @@
           "id": "assignAppointmentResources",
           "key": "services_v1.assign_appointment_resources",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15572,6 +16746,8 @@
           "id": "cancelReservation",
           "key": "services_v1.cancel_reservation",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15614,6 +16790,8 @@
           "id": "cancelServiceJobByServiceJobId",
           "key": "services_v1.cancel_service_job_by_service_job_id",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15655,6 +16833,8 @@
           "id": "completeServiceJobByServiceJobId",
           "key": "services_v1.complete_service_job_by_service_job_id",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15682,6 +16862,8 @@
           "id": "createReservation",
           "key": "services_v1.create_reservation",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15722,6 +16904,8 @@
           "id": "createServiceDocumentUploadDestination",
           "key": "services_v1.create_service_document_upload_destination",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -15747,6 +16931,8 @@
           "id": "getAppointmentSlots",
           "key": "services_v1.get_appointment_slots",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15822,6 +17008,8 @@
           "id": "getAppointmmentSlotsByJobId",
           "key": "services_v1.get_appointmment_slots_by_job_id",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15886,6 +17074,18 @@
           "id": "getFixedSlotCapacity",
           "key": "services_v1.get_fixed_slot_capacity",
           "method": "POST",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_page_token",
+            "output": "/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -15950,6 +17150,18 @@
           "id": "getRangeSlotCapacity",
           "key": "services_v1.get_range_slot_capacity",
           "method": "POST",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_page_token",
+            "output": "/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16014,6 +17226,8 @@
           "id": "getServiceJobByServiceJobId",
           "key": "services_v1.get_service_job_by_service_job_id",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16041,6 +17255,18 @@
           "id": "getServiceJobs",
           "key": "services_v1.get_service_jobs",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/payload/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16349,6 +17575,8 @@
           "id": "rescheduleAppointmentForServiceJobByServiceJobId",
           "key": "services_v1.reschedule_appointment_for_service_job_by_service_job_id",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16400,6 +17628,8 @@
           "id": "setAppointmentFulfillmentData",
           "key": "services_v1.set_appointment_fulfillment_data",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16451,6 +17681,8 @@
           "id": "updateReservation",
           "key": "services_v1.update_reservation",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16504,6 +17736,8 @@
           "id": "updateSchedule",
           "key": "services_v1.update_schedule",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16567,6 +17801,8 @@
           "id": "getInvoiceStatus",
           "key": "shipment_invoicing_v0.get_invoice_status",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16592,6 +17828,8 @@
           "id": "getShipmentDetails",
           "key": "shipment_invoicing_v0.get_shipment_details",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16617,6 +17855,8 @@
           "id": "submitInvoice",
           "key": "shipment_invoicing_v0.submit_invoice",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16663,6 +17903,8 @@
           "id": "cancelShipment",
           "key": "shipping_v1.cancel_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16688,6 +17930,8 @@
           "id": "createShipment",
           "key": "shipping_v1.create_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -16713,6 +17957,8 @@
           "id": "getAccount",
           "key": "shipping_v1.get_account",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [],
           "path": "/shipping/v1/account",
           "successes": [
@@ -16726,6 +17972,8 @@
           "id": "getRates",
           "key": "shipping_v1.get_rates",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -16751,6 +17999,8 @@
           "id": "getShipment",
           "key": "shipping_v1.get_shipment",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16776,6 +18026,8 @@
           "id": "getTrackingInformation",
           "key": "shipping_v1.get_tracking_information",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16801,6 +18053,8 @@
           "id": "purchaseLabels",
           "key": "shipping_v1.purchase_labels",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16837,6 +18091,8 @@
           "id": "purchaseShipment",
           "key": "shipping_v1.purchase_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -16862,6 +18118,8 @@
           "id": "retrieveShippingLabel",
           "key": "shipping_v1.retrieve_shipping_label",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16919,6 +18177,8 @@
           "id": "cancelShipment",
           "key": "shipping_v2.cancel_shipment",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -16967,6 +18227,8 @@
           "id": "createClaim",
           "key": "shipping_v2.create_claim",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17015,6 +18277,8 @@
           "id": "directPurchaseShipment",
           "key": "shipping_v2.direct_purchase_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17085,6 +18349,8 @@
           "id": "generateCollectionForm",
           "key": "shipping_v2.generate_collection_form",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17144,6 +18410,8 @@
           "id": "getAccessPoints",
           "key": "shipping_v2.get_access_points",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17227,6 +18495,8 @@
           "id": "getAdditionalInputs",
           "key": "shipping_v2.get_additional_inputs",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": "requestToken identifies a getRates result. It is not pagination.",
           "parameters": [
             {
               "body_type": null,
@@ -17286,6 +18556,8 @@
           "id": "getCarrierAccountFormInputs",
           "key": "shipping_v2.get_carrier_account_form_inputs",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17323,6 +18595,8 @@
           "id": "getCarrierAccounts",
           "key": "shipping_v2.get_carrier_accounts",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17371,6 +18645,8 @@
           "id": "getCollectionForm",
           "key": "shipping_v2.get_collection_form",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17419,6 +18695,8 @@
           "id": "getCollectionFormHistory",
           "key": "shipping_v2.get_collection_form_history",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17467,6 +18745,8 @@
           "id": "getRates",
           "key": "shipping_v2.get_rates",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": "The response requestToken identifies the rates for later purchase calls. It is not pagination.",
           "parameters": [
             {
               "body_type": null,
@@ -17515,6 +18795,8 @@
           "id": "getShipmentDocuments",
           "key": "shipping_v2.get_shipment_documents",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17596,6 +18878,8 @@
           "id": "getTracking",
           "key": "shipping_v2.get_tracking",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17655,6 +18939,8 @@
           "id": "getUnmanifestedShipments",
           "key": "shipping_v2.get_unmanifested_shipments",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17703,6 +18989,8 @@
           "id": "linkCarrierAccount",
           "key": "shipping_v2.link_carrier_account",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17762,6 +19050,8 @@
           "id": "linkCarrierAccount",
           "key": "shipping_v2.link_carrier_account_put",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17821,6 +19111,8 @@
           "id": "oneClickShipment",
           "key": "shipping_v2.one_click_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17869,6 +19161,8 @@
           "id": "purchaseShipment",
           "key": "shipping_v2.purchase_shipment",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": "The body requestToken identifies a getRates result. It is not pagination.",
           "parameters": [
             {
               "body_type": null,
@@ -17928,6 +19222,8 @@
           "id": "submitNdrFeedback",
           "key": "shipping_v2.submit_ndr_feedback",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -17976,6 +19272,8 @@
           "id": "unlinkCarrierAccount",
           "key": "shipping_v2.unlink_carrier_account",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18045,6 +19343,8 @@
           "id": "createProductReviewAndSellerFeedbackSolicitation",
           "key": "solicitations_v1.create_product_review_and_seller_feedback_solicitation",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18085,6 +19385,8 @@
           "id": "getSolicitationActionsForOrder",
           "key": "solicitations_v1.get_solicitation_actions_for_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18135,6 +19437,8 @@
           "id": "archiveSupplySource",
           "key": "supply_sources_2020_07_01.archive_supply_source",
           "method": "DELETE",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18160,6 +19464,8 @@
           "id": "createSupplySource",
           "key": "supply_sources_2020_07_01.create_supply_source",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -18185,6 +19491,8 @@
           "id": "getSupplySource",
           "key": "supply_sources_2020_07_01.get_supply_source",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18210,6 +19518,18 @@
           "id": "getSupplySources",
           "key": "supply_sources_2020_07_01.get_supply_sources",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_page_token",
+            "output": "/nextPageToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18247,6 +19567,8 @@
           "id": "updateSupplySource",
           "key": "supply_sources_2020_07_01.update_supply_source",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18283,6 +19605,8 @@
           "id": "updateSupplySourceStatus",
           "key": "supply_sources_2020_07_01.update_supply_source_status",
           "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18329,6 +19653,8 @@
           "id": "getCase",
           "key": "support_2025_02_01.get_case",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18354,6 +19680,18 @@
           "id": "listCases",
           "key": "support_2025_02_01.list_cases",
           "method": "POST",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/body/nextToken",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -18379,6 +19717,18 @@
           "id": "listContacts",
           "key": "support_2025_02_01.list_contacts",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18456,6 +19806,8 @@
           "id": "createRestrictedDataToken",
           "key": "tokens_2021_03_01.create_restricted_data_token",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": "The restrictedDataToken is an RDT credential, not pagination.",
           "parameters": [
             {
               "body_type": "object",
@@ -18491,6 +19843,8 @@
           "id": "getShipmentTracking",
           "key": "tracking_2026_01_30.get_shipment_tracking",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18615,6 +19969,8 @@
           "id": "createUploadDestinationForResource",
           "key": "uploads_2020_11_01.create_upload_destination_for_resource",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18687,6 +20043,18 @@
           "id": "getVehicles",
           "key": "vehicles_2024_11_01.get_vehicles",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18759,6 +20127,8 @@
           "id": "submitInventoryUpdate",
           "key": "vendor_direct_fulfillment_inventory_v1.submit_inventory_update",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18805,6 +20175,8 @@
           "id": "getOrder",
           "key": "vendor_direct_fulfillment_orders_v1.get_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18830,6 +20202,18 @@
           "id": "getOrders",
           "key": "vendor_direct_fulfillment_orders_v1.get_orders",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -18949,6 +20333,8 @@
           "id": "submitAcknowledgement",
           "key": "vendor_direct_fulfillment_orders_v1.submit_acknowledgement",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -18984,6 +20370,8 @@
           "id": "getOrder",
           "key": "vendor_direct_fulfillment_orders_2021_12_28.get_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19009,6 +20397,18 @@
           "id": "getOrders",
           "key": "vendor_direct_fulfillment_orders_2021_12_28.get_orders",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19128,6 +20528,8 @@
           "id": "submitAcknowledgement",
           "key": "vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -19163,6 +20565,8 @@
           "id": "submitInvoice",
           "key": "vendor_direct_fulfillment_payments_v1.submit_invoice",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -19198,6 +20602,8 @@
           "id": "generateOrderScenarios",
           "key": "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -19223,6 +20629,8 @@
           "id": "getOrderScenarios",
           "key": "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19258,6 +20666,8 @@
           "id": "getCustomerInvoice",
           "key": "vendor_direct_fulfillment_shipping_v1.get_customer_invoice",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19284,6 +20694,18 @@
           "id": "getCustomerInvoices",
           "key": "vendor_direct_fulfillment_shipping_v1.get_customer_invoices",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19372,6 +20794,8 @@
           "id": "getPackingSlip",
           "key": "vendor_direct_fulfillment_shipping_v1.get_packing_slip",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19398,6 +20822,18 @@
           "id": "getPackingSlips",
           "key": "vendor_direct_fulfillment_shipping_v1.get_packing_slips",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19487,6 +20923,8 @@
           "id": "getShippingLabel",
           "key": "vendor_direct_fulfillment_shipping_v1.get_shipping_label",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19513,6 +20951,18 @@
           "id": "getShippingLabels",
           "key": "vendor_direct_fulfillment_shipping_v1.get_shipping_labels",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19602,6 +21052,8 @@
           "id": "submitShipmentConfirmations",
           "key": "vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -19627,6 +21079,8 @@
           "id": "submitShipmentStatusUpdates",
           "key": "vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -19652,6 +21106,8 @@
           "id": "submitShippingLabelRequest",
           "key": "vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -19687,6 +21143,8 @@
           "id": "createContainerLabel",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.create_container_label",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -19712,6 +21170,8 @@
           "id": "createShippingLabels",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19749,6 +21209,8 @@
           "id": "getCustomerInvoice",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19775,6 +21237,18 @@
           "id": "getCustomerInvoices",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19863,6 +21337,8 @@
           "id": "getPackingSlip",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19889,6 +21365,18 @@
           "id": "getPackingSlips",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -19978,6 +21466,8 @@
           "id": "getShippingLabel",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -20004,6 +21494,18 @@
           "id": "getShippingLabels",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -20093,6 +21595,8 @@
           "id": "submitShipmentConfirmations",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -20118,6 +21622,8 @@
           "id": "submitShipmentStatusUpdates",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -20143,6 +21649,8 @@
           "id": "submitShippingLabelRequest",
           "key": "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -20178,6 +21686,8 @@
           "id": "getTransactionStatus",
           "key": "vendor_direct_fulfillment_transactions_v1.get_transaction_status",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -20213,6 +21723,8 @@
           "id": "getTransactionStatus",
           "key": "vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -20248,6 +21760,8 @@
           "id": "submitInvoices",
           "key": "vendor_invoices_v1.submit_invoices",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -20283,6 +21797,8 @@
           "id": "getPurchaseOrder",
           "key": "vendor_orders_v1.get_purchase_order",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -20308,6 +21824,18 @@
           "id": "getPurchaseOrders",
           "key": "vendor_orders_v1.get_purchase_orders",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -20475,6 +22003,18 @@
           "id": "getPurchaseOrdersStatus",
           "key": "vendor_orders_v1.get_purchase_orders_status",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -20658,6 +22198,8 @@
           "id": "submitAcknowledgement",
           "key": "vendor_orders_v1.submit_acknowledgement",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -20693,6 +22235,18 @@
           "id": "GetShipmentDetails",
           "key": "vendor_shipments_v1.get_shipment_details",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -20994,6 +22548,18 @@
           "id": "GetShipmentLabels",
           "key": "vendor_shipments_v1.get_shipment_labels",
           "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/next_token",
+            "output": "/payload/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,
@@ -21105,6 +22671,8 @@
           "id": "SubmitShipmentConfirmations",
           "key": "vendor_shipments_v1.submit_shipment_confirmations",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -21130,6 +22698,8 @@
           "id": "SubmitShipments",
           "key": "vendor_shipments_v1.submit_shipments",
           "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": "object",
@@ -21165,6 +22735,8 @@
           "id": "getTransaction",
           "key": "vendor_transaction_status_v1.get_transaction",
           "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
           "parameters": [
             {
               "body_type": null,

@@ -739,6 +739,28 @@ pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_fixed_slot_capacity_pages<'a, B: serde::Serialize>(
+    client: &'a Client,
+    params: GetFixedSlotCapacityParams<B>,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "services_v1.get_fixed_slot_capacity".to_owned(),
+            input: "/next_page_token".to_owned(),
+            output: "/nextPageToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetRangeSlotCapacityParams<B = serde_json::Value> {
@@ -827,6 +849,28 @@ pub async fn get_range_slot_capacity<B: serde::Serialize>(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn get_range_slot_capacity_pages<'a, B: serde::Serialize>(
+    client: &'a Client,
+    params: GetRangeSlotCapacityParams<B>,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "services_v1.get_range_slot_capacity".to_owned(),
+            input: "/next_page_token".to_owned(),
+            output: "/nextPageToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
@@ -1176,6 +1220,28 @@ pub async fn get_service_jobs(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn get_service_jobs_pages<'a>(
+    client: &'a Client,
+    params: GetServiceJobsParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "services_v1.get_service_jobs".to_owned(),
+            input: "/page_token".to_owned(),
+            output: "/payload/nextPageToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]

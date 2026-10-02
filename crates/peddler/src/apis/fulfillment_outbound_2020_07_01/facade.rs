@@ -301,6 +301,29 @@ pub async fn get_feature_inventory(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+pub fn get_feature_inventory_pages<'a>(
+    client: &'a Client,
+    params: GetFeatureInventoryParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_outbound_2020_07_01.get_feature_inventory"
+                .to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
+}
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFeatureSkuParams {
@@ -644,6 +667,29 @@ pub async fn list_all_fulfillment_orders(
         )
         .await?;
     Ok(TypedResponse::new(raw))
+}
+pub fn list_all_fulfillment_orders_pages<'a>(
+    client: &'a Client,
+    params: ListAllFulfillmentOrdersParams,
+    max_pages: Option<usize>,
+) -> crate::pagination::PageStream<'a> {
+    crate::pagination::pages(
+        client,
+        crate::pagination::Pagination {
+            operation: "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders"
+                .to_owned(),
+            input: "/next_token".to_owned(),
+            output: "/payload/nextToken".to_owned(),
+            continuation: crate::pagination::Continuation {
+                operation: None,
+                keep: None,
+                drop: vec![],
+                set: vec![],
+            },
+        },
+        &params,
+        max_pages,
+    )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
