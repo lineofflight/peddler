@@ -31,7 +31,7 @@ impl From<serde_json::Error> for GenerationError {
     }
 }
 
-/// Render all selected models without reading Git metadata or writing files.
+/// Render all pinned API models without reading Git metadata or writing files.
 /// `spec_dir` is the checkout's `models` directory; output paths are repository-relative.
 pub fn generate_models(
     spec_dir: &Path,
@@ -42,7 +42,7 @@ pub fn generate_models(
     }
     let mut output = BTreeMap::new();
     let base = Path::new("crates/peddler/src/apis");
-    let modules = manifest::APIS
+    let modules = manifest::ALL_APIS
         .iter()
         .map(|api| quote::format_ident!("{}", api.module));
     let root = quote::quote!(#(pub mod #modules;)*);
@@ -50,11 +50,11 @@ pub fn generate_models(
         base.join("mod.rs"),
         format!(
             "{}{}",
-            notice(revision, "selected API models"),
+            notice(revision, "all API models"),
             format_tokens(root)?
         ),
     );
-    for api in manifest::APIS {
+    for api in manifest::ALL_APIS {
         let spec: serde_json::Value =
             serde_json::from_slice(&fs::read(spec_dir.join(api.source))?)?;
         let definitions = models::normalize_definitions(&spec)
@@ -95,7 +95,7 @@ pub fn generate(
     let base = Path::new("crates/peddler/src/apis");
     let root = output.get_mut(&base.join("mod.rs")).unwrap();
     root.push_str("\npub use crate::operation::execute;\n");
-    for api in manifest::APIS {
+    for api in manifest::WIRE_APIS {
         let spec = serde_json::from_slice(&fs::read(spec_dir.join(api.source))?)?;
         let rendered = clients::render(&spec, api)?;
         let prefix = notice(revision, api.source);

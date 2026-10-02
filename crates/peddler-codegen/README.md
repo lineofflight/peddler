@@ -12,7 +12,7 @@ bundle exec rake generate:rust
 bundle exec rake generate:rust:verify
 ```
 
-Both tasks directly use `Generator::Specs.pinned_sha` and `sync(ref:)`, preserving `selling-partner-api-models.sha`. Setup may clone/fetch/switch the gitignored spec checkout; it installs the locked converter with `npm ci --prefix tools/openapi`. The CLI rejects dirty selected specs and a checkout differing from the pin before emitting files. Verify renders and compares without rewriting generated output. The legacy Ruby `generate` tasks are unchanged.
+Both tasks directly use `Generator::Specs.pinned_sha` and `sync(ref:)`, preserving `selling-partner-api-models.sha`. Setup may clone/fetch/switch the gitignored spec checkout; it installs the locked converter with `npm ci --prefix tools/openapi`. The CLI rejects dirty API specs, missing or extra pinned API sources and a checkout differing from the pin before emitting files. Verify renders and compares without rewriting generated output. The legacy Ruby `generate` tasks are unchanged.
 
 For separate setup and direct CLI use:
 
@@ -23,7 +23,7 @@ cargo run -p peddler-codegen --locked -- --root .
 cargo run -p peddler-codegen --locked -- --root . --check
 ```
 
-Running generation twice produces the same 9 files: API root plus models, module, wire and metadata for each selected API. Do not edit committed output in `crates/peddler/src/apis` by hand. Models-only export requires a separate destination to protect integrated module declarations:
+Running generation twice produces the same 145 files: the API root, models and modules for all 70 APIs, plus wire and metadata files for the 2 selected APIs. `manifest::ALL_APIS` explicitly records the pinned source path, Rust module, Ruby family/version and latest membership for 58 families. The CLI validates that inventory against tracked API JSON files at the pin. Do not edit committed output in `crates/peddler/src/apis` by hand. Models-only export requires a separate destination to protect integrated module declarations:
 
 ```sh
 cargo run -p peddler-codegen --locked -- --root . --models-only --output-root tmp/model-export
@@ -34,9 +34,11 @@ Existing destinations are canonicalized; equivalent root/symlink destinations ar
 
 ## Toolchain and scope
 
-Typify `=0.8.0` emits models after explicit normalization, including open string enums and optional-array presence. swagger2openapi `=7.0.8` is pinned by `tools/openapi/package-lock.json`; the Node wrapper delegates conversion. Progenitor `=0.15.0` emits private wire clients with external Typify model replacements and a dynamic Listings body. Generated metadata supplies CSV query names, defaults and success-model aliases to handwritten Rust/Ruby facades. `progenitor-client =0.15.0` is the runtime library.
+Typify `=0.8.0` emits models after explicit normalization, including open string enums and optional-array presence. swagger2openapi `=7.0.8` is pinned by `tools/openapi/package-lock.json`; the Node wrapper removes invalid scalar `collectionFormat` annotations from copied parameter objects, preserving array CSV/multi behavior and the source checkout. Progenitor `=0.15.0` emits private wire clients with external Typify model replacements and a dynamic Listings body. Generated metadata supplies CSV query names, defaults and success-model aliases to handwritten Rust/Ruby facades. `progenitor-client =0.15.0` is the runtime library.
 
-Production selection is only Catalog Items `getCatalogItem` and Listings Items `patchListingsItem`, each with 1 referenced JSON success model. Unsupported selected parameter formats/shapes, collection formats, bodies and missing references fail generation. Broader corpus and multiple-success probes do not imply production support. Full facade generation and broader operations remain later work.
+Wire selection (`manifest::WIRE_APIS`) is only Catalog Items `getCatalogItem` and Listings Items `patchListingsItem`, each with 1 referenced JSON success model. Unsupported selected parameter formats/shapes, collection formats, bodies and missing references fail generation. All 2620 named definitions across the 70 pinned APIs are generated as public models and compiled in the SDK. Schema numbers map to `serde_json::Number` with arbitrary precision, retaining named wrappers and schema formats/bounds; typed integers retain their declared integer representation. Schemars stores numeric bounds as `f64`, so their decimal spelling is canonicalized for its parser, without dropping the bounds. Redundant `minLength: 0` is omitted to avoid impossible generated comparisons. Existing open-enum, removed-default and optional-array policies remain. The full model corpus needs the `regress` runtime dependency for generated string-pattern validators. Full wire/facade generation and supplemental schemas remain later work.
+
+Converter regressions run with `node --test tools/openapi/convert.test.cjs`. Codegen tests include actual generated-model precision roundtrips; `cargo check -p peddler --locked` compiles every API model namespace.
 
 ## Vendored raw-response patch
 

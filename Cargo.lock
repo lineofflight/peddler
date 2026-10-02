@@ -862,6 +862,7 @@ dependencies = [
  "httpdate",
  "percent-encoding",
  "progenitor-client",
+ "regress",
  "reqwest",
  "serde",
  "serde_json",
@@ -872,6 +873,7 @@ dependencies = [
 name = "peddler-codegen"
 version = "0.1.0"
 dependencies = [
+ "peddler",
  "prettyplease",
  "progenitor",
  "quote",

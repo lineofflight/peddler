@@ -1,4 +1,4 @@
-use peddler_codegen::generate_models as generate;
+use peddler_codegen::{generate_models as generate, manifest::ALL_APIS};
 use serde_json::json;
 use std::{
     fs,
@@ -13,7 +13,7 @@ const SOURCES: [&str; 2] = [
 ];
 
 fn write_specs(models: &Path) {
-    for source in SOURCES {
+    for source in ALL_APIS.iter().map(|api| api.source) {
         let path = models.join(source);
         fs::create_dir_all(path.parent().unwrap()).unwrap();
         fs::write(
@@ -86,21 +86,19 @@ fn cli(root: &Path, extra: &[&str]) -> Output {
 }
 
 #[test]
-fn generation_renders_both_definition_sets_deterministically() {
+fn generation_renders_all_definition_sets_deterministically() {
     let specs = tempfile::tempdir().unwrap();
     write_specs(specs.path());
     let first = generate(specs.path(), "test-revision").unwrap();
     let second = generate(specs.path(), "test-revision").unwrap();
     assert_eq!(first, second);
-    let expected: Vec<PathBuf> = [
-        "mod.rs",
-        "catalog_items_2022_04_01/mod.rs",
-        "catalog_items_2022_04_01/models.rs",
-        "listings_items_2021_08_01/mod.rs",
-        "listings_items_2021_08_01/models.rs",
-    ]
-    .map(|path| Path::new("crates/peddler/src/apis").join(path))
-    .into();
+    let base = Path::new("crates/peddler/src/apis");
+    let mut expected: Vec<PathBuf> = vec![base.join("mod.rs")];
+    for api in ALL_APIS {
+        expected.push(base.join(api.module).join("mod.rs"));
+        expected.push(base.join(api.module).join("models.rs"));
+    }
+    assert_eq!(first.len(), 141);
     assert_eq!(
         first
             .keys()
@@ -337,4 +335,76 @@ fn existing_symlink_to_separate_export_root_remains_supported() {
             .exists()
     );
     assert!(!root.path().join("crates").exists());
+}
+
+#[test]
+fn pinned_inventory_rejects_missing_and_extra_api_specs() {
+    for extra in [false, true] {
+        let root = repository();
+        let checkout = root.path().join("selling-partner-api-models");
+        if extra {
+            fs::write(checkout.join("models/unlisted.json"), "{}").unwrap();
+            git(&checkout, &["add", "."]);
+        } else {
+            git(
+                &checkout,
+                &["rm", &format!("models/{}", ALL_APIS.last().unwrap().source)],
+            );
+        }
+        git(
+            &checkout,
+            &[
+                "-c",
+                "commit.gpgsign=false",
+                "commit",
+                "--quiet",
+                "-m",
+                "inventory drift",
+            ],
+        );
+        fs::write(
+            root.path().join("selling-partner-api-models.sha"),
+            git(&checkout, &["rev-parse", "HEAD"]) + "\n",
+        )
+        .unwrap();
+        let output = cli(root.path(), &[]);
+        assert!(!output.status.success());
+        assert!(String::from_utf8_lossy(&output.stderr).contains("pinned API inventory mismatch"));
+        assert!(!root.path().join("model-export/crates").exists());
+    }
+}
+
+#[test]
+fn non_wire_api_source_is_verified_and_its_output_is_checked() {
+    let root = repository();
+    assert!(cli(root.path(), &[]).status.success());
+    let api = ALL_APIS
+        .iter()
+        .find(|api| api.module == "shipping_v2")
+        .unwrap();
+    let generated = root
+        .path()
+        .join("model-export/crates/peddler/src/apis")
+        .join(api.module)
+        .join("models.rs");
+    fs::write(&generated, "// drift\n").unwrap();
+    let modified = fs::metadata(&generated).unwrap().modified().unwrap();
+    let output = cli(root.path(), &["--check"]);
+    assert!(!output.status.success());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("shipping_v2/models.rs"));
+    assert_eq!(fs::read_to_string(&generated).unwrap(), "// drift\n");
+    assert_eq!(
+        fs::metadata(&generated).unwrap().modified().unwrap(),
+        modified
+    );
+    fs::write(
+        root.path()
+            .join("selling-partner-api-models/models")
+            .join(api.source),
+        "{}",
+    )
+    .unwrap();
+    let output = cli(root.path(), &[]);
+    assert!(!output.status.success());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("modified"));
 }

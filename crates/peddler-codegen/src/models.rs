@@ -23,6 +23,9 @@ fn normalize_schema(
         return Ok(());
     };
     node.remove("default");
+    if node.get("minLength").and_then(Value::as_u64) == Some(0) {
+        node.remove("minLength");
+    }
     for (exclusive, bound) in [
         ("exclusiveMinimum", "minimum"),
         ("exclusiveMaximum", "maximum"),
@@ -35,6 +38,26 @@ fn normalize_schema(
                 })?;
                 node.insert(exclusive.into(), value);
             }
+        }
+    }
+    // Schemars stores numeric constraints as f64. Canonicalize decimal spelling
+    // (e.g. 11.00) so Serde's flattened schema parser sees a number, not the
+    // arbitrary-precision transport map. Keep the constraints themselves intact.
+    for key in [
+        "minimum",
+        "maximum",
+        "exclusiveMinimum",
+        "exclusiveMaximum",
+        "multipleOf",
+    ] {
+        if let Some(value) = node.get_mut(key)
+            && value.is_f64()
+        {
+            let number = value
+                .as_f64()
+                .and_then(serde_json::Number::from_f64)
+                .ok_or_else(|| GenerationError(format!("{key} must be a finite number")))?;
+            *value = Value::Number(number);
         }
     }
     if node.get("type").and_then(Value::as_str) == Some("string")
@@ -132,10 +155,70 @@ fn is_array(schema: &Value, definitions: &Map<String, Value>, seen: &mut BTreeSe
 }
 
 pub(crate) fn render(definitions: Value) -> Result<String, GenerationError> {
+    let mut settings = typify::TypeSpaceSettings::default();
+    for schema in definitions
+        .as_object()
+        .expect("normalized definitions")
+        .values()
+    {
+        number_conversions(schema, &mut settings)?;
+    }
     let schemas: BTreeMap<String, schemars::schema::Schema> = serde_json::from_value(definitions)?;
-    let mut types = typify::TypeSpace::new(&typify::TypeSpaceSettings::default());
+    let mut types = typify::TypeSpace::new(&settings);
     types
         .add_ref_types(schemas)
         .map_err(|error| GenerationError(error.to_string()))?;
-    super::format_tokens(types.to_stream())
+    // Amazon descriptions include unindented Markdown lists. Preserve their text.
+    Ok(format!(
+        "#![allow(clippy::doc_lazy_continuation)]\n{}",
+        super::format_tokens(types.to_stream())?
+    ))
+}
+
+// Register each concrete number schema without dropping bounds or formats.
+// Typify matches conversions excluding documentation, and retains named wrappers.
+fn number_conversions(
+    schema: &Value,
+    settings: &mut typify::TypeSpaceSettings,
+) -> Result<(), GenerationError> {
+    let Some(node) = schema.as_object() else {
+        return Ok(());
+    };
+    if node.get("type").and_then(Value::as_str) == Some("number") {
+        settings.with_conversion(
+            serde_json::from_value(schema.clone())?,
+            "::serde_json::Number",
+            [
+                typify::TypeSpaceImpl::Display,
+                typify::TypeSpaceImpl::FromStr,
+            ]
+            .into_iter(),
+        );
+    }
+    for key in ["properties", "definitions", "patternProperties"] {
+        if let Some(children) = node.get(key).and_then(Value::as_object) {
+            for child in children.values() {
+                number_conversions(child, settings)?;
+            }
+        }
+    }
+    for key in [
+        "additionalProperties",
+        "items",
+        "not",
+        "allOf",
+        "anyOf",
+        "oneOf",
+    ] {
+        if let Some(child) = node.get(key) {
+            if let Some(children) = child.as_array() {
+                for child in children {
+                    number_conversions(child, settings)?;
+                }
+            } else {
+                number_conversions(child, settings)?;
+            }
+        }
+    }
+    Ok(())
 }

@@ -2,6 +2,7 @@
 // Amazon SP-API models revision: 3677bb9d96f4450e6843f1f8207005e925d5c867
 // Source: listings-items-api-model/listingsItems_2021-08-01.json
 
+#![allow(clippy::doc_lazy_continuation)]
 ///Buyer segment or program this offer is applicable to.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Audience {

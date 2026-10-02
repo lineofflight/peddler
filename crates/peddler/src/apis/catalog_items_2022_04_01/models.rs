@@ -2,6 +2,7 @@
 // Amazon SP-API models revision: 3677bb9d96f4450e6843f1f8207005e925d5c867
 // Source: catalog-items-api-model/catalogItems_2022-04-01.json
 
+#![allow(clippy::doc_lazy_continuation)]
 ///A brand that you can use to refine your search.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrandRefinement {
@@ -33,7 +34,7 @@ pub struct Dimension {
     pub unit: ::std::option::Option<::std::string::String>,
     ///Numeric value of the dimension.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
-    pub value: ::std::option::Option<f64>,
+    pub value: ::std::option::Option<::serde_json::Number>,
 }
 ///Dimensions of an Amazon catalog item or item in its packaging.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]

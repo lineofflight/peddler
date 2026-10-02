@@ -1,5 +1,8 @@
 //! Node-backed integration tests. Run npm ci --prefix tools/openapi first.
-use peddler_codegen::{generate, manifest::APIS};
+use peddler_codegen::{
+    generate,
+    manifest::{ALL_APIS, APIS},
+};
 use serde_json::{Value, json};
 use std::{fs, path::Path, process::Command};
 
@@ -37,10 +40,15 @@ fn git(root: &Path, args: &[&str]) -> String {
 fn repository() -> tempfile::TempDir {
     let root = tempfile::tempdir().unwrap();
     let checkout = root.path().join("selling-partner-api-models");
-    for api in APIS {
+    for api in ALL_APIS {
+        let operation = APIS
+            .iter()
+            .find(|wire| wire.source == api.source)
+            .map(|wire| wire.operation)
+            .unwrap_or("getCatalogItem");
         let path = checkout.join("models").join(api.source);
         fs::create_dir_all(path.parent().unwrap()).unwrap();
-        fs::write(path, spec(api.operation).to_string()).unwrap();
+        fs::write(path, spec(operation).to_string()).unwrap();
     }
     git(&checkout, &["init", "--quiet"]);
     git(&checkout, &["add", "."]);
@@ -75,7 +83,8 @@ fn cli(root: &Path, dest: &Path, check: bool) -> std::process::Output {
     command.output().unwrap()
 }
 #[test]
-fn default_cli_generates_all_nine_files_and_nonmutating_check_detects_wire_drift() {
+fn default_cli_generates_all_model_and_selected_wire_files_and_nonmutating_check_detects_wire_drift()
+ {
     let root = repository();
     let dest = tempfile::tempdir().unwrap();
     let revision = fs::read_to_string(root.path().join("selling-partner-api-models.sha")).unwrap();
@@ -84,7 +93,7 @@ fn default_cli_generates_all_nine_files_and_nonmutating_check_detects_wire_drift
         revision.trim(),
     )
     .unwrap();
-    assert_eq!(rendered.len(), 9);
+    assert_eq!(rendered.len(), 145);
     for content in rendered.values() {
         syn::parse_file(content).unwrap();
     }

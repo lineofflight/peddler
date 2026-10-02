@@ -108,3 +108,29 @@ fn property_names_that_match_schema_keywords_are_preserved() {
     assert!(properties["enum"].get("enum").is_none());
     assert!(properties["default"].get("default").is_none());
 }
+
+#[test]
+fn noncanonical_numeric_bounds_keep_their_values_for_schemars() {
+    let spec: Value = serde_json::from_str(r#"{"definitions":{"Weight":{"type":"number","minimum":11.00,"maximum":100.000,"exclusiveMinimum":false}}}"#).unwrap();
+    let output = normalize_definitions(&spec).unwrap();
+    let schema: schemars::schema::Schema =
+        serde_json::from_value(output["Weight"].clone()).unwrap();
+    let schemars::schema::Schema::Object(schema) = schema else {
+        panic!("object schema")
+    };
+    let validation = schema.number.unwrap();
+    assert_eq!(validation.minimum, Some(11.0));
+    assert_eq!(validation.maximum, Some(100.0));
+}
+
+#[test]
+fn zero_min_length_is_omitted_but_positive_limits_and_examples_survive() {
+    let output = normalize(json!({
+        "EmptyAllowed": {"type":"string", "minLength":0, "maxLength":10, "example":{"minLength":0}},
+        "Nonempty": {"type":"string", "minLength":1}
+    }));
+    assert!(output["EmptyAllowed"].get("minLength").is_none());
+    assert_eq!(output["EmptyAllowed"]["maxLength"], 10);
+    assert_eq!(output["Nonempty"]["minLength"], 1);
+    assert_eq!(output["EmptyAllowed"]["example"], json!({"minLength":0}));
+}

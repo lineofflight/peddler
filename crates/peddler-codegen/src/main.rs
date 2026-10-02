@@ -1,4 +1,4 @@
-use peddler_codegen::{GenerationError, generate, generate_models, manifest::APIS};
+use peddler_codegen::{GenerationError, generate, generate_models, manifest::ALL_APIS};
 use std::{
     fs,
     io::Write,
@@ -66,19 +66,36 @@ fn run() -> Result<(), GenerationError> {
             actual.trim()
         )));
     }
-    let sources: Vec<String> = APIS
+    let sources: Vec<String> = ALL_APIS
         .iter()
         .map(|api| format!("models/{}", api.source))
         .collect();
+    let inventory = git(
+        &checkout,
+        &["ls-tree", "-r", "--name-only", revision, "--", "models"],
+    )?;
+    let tracked: std::collections::BTreeSet<_> = inventory
+        .lines()
+        .filter(|path| path.ends_with(".json"))
+        .map(str::to_owned)
+        .collect();
+    let expected: std::collections::BTreeSet<_> = sources.iter().cloned().collect();
+    if tracked != expected {
+        return Err(GenerationError(format!(
+            "pinned API inventory mismatch; missing: {:?}; extra: {:?}",
+            expected.difference(&tracked).collect::<Vec<_>>(),
+            tracked.difference(&expected).collect::<Vec<_>>()
+        )));
+    }
     let mut status_args = vec!["status", "--porcelain", "--untracked-files=all", "--"];
     status_args.extend(sources.iter().map(String::as_str));
     if !git(&checkout, &status_args)?.is_empty() {
-        return Err(GenerationError("selected spec files are modified".into()));
+        return Err(GenerationError("API spec files are modified".into()));
     }
     let mut tracked_args = vec!["ls-files", "--error-unmatch", "--"];
     tracked_args.extend(sources.iter().map(String::as_str));
     git(&checkout, &tracked_args)
-        .map_err(|_| GenerationError("selected spec files are untracked or missing".into()))?;
+        .map_err(|_| GenerationError("API spec files are untracked or missing".into()))?;
     let output = if models_only {
         generate_models(&checkout.join("models"), revision)?
     } else {
