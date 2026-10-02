@@ -5,7 +5,7 @@ use documents::{Config, Document, Upload};
 use magnus::{Error, RClass, RModule, Ruby, method, prelude::*};
 use peddler::{
     documents::{Error as DocumentError, UploadOptions},
-    workflows::{WaitOptions, WorkflowError},
+    workflows::{DocumentKind, WaitOptions, WorkflowError},
 };
 use std::time::Duration;
 
@@ -36,68 +36,48 @@ fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
     }
 }
 
-#[derive(Clone, Copy)]
-enum Kind {
-    Report,
-    Feed,
-    Query,
+/// The kind Ruby names: "report", "feed" or "query".
+fn kind(ruby: &Ruby, name: &str) -> Result<DocumentKind, Error> {
+    match name {
+        "report" => Ok(DocumentKind::Report),
+        "feed" => Ok(DocumentKind::Feed),
+        "query" => Ok(DocumentKind::Query),
+        _ => Err(Error::new(
+            ruby.exception_arg_error(),
+            "invalid workflow configuration",
+        )),
+    }
 }
 
 fn download(
     ruby: &Ruby,
     engine: &Engine,
-    kind: Kind,
+    kind_name: String,
     id: String,
     config: String,
 ) -> Result<Document, Error> {
     let state = engine.0.get(ruby)?;
+    let kind = kind(ruby, &kind_name)?;
     let options = Config::parse(ruby, &config)?;
     let workflows = state.client.workflows();
     let shared = state.shared;
     let download = gvl::wait(ruby, "WorkflowError", shared, async move {
-        match kind {
-            Kind::Report => workflows.download_report_document(&id, options).await,
-            Kind::Feed => workflows.download_feed_document(&id, options).await,
-            Kind::Query => workflows.download_query_document(&id, options).await,
-        }
+        workflows.download(kind, &id, options).await
     })?
     .map_err(|error| workflow_error(ruby, error))?;
     Ok(Document::from_download(shared, download))
-}
-fn download_report(
-    ruby: &Ruby,
-    engine: &Engine,
-    id: String,
-    config: String,
-) -> Result<Document, Error> {
-    download(ruby, engine, Kind::Report, id, config)
-}
-fn download_feed(
-    ruby: &Ruby,
-    engine: &Engine,
-    id: String,
-    config: String,
-) -> Result<Document, Error> {
-    download(ruby, engine, Kind::Feed, id, config)
-}
-fn download_query(
-    ruby: &Ruby,
-    engine: &Engine,
-    id: String,
-    config: String,
-) -> Result<Document, Error> {
-    download(ruby, engine, Kind::Query, id, config)
 }
 
 fn wait(
     ruby: &Ruby,
     engine: &Engine,
-    kind: Kind,
+    kind_name: String,
     id: String,
     interval: f64,
     timeout: f64,
 ) -> Result<ResponseParts, Error> {
     let state = engine.0.get(ruby)?;
+    let kind = kind(ruby, &kind_name)?;
     let invalid = || Error::new(ruby.exception_arg_error(), "invalid workflow configuration");
     let options = WaitOptions {
         interval: Duration::try_from_secs_f64(interval).map_err(|_| invalid())?,
@@ -105,51 +85,10 @@ fn wait(
     };
     let workflows = state.client.workflows();
     let result = gvl::wait(ruby, "WorkflowError", state.shared, async move {
-        match kind {
-            Kind::Report => workflows
-                .wait_for_report(&id, options)
-                .await
-                .map(|r| r.into_raw()),
-            Kind::Feed => workflows
-                .wait_for_feed(&id, options)
-                .await
-                .map(|r| r.into_raw()),
-            Kind::Query => workflows
-                .wait_for_query(&id, options)
-                .await
-                .map(|r| r.into_raw()),
-        }
-        .map(Completed::new)
+        workflows.wait(kind, &id, options).await.map(Completed::new)
     })?;
     let completed = result.map_err(|error| workflow_error(ruby, error))?;
     Ok(completed.into_parts(ruby))
-}
-fn wait_report(
-    ruby: &Ruby,
-    engine: &Engine,
-    id: String,
-    interval: f64,
-    timeout: f64,
-) -> Result<ResponseParts, Error> {
-    wait(ruby, engine, Kind::Report, id, interval, timeout)
-}
-fn wait_feed(
-    ruby: &Ruby,
-    engine: &Engine,
-    id: String,
-    interval: f64,
-    timeout: f64,
-) -> Result<ResponseParts, Error> {
-    wait(ruby, engine, Kind::Feed, id, interval, timeout)
-}
-fn wait_query(
-    ruby: &Ruby,
-    engine: &Engine,
-    id: String,
-    interval: f64,
-    timeout: f64,
-) -> Result<ResponseParts, Error> {
-    wait(ruby, engine, Kind::Query, id, interval, timeout)
 }
 
 /// Creates the feed document, then starts the bounded upload task. The Ruby source
@@ -190,12 +129,8 @@ pub(super) fn init(ruby: &Ruby, peddler: RModule, engine: RClass) -> Result<(), 
         ruby.exception_standard_error().as_r_class(),
     )?;
     peddler.define_class("WorkflowTimeoutError", error)?;
-    engine.define_method("download_report_document", method!(download_report, 2))?;
-    engine.define_method("download_feed_document", method!(download_feed, 2))?;
-    engine.define_method("download_query_document", method!(download_query, 2))?;
-    engine.define_method("wait_for_report", method!(wait_report, 3))?;
-    engine.define_method("wait_for_feed", method!(wait_feed, 3))?;
-    engine.define_method("wait_for_query", method!(wait_query, 3))?;
+    engine.define_method("download_workflow_document", method!(download, 3))?;
+    engine.define_method("wait_for", method!(wait, 4))?;
     engine.define_method("start_feed_document_upload", method!(start_feed_upload, 3))?;
     Ok(())
 }

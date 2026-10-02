@@ -25,6 +25,15 @@ use serde::de::DeserializeOwned;
 use std::{fmt, future::Future, time::Duration};
 use tokio::time::{Instant, sleep_until, timeout_at};
 
+/// What a workflow helper fetches or waits for.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum DocumentKind {
+    Report,
+    Feed,
+    /// A Data Kiosk query and its document.
+    Query,
+}
+
 /// Polling interval and total timeout. Both must be positive.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct WaitOptions {
@@ -267,21 +276,60 @@ async fn metadata<T: DeserializeOwned>(
 }
 
 impl Workflows {
-    pub async fn download_report_document(
+    /// Download a report, feed or Data Kiosk document by its ID. Data Kiosk documents
+    /// declare compression only through Content-Encoding.
+    pub async fn download(
         &self,
+        kind: DocumentKind,
         document_id: &str,
         options: TransferOptions,
     ) -> Result<Download, WorkflowError> {
         let id = id(document_id)?;
         let deadline = Self::start(&options)?;
-        let (document, _) = metadata(
-            deadline,
-            200,
-            reports::get_report_document(&self.client, reports::GetReportDocumentParams::new(id)),
-        )
-        .await?;
-        let declared = declared(document.compression_algorithm.as_deref())?;
-        self.transfer(deadline, options, &document.url, declared)
+        let (url, declared) = match kind {
+            DocumentKind::Report => {
+                let (document, _) = metadata(
+                    deadline,
+                    200,
+                    reports::get_report_document(
+                        &self.client,
+                        reports::GetReportDocumentParams::new(id),
+                    ),
+                )
+                .await?;
+                let declared = declared(document.compression_algorithm.as_deref())?;
+                (document.url, declared)
+            }
+            DocumentKind::Feed => {
+                let (document, _) = metadata(
+                    deadline,
+                    200,
+                    feeds::get_feed_document(&self.client, feeds::GetFeedDocumentParams::new(id)),
+                )
+                .await?;
+                let declared = declared(document.compression_algorithm.as_deref())?;
+                (document.url, declared)
+            }
+            DocumentKind::Query => {
+                resolve(options.compression, Declared::Header)?;
+                let (document, _) = metadata(
+                    deadline,
+                    200,
+                    kiosk::get_document(&self.client, kiosk::GetDocumentParams::new(id)),
+                )
+                .await?;
+                (document.document_url, Declared::Header)
+            }
+        };
+        self.transfer(deadline, options, &url, declared).await
+    }
+
+    pub async fn download_report_document(
+        &self,
+        document_id: &str,
+        options: TransferOptions,
+    ) -> Result<Download, WorkflowError> {
+        self.download(DocumentKind::Report, document_id, options)
             .await
     }
 
@@ -290,81 +338,81 @@ impl Workflows {
         document_id: &str,
         options: TransferOptions,
     ) -> Result<Download, WorkflowError> {
-        let id = id(document_id)?;
-        let deadline = Self::start(&options)?;
-        let (document, _) = metadata(
-            deadline,
-            200,
-            feeds::get_feed_document(&self.client, feeds::GetFeedDocumentParams::new(id)),
-        )
-        .await?;
-        let declared = declared(document.compression_algorithm.as_deref())?;
-        self.transfer(deadline, options, &document.url, declared)
+        self.download(DocumentKind::Feed, document_id, options)
             .await
     }
 
-    /// Data Kiosk documents declare compression only through Content-Encoding.
     pub async fn download_query_document(
         &self,
         document_id: &str,
         options: TransferOptions,
     ) -> Result<Download, WorkflowError> {
-        let id = id(document_id)?;
-        let deadline = Self::start(&options)?;
-        resolve(options.compression, Declared::Header)?;
-        let (document, _) = metadata(
-            deadline,
-            200,
-            kiosk::get_document(&self.client, kiosk::GetDocumentParams::new(id)),
-        )
-        .await?;
-        self.transfer(deadline, options, &document.document_url, Declared::Header)
+        self.download(DocumentKind::Query, document_id, options)
             .await
     }
 
-    /// Poll `getReport` until DONE, CANCELLED or FATAL and return that response.
+    /// Poll `getReport`, `getFeed` or `getQuery` until DONE, CANCELLED or FATAL and
+    /// return that response.
+    pub async fn wait(
+        &self,
+        kind: DocumentKind,
+        processing_id: &str,
+        options: WaitOptions,
+    ) -> Result<Response, WorkflowError> {
+        let id = id(processing_id)?;
+        match kind {
+            DocumentKind::Report => poll(
+                options,
+                |report: &reports::models::Report| report.processing_status.clone(),
+                || reports::get_report(&self.client, reports::GetReportParams::new(id.clone())),
+            )
+            .await
+            .map(TypedResponse::into_raw),
+            DocumentKind::Feed => poll(
+                options,
+                |feed: &feeds::models::Feed| feed.processing_status.clone(),
+                || feeds::get_feed(&self.client, feeds::GetFeedParams::new(id.clone())),
+            )
+            .await
+            .map(TypedResponse::into_raw),
+            DocumentKind::Query => poll(
+                options,
+                |query: &kiosk::models::Query| query.processing_status.clone(),
+                || kiosk::get_query(&self.client, kiosk::GetQueryParams::new(id.clone())),
+            )
+            .await
+            .map(TypedResponse::into_raw),
+        }
+    }
+
     pub async fn wait_for_report(
         &self,
         report_id: &str,
         options: WaitOptions,
     ) -> Result<TypedResponse<reports::models::Report>, WorkflowError> {
-        let id = id(report_id)?;
-        poll(
-            options,
-            |report: &reports::models::Report| report.processing_status.clone(),
-            || reports::get_report(&self.client, reports::GetReportParams::new(id.clone())),
-        )
-        .await
+        self.wait(DocumentKind::Report, report_id, options)
+            .await
+            .map(TypedResponse::new)
     }
 
-    /// Poll `getFeed` until DONE, CANCELLED or FATAL and return that response.
     pub async fn wait_for_feed(
         &self,
         feed_id: &str,
         options: WaitOptions,
     ) -> Result<TypedResponse<feeds::models::Feed>, WorkflowError> {
-        let id = id(feed_id)?;
-        poll(
-            options,
-            |feed: &feeds::models::Feed| feed.processing_status.clone(),
-            || feeds::get_feed(&self.client, feeds::GetFeedParams::new(id.clone())),
-        )
-        .await
+        self.wait(DocumentKind::Feed, feed_id, options)
+            .await
+            .map(TypedResponse::new)
     }
 
-    /// Poll `getQuery` until DONE, CANCELLED or FATAL and return that response.
     pub async fn wait_for_query(
         &self,
         query_id: &str,
         options: WaitOptions,
     ) -> Result<TypedResponse<kiosk::models::Query>, WorkflowError> {
-        let id = id(query_id)?;
-        poll(
-            options,
-            |query: &kiosk::models::Query| query.processing_status.clone(),
-            || kiosk::get_query(&self.client, kiosk::GetQueryParams::new(id.clone())),
-        )
-        .await
+        self.wait(DocumentKind::Query, query_id, options)
+            .await
+            .map(TypedResponse::new)
     }
 
     /// Create a feed document with exactly `content_type`, then upload the source

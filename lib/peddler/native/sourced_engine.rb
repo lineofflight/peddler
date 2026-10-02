@@ -53,28 +53,12 @@ module Peddler
 
       # The helpers below run their loop in Rust, so each asks the source once, when it starts.
 
-      def download_report_document(id, config)
-        view.download_report_document(id, config)
+      def download_workflow_document(kind, id, config)
+        view.download_workflow_document(kind, id, config)
       end
 
-      def download_feed_document(id, config)
-        view.download_feed_document(id, config)
-      end
-
-      def download_query_document(id, config)
-        view.download_query_document(id, config)
-      end
-
-      def wait_for_report(id, interval, timeout)
-        view.wait_for_report(id, interval, timeout)
-      end
-
-      def wait_for_feed(id, interval, timeout)
-        view.wait_for_feed(id, interval, timeout)
-      end
-
-      def wait_for_query(id, interval, timeout)
-        view.wait_for_query(id, interval, timeout)
+      def wait_for(kind, id, interval, timeout)
+        view.wait_for(kind, id, interval, timeout)
       end
 
       def start_feed_document_upload(content_type, config, content_length)
