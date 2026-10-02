@@ -16,6 +16,20 @@ def refuse_stale_binary!
   abort "#{stale.join(", ")} would shadow tmp/native. Remove it (rm #{stale.join(" ")}) and rerun."
 end
 
+# Runs a command in a child process and kills it at the deadline. Native code stuck holding the GVL can't be
+# interrupted by a Ruby Timeout inside the test process, so the deadline has to live out here.
+def run_with_deadline(seconds, label, *command)
+  pid = Process.spawn(*command)
+  begin
+    _, status = Timeout.timeout(seconds) { Process.wait2(pid) }
+    abort "#{label} failed" unless status.success?
+  rescue Timeout::Error
+    Process.kill("KILL", pid)
+    Process.wait(pid)
+    abort "#{label} exceeded #{seconds} seconds"
+  end
+end
+
 namespace :native do
   desc "Build the local Rust extension into tmp/native"
   task :build do
@@ -33,15 +47,6 @@ namespace :native do
   desc "Run native tests (requires native:build first)"
   task :test do
     refuse_stale_binary!
-    # A separate process deadline also catches a callback stuck holding the GVL.
-    pid = Process.spawn(RbConfig.ruby, "-Ilib", "-Itmp/native", "test_native/run.rb")
-    begin
-      _, status = Timeout.timeout(60) { Process.wait2(pid) }
-      abort "native tests failed" unless status.success?
-    rescue Timeout::Error
-      Process.kill("KILL", pid)
-      Process.wait(pid)
-      abort "native tests exceeded 60 seconds"
-    end
+    run_with_deadline(60, "native tests", RbConfig.ruby, "-Ilib", "-Itmp/native", "test_native/run.rb")
   end
 end

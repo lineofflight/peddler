@@ -5,16 +5,21 @@ require "minitest/test_task"
 require "pathname"
 require "rbs"
 require "rbs/sorter"
+require "rbconfig"
 require "rubocop/rake_task"
+require "shellwords"
 require "steep/rake_task"
 require "yard"
 
-Minitest::TestTask.create do |t|
+suite = Minitest::TestTask.create do |t|
   t.libs << "test" << "tmp/native"
   t.test_globs = ["test/**/*_test.rb", "test_native/**/*_test.rb"]
 end
-# The suite runs against the extension built into tmp/native.
-Rake::Task[:test].enhance(["native:build"])
+# The suite runs against the extension built into tmp/native, in a child process under a deadline
+# (see run_with_deadline in rakelib/native.rake).
+Rake::Task[:test].clear_actions.enhance(["native:build"]) do
+  run_with_deadline(300, "tests", RbConfig.ruby, *Shellwords.split(suite.make_test_cmd))
+end
 RuboCop::RakeTask.new
 Steep::RakeTask.new
 YARD::Rake::YardocTask.new
