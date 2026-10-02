@@ -67,7 +67,7 @@ class OperationsTest < NativeTest
         URI.decode_www_form(first[1].split("?", 2)[1]).sort)
       respond(socket)
     }) do |url|
-      engine = Peddler::Native.const_get(:Engine).new(url, "local-secret", 5)
+      engine = native_engine(url)
 
       assert_equal(200, Peddler::Native::CatalogItems20220401.new(engine)
         .get_catalog_item(asin: "a/b +%?", marketplace_ids: ["UK", "US"]).status)
@@ -83,7 +83,7 @@ class OperationsTest < NativeTest
       assert_equal(payload, JSON.parse(body))
       respond(socket)
     }) do |url|
-      engine = Peddler::Native.const_get(:Engine).new(url, "local-secret", 5)
+      engine = native_engine(url)
       result = Peddler::Native::ListingsItems20210801.new(engine).patch_listings_item(seller_id: "s/eller", sku: "a/b +%?",
         marketplace_ids: ["UK", "US"], body: payload, included_data: ["issues", "future"], mode: "future+mode", issue_locale: "en&GB")
 
@@ -111,7 +111,7 @@ class OperationsTest < NativeTest
 
       assert_equal('{"values":[18446744073709551617,-9223372036854775809,0.12345678901234567890123456789]}', body)
     }) do |url|
-      engine = Peddler::Native.const_get(:Engine).new(url, "local-secret", 5)
+      engine = native_engine(url)
       status, = engine.operation(LISTINGS, arguments)
 
       assert_equal(200, status)
@@ -152,7 +152,7 @@ class OperationsTest < NativeTest
 
   def test_invalid_operation_envelopes_are_redacted_before_network
     server = TCPServer.new("127.0.0.1", 0)
-    engine = Peddler::Native.const_get(:Engine).new("http://127.0.0.1:#{server.addr[1]}", "local-secret", 5)
+    engine = native_engine("http://127.0.0.1:#{server.addr[1]}")
     valid = { asin: "private", marketplace_ids: ["UK"] }
     [["unknown-private", "{}"], [CATALOG, "{private"], [CATALOG, JSON.generate(valid.merge(secret: "private"))],
       [CATALOG, JSON.generate(valid.merge(asin: nil))], [CATALOG, JSON.generate(valid.merge(marketplace_ids: "UK"))],
@@ -200,7 +200,7 @@ class OperationsTest < NativeTest
         URI.decode_www_form(first[1].split("?", 2)[1]).sort)
       respond(socket, body: "raw")
     }) do |url|
-      engine = Peddler::Native.const_get(:Engine).new(url, "local-secret", 5)
+      engine = native_engine(url)
       status, _headers, body = engine.operation(CATALOG, JSON.generate(asin: "X", marketplace_ids: ["UK"]))
 
       assert_equal(200, status)
@@ -324,6 +324,12 @@ class OperationsTest < NativeTest
         end
       end
     end
+  end
+
+  private
+
+  def native_engine(url)
+    Peddler::Native.const_get(:Engine).from_config(JSON.generate(base_url: url, access_token: "local-secret", timeout: 5))
   end
 end
 # rubocop:enable Minitest/MultipleAssertions

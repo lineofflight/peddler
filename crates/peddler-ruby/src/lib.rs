@@ -178,27 +178,6 @@ fn transport_error(ruby: &Ruby, error: peddler::Error) -> Error {
 }
 
 impl Engine {
-    fn new(
-        ruby: &Ruby,
-        base_url: String,
-        access_token: String,
-        timeout: f64,
-    ) -> Result<Self, Error> {
-        Self::build(
-            ruby,
-            shared(ruby)?,
-            Config {
-                base_url,
-                access_token: Some(access_token),
-                timeout,
-                retries: 0,
-                retry_delay: default_delay(),
-                max_retry_delay: default_timeout(),
-                user_agent: None,
-            },
-        )
-    }
-
     fn build(ruby: &Ruby, shared: &'static Shared, config: Config) -> Result<Self, Error> {
         let client = config
             .client(&shared.pool)
@@ -317,7 +296,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     native.define_singleton_method("response_metadata", function!(response_metadata, 3))?;
     let engine = native.define_class("Engine", ruby.class_object())?;
-    engine.define_singleton_method("new", function!(Engine::new, 3))?;
     engine.define_singleton_method("from_config", function!(Engine::from_config, 1))?;
     engine.define_method("with_base_url", method!(Engine::with_base_url, 1))?;
     engine.define_method("with_access_token", method!(Engine::with_access_token, 1))?;
