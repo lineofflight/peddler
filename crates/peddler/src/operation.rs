@@ -92,12 +92,7 @@ impl WireContext {
 // Used by generated continuation adapters that have path arguments; none do today.
 #[allow(dead_code)]
 pub(crate) fn encode_segment(value: &str) -> String {
-    const SEGMENT: &percent_encoding::AsciiSet = &percent_encoding::NON_ALPHANUMERIC
-        .remove(b'-')
-        .remove(b'_')
-        .remove(b'.')
-        .remove(b'~');
-    percent_encoding::utf8_percent_encode(value, SEGMENT).to_string()
+    percent_encoding::utf8_percent_encode(value, crate::url::SEGMENT).to_string()
 }
 
 /// Validate schema parameter constraints before any request. String

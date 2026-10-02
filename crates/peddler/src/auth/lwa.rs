@@ -1,6 +1,6 @@
 //! The three Login with Amazon grants, one request each.
 use super::{AuthError, check_lifetime, check_token, endpoint, read_response, transport};
-use crate::Pool;
+use crate::{Pool, url};
 use reqwest::Url;
 use serde::Deserialize;
 use std::{fmt, sync::Arc, time::Duration};
@@ -178,36 +178,10 @@ impl LwaClient {
     }
 }
 
+/// HTTP or HTTPS to any host, with a query if it has one.
 fn validate_redirect_uri(value: &str) -> Result<(), AuthError> {
-    let (scheme, rest) = value.split_once("://").ok_or(AuthError::InvalidConfig)?;
-    let authority = rest.split(['/', '?', '#']).next().unwrap_or("");
-    if !matches!(scheme, "http" | "https") || authority.is_empty() || authority.contains('@') {
-        return Err(AuthError::InvalidConfig);
+    match url::parse(value, &[]) {
+        Some(("http" | "https", _)) if url::well_escaped(value) => Ok(()),
+        _ => Err(AuthError::InvalidConfig),
     }
-    if value
-        .chars()
-        .any(|c| c.is_whitespace() || c.is_control() || c == '\\')
-    {
-        return Err(AuthError::InvalidConfig);
-    }
-    let url = Url::parse(value).map_err(|_| AuthError::InvalidConfig)?;
-    if !matches!(url.scheme(), "http" | "https")
-        || url.host_str().is_none()
-        || !url.username().is_empty()
-        || url.password().is_some()
-        || url.fragment().is_some()
-    {
-        return Err(AuthError::InvalidConfig);
-    }
-    let bytes = value.as_bytes();
-    for (index, byte) in bytes.iter().enumerate() {
-        if *byte == b'%'
-            && !bytes
-                .get(index + 1..index + 3)
-                .is_some_and(|v| v.iter().all(u8::is_ascii_hexdigit))
-        {
-            return Err(AuthError::InvalidConfig);
-        }
-    }
-    Ok(())
 }

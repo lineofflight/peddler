@@ -5,6 +5,7 @@
 //! `LwaClient::source_for_refresh_token` is an optional source that keeps one token
 //! in this process.
 
+use crate::url;
 use futures_util::StreamExt;
 use reqwest::{Url, header::HeaderValue};
 use std::{fmt, future::Future, pin::Pin, sync::Arc, time::Duration};
@@ -77,35 +78,12 @@ impl std::error::Error for AuthError {}
 
 /// HTTPS, or HTTP to a loopback host. No userinfo, query or fragment.
 fn endpoint(value: &str) -> Result<Url, AuthError> {
-    let (scheme, rest) = value.split_once("://").ok_or(AuthError::InvalidConfig)?;
-    let authority = rest
-        .split_once('/')
-        .map_or(rest, |(authority, _)| authority);
-    if !matches!(scheme, "https" | "http")
-        || authority.is_empty()
-        || authority.contains('@')
-        || value
-            .chars()
-            .any(|c| c.is_whitespace() || c.is_control() || matches!(c, '\\' | '?' | '#'))
-    {
-        return Err(AuthError::InvalidConfig);
-    }
-    let url = Url::parse(value).map_err(|_| AuthError::InvalidConfig)?;
-    let loopback = url.host_str().is_some_and(|host| {
-        host == "localhost"
-            || host
-                .trim_matches(['[', ']'])
-                .parse::<std::net::IpAddr>()
-                .is_ok_and(|ip| ip.is_loopback())
-    });
-    if url.host_str().is_none()
-        || (scheme == "http" && !loopback)
-        || !url.username().is_empty()
-        || url.password().is_some()
-    {
-        return Err(AuthError::InvalidConfig);
-    }
-    Ok(url)
+    url::parse(value, &['?'])
+        .filter(|(scheme, endpoint)| {
+            *scheme == "https" || *scheme == "http" && url::is_loopback(endpoint)
+        })
+        .map(|(_, endpoint)| endpoint)
+        .ok_or(AuthError::InvalidConfig)
 }
 
 /// A token must be usable as a header value.

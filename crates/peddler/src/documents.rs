@@ -8,6 +8,7 @@
 //! Synchronous parsing checks deadline expiry after completion; it cannot preempt
 //! CPU work. GZIP consumes every member and validates trailing input.
 
+use crate::url;
 use async_compression::tokio::bufread::GzipDecoder;
 use bytes::Bytes;
 use encoding_rs::{Decoder, DecoderResult, Encoding};
@@ -539,48 +540,15 @@ pub(crate) fn check_upload(options: &UploadOptions) -> Result<(), Error> {
     }
     Ok(())
 }
+/// HTTPS, or HTTP to a loopback host, with the query that signs it.
 fn signed_url(text: &str) -> Result<Url, Error> {
-    if text
-        .chars()
-        .any(|c| c.is_whitespace() || c.is_control() || matches!(c, '\\' | '#'))
-    {
-        return Err(Error::InvalidUrl);
-    }
-    let (_, rest) = text.split_once("://").ok_or(Error::InvalidUrl)?;
-    if rest
-        .split(['/', '?'])
-        .next()
-        .is_none_or(|authority| authority.is_empty() || authority.contains('@'))
-    {
-        return Err(Error::InvalidUrl);
-    }
-    for (index, &byte) in text.as_bytes().iter().enumerate() {
-        if byte == b'%'
-            && !text
-                .as_bytes()
-                .get(index + 1..index + 3)
-                .is_some_and(|hex| hex.iter().all(u8::is_ascii_hexdigit))
-        {
-            return Err(Error::InvalidUrl);
-        }
-    }
-    let url = Url::parse(text).map_err(|_| Error::InvalidUrl)?;
-    let loopback = url.host_str().is_some_and(|host| {
-        host == "localhost"
-            || host
-                .trim_matches(['[', ']'])
-                .parse::<std::net::IpAddr>()
-                .is_ok_and(|ip| ip.is_loopback())
-    });
-    if url.host_str().is_none()
-        || !url.username().is_empty()
-        || url.password().is_some()
-        || url.fragment().is_some()
-        || !(url.scheme() == "https" || url.scheme() == "http" && loopback)
-    {
-        return Err(Error::InvalidUrl);
-    }
-    Ok(url)
+    url::parse(text, &[])
+        .map(|(_, signed)| signed)
+        .filter(|signed| {
+            signed.scheme() == "https" || signed.scheme() == "http" && url::is_loopback(signed)
+        })
+        .filter(|_| url::well_escaped(text))
+        .ok_or(Error::InvalidUrl)
 }
 /// Charset labels Amazon uses that the WHATWG table lacks.
 const CHARSET_ALIASES: &[(&str, &str)] = &[("cp932", "shift_jis")];

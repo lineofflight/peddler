@@ -19,6 +19,7 @@ pub mod policy;
 pub mod workflows;
 
 mod operation;
+mod url;
 pub use operation::{DecodeError, TypedResponse};
 
 use auth::{AuthError, TokenSource};
@@ -221,31 +222,19 @@ impl Client {
             user_agent,
             pool,
         } = config;
-        // Check the original text too: URL parsing normalizes backslashes,
-        // userinfo and dot segments that callers must not supply as an origin.
-        let (scheme, remainder) = base_url.split_once("://").ok_or(Error::InvalidRequest)?;
-        let (authority, path) = remainder.split_once('/').unwrap_or((remainder, ""));
+        let (scheme, origin) = url::parse(&base_url, &['?']).ok_or(Error::InvalidRequest)?;
+        // Check the original text for a path too: URL parsing normalizes dot segments
+        // that callers must not supply as an origin. The access token is only ever
+        // sent over HTTPS, or HTTP to a loopback host.
         if !matches!(scheme, "http" | "https")
-            || authority.is_empty()
-            || authority.contains('@')
-            || !path.is_empty()
             || base_url
-                .chars()
-                .any(|c| c.is_whitespace() || c.is_control() || matches!(c, '\\' | '?' | '#'))
+                .splitn(4, '/')
+                .nth(3)
+                .is_some_and(|path| !path.is_empty())
+            || origin.path() != "/"
+            || (scheme == "http" && !url::is_loopback(&origin))
             || timeout.is_zero()
         {
-            return Err(Error::InvalidRequest);
-        }
-        let origin = Url::parse(&base_url).map_err(|_| Error::InvalidRequest)?;
-        let loopback = origin.host_str().is_some_and(|host| {
-            host == "localhost"
-                || host
-                    .trim_matches(['[', ']'])
-                    .parse::<std::net::IpAddr>()
-                    .is_ok_and(|ip| ip.is_loopback())
-        });
-        // The access token is only ever sent over HTTPS, or HTTP to a loopback host.
-        if origin.host_str().is_none() || origin.path() != "/" || (scheme == "http" && !loopback) {
             return Err(Error::InvalidRequest);
         }
         let user_agent = user_agent
@@ -339,18 +328,13 @@ impl Client {
         *request.timeout_mut() = Some(self.timeout);
         // Canonicalize individual segments, never decode the whole path. A raw
         // caller %2F was already escaped by Progenitor to %252F and stays literal.
-        const SEGMENT: &percent_encoding::AsciiSet = &percent_encoding::NON_ALPHANUMERIC
-            .remove(b'-')
-            .remove(b'_')
-            .remove(b'.')
-            .remove(b'~');
         let path = request
             .url()
             .path()
             .split('/')
             .map(|segment| {
                 let bytes = percent_encoding::percent_decode_str(segment).collect::<Vec<_>>();
-                percent_encoding::percent_encode(&bytes, SEGMENT).to_string()
+                percent_encoding::percent_encode(&bytes, url::SEGMENT).to_string()
             })
             .collect::<Vec<_>>()
             .join("/");
@@ -406,18 +390,9 @@ impl Client {
                 .path
                 .chars()
                 .any(|c| c.is_whitespace() || c.is_control() || matches!(c, '\\' | '?' | '#'))
+            || !url::well_escaped(&request.path)
         {
             return Err(Error::InvalidRequest);
-        }
-        let path = request.path.as_bytes();
-        for (index, byte) in path.iter().enumerate() {
-            if *byte == b'%'
-                && !path
-                    .get(index + 1..index + 3)
-                    .is_some_and(|bytes| bytes.iter().all(u8::is_ascii_hexdigit))
-            {
-                return Err(Error::InvalidRequest);
-            }
         }
         let method =
             Method::from_bytes(request.method.as_bytes()).map_err(|_| Error::InvalidRequest)?;
