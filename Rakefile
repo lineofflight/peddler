@@ -77,11 +77,13 @@ namespace :generate do
     Rake::Task["generate"].invoke
   end
 
+  # rust:verify compares the Rust generator's output with the files on disk, so it runs before generate
+  # rewrites them. The git gate then covers both generators' paths.
   desc "Regenerate at the pinned spec revision; fail if committed output drifts"
-  task verify: [:generate, "rust:verify"] do
+  task verify: ["rust:verify", :generate] do
     require "open3"
 
-    paths = Generator.generated_paths
+    paths = Generator.generated_paths + RUST_GENERATED_PATHS
     status_out, _err, status = Open3.capture3("git", "status", "--porcelain", "--", *paths)
     raise "git status failed" unless status.success?
 
