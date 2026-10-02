@@ -44,6 +44,7 @@ module Peddler
       @source: _TokenSource
 
       def initialize: (Engine engine, _TokenSource source) -> void
+      def inspect: () -> String
       def with_base_url: (String base_url) -> SourcedEngine
       def with_access_token: (String? access_token) -> Engine
       def request: (String method, String path, Array[[String, String]] query, String? body) -> response_parts

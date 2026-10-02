@@ -33,6 +33,9 @@ module Peddler
         @source = source
       end
 
+      # A source is the caller's object and may hold a refresh token, so nothing of it is shown.
+      def inspect = "#<Peddler::Native::SourcedEngine>"
+
       def with_base_url(base_url)
         self.class.new(@engine.with_base_url(base_url), @source)
       end

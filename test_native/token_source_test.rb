@@ -144,6 +144,18 @@ class TokenSourceTest < NativeTest
     end
   end
 
+  def test_inspect_never_shows_what_a_source_object_holds
+    source = Struct.new(:refresh_token) do
+      def call = "token"
+    end.new("sensitive-refresh")
+    sourced = Peddler::Client.new(region: "eu-west-1", access_token: source)
+    views = [sourced, sourced.sandbox, sourced.with_access_token(source),
+      Peddler::Client.new(region: "eu-west-1", access_token: "fixed").with_access_token(source)]
+
+    views.each { |view| refute_match(/sensitive-refresh/, view.inspect) }
+    assert_match(/sensitive-refresh/, source.inspect, "the source itself does show its field")
+  end
+
   def test_an_engine_without_a_token_fails_closed
     serve_keep_alive do |url, accepted, _requests|
       template = Peddler::Native.const_get(:Engine).from_config(JSON.generate(base_url: url))
