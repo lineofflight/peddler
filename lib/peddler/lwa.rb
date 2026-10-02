@@ -3,8 +3,8 @@
 module Peddler
   # Requests Login with Amazon (LWA) tokens
   #
-  # Every method makes one request and keeps nothing. Application code owns consent, state verification, token
-  # storage and when to ask for a new access token. A rejection raises {Peddler::AuthenticationError}, whose `code`
+  # Every grant makes one request and keeps nothing. Application code owns consent, state verification, token
+  # storage and when to ask for a new access token; {#token_source} is an optional in-process helper for the last. A rejection raises {Peddler::AuthenticationError}, whose `code`
   # is what Amazon names as the problem, such as "invalid_client" or "invalid_grant".
   #
   # @example
@@ -69,6 +69,23 @@ module Peddler
       raise ArgumentError, "invalid authentication configuration" unless text?(scope)
 
       tokens(@engine.client_credentials(scope))
+    end
+
+    # An optional source of access tokens that keeps one in this process and refreshes it shortly before it expires
+    #
+    # @example
+    #   source = Peddler::LWA.new.token_source(refresh_token: seller.refresh_token)
+    #   client = Peddler::Client.new(region: "us-east-1", access_token: source)
+    # @param [String] refresh_token a seller's refresh token, or
+    # @param [String] scope the scope of grantless operations
+    # @return [Peddler::LWA::TokenSource]
+    def token_source(refresh_token: nil, scope: nil)
+      raise ArgumentError, "provide either refresh_token or scope" unless refresh_token.nil? ^ scope.nil?
+
+      value = refresh_token || scope
+      raise ArgumentError, "invalid authentication configuration" unless value && text?(value) && !value.strip.empty?
+
+      refresh_token ? TokenSource.new { refresh(refresh_token: value) } : TokenSource.new { client_credentials(scope: value) }
     end
 
     # Omit redirect_uri only for SDK-originated grants; otherwise provide the

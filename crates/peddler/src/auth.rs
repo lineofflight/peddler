@@ -1,7 +1,9 @@
 //! Login with Amazon token requests.
 //!
-//! Every call makes one HTTP request. Nothing is cached, refreshed or persisted:
-//! the caller stores the tokens and passes an access token to the client.
+//! Every call on [`LwaClient`] makes one HTTP request and keeps nothing: the caller
+//! stores the tokens and passes an access token, or a [`TokenSource`], to the client.
+//! `LwaClient::source_for_refresh_token` is an optional source that keeps one token
+//! in this process.
 
 use futures_util::StreamExt;
 use reqwest::{Url, header::HeaderValue};
@@ -9,12 +11,14 @@ use std::{fmt, future::Future, pin::Pin, sync::Arc, time::Duration};
 use tokio::time::Instant;
 
 mod lwa;
+mod source;
 pub use lwa::{LwaClient, LwaTokens};
 
 type TokenFuture = Pin<Box<dyn Future<Output = Result<String, AuthError>> + Send>>;
 
 /// Supplies an access token on request. A client built with one asks it before every
 /// attempt and keeps nothing it returns: caching and refreshing belong to the source.
+/// Clones are the same source.
 #[derive(Clone)]
 pub struct TokenSource(Arc<dyn Fn() -> TokenFuture + Send + Sync>);
 
@@ -27,8 +31,9 @@ impl TokenSource {
         Self(Arc::new(move || Box::pin(source())))
     }
 
-    pub(crate) fn token(&self) -> TokenFuture {
-        (self.0)()
+    /// Asks the source for a token.
+    pub async fn token(&self) -> Result<String, AuthError> {
+        (self.0)().await
     }
 }
 

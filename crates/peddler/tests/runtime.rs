@@ -4,7 +4,7 @@ use peddler::{
         catalog_items_2022_04_01::{GetCatalogItemParams, get_catalog_item},
         tokens_2021_03_01::{CreateRestrictedDataTokenParams, create_restricted_data_token},
     },
-    auth::{AuthError, TokenSource},
+    auth::{AuthError, LwaClient, TokenSource},
 };
 use std::{
     sync::{
@@ -323,6 +323,156 @@ async fn a_failing_token_source_is_the_auth_error_and_sends_nothing() {
             .is_err(),
         "no request reaches the server"
     );
+}
+/// A client whose token comes from the in-process LWA source.
+fn managed(base: String, lwa: String) -> ClientConfig {
+    let source = LwaClient::with_config("dummy-id", "dummy-secret", &lwa, Duration::from_secs(2))
+        .unwrap()
+        .source_for_refresh_token("dummy-refresh")
+        .unwrap();
+    ClientConfig::new(base, source)
+}
+const FRESH: &str = r#"{"access_token":"fresh-token","token_type":"bearer","expires_in":3600}"#;
+#[tokio::test]
+async fn lwa_source_shares_one_refresh_across_raw_generated_and_concurrent_clones() {
+    let (lwa, auth) = server(vec![(200, vec![], FRESH)]).await;
+    let (base, api) = server(vec![(200, vec![], "{}"); 8]).await;
+    let client = Client::with_config(managed(base, lwa)).unwrap();
+    let mut tasks = vec![];
+    for n in 0..8 {
+        let c = client.clone();
+        tasks.push(tokio::spawn(async move {
+            if n % 2 == 0 {
+                c.execute(request("GET")).await.unwrap();
+            } else {
+                get_catalog_item(
+                    &c,
+                    GetCatalogItemParams::new("ASIN".into(), vec!["UK".into()]),
+                )
+                .await
+                .unwrap();
+            }
+        }));
+    }
+    for t in tasks {
+        t.await.unwrap();
+    }
+    assert_eq!(auth.await.unwrap().len(), 1);
+    for r in api.await.unwrap() {
+        assert!(r.contains("x-amz-access-token: fresh-token"));
+    }
+}
+#[tokio::test]
+async fn lwa_source_failure_is_the_auth_error_and_the_next_call_recovers() {
+    let (lwa, auth) = server(vec![
+        (
+            401,
+            vec![],
+            r#"{"error":"invalid_grant","error_description":"dummy-secret"}"#,
+        ),
+        (200, vec![], FRESH),
+    ])
+    .await;
+    let (base, api) = server(vec![(200, vec![], "ok")]).await;
+    let client = Client::with_config(managed(base, lwa)).unwrap();
+    let mut invalid = request("GET");
+    invalid.path = "//foreign".into();
+    assert_eq!(
+        client.execute(invalid).await.unwrap_err(),
+        Error::InvalidRequest
+    );
+    let err = client.execute(request("GET")).await.unwrap_err();
+    assert_eq!(
+        err,
+        Error::Authentication(AuthError::Rejected {
+            status: 401,
+            code: Some("invalid_grant".into())
+        })
+    );
+    assert!(!format!("{err:?}").contains("dummy-secret"));
+    client.execute(request("GET")).await.unwrap();
+    assert_eq!(auth.await.unwrap().len(), 2, "invalid input asked nothing");
+    api.await.unwrap();
+}
+#[tokio::test]
+async fn lwa_source_refreshes_an_expired_token_for_the_retry() {
+    let token1 = r#"{"access_token":"first","token_type":"bearer","expires_in":1}"#;
+    let token2 = r#"{"access_token":"second","token_type":"bearer","expires_in":3600}"#;
+    let (lwa, auth) = server(vec![(200, vec![], token1), (200, vec![], token2)]).await;
+    let (base, api) = server(vec![
+        (429, vec![("Retry-After", "1")], "retry"),
+        (200, vec![], "ok"),
+    ])
+    .await;
+    let mut c = managed(base, lwa);
+    c.retry.max_retries = 1;
+    let client = Client::with_config(c).unwrap();
+    client.execute(request("GET")).await.unwrap();
+    assert_eq!(auth.await.unwrap().len(), 2);
+    let requests = api.await.unwrap();
+    assert!(requests[0].contains("x-amz-access-token: first"));
+    assert!(requests[1].contains("x-amz-access-token: second"));
+}
+#[tokio::test]
+async fn cancelled_lwa_source_refresh_closes_socket_and_recovers() {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let lwa = format!("http://{}", listener.local_addr().unwrap());
+    let (started, waiting) = tokio::sync::oneshot::channel();
+    let auth = tokio::spawn(async move {
+        let (mut socket, _) = listener.accept().await.unwrap();
+        let mut buf = [0; 4096];
+        assert!(socket.read(&mut buf).await.unwrap() > 0);
+        started.send(()).unwrap();
+        assert_eq!(
+            socket.read(&mut buf).await.unwrap(),
+            0,
+            "cancellation must close the socket"
+        );
+        let (mut socket, _) = listener.accept().await.unwrap();
+        assert!(socket.read(&mut buf).await.unwrap() > 0);
+        socket
+            .write_all(
+                format!(
+                    "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{FRESH}",
+                    FRESH.len()
+                )
+                .as_bytes(),
+            )
+            .await
+            .unwrap();
+    });
+    let (base, api) = server(vec![(200, vec![], "ok")]).await;
+    let client = Client::with_config(managed(base, lwa)).unwrap();
+    let clone = client.clone();
+    let task = tokio::spawn(async move { clone.execute(request("GET")).await });
+    waiting.await.unwrap();
+    task.abort();
+    assert!(task.await.unwrap_err().is_cancelled());
+    tokio::time::timeout(Duration::from_secs(1), client.execute(request("GET")))
+        .await
+        .unwrap()
+        .unwrap();
+    auth.await.unwrap();
+    api.await.unwrap();
+}
+#[tokio::test]
+async fn overall_deadline_cancels_the_lwa_source_socket() {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let lwa = format!("http://{}", listener.local_addr().unwrap());
+    let auth = tokio::spawn(async move {
+        let (mut socket, _) = listener.accept().await.unwrap();
+        let mut buf = [0; 4096];
+        assert!(socket.read(&mut buf).await.unwrap() > 0);
+        assert_eq!(socket.read(&mut buf).await.unwrap(), 0);
+    });
+    let mut c = managed("http://127.0.0.1:1".into(), lwa);
+    c.timeout = Duration::from_millis(30);
+    let client = Client::with_config(c).unwrap();
+    assert_eq!(
+        client.execute(request("GET")).await.unwrap_err(),
+        Error::Timeout
+    );
+    auth.await.unwrap();
 }
 #[tokio::test]
 async fn invalid_input_performs_no_http() {

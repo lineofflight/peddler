@@ -15,7 +15,39 @@ module Peddler
       def to_s: () -> String
     end
 
+    class TokenSource
+      MARGIN: Integer
+
+      class Refresh < Struct[untyped]
+        attr_accessor done: bool?
+        attr_accessor token: String?
+        attr_accessor refresh_at: Float?
+        attr_accessor error: StandardError?
+        def self.new: () -> Refresh
+      end
+
+      @grant: ^() -> Tokens
+      @pid: Integer
+      @mutex: Thread::Mutex
+      @finished: Thread::ConditionVariable
+      @token: String?
+      @refresh_at: Float
+      @refresh: Refresh?
+
+      def initialize: () { () -> Tokens } -> void
+      def call: () -> String
+      def inspect: () -> String
+      def to_s: () -> String
+
+      private
+
+      def lead: (Refresh refresh) -> String
+      def follow: (Refresh refresh) -> String
+      def now: () -> Float
+    end
+
     def initialize: (?client_id: String?, ?client_secret: String?, ?timeout: Numeric, ?lwa_endpoint: String) -> void
+    def token_source: (?refresh_token: String?, ?scope: String?) -> TokenSource
     def refresh: (refresh_token: String) -> Tokens
     def client_credentials: (scope: String) -> Tokens
     def exchange_authorization_code: (code: String, ?redirect_uri: String?) -> Tokens

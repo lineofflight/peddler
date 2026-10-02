@@ -1,6 +1,6 @@
 use peddler::{
     Client, ClientConfig, Error, Pool, Request,
-    auth::{AuthError, LwaClient, LwaTokens},
+    auth::{AuthError, LwaClient, LwaTokens, TokenSource},
 };
 use serde_json::{Value, json};
 use std::{sync::Arc, time::Duration};
@@ -535,6 +535,247 @@ async fn gated_server(responses: Vec<(u16, String, Option<Arc<Notify>>)>) -> Gat
         requests,
         task,
     }
+}
+
+fn reply(token: &str, expiry: u64) -> String {
+    json!({"access_token":token,"token_type":"bEaReR","expires_in":expiry}).to_string()
+}
+
+fn refresh_source(origin: &str) -> TokenSource {
+    lwa(origin, Duration::from_secs(2))
+        .source_for_refresh_token("refresh+&λ")
+        .unwrap()
+}
+
+#[tokio::test]
+async fn source_clones_share_one_cached_token_and_show_no_secret() {
+    let (origin, task) = server(vec![(200, reply("lwa-secret", 120))]).await;
+    let source = refresh_source(&origin);
+    assert_eq!(source.token().await.unwrap(), "lwa-secret");
+    assert_eq!(source.clone().token().await.unwrap(), "lwa-secret");
+    let requests = task.await.unwrap();
+    assert_eq!(requests.len(), 1);
+    assert_eq!(
+        requests[0].split_once("\r\n\r\n").unwrap().1,
+        "grant_type=refresh_token&client_id=id%2B%26%C3%A9&client_secret=secret%2B%26%E9%9B%AA&refresh_token=refresh%2B%26%CE%BB"
+    );
+    let debug = format!("{source:?}");
+    assert!(!debug.contains("secret") && !debug.contains("refresh+"));
+}
+
+#[tokio::test]
+async fn scope_source_uses_client_credentials_and_rejects_blank_input() {
+    let (origin, task) = server(vec![(200, reply("grantless", 120))]).await;
+    let client = lwa(&origin, Duration::from_secs(2));
+    let source = client
+        .source_for_scope("sellingpartnerapi::notifications")
+        .unwrap();
+    assert_eq!(source.token().await.unwrap(), "grantless");
+    assert_eq!(source.token().await.unwrap(), "grantless");
+    assert!(
+        task.await.unwrap()[0]
+            .ends_with("grant_type=client_credentials&client_id=id%2B%26%C3%A9&client_secret=secret%2B%26%E9%9B%AA&scope=sellingpartnerapi%3A%3Anotifications")
+    );
+    for blank in ["", " "] {
+        assert_eq!(
+            client.source_for_refresh_token(blank).unwrap_err(),
+            AuthError::InvalidConfig
+        );
+        assert_eq!(
+            client.source_for_scope(blank).unwrap_err(),
+            AuthError::InvalidConfig
+        );
+    }
+}
+
+#[tokio::test]
+async fn source_coalesces_success_and_failure_without_retrying() {
+    let rejected = AuthError::Rejected {
+        status: 401,
+        code: Some("invalid_grant".into()),
+    };
+    for (status, body, expected) in [
+        (200, reply("shared", 120), Ok("shared")),
+        (
+            401,
+            json!({"error":"invalid_grant","error_description":"secret rejected body"}).to_string(),
+            Err(rejected),
+        ),
+    ] {
+        let gate = Arc::new(Notify::new());
+        let mut server = gated_server(vec![(status, body, Some(gate.clone()))]).await;
+        let source = refresh_source(&server.origin);
+        let mut callers = Vec::new();
+        for _ in 0..16 {
+            let source = source.clone();
+            callers.push(tokio::spawn(async move { source.token().await }));
+        }
+        server.requests.recv().await.unwrap();
+        for _ in 0..32 {
+            tokio::task::yield_now().await;
+        }
+        gate.notify_one();
+        for caller in callers {
+            let result = caller.await.unwrap();
+            match &expected {
+                Ok(value) => assert_eq!(result.unwrap(), *value),
+                Err(error) => assert_eq!(result.unwrap_err(), *error),
+            }
+        }
+        assert!(server.requests.try_recv().is_err());
+    }
+}
+
+#[tokio::test]
+async fn source_failure_is_not_cached_and_the_next_call_recovers() {
+    let (origin, task) = server(vec![
+        (401, json!({"error":"invalid_grant"}).to_string()),
+        (200, reply("recovered", 120)),
+    ])
+    .await;
+    let source = refresh_source(&origin);
+    assert_eq!(
+        source.token().await.unwrap_err(),
+        AuthError::Rejected {
+            status: 401,
+            code: Some("invalid_grant".into())
+        }
+    );
+    assert_eq!(source.token().await.unwrap(), "recovered");
+    assert_eq!(source.token().await.unwrap(), "recovered");
+    assert_eq!(task.await.unwrap().len(), 2);
+}
+
+#[tokio::test]
+async fn source_cancelled_waiters_preserve_refresh_and_all_waiters_can_recover() {
+    for cancel_all in [false, true] {
+        let gate = Arc::new(Notify::new());
+        let mut responses = vec![(200, reply("recovered", 120), Some(gate.clone()))];
+        if cancel_all {
+            responses.push((200, reply("recovered", 120), None));
+        }
+        let mut server = gated_server(responses).await;
+        let source = refresh_source(&server.origin);
+        let first_source = source.clone();
+        let first = tokio::spawn(async move { first_source.token().await });
+        server.requests.recv().await.unwrap();
+        let next_source = source.clone();
+        let mut next = tokio::spawn(async move { next_source.token().await });
+        tokio::task::yield_now().await;
+        first.abort();
+        let _ = first.await;
+        if cancel_all {
+            next.abort();
+            let _ = next.await;
+            let next_source = source.clone();
+            next = tokio::spawn(async move { next_source.token().await });
+        }
+        gate.notify_one();
+        assert_eq!(next.await.unwrap().unwrap(), "recovered");
+        assert_eq!(source.token().await.unwrap(), "recovered");
+        if cancel_all {
+            server.requests.recv().await.unwrap();
+        }
+        assert!(server.requests.try_recv().is_err());
+    }
+}
+
+#[tokio::test]
+async fn source_cancellation_by_the_last_waiter_closes_the_socket() {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (started, waiting) = tokio::sync::oneshot::channel();
+    let server = tokio::spawn(async move {
+        let (mut socket, _) = listener.accept().await.unwrap();
+        read_request(&mut socket).await;
+        started.send(()).unwrap();
+        let mut byte = [0];
+        assert_eq!(
+            socket.read(&mut byte).await.unwrap(),
+            0,
+            "cancellation must close the socket"
+        );
+        let (mut socket, _) = listener.accept().await.unwrap();
+        read_request(&mut socket).await;
+        let body = reply("recovered", 120);
+        let reply = format!(
+            "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}",
+            body.len()
+        );
+        socket.write_all(reply.as_bytes()).await.unwrap();
+    });
+    let source = refresh_source(&origin);
+    let pending = source.clone();
+    let call = tokio::spawn(async move { pending.token().await });
+    waiting.await.unwrap();
+    call.abort();
+    assert!(call.await.unwrap_err().is_cancelled());
+    assert_eq!(source.token().await.unwrap(), "recovered");
+    server.await.unwrap();
+}
+
+#[tokio::test]
+async fn source_refreshes_short_lifetimes_early_and_never_reuses_an_expired_token() {
+    let (origin, task) = server(vec![
+        (200, reply("first", 10)),
+        (200, reply("second", 10)),
+        (200, reply("third", 10)),
+    ])
+    .await;
+    let source = refresh_source(&origin);
+    assert_eq!(source.token().await.unwrap(), "first");
+    tokio::time::pause();
+    tokio::time::advance(Duration::from_secs(8)).await;
+    assert_eq!(source.token().await.unwrap(), "first");
+    tokio::time::advance(Duration::from_secs(1)).await;
+    tokio::time::resume();
+    assert_eq!(source.token().await.unwrap(), "second");
+    tokio::time::pause();
+    tokio::time::advance(Duration::from_secs(11)).await;
+    tokio::time::resume();
+    assert_eq!(source.token().await.unwrap(), "third");
+    assert_eq!(task.await.unwrap().len(), 3);
+}
+
+#[tokio::test]
+async fn source_refreshes_long_lifetimes_60_seconds_early() {
+    let (origin, task) = server(vec![
+        (200, reply("first", 1200)),
+        (200, reply("second", 1200)),
+    ])
+    .await;
+    let source = refresh_source(&origin);
+    assert_eq!(source.token().await.unwrap(), "first");
+    tokio::time::pause();
+    tokio::time::advance(Duration::from_secs(1139)).await;
+    assert_eq!(source.token().await.unwrap(), "first");
+    tokio::time::advance(Duration::from_secs(1)).await;
+    tokio::time::resume();
+    assert_eq!(source.token().await.unwrap(), "second");
+    assert_eq!(task.await.unwrap().len(), 2);
+}
+
+#[tokio::test]
+async fn source_lifetimes_begin_before_the_request_finishes() {
+    let gate = Arc::new(Notify::new());
+    let mut server = gated_server(vec![
+        (200, reply("already-expired", 1), Some(gate.clone())),
+        (200, reply("fresh", 120), None),
+    ])
+    .await;
+    let source = refresh_source(&server.origin);
+    let pending = source.clone();
+    let first = tokio::spawn(async move { pending.token().await });
+    server.requests.recv().await.unwrap();
+    tokio::time::pause();
+    tokio::time::advance(Duration::from_millis(1100)).await;
+    tokio::time::resume();
+    gate.notify_one();
+    assert_eq!(
+        first.await.unwrap().unwrap_err(),
+        AuthError::InvalidResponse
+    );
+    assert_eq!(source.token().await.unwrap(), "fresh");
 }
 
 #[tokio::test]
