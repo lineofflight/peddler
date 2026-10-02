@@ -12,6 +12,9 @@ All notable changes to this project will be documented in this file. This projec
 
 - Add native LWA authorization-code onboarding with redacted token results and bounded, cancellable requests
 
+- Prepare native packaging: a source gem that compiles the Rust extension at install time and fat platform gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux` and `x86_64-linux` (Ruby 3.3, 3.4 and 4.0), built with `rb_sys` and rake-compiler; nothing is published yet. The loader selects the build for the running Ruby or fails clearly; see [native extension](README.md#native-extension)
+- Prepare the `peddler` Rust crate (0.1.0) for crates.io with MIT metadata and an explicit package list; it builds offline from the extracted package without Node, Ruby or the spec checkout
+
 - Add native signed-URL document streaming with Rust GZIP/JSONL/TSV parsing, bounded whole JSON and IO uploads with backpressure, cancellation and fork guards
 
 - Add shared LWA refresh and client-credentials authentication, restricted-data-token views, opt-in rate limits and safe status retries to the Rust/native preview; total deadlines include authentication and waits
@@ -24,6 +27,8 @@ All notable changes to this project will be documented in this file. This projec
 - Support pattern matching on errors by HTTP status, e.g. `case error in {status: 500..599}`
 
 ### Changed
+
+- Bump the gem to 6.0.0. Add a runtime dependency on `bigdecimal` (no longer a default gem since Ruby 3.4), which native document parsing requires
 
 - Improve error messages for degraded responses: keep Amazon's message when the code cannot become a class name, and fall back to the status line (e.g. `"429 Too Many Requests"`) when the body cannot be parsed
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279))

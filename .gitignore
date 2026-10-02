@@ -9,4 +9,6 @@ selling-partner-api-models
 test/config.json
 vendor
 /target/
-/tmp/native/
+/tmp/
+/lib/peddler/peddler_native.*
+/lib/peddler/[0-9]*/

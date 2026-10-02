@@ -1,0 +1,14 @@
+module Peddler
+  module Native
+    module Loader
+      EXTENSION: String
+      DIR: String
+
+      def self.require_extension: (?dir: String, ?abi: String, ?dlext: String, ?requirer: ^(String) -> untyped) -> untyped
+
+      private
+
+      def self.packaged_abis: (String dir) -> Array[String]
+    end
+  end
+end

@@ -1,6 +1,6 @@
 # Rust SDK and native Ruby APIs
 
-Peddler's next major release implementation. The shared Rust SDK owns transport, authentication, request policy and all 384 operations across 70 API versions; Ruby calls the same Rust dispatcher through a thin native binding. Workspace crates are version 0.1.0 with publishing disabled.
+Peddler's next major release implementation. The shared Rust SDK owns transport, authentication, request policy and all 384 operations across 70 API versions; Ruby calls the same Rust dispatcher through a thin native binding. The `peddler` crate is version 0.1.0 and packaged for crates.io, but not yet published.
 
 ## Implemented scope
 
@@ -17,7 +17,7 @@ cargo clippy -p peddler --all-targets --locked -- -D warnings
 
 ## Rust usage
 
-Use a local path dependency: `peddler = { path = "/path/to/peddler/crates/peddler" }`. Async calls require a Tokio runtime with I/O and timers enabled. Client clones and restricted views share the connection pool, token caches and rate buckets. Operation functions and raw requests use the same authentication and policy runner.
+Until the crate is published, use a path dependency: `peddler = { path = "/path/to/peddler/crates/peddler" }`. Async calls require a Tokio runtime with I/O and timers enabled. Client clones and restricted views share the connection pool, token caches and rate buckets. Operation functions and raw requests use the same authentication and policy runner.
 
 ```rust
 use peddler::{Client, apis::{catalog_items_2022_04_01 as catalog,

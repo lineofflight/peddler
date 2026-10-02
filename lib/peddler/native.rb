@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require "json"
-require "peddler_native"
+require_relative "native/loader"
+Peddler::Native::Loader.require_extension
 
 module Peddler
   module Native

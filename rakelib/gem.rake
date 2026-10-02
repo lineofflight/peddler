@@ -1,0 +1,28 @@
+# frozen_string_literal: true
+
+require "rb_sys/extensiontask"
+
+GEMSPEC = Gem::Specification.load(File.expand_path("../peddler.gemspec", __dir__))
+
+# `rake compile` builds the extension into lib/peddler through extconf.rb, as
+# `gem install` does for the source gem. `rake native gem` builds a gem for the
+# running Ruby only (rake-compiler constrains required_ruby_version to it).
+# `rake native:<platform> gem` with RUBY_CC_VERSION=3.3:3.4:4.0 builds the fat
+# platform gem with binaries in lib/peddler/<ruby minor>/; it needs the
+# rb-sys-dock containers (see .github/workflows/packaging.yml).
+RbSys::ExtensionTask.new("peddler_native", GEMSPEC) do |ext|
+  ext.ext_dir = "crates/peddler-ruby"
+  ext.lib_dir = "lib/peddler"
+  ext.cross_compile = true
+  ext.cross_platform = ["arm64-darwin", "x86_64-darwin", "aarch64-linux", "x86_64-linux"]
+  # Platform gems carry binaries only; drop everything that exists for the Rust build.
+  ext.cross_compiling do |spec|
+    spec.files.reject! { |file| file.match?(%r{\A(Cargo\.|crates/|third_party/)}) }
+    spec.extensions.clear
+  end
+end
+
+desc "Audit built gems: rake gem:audit[pkg/peddler-6.0.0.gem]"
+task "gem:audit", [:path] do |_task, args|
+  sh(RbConfig.ruby, File.expand_path("../tools/gem_audit.rb", __dir__), *Dir[args.fetch(:path, "pkg/*.gem")])
+end

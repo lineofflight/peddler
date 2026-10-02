@@ -2,7 +2,15 @@
 name = "peddler"
 version = "0.1.0"
 edition = "2024"
-publish = false
+description = "Rust client for Amazon's Selling Partner API (SP-API) with built-in authentication, rate limiting and retries"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/lineofflight/peddler"
+homepage = "https://github.com/lineofflight/peddler"
+documentation = "https://docs.rs/peddler"
+keywords = ["amazon", "sp-api", "selling-partner", "marketplace", "ecommerce"]
+categories = ["api-bindings", "web-programming::http-client"]
+include = ["/src/**", "/examples/**", "/README.md", "/LICENSE", "/Cargo.toml"]
 
 [dependencies]
 reqwest = { version = "0.13.5", default-features = false, features = ["rustls", "http2", "form", "json", "stream"] }

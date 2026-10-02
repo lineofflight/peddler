@@ -15,6 +15,33 @@ tokens, opt-in rate limits and safe retries. See [preview usage and limits](crat
 
 Add to your Gemfile.
 
+### Native extension
+
+Peddler 6 includes a Rust extension. Nothing is published yet; this describes how releases are prepared.
+
+**Platform gems** are planned for macOS (arm64, x86_64) and glibc Linux (aarch64, x86_64). Each bundles builds for Ruby 3.3, 3.4 and 4.0 under `lib/peddler/<major.minor>/` and needs no compiler, Rust or Node. They are built with `rb_sys` and rake-compiler in the `rb-sys-dock` containers. Alpine/musl and Windows are not supported.
+
+**Source gem** is used on any other platform or Ruby version. It compiles the extension during `gem install` and needs:
+
+- a current stable Rust toolchain (`rustup`; built and tested with 1.98.1) with `cargo` on `PATH`
+- Ruby headers (`ruby-dev` or `ruby-devel` on Linux)
+- `clang` and `libclang` for bindgen
+- network access to crates.io (the build uses the shipped `Cargo.lock`)
+
+To force a source build where a platform gem exists: `gem install peddler --platform ruby`, or `bundle config set force_ruby_platform true`.
+
+Developing on the gem itself:
+
+```shell
+bundle exec rake native:build native:test   # debug build into tmp/native, run native tests
+bundle exec rake compile                    # build into lib/peddler through extconf.rb
+bundle exec rake build                      # source gem in pkg/
+bundle exec rake native gem                 # platform gem for the running Ruby only
+ruby tools/gem_audit.rb pkg/*.gem           # check gem contents
+```
+
+`rake native gem` produces a gem constrained to the Ruby minor it was built with. The fat gems (`RUBY_CC_VERSION=3.3:3.4:4.0 rake native:<platform> gem`) need Docker via `rb-sys-dock`; CI runs them. At load time the extension for the running Ruby minor is selected, and a clear error is raised if the gem has none.
+
 ### Agent skills
 
 Install the skills for agents:

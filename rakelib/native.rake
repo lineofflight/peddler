@@ -9,7 +9,7 @@ require "timeout"
 namespace :native do
   desc "Build the local Rust extension into tmp/native"
   task :build do
-    sh({ "RUBY" => RbConfig.ruby }, "cargo", "build", "-p", "peddler-ruby", "--locked")
+    sh({ "RUBY" => RbConfig.ruby }, "cargo", "build", "-p", "peddler_native", "--locked")
     output, status = Open3.capture2("cargo", "metadata", "--format-version", "1", "--no-deps")
     abort "cargo metadata failed" unless status.success?
 
