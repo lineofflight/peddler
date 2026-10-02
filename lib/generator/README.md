@@ -23,7 +23,7 @@ deliberate, re-evaluated decision — not legacy inertia.
 **What this generator does that a generic one will not:** unifies Amazon's
 many money shapes into one `Peddler::Money`; breaks only cycle-causing type
 edges with lazy string class names; applies JSON Patch to fix known Amazon
-schema bugs; parses rate limits out of documentation prose; emits RBS by
+schema bugs; emits RBS by
 introspecting generated classes via the `structure` gem; handles JSON
 notification/report/feed schemas and Data Kiosk GraphQL.
 
@@ -64,7 +64,6 @@ Classes that construct/build generated code:
 ### Parsers (`parsers/`)
 Classes that parse/extract information from specs:
 - **`json_schema_extractor.rb`** - Extract nested types from JSON schemas
-- **`rate_limit_parser.rb`** - Parse rate limit info from OpenAPI specs
 - **`path.rb`** - Parse OpenAPI path definitions into operations
 
 ### Resolvers (`resolvers/`)

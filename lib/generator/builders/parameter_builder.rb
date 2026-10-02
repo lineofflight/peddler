@@ -2,45 +2,22 @@
 
 module Generator
   class ParameterBuilder
-    def initialize(operation, shared_parameters, rate_limit)
+    def initialize(operation, shared_parameters)
       @operation = operation
       @shared_parameters = shared_parameters
-      @rate_limit = rate_limit
     end
 
     def build
       parameters = (@shared_parameters + (@operation["parameters"] || [])).uniq { |p| p["name"] }
       parameters = parameters.select { |p| p["name"] }
 
-      # Add notification_type first since it's required
+      # Add notification_type since it's required
       parameters << build_notification_type_param if needs_notification_type?
-
-      # Add rate_limit last since it's optional
-      if @rate_limit
-        parameters << build_rate_limit_param
-      end
 
       parameters
     end
 
     private
-
-    def build_rate_limit_param
-      param = {
-        "name" => "rate_limit",
-        "type" => "Float",
-        "required" => false,
-        "description" => "Requests per second",
-      }
-
-      # Only add default if we have a known rate limit value (not :unknown)
-      # The default should be a Float value
-      if @rate_limit.is_a?(Float)
-        param["default"] = @rate_limit
-      end
-
-      param
-    end
 
     # Builds a notification_type parameter for operations that reference the NotificationType parameter.
     # This is needed because the OpenAPI $ref doesn't get resolved during our generation process,

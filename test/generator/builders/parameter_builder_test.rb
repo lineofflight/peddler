@@ -13,9 +13,8 @@ module Generator
         ],
       }
       shared_parameters = []
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       assert_equal(2, params.size)
@@ -31,9 +30,8 @@ module Generator
         ],
       }
       shared_parameters = []
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       assert(params[0]["required"])
@@ -49,9 +47,8 @@ module Generator
       shared_parameters = [
         { "name" => "marketplace_id", "in" => "query", "required" => true, "type" => "string" },
       ]
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       assert_equal(2, params.size)
@@ -68,109 +65,13 @@ module Generator
       shared_parameters = [
         { "name" => "id", "in" => "path", "required" => true, "type" => "string" },
       ]
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       # Should deduplicate based on name
       assert_equal(1, params.size)
       assert_equal("id", params[0]["name"])
-    end
-
-    def test_rate_limit_parameter_exists
-      operation = { "parameters" => [] }
-      shared_parameters = []
-      rate_limit = 0.5
-
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
-      params = builder.build
-
-      rate_limit_param = params.find { |p| p["name"] == "rate_limit" }
-
-      assert(rate_limit_param)
-    end
-
-    def test_rate_limit_parameter_properties
-      operation = { "parameters" => [] }
-      shared_parameters = []
-      rate_limit = 0.5
-
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
-      params = builder.build
-
-      rate_limit_param = params.find { |p| p["name"] == "rate_limit" }
-
-      assert_equal("Float", rate_limit_param["type"])
-      refute(rate_limit_param["required"])
-      assert_equal("Requests per second", rate_limit_param["description"])
-    end
-
-    def test_rate_limit_parameter_default_value
-      operation = { "parameters" => [] }
-      shared_parameters = []
-      rate_limit = 0.5
-
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
-      params = builder.build
-
-      rate_limit_param = params.find { |p| p["name"] == "rate_limit" }
-
-      assert_in_delta(0.5, rate_limit_param["default"])
-    end
-
-    def test_rate_limit_with_unknown_value_exists
-      operation = { "parameters" => [] }
-      shared_parameters = []
-      rate_limit = :unknown
-
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
-      params = builder.build
-
-      rate_limit_param = params.find { |p| p["name"] == "rate_limit" }
-
-      assert(rate_limit_param)
-    end
-
-    def test_rate_limit_with_unknown_value_properties
-      operation = { "parameters" => [] }
-      shared_parameters = []
-      rate_limit = :unknown
-
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
-      params = builder.build
-
-      rate_limit_param = params.find { |p| p["name"] == "rate_limit" }
-
-      assert_equal("Float", rate_limit_param["type"])
-      refute(rate_limit_param["required"])
-      assert_equal("Requests per second", rate_limit_param["description"])
-    end
-
-    def test_rate_limit_with_unknown_value_no_default
-      operation = { "parameters" => [] }
-      shared_parameters = []
-      rate_limit = :unknown
-
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
-      params = builder.build
-
-      rate_limit_param = params.find { |p| p["name"] == "rate_limit" }
-
-      refute(rate_limit_param.key?("default")) # Should not have default for :unknown
-    end
-
-    def test_no_rate_limit_parameter_when_nil
-      operation = { "parameters" => [] }
-      shared_parameters = []
-      rate_limit = nil
-
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
-      params = builder.build
-
-      rate_limit_param = params.find { |p| p["name"] == "rate_limit" }
-
-      refute(rate_limit_param)
     end
 
     def test_notification_type_parameter_added
@@ -181,9 +82,8 @@ module Generator
         ],
       }
       shared_parameters = []
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       # Should add notification_type parameter
@@ -200,9 +100,8 @@ module Generator
         ],
       }
       shared_parameters = []
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       notification_param = params.find { |p| p["name"] == "notification_type" }
@@ -219,9 +118,8 @@ module Generator
         ],
       }
       shared_parameters = []
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       # Should not add notification_type parameter
@@ -240,40 +138,19 @@ module Generator
       shared_parameters = [
         { "name" => "marketplace_id", "in" => "query", "required" => true, "type" => "string" },
       ]
-      rate_limit = 1.0
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       # Shared parameter should be first
       assert_equal("marketplace_id", params[0]["name"])
     end
 
-    def test_parameter_order_rate_limit_last
-      operation = {
-        "parameters" => [
-          { "$ref" => "#/parameters/NotificationType" },
-          { "name" => "id", "in" => "path", "required" => true, "type" => "string" },
-        ],
-      }
-      shared_parameters = [
-        { "name" => "marketplace_id", "in" => "query", "required" => true, "type" => "string" },
-      ]
-      rate_limit = 1.0
-
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
-      params = builder.build
-
-      # Rate limit should be last
-      assert_equal("rate_limit", params.last["name"])
-    end
-
     def test_empty_operation_with_empty_shared
       operation = { "parameters" => [] }
       shared_parameters = []
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       assert_empty(params)
@@ -288,9 +165,8 @@ module Generator
         ],
       }
       shared_parameters = []
-      rate_limit = nil
 
-      builder = ParameterBuilder.new(operation, shared_parameters, rate_limit)
+      builder = ParameterBuilder.new(operation, shared_parameters)
       params = builder.build
 
       # Should only include parameter with name

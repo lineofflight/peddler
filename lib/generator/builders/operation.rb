@@ -6,7 +6,6 @@ require_relative "../support/formatter"
 require_relative "../support/naming"
 require_relative "parameter_builder"
 require_relative "response_model"
-require_relative "../parsers/rate_limit_parser"
 
 module Generator
   class Operation
@@ -157,11 +156,7 @@ module Generator
     end
 
     def parameters
-      @parameters ||= ParameterBuilder.new(operation, path.parameters, rate_limit).build
-    end
-
-    def rate_limit
-      @rate_limit ||= RateLimitParser.new(operation).parse
+      @parameters ||= ParameterBuilder.new(operation, path.parameters).build
     end
 
     private
