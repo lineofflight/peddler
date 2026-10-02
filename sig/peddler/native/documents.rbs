@@ -7,6 +7,7 @@ module Peddler
 
     class DocumentError < StandardError
     end
+
     class DocumentTimeoutError < DocumentError
     end
 
@@ -70,6 +71,7 @@ module Peddler
   interface _DocumentIO
     def read: (Integer length) -> String?
   end
+
   class Client
     def download_document: [T] (String url, **untyped transfer_options) { (Native::Document document) -> T } -> T
                          | (String url, **untyped transfer_options) -> Native::Document
