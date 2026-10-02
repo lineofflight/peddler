@@ -117,22 +117,47 @@ struct State {
     config: Config,
 }
 
-#[magnus::wrap(class = "Peddler::Native::Engine", free_immediately)]
-struct Engine {
+/// What a native handle holds. Only the process that created it may reach it.
+struct ForkOwned<T> {
     pid: u32,
-    state: ManuallyDrop<Arc<State>>,
+    value: ManuallyDrop<T>,
 }
 
-impl Drop for Engine {
+impl<T> ForkOwned<T> {
+    fn new(value: T) -> Self {
+        Self {
+            pid: std::process::id(),
+            value: ManuallyDrop::new(value),
+        }
+    }
+
+    /// The value, once the fork guard has passed. There is no other way to it.
+    fn get(&self, ruby: &Ruby) -> Result<&T, Error> {
+        if self.pid != std::process::id() {
+            return Err(native_error(
+                ruby,
+                "ForkError",
+                "create a new client after fork",
+            ));
+        }
+        Ok(&self.value)
+    }
+}
+
+impl<T> Drop for ForkOwned<T> {
     fn drop(&mut self) {
         if self.pid == std::process::id() {
-            // SAFETY: this field is dropped exactly once, only in its creator
-            // process. The child must leak all inherited state, including the
-            // reqwest client: its destructor may touch inherited locks.
-            unsafe { ManuallyDrop::drop(&mut self.state) };
+            // SAFETY: the value is dropped exactly once, only in its creator
+            // process. A fork child must leak all inherited state, including the
+            // reqwest client, sockets and the runtime: their destructors may touch
+            // inherited locks.
+            unsafe { ManuallyDrop::drop(&mut self.value) };
         }
     }
 }
+
+#[magnus::wrap(class = "Peddler::Native::Engine", free_immediately)]
+struct Engine(ForkOwned<Arc<State>>);
 
 fn native_error(ruby: &Ruby, name: &str, message: &str) -> Error {
     let class = ruby
@@ -159,14 +184,11 @@ impl Engine {
         let client = config
             .client(&shared.pool)
             .map_err(|error| transport_error(ruby, error))?;
-        Ok(Self {
-            pid: std::process::id(),
-            state: ManuallyDrop::new(Arc::new(State {
-                client,
-                shared,
-                config,
-            })),
-        })
+        Ok(Self(ForkOwned::new(Arc::new(State {
+            client,
+            shared,
+            config,
+        }))))
     }
 
     fn from_config(ruby: &Ruby, json: String) -> Result<Self, Error> {
@@ -177,10 +199,10 @@ impl Engine {
 
     /// The same configuration with one change, on the same pool and runtime.
     fn view(ruby: &Ruby, engine: &Self, change: impl FnOnce(&mut Config)) -> Result<Self, Error> {
-        documents::guard(ruby, engine.pid)?;
-        let mut config = engine.state.config.clone();
+        let state = engine.0.get(ruby)?;
+        let mut config = state.config.clone();
         change(&mut config);
-        Self::build(ruby, engine.state.shared, config)
+        Self::build(ruby, state.shared, config)
     }
 
     fn with_base_url(ruby: &Ruby, engine: &Self, base_url: String) -> Result<Self, Error> {
@@ -229,8 +251,7 @@ impl Engine {
     }
 
     fn execute(ruby: &Ruby, engine: &Self, work: Work) -> Result<ResponseParts, Error> {
-        documents::guard(ruby, engine.pid)?;
-        let state = Arc::clone(&engine.state);
+        let state = Arc::clone(engine.0.get(ruby)?);
         let result = gvl::wait(ruby, "TransportError", state.shared, async move {
             match work {
                 Work::Raw(request) => state.client.execute(request).await,

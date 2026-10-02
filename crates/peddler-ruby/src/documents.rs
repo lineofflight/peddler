@@ -1,5 +1,5 @@
 //! Native document handles: owned streams, shared runtime and bounded uploads.
-use super::{Completed, Engine, Response, Shared, gvl, native_error};
+use super::{Completed, Engine, ForkOwned, Response, Shared, gvl, native_error};
 use bytes::Bytes;
 use futures_util::{FutureExt, StreamExt};
 use magnus::{Error, IntoValue, RClass, RModule, RString, Ruby, method, prelude::*};
@@ -8,7 +8,6 @@ use peddler::documents::{
     UploadResponse,
 };
 use std::{
-    mem::ManuallyDrop,
     panic::AssertUnwindSafe,
     sync::{Arc, Mutex},
     time::Duration,
@@ -26,17 +25,6 @@ pub(super) fn error(ruby: &Ruby, error: DocumentError) -> Error {
         }
         DocumentError::Timeout => native_error(ruby, "DocumentTimeoutError", &message),
         _ => native_error(ruby, "DocumentError", &message),
-    }
-}
-pub(super) fn guard(ruby: &Ruby, pid: u32) -> Result<(), Error> {
-    if pid != std::process::id() {
-        Err(native_error(
-            ruby,
-            "ForkError",
-            "create a new client after fork",
-        ))
-    } else {
-        Ok(())
     }
 }
 fn misuse(ruby: &Ruby) -> Error {
@@ -120,19 +108,7 @@ struct DocumentOwner {
     truncated: bool,
 }
 #[magnus::wrap(class = "Peddler::Native::DocumentHandle", free_immediately)]
-pub(super) struct Document {
-    pid: u32,
-    owner: ManuallyDrop<DocumentOwner>,
-}
-impl Drop for Document {
-    fn drop(&mut self) {
-        if self.pid == std::process::id() {
-            // SAFETY: only the creator drops sockets/runtime/locks. A fork child
-            // intentionally leaks inherited state rather than touching it.
-            unsafe { ManuallyDrop::drop(&mut self.owner) };
-        }
-    }
-}
+pub(super) struct Document(ForkOwned<DocumentOwner>);
 // Lives outside protect: interrupted reads close the handle as well as the owned
 // active future. Mutexes never cover await, stream Drop or Ruby calls.
 struct ReadLease {
@@ -168,76 +144,61 @@ enum Row {
 }
 impl Document {
     fn download(ruby: &Ruby, engine: &Engine, url: String, json: String) -> Result<Self, Error> {
-        guard(ruby, engine.pid)?;
+        let state = engine.0.get(ruby)?;
         let options = Config::parse(ruby, &json)?;
-        let client = engine.state.client.documents();
-        let shared = engine.state.shared;
+        let client = state.client.documents();
+        let shared = state.shared;
         let download = gvl::wait(ruby, "DocumentError", shared, async move {
             client.download(&url, options).await
         })?
         .map_err(|e| error(ruby, e))?;
-        Ok(Self::from_download(engine.pid, shared, download))
+        Ok(Self::from_download(shared, download))
     }
     /// Shared by raw URL downloads and the ID-based workflow downloads.
-    pub(super) fn from_download(pid: u32, shared: &'static Shared, download: Download) -> Self {
-        Self {
-            pid,
-            owner: ManuallyDrop::new(DocumentOwner {
-                status: download.status(),
-                headers: headers(download.headers()),
-                charset: download.charset(),
-                error_body: download.error_body().map(<[u8]>::to_vec),
-                truncated: download.error_body_truncated(),
-                shared,
-                stream: Arc::new(Mutex::new(StreamState::Fresh(Box::new(download)))),
-                close_signal: Arc::new(Notify::new()),
-            }),
-        }
+    pub(super) fn from_download(shared: &'static Shared, download: Download) -> Self {
+        Self(ForkOwned::new(DocumentOwner {
+            status: download.status(),
+            headers: headers(download.headers()),
+            charset: download.charset(),
+            error_body: download.error_body().map(<[u8]>::to_vec),
+            truncated: download.error_body_truncated(),
+            shared,
+            stream: Arc::new(Mutex::new(StreamState::Fresh(Box::new(download)))),
+            close_signal: Arc::new(Notify::new()),
+        }))
     }
     fn close(ruby: &Ruby, document: &Self) -> Result<(), Error> {
-        guard(ruby, document.pid)?;
-        let old = std::mem::replace(
-            &mut *document.owner.stream.lock().unwrap(),
-            StreamState::Closed,
-        );
+        let owner = document.0.get(ruby)?;
+        let old = std::mem::replace(&mut *owner.stream.lock().unwrap(), StreamState::Closed);
         drop(old);
-        document.owner.close_signal.notify_waiters();
+        owner.close_signal.notify_waiters();
         Ok(())
     }
     fn closed(ruby: &Ruby, document: &Self) -> Result<bool, Error> {
-        guard(ruby, document.pid)?;
-        Ok(matches!(
-            *document.owner.stream.lock().unwrap(),
-            StreamState::Closed
-        ))
+        let owner = document.0.get(ruby)?;
+        Ok(matches!(*owner.stream.lock().unwrap(), StreamState::Closed))
     }
     fn status(ruby: &Ruby, document: &Self) -> Result<u16, Error> {
-        guard(ruby, document.pid)?;
-        Ok(document.owner.status)
+        Ok(document.0.get(ruby)?.status)
     }
     fn headers(ruby: &Ruby, document: &Self) -> Result<Vec<(String, String)>, Error> {
-        guard(ruby, document.pid)?;
-        Ok(document.owner.headers.clone())
+        Ok(document.0.get(ruby)?.headers.clone())
     }
     fn charset(ruby: &Ruby, document: &Self) -> Result<Option<String>, Error> {
-        guard(ruby, document.pid)?;
-        Ok(document.owner.charset.clone())
+        Ok(document.0.get(ruby)?.charset.clone())
     }
     fn error_body(ruby: &Ruby, document: &Self) -> Result<Option<RString>, Error> {
-        guard(ruby, document.pid)?;
-        Ok(document
-            .owner
+        let owner = document.0.get(ruby)?;
+        Ok(owner
             .error_body
             .as_ref()
             .map(|bytes| ruby.str_from_slice(bytes)))
     }
     fn truncated(ruby: &Ruby, document: &Self) -> Result<bool, Error> {
-        guard(ruby, document.pid)?;
-        Ok(document.owner.truncated)
+        Ok(document.0.get(ruby)?.truncated)
     }
-    fn take(ruby: &Ruby, document: &Self) -> Result<(ReadLease, StreamState), Error> {
-        guard(ruby, document.pid)?;
-        let mut state = document.owner.stream.lock().unwrap();
+    fn take(ruby: &Ruby, owner: &DocumentOwner) -> Result<(ReadLease, StreamState), Error> {
+        let mut state = owner.stream.lock().unwrap();
         if matches!(*state, StreamState::Closed | StreamState::Busy) {
             drop(state);
             return Err(misuse(ruby));
@@ -245,7 +206,7 @@ impl Document {
         let owned = std::mem::replace(&mut *state, StreamState::Busy);
         Ok((
             ReadLease {
-                state: Arc::clone(&document.owner.stream),
+                state: Arc::clone(&owner.stream),
                 restored: false,
             },
             owned,
@@ -258,7 +219,8 @@ impl Document {
         consistent: bool,
         charset: Option<String>,
     ) -> Result<Option<magnus::Value>, Error> {
-        let (mut lease, state) = Self::take(ruby, document)?;
+        let owner = document.0.get(ruby)?;
+        let (mut lease, state) = Self::take(ruby, owner)?;
         let mut state = match (mode.as_str(), state) {
             ("chunks", StreamState::Fresh(value)) => StreamState::Chunks((*value).into_chunks()),
             ("jsonl", StreamState::Fresh(value)) => StreamState::Jsonl((*value).into_jsonl()),
@@ -271,9 +233,9 @@ impl Document {
             | ("tsv", state @ StreamState::Tsv(_)) => state,
             _ => return Err(misuse(ruby)),
         };
-        let closed = Arc::clone(&document.owner.stream);
-        let signal = Arc::clone(&document.owner.close_signal);
-        let (state, row) = gvl::wait(ruby, "DocumentError", document.owner.shared, async move {
+        let closed = Arc::clone(&owner.stream);
+        let signal = Arc::clone(&owner.close_signal);
+        let (state, row) = gvl::wait(ruby, "DocumentError", owner.shared, async move {
             let read = async {
                 match &mut state {
                     StreamState::Chunks(stream) => stream
@@ -309,13 +271,14 @@ impl Document {
         }))
     }
     fn json(ruby: &Ruby, document: &Self, limit: usize) -> Result<String, Error> {
-        let (_lease, state) = Self::take(ruby, document)?;
+        let owner = document.0.get(ruby)?;
+        let (_lease, state) = Self::take(ruby, owner)?;
         let StreamState::Fresh(value) = state else {
             return Err(misuse(ruby));
         };
-        let closed = Arc::clone(&document.owner.stream);
-        let signal = Arc::clone(&document.owner.close_signal);
-        let result = gvl::wait(ruby, "DocumentError", document.owner.shared, async move {
+        let closed = Arc::clone(&owner.stream);
+        let signal = Arc::clone(&owner.close_signal);
+        let result = gvl::wait(ruby, "DocumentError", owner.shared, async move {
             tokio::select! {
                 result = (*value).json(limit) => result,
                 () = wait_closed(closed, signal) => Err(DocumentError::Transport),
@@ -383,19 +346,7 @@ impl Drop for UploadOwner {
     }
 }
 #[magnus::wrap(class = "Peddler::Native::UploadHandle", free_immediately)]
-pub(super) struct Upload {
-    pid: u32,
-    owner: ManuallyDrop<UploadOwner>,
-}
-impl Drop for Upload {
-    fn drop(&mut self) {
-        if self.pid == std::process::id() {
-            // SAFETY: only the creator drops sockets/runtime/locks. A fork child
-            // intentionally leaks inherited state rather than touching it.
-            unsafe { ManuallyDrop::drop(&mut self.owner) };
-        }
-    }
-}
+pub(super) struct Upload(ForkOwned<UploadOwner>);
 impl Upload {
     fn start(
         ruby: &Ruby,
@@ -406,22 +357,22 @@ impl Upload {
         headers: Vec<(String, String)>,
         content_length: Option<u64>,
     ) -> Result<Self, Error> {
-        guard(ruby, engine.pid)?;
+        let state = engine.0.get(ruby)?;
         let options = UploadOptions {
             transfer: Config::parse(ruby, &config)?,
             content_type,
             headers,
             content_length,
         };
-        let client = engine.state.client.documents();
-        Self::spawn(engine, None, move |source| async move {
+        let client = state.client.documents();
+        Self::spawn(state.shared, None, move |source| async move {
             client.upload(&url, source, options).await
         })
     }
     /// Start a bounded upload task whose body is fed through a capacity-1 channel.
     /// `make` builds the transfer future from the owned source stream.
     pub(super) fn spawn<F, Fut>(
-        engine: &Engine,
+        shared: &'static Shared,
         document_id: Option<String>,
         make: F,
     ) -> Result<Self, Error>
@@ -429,7 +380,6 @@ impl Upload {
         F: FnOnce(UploadSource) -> Fut,
         Fut: std::future::Future<Output = Result<UploadResponse, DocumentError>> + Send + 'static,
     {
-        let shared = engine.state.shared;
         let (sender, receiver) = mpsc::channel::<Bytes>(1);
         let completion = Arc::new(Completion {
             result: Mutex::new(UploadState::Pending),
@@ -460,40 +410,36 @@ impl Upload {
         });
         let abort = worker.abort_handle();
         drop(worker);
-        Ok(Self {
-            pid: engine.pid,
-            owner: ManuallyDrop::new(UploadOwner {
-                shared,
-                document_id,
-                sender: Mutex::new(Some(sender)),
-                completion,
-                abort,
-            }),
-        })
+        Ok(Self(ForkOwned::new(UploadOwner {
+            shared,
+            document_id,
+            sender: Mutex::new(Some(sender)),
+            completion,
+            abort,
+        })))
     }
     fn document_id(ruby: &Ruby, upload: &Self) -> Result<Option<String>, Error> {
-        guard(ruby, upload.pid)?;
-        Ok(upload.owner.document_id.clone())
+        Ok(upload.0.get(ruby)?.document_id.clone())
     }
     fn completed(ruby: &Ruby, upload: &Self) -> Result<bool, Error> {
-        guard(ruby, upload.pid)?;
+        let owner = upload.0.get(ruby)?;
         Ok(!matches!(
-            *upload.owner.completion.result.lock().unwrap(),
+            *owner.completion.result.lock().unwrap(),
             UploadState::Pending
         ))
     }
     fn push(ruby: &Ruby, upload: &Self, bytes: RString) -> Result<bool, Error> {
-        guard(ruby, upload.pid)?;
+        let owner = upload.0.get(ruby)?;
         // SAFETY: bounded Ruby bytes copied under GVL; none escape into Tokio.
         let data = unsafe { bytes.as_slice() };
         if data.len() > 64 << 10 {
             return Err(error(ruby, DocumentError::InvalidConfig));
         }
         let data = Bytes::copy_from_slice(data);
-        let sender = upload.owner.sender.lock().unwrap().as_ref().cloned();
+        let sender = owner.sender.lock().unwrap().as_ref().cloned();
         let sender = sender.ok_or_else(|| misuse(ruby))?;
-        let completion = Arc::clone(&upload.owner.completion);
-        gvl::wait(ruby, "DocumentError", upload.owner.shared, async move {
+        let completion = Arc::clone(&owner.completion);
+        gvl::wait(ruby, "DocumentError", owner.shared, async move {
             tokio::select! { biased;
                 () = completion.ready() => false,
                 permit = sender.reserve() => match permit { Ok(permit) => { permit.send(data); true }, Err(_) => false },
@@ -501,11 +447,11 @@ impl Upload {
         })
     }
     fn finish(ruby: &Ruby, upload: &Self) -> Result<UploadParts, Error> {
-        guard(ruby, upload.pid)?;
-        let sender = upload.owner.sender.lock().unwrap().take();
+        let owner = upload.0.get(ruby)?;
+        let sender = owner.sender.lock().unwrap().take();
         drop(sender);
-        let completion = Arc::clone(&upload.owner.completion);
-        let response = gvl::wait(ruby, "DocumentError", upload.owner.shared, async move {
+        let completion = Arc::clone(&owner.completion);
+        let response = gvl::wait(ruby, "DocumentError", owner.shared, async move {
             completion.ready().await;
             match std::mem::replace(&mut *completion.result.lock().unwrap(), UploadState::Taken) {
                 UploadState::Ready(result) => result,
@@ -528,15 +474,15 @@ impl Upload {
         ))
     }
     fn close(ruby: &Ruby, upload: &Self) -> Result<(), Error> {
-        guard(ruby, upload.pid)?;
-        upload.owner.abort.abort();
-        let mut state = upload.owner.completion.result.lock().unwrap();
+        let owner = upload.0.get(ruby)?;
+        owner.abort.abort();
+        let mut state = owner.completion.result.lock().unwrap();
         if matches!(*state, UploadState::Pending) {
             *state = UploadState::Ready(Err(DocumentError::UploadSource));
         }
         drop(state);
-        upload.owner.completion.notify.notify_waiters();
-        let sender = upload.owner.sender.lock().unwrap().take();
+        owner.completion.notify.notify_waiters();
+        let sender = owner.sender.lock().unwrap().take();
         drop(sender);
         Ok(())
     }

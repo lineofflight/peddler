@@ -1,7 +1,7 @@
 //! Document ID lifecycle helpers. Metadata, polling and transfer start run in Rust
 //! under one deadline; Ruby wraps the owned outputs and feeds upload chunks.
 use super::{Completed, Engine, ResponseParts, documents, gvl, native_error};
-use documents::{Config, Document, Upload, guard};
+use documents::{Config, Document, Upload};
 use magnus::{Error, RClass, RModule, Ruby, method, prelude::*};
 use peddler::{
     documents::{Error as DocumentError, UploadOptions},
@@ -58,10 +58,10 @@ fn download(
     id: String,
     config: String,
 ) -> Result<Document, Error> {
-    guard(ruby, engine.pid)?;
+    let state = engine.0.get(ruby)?;
     let options = Config::parse(ruby, &config)?;
-    let workflows = engine.state.client.workflows();
-    let shared = engine.state.shared;
+    let workflows = state.client.workflows();
+    let shared = state.shared;
     let download = gvl::wait(ruby, "WorkflowError", shared, async move {
         match kind {
             Kind::Report => workflows.download_report_document(&id, options).await,
@@ -70,7 +70,7 @@ fn download(
         }
     })?
     .map_err(|error| workflow_error(ruby, error))?;
-    Ok(Document::from_download(engine.pid, shared, download))
+    Ok(Document::from_download(shared, download))
 }
 fn download_report(
     ruby: &Ruby,
@@ -105,14 +105,14 @@ fn wait(
     interval: f64,
     timeout: f64,
 ) -> Result<ResponseParts, Error> {
-    guard(ruby, engine.pid)?;
+    let state = engine.0.get(ruby)?;
     let invalid = || Error::new(ruby.exception_arg_error(), "invalid workflow configuration");
     let options = WaitOptions {
         interval: Duration::try_from_secs_f64(interval).map_err(|_| invalid())?,
         timeout: Duration::try_from_secs_f64(timeout).map_err(|_| invalid())?,
     };
-    let workflows = engine.state.client.workflows();
-    let result = gvl::wait(ruby, "WorkflowError", engine.state.shared, async move {
+    let workflows = state.client.workflows();
+    let result = gvl::wait(ruby, "WorkflowError", state.shared, async move {
         match kind {
             Kind::Report => workflows
                 .wait_for_report(&id, options)
@@ -174,21 +174,21 @@ fn start_feed_upload(
     config: String,
     content_length: Option<u64>,
 ) -> Result<Upload, Error> {
-    guard(ruby, engine.pid)?;
+    let state = engine.0.get(ruby)?;
     let options = UploadOptions {
         transfer: Config::parse(ruby, &config)?,
         content_type: content_type.clone(),
         headers: Vec::new(),
         content_length,
     };
-    let workflows = engine.state.client.workflows();
+    let workflows = state.client.workflows();
     let create = options.clone();
-    let target = gvl::wait(ruby, "WorkflowError", engine.state.shared, async move {
+    let target = gvl::wait(ruby, "WorkflowError", state.shared, async move {
         workflows.create_feed_document(&content_type, &create).await
     })?
     .map_err(|error| workflow_error(ruby, error))?;
     let id = target.document_id.clone();
-    Upload::spawn(engine, Some(id), move |source| async move {
+    Upload::spawn(state.shared, Some(id), move |source| async move {
         match target.upload(source, options).await {
             Ok(uploaded) => Ok(uploaded.response),
             Err(WorkflowError::Upload { error, .. }) => Err(error),

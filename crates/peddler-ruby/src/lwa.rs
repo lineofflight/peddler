@@ -1,27 +1,14 @@
 //! Login with Amazon grants on the shared runtime and pool, one request each.
-use super::{Shared, documents::guard, gvl, native_error, shared};
+use super::{ForkOwned, Shared, gvl, native_error, shared};
 use magnus::{Error, RModule, Ruby, function, method, prelude::*};
 use peddler::auth::{AuthError, LwaClient};
-use std::{mem::ManuallyDrop, time::Duration};
+use std::time::Duration;
 
 /// Access token, refresh token when LWA sends one, token type and lifetime in seconds.
 type Tokens = (String, Option<String>, String, u64);
 
 #[magnus::wrap(class = "Peddler::Native::LwaEngine", free_immediately)]
-struct LwaEngine {
-    pid: u32,
-    shared: &'static Shared,
-    client: ManuallyDrop<LwaClient>,
-}
-impl Drop for LwaEngine {
-    fn drop(&mut self) {
-        if self.pid == std::process::id() {
-            // SAFETY: only the creator drops the client; fork children leak
-            // inherited state rather than touching inherited locks.
-            unsafe { ManuallyDrop::drop(&mut self.client) };
-        }
-    }
-}
+struct LwaEngine(ForkOwned<(&'static Shared, LwaClient)>);
 
 fn auth_error(ruby: &Ruby, error: AuthError) -> Error {
     let message = error.to_string();
@@ -69,18 +56,13 @@ impl LwaEngine {
         let client =
             LwaClient::with_pool(&shared.pool, &client_id, &client_secret, &endpoint, timeout)
                 .map_err(|e| error(ruby, e))?;
-        Ok(Self {
-            pid: std::process::id(),
-            shared,
-            client: ManuallyDrop::new(client),
-        })
+        Ok(Self(ForkOwned::new((shared, client))))
     }
 
     fn grant(ruby: &Ruby, engine: &Self, grant: Grant) -> Result<Tokens, Error> {
-        // Check before reading any inherited Rust state.
-        guard(ruby, engine.pid)?;
-        let client = LwaClient::clone(&engine.client);
-        let result = gvl::wait(ruby, "TransportError", engine.shared, async move {
+        let (shared, client) = engine.0.get(ruby)?;
+        let client = client.clone();
+        let result = gvl::wait(ruby, "TransportError", shared, async move {
             match grant {
                 Grant::Code(code, redirect_uri) => {
                     client
