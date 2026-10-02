@@ -288,26 +288,14 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
 struct Config {
     base_url: String,
     /// Absent when Ruby holds a token source, which is never called from Rust.
-    #[serde(default)]
     access_token: Option<String>,
-    #[serde(default = "default_timeout")]
     timeout: f64,
-    #[serde(default)]
     retries: u32,
-    #[serde(default = "default_delay")]
     retry_delay: f64,
-    #[serde(default = "default_timeout")]
     max_retry_delay: f64,
     /// How the gem identifies itself to the Selling Partner API. Without one, requests
     /// carry the pool's.
-    #[serde(default)]
     user_agent: Option<String>,
-}
-fn default_timeout() -> f64 {
-    30.0
-}
-fn default_delay() -> f64 {
-    0.2
 }
 impl Config {
     fn client(&self, pool: &Pool) -> Result<Client, peddler::Error> {

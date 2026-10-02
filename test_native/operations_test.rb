@@ -329,7 +329,8 @@ class OperationsTest < NativeTest
   private
 
   def native_engine(url)
-    Peddler::Native.const_get(:Engine).from_config(JSON.generate(base_url: url, access_token: "local-secret", timeout: 5))
+    config = { base_url: url, access_token: "local-secret", timeout: 5, retries: 0, retry_delay: 0.2, max_retry_delay: 30 }
+    Peddler::Native.const_get(:Engine).from_config(JSON.generate(config))
   end
 end
 # rubocop:enable Minitest/MultipleAssertions

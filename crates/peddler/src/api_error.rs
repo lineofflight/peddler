@@ -3,19 +3,7 @@
 use crate::Response;
 use std::fmt;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum ApiErrorKind {
-    Unauthorized,
-    Forbidden,
-    NotFound,
-    Throttled,
-    Server,
-    Client,
-    UnexpectedStatus,
-}
-
 pub struct ApiError {
-    pub kind: ApiErrorKind,
     pub response: Response,
     pub code: Option<String>,
     pub request_id: Option<String>,
@@ -24,7 +12,6 @@ pub struct ApiError {
 impl fmt::Debug for ApiError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.debug_struct("ApiError")
-            .field("kind", &self.kind)
             .field("status", &self.response.status)
             .finish_non_exhaustive()
     }
@@ -32,11 +19,7 @@ impl fmt::Debug for ApiError {
 
 impl fmt::Display for ApiError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "API response status {} ({:?})",
-            self.response.status, self.kind
-        )
+        write!(f, "API response status {}", self.response.status)
     }
 }
 
@@ -44,16 +27,9 @@ impl std::error::Error for ApiError {}
 
 impl Response {
     pub fn error_for_status(self) -> Result<Self, ApiError> {
-        let kind = match self.status {
-            200..=299 => return Ok(self),
-            401 => ApiErrorKind::Unauthorized,
-            403 => ApiErrorKind::Forbidden,
-            404 => ApiErrorKind::NotFound,
-            429 => ApiErrorKind::Throttled,
-            400..=499 => ApiErrorKind::Client,
-            500..=599 => ApiErrorKind::Server,
-            _ => ApiErrorKind::UnexpectedStatus,
-        };
+        if (200..=299).contains(&self.status) {
+            return Ok(self);
+        }
         let code = serde_json::from_slice::<serde_json::Value>(&self.body)
             .ok()
             .and_then(|value| {
@@ -71,7 +47,6 @@ impl Response {
             .find(|(name, _)| name.eq_ignore_ascii_case("x-amzn-requestid"))
             .map(|(_, value)| value.clone());
         Err(ApiError {
-            kind,
             response: self,
             code,
             request_id,

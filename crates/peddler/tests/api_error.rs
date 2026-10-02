@@ -1,4 +1,4 @@
-use peddler::{Response, api_error::ApiErrorKind};
+use peddler::Response;
 
 fn response(status: u16, body: &[u8]) -> Response {
     Response {
@@ -25,23 +25,10 @@ fn success_retains_exact_response() {
 
 #[test]
 fn statuses_classify_without_requiring_json() {
-    for (status, kind) in [
-        (401, ApiErrorKind::Unauthorized),
-        (403, ApiErrorKind::Forbidden),
-        (404, ApiErrorKind::NotFound),
-        (429, ApiErrorKind::Throttled),
-        (500, ApiErrorKind::Server),
-        (599, ApiErrorKind::Server),
-        (400, ApiErrorKind::Client),
-        (499, ApiErrorKind::Client),
-        (100, ApiErrorKind::UnexpectedStatus),
-        (302, ApiErrorKind::UnexpectedStatus),
-        (600, ApiErrorKind::UnexpectedStatus),
-    ] {
+    for status in [401, 403, 404, 429, 500, 599, 400, 499, 100, 302, 600] {
         let error = response(status, &[0, 255, 128])
             .error_for_status()
             .unwrap_err();
-        assert_eq!(error.kind, kind);
         assert_eq!(error.response.status, status);
         assert_eq!(error.response.body, [0, 255, 128]);
         assert_eq!(error.response.headers[1].1, "first");
@@ -87,6 +74,5 @@ fn malformed_or_missing_fields_are_optional() {
         .unwrap_err();
         assert_eq!(error.code, None);
         assert_eq!(error.request_id, None);
-        assert_eq!(error.kind, ApiErrorKind::Client);
     }
 }

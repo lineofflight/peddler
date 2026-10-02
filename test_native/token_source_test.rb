@@ -208,7 +208,8 @@ class TokenSourceTest < NativeTest
 
   def test_an_engine_without_a_token_fails_closed
     serve_keep_alive do |url, accepted, _requests|
-      template = Peddler::Native.const_get(:Engine).from_config(JSON.generate(base_url: url))
+      config = { base_url: url, timeout: 30, retries: 0, retry_delay: 0.2, max_retry_delay: 30 }
+      template = Peddler::Native.const_get(:Engine).from_config(JSON.generate(config))
 
       [-> { template.request("GET", "/", [], nil) }, -> { template.operation("orders_v0.get_order", '{"order_id":"1"}') }].each do |call|
         assert_raises(ArgumentError, &call)
