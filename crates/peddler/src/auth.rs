@@ -17,6 +17,9 @@ use std::{
 };
 use tokio::{sync::Notify, time::Instant};
 
+mod lwa;
+pub use lwa::{LwaClient, LwaTokens};
+
 const BODY_LIMIT: usize = 64 * 1024;
 const SCOPE_LIMIT: usize = 128;
 

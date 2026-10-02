@@ -11,6 +11,7 @@ use std::{mem::ManuallyDrop, sync::Arc, time::Duration};
 
 mod documents;
 mod gvl;
+mod lwa;
 use tokio::runtime::{Builder, Runtime};
 
 type ErrorMetadata = (String, Option<String>, Option<String>);
@@ -332,6 +333,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     engine.define_method("operation", method!(Engine::operation, 2))?;
     documents::init(ruby, native, engine)?;
+    lwa::init(ruby, native)?;
     Ok(())
 }
 

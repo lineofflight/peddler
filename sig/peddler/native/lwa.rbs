@@ -1,0 +1,32 @@
+module Peddler
+  module Native
+    class LwaEngine
+      def self.new: (String client_id, String client_secret, Numeric timeout, String endpoint) -> LwaEngine
+      def exchange_authorization_code: (String code, String? redirect_uri) -> [String, String, String, Integer]
+    end
+
+    class LwaTokens
+      attr_reader access_token: String
+      attr_reader refresh_token: String
+      attr_reader token_type: String
+      attr_reader expires_in: Integer
+      def initialize: (String access_token, String refresh_token, String token_type, Integer expires_in) -> void
+      def to_h: () -> { access_token: String, refresh_token: String, token_type: String, expires_in: Integer }
+      def inspect: () -> String
+      def to_s: () -> String
+    end
+
+    class LWA
+      @engine: LwaEngine
+      DEFAULT_ENDPOINT: String
+      def initialize: (client_id: String, client_secret: String, ?timeout: Numeric, ?lwa_endpoint: String) -> void
+      def exchange_authorization_code: (code: String, ?redirect_uri: String?) -> LwaTokens
+      def inspect: () -> String
+      def to_s: () -> String
+
+      private
+
+      def raise_sanitized: (ArgumentError | TransportError | AuthenticationError | ForkError error) -> bot
+    end
+  end
+end

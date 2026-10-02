@@ -1,4 +1,6 @@
-use peddler::auth::{AuthError, AuthManager, Credentials, RestrictedResource, RestrictedScope};
+use peddler::auth::{
+    AuthError, AuthManager, Credentials, LwaClient, RestrictedResource, RestrictedScope,
+};
 use serde_json::{Value, json};
 use std::{sync::Arc, time::Duration};
 use tokio::{
@@ -78,6 +80,272 @@ fn scope(path: &str) -> RestrictedScope {
 
 fn lwa(token: &str, expiry: u64) -> String {
     json!({"access_token":token,"token_type":"bEaReR","expires_in":expiry}).to_string()
+}
+
+#[tokio::test]
+async fn onboarding_exact_form_and_tokens_support_managed_refresh() {
+    let body = json!({"access_token":"onboard-access","refresh_token":"onboard-refresh","token_type":"bEaReR","expires_in":3600}).to_string();
+    let (origin, task) = server(vec![
+        (200, body),
+        (200, lwa("managed-access", 3600)),
+        (200, "{}".into()),
+    ])
+    .await;
+    let onboarding = LwaClient::with_config(
+        "id+&é",
+        "secret+&雪",
+        &format!("{origin}/auth"),
+        Duration::from_secs(2),
+    )
+    .unwrap();
+    let tokens = onboarding
+        .clone()
+        .exchange_authorization_code(
+            "code+&λ",
+            Some("https://app.example/callback?state=a+b&x=雪"),
+        )
+        .await
+        .unwrap();
+    assert_eq!(tokens.access_token, "onboard-access");
+    assert_eq!(tokens.refresh_token, "onboard-refresh");
+    assert_eq!(tokens.token_type, "bEaReR");
+    assert_eq!(tokens.expires_in, 3600);
+    assert!(!format!("{tokens:?} {onboarding:?}").contains("onboard-access"));
+    assert!(!format!("{tokens:?} {onboarding:?}").contains("onboard-refresh"));
+    assert!(!format!("{onboarding:?}").contains("secret"));
+    let mut config = peddler::ClientConfig::new(
+        &origin,
+        Credentials::RefreshToken {
+            client_id: "id".into(),
+            client_secret: "secret".into(),
+            refresh_token: tokens.refresh_token,
+        },
+    );
+    config.lwa_endpoint = format!("{origin}/auth");
+    let client = peddler::Client::with_config(config).unwrap();
+    assert_eq!(
+        client
+            .execute(peddler::Request {
+                method: "GET".into(),
+                path: "/".into(),
+                query: vec![],
+                body: None
+            })
+            .await
+            .unwrap()
+            .status,
+        200
+    );
+    let requests = task.await.unwrap();
+    assert_eq!(
+        requests[0].split_once("\r\n\r\n").unwrap().1,
+        "grant_type=authorization_code&code=code%2B%26%CE%BB&client_id=id%2B%26%C3%A9&client_secret=secret%2B%26%E9%9B%AA&redirect_uri=https%3A%2F%2Fapp.example%2Fcallback%3Fstate%3Da%2Bb%26x%3D%E9%9B%AA"
+    );
+    assert!(!requests[0].contains("x-amz-access-token:"));
+    assert!(!requests[0].contains("authorization:"));
+    assert!(!requests[0].contains("accept: application/json"));
+    assert!(requests[1].contains("refresh_token=onboard-refresh"));
+    assert!(requests[2].contains("x-amz-access-token: managed-access"));
+}
+
+fn onboarding_body() -> Value {
+    json!({"access_token":"private-access","refresh_token":"private-refresh","token_type":"bearer","expires_in":3600})
+}
+
+#[tokio::test]
+async fn onboarding_validates_inputs_and_every_required_response_field() {
+    assert!(LwaClient::new("id", "secret").is_ok());
+    for (id, secret, endpoint, timeout) in [
+        (
+            "",
+            "secret",
+            "https://example.com/token",
+            Duration::from_secs(1),
+        ),
+        (
+            "id",
+            " ",
+            "https://example.com/token",
+            Duration::from_secs(1),
+        ),
+        (
+            "id",
+            "secret",
+            "http://example.com/token",
+            Duration::from_secs(1),
+        ),
+        (
+            "id",
+            "secret",
+            "https://private@example.com/token",
+            Duration::from_secs(1),
+        ),
+        (
+            "id",
+            "secret",
+            "https://example.com/token?private",
+            Duration::from_secs(1),
+        ),
+        ("id", "secret", "https://example.com/token", Duration::ZERO),
+    ] {
+        assert_eq!(
+            LwaClient::with_config(id, secret, endpoint, timeout).unwrap_err(),
+            AuthError::InvalidConfig
+        );
+    }
+    let client =
+        LwaClient::with_config("id", "secret", "http://127.0.0.1:1", Duration::from_secs(1))
+            .unwrap();
+    for (code, redirect) in [
+        ("", None),
+        (" ", None),
+        ("code", Some("relative")),
+        ("code", Some("http:127.0.0.1:1")),
+        ("code", Some("http:///127.0.0.1:1")),
+        ("code", Some("https://example.com/#private")),
+        ("code", Some("https://private@example.com/")),
+        ("code", Some("https://example.com/white space")),
+    ] {
+        assert_eq!(
+            client
+                .exchange_authorization_code(code, redirect)
+                .await
+                .unwrap_err(),
+            AuthError::InvalidConfig
+        );
+    }
+    let valid = onboarding_body();
+    let mut invalid = vec![];
+    for key in ["access_token", "refresh_token", "token_type", "expires_in"] {
+        let mut value = valid.clone();
+        value.as_object_mut().unwrap().remove(key);
+        invalid.push(value.to_string());
+    }
+    for (key, bad) in [
+        ("access_token", json!("")),
+        ("access_token", json!("bad\nvalue")),
+        ("refresh_token", json!(" ")),
+        ("refresh_token", json!("bad\nvalue")),
+        ("token_type", json!("basic")),
+        ("expires_in", json!(0)),
+        ("expires_in", json!(-1)),
+        ("expires_in", json!(1.5)),
+        ("expires_in", json!("3600")),
+        ("expires_in", json!(u64::MAX)),
+    ] {
+        let mut value = valid.clone();
+        value[key] = bad;
+        invalid.push(value.to_string());
+    }
+    invalid.extend(["private malformed".into(), "x".repeat(64 * 1024 + 1)]);
+    for body in invalid {
+        let (origin, task) = server(vec![(200, body)]).await;
+        let client =
+            LwaClient::with_config("id", "secret", &origin, Duration::from_secs(1)).unwrap();
+        let error = client
+            .exchange_authorization_code("private-code", None)
+            .await
+            .unwrap_err();
+        assert_eq!(error, AuthError::InvalidResponse);
+        assert!(!format!("{error:?} {error}").contains("private"));
+        assert!(std::error::Error::source(&error).is_none());
+        assert!(!task.await.unwrap()[0].contains("redirect_uri="));
+    }
+}
+
+#[tokio::test]
+async fn onboarding_rejection_has_no_body_source_retry_or_redirect() {
+    for status in [302, 429, 500] {
+        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+        let origin = format!("http://{}", listener.local_addr().unwrap());
+        let target = origin.clone();
+        let task = tokio::spawn(async move {
+            let (mut socket, _) = listener.accept().await.unwrap();
+            read_request(&mut socket).await;
+            socket.write_all(format!("HTTP/1.1 {status} Test\r\nLocation: {target}/redirect\r\nContent-Length: 12\r\nConnection: close\r\n\r\nprivate-code").as_bytes()).await.unwrap();
+            drop(socket);
+            assert!(
+                tokio::time::timeout(Duration::from_millis(100), listener.accept())
+                    .await
+                    .is_err()
+            );
+        });
+        let client =
+            LwaClient::with_config("id", "secret", &origin, Duration::from_secs(1)).unwrap();
+        let error = client
+            .exchange_authorization_code("private-code", None)
+            .await
+            .unwrap_err();
+        assert_eq!(error, AuthError::Rejected(status));
+        assert!(!format!("{error:?} {error}").contains("private"));
+        assert!(std::error::Error::source(&error).is_none());
+        task.await.unwrap();
+    }
+}
+
+#[tokio::test]
+async fn onboarding_body_timeout_and_cancellation_close_socket_then_recover() {
+    for cancel in [false, true] {
+        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+        let origin = format!("http://{}", listener.local_addr().unwrap());
+        let (started, mut arrived) = mpsc::channel(1);
+        let task = tokio::spawn(async move {
+            let (mut socket, _) = listener.accept().await.unwrap();
+            read_request(&mut socket).await;
+            socket
+                .write_all(b"HTTP/1.1 200 OK\r\nContent-Length: 1000\r\n\r\n{")
+                .await
+                .unwrap();
+            started.send(()).await.unwrap();
+            let mut byte = [0];
+            assert_eq!(
+                tokio::time::timeout(Duration::from_secs(2), socket.read(&mut byte))
+                    .await
+                    .unwrap()
+                    .unwrap(),
+                0
+            );
+            let (mut socket, _) = listener.accept().await.unwrap();
+            read_request(&mut socket).await;
+            let body = onboarding_body().to_string();
+            socket
+                .write_all(
+                    format!(
+                        "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}",
+                        body.len()
+                    )
+                    .as_bytes(),
+                )
+                .await
+                .unwrap();
+        });
+        let client = LwaClient::with_config(
+            "id",
+            "secret",
+            &origin,
+            Duration::from_millis(if cancel { 2000 } else { 50 }),
+        )
+        .unwrap();
+        let pending = client.clone();
+        let call =
+            tokio::spawn(async move { pending.exchange_authorization_code("code", None).await });
+        arrived.recv().await.unwrap();
+        if cancel {
+            call.abort();
+            assert!(call.await.unwrap_err().is_cancelled());
+        } else {
+            assert_eq!(call.await.unwrap().unwrap_err(), AuthError::Timeout);
+        }
+        assert_eq!(
+            client
+                .exchange_authorization_code("new-code", None)
+                .await
+                .unwrap()
+                .refresh_token,
+            "private-refresh"
+        );
+        task.await.unwrap();
+    }
 }
 
 fn rdt(token: &str, expiry: u64) -> String {

@@ -142,21 +142,7 @@ impl Client {
         if origin.host_str().is_none() || origin.path() != "/" {
             return Err(Error::InvalidRequest);
         }
-        let http = reqwest::Client::builder()
-            .timeout(timeout)
-            .redirect(reqwest::redirect::Policy::none())
-            .retry(reqwest::retry::never())
-            .no_gzip()
-            .no_brotli()
-            .no_deflate()
-            .no_zstd()
-            .user_agent(concat!(
-                "Peddler/",
-                env!("CARGO_PKG_VERSION"),
-                " (Language=Rust)"
-            ))
-            .build()
-            .map_err(|_| Error::Transport)?;
+        let http = build_http(timeout).map_err(|_| Error::Transport)?;
         let auth = AuthManager::new(http.clone(), &base_url, credentials, &lwa_endpoint)
             .map_err(classify_auth)?;
         let policy = RequestPolicy::new(policy).map_err(|_| Error::InvalidRequest)?;
@@ -369,4 +355,21 @@ fn classify_auth(error: AuthError) -> Error {
         AuthError::InvalidConfig => Error::InvalidRequest,
         error => Error::Authentication(error),
     }
+}
+
+fn build_http(timeout: Duration) -> Result<reqwest::Client, reqwest::Error> {
+    reqwest::Client::builder()
+        .timeout(timeout)
+        .redirect(reqwest::redirect::Policy::none())
+        .retry(reqwest::retry::never())
+        .no_gzip()
+        .no_brotli()
+        .no_deflate()
+        .no_zstd()
+        .user_agent(concat!(
+            "Peddler/",
+            env!("CARGO_PKG_VERSION"),
+            " (Language=Rust)"
+        ))
+        .build()
 }

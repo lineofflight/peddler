@@ -110,3 +110,4 @@ end
 require_relative "native/apis"
 
 require_relative "native/documents"
+require_relative "native/lwa"
