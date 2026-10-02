@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # An additional set of seller inputs required to purchase shipping.
       AdditionalSellerInputs = Structure.new do
         # @return [String] The name of the additional input field.

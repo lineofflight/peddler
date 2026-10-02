@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # A list of carton identifiers.
       ContainerIdentification = Structure.new do
         # @return [String] Container identification number that adheres to the definition of the container

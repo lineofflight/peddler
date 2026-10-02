@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Search refinements.
       Refinements = Structure.new do
         # @return [Array<BrandRefinement>] Brand search refinements.

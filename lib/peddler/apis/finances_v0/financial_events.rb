@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # All the information that is related to a financial event.
       FinancialEvents = Structure.new do
         # @return [Array<AdhocDisbursementEvent>]

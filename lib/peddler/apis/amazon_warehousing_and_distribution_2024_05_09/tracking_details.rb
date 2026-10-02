@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Tracking details for the shipment. If using SPD transportation, this can be for each case. If not using SPD
       # transportation, this is a single tracking entry for the entire shipment.
       TrackingDetails = Structure.new do

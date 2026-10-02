@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Summary of an AWD inbound shipment containing the shipment ID which can be used to fetch the actual shipment
       OutboundShipmentSummary = Structure.new do
         # @return [String] Order ID of AWD inbound order this inbound shipment belongs to

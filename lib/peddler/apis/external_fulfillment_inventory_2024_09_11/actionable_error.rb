@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # Error details you can take action on.
       ActionableError = Structure.new do
         # @return [String] The secondary level error type.

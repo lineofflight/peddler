@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # The request body for the listCases operation.
       ListCasesRequest = Structure.new do
         # @return [CaseFilters] Optional filters to narrow the returned collection. When absent, the operation returns

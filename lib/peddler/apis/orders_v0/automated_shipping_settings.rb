@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Contains information regarding the Shipping Settings Automation program, such as whether the order's shipping
       # settings were generated automatically, and what those settings are.
       AutomatedShippingSettings = Structure.new do

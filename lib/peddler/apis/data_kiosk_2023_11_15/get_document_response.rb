@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class DataKiosk20231115
+    module DataKiosk20231115
       # The response for the `getDocument` operation.
       GetDocumentResponse = Structure.new do
         # @return [String] The identifier for the Data Kiosk document. This identifier is unique only in combination

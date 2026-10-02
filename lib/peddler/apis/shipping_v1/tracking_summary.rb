@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The tracking summary.
       TrackingSummary = Structure.new do
         # @return [String] The derived status based on the events in the eventHistory.

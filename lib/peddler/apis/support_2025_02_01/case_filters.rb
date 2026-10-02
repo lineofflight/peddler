@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # Optional filters for case search. All filters are optional — when absent, no filtering is applied for that
       # field. Different filters are combined with AND logic, and multiple values of the same field are combined with OR
       # logic.

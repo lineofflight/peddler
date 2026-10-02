@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Substitution preference for an order item when it becomes unavailable during fulfillment.
       ItemSubstitutionPreference = Structure.new do
         # @return [String] Source and nature of the substitution preferences for this item.

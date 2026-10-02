@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SolicitationsV1
+    module SolicitationsV1
       # The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
       CreateProductReviewAndSellerFeedbackSolicitationResponse = Structure.new do
         # @return [Array<Error>]

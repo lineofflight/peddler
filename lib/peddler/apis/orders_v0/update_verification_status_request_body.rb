@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The updated values of the `VerificationStatus` field.
       UpdateVerificationStatusRequestBody = Structure.new do
         # @return [String] The identifier of the order's regulated information reviewer.

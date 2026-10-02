@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A set of measurements for a three-dimensional object.
       Dimensions = Structure.new do
         # @return [Float] The height of the package.

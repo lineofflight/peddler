@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The request body for the `updateShipmentStatus` operation.
       UpdateShipmentStatusRequest = Structure.new do
         # @return [String]

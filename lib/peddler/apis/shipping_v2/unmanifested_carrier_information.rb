@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # UnmanifestedCarrierInformation like carrierId CarrierName and Location
       UnmanifestedCarrierInformation = Structure.new do
         # @return [String]

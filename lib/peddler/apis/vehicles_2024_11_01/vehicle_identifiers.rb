@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Vehicles20241101
+    module Vehicles20241101
       # Combination of vehicle standard and id that can uniquely identify a vehicle from Amazon's catalog.
       VehicleIdentifiers = Structure.new do
         # @return [String] Vehicle standard used to uniquely identify a vehicle.

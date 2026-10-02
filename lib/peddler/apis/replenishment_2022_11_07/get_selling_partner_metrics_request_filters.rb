@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # Use these parameters to filter results. Any result must match all provided parameters. For parameters that
       # accept multiple values (arrays), the API returns results that match at least one value in the array.
       GetSellingPartnerMetricsRequestFilters = Structure.new do

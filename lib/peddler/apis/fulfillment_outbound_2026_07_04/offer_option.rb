@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # An available offer for delivery of a product.
       OfferOption = Structure.new do
         # @return [String] The time at which this offer expires. This does not represent the efficacy or validity window

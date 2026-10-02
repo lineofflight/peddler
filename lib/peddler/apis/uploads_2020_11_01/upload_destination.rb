@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Uploads20201101
+    module Uploads20201101
       # Information about an upload destination.
       UploadDestination = Structure.new do
         # @return [Hash] The headers to include in the upload request.

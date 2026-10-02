@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A Brand Story card with text-focused content for telling your Brand's story, mission, or values.
       BrandStoryAboutModule = Structure.new do
         # @return [ImageComponent]

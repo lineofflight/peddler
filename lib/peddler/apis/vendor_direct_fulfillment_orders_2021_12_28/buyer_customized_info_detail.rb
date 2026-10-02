@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrders20211228
+    module VendorDirectFulfillmentOrders20211228
       # The details of the products the vendor has configured as customizable.
       BuyerCustomizedInfoDetail = Structure.new do
         # @return [String] A [Base 64](https://datatracker.ietf.org/doc/html/rfc4648#section-4) encoded URL using the

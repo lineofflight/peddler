@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # A product offer with segment information indicating where it's featured.
       SegmentedFeaturedOffer = Structure.new do
         # @return [String] Item Condition.

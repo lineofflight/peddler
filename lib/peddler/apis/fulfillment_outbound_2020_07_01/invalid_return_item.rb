@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # An item that is invalid for return.
       InvalidReturnItem = Structure.new do
         # @return [InvalidItemReason]

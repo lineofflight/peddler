@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # A list of SKU labeling requirements and item preparation instructions.
       class SKUPrepInstructionsList < Array
         class << self

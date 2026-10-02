@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents a product with the SKU details and the corresponding quantity.
       ProductQuantity = Structure.new do
         # @return [Integer] Product quantity.

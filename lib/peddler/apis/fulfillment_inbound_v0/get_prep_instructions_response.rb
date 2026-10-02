@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # The response schema for the getPrepInstructions operation.
       GetPrepInstructionsResponse = Structure.new do
         # @return [Array<Error>]

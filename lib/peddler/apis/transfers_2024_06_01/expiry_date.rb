@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The expiration date of the card used for payment. If the payment method is not `card`, the expiration date is
       # `null`.
       ExpiryDate = Structure.new do

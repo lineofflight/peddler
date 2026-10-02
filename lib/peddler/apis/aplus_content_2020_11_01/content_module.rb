@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # An A+ Content module. An A+ Content document is composed of content modules. The contentModuleType property
       # selects which content module types to use.
       ContentModule = Structure.new do

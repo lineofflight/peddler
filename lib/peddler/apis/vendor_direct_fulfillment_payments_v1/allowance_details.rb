@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # Monetary and tax details of the allowance.
       AllowanceDetails = Structure.new do
         # @return [Money] Total monetary amount related to this allowance.

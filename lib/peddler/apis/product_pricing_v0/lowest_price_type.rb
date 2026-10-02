@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema for an individual lowest price.
       LowestPriceType = Structure.new do
         # @return [Money] The price of the item.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Info About Linkable Account Type
       LinkableAccountType = Structure.new do
         # @return [String]

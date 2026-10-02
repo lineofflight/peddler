@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # The weight.
       Weight = Structure.new do
         # @return [String] The unit of measurement.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A distance measurement.
       Distance = Structure.new do
         # @return [String] The unit of measurement of the distance.

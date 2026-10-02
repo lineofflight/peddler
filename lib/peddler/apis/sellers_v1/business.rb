@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # Information about the seller's business. Certain fields may be omitted depending on the seller's `businessType`.
       Business = Structure.new do
         # @return [String] The registered business name.

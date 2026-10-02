@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Properties of packages
       PackageDetail = Structure.new do
         # @return [String] Identifies the carrier that will deliver the package. This field is required for all

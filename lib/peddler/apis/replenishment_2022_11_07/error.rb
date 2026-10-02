@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # Error response returned when the request is unsuccessful.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.

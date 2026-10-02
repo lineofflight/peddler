@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Representation of a location used within the inbounding experience.
       Region = Structure.new do
         # @return [String] ISO 3166 standard alpha-2 country code.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Buyer information.
       BuyerInfo = Structure.new do
         # @return [String] The county of the buyer.

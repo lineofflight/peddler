@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # An issue associated with a media asset or pairing.
       Issue = Structure.new do
         # @return [Array<String>] List of issue categories.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Shipment dates.
       ShipmentDates = Structure.new do
         # @return [Time] Time by which the vendor is required to ship the order.

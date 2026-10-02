@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A shipment item's cancellation details.
       Cancellation = Structure.new do
         # @return [String] The type of cancellation of the item in the shipment.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The shipping option available for the offer.
       ShippingOption = Structure.new do
         # @return [Money] Shipping price for the offer.

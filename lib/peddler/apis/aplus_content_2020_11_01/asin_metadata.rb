@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet`
       # parameter in a call to the `listContentDocumentAsinRelations` operation, the related ASINs are returned without
       # metadata.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # Details of item quantity.
       ItemQuantity = Structure.new do
         # @return [Integer] Quantity of units available for a specific item.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Preferences that can be passed in context of an inbound order
       InboundPreferences = Structure.new do
         # @return [String] Pass a preferred region so that the inbound order can be shipped to an AWD warehouse located

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Shipment information required for requesting shipping service offers or for creating a shipment.
       ShipmentRequestDetails = Structure.new do
         # @return [String] An Amazon-defined order identifier in 3-7-7 format.

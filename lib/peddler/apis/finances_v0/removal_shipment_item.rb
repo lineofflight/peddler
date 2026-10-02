@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # Item-level information for a removal shipment.
       RemovalShipmentItem = Structure.new do
         # @return [Money] The fee that Amazon charged to the seller for the removal of the item. The amount is a

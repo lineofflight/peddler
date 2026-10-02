@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A line item from the original shipment that corresponds to this shipment.
       OriginalLineItem = Structure.new do
         # @return [Array<Charge>] The charge details at the shipment level.

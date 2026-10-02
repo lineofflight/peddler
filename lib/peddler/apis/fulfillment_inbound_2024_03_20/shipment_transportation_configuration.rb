@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Details needed to generate the transportation options.
       ShipmentTransportationConfiguration = Structure.new do
         # @return [WindowInput] The range of dates within which the seller intends to ship their items. This is the

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A package to be shipped through a shipping service offering.
       Package = Structure.new do
         # @return [Dimensions]

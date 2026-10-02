@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Sales rank information for the item, by category
       SalesRankType = Structure.new do
         # @return [String] Identifies the item category from which the sales rank is taken.

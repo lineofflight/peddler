@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The payload for the purchaseShipment operation.
       PurchaseShipmentResult = Structure.new do
         # @return [Array<PackageDocumentDetail>]

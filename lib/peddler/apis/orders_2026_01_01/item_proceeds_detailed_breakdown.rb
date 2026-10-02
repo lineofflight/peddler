@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Further granular breakdown of the subtotal of the proceeds breakdown, only available for TAX and DISCOUNT
       # proceeds types.
       ItemProceedsDetailedBreakdown = Structure.new do

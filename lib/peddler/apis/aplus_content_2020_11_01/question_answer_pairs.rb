@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Wrapper for a single question-answer pair.
       QuestionAnswerPairs = Structure.new do
         # @return [QuestionAnswerPair]

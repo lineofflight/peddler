@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Quantity-based purchase conditions for basket building promotions.
       QuantityThreshold = Structure.new do
         # @return [Integer] The number of items required to meet this purchase condition.

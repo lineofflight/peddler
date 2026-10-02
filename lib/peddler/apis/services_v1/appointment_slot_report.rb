@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Availability information as per the service context queried.
       AppointmentSlotReport = Structure.new do
         # @return [Array<AppointmentSlot>] A list of time windows along with associated capacity in which the service

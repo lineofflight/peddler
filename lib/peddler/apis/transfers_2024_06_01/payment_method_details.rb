@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The details of a payment method.
       PaymentMethodDetails = Structure.new do
         # @return [String] The name of the account holder who is registered for the payment method.

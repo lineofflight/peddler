@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # An object that contains the invoice attributes definition.
       InvoicesAttributes = Structure.new do
         # @return [Array<AttributeOption>] A list of all the options that are available for the invoice status

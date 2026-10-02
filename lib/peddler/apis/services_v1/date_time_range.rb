@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # A range of time.
       DateTimeRange = Structure.new do
         # @return [Time] The end of the time range. Must be in UTC in [ISO

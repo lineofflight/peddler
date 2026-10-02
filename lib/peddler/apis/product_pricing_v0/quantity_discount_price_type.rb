@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Contains pricing information that includes special pricing when buying in bulk.
       QuantityDiscountPriceType = Structure.new do
         # @return [Money] The price at this quantity tier.

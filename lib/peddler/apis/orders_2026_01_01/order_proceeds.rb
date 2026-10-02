@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # The money that the seller receives from the sale of the order.
       OrderProceeds = Structure.new do
         # @return [Array<OrderProceedsBreakdown>] Categorized proceeds for the order. Proceed categories are either

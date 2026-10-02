@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Individual contributor to the creation of an item, such as an author or actor.
       ItemContributor = Structure.new do
         # @return [ItemContributorRole]

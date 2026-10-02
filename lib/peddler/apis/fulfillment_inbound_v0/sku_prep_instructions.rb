@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Labeling requirements and item preparation instructions to help you prepare items for shipment to Amazon's
       # fulfillment network.
       SKUPrepInstructions = Structure.new do

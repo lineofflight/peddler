@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Summary details of an Amazon catalog item for the indicated Amazon marketplace.
       ItemSummaryByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier.

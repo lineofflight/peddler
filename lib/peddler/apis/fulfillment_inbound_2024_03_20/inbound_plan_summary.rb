@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # A light-weight inbound plan.
       InboundPlanSummary = Structure.new do
         # @return [Time] The time at which the inbound plan was created. In [ISO

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # The request schema for the submitShipmentConfirmations operation.
       SubmitShipmentConfirmationsRequest = Structure.new do
         # @return [Array<ShipmentConfirmation>] Array of ShipmentConfirmation objects, each representing confirmation

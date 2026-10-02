@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Tax calculation breakdowns for an order item.
       ItemTaxCalculationBreakdown = Structure.new do
         # @return [String] The tax reporting scheme applied to this order item.

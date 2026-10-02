@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # The HTTP status associated with the response for an individual request within a batch.
       HttpStatusLine = Structure.new do
         # @return [String] The HTTP response reason phrase.

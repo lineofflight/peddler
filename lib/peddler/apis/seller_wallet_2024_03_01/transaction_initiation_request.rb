@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Request body to initiate a transaction from a Seller Wallet bank account to another customer-defined bank
       # account.
       TransactionInitiationRequest = Structure.new do

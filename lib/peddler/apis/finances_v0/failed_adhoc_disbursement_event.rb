@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # Failed ad hoc disbursement event list.
       FailedAdhocDisbursementEvent = Structure.new do
         # @return [String] The disbursement identifier.

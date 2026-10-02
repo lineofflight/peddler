@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Image for an item in the Amazon catalog.
       ItemImage = Structure.new do
         # @return [Integer] Height of the image in pixels.

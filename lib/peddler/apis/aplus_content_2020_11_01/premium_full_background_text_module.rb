@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A full-width background image with a text overlay box containing subheadline, headline, and body text. The text
       # box can be positioned to the left or right, and styled light or dark.
       PremiumFullBackgroundTextModule = Structure.new do

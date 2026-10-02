@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # An additional corporate or fiscal registration identifier for a party.
       AdditionalPartyIdentification = Structure.new do
         # @return [String] The value of the additional party identifier.

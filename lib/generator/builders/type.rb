@@ -303,6 +303,11 @@ module Generator
       end
     end
 
+    # Check if any property uses URI (requires 'uri' library)
+    def uses_uri_types?
+      properties.any? { |_name, prop_def| ruby_type_for(prop_def).to_s.include?("URI") }
+    end
+
     def array_type?
       definition["type"] == "array"
     end

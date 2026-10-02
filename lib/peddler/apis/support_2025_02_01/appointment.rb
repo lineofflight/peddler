@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # An appointment for a contact at a future date.
       Appointment = Structure.new do
         # @return [String] The unique identifier for the scheduled appointment.

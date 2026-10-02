@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Alternative product that can be substituted for an original order item when it becomes unavailable during
       # fulfillment.
       ItemSubstitutionOption = Structure.new do

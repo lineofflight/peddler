@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An event related to a Tax-Deducted-at-Source (TDS) reimbursement.
       TDSReimbursementEvent = Structure.new do
         # @return [String] The date and time when the financial event was posted.

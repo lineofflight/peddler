@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever
       # is appropriate.
       PackageItemDetails = Structure.new do

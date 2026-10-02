@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Reports20210630
+    module Reports20210630
       # A list of report schedules.
       ReportScheduleList = Structure.new do
         # @return [Array<ReportSchedule>] Detailed information about a report schedule.

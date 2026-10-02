@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A reference to an image, hosted in the A+ Content media library.
       ImageComponent = Structure.new do
         # @return [String] The alternative text for the image.

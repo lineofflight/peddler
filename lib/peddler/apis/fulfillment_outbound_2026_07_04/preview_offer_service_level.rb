@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Service configuration for a preview offer.
       PreviewOfferServiceLevel = Structure.new do
         # @return [TimeInterval] The delivery interval for this offer.

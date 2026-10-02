@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The request schema for remove the Carrier Account associated with the provided merchant.
       UnlinkCarrierAccountRequest = Structure.new do
         # @return [String]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinanceRemittance20260317
+    module FinanceRemittance20260317
       # The response for the `getRemittance` operation.
       GetRemittanceResponse = Structure.new do
         # @return [String] A token to fetch the next page of line item results. Present when more results are available.

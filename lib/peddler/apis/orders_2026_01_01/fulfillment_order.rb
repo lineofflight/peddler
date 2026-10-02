@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about a fulfillment order associated with a customer order. A fulfillment order represents a unit of
       # fulfillment created by Amazon for the order. **Note:** Only available for Easy Ship and Seller Flex.
       FulfillmentOrder = Structure.new do

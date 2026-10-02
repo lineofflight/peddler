@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Additional information about a constraint violation, providing the specific type of detail and its corresponding
       # value that caused the violation.
       ConstraintDetail = Structure.new do

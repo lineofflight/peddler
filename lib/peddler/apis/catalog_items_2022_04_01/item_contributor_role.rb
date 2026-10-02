@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Role of an individual contributor in the creation of an item, such as author or actor.
       ItemContributorRole = Structure.new do
         # @return [String] Role value for the Amazon catalog item, such as `author` or `actor`.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Details of the item being shipped.
       PurchaseOrderItems = Structure.new do
         # @return [String] Item sequence number for the item. The first item will be 001, the second 002, and so on.

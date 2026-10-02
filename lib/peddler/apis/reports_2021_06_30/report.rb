@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Reports20210630
+    module Reports20210630
       # Detailed information about the report.
       Report = Structure.new do
         # @return [Time] The date and time when the report was created.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Packing information for the inbound plan.
       PackageGroupingInput = Structure.new do
         # @return [Array<BoxInput>] Box level information being provided.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `addAppointmentForServiceJobByServiceJobId` and
       # `rescheduleAppointmentForServiceJobByServiceJobId` operations.
       SetAppointmentResponse = Structure.new do

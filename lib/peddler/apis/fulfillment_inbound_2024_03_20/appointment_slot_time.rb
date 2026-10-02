@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # An appointment slot time with start and end.
       AppointmentSlotTime = Structure.new do
         # @return [Time] The end timestamp of the appointment in UTC.

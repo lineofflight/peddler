@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The shipment item information required by a seller to issue a shipment invoice.
       ShipmentItem = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.

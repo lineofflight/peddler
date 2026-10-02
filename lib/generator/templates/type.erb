@@ -6,6 +6,9 @@ require "structure"
 <% if uses_time_types? -%>
 require "time"
 <% end -%>
+<% if uses_uri_types? -%>
+require "uri"
+<% end -%>
 
 <% if namespace -%>
 module Peddler
@@ -28,7 +31,7 @@ end
 <% else -%>
 module Peddler
   module APIs
-    class <%= api_name.camelize %>
+    module <%= api_name.camelize %>
       <% if class_description -%>
         <%= class_description %>
       <% end -%>

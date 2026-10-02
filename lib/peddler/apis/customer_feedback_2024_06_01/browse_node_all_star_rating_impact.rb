@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The effects of a topic on the star ratings in a browse node.
       BrowseNodeAllStarRatingImpact = Structure.new do
         # @return [Float] The effect of the topic on the star rating of all products in the browse node. This value can

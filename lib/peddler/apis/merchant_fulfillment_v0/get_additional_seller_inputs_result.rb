@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The payload for the `getAdditionalSellerInputs` operation.
       GetAdditionalSellerInputsResult = Structure.new do
         # @return [Array<ItemLevelFields>]

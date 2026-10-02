@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # Response containing the transaction ID.
       TransactionId = Structure.new do
         # @return [String] GUID to identify this transaction. This value can be used with the Transaction Status API to

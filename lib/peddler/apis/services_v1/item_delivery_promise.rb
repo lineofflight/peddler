@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Promised delivery information for the item.
       ItemDeliveryPromise = Structure.new do
         # @return [Time] The date and time of the end of the promised delivery window in ISO 8601 format.

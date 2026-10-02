@@ -14,46 +14,12 @@ module Peddler
     # {https://tools.ietf.org/html/draft-kelly-json-hal-08 JSON Hypertext Application Language} (HAL) standard.
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
-    class SolicitationsV1 < API
-      # Returns a list of solicitation types that are available for an order that you specify. A solicitation type is
-      # represented by an actions object, which contains a path and query parameter(s). You can use the path and
-      # parameter(s) to call an operation that sends a solicitation. Currently only the
-      # productReviewAndSellerFeedbackSolicitation solicitation type is available.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which you want a list
-      #   of available solicitation types.
-      # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
-      #   order was placed. Only one marketplace can be specified.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
-        path = "/solicitations/v1/orders/#{percent_encode(amazon_order_id)}"
-        params = {
-          "marketplaceIds" => stringify_array(marketplace_ids),
-        }.compact
-        parser = -> { GetSolicitationActionsForOrderResponse }
-        get(path, params:, rate_limit:, parser:)
-      end
-
-      # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
-      # only one productReviewAndSellerFeedback or free form proactive message per order.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which a solicitation is
-      #   sent.
-      # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
-      #   order was placed. Only one marketplace can be specified.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids, rate_limit: 1.0)
-        path = "/solicitations/v1/orders/#{percent_encode(amazon_order_id)}/solicitations/productReviewAndSellerFeedback"
-        params = {
-          "marketplaceIds" => stringify_array(marketplace_ids),
-        }.compact
-        parser = -> { CreateProductReviewAndSellerFeedbackSolicitationResponse }
-        post(path, params:, rate_limit:, parser:)
-      end
+    module SolicitationsV1
+      # Typed models of successful responses, by native operation key
+      PARSERS = {
+        "solicitations_v1.create_product_review_and_seller_feedback_solicitation" => -> { CreateProductReviewAndSellerFeedbackSolicitationResponse },
+        "solicitations_v1.get_solicitation_actions_for_order" => -> { GetSolicitationActionsForOrderResponse },
+      }.freeze
     end
   end
 end

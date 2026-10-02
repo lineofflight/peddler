@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single panel within the regimen carousel that features rich text elements and an image.
       RegimenCarouselPanel = Structure.new do
         # @return [ImageComponent]

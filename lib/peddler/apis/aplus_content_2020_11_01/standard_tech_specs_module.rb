@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The standard table of technical feature names and definitions.
       StandardTechSpecsModule = Structure.new do
         # @return [Array<StandardTextPairBlock>] The specification list.

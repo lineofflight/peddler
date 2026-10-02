@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The `GET` request schema response.
       GetSchemaResponse = Structure.new do
         # @return [Hash] The links response that is associated with the object.

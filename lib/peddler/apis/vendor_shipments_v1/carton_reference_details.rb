@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Carton reference details.
       CartonReferenceDetails = Structure.new do
         # @return [Array<String>] Array of reference numbers for the carton that are part of this pallet/shipment.

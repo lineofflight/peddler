@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Input for to be uploaded document.
       ServiceUploadDocument = Structure.new do
         # @return [Float] The content length of the to-be-uploaded file

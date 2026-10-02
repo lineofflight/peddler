@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # An event filter you can use to customize your subscription to send notifications for a specific
       # `orderChangeType`.
       OrderChangeTypeFilter = Structure.new do

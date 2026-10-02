@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Details of the destination bank account in the transaction request.
       TransactionInstrumentDetails = Structure.new do
         # @return [String] The bank account holder's name (expected to be an Amazon customer).

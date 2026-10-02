@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # The request body schema for the `createContainerLabel` operation.
       CreateContainerLabelRequest = Structure.new do
         # @return [String] The container (pallet) label's carrier.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A wrapper to hold the metric name and metric value.
       MetricValueItem = Structure.new do
         # @return [TextComponent]

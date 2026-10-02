@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SalesV1
+    module SalesV1
       # Error response returned when the request is unsuccessful.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occured.

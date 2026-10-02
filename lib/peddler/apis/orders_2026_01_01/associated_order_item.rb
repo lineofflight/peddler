@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # An associated order item that a customer has purchased with the product. For example, a tire installation
       # service purchased with tires, or a warranty protection plan purchased with a product.
       AssociatedOrderItem = Structure.new do

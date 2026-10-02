@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Feeds20210630
+    module Feeds20210630
       # Information required to upload a feed document's contents.
       CreateFeedDocumentResponse = Structure.new do
         # @return [String] The identifier of the feed document.

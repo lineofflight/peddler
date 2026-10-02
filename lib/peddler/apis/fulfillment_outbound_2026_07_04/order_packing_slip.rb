@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Packing slip settings.
       OrderPackingSlip = Structure.new do
         # @return [Hash]

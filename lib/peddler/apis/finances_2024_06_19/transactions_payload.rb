@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # The payload for the `listTransactions` operation.
       TransactionsPayload = Structure.new do
         # @return [String] The response includes `nextToken` when the number of results exceeds the specified `pageSize`

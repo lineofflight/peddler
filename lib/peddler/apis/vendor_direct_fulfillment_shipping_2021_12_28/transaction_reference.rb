@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # Response containing the transaction ID.
       TransactionReference = Structure.new do
         # @return [String] GUID to identify this transaction. This value can be used with the Transaction Status API to

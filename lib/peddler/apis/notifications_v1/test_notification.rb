@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The describer for the test notification that will be delivered.
       TestNotification = Structure.new do
         # @return [String] The version of the payload object to be used in the notification.

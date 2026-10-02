@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed to Amazon by
       # the buyer (for example, when the charge was incorrectly calculated as less than it should be). A negative value
       # indicates a full or partial refund owed to the buyer (for example, when the buyer receives damaged items or

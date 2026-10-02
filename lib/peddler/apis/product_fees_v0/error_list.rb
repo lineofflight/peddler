@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # A list of error responses returned when a request is unsuccessful.
       class ErrorList < Array
         class << self

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about how the order item should be processed, packed, and shipped to the customer.
       ItemFulfillment = Structure.new do
         # @return [ItemPacking] Information related to the packaging process for this item.

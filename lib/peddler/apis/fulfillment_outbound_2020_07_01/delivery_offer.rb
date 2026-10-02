@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # An available offer for delivery of a product.
       DeliveryOffer = Structure.new do
         # @return [DateRange] The range between which delivery is expected.

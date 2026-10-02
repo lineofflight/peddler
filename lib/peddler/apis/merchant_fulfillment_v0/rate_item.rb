@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Rate item for shipping costs and adjustments.
       RateItem = Structure.new do
         # @return [String] Unique identifier for the RateItem.

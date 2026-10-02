@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An item from a SAFE-T claim reimbursement.
       SAFETReimbursementItem = Structure.new do
         # @return [Array<ChargeComponent>] A list of charges associated with the item.

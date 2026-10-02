@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tokens20210301
+    module Tokens20210301
       # The response schema for the createRestrictedDataToken operation.
       CreateRestrictedDataTokenResponse = Structure.new do
         # @return [Integer] The lifetime of the Restricted Data Token, in seconds.

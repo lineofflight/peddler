@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Related business identifiers of the item.
       ItemRelatedIdentifier = Structure.new do
         # @return [String] Enumerated set of related item identifier names for the item.

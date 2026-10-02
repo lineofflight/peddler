@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # Specifies the tracking identifier used to filter your subscription notifications. Provide exactly one identifier
       # field. Providing multiple identifier fields in a single request is not supported.
       TrackingIdentifier = Structure.new do

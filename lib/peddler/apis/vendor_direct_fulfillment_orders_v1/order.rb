@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Represents a purchase order.
       Order = Structure.new do
         # @return [String] The purchase order number for this order. Formatting Notes: alpha-numeric code.

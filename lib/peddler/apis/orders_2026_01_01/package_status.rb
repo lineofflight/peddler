@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Current status and detailed tracking information for a shipping package throughout the delivery process.
       PackageStatus = Structure.new do
         # @return [String] Primary status classification of the package in the shipping workflow.

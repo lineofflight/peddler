@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # The relationship details for a listing item.
       ItemRelationship = Structure.new do
         # @return [String] The type of relationship.

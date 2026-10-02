@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Discount details applied by the promotion.
       PromotionDiscount = Structure.new do
         # @return [Money] The monetary amount discounted from the original price. Only valid when type is AMOUNT_OFF.

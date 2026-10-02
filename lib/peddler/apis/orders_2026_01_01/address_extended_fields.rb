@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Additional address components that provide more detailed location information, helping with precise delivery
       # routing.
       #

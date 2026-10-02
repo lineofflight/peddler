@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # Success.
       GovtInvoiceDocumentResponse = Structure.new do
         # @return [InvoiceDocument]

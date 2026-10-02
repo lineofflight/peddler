@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `getFixedSlotCapacity` operation.
       FixedSlotCapacity = Structure.new do
         # @return [Array<FixedSlot>] Array of capacity slots in fixed slot format.

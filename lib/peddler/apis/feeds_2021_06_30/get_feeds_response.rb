@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Feeds20210630
+    module Feeds20210630
       # Response schema.
       GetFeedsResponse = Structure.new do
         # @return [Array<Feed>] The feeds.

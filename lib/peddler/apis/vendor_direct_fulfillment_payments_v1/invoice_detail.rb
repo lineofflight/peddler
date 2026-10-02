@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # Represents the details of an invoice, including invoice number, date, parties involved, payment terms, totals,
       # taxes, charges, and line items.
       InvoiceDetail = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The FOEP result data for the requested offer.
       FeaturedOfferExpectedPriceResult = Structure.new do
         # @return [String] The status of the FOEP computation. Possible values include `VALID_FOEP`,

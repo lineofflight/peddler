@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about a physical shipping package, including tracking details. **Note:** Only available for
       # merchant-fulfilled (FBM) orders.
       OrderPackage = Structure.new do

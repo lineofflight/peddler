@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The operational configuration of `supplySources`.
       OperationalConfiguration = Structure.new do
         # @return [ContactDetails]

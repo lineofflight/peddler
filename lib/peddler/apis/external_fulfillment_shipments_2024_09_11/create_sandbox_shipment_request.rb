@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The request object for creating a sandbox shipment.
       CreateSandboxShipmentRequest = Structure.new do
         # @return [String] The location identifier for the shipment.

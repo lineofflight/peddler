@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # The quantity of unfulfillable inventory.
       UnfulfillableQuantity = Structure.new do
         # @return [Integer] The number of units in carrier damaged disposition.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # Represents the header-level information for an invoice, including parties involved (payer/payee), financial
       # amounts, status, dates, and related business identifiers.
       InvoiceHeader = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Request body to initiate a scheduled transfer from a Seller Wallet bank account to another customer-defined bank
       # account.
       TransferScheduleRequest = Structure.new do

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # Additional information that can help the caller understand or fix the issue.
       class FeesEstimateErrorDetail < Array
         class << self

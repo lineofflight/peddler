@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A single order item's buyer information.
       OrderItemBuyerInfo = Structure.new do
         # @return [String] An Amazon-defined order item identifier.

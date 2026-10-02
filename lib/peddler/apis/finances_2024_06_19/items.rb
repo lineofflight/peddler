@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # A list of items in the transaction.
       class Items < Array
         class << self

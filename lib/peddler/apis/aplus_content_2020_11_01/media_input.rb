@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Input for referencing a media asset during creation. Exactly one of `uploadDestinationId` or `mediaId` must be
       # provided.
       MediaInput = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The response schema for the submitInvoice operation.
       SubmitInvoiceResponse = Structure.new do
         # @return [Array<Error>]

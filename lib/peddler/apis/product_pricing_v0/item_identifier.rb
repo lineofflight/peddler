@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Information that identifies an item.
       ItemIdentifier = Structure.new do
         # @return [String] The condition of the item.

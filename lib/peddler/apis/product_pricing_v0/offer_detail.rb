@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema for an individual offer. Object in `OfferDetailList`.
       OfferDetail = Structure.new do
         # @return [:boolean] When true, the offer is fulfilled by Amazon.

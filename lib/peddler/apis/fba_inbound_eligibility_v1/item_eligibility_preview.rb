@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInboundEligibilityV1
+    module FBAInboundEligibilityV1
       # The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility
       # status (boolean), and a list of ineligibility reason codes.
       ItemEligibilityPreview = Structure.new do

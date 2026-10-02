@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # Item in the container.
       ContainerItem = Structure.new do
         # @return [Float] The quantity of the items of this type in the container.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar amount.
       AmountThreshold = Structure.new do
         # @return [Money] Minimum spend amount customers must meet.

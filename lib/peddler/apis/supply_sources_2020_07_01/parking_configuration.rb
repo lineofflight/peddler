@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The parking configuration.
       ParkingConfiguration = Structure.new do
         # @return [Integer] The number of parking spots.

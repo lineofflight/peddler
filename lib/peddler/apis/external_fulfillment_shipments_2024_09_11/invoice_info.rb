@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Information about the shipment's invoice.
       InvoiceInfo = Structure.new do
         # @return [String] When the invoice was created.

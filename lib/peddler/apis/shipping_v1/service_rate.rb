@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The specific rate for a shipping service, or null if no service available.
       ServiceRate = Structure.new do
         # @return [Weight] The weight that was used to calculate the totalCharge.

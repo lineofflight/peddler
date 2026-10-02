@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # The payload schema for the getInventorySummaries operation.
       GetInventorySummariesResult = Structure.new do
         # @return [Granularity]

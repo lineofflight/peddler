@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Relationship details for an Amazon catalog item.
       ItemRelationship = Structure.new do
         # @return [String] Type of relationship.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Details of an Amazon Seller Wallet bank account. This account is used to hold the money that a Seller Wallet
       # customer earns by selling items.
       BankAccount = Structure.new do

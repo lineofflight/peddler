@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # How an invoice line item's quantity and price were matched against expected values, including any variances and
       # their underlying reasons.
       MatchingContext = Structure.new do

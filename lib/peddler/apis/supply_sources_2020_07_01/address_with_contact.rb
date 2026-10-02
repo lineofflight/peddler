@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The address and contact details.
       AddressWithContact = Structure.new do
         # @return [Address]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # A list of packing slips.
       PackingSlipList = Structure.new do
         # @return [Array<PackingSlip>] An array of packing slip objects.

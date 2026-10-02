@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # An available offer for delivery of a group of items.
       PreviewDeliveryOffer = Structure.new do
         # @return [EstimatedPrice] The estimated fees for the offer.

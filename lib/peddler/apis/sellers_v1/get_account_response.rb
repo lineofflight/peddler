@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # The response schema for the `getAccount` operation.
       GetAccountResponse = Structure.new do
         # @return [Array<Error>] The errors encountered by the `getAccount` operation.

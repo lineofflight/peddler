@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # A list of orders returned as response.
       OrderList = Structure.new do
         # @return [Array<Order>] Represents an individual order within the OrderList.

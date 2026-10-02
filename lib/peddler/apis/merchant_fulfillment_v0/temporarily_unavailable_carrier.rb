@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # A carrier who is temporarily unavailable, most likely due to a service outage experienced by the carrier.
       TemporarilyUnavailableCarrier = Structure.new do
         # @return [String] The name of the carrier.

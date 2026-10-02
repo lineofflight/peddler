@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The request schema for the GetUnmanifestedShipmentsRequest operation.
       GetUnmanifestedShipmentsRequest = Structure.new do
         # @return [Array<ClientReferenceDetail>]

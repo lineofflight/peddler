@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The request schema Call to generate the collection form.
       GenerateCollectionFormRequest = Structure.new do
         # @return [String]

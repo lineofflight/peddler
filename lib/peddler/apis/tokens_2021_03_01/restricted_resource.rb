@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tokens20210301
+    module Tokens20210301
       # Model of a restricted resource.
       RestrictedResource = Structure.new do
         # @return [String] The HTTP method in the restricted resource.

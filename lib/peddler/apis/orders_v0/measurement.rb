@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Measurement information for an order item.
       Measurement = Structure.new do
         # @return [String] The unit of measure.

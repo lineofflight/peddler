@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentReturns20240911
+    module ExternalFulfillmentReturns20240911
       # Information for tracking a return.
       TrackingInfo = Structure.new do
         # @return [String] The name of the third party courier service used to ship the return package.

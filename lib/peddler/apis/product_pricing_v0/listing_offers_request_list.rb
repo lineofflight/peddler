@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A list of `getListingOffers` batched requests to run.
       class ListingOffersRequestList < Array
         class << self

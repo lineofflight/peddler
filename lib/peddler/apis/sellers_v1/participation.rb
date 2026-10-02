@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # Information that is specific to a seller in a marketplace.
       Participation = Structure.new do
         # @return [:boolean] Specifies if the seller has suspended listings. `true` if the seller Listing Status is set

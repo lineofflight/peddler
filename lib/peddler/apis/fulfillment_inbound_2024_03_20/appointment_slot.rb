@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The fulfillment center appointment slot for the transportation option.
       AppointmentSlot = Structure.new do
         # @return [String] An identifier to a self-ship appointment slot.

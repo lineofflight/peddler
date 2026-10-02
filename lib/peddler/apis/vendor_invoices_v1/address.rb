@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # A physical address.
       Address = Structure.new do
         # @return [String] First line of street address.

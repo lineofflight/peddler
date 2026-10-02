@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Defines the accessibility details of the access point.
       AccessibilityAttributes = Structure.new do
         # @return [String] The approximate distance of access point from input postalCode's centroid.

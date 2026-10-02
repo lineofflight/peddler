@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # A list of balances in the seller account.
       BalanceListing = Structure.new do
         # @return [Array<Balance>] A list of balances in the seller account.

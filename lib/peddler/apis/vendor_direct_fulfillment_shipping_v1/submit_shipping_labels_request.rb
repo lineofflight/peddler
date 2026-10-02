@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # The request schema for the submitShippingLabelRequest operation.
       SubmitShippingLabelsRequest = Structure.new do
         # @return [Array<ShippingLabelRequest>] An array of shipping label requests to be processed.

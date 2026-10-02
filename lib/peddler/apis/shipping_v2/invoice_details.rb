@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The invoice details for charges associated with the goods in the package. Only applies to certain regions.
       InvoiceDetails = Structure.new do
         # @return [Time] The invoice date of the item in ISO 8061 format.

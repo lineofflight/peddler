@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # The tax details for the order.
       # _Note:_ Amazon calculates tax on the list price (Amazon retail price).
       TaxDetails = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Indicates the carrier details and their contact informations
       CarrierDetails = Structure.new do
         # @return [String] Code that identifies the carrier for the shipment. The Standard Carrier Alpha Code (SCAC) is

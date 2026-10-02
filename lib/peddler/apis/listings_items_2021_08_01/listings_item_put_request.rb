@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # The request body schema for the `putListingsItem` operation.
       ListingsItemPutRequest = Structure.new do
         # @return [Hash] JSON object containing structured listings item attribute data keyed by attribute name.

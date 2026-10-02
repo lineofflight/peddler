@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # A file attachment.
       Attachment = Structure.new do
         # @return [String] The name of the attachment.

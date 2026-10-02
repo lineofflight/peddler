@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The paginated list of supply sources.
       GetSupplySourcesResponse = Structure.new do
         # @return [String] If present, use this pagination token to retrieve the next page of supply sources.

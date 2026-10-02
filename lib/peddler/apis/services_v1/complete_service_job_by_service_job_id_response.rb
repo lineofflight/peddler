@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `completeServiceJobByServiceJobId` operation.
       CompleteServiceJobByServiceJobIdResponse = Structure.new do
         # @return [Array<Error>] Encountered errors for the `completeServiceJobByServiceJobId` operation.

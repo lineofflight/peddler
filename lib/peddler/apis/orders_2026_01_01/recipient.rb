@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about the recipient to whom the order should be delivered.
       Recipient = Structure.new do
         # @return [CustomerAddress] The address where the order should be delivered to the customer.

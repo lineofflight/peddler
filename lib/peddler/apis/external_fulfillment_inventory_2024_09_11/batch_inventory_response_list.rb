@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # A list of inventory request responses.
       class BatchInventoryResponseList < Array
         class << self

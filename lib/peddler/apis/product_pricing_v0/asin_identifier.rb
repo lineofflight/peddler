@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema to identify an item by MarketPlaceId and ASIN.
       ASINIdentifier = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.

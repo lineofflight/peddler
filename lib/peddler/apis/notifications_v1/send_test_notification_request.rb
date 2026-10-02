@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The request schema for the `sendTestNotification` operation.
       SendTestNotificationRequest = Structure.new do
         # @return [String] The identifier for the destination where notifications will be delivered.

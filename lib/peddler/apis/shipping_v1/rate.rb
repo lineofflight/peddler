@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The available rate that can be used to send the shipment
       Rate = Structure.new do
         # @return [Weight] The weight that was used to calculate the totalCharge.

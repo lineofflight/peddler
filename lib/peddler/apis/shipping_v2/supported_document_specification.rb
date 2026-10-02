@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Document specification that is supported for a service offering.
       SupportedDocumentSpecification = Structure.new do
         # @return [String]

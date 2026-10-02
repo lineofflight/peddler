@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ListingsRestrictions20210801 < API
+    module ListingsRestrictions20210801
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ListingsRestrictions20210801::Error
                     | (String, String, String?) -> Peddler::APIs::ListingsRestrictions20210801::Error
@@ -93,8 +95,6 @@ module Peddler
         def members: () -> [ :restrictions ]
         def to_h: () -> { restrictions: Array[Peddler::APIs::ListingsRestrictions20210801::Restriction] }
       end
-
-      def get_listings_restrictions: (String, String, Array[String], ?condition_type: String?, ?reason_locale: String?, ?product_type: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

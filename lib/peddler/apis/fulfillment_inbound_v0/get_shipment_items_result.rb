@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Result for the get shipment items operation
       GetShipmentItemsResult = Structure.new do
         # @return [Array<InboundShipmentItem>] A list of item information for an inbound shipment.

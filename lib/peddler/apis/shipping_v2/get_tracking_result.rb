@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The payload for the getTracking operation.
       GetTrackingResult = Structure.new do
         # @return [String]

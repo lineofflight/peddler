@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Regulatory requirements and compliance information for the item, including reference numbers, verification
       # codes, and exemption codes. Use this field to specify applicable regulations such as EU Deforestation Regulation
       # (EUDR).

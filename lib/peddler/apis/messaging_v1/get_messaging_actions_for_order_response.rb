@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The response schema for the `getMessagingActionsForOrder` operation.
       GetMessagingActionsForOrderResponse = Structure.new do
         # @return [Hash] The messaging actions response that is associated with the specified `amazonOrderId`.

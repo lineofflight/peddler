@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Service level configuration for a `getOffers` response offer.
       OfferServiceLevel = Structure.new do
         # @return [TimeInterval] The delivery interval for this offer.

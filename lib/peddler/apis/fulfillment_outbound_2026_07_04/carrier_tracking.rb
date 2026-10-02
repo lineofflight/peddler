@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Carrier tracking information for a package.
       CarrierTracking = Structure.new do
         # @return [String] Identifies the carrier who delivers the shipment to the recipient.

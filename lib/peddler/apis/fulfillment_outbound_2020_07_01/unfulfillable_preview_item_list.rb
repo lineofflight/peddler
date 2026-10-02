@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # An array of unfulfillable preview item information.
       class UnfulfillablePreviewItemList < Array
         class << self

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The job details of a service.
       ServiceJob = Structure.new do
         # @return [Array<Appointment>] A list of appointments.

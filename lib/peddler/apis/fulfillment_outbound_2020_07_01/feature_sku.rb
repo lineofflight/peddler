@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Information about an SKU, including the count available, identifiers, and a list of overlapping SKUs that share
       # the same inventory pool.
       FeatureSKU = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorTransactionStatusV1
+    module VendorTransactionStatusV1
       # The transaction status.
       Transaction = Structure.new do
         # @return [String] Current processing status of the transaction.

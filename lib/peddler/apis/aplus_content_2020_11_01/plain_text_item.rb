@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Plain positional text, used in collections of brief labels and descriptors.
       PlainTextItem = Structure.new do
         # @return [Integer] The rank or index of this text item within the collection. Different items cannot occupy the

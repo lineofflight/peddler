@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The review metrics for a certain month.
       ItemReviewTrendPoint = Structure.new do
         # @return [ReviewTrendMetrics] The ASIN's review trend metrics.

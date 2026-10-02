@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Shipment details required for the shipment.
       ShipmentDetails = Structure.new do
         # @return [:boolean] When true, this is a priority shipment.

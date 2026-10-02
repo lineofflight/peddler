@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentReturns20240911
+    module ExternalFulfillmentReturns20240911
       # The response to the `listReturns` operation.
       ReturnsResponse = Structure.new do
         # @return [String] A token that you use to retrieve the next page of results. The response includes `nextToken`

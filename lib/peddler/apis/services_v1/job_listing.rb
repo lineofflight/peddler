@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The payload for the `getServiceJobs` operation.
       JobListing = Structure.new do
         # @return [Array<ServiceJob>] List of job details for the given input.

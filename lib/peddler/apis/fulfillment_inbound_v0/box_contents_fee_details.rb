@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # The manual processing fee per unit and total fee for a shipment.
       BoxContentsFeeDetails = Structure.new do
         # @return [Amount] The manual processing fee per unit.

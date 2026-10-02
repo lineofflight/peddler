@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Indicates the tax specifications associated with the shipment for customs compliance purposes in certain
       # regions.
       TaxDetail = Structure.new do

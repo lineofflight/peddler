@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # The type of fee, fee amount, and other details.
       FeeDetail = Structure.new do
         # @return [Money] The amount charged for a given fee.

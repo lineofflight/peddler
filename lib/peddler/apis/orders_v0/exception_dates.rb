@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Dates when the business is closed or open with a different time window.
       ExceptionDates = Structure.new do
         # @return [String] Date when the business is closed, in {https://developer-docs.amazon.com/sp-api/docs/iso-8601

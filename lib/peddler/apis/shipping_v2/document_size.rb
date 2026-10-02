@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The size dimensions of the label.
       DocumentSize = Structure.new do
         # @return [Float] The length of the document measured in the units specified.

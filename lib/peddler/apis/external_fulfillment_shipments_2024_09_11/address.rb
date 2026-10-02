@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The address.
       Address = Structure.new do
         # @return [String] The postal code of the address. It contains a series of letters or digits or both, sometimes

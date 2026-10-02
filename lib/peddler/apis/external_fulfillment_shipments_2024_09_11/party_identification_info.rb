@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Party identification details for the shipment, applicable to direct fulfillment shipments.
       PartyIdentificationInfo = Structure.new do
         # @return [String] Assigned identification for the party. For example, a warehouse code or vendor code.

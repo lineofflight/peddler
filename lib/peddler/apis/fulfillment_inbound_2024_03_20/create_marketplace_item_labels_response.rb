@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `createMarketplaceItemLabels` response.
       CreateMarketplaceItemLabelsResponse = Structure.new do
         # @return [Array<DocumentDownload>] Resources to download the requested document.

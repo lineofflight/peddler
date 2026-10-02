@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The response schema for `getOrderPreview`.
       GetOrderPreviewResponse = Structure.new do
         # @return [Array<PreviewPlannedShipment>] An array of planned shipment information.

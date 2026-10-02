@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The parking configuration with the address.
       ParkingWithAddressConfiguration = Structure.new do
         # @return [Address] The address of the parking location.

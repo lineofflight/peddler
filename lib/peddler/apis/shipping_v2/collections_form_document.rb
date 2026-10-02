@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Collection Form Document Details
       CollectionsFormDocument = Structure.new do
         # @return [String] Base64 document Value of Collection.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Reports20210630
+    module Reports20210630
       # Information required to create the report schedule.
       CreateReportScheduleSpecification = Structure.new do
         # @return [Array<String>] A list of marketplace identifiers for the report schedule.

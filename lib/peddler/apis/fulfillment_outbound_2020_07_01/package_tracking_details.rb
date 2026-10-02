@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Tracking details of package
       PackageTrackingDetails = Structure.new do
         # @return [Integer] The package identifier.

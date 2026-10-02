@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Request schema for the `getFixedSlotCapacity` operation. This schema is used to define the time range, capacity
       # types and slot duration which are being queried.
       FixedSlotCapacityQuery = Structure.new do

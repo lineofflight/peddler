@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The product details for the delivery offer.
       GetDeliveryOffersProduct = Structure.new do
         # @return [ProductIdentifier] Product identifier input that locates a product for MCF.

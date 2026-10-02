@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # Details for the shipment status update given by the vendor for the specific package.
       StatusUpdateDetails = Structure.new do
         # @return [String] Provides a reason code for the status of the package that will provide additional information

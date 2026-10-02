@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The response schema for the createConfirmOrderDetails operation.
       CreateConfirmOrderDetailsResponse = Structure.new do
         # @return [Array<Error>]

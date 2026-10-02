@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `listInboundPlanItems` response.
       ListInboundPlanItemsResponse = Structure.new do
         # @return [Array<Item>] The items in an inbound plan.

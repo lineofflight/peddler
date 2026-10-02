@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Address of the party.
       Address = Structure.new do
         # @return [String] First line of the address.

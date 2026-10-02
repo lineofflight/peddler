@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Detailed information for an ineligible shipping service offering.
       IneligibleRate = Structure.new do
         # @return [String]

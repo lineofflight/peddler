@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # A list of replenishment program types.
       class ProgramTypes < Array
         class << self

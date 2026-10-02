@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Info About Linkable Carrier
       LinkableCarrier = Structure.new do
         # @return [String]

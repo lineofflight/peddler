@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # An item that Amazon accepted for return.
       CreateReturnItem = Structure.new do
         # @return [String] The identifier for the shipment that is associated with the return item.

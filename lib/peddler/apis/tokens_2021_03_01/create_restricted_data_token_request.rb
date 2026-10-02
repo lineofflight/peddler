@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tokens20210301
+    module Tokens20210301
       # The request schema for the createRestrictedDataToken operation.
       CreateRestrictedDataTokenRequest = Structure.new do
         # @return [Array<RestrictedResource>] A list of restricted resources.

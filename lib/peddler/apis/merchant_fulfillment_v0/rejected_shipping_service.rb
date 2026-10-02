@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Information about a rejected shipping service
       RejectedShippingService = Structure.new do
         # @return [String] The rejected shipping carrier name. For example, USPS.

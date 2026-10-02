@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # A list of contacts.
       ListContactsResult = Structure.new do
         # @return [Array<Contact>] A list of contacts.

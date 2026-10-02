@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # An inventory request.
       InventoryRequest = Structure.new do
         # @return [String] The method associated with the individual operation from the batch request. To make an

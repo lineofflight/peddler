@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # The response object for the GetMyFeesEstimate operation.
       GetMyFeesEstimateResponse = Structure.new do
         # @return [Array<Error>] A list of errors that may have occurred during the GetMyFeesEstimate operation.

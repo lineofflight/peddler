@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains information pertaining to a shipment in an inbound plan.
       Shipment = Structure.new do
         # @return [ShipmentDestination]

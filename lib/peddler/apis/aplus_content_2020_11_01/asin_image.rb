@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single ASIN product with its associated image.
       ASINImage = Structure.new do
         # @return [TextComponent]

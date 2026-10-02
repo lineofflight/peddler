@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The time interval for calculating the payout amount.
       Period = Structure.new do
         # @return [String] The starting date for a time interval.

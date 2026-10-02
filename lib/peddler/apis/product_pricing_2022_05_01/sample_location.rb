@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Information about a location. It uses a postal code to identify the location.
       SampleLocation = Structure.new do
         # @return [PostalCode]

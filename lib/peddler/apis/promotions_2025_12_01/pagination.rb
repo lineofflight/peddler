@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # When a request produces a list that is larger than the page size, pagination occurs. This divides the response
       # into individual pages. To retrieve the next page, pass the `nextToken` as the `paginationToken` query parameter
       # in the subsequent request. When there are no more pages to retrieve, the `Pagination` key will be absent from

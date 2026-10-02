@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # The listings item's fulfillment availability details.
       FulfillmentAvailability = Structure.new do
         # @return [String] Designates which fulfillment network is used.

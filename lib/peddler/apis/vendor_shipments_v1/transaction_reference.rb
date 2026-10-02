@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # The response payload for the SubmitShipmentConfirmations operation.
       TransactionReference = Structure.new do
         # @return [String] GUID assigned by Buyer to identify this transaction. This value can be used with the

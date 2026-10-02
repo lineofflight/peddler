@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A carousel with a module headline, full-width image panels, and navigation tabs. Each panel has its own inset
       # headline, inset body text, and navigation text.
       PremiumRegimenCarouselModule = Structure.new do

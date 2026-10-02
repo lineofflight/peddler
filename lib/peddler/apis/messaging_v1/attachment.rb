@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # Represents a file that was uploaded to a destination that was created by the Uploads API
       # [`createUploadDestinationForResource`](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource)
       # operation.

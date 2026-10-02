@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A structured list of specification-definition pairs with a headline, for presenting key technical details of
       # your product.
       PremiumTechSpecsModule = Structure.new do

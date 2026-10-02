@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # A list of orders.
       SearchOrdersResponse = Structure.new do
         # @return [Array<Order>] An array containing all orders that match the search criteria.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The response schema for the `createOrder` operation.
       CreateOrderResponse = Structure.new do
         # @return [FulfillmentOrder]

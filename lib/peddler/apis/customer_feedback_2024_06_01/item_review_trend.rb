@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The trend of review topic metrics for the requested item.
       ItemReviewTrend = Structure.new do
         # @return [String] The name of the item review topic.

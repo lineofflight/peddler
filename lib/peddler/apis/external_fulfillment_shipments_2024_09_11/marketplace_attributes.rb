@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The marketplace attributes associated with the location.
       MarketplaceAttributes = Structure.new do
         # @return [String] The channel name associated with the location.

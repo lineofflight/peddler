@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # A constraint that may affect a fulfillment order.
       Constraint = Structure.new do
         # @return [String] The constraint code.

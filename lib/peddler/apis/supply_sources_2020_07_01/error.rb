@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # An error response returned when the request is unsuccessful.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.

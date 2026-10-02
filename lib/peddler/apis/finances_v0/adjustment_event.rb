@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An adjustment to the seller's account.
       AdjustmentEvent = Structure.new do
         # @return [Money] The amount adjusted as part of this event.

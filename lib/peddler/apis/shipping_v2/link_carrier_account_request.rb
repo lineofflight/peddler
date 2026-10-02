@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The request schema for verify and add the merchant's account with a certain carrier.
       LinkCarrierAccountRequest = Structure.new do
         # @return [Array<CarrierAccountAttribute>]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # The request schema for the submitInvoice operation.
       SubmitInvoiceRequest = Structure.new do
         # @return [Array<InvoiceDetail>] An array of invoice details to be submitted.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Minimum purchase requirements using quantity-based or amount-based conditions for basket building promotions.
       # You can specify conditions within purchase requirements and multi-tier benefit configurations. You must specify
       # exactly one of `quantityThreshold` or `amountThreshold`.

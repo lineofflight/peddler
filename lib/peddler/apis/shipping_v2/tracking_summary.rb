@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A package status summary.
       TrackingSummary = Structure.new do
         # @return [String]

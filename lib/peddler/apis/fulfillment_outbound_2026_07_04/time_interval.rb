@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The time range within which an event (for example, a delivery) will occur.
       TimeInterval = Structure.new do
         # @return [String] The latest point in a date range in ISO 8601 date-time format.

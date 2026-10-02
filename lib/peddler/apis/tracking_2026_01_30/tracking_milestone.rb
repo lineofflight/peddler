@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tracking20260130
+    module Tracking20260130
       # A single milestone event in a shipment's journey.
       TrackingMilestone = Structure.new do
         # @return [String] The timestamp when this milestone occurred, in UTC RFC 3339 date-time format.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents the eligibility status of the inbound packages.
       InboundEligibility = Structure.new do
         # @return [Array<SkuEligibility>] Details on SKU eligibility for each inbound package.

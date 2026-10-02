@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # The carrier data that determined the transit time, and the source that supplied the data.
       TransitTimeInput = Structure.new do
         # @return [String] The source of the transit time data.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains details for a transportation carrier appointment. This appointment is vended out by Amazon and is an
       # indicator for when a transportation carrier is accepting shipments to be picked up.
       CarrierAppointment = Structure.new do

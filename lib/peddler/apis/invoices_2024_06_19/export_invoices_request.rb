@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # The information required to create the export request.
       ExportInvoicesRequest = Structure.new do
         # @return [String] The ID of the marketplace from which you want the invoices.

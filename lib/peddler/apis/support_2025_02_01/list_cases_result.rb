@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # A list of support cases.
       ListCasesResult = Structure.new do
         # @return [Array<Case>] A paginated list of support cases.

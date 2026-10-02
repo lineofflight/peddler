@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # Contextual information about an invoice line item.
       LineItemContext = Structure.new do
         # @return [String] The type of line item.

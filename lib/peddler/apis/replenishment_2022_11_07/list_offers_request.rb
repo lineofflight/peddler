@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # The request body for the `listOffers` operation.
       ListOffersRequest = Structure.new do
         # @return [ListOffersRequestFilters] Use these parameters to filter results. Any result must match all provided

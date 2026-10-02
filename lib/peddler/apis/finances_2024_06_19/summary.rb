@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Contains all information related to the financial summary.
       Summary = Structure.new do
         # @return [Array<Breakdown>] A list of breakdowns that detail how the net proceeds are calculated.

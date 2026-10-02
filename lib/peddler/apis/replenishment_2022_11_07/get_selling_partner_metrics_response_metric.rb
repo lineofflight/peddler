@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # An object which contains metric data for a selling partner.
       GetSellingPartnerMetricsResponseMetric = Structure.new do
         # @return [Float] The number of active subscriptions present at the end of the period. Applicable to

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # Additional information about a carrier.
       CarrierDetailsContext = Structure.new do
         # @return [String] The address of the carrier, as registered with state and federal tax authorities.

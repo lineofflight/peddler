@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # The response schema for the `listFinancialEvents` operation.
       ListFinancialEventsResponse = Structure.new do
         # @return [Array<Error>] One or more unexpected errors occurred during the `listFinancialEvents` operation.

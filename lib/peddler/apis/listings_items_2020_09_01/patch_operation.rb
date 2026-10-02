@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20200901
+    module ListingsItems20200901
       # Individual JSON Patch operation for an HTTP PATCH request.
       PatchOperation = Structure.new do
         # @return [String] Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and

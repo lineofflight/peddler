@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The response for the `getBrowseNodeReturnTopics` operation.
       BrowseNodeReturnTopicsResponse = Structure.new do
         # @return [String] The requested browse node id. A browse node id is the unique identifier of a given browse

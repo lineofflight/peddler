@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Dimensions for printing a shipping label.
       LabelDimensions = Structure.new do
         # @return [Float] The length dimension.

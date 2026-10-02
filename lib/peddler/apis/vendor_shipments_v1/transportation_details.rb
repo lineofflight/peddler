@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Transportation details for this shipment.
       TransportationDetails = Structure.new do
         # @return [String] The Bill of Lading (BOL) number is a unique number assigned to each shipment of goods by the

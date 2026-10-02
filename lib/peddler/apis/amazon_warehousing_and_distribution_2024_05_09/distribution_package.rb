@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents an AWD distribution package.
       DistributionPackage = Structure.new do
         # @return [DistributionPackageContents] The contents appropriate for the type.

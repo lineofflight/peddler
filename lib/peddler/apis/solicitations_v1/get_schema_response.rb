@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SolicitationsV1
+    module SolicitationsV1
       GetSchemaResponse = Structure.new do
         # @return [Hash]
         attribute?(:_links, Hash)

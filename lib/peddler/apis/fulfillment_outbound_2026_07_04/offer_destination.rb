@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The destination of the fulfillment.
       OfferDestination = Structure.new do
         # @return [VariablePrecisionAddress]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An event related to charge refund.
       ChargeRefundEvent = Structure.new do
         # @return [Array<ChargeRefundTransaction>] The amount of the charge refund credit.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # Request to update the time slot of a package.
       UpdatePackageDetails = Structure.new do
         # @return [TimeSlot]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A shipping label with a label document for a single package. If label generation fails, you can use the `status`
       # and `errorDetails` attributes to determine the cause of failure.
       PackageShipLabel = Structure.new do

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Dates for the scheduled delivery shipments.
       ScheduledDeliveryShipment = Structure.new do
         # @return [Time] Earliest nominated delivery date for the scheduled delivery.

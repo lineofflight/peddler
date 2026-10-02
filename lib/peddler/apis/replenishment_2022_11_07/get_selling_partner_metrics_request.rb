@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # The request body for the `getSellingPartnerMetrics` operation.
       GetSellingPartnerMetricsRequest = Structure.new do
         # @return [String] The marketplace identifier. The supported marketplaces for both sellers and vendors are US,

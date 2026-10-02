@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The time range within which a Scheduled Delivery fulfillment order should be delivered. This is only available
       # in the JP marketplace.
       DeliveryWindow = Structure.new do

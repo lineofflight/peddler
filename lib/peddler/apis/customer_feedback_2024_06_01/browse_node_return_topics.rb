@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # Topics from returns for all items in a browse node.
       BrowseNodeReturnTopics = Structure.new do
         # @return [BrowseNodeTrendMetrics] The browse node return topic metrics.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # The pagination elements required to retrieve the remaining data.
       Pagination = Structure.new do
         # @return [String] Pagination occurs when a request produces a response that exceeds the `pageSize`. This means

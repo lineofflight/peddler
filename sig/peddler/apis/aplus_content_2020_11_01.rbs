@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class AplusContent20201101 < API
+    module AplusContent20201101
+      PARSERS: Hash[String, ^() -> untyped]
+
       class ASINBadgeSet < Array[untyped]
         def self.parse: (Array[untyped]) -> ASINBadgeSet
       end
@@ -2273,26 +2275,6 @@ module Peddler
         def members: () -> [ :video_carousel_panel ]
         def to_h: () -> { video_carousel_panel: Peddler::APIs::AplusContent20201101::VideoImageCarouselPanel }
       end
-
-      def create_content_document: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def create_media: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_content_document: (String, String, Array[String], ?rate_limit: Float) -> Peddler::Response
-
-      def get_media: (String, ?associated_media_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def list_content_document_asin_relations: (String, String, ?included_data_set: Array[String]?, ?asin_set: Array[String]?, ?page_token: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def post_content_document_approval_submission: (String, String, ?rate_limit: Float) -> Peddler::Response
-      def post_content_document_asin_relations: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def post_content_document_suspend_submission: (String, String, ?rate_limit: Float) -> Peddler::Response
-      def search_content_documents: (String, ?page_token: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def search_content_publish_records: (String, String, ?page_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def update_content_document: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def update_media: (String, Hash[untyped, untyped], ?associated_media_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def validate_content_document_asin_relations: (String, Hash[untyped, untyped], ?asin_set: Array[String]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

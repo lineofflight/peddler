@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # A promotion applicable to the offer.
       Promotion = Structure.new do
         # @return [PromotionSavings] The savings applied by the promotion, including discount amount, percentage off,

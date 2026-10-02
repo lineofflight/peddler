@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
       StandardImageSidebarModule = Structure.new do
         # @return [StandardTextListBlock]

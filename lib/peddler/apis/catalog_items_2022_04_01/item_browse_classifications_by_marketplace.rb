@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Classifications (browse nodes) that are associated with the item in the Amazon catalog for the indicated
       # `marketplaceId`.
       ItemBrowseClassificationsByMarketplace = Structure.new do

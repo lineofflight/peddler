@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Input for set appointment fulfillment data operation.
       SetAppointmentFulfillmentDataRequest = Structure.new do
         # @return [Array<AppointmentResource>] Resources involved in appointment fulfillment.

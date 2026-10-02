@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema for an individual `ListingOffersResponse`
       ListingOffersResponse = Structure.new do
         # @return [GetOffersResponse]

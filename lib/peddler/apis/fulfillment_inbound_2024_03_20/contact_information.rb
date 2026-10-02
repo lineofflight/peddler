@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The seller's contact information.
       ContactInformation = Structure.new do
         # @return [String] The contact's name.

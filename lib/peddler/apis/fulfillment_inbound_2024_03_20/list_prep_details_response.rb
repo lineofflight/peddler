@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The response to the `listPrepDetails` operation.
       ListPrepDetailsResponse = Structure.new do
         # @return [Array<MskuPrepDetail>] A list of MSKUs and related prep details.

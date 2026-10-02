@@ -13,116 +13,19 @@ module Peddler
     # {https://developer-docs.amazon.com/amazon-shipping/ Amazon Shipping Developer Documentation} site.
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shipping.json
-    class ShippingV1 < API
-      # Create a new shipment.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param body [Hash] CreateShipmentRequest Body
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def create_shipment(body, rate_limit: 5.0)
-        path = "/shipping/v1/shipments"
-        parser = -> { CreateShipmentResponse }
-        post(path, body:, rate_limit:, parser:)
-      end
-
-      # Return the entire shipment object for the shipmentId.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] Shipment id to return the entire shipment object
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_shipment(shipment_id, rate_limit: 5.0)
-        path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}"
-        parser = -> { GetShipmentResponse }
-        get(path, rate_limit:, parser:)
-      end
-
-      # Cancel a shipment by the given shipmentId.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] Shipment Id to cancel a shipment
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def cancel_shipment(shipment_id, rate_limit: 5.0)
-        path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/cancel"
-        parser = -> { CancelShipmentResponse }
-        post(path, rate_limit:, parser:)
-      end
-
-      # Purchase shipping labels based on a given rate.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] Shipment id for purchase shipping label
-      # @param body [Hash] PurchaseShippingLabelRequest body
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def purchase_labels(shipment_id, body, rate_limit: 5.0)
-        path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/purchaseLabels"
-        parser = -> { PurchaseLabelsResponse }
-        post(path, body:, rate_limit:, parser:)
-      end
-
-      # Retrieve shipping label based on the shipment id and tracking id.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] Shipment Id to retreive label
-      # @param tracking_id [String] Tracking Id
-      # @param body [Hash] RetrieveShippingLabelRequest body
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
-        path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/containers/#{percent_encode(tracking_id)}/label"
-        parser = -> { RetrieveShippingLabelResponse }
-        post(path, body:, rate_limit:, parser:)
-      end
-
-      # Purchase shipping labels.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param body [Hash] PurchaseShipmentRequest body
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def purchase_shipment(body, rate_limit: 5.0)
-        path = "/shipping/v1/purchaseShipment"
-        parser = -> { PurchaseShipmentResponse }
-        post(path, body:, rate_limit:, parser:)
-      end
-
-      # Get service rates.
-      #
-      # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] GetRatesRequest body
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_rates(body, rate_limit: 5.0)
-        path = "/shipping/v1/rates"
-        parser = -> { GetRatesResponse }
-        post(path, body:, rate_limit:, parser:)
-      end
-
-      # Verify if the current account is valid.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_account(rate_limit: 5.0)
-        path = "/shipping/v1/account"
-        parser = -> { GetAccountResponse }
-        get(path, rate_limit:, parser:)
-      end
-
-      # Return the tracking information of a shipment.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param tracking_id [String] Tracking Id
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_tracking_information(tracking_id, rate_limit: 1.0)
-        path = "/shipping/v1/tracking/#{percent_encode(tracking_id)}"
-        parser = -> { GetTrackingInformationResponse }
-        get(path, rate_limit:, parser:)
-      end
+    module ShippingV1
+      # Typed models of successful responses, by native operation key
+      PARSERS = {
+        "shipping_v1.cancel_shipment" => -> { CancelShipmentResponse },
+        "shipping_v1.create_shipment" => -> { CreateShipmentResponse },
+        "shipping_v1.get_account" => -> { GetAccountResponse },
+        "shipping_v1.get_rates" => -> { GetRatesResponse },
+        "shipping_v1.get_shipment" => -> { GetShipmentResponse },
+        "shipping_v1.get_tracking_information" => -> { GetTrackingInformationResponse },
+        "shipping_v1.purchase_labels" => -> { PurchaseLabelsResponse },
+        "shipping_v1.purchase_shipment" => -> { PurchaseShipmentResponse },
+        "shipping_v1.retrieve_shipping_label" => -> { RetrieveShippingLabelResponse },
+      }.freeze
     end
   end
 end

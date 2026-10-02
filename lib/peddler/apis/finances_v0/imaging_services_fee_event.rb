@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A fee event related to Amazon Imaging services.
       ImagingServicesFeeEvent = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item for which the imaging service

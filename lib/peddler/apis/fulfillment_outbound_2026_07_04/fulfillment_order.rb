@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # General information about a fulfillment order, including its status.
       FulfillmentOrder = Structure.new do
         # @return [Array<OrderLineItem>] A list of items in the fulfillment order.

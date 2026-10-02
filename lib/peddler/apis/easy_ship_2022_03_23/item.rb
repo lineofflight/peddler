@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # Item identifier and serial number information.
       Item = Structure.new do
         # @return [String]

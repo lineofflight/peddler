@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Represents an individual item in an order, including item details, quantities, pricing, and backorder
       # information.
       OrderItem = Structure.new do

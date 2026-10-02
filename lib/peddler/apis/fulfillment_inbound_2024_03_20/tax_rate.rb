@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains the type and rate of tax.
       TaxRate = Structure.new do
         # @return [Float] Rate of cess tax.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentSandboxTestData20211028
+    module VendorDirectFulfillmentSandboxTestData20211028
       # The party identifiers required to generate the test data.
       OrderScenarioRequest = Structure.new do
         # @return [PartyIdentification] The identifier of the selling party or vendor.

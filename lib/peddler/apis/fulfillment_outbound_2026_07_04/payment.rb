@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Payment details.
       Payment = Structure.new do
         # @return [String] The payment identifier.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductTypeDefinitions20200901
+    module ProductTypeDefinitions20200901
       # The version details for an Amazon product type.
       ProductTypeVersion = Structure.new do
         # @return [:boolean] When true, the version indicated by the version identifier is the latest available for the

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The estimated price information for the fulfillment order.
       EstimatedPrice = Structure.new do
         # @return [Array<RollupPrice>] A breakdown of the price associated with the delivery preview.

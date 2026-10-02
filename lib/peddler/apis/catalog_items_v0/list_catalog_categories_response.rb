@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItemsV0
+    module CatalogItemsV0
       ListCatalogCategoriesResponse = Structure.new do
         # @return [Array<Error>] One or more unexpected errors occurred during the listCatalogCategories operation.
         attribute?(:errors, [Error])

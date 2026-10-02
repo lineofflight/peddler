@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Information about an upload destination.
       ServiceDocumentUploadDestination = Structure.new do
         # @return [EncryptionDetails]

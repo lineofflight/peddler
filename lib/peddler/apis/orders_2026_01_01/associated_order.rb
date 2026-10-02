@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Another order that has a direct business relationship with the current order, such as replacements or exchanges.
       AssociatedOrder = Structure.new do
         # @return [String] The relationship between the current order and the associated order.

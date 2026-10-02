@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Response payload with the list of shipping labels
       ShippingLabelList = Structure.new do
         # @return [Pagination]

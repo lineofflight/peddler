@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Proof of Appointment (POA) details.
       Poa = Structure.new do
         # @return [AppointmentTime] The time of the appointment window.

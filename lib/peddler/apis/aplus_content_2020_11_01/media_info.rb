@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The core media entity attributes without associations.
       MediaInfo = Structure.new do
         # @return [String] The unique identifier for the media asset.

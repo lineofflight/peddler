@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # A date range filter with optional before and after bounds. Dates must be in
       # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       DateFilter = Structure.new do

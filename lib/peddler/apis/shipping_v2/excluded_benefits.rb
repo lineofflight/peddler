@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of excluded benefit. Refer to the ExcludeBenefit object for further documentation
       class ExcludedBenefits < Array
         class << self

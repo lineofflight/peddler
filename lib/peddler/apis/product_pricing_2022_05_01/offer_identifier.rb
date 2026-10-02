@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Identifies an offer from a particular seller for a specified ASIN.
       OfferIdentifier = Structure.new do
         # @return [String] The Amazon identifier for the item.

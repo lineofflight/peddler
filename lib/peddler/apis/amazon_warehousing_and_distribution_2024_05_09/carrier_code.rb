@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Identifies the carrier that will deliver the shipment.
       CarrierCode = Structure.new do
         # @return [String] Denotes the carrier type.

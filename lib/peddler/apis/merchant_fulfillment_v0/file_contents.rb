@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The document data and checksum.
       FileContents = Structure.new do
         # @return [String] An MD5 hash to validate the PDF document data, in the form of a Base64 string.

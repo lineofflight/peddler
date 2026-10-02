@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # Detailed information about the export.
       Export = Structure.new do
         # @return [String] When the export generation fails, this attribute contains a description of the error.

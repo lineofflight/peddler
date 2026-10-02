@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # An amount of money, including units in the form of currency.
       Amount = Structure.new do
         # @return [String] Three digit currency code in ISO 4217 format.

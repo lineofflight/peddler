@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains details about cost related modifications to the placement cost.
       Incentive = Structure.new do
         # @return [String] Description of the incentive.

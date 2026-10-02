@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Detailed description of items order status.
       class ItemStatus < Array
         class << self

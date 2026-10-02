@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # Package details. Includes `packageItems`, `packageTimeSlot`, and `packageIdentifier`.
       PackageDetails = Structure.new do
         # @return [TimeSlot]

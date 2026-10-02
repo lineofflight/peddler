@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Import details for an import order.
       ImportDetails = Structure.new do
         # @return [String] Types and numbers of container(s) for import purchase orders. Can be a comma-separated list

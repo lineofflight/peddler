@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ApplicationIntegrations20240401
+    module ApplicationIntegrations20240401
       # The request for the `createNotification` operation.
       CreateNotificationRequest = Structure.new do
         # @return [Hash] The parameters specified in the template you used to onboard your application.

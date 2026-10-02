@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A standard image with several paragraphs and a bulleted list.
       StandardSingleImageHighlightsModule = Structure.new do
         # @return [StandardHeaderTextListBlock]

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Capacity slots represented in a format similar to availability rules.
       RangeSlot = Structure.new do
         # @return [Integer] Capacity of the slot.

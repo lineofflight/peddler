@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # An item within an order
       OrderItem = Structure.new do
         # @return [String] Numbering of the item on the purchase order. The first item will be 1, the second 2, and so

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Items in the Amazon catalog and search-related metadata.
       ItemSearchResults = Structure.new do
         # @return [Array<Item>] A list of items from the Amazon catalog.

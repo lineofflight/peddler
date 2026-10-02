@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Individual order item contained within a shipping package.
       PackageItem = Structure.new do
         # @return [String] Unique identifier of the order item included in this package.

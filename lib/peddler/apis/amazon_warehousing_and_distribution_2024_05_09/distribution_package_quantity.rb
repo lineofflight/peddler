@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents a distribution package with its respective quantity.
       DistributionPackageQuantity = Structure.new do
         # @return [Integer] Number of cases or pallets with the same package configuration.

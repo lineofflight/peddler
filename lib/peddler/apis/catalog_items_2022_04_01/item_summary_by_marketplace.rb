@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Information about an Amazon catalog item for the indicated `marketplaceId`.
       ItemSummaryByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier. To find the ID for your marketplace, refer to [Marketplace

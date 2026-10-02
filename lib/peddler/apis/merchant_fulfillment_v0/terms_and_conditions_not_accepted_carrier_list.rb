@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # List of carriers whose terms and conditions were not accepted by the seller.
       class TermsAndConditionsNotAcceptedCarrierList < Array
         class << self

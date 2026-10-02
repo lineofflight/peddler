@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Contains the business invoice tax information. Available only in the TR marketplace.
       BuyerTaxInformation = Structure.new do
         # @return [String] Business buyer's address.

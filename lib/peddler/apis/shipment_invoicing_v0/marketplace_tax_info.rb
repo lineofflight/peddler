@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # Tax information about the marketplace.
       MarketplaceTaxInfo = Structure.new do
         # @return [String] The legal name of the company.

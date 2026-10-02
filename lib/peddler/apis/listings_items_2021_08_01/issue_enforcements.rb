@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a
       # listing. It also includes details about any associated exemptions.
       IssueEnforcements = Structure.new do

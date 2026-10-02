@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The supply source details, including configurations and capabilities.
       SupplySource = Structure.new do
         # @return [Address]

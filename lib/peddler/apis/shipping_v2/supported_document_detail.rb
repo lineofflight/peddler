@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The supported document types for a service offering.
       SupportedDocumentDetail = Structure.new do
         # @return [:boolean] When true, the supported document type is required.

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # A batched list of FOEP responses.
       class FeaturedOfferExpectedPriceResponseList < Array
         class << self

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Maps the additional seller input to the definition. The key to the map is the field name.
       AdditionalInputs = Structure.new do
         # @return [String] The field name.

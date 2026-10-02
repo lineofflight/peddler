@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The metadata of an A+ Content document.
       ContentMetadata = Structure.new do
         # @return [Array<ContentBadge>]

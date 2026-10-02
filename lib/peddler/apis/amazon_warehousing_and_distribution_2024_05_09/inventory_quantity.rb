@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Quantity of inventory with an associated measurement unit context.
       InventoryQuantity = Structure.new do
         # @return [Float] Quantity of the respective inventory.

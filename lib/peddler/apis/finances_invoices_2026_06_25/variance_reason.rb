@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # The type and underlying defect classifications explaining discrepancies between expected and actual invoice
       # values.
       VarianceReason = Structure.new do

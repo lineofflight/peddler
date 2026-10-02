@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Details of the item being shipped.
       PackedItems = Structure.new do
         # @return [String] Buyer Standard Identification Number (ASIN) of an item.

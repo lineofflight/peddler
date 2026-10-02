@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The request body for creating a media asset. Uses the unified media shape as a subset, omitting system-derived
       # fields.
       CreateMediaRequest = Structure.new do

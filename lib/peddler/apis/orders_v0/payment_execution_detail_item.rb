@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Information about a sub-payment method used to pay for a COD order.
       PaymentExecutionDetailItem = Structure.new do
         # @return [Money]

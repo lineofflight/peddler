@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The services capability of a supply source.
       ServicesCapability = Structure.new do
         # @return [:boolean] When true, `SupplySource` supports the Service capability.

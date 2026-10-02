@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Benefits that are included and excluded for each shipping offer. Benefits represents services provided by Amazon
       # (eg. CLAIMS_PROTECTED, etc.) when sellers purchase shipping through Amazon. Benefit details will be made
       # available for any shipment placed on or after January 1st 2024 00:00 UTC.

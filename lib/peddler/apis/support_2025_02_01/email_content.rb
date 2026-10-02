@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # The content of an email contact.
       EmailContent = Structure.new do
         # @return [String] The email body of the contact.

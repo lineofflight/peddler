@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # An object representing data required for pagination of results.
       Pagination = Structure.new do
         # @return [String] A token that you use to retrieve the next page of results. The response includes `nextToken`

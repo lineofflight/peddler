@@ -9,15 +9,17 @@ module Peddler
     <%= description %>
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/<%= github_model_filename %>
-    class <%= class_name %> < API
-      <% if has_helper? -%>
-        include <%= helper_class_name %>
-
-      <% end -%>
-      <% operations.each_with_index do |operation, index| -%>
-        <%= "\n" if index > 0 -%>
-        <%= operation.render %>
-      <% end -%>
+    module <%= class_name %>
+      # Typed models of successful responses, by native operation key
+<% if parsers.empty? -%>
+      PARSERS = {}.freeze # steep:ignore UnannotatedEmptyCollection
+<% else -%>
+      PARSERS = {
+<% parsers.each do |key, model| -%>
+        "<%= key %>" => -> { <%= model %> },
+<% end -%>
+      }.freeze
+<% end -%>
     end
   end
 end

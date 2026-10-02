@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # The content for a chat contact.
       ChatContent = Structure.new do
         # @return [Array<ChatEvent>] A list of events that make up the chat contact. Not all chat contacts are broken

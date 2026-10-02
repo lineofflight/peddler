@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Extended address fields for additional address components including the street name or number.
       #
       # Note: Available for grocery sellers and Brazil shipping addresses.

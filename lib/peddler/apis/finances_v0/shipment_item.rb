@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An item of a shipment, refund, guarantee claim, or chargeback.
       ShipmentItem = Structure.new do
         # @return [Money] The cost of Amazon Points granted for a shipment item.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # Information about an Amazon marketplace where a seller can list items and customers can view and purchase items.
       Marketplace = Structure.new do
         # @return [String] The ISO 3166-1 alpha-2 format country code of the marketplace.

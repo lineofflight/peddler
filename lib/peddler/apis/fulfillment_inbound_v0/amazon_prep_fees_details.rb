@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # The fees for Amazon to prep goods for shipment.
       AmazonPrepFeesDetails = Structure.new do
         # @return [Amount] The fee for Amazon to prepare 1 unit.

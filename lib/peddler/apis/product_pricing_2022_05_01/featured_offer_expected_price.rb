@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The item price at or below which the target offer may be featured.
       FeaturedOfferExpectedPrice = Structure.new do
         # @return [Money] A computed listing price at or below which a seller can expect to become the featured offer

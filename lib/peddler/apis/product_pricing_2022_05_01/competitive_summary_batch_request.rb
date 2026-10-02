@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The `competitiveSummary` batch request data.
       CompetitiveSummaryBatchRequest = Structure.new do
         # @return [Array<CompetitiveSummaryRequest>] A batched list of `competitiveSummary` requests.

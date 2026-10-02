@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The estimated shipping cost associated with the transportation option.
       Quote = Structure.new do
         # @return [Money]

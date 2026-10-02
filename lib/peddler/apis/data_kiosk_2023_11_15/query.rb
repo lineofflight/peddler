@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class DataKiosk20231115
+    module DataKiosk20231115
       # Detailed information about the query.
       Query = Structure.new do
         # @return [Time] The date and time when the query was created, in ISO 8601 date time format.

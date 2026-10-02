@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Item information for an inbound shipment. Submitted with a call to the createInboundShipment or
       # updateInboundShipment operation.
       InboundShipmentItem = Structure.new do

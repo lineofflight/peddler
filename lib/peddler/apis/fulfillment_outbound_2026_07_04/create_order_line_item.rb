@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Line item information for a create order request.
       CreateOrderLineItem = Structure.new do
         # @return [Amount]

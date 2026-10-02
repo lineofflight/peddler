@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Details of the Pallet/Tare being shipped.
       Pallet = Structure.new do
         # @return [Array<ContainerIdentification>] A list of pallet identifiers.

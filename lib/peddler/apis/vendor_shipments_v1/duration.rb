@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Duration after manufacturing date during which the product is valid for consumption.
       Duration = Structure.new do
         # @return [String] Unit for duration.

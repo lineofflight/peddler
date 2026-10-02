@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Vehicles20241101
+    module Vehicles20241101
       # Engine power output of vehicle.
       EngineOutput = Structure.new do
         # @return [String] Unit for measuring engine power.

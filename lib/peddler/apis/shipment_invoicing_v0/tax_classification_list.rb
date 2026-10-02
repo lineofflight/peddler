@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The list of tax classifications.
       class TaxClassificationList < Array
         class << self

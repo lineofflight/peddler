@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Container sequence numbers that are involved in this shipment.
       ContainerSequenceNumbers = Structure.new do
         # @return [String] A list of containers shipped

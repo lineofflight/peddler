@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Destination details of an inbound order based on the assigned region and DC for the order.
       DestinationDetails = Structure.new do
         # @return [Address] Destination address of the AWD facility where the shipment will be shipped to

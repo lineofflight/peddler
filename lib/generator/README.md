@@ -47,7 +47,7 @@ Pipeline: Clone specs → Generate APIs/Notifications/Reports/Feeds → Generate
 ## Directory Structure
 
 ### Main Generators (Orchestrators)
-- **`api.rb`** - Generate API classes from OpenAPI specs
+- **`api.rb`** - Generate each API's typed models and parser lookup from OpenAPI specs
 - **`notification.rb`** - Generate notification types from JSON schemas
 - **`report.rb`** - Generate report types from JSON schemas
 - **`feed.rb`** - Generate feed types from JSON schemas
@@ -57,7 +57,7 @@ Pipeline: Clone specs → Generate APIs/Notifications/Reports/Feeds → Generate
 ### Builders (`builders/`)
 Classes that construct/build generated code:
 - **`type.rb`** - Build type classes (used by all generators above)
-- **`operation.rb`** - Build API operation methods
+- **`operation.rb`** - Read an operation's response model for the parser lookup
 - **`parameter_builder.rb`** - Build parameter lists for API operations
 - **`response_model.rb`** - Build response model metadata for operations
 
@@ -90,7 +90,7 @@ Shared utilities, infrastructure, and mixins:
 ### Templates & Types
 - **`templates/`** - ERB templates for code generation
 - **`rbs/`** - RBS signature generation modules
-  - `unified.rb` - Combined API operations + types signatures
+  - `unified.rb` - Parser lookup + types signatures
   - `types.rb` - Type-only signatures (notifications/reports/feeds)
   - `entrypoint.rb` - Entrypoint signature
 
@@ -100,7 +100,7 @@ Shared utilities, infrastructure, and mixins:
 2. **Generate Code**: Each orchestrator (API, Notification, Report, Feed) reads JSON/OpenAPI specs and:
    - Extracts type definitions using `JsonSchemaExtractor` parser
    - Generates Ruby classes using `Type` builder
-   - Generates operation methods using `Operation` builder (API only)
+   - Generates the parser lookup from each operation's response model (API only)
    - Generates main wrapper files from ERB templates
 3. **Generate RBS**: Each orchestrator introspects generated classes and creates RBS signatures
 4. **Format**: All files are formatted with RuboCop and RBS files are sorted

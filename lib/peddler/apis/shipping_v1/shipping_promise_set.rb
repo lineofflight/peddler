@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The promised delivery time and pickup time.
       ShippingPromiseSet = Structure.new do
         # @return [TimeRange] The time window in which the shipment will be delivered.

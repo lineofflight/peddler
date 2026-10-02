@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # All information relevant to a balance.
       Balance = Structure.new do
         # @return [Money] Total amount of the balance type.

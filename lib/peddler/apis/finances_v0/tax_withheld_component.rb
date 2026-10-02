@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # Information about the taxes withheld.
       TaxWithheldComponent = Structure.new do
         # @return [String] The tax collection model applied to the item.

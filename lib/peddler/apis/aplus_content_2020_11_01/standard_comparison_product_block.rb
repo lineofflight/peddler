@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The A+ Content standard comparison product block.
       StandardComparisonProductBlock = Structure.new do
         # @return [Integer] The rank or index of this comparison product block within the module. Different blocks

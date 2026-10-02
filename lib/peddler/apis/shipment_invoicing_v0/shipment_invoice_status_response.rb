@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The shipment invoice status response.
       ShipmentInvoiceStatusResponse = Structure.new do
         # @return [ShipmentInvoiceStatusInfo]

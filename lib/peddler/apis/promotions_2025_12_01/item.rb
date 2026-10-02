@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # An item in the Amazon catalog for promotion selection.
       Item = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the

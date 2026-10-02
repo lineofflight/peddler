@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SalesV1
+    module SalesV1
       # Contains order metrics.
       OrderMetricsInterval = Structure.new do
         # @return [Money] The average price for an item based on the specified filters. Formula is totalSales/unitCount.

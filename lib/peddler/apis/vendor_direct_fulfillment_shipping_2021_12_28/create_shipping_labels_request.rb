@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # The request body for the createShippingLabels operation.
       CreateShippingLabelsRequest = Structure.new do
         # @return [PartyIdentification] ID of the selling party or vendor.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # The balance amount in the Amazon Seller Wallet bank account.
       Balance = Structure.new do
         # @return [String] The unique identifier provided by Amazon to identify the account.

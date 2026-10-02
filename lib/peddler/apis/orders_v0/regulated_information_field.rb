@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A field collected from the regulatory form.
       RegulatedInformationField = Structure.new do
         # @return [String] The unique identifier of the field.

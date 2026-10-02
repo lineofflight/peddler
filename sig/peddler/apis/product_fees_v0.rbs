@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ProductFeesV0 < API
+    module ProductFeesV0
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ProductFeesV0::Error
                     | (String, String, String?) -> Peddler::APIs::ProductFeesV0::Error
@@ -302,11 +304,6 @@ module Peddler
         def members: () -> [ :listing_price, :points, :shipping ]
         def to_h: () -> { listing_price: Peddler::Money, points: Peddler::APIs::ProductFeesV0::Points?, shipping: Peddler::Money? }
       end
-
-      def get_my_fees_estimate_for_asin: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
-      def get_my_fees_estimate_for_sku: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
-
-      def get_my_fees_estimates: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

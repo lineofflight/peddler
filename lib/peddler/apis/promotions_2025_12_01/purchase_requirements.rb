@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Purchase requirements that customers must meet to qualify for a basket building promotion. Contains eligibility
       # selection (what to buy), purchase condition (how much to buy), and an optional claim code. This is the 'Buy X'
       # portion of 'Buy X Get Y' promotions.

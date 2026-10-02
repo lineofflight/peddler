@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # The response to the `getInvoice` operation.
       GetInvoiceResponse = Structure.new do
         # @return [InvoiceHeader]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The drop-off location details for package handover.
       HandoverLocation = Structure.new do
         # @return [Address] The address of the drop-off location.

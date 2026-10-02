@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Represents a list of customer invoices, potentially paginated.
       CustomerInvoiceList = Structure.new do
         # @return [Array<CustomerInvoice>] Represents a customer invoice within the CustomerInvoiceList.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Range capacity entity where each entry has a capacity type and corresponding slots.
       RangeCapacity = Structure.new do
         # @return [String] Capacity type corresponding to the slots.

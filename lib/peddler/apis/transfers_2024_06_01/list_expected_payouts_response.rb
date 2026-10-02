@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The response schema for the `listExpectedPayouts` operation.
       ListExpectedPayoutsResponse = Structure.new do
         # @return [Array<ExpectedPayout>] A list of expected payouts for all of the selling partner's accounts matching

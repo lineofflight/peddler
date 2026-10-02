@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # A list of one or more shipment confirmations.
       ShipmentConfirmation = Structure.new do
         # @return [PartyIdentification] Name/Address and tax details of the selling party.

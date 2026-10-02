@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Status of acknowledgement.
       AcknowledgementStatus = Structure.new do
         # @return [String] Acknowledgement code is a unique two digit value which indicates the status of the

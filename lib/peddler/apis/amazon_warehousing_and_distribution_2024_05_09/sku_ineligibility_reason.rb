@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents the ineligibility reason for one SKU.
       SKUIneligibilityReason = Structure.new do
         # @return [String] Code for the SKU ineligibility.

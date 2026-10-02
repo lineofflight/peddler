@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The 10 most positive and most negative review topics for all items in a browse node.
       ItemReviewTrends = Structure.new do
         # @return [Array<ItemReviewTrend>] A list of the most negative review topics. The percentage of reviews that

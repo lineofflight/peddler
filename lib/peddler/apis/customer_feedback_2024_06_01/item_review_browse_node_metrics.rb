@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The browse node review topic metrics.
       ItemReviewBrowseNodeMetrics = Structure.new do
         # @return [BrowseNodeOccurrence] The percentage of reviews that mention the topic. This value is `null` if

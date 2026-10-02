@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Response containing the reference identifier for the newly created/updated replenishment order consisting of the
       # order ID.
       ReplenishmentOrderReference = Structure.new do

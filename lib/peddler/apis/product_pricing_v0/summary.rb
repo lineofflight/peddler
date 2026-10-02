@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the
       # SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
       Summary = Structure.new do

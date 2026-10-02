@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Claim code configuration for accessing the promotion.
       ClaimCode = Structure.new do
         # @return [String] The type of claim code.

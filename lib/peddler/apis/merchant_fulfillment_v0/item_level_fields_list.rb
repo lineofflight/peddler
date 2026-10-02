@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # A list of item level fields.
       class ItemLevelFieldsList < Array
         class << self

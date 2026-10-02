@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains input information to update Less-Than-Truckload (LTL) tracking information.
       LtlTrackingDetailInput = Structure.new do
         # @return [Array<String>] Number associated with the freight bill.

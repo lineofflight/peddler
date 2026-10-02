@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Sales rank of an Amazon catalog item.
       ItemClassificationSalesRank = Structure.new do
         # @return [String] Identifier of the classification that is associated with the sales rank.

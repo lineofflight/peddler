@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A full-width image with clickable hotspot markers, plus a module headline and body text above the image.
       PremiumHotspotImageTextModule = Structure.new do
         # @return [ImageComponent]

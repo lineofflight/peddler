@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Dimensions of the package.
       PackageDimensions = Structure.new do
         # @return [Float] Height of the package.

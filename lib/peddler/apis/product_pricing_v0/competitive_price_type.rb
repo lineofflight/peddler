@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema for competitive pricing information
       CompetitivePriceType = Structure.new do
         # @return [String] The pricing model for each price that is returned.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A package that is created to ship one or more of a shipment's line items.
       Package = Structure.new do
         # @return [PackageDimensions] The dimensions of the package.

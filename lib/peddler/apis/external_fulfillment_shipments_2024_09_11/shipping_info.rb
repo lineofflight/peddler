@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Shipping information for the packages in a shipment.
       ShippingInfo = Structure.new do
         # @return [String] The date and time when Amazon expects the seller to ship the packages.

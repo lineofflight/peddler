@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # A field where the selling party can provide additional information for tax-related or any other purposes.
       AdditionalDetails = Structure.new do
         # @return [String] The detail of the additional information provided by the selling party.

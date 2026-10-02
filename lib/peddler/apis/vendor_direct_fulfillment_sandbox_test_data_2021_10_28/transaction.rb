@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentSandboxTestData20211028
+    module VendorDirectFulfillmentSandboxTestData20211028
       # The transaction details including the status. If the transaction was successful, also includes the requested
       # test order data.
       Transaction = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # The request schema for the `submitShipmentStatusUpdates` operation.
       SubmitShipmentStatusUpdatesRequest = Structure.new do
         # @return [Array<ShipmentStatusUpdate>] Contains a list of one or more `ShipmentStatusUpdate` objects. Each

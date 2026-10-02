@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The item review topic metrics.
       ItemReviewTopicMetrics = Structure.new do
         # @return [Integer] The number of times that reviews mention the topic. This value is `null` if reviews do not

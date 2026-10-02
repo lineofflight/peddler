@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information related to the packaging process for an order item.
       ItemPacking = Structure.new do
         # @return [GiftOption] Gift wrapping and messaging specified for this item.

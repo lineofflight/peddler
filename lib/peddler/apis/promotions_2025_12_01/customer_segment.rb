@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # The customer segment. When `segmentType` is `BRAND`, `segmentId` contains the segment / audience ID and
       # `segmentDetails.brandSegmentDetails` must be provided. When `segmentType` is `PROGRAM`, `segmentId` contains the
       # program name (for example, `PRIME_EXCLUSIVE`, `MOM`, `STUDENT`).

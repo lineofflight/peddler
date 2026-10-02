@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Details related to any dangerous goods/items that are being shipped.
       DangerousGoodsDetails = Structure.new do
         # @return [String] The specific packaging group of the item being shipped.

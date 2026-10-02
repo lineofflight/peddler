@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class DeliveryByAmazon20220701
+    module DeliveryByAmazon20220701
       # The response schema for the getInvoiceStatus operation.
       GetInvoiceStatusResponse = Structure.new do
         # @return [String] The Amazon-defined order identifier.

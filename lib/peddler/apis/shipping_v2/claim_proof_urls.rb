@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of proof URLs for a claim. Basic URL validation will happen for each URLs present in the list
       class ClaimProofURLs < Array
         class << self

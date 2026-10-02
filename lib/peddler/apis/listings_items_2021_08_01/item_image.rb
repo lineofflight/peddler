@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # The listings item's image.
       ItemImage = Structure.new do
         # @return [Integer] The image's height, in pixels.

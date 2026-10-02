@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains item identifiers and related tax information.
       ComplianceDetail = Structure.new do
         # @return [String] The Amazon Standard Identification Number, which identifies the detail page identifier.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # A Multi-Channel Fulfillment feature.
       Feature = Structure.new do
         # @return [String] The feature description.

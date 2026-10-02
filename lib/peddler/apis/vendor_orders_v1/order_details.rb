@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Details of an order.
       OrderDetails = Structure.new do
         # @return [Array<OrderItem>] A list of items in this purchase order.

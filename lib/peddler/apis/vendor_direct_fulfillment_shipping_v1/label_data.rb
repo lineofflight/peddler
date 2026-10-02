@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Details of the shipment label.
       LabelData = Structure.new do
         # @return [String] This field will contain the Base64encoded string of the shipment label content.

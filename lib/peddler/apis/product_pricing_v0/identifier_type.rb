@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Specifies the identifiers used to uniquely identify an item.
       IdentifierType = Structure.new do
         # @return [ASINIdentifier] Indicates the item is identified by MarketPlaceId and ASIN.

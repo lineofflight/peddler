@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FinanceRemittance20260317
+    module FinanceRemittance20260317
       # Summary information for a remittance payment.
       RemittanceHeader = Structure.new do
         # @return [Money] The payment amount.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The types of verification details that may be provided for the order and the criteria required for when the type
       # of verification detail can be provided. The types of verification details allowed depend on the type of
       # regulated product and will not change order to order.

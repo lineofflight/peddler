@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The trend of return topic metrics for all items in the requested browse node.
       BrowseNodeReturnTrend = Structure.new do
         # @return [String] The name of the topic.

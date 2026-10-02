@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1 < API
+    module VendorDirectFulfillmentPaymentsV1
+      PARSERS: Hash[String, ^() -> untyped]
+
       class AdditionalDetails < Data
         def self.new: (detail: String, type: String, ?language_code: String?) -> Peddler::APIs::VendorDirectFulfillmentPaymentsV1::AdditionalDetails
                     | (String, String, String?) -> Peddler::APIs::VendorDirectFulfillmentPaymentsV1::AdditionalDetails
@@ -308,8 +310,6 @@ module Peddler
         def members: () -> [ :transaction_id ]
         def to_h: () -> { transaction_id: String? }
       end
-
-      def submit_invoice: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

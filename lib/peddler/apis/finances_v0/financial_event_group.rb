@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # Information related to a financial event group.
       FinancialEventGroup = Structure.new do
         # @return [String] The account tail of the payment instrument.

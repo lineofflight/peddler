@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A content document with additional information for content management.
       ContentRecord = Structure.new do
         # @return [String]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The composition of the charge.
       ChargeBreakup = Structure.new do
         # @return [Amount] The base amount charged.

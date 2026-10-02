@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Item-level benefit configuration with pricing options. Applicable to `DEAL` and `PRICE_DISCOUNT` promotion
       # types, where each item can have its own distinct benefit. For `COUPON` and `BASKET_BUILDING` promotion types,
       # benefits are configured at the promotion level.

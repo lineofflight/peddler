@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Information about an item associated with the service job.
       AssociatedItem = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.

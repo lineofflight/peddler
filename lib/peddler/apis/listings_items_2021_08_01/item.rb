@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # A listings item.
       Item = Structure.new do
         # @return [String] A selling partner-provided identifier for an Amazon listing.

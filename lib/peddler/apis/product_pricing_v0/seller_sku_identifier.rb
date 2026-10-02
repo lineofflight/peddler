@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema to identify an item by MarketPlaceId, SellerId, and SellerSKU.
       SellerSKUIdentifier = Structure.new do
         # @return [String] A marketplace identifier.

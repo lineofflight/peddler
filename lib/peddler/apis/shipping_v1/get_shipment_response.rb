@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The response schema for the getShipment operation.
       GetShipmentResponse = Structure.new do
         # @return [Array<Error>] Encountered errors for the operation.

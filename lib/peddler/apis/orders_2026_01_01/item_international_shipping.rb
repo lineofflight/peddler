@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Additional requirements needed for cross-border shipping of an order item.
       ItemInternationalShipping = Structure.new do
         # @return [String] Import One-Stop Shop registration number required for EU VAT compliance when shipping from

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # High-level details of the shipment.
       ShipmentInfo = Structure.new do
         # @return [String] The buyer's order ID.

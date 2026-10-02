@@ -92,77 +92,77 @@ module Peddler
 
       def cancel_inbound(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.cancel_inbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.cancel_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound")
       end
 
       def check_inbound_eligibility(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility")
       end
 
       def confirm_inbound(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_inbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_inbound")
       end
 
       def confirm_outbound(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_outbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_outbound")
       end
 
       def confirm_replenishment_order(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order")
       end
 
       def create_inbound(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_inbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_inbound")
       end
 
       def create_outbound(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_outbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_outbound")
       end
 
       def create_replenishment_order(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order")
       end
 
       def get_inbound(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound")
       end
 
       def get_inbound_shipment(shipment_id:, sku_quantities: nil)
         arguments = { shipment_id: shipment_id, sku_quantities: sku_quantities }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment")
       end
 
       def get_inbound_shipment_labels(shipment_id:, page_type: nil, format_type: nil)
         arguments = { shipment_id: shipment_id, page_type: page_type, format_type: format_type }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels")
       end
 
       def get_label_page_types(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_label_page_types", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_label_page_types", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_label_page_types")
       end
 
       def get_outbound(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_outbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_outbound")
       end
 
       def get_replenishment_order(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order")
       end
 
       def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil)
         arguments = { sort_by: sort_by, sort_order: sort_order, shipment_status: shipment_status, updated_after: updated_after, updated_before: updated_before, max_results: max_results, next_token: next_token }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments")
       end
 
       def list_inbound_shipments_pages(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil, max_pages: nil)
@@ -172,7 +172,7 @@ module Peddler
 
       def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25)
         arguments = { sku: sku, sort_order: sort_order, details: details, next_token: next_token, max_results: max_results }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inventory")
       end
 
       def list_inventory_pages(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, max_pages: nil)
@@ -182,7 +182,7 @@ module Peddler
 
       def list_outbounds(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
         arguments = { updated_after: updated_after, updated_before: updated_before, sort_order: sort_order, max_results: max_results, next_token: next_token }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_outbounds")
       end
 
       def list_outbounds_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, max_pages: nil)
@@ -192,7 +192,7 @@ module Peddler
 
       def list_replenishment_orders(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
         arguments = { updated_after: updated_after, updated_before: updated_before, sort_order: sort_order, max_results: max_results, next_token: next_token }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders")
       end
 
       def list_replenishment_orders_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, max_pages: nil)
@@ -202,17 +202,17 @@ module Peddler
 
       def update_inbound(order_id:, body:)
         arguments = { order_id: order_id, body: body }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound")
       end
 
       def update_inbound_shipment_transport_details(shipment_id:, body:)
         arguments = { shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details")
       end
 
       def update_outbound(order_id:, body:)
         arguments = { order_id: order_id, body: body }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_outbound", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_outbound")
       end
     end
 
@@ -223,27 +223,27 @@ module Peddler
 
       def create_content_document(marketplace_id:, body:)
         arguments = { marketplace_id: marketplace_id, body: body }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_content_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.create_content_document")
       end
 
       def create_media(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_media", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_media", JSON.generate(arguments)), "aplus_content_2020_11_01.create_media")
       end
 
       def get_content_document(content_reference_key:, marketplace_id:, included_data_set:)
         arguments = { content_reference_key: content_reference_key, marketplace_id: marketplace_id, included_data_set: included_data_set }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_content_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.get_content_document")
       end
 
       def get_media(media_id:, associated_media_id: nil)
         arguments = { media_id: media_id, associated_media_id: associated_media_id }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_media", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_media", JSON.generate(arguments)), "aplus_content_2020_11_01.get_media")
       end
 
       def list_content_document_asin_relations(content_reference_key:, marketplace_id:, included_data_set: nil, asin_set: nil, page_token: nil)
         arguments = { content_reference_key: content_reference_key, marketplace_id: marketplace_id, included_data_set: included_data_set, asin_set: asin_set, page_token: page_token }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.list_content_document_asin_relations")
       end
 
       def list_content_document_asin_relations_pages(content_reference_key:, marketplace_id:, included_data_set: nil, asin_set: nil, page_token: nil, max_pages: nil)
@@ -253,22 +253,22 @@ module Peddler
 
       def post_content_document_approval_submission(content_reference_key:, marketplace_id:)
         arguments = { content_reference_key: content_reference_key, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_approval_submission", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_approval_submission", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_approval_submission")
       end
 
       def post_content_document_asin_relations(content_reference_key:, marketplace_id:, body:)
         arguments = { content_reference_key: content_reference_key, marketplace_id: marketplace_id, body: body }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_asin_relations", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_asin_relations")
       end
 
       def post_content_document_suspend_submission(content_reference_key:, marketplace_id:)
         arguments = { content_reference_key: content_reference_key, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_suspend_submission", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_suspend_submission", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_suspend_submission")
       end
 
       def search_content_documents(marketplace_id:, page_token: nil)
         arguments = { marketplace_id: marketplace_id, page_token: page_token }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", JSON.generate(arguments)), "aplus_content_2020_11_01.search_content_documents")
       end
 
       def search_content_documents_pages(marketplace_id:, page_token: nil, max_pages: nil)
@@ -278,7 +278,7 @@ module Peddler
 
       def search_content_publish_records(marketplace_id:, asin:, page_token: nil)
         arguments = { marketplace_id: marketplace_id, asin: asin, page_token: page_token }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", JSON.generate(arguments)), "aplus_content_2020_11_01.search_content_publish_records")
       end
 
       def search_content_publish_records_pages(marketplace_id:, asin:, page_token: nil, max_pages: nil)
@@ -288,17 +288,17 @@ module Peddler
 
       def update_content_document(content_reference_key:, marketplace_id:, body:)
         arguments = { content_reference_key: content_reference_key, marketplace_id: marketplace_id, body: body }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_content_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.update_content_document")
       end
 
       def update_media(media_id:, associated_media_id: nil, body:)
         arguments = { media_id: media_id, associated_media_id: associated_media_id, body: body }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_media", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_media", JSON.generate(arguments)), "aplus_content_2020_11_01.update_media")
       end
 
       def validate_content_document_asin_relations(marketplace_id:, asin_set: nil, body:)
         arguments = { marketplace_id: marketplace_id, asin_set: asin_set, body: body }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.validate_content_document_asin_relations", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.validate_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.validate_content_document_asin_relations")
       end
     end
 
@@ -309,17 +309,17 @@ module Peddler
 
       def create_notification(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.create_notification", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.create_notification", JSON.generate(arguments)), "application_integrations_2024_04_01.create_notification")
       end
 
       def delete_notifications(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.delete_notifications", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.delete_notifications", JSON.generate(arguments)), "application_integrations_2024_04_01.delete_notifications")
       end
 
       def record_action_feedback(notification_id:, body:)
         arguments = { notification_id: notification_id, body: body }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.record_action_feedback", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.record_action_feedback", JSON.generate(arguments)), "application_integrations_2024_04_01.record_action_feedback")
       end
     end
 
@@ -331,7 +331,7 @@ module Peddler
       def rotate_application_client_secret
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("application_management_2023_11_30.rotate_application_client_secret", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("application_management_2023_11_30.rotate_application_client_secret", JSON.generate(arguments)), "application_management_2023_11_30.rotate_application_client_secret")
       end
     end
 
@@ -342,7 +342,7 @@ module Peddler
 
       def list_catalog_categories(marketplace_id:, asin: nil, seller_sku: nil)
         arguments = { marketplace_id: marketplace_id, asin: asin, seller_sku: seller_sku }
-        Response.from_parts(@engine.operation("catalog_items_v0.list_catalog_categories", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("catalog_items_v0.list_catalog_categories", JSON.generate(arguments)), "catalog_items_v0.list_catalog_categories")
       end
     end
 
@@ -353,12 +353,12 @@ module Peddler
 
       def get_catalog_item(asin:, marketplace_ids:, included_data: ["summaries"], locale: nil)
         arguments = { asin: asin, marketplace_ids: marketplace_ids, included_data: included_data, locale: locale }
-        Response.from_parts(@engine.operation("catalog_items_2020_12_01.get_catalog_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("catalog_items_2020_12_01.get_catalog_item", JSON.generate(arguments)), "catalog_items_2020_12_01.get_catalog_item")
       end
 
       def search_catalog_items(keywords:, marketplace_ids:, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil)
         arguments = { keywords: keywords, marketplace_ids: marketplace_ids, included_data: included_data, brand_names: brand_names, classification_ids: classification_ids, page_size: page_size, page_token: page_token, keywords_locale: keywords_locale, locale: locale }
-        Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", JSON.generate(arguments)), "catalog_items_2020_12_01.search_catalog_items")
       end
 
       def search_catalog_items_pages(keywords:, marketplace_ids:, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil, max_pages: nil)
@@ -374,12 +374,12 @@ module Peddler
 
       def get_catalog_item(asin:, marketplace_ids:, included_data: ["summaries"], locale: nil)
         arguments = { asin: asin, marketplace_ids: marketplace_ids, included_data: included_data, locale: locale }
-        Response.from_parts(@engine.operation("catalog_items_2022_04_01.get_catalog_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("catalog_items_2022_04_01.get_catalog_item", JSON.generate(arguments)), "catalog_items_2022_04_01.get_catalog_item")
       end
 
       def search_catalog_items(identifiers: nil, identifiers_type: nil, marketplace_ids:, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil)
         arguments = { identifiers: identifiers, identifiers_type: identifiers_type, marketplace_ids: marketplace_ids, included_data: included_data, locale: locale, seller_id: seller_id, keywords: keywords, brand_names: brand_names, classification_ids: classification_ids, page_size: page_size, page_token: page_token, keywords_locale: keywords_locale }
-        Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", JSON.generate(arguments)), "catalog_items_2022_04_01.search_catalog_items")
       end
 
       def search_catalog_items_pages(identifiers: nil, identifiers_type: nil, marketplace_ids:, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, max_pages: nil)
@@ -395,37 +395,37 @@ module Peddler
 
       def get_browse_node_return_topics(browse_node_id:, marketplace_id:)
         arguments = { browse_node_id: browse_node_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_topics", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_topics")
       end
 
       def get_browse_node_return_trends(browse_node_id:, marketplace_id:)
         arguments = { browse_node_id: browse_node_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_trends", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_trends")
       end
 
       def get_browse_node_review_topics(browse_node_id:, marketplace_id:, sort_by:)
         arguments = { browse_node_id: browse_node_id, marketplace_id: marketplace_id, sort_by: sort_by }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_topics", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_topics")
       end
 
       def get_browse_node_review_trends(browse_node_id:, marketplace_id:)
         arguments = { browse_node_id: browse_node_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_trends", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_trends")
       end
 
       def get_item_browse_node(asin:, marketplace_id:)
         arguments = { asin: asin, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_browse_node", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_browse_node", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_browse_node")
       end
 
       def get_item_review_topics(asin:, marketplace_id:, sort_by:)
         arguments = { asin: asin, marketplace_id: marketplace_id, sort_by: sort_by }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_topics", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_review_topics")
       end
 
       def get_item_review_trends(asin:, marketplace_id:)
         arguments = { asin: asin, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_trends", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_review_trends")
       end
     end
 
@@ -436,22 +436,22 @@ module Peddler
 
       def cancel_query(query_id:)
         arguments = { query_id: query_id }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.cancel_query", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.cancel_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.cancel_query")
       end
 
       def create_query(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.create_query", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.create_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.create_query")
       end
 
       def get_document(document_id:)
         arguments = { document_id: document_id }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_document", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_document")
       end
 
       def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil)
         arguments = { processing_statuses: processing_statuses, page_size: page_size, created_since: created_since, created_until: created_until, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_queries")
       end
 
       def get_queries_pages(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil, max_pages: nil)
@@ -461,7 +461,7 @@ module Peddler
 
       def get_query(query_id:)
         arguments = { query_id: query_id }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_query", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_query")
       end
     end
 
@@ -472,12 +472,12 @@ module Peddler
 
       def get_invoice_status(order_id: nil, shipment_id: nil, invoice_id: nil, marketplace_id:, invoice_type:, program_type:)
         arguments = { order_id: order_id, shipment_id: shipment_id, invoice_id: invoice_id, marketplace_id: marketplace_id, invoice_type: invoice_type, program_type: program_type }
-        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.get_invoice_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.get_invoice_status", JSON.generate(arguments)), "delivery_by_amazon_2022_07_01.get_invoice_status")
       end
 
       def submit_invoice(order_id: nil, shipment_id: nil, body:)
         arguments = { order_id: order_id, shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.submit_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.submit_invoice", JSON.generate(arguments)), "delivery_by_amazon_2022_07_01.submit_invoice")
       end
     end
 
@@ -488,27 +488,27 @@ module Peddler
 
       def create_scheduled_package(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package", JSON.generate(arguments)), "easy_ship_2022_03_23.create_scheduled_package")
       end
 
       def create_scheduled_package_bulk(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package_bulk", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package_bulk", JSON.generate(arguments)), "easy_ship_2022_03_23.create_scheduled_package_bulk")
       end
 
       def get_scheduled_package(amazon_order_id:, marketplace_id:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.get_scheduled_package", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.get_scheduled_package", JSON.generate(arguments)), "easy_ship_2022_03_23.get_scheduled_package")
       end
 
       def list_handover_slots(body: nil)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.list_handover_slots", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.list_handover_slots", JSON.generate(arguments)), "easy_ship_2022_03_23.list_handover_slots")
       end
 
       def update_scheduled_packages(body: nil)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.update_scheduled_packages", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.update_scheduled_packages", JSON.generate(arguments)), "easy_ship_2022_03_23.update_scheduled_packages")
       end
     end
 
@@ -519,7 +519,7 @@ module Peddler
 
       def batch_inventory(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_inventory_2024_09_11.batch_inventory", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_inventory_2024_09_11.batch_inventory", JSON.generate(arguments)), "external_fulfillment_inventory_2024_09_11.batch_inventory")
       end
     end
 
@@ -530,7 +530,7 @@ module Peddler
 
       def create_sandbox_location(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_location_2026_07_30.create_sandbox_location", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_location_2026_07_30.create_sandbox_location", JSON.generate(arguments)), "external_fulfillment_location_2026_07_30.create_sandbox_location")
       end
     end
 
@@ -541,12 +541,12 @@ module Peddler
 
       def get_return(return_id:)
         arguments = { return_id: return_id }
-        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.get_return", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.get_return", JSON.generate(arguments)), "external_fulfillment_returns_2024_09_11.get_return")
       end
 
       def list_returns(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil)
         arguments = { return_location_id: return_location_id, rma_id: rma_id, status: status, reverse_tracking_id: reverse_tracking_id, created_since: created_since, created_until: created_until, last_updated_since: last_updated_since, last_updated_until: last_updated_until, last_updated_after: last_updated_after, last_updated_before: last_updated_before, max_results: max_results, next_token: next_token }
-        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", JSON.generate(arguments)), "external_fulfillment_returns_2024_09_11.list_returns")
       end
 
       def list_returns_pages(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil, max_pages: nil)
@@ -562,32 +562,32 @@ module Peddler
 
       def create_packages(shipment_id:, body:)
         arguments = { shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_packages", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_packages", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.create_packages")
       end
 
       def create_sandbox_shipment(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_sandbox_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_sandbox_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.create_sandbox_shipment")
       end
 
       def generate_invoice(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_invoice", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.generate_invoice")
       end
 
       def generate_ship_labels(shipment_id:, shipping_option_id: nil, operation:, body: nil)
         arguments = { shipment_id: shipment_id, shipping_option_id: shipping_option_id, operation: operation, body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_ship_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_ship_labels", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.generate_ship_labels")
       end
 
       def get_shipment(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipment")
       end
 
       def get_shipments(location_id: nil, marketplace_id: nil, channel_name: nil, status:, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil)
         arguments = { location_id: location_id, marketplace_id: marketplace_id, channel_name: channel_name, status: status, last_updated_after: last_updated_after, last_updated_before: last_updated_before, max_results: max_results, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipments")
       end
 
       def get_shipments_pages(location_id: nil, marketplace_id: nil, channel_name: nil, status:, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil, max_pages: nil)
@@ -597,32 +597,32 @@ module Peddler
 
       def process_shipment(shipment_id:, operation:, body: nil)
         arguments = { shipment_id: shipment_id, operation: operation, body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.process_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.process_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.process_shipment")
       end
 
       def retrieve_invoice(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_invoice", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_invoice")
       end
 
       def retrieve_shipping_options(shipment_id:, package_id:)
         arguments = { shipment_id: shipment_id, package_id: package_id }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_shipping_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_shipping_options", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options")
       end
 
       def update_package(shipment_id:, package_id:, body:)
         arguments = { shipment_id: shipment_id, package_id: package_id, body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_package")
       end
 
       def update_package_status(shipment_id:, package_id:, status: nil, body: nil)
         arguments = { shipment_id: shipment_id, package_id: package_id, status: status, body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package_status", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_package_status")
       end
 
       def update_sandbox_shipment(shipment_id:, body:)
         arguments = { shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_sandbox_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_sandbox_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_sandbox_shipment")
       end
     end
 
@@ -633,7 +633,7 @@ module Peddler
 
       def get_item_eligibility_preview(marketplace_ids: nil, asin:, program:)
         arguments = { marketplace_ids: marketplace_ids, asin: asin, program: program }
-        Response.from_parts(@engine.operation("fba_inbound_eligibility_v1.get_item_eligibility_preview", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fba_inbound_eligibility_v1.get_item_eligibility_preview", JSON.generate(arguments)), "fba_inbound_eligibility_v1.get_item_eligibility_preview")
       end
     end
 
@@ -644,22 +644,22 @@ module Peddler
 
       def add_inventory(x_amzn_idempotency_token:, body:)
         arguments = { x_amzn_idempotency_token: x_amzn_idempotency_token, body: body }
-        Response.from_parts(@engine.operation("fba_inventory_v1.add_inventory", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fba_inventory_v1.add_inventory", JSON.generate(arguments)), "fba_inventory_v1.add_inventory")
       end
 
       def create_inventory_item(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("fba_inventory_v1.create_inventory_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fba_inventory_v1.create_inventory_item", JSON.generate(arguments)), "fba_inventory_v1.create_inventory_item")
       end
 
       def delete_inventory_item(seller_sku:, marketplace_id:)
         arguments = { seller_sku: seller_sku, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("fba_inventory_v1.delete_inventory_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fba_inventory_v1.delete_inventory_item", JSON.generate(arguments)), "fba_inventory_v1.delete_inventory_item")
       end
 
       def get_inventory_summaries(details: false, granularity_type:, granularity_id:, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil, marketplace_ids:)
         arguments = { details: details, granularity_type: granularity_type, granularity_id: granularity_id, start_date_time: start_date_time, seller_skus: seller_skus, seller_sku: seller_sku, next_token: next_token, marketplace_ids: marketplace_ids }
-        Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", JSON.generate(arguments)), "fba_inventory_v1.get_inventory_summaries")
       end
 
       def get_inventory_summaries_pages(details: false, granularity_type:, granularity_id:, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil, marketplace_ids:, max_pages: nil)
@@ -675,32 +675,32 @@ module Peddler
 
       def cancel_feed(feed_id:)
         arguments = { feed_id: feed_id }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.cancel_feed", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("feeds_2021_06_30.cancel_feed", JSON.generate(arguments)), "feeds_2021_06_30.cancel_feed")
       end
 
       def create_feed(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed", JSON.generate(arguments)), "feeds_2021_06_30.create_feed")
       end
 
       def create_feed_document(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed_document", JSON.generate(arguments)), "feeds_2021_06_30.create_feed_document")
       end
 
       def get_feed(feed_id:)
         arguments = { feed_id: feed_id }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed", JSON.generate(arguments)), "feeds_2021_06_30.get_feed")
       end
 
       def get_feed_document(feed_document_id:, enable_content_encoding_url_header: nil)
         arguments = { feed_document_id: feed_document_id, enable_content_encoding_url_header: enable_content_encoding_url_header }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed_document", JSON.generate(arguments)), "feeds_2021_06_30.get_feed_document")
       end
 
       def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil)
         arguments = { feed_types: feed_types, marketplace_ids: marketplace_ids, page_size: page_size, processing_statuses: processing_statuses, created_since: created_since, created_until: created_until, next_token: next_token }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", JSON.generate(arguments)), "feeds_2021_06_30.get_feeds")
       end
 
       def get_feeds_pages(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil, max_pages: nil)
@@ -716,7 +716,7 @@ module Peddler
 
       def get_remittance(unique_payment_id:, marketplace_id:, next_token_for_line_items: nil)
         arguments = { unique_payment_id: unique_payment_id, marketplace_id: marketplace_id, next_token_for_line_items: next_token_for_line_items }
-        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", JSON.generate(arguments)), "finance_remittance_2026_03_17.get_remittance")
       end
 
       def get_remittance_pages(unique_payment_id:, marketplace_id:, next_token_for_line_items: nil, max_pages: nil)
@@ -726,7 +726,7 @@ module Peddler
 
       def get_remittance_headers(marketplace_id:, start_date: nil, end_date: nil, next_token: nil)
         arguments = { marketplace_id: marketplace_id, start_date: start_date, end_date: end_date, next_token: next_token }
-        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", JSON.generate(arguments)), "finance_remittance_2026_03_17.get_remittance_headers")
       end
 
       def get_remittance_headers_pages(marketplace_id:, start_date: nil, end_date: nil, next_token: nil, max_pages: nil)
@@ -742,7 +742,7 @@ module Peddler
 
       def get_invoice(marketplace_id:, invoice_identifier:, next_token_for_line_items: nil)
         arguments = { marketplace_id: marketplace_id, invoice_identifier: invoice_identifier, next_token_for_line_items: next_token_for_line_items }
-        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice")
       end
 
       def get_invoice_pages(marketplace_id:, invoice_identifier:, next_token_for_line_items: nil, max_pages: nil)
@@ -752,7 +752,7 @@ module Peddler
 
       def get_invoice_headers(next_token: nil, marketplace_id:, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil)
         arguments = { next_token: next_token, marketplace_id: marketplace_id, from_issue_date: from_issue_date, to_issue_date: to_issue_date, invoices_modified_after: invoices_modified_after }
-        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice_headers")
       end
 
       def get_invoice_headers_pages(next_token: nil, marketplace_id:, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil, max_pages: nil)
@@ -768,7 +768,7 @@ module Peddler
 
       def list_financial_event_groups(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil)
         arguments = { max_results_per_page: max_results_per_page, financial_event_group_started_before: financial_event_group_started_before, financial_event_group_started_after: financial_event_group_started_after, next_token: next_token }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", JSON.generate(arguments)), "finances_v0.list_financial_event_groups")
       end
 
       def list_financial_event_groups_pages(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil, max_pages: nil)
@@ -778,7 +778,7 @@ module Peddler
 
       def list_financial_events(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
         arguments = { max_results_per_page: max_results_per_page, posted_after: posted_after, posted_before: posted_before, next_token: next_token }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events", JSON.generate(arguments)), "finances_v0.list_financial_events")
       end
 
       def list_financial_events_pages(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, max_pages: nil)
@@ -788,7 +788,7 @@ module Peddler
 
       def list_financial_events_by_group_id(max_results_per_page: 100, posted_after: nil, posted_before: nil, event_group_id:, next_token: nil)
         arguments = { max_results_per_page: max_results_per_page, posted_after: posted_after, posted_before: posted_before, event_group_id: event_group_id, next_token: next_token }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_group_id")
       end
 
       def list_financial_events_by_group_id_pages(max_results_per_page: 100, posted_after: nil, posted_before: nil, event_group_id:, next_token: nil, max_pages: nil)
@@ -798,7 +798,7 @@ module Peddler
 
       def list_financial_events_by_order_id(order_id:, max_results_per_page: 100, next_token: nil)
         arguments = { order_id: order_id, max_results_per_page: max_results_per_page, next_token: next_token }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_order_id")
       end
 
       def list_financial_events_by_order_id_pages(order_id:, max_results_per_page: 100, next_token: nil, max_pages: nil)
@@ -814,7 +814,7 @@ module Peddler
 
       def list_balances(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil)
         arguments = { marketplace_ids: marketplace_ids, balance_type: balance_type, account_type: account_type, as_of_date: as_of_date, next_token: next_token }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", JSON.generate(arguments)), "finances_2024_06_19.list_balances")
       end
 
       def list_balances_pages(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil, max_pages: nil)
@@ -824,7 +824,7 @@ module Peddler
 
       def list_summary(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil)
         arguments = { marketplace_ids: marketplace_ids, account_type: account_type, related_identifier_name: related_identifier_name, related_identifier_value: related_identifier_value, period_start: period_start, period_end: period_end, next_token: next_token }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", JSON.generate(arguments)), "finances_2024_06_19.list_summary")
       end
 
       def list_summary_pages(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil, max_pages: nil)
@@ -834,7 +834,7 @@ module Peddler
 
       def list_transactions(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil)
         arguments = { posted_after: posted_after, posted_before: posted_before, marketplace_id: marketplace_id, transaction_status: transaction_status, related_identifier_name: related_identifier_name, related_identifier_value: related_identifier_value, next_token: next_token }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", JSON.generate(arguments)), "finances_2024_06_19.list_transactions")
       end
 
       def list_transactions_pages(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil, max_pages: nil)
@@ -850,17 +850,17 @@ module Peddler
 
       def get_payment_methods(marketplace_id:, payment_method_types: nil)
         arguments = { marketplace_id: marketplace_id, payment_method_types: payment_method_types }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.get_payment_methods", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("transfers_2024_06_01.get_payment_methods", JSON.generate(arguments)), "transfers_2024_06_01.get_payment_methods")
       end
 
       def initiate_payout(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.initiate_payout", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("transfers_2024_06_01.initiate_payout", JSON.generate(arguments)), "transfers_2024_06_01.initiate_payout")
       end
 
       def list_expected_payouts(marketplace_ids: nil, account_type: nil, next_token: nil)
         arguments = { marketplace_ids: marketplace_ids, account_type: account_type, next_token: next_token }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", JSON.generate(arguments)), "transfers_2024_06_01.list_expected_payouts")
       end
 
       def list_expected_payouts_pages(marketplace_ids: nil, account_type: nil, next_token: nil, max_pages: nil)
@@ -870,7 +870,7 @@ module Peddler
 
       def list_payouts(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil)
         arguments = { marketplace_ids: marketplace_ids, created_after: created_after, created_before: created_before, payout_id: payout_id, account_type: account_type, next_token: next_token }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", JSON.generate(arguments)), "transfers_2024_06_01.list_payouts")
       end
 
       def list_payouts_pages(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil, max_pages: nil)
@@ -886,22 +886,22 @@ module Peddler
 
       def get_bill_of_lading(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_bill_of_lading", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_bill_of_lading", JSON.generate(arguments)), "fulfillment_inbound_v0.get_bill_of_lading")
       end
 
       def get_labels(shipment_id:, page_type:, label_type:, number_of_packages: nil, package_labels_to_print: nil, number_of_pallets: nil, page_size: nil, page_start_index: nil)
         arguments = { shipment_id: shipment_id, page_type: page_type, label_type: label_type, number_of_packages: number_of_packages, package_labels_to_print: package_labels_to_print, number_of_pallets: number_of_pallets, page_size: page_size, page_start_index: page_start_index }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_labels", JSON.generate(arguments)), "fulfillment_inbound_v0.get_labels")
       end
 
       def get_prep_instructions(ship_to_country_code:, seller_sku_list: nil, asin_list: nil)
         arguments = { ship_to_country_code: ship_to_country_code, seller_sku_list: seller_sku_list, asin_list: asin_list }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_prep_instructions", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_prep_instructions", JSON.generate(arguments)), "fulfillment_inbound_v0.get_prep_instructions")
       end
 
       def get_shipment_items(last_updated_after: nil, last_updated_before: nil, query_type:, next_token: nil, marketplace_id:)
         arguments = { last_updated_after: last_updated_after, last_updated_before: last_updated_before, query_type: query_type, next_token: next_token, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipment_items")
       end
 
       def get_shipment_items_pages(last_updated_after: nil, last_updated_before: nil, query_type:, next_token: nil, marketplace_id:, max_pages: nil)
@@ -911,12 +911,12 @@ module Peddler
 
       def get_shipment_items_by_shipment_id(shipment_id:, marketplace_id: nil)
         arguments = { shipment_id: shipment_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items_by_shipment_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items_by_shipment_id", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipment_items_by_shipment_id")
       end
 
       def get_shipments(shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, query_type:, next_token: nil, marketplace_id:)
         arguments = { shipment_status_list: shipment_status_list, shipment_id_list: shipment_id_list, last_updated_after: last_updated_after, last_updated_before: last_updated_before, query_type: query_type, next_token: next_token, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipments")
       end
 
       def get_shipments_pages(shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, query_type:, next_token: nil, marketplace_id:, max_pages: nil)
@@ -932,97 +932,97 @@ module Peddler
 
       def cancel_inbound_plan(inbound_plan_id:)
         arguments = { inbound_plan_id: inbound_plan_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_inbound_plan", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.cancel_inbound_plan")
       end
 
       def cancel_self_ship_appointment(inbound_plan_id:, shipment_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_self_ship_appointment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_self_ship_appointment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment")
       end
 
       def confirm_delivery_window_options(inbound_plan_id:, shipment_id:, delivery_window_option_id:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, delivery_window_option_id: delivery_window_option_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_delivery_window_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_delivery_window_options")
       end
 
       def confirm_packing_option(inbound_plan_id:, packing_option_id:)
         arguments = { inbound_plan_id: inbound_plan_id, packing_option_id: packing_option_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_packing_option", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_packing_option", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_packing_option")
       end
 
       def confirm_placement_option(inbound_plan_id:, placement_option_id:)
         arguments = { inbound_plan_id: inbound_plan_id, placement_option_id: placement_option_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_placement_option", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_placement_option", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_placement_option")
       end
 
       def confirm_shipment_content_update_preview(inbound_plan_id:, shipment_id:, content_update_preview_id:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, content_update_preview_id: content_update_preview_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview")
       end
 
       def confirm_transportation_options(inbound_plan_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_transportation_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_transportation_options")
       end
 
       def create_inbound_plan(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_inbound_plan", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.create_inbound_plan")
       end
 
       def create_marketplace_item_labels(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_marketplace_item_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_marketplace_item_labels", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.create_marketplace_item_labels")
       end
 
       def generate_delivery_window_options(inbound_plan_id:, shipment_id:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_delivery_window_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_delivery_window_options")
       end
 
       def generate_packing_options(inbound_plan_id:)
         arguments = { inbound_plan_id: inbound_plan_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_packing_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_packing_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_packing_options")
       end
 
       def generate_placement_options(inbound_plan_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_placement_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_placement_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_placement_options")
       end
 
       def generate_self_ship_appointment_slots(inbound_plan_id:, shipment_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots")
       end
 
       def generate_shipment_content_update_previews(inbound_plan_id:, shipment_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews")
       end
 
       def generate_transportation_options(inbound_plan_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_transportation_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_transportation_options")
       end
 
       def get_delivery_challan_document(inbound_plan_id:, shipment_id:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_delivery_challan_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_delivery_challan_document", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_delivery_challan_document")
       end
 
       def get_inbound_operation_status(operation_id:)
         arguments = { operation_id: operation_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_operation_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_operation_status", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_operation_status")
       end
 
       def get_inbound_plan(inbound_plan_id:)
         arguments = { inbound_plan_id: inbound_plan_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_plan", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_plan")
       end
 
       def get_self_ship_appointment_slots(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots")
       end
 
       def get_self_ship_appointment_slots_pages(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1032,17 +1032,17 @@ module Peddler
 
       def get_shipment(inbound_plan_id:, shipment_id:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_shipment")
       end
 
       def get_shipment_content_update_preview(inbound_plan_id:, shipment_id:, content_update_preview_id:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, content_update_preview_id: content_update_preview_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment_content_update_preview", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment_content_update_preview", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_shipment_content_update_preview")
       end
 
       def list_delivery_window_options(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_delivery_window_options")
       end
 
       def list_delivery_window_options_pages(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1052,7 +1052,7 @@ module Peddler
 
       def list_inbound_plan_boxes(inbound_plan_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes")
       end
 
       def list_inbound_plan_boxes_pages(inbound_plan_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1062,7 +1062,7 @@ module Peddler
 
       def list_inbound_plan_items(inbound_plan_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_items")
       end
 
       def list_inbound_plan_items_pages(inbound_plan_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1072,7 +1072,7 @@ module Peddler
 
       def list_inbound_plan_pallets(inbound_plan_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets")
       end
 
       def list_inbound_plan_pallets_pages(inbound_plan_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1082,7 +1082,7 @@ module Peddler
 
       def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
         arguments = { page_size: page_size, pagination_token: pagination_token, status: status, sort_by: sort_by, sort_order: sort_order }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plans")
       end
 
       def list_inbound_plans_pages(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil, max_pages: nil)
@@ -1092,12 +1092,12 @@ module Peddler
 
       def list_item_compliance_details(mskus:, marketplace_id:)
         arguments = { mskus: mskus, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_item_compliance_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_item_compliance_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_item_compliance_details")
       end
 
       def list_packing_group_boxes(inbound_plan_id:, packing_group_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, packing_group_id: packing_group_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_boxes")
       end
 
       def list_packing_group_boxes_pages(inbound_plan_id:, packing_group_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1107,7 +1107,7 @@ module Peddler
 
       def list_packing_group_items(inbound_plan_id:, packing_group_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, packing_group_id: packing_group_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_items")
       end
 
       def list_packing_group_items_pages(inbound_plan_id:, packing_group_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1117,7 +1117,7 @@ module Peddler
 
       def list_packing_options(inbound_plan_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_options")
       end
 
       def list_packing_options_pages(inbound_plan_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1127,7 +1127,7 @@ module Peddler
 
       def list_placement_options(inbound_plan_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_placement_options")
       end
 
       def list_placement_options_pages(inbound_plan_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1137,12 +1137,12 @@ module Peddler
 
       def list_prep_details(marketplace_id:, mskus:)
         arguments = { marketplace_id: marketplace_id, mskus: mskus }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_prep_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_prep_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_prep_details")
       end
 
       def list_shipment_boxes(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_boxes")
       end
 
       def list_shipment_boxes_pages(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1152,7 +1152,7 @@ module Peddler
 
       def list_shipment_content_update_previews(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews")
       end
 
       def list_shipment_content_update_previews_pages(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1162,7 +1162,7 @@ module Peddler
 
       def list_shipment_items(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_items")
       end
 
       def list_shipment_items_pages(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1172,7 +1172,7 @@ module Peddler
 
       def list_shipment_pallets(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_pallets")
       end
 
       def list_shipment_pallets_pages(inbound_plan_id:, shipment_id:, page_size: 10, pagination_token: nil, max_pages: nil)
@@ -1182,7 +1182,7 @@ module Peddler
 
       def list_transportation_options(inbound_plan_id:, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token, placement_option_id: placement_option_id, shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_transportation_options")
       end
 
       def list_transportation_options_pages(inbound_plan_id:, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil, max_pages: nil)
@@ -1192,42 +1192,42 @@ module Peddler
 
       def schedule_self_ship_appointment(inbound_plan_id:, shipment_id:, slot_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, slot_id: slot_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.schedule_self_ship_appointment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.schedule_self_ship_appointment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.schedule_self_ship_appointment")
       end
 
       def set_packing_information(inbound_plan_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_packing_information", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_packing_information", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.set_packing_information")
       end
 
       def set_prep_details(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_prep_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_prep_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.set_prep_details")
       end
 
       def update_inbound_plan_name(inbound_plan_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_inbound_plan_name", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_inbound_plan_name", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_inbound_plan_name")
       end
 
       def update_item_compliance_details(marketplace_id:, body:)
         arguments = { marketplace_id: marketplace_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_item_compliance_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_item_compliance_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_item_compliance_details")
       end
 
       def update_shipment_name(inbound_plan_id:, shipment_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_name", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_name", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_name")
       end
 
       def update_shipment_source_address(inbound_plan_id:, shipment_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_source_address", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_source_address", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_source_address")
       end
 
       def update_shipment_tracking_details(inbound_plan_id:, shipment_id:, body:)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_tracking_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_tracking_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_tracking_details")
       end
     end
 
@@ -1238,27 +1238,27 @@ module Peddler
 
       def cancel_fulfillment_order(seller_fulfillment_order_id:)
         arguments = { seller_fulfillment_order_id: seller_fulfillment_order_id }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.cancel_fulfillment_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.cancel_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.cancel_fulfillment_order")
       end
 
       def create_fulfillment_order(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.create_fulfillment_order")
       end
 
       def create_fulfillment_return(seller_fulfillment_order_id:, body:)
         arguments = { seller_fulfillment_order_id: seller_fulfillment_order_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_return", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_return", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.create_fulfillment_return")
       end
 
       def delivery_offers(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.delivery_offers", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.delivery_offers", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.delivery_offers")
       end
 
       def get_feature_inventory(marketplace_id:, feature_name:, next_token: nil, query_start_date: nil)
         arguments = { marketplace_id: marketplace_id, feature_name: feature_name, next_token: next_token, query_start_date: query_start_date }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_feature_inventory")
       end
 
       def get_feature_inventory_pages(marketplace_id:, feature_name:, next_token: nil, query_start_date: nil, max_pages: nil)
@@ -1268,32 +1268,32 @@ module Peddler
 
       def get_feature_sku(marketplace_id:, feature_name:, seller_sku:)
         arguments = { marketplace_id: marketplace_id, feature_name: feature_name, seller_sku: seller_sku }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_sku", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_sku", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_feature_sku")
       end
 
       def get_features(marketplace_id:)
         arguments = { marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_features", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_features", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_features")
       end
 
       def get_fulfillment_order(seller_fulfillment_order_id:)
         arguments = { seller_fulfillment_order_id: seller_fulfillment_order_id }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_order")
       end
 
       def get_fulfillment_preview(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_preview", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_preview", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_preview")
       end
 
       def get_package_tracking_details(package_number:)
         arguments = { package_number: package_number }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_package_tracking_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_package_tracking_details", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_package_tracking_details")
       end
 
       def list_all_fulfillment_orders(query_start_date: nil, next_token: nil)
         arguments = { query_start_date: query_start_date, next_token: next_token }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders")
       end
 
       def list_all_fulfillment_orders_pages(query_start_date: nil, next_token: nil, max_pages: nil)
@@ -1303,17 +1303,17 @@ module Peddler
 
       def list_return_reason_codes(seller_sku:, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil)
         arguments = { seller_sku: seller_sku, marketplace_id: marketplace_id, seller_fulfillment_order_id: seller_fulfillment_order_id, language: language }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_return_reason_codes", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_return_reason_codes", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.list_return_reason_codes")
       end
 
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id:, body:)
         arguments = { seller_fulfillment_order_id: seller_fulfillment_order_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update")
       end
 
       def update_fulfillment_order(seller_fulfillment_order_id:, body:)
         arguments = { seller_fulfillment_order_id: seller_fulfillment_order_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.update_fulfillment_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.update_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.update_fulfillment_order")
       end
     end
 
@@ -1324,32 +1324,32 @@ module Peddler
 
       def cancel_order(x_amzn_fulfillment_service_id: nil, order_id:)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, order_id: order_id }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.cancel_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.cancel_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.cancel_order")
       end
 
       def create_order(x_amzn_fulfillment_service_id: nil, body:)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.create_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.create_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.create_order")
       end
 
       def get_offers(x_amzn_fulfillment_service_id: nil, body:)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_offers", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_offers", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_offers")
       end
 
       def get_order(x_amzn_fulfillment_service_id: nil, order_id:, shipments: nil)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, order_id: order_id, shipments: shipments }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_order")
       end
 
       def get_order_preview(x_amzn_fulfillment_service_id: nil, body:)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order_preview", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order_preview", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_order_preview")
       end
 
       def list_orders(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, updated_after: updated_after, page_token: page_token, shipments: shipments }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.list_orders")
       end
 
       def list_orders_pages(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil, max_pages: nil)
@@ -1359,17 +1359,17 @@ module Peddler
 
       def update_order(x_amzn_fulfillment_service_id: nil, order_id:, body:)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, order_id: order_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_order")
       end
 
       def update_order_status(x_amzn_fulfillment_service_id: nil, order_id:, body:)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, order_id: order_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order_status", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_order_status")
       end
 
       def update_package(x_amzn_fulfillment_service_id: nil, order_id:, package_id:, body:)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, order_id: order_id, package_id: package_id, body: body }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_package", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_package", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_package")
       end
     end
 
@@ -1380,32 +1380,32 @@ module Peddler
 
       def create_government_invoice(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.create_government_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.create_government_invoice", JSON.generate(arguments)), "invoices_2024_06_19.create_government_invoice")
       end
 
       def create_invoices_export(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.create_invoices_export", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.create_invoices_export", JSON.generate(arguments)), "invoices_2024_06_19.create_invoices_export")
       end
 
       def get_government_invoice_document(marketplace_id:, transaction_type:, shipment_id:, invoice_type:, inbound_plan_id: nil, file_format: nil)
         arguments = { marketplace_id: marketplace_id, transaction_type: transaction_type, shipment_id: shipment_id, invoice_type: invoice_type, inbound_plan_id: inbound_plan_id, file_format: file_format }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_document", JSON.generate(arguments)), "invoices_2024_06_19.get_government_invoice_document")
       end
 
       def get_government_invoice_status(marketplace_id:, transaction_type:, shipment_id:, invoice_type:, inbound_plan_id: nil)
         arguments = { marketplace_id: marketplace_id, transaction_type: transaction_type, shipment_id: shipment_id, invoice_type: invoice_type, inbound_plan_id: inbound_plan_id }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_status", JSON.generate(arguments)), "invoices_2024_06_19.get_government_invoice_status")
       end
 
       def get_invoice(marketplace_id:, invoice_id:, warehouse_code: nil)
         arguments = { marketplace_id: marketplace_id, invoice_id: invoice_id, warehouse_code: warehouse_code }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoice", JSON.generate(arguments)), "invoices_2024_06_19.get_invoice")
       end
 
       def get_invoices(transaction_identifier_name: nil, page_size: nil, date_end: nil, marketplace_id:, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil)
         arguments = { transaction_identifier_name: transaction_identifier_name, page_size: page_size, date_end: date_end, marketplace_id: marketplace_id, transaction_type: transaction_type, transaction_identifier_id: transaction_identifier_id, date_start: date_start, series: series, next_token: next_token, sort_order: sort_order, invoice_type: invoice_type, statuses: statuses, external_invoice_id: external_invoice_id, sort_by: sort_by, warehouse_code: warehouse_code }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices")
       end
 
       def get_invoices_pages(transaction_identifier_name: nil, page_size: nil, date_end: nil, marketplace_id:, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil, max_pages: nil)
@@ -1415,22 +1415,22 @@ module Peddler
 
       def get_invoices_attributes(marketplace_id:, warehouse_code: nil)
         arguments = { marketplace_id: marketplace_id, warehouse_code: warehouse_code }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_attributes", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_attributes", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_attributes")
       end
 
       def get_invoices_document(invoices_document_id:, warehouse_code: nil)
         arguments = { invoices_document_id: invoices_document_id, warehouse_code: warehouse_code }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_document", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_document")
       end
 
       def get_invoices_export(export_id:, warehouse_code: nil)
         arguments = { export_id: export_id, warehouse_code: warehouse_code }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_export", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_export", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_export")
       end
 
       def get_invoices_exports(marketplace_id:, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil)
         arguments = { marketplace_id: marketplace_id, date_start: date_start, next_token: next_token, page_size: page_size, date_end: date_end, status: status, warehouse_code: warehouse_code }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_exports")
       end
 
       def get_invoices_exports_pages(marketplace_id:, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil, max_pages: nil)
@@ -1446,17 +1446,17 @@ module Peddler
 
       def delete_listings_item(seller_id:, sku:, marketplace_ids:, issue_locale: nil)
         arguments = { seller_id: seller_id, sku: sku, marketplace_ids: marketplace_ids, issue_locale: issue_locale }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.delete_listings_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.delete_listings_item", JSON.generate(arguments)), "listings_items_2020_09_01.delete_listings_item")
       end
 
       def patch_listings_item(seller_id:, sku:, marketplace_ids:, issue_locale: nil, body:)
         arguments = { seller_id: seller_id, sku: sku, marketplace_ids: marketplace_ids, issue_locale: issue_locale, body: body }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.patch_listings_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.patch_listings_item", JSON.generate(arguments)), "listings_items_2020_09_01.patch_listings_item")
       end
 
       def put_listings_item(seller_id:, sku:, marketplace_ids:, issue_locale: nil, body:)
         arguments = { seller_id: seller_id, sku: sku, marketplace_ids: marketplace_ids, issue_locale: issue_locale, body: body }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.put_listings_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.put_listings_item", JSON.generate(arguments)), "listings_items_2020_09_01.put_listings_item")
       end
     end
 
@@ -1467,27 +1467,27 @@ module Peddler
 
       def delete_listings_item(seller_id:, sku:, marketplace_ids:, issue_locale: nil)
         arguments = { seller_id: seller_id, sku: sku, marketplace_ids: marketplace_ids, issue_locale: issue_locale }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.delete_listings_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.delete_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.delete_listings_item")
       end
 
       def get_listings_item(seller_id:, sku:, marketplace_ids:, issue_locale: nil, included_data: ["summaries"])
         arguments = { seller_id: seller_id, sku: sku, marketplace_ids: marketplace_ids, issue_locale: issue_locale, included_data: included_data }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.get_listings_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.get_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.get_listings_item")
       end
 
       def patch_listings_item(seller_id:, sku:, marketplace_ids:, included_data: ["issues"], mode: nil, issue_locale: nil, body:)
         arguments = { seller_id: seller_id, sku: sku, marketplace_ids: marketplace_ids, included_data: included_data, mode: mode, issue_locale: issue_locale, body: body }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.patch_listings_item")
       end
 
       def put_listings_item(seller_id:, sku:, marketplace_ids:, included_data: ["issues"], mode: nil, issue_locale: nil, body:)
         arguments = { seller_id: seller_id, sku: sku, marketplace_ids: marketplace_ids, included_data: included_data, mode: mode, issue_locale: issue_locale, body: body }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.put_listings_item", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.put_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.put_listings_item")
       end
 
       def search_listings_items(seller_id:, marketplace_ids:, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil)
         arguments = { seller_id: seller_id, marketplace_ids: marketplace_ids, issue_locale: issue_locale, included_data: included_data, identifiers: identifiers, identifiers_type: identifiers_type, variation_parent_sku: variation_parent_sku, package_hierarchy_sku: package_hierarchy_sku, created_after: created_after, created_before: created_before, last_updated_after: last_updated_after, last_updated_before: last_updated_before, with_issue_severity: with_issue_severity, with_status: with_status, without_status: without_status, sort_by: sort_by, sort_order: sort_order, page_size: page_size, page_token: page_token }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", JSON.generate(arguments)), "listings_items_2021_08_01.search_listings_items")
       end
 
       def search_listings_items_pages(seller_id:, marketplace_ids:, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil, max_pages: nil)
@@ -1503,7 +1503,7 @@ module Peddler
 
       def get_listings_restrictions(asin:, condition_type: nil, seller_id:, marketplace_ids:, reason_locale: nil, product_type: nil)
         arguments = { asin: asin, condition_type: condition_type, seller_id: seller_id, marketplace_ids: marketplace_ids, reason_locale: reason_locale, product_type: product_type }
-        Response.from_parts(@engine.operation("listings_restrictions_2021_08_01.get_listings_restrictions", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("listings_restrictions_2021_08_01.get_listings_restrictions", JSON.generate(arguments)), "listings_restrictions_2021_08_01.get_listings_restrictions")
       end
     end
 
@@ -1514,27 +1514,27 @@ module Peddler
 
       def cancel_shipment(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.cancel_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.cancel_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.cancel_shipment")
       end
 
       def create_shipment(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.create_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.create_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.create_shipment")
       end
 
       def get_additional_seller_inputs(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_additional_seller_inputs", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_additional_seller_inputs", JSON.generate(arguments)), "merchant_fulfillment_v0.get_additional_seller_inputs")
       end
 
       def get_eligible_shipment_services(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_eligible_shipment_services", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_eligible_shipment_services", JSON.generate(arguments)), "merchant_fulfillment_v0.get_eligible_shipment_services")
       end
 
       def get_shipment(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.get_shipment")
       end
     end
 
@@ -1545,57 +1545,57 @@ module Peddler
 
       def confirm_customization_details(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.confirm_customization_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.confirm_customization_details", JSON.generate(arguments)), "messaging_v1.confirm_customization_details")
       end
 
       def create_confirm_delivery_details(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_delivery_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_delivery_details", JSON.generate(arguments)), "messaging_v1.create_confirm_delivery_details")
       end
 
       def create_confirm_order_details(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_order_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_order_details", JSON.generate(arguments)), "messaging_v1.create_confirm_order_details")
       end
 
       def create_confirm_service_details(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_service_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_service_details", JSON.generate(arguments)), "messaging_v1.create_confirm_service_details")
       end
 
       def create_digital_access_key(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.create_digital_access_key", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.create_digital_access_key", JSON.generate(arguments)), "messaging_v1.create_digital_access_key")
       end
 
       def create_legal_disclosure(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.create_legal_disclosure", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.create_legal_disclosure", JSON.generate(arguments)), "messaging_v1.create_legal_disclosure")
       end
 
       def create_unexpected_problem(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.create_unexpected_problem", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.create_unexpected_problem", JSON.generate(arguments)), "messaging_v1.create_unexpected_problem")
       end
 
       def create_warranty(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.create_warranty", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.create_warranty", JSON.generate(arguments)), "messaging_v1.create_warranty")
       end
 
       def get_attributes(amazon_order_id:, marketplace_ids:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids }
-        Response.from_parts(@engine.operation("messaging_v1.get_attributes", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.get_attributes", JSON.generate(arguments)), "messaging_v1.get_attributes")
       end
 
       def get_messaging_actions_for_order(amazon_order_id:, marketplace_ids:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids }
-        Response.from_parts(@engine.operation("messaging_v1.get_messaging_actions_for_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.get_messaging_actions_for_order", JSON.generate(arguments)), "messaging_v1.get_messaging_actions_for_order")
       end
 
       def send_invoice(amazon_order_id:, marketplace_ids:, body:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("messaging_v1.send_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("messaging_v1.send_invoice", JSON.generate(arguments)), "messaging_v1.send_invoice")
       end
     end
 
@@ -1606,48 +1606,48 @@ module Peddler
 
       def create_destination(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("notifications_v1.create_destination", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.create_destination", JSON.generate(arguments)), "notifications_v1.create_destination")
       end
 
       def create_subscription(notification_type:, body:)
         arguments = { notification_type: notification_type, body: body }
-        Response.from_parts(@engine.operation("notifications_v1.create_subscription", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.create_subscription", JSON.generate(arguments)), "notifications_v1.create_subscription")
       end
 
       def delete_destination(destination_id:)
         arguments = { destination_id: destination_id }
-        Response.from_parts(@engine.operation("notifications_v1.delete_destination", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.delete_destination", JSON.generate(arguments)), "notifications_v1.delete_destination")
       end
 
       def delete_subscription_by_id(subscription_id:, notification_type:)
         arguments = { subscription_id: subscription_id, notification_type: notification_type }
-        Response.from_parts(@engine.operation("notifications_v1.delete_subscription_by_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.delete_subscription_by_id", JSON.generate(arguments)), "notifications_v1.delete_subscription_by_id")
       end
 
       def get_destination(destination_id:)
         arguments = { destination_id: destination_id }
-        Response.from_parts(@engine.operation("notifications_v1.get_destination", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.get_destination", JSON.generate(arguments)), "notifications_v1.get_destination")
       end
 
       def get_destinations
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("notifications_v1.get_destinations", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.get_destinations", JSON.generate(arguments)), "notifications_v1.get_destinations")
       end
 
       def get_subscription(notification_type:, payload_version: nil)
         arguments = { notification_type: notification_type, payload_version: payload_version }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscription", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.get_subscription", JSON.generate(arguments)), "notifications_v1.get_subscription")
       end
 
       def get_subscription_by_id(subscription_id:, notification_type:)
         arguments = { subscription_id: subscription_id, notification_type: notification_type }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscription_by_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.get_subscription_by_id", JSON.generate(arguments)), "notifications_v1.get_subscription_by_id")
       end
 
       def get_subscriptions(notification_types:, payload_version: nil, page_size: 30, next_token: nil)
         arguments = { notification_types: notification_types, payload_version: payload_version, page_size: page_size, next_token: next_token }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", JSON.generate(arguments)), "notifications_v1.get_subscriptions")
       end
 
       def get_subscriptions_pages(notification_types:, payload_version: nil, page_size: 30, next_token: nil, max_pages: nil)
@@ -1657,7 +1657,7 @@ module Peddler
 
       def send_test_notification(notification_type:, body:)
         arguments = { notification_type: notification_type, body: body }
-        Response.from_parts(@engine.operation("notifications_v1.send_test_notification", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("notifications_v1.send_test_notification", JSON.generate(arguments)), "notifications_v1.send_test_notification")
       end
     end
 
@@ -1668,27 +1668,27 @@ module Peddler
 
       def confirm_shipment(order_id:, body:)
         arguments = { order_id: order_id, body: body }
-        Response.from_parts(@engine.operation("orders_v0.confirm_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.confirm_shipment", JSON.generate(arguments)), "orders_v0.confirm_shipment")
       end
 
       def get_order(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("orders_v0.get_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.get_order", JSON.generate(arguments)), "orders_v0.get_order")
       end
 
       def get_order_address(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("orders_v0.get_order_address", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.get_order_address", JSON.generate(arguments)), "orders_v0.get_order_address")
       end
 
       def get_order_buyer_info(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("orders_v0.get_order_buyer_info", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.get_order_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_buyer_info")
       end
 
       def get_order_items(order_id:, next_token: nil)
         arguments = { order_id: order_id, next_token: next_token }
-        Response.from_parts(@engine.operation("orders_v0.get_order_items", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.get_order_items", JSON.generate(arguments)), "orders_v0.get_order_items")
       end
 
       def get_order_items_pages(order_id:, next_token: nil, max_pages: nil)
@@ -1698,7 +1698,7 @@ module Peddler
 
       def get_order_items_buyer_info(order_id:, next_token: nil)
         arguments = { order_id: order_id, next_token: next_token }
-        Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_items_buyer_info")
       end
 
       def get_order_items_buyer_info_pages(order_id:, next_token: nil, max_pages: nil)
@@ -1708,12 +1708,12 @@ module Peddler
 
       def get_order_regulated_info(order_id:)
         arguments = { order_id: order_id }
-        Response.from_parts(@engine.operation("orders_v0.get_order_regulated_info", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.get_order_regulated_info", JSON.generate(arguments)), "orders_v0.get_order_regulated_info")
       end
 
       def get_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, marketplace_ids:, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil)
         arguments = { created_after: created_after, created_before: created_before, last_updated_after: last_updated_after, last_updated_before: last_updated_before, order_statuses: order_statuses, marketplace_ids: marketplace_ids, fulfillment_channels: fulfillment_channels, payment_methods: payment_methods, buyer_email: buyer_email, seller_order_id: seller_order_id, max_results_per_page: max_results_per_page, easy_ship_shipment_statuses: easy_ship_shipment_statuses, electronic_invoice_statuses: electronic_invoice_statuses, next_token: next_token, amazon_order_ids: amazon_order_ids, actual_fulfillment_supply_source_id: actual_fulfillment_supply_source_id, is_ispu: is_ispu, store_chain_store_id: store_chain_store_id, earliest_delivery_date_before: earliest_delivery_date_before, earliest_delivery_date_after: earliest_delivery_date_after, latest_delivery_date_before: latest_delivery_date_before, latest_delivery_date_after: latest_delivery_date_after }
-        Response.from_parts(@engine.operation("orders_v0.get_orders", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.get_orders", JSON.generate(arguments)), "orders_v0.get_orders")
       end
 
       def get_orders_pages(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, marketplace_ids:, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil, max_pages: nil)
@@ -1723,12 +1723,12 @@ module Peddler
 
       def update_shipment_status(order_id:, body:)
         arguments = { order_id: order_id, body: body }
-        Response.from_parts(@engine.operation("orders_v0.update_shipment_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.update_shipment_status", JSON.generate(arguments)), "orders_v0.update_shipment_status")
       end
 
       def update_verification_status(order_id:, body:)
         arguments = { order_id: order_id, body: body }
-        Response.from_parts(@engine.operation("orders_v0.update_verification_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_v0.update_verification_status", JSON.generate(arguments)), "orders_v0.update_verification_status")
       end
     end
 
@@ -1739,12 +1739,12 @@ module Peddler
 
       def get_order(order_id:, included_data: nil)
         arguments = { order_id: order_id, included_data: included_data }
-        Response.from_parts(@engine.operation("orders_2026_01_01.get_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_2026_01_01.get_order", JSON.generate(arguments)), "orders_2026_01_01.get_order")
       end
 
       def search_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil)
         arguments = { created_after: created_after, created_before: created_before, last_updated_after: last_updated_after, last_updated_before: last_updated_before, fulfillment_statuses: fulfillment_statuses, marketplace_ids: marketplace_ids, fulfilled_by: fulfilled_by, max_results_per_page: max_results_per_page, pagination_token: pagination_token, included_data: included_data }
-        Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", JSON.generate(arguments)), "orders_2026_01_01.search_orders")
       end
 
       def search_orders_pages(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil, max_pages: nil)
@@ -1760,17 +1760,17 @@ module Peddler
 
       def get_my_fees_estimate_for_asin(asin:, body:)
         arguments = { asin: asin, body: body }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_asin", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_asin", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimate_for_asin")
       end
 
       def get_my_fees_estimate_for_sku(seller_sku:, body:)
         arguments = { seller_sku: seller_sku, body: body }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_sku", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_sku", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimate_for_sku")
       end
 
       def get_my_fees_estimates(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimates", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimates", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimates")
       end
     end
 
@@ -1781,32 +1781,32 @@ module Peddler
 
       def get_competitive_pricing(marketplace_id:, asins: nil, skus: nil, item_type:, customer_type: nil)
         arguments = { marketplace_id: marketplace_id, asins: asins, skus: skus, item_type: item_type, customer_type: customer_type }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_competitive_pricing", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_pricing_v0.get_competitive_pricing", JSON.generate(arguments)), "product_pricing_v0.get_competitive_pricing")
       end
 
       def get_item_offers(marketplace_id:, item_condition:, asin:, customer_type: nil)
         arguments = { marketplace_id: marketplace_id, item_condition: item_condition, asin: asin, customer_type: customer_type }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers", JSON.generate(arguments)), "product_pricing_v0.get_item_offers")
       end
 
       def get_item_offers_batch(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers_batch", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers_batch", JSON.generate(arguments)), "product_pricing_v0.get_item_offers_batch")
       end
 
       def get_listing_offers(marketplace_id:, item_condition:, seller_sku:, customer_type: nil)
         arguments = { marketplace_id: marketplace_id, item_condition: item_condition, seller_sku: seller_sku, customer_type: customer_type }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers", JSON.generate(arguments)), "product_pricing_v0.get_listing_offers")
       end
 
       def get_listing_offers_batch(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers_batch", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers_batch", JSON.generate(arguments)), "product_pricing_v0.get_listing_offers_batch")
       end
 
       def get_pricing(marketplace_id:, asins: nil, skus: nil, item_type:, item_condition: nil, offer_type: nil)
         arguments = { marketplace_id: marketplace_id, asins: asins, skus: skus, item_type: item_type, item_condition: item_condition, offer_type: offer_type }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_pricing", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_pricing_v0.get_pricing", JSON.generate(arguments)), "product_pricing_v0.get_pricing")
       end
     end
 
@@ -1817,12 +1817,12 @@ module Peddler
 
       def get_competitive_summary(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_competitive_summary", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_competitive_summary", JSON.generate(arguments)), "product_pricing_2022_05_01.get_competitive_summary")
       end
 
       def get_featured_offer_expected_price_batch(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_featured_offer_expected_price_batch", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_featured_offer_expected_price_batch", JSON.generate(arguments)), "product_pricing_2022_05_01.get_featured_offer_expected_price_batch")
       end
     end
 
@@ -1833,12 +1833,12 @@ module Peddler
 
       def get_definitions_product_type(product_type:, seller_id: nil, marketplace_ids:, product_type_version: "LATEST", requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil)
         arguments = { product_type: product_type, seller_id: seller_id, marketplace_ids: marketplace_ids, product_type_version: product_type_version, requirements: requirements, requirements_enforced: requirements_enforced, locale: locale, parentage_level: parentage_level }
-        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.get_definitions_product_type", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.get_definitions_product_type", JSON.generate(arguments)), "product_type_definitions_2020_09_01.get_definitions_product_type")
       end
 
       def search_definitions_product_types(keywords: nil, marketplace_ids:, item_name: nil, locale: nil, search_locale: nil)
         arguments = { keywords: keywords, marketplace_ids: marketplace_ids, item_name: item_name, locale: locale, search_locale: search_locale }
-        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.search_definitions_product_types", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.search_definitions_product_types", JSON.generate(arguments)), "product_type_definitions_2020_09_01.search_definitions_product_types")
       end
     end
 
@@ -1849,12 +1849,12 @@ module Peddler
 
       def get_promotion(promotion_id:, included_data: nil, locale: "en_US")
         arguments = { promotion_id: promotion_id, included_data: included_data, locale: locale }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.get_promotion", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("promotions_2025_12_01.get_promotion", JSON.generate(arguments)), "promotions_2025_12_01.get_promotion")
       end
 
       def get_selection(promotion_id:, selection_id:, revision_id:, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil)
         arguments = { promotion_id: promotion_id, selection_id: selection_id, revision_id: revision_id, locale: locale, pagination_token: pagination_token, limit: limit, included_data: included_data }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", JSON.generate(arguments)), "promotions_2025_12_01.get_selection")
       end
 
       def get_selection_pages(promotion_id:, selection_id:, revision_id:, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil, max_pages: nil)
@@ -1864,7 +1864,7 @@ module Peddler
 
       def search_promotions(marketplace_ids:, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil)
         arguments = { marketplace_ids: marketplace_ids, locale: locale, statuses: statuses, asins: asins, skus: skus, promotion_types: promotion_types, start_date_before: start_date_before, start_date_after: start_date_after, end_date_before: end_date_before, end_date_after: end_date_after, update_date_after: update_date_after, update_date_before: update_date_before, pagination_token: pagination_token, revision: revision, limit: limit, included_data: included_data }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", JSON.generate(arguments)), "promotions_2025_12_01.search_promotions")
       end
 
       def search_promotions_pages(marketplace_ids:, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil, max_pages: nil)
@@ -1880,17 +1880,17 @@ module Peddler
 
       def get_selling_partner_metrics(body: nil)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.get_selling_partner_metrics", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.get_selling_partner_metrics", JSON.generate(arguments)), "replenishment_2022_11_07.get_selling_partner_metrics")
       end
 
       def list_offer_metrics(body: nil)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offer_metrics", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offer_metrics", JSON.generate(arguments)), "replenishment_2022_11_07.list_offer_metrics")
       end
 
       def list_offers(body: nil)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offers", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offers", JSON.generate(arguments)), "replenishment_2022_11_07.list_offers")
       end
     end
 
@@ -1901,47 +1901,47 @@ module Peddler
 
       def cancel_report(report_id:)
         arguments = { report_id: report_id }
-        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report", JSON.generate(arguments)), "reports_2021_06_30.cancel_report")
       end
 
       def cancel_report_schedule(report_schedule_id:)
         arguments = { report_schedule_id: report_schedule_id }
-        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report_schedule", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.cancel_report_schedule")
       end
 
       def create_report(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("reports_2021_06_30.create_report", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.create_report", JSON.generate(arguments)), "reports_2021_06_30.create_report")
       end
 
       def create_report_schedule(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("reports_2021_06_30.create_report_schedule", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.create_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.create_report_schedule")
       end
 
       def get_report(report_id:)
         arguments = { report_id: report_id }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report", JSON.generate(arguments)), "reports_2021_06_30.get_report")
       end
 
       def get_report_document(report_document_id:, enable_content_encoding_url_header: nil)
         arguments = { report_document_id: report_document_id, enable_content_encoding_url_header: enable_content_encoding_url_header }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_document", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_document", JSON.generate(arguments)), "reports_2021_06_30.get_report_document")
       end
 
       def get_report_schedule(report_schedule_id:)
         arguments = { report_schedule_id: report_schedule_id }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedule", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.get_report_schedule")
       end
 
       def get_report_schedules(report_types:)
         arguments = { report_types: report_types }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedules", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedules", JSON.generate(arguments)), "reports_2021_06_30.get_report_schedules")
       end
 
       def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil)
         arguments = { report_types: report_types, processing_statuses: processing_statuses, marketplace_ids: marketplace_ids, page_size: page_size, created_since: created_since, created_until: created_until, next_token: next_token }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", JSON.generate(arguments)), "reports_2021_06_30.get_reports")
       end
 
       def get_reports_pages(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil, max_pages: nil)
@@ -1957,7 +1957,7 @@ module Peddler
 
       def get_order_metrics(marketplace_ids:, interval:, granularity_time_zone: nil, granularity:, buyer_type: "All", fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, amazon_program: nil)
         arguments = { marketplace_ids: marketplace_ids, interval: interval, granularity_time_zone: granularity_time_zone, granularity: granularity, buyer_type: buyer_type, fulfillment_network: fulfillment_network, first_day_of_week: first_day_of_week, asin: asin, sku: sku, amazon_program: amazon_program }
-        Response.from_parts(@engine.operation("sales_v1.get_order_metrics", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("sales_v1.get_order_metrics", JSON.generate(arguments)), "sales_v1.get_order_metrics")
       end
     end
 
@@ -1968,47 +1968,47 @@ module Peddler
 
       def create_transaction(dest_account_digital_signature:, amount_digital_signature:, marketplace_id:, body:)
         arguments = { dest_account_digital_signature: dest_account_digital_signature, amount_digital_signature: amount_digital_signature, marketplace_id: marketplace_id, body: body }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transaction", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.create_transaction")
       end
 
       def create_transfer_schedule(dest_account_digital_signature:, amount_digital_signature:, marketplace_id:, body:)
         arguments = { dest_account_digital_signature: dest_account_digital_signature, amount_digital_signature: amount_digital_signature, marketplace_id: marketplace_id, body: body }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transfer_schedule", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.create_transfer_schedule")
       end
 
       def delete_schedule_transaction(transfer_schedule_id:, marketplace_id:)
         arguments = { transfer_schedule_id: transfer_schedule_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.delete_schedule_transaction", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.delete_schedule_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.delete_schedule_transaction")
       end
 
       def get_account(account_id:, marketplace_id:)
         arguments = { account_id: account_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_account", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_account", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_account")
       end
 
       def get_transaction(transaction_id:, marketplace_id:)
         arguments = { transaction_id: transaction_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transaction", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transaction")
       end
 
       def get_transfer_preview(source_country_code:, source_currency_code:, destination_country_code:, destination_currency_code:, base_amount:, marketplace_id:)
         arguments = { source_country_code: source_country_code, source_currency_code: source_currency_code, destination_country_code: destination_country_code, destination_currency_code: destination_currency_code, base_amount: base_amount, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_preview", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_preview", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transfer_preview")
       end
 
       def get_transfer_schedule(transfer_schedule_id:, marketplace_id:)
         arguments = { transfer_schedule_id: transfer_schedule_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_schedule", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transfer_schedule")
       end
 
       def list_account_balances(account_id:, marketplace_id:)
         arguments = { account_id: account_id, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_balances", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_balances", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_account_balances")
       end
 
       def list_account_transactions(account_id:, next_page_token: nil, marketplace_id:)
         arguments = { account_id: account_id, next_page_token: next_page_token, marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_account_transactions")
       end
 
       def list_account_transactions_pages(account_id:, next_page_token: nil, marketplace_id:, max_pages: nil)
@@ -2018,12 +2018,12 @@ module Peddler
 
       def list_accounts(marketplace_id:)
         arguments = { marketplace_id: marketplace_id }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_accounts", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_accounts", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_accounts")
       end
 
       def list_transfer_schedules(account_id:, marketplace_id:, next_page_token: nil)
         arguments = { account_id: account_id, marketplace_id: marketplace_id, next_page_token: next_page_token }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_transfer_schedules")
       end
 
       def list_transfer_schedules_pages(account_id:, marketplace_id:, next_page_token: nil, max_pages: nil)
@@ -2033,7 +2033,7 @@ module Peddler
 
       def update_transfer_schedule(dest_account_digital_signature:, amount_digital_signature:, marketplace_id:, body:)
         arguments = { dest_account_digital_signature: dest_account_digital_signature, amount_digital_signature: amount_digital_signature, marketplace_id: marketplace_id, body: body }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.update_transfer_schedule", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.update_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.update_transfer_schedule")
       end
     end
 
@@ -2045,13 +2045,13 @@ module Peddler
       def get_account
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("sellers_v1.get_account", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("sellers_v1.get_account", JSON.generate(arguments)), "sellers_v1.get_account")
       end
 
       def get_marketplace_participations
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("sellers_v1.get_marketplace_participations", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("sellers_v1.get_marketplace_participations", JSON.generate(arguments)), "sellers_v1.get_marketplace_participations")
       end
     end
 
@@ -2062,52 +2062,52 @@ module Peddler
 
       def add_appointment_for_service_job_by_service_job_id(service_job_id:, body:)
         arguments = { service_job_id: service_job_id, body: body }
-        Response.from_parts(@engine.operation("services_v1.add_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.add_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.add_appointment_for_service_job_by_service_job_id")
       end
 
       def assign_appointment_resources(service_job_id:, appointment_id:, body:)
         arguments = { service_job_id: service_job_id, appointment_id: appointment_id, body: body }
-        Response.from_parts(@engine.operation("services_v1.assign_appointment_resources", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.assign_appointment_resources", JSON.generate(arguments)), "services_v1.assign_appointment_resources")
       end
 
       def cancel_reservation(reservation_id:, marketplace_ids:)
         arguments = { reservation_id: reservation_id, marketplace_ids: marketplace_ids }
-        Response.from_parts(@engine.operation("services_v1.cancel_reservation", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.cancel_reservation", JSON.generate(arguments)), "services_v1.cancel_reservation")
       end
 
       def cancel_service_job_by_service_job_id(service_job_id:, cancellation_reason_code:)
         arguments = { service_job_id: service_job_id, cancellation_reason_code: cancellation_reason_code }
-        Response.from_parts(@engine.operation("services_v1.cancel_service_job_by_service_job_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.cancel_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.cancel_service_job_by_service_job_id")
       end
 
       def complete_service_job_by_service_job_id(service_job_id:)
         arguments = { service_job_id: service_job_id }
-        Response.from_parts(@engine.operation("services_v1.complete_service_job_by_service_job_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.complete_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.complete_service_job_by_service_job_id")
       end
 
       def create_reservation(marketplace_ids:, body:)
         arguments = { marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("services_v1.create_reservation", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.create_reservation", JSON.generate(arguments)), "services_v1.create_reservation")
       end
 
       def create_service_document_upload_destination(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("services_v1.create_service_document_upload_destination", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.create_service_document_upload_destination", JSON.generate(arguments)), "services_v1.create_service_document_upload_destination")
       end
 
       def get_appointment_slots(asin:, store_id:, marketplace_ids:, start_time: nil, end_time: nil)
         arguments = { asin: asin, store_id: store_id, marketplace_ids: marketplace_ids, start_time: start_time, end_time: end_time }
-        Response.from_parts(@engine.operation("services_v1.get_appointment_slots", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.get_appointment_slots", JSON.generate(arguments)), "services_v1.get_appointment_slots")
       end
 
       def get_appointmment_slots_by_job_id(service_job_id:, marketplace_ids:, start_time: nil, end_time: nil)
         arguments = { service_job_id: service_job_id, marketplace_ids: marketplace_ids, start_time: start_time, end_time: end_time }
-        Response.from_parts(@engine.operation("services_v1.get_appointmment_slots_by_job_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.get_appointmment_slots_by_job_id", JSON.generate(arguments)), "services_v1.get_appointmment_slots_by_job_id")
       end
 
       def get_fixed_slot_capacity(resource_id:, marketplace_ids:, next_page_token: nil, body:)
         arguments = { resource_id: resource_id, marketplace_ids: marketplace_ids, next_page_token: next_page_token, body: body }
-        Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", JSON.generate(arguments)), "services_v1.get_fixed_slot_capacity")
       end
 
       def get_fixed_slot_capacity_pages(resource_id:, marketplace_ids:, next_page_token: nil, body:, max_pages: nil)
@@ -2117,7 +2117,7 @@ module Peddler
 
       def get_range_slot_capacity(resource_id:, marketplace_ids:, next_page_token: nil, body:)
         arguments = { resource_id: resource_id, marketplace_ids: marketplace_ids, next_page_token: next_page_token, body: body }
-        Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", JSON.generate(arguments)), "services_v1.get_range_slot_capacity")
       end
 
       def get_range_slot_capacity_pages(resource_id:, marketplace_ids:, next_page_token: nil, body:, max_pages: nil)
@@ -2127,12 +2127,12 @@ module Peddler
 
       def get_service_job_by_service_job_id(service_job_id:)
         arguments = { service_job_id: service_job_id }
-        Response.from_parts(@engine.operation("services_v1.get_service_job_by_service_job_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.get_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.get_service_job_by_service_job_id")
       end
 
       def get_service_jobs(service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, marketplace_ids:, asins: nil, required_skills: nil, store_ids: nil)
         arguments = { service_order_ids: service_order_ids, product_order_ids: product_order_ids, tracking_ids: tracking_ids, service_job_status: service_job_status, page_token: page_token, page_size: page_size, sort_field: sort_field, sort_order: sort_order, created_after: created_after, created_before: created_before, last_updated_after: last_updated_after, last_updated_before: last_updated_before, schedule_start_date: schedule_start_date, schedule_end_date: schedule_end_date, marketplace_ids: marketplace_ids, asins: asins, required_skills: required_skills, store_ids: store_ids }
-        Response.from_parts(@engine.operation("services_v1.get_service_jobs", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.get_service_jobs", JSON.generate(arguments)), "services_v1.get_service_jobs")
       end
 
       def get_service_jobs_pages(service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, marketplace_ids:, asins: nil, required_skills: nil, store_ids: nil, max_pages: nil)
@@ -2142,22 +2142,22 @@ module Peddler
 
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id:, appointment_id:, body:)
         arguments = { service_job_id: service_job_id, appointment_id: appointment_id, body: body }
-        Response.from_parts(@engine.operation("services_v1.reschedule_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.reschedule_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.reschedule_appointment_for_service_job_by_service_job_id")
       end
 
       def set_appointment_fulfillment_data(service_job_id:, appointment_id:, body:)
         arguments = { service_job_id: service_job_id, appointment_id: appointment_id, body: body }
-        Response.from_parts(@engine.operation("services_v1.set_appointment_fulfillment_data", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.set_appointment_fulfillment_data", JSON.generate(arguments)), "services_v1.set_appointment_fulfillment_data")
       end
 
       def update_reservation(reservation_id:, marketplace_ids:, body:)
         arguments = { reservation_id: reservation_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("services_v1.update_reservation", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.update_reservation", JSON.generate(arguments)), "services_v1.update_reservation")
       end
 
       def update_schedule(resource_id:, marketplace_ids:, body:)
         arguments = { resource_id: resource_id, marketplace_ids: marketplace_ids, body: body }
-        Response.from_parts(@engine.operation("services_v1.update_schedule", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("services_v1.update_schedule", JSON.generate(arguments)), "services_v1.update_schedule")
       end
     end
 
@@ -2168,17 +2168,17 @@ module Peddler
 
       def get_invoice_status(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_invoice_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_invoice_status", JSON.generate(arguments)), "shipment_invoicing_v0.get_invoice_status")
       end
 
       def get_shipment_details(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_shipment_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_shipment_details", JSON.generate(arguments)), "shipment_invoicing_v0.get_shipment_details")
       end
 
       def submit_invoice(shipment_id:, body:)
         arguments = { shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.submit_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.submit_invoice", JSON.generate(arguments)), "shipment_invoicing_v0.submit_invoice")
       end
     end
 
@@ -2189,48 +2189,48 @@ module Peddler
 
       def cancel_shipment(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("shipping_v1.cancel_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.cancel_shipment", JSON.generate(arguments)), "shipping_v1.cancel_shipment")
       end
 
       def create_shipment(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("shipping_v1.create_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.create_shipment", JSON.generate(arguments)), "shipping_v1.create_shipment")
       end
 
       def get_account
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("shipping_v1.get_account", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.get_account", JSON.generate(arguments)), "shipping_v1.get_account")
       end
 
       def get_rates(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("shipping_v1.get_rates", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.get_rates", JSON.generate(arguments)), "shipping_v1.get_rates")
       end
 
       def get_shipment(shipment_id:)
         arguments = { shipment_id: shipment_id }
-        Response.from_parts(@engine.operation("shipping_v1.get_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.get_shipment", JSON.generate(arguments)), "shipping_v1.get_shipment")
       end
 
       def get_tracking_information(tracking_id:)
         arguments = { tracking_id: tracking_id }
-        Response.from_parts(@engine.operation("shipping_v1.get_tracking_information", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.get_tracking_information", JSON.generate(arguments)), "shipping_v1.get_tracking_information")
       end
 
       def purchase_labels(shipment_id:, body:)
         arguments = { shipment_id: shipment_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v1.purchase_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.purchase_labels", JSON.generate(arguments)), "shipping_v1.purchase_labels")
       end
 
       def purchase_shipment(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("shipping_v1.purchase_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.purchase_shipment", JSON.generate(arguments)), "shipping_v1.purchase_shipment")
       end
 
       def retrieve_shipping_label(shipment_id:, tracking_id:, body:)
         arguments = { shipment_id: shipment_id, tracking_id: tracking_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v1.retrieve_shipping_label", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v1.retrieve_shipping_label", JSON.generate(arguments)), "shipping_v1.retrieve_shipping_label")
       end
     end
 
@@ -2241,102 +2241,102 @@ module Peddler
 
       def cancel_shipment(shipment_id:, x_amzn_shipping_business_id: nil)
         arguments = { shipment_id: shipment_id, x_amzn_shipping_business_id: x_amzn_shipping_business_id }
-        Response.from_parts(@engine.operation("shipping_v2.cancel_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.cancel_shipment", JSON.generate(arguments)), "shipping_v2.cancel_shipment")
       end
 
       def create_claim(x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.create_claim", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.create_claim", JSON.generate(arguments)), "shipping_v2.create_claim")
       end
 
       def direct_purchase_shipment(x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_idempotency_key: x_amzn_idempotency_key, locale: locale, x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.direct_purchase_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.direct_purchase_shipment", JSON.generate(arguments)), "shipping_v2.direct_purchase_shipment")
       end
 
       def generate_collection_form(x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_idempotency_key: x_amzn_idempotency_key, x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.generate_collection_form", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.generate_collection_form", JSON.generate(arguments)), "shipping_v2.generate_collection_form")
       end
 
       def get_access_points(access_point_types:, country_code:, postal_code:, x_amzn_shipping_business_id: nil)
         arguments = { access_point_types: access_point_types, country_code: country_code, postal_code: postal_code, x_amzn_shipping_business_id: x_amzn_shipping_business_id }
-        Response.from_parts(@engine.operation("shipping_v2.get_access_points", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_access_points", JSON.generate(arguments)), "shipping_v2.get_access_points")
       end
 
       def get_additional_inputs(request_token:, rate_id:, x_amzn_shipping_business_id: nil)
         arguments = { request_token: request_token, rate_id: rate_id, x_amzn_shipping_business_id: x_amzn_shipping_business_id }
-        Response.from_parts(@engine.operation("shipping_v2.get_additional_inputs", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_additional_inputs", JSON.generate(arguments)), "shipping_v2.get_additional_inputs")
       end
 
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil)
         arguments = { x_amzn_shipping_business_id: x_amzn_shipping_business_id }
-        Response.from_parts(@engine.operation("shipping_v2.get_carrier_account_form_inputs", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_carrier_account_form_inputs", JSON.generate(arguments)), "shipping_v2.get_carrier_account_form_inputs")
       end
 
       def get_carrier_accounts(x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.get_carrier_accounts", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_carrier_accounts", JSON.generate(arguments)), "shipping_v2.get_carrier_accounts")
       end
 
       def get_collection_form(collection_form_id:, x_amzn_shipping_business_id: nil)
         arguments = { collection_form_id: collection_form_id, x_amzn_shipping_business_id: x_amzn_shipping_business_id }
-        Response.from_parts(@engine.operation("shipping_v2.get_collection_form", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_collection_form", JSON.generate(arguments)), "shipping_v2.get_collection_form")
       end
 
       def get_collection_form_history(x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.get_collection_form_history", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_collection_form_history", JSON.generate(arguments)), "shipping_v2.get_collection_form_history")
       end
 
       def get_rates(x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.get_rates", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_rates", JSON.generate(arguments)), "shipping_v2.get_rates")
       end
 
       def get_shipment_documents(shipment_id:, package_client_reference_id:, format: nil, dpi: nil, x_amzn_shipping_business_id: nil)
         arguments = { shipment_id: shipment_id, package_client_reference_id: package_client_reference_id, format: format, dpi: dpi, x_amzn_shipping_business_id: x_amzn_shipping_business_id }
-        Response.from_parts(@engine.operation("shipping_v2.get_shipment_documents", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_shipment_documents", JSON.generate(arguments)), "shipping_v2.get_shipment_documents")
       end
 
       def get_tracking(tracking_id:, carrier_id:, x_amzn_shipping_business_id: nil)
         arguments = { tracking_id: tracking_id, carrier_id: carrier_id, x_amzn_shipping_business_id: x_amzn_shipping_business_id }
-        Response.from_parts(@engine.operation("shipping_v2.get_tracking", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_tracking", JSON.generate(arguments)), "shipping_v2.get_tracking")
       end
 
       def get_unmanifested_shipments(x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.get_unmanifested_shipments", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.get_unmanifested_shipments", JSON.generate(arguments)), "shipping_v2.get_unmanifested_shipments")
       end
 
       def link_carrier_account(carrier_id:, x_amzn_shipping_business_id: nil, body:)
         arguments = { carrier_id: carrier_id, x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account", JSON.generate(arguments)), "shipping_v2.link_carrier_account")
       end
 
       def link_carrier_account_put(carrier_id:, x_amzn_shipping_business_id: nil, body:)
         arguments = { carrier_id: carrier_id, x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account_put", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account_put", JSON.generate(arguments)), "shipping_v2.link_carrier_account_put")
       end
 
       def one_click_shipment(x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.one_click_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.one_click_shipment", JSON.generate(arguments)), "shipping_v2.one_click_shipment")
       end
 
       def purchase_shipment(x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_idempotency_key: x_amzn_idempotency_key, x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.purchase_shipment", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.purchase_shipment", JSON.generate(arguments)), "shipping_v2.purchase_shipment")
       end
 
       def submit_ndr_feedback(x_amzn_shipping_business_id: nil, body:)
         arguments = { x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.submit_ndr_feedback", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.submit_ndr_feedback", JSON.generate(arguments)), "shipping_v2.submit_ndr_feedback")
       end
 
       def unlink_carrier_account(carrier_id:, x_amzn_shipping_business_id: nil, body:)
         arguments = { carrier_id: carrier_id, x_amzn_shipping_business_id: x_amzn_shipping_business_id, body: body }
-        Response.from_parts(@engine.operation("shipping_v2.unlink_carrier_account", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("shipping_v2.unlink_carrier_account", JSON.generate(arguments)), "shipping_v2.unlink_carrier_account")
       end
     end
 
@@ -2347,12 +2347,12 @@ module Peddler
 
       def create_product_review_and_seller_feedback_solicitation(amazon_order_id:, marketplace_ids:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids }
-        Response.from_parts(@engine.operation("solicitations_v1.create_product_review_and_seller_feedback_solicitation", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("solicitations_v1.create_product_review_and_seller_feedback_solicitation", JSON.generate(arguments)), "solicitations_v1.create_product_review_and_seller_feedback_solicitation")
       end
 
       def get_solicitation_actions_for_order(amazon_order_id:, marketplace_ids:)
         arguments = { amazon_order_id: amazon_order_id, marketplace_ids: marketplace_ids }
-        Response.from_parts(@engine.operation("solicitations_v1.get_solicitation_actions_for_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("solicitations_v1.get_solicitation_actions_for_order", JSON.generate(arguments)), "solicitations_v1.get_solicitation_actions_for_order")
       end
     end
 
@@ -2363,22 +2363,22 @@ module Peddler
 
       def archive_supply_source(supply_source_id:)
         arguments = { supply_source_id: supply_source_id }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.archive_supply_source", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.archive_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.archive_supply_source")
       end
 
       def create_supply_source(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.create_supply_source", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.create_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.create_supply_source")
       end
 
       def get_supply_source(supply_source_id:)
         arguments = { supply_source_id: supply_source_id }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_source", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.get_supply_source")
       end
 
       def get_supply_sources(next_page_token: nil, page_size: 10)
         arguments = { next_page_token: next_page_token, page_size: page_size }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", JSON.generate(arguments)), "supply_sources_2020_07_01.get_supply_sources")
       end
 
       def get_supply_sources_pages(next_page_token: nil, page_size: 10, max_pages: nil)
@@ -2388,12 +2388,12 @@ module Peddler
 
       def update_supply_source(supply_source_id:, body: nil)
         arguments = { supply_source_id: supply_source_id, body: body }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.update_supply_source")
       end
 
       def update_supply_source_status(supply_source_id:, body: nil)
         arguments = { supply_source_id: supply_source_id, body: body }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source_status", JSON.generate(arguments)), "supply_sources_2020_07_01.update_supply_source_status")
       end
     end
 
@@ -2404,12 +2404,12 @@ module Peddler
 
       def get_case(case_id:)
         arguments = { case_id: case_id }
-        Response.from_parts(@engine.operation("support_2025_02_01.get_case", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("support_2025_02_01.get_case", JSON.generate(arguments)), "support_2025_02_01.get_case")
       end
 
       def list_cases(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("support_2025_02_01.list_cases", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("support_2025_02_01.list_cases", JSON.generate(arguments)), "support_2025_02_01.list_cases")
       end
 
       def list_cases_pages(body:, max_pages: nil)
@@ -2419,7 +2419,7 @@ module Peddler
 
       def list_contacts(case_id:, max_results: 10, next_token: nil, sort_order: "DESC")
         arguments = { case_id: case_id, max_results: max_results, next_token: next_token, sort_order: sort_order }
-        Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", JSON.generate(arguments)), "support_2025_02_01.list_contacts")
       end
 
       def list_contacts_pages(case_id:, max_results: 10, next_token: nil, sort_order: "DESC", max_pages: nil)
@@ -2435,7 +2435,7 @@ module Peddler
 
       def create_restricted_data_token(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("tokens_2021_03_01.create_restricted_data_token", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("tokens_2021_03_01.create_restricted_data_token", JSON.generate(arguments)), "tokens_2021_03_01.create_restricted_data_token")
       end
     end
 
@@ -2446,7 +2446,7 @@ module Peddler
 
       def get_shipment_tracking(id: nil, acsin: nil, aftn: nil, container_number: nil, house_bill_of_lading_number: nil, pro_number: nil, carrier_tracking_tracking_number: nil, carrier_tracking_carrier_code: nil, accept_language: nil)
         arguments = { id: id, acsin: acsin, aftn: aftn, container_number: container_number, house_bill_of_lading_number: house_bill_of_lading_number, pro_number: pro_number, carrier_tracking_tracking_number: carrier_tracking_tracking_number, carrier_tracking_carrier_code: carrier_tracking_carrier_code, accept_language: accept_language }
-        Response.from_parts(@engine.operation("tracking_2026_01_30.get_shipment_tracking", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("tracking_2026_01_30.get_shipment_tracking", JSON.generate(arguments)), "tracking_2026_01_30.get_shipment_tracking")
       end
     end
 
@@ -2457,7 +2457,7 @@ module Peddler
 
       def create_upload_destination_for_resource(marketplace_ids:, content_md5:, resource:, content_type: nil)
         arguments = { marketplace_ids: marketplace_ids, content_md5: content_md5, resource: resource, content_type: content_type }
-        Response.from_parts(@engine.operation("uploads_2020_11_01.create_upload_destination_for_resource", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("uploads_2020_11_01.create_upload_destination_for_resource", JSON.generate(arguments)), "uploads_2020_11_01.create_upload_destination_for_resource")
       end
     end
 
@@ -2468,7 +2468,7 @@ module Peddler
 
       def get_vehicles(page_token: nil, marketplace_id:, vehicle_type:, updated_after: nil)
         arguments = { page_token: page_token, marketplace_id: marketplace_id, vehicle_type: vehicle_type, updated_after: updated_after }
-        Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", JSON.generate(arguments)), "vehicles_2024_11_01.get_vehicles")
       end
 
       def get_vehicles_pages(page_token: nil, marketplace_id:, vehicle_type:, updated_after: nil, max_pages: nil)
@@ -2484,7 +2484,7 @@ module Peddler
 
       def submit_inventory_update(warehouse_id:, body:)
         arguments = { warehouse_id: warehouse_id, body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_inventory_v1.submit_inventory_update", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_inventory_v1.submit_inventory_update", JSON.generate(arguments)), "vendor_direct_fulfillment_inventory_v1.submit_inventory_update")
       end
     end
 
@@ -2495,12 +2495,12 @@ module Peddler
 
       def get_order(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_order", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.get_order")
       end
 
       def get_orders(ship_from_party_id: nil, status: nil, limit: nil, created_after:, created_before:, sort_order: nil, next_token: nil, include_details: true)
         arguments = { ship_from_party_id: ship_from_party_id, status: status, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token, include_details: include_details }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.get_orders")
       end
 
       def get_orders_pages(ship_from_party_id: nil, status: nil, limit: nil, created_after:, created_before:, sort_order: nil, next_token: nil, include_details: true, max_pages: nil)
@@ -2510,7 +2510,7 @@ module Peddler
 
       def submit_acknowledgement(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.submit_acknowledgement", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.submit_acknowledgement", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.submit_acknowledgement")
       end
     end
 
@@ -2521,12 +2521,12 @@ module Peddler
 
       def get_order(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_order", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_order")
       end
 
       def get_orders(ship_from_party_id: nil, status: nil, limit: nil, created_after:, created_before:, sort_order: nil, next_token: nil, include_details: true)
         arguments = { ship_from_party_id: ship_from_party_id, status: status, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token, include_details: include_details }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_orders")
       end
 
       def get_orders_pages(ship_from_party_id: nil, status: nil, limit: nil, created_after:, created_before:, sort_order: nil, next_token: nil, include_details: true, max_pages: nil)
@@ -2536,7 +2536,7 @@ module Peddler
 
       def submit_acknowledgement(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement")
       end
     end
 
@@ -2547,7 +2547,7 @@ module Peddler
 
       def submit_invoice(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_payments_v1.submit_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_payments_v1.submit_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_payments_v1.submit_invoice")
       end
     end
 
@@ -2558,12 +2558,12 @@ module Peddler
 
       def generate_order_scenarios(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios", JSON.generate(arguments)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios")
       end
 
       def get_order_scenarios(transaction_id:)
         arguments = { transaction_id: transaction_id }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios", JSON.generate(arguments)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios")
       end
     end
 
@@ -2574,12 +2574,12 @@ module Peddler
 
       def get_customer_invoice(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoice")
       end
 
       def get_customer_invoices(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: nil, next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoices")
       end
 
       def get_customer_invoices_pages(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: nil, next_token: nil, max_pages: nil)
@@ -2589,12 +2589,12 @@ module Peddler
 
       def get_packing_slip(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slip", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slip", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slip")
       end
 
       def get_packing_slips(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: "ASC", next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slips")
       end
 
       def get_packing_slips_pages(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: "ASC", next_token: nil, max_pages: nil)
@@ -2604,12 +2604,12 @@ module Peddler
 
       def get_shipping_label(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_label", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_label")
       end
 
       def get_shipping_labels(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: "ASC", next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_labels")
       end
 
       def get_shipping_labels_pages(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: "ASC", next_token: nil, max_pages: nil)
@@ -2619,17 +2619,17 @@ module Peddler
 
       def submit_shipment_confirmations(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations")
       end
 
       def submit_shipment_status_updates(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates")
       end
 
       def submit_shipping_label_request(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request")
       end
     end
 
@@ -2640,22 +2640,22 @@ module Peddler
 
       def create_container_label(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_container_label", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_container_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.create_container_label")
       end
 
       def create_shipping_labels(purchase_order_number:, body:)
         arguments = { purchase_order_number: purchase_order_number, body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels")
       end
 
       def get_customer_invoice(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice")
       end
 
       def get_customer_invoices(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: nil, next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices")
       end
 
       def get_customer_invoices_pages(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: nil, next_token: nil, max_pages: nil)
@@ -2665,12 +2665,12 @@ module Peddler
 
       def get_packing_slip(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip")
       end
 
       def get_packing_slips(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: "ASC", next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips")
       end
 
       def get_packing_slips_pages(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: "ASC", next_token: nil, max_pages: nil)
@@ -2680,12 +2680,12 @@ module Peddler
 
       def get_shipping_label(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label")
       end
 
       def get_shipping_labels(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: "ASC", next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels")
       end
 
       def get_shipping_labels_pages(ship_from_party_id: nil, limit: nil, created_after:, created_before:, sort_order: "ASC", next_token: nil, max_pages: nil)
@@ -2695,17 +2695,17 @@ module Peddler
 
       def submit_shipment_confirmations(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations")
       end
 
       def submit_shipment_status_updates(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates")
       end
 
       def submit_shipping_label_request(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request")
       end
     end
 
@@ -2716,7 +2716,7 @@ module Peddler
 
       def get_transaction_status(transaction_id:)
         arguments = { transaction_id: transaction_id }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_v1.get_transaction_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_v1.get_transaction_status", JSON.generate(arguments)), "vendor_direct_fulfillment_transactions_v1.get_transaction_status")
       end
     end
 
@@ -2727,7 +2727,7 @@ module Peddler
 
       def get_transaction_status(transaction_id:)
         arguments = { transaction_id: transaction_id }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status", JSON.generate(arguments)), "vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status")
       end
     end
 
@@ -2738,7 +2738,7 @@ module Peddler
 
       def submit_invoices(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_invoices_v1.submit_invoices", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_invoices_v1.submit_invoices", JSON.generate(arguments)), "vendor_invoices_v1.submit_invoices")
       end
     end
 
@@ -2749,12 +2749,12 @@ module Peddler
 
       def get_purchase_order(purchase_order_number:)
         arguments = { purchase_order_number: purchase_order_number }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_order", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_order", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_order")
       end
 
       def get_purchase_orders(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil)
         arguments = { limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token, include_details: include_details, changed_after: changed_after, changed_before: changed_before, po_item_state: po_item_state, is_po_changed: is_po_changed, purchase_order_state: purchase_order_state, ordering_vendor_code: ordering_vendor_code }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_orders")
       end
 
       def get_purchase_orders_pages(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil, max_pages: nil)
@@ -2764,7 +2764,7 @@ module Peddler
 
       def get_purchase_orders_status(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil)
         arguments = { limit: limit, sort_order: sort_order, next_token: next_token, created_after: created_after, created_before: created_before, updated_after: updated_after, updated_before: updated_before, purchase_order_number: purchase_order_number, purchase_order_status: purchase_order_status, item_confirmation_status: item_confirmation_status, item_receive_status: item_receive_status, ordering_vendor_code: ordering_vendor_code, ship_to_party_id: ship_to_party_id }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_orders_status")
       end
 
       def get_purchase_orders_status_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil, max_pages: nil)
@@ -2774,7 +2774,7 @@ module Peddler
 
       def submit_acknowledgement(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_orders_v1.submit_acknowledgement", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_orders_v1.submit_acknowledgement", JSON.generate(arguments)), "vendor_orders_v1.submit_acknowledgement")
       end
     end
 
@@ -2785,7 +2785,7 @@ module Peddler
 
       def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil)
         arguments = { limit: limit, sort_order: sort_order, next_token: next_token, created_after: created_after, created_before: created_before, shipment_confirmed_before: shipment_confirmed_before, shipment_confirmed_after: shipment_confirmed_after, package_label_created_before: package_label_created_before, package_label_created_after: package_label_created_after, shipped_before: shipped_before, shipped_after: shipped_after, estimated_delivery_before: estimated_delivery_before, estimated_delivery_after: estimated_delivery_after, shipment_delivery_before: shipment_delivery_before, shipment_delivery_after: shipment_delivery_after, requested_pick_up_before: requested_pick_up_before, requested_pick_up_after: requested_pick_up_after, scheduled_pick_up_before: scheduled_pick_up_before, scheduled_pick_up_after: scheduled_pick_up_after, current_shipment_status: current_shipment_status, vendor_shipment_identifier: vendor_shipment_identifier, buyer_reference_number: buyer_reference_number, buyer_warehouse_code: buyer_warehouse_code, seller_warehouse_code: seller_warehouse_code }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", JSON.generate(arguments)), "vendor_shipments_v1.get_shipment_details")
       end
 
       def get_shipment_details_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, max_pages: nil)
@@ -2795,7 +2795,7 @@ module Peddler
 
       def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil)
         arguments = { limit: limit, sort_order: sort_order, next_token: next_token, label_created_after: label_created_after, label_created_before: label_created_before, buyer_reference_number: buyer_reference_number, vendor_shipment_identifier: vendor_shipment_identifier, seller_warehouse_code: seller_warehouse_code }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", JSON.generate(arguments)), "vendor_shipments_v1.get_shipment_labels")
       end
 
       def get_shipment_labels_pages(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil, max_pages: nil)
@@ -2805,12 +2805,12 @@ module Peddler
 
       def submit_shipment_confirmations(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipment_confirmations", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_shipments_v1.submit_shipment_confirmations")
       end
 
       def submit_shipments(body:)
         arguments = { body: body }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipments", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipments", JSON.generate(arguments)), "vendor_shipments_v1.submit_shipments")
       end
     end
 
@@ -2821,7 +2821,7 @@ module Peddler
 
       def get_transaction(transaction_id:)
         arguments = { transaction_id: transaction_id }
-        Response.from_parts(@engine.operation("vendor_transaction_status_v1.get_transaction", JSON.generate(arguments)))
+        Response.from_parts(@engine.operation("vendor_transaction_status_v1.get_transaction", JSON.generate(arguments)), "vendor_transaction_status_v1.get_transaction")
       end
     end
   end

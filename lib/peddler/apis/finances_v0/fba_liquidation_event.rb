@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US
       # marketplace.
       FBALiquidationEvent = Structure.new do

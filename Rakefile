@@ -26,7 +26,7 @@ task "rbs:sort" do
 end
 
 desc "Generate all code from specs"
-task :generate do
+task generate: "generate:rust" do
   require_relative "lib/generator"
   Generator.generate
 end
@@ -72,11 +72,11 @@ namespace :generate do
   task :update do
     require_relative "lib/generator"
     Generator::Specs.advance!
-    Generator.generate
+    Rake::Task["generate"].invoke
   end
 
   desc "Regenerate at the pinned spec revision; fail if committed output drifts"
-  task verify: :generate do
+  task verify: [:generate, "rust:verify"] do
     require "open3"
 
     paths = Generator.generated_paths

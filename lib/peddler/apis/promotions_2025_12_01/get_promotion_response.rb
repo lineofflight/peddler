@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # The response schema for `getPromotion`. **Note:** `selectionDetails` are included when `SELECTION` is in the
       # `includedData` request parameter.
       GetPromotionResponse = Structure.new do

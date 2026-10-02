@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Interim status information provided during the verification process to share granular progress updates while an
       # order is pending verification (for example, vet contacted through email).
       InterimStatusDetail = Structure.new do

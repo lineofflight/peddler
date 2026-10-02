@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # Inventory summary for a specific item.
       InventorySummary = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of an item.

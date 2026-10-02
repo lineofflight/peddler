@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ProductTypeDefinitions20200901 < API
+    module ProductTypeDefinitions20200901
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
                     | (String, String, String?) -> Peddler::APIs::ProductTypeDefinitions20200901::Error
@@ -149,9 +151,6 @@ module Peddler
         def members: () -> [ :checksum, :link ]
         def to_h: () -> { checksum: String, link: Hash[untyped, untyped] }
       end
-
-      def get_definitions_product_type: (String, Array[String], ?seller_id: String?, ?product_type_version: String?, ?requirements: String?, ?requirements_enforced: String?, ?locale: String?, ?parentage_level: String?, ?rate_limit: Float) -> Peddler::Response
-      def search_definitions_product_types: (Array[String], ?keywords: Array[String]?, ?item_name: String?, ?locale: String?, ?search_locale: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

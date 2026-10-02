@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Date Range for query the results.
       DateRange = Structure.new do
         # @return [Time] end date for query.

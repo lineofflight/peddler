@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # Details of tax amount applied.
       TaxDetails = Structure.new do
         # @return [Money] Total tax amount applied on invoice total or an item total.

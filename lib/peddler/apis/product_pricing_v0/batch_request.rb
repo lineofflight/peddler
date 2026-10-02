@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Common properties of batch requests against individual APIs.
       BatchRequest = Structure.new do
         # @return [String]

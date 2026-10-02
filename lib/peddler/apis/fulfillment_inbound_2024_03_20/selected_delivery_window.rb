@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Selected delivery window attributes.
       SelectedDeliveryWindow = Structure.new do
         # @return [String] The type of delivery window availability. Values: `AVAILABLE`, `BLOCKED`, `CONGESTED`,

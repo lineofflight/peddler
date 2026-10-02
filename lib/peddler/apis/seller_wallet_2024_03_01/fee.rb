@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Details of the fee.
       Fee = Structure.new do
         # @return [Money] The actual value of the fee in numeric format.

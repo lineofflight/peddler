@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # References required in order to process a credit note. This information is required only if InvoiceType is
       # CreditNote.
       CreditNoteDetails = Structure.new do

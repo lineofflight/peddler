@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The error response schema for the `UpdateVerificationStatus` operation.
       UpdateVerificationStatusErrorResponse = Structure.new do
         # @return [Array<Error>] One or more unexpected errors occurred during the `UpdateVerificationStatus` operation.

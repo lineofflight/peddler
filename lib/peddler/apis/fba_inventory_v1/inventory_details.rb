@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # Summarized inventory details. This object will not appear if the details parameter in the request is false.
       InventoryDetails = Structure.new do
         # @return [Integer] The item quantity that can be picked, packed, and shipped.

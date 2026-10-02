@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of ineligible shipping service offerings.
       class IneligibleRateList < Array
         class << self

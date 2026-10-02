@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # A list of warnings returned in the sucessful execution response of an API request.
       class WarningList < Array
         class << self

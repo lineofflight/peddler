@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # The response to an inventory request.
       InventoryResponseBody = Structure.new do
         # @return [Array<ActionableError>] Inventory operation errors that require seller action before retrying the

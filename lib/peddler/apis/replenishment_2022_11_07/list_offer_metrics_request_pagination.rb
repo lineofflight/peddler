@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # Use these parameters to paginate through the response.
       ListOfferMetricsRequestPagination = Structure.new do
         # @return [Integer] The maximum number of results to return in the response.

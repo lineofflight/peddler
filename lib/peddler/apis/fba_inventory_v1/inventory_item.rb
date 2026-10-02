@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # An item in the list of inventory to be added.
       InventoryItem = Structure.new do
         # @return [String] The marketplaceId.

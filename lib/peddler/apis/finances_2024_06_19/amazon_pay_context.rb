@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Additional information related to Amazon Pay.
       AmazonPayContext = Structure.new do
         # @return [String] The channel of the transaction. For example: `MFN`.

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # A list of excluded benefits. Refer to the `ExcludeBenefit` object for further documentation.
       class ExcludedBenefits < Array
         class << self

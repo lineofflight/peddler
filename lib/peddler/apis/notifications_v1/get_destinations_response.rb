@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The response schema for the `getDestinations` operation.
       GetDestinationsResponse = Structure.new do
         # @return [Array<Error>] One or more unexpected errors occurred during the `getDestinations` operation.

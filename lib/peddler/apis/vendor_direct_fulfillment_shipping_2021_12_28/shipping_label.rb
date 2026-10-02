@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # Shipping label information for an order, including the purchase order number, selling party, ship from party,
       # label format, and package details.
       ShippingLabel = Structure.new do

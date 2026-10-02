@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `generatePlacementOptions` request.
       GeneratePlacementOptionsRequest = Structure.new do
         # @return [Array<CustomPlacementInput>] Custom placement options you want to add to the plan. This is only used

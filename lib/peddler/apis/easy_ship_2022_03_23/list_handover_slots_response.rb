@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # The response schema for the `listHandoverSlots` operation.
       ListHandoverSlotsResponse = Structure.new do
         # @return [String]

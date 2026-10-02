@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Warning returned when the request is successful, but there are important callouts based on which API clients
       # should take defined actions.
       Warning = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Drop-off location for the fulfillment order.
       OrderDropOffLocation = Structure.new do
         # @return [Hash] Drop-off location attributes.

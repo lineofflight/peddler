@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Pricing information for the order item.
       ItemPrice = Structure.new do
         # @return [String] Indicates that the selling price is a special price that is only available for Amazon

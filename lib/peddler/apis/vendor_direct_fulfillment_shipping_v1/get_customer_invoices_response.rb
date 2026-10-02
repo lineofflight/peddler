@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # The response schema for the getCustomerInvoices operation.
       GetCustomerInvoicesResponse = Structure.new do
         # @return [Array<Error>]

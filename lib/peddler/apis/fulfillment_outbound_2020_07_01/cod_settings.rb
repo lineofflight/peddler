@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
       CODSettings = Structure.new do
         # @return [:boolean] When true, this fulfillment order requires a COD (Cash On Delivery) payment.

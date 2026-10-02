@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # A contact.
       Contact = Structure.new do
         # @return [String] The contact channel for communication between the selling partner and Amazon.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # Details about the estimated delivery window.
       ShipmentSchedule = Structure.new do
         # @return [Time] The date and time at the end of the appointment window when the shipment is expected to be

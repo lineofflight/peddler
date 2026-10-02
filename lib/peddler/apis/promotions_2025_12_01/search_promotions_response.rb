@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # The response schema for the `searchPromotions` operation. **Note:** The `selectionDetails` field is not present
       # in the selection object within promotion summaries.
       SearchPromotionsResponse = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The format options available for a label.
       PrintOption = Structure.new do
         # @return [Array<SupportedDocumentDetail>] A list of the supported documented details.

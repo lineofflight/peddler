@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Contains detail about an invalid SKU
       InvalidSKU = Structure.new do
         # @return [String] The reason why the seller SKU is invalid.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Per-item offer results including available offers and any constraints.
       OfferResult = Structure.new do
         # @return [Array<Constraint>] Constraints that prevented offers for this item.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A removal shipment event for a removal order.
       RemovalShipmentEvent = Structure.new do
         # @return [String] The merchant removal `orderId`.

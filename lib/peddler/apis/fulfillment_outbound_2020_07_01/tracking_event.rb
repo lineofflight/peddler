@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Information for tracking package deliveries.
       TrackingEvent = Structure.new do
         # @return [TrackingAddress] The city where the delivery event took place.

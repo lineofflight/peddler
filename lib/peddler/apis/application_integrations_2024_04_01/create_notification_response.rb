@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ApplicationIntegrations20240401
+    module ApplicationIntegrations20240401
       # The response for the `createNotification` operation.
       CreateNotificationResponse = Structure.new do
         # @return [String] The unique identifier assigned to each notification.

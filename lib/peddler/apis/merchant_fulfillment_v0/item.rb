@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # An Amazon order item identifier and a quantity.
       Item = Structure.new do
         # @return [String]

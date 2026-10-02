@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class DataKiosk20231115
+    module DataKiosk20231115
       # The response for the `getQueries` operation.
       GetQueriesResponse = Structure.new do
         # @return [Array<Query>] The Data Kiosk queries.

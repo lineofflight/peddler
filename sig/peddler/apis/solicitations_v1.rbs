@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class SolicitationsV1 < API
+    module SolicitationsV1
+      PARSERS: Hash[String, ^() -> untyped]
+
       class CreateProductReviewAndSellerFeedbackSolicitationResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
                     | (Array[Peddler::APIs::SolicitationsV1::Error]?) -> Peddler::APIs::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
@@ -126,9 +128,6 @@ module Peddler
         def members: () -> [ :name ]
         def to_h: () -> { name: String }
       end
-
-      def create_product_review_and_seller_feedback_solicitation: (String, Array[String], ?rate_limit: Float) -> Peddler::Response
-      def get_solicitation_actions_for_order: (String, Array[String], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

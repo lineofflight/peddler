@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tracking20260130
+    module Tracking20260130
       # A time-based estimate for the shipment, such as estimated delivery date.
       TrackingEstimate = Structure.new do
         # @return [BoundedInterval] The estimated time window for this event, represented as a start and end time in UTC

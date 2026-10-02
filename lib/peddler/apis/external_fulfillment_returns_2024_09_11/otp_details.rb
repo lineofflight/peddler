@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentReturns20240911
+    module ExternalFulfillmentReturns20240911
       # One-time password (OTP) details of the return item.
       OtpDetails = Structure.new do
         # @return [String] One-time password to validate the return delivered to the seller.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # Monetary and tax details of the charge.
       ChargeDetails = Structure.new do
         # @return [Money]

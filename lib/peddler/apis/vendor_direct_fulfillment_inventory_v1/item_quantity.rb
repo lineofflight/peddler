@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentInventoryV1
+    module VendorDirectFulfillmentInventoryV1
       # Details of item quantity.
       ItemQuantity = Structure.new do
         # @return [String] Unit of measure for the available quantity.

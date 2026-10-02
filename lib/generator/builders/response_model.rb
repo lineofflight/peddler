@@ -28,8 +28,7 @@ module Generator
     private
 
     def find_success_response
-      responses = operation["responses"]
-      responses["200"] || responses["201"] || responses["202"] || responses["204"]
+      operation["responses"].select { |code, _| code.match?(/\A2\d\d\z/) }.min_by(&:first)&.last
     end
 
     def default_response_model

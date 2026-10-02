@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Shipping options for a single package.
       ShippingOptions = Structure.new do
         # @return [String] The shipper type.

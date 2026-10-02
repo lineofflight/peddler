@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Rich text content.
       TextComponent = Structure.new do
         # @return [String] The actual plain text.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The curbside pickup configuration of a supply source.
       CurbsidePickupConfiguration = Structure.new do
         # @return [:boolean] When true, curbside pickup is supported by the supply source.

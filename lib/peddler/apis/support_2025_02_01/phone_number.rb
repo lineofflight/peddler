@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # The selling partner's phone number.
       PhoneNumber = Structure.new do
         # @return [String] The ISO 3166-1 two-digit country code for the calling country.

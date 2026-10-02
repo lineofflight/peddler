@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Item information for a fulfillment order.
       FulfillmentOrderItem = Structure.new do
         # @return [Integer] The item quantity that was cancelled by the seller.

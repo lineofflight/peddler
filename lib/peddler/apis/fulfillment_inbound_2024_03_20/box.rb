@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains information about a box that is used in the inbound plan. The box is a container that holds multiple
       # items.
       Box = Structure.new do

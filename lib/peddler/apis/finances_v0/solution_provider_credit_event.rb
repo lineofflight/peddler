@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A credit given to a solution provider.
       SolutionProviderCreditEvent = Structure.new do
         # @return [String] The two-letter country code of the country associated with the marketplace where the order

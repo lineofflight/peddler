@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Product type associated with the Amazon catalog item for the indicated Amazon marketplace.
       ItemProductTypeByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Substitution options for an order item.
       SubstitutionOption = Structure.new do
         # @return [String] The item's Amazon Standard Identification Number (ASIN).

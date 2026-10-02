@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # An item in the Amazon catalog.
       Item = Structure.new do
         # @return [String]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The operating hour schema
       OperatingHour = Structure.new do
         # @return [String] The closing time, ISO 8601 formatted timestamp without date, HH:mm.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # The aggregate weight of this item being invoiced. This information will be available for items sold by weight.
       TotalWeight = Structure.new do
         # @return [String]

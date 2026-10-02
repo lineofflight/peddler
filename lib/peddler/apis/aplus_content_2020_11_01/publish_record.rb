@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The full context for an A+ Content publishing event.
       PublishRecord = Structure.new do
         # @return [String]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # An alternative identifier that provides a different way to reference the same order.
       Alias = Structure.new do
         # @return [String] The alternative identifier value that can be used to reference this order.

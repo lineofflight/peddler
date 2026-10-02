@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An event related to a trial shipment.
       TrialShipmentEvent = Structure.new do
         # @return [String] An Amazon-defined identifier for an order.

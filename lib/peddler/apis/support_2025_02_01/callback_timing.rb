@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # The time window for an appointment callback
       CallbackTiming = Structure.new do
         # @return [Time] The earliest time at which to call the selling partner.

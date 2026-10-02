@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # A quantity based on the specified unit of measurement.
       Amount = Structure.new do
         # @return [String] The unit of measure for the amount.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Delivery constraints applicable to this order.
       ShippingConstraints = Structure.new do
         # @return [String] Indicates if the line item needs to be delivered by pallet.

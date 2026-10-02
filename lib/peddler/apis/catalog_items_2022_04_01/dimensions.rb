@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Dimensions of an Amazon catalog item or item in its packaging.
       Dimensions = Structure.new do
         # @return [Dimension] Height of an item or item package.

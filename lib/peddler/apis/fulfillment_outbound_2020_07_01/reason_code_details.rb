@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # A return reason code, a description, and an optional description translation.
       ReasonCodeDetails = Structure.new do
         # @return [String] A human readable description of the return reason code.

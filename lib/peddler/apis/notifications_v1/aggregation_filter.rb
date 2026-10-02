@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # A filter you can use to select the aggregation time period at which to send notifications (for example, limit to
       # one notification every five minutes for high frequency notifications).
       AggregationFilter = Structure.new do

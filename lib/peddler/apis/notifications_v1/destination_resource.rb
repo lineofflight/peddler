@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The destination resource types.
       DestinationResource = Structure.new do
         # @return [EventBridgeResource] An Amazon EventBridge destination.

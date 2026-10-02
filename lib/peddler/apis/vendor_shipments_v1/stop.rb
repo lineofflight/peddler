@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Contractual or operational port or point relevant to the movement of the cargo.
       Stop = Structure.new do
         # @return [String] Provide the function code.

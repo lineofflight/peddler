@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class SellerWallet20240301 < API
+    module SellerWallet20240301
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Balance < Data
         def self.new: (account_id: String, balance_amount: Float, balance_currency: String, last_update_date: Time, ?balance_type: String?) -> Peddler::APIs::SellerWallet20240301::Balance
                     | (String, Float, String, Time, String?) -> Peddler::APIs::SellerWallet20240301::Balance
@@ -478,26 +480,6 @@ module Peddler
         def members: () -> [ :destination_account_id, :destination_transaction_instrument, :payment_preference, :source_account_id, :source_currency_code, :transaction_type, :transfer_schedule_information, :transfer_schedule_status ]
         def to_h: () -> { destination_account_id: String, destination_transaction_instrument: Peddler::APIs::SellerWallet20240301::TransactionInstrumentDetails, payment_preference: Peddler::APIs::SellerWallet20240301::PaymentPreference, source_account_id: String, source_currency_code: String, transaction_type: String, transfer_schedule_information: Peddler::APIs::SellerWallet20240301::TransferScheduleInformation, transfer_schedule_status: String? }
       end
-
-      def create_transaction: (Hash[untyped, untyped], String, String, String) -> Peddler::Response
-
-      def create_transfer_schedule: (Hash[untyped, untyped], String, String, String) -> Peddler::Response
-
-      def delete_schedule_transaction: (String, String) -> Peddler::Response
-      def get_account: (String, String) -> Peddler::Response
-
-      def get_transaction: (String, String) -> Peddler::Response
-      def get_transfer_preview: (String, String, String, String, Numeric, String) -> Peddler::Response
-
-      def get_transfer_schedule: (String, String) -> Peddler::Response
-      def list_account_balances: (String, String) -> Peddler::Response
-
-      def list_account_transactions: (String, String, ?next_page_token: String?) -> Peddler::Response
-      def list_accounts: (String) -> Peddler::Response
-
-      def list_transfer_schedules: (String, String, ?next_page_token: String?) -> Peddler::Response
-
-      def update_transfer_schedule: (Hash[untyped, untyped], String, String, String) -> Peddler::Response
     end
   end
 end

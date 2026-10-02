@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Result for the get prep instructions operation
       GetPrepInstructionsResult = Structure.new do
         # @return [Array<ASINPrepInstructions>]

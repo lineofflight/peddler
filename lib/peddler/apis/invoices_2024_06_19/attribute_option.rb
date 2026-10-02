@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # The definition of the attribute option.
       AttributeOption = Structure.new do
         # @return [String] The description of the attribute value.

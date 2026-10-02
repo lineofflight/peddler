@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Defines which products qualify for a benefit, allowing either specific items to be selected by ASIN or the
       # entire catalog with optional exclusions.
       Selection = Structure.new do

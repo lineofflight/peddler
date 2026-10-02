@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Foreign exchange rate details.
       FxRateDetails = Structure.new do
         # @return [Float] The market foreign exchange rate.

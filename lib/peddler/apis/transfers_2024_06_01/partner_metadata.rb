@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # Metadata that describes the selling partner.
       PartnerMetadata = Structure.new do
         # @return [String] The type of the selling partner's account in the payout.

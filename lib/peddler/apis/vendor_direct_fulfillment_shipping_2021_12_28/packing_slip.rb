@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # Packing slip information.
       PackingSlip = Structure.new do
         # @return [String] A Base64 string of the packing slip PDF.

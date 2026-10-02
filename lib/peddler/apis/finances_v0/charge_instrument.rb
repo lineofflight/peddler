@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A payment instrument.
       ChargeInstrument = Structure.new do
         # @return [Money] The amount charged to this charge instrument.

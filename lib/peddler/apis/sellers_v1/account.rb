@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # The response schema for the `getAccount` operation.
       Account = Structure.new do
         # @return [String] The type of business registered for the seller account.

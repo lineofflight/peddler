@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An event related to the seller's Pay with Amazon account.
       PayWithAmazonEvent = Structure.new do
         # @return [String] A short description of this payment event.

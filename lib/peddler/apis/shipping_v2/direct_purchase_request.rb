@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The request schema for the directPurchaseShipment operation. When the channel type is Amazon, the shipTo address
       # is not required and will be ignored.
       DirectPurchaseRequest = Structure.new do

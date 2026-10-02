@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Delivery settings for the line item.
       OrderLineItemDeliveryService = Structure.new do
         # @return [OrderLineItemPaymentOnDelivery] Payment On Delivery costs. Currently only available in India.

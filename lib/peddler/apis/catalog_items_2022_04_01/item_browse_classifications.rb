@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # An array of classifications (browse nodes) that is associated with the item in the Amazon catalog, grouped by
       # `marketplaceId`.
       class ItemBrowseClassifications < Array

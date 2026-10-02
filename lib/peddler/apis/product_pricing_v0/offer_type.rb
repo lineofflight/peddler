@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema for an individual offer.
       OfferType = Structure.new do
         # @return [PriceType] Contains pricing information that includes promotions and contains the shipping cost.

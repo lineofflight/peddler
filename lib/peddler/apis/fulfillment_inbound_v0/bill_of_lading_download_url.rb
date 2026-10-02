@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Download URL for the bill of lading.
       BillOfLadingDownloadURL = Structure.new do
         # @return [String] URL to download the bill of lading for the package. Note: The URL will only be valid for 15

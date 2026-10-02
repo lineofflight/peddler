@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentSandboxTestData20211028
+    module VendorDirectFulfillmentSandboxTestData20211028
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
         # @return [Array<Error>] An array of individual error objects containing error details.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Localized messaging for a delivery offering.
       DeliveryMessage = Structure.new do
         # @return [String] The locale for the message (e.g., `en_US`).

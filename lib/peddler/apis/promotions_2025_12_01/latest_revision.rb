@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # The latest revision data, when it diverges from the published revision. Present only when an edit is still
       # processing or was rejected. Mirrors the top-level promotion object structure.
       LatestRevision = Structure.new do

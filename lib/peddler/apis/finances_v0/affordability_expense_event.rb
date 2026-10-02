@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An expense related to an affordability promotion.
       AffordabilityExpenseEvent = Structure.new do
         # @return [Money] Central Goods and Service Tax, charged and collected by the central government.

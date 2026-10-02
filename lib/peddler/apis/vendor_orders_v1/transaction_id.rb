@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Response containing the transaction ID.
       TransactionId = Structure.new do
         # @return [String] GUID assigned by Amazon to identify this transaction. This value can be used with the

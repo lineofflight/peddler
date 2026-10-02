@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # A group of items to be delivered together.
       PreviewPlannedShipment = Structure.new do
         # @return [Array<PreviewPlannedShipmentItem>] The items in this planned shipment. These can be a subset of

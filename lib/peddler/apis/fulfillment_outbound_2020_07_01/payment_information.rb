@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The attributes related to the payment made from customer to seller for this order.
       PaymentInformation = Structure.new do
         # @return [String] The transaction date of this payment.

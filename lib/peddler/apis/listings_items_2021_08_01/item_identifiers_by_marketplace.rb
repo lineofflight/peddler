@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Identity attributes associated with the item in the Amazon catalog for the indicated Amazon store.
       ItemIdentifiersByMarketplace = Structure.new do
         # @return [String] The ASIN of the listings item.

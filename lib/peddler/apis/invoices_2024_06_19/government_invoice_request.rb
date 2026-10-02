@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # Information required to create the government invoice.
       GovernmentInvoiceRequest = Structure.new do
         # @return [String] The marketplace-specific classification of the invoice type. Check `invoiceType` options

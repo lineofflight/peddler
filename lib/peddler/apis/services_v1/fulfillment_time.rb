@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Input for fulfillment time details
       FulfillmentTime = Structure.new do
         # @return [Time] The date, time in UTC of the fulfillment end time in ISO 8601 format.

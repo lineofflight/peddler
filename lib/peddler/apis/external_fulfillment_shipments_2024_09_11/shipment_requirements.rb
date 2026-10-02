@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Whether specific capabilities are enabled or required for the shipment.
       ShipmentRequirements = Structure.new do
         # @return [InvoiceRequirement] Whether the invoice must be attached to the shipment.

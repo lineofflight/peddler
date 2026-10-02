@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A mapping of additional HTTP headers to send/receive for the individual batch request.
       HttpResponseHeaders = Structure.new do
         # @return [String] The timestamp that the API request was received. For more information, consult [RFC 2616

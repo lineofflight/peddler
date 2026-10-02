@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Variation details for the Amazon catalog item for the indicated Amazon marketplace.
       ItemVariationsByMarketplace = Structure.new do
         # @return [Array<String>] Identifiers (ASINs) of the related items.

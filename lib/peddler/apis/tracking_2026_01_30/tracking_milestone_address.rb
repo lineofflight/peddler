@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tracking20260130
+    module Tracking20260130
       # The physical address of the location.
       TrackingMilestoneAddress = Structure.new do
         # @return [String] The city where the milestone occurred.

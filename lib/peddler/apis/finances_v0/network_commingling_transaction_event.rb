@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A network commingling transaction event.
       NetworkComminglingTransactionEvent = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the swapped item.

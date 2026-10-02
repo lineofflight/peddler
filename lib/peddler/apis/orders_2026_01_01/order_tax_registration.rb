@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Tax registration information for an entity associated with the order.
       OrderTaxRegistration = Structure.new do
         # @return [String] The type of entity that the tax registration belongs to.

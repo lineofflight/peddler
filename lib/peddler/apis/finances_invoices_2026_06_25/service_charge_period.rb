@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # The time period for a service charge.
       ServiceChargePeriod = Structure.new do
         # @return [Time] When the service charge period ends. In ISO 8601 format.

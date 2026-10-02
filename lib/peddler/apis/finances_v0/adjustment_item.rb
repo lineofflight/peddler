@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An item in an adjustment to the seller's account.
       AdjustmentItem = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.

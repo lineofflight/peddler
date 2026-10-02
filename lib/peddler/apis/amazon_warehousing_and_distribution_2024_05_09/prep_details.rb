@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # The preparation details for a product. This contains the prep category, prep owner, and label owner.
       # Prep instructions are generated based on the specified category.
       PrepDetails = Structure.new do

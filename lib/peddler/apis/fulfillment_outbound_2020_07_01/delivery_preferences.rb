@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The delivery preferences applied to the destination address. These preferences are applied when possible and are
       # best effort.
       # This feature is currently supported only in the JP marketplace and not applicable for other marketplaces.

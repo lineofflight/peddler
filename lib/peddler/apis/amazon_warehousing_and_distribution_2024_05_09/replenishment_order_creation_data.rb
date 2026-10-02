@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # This structure represents the payload for creating an AFN Replenishment Order.
       # By default, all replenishment orders created support Partial order preferences.
       ReplenishmentOrderCreationData = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductTypeDefinitions20200901
+    module ProductTypeDefinitions20200901
       # A link to metadata schema.
       SchemaLink = Structure.new do
         # @return [String] Checksum hash of the schema (Base64 MD5). Use this to verify schema contents, identify

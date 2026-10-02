@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Comprehensive information about a customer order.
       Order = Structure.new do
         # @return [Time] The time when the customer placed the order. In [ISO

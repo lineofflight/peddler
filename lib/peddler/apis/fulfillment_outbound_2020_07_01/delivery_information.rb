@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The delivery information of the package, this information is only available post package delivery to its
       # intended destination.
       DeliveryInformation = Structure.new do

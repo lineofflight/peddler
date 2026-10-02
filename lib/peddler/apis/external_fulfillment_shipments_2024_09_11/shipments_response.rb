@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The response of the `getShipments` operation.
       ShipmentsResponse = Structure.new do
         # @return [Pagination] How to manage multiple pages of data.

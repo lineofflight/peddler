@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single panel within the image carousel that features rich text elements, a direct link to a product ASIN, and
       # an image.
       ImageCarouselPanel = Structure.new do

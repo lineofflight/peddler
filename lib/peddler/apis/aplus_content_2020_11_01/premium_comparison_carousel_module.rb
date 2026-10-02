@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A comparison table with product images, headline per product, and feature rows with text.
       PremiumComparisonCarouselModule = Structure.new do
         # @return [Array<ComparisonMetrics>] The collection of comparison metrics, which must contain between 3 and 7

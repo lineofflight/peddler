@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Whether the invoice document is required to be attached to the shipment and its corresponding status.
       InvoiceRequirement = Structure.new do
         # @return [String] Whether the invoice document is required to be attached to the shipment.

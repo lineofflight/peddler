@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ApplicationIntegrations20240401
+    module ApplicationIntegrations20240401
       # Error response returned when the request is unsuccessful.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The request schema for the `createDigitalAccessKey` operation.
       CreateDigitalAccessKeyRequest = Structure.new do
         # @return [Array<Attachment>] Attachments that you want to include in the message to the buyer.

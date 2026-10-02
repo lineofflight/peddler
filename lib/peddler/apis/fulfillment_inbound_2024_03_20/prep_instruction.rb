@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Information pertaining to the preparation of inbound goods.
       PrepInstruction = Structure.new do
         # @return [Money]

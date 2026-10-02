@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsRestrictions20210801
+    module ListingsRestrictions20210801
       # A reason for the restriction, including path forward links that may allow Selling Partners to remove the
       # restriction, if available.
       Reason = Structure.new do

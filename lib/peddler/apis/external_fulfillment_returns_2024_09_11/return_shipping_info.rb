@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentReturns20240911
+    module ExternalFulfillmentReturns20240911
       # Information about the shipping of the return packages.
       ReturnShippingInfo = Structure.new do
         # @return [String] The date and time when the seller received the return.

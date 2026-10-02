@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # The discount configuration shared across benefit types.
       Discount = Structure.new do
         # @return [String] The method used to calculate the discount amount.

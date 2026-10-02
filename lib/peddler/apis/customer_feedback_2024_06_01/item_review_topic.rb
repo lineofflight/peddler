@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # Details of item review topic.
       ItemReviewTopic = Structure.new do
         # @return [ItemReviewTopicMetrics] The ASIN's review topic metrics.

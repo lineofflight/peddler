@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # All the information related to an expected payout.
       ExpectedPayout = Structure.new do
         # @return [PartnerMetadata] Metadata that describes the selling partner.

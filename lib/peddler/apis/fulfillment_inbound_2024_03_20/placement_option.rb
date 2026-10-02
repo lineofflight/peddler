@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains information pertaining to the placement of the contents of an inbound plan and the related costs.
       PlacementOption = Structure.new do
         # @return [Array<Incentive>] Discount for the offered option.

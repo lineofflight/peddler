@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The A+ Content document. This is the enhanced content that is published to product detail pages.
       ContentDocument = Structure.new do
         # @return [Array<ContentModule>]

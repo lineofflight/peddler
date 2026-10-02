@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # `CreateReservationRecord` entity contains the `Reservation` if there is an error/warning while performing the
       # requested operation on it, otherwise it will contain the new `reservationId`.
       CreateReservationRecord = Structure.new do

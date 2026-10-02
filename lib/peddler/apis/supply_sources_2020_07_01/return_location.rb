@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The address or reference to another `supplySourceId` to act as a return location.
       ReturnLocation = Structure.new do
         # @return [AddressWithContact]

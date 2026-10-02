@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The details of an appointment.
       Appointment = Structure.new do
         # @return [String] The appointment identifier.

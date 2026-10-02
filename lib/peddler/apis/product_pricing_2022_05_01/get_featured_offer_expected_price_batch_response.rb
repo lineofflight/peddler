@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The response schema for the `getFeaturedOfferExpectedPriceBatch` operation.
       GetFeaturedOfferExpectedPriceBatchResponse = Structure.new do
         # @return [Array<FeaturedOfferExpectedPriceResponse>]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # The promotion's fee information (rates and incentive programs) that was locked at the time of promotion
       # creation. You can estimate promotion fees (fee preview) at time t1, while promotion creation can happen at time
       # t2. This object includes the fee information captured at time t2. If empty, it means that no fee information was

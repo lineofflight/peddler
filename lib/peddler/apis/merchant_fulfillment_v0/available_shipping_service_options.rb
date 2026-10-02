@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The available shipping service options.
       AvailableShippingServiceOptions = Structure.new do
         # @return [Array<AvailableCarrierWillPickUpOption>]

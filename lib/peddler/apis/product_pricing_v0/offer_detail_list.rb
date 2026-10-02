@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A list of offer details. The list is the same length as the TotalOfferCount in the Summary or 20, whichever is
       # less.
       class OfferDetailList < Array

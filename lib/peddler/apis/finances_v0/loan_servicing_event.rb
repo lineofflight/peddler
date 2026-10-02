@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A loan advance, loan payment, or loan refund.
       LoanServicingEvent = Structure.new do
         # @return [Money] The amount of the loan.

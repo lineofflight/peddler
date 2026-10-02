@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Tracking20260130 < API
+    module Tracking20260130
+      PARSERS: Hash[String, ^() -> untyped]
+
       class BoundedInterval < Data
         def self.new: (end_time: String, start_time: String) -> Peddler::APIs::Tracking20260130::BoundedInterval
                     | (String, String) -> Peddler::APIs::Tracking20260130::BoundedInterval
@@ -214,8 +216,6 @@ module Peddler
         def members: () -> [ :code, :description, :sub_code ]
         def to_h: () -> { code: String, description: String, sub_code: String? }
       end
-
-      def get_shipment_tracking: (?id: String?, ?acsin: String?, ?aftn: String?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?pro_number: String?, ?carrier_tracking_tracking_number: String?, ?carrier_tracking_carrier_code: String?, ?accept_language: String?) -> Peddler::Response
     end
   end
 end

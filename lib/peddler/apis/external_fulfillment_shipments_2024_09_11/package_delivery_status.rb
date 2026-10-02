@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The delivery status of the package.
       PackageDeliveryStatus = Structure.new do
         # @return [String] The reason for the sub-status.

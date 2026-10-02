@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # A simple object containing the name of the template.
       MessagingAction = Structure.new do
         # @return [String] The name of the template.

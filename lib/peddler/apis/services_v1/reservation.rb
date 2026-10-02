@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Reservation object reduces the capacity of a resource.
       Reservation = Structure.new do
         # @return [AvailabilityRecord] `AvailabilityRecord` to represent the capacity of a resource over a time range.

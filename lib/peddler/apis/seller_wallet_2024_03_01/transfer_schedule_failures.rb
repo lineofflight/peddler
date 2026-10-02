@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # The time of and reason for the transfer schedule failure.
       TransferScheduleFailures = Structure.new do
         # @return [Time] The transfer schedule failure date.

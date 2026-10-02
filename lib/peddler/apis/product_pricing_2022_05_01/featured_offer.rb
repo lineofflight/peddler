@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Schema for `currentFeaturedOffer` or `competingFeaturedOffer`.
       FeaturedOffer = Structure.new do
         # @return [OfferIdentifier] An offer identifier used to identify the merchant of the featured offer. Since this

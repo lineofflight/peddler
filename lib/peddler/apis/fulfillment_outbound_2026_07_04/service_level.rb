@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Service level configuration for fulfillment. Available service tiers: `STANDARD`, `EXPEDITED`, `PRIORITY` (only
       # available in Canada, India, and Mexico), `SCHEDULED` (only available in Japan).
       ServiceLevel = Structure.new do

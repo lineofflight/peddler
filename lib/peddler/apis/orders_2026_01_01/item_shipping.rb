@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information related to the shipping and delivery process for an order item.
       ItemShipping = Structure.new do
         # @return [ItemInternationalShipping] Additional information needed for cross-border delivery of this item.

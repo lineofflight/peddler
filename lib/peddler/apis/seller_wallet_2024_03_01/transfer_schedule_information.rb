@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Mandatory information for initiating a schedule transfer.
       TransferScheduleInformation = Structure.new do
         # @return [Time] The end date of the scheduled transfer.

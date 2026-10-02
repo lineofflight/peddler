@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The response schema for the `listPayouts` operation.
       ListPayoutsResponse = Structure.new do
         # @return [String] The response includes `nextToken` when the number of results exceeds the specified page size.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Details related to any dangerous goods or items that are shipped.
       DangerousGoodsDetails = Structure.new do
         # @return [String] The specific packaging group of the item being shipped.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Provide units going to the warehouse.
       CustomPlacementInput = Structure.new do
         # @return [Array<ItemInput>] Items included while creating Inbound Plan.

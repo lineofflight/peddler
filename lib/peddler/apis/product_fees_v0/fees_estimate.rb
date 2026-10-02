@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # The total estimated fees for an item and a list of details.
       FeesEstimate = Structure.new do
         # @return [Time] The time at which the fees were estimated. This defaults to the time the request is made.

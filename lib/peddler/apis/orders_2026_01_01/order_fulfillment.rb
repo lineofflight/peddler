@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about how the order is being processed, packed, and shipped to the customer.
       OrderFulfillment = Structure.new do
         # @return [String] The current status of the order in the fulfillment process, from pending to handover to

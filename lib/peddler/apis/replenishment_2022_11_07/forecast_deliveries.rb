@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # An object which contains the projected subscriber demand for the offer over different time horizons.
       ForecastDeliveries = Structure.new do
         # @return [Integer] The projected number of subscriber deliveries in the next 15 days.

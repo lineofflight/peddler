@@ -10,20 +10,11 @@ module Peddler
     # testing. This API is available only in the sandbox environment.
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentLocation_2026-07-30.json
-    class ExternalFulfillmentLocation20260730 < API
-      # Creates a sandbox location and merchant in the test environment. This operation is available only in the sandbox
-      # environment and is used for onboarding test locations. Idempotency is ensured on locationName.
-      #
-      # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] The request body for creating a sandbox location.
-      # @return [Peddler::Response] The API response
-      def create_sandbox_location(body)
-        must_sandbox!
-
-        path = "/externalFulfillment/2026-07-30/location"
-        parser = -> { CreateSandboxLocationResponse }
-        post(path, body:, parser:)
-      end
+    module ExternalFulfillmentLocation20260730
+      # Typed models of successful responses, by native operation key
+      PARSERS = {
+        "external_fulfillment_location_2026_07_30.create_sandbox_location" => -> { CreateSandboxLocationResponse },
+      }.freeze
     end
   end
 end

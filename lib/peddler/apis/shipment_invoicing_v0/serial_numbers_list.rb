@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The list of serial numbers.
       class SerialNumbersList < Array
         class << self

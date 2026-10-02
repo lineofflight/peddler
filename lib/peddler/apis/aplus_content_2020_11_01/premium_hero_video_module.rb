@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A full-width video with optional headline and body text below.
       PremiumHeroVideoModule = Structure.new do
         # @return [VideoComponent]

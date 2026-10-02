@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about the customer who purchased the order.
       Buyer = Structure.new do
         # @return [String] The name of the company or organization for a business order.

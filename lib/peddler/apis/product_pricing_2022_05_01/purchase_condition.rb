@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Specifies minimum purchase requirements using quantity-based or amount-based conditions for basket building
       # promotions. Used in purchase requirements to specify conditions within those configurations. Exactly one of
       # quantityThreshold or amountThreshold must be specified.

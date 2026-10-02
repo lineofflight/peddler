@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The request for the `getFulfillmentOrder` operation.
       GetFulfillmentOrderResult = Structure.new do
         # @return [FulfillmentOrder]

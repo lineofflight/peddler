@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of debt recovery event information.
       class DebtRecoveryEventList < Array
         class << self

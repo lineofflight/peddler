@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # A single event from a chat contact.
       ChatEvent = Structure.new do
         # @return [Time] The time at which the event occurred.

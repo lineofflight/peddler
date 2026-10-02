@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single image paired with text, positioned side by side. The image can appear on the left or right of the text
       # block.
       PremiumImageTextModule = Structure.new do

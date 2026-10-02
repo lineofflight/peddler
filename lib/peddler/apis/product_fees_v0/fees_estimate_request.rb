@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # A product, marketplace, and proposed price used to request estimated fees.
       FeesEstimateRequest = Structure.new do
         # @return [String] A unique identifier provided by the caller to track this request.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Request schema for the `assignAppointmentResources` operation.
       AssignAppointmentResourcesRequest = Structure.new do
         # @return [Array<AppointmentResource>] List of resource objects to be assigned.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       MarketplaceParticipation = Structure.new do
         # @return [Marketplace]
         attribute(:marketplace, Marketplace, null: false)

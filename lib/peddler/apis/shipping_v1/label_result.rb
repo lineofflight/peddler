@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # Label details including label stream, format, size.
       LabelResult = Structure.new do
         # @return [String]

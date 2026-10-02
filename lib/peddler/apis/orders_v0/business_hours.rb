@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Business days and hours when the destination is open for deliveries.
       BusinessHours = Structure.new do
         # @return [String] Day of the week.

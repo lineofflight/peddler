@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # A line item within an invoice, including unit costs, quantities, tax information, and contextual details about
       # the goods or services being invoiced.
       InvoiceItem = Structure.new do

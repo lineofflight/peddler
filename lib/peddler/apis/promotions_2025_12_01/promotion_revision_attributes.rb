@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Common promotion fields shared between the published promotion and the latest revision. Contains all promotion
       # attributes except lifecycle status.
       PromotionRevisionAttributes = Structure.new do

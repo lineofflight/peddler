@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A scrollable comparison view with full-height product images, chart headline, and feature rows with text per
       # product.
       PremiumComparisonScrollerModule = Structure.new do

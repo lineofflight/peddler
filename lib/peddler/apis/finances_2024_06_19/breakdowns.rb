@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # A list of breakdowns that detail how the total amount is calculated for the transaction.
       class Breakdowns < Array
         class << self

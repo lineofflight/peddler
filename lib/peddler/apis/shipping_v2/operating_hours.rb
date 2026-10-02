@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The hours in which the access point shall remain operational
       OperatingHours = Structure.new do
         # @return [TimeOfDay]

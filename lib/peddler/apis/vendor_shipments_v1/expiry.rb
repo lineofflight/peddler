@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Expiry refers to the collection of dates required for certain items. These could be either expiryDate or mfgDate
       # and expiryAfterDuration. These are mandatory for perishable items.
       Expiry = Structure.new do

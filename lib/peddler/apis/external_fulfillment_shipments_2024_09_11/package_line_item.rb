@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A line item in a package.
       PackageLineItem = Structure.new do
         # @return [String] The line item ID.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The payload schema for the purchaseShipment operation.
       PurchaseShipmentRequest = Structure.new do
         # @return [String]

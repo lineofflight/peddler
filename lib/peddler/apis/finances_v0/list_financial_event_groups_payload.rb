@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # The payload for the `listFinancialEventGroups` operation.
       ListFinancialEventGroupsPayload = Structure.new do
         # @return [Array<FinancialEventGroup>]

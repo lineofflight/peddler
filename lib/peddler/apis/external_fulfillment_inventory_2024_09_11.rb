@@ -10,18 +10,11 @@ module Peddler
     # Fulfillment network, including batch inventory updates and retrievals.
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentInventory_2024-09-11.json
-    class ExternalFulfillmentInventory20240911 < API
-      # Make up to 10 inventory requests. The response includes the set of responses that correspond to requests. The
-      # response for each successful request in the set includes the inventory count for the provided `sku` and
-      # `locationId` pair.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param body [Hash] A list of inventory requests.
-      # @return [Peddler::Response] The API response
-      def batch_inventory(body)
-        path = "/externalFulfillment/inventory/2024-09-11/inventories"
-        post(path, body:)
-      end
+    module ExternalFulfillmentInventory20240911
+      # Typed models of successful responses, by native operation key
+      PARSERS = {
+        "external_fulfillment_inventory_2024_09_11.batch_inventory" => -> { BatchInventoryResponse },
+      }.freeze
     end
   end
 end

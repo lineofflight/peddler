@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Issue information with code, message, and severity.
       Issue = Structure.new do
         # @return [String] Issue code identifier.

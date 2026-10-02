@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The response schema for the `getSubscriptionById` operation.
       GetSubscriptionByIdResponse = Structure.new do
         # @return [Array<Error>] An unexpected condition occurred during the `getSubscriptionById` operation.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Details about the carrier and shipping service used to calculate the transit time.
       TransitTimeInputDetails = Structure.new do
         # @return [String] The carrier name. For example, `Correios`.

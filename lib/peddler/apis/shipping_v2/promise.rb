@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The time windows promised for pickup and delivery events.
       Promise = Structure.new do
         # @return [TimeWindow]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Specifies the unit of measure and quantity for items that are sold by weight, volume, length, or other
       # measurements rather than simple count.
       Measurement = Structure.new do

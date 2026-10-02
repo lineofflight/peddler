@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The input required for building `LowestPricedOffers` data in the response.
       LowestPricedOffersInput = Structure.new do
         # @return [String] The input parameter specifies the `itemCondition` of the offer that is requested for

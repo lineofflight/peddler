@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # An item to be created in the inventory.
       CreateInventoryItemRequest = Structure.new do
         # @return [String] The marketplaceId.

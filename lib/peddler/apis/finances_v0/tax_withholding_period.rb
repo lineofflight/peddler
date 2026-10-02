@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # The period during which tax withholding on a seller's account is calculated.
       TaxWithholdingPeriod = Structure.new do
         # @return [String] End of the time range.

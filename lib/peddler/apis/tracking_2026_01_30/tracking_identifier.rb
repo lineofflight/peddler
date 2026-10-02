@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tracking20260130
+    module Tracking20260130
       # The identifier to track a shipment.
       TrackingIdentifier = Structure.new do
         # @return [String] The Air Cargo Shipment Identification Number.

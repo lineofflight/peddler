@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # Additional information passed to the subscription to control the processing of notifications. For example, you
       # can use an `eventFilter` to customize your subscription to send notifications for only the `marketplaceId`s that
       # you specify, or select the aggregation time period at which to send notifications (for example, you can set a

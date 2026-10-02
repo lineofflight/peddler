@@ -10,9 +10,11 @@ require_relative "support/formatter"
 require_relative "support/file_writer"
 require_relative "support/introspection_loader"
 require_relative "support/money_detector"
+require_relative "support/naming"
 require_relative "parsers/path"
 require_relative "resolvers/type_resolver"
 require_relative "resolvers/api_name_resolver"
+require_relative "resolvers/version_selector"
 require_relative "builders/type"
 require_relative "analyzers/circular_dependency_detector"
 require_relative "rbs/unified"
@@ -171,6 +173,21 @@ module Generator
         ops = paths.flat_map { |path| path.operations(name_with_version) }.compact
         deduplicate_operations(ops)
       end
+    end
+
+    # Typed success models by native operation key. When two verbs share an operation ID, the native
+    # facade keeps the name for one and appends the verb to the other.
+    def parsers
+      primary = operations.to_h { |op| [op.operation_id.underscore, op.verb] }
+
+      paths.flat_map { |path| path.operations(name_with_version) }.filter_map do |op|
+        next unless op.has_typed_response?
+
+        method_name = op.operation_id.underscore
+        method_name = "#{method_name}_#{op.verb}" unless primary[method_name] == op.verb
+
+        ["#{name_with_version}.#{method_name}", Naming.class_name(op.response_model[:model])]
+      end.sort.to_h
     end
 
     def type_names

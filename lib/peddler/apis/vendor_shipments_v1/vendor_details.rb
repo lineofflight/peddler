@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Vendor Details as part of Label response.
       VendorDetails = Structure.new do
         # @return [PartyIdentification] Name/Address and tax details of the selling party.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # The support case.
       Case = Structure.new do
         # @return [String] A globally unique identifier for the case

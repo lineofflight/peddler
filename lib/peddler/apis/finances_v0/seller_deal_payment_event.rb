@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An event linked to the payment of a fee related to the specified deal.
       SellerDealPaymentEvent = Structure.new do
         # @return [String] The internal description of the deal.

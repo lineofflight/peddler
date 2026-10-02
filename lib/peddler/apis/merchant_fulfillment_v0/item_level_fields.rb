@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # A list of item level fields.
       ItemLevelFields = Structure.new do
         # @return [Array<AdditionalInputs>]

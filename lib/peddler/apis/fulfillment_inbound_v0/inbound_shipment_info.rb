@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Information about the seller's inbound shipments. Returned by the listInboundShipments operation.
       InboundShipmentInfo = Structure.new do
         # @return [:boolean] Indicates whether or not an inbound shipment contains case-packed boxes. When

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The post-purchase details of a package that will be shipped using a shipping service.
       PackageDocumentDetail = Structure.new do
         # @return [String]

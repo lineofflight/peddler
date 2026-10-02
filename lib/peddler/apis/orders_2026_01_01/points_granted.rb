@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about Amazon Points awarded with an item purchase.
       PointsGranted = Structure.new do
         # @return [Money] Cash equivalent value of the awarded Amazon Points.

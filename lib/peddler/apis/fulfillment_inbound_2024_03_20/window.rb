@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains a start and end DateTime representing a time range.
       Window = Structure.new do
         # @return [Time] The end timestamp of the window.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Name, address and tax details of a party.
       PartyIdentification = Structure.new do
         # @return [String] Assigned identification for the party. For example, warehouse code or vendor code. Please

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Details about a shipment.
       ShipmentDetails = Structure.new do
         # @return [String] Indicate the shipment status.

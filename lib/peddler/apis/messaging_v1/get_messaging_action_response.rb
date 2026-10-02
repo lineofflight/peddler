@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language
       # (HAL) link to the JSON schema document that describes the expected input.
       GetMessagingActionResponse = Structure.new do

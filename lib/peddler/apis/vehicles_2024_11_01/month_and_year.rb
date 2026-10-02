@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Vehicles20241101
+    module Vehicles20241101
       # Represents a month in a specific year.
       MonthAndYear = Structure.new do
         # @return [Float]

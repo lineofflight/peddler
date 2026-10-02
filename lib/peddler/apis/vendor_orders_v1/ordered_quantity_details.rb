@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Details of item quantity ordered.
       OrderedQuantityDetails = Structure.new do
         # @return [ItemQuantity] Item quantity ordered.

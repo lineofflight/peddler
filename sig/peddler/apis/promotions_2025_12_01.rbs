@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Promotions20251201 < API
+    module Promotions20251201
+      PARSERS: Hash[String, ^() -> untyped]
+
       class AmountThreshold < Data
         def self.new: (currency: Peddler::Money, type: String) -> Peddler::APIs::Promotions20251201::AmountThreshold
                     | (Peddler::Money, String) -> Peddler::APIs::Promotions20251201::AmountThreshold
@@ -693,10 +695,6 @@ module Peddler
         def members: () -> [ :sales_percentage, :fee_cap_amount ]
         def to_h: () -> { sales_percentage: Float, fee_cap_amount: Peddler::Money? }
       end
-
-      def get_promotion: (String, ?included_data: Array[String]?, ?locale: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_selection: (String, String, Integer, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?, ?rate_limit: Float) -> Peddler::Response
-      def search_promotions: (Array[String], ?locale: String?, ?statuses: Array[String]?, ?asins: Array[String]?, ?skus: Array[String]?, ?promotion_types: Array[String]?, ?start_date_before: String?, ?start_date_after: String?, ?end_date_before: String?, ?end_date_after: String?, ?update_date_after: String?, ?update_date_before: String?, ?pagination_token: String?, ?revision: String?, ?limit: Integer?, ?included_data: Array[String]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

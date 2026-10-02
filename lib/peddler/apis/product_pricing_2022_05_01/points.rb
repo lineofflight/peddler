@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The number of Amazon Points that are offered with the purchase of an item and the monetary value of these
       # points.
       Points = Structure.new do

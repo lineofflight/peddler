@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Vehicles20241101
+    module Vehicles20241101
       # Get paginated list of vehicle from Amazon's catalog
       VehiclesResponse = Structure.new do
         # @return [Array<Vehicle>] List of vehicles from Amazon's catalog.

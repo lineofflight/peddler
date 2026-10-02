@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A video paired with text containing subheadline, headline, and body text. The video can appear on the left or
       # right of the text block.
       PremiumVideoTextModule = Structure.new do

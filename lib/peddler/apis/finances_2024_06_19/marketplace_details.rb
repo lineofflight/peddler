@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Information about the marketplace where the transaction occurred.
       MarketplaceDetails = Structure.new do
         # @return [String] The identifier of the marketplace where the transaction occurred. The marketplace ID is the

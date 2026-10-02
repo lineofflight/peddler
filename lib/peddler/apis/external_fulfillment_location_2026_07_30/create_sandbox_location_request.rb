@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentLocation20260730
+    module ExternalFulfillmentLocation20260730
       # The request object for creating a sandbox location.
       CreateSandboxLocationRequest = Structure.new do
         # @return [String] The name for the sandbox location. Idempotency is ensured on this field.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The response for the `getMedia` operation. Returns the full unified Media shape.
       GetMediaResponse = Structure.new do
         # @return [Array<Error>]

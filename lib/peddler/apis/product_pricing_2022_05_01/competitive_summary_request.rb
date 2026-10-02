@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # An individual `competitiveSummary` request for an ASIN and `marketplaceId`.
       CompetitiveSummaryRequest = Structure.new do
         # @return [String] The Amazon Standard Identification Number for the item.

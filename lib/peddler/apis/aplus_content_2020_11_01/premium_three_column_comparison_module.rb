@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A comparison table displaying products side by side with features, tooltips, and detail rows.
       PremiumThreeColumnComparisonModule = Structure.new do
         # @return [Array<ThreeColumnComparisonProduct>] The three products being compared. Exactly three products are

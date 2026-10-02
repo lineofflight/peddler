@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The request body for the `getFeaturedOfferExpectedPriceBatch` operation.
       GetFeaturedOfferExpectedPriceBatchRequest = Structure.new do
         # @return [Array<FeaturedOfferExpectedPriceRequest>]

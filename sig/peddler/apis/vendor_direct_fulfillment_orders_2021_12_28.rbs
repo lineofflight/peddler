@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrders20211228 < API
+    module VendorDirectFulfillmentOrders20211228
+      PARSERS: Hash[String, ^() -> untyped]
+
       class AcknowledgementStatus < Data
         def self.new: (?code: String?, ?description: String?) -> Peddler::APIs::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus
                     | (String?, String?) -> Peddler::APIs::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus
@@ -458,11 +460,6 @@ module Peddler
         def members: () -> [ :transaction_id ]
         def to_h: () -> { transaction_id: String? }
       end
-
-      def get_order: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_orders: (String, String, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def submit_acknowledgement: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

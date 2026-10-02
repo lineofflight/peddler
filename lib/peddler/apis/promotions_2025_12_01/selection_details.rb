@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Detailed selection information including items, rules, issues, and pagination.
       SelectionDetails = Structure.new do
         # @return [Array<ItemIssue>] Item-level validation issues for items in this selection. Only present when

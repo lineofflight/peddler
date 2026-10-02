@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A payment made directly to a seller.
       DirectPayment = Structure.new do
         # @return [Money] The amount of the direct payment.

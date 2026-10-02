@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An event related to a capacity reservation billing charge.
       CapacityReservationBillingEvent = Structure.new do
         # @return [String] A short description of the capacity reservation billing event.

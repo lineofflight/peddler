@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # Identifies the scheduled package to be updated.
       ScheduledPackageId = Structure.new do
         # @return [String]

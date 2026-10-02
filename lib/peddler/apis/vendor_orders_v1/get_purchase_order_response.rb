@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # The response schema for the getPurchaseOrder operation.
       GetPurchaseOrderResponse = Structure.new do
         # @return [Array<Error>]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The Amazon facility from which the shipment is sent.
       AmazonFacility = Structure.new do
         # @return [String] An identifier for the Amazon facility from which the shipment is sent.

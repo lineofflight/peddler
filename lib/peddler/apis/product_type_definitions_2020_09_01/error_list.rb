@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductTypeDefinitions20200901
+    module ProductTypeDefinitions20200901
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
         # @return [Array<Error>] A list of error responses.

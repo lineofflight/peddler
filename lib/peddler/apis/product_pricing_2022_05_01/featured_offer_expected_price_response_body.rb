@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The FOEP response data for a requested SKU.
       FeaturedOfferExpectedPriceResponseBody = Structure.new do
         # @return [Array<Error>] The errors that occurred if the operation wasn't successful (HTTP status code non-200).

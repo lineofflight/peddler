@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # An object which contains the delivery condition and the quantity of upcoming deliveries associated with that
       # condition for an offer.
       DeliveriesCondition = Structure.new do

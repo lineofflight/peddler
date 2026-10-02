@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # The physical address of the customer.
       CustomerAddress = Structure.new do
         # @return [String] The primary street address.

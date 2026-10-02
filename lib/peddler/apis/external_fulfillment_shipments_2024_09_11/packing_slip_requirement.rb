@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Whether the packing slip is required to be attached to the shipment, and its corresponding status.
       PackingSlipRequirement = Structure.new do
         # @return [String] Whether the packing slip is required to be attached to the shipment.

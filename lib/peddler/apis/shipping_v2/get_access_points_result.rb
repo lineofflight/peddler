@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The payload for the GetAccessPoints API.
       GetAccessPointsResult = Structure.new do
         # @return [Hash]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Details of the bank account involved in the transaction.
       TransactionAccount = Structure.new do
         # @return [String] The currency code in ISO 4217 format.

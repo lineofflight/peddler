@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # A date range.
       DateRange = Structure.new do
         # @return [Time] The end date of the date range in ISO-8601 date/time format.

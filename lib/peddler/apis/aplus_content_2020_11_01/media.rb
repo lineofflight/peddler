@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A media entity with its related media associations. This is the unified shape used across all media operations.
       Media = Structure.new do
         # @return [String] The unique identifier for the media asset.

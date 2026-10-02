@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # An unexpected error occurred during this operation.
       FeesEstimateError = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SolicitationsV1
+    module SolicitationsV1
       # A Link object.
       LinkObject = Structure.new do
         # @return [String] A URI for this object.

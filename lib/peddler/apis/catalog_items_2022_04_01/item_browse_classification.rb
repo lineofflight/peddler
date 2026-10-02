@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Classification (browse node) for an Amazon catalog item.
       ItemBrowseClassification = Structure.new do
         # @return [String] Identifier of the classification.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Additional information about the item.
       Context = Structure.new do
         # @return [String] The type of context.

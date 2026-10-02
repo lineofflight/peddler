@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Vehicles20241101
+    module Vehicles20241101
       # Combinations of attributes and unique identifier that represents a vehicle in vehicle list.
       Vehicle = Structure.new do
         # @return [Array<VehicleIdentifiers>] Identifiers that can be used to identify the vehicle uniquely

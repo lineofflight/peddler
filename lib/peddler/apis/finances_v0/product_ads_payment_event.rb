@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A Sponsored Products payment event.
       ProductAdsPaymentEvent = Structure.new do
         # @return [Money] Base amount of the transaction, before tax.

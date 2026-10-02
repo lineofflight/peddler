@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinanceRemittance20260317
+    module FinanceRemittance20260317
       # A related business identifier for the transaction.
       RelatedIdentifier = Structure.new do
         # @return [String] An enumerated set of related business identifier names.

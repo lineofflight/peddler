@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # The contact information of the payee. This field is required when the request `bankAccountOwnershipType` is
       # `THIRD_PARTY`. The contact information is used for payee verification and registration purposes.
       PayeeContactInformation = Structure.new do

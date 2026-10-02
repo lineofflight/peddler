@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # The response schema for the SubmitShipmentConfirmations operation.
       SubmitShipmentConfirmationsResponse = Structure.new do
         # @return [Array<Error>]

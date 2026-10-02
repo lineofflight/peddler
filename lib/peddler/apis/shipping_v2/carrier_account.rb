@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Carrier Account details used to fetch rates.
       CarrierAccount = Structure.new do
         # @return [String]

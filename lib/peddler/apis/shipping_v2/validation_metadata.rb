@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # ValidationMetadata Details
       ValidationMetadata = Structure.new do
         # @return [String] errorMessage for the error.

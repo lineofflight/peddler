@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # A `notificationType` filter. This object contains all of the available filters and properties that you can use
       # to define a `notificationType` specific filter.
       EventFilter = Structure.new do

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # A list of transactions within the specified time period.
       class Transactions < Array
         class << self

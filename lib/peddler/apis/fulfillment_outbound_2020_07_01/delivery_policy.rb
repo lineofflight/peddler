@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The policy for a delivery offering.
       DeliveryPolicy = Structure.new do
         # @return [DeliveryMessage] Localized messaging for a delivery offering.

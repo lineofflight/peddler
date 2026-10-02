@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # An order attribute with its original value and the pre-approved alternative value suggested by the vet.
       ApprovedAttribute = Structure.new do
         # @return [String] The pre-approved value that would result in order approval.

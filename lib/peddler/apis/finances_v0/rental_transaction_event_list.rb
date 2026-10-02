@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of rental transaction event information.
       class RentalTransactionEventList < Array
         class << self

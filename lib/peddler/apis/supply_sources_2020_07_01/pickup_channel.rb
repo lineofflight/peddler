@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The pick up channel of a supply source.
       PickupChannel = Structure.new do
         # @return [CurbsidePickupConfiguration] The configuration for supporting curbside pickup.

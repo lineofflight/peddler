@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single column within a multi-column premium image module, containing an image, an optional headline, and an
       # optional description.
       ImageColumn = Structure.new do

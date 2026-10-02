@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # In this slot format each slot only has the requested capacity types. This slot size is as specified by slot
       # duration.
       FixedSlot = Structure.new do

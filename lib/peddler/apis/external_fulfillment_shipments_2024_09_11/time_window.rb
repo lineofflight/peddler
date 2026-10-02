@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Time duration used to specify the interval of an event, such as pick up and delivery.
       TimeWindow = Structure.new do
         # @return [Integer] The end time of the window.

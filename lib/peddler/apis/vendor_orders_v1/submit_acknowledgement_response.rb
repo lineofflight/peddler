@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # The response schema for the submitAcknowledgement operation
       SubmitAcknowledgementResponse = Structure.new do
         # @return [Array<Error>]

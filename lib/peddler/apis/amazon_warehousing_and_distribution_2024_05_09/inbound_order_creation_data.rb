@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Payload for creating an inbound order.
       InboundOrderCreationData = Structure.new do
         # @return [Address] Origin address from where the inbound order will be shipped.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # The response schema for the `listOfferMetrics` operation.
       ListOfferMetricsResponse = Structure.new do
         # @return [Array<ListOfferMetricsResponseOffer>] A list of offers and associated metrics.

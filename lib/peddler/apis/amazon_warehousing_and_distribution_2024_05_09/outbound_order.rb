@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents an AWD outbound order.
       OutboundOrder = Structure.new do
         # @return [String] Order ID for the outbound order.

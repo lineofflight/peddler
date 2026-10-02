@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Summary information for a promotion in search results.
       PromotionSummary = Structure.new do
         # @return [Time] When the promotion was created. Formatted in ISO 8601 format, including the timezone. For

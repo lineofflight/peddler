@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The label specification info.
       LabelSpecification = Structure.new do
         # @return [String] The format of the label. Enum of PNG only for now.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The monetary amount and type of currency.
       MoneyAmount = Structure.new do
         # @return [String] The currency code in ISO 4217 format.

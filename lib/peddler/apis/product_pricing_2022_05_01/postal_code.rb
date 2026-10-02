@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Postal code value with country code
       PostalCode = Structure.new do
         # @return [String] Country code value

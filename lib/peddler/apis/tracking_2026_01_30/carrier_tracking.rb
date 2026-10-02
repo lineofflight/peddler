@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tracking20260130
+    module Tracking20260130
       # The carrier information.
       CarrierTracking = Structure.new do
         # @return [String] The tracking number assigned by the carrier.

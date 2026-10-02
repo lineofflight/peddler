@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class DataKiosk20231115 < API
+    module DataKiosk20231115
+      PARSERS: Hash[String, ^() -> untyped]
+
       class CreateQueryResponse < Data
         def self.new: (query_id: String) -> Peddler::APIs::DataKiosk20231115::CreateQueryResponse
                     | (String) -> Peddler::APIs::DataKiosk20231115::CreateQueryResponse
@@ -129,14 +131,6 @@ module Peddler
       class QueryList < Array[Query]
         def self.parse: (Array[untyped]) -> QueryList
       end
-
-      def cancel_query: (String, ?rate_limit: Float) -> Peddler::Response
-      def create_query: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def get_document: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_queries: (?processing_statuses: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def get_query: (String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

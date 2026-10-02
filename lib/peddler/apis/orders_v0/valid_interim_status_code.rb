@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A valid interim status code and its customer-facing description. Available with the `getOrderRegulatedInfo`
       # operation to indicate which status codes can populate the `InterimStatusDetail` field.
       ValidInterimStatusCode = Structure.new do

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Summary details for a listings item for an Amazon store.
       ItemSummaryByMarketplace = Structure.new do
         # @return [Time] Date the listings item was created, in ISO 8601 format.

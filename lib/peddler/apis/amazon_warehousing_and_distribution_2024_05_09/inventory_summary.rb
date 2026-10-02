@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Summary of inventory per SKU.
       InventorySummary = Structure.new do
         # @return [String] The seller or merchant SKU.

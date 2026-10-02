@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # Additional information provided by the selling party for tax-related or any other purpose.
       AdditionalDetails = Structure.new do
         # @return [String] The detail of the additional information provided by the selling party.

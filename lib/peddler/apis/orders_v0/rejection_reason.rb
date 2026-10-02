@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The reason for rejecting the order's regulated information. This is only present if the order is rejected.
       RejectionReason = Structure.new do
         # @return [String] The description of this rejection reason.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # The current transaction status and related historical details.
       Transaction = Structure.new do
         # @return [String] The unique identifier of the Amazon Seller Wallet bank account from which the money is

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Shipment measurement details.
       ShipmentMeasurements = Structure.new do
         # @return [Integer] Number of cartons present in the shipment. Provide the cartonCount only for non-palletized

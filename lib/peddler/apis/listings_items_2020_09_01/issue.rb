@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20200901
+    module ListingsItems20200901
       # An issue with a listings item.
       Issue = Structure.new do
         # @return [String] An issue code that identifies the type of issue.

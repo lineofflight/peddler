@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Appointment details for carrier pickup or fulfillment center appointments.
       SelfShipAppointmentDetails = Structure.new do
         # @return [Float] Identifier for appointment.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # Details about the movement of money. Breakdowns are further categorized into breakdown types, breakdown amounts,
       # and sub-breakdowns.
       Breakdown = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # A list of paginated replenishment orders filtered by the attributes passed in the request.
       ReplenishmentOrderListing = Structure.new do
         # @return [String] A token that is used to retrieve the next page of results. The response includes `nextToken`

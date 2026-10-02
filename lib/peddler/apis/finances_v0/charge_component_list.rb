@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of charge information on the seller's account.
       class ChargeComponentList < Array
         class << self

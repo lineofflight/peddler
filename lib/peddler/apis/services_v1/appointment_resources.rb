@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # List of resources that performs or performed job appointment fulfillment.
       class AppointmentResources < Array
         class << self

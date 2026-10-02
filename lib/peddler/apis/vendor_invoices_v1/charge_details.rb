@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # Monetary and tax details of the charge.
       ChargeDetails = Structure.new do
         # @return [Money] Total monetary amount related to this charge.

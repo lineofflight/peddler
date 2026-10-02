@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Specifies the date that the seller expects their shipment will be shipped.
       Dates = Structure.new do
         # @return [Window]

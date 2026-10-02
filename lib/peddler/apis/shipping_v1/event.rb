@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # An event of a shipment
       Event = Structure.new do
         # @return [String]

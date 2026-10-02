@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # The offer program configuration contains a set of program properties for an offer.
       OfferProgramConfiguration = Structure.new do
         # @return [String] Determines whether the offer was automatically or manually enrolled in the program. This

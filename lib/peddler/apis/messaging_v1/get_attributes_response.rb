@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The response schema for the GetAttributes operation.
       GetAttributesResponse = Structure.new do
         # @return [Hash] The list of attributes related to the buyer.

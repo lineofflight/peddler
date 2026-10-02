@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The top 10 positive and negative item review topics.
       ItemReviewTopics = Structure.new do
         # @return [Array<ItemReviewTopic>] A list of the most negative review topics. When the `sortBy` query parameter

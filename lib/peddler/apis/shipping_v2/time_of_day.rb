@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Denotes time of the day, used for defining opening or closing time of access points
       TimeOfDay = Structure.new do
         # @return [Integer] Denotes hour of the day, used for defining opening or closing time of access points

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # A list of one or more ShipmentLabels.
       TransportLabel = Structure.new do
         # @return [Time] Date on which label is created.

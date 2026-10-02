@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Details of the innerContainersDetails.
       InnerContainersDetails = Structure.new do
         # @return [Integer] Total containers as part of the shipment

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrders20211228
+    module VendorDirectFulfillmentOrders20211228
       # Details of an individual item within the order being acknowledged.
       OrderItemAcknowledgement = Structure.new do
         # @return [ItemQuantity] Details of quantity acknowledged with the above acknowledgement code.

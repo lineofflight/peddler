@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tracking20260130
+    module Tracking20260130
       # The status codes and description of the milestone event.
       TrackingMilestoneStatus = Structure.new do
         # @return [String] A status code that identifies the milestone event (for example, `DELIVERED`,

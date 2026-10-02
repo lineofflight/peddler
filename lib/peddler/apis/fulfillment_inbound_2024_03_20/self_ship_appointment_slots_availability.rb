@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The self ship appointment time slots availability and an expiration date for which the slots can be scheduled.
       SelfShipAppointmentSlotsAvailability = Structure.new do
         # @return [Time] The time at which the self ship appointment slot expires. In [ISO

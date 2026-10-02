@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Details of an order.
       OrderDetails = Structure.new do
         # @return [PartyIdentification] Name/Address and tax details of the bill to party.

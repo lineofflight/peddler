@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of CarrierAccountInput
       class CarrierAccountInputsList < Array
         class << self

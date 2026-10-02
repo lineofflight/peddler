@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Shipping address that represents the origin or destination location.
       Address = Structure.new do
         # @return [String] First line of the address text.

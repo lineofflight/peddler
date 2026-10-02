@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # A list of delivery offers, including offer expiration, earliest and latest date and time range, and the delivery
       # offer policy.
       GetDeliveryOffersResult = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # Transfer schedule details and related historical details.
       TransferSchedule = Structure.new do
         # @return [TransactionAccount] Details of the destination bank account in the scheduled transfer. Here

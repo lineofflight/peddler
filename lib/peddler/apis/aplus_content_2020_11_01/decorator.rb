@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A decorator applied to a content string value in order to create rich text.
       Decorator = Structure.new do
         # @return [Integer] The relative intensity or variation of this decorator. Decorators such as bullet-points, for

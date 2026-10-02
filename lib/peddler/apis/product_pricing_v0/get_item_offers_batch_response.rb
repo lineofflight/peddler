@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # The response associated with the `getItemOffersBatch` API call.
       GetItemOffersBatchResponse = Structure.new do
         # @return [Array<ItemOffersResponse>]

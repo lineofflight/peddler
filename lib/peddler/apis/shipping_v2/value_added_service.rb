@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A value-added service available for purchase with a shipment service offering.
       ValueAddedService = Structure.new do
         # @return [Money] The cost of the value-added service.

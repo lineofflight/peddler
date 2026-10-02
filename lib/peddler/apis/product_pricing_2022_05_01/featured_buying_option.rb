@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Describes a featured buying option, which includes a list of segmented featured offers for a particular item
       # condition.
       FeaturedBuyingOption = Structure.new do

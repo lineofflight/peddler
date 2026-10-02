@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Metadata for a ship label document.
       ShipLabelMetadata = Structure.new do
         # @return [String] The name of the carrier.

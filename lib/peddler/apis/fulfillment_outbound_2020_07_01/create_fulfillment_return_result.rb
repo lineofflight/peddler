@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The result for the `createFulfillmentReturn` operation.
       CreateFulfillmentReturnResult = Structure.new do
         # @return [Array<InvalidReturnItem>]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Item identifiers for an item in a direct fulfillment shipment.
       DirectFulfillmentItemIdentifiers = Structure.new do
         # @return [String] A unique identifier for an item provided by the client for a direct fulfillment shipment.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about where the customer placed this order.
       SalesChannel = Structure.new do
         # @return [String] The name of the sales platform or channel where the customer placed this order.

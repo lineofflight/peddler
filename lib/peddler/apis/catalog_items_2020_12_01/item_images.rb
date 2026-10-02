@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Images for an item in the Amazon catalog. All image variants are provided to brand owners. Otherwise, a
       # thumbnail of the "MAIN" image variant is provided.
       class ItemImages < Array

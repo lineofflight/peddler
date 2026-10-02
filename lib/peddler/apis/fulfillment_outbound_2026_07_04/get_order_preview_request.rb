@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The request body schema for `getOrderPreview`.
       GetOrderPreviewRequest = Structure.new do
         # @return [PreviewDestination] The destination of the fulfillment.

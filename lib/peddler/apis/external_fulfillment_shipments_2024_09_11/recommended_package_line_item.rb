@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A line item to be contained in a recommended package. This attribute is provided only for orders that come with
       # a specific recommendation of line-item distribution within the package recommendations.
       RecommendedPackageLineItem = Structure.new do

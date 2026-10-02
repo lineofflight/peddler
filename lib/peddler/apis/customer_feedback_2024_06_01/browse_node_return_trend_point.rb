@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The return metrics for a certain month.
       BrowseNodeReturnTrendPoint = Structure.new do
         # @return [BrowseNodeTrendMetrics] The browse node return metrics.

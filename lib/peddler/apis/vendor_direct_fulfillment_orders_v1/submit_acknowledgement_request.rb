@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # The request schema for the submitAcknowledgement operation.
       SubmitAcknowledgementRequest = Structure.new do
         # @return [Array<OrderAcknowledgementItem>] A list of one or more purchase orders.

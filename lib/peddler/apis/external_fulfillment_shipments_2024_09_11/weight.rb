@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The weight of a package.
       Weight = Structure.new do
         # @return [String] The numerical value of the weight. Must be a positive value.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains input information to update Small Parcel Delivery (SPD) tracking information.
       SpdTrackingDetailInput = Structure.new do
         # @return [Array<SpdTrackingItemInput>] List of Small Parcel Delivery (SPD) tracking items input.

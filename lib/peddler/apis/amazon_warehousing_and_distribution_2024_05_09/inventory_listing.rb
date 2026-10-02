@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # AWD inventory payload.
       InventoryListing = Structure.new do
         # @return [Array<InventorySummary>] List of inventory summaries.

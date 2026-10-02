@@ -521,7 +521,9 @@ pub(crate) fn ruby(
             } else {
                 ""
             };
-            writeln!(ruby,"      def {}{}\n{annotation}        arguments = {arguments}\n        Response.from_parts(@engine.operation({:?}, JSON.generate(arguments)))\n      end\n",op.name,if keywords.is_empty(){String::new()}else{format!("({keywords})")},format!("{}.{}",api.module,op.name)).unwrap();
+            let key = format!("{}.{}", api.module, op.name);
+            // The response carries its operation key so Ruby can resolve the typed model.
+            writeln!(ruby,"      def {}{}\n{annotation}        arguments = {arguments}\n        Response.from_parts(@engine.operation({key:?}, JSON.generate(arguments)), {key:?})\n      end\n",op.name,if keywords.is_empty(){String::new()}else{format!("({keywords})")}).unwrap();
             let sig = op
                 .parameters
                 .iter()

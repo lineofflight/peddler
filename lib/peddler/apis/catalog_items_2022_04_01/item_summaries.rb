@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Summaries of Amazon catalog items.
       class ItemSummaries < Array
         class << self

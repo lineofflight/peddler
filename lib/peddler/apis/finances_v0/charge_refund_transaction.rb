@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # The charge refund transaction.
       ChargeRefundTransaction = Structure.new do
         # @return [Money] The amount of the charge refund credit.

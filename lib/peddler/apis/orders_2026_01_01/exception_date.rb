@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Special dates when normal business hours are modified or suspended, requiring different delivery scheduling.
       ExceptionDate = Structure.new do
         # @return [Date] Specific calendar date when normal operating hours do not apply. In [ISO

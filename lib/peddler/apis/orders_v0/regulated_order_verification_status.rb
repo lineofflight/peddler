@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The verification status of the order, along with associated approval or rejection metadata.
       RegulatedOrderVerificationStatus = Structure.new do
         # @return [:boolean] When true, the regulated information provided in the order requires a review by the

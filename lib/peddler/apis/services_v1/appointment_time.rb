@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The time of the appointment window.
       AppointmentTime = Structure.new do
         # @return [Integer] The duration of the appointment window, in minutes.

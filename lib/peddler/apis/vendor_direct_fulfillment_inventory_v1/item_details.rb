@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentInventoryV1
+    module VendorDirectFulfillmentInventoryV1
       # Updated inventory details for an item.
       ItemDetails = Structure.new do
         # @return [ItemQuantity] Total item quantity available in the warehouse.

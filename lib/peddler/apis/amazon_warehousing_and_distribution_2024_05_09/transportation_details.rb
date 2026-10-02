@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Transportation details for the shipment.
       TransportationDetails = Structure.new do
         # @return [Array<TrackingDetails>] Tracking details for the shipment. If using SPD transportation, this can be

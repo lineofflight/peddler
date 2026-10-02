@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrders20211228
+    module VendorDirectFulfillmentOrders20211228
       # Details of an individual order being acknowledged.
       OrderAcknowledgementItem = Structure.new do
         # @return [Time] The date and time when the order is acknowledged, in ISO-8601 date/time format. For example:

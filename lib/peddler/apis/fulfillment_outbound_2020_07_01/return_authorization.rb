@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Return authorization information for items accepted for return.
       ReturnAuthorization = Structure.new do
         # @return [String] The return merchandise authorization (RMA) that Amazon needs to process the return.

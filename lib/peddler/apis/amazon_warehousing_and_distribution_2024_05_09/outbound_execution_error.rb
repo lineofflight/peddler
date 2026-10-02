@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Execution errors associated with the outbound order. This field will be populated if the order failed
       # validation.
       OutboundExecutionError = Structure.new do

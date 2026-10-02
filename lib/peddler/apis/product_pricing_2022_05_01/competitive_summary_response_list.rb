@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The response list for the `competitiveSummaryBatch` operation.
       class CompetitiveSummaryResponseList < Array
         class << self

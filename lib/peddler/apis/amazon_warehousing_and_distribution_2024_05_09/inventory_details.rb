@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Additional inventory details. This object is only displayed if the details parameter in the request is set to
       # `SHOW`.
       InventoryDetails = Structure.new do

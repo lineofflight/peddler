@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # The response to the `getInvoiceHeaders` operation.
       GetInvoicesResponse = Structure.new do
         # @return [Array<InvoiceHeader>] A list of invoices with header-level details.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Input for creating a media association.
       RelatedMediaInput = Structure.new do
         # @return [String] The type of relationship to create.

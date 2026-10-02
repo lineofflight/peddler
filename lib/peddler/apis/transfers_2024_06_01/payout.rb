@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # All the information related to a payout.
       Payout = Structure.new do
         # @return [String] The current status of the payout. This value corresponds to the most recent entry in the

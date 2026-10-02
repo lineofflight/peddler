@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The details of a shipment. Includes the shipment status.
       Shipment = Structure.new do
         # @return [String]

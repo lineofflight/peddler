@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The request schema for the `createDestination` operation.
       CreateDestinationRequest = Structure.new do
         # @return [String] A developer-defined name to help identify this destination.

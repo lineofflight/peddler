@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tokens20210301
+    module Tokens20210301
       # An error response returned when the request is unsuccessful.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.

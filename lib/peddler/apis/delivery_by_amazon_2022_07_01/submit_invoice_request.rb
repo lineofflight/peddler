@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class DeliveryByAmazon20220701
+    module DeliveryByAmazon20220701
       # The request schema for the `submitInvoice` operation.
       SubmitInvoiceRequest = Structure.new do
         # @return [String] MD5 sum for validating the invoice data. For more information about calculating this value,

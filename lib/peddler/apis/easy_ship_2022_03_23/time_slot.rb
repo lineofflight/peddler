@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # A time window to hand over an Easy Ship package to Amazon Logistics.
       TimeSlot = Structure.new do
         # @return [String] An Amazon-defined identifier for a time slot.

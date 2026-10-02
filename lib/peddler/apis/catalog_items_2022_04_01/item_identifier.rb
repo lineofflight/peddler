@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # The identifier that is associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
       ItemIdentifier = Structure.new do
         # @return [String] Identifier of the item.

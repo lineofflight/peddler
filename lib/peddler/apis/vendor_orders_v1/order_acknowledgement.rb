@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Represents an acknowledgement for an order, including the purchase order number, selling party details,
       # acknowledgement date, and a list of acknowledged items.
       OrderAcknowledgement = Structure.new do

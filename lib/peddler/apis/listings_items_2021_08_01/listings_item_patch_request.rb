@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # The request body schema for the `patchListingsItem` operation.
       ListingsItemPatchRequest = Structure.new do
         # @return [Array<PatchOperation>] One or more JSON Patch operations to perform on the listings item.

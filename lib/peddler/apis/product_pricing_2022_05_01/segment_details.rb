@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion as input.
       SegmentDetails = Structure.new do
         # @return [Float] The glance view weighted percentage for this segment, which is the glance views for this

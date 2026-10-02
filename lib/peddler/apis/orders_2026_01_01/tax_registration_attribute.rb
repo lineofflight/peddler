@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # An additional attribute associated with a tax registration.
       TaxRegistrationAttribute = Structure.new do
         # @return [String] The name of the tax registration attribute.

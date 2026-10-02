@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Result for the get shipments operation
       GetShipmentsResult = Structure.new do
         # @return [String] When present and not empty, pass this string token in the next request to return the next

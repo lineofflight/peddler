@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Amazon tracking information for a package.
       AmazonTracking = Structure.new do
         # @return [String] The amazon tracking number that can be used to obtain tracking and delivery information.

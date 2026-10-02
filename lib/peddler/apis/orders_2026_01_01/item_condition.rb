@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Detailed information about the physical condition and quality state of the item being sold.
       ItemCondition = Structure.new do
         # @return [String] Additional details provided by the seller to describe the specific condition of this

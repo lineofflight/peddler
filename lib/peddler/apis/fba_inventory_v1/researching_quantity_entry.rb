@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
       ResearchingQuantityEntry = Structure.new do
         # @return [String] The duration of the research.

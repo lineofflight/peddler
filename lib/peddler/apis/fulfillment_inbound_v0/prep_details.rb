@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Preparation instructions and who is responsible for the preparation.
       PrepDetails = Structure.new do
         # @return [String]

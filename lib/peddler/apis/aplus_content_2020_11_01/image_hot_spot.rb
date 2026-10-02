@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A hotspot with mobile image, title, description, and coordinates.
       ImageHotSpot = Structure.new do
         # @return [ImageComponent]

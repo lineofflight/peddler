@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The scope of work for the order.
       ScopeOfWork = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the service job.

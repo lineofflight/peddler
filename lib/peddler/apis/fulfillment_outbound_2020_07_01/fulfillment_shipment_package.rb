@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Package information for a shipment in a fulfillment order.
       FulfillmentShipmentPackage = Structure.new do
         # @return [String] Identifies the carrier who will deliver the shipment to the recipient.

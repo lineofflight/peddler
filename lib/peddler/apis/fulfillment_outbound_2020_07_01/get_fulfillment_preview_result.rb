@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # A list of fulfillment order previews, including estimated shipping weights, estimated shipping fees, and
       # estimated ship dates and arrival dates.
       GetFulfillmentPreviewResult = Structure.new do

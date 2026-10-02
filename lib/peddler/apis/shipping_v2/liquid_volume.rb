@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Liquid Volume.
       LiquidVolume = Structure.new do
         # @return [String] The unit of measurement.

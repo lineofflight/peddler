@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The locker details, which you can use to access the locker delivery box.
       LockerDetails = Structure.new do
         # @return [String] Indicates the locker access code

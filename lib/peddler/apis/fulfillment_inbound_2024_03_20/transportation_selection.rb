@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The transportation option selected to confirm.
       TransportationSelection = Structure.new do
         # @return [String] Shipment ID that the transportation Option is for.

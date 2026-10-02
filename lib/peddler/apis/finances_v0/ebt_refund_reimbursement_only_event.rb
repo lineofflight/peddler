@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An EBT refund reimbursement event.
       EBTRefundReimbursementOnlyEvent = Structure.new do
         # @return [Money] The amount reimbursed during this event.

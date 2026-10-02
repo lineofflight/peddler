@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # The pagination elements required to retrieve the remaining data.
       Pagination = Structure.new do
         # @return [String] A generated string used to pass information to your next request. If NextToken is returned,

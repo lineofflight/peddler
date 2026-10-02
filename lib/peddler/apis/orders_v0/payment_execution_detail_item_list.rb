@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A list of payment execution detail items.
       class PaymentExecutionDetailItemList < Array
         class << self

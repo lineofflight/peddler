@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Tokens20210301
+    module Tokens20210301
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
         # @return [Array<Error>]

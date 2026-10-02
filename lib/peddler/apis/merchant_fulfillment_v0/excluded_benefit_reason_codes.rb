@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # List of reasons why a benefit is excluded for a shipping offer (for example, `LATE_DELIVERY_RISK`).
       class ExcludedBenefitReasonCodes < Array
         class << self

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The time range.
       TimeRange = Structure.new do
         # @return [Time] The end date and time. This must come after the value of start. This defaults to the next

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # The package that is associated with the container.
       Package = Structure.new do
         # @return [String] The tracking number on the label of shipment package, that you can fetch from the

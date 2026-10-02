@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Conveying the status of the listed enforcement actions and, if applicable, provides information about the
       # exemption's expiry date.
       IssueExemption = Structure.new do

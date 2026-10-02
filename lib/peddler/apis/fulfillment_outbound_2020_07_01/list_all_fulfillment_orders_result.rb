@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The request for the `listAllFulfillmentOrders` operation.
       ListAllFulfillmentOrdersResult = Structure.new do
         # @return [Array<FulfillmentOrder>] An array of fulfillment order information.

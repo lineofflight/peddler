@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Address of the party.
       Address = Structure.new do
         # @return [String] First line of the address. For Amazon label only vendors, this field will have the value

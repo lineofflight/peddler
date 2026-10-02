@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Comparison row for table-based comparison modules.
       ComparisonRow = Structure.new do
         # @return [TextComponent]

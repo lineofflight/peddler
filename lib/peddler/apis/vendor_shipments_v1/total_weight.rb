@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # The total weight of units that are sold by weight in a shipment.
       TotalWeight = Structure.new do
         # @return [String]

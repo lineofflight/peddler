@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Feeds20210630 < API
+    module Feeds20210630
+      PARSERS: Hash[String, ^() -> untyped]
+
       class CreateFeedDocumentResponse < Data
         def self.new: (feed_document_id: String, url: String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
                     | (String, String) -> Peddler::APIs::Feeds20210630::CreateFeedDocumentResponse
@@ -164,15 +166,6 @@ module Peddler
         def members: () -> [ :feeds, :next_token ]
         def to_h: () -> { feeds: Array[Peddler::APIs::Feeds20210630::Feed], next_token: String? }
       end
-
-      def cancel_feed: (String, ?rate_limit: Float) -> Peddler::Response
-      def create_feed: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def create_feed_document: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_feed: (String, ?rate_limit: Float) -> Peddler::Response
-
-      def get_feed_document: (String, ?enable_content_encoding_url_header: bool?, ?rate_limit: Float) -> Peddler::Response
-      def get_feeds: (?feed_types: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?processing_statuses: Array[String]?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

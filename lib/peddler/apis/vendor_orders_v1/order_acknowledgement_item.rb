@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Details of the item being acknowledged.
       OrderAcknowledgementItem = Structure.new do
         # @return [Array<OrderItemAcknowledgement>] This is used to indicate acknowledged quantity.

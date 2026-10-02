@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Details of the original shipment if `shipmentType` is either `REPLACEMENT` or `EXCHANGE`.
       ReplacedShipmentInfo = Structure.new do
         # @return [String] The original shipment's ID.

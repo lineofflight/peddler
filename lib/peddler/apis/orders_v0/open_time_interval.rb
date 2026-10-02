@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The time when the business opens or closes.
       OpenTimeInterval = Structure.new do
         # @return [Integer] The hour when the business opens or closes.

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class DeliveryByAmazon20220701
+    module DeliveryByAmazon20220701
       # A list of error responses returned when a request is unsuccessful.
       class ErrorList < Array
         class << self

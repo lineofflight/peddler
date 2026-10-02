@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The dimensions of a package contained in a shipment.
       PackageDimensions = Structure.new do
         # @return [Float] The height dimension. If you don't specify `PredefinedPackageDimensions`, you must specify the

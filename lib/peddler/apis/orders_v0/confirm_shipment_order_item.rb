@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A single order item.
       ConfirmShipmentOrderItem = Structure.new do
         # @return [String] The order item's unique identifier.

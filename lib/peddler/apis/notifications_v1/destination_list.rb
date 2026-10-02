@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # A list of destinations.
       class DestinationList < Array
         class << self

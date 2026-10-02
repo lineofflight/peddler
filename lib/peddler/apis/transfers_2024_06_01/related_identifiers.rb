@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # Related business identifiers of the payout.
       class RelatedIdentifiers < Array
         class << self

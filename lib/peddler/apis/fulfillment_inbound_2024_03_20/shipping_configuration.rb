@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The shipping configurations supported for the packing option. Available modes are ground small parcel, freight
       # less-than-truckload (LTL), freight full-truckload (FTL) palletized, freight FTL non-palletized, ocean
       # less-than-container-load (LCL), ocean full-container load (FCL), air small parcel, and air small parcel express.

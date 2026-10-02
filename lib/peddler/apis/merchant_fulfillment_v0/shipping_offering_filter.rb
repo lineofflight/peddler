@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Filter for use when requesting eligible shipping services.
       ShippingOfferingFilter = Structure.new do
         # @return [String]

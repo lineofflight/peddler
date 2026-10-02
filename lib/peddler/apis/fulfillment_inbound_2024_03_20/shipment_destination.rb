@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The Amazon fulfillment center address and warehouse ID.
       ShipmentDestination = Structure.new do
         # @return [String] The type of destination for this shipment. Possible values: `AMAZON_OPTIMIZED`,

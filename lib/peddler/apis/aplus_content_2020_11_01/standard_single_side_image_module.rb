@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A standard headline and body text with an image on the side.
       StandardSingleSideImageModule = Structure.new do
         # @return [String]

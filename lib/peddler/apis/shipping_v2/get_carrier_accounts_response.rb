@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The Response for the GetCarrierAccountsResponse operation.
       GetCarrierAccountsResponse = Structure.new do
         # @return [Array<ActiveAccount>]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Information about whether or not a buyer requested cancellation.
       BuyerRequestedCancel = Structure.new do
         # @return [String] The reason that the buyer requested cancellation.

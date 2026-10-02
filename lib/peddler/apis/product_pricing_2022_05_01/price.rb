@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The schema for item's price information, including listing price, shipping price, and Amazon Points.
       Price = Structure.new do
         # @return [Money] The listing price for the item, excluding any promotions.

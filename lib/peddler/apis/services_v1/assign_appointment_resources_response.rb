@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `assignAppointmentResources` operation.
       AssignAppointmentResourcesResponse = Structure.new do
         # @return [Array<Error>] Errors occurred during during the `assignAppointmentResources` operation.

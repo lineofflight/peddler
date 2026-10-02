@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Fee type and cost.
       Fee = Structure.new do
         # @return [Money] The amount of the fee.

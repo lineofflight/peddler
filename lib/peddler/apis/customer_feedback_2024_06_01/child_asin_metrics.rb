@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The review topic metrics for other child ASINs that have the same parent ASIN. This value is `null` if there
       # isn't any child ASIN metric data.
       ChildASINMetrics = Structure.new do

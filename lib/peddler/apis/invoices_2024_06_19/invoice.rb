@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # Provides detailed information about an invoice.
       Invoice = Structure.new do
         # @return [Time] The date and time the invoice is issued. Values are in [ISO

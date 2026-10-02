@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Information about taxes.
       Tax = Structure.new do
         # @return [ChargeBreakup] Details of individual tax charges.

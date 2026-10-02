@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Information about a fulfillment order preview, including delivery and fee information based on shipping method.
       FulfillmentPreview = Structure.new do
         # @return [:boolean] When true, this fulfillment order preview is for COD (Cash On Delivery).

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The payload for the `getSubscriptions` operation.
       GetSubscriptionsPayload = Structure.new do
         # @return [String] A token that you can use to retrieve the next page of results. When this field is not empty,

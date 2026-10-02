@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The error response schema for the `getFixedSlotCapacity` operation.
       FixedSlotCapacityErrors = Structure.new do
         # @return [Array<Error>] Errors encountered during the `getFixedSlotCapacity` operation.

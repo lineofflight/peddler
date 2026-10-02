@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Information about the line item being confirmed or rejected and the reason for the rejection.
       LineItemWithReason = Structure.new do
         # @return [LineItem]

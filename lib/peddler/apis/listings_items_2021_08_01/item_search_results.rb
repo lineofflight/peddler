@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Selling partner listings items and search related metadata.
       ItemSearchResults = Structure.new do
         # @return [Array<Item>] A list of listings items.

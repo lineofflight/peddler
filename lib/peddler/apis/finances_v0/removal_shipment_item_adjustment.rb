@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # Item-level information for a removal shipment item adjustment.
       RemovalShipmentItemAdjustment = Structure.new do
         # @return [Integer] Adjusted quantity of `RemovalShipmentItemAdjustment` items.

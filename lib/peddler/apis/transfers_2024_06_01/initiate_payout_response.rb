@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The response schema for the `initiatePayout` operation.
       InitiatePayoutResponse = Structure.new do
         # @return [String] The financial event group ID for a successfully initiated payout. You can use this ID to

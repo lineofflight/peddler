@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A list of the Buy Box prices.
       class BuyBoxPrices < Array
         class << self

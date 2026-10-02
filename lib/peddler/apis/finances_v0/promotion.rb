@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A promotion applied to an item.
       Promotion = Structure.new do
         # @return [Money] The amount of promotional discount applied to the item.

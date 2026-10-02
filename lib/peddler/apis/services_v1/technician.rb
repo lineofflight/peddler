@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # A technician who is assigned to perform the service job in part or in full.
       Technician = Structure.new do
         # @return [String] The name of the technician.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # The response to the `listBalances` operation.
       ListBalancesResponse = Structure.new do
         # @return [Array<Balance>]

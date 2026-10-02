@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The request schema for the getRates operation. When the channelType is Amazon, the shipTo address is not
       # required and will be ignored.
       GetRatesRequest = Structure.new do

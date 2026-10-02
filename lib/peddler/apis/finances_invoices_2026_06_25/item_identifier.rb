@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # Identifier for an item in the invoice line item.
       ItemIdentifier = Structure.new do
         # @return [String] The type of item identifier.

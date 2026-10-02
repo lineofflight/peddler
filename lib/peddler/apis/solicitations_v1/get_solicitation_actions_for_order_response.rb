@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SolicitationsV1
+    module SolicitationsV1
       # The response schema for the getSolicitationActionsForOrder operation.
       GetSolicitationActionsForOrderResponse = Structure.new do
         # @return [Hash]

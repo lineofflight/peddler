@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Defines exceptions to standard operating hours for certain date ranges.
       ExceptionOperatingHours = Structure.new do
         # @return [DateRange]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single technical specification with a key-value pair.
       TechSpec = Structure.new do
         # @return [TextComponent]

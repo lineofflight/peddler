@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Location identifier.
       Location = Structure.new do
         # @return [String] The two digit country code. In ISO 3166-1 alpha-2 format.

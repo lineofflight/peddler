@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # Includes configuration and timezone of a supply source.
       SupplySourceConfiguration = Structure.new do
         # @return [OperationalConfiguration]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Whether to include a packing slip.
       LabelFormatOptionRequest = Structure.new do
         # @return [:boolean] When true, include a packing slip with the label.

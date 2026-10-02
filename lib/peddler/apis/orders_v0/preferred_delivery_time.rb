@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The time window when the delivery is preferred.
       PreferredDeliveryTime = Structure.new do
         # @return [Array<BusinessHours>] Business hours when the business is open for deliveries.

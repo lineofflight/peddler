@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Information about a line item in a shipment.
       ShipmentLineItem = Structure.new do
         # @return [Array<Charge>] The charges associated with the line item. The charge amount does not include the tax

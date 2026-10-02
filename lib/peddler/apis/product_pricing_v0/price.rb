@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema for price info in `getPricing` response
       Price = Structure.new do
         # @return [String] The status of the operation.

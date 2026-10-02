@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the
       # `Points` element is only returned in Japan (JP).
       Points = Structure.new do

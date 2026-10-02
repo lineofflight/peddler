@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents a product with sku details and corresponding quantity
       DistributionProduct = Structure.new do
         # @return [Integer] Quantity of the product

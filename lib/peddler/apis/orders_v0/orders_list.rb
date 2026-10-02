@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A list of orders along with additional information to make subsequent API calls.
       OrdersList = Structure.new do
         # @return [Array<Order>]

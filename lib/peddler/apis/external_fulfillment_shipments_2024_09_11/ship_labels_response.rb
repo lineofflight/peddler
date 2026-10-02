@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The response to the `generateShipLabels` operation.
       ShipLabelsResponse = Structure.new do
         # @return [Array<PackageShipLabel>]

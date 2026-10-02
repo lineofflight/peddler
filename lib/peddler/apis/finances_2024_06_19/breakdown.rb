@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Details about the movement of money in the financial transaction.
       Breakdown = Structure.new do
         # @return [Money] The monetary amount of the charge.

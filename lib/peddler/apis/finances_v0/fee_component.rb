@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A fee associated with the event.
       FeeComponent = Structure.new do
         # @return [Money] The amount of the fee.

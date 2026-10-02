@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The tracking details of the package if it is shipped by a third party courier. This attribute should only be
       # provided when the value of `shipBy` is `THIRD_PARTY_CARRIER`.
       CourierSupportedAttributes = Structure.new do

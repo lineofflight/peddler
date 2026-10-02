@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # Information about a payment transaction.
       PaymentInformation = Structure.new do
         # @return [String] The government ID of the acquirer.

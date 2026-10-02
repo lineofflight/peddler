@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Indicates whether the carrier will pick up the package, and what fee is charged, if any.
       AvailableCarrierWillPickUpOption = Structure.new do
         # @return [String]

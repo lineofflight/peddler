@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # The type of payment preference in which the transfer is being scheduled.
       PaymentPreference = Structure.new do
         # @return [String] The preferred payment type for the scheduled transaction. Can be `PERCENTAGE` or `AMOUNT`.

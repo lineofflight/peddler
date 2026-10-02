@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # Response schema.
       GetMyFeesEstimateResult = Structure.new do
         # @return [FeesEstimateResult] The item's estimated fees.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Payment execution details for an order.
       PaymentExecution = Structure.new do
         # @return [String] The unique identifier of the payment processor or acquiring bank that authorizes the payment.

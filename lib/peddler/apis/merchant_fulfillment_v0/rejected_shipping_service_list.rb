@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # List of services that are for some reason unavailable for this request
       class RejectedShippingServiceList < Array
         class << self

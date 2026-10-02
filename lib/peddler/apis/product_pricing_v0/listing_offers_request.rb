@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # List of request parameters that can be accepted by `ListingOffersRequest` operation
       ListingOffersRequest = Structure.new do
         # @return [String] Filters the offer listings to be considered based on item condition. Possible values: New,

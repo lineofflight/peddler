@@ -10,34 +10,12 @@ module Peddler
     # direct fulfillment sandbox test data.
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
-    class VendorDirectFulfillmentSandboxTestData20211028 < API
-      # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
-      #
-      # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] The request payload containing parameters for generating test order data scenarios.
-      # @return [Peddler::Response] The API response
-      def generate_order_scenarios(body)
-        must_sandbox!
-
-        path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
-        parser = -> { TransactionReference }
-        post(path, body:, parser:)
-      end
-
-      # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
-      # successful, also returns the requested test order data.
-      #
-      # @note This operation can make a dynamic sandbox call.
-      # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
-      #   operation.
-      # @return [Peddler::Response] The API response
-      def get_order_scenarios(transaction_id)
-        must_sandbox!
-
-        path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{percent_encode(transaction_id)}"
-        parser = -> { TransactionStatus }
-        get(path, parser:)
-      end
+    module VendorDirectFulfillmentSandboxTestData20211028
+      # Typed models of successful responses, by native operation key
+      PARSERS = {
+        "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios" => -> { TransactionReference },
+        "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios" => -> { TransactionStatus },
+      }.freeze
     end
   end
 end

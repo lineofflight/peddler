@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Service level configuration for data-plane requests (`getOffers`, `getOrderPreview`). Specifies the tiers for
       # which to get offers or previews.
       PreviewServiceLevel = Structure.new do

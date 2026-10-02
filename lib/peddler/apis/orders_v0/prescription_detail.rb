@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Information about the prescription that is used to verify a regulated product. This must be provided once per
       # order and reflect the seller’s own records. Only approved orders can have prescriptions.
       PrescriptionDetail = Structure.new do

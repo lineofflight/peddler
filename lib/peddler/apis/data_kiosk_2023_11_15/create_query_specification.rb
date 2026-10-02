@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class DataKiosk20231115
+    module DataKiosk20231115
       # Information required to create the query.
       CreateQuerySpecification = Structure.new do
         # @return [String] The GraphQL query to submit. A query must be at most 8000 characters after unnecessary

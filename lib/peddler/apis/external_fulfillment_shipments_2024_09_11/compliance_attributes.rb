@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # All necessary compliance attributes specific to the line item.
       ComplianceAttributes = Structure.new do
         # @return [String] Whether the country of origin must be provided for this line item.

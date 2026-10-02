@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Feature settings allows you to apply fulfillment features to an order. To block an order from being shipped
       # using Amazon Logistics (AMZL) and an AMZL tracking number, set `featureName` to `BLOCK_AMZL` and
       # `featureFulfillmentPolicy` to `Required`. Blocking AMZL will incur an additional fee surcharge on your MCF

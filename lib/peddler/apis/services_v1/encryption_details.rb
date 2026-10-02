@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Encryption details for required client-side encryption and decryption of document contents.
       EncryptionDetails = Structure.new do
         # @return [String] The vector to encrypt or decrypt the document contents using Cipher Block Chaining (CBC).

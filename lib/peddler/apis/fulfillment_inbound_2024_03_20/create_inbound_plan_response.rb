@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `createInboundPlan` response.
       CreateInboundPlanResponse = Structure.new do
         # @return [String] Identifier of an inbound plan.

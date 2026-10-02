@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Defines a progressive (multi-tier) benefit tier that applies when customers exceed a higher purchase quantity
       # for basket building promotions. Each tier specifies a purchase condition and corresponding enhanced discount.
       BenefitTier = Structure.new do

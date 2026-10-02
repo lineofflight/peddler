@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Response containing the results of a submission to the Selling Partner API for Listings Items.
       ListingsItemSubmissionResponse = Structure.new do
         # @return [String] A selling partner-provided identifier for an Amazon listing.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains only a starting DateTime.
       WindowInput = Structure.new do
         # @return [Time] The start date of the window. In [ISO

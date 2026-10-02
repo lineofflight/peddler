@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # A brand that you can use to refine your search.
       BrandRefinement = Structure.new do
         # @return [String] The brand name that you can use to refine your search.

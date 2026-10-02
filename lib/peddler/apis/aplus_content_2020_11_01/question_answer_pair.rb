@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single question and answer pair.
       QuestionAnswerPair = Structure.new do
         # @return [ParagraphComponent]

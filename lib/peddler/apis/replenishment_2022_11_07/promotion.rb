@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # Offer promotions to include in the result filter criteria.
       Promotion = Structure.new do
         # @return [DiscountFunding] A base discount set by Amazon on the offer.

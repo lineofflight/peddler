@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Attribute Properties required by carrier
       CarrierAccountAttribute = Structure.new do
         # @return [String] Attribute Name .

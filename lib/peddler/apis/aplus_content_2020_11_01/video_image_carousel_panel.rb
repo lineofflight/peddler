@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single panel within the video/image carousel containing a video or image with optional text.
       VideoImageCarouselPanel = Structure.new do
         # @return [Integer] The position of the panel within the carousel. Must be a value between 1 and 6.

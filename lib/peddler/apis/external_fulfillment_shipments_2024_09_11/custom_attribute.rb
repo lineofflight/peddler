@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A custom attribute that is loosely typed, modeled through a key-value pair and its data type.
       CustomAttribute = Structure.new do
         # @return [String] The attribute key.

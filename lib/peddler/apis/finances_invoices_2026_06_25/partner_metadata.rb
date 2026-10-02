@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # Metadata about a partner (payer or payee) associated with the invoice.
       PartnerMetadata = Structure.new do
         # @return [String] The unique identifier for the partner. If the partner is a vendor, then this value is the

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The response object for creating a sandbox shipment.
       CreateSandboxShipmentResponse = Structure.new do
         # @return [String] The identifier of the created sandbox shipment.

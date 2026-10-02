@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The parameters for an individual request.
       FeaturedOfferExpectedPriceRequestParams = Structure.new do
         # @return [String]

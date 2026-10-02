@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents the contents inside a package, which can be products or a nested package.
       DistributionPackageContents = Structure.new do
         # @return [Array<DistributionPackageQuantity>] This is required only when `DistributionPackageType=PALLET`.

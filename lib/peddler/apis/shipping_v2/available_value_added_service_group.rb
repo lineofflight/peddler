@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The value-added services available for purchase with a shipping service offering.
       AvailableValueAddedServiceGroup = Structure.new do
         # @return [String] The name of the value-added service group.

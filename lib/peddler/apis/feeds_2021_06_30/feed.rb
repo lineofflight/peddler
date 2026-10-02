@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Feeds20210630
+    module Feeds20210630
       # Detailed information about the feed.
       Feed = Structure.new do
         # @return [Time] The date and time when the feed was created, in ISO 8601 date time format.

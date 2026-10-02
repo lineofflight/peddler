@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # A delivery document for a package.
       DeliveryDocument = Structure.new do
         # @return [String] The delivery document type. The only possible value is `DELIVERY_IMAGE`.

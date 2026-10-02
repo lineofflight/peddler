@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `confirmTransportationOptions` request.
       ConfirmTransportationOptionsRequest = Structure.new do
         # @return [Array<TransportationSelection>] Information needed to confirm one of the available transportation

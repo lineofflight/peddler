@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Represents an item that has been packed into a container for shipping.
       PackedItem = Structure.new do
         # @return [Integer] Item Sequence Number for the item. This must be the same value as sent in the order for a

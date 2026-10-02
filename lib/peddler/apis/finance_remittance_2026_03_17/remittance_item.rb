@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FinanceRemittance20260317
+    module FinanceRemittance20260317
       # Detailed line item information for a remittance.
       RemittanceItem = Structure.new do
         # @return [String] A description of the line item.

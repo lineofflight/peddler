@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsRestrictions20210801
+    module ListingsRestrictions20210801
       # A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
       Restriction = Structure.new do
         # @return [String] A marketplace identifier. Identifies the Amazon marketplace where the restriction is

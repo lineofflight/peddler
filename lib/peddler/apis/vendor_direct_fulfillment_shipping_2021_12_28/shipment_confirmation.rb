@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # Represents the confirmation details of a shipment, including the purchase order number and other shipment
       # details.
       ShipmentConfirmation = Structure.new do

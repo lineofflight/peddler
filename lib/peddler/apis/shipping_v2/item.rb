@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # An item in a package.
       Item = Structure.new do
         # @return [Integer] The number of units. This value is required.

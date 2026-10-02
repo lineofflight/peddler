@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ApplicationIntegrations20240401
+    module ApplicationIntegrations20240401
       # The request for the `deleteNotifications` operation.
       DeleteNotificationsRequest = Structure.new do
         # @return [String] The unique identifier that maps each notification status to a reason code.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Transport Request pickup date from Vendor Warehouse by Buyer
       CollectFreightPickupDetails = Structure.new do
         # @return [Time] Date on which the carrier is being scheduled to pickup items from vendor warehouse by Byer used

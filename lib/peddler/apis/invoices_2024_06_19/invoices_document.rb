@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # An object that contains the `documentId` and an S3 pre-signed URL that you can use to download the specified
       # file.
       InvoicesDocument = Structure.new do

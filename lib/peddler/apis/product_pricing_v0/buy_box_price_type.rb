@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Schema for an individual buybox price.
       BuyBoxPriceType = Structure.new do
         # @return [Money] The value calculated by adding ListingPrice + Shipping - Points.

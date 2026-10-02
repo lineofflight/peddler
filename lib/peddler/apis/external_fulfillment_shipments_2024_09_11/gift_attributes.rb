@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Information about any gift wrapping that is needed for this line item.
       GiftAttributes = Structure.new do
         # @return [String] When true, there is a gift message that must be printed on the wrapped gift.

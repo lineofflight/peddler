@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Details of item quantity.
       ItemQuantity = Structure.new do
         # @return [Integer] Amount of units shipped for a specific item at a shipment level. If the item is present only

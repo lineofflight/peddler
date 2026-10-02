@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The response for the `getItemBrowseNode` operation.
       BrowseNodeResponse = Structure.new do
         # @return [String] A browse node id is the unique identifier of a given browse node. A browse node is a location

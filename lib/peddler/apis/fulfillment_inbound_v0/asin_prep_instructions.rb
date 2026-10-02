@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Item preparation instructions to help with item sourcing decisions.
       ASINPrepInstructions = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.

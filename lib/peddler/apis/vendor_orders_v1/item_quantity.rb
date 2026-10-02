@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Details of quantity ordered.
       ItemQuantity = Structure.new do
         # @return [Integer] Acknowledged quantity. This value should not be zero.

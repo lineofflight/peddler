@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # The vendor details that are associated with an Amazon catalog item. Vendor details are only available to
       # vendors.
       class ItemVendorDetails < Array

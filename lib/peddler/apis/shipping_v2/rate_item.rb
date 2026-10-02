@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Rate Item for shipping (base cost, transaction fee, confirmation, insurance, etc.) Data source definition:
       RateItem = Structure.new do
         # @return [Money]

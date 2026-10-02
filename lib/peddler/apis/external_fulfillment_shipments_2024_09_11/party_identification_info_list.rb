@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # All involved party identification and metadata for the vendor, buyer, and seller. Applicable for
       # direct-fulfillment sellers.
       class PartyIdentificationInfoList < Array

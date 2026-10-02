@@ -13,28 +13,11 @@ module Peddler
     # inform their decisions about which items to ship Amazon's fulfillment centers.
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
-    class FBAInboundEligibilityV1 < API
-      # This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility
-      # preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which
-      # you want to determine the item's eligibility.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param marketplace_ids [Array<String>] The identifier for the marketplace in which you want to determine
-      #   eligibility. Required only when program=INBOUND.
-      # @param asin [String] The ASIN of the item for which you want an eligibility preview.
-      # @param program [String] The program that you want to check eligibility against.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0)
-        path = "/fba/inbound/v1/eligibility/itemPreview"
-        params = {
-          "marketplaceIds" => stringify_array(marketplace_ids),
-          "asin" => asin,
-          "program" => program,
-        }.compact
-        parser = -> { GetItemEligibilityPreviewResponse }
-        get(path, params:, rate_limit:, parser:)
-      end
+    module FBAInboundEligibilityV1
+      # Typed models of successful responses, by native operation key
+      PARSERS = {
+        "fba_inbound_eligibility_v1.get_item_eligibility_preview" => -> { GetItemEligibilityPreviewResponse },
+      }.freeze
     end
   end
 end

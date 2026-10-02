@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The required background card for all Brand Story Content. Provides a full-width background image with a Brand
       # logo overlay, headline, and body text. All other Brand Story modules appear within this carousel.
       BrandStoryImageWithLogoModule = Structure.new do

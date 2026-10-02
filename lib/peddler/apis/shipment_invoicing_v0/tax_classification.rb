@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The tax classification for the entity.
       TaxClassification = Structure.new do
         # @return [String] The type of tax.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A product in the three-column comparison table.
       ThreeColumnComparisonProduct = Structure.new do
         # @return [ImageComponent]

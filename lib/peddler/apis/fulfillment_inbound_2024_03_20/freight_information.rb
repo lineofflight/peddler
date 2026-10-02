@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Freight information describes the SKUs that are in transit. Freight carrier options and quotes will only be
       # returned if the freight information is provided.
       FreightInformation = Structure.new do

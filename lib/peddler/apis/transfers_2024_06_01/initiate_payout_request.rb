@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The request schema for the `initiatePayout` operation.
       InitiatePayoutRequest = Structure.new do
         # @return [String] The account type in the selected marketplace for which a payout must be initiated. For

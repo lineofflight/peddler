@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Preview of the changes that will be applied to the shipment.
       ContentUpdatePreview = Structure.new do
         # @return [String] Identifier of a content update preview.

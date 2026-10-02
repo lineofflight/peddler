@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents an AWD inbound order.
       InboundOrder = Structure.new do
         # @return [Time] Date when this order was created.

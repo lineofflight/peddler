@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # A list of transfer schedules.
       TransferScheduleListing = Structure.new do
         # @return [Array<TransferSchedule>] A list of transfer schedules.

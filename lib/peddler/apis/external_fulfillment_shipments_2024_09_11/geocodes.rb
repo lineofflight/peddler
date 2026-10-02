@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Geographic coordinates.
       Geocodes = Structure.new do
         # @return [String] The latitude coordinate.

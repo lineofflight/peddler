@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # The number of Amazon Points offered with the purchase of an item.The Amazon Points program is only available in
       # Japan.
       Points = Structure.new do

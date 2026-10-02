@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The offer data of a product.
       Offer = Structure.new do
         # @return [String] Item Condition.

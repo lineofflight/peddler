@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class DeliveryByAmazon20220701
+    module DeliveryByAmazon20220701
       # Individual invoice status entry.
       InvoiceStatus = Structure.new do
         # @return [String] The unique invoice identifier (NF-e access key for Brazilian invoices).

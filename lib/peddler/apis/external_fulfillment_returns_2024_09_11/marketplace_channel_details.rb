@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentReturns20240911
+    module ExternalFulfillmentReturns20240911
       # Marketplace channel-specific attributes for the return. These attributes are not mandatory and each channel can
       # provide them differently.
       MarketplaceChannelDetails = Structure.new do

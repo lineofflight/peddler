@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # A record of a payout's status at a specific point in time.
       PayoutStatusEntry = Structure.new do
         # @return [String] The date when this status was last updated.

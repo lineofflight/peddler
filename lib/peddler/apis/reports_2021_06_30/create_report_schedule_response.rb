@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Reports20210630
+    module Reports20210630
       # Response schema.
       CreateReportScheduleResponse = Structure.new do
         # @return [String] The identifier for the report schedule. This identifier is unique only in combination with a

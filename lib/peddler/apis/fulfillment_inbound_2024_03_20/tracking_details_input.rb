@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Tracking information input for Less-Than-Truckload (LTL) and Small Parcel Delivery (SPD) shipments.
       TrackingDetailsInput = Structure.new do
         # @return [LtlTrackingDetailInput]

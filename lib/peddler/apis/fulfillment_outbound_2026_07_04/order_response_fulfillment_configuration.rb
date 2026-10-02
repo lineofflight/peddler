@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Fulfillment configuration in order response.
       OrderResponseFulfillmentConfiguration = Structure.new do
         # @return [String] Specifies whether the fulfillment order should ship now or have an order hold put on it.

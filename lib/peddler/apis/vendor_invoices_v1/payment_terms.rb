@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # Terms of the payment for the invoice. The basis of the payment terms is the invoice date.
       PaymentTerms = Structure.new do
         # @return [Float] The number of calendar days from the Base date (Invoice date) until the discount is no longer

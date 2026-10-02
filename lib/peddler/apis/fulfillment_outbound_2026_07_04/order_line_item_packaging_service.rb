@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Packaging settings for the line item.
       OrderLineItemPackagingService = Structure.new do
         # @return [OrderPackingSlip] Line item packing slip settings. Applying any settings requires that the item has a

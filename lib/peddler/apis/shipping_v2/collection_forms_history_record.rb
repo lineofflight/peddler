@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Active Account Details
       CollectionFormsHistoryRecord = Structure.new do
         # @return [String]

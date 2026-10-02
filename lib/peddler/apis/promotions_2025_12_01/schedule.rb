@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # A promotion's start and end dates with optional event association.
       Schedule = Structure.new do
         # @return [Time] The promotion's end date and time. Formatted in ISO 8601 format, including the timezone. For

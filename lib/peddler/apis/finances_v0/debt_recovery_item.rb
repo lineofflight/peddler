@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An item of a debt payment or debt adjustment.
       DebtRecoveryItem = Structure.new do
         # @return [String] The start date and time of the financial event group that contains the debt. In [ISO

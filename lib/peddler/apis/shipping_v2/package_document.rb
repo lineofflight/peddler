@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A document related to a package.
       PackageDocument = Structure.new do
         # @return [String]

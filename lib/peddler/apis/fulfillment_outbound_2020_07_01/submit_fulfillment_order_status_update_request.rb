@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The request body schema for the `submitFulfillmentOrderStatusUpdate` operation.
       SubmitFulfillmentOrderStatusUpdateRequest = Structure.new do
         # @return [String]

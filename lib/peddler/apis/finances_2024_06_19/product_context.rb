@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Additional information related to the product.
       ProductContext = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.

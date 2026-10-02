@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The available delivery confirmation options, and the fee charged, if any.
       AvailableDeliveryExperienceOption = Structure.new do
         # @return [Money]

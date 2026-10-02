@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # Represents an invoice or credit note document with details about the transaction, parties involved, and line
       # items.
       Invoice = Structure.new do

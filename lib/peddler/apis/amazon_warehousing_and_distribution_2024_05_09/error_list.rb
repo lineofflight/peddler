@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # This exception is thrown when client inputs are invalid.
       ErrorList = Structure.new do
         # @return [Array<Error>] A list of errors describing the failures.

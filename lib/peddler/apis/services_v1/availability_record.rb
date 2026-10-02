@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # `AvailabilityRecord` to represent the capacity of a resource over a time range.
       AvailabilityRecord = Structure.new do
         # @return [Time] Denotes the time till when the resource is available in a day in ISO-8601 format.

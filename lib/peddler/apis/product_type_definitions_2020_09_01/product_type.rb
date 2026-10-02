@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductTypeDefinitions20200901
+    module ProductTypeDefinitions20200901
       # An Amazon product type with a definition available.
       ProductType = Structure.new do
         # @return [String] Human-readable and localized description of the Amazon product type.

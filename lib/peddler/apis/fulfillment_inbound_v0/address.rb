@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Specific details to identify a place.
       Address = Structure.new do
         # @return [String] The street address information.

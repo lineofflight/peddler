@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Information associated with a single SKU in the seller's catalog.
       Item = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.

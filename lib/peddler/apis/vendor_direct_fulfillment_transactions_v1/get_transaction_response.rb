@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentTransactionsV1
+    module VendorDirectFulfillmentTransactionsV1
       # The response schema for the getTransactionStatus operation.
       GetTransactionResponse = Structure.new do
         # @return [Array<Error>]

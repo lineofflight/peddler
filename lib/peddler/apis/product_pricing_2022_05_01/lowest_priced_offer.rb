@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Describes the lowest priced offers for the specified item condition and offer type.
       LowestPricedOffer = Structure.new do
         # @return [LowestPricedOffersInput] The filtering criteria that are used to retrieve the lowest priced offers

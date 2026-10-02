@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Input information for updating a box
       BoxUpdateInput = Structure.new do
         # @return [String]

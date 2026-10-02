@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Represents a customer invoice associated with a purchase order.
       CustomerInvoice = Structure.new do
         # @return [String] The Base64encoded customer invoice.

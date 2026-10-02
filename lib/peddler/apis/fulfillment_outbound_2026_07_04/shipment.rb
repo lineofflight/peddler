@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Delivery and item information for a shipment in a fulfillment order.
       Shipment = Structure.new do
         # @return [AmazonFacility]

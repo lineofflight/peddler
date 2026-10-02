@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Special shipping requirements and restrictions that must be observed when shipping an order item.
       ItemShippingConstraints = Structure.new do
         # @return [String] Payment must be collected from the customer at the time of delivery.

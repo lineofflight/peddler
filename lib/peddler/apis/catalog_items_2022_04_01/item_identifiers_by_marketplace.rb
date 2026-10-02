@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Identifiers that are associated with the item in the Amazon catalog, grouped by `marketplaceId`.
       ItemIdentifiersByMarketplace = Structure.new do
         # @return [Array<ItemIdentifier>] Identifiers associated with the item in the Amazon catalog for the indicated

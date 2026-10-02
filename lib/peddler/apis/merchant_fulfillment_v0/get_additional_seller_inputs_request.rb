@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Request schema.
       GetAdditionalSellerInputsRequest = Structure.new do
         # @return [String] An Amazon defined order identifier

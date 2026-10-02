@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # The HTTP status line associated with the response. For more information, consult [RFC
       # 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
       GetOffersHttpStatusLine = Structure.new do

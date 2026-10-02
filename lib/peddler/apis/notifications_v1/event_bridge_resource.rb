@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The Amazon EventBridge destination.
       EventBridgeResource = Structure.new do
         # @return [String] The identifier for the AWS account that is responsible for charges related to receiving

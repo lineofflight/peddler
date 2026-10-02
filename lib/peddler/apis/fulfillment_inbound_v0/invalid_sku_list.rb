@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # A list of invalid SKU values and the reason they are invalid.
       class InvalidSKUList < Array
         class << self

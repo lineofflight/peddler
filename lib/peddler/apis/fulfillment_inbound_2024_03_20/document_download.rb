@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Resource to download the requested document.
       DocumentDownload = Structure.new do
         # @return [String] The type of download. Possible values: `URL`.

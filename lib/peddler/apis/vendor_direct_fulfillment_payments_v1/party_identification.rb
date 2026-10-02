@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # Name, address and tax details of a party.
       PartyIdentification = Structure.new do
         # @return [String] Assigned Identification for the party.

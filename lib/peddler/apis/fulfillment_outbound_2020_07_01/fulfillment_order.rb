@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # General information about a fulfillment order, including its status.
       FulfillmentOrder = Structure.new do
         # @return [Address] The destination address submitted with the `createFulfillmentOrder` operation.

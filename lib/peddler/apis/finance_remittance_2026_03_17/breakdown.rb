@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinanceRemittance20260317
+    module FinanceRemittance20260317
       # A sub-component of a monetary amount.
       Breakdown = Structure.new do
         # @return [Money] The monetary amount of the sub-component.

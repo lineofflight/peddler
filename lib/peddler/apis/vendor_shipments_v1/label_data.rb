@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Label details as part of the transport label response
       LabelData = Structure.new do
         # @return [String] Unique identification of the carrier.

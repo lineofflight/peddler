@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # An individual FOEP request for a particular SKU.
       FeaturedOfferExpectedPriceRequest = Structure.new do
         # @return [String]

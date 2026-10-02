@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Feeds20210630
+    module Feeds20210630
       # Information required to create the feed.
       CreateFeedSpecification = Structure.new do
         # @return [String] The feed type.

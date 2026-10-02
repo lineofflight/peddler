@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItemsV0
+    module CatalogItemsV0
       Categories = Structure.new do
         # @return [String] The identifier for the product category (or browse node).
         attribute?(:product_category_id, String, from: "ProductCategoryId")

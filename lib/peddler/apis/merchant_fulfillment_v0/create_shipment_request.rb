@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Request schema.
       CreateShipmentRequest = Structure.new do
         # @return [ShipmentRequestDetails] Shipment information required to create a shipment.

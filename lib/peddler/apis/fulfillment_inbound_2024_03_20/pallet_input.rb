@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains input information about a pallet to be used in the inbound plan.
       PalletInput = Structure.new do
         # @return [Integer] The number of containers where all other properties like weight or dimensions are identical.

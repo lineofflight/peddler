@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Delivery settings for a fulfillment preview.
       PreviewDeliveryService = Structure.new do
         # @return [String] Indicates whether to include payment on delivery pricing in the preview. Only present when

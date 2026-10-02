@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The request schema for the createConfirmOrderDetails operation.
       CreateConfirmOrderDetailsRequest = Structure.new do
         # @return [String] The text to be sent to the buyer. Only links related to order completion are allowed. Do not

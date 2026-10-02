@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # The time range in which an item will likely be shipped once an order has been placed.
       DetailedShippingTimeType = Structure.new do
         # @return [String] Indicates whether the item is available for shipping now, or on a known or an unknown date in

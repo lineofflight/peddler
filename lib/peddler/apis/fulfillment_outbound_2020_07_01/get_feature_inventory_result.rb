@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The payload for the `getEligibleInventory` operation.
       GetFeatureInventoryResult = Structure.new do
         # @return [String] The name of the feature.

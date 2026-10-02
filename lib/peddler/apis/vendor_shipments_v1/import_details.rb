@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Provide these fields only if this shipment is a direct import.
       ImportDetails = Structure.new do
         # @return [Weight] Billable weight of the direct imports shipment.

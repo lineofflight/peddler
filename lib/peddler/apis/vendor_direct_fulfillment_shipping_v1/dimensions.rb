@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Physical dimensional measurements of a container.
       Dimensions = Structure.new do
         # @return [String] The height of the container.

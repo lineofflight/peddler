@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # The billing period for an invoice.
       BillingPeriod = Structure.new do
         # @return [Time] The end of the billing period of an invoice. In ISO 8601 format.

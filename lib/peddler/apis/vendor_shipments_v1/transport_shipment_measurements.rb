@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Shipment measurement details.
       TransportShipmentMeasurements = Structure.new do
         # @return [Volume] Total Volume of the shipment.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Repeated occurrence of an event in a time range.
       Recurrence = Structure.new do
         # @return [Time] End time of the recurrence.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A comparison row with metric values for each product.
       ThreeColumnComparisonRow = Structure.new do
         # @return [Array<MetricValueItem>] The metric values for each of the three products in this row. Exactly three

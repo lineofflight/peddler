@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # A promotion-level validation issue.
       PromotionIssue = Structure.new do
         # @return [String] Issue code identifier.

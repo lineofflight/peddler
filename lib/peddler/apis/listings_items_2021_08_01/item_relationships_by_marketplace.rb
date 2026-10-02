@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Relationship details for the listing item in the specified Amazon store.
       ItemRelationshipsByMarketplace = Structure.new do
         # @return [String] Amazon store identifier.

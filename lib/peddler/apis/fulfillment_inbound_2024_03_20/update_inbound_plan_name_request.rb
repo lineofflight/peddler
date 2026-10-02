@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `updateInboundPlanName` request.
       UpdateInboundPlanNameRequest = Structure.new do
         # @return [String] A human-readable name to update the inbound plan name to.

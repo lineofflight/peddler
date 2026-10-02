@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The request schema for the OneClickShipment operation. When the channelType is not Amazon, shipTo is required
       # and when channelType is Amazon shipTo is ignored.
       OneClickShipmentRequest = Structure.new do

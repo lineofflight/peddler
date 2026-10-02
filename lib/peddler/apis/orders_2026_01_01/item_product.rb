@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Product information for an order item.
       ItemProduct = Structure.new do
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.

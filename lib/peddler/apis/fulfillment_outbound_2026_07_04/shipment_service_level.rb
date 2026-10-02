@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The service level for a shipment in a fulfillment order.
       ShipmentServiceLevel = Structure.new do
         # @return [String] The service tier used for this shipment. Possible values: `STANDARD`, `EXPEDITED`, `PRIORITY`

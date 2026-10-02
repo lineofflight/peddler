@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # This object contains all the details of the scheduled Easy Ship package.
       Package = Structure.new do
         # @return [Dimensions]

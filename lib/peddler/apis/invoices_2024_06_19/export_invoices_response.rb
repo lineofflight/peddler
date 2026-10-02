@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # Success.
       ExportInvoicesResponse = Structure.new do
         # @return [String] The export identifier.

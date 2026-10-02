@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of network commingling transaction events.
       class NetworkComminglingTransactionEventList < Array
         class << self

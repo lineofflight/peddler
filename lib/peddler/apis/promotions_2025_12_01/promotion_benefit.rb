@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types, where the
       # benefit applies uniformly across all items in the promotion. For `DEAL` and `PRICE_DISCOUNT` promotion types,
       # benefits are configured at the item level within each item in the selection.

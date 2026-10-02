@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # UnmanifestedShipmentLocation info
       UnmanifestedShipmentLocation = Structure.new do
         # @return [Address]

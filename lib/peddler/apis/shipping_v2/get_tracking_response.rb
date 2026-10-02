@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The response schema for the getTracking operation.
       GetTrackingResponse = Structure.new do
         # @return [GetTrackingResult]

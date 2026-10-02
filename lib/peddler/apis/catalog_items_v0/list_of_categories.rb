@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItemsV0
+    module CatalogItemsV0
       class ListOfCategories < Array
         class << self
           def parse(array)

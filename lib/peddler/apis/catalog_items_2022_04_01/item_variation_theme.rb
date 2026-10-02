@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # The variation theme is a list of Amazon catalog item attributes that define the variation family.
       ItemVariationTheme = Structure.new do
         # @return [Array<String>] Names of the Amazon catalog item attributes that are associated with the variation

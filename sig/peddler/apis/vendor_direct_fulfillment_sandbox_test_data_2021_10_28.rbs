@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class VendorDirectFulfillmentSandboxTestData20211028 < API
+    module VendorDirectFulfillmentSandboxTestData20211028
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentSandboxTestData20211028::Error
                     | (String, String, String?) -> Peddler::APIs::VendorDirectFulfillmentSandboxTestData20211028::Error
@@ -198,9 +200,6 @@ module Peddler
         def members: () -> [ :transaction_status ]
         def to_h: () -> { transaction_status: Peddler::APIs::VendorDirectFulfillmentSandboxTestData20211028::Transaction? }
       end
-
-      def generate_order_scenarios: (Hash[untyped, untyped]) -> Peddler::Response
-      def get_order_scenarios: (String) -> Peddler::Response
     end
   end
 end

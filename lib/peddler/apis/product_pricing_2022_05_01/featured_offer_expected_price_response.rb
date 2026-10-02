@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # Schema for an individual FOEP response.
       FeaturedOfferExpectedPriceResponse = Structure.new do
         # @return [Hash]

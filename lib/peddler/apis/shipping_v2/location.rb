@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The location where the person, business or institution is located.
       Location = Structure.new do
         # @return [String]

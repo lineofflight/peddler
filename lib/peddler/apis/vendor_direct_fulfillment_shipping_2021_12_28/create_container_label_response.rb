@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # The response schema for the `createContainerLabel` operation.
       CreateContainerLabelResponse = Structure.new do
         # @return [ContainerLabel] The label data for the container label.

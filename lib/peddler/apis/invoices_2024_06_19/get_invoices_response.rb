@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # Success.
       GetInvoicesResponse = Structure.new do
         # @return [Array<Invoice>] A list of invoices.

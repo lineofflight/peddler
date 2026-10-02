@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Client Reference Details
       ClientReferenceDetail = Structure.new do
         # @return [String] The Client Reference Id.

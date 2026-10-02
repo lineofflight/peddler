@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # The weight of the scheduled package
       Weight = Structure.new do
         # @return [String]

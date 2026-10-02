@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # The configuration of the schedule.
       ScheduleExpression = Structure.new do
         # @return [String] The type of the scheduled transfer.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The payload for the OneClickShipment API.
       OneClickShipmentResult = Structure.new do
         # @return [Carrier]

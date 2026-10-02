@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # Represents an address
       Address = Structure.new do
         # @return [String] Street address information.

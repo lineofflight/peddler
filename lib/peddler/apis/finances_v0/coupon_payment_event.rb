@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An event related to coupon payments.
       CouponPaymentEvent = Structure.new do
         # @return [ChargeComponent]

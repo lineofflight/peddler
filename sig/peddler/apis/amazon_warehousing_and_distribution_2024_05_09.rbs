@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509 < API
+    module AmazonWarehousingAndDistribution20240509
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Address < Data
         def self.new: (address_line1: String, country_code: String, name: String, state_or_region: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone_number: String?, ?postal_code: String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
                     | (String, String, String, String, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::AmazonWarehousingAndDistribution20240509::Address
@@ -982,39 +984,6 @@ module Peddler
         def members: () -> [ :tracking_details ]
         def to_h: () -> { tracking_details: Array[Peddler::APIs::AmazonWarehousingAndDistribution20240509::TrackingDetails] }
       end
-
-      def cancel_inbound: (String, ?rate_limit: Float) -> Peddler::Response
-
-      def check_inbound_eligibility: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def confirm_inbound: (String, ?rate_limit: Float) -> Peddler::Response
-
-      def confirm_outbound: (String, ?rate_limit: Float) -> Peddler::Response
-
-      def confirm_replenishment_order: (String) -> Peddler::Response
-      def create_inbound: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def create_outbound: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def create_replenishment_order: (Hash[untyped, untyped]) -> Peddler::Response
-      def get_inbound: (String, ?rate_limit: Float) -> Peddler::Response
-
-      def get_inbound_shipment: (String, ?sku_quantities: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_inbound_shipment_labels: (String, ?page_type: String?, ?format_type: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_label_page_types: (String, ?rate_limit: Float) -> Peddler::Response
-
-      def get_outbound: (String, ?rate_limit: Float) -> Peddler::Response
-
-      def get_replenishment_order: (String) -> Peddler::Response
-      def list_inbound_shipments: (?sort_by: String?, ?sort_order: String?, ?shipment_status: String?, ?updated_after: String?, ?updated_before: String?, ?max_results: Integer?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def list_inventory: (?sku: String?, ?sort_order: String?, ?details: String?, ?next_token: String?, ?max_results: Integer?, ?rate_limit: Float) -> Peddler::Response
-      def list_outbounds: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def list_replenishment_orders: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?) -> Peddler::Response
-      def update_inbound: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def update_inbound_shipment_transport_details: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def update_outbound: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

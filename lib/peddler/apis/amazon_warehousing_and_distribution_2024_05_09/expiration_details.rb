@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # The expiration details of the inventory. This object will only appear if the details parameter in the request is
       # set to `SHOW`.
       ExpirationDetails = Structure.new do

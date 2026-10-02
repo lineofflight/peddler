@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Information about the seller's feedback, including the percentage of positive feedback, and the total number of
       # ratings received.
       SellerFeedbackType = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # An item identifier and the estimated fees for the item.
       FeesEstimateResult = Structure.new do
         # @return [FeesEstimateError] An error object with a type, code, and message.

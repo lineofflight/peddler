@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # An item that is associated with an order item. For example, a tire installation service that is purchased with
       # tires.
       AssociatedItem = Structure.new do

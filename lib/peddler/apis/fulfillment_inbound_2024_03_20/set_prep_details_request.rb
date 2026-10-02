@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `setPrepDetails` request.
       SetPrepDetailsRequest = Structure.new do
         # @return [String] The marketplace ID. For a list of possible values, refer to [Marketplace

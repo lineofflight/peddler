@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # The request schema for the GetShipmentLabels operation.
       TransportationLabels = Structure.new do
         # @return [Pagination]

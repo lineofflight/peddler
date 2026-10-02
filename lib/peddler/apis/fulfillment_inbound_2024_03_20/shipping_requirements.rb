@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The possible shipping modes for the packing option for a given shipping solution or program. Available solutions
       # are Amazon-Partnered Carrier and Use Your Own Carrier. Available modes are ground small parcel, freight
       # less-than-truckload (LTL), freight full-truckload (FTL) palletized, freight FTL non-palletized, ocean

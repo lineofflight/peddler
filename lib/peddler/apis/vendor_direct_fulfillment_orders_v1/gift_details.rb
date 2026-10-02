@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Gift details for the item.
       GiftDetails = Structure.new do
         # @return [String] Gift message to be printed in shipment.

@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Shipment Status details.
       ShipmentStatusDetails = Structure.new do
         # @return [String] Current status of the shipment on whether it is picked up or scheduled.

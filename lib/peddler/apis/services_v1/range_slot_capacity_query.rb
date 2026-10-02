@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Request schema for the `getRangeSlotCapacity` operation. This schema is used to define the time range and
       # capacity types that are being queried.
       RangeSlotCapacityQuery = Structure.new do

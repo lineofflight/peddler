@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A reference to a video asset hosted within A+, including metadata and a preview thumbnail image.
       VideoComponent = Structure.new do
         # @return [ImageCropSpecification]

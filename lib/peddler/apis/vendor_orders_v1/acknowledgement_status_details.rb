@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Details of item quantity ordered
       AcknowledgementStatusDetails = Structure.new do
         # @return [ItemQuantity] Item quantity accepted by vendor to be shipped.

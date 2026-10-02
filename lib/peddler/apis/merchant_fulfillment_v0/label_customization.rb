@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Custom text for shipping labels.
       LabelCustomization = Structure.new do
         # @return [String]

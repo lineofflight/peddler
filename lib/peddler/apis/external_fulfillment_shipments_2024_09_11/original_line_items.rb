@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The line items from the original shipment that corresponds to this shipment.
       class OriginalLineItems < Array
         class << self

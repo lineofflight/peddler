@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # A date-time interval in ISO 8601 format used to compute metrics. Only the date is required, but you must pass
       # the complete date and time value. For example, November 11, 2022 should be passed as "2022-11-11T00:00:00Z".
       # Note that only data for the trailing 2 years is supported.

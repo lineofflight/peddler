@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Reports20210630
+    module Reports20210630
       # A list of reports.
       class ReportList < Array
         class << self

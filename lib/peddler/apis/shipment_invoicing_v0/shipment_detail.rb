@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The information required by a selling partner to issue a shipment invoice.
       ShipmentDetail = Structure.new do
         # @return [String] The Amazon-defined identifier for the order.

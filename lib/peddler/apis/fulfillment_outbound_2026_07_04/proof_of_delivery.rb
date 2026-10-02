@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Proof of delivery information for a package.
       ProofOfDelivery = Structure.new do
         # @return [String] URL of the delivery photo.

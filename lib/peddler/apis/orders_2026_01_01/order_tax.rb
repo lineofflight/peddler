@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Tax information about the order.
       OrderTax = Structure.new do
         # @return [OrderTaxInvoicing] Tax invoicing information for the order.

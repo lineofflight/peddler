@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Detailed information about how the cancellation was processed for a specific order item.
       ItemCancellationExecution = Structure.new do
         # @return [String] The provided explanation for why the cancellation occurred.

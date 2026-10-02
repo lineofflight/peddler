@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Summary information about a placement option.
       PlacementOptionSummary = Structure.new do
         # @return [String] The identifier of a placement option. A placement option represents the shipment splits and

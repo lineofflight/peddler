@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The time range within which something (for example, a delivery) will occur.
       DateRange = Structure.new do
         # @return [String] The earliest point in a date range.

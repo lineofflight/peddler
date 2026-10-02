@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Error object containing information about what went wrong.
       Error = Structure.new do
         # @return [String] An error code that identifies the type of error that occurred.

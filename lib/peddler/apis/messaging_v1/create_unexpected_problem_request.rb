@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The request schema for the createUnexpectedProblem operation.
       CreateUnexpectedProblemRequest = Structure.new do
         # @return [String] The text to be sent to the buyer. Only links related to unexpected problem calls are allowed.

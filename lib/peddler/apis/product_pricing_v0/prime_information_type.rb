@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Amazon Prime information.
       PrimeInformationType = Structure.new do
         # @return [:boolean] Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
       CompetitiveSummaryResponseBody = Structure.new do
         # @return [String] The Amazon identifier for the item.

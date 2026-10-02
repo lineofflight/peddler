@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # Use these parameters to sort the response.
       ListOfferMetricsRequestSort = Structure.new do
         # @return [String]

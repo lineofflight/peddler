@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductTypeDefinitions20200901
+    module ProductTypeDefinitions20200901
       # A property group represents a logical grouping of schema properties that can be used for display or
       # informational purposes.
       PropertyGroup = Structure.new do

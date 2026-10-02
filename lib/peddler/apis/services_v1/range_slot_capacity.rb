@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `getRangeSlotCapacity` operation.
       RangeSlotCapacity = Structure.new do
         # @return [Array<RangeCapacity>] Array of range capacities where each entry is for a specific capacity type.

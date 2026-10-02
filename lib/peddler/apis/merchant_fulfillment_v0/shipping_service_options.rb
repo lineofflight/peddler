@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Extra services provided by a carrier.
       ShippingServiceOptions = Structure.new do
         # @return [:boolean] When true, the carrier will pick up the package. Note: Scheduled carrier pickup is

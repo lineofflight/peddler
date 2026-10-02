@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The shipping address details of the shipment.
       Address = Structure.new do
         # @return [String] The street address.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The browse node review subtopic.
       BrowseNodeSubtopic = Structure.new do
         # @return [BrowseNodeReviewSubtopicMetrics] The browse node review subtopic metrics.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Buyer segment or program this offer is applicable to.
       Audience = Structure.new do
         # @return [String] Localized display name for the audience.

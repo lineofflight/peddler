@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The response schema for the `deleteSubscriptionById` operation.
       DeleteSubscriptionByIdResponse = Structure.new do
         # @return [Array<Error>] An unexpected condition occurred during the `deleteSubscriptionById` operation.

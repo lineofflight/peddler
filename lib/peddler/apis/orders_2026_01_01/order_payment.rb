@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Payment information about the order.
       OrderPayment = Structure.new do
         # @return [Array<PaymentExecution>] A list of payment executions for the order.

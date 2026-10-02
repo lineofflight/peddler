@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The delivery channel of a supply source.
       DeliveryChannel = Structure.new do
         # @return [:boolean]

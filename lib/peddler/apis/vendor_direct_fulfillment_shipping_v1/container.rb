@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # A container used for shipping and packing items.
       Container = Structure.new do
         # @return [String] The container identifier.

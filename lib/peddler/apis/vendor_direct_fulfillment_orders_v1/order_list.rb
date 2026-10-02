@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # A list of purchase orders returned as response.
       OrderList = Structure.new do
         # @return [Array<Order>] Represents a purchase order within the OrderList.

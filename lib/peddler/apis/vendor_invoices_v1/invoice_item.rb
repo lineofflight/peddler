@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # Details of the item being invoiced.
       InvoiceItem = Structure.new do
         # @return [ItemQuantity] Invoiced quantity of this item. Quantity must be greater than zero.

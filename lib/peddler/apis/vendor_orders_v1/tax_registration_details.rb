@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Tax registration details of the entity.
       TaxRegistrationDetails = Structure.new do
         # @return [String] Tax registration number for the entity. For example, VAT ID.

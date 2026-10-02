@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The response schema for the `getServiceJobByServiceJobId` operation.
       GetServiceJobByServiceJobIdResponse = Structure.new do
         # @return [Array<Error>] An unexpected condition occurred during the `getServiceJobByServiceJobId` operation.

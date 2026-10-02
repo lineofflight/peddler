@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Description of a classification that can be used to get more fine-grained search results.
       ClassificationRefinement = Structure.new do
         # @return [String] Identifier for the classification that can be used for search refinement purposes.

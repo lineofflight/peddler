@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The payload schema for the getTrackingInformation operation.
       TrackingInformation = Structure.new do
         # @return [Array<Event>]

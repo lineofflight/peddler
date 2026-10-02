@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Delivery information for the item.
       ItemDelivery = Structure.new do
         # @return [Time] The date and time of the latest Estimated Delivery Date (EDD) of all the items with an EDD. In

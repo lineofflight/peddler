@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The Response for the GenerateCollectionFormResponse operation.
       GenerateCollectionFormResponse = Structure.new do
         # @return [CollectionsFormDocument]

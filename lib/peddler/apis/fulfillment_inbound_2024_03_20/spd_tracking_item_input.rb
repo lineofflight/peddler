@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Small Parcel Delivery (SPD) tracking items input information.
       SpdTrackingItemInput = Structure.new do
         # @return [String] The ID provided by Amazon that identifies a given box. This ID is comprised of the external

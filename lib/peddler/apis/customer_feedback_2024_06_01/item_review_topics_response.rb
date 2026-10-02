@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The response for the `getItemReviewTopics` operation.
       ItemReviewTopicsResponse = Structure.new do
         # @return [String] The requested ASIN. The Amazon Standard Identification Number (ASIN) is the unique identifier

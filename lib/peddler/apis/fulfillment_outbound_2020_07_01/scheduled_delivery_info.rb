@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Delivery information for a scheduled delivery. This is only available in the JP marketplace.
       ScheduledDeliveryInfo = Structure.new do
         # @return [String] The time zone of the destination address for the fulfillment order preview. Must be an IANA

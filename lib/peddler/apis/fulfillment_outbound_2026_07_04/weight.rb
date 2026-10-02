@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # The weight.
       Weight = Structure.new do
         # @return [String] The unit of weight. Possible values: `KG`, `KILOGRAMS`, `LB`, `POUNDS`.

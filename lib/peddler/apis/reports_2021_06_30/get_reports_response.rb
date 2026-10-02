@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Reports20210630
+    module Reports20210630
       # The response for the `getReports` operation.
       GetReportsResponse = Structure.new do
         # @return [Array<Report>] The reports.

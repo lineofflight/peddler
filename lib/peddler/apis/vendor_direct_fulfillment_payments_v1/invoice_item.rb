@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # Provides the details of the items in this invoice.
       InvoiceItem = Structure.new do
         # @return [ItemQuantity] Item quantity invoiced.

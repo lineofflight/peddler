@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A SAFE-T claim reimbursement on the seller's account.
       SAFETReimbursementEvent = Structure.new do
         # @return [String] The date and time when the financial event was posted.

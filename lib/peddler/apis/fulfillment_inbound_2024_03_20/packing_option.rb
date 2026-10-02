@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # A packing option contains a set of pack groups plus additional information about the packing option, such as any
       # discounts or fees if it's selected.
       PackingOption = Structure.new do

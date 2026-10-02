@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The response of fetching appointment slots based on service context.
       GetAppointmentSlotsResponse = Structure.new do
         # @return [Array<Error>] Errors occurred in getting schedule.

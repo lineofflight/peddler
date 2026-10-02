@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A relationship between media assets, representing a pairing with its own title, status, and lifecycle.
       RelatedMedia = Structure.new do
         # @return [String] The type of relationship.

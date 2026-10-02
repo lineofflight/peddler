@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Details of the item being shipped.
       Item = Structure.new do
         # @return [Integer] Item Sequence Number for the item. This must be the same value as sent in order for a given

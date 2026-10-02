@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Package information to update for a specific package in a fulfillment order.
       UpdatePackageRequest = Structure.new do
         # @return [String]

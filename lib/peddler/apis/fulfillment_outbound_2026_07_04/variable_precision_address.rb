@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # A physical address with varying degrees of precision. A more precise address can provide more accurate results
       # than country code and postal code alone.
       VariablePrecisionAddress = Structure.new do

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # The response schema for the submitInvoices operation.
       SubmitInvoicesResponse = Structure.new do
         # @return [Array<Error>]

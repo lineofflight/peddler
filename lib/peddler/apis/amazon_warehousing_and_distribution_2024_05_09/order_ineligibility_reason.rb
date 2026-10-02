@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents one ineligibility reason for the order (there can be multiple reasons).
       OrderIneligibilityReason = Structure.new do
         # @return [String] Code for the order ineligibility.

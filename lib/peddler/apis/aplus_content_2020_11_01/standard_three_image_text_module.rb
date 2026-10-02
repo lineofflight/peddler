@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Three standard images with text, presented across a single row.
       StandardThreeImageTextModule = Structure.new do
         # @return [StandardImageTextBlock]

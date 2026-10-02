@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Contains all delivery instructions that the customer provides for the shipping address.
       DeliveryPreference = Structure.new do
         # @return [String] Building instructions, nearby landmark, or navigation instructions.

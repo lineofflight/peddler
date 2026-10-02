@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Additional information that is related to the time range of the transaction.
       TimeRangeContext = Structure.new do
         # @return [String] The end time of the transaction.

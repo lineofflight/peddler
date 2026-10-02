@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Packaging requirements for a fulfillment preview.
       PreviewPackagingService = Structure.new do
         # @return [String] Whether to require an overbox for the shipment. Possible values: `REQUIRED`, `NOT_REQUIRED`.

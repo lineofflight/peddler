@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A debt payment or debt adjustment.
       DebtRecoveryEvent = Structure.new do
         # @return [Array<ChargeInstrument>]

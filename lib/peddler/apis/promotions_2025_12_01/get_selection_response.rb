@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # The response schema for `getSelection`. The `selectionDetails` field is always present when `type` is `ITEMS`.
       GetSelectionResponse = Structure.new do
         # @return [Selection]

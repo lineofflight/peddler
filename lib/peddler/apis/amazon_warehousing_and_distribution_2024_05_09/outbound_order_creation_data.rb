@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Payload for creating an outbound order.
       OutboundOrderCreationData = Structure.new do
         # @return [Array<OrderAttribute>] Order preferences for the outbound order.

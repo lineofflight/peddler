@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Product information for the line item.
       PreviewProduct = Structure.new do
         # @return [ProductIdentifier]

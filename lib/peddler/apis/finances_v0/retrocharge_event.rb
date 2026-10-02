@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A retrocharge or retrocharge reversal.
       RetrochargeEvent = Structure.new do
         # @return [String] An Amazon-defined identifier for an order.

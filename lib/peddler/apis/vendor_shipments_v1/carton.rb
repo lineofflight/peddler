@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Details of the carton/package being shipped.
       Carton = Structure.new do
         # @return [String] Carton sequence number for the carton. The first carton will be 001, the second 002, and so

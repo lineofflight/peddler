@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # A time window along with associated capacity in which the service can be performed.
       AppointmentSlot = Structure.new do
         # @return [Integer] Number of resources for which a slot can be reserved.

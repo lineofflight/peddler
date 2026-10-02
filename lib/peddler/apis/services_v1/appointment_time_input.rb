@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # The input appointment time details.
       AppointmentTimeInput = Structure.new do
         # @return [Time] The date, time in UTC for the start time of an appointment in ISO 8601 format.

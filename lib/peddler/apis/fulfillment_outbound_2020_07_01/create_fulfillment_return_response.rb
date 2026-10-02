@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The response schema for the `createFulfillmentReturn` operation.
       CreateFulfillmentReturnResponse = Structure.new do
         # @return [Array<Error>] One or more unexpected errors occurred during the `createFulfillmentReturn` operation.

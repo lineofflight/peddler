@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Carton/Pallet level details for the item.
       ContainerItem = Structure.new do
         # @return [String] The reference number for the item. Please provide the itemSequenceNumber from the 'items'

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # The images for an item in the Amazon catalog.
       class ItemImages < Array
         class << self

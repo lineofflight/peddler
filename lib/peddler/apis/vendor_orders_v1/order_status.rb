@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Current status of a purchase order.
       OrderStatus = Structure.new do
         # @return [Array<OrderItemStatus>] Detailed order status.

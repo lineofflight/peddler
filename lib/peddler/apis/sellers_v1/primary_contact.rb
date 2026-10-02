@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # Information about the seller's primary contact.
       PrimaryContact = Structure.new do
         # @return [Address] The primary contact's residential address.

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The details of a shipping service offering.
       Rate = Structure.new do
         # @return [String]

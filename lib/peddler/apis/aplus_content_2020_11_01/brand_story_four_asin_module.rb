@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A Brand Story card displaying up to four product ASINs with images, enabling cross-selling to other products in
       # your catalog.
       BrandStoryFourASINModule = Structure.new do

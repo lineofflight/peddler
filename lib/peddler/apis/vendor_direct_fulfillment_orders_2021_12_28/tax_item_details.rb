@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrders20211228
+    module VendorDirectFulfillmentOrders20211228
       # Total tax details for the line item.
       TaxItemDetails = Structure.new do
         # @return [Array<TaxDetails>] Tax details.

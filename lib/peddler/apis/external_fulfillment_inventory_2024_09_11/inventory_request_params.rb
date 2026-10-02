@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # The parameters for an individual request.
       InventoryRequestParams = Structure.new do
         # @return [Integer] The latest sequence number for the inventory update operation. You find this value in the

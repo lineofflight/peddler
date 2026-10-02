@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Additional information related to the verification of a regulated order.
       VerificationDetails = Structure.new do
         # @return [Array<ApprovedAttribute>] Pre-approved alternative product attributes provided when a vet rejects an

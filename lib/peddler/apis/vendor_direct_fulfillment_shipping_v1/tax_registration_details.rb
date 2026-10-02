@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Tax registration details of the entity.
       TaxRegistrationDetails = Structure.new do
         # @return [String] Tax registration number for the party. For example, VAT ID.

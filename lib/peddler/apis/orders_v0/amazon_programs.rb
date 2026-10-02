@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Contains the list of programs that Amazon associates with an item.
       #
       # Possible programs are:

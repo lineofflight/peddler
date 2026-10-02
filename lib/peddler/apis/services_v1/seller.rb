@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Information about the seller of the service job.
       Seller = Structure.new do
         # @return [String] The identifier of the seller of the service job.

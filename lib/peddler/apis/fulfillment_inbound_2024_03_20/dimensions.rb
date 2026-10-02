@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Measurement of a package's dimensions.
       Dimensions = Structure.new do
         # @return [Float] The height of a package.

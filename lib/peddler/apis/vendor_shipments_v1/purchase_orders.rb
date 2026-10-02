@@ -7,7 +7,7 @@ require "time"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # Transport Request pickup date
       PurchaseOrders = Structure.new do
         # @return [Array<PurchaseOrderItems>] A list of the items that are associated to the PO in this transport and

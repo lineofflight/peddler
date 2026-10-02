@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A document, described by its file type and data.
       Document = Structure.new do
         # @return [String] Base 64 encoded file contents.

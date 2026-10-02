@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentInventoryV1
+    module VendorDirectFulfillmentInventoryV1
       # Inventory details required to update some or all items for the requested warehouse.
       InventoryUpdate = Structure.new do
         # @return [:boolean] When true, this request contains a full feed. Otherwise, this request contains a partial

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # The quantity of reserved inventory.
       ReservedQuantity = Structure.new do
         # @return [Integer] The number of units that have been sidelined at the fulfillment center for additional

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # An object which represents all promotions applied to an offer.
       OfferProgramConfigurationPromotions = Structure.new do
         # @return [OfferProgramConfigurationPromotionsDiscountFunding] A base discount set by Amazon on the offer.

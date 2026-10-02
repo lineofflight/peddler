@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Uploads20201101
+    module Uploads20201101
       # The response schema for the createUploadDestination operation.
       CreateUploadDestinationResponse = Structure.new do
         # @return [Array<Error>]

@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `createInboundPlan` request.
       CreateInboundPlanRequest = Structure.new do
         # @return [Array<String>] Marketplaces where the items need to be shipped to. Currently only one marketplace can
