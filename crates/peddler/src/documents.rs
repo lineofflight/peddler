@@ -232,19 +232,23 @@ impl Download {
             let mut rows = 0;
             while let Some(chunk) = self.body.next().await {
                 let chunk = chunk?;
-                for &byte in chunk.iter() {
-                    check_deadline(self.deadline)?;
-                    if byte == b'\n' {
-                        if !record.iter().all(u8::is_ascii_whitespace) {
-                            rows += 1;
-                            if rows > self.options.max_records { Err(Error::RowLimit)?; }
-                            let result = serde_json::from_slice(&record).map_err(|_| Error::Format);
-                            check_deadline(self.deadline)?;
-                            yield result?;
-                        }
-                        record.clear();
-                    } else { extend_bounded(&mut record, &[byte], self.options.max_record_bytes, Error::RecordLimit)?; }
+                // The deadline is checked per chunk and per record, not per byte.
+                check_deadline(self.deadline)?;
+                let mut rest = &chunk[..];
+                while let Some(end) = rest.iter().position(|&byte| byte == b'\n') {
+                    extend_bounded(&mut record, &rest[..end], self.options.max_record_bytes, Error::RecordLimit)?;
+                    rest = &rest[end + 1..];
+                    if !record.iter().all(u8::is_ascii_whitespace) {
+                        check_deadline(self.deadline)?;
+                        rows += 1;
+                        if rows > self.options.max_records { Err(Error::RowLimit)?; }
+                        let result = serde_json::from_slice(&record).map_err(|_| Error::Format);
+                        check_deadline(self.deadline)?;
+                        yield result?;
+                    }
+                    record.clear();
                 }
+                extend_bounded(&mut record, rest, self.options.max_record_bytes, Error::RecordLimit)?;
             }
             if !record.iter().all(u8::is_ascii_whitespace) {
                 check_deadline(self.deadline)?;
