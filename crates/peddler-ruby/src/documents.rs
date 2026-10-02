@@ -290,16 +290,24 @@ impl Document {
     }
 }
 
-async fn wait_closed(state: Arc<Mutex<StreamState>>, signal: Arc<Notify>) {
+/// Returns once `done` holds. It registers before checking, so a `notify_waiters`
+/// between the check and the wait is not missed.
+async fn until(notify: &Notify, done: impl Fn() -> bool) {
     loop {
-        let notified = signal.notified();
+        let notified = notify.notified();
         tokio::pin!(notified);
         notified.as_mut().enable();
-        if matches!(*state.lock().unwrap(), StreamState::Closed) {
+        if done() {
             return;
         }
         notified.await;
     }
+}
+async fn wait_closed(state: Arc<Mutex<StreamState>>, signal: Arc<Notify>) {
+    until(&signal, || {
+        matches!(*state.lock().unwrap(), StreamState::Closed)
+    })
+    .await;
 }
 enum UploadState {
     Pending,
@@ -312,16 +320,19 @@ struct Completion {
 }
 impl Completion {
     async fn ready(&self) {
-        loop {
-            // Register before inspecting, so notify_waiters cannot be missed.
-            let notified = self.notify.notified();
-            tokio::pin!(notified);
-            notified.as_mut().enable();
-            if !matches!(*self.result.lock().unwrap(), UploadState::Pending) {
-                return;
-            }
-            notified.await;
+        until(&self.notify, || {
+            !matches!(*self.result.lock().unwrap(), UploadState::Pending)
+        })
+        .await;
+    }
+    /// Keeps the first result and wakes every waiter.
+    fn settle(&self, result: Result<UploadResponse, DocumentError>) {
+        let mut state = self.result.lock().unwrap();
+        if matches!(*state, UploadState::Pending) {
+            *state = UploadState::Ready(result);
         }
+        drop(state);
+        self.notify.notify_waiters();
     }
 }
 pub(super) type UploadSource =
@@ -401,12 +412,7 @@ impl Upload {
                     Err(DocumentError::Transport)
                 }
             };
-            let mut state = target.result.lock().unwrap();
-            if matches!(*state, UploadState::Pending) {
-                *state = UploadState::Ready(result);
-            }
-            drop(state);
-            target.notify.notify_waiters();
+            target.settle(result);
         });
         let abort = worker.abort_handle();
         drop(worker);
@@ -471,12 +477,7 @@ impl Upload {
     fn close(ruby: &Ruby, upload: &Self) -> Result<(), Error> {
         let owner = upload.0.get(ruby)?;
         owner.abort.abort();
-        let mut state = owner.completion.result.lock().unwrap();
-        if matches!(*state, UploadState::Pending) {
-            *state = UploadState::Ready(Err(DocumentError::UploadSource));
-        }
-        drop(state);
-        owner.completion.notify.notify_waiters();
+        owner.completion.settle(Err(DocumentError::UploadSource));
         let sender = owner.sender.lock().unwrap().take();
         drop(sender);
         Ok(())
