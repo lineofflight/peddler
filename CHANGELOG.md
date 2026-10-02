@@ -14,14 +14,15 @@ All notable changes to this project will be documented in this file. This projec
 
 - Expose all 384 SP-API operations across 70 versions in Rust and native Ruby, with schema defaults, keyword methods, 58 latest aliases, raw responses and lazy typed decoding
 
-- Add native LWA authorization-code onboarding with redacted token results and bounded, cancellable requests
+- Add the three Login with Amazon grants to `Peddler::LWA` and the Rust `LwaClient`: `refresh`, `client_credentials` and `exchange_authorization_code`. Each makes one bounded, cancellable request, keeps nothing and returns tokens that redact themselves in `inspect`
+- Add `Peddler::Client#with_access_token` and the Rust `Client::with_access_token`: a view that sends another token on the same connection pool, for another seller, a rotated token or a restricted data token
 
 - Prepare native packaging: a source gem that compiles the Rust extension at install time and fat platform gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu` (Ruby 3.3, 3.4 and 4.0), built with `rb_sys` and rake-compiler; nothing is published yet. The loader selects the build for the running Ruby or fails clearly; see [native extension](README.md#native-extension)
 - Prepare the `peddler` Rust crate (0.1.0) for crates.io with MIT metadata and an explicit package list; it builds offline from the extracted package without Node, Ruby or the spec checkout
 
 - Add native signed-URL document streaming with Rust GZIP/JSONL/TSV parsing, bounded whole JSON and IO uploads with backpressure, cancellation and fork guards
 
-- Add shared LWA refresh and client-credentials authentication, restricted-data-token views, opt-in rate limits and safe status retries to the Rust/native preview; total deadlines include authentication and waits
+- Add safe status retries, off by default: `retries:` replays only GET, HEAD and OPTIONS on 429, 500, 502, 503 and 504, honors `Retry-After`, backs off with jitter and never replays a write. One deadline (`timeout:`) covers every attempt, the body and the waits
 - Add opt-in native `Response#raise_for_status!` with Rust API-error classification and preserved raw response bytes
 
 - Add typed Rust models for all pinned report, feed, notification and Data Kiosk schemas, retaining Ruby parsing and introspection resources
@@ -32,12 +33,15 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changed
 
-- Make the native layer the root of the gem. `require "peddler"` loads the Rust extension, and `Peddler::Client` is the only entry point: `Peddler::Client.new(region: "eu-west-1", refresh_token: token)`, then `client.orders_v0.get_orders(...)`, `client.orders` for the latest version and `client.sandbox` for a sandbox view. The client requests and refreshes access tokens itself; `client_id` and `client_secret` default to `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET`
+- Make the native layer the root of the gem. `require "peddler"` loads the Rust extension, and `Peddler::Client` is the only entry point: `Peddler::Client.new(region: "eu-west-1", access_token: token)`, then `client.orders_v0.get_orders(...)`, `client.orders` for the latest version and `client.sandbox` for a sandbox view
+- Keep the client thin, as in v5: it sends the `access_token:` it is given and never requests, refreshes or caches a token, and it has no client-side rate limits. Get tokens from `Peddler::LWA` and store them where your processes can share them; get a restricted data token from `client.tokens.create_restricted_data_token` and pass it to `client.with_access_token`
+- Share one connection pool and one native runtime among all clients in a process, so building a client per job is cheap and reuses connections. After `fork`, build a new client in the child; one built in the parent raises `Peddler::ForkError`
+- Send the host name in the `User-Agent` only to the Selling Partner API, as v5 did; LWA and signed-URL requests send `Peddler/<version> (Language=Ruby)`
 - Take keyword arguments in every operation method; required arguments are no longer positional
 - Raise `Peddler::Error` on every API response outside 2xx, from operations, `client.request`, paginated enumerators and the document ID helpers, also after retries are exhausted. `Peddler::Error` is one generic class with `status`, `code`, `request_id` and `response`; match on `status` and `code`. `Response#raise_for_status!` stays and returns the response on 2xx
 - Return the native `Peddler::Response` everywhere: `status` is an Integer, `headers` an array of pairs and `body` a String. `json`, `to_h`, `dig` and typed `parse` work on it
 - Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models and the lookup `parse` uses
-- Make `Peddler::LWA` the authorization-code client: `Peddler::LWA.new.exchange_authorization_code(code:, redirect_uri:)` returns `Peddler::LWA::Tokens`
+- Make `Peddler::LWA` a stateless helper: `Peddler::LWA.new` takes `client_id:` and `client_secret:`, which default to `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET`, and `refresh(refresh_token:)`, `client_credentials(scope:)` and `exchange_authorization_code(code:, redirect_uri:)` return `Peddler::LWA::Tokens`
 - Move the native classes to the root namespace: `Peddler::TransportError`, `Peddler::TimeoutError`, `Peddler::AuthenticationError`, `Peddler::ForkError`, `Peddler::DocumentError`, `Peddler::DocumentTimeoutError`, `Peddler::PaginationError`, `Peddler::WorkflowError`, `Peddler::WorkflowTimeoutError`, `Peddler::Document`, `Peddler::Pagination`, `Peddler::Continuation` and `Peddler::FeedDocumentUpload`. None of them descends from `Peddler::Error`
 - Bump the gem to 6.0.0. Add a runtime dependency on `bigdecimal` (no longer a default gem since Ruby 3.4), which native document parsing requires
 
@@ -53,6 +57,7 @@ All notable changes to this project will be documented in this file. This projec
 - Remove `kind` from API errors and `WorkflowHTTPError`; a failed metadata lookup raises `Peddler::Error`
 - Remove the sandbox guards (`cannot_sandbox!`, `must_sandbox!`, `Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox`); Amazon rejects those calls itself
 - Remove `Response#parsable?`; `parse` returns the Hash when the operation has no typed model
+- Remove the `rate_limit:` argument of operation methods. The client waits only when Amazon throttles a retried request; pacing calls is left to the application
 - Remove the `http` and `nokogiri` dependencies
 
 ### Fixed
@@ -71,8 +76,7 @@ All notable changes to this project will be documented in this file. This projec
 - **Removed**: Transfers 2024-06-01: unused `PaymentMethodTypeList` type, replaced by `RelatedIdentifiers`
 - **Added**: Listings Items 2021-08-01: `marketplace_ids` field on `Issue`
 - **Added**: Orders 2026-01-01: `cancellation_execution` field (new `ItemCancellationExecution` type) on `ItemCancellation`; `label_printing_window` field on `OrderFulfillment`
-- **Added**: Fulfillment Inbound 2024-03-20: explicit `rate_limit` parameter on all operations; `discounts` field on `DeliveryWindowOption`
-- **Changed**: Invoices 2024-06-19: removed the `rate_limit` parameter from all operations
+- **Added**: Fulfillment Inbound 2024-03-20: `discounts` field on `DeliveryWindowOption`
 - **Added**: Product Pricing 2022-05-01: `promotions` field on `Offer` and `SegmentedFeaturedOffer`, backed by new `Promotion`, `PromotionDiscount`, `PromotionSavings`, `PurchaseCondition`, `PurchaseRequirements`, and threshold types
 - **Removed**: Data Kiosk: removed the Sales and Traffic 2023-11-15 schema (`sales_and_traffic20231115`) and its generated types, deprecated by Amazon in favor of the 2024-04-24 version
 - **Added**: Transfers 2024-06-01: re-added the `PaymentMethodTypeList` type
@@ -93,7 +97,6 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Vendor Invoices v1 and Vendor Direct Fulfillment Payments v1: additional party identifications, allowance details, and new party, tax, and date fields on invoices
 - **Added**: Orders 2026-01-01: `promise_calculation_inputs` field on `FulfillmentOrder`; `asin` and `purchase_price` on `AssociatedOrderItem`
 - **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`
-- **Added**: Promotions 2025-12-01: `rate_limit` parameter on `get_promotion`
 - **Added**: Reports: `promotions_api_mapping_id` field on `DetailsByPromotion` (Promotion report), and on `CouponDetails` for both the Seller Coupon and Vendor Coupon reports, cross-referencing promotions with the new Promotions API
 
 ## [5.5.0] - 2026-06-10
