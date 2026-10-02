@@ -4,6 +4,20 @@ require "bigdecimal"
 
 module Peddler
   module Native
+    UINT64_MAX = (1 << 64) - 1
+
+    class << self
+      def valid_utf8_string?(value)
+        return false unless value.is_a?(String) && value.valid_encoding?
+        return true if value.encoding == Encoding::UTF_8 || value.ascii_only?
+
+        value.encode(Encoding::UTF_8)
+        true
+      rescue EncodingError
+        false
+      end
+    end
+
     # Native rb_exc_raise attaches an active rescue exception. Clear that cause
     # at the final Ruby boundary only when Rust explicitly marked the error.
     module DocumentErrorBoundary
@@ -20,7 +34,7 @@ module Peddler
                 error.instance_variables.each do |name|
                   translated.instance_variable_set(name, error.instance_variable_get(name))
                 end
-                backtrace = error.backtrace
+                backtrace = error.backtrace_locations || error.backtrace
                 translated.set_backtrace(backtrace) if backtrace
                 Kernel.raise translated, cause: nil
               end
@@ -47,7 +61,7 @@ module Peddler
             valid = case key
             when :timeout then (value.is_a?(Integer) || value.is_a?(Float)) && value.finite? && value > 0
             when :compression then compressions.include?(value)
-            else value.is_a?(Integer) && value.positive?
+            else value.is_a?(Integer) && value.positive? && value <= UINT64_MAX
             end
             raise ArgumentError, "invalid document configuration", cause: nil unless valid
           end
@@ -130,7 +144,7 @@ module Peddler
       end
 
       def json(max_bytes:)
-        unless max_bytes.is_a?(Integer) && max_bytes.positive?
+        unless max_bytes.is_a?(Integer) && max_bytes.positive? && max_bytes <= UINT64_MAX
           raise ArgumentError, "invalid document configuration", cause: nil
         end
         JSON.parse(@handle.json(max_bytes), decimal_class: DocumentDecimal, max_nesting: false)
@@ -156,7 +170,7 @@ module Peddler
 
   class Client
     def download_document(url, **transfer_options)
-      raise ArgumentError, "invalid document URL", cause: nil unless url.is_a?(String)
+      raise ArgumentError, "invalid document URL", cause: nil unless Native.valid_utf8_string?(url)
 
       document = Native::Document.new(@engine.download_document(url, Native::TransferConfig.json(transfer_options)))
       return document unless block_given?
@@ -169,9 +183,9 @@ module Peddler
     end
 
     def upload_document(url, source, content_type:, headers: {}, content_length: nil, **transfer_options)
-      unless url.is_a?(String) && content_type.is_a?(String) && headers.is_a?(Hash) &&
-          headers.all? { |key, value| key.is_a?(String) && value.is_a?(String) } &&
-          (content_length.nil? || (content_length.is_a?(Integer) && content_length >= 0)) &&
+      unless Native.valid_utf8_string?(url) && Native.valid_utf8_string?(content_type) && headers.is_a?(Hash) &&
+          headers.all? { |key, value| Native.valid_utf8_string?(key) && Native.valid_utf8_string?(value) } &&
+          (content_length.nil? || (content_length.is_a?(Integer) && content_length >= 0 && content_length <= Native::UINT64_MAX)) &&
           (source.is_a?(String) || source.respond_to?(:read))
         raise ArgumentError, "invalid document upload configuration", cause: nil
       end

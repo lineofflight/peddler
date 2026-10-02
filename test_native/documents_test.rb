@@ -620,6 +620,62 @@ class DocumentsTest < NativeTest
     end
   end
 
+  def test_download_document_invalid_url_encoding_clears_active_exception_causes
+    instance = client("http://127.0.0.1:1")
+    sensitive_rescue do |sensitive|
+      error = assert_raises(ArgumentError) { instance.download_document("http://127.0.0.1:1/\xFF") }
+      assert_nil(error.cause)
+      refute_match(/signed-url-header-body-secret/, error.full_message)
+      assert_same(sensitive, $!, "the surrounding rescue context must be restored")
+    end
+  end
+
+  def test_upload_document_overflow_content_length_clears_active_exception_causes
+    instance = client("http://127.0.0.1:1")
+    url = "http://127.0.0.1:1"
+    sensitive_rescue do |sensitive|
+      error = assert_raises(ArgumentError) { instance.upload_document(url, "x", content_type: "text/plain", content_length: 1 << 70) }
+      assert_nil(error.cause)
+      refute_match(/signed-url-header-body-secret/, error.full_message)
+      assert_same(sensitive, $!, "the surrounding rescue context must be restored")
+    end
+  end
+
+  def test_upload_document_invalid_header_encoding_clears_active_exception_causes
+    instance = client("http://127.0.0.1:1")
+    url = "http://127.0.0.1:1"
+    sensitive_rescue do |sensitive|
+      error = assert_raises(ArgumentError) { instance.upload_document(url, "x", content_type: "text/plain", headers: { "x-a" => "\xFF" }) }
+      assert_nil(error.cause)
+      refute_match(/signed-url-header-body-secret/, error.full_message)
+      assert_same(sensitive, $!, "the surrounding rescue context must be restored")
+    end
+  end
+
+  def test_upload_document_invalid_content_type_encoding_clears_active_exception_causes
+    instance = client("http://127.0.0.1:1")
+    url = "http://127.0.0.1:1"
+    sensitive_rescue do |sensitive|
+      error = assert_raises(ArgumentError) { instance.upload_document(url, "x", content_type: "\xFF") }
+      assert_nil(error.cause)
+      refute_match(/signed-url-header-body-secret/, error.full_message)
+      assert_same(sensitive, $!, "the surrounding rescue context must be restored")
+    end
+  end
+
+  def test_document_json_overflow_max_bytes_clears_active_exception_causes
+    serve(handler: ->(socket, *) { respond(socket, body: "{}") }) do |url|
+      instance = client(url)
+      document = instance.download_document(url)
+      sensitive_rescue do |sensitive|
+        error = assert_raises(ArgumentError) { document.json(max_bytes: 1 << 70) }
+        assert_nil(error.cause)
+        refute_match(/signed-url-header-body-secret/, error.full_message)
+        assert_same(sensitive, $!, "the surrounding rescue context must be restored")
+      end
+    end
+  end
+
   def test_caller_block_exceptions_retain_identity_and_active_causes
     serve(count: 2, handler: ->(socket, *) { respond(socket, body: "chunk") }) do |url|
       sensitive_rescue do |sensitive|

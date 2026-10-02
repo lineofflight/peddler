@@ -1,5 +1,8 @@
 module Peddler
   module Native
+    UINT64_MAX: Integer
+    def self.valid_utf8_string?: (untyped value) -> bool
+
     type document_parts = [Integer, Array[[String, String]], String, error_metadata?, bool]
 
     class DocumentError < StandardError
