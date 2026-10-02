@@ -233,33 +233,21 @@ impl Document {
             | ("tsv", state @ StreamState::Tsv(_)) => state,
             _ => return Err(misuse(ruby)),
         };
-        let closed = Arc::clone(&owner.stream);
-        let signal = Arc::clone(&owner.close_signal);
-        let (state, row) = gvl::wait(ruby, "DocumentError", owner.shared, async move {
-            let read = async {
-                match &mut state {
-                    StreamState::Chunks(stream) => stream
-                        .next()
-                        .await
-                        .transpose()
-                        .map(|row| row.map(Row::Chunk)),
-                    StreamState::Jsonl(stream) => stream
-                        .next()
-                        .await
-                        .transpose()
-                        .map(|row| row.map(|value| Row::Json(value.to_string()))),
-                    StreamState::Tsv(stream) => {
-                        stream.next().await.transpose().map(|row| row.map(Row::Tsv))
-                    }
-                    _ => unreachable!(),
-                }
-            };
-            let row = tokio::select! {
-                row = read => row,
-                () = wait_closed(closed, signal) => Err(DocumentError::Transport),
-            };
-            (state, row)
-        })?;
+        let buffered = gvl::now(ruby, "DocumentError", owner.shared, read_row(&mut state))?;
+        let (state, row) = match buffered {
+            Some(row) => (state, row),
+            None => {
+                let closed = Arc::clone(&owner.stream);
+                let signal = Arc::clone(&owner.close_signal);
+                gvl::wait(ruby, "DocumentError", owner.shared, async move {
+                    let row = tokio::select! {
+                        row = read_row(&mut state) => row,
+                        () = wait_closed(closed, signal) => Err(DocumentError::Transport),
+                    };
+                    (state, row)
+                })?
+            }
+        };
         let row = row.map_err(|e| error(ruby, e))?;
         if row.is_some() {
             lease.restore(state);
@@ -290,6 +278,24 @@ impl Document {
     }
 }
 
+/// The next row of a stream that has started. Dropping it before it is ready loses
+/// nothing: the stream keeps its place.
+async fn read_row(state: &mut StreamState) -> Result<Option<Row>, DocumentError> {
+    match state {
+        StreamState::Chunks(stream) => stream
+            .next()
+            .await
+            .transpose()
+            .map(|row| row.map(Row::Chunk)),
+        StreamState::Jsonl(stream) => stream
+            .next()
+            .await
+            .transpose()
+            .map(|row| row.map(|value| Row::Json(value.to_string()))),
+        StreamState::Tsv(stream) => stream.next().await.transpose().map(|row| row.map(Row::Tsv)),
+        _ => unreachable!(),
+    }
+}
 /// Returns once `done` holds. It registers before checking, so a `notify_waiters`
 /// between the check and the wait is not missed.
 async fn until(notify: &Notify, done: impl Fn() -> bool) {
@@ -445,6 +451,18 @@ impl Upload {
         let sender = owner.sender.lock().unwrap().as_ref().cloned();
         let sender = sender.ok_or_else(|| misuse(ruby))?;
         let completion = Arc::clone(&owner.completion);
+        // Without waiting for the GVL again when the transfer has room or has finished.
+        if !matches!(*completion.result.lock().unwrap(), UploadState::Pending) {
+            return Ok(false);
+        }
+        let data = match sender.try_reserve() {
+            Ok(permit) => {
+                permit.send(data);
+                return Ok(true);
+            }
+            Err(mpsc::error::TrySendError::Closed(())) => return Ok(false),
+            Err(mpsc::error::TrySendError::Full(())) => data,
+        };
         gvl::wait(ruby, "DocumentError", owner.shared, async move {
             tokio::select! { biased;
                 () = completion.ready() => false,

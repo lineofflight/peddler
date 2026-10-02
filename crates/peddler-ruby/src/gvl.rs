@@ -1,5 +1,6 @@
 //! Protected, owned-work GVL release shared by requests and document transfers.
 use super::{Shared, native_error};
+use futures_util::FutureExt;
 use magnus::{Error, Ruby, rb_sys::AsRawValue};
 use std::{
     ffi::c_void,
@@ -53,6 +54,22 @@ where
         .take()
         .unwrap_or(Err(()))
         .map_err(|()| native_error(ruby, failure_class, "native work cancelled or failed"))
+}
+/// Polls `future` once, with the GVL held, and returns its output if it is ready. For
+/// work that is often ready already, such as a row the stream has buffered, so it
+/// doesn't wait for the GVL again. The work is Rust only, bounded by one chunk or
+/// record, and a panic maps to the error `wait` gives.
+pub(super) fn now<F: Future>(
+    ruby: &Ruby,
+    failure_class: &str,
+    shared: &'static Shared,
+    future: F,
+) -> Result<Option<F::Output>, Error> {
+    let _context = shared.runtime.enter();
+    catch_unwind(AssertUnwindSafe(|| future.now_or_never())).map_err(|payload| {
+        std::mem::forget(payload);
+        native_error(ruby, failure_class, "native work cancelled or failed")
+    })
 }
 unsafe extern "C" fn unblock(data: *mut c_void) {
     // SAFETY: wait owns this allocation until both callbacks have returned.
