@@ -30,8 +30,3 @@ if cargo
     end
   end
 end
-
-desc "Audit built gems: rake gem:audit[pkg/peddler-6.0.0.gem]"
-task "gem:audit", [:path] do |_task, args|
-  sh(RbConfig.ruby, File.expand_path("../tools/gem_audit.rb", __dir__), *Dir[args.fetch(:path, "pkg/*.gem")])
-end
