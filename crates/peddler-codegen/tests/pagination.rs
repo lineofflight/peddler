@@ -25,7 +25,7 @@ fn spec() -> Value {
             "responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Plain"}}}}},
         "/docs/{docId}/pages":{"get":{"operationId":"listPages","parameters":[
             {"name":"docId","in":"path","required":true,"type":"string"},
-            {"name":"marketplaceId","in":"query","required":true,"type":"string"},
+            {"name":"marketplaceId","in":"query","type":"string"},
             {"name":"pageToken","in":"query","type":"string"}],
             "responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Pages"}}}}},
         "/cursor":{"get":{"operationId":"cursorOnly","parameters":[],

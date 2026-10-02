@@ -24,22 +24,19 @@ pub fn mappings() -> Vec<crate::pagination::Pagination> {
         drop : vec![], set : vec![] } }, crate ::pagination::Pagination { operation :
         "aplus_content_2020_11_01.list_content_document_asin_relations".to_owned(), input
         : "/page_token".to_owned(), output : "/nextPageToken".to_owned(), continuation :
-        crate ::pagination::Continuation { operation :
-        Some("aplus_content_2020_11_01.list_content_document_asin_relations.continue"
-        .to_owned()), keep : Some(vec!["content_reference_key".to_owned()]), drop :
-        vec![], set : vec![] } }, crate ::pagination::Pagination { operation :
+        crate ::pagination::Continuation { operation : None, keep :
+        Some(vec!["content_reference_key".to_owned(), "marketplace_id".to_owned()]), drop
+        : vec![], set : vec![] } }, crate ::pagination::Pagination { operation :
         "aplus_content_2020_11_01.search_content_documents".to_owned(), input :
         "/page_token".to_owned(), output : "/nextPageToken".to_owned(), continuation :
-        crate ::pagination::Continuation { operation :
-        Some("aplus_content_2020_11_01.search_content_documents.continue".to_owned()),
-        keep : Some(vec![]), drop : vec![], set : vec![] } }, crate
+        crate ::pagination::Continuation { operation : None, keep :
+        Some(vec!["marketplace_id".to_owned()]), drop : vec![], set : vec![] } }, crate
         ::pagination::Pagination { operation :
         "aplus_content_2020_11_01.search_content_publish_records".to_owned(), input :
         "/page_token".to_owned(), output : "/nextPageToken".to_owned(), continuation :
-        crate ::pagination::Continuation { operation :
-        Some("aplus_content_2020_11_01.search_content_publish_records.continue"
-        .to_owned()), keep : Some(vec![]), drop : vec![], set : vec![] } }, crate
-        ::pagination::Pagination { operation :
+        crate ::pagination::Continuation { operation : None, keep :
+        Some(vec!["marketplace_id".to_owned(), "asin".to_owned()]), drop : vec![], set :
+        vec![] } }, crate ::pagination::Pagination { operation :
         "catalog_items_2020_12_01.search_catalog_items".to_owned(), input : "/page_token"
         .to_owned(), output : "/pagination/nextToken".to_owned(), continuation : crate
         ::pagination::Continuation { operation : None, keep : None, drop : vec![], set :

@@ -216,10 +216,12 @@ while let Some(page) = pages.next().await {
 
 `max_pages` caps requests; `Some(0)` makes none. An absent, null or empty response token ends the stream. An HTTP error page is yielded once and ends it without decoding. A repeated token (including the one you started with), a non-string token or a malformed 2xx body yields the page and then one `PaginationError`. Errors never include tokens, bodies or arguments. Caller arguments are serialized once and never mutated.
 
-Continuations keep every argument and replace only the token, except where the pinned docs say otherwise:
+Continuations keep every argument and replace only the token, with these exceptions:
 
-- `get_feeds`, `get_reports` and the 3 A+ Content search and relation operations take the token as the only parameter. Their continuations send the token (and A+ path arguments) alone, which also avoids re-sending defaults and required filters. A+ uses a private generated adapter operation under the original operation key, so policy is unchanged.
-- Inbound V0 `get_shipments` and `get_shipment_items` continue with `query_type: "NEXT_TOKEN"` and drop their date and shipment filters.
+- A continuation always keeps parameters the pinned spec marks required, even where the token description says it is the only parameter (A+ Content). Generation fails if a mapping drops one. Optional parameters may still be dropped. Amazon's generated SDKs and the legacy gem send required parameters with the token.
+- A+ Content `search_content_documents`, `list_content_document_asin_relations` and `search_content_publish_records` keep `marketplace_id` (and `asin`, or the `content_reference_key` path argument) and drop optional parameters.
+- `get_feeds` and `get_reports` have no required parameters and take the token as the only parameter. Their continuations send the token alone, which also avoids re-sending the default `page_size`. They use a private generated adapter operation (`<operation>.continue`, internal and unstable) under the original operation key, so policy is unchanged, and it sends the same `Accept` header as generated calls. They are the only operations that use it.
+- Inbound V0 `get_shipments` and `get_shipment_items` continue with `query_type: "NEXT_TOKEN"` and drop their date, status and ID filters. That is this library's reading of `QueryType` `NEXT_TOKEN`; the pinned docs do not spell it out and it is not yet confirmed against the live API.
 - `support_2025_02_01.list_cases` carries the token in the POST body (`/body/nextToken`) and follows empty pages.
 
 Excluded candidates include Data Kiosk `get_query` (its token starts another query), Promotions `get_promotion` (4 nested selection tokens), Replenishment `list_offers` and `list_offer_metrics` (numeric offsets), Inbound V0 `get_labels` (numeric start index), and the non-pagination Shipping `requestToken`, FBA idempotency header and restricted data token. Inbound V0 `get_shipment_items_by_shipment_id` returns a `NextToken`, but the pinned docs do not say where to send it, so opt in explicitly:
@@ -233,12 +235,15 @@ let mapping = Pagination {
     output: "/payload/NextToken".into(),
     continuation: Continuation {
         operation: Some("fulfillment_inbound_v0.get_shipment_items".into()),
-        keep: Some(vec!["marketplace_id".into()]),
-        set: vec![("query_type".into(), "NEXT_TOKEN".into())],
+        keep: Some(vec![]),
+        set: vec![
+            ("query_type".into(), "NEXT_TOKEN".into()),
+            ("marketplace_id".into(), "ATVPDKIKX0DER".into()),
+        ],
         ..Continuation::default()
     },
 };
-let stream = pages(&client, mapping, &serde_json::json!({"shipment_id": "FBA1", "marketplace_id": "ATVPDKIKX0DER"}), None);
+let stream = pages(&client, mapping, &serde_json::json!({"shipment_id": "FBA1"}), None);
 ```
 
 Pointers use native snake_case argument keys; body keys keep the schema's spelling. `Continuation` can change the operation, `keep` only listed top-level arguments, `drop` some and `set` others.
@@ -251,7 +256,14 @@ client.orders_v0.get_orders_pages(marketplace_ids: ["ATVPDKIKX0DER"]).each do |p
   puts page.json.dig("payload", "Orders").size
 end
 
-mapping = Peddler::Native::Pagination.new(operation: "...", input: "/next_token", output: "/payload/NextToken")
+mapping = Peddler::Native::Pagination.new(
+  operation: "fulfillment_inbound_v0.get_shipment_items_by_shipment_id",
+  input: "/next_token", output: "/payload/NextToken",
+  continuation: Peddler::Native::Continuation.new(
+    operation: "fulfillment_inbound_v0.get_shipment_items", keep: [],
+    set: { query_type: "NEXT_TOKEN", marketplace_id: "ATVPDKIKX0DER" },
+  ),
+)
 client.pages(mapping, { shipment_id: "FBA1" }, max_pages: 3)
 ```
 

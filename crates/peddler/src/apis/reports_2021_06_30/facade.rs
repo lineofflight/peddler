@@ -608,7 +608,7 @@ pub(crate) async fn get_reports_continue(
     )?;
     let path = "/reports/2021-06-30/reports".to_owned();
     client
-        .execute_with_operation(
+        .execute_json_operation(
             "reports_2021_06_30.get_reports",
             crate::Request {
                 method: "GET".into(),

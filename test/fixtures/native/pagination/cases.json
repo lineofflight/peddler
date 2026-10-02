@@ -842,7 +842,7 @@
   "error": null
  },
  {
-  "name": "token-only continuation skips required filters through the adapter",
+  "name": "continuation keeps required parameters and drops optional ones",
   "pagination": "aplus_content_2020_11_01.search_content_documents",
   "arguments": {
    "marketplace_id": "ATVPDKIKX0DER"
@@ -875,6 +875,10 @@
     "path": "/aplus/2020-11-01/contentDocuments",
     "query": [
      [
+      "marketplaceId",
+      "ATVPDKIKX0DER"
+     ],
+     [
       "pageToken",
       "P1"
      ]
@@ -889,11 +893,14 @@
   "error": null
  },
  {
-  "name": "adapter keeps and encodes path arguments",
+  "name": "required path and query parameters stay, optional ones are dropped",
   "pagination": "aplus_content_2020_11_01.list_content_document_asin_relations",
   "arguments": {
    "content_reference_key": "k/1",
-   "marketplace_id": "ATVPDKIKX0DER"
+   "marketplace_id": "ATVPDKIKX0DER",
+   "included_data_set": [
+    "CONTENTS"
+   ]
   },
   "max_pages": null,
   "responses": [
@@ -912,6 +919,10 @@
     "path": "/aplus/2020-11-01/contentDocuments/k%2F1/asins",
     "query": [
      [
+      "includedDataSet",
+      "CONTENTS"
+     ],
+     [
       "marketplaceId",
       "ATVPDKIKX0DER"
      ]
@@ -922,6 +933,70 @@
     "method": "GET",
     "path": "/aplus/2020-11-01/contentDocuments/k%2F1/asins",
     "query": [
+     [
+      "marketplaceId",
+      "ATVPDKIKX0DER"
+     ],
+     [
+      "pageToken",
+      "P1"
+     ]
+    ],
+    "body": null
+   }
+  ],
+  "statuses": [
+   200,
+   200
+  ],
+  "error": null
+ },
+ {
+  "name": "search_content_publish_records keeps marketplace and asin",
+  "pagination": "aplus_content_2020_11_01.search_content_publish_records",
+  "arguments": {
+   "marketplace_id": "ATVPDKIKX0DER",
+   "asin": "B000TEST01"
+  },
+  "max_pages": null,
+  "responses": [
+   {
+    "status": 200,
+    "body": "{\"nextPageToken\": \"P1\"}"
+   },
+   {
+    "status": 200,
+    "body": "{}"
+   }
+  ],
+  "requests": [
+   {
+    "method": "GET",
+    "path": "/aplus/2020-11-01/contentPublishRecords",
+    "query": [
+     [
+      "asin",
+      "B000TEST01"
+     ],
+     [
+      "marketplaceId",
+      "ATVPDKIKX0DER"
+     ]
+    ],
+    "body": null
+   },
+   {
+    "method": "GET",
+    "path": "/aplus/2020-11-01/contentPublishRecords",
+    "query": [
+     [
+      "asin",
+      "B000TEST01"
+     ],
+     [
+      "marketplaceId",
+      "ATVPDKIKX0DER"
+     ],
      [
       "pageToken",
       "P1"
@@ -1065,17 +1140,15 @@
    "output": "/payload/NextToken",
    "continuation": {
     "operation": "fulfillment_inbound_v0.get_shipment_items",
-    "keep": [
-     "marketplace_id"
-    ],
+    "keep": [],
     "set": {
-     "query_type": "NEXT_TOKEN"
+     "query_type": "NEXT_TOKEN",
+     "marketplace_id": "ATVPDKIKX0DER"
     }
    }
   },
   "arguments": {
-   "shipment_id": "FBA1",
-   "marketplace_id": "ATVPDKIKX0DER"
+   "shipment_id": "FBA1"
   },
   "max_pages": null,
   "responses": [
@@ -1092,12 +1165,7 @@
    {
     "method": "GET",
     "path": "/fba/inbound/v0/shipments/FBA1/items",
-    "query": [
-     [
-      "MarketplaceId",
-      "ATVPDKIKX0DER"
-     ]
-    ],
+    "query": [],
     "body": null
    },
    {

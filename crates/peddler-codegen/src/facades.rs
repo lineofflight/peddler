@@ -360,7 +360,7 @@ fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(),
     };
     writeln!(
         source,
-        "let path = {call};\nclient.execute_with_operation({:?}, crate::Request {{ method: {:?}.into(), path, query: vec![({wire:?}.into(), params.{token})], body: None }}).await\n}}",
+        "let path = {call};\nclient.execute_json_operation({:?}, crate::Request {{ method: {:?}.into(), path, query: vec![({wire:?}.into(), params.{token})], body: None }}).await\n}}",
         mapped.key, op.method
     )
     .unwrap();

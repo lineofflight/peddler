@@ -402,11 +402,10 @@ pub fn list_content_document_asin_relations_pages<'a>(
             input: "/page_token".to_owned(),
             output: "/nextPageToken".to_owned(),
             continuation: crate::pagination::Continuation {
-                operation: Some(
-                    "aplus_content_2020_11_01.list_content_document_asin_relations.continue"
-                        .to_owned(),
+                operation: None,
+                keep: Some(
+                    vec!["content_reference_key".to_owned(), "marketplace_id".to_owned()],
                 ),
-                keep: Some(vec!["content_reference_key".to_owned()]),
                 drop: vec![],
                 set: vec![],
             },
@@ -414,46 +413,6 @@ pub fn list_content_document_asin_relations_pages<'a>(
         &params,
         max_pages,
     )
-}
-#[derive(serde::Deserialize)]
-#[serde(deny_unknown_fields)]
-pub(crate) struct ListContentDocumentAsinRelationsContinueParams {
-    pub content_reference_key: String,
-    pub page_token: String,
-}
-pub(crate) async fn list_content_document_asin_relations_continue(
-    client: &Client,
-    params: ListContentDocumentAsinRelationsContinueParams,
-) -> Result<Response, Error> {
-    validate_parameter(
-        serde_json::Value::String(params.content_reference_key.clone()),
-        "path",
-        "{\"minLength\":1,\"type\":\"string\"}",
-        true,
-        false,
-    )?;
-    validate_parameter(
-        serde_json::Value::String(params.page_token.clone()),
-        "query",
-        "{\"minLength\":1,\"type\":\"string\"}",
-        true,
-        false,
-    )?;
-    let path = format!(
-        "/aplus/2020-11-01/contentDocuments/{}/asins", crate
-        ::operation::encode_segment(& params.content_reference_key)
-    );
-    client
-        .execute_with_operation(
-            "aplus_content_2020_11_01.list_content_document_asin_relations",
-            crate::Request {
-                method: "GET".into(),
-                path,
-                query: vec![("pageToken".into(), params.page_token)],
-                body: None,
-            },
-        )
-        .await
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
@@ -764,11 +723,8 @@ pub fn search_content_documents_pages<'a>(
             input: "/page_token".to_owned(),
             output: "/nextPageToken".to_owned(),
             continuation: crate::pagination::Continuation {
-                operation: Some(
-                    "aplus_content_2020_11_01.search_content_documents.continue"
-                        .to_owned(),
-                ),
-                keep: Some(vec![]),
+                operation: None,
+                keep: Some(vec!["marketplace_id".to_owned()]),
                 drop: vec![],
                 set: vec![],
             },
@@ -776,35 +732,6 @@ pub fn search_content_documents_pages<'a>(
         &params,
         max_pages,
     )
-}
-#[derive(serde::Deserialize)]
-#[serde(deny_unknown_fields)]
-pub(crate) struct SearchContentDocumentsContinueParams {
-    pub page_token: String,
-}
-pub(crate) async fn search_content_documents_continue(
-    client: &Client,
-    params: SearchContentDocumentsContinueParams,
-) -> Result<Response, Error> {
-    validate_parameter(
-        serde_json::Value::String(params.page_token.clone()),
-        "query",
-        "{\"minLength\":1,\"type\":\"string\"}",
-        true,
-        false,
-    )?;
-    let path = "/aplus/2020-11-01/contentDocuments".to_owned();
-    client
-        .execute_with_operation(
-            "aplus_content_2020_11_01.search_content_documents",
-            crate::Request {
-                method: "GET".into(),
-                path,
-                query: vec![("pageToken".into(), params.page_token)],
-                body: None,
-            },
-        )
-        .await
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
@@ -903,11 +830,8 @@ pub fn search_content_publish_records_pages<'a>(
             input: "/page_token".to_owned(),
             output: "/nextPageToken".to_owned(),
             continuation: crate::pagination::Continuation {
-                operation: Some(
-                    "aplus_content_2020_11_01.search_content_publish_records.continue"
-                        .to_owned(),
-                ),
-                keep: Some(vec![]),
+                operation: None,
+                keep: Some(vec!["marketplace_id".to_owned(), "asin".to_owned()]),
                 drop: vec![],
                 set: vec![],
             },
@@ -915,35 +839,6 @@ pub fn search_content_publish_records_pages<'a>(
         &params,
         max_pages,
     )
-}
-#[derive(serde::Deserialize)]
-#[serde(deny_unknown_fields)]
-pub(crate) struct SearchContentPublishRecordsContinueParams {
-    pub page_token: String,
-}
-pub(crate) async fn search_content_publish_records_continue(
-    client: &Client,
-    params: SearchContentPublishRecordsContinueParams,
-) -> Result<Response, Error> {
-    validate_parameter(
-        serde_json::Value::String(params.page_token.clone()),
-        "query",
-        "{\"minLength\":1,\"type\":\"string\"}",
-        true,
-        false,
-    )?;
-    let path = "/aplus/2020-11-01/contentPublishRecords".to_owned();
-    client
-        .execute_with_operation(
-            "aplus_content_2020_11_01.search_content_publish_records",
-            crate::Request {
-                method: "GET".into(),
-                path,
-                query: vec![("pageToken".into(), params.page_token)],
-                body: None,
-            },
-        )
-        .await
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]

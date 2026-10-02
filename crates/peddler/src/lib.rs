@@ -284,6 +284,24 @@ impl Client {
         operation: &str,
         request: Request,
     ) -> Result<Response, Error> {
+        self.execute_inner(operation, request, false).await
+    }
+
+    /// Like `execute_with_operation`, with the `Accept` header generated calls send.
+    pub(crate) async fn execute_json_operation(
+        &self,
+        operation: &str,
+        request: Request,
+    ) -> Result<Response, Error> {
+        self.execute_inner(operation, request, true).await
+    }
+
+    async fn execute_inner(
+        &self,
+        operation: &str,
+        request: Request,
+        accept_json: bool,
+    ) -> Result<Response, Error> {
         if operation.is_empty() {
             return Err(Error::InvalidRequest);
         }
@@ -315,6 +333,9 @@ impl Client {
         }
         let method_name = method.as_str().to_owned();
         let mut builder = self.http.request(method, url);
+        if accept_json {
+            builder = builder.header(reqwest::header::ACCEPT, "application/json");
+        }
         if let Some(body) = request.body {
             builder = builder
                 .header(reqwest::header::CONTENT_TYPE, "application/json")

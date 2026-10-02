@@ -96,6 +96,8 @@ impl WireContext {
 }
 
 /// Percent-encodes one path segment the way generated requests canonicalize it.
+// Used by generated continuation adapters that have path arguments; none do today.
+#[allow(dead_code)]
 pub(crate) fn encode_segment(value: &str) -> String {
     const SEGMENT: &percent_encoding::AsciiSet = &percent_encoding::NON_ALPHANUMERIC
         .remove(b'-')

@@ -1139,12 +1139,13 @@
           "method": "GET",
           "pagination": {
             "continuation": {
-              "adapter": true,
+              "adapter": false,
               "drop": [],
               "keep": [
-                "content_reference_key"
+                "content_reference_key",
+                "marketplace_id"
               ],
-              "operation": "aplus_content_2020_11_01.list_content_document_asin_relations.continue",
+              "operation": null,
               "set": {}
             },
             "input": "/page_token",
@@ -1375,10 +1376,12 @@
           "method": "GET",
           "pagination": {
             "continuation": {
-              "adapter": true,
+              "adapter": false,
               "drop": [],
-              "keep": [],
-              "operation": "aplus_content_2020_11_01.search_content_documents.continue",
+              "keep": [
+                "marketplace_id"
+              ],
+              "operation": null,
               "set": {}
             },
             "input": "/page_token",
@@ -1425,10 +1428,13 @@
           "method": "GET",
           "pagination": {
             "continuation": {
-              "adapter": true,
+              "adapter": false,
               "drop": [],
-              "keep": [],
-              "operation": "aplus_content_2020_11_01.search_content_publish_records.continue",
+              "keep": [
+                "marketplace_id",
+                "asin"
+              ],
+              "operation": null,
               "set": {}
             },
             "input": "/page_token",

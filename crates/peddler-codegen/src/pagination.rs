@@ -299,6 +299,22 @@ pub fn resolve(
             }
             continuation_operation = Some(format!("{}.continue", mapping.operation));
         }
+        // A continuation keeps every parameter the spec marks required.
+        let adapter_keep: BTreeSet<&str> = c.keep.iter().flatten().map(String::as_str).collect();
+        for p in target.parameters.iter().filter(|p| p.required) {
+            let kept = p.name == input[0]
+                || c.set.contains_key(&p.name)
+                || match (&c.keep, c.adapter) {
+                    (Some(_), _) | (_, true) => adapter_keep.contains(p.name.as_str()),
+                    (None, false) => !c.drop.contains(&p.name),
+                };
+            if !kept {
+                return fail(format!(
+                    "{} continuation drops required parameter {}",
+                    mapping.operation, p.name
+                ));
+            }
+        }
         resolved.push(Resolved {
             module: api.module.to_owned(),
             name: op.name.clone(),

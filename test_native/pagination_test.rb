@@ -105,6 +105,7 @@ class PaginationTest < NativeTest
         assert_nil(error&.cause)
         assert_equal(fixture["requests"].size, server.requests.size)
         fixture["requests"].zip(server.requests).each do |want, got|
+          assert_equal("application/json", got[:headers]["accept"])
           assert_equal(want["method"], got[:method])
           assert_equal([want["path"], want["query"].sort], decoded(got))
           want_body = want["body"]

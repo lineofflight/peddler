@@ -455,7 +455,7 @@ pub(crate) async fn get_feeds_continue(
     )?;
     let path = "/feeds/2021-06-30/feeds".to_owned();
     client
-        .execute_with_operation(
+        .execute_json_operation(
             "feeds_2021_06_30.get_feeds",
             crate::Request {
                 method: "GET".into(),

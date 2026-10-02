@@ -225,6 +225,10 @@ async fn shared_cases_replay_through_the_generated_dispatcher() {
         let recorded = server.recorded();
         assert_eq!(recorded.len(), expected.len(), "{name}: request count");
         for (got, want) in recorded.iter().zip(expected) {
+            assert!(
+                got.headers.contains("\naccept: application/json"),
+                "{name}: accept header"
+            );
             assert_eq!(got.method, want["method"].as_str().unwrap(), "{name}");
             assert_eq!(got.path, want["path"].as_str().unwrap(), "{name}");
             let query: Vec<(String, String)> = want["query"]
@@ -453,11 +457,32 @@ fn generated_table_is_complete_and_consistent() {
     for mapping in all {
         assert!(mapping.input.starts_with('/') && mapping.output.starts_with('/'));
     }
-    let cases =
+    let adapters: Vec<_> = apis::pagination::mappings()
+        .into_iter()
+        .filter(|p| {
+            p.continuation
+                .operation
+                .as_deref()
+                .is_some_and(|o| o.ends_with(".continue"))
+        })
+        .map(|p| p.operation)
+        .collect();
+    assert_eq!(
+        adapters,
+        [
+            "feeds_2021_06_30.get_feeds",
+            "reports_2021_06_30.get_reports"
+        ]
+    );
+    let relations =
         apis::pagination::mapping("aplus_content_2020_11_01.list_content_document_asin_relations")
             .unwrap();
+    assert_eq!(relations.continuation.operation, None);
     assert_eq!(
-        cases.continuation.operation.as_deref(),
-        Some("aplus_content_2020_11_01.list_content_document_asin_relations.continue")
+        relations.continuation.keep,
+        Some(vec![
+            "content_reference_key".to_owned(),
+            "marketplace_id".to_owned()
+        ])
     );
 }

@@ -26,9 +26,9 @@
    "output": "/nextPageToken",
    "continuation": {
     "keep": [
-     "content_reference_key"
-    ],
-    "adapter": true
+     "content_reference_key",
+     "marketplace_id"
+    ]
    }
   },
   {
@@ -36,8 +36,9 @@
    "input": "/page_token",
    "output": "/nextPageToken",
    "continuation": {
-    "keep": [],
-    "adapter": true
+    "keep": [
+     "marketplace_id"
+    ]
    }
   },
   {
@@ -45,8 +46,10 @@
    "input": "/page_token",
    "output": "/nextPageToken",
    "continuation": {
-    "keep": [],
-    "adapter": true
+    "keep": [
+     "marketplace_id",
+     "asin"
+    ]
    }
   },
   {
