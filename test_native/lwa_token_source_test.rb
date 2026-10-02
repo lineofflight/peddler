@@ -53,7 +53,8 @@ class LwaTokenSourceTest < NativeTest
   end
 
   def test_refreshes_60_seconds_early_and_a_tenth_early_for_short_lifetimes
-    { 3600 => [3539, 3541], 10 => [8.9, 9.1] }.each do |expires_in, (before, after)|
+    # Both later instants are before the token expires, so a source that only refreshed at expiry would fail here.
+    { 3600 => [3539, 3545], 10 => [8.9, 9.5] }.each do |expires_in, (before, after)|
       serve_lwa(expires_in: expires_in) do |url, exchanges, _requests|
         source = lwa(url).token_source(refresh_token: "refresh")
         started = monotonic
@@ -62,7 +63,7 @@ class LwaTokenSourceTest < NativeTest
         source.stub(:now, started + before) { assert_equal("access-1", source.call) }
         assert_equal(1, exchanges.size)
         # Past the early-refresh point the next call makes exactly 1 request and returns the new token.
-        source.stub(:now, started + after + 1) do
+        source.stub(:now, started + after) do
           assert_equal("access-2", source.call)
           assert_equal("access-2", source.call)
         end
