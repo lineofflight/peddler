@@ -1,22 +1,16 @@
 //! Owned-data Ruby boundary. Only the blocking callback runs without the GVL.
 
-use magnus::{Error, RModule, RString, Ruby, function, method, prelude::*, rb_sys::AsRawValue};
+use magnus::{Error, RModule, RString, Ruby, function, method, prelude::*};
 use peddler::{
     Client, ClientConfig, Request, Response,
     auth::{Credentials, RestrictedScope},
     policy::{PolicyConfig, RateLimit, RetryPolicy},
 };
 use std::collections::BTreeMap;
-use std::{
-    ffi::c_void,
-    mem::ManuallyDrop,
-    panic::{AssertUnwindSafe, catch_unwind},
-    sync::{
-        Arc,
-        atomic::{AtomicBool, Ordering},
-    },
-    time::Duration,
-};
+use std::{mem::ManuallyDrop, sync::Arc, time::Duration};
+
+mod documents;
+mod gvl;
 use tokio::runtime::{Builder, Runtime};
 
 type ErrorMetadata = (String, Option<String>, Option<String>);
@@ -279,109 +273,37 @@ impl Engine {
                 "create a new client after fork",
             ));
         }
-        // Separate allocation: the unblock callback's shared AtomicBool reference
-        // never aliases the run callback's mutable Invocation reference.
-        let cancelled = Box::new(AtomicBool::new(false));
-        let mut invocation = Box::new(Invocation {
-            state: Arc::clone(&engine.state),
-            work: Some(work),
-            cancelled: &*cancelled,
-            result: None,
-        });
-        let nil = ruby.qnil().as_raw();
-        // Keep both boxes OUTSIDE protect: Ruby longjmp must not skip their Drop.
-        magnus::rb_sys::protect(|| {
-            // SAFETY: both allocations outlive this synchronous call. run and
-            // unblock touch only owned Rust data. protect catches Ruby interrupts
-            // raised while reacquiring the GVL, and returns a valid Ruby VALUE.
-            unsafe {
-                rb_sys::rb_thread_call_without_gvl(
-                    Some(run),
-                    (&mut *invocation as *mut Invocation).cast(),
-                    Some(unblock),
-                    (&*cancelled as *const AtomicBool).cast_mut().cast(),
-                );
+        let state = Arc::clone(&engine.state);
+        let runtime = Arc::clone(&state.runtime);
+        let result = gvl::wait(ruby, "TransportError", runtime, async move {
+            match work {
+                Work::Raw { operation, request } => {
+                    state
+                        .client
+                        .execute_with_operation(&operation, request)
+                        .await
+                }
+                Work::Operation { name, arguments } => {
+                    peddler::apis::execute(&state.client, &name, &arguments).await
+                }
             }
-            nil
+            .map(Completed::new)
         })?;
-        match invocation.result.take() {
-            Some(Ok(completed)) => Ok((
+        match result {
+            Ok(completed) => Ok((
                 completed.response.status,
                 completed.response.headers,
                 ruby.str_from_slice(&completed.response.body),
                 completed.metadata,
             )),
-            Some(Err(Failure::Transport(error))) => Err(transport_error(ruby, error)),
-            Some(Err(Failure::Cancelled)) => {
-                Err(native_error(ruby, "TransportError", "request cancelled"))
-            }
-            Some(Err(Failure::Panic)) | None => Err(native_error(
-                ruby,
-                "TransportError",
-                "native request failed",
-            )),
+            Err(error) => Err(transport_error(ruby, error)),
         }
     }
-}
-
-enum Failure {
-    Transport(peddler::Error),
-    Cancelled,
-    Panic,
 }
 
 enum Work {
     Raw { operation: String, request: Request },
     Operation { name: String, arguments: String },
-}
-
-struct Invocation {
-    state: Arc<State>,
-    work: Option<Work>,
-    cancelled: *const AtomicBool,
-    result: Option<Result<Completed, Failure>>,
-}
-
-unsafe extern "C" fn unblock(data: *mut c_void) {
-    // SAFETY: execute keeps the allocation alive until without_gvl returns.
-    unsafe { &*data.cast::<AtomicBool>() }.store(true, Ordering::Relaxed);
-}
-
-unsafe extern "C" fn run(data: *mut c_void) -> *mut c_void {
-    // SAFETY: only this callback accesses Invocation until without_gvl returns.
-    let invocation = unsafe { &mut *data.cast::<Invocation>() };
-    let outcome = catch_unwind(AssertUnwindSafe(|| {
-        let work = invocation.work.take().expect("invocation runs once");
-        // SAFETY: execute owns this separate allocation for the entire call.
-        let cancelled = unsafe { &*invocation.cancelled };
-        invocation.state.runtime.runtime.as_ref().expect("runtime alive").block_on(async {
-            tokio::select! {
-                result = async {
-                    match work {
-                        Work::Raw { operation, request } => invocation.state.client.execute_with_operation(&operation, request).await,
-                        Work::Operation { name, arguments } => {
-                            peddler::apis::execute(&invocation.state.client, &name, &arguments).await
-                        }
-                    }
-                } => result.map(Completed::new).map_err(Failure::Transport),
-                () = async {
-                    while !cancelled.load(Ordering::Relaxed) {
-                        tokio::time::sleep(Duration::from_millis(5)).await;
-                    }
-                } => Err(Failure::Cancelled),
-            }
-        })
-    }));
-    invocation.result = Some(match outcome {
-        Ok(result) => result,
-        Err(payload) => {
-            // A custom panic payload's destructor could panic too. Never unwind
-            // through the C callback; preserve only a sanitized failure marker.
-            std::mem::forget(payload);
-            Err(Failure::Panic)
-        }
-    });
-    std::ptr::null_mut()
 }
 
 #[magnus::init(name = "peddler_native")]
@@ -409,6 +331,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         method!(Engine::request_with_operation, 5),
     )?;
     engine.define_method("operation", method!(Engine::operation, 2))?;
+    documents::init(ruby, native, engine)?;
     Ok(())
 }
 

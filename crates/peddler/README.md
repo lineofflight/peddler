@@ -186,3 +186,81 @@ bundle exec rake generate:rust:verify
 CI configures Ubuntu core checks without Ruby setup, a separate generation job with Ruby/Node/spec setup, and native Ruby 3.3/3.4/4.0 jobs. Configured jobs are not evidence of completed remote runs.
 
 Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Pagination, streaming, full facade generation and broader API coverage remain work for later stages. Authorization-code exchange through the shared Rust/native runtime must land before entrypoint migration. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.
+
+## Native signed document transfers
+
+Signed URL transfers share the Client HTTP pool and Tokio runtime, with no API
+credentials, redirects or retries. Reports/Feeds/Data Kiosk document ID and
+lifecycle conveniences are separate follow-up work.
+
+```ruby
+require "peddler/native"
+client.download_document(signed_url, compression: :gzip) do |document|
+  puts document.status
+  document.each_tsv(consistent_fields: true) { |fields| save_row(fields) }
+end
+client.download_document(signed_url).each_jsonl { |row| save_row(row) }
+File.open("feed.xml", "rb") do |io|
+  reply = client.upload_document(signed_url, io,
+    content_type: "text/xml; charset=UTF-8", content_length: io.size,
+    headers: { "x-required-signed-header" => "value" })
+  reply.raise_for_status! # HTTP errors are opt-in, as for API responses.
+end
+```
+
+`download_document` returns `Native::Document`; its optional block ensures close
+on any exit. `each_chunk`, `each_jsonl`, and `each_tsv(consistent_fields: false)`
+return Enumerators without a block. Iteration closes on exhaustion, break and
+exceptions. `close` is idempotent; `closed?` reports closure. Choose one consumption
+mode per document. Concurrent reads and mode changes raise `DocumentError`.
+`json(max_bytes:)` is explicitly buffered and requires a positive byte bound.
+Native chunk strings and error bodies use binary encoding; TSV fields are UTF-8
+strings. JSONL null rows yield nil without ending iteration. JSON integers retain
+arbitrary precision; decimal numbers become BigDecimal, including nested values.
+Decimal exponent overflow/underflow raises a sanitized DocumentError instead of
+silently becoming Infinity or zero.
+Ruby JSON decoding only materializes Rust-validated rows or bounded whole JSON.
+Ruby allocates chunk strings and row objects. Keep or discard emitted rows
+according to your own memory budget.
+
+Transfer keywords match Rust: `timeout` in seconds (30 by default),
+`compression: :auto/:none/:gzip`, `max_bytes` (1 GiB decoded), `max_record_bytes`
+(1 MiB), `max_records` (u64 maximum), and `max_response_bytes` (64 KiB). Limits must
+be positive integers. `:gzip` supports Amazon metadata with or without the same
+Content-Encoding header; `:auto` follows that header, and `:none` leaves bytes raw.
+Rust enforces decompression, record and row bounds plus the original absolute
+transfer deadline. CPU parsing detects expiry after completing work. Unknown or
+invalid settings raise sanitized ArgumentError. Document metadata exposes `status`,
+repeated `headers`, `error_body` and `error_body_truncated?`; non-2xx body bytes are
+bounded and raw. Structured readers reject non-2xx status; chunks can expose its
+retained raw body. Signed URLs are omitted from inspect and exception messages.
+
+Uploads accept binary String or an object implementing `read(length)` returning
+String or nil. IO reads execute on the calling Ruby thread with the GVL, in at
+most 64 KiB chunks. A capacity-1 native channel passes owned bytes to the shared
+runtime; it preserves backpressure without collecting the source. The HTTP stack
+and its socket buffers have additional bounded overhead. No fileno is required.
+`content_type:` is passed exactly; optional `headers: {}` supplies signed headers,
+while Rust rejects framing/auth/origin overrides. `content_length:` is optional
+and verifies actual bytes, with EOF lookahead when the declared length is reached.
+Early non-2xx rejection preserves the raw response and stops feeding the source.
+Uploads never retry. The reply is `Native::Response`, with repeated headers,
+bounded binary body and `body_truncated?`; `raise_for_status!` uses Rust metadata.
+
+Format, compression, byte/record/row limit, source and length failures raise
+`Native::DocumentError`. Deadline expiry raises its subclass
+`Native::DocumentTimeoutError`. Source failures omit the original exception and
+cause. Thread interruption cancels work, drops active sockets and lets the same
+client start another transfer. Closing a document cancels an active read. A stream
+remains valid after parent Client GC; every native handle rejects inherited state
+with ForkError after fork, so construct a new Client in the child. A Ruby source
+read that blocks must return or be interrupted before the calling Ruby method can
+return, while the background transfer deadline still cancels HTTP work.
+
+A local memory probe generates and consumes bytes incrementally, retaining no
+whole fixture or emitted rows:
+
+```sh
+bundle exec ruby -Ilib -Itmp/native tools/native_document_memory_probe.rb 128 gzip
+/usr/bin/time -l bundle exec ruby -Ilib -Itmp/native tools/native_document_memory_probe.rb 512 gzip
+```

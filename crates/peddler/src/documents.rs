@@ -495,7 +495,9 @@ impl DocumentClient {
             return Err(error);
         }
         let response = result.map_err(transport)?;
-        if length.is_some_and(|length| count.load(Ordering::SeqCst) != length) {
+        if response.status().is_success()
+            && length.is_some_and(|length| count.load(Ordering::SeqCst) != length)
+        {
             return Err(Error::LengthMismatch);
         }
         let status = response.status().as_u16();

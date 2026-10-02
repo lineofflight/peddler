@@ -16,7 +16,10 @@ rb-sys = { version = "0.9.124", default-features = false, features = ["stable-ap
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 peddler = { path = "../peddler" }
-tokio = { version = "1", features = ["rt-multi-thread", "net", "time", "macros"] }
+bytes = "1"
+futures-util = "0.3"
+http = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "net", "time", "macros", "sync"] }
 
 [build-dependencies]
 rb-sys-env = "0.2.3"

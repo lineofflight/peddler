@@ -108,3 +108,5 @@ module Peddler
 end
 
 require_relative "native/apis"
+
+require_relative "native/documents"

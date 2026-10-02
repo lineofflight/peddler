@@ -989,6 +989,9 @@ dependencies = [
 name = "peddler-ruby"
 version = "0.1.0"
 dependencies = [
+ "bytes",
+ "futures-util",
+ "http",
  "magnus",
  "peddler",
  "rb-sys",

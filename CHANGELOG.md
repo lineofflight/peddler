@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+- Add native signed-URL document streaming with Rust GZIP/JSONL/TSV parsing, bounded whole JSON and IO uploads with backpressure, cancellation and fork guards
+
 - Add shared LWA refresh and client-credentials authentication, restricted-data-token views, opt-in rate limits and safe status retries to the Rust/native preview; total deadlines include authentication and waits
 - Add opt-in native `Response#raise_for_status!` with Rust API-error classification and preserved raw response bytes
 

@@ -882,3 +882,31 @@ async fn gzip_truncated_trailing_member_is_rejected() {
     ])
     .await;
 }
+
+#[tokio::test]
+async fn early_upload_rejection_preserves_raw_response_with_declared_length() {
+    let (url, task) = server(
+        b"HTTP/1.1 413 Too Large\r\nContent-Length: 3\r\nConnection: close\r\n\r\nBAD".to_vec(),
+        Duration::ZERO,
+    )
+    .await;
+    let source = stream::once(std::future::ready(Ok::<_, ()>(Bytes::from_static(
+        b"first",
+    ))))
+    .chain(stream::pending());
+    let response = client(&url)
+        .documents()
+        .upload(
+            &url,
+            source,
+            UploadOptions {
+                content_length: Some(1 << 30),
+                ..UploadOptions::default()
+            },
+        )
+        .await
+        .unwrap();
+    assert_eq!(response.status, 413);
+    assert_eq!(response.body, b"BAD");
+    task.await.unwrap();
+}
