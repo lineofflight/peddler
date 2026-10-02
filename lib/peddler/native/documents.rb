@@ -34,7 +34,7 @@ module Peddler
                 error.instance_variables.each do |name|
                   translated.instance_variable_set(name, error.instance_variable_get(name))
                 end
-                backtrace = error.backtrace_locations || error.backtrace
+                backtrace = error.backtrace
                 translated.set_backtrace(backtrace) if backtrace
                 Kernel.raise translated, cause: nil
               end
