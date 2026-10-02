@@ -465,13 +465,8 @@ impl Upload {
             headers: headers(&response.headers),
             body: response.body,
         });
-        Ok((
-            completed.response.status,
-            completed.response.headers,
-            ruby.str_from_slice(&completed.response.body),
-            completed.metadata,
-            truncated,
-        ))
+        let (status, headers, body, metadata) = completed.into_parts(ruby);
+        Ok((status, headers, body, metadata, truncated))
     }
     fn close(ruby: &Ruby, upload: &Self) -> Result<(), Error> {
         let owner = upload.0.get(ruby)?;

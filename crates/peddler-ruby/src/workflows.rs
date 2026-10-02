@@ -20,12 +20,7 @@ fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
                 return native_error(ruby, "WorkflowError", &message);
             }
             // An HTTP error from a metadata lookup raises as any failed API response does.
-            let parts: ResponseParts = (
-                completed.response.status,
-                completed.response.headers,
-                ruby.str_from_slice(&completed.response.body),
-                completed.metadata,
-            );
+            let parts = completed.into_parts(ruby);
             let raised = ruby
                 .class_object()
                 .const_get::<_, RModule>("Peddler")
@@ -130,12 +125,7 @@ fn wait(
         .map(Completed::new)
     })?;
     let completed = result.map_err(|error| workflow_error(ruby, error))?;
-    Ok((
-        completed.response.status,
-        completed.response.headers,
-        ruby.str_from_slice(&completed.response.body),
-        completed.metadata,
-    ))
+    Ok(completed.into_parts(ruby))
 }
 fn wait_report(
     ruby: &Ruby,

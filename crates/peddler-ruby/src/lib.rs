@@ -51,6 +51,15 @@ impl Completed {
             }
         }
     }
+
+    fn into_parts(self, ruby: &Ruby) -> ResponseParts {
+        (
+            self.response.status,
+            self.response.headers,
+            ruby.str_from_slice(&self.response.body),
+            self.metadata,
+        )
+    }
 }
 
 /// The Tokio runtime and the connection pool every client in a process shares.
@@ -262,12 +271,7 @@ impl Engine {
             .map(Completed::new)
         })?;
         match result {
-            Ok(completed) => Ok((
-                completed.response.status,
-                completed.response.headers,
-                ruby.str_from_slice(&completed.response.body),
-                completed.metadata,
-            )),
+            Ok(completed) => Ok(completed.into_parts(ruby)),
             Err(error) => Err(transport_error(ruby, error)),
         }
     }
