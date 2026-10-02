@@ -857,3 +857,36 @@ async fn one_deadline_covers_create_and_upload() {
     assert_eq!(calls.load(Ordering::SeqCst), 2);
     let _ = stream::empty::<Result<Bytes, ()>>().next().await;
 }
+
+#[tokio::test]
+async fn create_and_upload_can_be_split_without_hiding_the_signed_url() {
+    let server = serve(|_, request, base| {
+        if request.starts_with("PUT /signed") {
+            http(200, "", b"")
+        } else {
+            json(
+                201,
+                &format!(
+                    "{{\"feedDocumentId\":\"fd2\",\"url\":\"{base}/signed?sig=SIGNED_SECRET\"}}"
+                ),
+            )
+        }
+    })
+    .await;
+    let workflows = client(&server.url).workflows();
+    let options = UploadOptions::default();
+    let target = workflows
+        .create_feed_document("text/xml", &options)
+        .await
+        .unwrap();
+    assert_eq!(target.document_id, "fd2");
+    assert!(!format!("{target:?}").contains("SIGNED_SECRET"));
+    assert_eq!(server.requests().len(), 1);
+    let uploaded = target.upload(chunks(&[b"<x/>"]), options).await.unwrap();
+    assert_eq!(uploaded.response.status, 200);
+    assert!(
+        server.requests()[1]
+            .to_lowercase()
+            .contains("content-type: text/xml")
+    );
+}

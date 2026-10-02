@@ -48,6 +48,57 @@ pub struct FeedDocumentUpload {
     pub response: UploadResponse,
 }
 
+/// A created feed document awaiting its upload. Debug hides the signed URL.
+pub struct FeedDocumentTarget {
+    client: documents::DocumentClient,
+    pub document_id: String,
+    url: String,
+    content_type: String,
+    deadline: Instant,
+}
+impl fmt::Debug for FeedDocumentTarget {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("FeedDocumentTarget")
+            .field("document_id", &self.document_id)
+            .finish_non_exhaustive()
+    }
+}
+impl FeedDocumentTarget {
+    /// Upload to the signed URL with the Content-Type given at creation, within
+    /// the time left of the deadline that began at creation. The source is first
+    /// polled here, never before valid metadata exists. Not retried. A non-success
+    /// reply is returned as the raw response, not as an error.
+    pub async fn upload<S, E>(
+        self,
+        source: S,
+        mut options: UploadOptions,
+    ) -> Result<FeedDocumentUpload, WorkflowError>
+    where
+        S: Stream<Item = Result<Bytes, E>> + Send + 'static,
+        E: Send + 'static,
+    {
+        let Self {
+            client,
+            document_id,
+            url,
+            content_type,
+            deadline,
+        } = self;
+        let failed = |error| WorkflowError::Upload {
+            document_id: document_id.clone(),
+            error,
+        };
+        options.content_type = content_type;
+        options.transfer.timeout =
+            remaining(deadline).map_err(|_| failed(documents::Error::Timeout))?;
+        let response = client.upload(&url, source, options).await.map_err(failed)?;
+        Ok(FeedDocumentUpload {
+            document_id,
+            response,
+        })
+    }
+}
+
 pub enum WorkflowError {
     /// Invalid identifier, content type, interval, timeout or transfer limits.
     InvalidConfig,
@@ -321,21 +372,35 @@ impl Workflows {
     }
 
     /// Create a feed document with exactly `content_type`, then upload the source
-    /// to its signed URL with the same Content-Type. The source is not polled until
-    /// valid metadata has arrived. Neither request is retried and `createFeed` is
-    /// not called. `options.content_type` is ignored in favor of `content_type`.
+    /// to its signed URL with the same Content-Type. See [`Self::create_feed_document`].
     pub async fn create_and_upload_feed_document<S, E>(
         &self,
         content_type: &str,
         source: S,
-        mut options: UploadOptions,
+        options: UploadOptions,
     ) -> Result<FeedDocumentUpload, WorkflowError>
     where
         S: Stream<Item = Result<Bytes, E>> + Send + 'static,
         E: Send + 'static,
     {
-        options.content_type = content_type.to_owned();
-        documents::check_upload(&options).map_err(|_| WorkflowError::InvalidConfig)?;
+        self.create_feed_document(content_type, &options)
+            .await?
+            .upload(source, options)
+            .await
+    }
+
+    /// Only create the feed document. `options` are validated and their transfer
+    /// timeout starts the one total deadline, shared with the later
+    /// [`FeedDocumentTarget::upload`]. Create is never retried and `createFeed` is
+    /// not called. The signed URL stays private to the returned target.
+    pub async fn create_feed_document(
+        &self,
+        content_type: &str,
+        options: &UploadOptions,
+    ) -> Result<FeedDocumentTarget, WorkflowError> {
+        let mut checked = options.clone();
+        checked.content_type = content_type.to_owned();
+        documents::check_upload(&checked).map_err(|_| WorkflowError::InvalidConfig)?;
         let deadline = deadline(options.transfer.timeout)?;
         let typed = timeout_at(
             deadline,
@@ -354,25 +419,12 @@ impl Workflows {
             return Err(WorkflowError::Metadata);
         }
         documents::check_url(&created.url).map_err(|_| WorkflowError::Metadata)?;
-        let document_id = created.feed_document_id;
-        options.transfer.timeout = remaining(deadline).map_err(|_| WorkflowError::Upload {
-            document_id: document_id.clone(),
-            error: documents::Error::Timeout,
-        })?;
-        let response = match self
-            .client
-            .documents()
-            .upload(&created.url, source, options)
-            .await
-        {
-            Ok(response) => response,
-            Err(error) => {
-                return Err(WorkflowError::Upload { document_id, error });
-            }
-        };
-        Ok(FeedDocumentUpload {
-            document_id,
-            response,
+        Ok(FeedDocumentTarget {
+            client: self.client.documents(),
+            document_id: created.feed_document_id,
+            url: created.url,
+            content_type: content_type.to_owned(),
+            deadline,
         })
     }
 
