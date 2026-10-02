@@ -82,12 +82,22 @@ module Peddler
 
     def test_raise_for_status_raises_outside_2xx
       [400, 404, 429, 500, 503].each do |status|
-        response = Response.new(status, [], "", [nil, nil, nil])
+        response = Response.new(status, [], "")
         error = assert_raises(Error) { response.raise_for_status! }
 
         assert_same(response, error.response)
         assert_equal(status, error.status)
       end
+    end
+
+    def test_a_hand_built_error_response_raises_and_parses_to_the_hash
+      body = '{"errors":[{"code":"NotFound","message":"Item not found"}]}'
+      response = Response.new(404, [], body, operation: "catalog_items_2022_04_01.get_catalog_item")
+      error = assert_raises(Error) { response.raise_for_status! }
+
+      assert_same(response, error.response)
+      assert_equal(["request failed with status 404", nil, nil], [error.message, error.code, error.request_id])
+      assert_equal(JSON.parse(body), response.parse)
     end
 
     def test_from_parts_raises_by_default

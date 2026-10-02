@@ -41,10 +41,12 @@ module Peddler
       @body_truncated = body_truncated
     end
 
+    # The metadata only supplies Amazon's code, request ID and message. Without it they are nil.
+    #
     # @return [self]
     # @raise [Peddler::Error] if the status is outside 2xx
     def raise_for_status!
-      return self unless @metadata
+      return self if (200..299).cover?(status)
 
       code, request_id, message = @metadata
       raise Error.new(message || "request failed with status #{status}", self, code: code, request_id: request_id)
@@ -72,7 +74,7 @@ module Peddler
     #
     # @return [Object] the typed model, or the Hash when the operation has none or the response is an error
     def parse
-      model = parser unless @metadata
+      model = parser if (200..299).cover?(status)
       model ? model.parse(to_h) : to_h
     end
 
