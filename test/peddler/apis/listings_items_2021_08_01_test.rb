@@ -53,9 +53,10 @@ module Peddler
           },
         }
 
-        res = api.put_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.id("UK"), body)
+        res = api.put_listings_item(seller_id: "A34PPN1ZLYCOGT", sku: "SKU123", marketplace_ids: Marketplace.ids("UK"), body: body)
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
 
       def test_patch_listings_item
@@ -77,26 +78,29 @@ module Peddler
           ],
         }
 
-        res = api.patch_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.id("UK"), body)
+        res = api.patch_listings_item(seller_id: "A34PPN1ZLYCOGT", sku: "SKU123", marketplace_ids: Marketplace.ids("UK"), body: body)
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
 
       def test_get_listings_item
         res = api.get_listings_item(
-          "A34PPN1ZLYCOGT",
-          "SKU123",
-          Marketplace.id("UK"),
-          included_data: "attributes,issues",
+          seller_id: "A34PPN1ZLYCOGT",
+          sku: "SKU123",
+          marketplace_ids: Marketplace.ids("UK"),
+          included_data: ["attributes", "issues"],
         )
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
 
       def test_delete_listings_item
-        res = api.delete_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.id("UK"))
+        res = api.delete_listings_item(seller_id: "A34PPN1ZLYCOGT", sku: "SKU123", marketplace_ids: Marketplace.ids("UK"))
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
     end
   end

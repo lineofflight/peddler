@@ -5,9 +5,9 @@ require_relative "test_helper"
 # Protocol and lifecycle tests assert several parts of one interaction.
 # rubocop:disable Minitest/MultipleAssertions
 class ClientTest < NativeTest
-  def test_entrypoint_does_not_load_http_or_generated_apis
+  def test_root_entrypoint_does_not_load_http
     refute(defined?(HTTP))
-    refute($LOADED_FEATURES.any? { |file| file.end_with?("/peddler.rb") })
+    assert($LOADED_FEATURES.any? { |file| file.end_with?("/peddler.rb") })
   end
 
   Dir.glob(File.expand_path("../test/fixtures/native/*.json", __dir__)).each do |path|
@@ -29,9 +29,10 @@ class ClientTest < NativeTest
           body: Base64.strict_decode64(response["body_base64"]))
       end
       serve(handler: handler) do |url|
-        result = client(url).request(request["method"], request["path"], params: request["query"].to_h, body: body)
+        call = -> { client(url).request(request["method"], request["path"], params: request["query"].to_h, body: body) }
+        result = response["status"] < 400 ? call.call : assert_raises(Peddler::Error, &call).response
 
-        assert_instance_of(Peddler::Native::Response, result)
+        assert_instance_of(Peddler::Response, result)
         assert_equal(response["status"], result.status)
         response["headers"].each { |pair| assert_includes(result.headers, pair) }
         assert_equal(Base64.strict_decode64(response["body_base64"]), result.body)
@@ -92,7 +93,7 @@ class ClientTest < NativeTest
     server = TCPServer.new("127.0.0.1", 0)
     url = "http://127.0.0.1:#{server.addr[1]}"
     server.close
-    error = assert_raises(Peddler::Native::TransportError) { client(url).request("GET", "/secret", params: { token: "private" }) }
+    error = assert_raises(Peddler::TransportError) { client(url).request("GET", "/secret", params: { token: "private" }) }
     refute_match(/secret|private|127\.0\.0\.1/, error.message)
   end
 
@@ -102,7 +103,7 @@ class ClientTest < NativeTest
       assert_nil(socket.read(1))
     }) do |url|
       started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      assert_raises(Peddler::Native::TimeoutError) { client(url, timeout: 0.05).request("GET", "/") }
+      assert_raises(Peddler::TimeoutError) { client(url, timeout: 0.05).request("GET", "/") }
       assert_operator(Process.clock_gettime(Process::CLOCK_MONOTONIC) - started, :<, 2)
     end
   end
@@ -179,7 +180,7 @@ class ClientTest < NativeTest
         begin
           instance.request("GET", "/")
           raise "inherited client accepted"
-        rescue Peddler::Native::ForkError
+        rescue Peddler::ForkError
           instance = nil
           GC.start
           fresh = client(url)

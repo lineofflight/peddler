@@ -119,11 +119,11 @@ class WorkflowsTest < NativeTest
 
   def test_bad_compression_conflicts_and_metadata_never_download
     cases = {
-      unknown: [report_document("http://x", algorithm: "BROTLI"), {}, Peddler::Native::WorkflowError],
-      conflict: [report_document("http://x", algorithm: "GZIP"), { compression: :none }, Peddler::Native::WorkflowError],
-      absent_gzip: [report_document("http://x"), { compression: :gzip }, Peddler::Native::WorkflowError],
-      empty_url: ['{"reportDocumentId":"d1","url":""}', {}, Peddler::Native::WorkflowError],
-      malformed: ['{"url":3}', {}, Peddler::Native::WorkflowError],
+      unknown: [report_document("http://x", algorithm: "BROTLI"), {}, Peddler::WorkflowError],
+      conflict: [report_document("http://x", algorithm: "GZIP"), { compression: :none }, Peddler::WorkflowError],
+      absent_gzip: [report_document("http://x"), { compression: :gzip }, Peddler::WorkflowError],
+      empty_url: ['{"reportDocumentId":"d1","url":""}', {}, Peddler::WorkflowError],
+      malformed: ['{"url":3}', {}, Peddler::WorkflowError],
     }
     cases.each do |name, (body, options, error_class)|
       handler = lambda do |socket, first, _, _, base|
@@ -139,15 +139,21 @@ class WorkflowsTest < NativeTest
     end
   end
 
-  def test_metadata_http_error_retains_the_raw_response_without_leaking_it
-    handler = ->(socket, *) { respond(socket, status: 404, body: '{"errors":[{"code":"NotFound","message":"BODY_SECRET"}]}') }
+  def test_metadata_http_error_raises_the_api_error_with_the_raw_response
+    handler = lambda { |socket, *|
+      respond(socket, status: 404, headers: [["x-amzn-requestid", "request-id"]],
+        body: '{"errors":[{"code":"NotFound","message":"Amazon says no"}]}')
+    }
     route_server(handler) do |url, requests|
-      error = assert_raises(Peddler::Native::WorkflowHTTPError) { client(url).download_feed_document("d1") }
+      error = assert_raises(Peddler::Error) { client(url).download_feed_document("d1") }
 
-      assert_equal(404, error.response.status)
-      assert_includes(error.response.body, "BODY_SECRET")
-      assert_equal("not_found", assert_raises(Peddler::Native::APIError) { error.response.raise_for_status! }.kind)
-      refute_match(/BODY_SECRET|local-secret/, error.message + error.inspect)
+      refute_kind_of(Peddler::WorkflowError, error)
+      assert_equal(404, error.status)
+      assert_equal("NotFound", error.code)
+      assert_equal("request-id", error.request_id)
+      assert_equal("Amazon says no", error.message)
+      assert_includes(error.response.body, "Amazon says no")
+      refute_match(/local-secret|127\.0\.0\.1/, error.message + error.inspect)
       assert_equal(1, requests.call.size)
     end
   end
@@ -225,26 +231,27 @@ class WorkflowsTest < NativeTest
 
   def test_wait_rejects_unknown_status_stops_on_http_errors_and_malformed_json
     route_server(->(socket, *) { respond(socket, body: report("SOMETHING_NEW")) }) do |url, requests|
-      error = assert_raises(Peddler::Native::WorkflowError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
+      error = assert_raises(Peddler::WorkflowError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
 
       refute_match(/SOMETHING_NEW/, error.message)
       assert_equal(1, requests.call.size)
     end
     route_server(->(socket, *) { respond(socket, status: 429, body: '{"errors":[]}') }) do |url, requests|
-      error = assert_raises(Peddler::Native::WorkflowHTTPError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
+      error = assert_raises(Peddler::Error) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
 
+      assert_equal(429, error.status)
       assert_equal(429, error.response.status)
       assert_equal(1, requests.call.size)
     end
     route_server(->(socket, *) { respond(socket, body: '{"processingStatus":1}') }) do |url, _|
-      assert_raises(Peddler::Native::WorkflowError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
+      assert_raises(Peddler::WorkflowError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
     end
   end
 
   def test_wait_is_bounded_and_no_polls_follow_the_deadline
     route_server(->(socket, *) { respond(socket, body: report("IN_QUEUE")) }) do |url, requests|
       started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      assert_raises(Peddler::Native::WorkflowTimeoutError) { client(url).wait_for_report("r1", interval: 0.04, timeout: 0.25) }
+      assert_raises(Peddler::WorkflowTimeoutError) { client(url).wait_for_report("r1", interval: 0.04, timeout: 0.25) }
       elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started
 
       assert_operator(elapsed, :>=, 0.24)
@@ -258,7 +265,7 @@ class WorkflowsTest < NativeTest
     end
     route_server(->(socket, *) { sleep(2) && respond(socket, body: report("DONE")) }) do |url, _|
       started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      assert_raises(Peddler::Native::WorkflowTimeoutError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 0.2) }
+      assert_raises(Peddler::WorkflowTimeoutError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 0.2) }
 
       assert_operator(Process.clock_gettime(Process::CLOCK_MONOTONIC) - started, :<, 0.7)
     end
@@ -322,12 +329,12 @@ class WorkflowsTest < NativeTest
     route_server(handler) do |url, _|
       started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       document = client(url).download_report_document("d1", timeout: 0.6)
-      assert_raises(Peddler::Native::DocumentTimeoutError) { document.each_chunk.to_a }
+      assert_raises(Peddler::DocumentTimeoutError) { document.each_chunk.to_a }
       elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started
 
       assert_operator(elapsed, :>=, 0.55)
       assert_operator(elapsed, :<, 0.9)
-      assert_raises(Peddler::Native::WorkflowTimeoutError) { client(url).download_report_document("d1", timeout: 0.1) }
+      assert_raises(Peddler::WorkflowTimeoutError) { client(url).download_report_document("d1", timeout: 0.1) }
     end
   end
 
@@ -377,7 +384,7 @@ class WorkflowsTest < NativeTest
       { create_body: '{"feedDocumentId":"fd1","url":""}' },
       { create_body: '{"feedDocumentId":"fd1","url":"ftp://x/y"}' },
       { create_body: "not json" },
-      { create_status: 400, create_body: '{"errors":[{"message":"BODY_SECRET"}]}' },
+      { create_status: 400, create_body: '{"errors":[{"code":"InvalidInput","message":"Amazon says no"}]}' },
     ]
     bodies.each do |options|
       touched = false
@@ -387,11 +394,16 @@ class WorkflowsTest < NativeTest
         nil
       end
       route_server(feed_handler(**options)) do |url, requests|
-        error = assert_raises(Peddler::Native::WorkflowError) { client(url).create_and_upload_feed_document(source, content_type: "text/xml") }
+        # A failed create is the API error; anything else wrong with the metadata is a workflow error.
+        expected = options[:create_status] ? Peddler::Error : Peddler::WorkflowError
+        error = assert_raises(expected) { client(url).create_and_upload_feed_document(source, content_type: "text/xml") }
 
         refute(touched, options.inspect)
-        refute_match(/BODY_SECRET|127\.0\.0\.1|SIGNED_SECRET/, error.full_message(highlight: false))
+        refute_match(/127\.0\.0\.1|SIGNED_SECRET/, error.full_message(highlight: false))
         assert_equal(1, requests.call.size)
+        next unless options[:create_status]
+
+        assert_equal([400, "InvalidInput", "Amazon says no"], [error.status, error.code, error.message])
       end
     end
   end
@@ -416,14 +428,14 @@ class WorkflowsTest < NativeTest
       assert_equal(2, requests.call.size, "neither mutation retried")
     end
     route_server(feed_handler) do |url, _|
-      error = assert_raises(Peddler::Native::DocumentError) { client(url).create_and_upload_feed_document("abc", content_type: "text/xml", content_length: 5) }
+      error = assert_raises(Peddler::DocumentError) { client(url).create_and_upload_feed_document("abc", content_type: "text/xml", content_length: 5) }
 
       assert_equal("fd/1", error.document_id)
       refute_match(/SIGNED_SECRET/, error.full_message(highlight: false))
       source_error = RuntimeError.new("private-secret")
       source = Object.new
       source.define_singleton_method(:read) { |_| raise source_error }
-      error = assert_raises(Peddler::Native::DocumentError) { client(url).create_and_upload_feed_document(source, content_type: "text/xml") }
+      error = assert_raises(Peddler::DocumentError) { client(url).create_and_upload_feed_document(source, content_type: "text/xml") }
 
       assert_equal("fd/1", error.document_id)
       assert_same(source_error, error.cause)
@@ -443,7 +455,7 @@ class WorkflowsTest < NativeTest
     end
     route_server(handler) do |url, _|
       started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      error = assert_raises(Peddler::Native::DocumentTimeoutError) { client(url).create_and_upload_feed_document("x", content_type: "text/xml", timeout: 0.6) }
+      error = assert_raises(Peddler::DocumentTimeoutError) { client(url).create_and_upload_feed_document("x", content_type: "text/xml", timeout: 0.6) }
       elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started
 
       assert_equal("fd1", error.document_id)
@@ -468,7 +480,7 @@ class WorkflowsTest < NativeTest
       ].all? do |call|
         call.call
         false
-      rescue Peddler::Native::ForkError
+      rescue Peddler::ForkError
         true
       end
       writer.write(guarded ? "guarded" : "failed")

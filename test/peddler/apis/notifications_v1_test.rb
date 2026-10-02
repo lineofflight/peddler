@@ -8,9 +8,10 @@ module Peddler
       include FeatureHelpers
 
       def test_get_destinations
-        res = api(grantless: true).sandbox.get_destinations
+        res = api.get_destinations
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
 
       def test_create_destination
@@ -22,27 +23,31 @@ module Peddler
           },
           name: "Test Destination",
         }
-        res = api(grantless: true).sandbox.create_destination(body)
+        res = api.create_destination(body: body)
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
 
       def test_get_destination
-        res = api(grantless: true).sandbox.get_destination("TEST_DESTINATION_ID")
+        res = api.get_destination(destination_id: "TEST_DESTINATION_ID")
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
 
       def test_delete_destination
-        res = api(grantless: true).sandbox.delete_destination("TEST_DESTINATION_ID")
+        res = api.delete_destination(destination_id: "TEST_DESTINATION_ID")
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
 
       def test_get_subscription
-        res = api.sandbox.get_subscription("LISTINGS_ITEM_ISSUES_CHANGE")
+        res = api.get_subscription(notification_type: "LISTINGS_ITEM_ISSUES_CHANGE")
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
 
       def test_create_subscription
@@ -50,9 +55,10 @@ module Peddler
           destinationId: "TEST_DESTINATION_ID",
           payloadVersion: "1.0",
         }
-        res = api.sandbox.create_subscription(body, "ORDER_CHANGE")
+        res = api.create_subscription(body: body, notification_type: "ORDER_CHANGE")
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
     end
   end

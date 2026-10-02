@@ -61,8 +61,8 @@ class PaginationTest < NativeTest
     return Peddler::Native::PAGINATIONS.fetch(spec) if spec.is_a?(String)
 
     continuation = spec.fetch("continuation", {})
-    Peddler::Native::Pagination.new(operation: spec["operation"], input: spec["input"], output: spec["output"],
-      continuation: Peddler::Native::Continuation.new(
+    Peddler::Pagination.new(operation: spec["operation"], input: spec["input"], output: spec["output"],
+      continuation: Peddler::Continuation.new(
         operation: continuation["operation"], keep: continuation["keep"], drop: continuation.fetch("drop", []),
         set: continuation.fetch("set", {}),
       ))
@@ -88,16 +88,20 @@ class PaginationTest < NativeTest
       script(replies) do |server|
         engine = client(server.url).instance_variable_get(:@engine)
         pages = []
-        error = nil
+        error = failed = nil
         begin
           pagination_for(fixture["pagination"]).pages(engine, arguments, max_pages: fixture["max_pages"]).each do |page|
             pages << page
           end
-        rescue Peddler::Native::PaginationError => e
+        rescue Peddler::PaginationError => e
           error = e
+        rescue Peddler::Error => e
+          failed = e
         end
 
-        assert_equal(fixture["statuses"], pages.map(&:status))
+        # The shared fixtures list a failed page as yielded, as the Rust stream does. Ruby raises it instead.
+        assert_equal(fixture["statuses"], pages.map(&:status) + [failed&.status].compact)
+        assert_equal(fixture["statuses"].any? { |status| status >= 400 }, !failed.nil?)
         expected_error = fixture["error"]
         expected_error ? assert_equal(expected_error, error&.reason&.to_s) : assert_nil(error)
         refute_includes("#{error&.message}#{error&.cause&.message}#{error&.inspect}", "SECRET") if error
@@ -115,6 +119,21 @@ class PaginationTest < NativeTest
     end
   end
 
+  def test_generated_pages_raise_the_api_error_on_a_failed_page
+    replies = [[200, '{"payload":{"Orders":[],"NextToken":"A"}}'], [429, '{"errors":[{"code":"QuotaExceeded","message":"Slow down"}]}']]
+    script(replies) do |server|
+      pages = []
+      error = assert_raises(Peddler::Error) do
+        client(server.url).orders_v0.get_orders_pages(marketplace_ids: ["ATVPDKIKX0DER"]).each { |page| pages << page }
+      end
+
+      assert_equal([200], pages.map(&:status))
+      assert_instance_of(Peddler::APIs::OrdersV0::GetOrdersResponse, pages.first.parse)
+      assert_equal([429, "QuotaExceeded", "Slow down"], [error.status, error.code, error.message])
+      assert_equal(2, server.requests.size)
+    end
+  end
+
   def test_generated_method_returns_a_lazy_rewindable_enumerable_of_native_responses
     script([[200, '{"payload":{"NextToken":"A"}}'], [200, "{}"], [200, '{"payload":{"NextToken":"A"}}'], [200, "{}"]]) do |server|
       enum = client(server.url).orders_v0.get_orders_pages(marketplace_ids: ["ATVPDKIKX0DER"])
@@ -122,7 +141,7 @@ class PaginationTest < NativeTest
       assert_kind_of(Enumerable, enum)
       assert_empty(server.requests, "no network before enumeration")
       assert_equal([200, 200], enum.map(&:status))
-      assert_instance_of(Peddler::Native::Response, enum.first)
+      assert_instance_of(Peddler::Response, enum.first)
       assert_equal(3, server.requests.size, "first restarts from the first page and stops")
       assert_equal(["NextToken", "A"], URI.decode_www_form(server.requests[1][:target].split("?", 2)[1]).assoc("NextToken"))
     end
@@ -157,7 +176,7 @@ class PaginationTest < NativeTest
 
   def test_client_pages_runs_explicit_mapping
     script([[200, '{"next":"1"}'], [200, "{}"]]) do |server|
-      pagination = Peddler::Native::Pagination.new(operation: "sellers_v1.get_marketplace_participations", input: "/x",
+      pagination = Peddler::Pagination.new(operation: "sellers_v1.get_marketplace_participations", input: "/x",
         output: "/next")
 
       assert_equal(1, client(server.url).pages(pagination, {}, max_pages: 1).to_a.size)
@@ -176,7 +195,7 @@ class PaginationTest < NativeTest
       assert_raises(ArgumentError) { pagination.pages(engine, {}, max_pages: -1) }
       assert_raises(ArgumentError) { pagination.pages(engine, { x: Float::NAN }) }
       assert_raises(ArgumentError) do
-        Peddler::Native::Pagination.new(operation: ORDERS, input: "next_token", output: "/x")
+        Peddler::Pagination.new(operation: ORDERS, input: "next_token", output: "/x")
       end
       assert_empty(server.requests)
     end

@@ -6,7 +6,7 @@ require "timeout"
 require "json"
 require "base64"
 require "uri"
-require "peddler/native"
+require "peddler"
 
 class NativeTest < Minitest::Test
   def with_server(count: 1, &handler)

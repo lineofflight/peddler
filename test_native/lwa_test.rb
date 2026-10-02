@@ -10,11 +10,11 @@ class LwaTest < NativeTest
   end
 
   def onboarding(url, **options)
-    Peddler::Native::LWA.new(client_id: "id+&é", client_secret: "secret+&雪", lwa_endpoint: url, **options)
+    Peddler::LWA.new(client_id: "id+&é", client_secret: "secret+&雪", lwa_endpoint: url, **options)
   end
 
   def test_authorization_code_form_and_refresh_integration
-    assert(Peddler::Native.const_defined?(:LWA), "native onboarding is missing")
+    assert(Peddler.const_defined?(:LWA), "native onboarding is missing")
     calls = Queue.new
     serve(count: 2, handler: lambda { |socket, first, headers, body|
       assert_equal("POST", first[0])
@@ -64,7 +64,7 @@ class LwaTest < NativeTest
     bodies = invalid.map { |data| JSON.generate(data) } + ["sensitive malformed", "x" * (64 * 1024 + 1)]
     bodies.each do |body|
       serve(handler: ->(socket, *) { respond(socket, body: body) }) do |url|
-        error = assert_raises(Peddler::Native::AuthenticationError) { onboarding(url).exchange_authorization_code(code: "sensitive-code") }
+        error = assert_raises(Peddler::AuthenticationError) { onboarding(url).exchange_authorization_code(code: "sensitive-code") }
         refute_match(/sensitive-code|onboard-access|onboard-refresh|secret\+&/, error.message)
       end
     end
@@ -78,7 +78,7 @@ class LwaTest < NativeTest
 
   def test_rejections_and_validation_are_sanitized
     serve(handler: ->(socket, *) { respond(socket, status: 401, body: "sensitive-code secret+&雪") }) do |url|
-      error = assert_raises(Peddler::Native::AuthenticationError) do
+      error = assert_raises(Peddler::AuthenticationError) do
         onboarding(url).exchange_authorization_code(code: "sensitive-code")
       end
       assert_equal(401, error.status)
@@ -109,7 +109,7 @@ class LwaTest < NativeTest
       serve(handler: lambda { |socket, *|
         respond(socket, status: status, headers: [["Location", "http://127.0.0.1:1/sensitive"]], body: "sensitive")
       }) do |url|
-        error = assert_raises(Peddler::Native::AuthenticationError) { onboarding(url).exchange_authorization_code(code: "code") }
+        error = assert_raises(Peddler::AuthenticationError) { onboarding(url).exchange_authorization_code(code: "code") }
         assert_equal(status, error.status)
       end
     end
@@ -122,7 +122,7 @@ class LwaTest < NativeTest
       assert(socket.wait_readable(2))
       assert_nil(socket.read(1))
     }) do |url|
-      assert_raises(Peddler::Native::TimeoutError) do
+      assert_raises(Peddler::TimeoutError) do
         onboarding(url, timeout: 0.05).exchange_authorization_code(code: "code")
       end
     end
@@ -130,8 +130,8 @@ class LwaTest < NativeTest
 
   def test_interruption_closes_socket_and_client_recovers
     caller_error = begin
-      sensitive_rescue { raise Peddler::Native::AuthenticationError.new("caller authentication failure", 403) }
-    rescue Peddler::Native::AuthenticationError => error
+      sensitive_rescue { raise Peddler::AuthenticationError.new("caller authentication failure", 403) }
+    rescue Peddler::AuthenticationError => error
       error
     end
     [Interrupt.new("caller interruption"), caller_error, nil].each do |interruption|
@@ -151,7 +151,7 @@ class LwaTest < NativeTest
         instance = onboarding(url)
         worker = Thread.new do
           instance.exchange_authorization_code(code: "code")
-        rescue Interrupt, Peddler::Native::AuthenticationError => error
+        rescue Interrupt, Peddler::AuthenticationError => error
           error
         end
         Timeout.timeout(3) { started.pop }
@@ -207,7 +207,7 @@ class LwaTest < NativeTest
       begin
         instance.exchange_authorization_code(code: "code")
         writer.write("failed")
-      rescue Peddler::Native::ForkError
+      rescue Peddler::ForkError
         writer.write("guarded")
       end
       instance = nil

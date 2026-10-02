@@ -64,7 +64,7 @@ class DocumentsTest < NativeTest
 
       assert_equal([["a\tb", "line\nnext"], ["é", "x"]], instance.download_document("#{url}/tsv").each_tsv(consistent_fields: true).to_a)
       document = instance.download_document("#{url}/json")
-      assert_raises(Peddler::Native::DocumentError) { document.json(max_bytes: 3) }
+      assert_raises(Peddler::DocumentError) { document.json(max_bytes: 3) }
       assert_predicate(document, :closed?)
     end
   end
@@ -87,7 +87,7 @@ class DocumentsTest < NativeTest
       refute_match(/private-secret|unknown_secret/, error.message)
     end
     serve(handler: ->(socket, *) { respond(socket, body: 'private-secret invalid JSON') }) do |url|
-      error = assert_raises(Peddler::Native::DocumentError) { client(url).download_document(url).each_jsonl.to_a }
+      error = assert_raises(Peddler::DocumentError) { client(url).download_document(url).each_jsonl.to_a }
       refute_match(/private-secret/, error.message)
     end
   end
@@ -102,7 +102,7 @@ class DocumentsTest < NativeTest
       document.each_chunk { break }
 
       assert_predicate(document, :closed?)
-      assert_raises(Peddler::Native::DocumentError) { document.each_jsonl.to_a }
+      assert_raises(Peddler::DocumentError) { document.each_jsonl.to_a }
     end
   end
 
@@ -185,7 +185,7 @@ class DocumentsTest < NativeTest
         assert_equal(400, response.status)
         assert_equal("reply", response.body)
         assert_predicate(response, :body_truncated?)
-        assert_equal("client", assert_raises(Peddler::Native::APIError) { response.raise_for_status! }.kind)
+        assert_equal(400, assert_raises(Peddler::Error) { response.raise_for_status! }.status)
       end
     end
 
@@ -241,7 +241,7 @@ class DocumentsTest < NativeTest
     }) do |url|
       instance = client(url)
       [2, 4].each do |length|
-        error = assert_raises(Peddler::Native::DocumentError) { instance.upload_document(url, "abc", content_type: "text/plain", content_length: length) }
+        error = assert_raises(Peddler::DocumentError) { instance.upload_document(url, "abc", content_type: "text/plain", content_length: length) }
         assert_match(/length mismatch/, error.message)
       end
       source_exception = RuntimeError.new("private-secret IO URL")
@@ -250,7 +250,7 @@ class DocumentsTest < NativeTest
         sleep(0.02)
         raise source_exception
       end
-      error = assert_raises(Peddler::Native::DocumentError) { instance.upload_document(url, source, content_type: "text/plain") }
+      error = assert_raises(Peddler::DocumentError) { instance.upload_document(url, source, content_type: "text/plain") }
       refute_match(/private-secret/, error.message)
       assert_same(source_exception, error.cause)
     end
@@ -299,13 +299,13 @@ class DocumentsTest < NativeTest
           guarded = [:status, :headers, :error_body, :closed?, :close].all? do |method|
             stream.public_send(method)
             false
-          rescue Peddler::Native::ForkError
+          rescue Peddler::ForkError
             true
           end
           guarded &&= [:completed?, :finish, :close].all? do |method|
             upload.public_send(method)
             false
-          rescue Peddler::Native::ForkError
+          rescue Peddler::ForkError
             true
           end
           content = client(url).download_document(url).each_chunk.to_a.join
@@ -340,13 +340,13 @@ class DocumentsTest < NativeTest
         started << true
         begin
           stream.each_chunk.to_a
-        rescue Peddler::Native::DocumentError
+        rescue Peddler::DocumentError
           :closed
         end
       end
       started.pop
       Thread.pass until thread.status == "sleep"
-      assert_raises(Peddler::Native::DocumentError) { stream.each_jsonl.to_a }
+      assert_raises(Peddler::DocumentError) { stream.each_jsonl.to_a }
       assert(thread.join(1), "close must cancel the active stream")
       assert_equal(:closed, thread.value)
       assert_predicate(stream, :closed?)
@@ -368,7 +368,7 @@ class DocumentsTest < NativeTest
     }) do |url|
       instance = client(url)
       stream = instance.download_document("#{url}/slow", timeout: 0.03)
-      assert_raises(Peddler::Native::DocumentTimeoutError) { stream.each_chunk { sleep(0.05) } }
+      assert_raises(Peddler::DocumentTimeoutError) { stream.each_chunk { sleep(0.05) } }
       assert_predicate(stream, :closed?)
       assert_equal("recovered", instance.download_document(url).each_chunk.to_a.join)
     end
@@ -394,7 +394,7 @@ class DocumentsTest < NativeTest
         instance = client(url)
         thread = Thread.new do
           instance.upload_document("#{url}/blocked", source, content_type: "text/plain", timeout: timeout ? 0.03 : 30)
-        rescue Peddler::Native::DocumentTimeoutError
+        rescue Peddler::DocumentTimeoutError
           :timed_out
         end
         started.pop
@@ -421,8 +421,8 @@ class DocumentsTest < NativeTest
     engine = instance.instance_variable_get(:@engine)
     upload = engine.start_document_upload("http://127.0.0.1:1", "{}", "text/plain", [], nil)
     upload.close
-    assert_raises(Peddler::Native::DocumentError) { Timeout.timeout(1) { upload.finish } }
-    assert_raises(Peddler::Native::DocumentError) { Timeout.timeout(1) { upload.finish } }
+    assert_raises(Peddler::DocumentError) { Timeout.timeout(1) { upload.finish } }
+    assert_raises(Peddler::DocumentError) { Timeout.timeout(1) { upload.finish } }
   end
 
   def test_io_upload_backpressure_bounds_reads_until_server_consumes
@@ -482,10 +482,10 @@ class DocumentsTest < NativeTest
 
       assert_equal(123456789012345678901234567890, value.fetch("n"))
       assert_equal(BigDecimal("0.12345678901234567890123456789"), value.fetch("d"))
-      assert_raises(Peddler::Native::DocumentError) { instance.download_document("#{url}/bytes", max_bytes: 3).each_chunk.to_a }
-      assert_raises(Peddler::Native::DocumentError) { instance.download_document("#{url}/record", max_record_bytes: 3).each_jsonl.to_a }
-      assert_raises(Peddler::Native::DocumentError) { instance.download_document("#{url}/rows", max_records: 1).each_jsonl.to_a }
-      assert_raises(Peddler::Native::DocumentError) { instance.download_document("#{url}/utf8").each_tsv.to_a }
+      assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/bytes", max_bytes: 3).each_chunk.to_a }
+      assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/record", max_record_bytes: 3).each_jsonl.to_a }
+      assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/rows", max_records: 1).each_jsonl.to_a }
+      assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/utf8").each_tsv.to_a }
     end
   end
 
@@ -493,7 +493,7 @@ class DocumentsTest < NativeTest
     serve(handler: ->(socket, *) { respond(socket, body: "chunk") }) do |url|
       document = client(url).download_document(url)
       document.each_chunk do
-        assert_raises(Peddler::Native::DocumentError) { document.each_jsonl.to_a }
+        assert_raises(Peddler::DocumentError) { document.each_jsonl.to_a }
         break
       end
 
@@ -536,7 +536,7 @@ class DocumentsTest < NativeTest
     }) do |url|
       instance = client(url)
       ["overflow", "underflow"].each do |path|
-        error = assert_raises(Peddler::Native::DocumentError) { instance.download_document("#{url}/#{path}").each_jsonl.to_a }
+        error = assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/#{path}").each_jsonl.to_a }
         refute_match(/secret|999999/, error.message)
       end
     end
@@ -598,8 +598,8 @@ class DocumentsTest < NativeTest
         assert_same(caller_error, caught)
         assert_same(sensitive, caught.cause)
         document = client(url).download_document(url)
-        row_error = Peddler::Native::DocumentError.new("caller row error")
-        caught = assert_raises(Peddler::Native::DocumentError) { document.each_chunk { raise row_error } }
+        row_error = Peddler::DocumentError.new("caller row error")
+        caught = assert_raises(Peddler::DocumentError) { document.each_chunk { raise row_error } }
         assert_same(row_error, caught)
         assert_same(sensitive, caught.cause)
         assert_predicate(document, :closed?)
@@ -618,12 +618,12 @@ class DocumentsTest < NativeTest
       document = client(url).download_document(url)
       thread = Thread.new do
         sensitive_rescue { document.each_chunk.to_a }
-      rescue Peddler::Native::DocumentError => error
+      rescue Peddler::DocumentError => error
         error
       end
       started.pop
       Thread.pass until thread.status == "sleep"
-      original = Peddler::Native::DocumentError.new("caller interruption")
+      original = Peddler::DocumentError.new("caller interruption")
       thread.raise(original)
 
       assert(thread.join(1))

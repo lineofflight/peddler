@@ -9,13 +9,13 @@ module Peddler
 
       def test_get_listings_restrictions
         res = api.get_listings_restrictions(
-          "188864544X",
-          "A34PPN1ZLYCOGT",
-          Marketplace.id("UK"),
+          asin: "188864544X",
+          seller_id: "A34PPN1ZLYCOGT",
+          marketplace_ids: Marketplace.ids("UK"),
           condition_type: "new_new",
         )
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

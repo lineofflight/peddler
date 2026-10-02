@@ -10,9 +10,11 @@ require "steep/rake_task"
 require "yard"
 
 Minitest::TestTask.create do |t|
-  t.libs << "test"
-  t.test_globs = ["test/**/*_test.rb"]
+  t.libs << "test" << "tmp/native"
+  t.test_globs = ["test/**/*_test.rb", "test_native/**/*_test.rb"]
 end
+# The suite runs against the extension built into tmp/native.
+Rake::Task[:test].enhance(["native:build"])
 RuboCop::RakeTask.new
 Steep::RakeTask.new
 YARD::Rake::YardocTask.new

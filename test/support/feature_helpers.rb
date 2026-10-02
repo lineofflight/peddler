@@ -1,32 +1,57 @@
 # frozen_string_literal: true
 
-require_relative "configurable"
-require_relative "recordable"
+require_relative "replay"
 
+# Replays the cassette recorded for a test through a client pointed at a loopback server
 module FeatureHelpers
-  include Configurable, Recordable
-
-  def api(grantless: false)
-    access_token = request_access_token(grantless:)
-    api_class.new(aws_region, access_token)
+  def setup
+    super
+    @replay = Replay.new(cassette)
   end
 
-  def api_class
-    Object.const_get("Peddler::APIs::#{api_name}")
+  # The cassette recorded for the test, by its class and name
+  def cassette
+    "#{self.class.name}/#{name}".gsub("::", "/")
+  end
+
+  def teardown
+    @replay&.stop
+    super
+  end
+
+  # Asserts a 2xx response whose recorded body, when it has one, parses into the operation's typed model
+  #
+  # Pass typed: false for a sandbox body that omits fields the spec requires. The typed model rejects those, as it
+  # did in v5, so only the Hash is checked.
+  def assert_success(res, typed: true)
+    assert_includes(200..299, res.status)
+    return if res.body.empty?
+    return assert_kind_of(Hash, res.to_h) unless typed
+
+    operation = res.instance_variable_get(:@operation)
+    modeled = Peddler::APIs::PARSERS.fetch(api_name).call.key?(operation)
+
+    assert_equal(modeled, !res.parse.is_a?(Hash), "#{operation} should parse into #{modeled ? "its typed model" : "a Hash"}")
+  end
+
+  # Points a recorded absolute URL, such as a signed document URL, at the replay server
+  def replayed(url)
+    "#{@replay.url}#{URI(url).request_uri}"
+  end
+
+  def client
+    Peddler::Client.new(base_url: @replay.url, access_token: "FILTERED")
+  end
+
+  def api
+    client.public_send(api_name)
   end
 
   def api_name
-    self.class.name.split("::").last.sub(/Test$/, "")
-  end
+    class_name = self.class.name.split("::").last.delete_suffix("Test")
+    inflector = Peddler::Inflector.new(File.join(Replay::ROOT, "lib/peddler.rb"))
 
-  def request_access_token(grantless:)
-    payload = if grantless
-      scope = "sellingpartnerapi::notifications"
-      Peddler::LWA.request(client_id: client_id, client_secret: client_secret, scope: scope)
-    else
-      Peddler::LWA.request(client_id: client_id, client_secret: client_secret, refresh_token: refresh_token)
-    end
-
-    payload.parse.access_token
+    Peddler::APIs::PARSERS.keys.find { |name| inflector.camelize(name, nil) == class_name } ||
+      raise("no API for #{class_name}")
   end
 end

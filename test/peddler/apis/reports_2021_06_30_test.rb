@@ -8,12 +8,12 @@ module Peddler
       include FeatureHelpers
 
       def test_get_reports
-        res = api.sandbox.get_reports(
+        res = api.get_reports(
           report_types: ["FEE_DISCOUNTS_REPORT", "GET_AFN_INVENTORY_DATA"],
           processing_statuses: ["IN_QUEUE", "IN_PROGRESS"],
         )
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_create_report
@@ -25,44 +25,44 @@ module Peddler
             "ATVPDKIKX0DER",
           ],
         }
-        res = api.sandbox.create_report(payload)
+        res = api.create_report(body: payload)
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_report
-        res = api.sandbox.get_report("ID323")
+        res = api.get_report(report_id: "ID323")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_report_schedules
-        res = api.sandbox.get_report_schedules(["FEE_DISCOUNTS_REPORT", "GET_FBA_FULFILLMENT_CUSTOMER_TAXES_DATA"])
+        res = api.get_report_schedules(report_types: ["FEE_DISCOUNTS_REPORT", "GET_FBA_FULFILLMENT_CUSTOMER_TAXES_DATA"])
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_create_report_schedule
-        res = api.sandbox.create_report_schedule({
+        res = api.create_report_schedule(body: {
           "reportType" => "FEE_DISCOUNTS_REPORT",
           "period" => "PT5M",
           "nextReportCreationTime" => "2024-03-10T20:11:24.000Z",
           "marketplaceIds" => ["ATVPDKIKX0DER"],
         })
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_report_schedule
-        res = api.sandbox.get_report_schedule("ID323")
+        res = api.get_report_schedule(report_schedule_id: "ID323")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_report_document
-        res = api.sandbox.get_report_document("0356cf79-b8b0-4226-b4b9-0ee058ea5760")
+        res = api.get_report_document(report_document_id: "0356cf79-b8b0-4226-b4b9-0ee058ea5760")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

@@ -9,18 +9,18 @@ module Peddler
 
       def test_search_catalog_items
         res = api.search_catalog_items(
-          Marketplace.ids("UK"),
-          identifiers: "188864544X",
+          marketplace_ids: Marketplace.ids("UK"),
+          identifiers: ["188864544X"],
           identifiers_type: "ASIN",
         )
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_catalog_item
         res = api.get_catalog_item(
-          "188864544X",
-          Marketplace.ids("UK"),
+          asin: "188864544X",
+          marketplace_ids: Marketplace.ids("UK"),
           included_data: [
             "classifications",
             "dimensions",
@@ -33,7 +33,7 @@ module Peddler
           ],
         )
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

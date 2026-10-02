@@ -63,12 +63,14 @@ class RuntimeTest < NativeTest
     serve(handler: lambda { |socket, *|
       respond(socket, status: 429, headers: [["x-repeat", "a"], ["x-repeat", "b"], ["x-amzn-requestid", "request-id"]], body: "\xFF\x00".b)
     }) do |url|
-      response = client(url).request("GET", "/")
-      error = assert_raises(Peddler::Native::APIError) { response.raise_for_status! }
-      assert_same(response, error.response)
-      assert_equal("throttled", error.kind)
+      error = assert_raises(Peddler::Error) { client(url).request("GET", "/") }
+      response = error.response
+
+      assert_same(response, assert_raises(Peddler::Error) { response.raise_for_status! }.response)
+      assert_equal(429, error.status)
       assert_equal("request-id", error.request_id)
       assert_nil(error.code)
+      assert_equal("request failed with status 429", error.message)
       assert_equal("\xFF\x00".b, error.response.body)
       assert_equal([["x-repeat", "a"], ["x-repeat", "b"]], response.headers.select { |name, _| name == "x-repeat" })
     end
@@ -86,7 +88,7 @@ class RuntimeTest < NativeTest
       error = assert_raises(ArgumentError) { Peddler::Client.new(base_url: "http://127.0.0.1:1", **options) }
       refute_match(/dummy/, error.message)
     end
-    error = assert_raises(ArgumentError) { Peddler::Native::Engine.from_config('{"secret":"dummy-secret"}') }
+    error = assert_raises(ArgumentError) { Peddler::Native.const_get(:Engine).from_config('{"secret":"dummy-secret"}') }
     refute_match(/dummy-secret|secret/, error.message)
   end
 
@@ -94,9 +96,10 @@ class RuntimeTest < NativeTest
     serve(count: 2, handler: ->(socket, *) { respond(socket, status: 429, headers: [["Retry-After", "1"]], body: "retained") }) do |url|
       instance = client(url, timeout: 0.03, retries: 1, rate_limits: { slow: { rate: 0.1, burst: 1 } })
 
-      assert_equal("retained", instance.request("GET", "/", operation: "slow").body)
-      assert_raises(Peddler::Native::TimeoutError) { instance.request("GET", "/", operation: "slow") }
-      assert_equal("retained", instance.request("GET", "/", operation: "other").body)
+      # After the retry policy is exhausted, the last response raises like any other.
+      assert_equal("retained", assert_raises(Peddler::Error) { instance.request("GET", "/", operation: "slow") }.response.body)
+      assert_raises(Peddler::TimeoutError) { instance.request("GET", "/", operation: "slow") }
+      assert_equal("retained", assert_raises(Peddler::Error) { instance.request("GET", "/", operation: "other") }.response.body)
     end
   end
 
@@ -120,7 +123,7 @@ class RuntimeTest < NativeTest
         begin
           view.restricted(resources: [{ method: "GET", path: "/" }])
           writer.write("failed")
-        rescue Peddler::Native::ForkError
+        rescue Peddler::ForkError
           writer.write("guarded")
         end
         writer.close
@@ -159,22 +162,24 @@ class RuntimeTest < NativeTest
     end
   end
 
-  def test_error_code_is_rust_metadata_and_error_format_does_not_include_body
-    serve(handler: ->(socket, *) { respond(socket, status: 400, body: '{"errors":[{"code":"InvalidInput","message":"dummy-private"}]}') }) do |url|
-      response = client(url).request("GET", "/")
-      error = assert_raises(Peddler::Native::APIError) { response.raise_for_status! }
+  def test_error_code_and_message_are_rust_metadata_and_nothing_else_from_the_body_is_shown
+    body = '{"errors":[{"code":"InvalidInput","message":"Amazon says no","details":"dummy-private"}]}'
+    serve(handler: ->(socket, *) { respond(socket, status: 400, body: body) }) do |url|
+      error = assert_raises(Peddler::Error) { client(url).request("GET", "/") }
+
       assert_equal("InvalidInput", error.code)
-      assert_equal("client", error.kind)
-      refute_match(/dummy-private/, error.message)
-      refute_match(/dummy-private/, error.inspect)
+      assert_equal("Amazon says no", error.message)
+      refute_match(/dummy-private|local-secret/, error.message)
+      refute_match(/dummy-private|local-secret/, error.inspect)
+      refute_respond_to(error, :kind)
     end
   end
 
   def test_manually_constructed_response_uses_rust_status_classification
-    response = Peddler::Native::Response.new(404, [["x-amzn-requestid", "manual-id"]], '{"errors":[{"code":"NotFound"}]}')
-    error = assert_raises(Peddler::Native::APIError) { response.raise_for_status! }
+    response = Peddler::Response.new(404, [["x-amzn-requestid", "manual-id"]], '{"errors":[{"code":"NotFound"}]}')
+    error = assert_raises(Peddler::Error) { response.raise_for_status! }
     assert_same(response, error.response)
-    assert_equal("not_found", error.kind)
+    assert_equal(404, error.status)
     assert_equal("NotFound", error.code)
     assert_equal("manual-id", error.request_id)
   end
@@ -182,7 +187,7 @@ class RuntimeTest < NativeTest
   def test_authentication_error_has_status_and_redacts_server_body
     serve(handler: ->(socket, *) { respond(socket, status: 401, body: "dummy-secret") }) do |lwa|
       instance = Peddler::Client.new(base_url: "http://127.0.0.1:1", client_id: "dummy", client_secret: "dummy-secret", refresh_token: "dummy", lwa_endpoint: lwa)
-      error = assert_raises(Peddler::Native::AuthenticationError) { instance.request("GET", "/") }
+      error = assert_raises(Peddler::AuthenticationError) { instance.request("GET", "/") }
       assert_equal(401, error.status)
       refute_match(/dummy/, error.message)
     end

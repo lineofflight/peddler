@@ -8,23 +8,23 @@ module Peddler
       include FeatureHelpers
 
       def test_get_queries
-        api.sandbox.get_queries(page_size: 1, processing_statuses: ["DONE", "IN_PROGRESS"])
+        api.get_queries(page_size: 1, processing_statuses: ["DONE", "IN_PROGRESS"])
       end
 
       def test_create_query
-        api.sandbox.create_query({ "query" => "query {sampleQuery(startDate:\"2023-03-01\" endDate:\"2023-03-31\" marketplaceIds:[\"ATVPDKIKX0DER\"]){sales{date averageSellingPrice{amount currencyCode}}}}" })
+        api.create_query(body: { "query" => "query {sampleQuery(startDate:\"2023-03-01\" endDate:\"2023-03-31\" marketplaceIds:[\"ATVPDKIKX0DER\"]){sales{date averageSellingPrice{amount currencyCode}}}}" })
       end
 
       def test_cancel_query
-        api.sandbox.cancel_query("QueryId1")
+        api.cancel_query(query_id: "QueryId1")
       end
 
       def test_get_query
-        api.sandbox.get_query("QueryId1")
+        api.get_query(query_id: "QueryId1")
       end
 
       def test_get_document
-        api.sandbox.get_document("DocumentId1")
+        api.get_document(document_id: "DocumentId1")
       end
     end
   end

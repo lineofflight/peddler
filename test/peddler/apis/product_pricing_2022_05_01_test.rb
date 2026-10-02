@@ -40,9 +40,9 @@ module Peddler
             },
           ],
         }
-        res = api.sandbox.get_featured_offer_expected_price_batch(payload)
+        res = api.get_featured_offer_expected_price_batch(body: payload)
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_competitive_summary
@@ -68,9 +68,9 @@ module Peddler
             },
           ],
         }
-        res = api.sandbox.get_competitive_summary(payload)
+        res = api.get_competitive_summary(body: payload)
 
-        assert_predicate(res.status, :success?)
+        assert_success(res, typed: false)
       end
     end
   end

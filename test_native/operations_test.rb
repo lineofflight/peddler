@@ -25,7 +25,7 @@ class OperationsTest < NativeTest
         marketplace_ids: ["A1F83G8C2ARO7P"],
         included_data: ["classifications", "dimensions", "identifiers", "images", "productTypes", "relationships", "salesRanks", "summaries"])
 
-      assert_instance_of(Peddler::Native::Response, result)
+      assert_instance_of(Peddler::Response, result)
       assert_equal(200, result.status)
       response["headers"].each { |pair| assert_includes(result.headers, pair) }
       assert_equal(Base64.strict_decode64(response["body_base64"]), result.body)
@@ -65,7 +65,7 @@ class OperationsTest < NativeTest
         URI.decode_www_form(first[1].split("?", 2)[1]).sort)
       respond(socket)
     }) do |url|
-      engine = Peddler::Native::Engine.new(url, "local-secret", 5)
+      engine = Peddler::Native.const_get(:Engine).new(url, "local-secret", 5)
 
       assert_equal(200, Peddler::Native::CatalogItems20220401.new(engine)
         .get_catalog_item(asin: "a/b +%?", marketplace_ids: ["UK", "US"]).status)
@@ -81,7 +81,7 @@ class OperationsTest < NativeTest
       assert_equal(payload, JSON.parse(body))
       respond(socket)
     }) do |url|
-      engine = Peddler::Native::Engine.new(url, "local-secret", 5)
+      engine = Peddler::Native.const_get(:Engine).new(url, "local-secret", 5)
       result = Peddler::Native::ListingsItems20210801.new(engine).patch_listings_item(seller_id: "s/eller", sku: "a/b +%?",
         marketplace_ids: ["UK", "US"], body: payload, included_data: ["issues", "future"], mode: "future+mode", issue_locale: "en&GB")
 
@@ -109,7 +109,7 @@ class OperationsTest < NativeTest
 
       assert_equal('{"values":[18446744073709551617,-9223372036854775809,0.12345678901234567890123456789]}', body)
     }) do |url|
-      engine = Peddler::Native::Engine.new(url, "local-secret", 5)
+      engine = Peddler::Native.const_get(:Engine).new(url, "local-secret", 5)
       status, = engine.operation(LISTINGS, arguments)
 
       assert_equal(200, status)
@@ -132,7 +132,8 @@ class OperationsTest < NativeTest
     [fixture, { "status" => 200, "headers" => [["x-repeat", "a"], ["x-repeat", "b"]], "body_base64" => Base64.strict_encode64("\xFF\x00{bad".b) },
       { "status" => 204, "headers" => [], "body_base64" => "" }].each do |response|
       serve(handler: ->(socket, *) { respond(socket, status: response["status"], headers: response["headers"], body: Base64.strict_decode64(response["body_base64"])) }) do |url|
-        result = client(url).catalog_items_2022_04_01.get_catalog_item(asin: "X", marketplace_ids: ["UK"])
+        call = -> { client(url).catalog_items_2022_04_01.get_catalog_item(asin: "X", marketplace_ids: ["UK"]) }
+        result = response["status"] == 404 ? assert_raises(Peddler::Error, &call).response : call.call
 
         assert_equal(response["status"], result.status)
         response["headers"].each { |pair| assert_includes(result.headers, pair) }
@@ -149,7 +150,7 @@ class OperationsTest < NativeTest
 
   def test_invalid_operation_envelopes_are_redacted_before_network
     server = TCPServer.new("127.0.0.1", 0)
-    engine = Peddler::Native::Engine.new("http://127.0.0.1:#{server.addr[1]}", "local-secret", 5)
+    engine = Peddler::Native.const_get(:Engine).new("http://127.0.0.1:#{server.addr[1]}", "local-secret", 5)
     valid = { asin: "private", marketplace_ids: ["UK"] }
     [["unknown-private", "{}"], [CATALOG, "{private"], [CATALOG, JSON.generate(valid.merge(secret: "private"))],
       [CATALOG, JSON.generate(valid.merge(asin: nil))], [CATALOG, JSON.generate(valid.merge(marketplace_ids: "UK"))],
@@ -184,7 +185,7 @@ class OperationsTest < NativeTest
     server = TCPServer.new("127.0.0.1", 0)
     url = "http://127.0.0.1:#{server.addr[1]}"
     server.close
-    error = assert_raises(Peddler::Native::TransportError) do
+    error = assert_raises(Peddler::TransportError) do
       client(url).listings_items_2021_08_01.patch_listings_item(seller_id: "private-seller", sku: "private-sku",
         marketplace_ids: ["UK"], body: { secret: "private-body" })
     end
@@ -197,7 +198,7 @@ class OperationsTest < NativeTest
         URI.decode_www_form(first[1].split("?", 2)[1]).sort)
       respond(socket, body: "raw")
     }) do |url|
-      engine = Peddler::Native::Engine.new(url, "local-secret", 5)
+      engine = Peddler::Native.const_get(:Engine).new(url, "local-secret", 5)
       status, _headers, body = engine.operation(CATALOG, JSON.generate(asin: "X", marketplace_ids: ["UK"]))
 
       assert_equal(200, status)
@@ -269,7 +270,7 @@ class OperationsTest < NativeTest
       assert(socket.wait_readable(2), "timed-out operation connection stayed open")
       assert_nil(socket.read(1))
     }) do |url|
-      assert_raises(Peddler::Native::TimeoutError) do
+      assert_raises(Peddler::TimeoutError) do
         client(url, timeout: 0.05).catalog_items_2022_04_01.get_catalog_item(asin: "X", marketplace_ids: ["UK"])
       end
     end
@@ -288,7 +289,7 @@ class OperationsTest < NativeTest
         begin
           instance.catalog_items_2022_04_01.get_catalog_item(asin: "X", marketplace_ids: ["UK"])
           raise "inherited operation client accepted"
-        rescue Peddler::Native::ForkError
+        rescue Peddler::ForkError
           instance = nil
           GC.start
           fresh = client(url)
@@ -346,13 +347,14 @@ class OperationsTest
         accessor, method = example.fetch("operation").split(".", 2)
         api = client(url).public_send(accessor)
         arguments = example.fetch("arguments").transform_keys(&:to_sym)
-        response = api.public_send(method, **arguments)
+        call = -> { api.public_send(method, **arguments) }
+        response = example.fetch("status") < 400 ? call.call : assert_raises(Peddler::Error, &call).response
 
         assert_equal(example.fetch("status"), response.status)
         assert_equal(example.fetch("response"), response.body)
         assert_equal(2, response.headers.count { |name, _value| name == "x-repeat" })
         if response.status >= 400
-          error = assert_raises(Peddler::Native::APIError) { response.raise_for_status! }
+          error = assert_raises(Peddler::Error) { response.raise_for_status! }
           assert_same(response, error.response)
         end
       end

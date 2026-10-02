@@ -2,202 +2,106 @@
 
 require "helper"
 
+# A response is asserted through its readers together.
+# rubocop:disable Minitest/MultipleAssertions
 module Peddler
   class ResponseTest < Minitest::Test
-    def test_parse
-      wrapper = Response.new(response)
+    def test_status_headers_and_body
+      response = Response.new(200, [["content-type", "application/json"]], JSON.generate(payload))
 
-      assert_equal(payload, wrapper.parse)
+      assert_equal(200, response.status)
+      assert_equal([["content-type", "application/json"]], response.headers)
+      assert_equal(JSON.generate(payload), response.body)
+    end
+
+    def test_json
+      response = Response.new(200, [], JSON.generate(payload))
+
+      assert_equal(payload, response.json)
+      assert_same(response.json, response.json)
     end
 
     def test_to_h
-      wrapper = Response.new(response)
-
-      assert_equal(payload, wrapper.to_h)
+      assert_equal(payload, Response.new(200, [], JSON.generate(payload)).to_h)
     end
 
     def test_dig
-      wrapper = Response.new(response)
+      response = Response.new(200, [], JSON.generate(payload))
 
-      assert(wrapper.dig("foo"))
+      assert_equal("itemName", response.dig("summaries", 0, "itemName"))
+      assert_nil(response.dig("summaries", 1, "itemName"))
     end
 
-    def test_wrap_returns_response_for_success
-      wrapper = Response.wrap(response)
-
-      assert_equal(payload, wrapper.parse)
+    def test_json_raises_on_a_body_that_is_not_json
+      assert_raises(JSON::ParserError) { Response.new(204, [], "").json }
     end
 
-    def test_wrap_raises_for_client_error
-      error_response = HTTP::Response.new(
-        status: 400,
-        version: "1.1",
-        headers: { "Content-Type" => "application/json" },
-        body: '{"errors": [{"code": "InvalidInput", "message": "Bad request"}]}',
-        request: nil,
-      )
+    def test_parse_returns_the_typed_model_of_the_operation
+      response = Response.new(200, [], JSON.generate(payload), nil, operation: "catalog_items_2022_04_01.get_catalog_item")
+      item = response.parse
 
-      assert_raises(Peddler::Errors::InvalidInput) do
-        Response.wrap(error_response)
+      assert_instance_of(APIs::CatalogItems20220401::Item, item)
+      assert_equal("188864544X", item.asin)
+      assert_equal("itemName", item.summaries.first.item_name)
+    end
+
+    def test_parse_returns_the_hash_without_a_typed_model
+      body = JSON.generate(payload)
+
+      assert_equal(payload, Response.new(200, [], body).parse)
+      assert_equal(payload, Response.new(200, [], body, nil, operation: "raw").parse)
+      assert_equal(payload, Response.new(200, [], body, nil, operation: "orders_v0.confirm_shipment").parse)
+      assert_equal(payload, Response.new(200, [], body, nil, operation: "unknown_api.unknown").parse)
+    end
+
+    def test_parse_maps_camel_case_keys_to_snake_case_attributes
+      body = '{"feedId":"50029018011","feedType":"POST_PRODUCT_DATA","createdTime":"2024-03-11T13:16:24.630Z","processingStatus":"DONE"}'
+      feed = Response.new(200, [], body, nil, operation: "feeds_2021_06_30.get_feed").parse
+
+      assert_instance_of(APIs::Feeds20210630::Feed, feed)
+      assert_equal("50029018011", feed.feed_id)
+      assert_equal(Time.parse("2024-03-11T13:16:24.630Z"), feed.created_time)
+    end
+
+    def test_raise_for_status_returns_self_on_success
+      [200, 201, 204, 207, 299].each do |status|
+        response = Response.new(status, [], "")
+
+        assert_same(response, response.raise_for_status!)
       end
     end
 
-    def test_wrap_with_parser
-      wrapper = Response.wrap(response, parser: custom_parser)
+    def test_raise_for_status_raises_outside_2xx
+      [400, 404, 429, 500, 503].each do |status|
+        response = Response.new(status, [], "")
+        error = assert_raises(Error) { response.raise_for_status! }
 
-      assert_equal(payload, wrapper.parse)
-    end
-
-    def test_parsable_with_parser
-      wrapper = Response.new(response, parser: custom_parser)
-
-      assert_predicate(wrapper, :parsable?)
-    end
-
-    def test_parsable_without_parser
-      wrapper = Response.new(response)
-
-      refute_predicate(wrapper, :parsable?)
-    end
-
-    def test_parse_with_custom_parser
-      wrapper = Response.new(response, parser: custom_parser)
-
-      assert_equal(payload, wrapper.parse)
-    end
-
-    def test_parse_with_structure_type
-      # Create a Structure type similar to our generated types
-      require "structure"
-      test_type = Structure.new do
-        attribute(:marketplace_id, String)
-        attribute(:seller_id, String)
-        attribute(:feed_id, String)
+        assert_same(response, error.response)
+        assert_equal(status, error.status)
       end
-
-      # Create response with string keys (as comes from JSON)
-      json_payload = {
-        "marketplace_id" => "ATVPDKIKX0DER",
-        "seller_id" => "A123456789",
-        "feed_id" => "50029018011",
-      }
-
-      http_response = HTTP::Response.new(
-        body: JSON.dump(json_payload),
-        headers: { "Content-Type" => "application/json" },
-        status: nil,
-        version: nil,
-        request: nil,
-      )
-
-      wrapper = Response.new(http_response, parser: -> { test_type })
-      parsed = wrapper.parse
-
-      # Test that values are correctly parsed
-      assert_equal("ATVPDKIKX0DER", parsed.marketplace_id, "marketplace_id should be parsed correctly")
-      assert_equal("A123456789", parsed.seller_id, "seller_id should be parsed correctly")
-      assert_equal("50029018011", parsed.feed_id, "feed_id should be parsed correctly")
     end
 
-    def test_parse_with_camelcase_to_snake_case_mapping
-      # Test that Structure correctly maps camelCase JSON keys to snake_case attributes
-      require "structure"
+    def test_from_parts_raises_by_default
+      error = assert_raises(Error) { Response.from_parts([404, [], "{}", [nil, nil, nil]], "raw") }
 
-      feed_type = Structure.new do
-        attribute(:marketplace_id, String, from: "marketplaceId")
-        attribute(:seller_id, String, from: "sellerId")
-        attribute(:feed_id, String, from: "feedId")
-      end
-
-      # JSON response with camelCase keys
-      json_payload = {
-        "marketplaceId" => "ATVPDKIKX0DER",
-        "sellerId" => "A123456789",
-        "feedId" => "50029018011",
-      }
-
-      http_response = HTTP::Response.new(
-        body: JSON.dump(json_payload),
-        headers: { "Content-Type" => "application/json" },
-        status: nil,
-        version: nil,
-        request: nil,
-      )
-
-      wrapper = Response.new(http_response, parser: -> { feed_type })
-      parsed = wrapper.parse
-
-      # Verify we can access values using snake_case attribute names
-      assert_equal("ATVPDKIKX0DER", parsed.marketplace_id, "marketplace_id should be accessible with snake_case")
-      assert_equal("A123456789", parsed.seller_id, "seller_id should be accessible with snake_case")
-      assert_equal("50029018011", parsed.feed_id, "feed_id should be accessible with snake_case")
+      assert_equal(404, error.response.status)
+      assert_instance_of(Response, Response.from_parts([200, [], "{}", nil], "raw"))
     end
 
-    def test_parse_with_nested_payload_structure
-      # Test parsing when data is nested under "payload" key
-      require "structure"
+    def test_document_replies_stay_inspectable
+      reply = Response.from_document_parts([403, [], "denied", [nil, nil, nil], true])
 
-      # Create nested structure types
-      feed_type = Structure.new do
-        attribute(:marketplace_id, String)
-        attribute(:seller_id, String)
-        attribute(:feed_id, String)
-      end
-
-      # Simulate what happens with a real API response that has a payload wrapper
-      json_response = {
-        "payload" => {
-          "marketplace_id" => "ATVPDKIKX0DER",
-          "seller_id" => "A123456789",
-          "feed_id" => "50029018011",
-        },
-      }
-
-      http_response = HTTP::Response.new(
-        body: JSON.dump(json_response),
-        headers: { "Content-Type" => "application/json" },
-        status: nil,
-        version: nil,
-        request: nil,
-      )
-
-      # This simulates what happens when we extract the payload first
-      wrapper = Response.new(http_response)
-      payload_data = wrapper.to_h["payload"]
-
-      # Now parse the payload data with the Structure type
-      parsed = feed_type.parse(payload_data)
-
-      # Verify the values are correctly parsed
-      assert_equal("ATVPDKIKX0DER", parsed.marketplace_id, "marketplace_id should be parsed from nested payload")
-      assert_equal("A123456789", parsed.seller_id, "seller_id should be parsed from nested payload")
-      assert_equal("50029018011", parsed.feed_id, "feed_id should be parsed from nested payload")
+      assert_equal(403, reply.status)
+      assert_predicate(reply, :body_truncated?)
+      assert_raises(Error) { reply.raise_for_status! }
+      refute_predicate(Response.new(200, [], ""), :body_truncated?)
     end
 
     private
 
-    def response
-      HTTP::Response.new(
-        body: JSON.dump(payload),
-        headers: { "Content-Type" => "application/json" },
-        status: nil,
-        version: nil,
-        request: nil,
-      )
-    end
-
-    def custom_parser
-      test_payload = payload
-      parser_class = Class.new do
-        define_singleton_method :parse do |_payload|
-          test_payload
-        end
-      end
-      lambda { parser_class }
-    end
-
     def payload
-      { "foo" => "bar" }
+      { "asin" => "188864544X", "summaries" => [{ "marketplaceId" => "A1F83G8C2ARO7P", "itemName" => "itemName" }] }
     end
   end
 end
+# rubocop:enable Minitest/MultipleAssertions

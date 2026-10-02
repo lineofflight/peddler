@@ -8,9 +8,9 @@ module Peddler
       include FeatureHelpers
 
       def test_get_item_eligibility_preview
-        res = api.sandbox.get_item_eligibility_preview("TEST_CASE_200", "INBOUND")
+        res = api.get_item_eligibility_preview(asin: "TEST_CASE_200", program: "INBOUND")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end
