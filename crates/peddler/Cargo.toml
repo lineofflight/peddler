@@ -14,9 +14,15 @@ progenitor-client = "=0.15.0"
 futures-util = "0.3"
 regress = "0.12"
 percent-encoding = "2"
-tokio = { version = "1", features = ["time", "sync"] }
+tokio = { version = "1", features = ["time", "sync", "io-util"] }
 httpdate = "1"
 fastrand = "2"
+
+bytes = "1"
+async-stream = "0.3"
+async-compression = { version = "0.4", features = ["tokio", "gzip"] }
+csv-core = "0.1"
+tokio-util = { version = "0.7", features = ["io"] }
 
 [dev-dependencies]
 base64 = "0.22"
