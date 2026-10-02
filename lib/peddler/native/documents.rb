@@ -4,6 +4,37 @@ require "bigdecimal"
 
 module Peddler
   module Native
+    # Native rb_exc_raise attaches an active rescue exception. Clear that cause
+    # at the final Ruby boundary only when Rust explicitly marked the error.
+    module DocumentErrorBoundary
+      class << self
+        def wrap(klass, names)
+          names.each do |name|
+            native_method = klass.instance_method(name)
+            klass.define_method(name) do |*arguments|
+              native_method.bind_call(self, *arguments)
+            rescue StandardError => error
+              if error.instance_variable_defined?(:@peddler_document_error)
+                error.remove_instance_variable(:@peddler_document_error)
+                translated = error.class.new(error.message)
+                error.instance_variables.each do |name|
+                  translated.instance_variable_set(name, error.instance_variable_get(name))
+                end
+                backtrace = error.backtrace
+                translated.set_backtrace(backtrace) if backtrace
+                Kernel.raise translated, cause: nil
+              end
+              Kernel.raise error
+            end
+          end
+        end
+      end
+    end
+    DocumentErrorBoundary.wrap(Engine, [:download_document, :start_document_upload])
+    DocumentErrorBoundary.wrap(DocumentHandle, [:close, :closed?, :status, :headers, :error_body,
+      :error_body_truncated?, :next_row, :json])
+    DocumentErrorBoundary.wrap(UploadHandle, [:completed?, :push, :finish, :close])
+
     module TransferConfig
       class << self
         def json(options)

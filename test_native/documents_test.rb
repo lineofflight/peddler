@@ -542,5 +542,127 @@ class DocumentsTest < NativeTest
       end
     end
   end
+
+  def sensitive_rescue
+    raise "signed-url-header-body-secret"
+  rescue RuntimeError => sensitive
+    yield sensitive
+  end
+
+  def test_translated_download_errors_clear_active_exception_causes
+    instance = client("http://127.0.0.1:1")
+    engine = instance.instance_variable_get(:@engine)
+    calls = [
+      -> { instance.download_document("bad-url") },
+      -> { instance.download_document("https://example.com/private", max_bytes: 1 << 65) },
+      -> { engine.download_document("bad-url", "{}") },
+    ]
+    calls.each do |call|
+      sensitive_rescue do |sensitive|
+        error = assert_raises(ArgumentError, &call)
+        assert_nil(error.cause)
+        refute_match(/signed-url-header-body-secret/, error.full_message)
+        assert_same(sensitive, $!, "the surrounding rescue context must be restored")
+      end
+    end
+  end
+
+  def test_translated_stream_errors_clear_active_exception_causes
+    serve(count: 3, handler: ->(socket, *) { respond(socket, body: "private-invalid-json") }) do |url|
+      instance = client(url)
+      sensitive_rescue do
+        document = instance.download_document(url)
+        error = assert_raises(Peddler::Native::DocumentError) { document.each_jsonl.to_a }
+        assert_nil(error.cause)
+        refute_match(/signed-url-header-body-secret|private-invalid-json/, error.full_message)
+        assert_predicate(document, :closed?)
+      end
+      sensitive_rescue do
+        document = instance.download_document(url)
+        error = assert_raises(Peddler::Native::DocumentError) { document.json(max_bytes: 1) }
+        assert_nil(error.cause)
+        refute_match(/signed-url-header-body-secret/, error.full_message)
+      end
+      sensitive_rescue do
+        handle = instance.instance_variable_get(:@engine).download_document(url, "{}")
+        error = assert_raises(Peddler::Native::DocumentError) { handle.next_row("jsonl", false) }
+        assert_nil(error.cause)
+        refute_match(/signed-url-header-body-secret/, error.full_message)
+        handle.close
+      end
+    end
+  end
+
+  def test_translated_upload_errors_clear_active_exception_causes
+    instance = client("http://127.0.0.1:1")
+    sensitive_rescue do
+      error = assert_raises(ArgumentError) { instance.upload_document("bad-url", "", content_type: "text/plain") }
+      assert_nil(error.cause)
+      refute_match(/signed-url-header-body-secret/, error.full_message)
+    end
+    engine = instance.instance_variable_get(:@engine)
+    sensitive_rescue do
+      error = assert_raises(ArgumentError) { engine.start_document_upload("bad-url", '{"unknown":true}', "text/plain", [], nil) }
+      assert_nil(error.cause)
+      refute_match(/signed-url-header-body-secret/, error.full_message)
+      upload = engine.start_document_upload("bad-url", "{}", "text/plain", [], nil)
+      error = assert_raises(ArgumentError) { upload.finish }
+      assert_nil(error.cause)
+      refute_match(/signed-url-header-body-secret/, error.full_message)
+      upload.close
+    end
+    raw_server(handler: ->(socket, *) { socket.read }) do |url|
+      sensitive_rescue do
+        error = assert_raises(Peddler::Native::DocumentError) { client(url).upload_document(url, "abc", content_type: "text/plain", content_length: 2) }
+        assert_nil(error.cause)
+        refute_match(/signed-url-header-body-secret/, error.full_message)
+      end
+    end
+  end
+
+  def test_caller_block_exceptions_retain_identity_and_active_causes
+    serve(count: 2, handler: ->(socket, *) { respond(socket, body: "chunk") }) do |url|
+      sensitive_rescue do |sensitive|
+        caller_error = ArgumentError.new("caller error")
+        caught = assert_raises(ArgumentError) { client(url).download_document(url) { raise caller_error } }
+        assert_same(caller_error, caught)
+        assert_same(sensitive, caught.cause)
+        document = client(url).download_document(url)
+        row_error = Peddler::Native::DocumentError.new("caller row error")
+        caught = assert_raises(Peddler::Native::DocumentError) { document.each_chunk { raise row_error } }
+        assert_same(row_error, caught)
+        assert_same(sensitive, caught.cause)
+        assert_predicate(document, :closed?)
+      end
+    end
+  end
+
+  def test_thread_raise_during_read_preserves_original_exception
+    started = Queue.new
+    serve(handler: lambda { |socket, *_|
+      socket.write("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n")
+      started << true
+
+      assert_nil(socket.read(1))
+    }) do |url|
+      document = client(url).download_document(url)
+      thread = Thread.new do
+        sensitive_rescue { document.each_chunk.to_a }
+      rescue Peddler::Native::DocumentError => error
+        error
+      end
+      started.pop
+      Thread.pass until thread.status == "sleep"
+      original = Peddler::Native::DocumentError.new("caller interruption")
+      thread.raise(original)
+
+      assert(thread.join(1))
+      assert_same(original, thread.value)
+      assert_predicate(document, :closed?)
+    ensure
+      thread&.kill
+      thread&.join
+    end
+  end
 end
 # rubocop:enable Minitest/MultipleAssertions

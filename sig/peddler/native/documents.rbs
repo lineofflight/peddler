@@ -7,6 +7,10 @@ module Peddler
     class DocumentTimeoutError < DocumentError
     end
 
+    module DocumentErrorBoundary
+      def self.wrap: (Class klass, Array[Symbol] names) -> void
+    end
+
     module TransferConfig
       def self.json: (Hash[Symbol, untyped] options) -> String
     end
