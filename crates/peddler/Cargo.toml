@@ -10,7 +10,7 @@ homepage = "https://github.com/lineofflight/peddler"
 documentation = "https://docs.rs/peddler"
 keywords = ["amazon", "sp-api", "selling-partner", "marketplace", "ecommerce"]
 categories = ["api-bindings", "web-programming::http-client"]
-include = ["/src/**", "/examples/**", "/README.md", "/LICENSE", "/Cargo.toml"]
+include = ["/src/**", "/README.md", "/LICENSE", "/Cargo.toml"]
 
 [dependencies]
 reqwest = { version = "0.13.5", default-features = false, features = ["rustls", "http2", "form", "json", "stream"] }

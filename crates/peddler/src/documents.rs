@@ -26,7 +26,7 @@ use std::{
     time::Duration,
 };
 use tokio::{
-    io::{AsyncRead, AsyncReadExt, AsyncWrite, AsyncWriteExt, BufReader},
+    io::{AsyncRead, AsyncReadExt, BufReader},
     time::{Instant, timeout_at},
 };
 use tokio_util::io::StreamReader;
@@ -51,7 +51,6 @@ pub enum Error {
     Status,
     UploadSource,
     LengthMismatch,
-    Writer,
 }
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -71,7 +70,6 @@ impl fmt::Display for Error {
             Self::Status => "document response was not successful",
             Self::UploadSource => "document upload source failed",
             Self::LengthMismatch => "document upload length mismatch",
-            Self::Writer => "document writer failed",
         })
     }
 }
@@ -210,29 +208,6 @@ impl Download {
         } else {
             Err(Error::Status)
         }
-    }
-
-    pub async fn copy_to<W: AsyncWrite + Unpin + Send>(
-        mut self,
-        writer: &mut W,
-    ) -> Result<u64, Error> {
-        self.success()?;
-        let mut written = 0;
-        while let Some(chunk) = self.body.next().await {
-            let chunk = chunk?;
-            timeout_at(self.deadline, writer.write_all(&chunk))
-                .await
-                .map_err(|_| Error::Timeout)?
-                .map_err(|_| Error::Writer)?;
-            check_deadline(self.deadline)?;
-            written += chunk.len() as u64;
-        }
-        timeout_at(self.deadline, writer.flush())
-            .await
-            .map_err(|_| Error::Timeout)?
-            .map_err(|_| Error::Writer)?;
-        check_deadline(self.deadline)?;
-        Ok(written)
     }
 
     /// Buffered whole JSON, distinct from streaming JSONL. `max_bytes` is required.
@@ -792,74 +767,4 @@ fn upload_headers(options: &UploadOptions) -> Result<HeaderMap, Error> {
         );
     }
     Ok(headers)
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use std::{
-        future::Future,
-        task::{Context, Poll},
-    };
-
-    struct ExpiringWriter {
-        expire_on_flush: bool,
-        flushes: usize,
-    }
-    impl ExpiringWriter {
-        fn expire(cx: &mut Context<'_>) {
-            // Tokio advances its paused clock before advance() yields. Poll once
-            // to model synchronous work expiring while still returning Ready.
-            let mut advance = Box::pin(tokio::time::advance(Duration::from_secs(2)));
-            let _ = advance.as_mut().poll(cx);
-        }
-    }
-    impl AsyncWrite for ExpiringWriter {
-        fn poll_write(
-            self: Pin<&mut Self>,
-            cx: &mut Context<'_>,
-            bytes: &[u8],
-        ) -> Poll<io::Result<usize>> {
-            if !self.expire_on_flush {
-                Self::expire(cx);
-            }
-            Poll::Ready(Ok(bytes.len()))
-        }
-        fn poll_flush(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<io::Result<()>> {
-            self.flushes += 1;
-            if self.expire_on_flush {
-                Self::expire(cx);
-            }
-            Poll::Ready(Ok(()))
-        }
-        fn poll_shutdown(self: Pin<&mut Self>, _: &mut Context<'_>) -> Poll<io::Result<()>> {
-            Poll::Ready(Ok(()))
-        }
-    }
-
-    #[tokio::test(start_paused = true)]
-    async fn ready_writer_completion_cannot_escape_the_absolute_deadline() {
-        for expire_on_flush in [false, true] {
-            let document = Download {
-                status: 200,
-                headers: HeaderMap::new(),
-                body: Box::pin(futures_util::stream::iter([Ok(Bytes::from_static(
-                    b"data",
-                ))])),
-                error_body: None,
-                error_body_truncated: false,
-                options: TransferOptions::default(),
-                deadline: Instant::now() + Duration::from_secs(1),
-            };
-            let mut writer = ExpiringWriter {
-                expire_on_flush,
-                flushes: 0,
-            };
-            assert_eq!(
-                document.copy_to(&mut writer).await.unwrap_err(),
-                Error::Timeout
-            );
-            assert_eq!(writer.flushes, usize::from(expire_on_flush));
-        }
-    }
 }

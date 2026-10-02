@@ -632,7 +632,7 @@ async fn drop_releases_socket_and_pool_remains_reusable() {
 }
 
 #[tokio::test]
-async fn bounded_whole_json_and_copy_writer_paths() {
+async fn bounded_whole_json() {
     let (url, task) = server(response(b"{\"x\":1}", ""), Duration::ZERO).await;
     let result = client(&url)
         .documents()
@@ -655,21 +655,6 @@ async fn bounded_whole_json_and_copy_writer_paths() {
             .unwrap(),
         serde_json::json!({"x":1})
     );
-    task.await.unwrap();
-    let (url, task) = server(response(b"copy me", ""), Duration::ZERO).await;
-    let mut buffer = Vec::new();
-    assert_eq!(
-        client(&url)
-            .documents()
-            .download(&url, TransferOptions::default())
-            .await
-            .unwrap()
-            .copy_to(&mut buffer)
-            .await
-            .unwrap(),
-        7
-    );
-    assert_eq!(buffer, b"copy me");
     task.await.unwrap();
 }
 
@@ -793,7 +778,7 @@ async fn upload_zero_length_is_checked_and_reply_is_bounded() {
 }
 
 #[tokio::test]
-async fn parse_and_writer_errors_do_not_include_document_contents() {
+async fn parse_errors_do_not_include_document_contents() {
     let (url, task) = server(response(b"secret invalid JSON\n", ""), Duration::ZERO).await;
     let error = client(&url)
         .documents()
@@ -808,21 +793,6 @@ async fn parse_and_writer_errors_do_not_include_document_contents() {
     assert_eq!(error, Error::Format);
     assert!(!format!("{error:?} {error}").contains("secret"));
     assert!(std::error::Error::source(&error).is_none());
-    task.await.unwrap();
-    let (url, task) = server(response(b"secret", ""), Duration::ZERO).await;
-    let (mut writer, reader) = tokio::io::duplex(1);
-    drop(reader);
-    assert_eq!(
-        client(&url)
-            .documents()
-            .download(&url, TransferOptions::default())
-            .await
-            .unwrap()
-            .copy_to(&mut writer)
-            .await
-            .unwrap_err(),
-        Error::Writer
-    );
     task.await.unwrap();
 }
 
