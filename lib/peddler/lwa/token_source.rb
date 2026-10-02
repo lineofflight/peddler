@@ -34,17 +34,21 @@ module Peddler
       def call
         raise ForkError, "create a new token source after fork" unless Process.pid == @pid
 
-        leading = false
-        refresh = @mutex.synchronize do
-          token = @token
-          return token if token && now < @refresh_at
+        # Thread#raise, Thread#kill and Timeout may only land while the grant runs or while a waiter waits. Anywhere
+        # else they could leave a refresh marked as running that nobody runs, and every later call would wait forever.
+        Thread.handle_interrupt(Object => :never) do
+          leading = false
+          refresh = @mutex.synchronize do
+            token = @token
+            return token if token && now < @refresh_at
 
-          @refresh || begin
-            leading = true
-            @refresh = Refresh.new
+            @refresh || begin
+              leading = true
+              @refresh = Refresh.new
+            end
           end
+          leading ? lead(refresh) : Thread.handle_interrupt(Object => :immediate) { follow(refresh) }
         end
-        leading ? lead(refresh) : follow(refresh)
       end
 
       def inspect = "#<Peddler::LWA::TokenSource>"
@@ -55,7 +59,7 @@ module Peddler
       # The lifetime counts from the start of the request, on the monotonic clock.
       def lead(refresh)
         started = now
-        tokens = @grant.call
+        tokens = Thread.handle_interrupt(Object => :immediate) { @grant.call }
         lifetime = tokens.expires_in
         refresh.refresh_at = started + lifetime - [MARGIN, lifetime / 10.0].min
         refresh.token = tokens.access_token

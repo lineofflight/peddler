@@ -190,6 +190,55 @@ class LwaTokenSourceTest < NativeTest
     end
   end
 
+  # Parks the refreshing thread where an interrupt used to do damage: back from the grant, about to record the
+  # result. Under the GVL a thread is almost never preempted there by chance, so the test holds the source's lock.
+  def interrupt_during_bookkeeping(source, gate)
+    lock = source.instance_variable_get(:@mutex)
+    worker = Thread.new { source.call }
+    worker.report_on_exception = false
+    Timeout.timeout(5) { gate[:granted].pop }
+    lock.synchronize do
+      gate[:release] << true
+      Timeout.timeout(5) { sleep(0.001) until gate[:release].empty? && worker.status == "sleep" }
+      yield worker
+    end
+    worker.join(5) || flunk("the interrupted thread never finished")
+  rescue gate[:interrupt]
+    nil
+  end
+
+  def test_asynchronous_interrupts_never_leave_a_source_waiting_forever
+    interrupt = Class.new(StandardError)
+    # A lifetime of 0 makes every call refresh.
+    stale = Peddler::LWA::Tokens.new("access", nil, "bearer", 0)
+    sources = Array.new(100) do
+      gate = { granted: Queue.new, release: Queue.new, interrupt: interrupt, hold: true }
+      source = Peddler::LWA::TokenSource.new do
+        if gate[:hold]
+          gate[:granted] << true
+          gate[:release].pop
+        end
+        stale
+      end
+      [:raise, :raise, :raise, :kill].each do |kind|
+        break if source.instance_variable_get(:@refresh)
+
+        interrupt_during_bookkeeping(source, gate) { |worker| kind == :kill ? worker.kill : worker.raise(interrupt) }
+      end
+      gate[:hold] = false
+      source
+    end
+    wedged = sources.count { |source| source.instance_variable_get(:@refresh) }
+
+    assert_equal(0, wedged, "#{wedged} of 100 sources were left with a refresh that nobody is running")
+    later = sources.map do |source|
+      thread = Thread.new { source.call }
+      thread.join(2) ? thread.value : thread.kill
+    end
+
+    assert_equal(["access"], later.uniq)
+  end
+
   def test_inspect_shows_no_secret_and_arguments_are_checked
     serve_lwa do |url, _exchanges, _requests|
       helper = lwa(url)
