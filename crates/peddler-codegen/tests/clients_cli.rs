@@ -1,4 +1,6 @@
 //! Node-backed integration tests. Run npm ci --prefix tools/openapi first.
+mod support;
+
 use peddler_codegen::{
     generate,
     manifest::{ALL_APIS, APIS},
@@ -50,6 +52,7 @@ fn repository() -> tempfile::TempDir {
         fs::create_dir_all(path.parent().unwrap()).unwrap();
         fs::write(path, spec(operation).to_string()).unwrap();
     }
+    support::write_supplemental(root.path());
     git(&checkout, &["init", "--quiet"]);
     git(&checkout, &["add", "."]);
     git(
@@ -93,7 +96,7 @@ fn default_cli_generates_all_model_and_selected_wire_files_and_nonmutating_check
         revision.trim(),
     )
     .unwrap();
-    assert_eq!(rendered.len(), 145);
+    assert_eq!(rendered.len(), 204);
     for content in rendered.values() {
         syn::parse_file(content).unwrap();
     }

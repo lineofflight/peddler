@@ -96,11 +96,15 @@ fn run() -> Result<(), GenerationError> {
     tracked_args.extend(sources.iter().map(String::as_str));
     git(&checkout, &tracked_args)
         .map_err(|_| GenerationError("API spec files are untracked or missing".into()))?;
-    let output = if models_only {
+    peddler_codegen::supplemental::verify_sources(&checkout, revision)?;
+    let mut output = if models_only {
         generate_models(&checkout.join("models"), revision)?
     } else {
         generate(&checkout.join("models"), revision)?
     };
+    if models_only {
+        output.extend(peddler_codegen::generate_supplemental(&checkout, revision)?);
+    }
     let dest = output_root.unwrap_or(root);
     if check {
         let drifted: Vec<_> = output

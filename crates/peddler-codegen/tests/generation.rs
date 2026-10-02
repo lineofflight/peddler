@@ -1,3 +1,5 @@
+mod support;
+
 use peddler_codegen::{generate_models as generate, manifest::ALL_APIS};
 use serde_json::json;
 use std::{
@@ -52,6 +54,7 @@ fn repository() -> TempDir {
     let root = tempfile::tempdir().unwrap();
     let checkout = root.path().join("selling-partner-api-models");
     write_specs(&checkout.join("models"));
+    support::write_supplemental(root.path());
     git(&checkout, &["init", "--quiet"]);
     git(&checkout, &["add", "."]);
     git(
@@ -407,4 +410,74 @@ fn non_wire_api_source_is_verified_and_its_output_is_checked() {
     let output = cli(root.path(), &[]);
     assert!(!output.status.success());
     assert!(String::from_utf8_lossy(&output.stderr).contains("modified"));
+}
+
+#[test]
+fn supplemental_sources_and_patch_inputs_are_verified_before_export() {
+    for patch in [false, true] {
+        let root = repository();
+        let changed = if patch {
+            root.path()
+                .join("lib/generator/patches/any_offer_changed.json")
+        } else {
+            root.path()
+                .join("selling-partner-api-models/schemas/feeds/listings-feed-schema-v2.json")
+        };
+        fs::write(changed, "{}\n").unwrap();
+        let output = cli(root.path(), &[]);
+        assert!(!output.status.success());
+        let error = String::from_utf8_lossy(&output.stderr);
+        assert!(
+            error.contains(if patch {
+                "notification patch modified"
+            } else {
+                "supplemental schema files are modified"
+            }),
+            "{error}"
+        );
+        assert!(!root.path().join("model-export/crates").exists());
+    }
+}
+
+#[test]
+fn supplemental_inventory_and_outputs_participate_in_nonwriting_check() {
+    let root = repository();
+    assert!(cli(root.path(), &[]).status.success());
+    let generated = root
+        .path()
+        .join("model-export/crates/peddler/src/data_kiosk/economics20240315.rs");
+    fs::write(&generated, "// drift\n").unwrap();
+    let modified = fs::metadata(&generated).unwrap().modified().unwrap();
+    let output = cli(root.path(), &["--check"]);
+    assert!(!output.status.success());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("data_kiosk/economics20240315.rs"));
+    assert_eq!(
+        fs::metadata(&generated).unwrap().modified().unwrap(),
+        modified
+    );
+    assert_eq!(fs::read_to_string(&generated).unwrap(), "// drift\n");
+    let checkout = root.path().join("selling-partner-api-models");
+    fs::write(checkout.join("schemas/reports/unlisted.json"), "{}").unwrap();
+    git(&checkout, &["add", "."]);
+    git(
+        &checkout,
+        &[
+            "-c",
+            "commit.gpgsign=false",
+            "commit",
+            "--quiet",
+            "-m",
+            "extra supplemental source",
+        ],
+    );
+    fs::write(
+        root.path().join("selling-partner-api-models.sha"),
+        git(&checkout, &["rev-parse", "HEAD"]) + "\n",
+    )
+    .unwrap();
+    let output = cli(root.path(), &["--check"]);
+    assert!(!output.status.success());
+    assert!(
+        String::from_utf8_lossy(&output.stderr).contains("pinned supplemental inventory mismatch")
+    );
 }

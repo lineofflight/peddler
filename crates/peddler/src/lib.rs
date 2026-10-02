@@ -2,6 +2,14 @@
 
 #[rustfmt::skip]
 pub mod apis;
+#[rustfmt::skip]
+pub mod reports;
+#[rustfmt::skip]
+pub mod feeds;
+#[rustfmt::skip]
+pub mod notifications;
+#[rustfmt::skip]
+pub mod data_kiosk;
 
 pub mod api_error;
 pub mod auth;

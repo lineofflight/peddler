@@ -2,10 +2,11 @@
 
 namespace :generate do
   namespace :rust do
-    desc "Sync pinned specs and install locked generation-only Node dependencies"
+    desc "Sync pinned specs and verify Ruby/GraphQL and locked Node generation dependencies"
     task :setup do
       require_relative "../lib/generator/specs"
       Generator::Specs.sync(ref: Generator::Specs.pinned_sha)
+      sh "bundle", "exec", "ruby", "-e", 'require "graphql"; require "active_support/inflector"'
       sh "npm", "ci", "--prefix", "tools/openapi"
     end
 

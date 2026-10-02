@@ -5,6 +5,8 @@ edition = "2024"
 publish = false
 
 [dependencies]
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
 typify = { version = "=0.8.0", default-features = false }
 schemars = "0.8"
 serde_json = { version = "1", features = ["arbitrary_precision"] }

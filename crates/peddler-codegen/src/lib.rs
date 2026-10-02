@@ -7,6 +7,8 @@ use std::{
 pub mod clients;
 pub mod manifest;
 pub mod models;
+pub mod supplemental;
+pub use supplemental::generate_supplemental;
 
 #[derive(Debug)]
 pub struct GenerationError(pub String);
@@ -120,5 +122,11 @@ pub fn generate(
             format!("{prefix}{}", format_tokens(module)?),
         );
     }
+    output.extend(generate_supplemental(
+        spec_dir
+            .parent()
+            .ok_or_else(|| GenerationError("models directory requires a checkout parent".into()))?,
+        revision,
+    )?);
     Ok(output)
 }

@@ -1,0 +1,525 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "description": "The notification response schema that comprises the entire JSON document for B2B_ANY_OFFER_CHANGED notification",
+  "#ref": "#/definitions/NotificationResponse",
+  "definitions": {
+    "NotificationMetadata": {
+      "type": "object",
+      "required": [
+        "ApplicationId",
+        "SubscriptionId",
+        "PublishTime",
+        "NotificationId"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "ApplicationId": {
+          "type": "string",
+          "description": "The identifier for the application that uses the notifications"
+        },
+        "SubscriptionId": {
+          "type": "string",
+          "description": "A unique identifier for the subscription which resulted in this notification"
+        },
+        "PublishTime": {
+          "type": "string",
+          "description": "The date and time (in UTC) that the notification was sent"
+        },
+        "NotificationId": {
+          "type": "string",
+          "description": "A unique identifier for this notification instance"
+        }
+      }
+    },
+    "OfferChangeTrigger": {
+      "type": "object",
+      "description": "The event that caused the notification to be sent",
+      "required": [
+        "MarketplaceId",
+        "ASIN",
+        "ItemCondition",
+        "TimeOfOfferChange"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "MarketplaceId": {
+          "type": "string",
+          "description": "The marketplace identifier of the item that had an offer change"
+        },
+        "ASIN": {
+          "type": "string",
+          "description": "The asin for the item that had an offer change"
+        },
+        "ItemCondition": {
+          "type": "string",
+          "description": "The condition of the item that had an offer change"
+        },
+        "TimeOfOfferChange": {
+          "type": "string",
+          "description": "The update time for the offer that caused this notification"
+        }
+      }
+    },
+    "Condition": {
+      "type": "string",
+      "description": "Indicates the condition of the item"
+    },
+    "FulfillmentChannel": {
+      "type": "string",
+      "description": "Indicates whether the item is fulfilled by Amazon or by the seller"
+    },
+    "OfferCount": {
+      "type": "object",
+      "required": [
+        "Condition",
+        "FulfillmentChannel",
+        "OfferCount"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "Condition": {
+          "$ref": "#/definitions/Condition"
+        },
+        "FulfillmentChannel": {
+          "$ref": "#/definitions/FulfillmentChannel"
+        },
+        "OfferCount": {
+          "type": "integer",
+          "description": "The total number of offers for the specified condition and fulfillment channel"
+        }
+      }
+    },
+    "OfferType": {
+      "type": "string",
+      "description": "Indicates whether the offer is a B2B offer or a B2C offer"
+    },
+    "QuantityTier": {
+      "type": "integer",
+      "description": "The quantity tier for the offer"
+    },
+    "DiscountType": {
+      "type": "string",
+      "description": "Indicates whether the quantity tier is for Quantity Discount or Progressive Discount"
+    },
+    "MoneyType": {
+      "type": "object",
+      "required": [
+        "Amount",
+        "CurrencyCode"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "Amount": {
+          "type": "number"
+        },
+        "CurrencyCode": {
+          "type": "string"
+        }
+      }
+    },
+    "LandedPrice": {
+      "$ref": "#/definitions/MoneyType",
+      "description": "ListingPrice + Shipping"
+    },
+    "ListingPrice": {
+      "$ref": "#/definitions/MoneyType",
+      "description": "The price of the item"
+    },
+    "Shipping": {
+      "$ref": "#/definitions/MoneyType",
+      "description": "The shipping cost"
+    },
+    "QuantityDiscountPriceType" : {
+      "type" : "object",
+      "required" : [ "ListingPrice", "QuantityDiscountType", "QuantityTier" ],
+      "properties" : {
+        "QuantityTier" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Indicates at what quantity this price becomes active."
+        },
+        "QuantityDiscountType" : {
+          "description" : "Indicates the type of quantity discount this price applies to.",
+          "$ref" : "#/definitions/QuantityDiscountType"
+        },
+        "ListingPrice" : {
+          "description" : "The price at this quantity tier.",
+          "$ref" : "#/definitions/MoneyType"
+        }
+      },
+      "description" : "Contains pricing information that includes special pricing when buying in bulk."
+    },
+    "QuantityDiscountType" : {
+      "type" : "string",
+      "enum" : [ "QUANTITY_DISCOUNT" ],
+      "x-docgen-enum-table-extension" : [ {
+        "value" : "QUANTITY_DISCOUNT",
+        "description" : "Quantity Discount"
+      } ]
+    },
+    "Points": {
+      "type": "object",
+      "required": [
+        "PointsNumber"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "PointsNumber": {
+          "type": "integer",
+          "description": "The number of Amazon Points offered with the purchase of an item"
+        }
+      }
+    },
+    "LowestPrice": {
+      "type": "object",
+      "required": [
+        "Condition",
+        "FulfillmentChannel",
+        "OfferType",
+        "QuantityTier",
+        "ListingPrice"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "Condition": {
+          "$ref": "#/definitions/Condition"
+        },
+        "FulfillmentChannel": {
+          "$ref": "#/definitions/FulfillmentChannel"
+        },
+        "OfferType": {
+          "$ref": "#/definitions/OfferType"
+        },
+        "QuantityTier": {
+          "$ref": "#/definitions/QuantityTier"
+        },
+        "DiscountType": {
+          "$ref": "#/definitions/DiscountType"
+        },
+        "LandedPrice": {
+          "$ref": "#/definitions/LandedPrice"
+        },
+        "ListingPrice": {
+          "$ref": "#/definitions/ListingPrice"
+        },
+        "Shipping": {
+          "$ref": "#/definitions/Shipping"
+        },
+        "Points": {
+          "$ref": "#/definitions/Points"
+        }
+      }
+    },
+    "BuyBoxPrice": {
+      "type": "object",
+      "required": [
+        "Condition",
+        "OfferType",
+        "QuantityTier",
+        "ListingPrice"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "Condition": {
+          "$ref": "#/definitions/Condition"
+        },
+        "OfferType": {
+          "$ref": "#/definitions/OfferType"
+        },
+        "QuantityTier": {
+          "$ref": "#/definitions/QuantityTier"
+        },
+        "DiscountType": {
+          "$ref": "#/definitions/DiscountType"
+        },
+        "LandedPrice": {
+          "$ref": "#/definitions/LandedPrice"
+        },
+        "ListingPrice": {
+          "$ref": "#/definitions/ListingPrice"
+        },
+        "Shipping": {
+          "$ref": "#/definitions/Shipping"
+        },
+        "Points": {
+          "$ref": "#/definitions/Points"
+        },
+        "SellerId": {
+          "type": "string",
+          "description": "The seller identifier for the offer"
+        }
+      }
+    },
+    "SellerFeedbackRating": {
+      "type": "object",
+      "required": [
+        "FeedbackCount",
+        "SellerPositiveFeedbackRating"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "FeedbackCount": {
+          "type": "integer",
+          "description": "The count of feedback received about the seller"
+        },
+        "SellerPositiveFeedbackRating": {
+          "type": "number",
+          "description": "The percentage of positive feedback for the seller in the past 365 days"
+        }
+      }
+    },
+    "ShippingTime": {
+      "additionalProperties": true,
+      "properties": {
+        "MinimumHours": {
+          "type": "integer",
+          "description": "The minimum time, in hours, that the item will likely be shipped after the order has been placed"
+        },
+        "MaximumHours": {
+          "type": "integer",
+          "description": "The maximum time, in hours, that the item will likely be shipped after the order has been placed"
+        },
+        "AvailabilityType": {
+          "type": "string",
+          "description": "Indicates whether the item is available for shipping now, or on a known or an unknown date in the future"
+        },
+        "AvailableDate": {
+          "type": "string",
+          "description": "The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping"
+        }
+      }
+    },
+    "ShipsFrom": {
+      "type": "object",
+      "required": [
+        "Country"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "Country": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        }
+      }
+    },
+    "PrimeInformation": {
+      "type": "object",
+      "required": [
+        "IsPrime",
+        "IsNationalPrime"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "IsPrime": {
+          "type": "boolean",
+          "description": "Indicates whether the offer is an Amazon Prime offer"
+        },
+        "IsNationalPrime": {
+          "type": "boolean",
+          "description": "Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed"
+        }
+      }
+    },
+    "Offer": {
+      "type": "object",
+      "required": [
+        "SellerId",
+        "SubCondition",
+        "ShippingTime",
+        "ListingPrice",
+        "Shipping",
+        "IsFulfilledByAmazon"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "SellerId": {
+          "type": "string",
+          "description": "The seller identifier for the offer"
+        },
+        "SubCondition": {
+          "type": "string",
+          "description": "The subcondition of the item"
+        },
+        "SellerFeedbackRating": {
+          "$ref": "#/definitions/SellerFeedbackRating"
+        },
+        "ShippingTime": {
+          "$ref": "#/definitions/ShippingTime"
+        },
+        "ListingPrice": {
+          "$ref": "#/definitions/ListingPrice"
+        },
+        "Points": {
+          "$ref": "#/definitions/Points"
+        },
+        "QuantityDiscountPrice": {
+          "type": "array",
+          "description": "Contains a list of pricing information that includes special pricing when buying in bulk",
+          "items" : {
+            "$ref" : "#/definitions/QuantityDiscountPriceType"
+          }
+        },
+        "Shipping": {
+          "$ref": "#/definitions/Shipping"
+        },
+        "ShipsFrom": {
+          "$ref": "#/definitions/ShipsFrom"
+        },
+        "IsFulfilledByAmazon": {
+          "type": "boolean",
+          "description": "Indicates whether the offer is fulfilled by Amazon"
+        },
+        "IsBuyBoxWinner": {
+          "type": "boolean",
+          "description": "Indicates whether the offer is currently in the Buy Box. There can be up to two Buy Box winners at any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime"
+        },
+        "ConditionNotes": {
+          "type": "string",
+          "description": "Information about the condition of the item"
+        },
+        "PrimeInformation": {
+          "$ref": "#/definitions/PrimeInformation"
+        },
+        "IsFeaturedMerchant": {
+          "type": "boolean",
+          "description": "Indicates whether the seller of the item is eligible to win the Buy Box"
+        }
+      }
+    },
+    "Summary": {
+      "type": "object",
+      "required": [
+        "NumberOfOffers",
+        "BuyBoxEligibleOffers",
+        "LowestPrices",
+        "BuyBoxPrices"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "NumberOfOffers": {
+          "type": "array",
+          "description": "A list that contains the total number of B2B offers for the item for the given conditions and fulfillment channels",
+          "additionalItems": true,
+          "items": [
+            {
+              "$ref": "#/definitions/OfferCount"
+            }
+          ]
+        },
+        "BuyBoxEligibleOffers": {
+          "type": "array",
+          "description": "A list that contains the total number of B2B offers that are eligible for the Buy Box for the given conditions and fulfillment channels",
+          "additionalItems": true,
+          "items": [
+            {
+              "$ref": "#/definitions/OfferCount"
+            }
+          ]
+        },
+        "LowestPrices": {
+          "type": "array",
+          "description": "A list that contains the lowest prices of the item for the given conditions, fulfillment channels, quantity tiers, and discount types",
+          "additionalItems": true,
+          "items": [
+            {
+              "$ref": "#/definitions/LowestPrice"
+            }
+          ]
+        },
+        "BuyBoxPrices": {
+          "type": "array",
+          "description": "A list that contains the Buy Box price of the item for the given conditions, quantity tiers, and discount types",
+          "additionalItems": true,
+          "items": [
+            {
+              "$ref": "#/definitions/BuyBoxPrice"
+            }
+          ]
+        }
+      }
+    },
+    "B2BAnyOfferChangedNotification": {
+      "type": "object",
+      "required": [
+        "SellerId",
+        "OfferChangeTrigger",
+        "Summary",
+        "Offers"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "SellerId": {
+          "type": "string",
+          "description": "The seller identifier for the offer"
+        },
+        "OfferChangeTrigger": {
+          "$ref": "#/definitions/OfferChangeTrigger"
+        },
+        "Summary": {
+          "$ref": "#/definitions/Summary"
+        },
+        "Offers": {
+          "type": "array",
+          "description": "The top 20 competitive B2B offers for the item and condition that triggered the notification",
+          "additionalItems": true,
+          "items": [
+            {
+              "$ref": "#/definitions/Offer"
+            }
+          ]
+        }
+      }
+    },
+    "Payload": {
+      "type": "object",
+      "required": [
+        "B2BAnyOfferChangedNotification"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "B2BAnyOfferChangedNotification": {
+          "$ref": "#/definitions/B2BAnyOfferChangedNotification"
+        }
+      }
+    },
+    "NotificationResponse": {
+      "type": "object",
+      "required": [
+        "NotificationVersion",
+        "NotificationType",
+        "PayloadVersion",
+        "EventTime",
+        "NotificationMetadata",
+        "Payload"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "NotificationVersion": {
+          "type": "string",
+          "description": "The notification version. This controls the structure of the notification"
+        },
+        "NotificationType": {
+          "type": "string",
+          "description": "The notification type. Combined with payload version controls the structure of payload object"
+        },
+        "PayloadVersion": {
+          "type": "string",
+          "description": "The payload version. Combined with notification type controls the structure of payload"
+        },
+        "EventTime": {
+          "type": "string",
+          "description": "The date and time (in UTC) that the event which triggered the notification occurred"
+        },
+        "NotificationMetadata": {
+          "$ref": "#/definitions/NotificationMetadata"
+        },
+        "Payload": {
+          "$ref": "#/definitions/Payload"
+        }
+      }
+    }
+  }
+}
