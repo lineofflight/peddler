@@ -1,0 +1,64 @@
+module Peddler
+  module Native
+    class WorkflowError < StandardError
+    end
+    class WorkflowTimeoutError < WorkflowError
+    end
+    class WorkflowHTTPError < WorkflowError
+      attr_reader response: Response
+      def initialize: (String message, Integer status, Array[[String, String]] headers, String body, error_metadata? metadata) -> void
+    end
+
+    class DocumentError < StandardError
+      attr_reader document_id: String?
+      def with_document_id: (String document_id) -> self
+    end
+
+    class FeedDocumentUpload
+      attr_reader document_id: String
+      attr_reader response: Response
+      def initialize: (String document_id, Response response) -> void
+      def inspect: () -> String
+    end
+
+    module Uploads
+      CHUNK_BYTES: Integer
+      def self.drain: (UploadHandle upload, String | (_DocumentIO & Object) source) -> void
+    end
+
+    class Engine
+      def download_report_document: (String id, String config) -> DocumentHandle
+      def download_feed_document: (String id, String config) -> DocumentHandle
+      def download_query_document: (String id, String config) -> DocumentHandle
+      def wait_for_report: (String id, Float interval, Float timeout) -> response_parts
+      def wait_for_feed: (String id, Float interval, Float timeout) -> response_parts
+      def wait_for_query: (String id, Float interval, Float timeout) -> response_parts
+      def start_feed_document_upload: (String content_type, String config, Integer? content_length) -> UploadHandle
+    end
+
+    class UploadHandle
+      def document_id: () -> String?
+    end
+
+    def self.valid_identifier?: (untyped value) -> bool
+    def self.positive_seconds?: (untyped value) -> bool
+  end
+
+  class Client
+    def download_report_document: [T] (String document_id, **untyped transfer_options) { (Native::Document document) -> T } -> T
+                                | (String document_id, **untyped transfer_options) -> Native::Document
+    def download_feed_document: [T] (String document_id, **untyped transfer_options) { (Native::Document document) -> T } -> T
+                              | (String document_id, **untyped transfer_options) -> Native::Document
+    def download_query_document: [T] (String document_id, **untyped transfer_options) { (Native::Document document) -> T } -> T
+                               | (String document_id, **untyped transfer_options) -> Native::Document
+    def wait_for_report: (String report_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Native::Response
+    def wait_for_feed: (String feed_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Native::Response
+    def wait_for_query: (String query_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Native::Response
+    def create_and_upload_feed_document: (String | (_DocumentIO & Object) source, content_type: String, ?content_length: Integer?, **untyped transfer_options) -> Native::FeedDocumentUpload
+
+    private
+
+    def workflow_download: [T] (Symbol method, String document_id, Hash[Symbol, untyped] transfer_options) ?{ (Native::Document document) -> T } -> (T | Native::Document)
+    def workflow_wait: (Symbol method, String id, untyped interval, untyped timeout) -> Native::Response
+  end
+end

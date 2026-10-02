@@ -294,8 +294,8 @@ Entire response bodies are buffered and byte-exact. Duplicate header values surv
 ## Native signed document transfers
 
 Signed URL transfers share the Client HTTP pool and Tokio runtime, with no API
-credentials, redirects or retries. Reports/Feeds/Data Kiosk document ID and
-lifecycle conveniences are separate follow-up work.
+credentials, redirects or retries. Document ID and lifecycle helpers for
+Reports, Feeds and Data Kiosk are described in the next section.
 
 ```ruby
 require "peddler/native"
@@ -361,6 +361,74 @@ native handle rejects inherited state with ForkError after fork, so construct a
 new Client in the child. A Ruby source read that blocks must return or be
 interrupted before the calling Ruby method can return, while the background
 transfer deadline still cancels HTTP work.
+
+## Document lifecycle helpers
+
+Helpers look up document metadata through the generated Reports 2021-06-30, Feeds
+2021-06-30 and Data Kiosk 2023-11-15 operations (shared authentication, rate buckets
+and policy), then hand the signed URL to the transfer engine above. `download_document`
+and `upload_document` remain the raw URL calls; IDs and URLs are never guessed apart.
+Existing generated create, get and cancel operations stay available. Nothing submits a
+feed (`createFeed` is yours to call) or starts, polls or paginates another Data Kiosk query.
+
+```ruby
+response = client.wait_for_report(report_id, interval: 5, timeout: 300) # => Native::Response
+report = response.json # processingStatus DONE, CANCELLED or FATAL
+client.download_report_document(report.fetch("reportDocumentId")).each_tsv { |row| save_row(row) }
+client.download_feed_document(result_feed_document_id) { |document| document.each_chunk { |chunk| out << chunk } }
+client.download_query_document(data_document_id).each_jsonl { |row| save_row(row) }
+created = client.create_and_upload_feed_document(io, content_type: "text/xml; charset=UTF-8")
+created.document_id # pass to createFeed yourself
+created.response.status # raw upload reply, possibly a rejection
+```
+
+```rust
+let workflows = client.workflows();
+let download = workflows.download_report_document("id", TransferOptions::default()).await?;
+let done = workflows.wait_for_report("id", WaitOptions::default()).await?; // TypedResponse<Report>
+let uploaded = workflows.create_and_upload_feed_document("text/xml", stream, UploadOptions::default()).await?;
+// Or, to inspect the document before reading the source:
+let target = workflows.create_feed_document("text/xml", &options).await?;
+let uploaded = target.upload(stream, options).await?;
+```
+
+Ruby names: `download_report_document`, `download_feed_document`,
+`download_query_document` (same keywords and optional block as `download_document`),
+`wait_for_report`, `wait_for_feed`, `wait_for_query`, and
+`create_and_upload_feed_document(source, content_type:, content_length: nil, **transfer_options)`.
+Rust has the same names on `Client::workflows()`.
+
+One deadline, not two. `timeout` (30 seconds by default) starts when the helper is called.
+Metadata, auth and rate waits are deducted, and the remainder becomes the transfer
+timeout, which also bounds reading the body. Waiting uses `interval` (5) and `timeout`
+(300), both finite and positive. The first poll is immediate, sleeps count toward the
+timeout, no poll starts after it, and a slow poll is cut off at the deadline. Dropping the
+future or killing the Ruby thread stops all work. Only `IN_QUEUE` and `IN_PROGRESS` continue.
+`DONE`, `CANCELLED` and `FATAL` return the last raw response, so `processingStatus` and
+`reportDocumentId`, `resultFeedDocumentId`, `dataDocumentId` and `errorDocumentId` stay
+available. A `FATAL` result is not a successful artifact. An unknown status raises
+`Native::WorkflowError`; a timeout raises `Native::WorkflowTimeoutError`.
+
+Report and feed documents need a non-empty valid URL. An absent `compressionAlgorithm`
+means `:auto` (the Content-Encoding header decides); `GZIP` forces gzip whether or not the
+header is present, and never inflates twice. Other algorithms raise `Native::WorkflowError`.
+A caller `compression:` that contradicts the metadata raises it too (`:none` with `GZIP`,
+or `:gzip` without it). Data Kiosk documents take their encoding only from the header, so
+`:gzip` conflicts there. Limits and non-2xx raw body behavior match `download_document`. Metadata
+failures never start a download.
+
+A metadata response with an unexpected status raises `Native::WorkflowHTTPError`
+(Rust `WorkflowError::Http`); its `response` keeps the raw status, headers and body. Messages,
+`inspect`, Debug and causes never include that body, signed URLs or tokens. Other metadata
+problems raise `Native::WorkflowError`. Authentication and transport failures use the existing
+native classes.
+
+`create_and_upload_feed_document` posts `{"contentType": ...}` to `createFeedDocument`, then
+uploads to the returned URL with the identical Content-Type. The source is untouched until
+valid metadata arrives, and neither mutation is retried. A rejected upload is returned as
+`created.response`. If the upload fails, the exception carries `document_id`. A caller IO
+that raises stays the cause of a fixed `Native::DocumentError`; the caller keeps ownership
+of the IO and it stays open.
 
 A local memory probe generates and consumes bytes incrementally, retaining no
 whole fixture or emitted rows:

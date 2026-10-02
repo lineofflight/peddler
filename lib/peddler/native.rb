@@ -117,4 +117,5 @@ require_relative "native/pagination"
 require_relative "native/apis"
 
 require_relative "native/documents"
+require_relative "native/workflows"
 require_relative "native/lwa"

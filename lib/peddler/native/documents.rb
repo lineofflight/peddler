@@ -122,6 +122,34 @@ module Peddler
       end
     end
 
+    module Uploads
+      CHUNK_BYTES = 64 * 1024
+
+      class << self
+        # Feed an upload handle from a String or read(length) source until the source ends
+        # or the transfer completes early. Source exceptions stay the cause of a fixed error.
+        def drain(upload, source)
+          offset = 0
+          until upload.completed?
+            chunk = if source.is_a?(String)
+              value = source.byteslice(offset, CHUNK_BYTES)
+              offset += CHUNK_BYTES
+              value
+            else
+              begin
+                source.read(CHUNK_BYTES)
+              rescue StandardError
+                raise DocumentError, "document upload source failed"
+              end
+            end
+            break if chunk.nil? || chunk == ""
+            raise DocumentError, "document upload source failed" unless chunk.is_a?(String) && chunk.bytesize <= CHUNK_BYTES
+            break unless upload.push(chunk)
+          end
+        end
+      end
+    end
+
     class Response
       # Only document uploads can truncate a bounded reply body.
       def body_truncated? = @body_truncated == true
@@ -160,25 +188,7 @@ module Peddler
       end
       upload = @engine.start_document_upload(url, Native::TransferConfig.json(transfer_options), content_type, headers.to_a, content_length)
       begin
-        offset = 0
-        until upload.completed?
-          chunk = if source.is_a?(String)
-            value = source.byteslice(offset, 64 * 1024)
-            offset += 64 * 1024
-            value
-          else
-            begin
-              source.read(64 * 1024)
-            rescue StandardError
-              raise Native::DocumentError, "document upload source failed"
-            end
-          end
-          break if chunk.nil? || chunk == ""
-          unless chunk.is_a?(String) && chunk.bytesize <= 64 * 1024
-            raise Native::DocumentError, "document upload source failed"
-          end
-          break unless upload.push(chunk)
-        end
+        Native::Uploads.drain(upload, source)
         Native::Response.from_document_parts(upload.finish)
       ensure
         upload.close

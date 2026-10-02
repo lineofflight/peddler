@@ -18,7 +18,7 @@ use tokio::{
     task::AbortHandle,
 };
 
-fn error(ruby: &Ruby, error: DocumentError) -> Error {
+pub(super) fn error(ruby: &Ruby, error: DocumentError) -> Error {
     let message = error.to_string();
     match error {
         DocumentError::InvalidConfig | DocumentError::InvalidUrl | DocumentError::InvalidHeader => {
@@ -28,7 +28,7 @@ fn error(ruby: &Ruby, error: DocumentError) -> Error {
         _ => native_error(ruby, "DocumentError", &message),
     }
 }
-fn guard(ruby: &Ruby, pid: u32) -> Result<(), Error> {
+pub(super) fn guard(ruby: &Ruby, pid: u32) -> Result<(), Error> {
     if pid != std::process::id() {
         Err(native_error(
             ruby,
@@ -60,7 +60,7 @@ fn headers(values: &http::HeaderMap) -> Vec<(String, String)> {
 
 #[derive(serde::Deserialize, Default)]
 #[serde(deny_unknown_fields)]
-struct Config {
+pub(super) struct Config {
     timeout: Option<f64>,
     compression: Option<String>,
     max_bytes: Option<u64>,
@@ -69,7 +69,7 @@ struct Config {
     max_response_bytes: Option<usize>,
 }
 impl Config {
-    fn parse(ruby: &Ruby, json: &str) -> Result<TransferOptions, Error> {
+    pub(super) fn parse(ruby: &Ruby, json: &str) -> Result<TransferOptions, Error> {
         let value: Self =
             serde_json::from_str(json).map_err(|_| error(ruby, DocumentError::InvalidConfig))?;
         let mut options = TransferOptions::default();
@@ -119,7 +119,7 @@ struct DocumentOwner {
     truncated: bool,
 }
 #[magnus::wrap(class = "Peddler::Native::DocumentHandle", free_immediately)]
-struct Document {
+pub(super) struct Document {
     pid: u32,
     owner: ManuallyDrop<DocumentOwner>,
 }
@@ -175,8 +175,12 @@ impl Document {
             client.download(&url, options).await
         })?
         .map_err(|e| error(ruby, e))?;
-        Ok(Self {
-            pid: engine.pid,
+        Ok(Self::from_download(engine.pid, runtime, download))
+    }
+    /// Shared by raw URL downloads and the ID-based workflow downloads.
+    pub(super) fn from_download(pid: u32, runtime: Arc<RuntimeOwner>, download: Download) -> Self {
+        Self {
+            pid,
             owner: ManuallyDrop::new(DocumentOwner {
                 status: download.status(),
                 headers: headers(download.headers()),
@@ -186,7 +190,7 @@ impl Document {
                 stream: Arc::new(Mutex::new(StreamState::Fresh(Box::new(download)))),
                 close_signal: Arc::new(Notify::new()),
             }),
-        })
+        }
     }
     fn close(ruby: &Ruby, document: &Self) -> Result<(), Error> {
         guard(ruby, document.pid)?;
@@ -357,6 +361,8 @@ impl Completion {
         }
     }
 }
+pub(super) type UploadSource =
+    std::pin::Pin<Box<dyn futures_util::Stream<Item = Result<Bytes, ()>> + Send + 'static>>;
 type UploadParts = (
     u16,
     Vec<(String, String)>,
@@ -366,6 +372,7 @@ type UploadParts = (
 );
 struct UploadOwner {
     runtime: Arc<RuntimeOwner>,
+    document_id: Option<String>,
     sender: Mutex<Option<mpsc::Sender<Bytes>>>,
     completion: Arc<Completion>,
     abort: AbortHandle,
@@ -376,7 +383,7 @@ impl Drop for UploadOwner {
     }
 }
 #[magnus::wrap(class = "Peddler::Native::UploadHandle", free_immediately)]
-struct Upload {
+pub(super) struct Upload {
     pid: u32,
     owner: ManuallyDrop<UploadOwner>,
 }
@@ -407,6 +414,21 @@ impl Upload {
             content_length,
         };
         let client = engine.state.client.documents();
+        Self::spawn(engine, None, move |source| async move {
+            client.upload(&url, source, options).await
+        })
+    }
+    /// Start a bounded upload task whose body is fed through a capacity-1 channel.
+    /// `make` builds the transfer future from the owned source stream.
+    pub(super) fn spawn<F, Fut>(
+        engine: &Engine,
+        document_id: Option<String>,
+        make: F,
+    ) -> Result<Self, Error>
+    where
+        F: FnOnce(UploadSource) -> Fut,
+        Fut: std::future::Future<Output = Result<UploadResponse, DocumentError>> + Send + 'static,
+    {
         let runtime = Arc::clone(&engine.state.runtime);
         let (sender, receiver) = mpsc::channel::<Bytes>(1);
         let completion = Arc::new(Completion {
@@ -414,21 +436,19 @@ impl Upload {
             notify: Notify::new(),
         });
         let target = Arc::clone(&completion);
+        let source = futures_util::stream::unfold(receiver, |mut receiver| async move {
+            receiver
+                .recv()
+                .await
+                .map(|value| (Ok::<_, ()>(value), receiver))
+        });
+        let work = make(Box::pin(source));
         let worker = runtime
             .runtime
             .as_ref()
             .expect("runtime alive")
             .spawn(async move {
-                let source = futures_util::stream::unfold(receiver, |mut receiver| async move {
-                    receiver
-                        .recv()
-                        .await
-                        .map(|value| (Ok::<_, ()>(value), receiver))
-                });
-                let result = match AssertUnwindSafe(client.upload(&url, source, options))
-                    .catch_unwind()
-                    .await
-                {
+                let result = match AssertUnwindSafe(work).catch_unwind().await {
                     Ok(result) => result,
                     Err(payload) => {
                         std::mem::forget(payload);
@@ -448,11 +468,16 @@ impl Upload {
             pid: engine.pid,
             owner: ManuallyDrop::new(UploadOwner {
                 runtime,
+                document_id,
                 sender: Mutex::new(Some(sender)),
                 completion,
                 abort,
             }),
         })
+    }
+    fn document_id(ruby: &Ruby, upload: &Self) -> Result<Option<String>, Error> {
+        guard(ruby, upload.pid)?;
+        Ok(upload.owner.document_id.clone())
     }
     fn completed(ruby: &Ruby, upload: &Self) -> Result<bool, Error> {
         guard(ruby, upload.pid)?;
@@ -553,6 +578,7 @@ pub(super) fn init(ruby: &Ruby, native: RModule, engine: RClass) -> Result<(), E
     upload.define_method("push", method!(Upload::push, 1))?;
     upload.define_method("finish", method!(Upload::finish, 0))?;
     upload.define_method("close", method!(Upload::close, 0))?;
+    upload.define_method("document_id", method!(Upload::document_id, 0))?;
     // No public constructors: handles originate from an authenticated Engine pool.
     Ok(())
 }

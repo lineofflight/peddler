@@ -1,0 +1,218 @@
+//! Document ID lifecycle helpers. Metadata, polling and transfer start run in Rust
+//! under one deadline; Ruby wraps the owned outputs and feeds upload chunks.
+use super::{Completed, Engine, ResponseParts, documents, gvl, native_error};
+use documents::{Config, Document, Upload, guard};
+use magnus::{Error, RClass, RModule, Ruby, method, prelude::*};
+use peddler::{
+    documents::{Error as DocumentError, UploadOptions},
+    workflows::{WaitOptions, WorkflowError},
+};
+use std::{sync::Arc, time::Duration};
+
+fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
+    let message = error.to_string();
+    match error {
+        WorkflowError::InvalidConfig => Error::new(ruby.exception_arg_error(), message),
+        WorkflowError::Request(error) => super::transport_error(ruby, error),
+        WorkflowError::Http(response) => {
+            let completed = Completed::new(response);
+            let class = ruby
+                .class_object()
+                .const_get::<_, RModule>("Peddler")
+                .and_then(|module| module.const_get::<_, RModule>("Native"))
+                .and_then(|module| module.const_get::<_, RClass>("WorkflowHTTPError"));
+            let exception = class.and_then(|class| {
+                class.funcall::<_, _, magnus::Exception>(
+                    "new",
+                    (
+                        message,
+                        completed.response.status,
+                        completed.response.headers,
+                        ruby.str_from_slice(&completed.response.body),
+                        completed.metadata,
+                    ),
+                )
+            });
+            match exception {
+                Ok(exception) => Error::from(exception),
+                Err(error) => error,
+            }
+        }
+        WorkflowError::Timeout => native_error(ruby, "WorkflowTimeoutError", &message),
+        WorkflowError::Document(error) | WorkflowError::Upload { error, .. } => {
+            documents::error(ruby, error)
+        }
+        _ => native_error(ruby, "WorkflowError", &message),
+    }
+}
+
+#[derive(Clone, Copy)]
+enum Kind {
+    Report,
+    Feed,
+    Query,
+}
+
+fn download(
+    ruby: &Ruby,
+    engine: &Engine,
+    kind: Kind,
+    id: String,
+    config: String,
+) -> Result<Document, Error> {
+    guard(ruby, engine.pid)?;
+    let options = Config::parse(ruby, &config)?;
+    let workflows = engine.state.client.workflows();
+    let runtime = Arc::clone(&engine.state.runtime);
+    let download = gvl::wait(ruby, "WorkflowError", Arc::clone(&runtime), async move {
+        match kind {
+            Kind::Report => workflows.download_report_document(&id, options).await,
+            Kind::Feed => workflows.download_feed_document(&id, options).await,
+            Kind::Query => workflows.download_query_document(&id, options).await,
+        }
+    })?
+    .map_err(|error| workflow_error(ruby, error))?;
+    Ok(Document::from_download(engine.pid, runtime, download))
+}
+fn download_report(
+    ruby: &Ruby,
+    engine: &Engine,
+    id: String,
+    config: String,
+) -> Result<Document, Error> {
+    download(ruby, engine, Kind::Report, id, config)
+}
+fn download_feed(
+    ruby: &Ruby,
+    engine: &Engine,
+    id: String,
+    config: String,
+) -> Result<Document, Error> {
+    download(ruby, engine, Kind::Feed, id, config)
+}
+fn download_query(
+    ruby: &Ruby,
+    engine: &Engine,
+    id: String,
+    config: String,
+) -> Result<Document, Error> {
+    download(ruby, engine, Kind::Query, id, config)
+}
+
+fn wait(
+    ruby: &Ruby,
+    engine: &Engine,
+    kind: Kind,
+    id: String,
+    interval: f64,
+    timeout: f64,
+) -> Result<ResponseParts, Error> {
+    guard(ruby, engine.pid)?;
+    let invalid = || Error::new(ruby.exception_arg_error(), "invalid workflow configuration");
+    let options = WaitOptions {
+        interval: Duration::try_from_secs_f64(interval).map_err(|_| invalid())?,
+        timeout: Duration::try_from_secs_f64(timeout).map_err(|_| invalid())?,
+    };
+    let workflows = engine.state.client.workflows();
+    let runtime = Arc::clone(&engine.state.runtime);
+    let result = gvl::wait(ruby, "WorkflowError", runtime, async move {
+        match kind {
+            Kind::Report => workflows
+                .wait_for_report(&id, options)
+                .await
+                .map(|r| r.into_raw()),
+            Kind::Feed => workflows
+                .wait_for_feed(&id, options)
+                .await
+                .map(|r| r.into_raw()),
+            Kind::Query => workflows
+                .wait_for_query(&id, options)
+                .await
+                .map(|r| r.into_raw()),
+        }
+        .map(Completed::new)
+    })?;
+    let completed = result.map_err(|error| workflow_error(ruby, error))?;
+    Ok((
+        completed.response.status,
+        completed.response.headers,
+        ruby.str_from_slice(&completed.response.body),
+        completed.metadata,
+    ))
+}
+fn wait_report(
+    ruby: &Ruby,
+    engine: &Engine,
+    id: String,
+    interval: f64,
+    timeout: f64,
+) -> Result<ResponseParts, Error> {
+    wait(ruby, engine, Kind::Report, id, interval, timeout)
+}
+fn wait_feed(
+    ruby: &Ruby,
+    engine: &Engine,
+    id: String,
+    interval: f64,
+    timeout: f64,
+) -> Result<ResponseParts, Error> {
+    wait(ruby, engine, Kind::Feed, id, interval, timeout)
+}
+fn wait_query(
+    ruby: &Ruby,
+    engine: &Engine,
+    id: String,
+    interval: f64,
+    timeout: f64,
+) -> Result<ResponseParts, Error> {
+    wait(ruby, engine, Kind::Query, id, interval, timeout)
+}
+
+/// Creates the feed document, then starts the bounded upload task. The Ruby source
+/// is only read after this returns, so invalid metadata never consumes it.
+fn start_feed_upload(
+    ruby: &Ruby,
+    engine: &Engine,
+    content_type: String,
+    config: String,
+    content_length: Option<u64>,
+) -> Result<Upload, Error> {
+    guard(ruby, engine.pid)?;
+    let options = UploadOptions {
+        transfer: Config::parse(ruby, &config)?,
+        content_type: content_type.clone(),
+        headers: Vec::new(),
+        content_length,
+    };
+    let workflows = engine.state.client.workflows();
+    let runtime = Arc::clone(&engine.state.runtime);
+    let create = options.clone();
+    let target = gvl::wait(ruby, "WorkflowError", runtime, async move {
+        workflows.create_feed_document(&content_type, &create).await
+    })?
+    .map_err(|error| workflow_error(ruby, error))?;
+    let id = target.document_id.clone();
+    Upload::spawn(engine, Some(id), move |source| async move {
+        match target.upload(source, options).await {
+            Ok(uploaded) => Ok(uploaded.response),
+            Err(WorkflowError::Upload { error, .. }) => Err(error),
+            Err(_) => Err(DocumentError::Transport),
+        }
+    })
+}
+
+pub(super) fn init(ruby: &Ruby, native: RModule, engine: RClass) -> Result<(), Error> {
+    let error = native.define_class(
+        "WorkflowError",
+        ruby.exception_standard_error().as_r_class(),
+    )?;
+    native.define_class("WorkflowTimeoutError", error)?;
+    engine.define_method("download_report_document", method!(download_report, 2))?;
+    engine.define_method("download_feed_document", method!(download_feed, 2))?;
+    engine.define_method("download_query_document", method!(download_query, 2))?;
+    engine.define_method("wait_for_report", method!(wait_report, 3))?;
+    engine.define_method("wait_for_feed", method!(wait_feed, 3))?;
+    engine.define_method("wait_for_query", method!(wait_query, 3))?;
+    engine.define_method("start_feed_document_upload", method!(start_feed_upload, 3))?;
+    Ok(())
+}
