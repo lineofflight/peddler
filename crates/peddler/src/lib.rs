@@ -3,6 +3,9 @@
 #[rustfmt::skip]
 pub mod apis;
 
+pub mod api_error;
+pub mod policy;
+
 mod operation;
 pub use operation::TypedResponse;
 
