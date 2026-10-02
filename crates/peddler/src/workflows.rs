@@ -240,14 +240,6 @@ fn id(value: &str) -> Result<String, WorkflowError> {
         Ok(value.to_owned())
     }
 }
-fn deadline(timeout: Duration) -> Result<Instant, WorkflowError> {
-    if timeout.is_zero() {
-        return Err(WorkflowError::InvalidConfig);
-    }
-    Instant::now()
-        .checked_add(timeout)
-        .ok_or(WorkflowError::InvalidConfig)
-}
 fn remaining(deadline: Instant) -> Result<Duration, WorkflowError> {
     let left = deadline.saturating_duration_since(Instant::now());
     if left.is_zero() {
@@ -468,7 +460,7 @@ where
     if options.interval.is_zero() {
         return Err(WorkflowError::InvalidConfig);
     }
-    let deadline = deadline(options.timeout)?;
+    let deadline = crate::deadline(options.timeout).ok_or(WorkflowError::InvalidConfig)?;
     loop {
         // A late timer wake must not start one more poll after the deadline.
         remaining(deadline)?;

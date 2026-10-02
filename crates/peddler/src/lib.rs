@@ -286,9 +286,7 @@ impl Client {
         F: Fn(HeaderValue) -> Fut,
         Fut: Future<Output = Result<Response, Error>>,
     {
-        let deadline = tokio::time::Instant::now()
-            .checked_add(self.timeout)
-            .ok_or(Error::InvalidRequest)?;
+        let deadline = deadline(self.timeout).ok_or(Error::InvalidRequest)?;
         tokio::time::timeout_at(deadline, async {
             let mut retry_index = 0;
             loop {
@@ -428,13 +426,25 @@ impl Client {
     }
 }
 
-// Never retain reqwest errors: their Display/Debug/source may contain URLs.
-fn classify_transport(error: reqwest::Error) -> Error {
+/// A timeout or a transport failure. The reqwest error itself is never kept: its
+/// Display, Debug and source may contain URLs.
+pub(crate) fn classify<E>(error: reqwest::Error, timeout: E, transport: E) -> E {
     if error.is_timeout() {
-        Error::Timeout
+        timeout
     } else {
-        Error::Transport
+        transport
     }
+}
+
+fn classify_transport(error: reqwest::Error) -> Error {
+    classify(error, Error::Timeout, Error::Transport)
+}
+
+/// The instant `timeout` from now, unless the timeout is zero or too long to represent.
+pub(crate) fn deadline(timeout: Duration) -> Option<tokio::time::Instant> {
+    tokio::time::Instant::now()
+        .checked_add(timeout)
+        .filter(|_| !timeout.is_zero())
 }
 
 /// The time of an attempt, in the form Amazon's connection guide shows. Only requests

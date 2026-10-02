@@ -73,8 +73,7 @@ impl LwaClient {
     ) -> Result<Self, AuthError> {
         if client_id.trim().is_empty()
             || client_secret.trim().is_empty()
-            || timeout.is_zero()
-            || Instant::now().checked_add(timeout).is_none()
+            || crate::deadline(timeout).is_none()
         {
             return Err(AuthError::InvalidConfig);
         }

@@ -111,17 +111,14 @@ impl Default for TransferOptions {
 }
 impl TransferOptions {
     pub(crate) fn deadline(&self) -> Result<Instant, Error> {
-        if self.timeout.is_zero()
-            || self.max_bytes == 0
+        if self.max_bytes == 0
             || self.max_record_bytes == 0
             || self.max_records == 0
             || self.max_response_bytes == 0
         {
             return Err(Error::InvalidConfig);
         }
-        Instant::now()
-            .checked_add(self.timeout)
-            .ok_or(Error::InvalidConfig)
+        crate::deadline(self.timeout).ok_or(Error::InvalidConfig)
     }
 }
 
@@ -596,11 +593,7 @@ fn encoding(headers: &HeaderMap, compression: Compression) -> Result<bool, Error
     Ok(compression == Compression::Gzip || compression == Compression::Auto && gzip)
 }
 fn transport(error: reqwest::Error) -> Error {
-    if error.is_timeout() {
-        Error::Timeout
-    } else {
-        Error::Transport
-    }
+    crate::classify(error, Error::Timeout, Error::Transport)
 }
 fn check_deadline(deadline: Instant) -> Result<(), Error> {
     if Instant::now() >= deadline {

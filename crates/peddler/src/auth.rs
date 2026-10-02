@@ -161,9 +161,5 @@ fn error_code(body: Vec<u8>) -> Option<String> {
 }
 
 fn transport(error: reqwest::Error) -> AuthError {
-    if error.is_timeout() {
-        AuthError::Timeout
-    } else {
-        AuthError::Transport
-    }
+    crate::classify(error, AuthError::Timeout, AuthError::Transport)
 }
