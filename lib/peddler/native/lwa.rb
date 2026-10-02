@@ -27,7 +27,7 @@ module Peddler
       DEFAULT_ENDPOINT = "https://api.amazon.com/auth/o2/token"
 
       def initialize(client_id:, client_secret:, timeout: 30, lwa_endpoint: DEFAULT_ENDPOINT)
-        unless client_id.is_a?(String) && client_secret.is_a?(String) && lwa_endpoint.is_a?(String) &&
+        unless text?(client_id) && text?(client_secret) && text?(lwa_endpoint) &&
             (timeout.is_a?(Integer) || timeout.is_a?(Float)) && timeout.finite? && timeout.positive?
           raise ArgumentError, "invalid authentication configuration", cause: nil
         end
@@ -40,7 +40,7 @@ module Peddler
       # Omit redirect_uri only for SDK-originated grants; otherwise provide the
       # exact URI used during authorization. Authorization codes aren't retried.
       def exchange_authorization_code(code:, redirect_uri: nil)
-        unless code.is_a?(String) && (redirect_uri.nil? || redirect_uri.is_a?(String))
+        unless text?(code) && (redirect_uri.nil? || text?(redirect_uri))
           raise ArgumentError, "invalid authentication configuration", cause: nil
         end
 
@@ -54,6 +54,11 @@ module Peddler
       alias_method :to_s, :inspect
 
       private
+
+      def text?(value)
+        value.is_a?(String) && value.valid_encoding? &&
+          (value.encoding == Encoding::UTF_8 || value.ascii_only?)
+      end
 
       def raise_sanitized(error)
         raise error unless error.instance_variable_defined?(:@peddler_native_lwa_error)

@@ -102,9 +102,26 @@ A backoff exceeding the remaining deadline returns the last raw response.
 status, duplicate headers and body bytes. It extracts optional code/request ID
 without exposing server bodies in error formatting.
 
-Authorization-code onboarding still uses the existing Ruby `Peddler::LWA` helper
-in the legacy entrypoint. A shared Rust/native authorization-code exchange is a
-required follow-up before the next-major entrypoint migration.
+Use `auth::LwaClient` in Rust or `Peddler::Native::LWA` in Ruby to exchange an
+authorization code for tokens:
+
+```rust
+use peddler::auth::LwaClient;
+
+let lwa = LwaClient::new("client-id", "client-secret")?;
+let tokens = lwa.exchange_authorization_code("code", Some("https://app.example/callback")).await?;
+println!("{}", tokens.refresh_token);
+```
+
+```ruby
+require "peddler/native"
+
+lwa = Peddler::Native::LWA.new(client_id: "client-id", client_secret: "client-secret")
+tokens = lwa.exchange_authorization_code(code: "code", redirect_uri: "https://app.example/callback")
+puts tokens.refresh_token
+```
+
+Omit `redirect_uri` only for SDK-originated grants; otherwise provide the exact URI used during authorization. Consent, state handling and token storage stay with the application.
 
 ## Native Ruby usage
 
@@ -185,7 +202,7 @@ bundle exec rake generate:rust:verify
 
 CI configures Ubuntu core checks without Ruby setup, a separate generation job with Ruby/Node/spec setup, and native Ruby 3.3/3.4/4.0 jobs. Configured jobs are not evidence of completed remote runs.
 
-Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Pagination, streaming, full facade generation and broader API coverage remain work for later stages. Authorization-code exchange through the shared Rust/native runtime must land before entrypoint migration. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.
+Entire response bodies are buffered and byte-exact. Duplicate header values survive, but total wire order is not retained and non-UTF8 values decode lossily. Pagination, streaming, full facade generation and broader API coverage remain work for later stages. Precompiled gems, release packaging, Windows support, root Ruby entrypoint migration and crate publication remain later work. The root Cargo patch does not propagate to independently published consumers; release packaging needs review. Benchmark before promising performance improvements.
 
 ## Native signed document transfers
 

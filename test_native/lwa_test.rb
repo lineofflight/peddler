@@ -86,17 +86,25 @@ class LwaTest < NativeTest
       assert_nil(error.cause)
       refute_match(/sensitive-code|sensitive caller exception|secret\+&/, error.full_message)
     end
-    [{ client_id: "" }, { client_secret: " " }, { client_id: Object.new }, { timeout: 0 }, { timeout: Float::NAN },
-      { timeout: "1" }, { lwa_endpoint: "http://example.com" }, { lwa_endpoint: "https://secret@example.com" }].each do |options|
+    [{ client_id: "" }, { client_secret: " " }, { client_id: Object.new },
+      { client_id: "\xFF" }, { client_id: "\xFF".b },
+      { client_secret: "\xFF" }, { client_secret: "\xFF".b },
+      { timeout: 0 }, { timeout: Float::NAN }, { timeout: "1" },
+      { lwa_endpoint: "http://example.com" }, { lwa_endpoint: "https://secret@example.com" },
+      { lwa_endpoint: "\xFF" }, { lwa_endpoint: "\xFF".b }].each do |options|
       error = assert_raises(ArgumentError) { sensitive_rescue { onboarding("http://127.0.0.1:1", **options) } }
       assert_nil(error.cause)
       refute_match(/sensitive-code|sensitive caller exception|secret\+&/, error.full_message)
     end
     instance = onboarding("http://127.0.0.1:1")
-    [{ code: "" }, { code: " " }, { code: Object.new }, { code: "code", redirect_uri: "relative" },
-      { code: "code", redirect_uri: "https://example.com/#fragment" }, { code: "code", redirect_uri: false }].each do |options|
+    [{ code: "" }, { code: " " }, { code: Object.new },
+      { code: "\xFF" }, { code: "\xFF".b },
+      { code: "code", redirect_uri: "relative" },
+      { code: "code", redirect_uri: "https://example.com/#fragment" }, { code: "code", redirect_uri: false },
+      { code: "code", redirect_uri: "\xFF" }, { code: "code", redirect_uri: "\xFF".b }].each do |options|
       error = assert_raises(ArgumentError) { sensitive_rescue { instance.exchange_authorization_code(**options) } }
       assert_nil(error.cause)
+      refute_match(/sensitive-code|sensitive caller exception|secret\+&/, error.full_message)
     end
   end
 
