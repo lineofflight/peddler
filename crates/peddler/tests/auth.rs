@@ -358,12 +358,77 @@ async fn rejection_has_no_body_source_retry_or_redirect() {
                 .request(&lwa(&origin, Duration::from_secs(1)))
                 .await
                 .unwrap_err();
-            assert_eq!(error, AuthError::Rejected(status));
+            assert_eq!(error, AuthError::Rejected { status, code: None });
             assert!(!format!("{error:?} {error}").contains("private"));
             assert!(std::error::Error::source(&error).is_none());
             task.await.unwrap();
         }
     }
+}
+
+#[tokio::test]
+async fn rejection_names_the_problem_and_keeps_nothing_else() {
+    let named = json!({"error":"invalid_client","error_description":"private description"});
+    for grant in GRANTS {
+        let (origin, task) = server(vec![(401, named.to_string())]).await;
+        let error = grant
+            .request(&lwa(&origin, Duration::from_secs(1)))
+            .await
+            .unwrap_err();
+        assert_eq!(
+            error,
+            AuthError::Rejected {
+                status: 401,
+                code: Some("invalid_client".into())
+            }
+        );
+        assert_eq!(error.to_string(), "authentication rejected (401)");
+        assert!(!format!("{error:?} {error}").contains("private"));
+        assert!(std::error::Error::source(&error).is_none());
+        task.await.unwrap();
+    }
+    // Only a short lowercase identifier is a code. Anything else is dropped.
+    for body in [
+        json!({"error":"Invalid_Client"}).to_string(),
+        json!({"error":"invalid client"}).to_string(),
+        json!({"error":"x".repeat(41)}).to_string(),
+        json!({"error":""}).to_string(),
+        json!({"error":401}).to_string(),
+        json!({"error":["invalid_client"]}).to_string(),
+        json!({"error_description":"private"}).to_string(),
+        "private not json".into(),
+        String::new(),
+        "x".repeat(64 * 1024 + 1),
+    ] {
+        let (origin, task) = server(vec![(400, body)]).await;
+        let error = lwa(&origin, Duration::from_secs(1))
+            .refresh("private-input")
+            .await
+            .unwrap_err();
+        assert_eq!(
+            error,
+            AuthError::Rejected {
+                status: 400,
+                code: None
+            }
+        );
+        assert!(!format!("{error:?} {error}").contains("private"));
+        task.await.unwrap();
+    }
+    let longest = "x".repeat(40);
+    let (origin, task) = server(vec![(400, json!({"error": longest}).to_string())]).await;
+    let error = lwa(&origin, Duration::from_secs(1))
+        .client_credentials("scope")
+        .await
+        .unwrap_err();
+    assert_eq!(
+        error,
+        AuthError::Rejected {
+            status: 400,
+            code: Some(longest)
+        }
+    );
+    task.await.unwrap();
 }
 
 #[tokio::test]

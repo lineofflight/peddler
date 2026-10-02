@@ -17,7 +17,12 @@ const BODY_LIMIT: usize = 64 * 1024;
 pub enum AuthError {
     InvalidConfig,
     InvalidResponse,
-    Rejected(u16),
+    /// LWA answered outside 2xx. `code` is the `error` field of its reply, such as
+    /// `invalid_client` or `invalid_grant`, when it is a short lowercase identifier.
+    Rejected {
+        status: u16,
+        code: Option<String>,
+    },
     Timeout,
     Transport,
 }
@@ -27,7 +32,7 @@ impl fmt::Display for AuthError {
         match self {
             Self::InvalidConfig => f.write_str("invalid authentication configuration"),
             Self::InvalidResponse => f.write_str("invalid authentication response"),
-            Self::Rejected(status) => write!(f, "authentication rejected ({status})"),
+            Self::Rejected { status, .. } => write!(f, "authentication rejected ({status})"),
             Self::Timeout => f.write_str("authentication timed out"),
             Self::Transport => f.write_str("authentication transport failed"),
         }
@@ -93,9 +98,20 @@ fn check_lifetime(seconds: u64, start: Instant) -> Result<(), AuthError> {
 async fn read_response<T: serde::de::DeserializeOwned>(
     response: reqwest::Response,
 ) -> Result<T, AuthError> {
-    if !response.status().is_success() {
-        return Err(AuthError::Rejected(response.status().as_u16()));
+    let status = response.status();
+    if !status.is_success() {
+        // Nothing else of a rejection is kept: not the description, not the body.
+        let code = read_body(response).await.ok().and_then(error_code);
+        return Err(AuthError::Rejected {
+            status: status.as_u16(),
+            code,
+        });
     }
+    let body = read_body(response).await?;
+    serde_json::from_slice(&body).map_err(|_| AuthError::InvalidResponse)
+}
+
+async fn read_body(response: reqwest::Response) -> Result<Vec<u8>, AuthError> {
     if response
         .content_length()
         .is_some_and(|size| size > BODY_LIMIT as u64)
@@ -111,7 +127,20 @@ async fn read_response<T: serde::de::DeserializeOwned>(
         }
         body.extend_from_slice(&chunk);
     }
-    serde_json::from_slice(&body).map_err(|_| AuthError::InvalidResponse)
+    Ok(body)
+}
+
+/// The `error` field of an OAuth error reply: a fixed vocabulary, not a secret.
+fn error_code(body: Vec<u8>) -> Option<String> {
+    #[derive(serde::Deserialize)]
+    struct Rejection {
+        error: String,
+    }
+    let code = serde_json::from_slice::<Rejection>(&body).ok()?.error;
+    let plain = code
+        .bytes()
+        .all(|byte| byte.is_ascii_lowercase() || byte == b'_');
+    ((1..=40).contains(&code.len()) && plain).then_some(code)
 }
 
 fn transport(error: reqwest::Error) -> AuthError {

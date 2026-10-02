@@ -25,15 +25,16 @@ impl Drop for LwaEngine {
 
 fn auth_error(ruby: &Ruby, error: AuthError) -> Error {
     let message = error.to_string();
-    let status = match error {
-        AuthError::Rejected(status) => Some(status),
-        _ => None,
+    let (status, code) = match error {
+        AuthError::Rejected { status, code } => (Some(status), code),
+        _ => (None, None),
     };
     let class = ruby
         .class_object()
         .const_get::<_, RModule>("Peddler")
         .and_then(|m| m.const_get::<_, magnus::RClass>("AuthenticationError"));
-    match class.and_then(|c| c.funcall::<_, _, magnus::Exception>("new", (message, status))) {
+    let arguments = (message, status, magnus::kwargs!("code" => code));
+    match class.and_then(|c| c.funcall::<_, _, magnus::Exception>("new", arguments)) {
         Ok(e) => Error::from(e),
         Err(e) => e,
     }

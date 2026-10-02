@@ -4,7 +4,8 @@ module Peddler
   # Requests Login with Amazon (LWA) tokens
   #
   # Every method makes one request and keeps nothing. Application code owns consent, state verification, token
-  # storage and when to ask for a new access token.
+  # storage and when to ask for a new access token. A rejection raises {Peddler::AuthenticationError}, whose `code`
+  # is what Amazon names as the problem, such as "invalid_client" or "invalid_grant".
   #
   # @example
   #   lwa = Peddler::LWA.new

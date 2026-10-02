@@ -10,8 +10,10 @@ module Peddler
 
   class AuthenticationError < StandardError
     @status: Integer?
+    @code: String?
     attr_reader status: Integer?
-    def initialize: (String message, ?Integer? status) -> void
+    attr_reader code: String?
+    def initialize: (String message, ?Integer? status, ?code: String?) -> void
   end
 
   module Native

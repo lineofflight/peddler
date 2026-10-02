@@ -177,6 +177,42 @@ class LwaTest < NativeTest
     end
   end
 
+  def test_rejection_names_the_problem_and_shows_nothing_else
+    named = JSON.generate(error: "invalid_client", error_description: "sensitive description for secret+&雪")
+    GRANTS.each_value do |grant|
+      serve(handler: ->(socket, *) { respond(socket, status: 401, body: named) }) do |url|
+        error = assert_raises(Peddler::AuthenticationError) { grant.call(onboarding(url)) }
+
+        assert_equal("invalid_client", error.code)
+        assert_equal(401, error.status)
+        assert_equal("authentication rejected (401)", error.message)
+        refute_match(/sensitive|description|secret\+&/, "#{error.message} #{error.inspect} #{error.full_message(highlight: false)}")
+      end
+    end
+    # Only a short lowercase identifier is passed on; anything else is not a code Amazon documents.
+    [{ error: "Invalid_Client" }, { error: "invalid client" }, { error: "x" * 41 }, { error: "" }, { error: 401 },
+      { error: ["invalid_client"] }, { error_description: "sensitive" }, { "errors" => "invalid_client" }].each do |reply|
+      serve(handler: ->(socket, *) { respond(socket, status: 400, body: JSON.generate(reply)) }) do |url|
+        error = assert_raises(Peddler::AuthenticationError) { onboarding(url).refresh(refresh_token: "refresh") }
+
+        assert_nil(error.code, reply.inspect)
+        assert_equal(400, error.status)
+        refute_match(/sensitive|Invalid_Client|xxxx/, "#{error.message} #{error.inspect}")
+      end
+    end
+    ["sensitive not json", "", "x" * (64 * 1024 + 1)].each do |body|
+      serve(handler: ->(socket, *) { respond(socket, status: 403, body: body) }) do |url|
+        error = assert_raises(Peddler::AuthenticationError) { onboarding(url).client_credentials(scope: "scope") }
+
+        assert_nil(error.code)
+        assert_equal(403, error.status)
+      end
+    end
+
+    assert_equal(["invalid_grant", 400], Peddler::AuthenticationError.new("rejected", 400, code: "invalid_grant").then { |e| [e.code, e.status] })
+    assert_nil(Peddler::AuthenticationError.new("failed").code)
+  end
+
   def test_redirect_is_not_followed_and_rejection_is_not_retried
     GRANTS.each_value do |grant|
       [302, 429, 500].each do |status|

@@ -30,10 +30,15 @@ module Peddler
   end
 
   class AuthenticationError
+    # @return [Integer, nil] the HTTP status when Login with Amazon rejected the request
     attr_reader :status
 
-    def initialize(message, status = nil)
+    # @return [String, nil] what Login with Amazon names as the problem, such as "invalid_client" or "invalid_grant"
+    attr_reader :code
+
+    def initialize(message, status = nil, code: nil)
       @status = status
+      @code = code
       super(message)
     end
   end
