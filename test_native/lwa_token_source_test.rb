@@ -88,6 +88,8 @@ class LwaTokenSourceTest < NativeTest
       errors = threads.map(&:value)
 
       assert_equal(1, exchanges.size)
+      # Each waiter raises an object of its own, so no caller's cause leaks into another's.
+      assert_equal(3, errors.map(&:object_id).uniq.size)
       errors.each do |error|
         assert_instance_of(Peddler::AuthenticationError, error)
         assert_equal(["invalid_grant", 401], [error.code, error.status])
@@ -144,6 +146,48 @@ class LwaTokenSourceTest < NativeTest
     ensure
       [leader, follower].each { |thread| thread&.kill }
     end
+  end
+
+  # Parks the refreshing thread where an interrupt used to do damage: back from the grant, about to record the
+  # result. Under the GVL a thread is almost never preempted there by chance, so the test holds the source's lock.
+  def interrupt_during_bookkeeping(source, gate)
+    lock = source.instance_variable_get(:@mutex)
+    worker = Thread.new { source.call }
+    worker.report_on_exception = false
+    Timeout.timeout(5) { gate[:granted].pop }
+    lock.synchronize do
+      gate[:release] << true
+      Timeout.timeout(5) { sleep(0.001) until gate[:release].empty? && worker.status == "sleep" }
+      yield worker
+    end
+    worker.join(5) || flunk("the interrupted thread never finished")
+  rescue gate[:interrupt]
+    nil
+  end
+
+  def test_asynchronous_interrupts_never_leave_a_source_waiting_forever
+    interrupt = Class.new(StandardError)
+    # A lifetime of 0 makes every call refresh.
+    stale = Peddler::LWA::Tokens.new("access", nil, "bearer", 0)
+    gate = { granted: Queue.new, release: Queue.new, interrupt: interrupt, hold: true }
+    source = Peddler::LWA::TokenSource.new do
+      if gate[:hold]
+        gate[:granted] << true
+        gate[:release].pop
+      end
+      stale
+    end
+    [:raise, :raise, :raise, :kill].each do |kind|
+      break if source.instance_variable_get(:@refresh)
+
+      interrupt_during_bookkeeping(source, gate) { |worker| kind == :kill ? worker.kill : worker.raise(interrupt) }
+    end
+    gate[:hold] = false
+
+    assert_nil(source.instance_variable_get(:@refresh), "the source was left with a refresh that nobody is running")
+    later = Thread.new { source.call }
+
+    assert_equal("access", later.join(2) ? later.value : later.kill)
   end
 
   def test_inspect_shows_no_secret_and_arguments_are_checked
