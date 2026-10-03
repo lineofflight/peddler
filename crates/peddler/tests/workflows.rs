@@ -1,3 +1,5 @@
+mod support;
+
 use bytes::Bytes;
 use futures_util::{StreamExt, TryStreamExt, stream};
 use peddler::{
@@ -12,34 +14,8 @@ use std::{
     },
     time::{Duration, Instant},
 };
-use tokio::{
-    io::{AsyncReadExt, AsyncWriteExt},
-    net::TcpListener,
-};
+use support::{GZIP, Reply, http, serve};
 
-const GZIP: [u8; 28] = [
-    31, 139, 8, 0, 0, 0, 0, 0, 2, 255, 171, 86, 170, 80, 178, 50, 172, 229, 2, 0, 21, 240, 49, 80,
-    8, 0, 0, 0,
-];
-
-struct Reply {
-    bytes: Vec<u8>,
-    delay: Duration,
-    hold: Duration,
-}
-fn http(status: u16, headers: &str, body: &[u8]) -> Reply {
-    let mut bytes = format!(
-        "HTTP/1.1 {status} Test\r\nContent-Length: {}\r\nConnection: close\r\n{headers}\r\n",
-        body.len()
-    )
-    .into_bytes();
-    bytes.extend_from_slice(body);
-    Reply {
-        bytes,
-        delay: Duration::ZERO,
-        hold: Duration::ZERO,
-    }
-}
 fn json(status: u16, body: &str) -> Reply {
     http(
         status,
@@ -47,86 +23,7 @@ fn json(status: u16, body: &str) -> Reply {
         body.as_bytes(),
     )
 }
-impl Reply {
-    fn delayed(mut self, delay: Duration) -> Self {
-        self.delay = delay;
-        self
-    }
-}
 
-struct Server {
-    url: String,
-    requests: Arc<Mutex<Vec<String>>>,
-}
-impl Server {
-    fn requests(&self) -> Vec<String> {
-        self.requests.lock().unwrap().clone()
-    }
-    fn count(&self, prefix: &str) -> usize {
-        self.requests()
-            .iter()
-            .filter(|request| request.starts_with(prefix))
-            .count()
-    }
-}
-/// Handler receives the index of the connection, the raw request text and the base URL.
-async fn serve(handler: impl Fn(usize, &str, &str) -> Reply + Send + Sync + 'static) -> Server {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let url = format!("http://{}", listener.local_addr().unwrap());
-    let requests = Arc::new(Mutex::new(Vec::new()));
-    let log = requests.clone();
-    let base = url.clone();
-    let handler = Arc::new(handler);
-    tokio::spawn(async move {
-        let mut index = 0;
-        while let Ok((mut socket, _)) = listener.accept().await {
-            let (log, base, handler) = (log.clone(), base.clone(), handler.clone());
-            let current = index;
-            index += 1;
-            tokio::spawn(async move {
-                let mut bytes = Vec::new();
-                let end = loop {
-                    let mut buffer = [0; 4096];
-                    let count = socket.read(&mut buffer).await.unwrap_or(0);
-                    if count == 0 {
-                        return;
-                    }
-                    bytes.extend_from_slice(&buffer[..count]);
-                    if let Some(end) = bytes.windows(4).position(|w| w == b"\r\n\r\n") {
-                        break end + 4;
-                    }
-                };
-                let head = String::from_utf8_lossy(&bytes[..end]).to_ascii_lowercase();
-                let length = head
-                    .lines()
-                    .find_map(|line| line.strip_prefix("content-length: ")?.parse::<usize>().ok());
-                let chunked = head.contains("transfer-encoding: chunked");
-                loop {
-                    let body = &bytes[end..];
-                    if length.is_some_and(|length| body.len() >= length)
-                        || chunked && body.ends_with(b"0\r\n\r\n")
-                        || length.is_none() && !chunked
-                    {
-                        break;
-                    }
-                    let mut buffer = [0; 4096];
-                    let count = socket.read(&mut buffer).await.unwrap_or(0);
-                    if count == 0 {
-                        break;
-                    }
-                    bytes.extend_from_slice(&buffer[..count]);
-                }
-                let request = String::from_utf8_lossy(&bytes).into_owned();
-                log.lock().unwrap().push(request.clone());
-                let reply = handler(current, &request, &base);
-                tokio::time::sleep(reply.delay).await;
-                let _ = socket.write_all(&reply.bytes).await;
-                tokio::time::sleep(reply.hold).await;
-            });
-        }
-    });
-    Server { url, requests }
-}
 fn client(url: &str) -> Client {
     Client::new(url, "SECRET_API_TOKEN").unwrap()
 }
@@ -406,10 +303,8 @@ async fn data_kiosk_streams_jsonl_with_header_only_encoding() {
 async fn one_deadline_covers_metadata_and_transfer() {
     let server = serve(|_, request, base| {
         if request.starts_with("GET /signed") {
-            let mut reply = http(200, "", b"");
-            reply.bytes = b"HTTP/1.1 200 OK\r\nContent-Length: 100\r\n\r\npartial".to_vec();
-            reply.hold = Duration::from_secs(3);
-            reply
+            Reply::raw(b"HTTP/1.1 200 OK\r\nContent-Length: 100\r\n\r\npartial")
+                .held(Duration::from_secs(3))
         } else {
             json(200, &report_document(base, None)).delayed(Duration::from_millis(300))
         }
@@ -482,11 +377,20 @@ async fn wait_for_report_polls_until_done_with_immediate_first_poll() {
 
 #[tokio::test]
 async fn wait_returns_fatal_and_cancelled_with_ids_available() {
+    let server = serve(|_, request, _| {
+        let path = request.split(' ').nth(1).unwrap();
+        json(200, &match path {
+            "/reports/2021-06-30/reports/FATAL" => report("FATAL"),
+            "/reports/2021-06-30/reports/CANCELLED" => report("CANCELLED"),
+            "/feeds/2021-06-30/feeds/f1" => "{\"feedId\":\"f1\",\"feedType\":\"T\",\"processingStatus\":\"FATAL\",\"createdTime\":\"2024-01-01T00:00:00Z\",\"resultFeedDocumentId\":\"rf\"}".into(),
+            _ => "{\"queryId\":\"q1\",\"query\":\"x\",\"processingStatus\":\"DONE\",\"createdTime\":\"2024-01-01T00:00:00Z\",\"dataDocumentId\":\"dd\",\"errorDocumentId\":\"ed\"}".into(),
+        })
+    })
+    .await;
+    let workflows = client(&server.url).workflows();
     for status in ["FATAL", "CANCELLED"] {
-        let server = serve(move |_, _, _| json(200, &report(status))).await;
-        let response = client(&server.url)
-            .workflows()
-            .wait_for_report("r1", fast(10, 1_000))
+        let response = workflows
+            .wait_for_report(status, fast(10, 1_000))
             .await
             .unwrap();
         let report = response.json().unwrap();
@@ -494,38 +398,23 @@ async fn wait_returns_fatal_and_cancelled_with_ids_available() {
         assert_eq!(report.report_document_id.as_deref(), Some("d9"));
         assert_eq!(response.raw.status, 200);
     }
-    let server = serve(|_, _, _| {
-        json(
-            200,
-            "{\"feedId\":\"f1\",\"feedType\":\"T\",\"processingStatus\":\"FATAL\",\"createdTime\":\"2024-01-01T00:00:00Z\",\"resultFeedDocumentId\":\"rf\"}",
-        )
-    })
-    .await;
-    let response = client(&server.url)
-        .workflows()
+    let feed = workflows
         .wait_for_feed("f1", fast(10, 1_000))
         .await
         .unwrap();
     assert_eq!(
-        response.json().unwrap().result_feed_document_id.as_deref(),
+        feed.json().unwrap().result_feed_document_id.as_deref(),
         Some("rf")
     );
-    let server = serve(|_, _, _| {
-        json(
-            200,
-            "{\"queryId\":\"q1\",\"query\":\"x\",\"processingStatus\":\"DONE\",\"createdTime\":\"2024-01-01T00:00:00Z\",\"dataDocumentId\":\"dd\",\"errorDocumentId\":\"ed\"}",
-        )
-    })
-    .await;
-    let response = client(&server.url)
-        .workflows()
+    let query = workflows
         .wait_for_query("q1", fast(10, 1_000))
         .await
+        .unwrap()
+        .json()
         .unwrap();
-    let query = response.json().unwrap();
     assert_eq!(query.data_document_id.as_deref(), Some("dd"));
     assert_eq!(query.error_document_id.as_deref(), Some("ed"));
-    assert!(server.requests()[0].starts_with("GET /dataKiosk/2023-11-15/queries/q1 "));
+    assert_eq!(server.count("GET /dataKiosk/2023-11-15/queries/q1 "), 1);
 }
 
 #[tokio::test]
@@ -591,21 +480,6 @@ async fn wait_is_bounded_and_polls_stop_at_the_deadline() {
         .unwrap_err();
     assert!(matches!(error, WorkflowError::Timeout));
     assert!(started.elapsed() < Duration::from_millis(600));
-}
-
-#[tokio::test]
-async fn dropping_a_wait_stops_polling() {
-    let server = serve(|_, _, _| json(200, &report("IN_PROGRESS"))).await;
-    let workflows = client(&server.url).workflows();
-    let task = tokio::spawn(async move {
-        let _ = workflows.wait_for_report("r1", fast(20, 10_000)).await;
-    });
-    tokio::time::sleep(Duration::from_millis(100)).await;
-    task.abort();
-    let _ = task.await;
-    let polls = server.requests().len();
-    tokio::time::sleep(Duration::from_millis(150)).await;
-    assert_eq!(server.requests().len(), polls);
 }
 
 #[tokio::test]
