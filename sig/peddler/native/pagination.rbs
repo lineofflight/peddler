@@ -34,6 +34,6 @@ module Peddler
     def token_in: (Hash[String, untyped] arguments) -> String?
     def follow: (Hash[String, untyped] initial, String token) -> Hash[String, untyped]
     def assign: (untyped node, Array[String] keys, untyped value) -> Hash[untyped, untyped]
-    def next_token: (String body, Array[String] seen) -> [String?, Symbol?]
+    def next_token: (Response response, Array[String] seen) -> [String?, Symbol?]
   end
 end

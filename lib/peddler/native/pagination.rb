@@ -58,7 +58,7 @@ module Peddler
           response = Response.from_parts(engine.operation(operation, generate(page)), @operation)
           fetched += 1
           following = failure = nil
-          following, failure = next_token(response.body, seen) if fetched != max_pages
+          following, failure = next_token(response, seen) if fetched != max_pages
           yielder << response
           raise PaginationError, failure if failure
           break unless following
@@ -128,9 +128,9 @@ module Peddler
 
     # Returns [token, failure]. Parsing happens outside any rescue so no
     # parser error, which can quote the body, becomes a cause.
-    def next_token(body, seen)
+    def next_token(response, seen)
       parsed = begin
-        JSON.parse(body)
+        response.json
       rescue JSON::ParserError, EncodingError
         NONE
       end
