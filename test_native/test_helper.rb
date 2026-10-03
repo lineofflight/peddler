@@ -5,7 +5,6 @@ require "minitest/mock"
 require "socket"
 require "timeout"
 require "json"
-require "base64"
 require "uri"
 require "peddler"
 
