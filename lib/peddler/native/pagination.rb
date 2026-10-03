@@ -150,8 +150,10 @@ module Peddler
         elsif seen.include?(node)
           [nil, :repeated_token]
         else
-          seen << node
-          [node, nil]
+          # A frozen copy: the String in the parsed body is the caller's to change.
+          token = -node
+          seen << token
+          [token, nil]
         end
       else [nil, :invalid_token]
       end

@@ -140,7 +140,8 @@ class PaginationTest < NativeTest
 
       assert_kind_of(Enumerable, enum)
       assert_empty(server.requests, "no network before enumeration")
-      assert_equal([200, 200], enum.map(&:status))
+      # A caller that changes the token in a page doesn't change the one sent next.
+      assert_equal([200, 200], enum.map { |page| page.tap { _1.dig("payload", "NextToken")&.replace("changed") }.status })
       assert_instance_of(Peddler::Response, enum.first)
       assert_equal(3, server.requests.size, "first restarts from the first page and stops")
       assert_equal(["NextToken", "A"], URI.decode_www_form(server.requests[1][:target].split("?", 2)[1]).assoc("NextToken"))
