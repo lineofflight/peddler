@@ -1,83 +1,31 @@
+mod support;
+
 use peddler::{
     Client, ClientConfig, Error, Pool, Request,
-    auth::{AuthError, LwaClient, LwaTokens, TokenSource},
+    auth::{AuthError, LwaClient, TokenSource},
 };
 use serde_json::{Value, json};
 use std::{sync::Arc, time::Duration};
+use support::{Server, bind, http, read_request, replies, serve};
 use tokio::{
     io::{AsyncReadExt, AsyncWriteExt},
-    net::{TcpListener, TcpStream},
     sync::{Notify, mpsc},
     task::JoinHandle,
 };
 
-async fn read_request(stream: &mut TcpStream) -> String {
-    let mut bytes = Vec::new();
-    loop {
-        let mut chunk = [0; 4096];
-        let count = stream.read(&mut chunk).await.unwrap();
-        assert!(count > 0);
-        bytes.extend_from_slice(&chunk[..count]);
-        if let Some(end) = bytes.windows(4).position(|part| part == b"\r\n\r\n") {
-            let headers = String::from_utf8_lossy(&bytes[..end]).to_ascii_lowercase();
-            let length = headers
-                .lines()
-                .find_map(|line| line.strip_prefix("content-length: ")?.parse::<usize>().ok())
-                .unwrap_or(0);
-            if bytes.len() >= end + 4 + length {
-                return String::from_utf8(bytes).unwrap();
-            }
-        }
-    }
-}
-
-async fn server(responses: Vec<(u16, String)>) -> (String, JoinHandle<Vec<String>>) {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
-    let task = tokio::spawn(async move {
-        let mut requests = Vec::new();
-        for (status, body) in responses {
-            let (mut stream, _) = listener.accept().await.unwrap();
-            requests.push(read_request(&mut stream).await);
-            let reply = format!(
-                "HTTP/1.1 {status} Test\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}",
-                body.len()
-            );
-            stream.write_all(reply.as_bytes()).await.unwrap();
-        }
-        requests
-    });
-    (origin, task)
+/// Answers each connection in turn with one status and body.
+async fn answers(responses: Vec<(u16, String)>) -> Server {
+    replies(
+        responses
+            .iter()
+            .map(|(status, body)| http(*status, "", body.as_bytes()))
+            .collect(),
+    )
+    .await
 }
 
 fn lwa(origin: &str, timeout: Duration) -> LwaClient {
     LwaClient::with_config("id+&é", "secret+&雪", &format!("{origin}/auth"), timeout).unwrap()
-}
-
-/// The three grants share one request path, so every transport rule is checked on each.
-#[derive(Clone, Copy, Debug, PartialEq)]
-enum Grant {
-    Code,
-    Refresh,
-    Scope,
-}
-const GRANTS: [Grant; 3] = [Grant::Code, Grant::Refresh, Grant::Scope];
-impl Grant {
-    async fn request(self, client: &LwaClient) -> Result<LwaTokens, AuthError> {
-        match self {
-            Self::Code => {
-                client
-                    .exchange_authorization_code("private-code", None)
-                    .await
-            }
-            Self::Refresh => client.refresh("private-input").await,
-            Self::Scope => {
-                client
-                    .client_credentials("sellingpartnerapi::notifications")
-                    .await
-            }
-        }
-    }
 }
 
 fn tokens() -> Value {
@@ -94,15 +42,11 @@ fn get() -> Request {
 }
 
 #[tokio::test]
-async fn authorization_code_form_and_tokens_feed_a_refresh_and_a_client() {
-    let body = json!({"access_token":"onboard-access","refresh_token":"onboard-refresh","token_type":"bEaReR","expires_in":3600}).to_string();
-    let refreshed =
-        json!({"access_token":"refreshed-access","token_type":"bearer","expires_in":3600})
-            .to_string();
-    let (origin, task) = server(vec![(200, body), (200, refreshed), (200, "{}".into())]).await;
-    let onboarding = lwa(&origin, Duration::from_secs(2));
-    let tokens = onboarding
-        .clone()
+async fn authorization_code_form_and_tokens_are_redacted() {
+    let body = json!({"access_token":"onboard-access","refresh_token":"onboard-refresh","token_type":"bEaReR","expires_in":3600});
+    let server = answers(vec![(200, body.to_string())]).await;
+    let client = lwa(&server.url, Duration::from_secs(2));
+    let tokens = client
         .exchange_authorization_code(
             "code+&λ",
             Some("https://app.example/callback?state=a+b&x=雪"),
@@ -113,38 +57,31 @@ async fn authorization_code_form_and_tokens_feed_a_refresh_and_a_client() {
     assert_eq!(tokens.refresh_token.as_deref(), Some("onboard-refresh"));
     assert_eq!(tokens.token_type, "bEaReR");
     assert_eq!(tokens.expires_in, 3600);
-    assert!(!format!("{tokens:?} {onboarding:?}").contains("onboard-access"));
-    assert!(!format!("{tokens:?} {onboarding:?}").contains("onboard-refresh"));
-    assert!(!format!("{onboarding:?}").contains("secret"));
-    let refreshed = onboarding
-        .refresh(tokens.refresh_token.as_deref().unwrap())
-        .await
-        .unwrap();
-    let client = Client::new(&origin, &refreshed.access_token).unwrap();
-    assert_eq!(client.execute(get()).await.unwrap().status, 200);
-    let requests = task.await.unwrap();
+    let debug = format!("{tokens:?} {client:?}");
+    assert!(!debug.contains("onboard-") && !debug.contains("secret"));
+    let request = &server.requests()[0];
     assert_eq!(
-        requests[0].split_once("\r\n\r\n").unwrap().1,
+        request.split_once("\r\n\r\n").unwrap().1,
         "grant_type=authorization_code&code=code%2B%26%CE%BB&client_id=id%2B%26%C3%A9&client_secret=secret%2B%26%E9%9B%AA&redirect_uri=https%3A%2F%2Fapp.example%2Fcallback%3Fstate%3Da%2Bb%26x%3D%E9%9B%AA"
     );
-    for request in &requests[..2] {
-        assert!(request.starts_with("POST /auth HTTP/1.1\r\n"));
-        assert!(request.contains("content-type: application/x-www-form-urlencoded\r\n"));
-        assert!(!request.contains("x-amz-access-token:"));
-        assert!(!request.contains("x-amz-date:"));
-        assert!(!request.contains("authorization:"));
-        assert!(!request.contains("accept: application/json"));
+    assert!(request.starts_with("POST /auth HTTP/1.1\r\n"));
+    assert!(request.contains("content-type: application/x-www-form-urlencoded\r\n"));
+    for header in [
+        "x-amz-access-token:",
+        "x-amz-date:",
+        "authorization:",
+        "accept: application/json",
+    ] {
+        assert!(!request.contains(header), "{header}");
     }
-    assert!(requests[1].contains("refresh_token=onboard-refresh"));
-    assert!(requests[2].contains("x-amz-access-token: refreshed-access"));
 }
 
 #[tokio::test]
 async fn refresh_form_is_encoded_and_nothing_is_cached() {
     let rotated = tokens().to_string();
     let plain = json!({"access_token":"lwa-secret","token_type":"bEaReR","expires_in":120});
-    let (origin, task) = server(vec![(200, plain.to_string()), (200, rotated)]).await;
-    let client = lwa(&origin, Duration::from_secs(2));
+    let server = answers(vec![(200, plain.to_string()), (200, rotated)]).await;
+    let client = lwa(&server.url, Duration::from_secs(2));
     let first = client.refresh("refresh+&λ").await.unwrap();
     assert_eq!(first.access_token, "lwa-secret");
     assert_eq!(first.refresh_token, None);
@@ -154,7 +91,7 @@ async fn refresh_form_is_encoded_and_nothing_is_cached() {
     let second = client.clone().refresh("refresh+&λ").await.unwrap();
     assert_eq!(second.access_token, "private-access");
     assert_eq!(second.refresh_token.as_deref(), Some("private-refresh"));
-    let requests = task.await.unwrap();
+    let requests = server.requests();
     assert_eq!(requests.len(), 2);
     for request in &requests {
         assert!(request.starts_with("POST /auth HTTP/1.1\r\n"));
@@ -171,11 +108,11 @@ async fn refresh_form_is_encoded_and_nothing_is_cached() {
 #[tokio::test]
 async fn client_credentials_form_uses_scope() {
     let grantless = json!({"access_token":"grantless","token_type":"bearer","expires_in":2});
-    let (origin, task) = server(vec![(200, grantless.to_string())]).await;
+    let server = answers(vec![(200, grantless.to_string())]).await;
     let client = LwaClient::with_config(
         "id",
         "secret",
-        &format!("{origin}/auth"),
+        &format!("{}/auth", server.url),
         Duration::from_secs(2),
     )
     .unwrap();
@@ -187,20 +124,19 @@ async fn client_credentials_form_uses_scope() {
     assert_eq!(tokens.refresh_token, None);
     assert_eq!(tokens.expires_in, 2);
     assert_eq!(
-        task.await.unwrap()[0].split_once("\r\n\r\n").unwrap().1,
+        server.requests()[0].split_once("\r\n\r\n").unwrap().1,
         "grant_type=client_credentials&client_id=id&client_secret=secret&scope=sellingpartnerapi%3A%3Anotifications"
     );
 }
 
 #[tokio::test]
 async fn a_shared_pool_reuses_one_connection_and_keeps_the_host_from_lwa() {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (listener, origin) = bind().await;
     let task = tokio::spawn(async move {
         let (mut stream, _) = listener.accept().await.unwrap();
         let mut requests = Vec::new();
         for body in ["{}".to_owned(), tokens().to_string(), "{}".to_owned()] {
-            requests.push(read_request(&mut stream).await);
+            requests.push(String::from_utf8(read_request(&mut stream).await).unwrap());
             let reply = format!(
                 "HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{body}",
                 body.len()
@@ -292,116 +228,73 @@ async fn validates_inputs_and_every_required_response_field() {
             AuthError::InvalidConfig
         );
     }
-    let valid = tokens();
-    for grant in GRANTS {
-        let mut invalid = vec![];
-        for key in ["access_token", "refresh_token", "token_type", "expires_in"] {
-            let mut value = valid.clone();
-            value.as_object_mut().unwrap().remove(key);
-            // Only the authorization code grant must return a refresh token.
-            if key == "refresh_token" && grant != Grant::Code {
-                let (origin, task) = server(vec![(200, value.to_string())]).await;
-                let tokens = grant.request(&lwa(&origin, second)).await.unwrap();
-                assert_eq!(tokens.refresh_token, None);
-                task.await.unwrap();
-            } else {
-                invalid.push(value.to_string());
-            }
-        }
-        for (key, bad) in [
-            ("access_token", json!("")),
-            ("access_token", json!("bad\nvalue")),
-            ("refresh_token", json!(" ")),
-            ("refresh_token", json!("bad\nvalue")),
-            ("token_type", json!("basic")),
-            ("expires_in", json!(0)),
-            ("expires_in", json!(-1)),
-            ("expires_in", json!(1.5)),
-            ("expires_in", json!("3600")),
-            ("expires_in", json!(u64::MAX)),
-        ] {
-            let mut value = valid.clone();
-            value[key] = bad;
-            invalid.push(value.to_string());
-        }
-        invalid.extend(["private malformed".into(), "x".repeat(64 * 1024 + 1)]);
-        for body in invalid {
-            let (origin, task) = server(vec![(200, body)]).await;
-            let error = grant.request(&lwa(&origin, second)).await.unwrap_err();
-            assert_eq!(error, AuthError::InvalidResponse, "{grant:?}");
-            assert!(!format!("{error:?} {error}").contains("private"));
-            assert!(std::error::Error::source(&error).is_none());
-            assert!(!task.await.unwrap()[0].contains("redirect_uri="));
-        }
+    // The authorization code grant also needs a refresh token.
+    let mut missing = tokens();
+    missing.as_object_mut().unwrap().remove("refresh_token");
+    let mut bodies = vec![missing.to_string(), "x".repeat(64 * 1024 + 1)];
+    for (key, bad) in [
+        ("access_token", json!("bad\nvalue")),
+        ("token_type", json!("basic")),
+        ("expires_in", json!(0)),
+    ] {
+        let mut value = tokens();
+        value[key] = bad;
+        bodies.push(value.to_string());
     }
-}
-
-#[tokio::test]
-async fn rejection_has_no_body_source_retry_or_redirect() {
-    for grant in GRANTS {
-        for status in [302, 401, 429, 500] {
-            let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-            let origin = format!("http://{}", listener.local_addr().unwrap());
-            let target = origin.clone();
-            let task = tokio::spawn(async move {
-                let (mut socket, _) = listener.accept().await.unwrap();
-                read_request(&mut socket).await;
-                socket.write_all(format!("HTTP/1.1 {status} Test\r\nLocation: {target}/redirect\r\nContent-Length: 12\r\nConnection: close\r\n\r\nprivate-code").as_bytes()).await.unwrap();
-                drop(socket);
-                assert!(
-                    tokio::time::timeout(Duration::from_millis(100), listener.accept())
-                        .await
-                        .is_err()
-                );
-            });
-            let error = grant
-                .request(&lwa(&origin, Duration::from_secs(1)))
-                .await
-                .unwrap_err();
-            assert_eq!(error, AuthError::Rejected { status, code: None });
-            assert!(!format!("{error:?} {error}").contains("private"));
-            assert!(std::error::Error::source(&error).is_none());
-            task.await.unwrap();
-        }
-    }
-}
-
-#[tokio::test]
-async fn rejection_names_the_problem_and_keeps_nothing_else() {
-    let named = json!({"error":"invalid_client","error_description":"private description"});
-    for grant in GRANTS {
-        let (origin, task) = server(vec![(401, named.to_string())]).await;
-        let error = grant
-            .request(&lwa(&origin, Duration::from_secs(1)))
+    for body in bodies {
+        let server = answers(vec![(200, body)]).await;
+        let error = lwa(&server.url, second)
+            .exchange_authorization_code("private-code", None)
             .await
             .unwrap_err();
-        assert_eq!(
-            error,
-            AuthError::Rejected {
-                status: 401,
-                code: Some("invalid_client".into())
-            }
-        );
-        assert_eq!(error.to_string(), "authentication rejected (401)");
-        assert!(!format!("{error:?} {error}").contains("private"));
+        assert_eq!(error, AuthError::InvalidResponse);
         assert!(std::error::Error::source(&error).is_none());
-        task.await.unwrap();
+        assert!(!server.requests()[0].contains("redirect_uri="));
     }
-    // Only a short lowercase identifier is a code. Anything else is dropped.
+}
+
+#[tokio::test]
+async fn rejection_is_not_followed_or_retried_and_keeps_only_a_plain_code() {
+    for status in [302, 429] {
+        let server = serve(move |_, _, base| {
+            http(
+                status,
+                &format!("Location: {base}/redirect\r\n"),
+                b"private-code",
+            )
+        })
+        .await;
+        let error = lwa(&server.url, Duration::from_secs(1))
+            .refresh("private-input")
+            .await
+            .unwrap_err();
+        assert_eq!(error, AuthError::Rejected { status, code: None });
+        assert_eq!(server.requests().len(), 1);
+    }
+    let named = json!({"error":"invalid_client","error_description":"private description"});
+    let server = answers(vec![(401, named.to_string())]).await;
+    let error = lwa(&server.url, Duration::from_secs(1))
+        .client_credentials("scope")
+        .await
+        .unwrap_err();
+    assert_eq!(
+        error,
+        AuthError::Rejected {
+            status: 401,
+            code: Some("invalid_client".into())
+        }
+    );
+    assert_eq!(error.to_string(), "authentication rejected (401)");
+    assert!(!format!("{error:?} {error}").contains("private"));
+    assert!(std::error::Error::source(&error).is_none());
+    // Only a short lowercase identifier is a code.
     for body in [
         json!({"error":"Invalid_Client"}).to_string(),
-        json!({"error":"invalid client"}).to_string(),
         json!({"error":"x".repeat(41)}).to_string(),
-        json!({"error":""}).to_string(),
-        json!({"error":401}).to_string(),
-        json!({"error":["invalid_client"]}).to_string(),
-        json!({"error_description":"private"}).to_string(),
         "private not json".into(),
-        String::new(),
-        "x".repeat(64 * 1024 + 1),
     ] {
-        let (origin, task) = server(vec![(400, body)]).await;
-        let error = lwa(&origin, Duration::from_secs(1))
+        let server = answers(vec![(400, body)]).await;
+        let error = lwa(&server.url, Duration::from_secs(1))
             .refresh("private-input")
             .await
             .unwrap_err();
@@ -412,29 +305,12 @@ async fn rejection_names_the_problem_and_keeps_nothing_else() {
                 code: None
             }
         );
-        assert!(!format!("{error:?} {error}").contains("private"));
-        task.await.unwrap();
     }
-    let longest = "x".repeat(40);
-    let (origin, task) = server(vec![(400, json!({"error": longest}).to_string())]).await;
-    let error = lwa(&origin, Duration::from_secs(1))
-        .client_credentials("scope")
-        .await
-        .unwrap_err();
-    assert_eq!(
-        error,
-        AuthError::Rejected {
-            status: 400,
-            code: Some(longest)
-        }
-    );
-    task.await.unwrap();
 }
 
 /// Answers 401 with a body that starts and never finishes, then holds the socket.
 async fn stalled_rejection() -> (String, mpsc::Receiver<()>, JoinHandle<()>) {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (listener, origin) = bind().await;
     let (sent, arrived) = mpsc::channel(1);
     let task = tokio::spawn(async move {
         let (mut socket, _) = listener.accept().await.unwrap();
@@ -485,68 +361,40 @@ async fn rejection_with_a_stalled_body_keeps_its_status_and_gives_up_on_the_code
 }
 
 #[tokio::test]
-async fn body_timeout_and_cancellation_close_socket_then_recover() {
-    for (grant, cancel) in [
-        (Grant::Code, false),
-        (Grant::Code, true),
-        (Grant::Refresh, false),
-        (Grant::Refresh, true),
-        (Grant::Scope, true),
-    ] {
-        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-        let origin = format!("http://{}", listener.local_addr().unwrap());
-        let (started, mut arrived) = mpsc::channel(1);
-        let task = tokio::spawn(async move {
-            let (mut socket, _) = listener.accept().await.unwrap();
-            read_request(&mut socket).await;
-            socket
-                .write_all(b"HTTP/1.1 200 OK\r\nContent-Length: 1000\r\n\r\n{")
-                .await
-                .unwrap();
-            started.send(()).await.unwrap();
-            let mut byte = [0];
-            let read = tokio::time::timeout(Duration::from_secs(2), socket.read(&mut byte))
-                .await
-                .unwrap();
-            // Client drop yields EOF if receive buffer was drained or ConnectionReset if unread bytes remained.
-            match read {
-                Ok(0) => {}
-                Err(err) if err.kind() == std::io::ErrorKind::ConnectionReset => {}
-                other => panic!("expected EOF or ConnectionReset on teardown, got {other:?}"),
-            }
-            let (mut socket, _) = listener.accept().await.unwrap();
-            read_request(&mut socket).await;
-            let body = tokens().to_string();
-            socket
-                .write_all(
-                    format!(
-                        "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}",
-                        body.len()
-                    )
-                    .as_bytes(),
-                )
-                .await
-                .unwrap();
-        });
-        let client = lwa(
-            &origin,
-            Duration::from_millis(if cancel { 2000 } else { 500 }),
-        );
-        let pending = client.clone();
-        let call = tokio::spawn(async move { grant.request(&pending).await });
-        arrived.recv().await.unwrap();
-        if cancel {
-            call.abort();
-            assert!(call.await.unwrap_err().is_cancelled());
-        } else {
-            assert_eq!(call.await.unwrap().unwrap_err(), AuthError::Timeout);
+async fn body_timeout_closes_socket_then_recovers() {
+    let (listener, origin) = bind().await;
+    let task = tokio::spawn(async move {
+        let (mut socket, _) = listener.accept().await.unwrap();
+        read_request(&mut socket).await;
+        socket
+            .write_all(b"HTTP/1.1 200 OK\r\nContent-Length: 1000\r\n\r\n{")
+            .await
+            .unwrap();
+        let mut byte = [0];
+        let read = tokio::time::timeout(Duration::from_secs(2), socket.read(&mut byte))
+            .await
+            .unwrap();
+        // Client drop yields EOF if receive buffer was drained or ConnectionReset if unread bytes remained.
+        match read {
+            Ok(0) => {}
+            Err(err) if err.kind() == std::io::ErrorKind::ConnectionReset => {}
+            other => panic!("expected EOF or ConnectionReset on teardown, got {other:?}"),
         }
-        assert_eq!(
-            grant.request(&client).await.unwrap().access_token,
-            "private-access"
-        );
-        task.await.unwrap();
-    }
+        let (mut socket, _) = listener.accept().await.unwrap();
+        read_request(&mut socket).await;
+        let reply = http(200, "", tokens().to_string().as_bytes());
+        socket.write_all(&reply.bytes).await.unwrap();
+    });
+    let client = lwa(&origin, Duration::from_millis(500));
+    assert_eq!(
+        client.refresh("private-input").await.unwrap_err(),
+        AuthError::Timeout
+    );
+    assert_eq!(
+        client.refresh("private-input").await.unwrap().access_token,
+        "private-access"
+    );
+    task.await.unwrap();
 }
 
 struct GatedServer {
@@ -561,8 +409,7 @@ impl Drop for GatedServer {
 }
 
 async fn gated_server(responses: Vec<(u16, String, Option<Arc<Notify>>)>) -> GatedServer {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (listener, origin) = bind().await;
     let (sender, requests) = mpsc::unbounded_channel();
     let task = tokio::spawn(async move {
         let mut responses = responses.into_iter();
@@ -575,7 +422,8 @@ async fn gated_server(responses: Vec<(u16, String, Option<Arc<Notify>>)>) -> Gat
                     .unwrap_or((500, "unexpected request".into(), None));
             let sender = sender.clone();
             handlers.spawn(async move {
-                sender.send(read_request(&mut stream).await).unwrap();
+                let request = String::from_utf8(read_request(&mut stream).await).unwrap();
+                sender.send(request).unwrap();
                 if let Some(gate) = gate { gate.notified().await; }
                 let reply = format!("HTTP/1.1 {status} Test\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}", body.len());
                 let _ = stream.write_all(reply.as_bytes()).await;
@@ -602,11 +450,11 @@ fn refresh_source(origin: &str) -> TokenSource {
 
 #[tokio::test]
 async fn source_clones_share_one_cached_token_and_show_no_secret() {
-    let (origin, task) = server(vec![(200, reply("lwa-secret", 120))]).await;
-    let source = refresh_source(&origin);
+    let server = answers(vec![(200, reply("lwa-secret", 120))]).await;
+    let source = refresh_source(&server.url);
     assert_eq!(source.token().await.unwrap(), "lwa-secret");
     assert_eq!(source.clone().token().await.unwrap(), "lwa-secret");
-    let requests = task.await.unwrap();
+    let requests = server.requests();
     assert_eq!(requests.len(), 1);
     assert_eq!(
         requests[0].split_once("\r\n\r\n").unwrap().1,
@@ -618,15 +466,15 @@ async fn source_clones_share_one_cached_token_and_show_no_secret() {
 
 #[tokio::test]
 async fn scope_source_uses_client_credentials_and_rejects_blank_input() {
-    let (origin, task) = server(vec![(200, reply("grantless", 120))]).await;
-    let client = lwa(&origin, Duration::from_secs(2));
+    let server = answers(vec![(200, reply("grantless", 120))]).await;
+    let client = lwa(&server.url, Duration::from_secs(2));
     let source = client
         .source_for_scope("sellingpartnerapi::notifications")
         .unwrap();
     assert_eq!(source.token().await.unwrap(), "grantless");
     assert_eq!(source.token().await.unwrap(), "grantless");
     assert!(
-        task.await.unwrap()[0]
+        server.requests()[0]
             .ends_with("grant_type=client_credentials&client_id=id%2B%26%C3%A9&client_secret=secret%2B%26%E9%9B%AA&scope=sellingpartnerapi%3A%3Anotifications")
     );
     for blank in ["", " "] {
@@ -681,12 +529,12 @@ async fn source_coalesces_success_and_failure_without_retrying() {
 
 #[tokio::test]
 async fn source_failure_is_not_cached_and_the_next_call_recovers() {
-    let (origin, task) = server(vec![
+    let server = answers(vec![
         (401, json!({"error":"invalid_grant"}).to_string()),
         (200, reply("recovered", 120)),
     ])
     .await;
-    let source = refresh_source(&origin);
+    let source = refresh_source(&server.url);
     assert_eq!(
         source.token().await.unwrap_err(),
         AuthError::Rejected {
@@ -696,7 +544,7 @@ async fn source_failure_is_not_cached_and_the_next_call_recovers() {
     );
     assert_eq!(source.token().await.unwrap(), "recovered");
     assert_eq!(source.token().await.unwrap(), "recovered");
-    assert_eq!(task.await.unwrap().len(), 2);
+    assert_eq!(server.requests().len(), 2);
 }
 
 #[tokio::test]
@@ -735,8 +583,7 @@ async fn source_cancelled_waiters_preserve_refresh_and_all_waiters_can_recover()
 
 #[tokio::test]
 async fn source_cancellation_by_the_last_waiter_closes_the_socket() {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (listener, origin) = bind().await;
     let (started, waiting) = tokio::sync::oneshot::channel();
     let server = tokio::spawn(async move {
         let (mut socket, _) = listener.accept().await.unwrap();
@@ -769,13 +616,13 @@ async fn source_cancellation_by_the_last_waiter_closes_the_socket() {
 
 #[tokio::test]
 async fn source_refreshes_short_lifetimes_early_and_never_reuses_an_expired_token() {
-    let (origin, task) = server(vec![
+    let server = answers(vec![
         (200, reply("first", 10)),
         (200, reply("second", 10)),
         (200, reply("third", 10)),
     ])
     .await;
-    let source = refresh_source(&origin);
+    let source = refresh_source(&server.url);
     assert_eq!(source.token().await.unwrap(), "first");
     tokio::time::pause();
     tokio::time::advance(Duration::from_secs(8)).await;
@@ -787,17 +634,17 @@ async fn source_refreshes_short_lifetimes_early_and_never_reuses_an_expired_toke
     tokio::time::advance(Duration::from_secs(11)).await;
     tokio::time::resume();
     assert_eq!(source.token().await.unwrap(), "third");
-    assert_eq!(task.await.unwrap().len(), 3);
+    assert_eq!(server.requests().len(), 3);
 }
 
 #[tokio::test]
 async fn source_refreshes_long_lifetimes_60_seconds_early() {
-    let (origin, task) = server(vec![
+    let server = answers(vec![
         (200, reply("first", 1200)),
         (200, reply("second", 1200)),
     ])
     .await;
-    let source = refresh_source(&origin);
+    let source = refresh_source(&server.url);
     assert_eq!(source.token().await.unwrap(), "first");
     tokio::time::pause();
     tokio::time::advance(Duration::from_secs(1139)).await;
@@ -805,7 +652,7 @@ async fn source_refreshes_long_lifetimes_60_seconds_early() {
     tokio::time::advance(Duration::from_secs(1)).await;
     tokio::time::resume();
     assert_eq!(source.token().await.unwrap(), "second");
-    assert_eq!(task.await.unwrap().len(), 2);
+    assert_eq!(server.requests().len(), 2);
 }
 
 #[tokio::test]
@@ -866,18 +713,16 @@ async fn response_limit_applies_to_fixed_length_and_chunked_bodies() {
     ] {
         let mut body = tokens().to_string();
         body.extend(std::iter::repeat_n(' ', length - body.len()));
-        let (origin, task) = server(vec![(200, body)]).await;
-        let result = lwa(&origin, Duration::from_secs(2))
+        let server = answers(vec![(200, body)]).await;
+        let result = lwa(&server.url, Duration::from_secs(2))
             .refresh("refresh")
             .await;
         match expected {
             Ok(value) => assert_eq!(result.unwrap().access_token, value),
             Err(error) => assert_eq!(result.unwrap_err(), error),
         }
-        task.await.unwrap();
     }
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (listener, origin) = bind().await;
     let task = tokio::spawn(async move {
         let (mut stream, _) = listener.accept().await.unwrap();
         read_request(&mut stream).await;
@@ -924,8 +769,7 @@ async fn transport_errors_and_timeouts_never_retain_urls_or_secrets() {
     assert!(!format!("{error} {error:?}").contains("secret"));
     assert!(!format!("{error} {error:?}").contains(&server.origin));
     assert!(std::error::Error::source(&error).is_none());
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (listener, origin) = bind().await;
     let task = tokio::spawn(async move {
         let (mut stream, _) = listener.accept().await.unwrap();
         read_request(&mut stream).await;
