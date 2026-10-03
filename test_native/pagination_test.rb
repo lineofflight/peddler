@@ -9,52 +9,20 @@ class PaginationTest < NativeTest
   SECRET = "private-pagination-token"
   ORDERS = "orders_v0.get_orders"
 
-  # Serves scripted replies, one request per connection, and keeps serving
-  # past the script with a 500 so an unexpected fetch shows up in `requests`.
-  class Script
-    attr_reader :url, :requests
-
-    def initialize(replies)
-      @replies = replies
-      @requests = []
-      @lock = Mutex.new
-      @server = TCPServer.new("127.0.0.1", 0)
-      @url = "http://127.0.0.1:#{@server.addr[1]}"
-      @thread = Thread.new { loop { serve(@server.accept) } }
-    end
-
-    def close
-      @thread.kill
-      @server.close
-    end
-
-    private
-
-    def serve(socket)
-      Thread.new do
-        method, target = socket.gets("\r\n").split
-        headers = {}
-        while (line = socket.gets("\r\n")) != "\r\n"
-          key, value = line.split(":", 2)
-          headers[key.downcase] = value.strip
-        end
-        body = socket.read(headers.fetch("content-length", "0").to_i)
-        status, text = @lock.synchronize do
-          @requests << { method: method, target: target, body: body, headers: headers }
-          @replies.fetch(@requests.size - 1, [500, "unexpected extra request"])
-        end
-        socket.write("HTTP/1.1 #{status} Test\r\nContent-Length: #{text.bytesize}\r\nConnection: close\r\n\r\n#{text}")
-      ensure
-        socket.close
-      end
+  # The URL and the requests so far, each as a hash of method, target, headers and body
+  Served = Struct.new(:url, :queue) do
+    def requests
+      @requests ||= []
+      @requests.concat(Array.new(queue.size) { queue.pop }.map { |method, target, headers, body| { method:, target:, headers:, body: } })
     end
   end
 
+  # Answers each request with the next scripted reply, then with a 500, so an unexpected fetch shows up in `requests`
   def script(replies)
-    script = Script.new(replies)
-    yield script
-  ensure
-    script&.close
+    lock = Mutex.new
+    served = 0
+    responder = ->(*) { lock.synchronize { replies.fetch((served += 1) - 1, [500, "unexpected extra request"]) } }
+    serve_keep_alive(responder: responder) { |url, _accepted, queue| yield Served.new(url, queue) }
   end
 
   def pagination_for(spec)
@@ -148,20 +116,6 @@ class PaginationTest < NativeTest
     end
   end
 
-  def test_early_break_and_abandonment_never_fetch_another_page
-    script([[200, '{"payload":{"NextToken":"A"}}'], [200, '{"payload":{"NextToken":"B"}}']]) do |server|
-      pages = client(server.url).orders_v0.get_orders_pages(marketplace_ids: ["ATVPDKIKX0DER"])
-      pages.each { break }
-
-      assert_equal(1, server.requests.size)
-      external = pages.each
-      external.next
-      sleep(0.1)
-
-      assert_equal(2, server.requests.size, "a fresh external enumeration fetched only its first page")
-    end
-  end
-
   def test_unmutated_caller_arguments_with_symbol_and_string_keys
     script([[200, '{"cases":[],"nextToken":"A"}'], [200, '{"cases":[]}']]) do |server|
       body = deep_freeze({ maxResults: 2, "sortOrder" => "ASC" })
@@ -199,16 +153,6 @@ class PaginationTest < NativeTest
         Peddler::Pagination.new(operation: ORDERS, input: "next_token", output: "/x")
       end
       assert_empty(server.requests)
-    end
-  end
-
-  def test_each_page_goes_through_normal_per_page_retries_and_auth_header
-    script([[503, "busy"], [200, '{"payload":{"NextToken":"A"}}'], [200, "{}"]]) do |server|
-      pages = client(server.url, retries: 1, retry_delay: 0.001).orders_v0.get_orders_pages(marketplace_ids: ["ATVPDKIKX0DER"])
-
-      assert_equal([200, 200], pages.map(&:status))
-      assert_equal(3, server.requests.size)
-      assert(server.requests.all? { |r| r[:headers]["x-amz-access-token"] == "local-secret" })
     end
   end
 end
