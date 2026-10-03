@@ -234,6 +234,7 @@ impl Download {
                 let chunk = chunk?;
                 // The deadline is checked per chunk and per record, not per byte.
                 check_deadline(self.deadline)?;
+                let mut yielded = false;
                 let mut rest = &chunk[..];
                 while let Some(end) = rest.iter().position(|&byte| byte == b'\n') {
                     extend_bounded(&mut record, &rest[..end], self.options.max_record_bytes, Error::RecordLimit)?;
@@ -245,10 +246,14 @@ impl Download {
                         let result = serde_json::from_slice(&record).map_err(|_| Error::Format);
                         check_deadline(self.deadline)?;
                         yield result?;
+                        yielded = true;
                     }
                     record.clear();
                 }
                 extend_bounded(&mut record, rest, self.options.max_record_bytes, Error::RecordLimit)?;
+                // Blank lines yield nothing, so a run of them would otherwise be framed in
+                // one poll for as long as the body stays ready.
+                if !yielded { give_way().await; }
             }
             if !record.iter().all(u8::is_ascii_whitespace) {
                 check_deadline(self.deadline)?;
@@ -599,6 +604,19 @@ fn encoding(headers: &HeaderMap, compression: Compression) -> Result<bool, Error
 fn transport(error: reqwest::Error) -> Error {
     crate::classify(error, Error::Timeout, Error::Transport)
 }
+/// Returns `Pending` once, after waking its own task, so the current poll ends.
+async fn give_way() {
+    let mut pending = true;
+    std::future::poll_fn(|cx| {
+        if std::mem::take(&mut pending) {
+            cx.waker().wake_by_ref();
+            std::task::Poll::Pending
+        } else {
+            std::task::Poll::Ready(())
+        }
+    })
+    .await;
+}
 fn check_deadline(deadline: Instant) -> Result<(), Error> {
     if Instant::now() >= deadline {
         Err(Error::Timeout)
@@ -723,4 +741,32 @@ fn upload_headers(options: &UploadOptions) -> Result<HeaderMap, Error> {
         return Err(Error::ByteLimit);
     }
     Ok(headers)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use futures_util::FutureExt;
+
+    #[tokio::test]
+    async fn a_jsonl_chunk_without_a_record_ends_the_poll() {
+        let download = Download {
+            status: 200,
+            headers: HeaderMap::new(),
+            body: Box::pin(futures_util::stream::iter([
+                Ok(Bytes::from_static(b"\n \n\t\n")),
+                Ok(Bytes::from_static(b"{\"a\":1}\n")),
+            ])),
+            error_body: None,
+            error_body_truncated: false,
+            options: TransferOptions::default(),
+            deadline: Instant::now() + Duration::from_secs(30),
+        };
+        let mut rows = download.into_jsonl();
+        assert!(rows.next().now_or_never().is_none());
+        assert_eq!(
+            rows.collect::<Vec<_>>().await,
+            [Ok(serde_json::json!({"a": 1}))]
+        );
+    }
 }
