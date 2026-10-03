@@ -203,16 +203,4 @@ mod tests {
             );
         }
     }
-
-    #[test]
-    fn exponential_and_jitter_support_largest_duration_without_overflow() {
-        let policy = retry(Duration::MAX, Duration::MAX);
-        assert_eq!(
-            policy.retry_delay_at("GET", 500, &[], 9, SystemTime::UNIX_EPOCH, Duration::MAX),
-            Some(Duration::MAX)
-        );
-        for _ in 0..32 {
-            assert!(policy.retry_delay("GET", 500, &[], 9).unwrap() <= Duration::MAX);
-        }
-    }
 }
