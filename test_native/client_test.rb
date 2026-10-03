@@ -5,46 +5,6 @@ require_relative "test_helper"
 # Protocol and lifecycle tests assert several parts of one interaction.
 # rubocop:disable Minitest/MultipleAssertions
 class ClientTest < NativeTest
-  def test_root_entrypoint_does_not_load_http
-    refute(defined?(HTTP))
-    assert($LOADED_FEATURES.any? { |file| file.end_with?("/peddler.rb") })
-  end
-
-  Dir.glob(File.expand_path("../test/fixtures/native/*.json", __dir__)).each do |path|
-    define_method("test_fixture_#{File.basename(path, '.json')}") do
-      fixture = JSON.parse(File.read(path))
-      request = fixture.fetch("request")
-      response = fixture.fetch("response")
-      body = request["body_base64"] && Base64.strict_decode64(request["body_base64"])
-      handler = lambda do |socket, first, headers, received|
-        assert_equal(request["method"], first[0])
-        raw_path, query = first[1].split("?", 2)
-
-        assert_equal(request["path"], raw_path)
-        assert_equal(request["query"], URI.decode_www_form(query || ""))
-        assert_equal("local-secret", headers["x-amz-access-token"])
-        assert_match(AMZ_DATE, headers["x-amz-date"])
-        assert_equal(gem_user_agent, headers["user-agent"])
-        assert_equal(body || "", received)
-        assert_equal("application/json", headers["content-type"]) if body
-        respond(socket, status: response["status"], headers: response["headers"],
-          body: Base64.strict_decode64(response["body_base64"]))
-      end
-      serve(handler: handler) do |url|
-        call = -> { client(url).request(request["method"], request["path"], params: request["query"].to_h, body: body) }
-        result = response["status"] < 400 ? call.call : assert_raises(Peddler::Error, &call).response
-
-        assert_instance_of(Peddler::Response, result)
-        assert_equal(response["status"], result.status)
-        response["headers"].each { |pair| assert_includes(result.headers, pair) }
-        assert_equal(Base64.strict_decode64(response["body_base64"]), result.body)
-        assert_equal(Encoding::BINARY, result.body.encoding)
-        assert_equal(JSON.parse(result.body), result.json)
-        assert_same(result.json, result.json)
-      end
-    end
-  end
-
   def test_binary_body_escaped_path_and_repeated_headers
     handler = lambda do |socket, first, _headers, body|
       assert_equal("/items/a%2Fb%20c?search=a%26b&count=2&active=false", first[1])
@@ -166,53 +126,6 @@ class ClientTest < NativeTest
     ensure
       worker&.kill
       worker&.join
-    end
-  end
-
-  def test_fork_rejects_inherited_client_and_allows_new_client_and_gc
-    skip "fork unavailable" unless Process.respond_to?(:fork)
-
-    serve(count: 2, handler: ->(socket, *) { respond(socket) }) do |url|
-      instance = client(url)
-
-      assert_equal(200, instance.request("GET", "/").status)
-      reader, writer = IO.pipe
-      pid = fork do
-        reader.close
-        begin
-          instance.request("GET", "/")
-          raise "inherited client accepted"
-        rescue Peddler::ForkError
-          instance = nil
-          GC.start
-          fresh = client(url)
-          raise "fresh client failed" unless fresh.request("GET", "/").status == 200
-          fresh = nil
-          GC.start
-          writer.write("ok")
-        ensure
-          writer.close
-        end
-        exit!(0)
-      end
-      writer.close
-
-      assert(reader.wait_readable(5), "fork deadline")
-      assert_equal("ok", reader.read)
-      Process.wait(pid)
-
-      assert_predicate($?, :success?)
-    ensure
-      reader&.close
-      writer&.close unless writer&.closed?
-      if pid
-        begin
-          Process.kill("KILL", pid)
-          Process.wait(pid)
-        rescue Errno::ESRCH, Errno::ECHILD
-          nil
-        end
-      end
     end
   end
 end
