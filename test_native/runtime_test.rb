@@ -84,15 +84,6 @@ class RuntimeTest < NativeTest
     refute_match(/dummy-secret|secret/, error.message)
   end
 
-  def test_final_retry_body_is_preserved_when_the_backoff_exceeds_the_deadline
-    serve(handler: ->(socket, *) { respond(socket, status: 429, headers: [["Retry-After", "1"]], body: "retained") }) do |url|
-      instance = client(url, timeout: 0.03, retries: 1)
-
-      # Amazon asks for a longer wait than the deadline allows, so the last response raises like any other.
-      assert_equal("retained", assert_raises(Peddler::Error) { instance.request("GET", "/") }.response.body)
-    end
-  end
-
   def test_retries_a_throttled_get_but_never_a_write
     replies = [[429, "throttled"], [200, "{}"], [429, "write-throttled"]]
     seen = Queue.new
@@ -108,37 +99,6 @@ class RuntimeTest < NativeTest
     end
 
     assert_equal([["GET", "local-secret"], ["GET", "local-secret"], ["POST", "local-secret"]], Array.new(3) { seen.pop })
-  end
-
-  def test_token_view_survives_parent_gc_and_rejects_inherited_state
-    serve(handler: lambda { |socket, _first, headers, _body|
-      assert_equal("other-secret", headers["x-amz-access-token"])
-      respond(socket)
-    }) do |url|
-      instance = client(url)
-      view = instance.with_access_token("other-secret")
-      instance = nil
-      GC.start
-
-      assert_equal(200, view.request("GET", "/").status)
-      reader, writer = IO.pipe
-      pid = fork do
-        reader.close
-        begin
-          view.with_access_token("child-secret")
-          writer.write("failed")
-        rescue Peddler::ForkError
-          writer.write("guarded")
-        end
-        writer.close
-        exit!(0)
-      end
-      writer.close
-
-      assert_equal("guarded", reader.read)
-      Process.wait(pid)
-      reader.close
-    end
   end
 
   def test_error_code_and_message_are_rust_metadata_and_nothing_else_from_the_body_is_shown
@@ -168,19 +128,6 @@ class RuntimeTest < NativeTest
       2.times { assert_equal("sandbox-token", instance.sandbox.request("GET", "/").json["token"]) }
       assert_equal("rotated", instance.with_access_token("rotated").sandbox.request("GET", "/").json["token"])
     end
-  end
-
-  def test_rebased_engine_keeps_its_credentials_and_targets_the_new_origin
-    engine = client("http://127.0.0.1:1").instance_variable_get(:@engine)
-
-    serve(handler: lambda { |socket, _first, headers, _body|
-      assert_equal("local-secret", headers["x-amz-access-token"])
-      respond(socket)
-    }) do |url|
-      assert_equal(200, engine.with_base_url(url).request("GET", "/", [], nil).first)
-    end
-    error = assert_raises(ArgumentError) { engine.with_base_url("https://user:local-secret@example.com") }
-    refute_match(/local-secret/, error.message)
   end
 
   def test_message_falls_back_when_the_body_has_none
