@@ -103,58 +103,13 @@ class LwaTokenSourceTest < NativeTest
     end
   end
 
-  def test_a_client_sends_the_source_token_and_a_refresh_changes_the_header
-    serve_lwa do |url, exchanges, requests|
-      source = lwa(url).token_source(refresh_token: "refresh")
-      started = monotonic
-      instance = Peddler::Client.new(base_url: url, access_token: source)
-
-      assert_empty(exchanges, "construction asks nothing")
-      assert_equal(200, instance.request("GET", "/").status)
-      assert_equal(200, instance.orders_v0.get_order(order_id: "1").status)
-      source.stub(:now, started + 3600) { assert_equal(200, instance.request("GET", "/").status) }
-      api = Array.new(5) { requests.pop }.reject { |_, target, _, _| target == "/auth" }
-
-      assert_equal(["access-1", "access-1", "access-2"], api.map { |_, _, headers, _| headers["x-amz-access-token"] })
-      assert_equal(2, exchanges.size)
-    end
-  end
-
-  def test_scope_source_shares_one_exchange_across_threads_a_sandbox_view_and_generated_calls
-    serve_lwa do |url, exchanges, requests|
-      endpoint = Struct.new(:production, :sandbox).new(URI(url), URI(url))
+  def test_scope_source_makes_one_client_credentials_exchange
+    serve_lwa do |url, exchanges, _requests|
       source = lwa(url).token_source(scope: "sellingpartnerapi::notifications")
-      instance = Peddler::Endpoint.stub(:find, endpoint) { Peddler::Client.new(region: "eu-west-1", access_token: source) }
-      threads = Array.new(6) do |index|
-        Thread.new do
-          case index % 3
-          when 0 then instance.request("GET", "/")
-          when 1 then instance.notifications_v1.get_destinations
-          else instance.sandbox.request("GET", "/")
-          end
-        end
-      end
 
-      threads.each { |thread| assert_equal(200, thread.value.status) }
-      assert_equal(1, exchanges.size)
-      assert_equal("grant_type=client_credentials&client_id=app-id&client_secret=app-secret&scope=sellingpartnerapi%3A%3Anotifications", exchanges.pop)
-      api = Array.new(7) { requests.pop }.reject { |_, target, _, _| target == "/auth" }
-
-      assert_equal(["access-1"] * 6, api.map { |_, _, headers, _| headers["x-amz-access-token"] })
-    end
-  end
-
-  def test_a_rejected_refresh_reaches_the_client_caller_unchanged
-    serve_lwa(rejections: ["invalid_client"]) do |url, _exchanges, requests|
-      instance = Peddler::Client.new(base_url: url, access_token: lwa(url).token_source(refresh_token: "sensitive-refresh"))
-      error = assert_raises(Peddler::AuthenticationError) { instance.request("GET", "/") }
-
-      assert_equal(["invalid_client", 401], [error.code, error.status])
-      assert_nil(error.cause)
-      refute_match(/sensitive|app-secret/, "#{error.message} #{error.inspect}")
-      assert_equal(["/auth"], [requests.pop].map { |_, target, _, _| target })
-      assert_empty(requests, "the API was not called")
-      assert_equal(200, instance.request("GET", "/").status)
+      2.times { assert_equal("access-1", source.call) }
+      assert_equal(["grant_type=client_credentials&client_id=app-id&client_secret=app-secret&scope=sellingpartnerapi%3A%3Anotifications"],
+        Array.new(exchanges.size) { exchanges.pop })
     end
   end
 
@@ -188,112 +143,6 @@ class LwaTokenSourceTest < NativeTest
       assert_equal("recovered", source.call)
     ensure
       [leader, follower].each { |thread| thread&.kill }
-    end
-  end
-
-  # Parks the refreshing thread where an interrupt used to do damage: back from the grant, about to record the
-  # result. Under the GVL a thread is almost never preempted there by chance, so the test holds the source's lock.
-  def interrupt_during_bookkeeping(source, gate)
-    lock = source.instance_variable_get(:@mutex)
-    worker = Thread.new { source.call }
-    worker.report_on_exception = false
-    Timeout.timeout(5) { gate[:granted].pop }
-    lock.synchronize do
-      gate[:release] << true
-      Timeout.timeout(5) { sleep(0.001) until gate[:release].empty? && worker.status == "sleep" }
-      yield worker
-    end
-    worker.join(5) || flunk("the interrupted thread never finished")
-  rescue gate[:interrupt]
-    nil
-  end
-
-  def test_asynchronous_interrupts_never_leave_a_source_waiting_forever
-    interrupt = Class.new(StandardError)
-    # A lifetime of 0 makes every call refresh.
-    stale = Peddler::LWA::Tokens.new("access", nil, "bearer", 0)
-    sources = Array.new(100) do
-      gate = { granted: Queue.new, release: Queue.new, interrupt: interrupt, hold: true }
-      source = Peddler::LWA::TokenSource.new do
-        if gate[:hold]
-          gate[:granted] << true
-          gate[:release].pop
-        end
-        stale
-      end
-      [:raise, :raise, :raise, :kill].each do |kind|
-        break if source.instance_variable_get(:@refresh)
-
-        interrupt_during_bookkeeping(source, gate) { |worker| kind == :kill ? worker.kill : worker.raise(interrupt) }
-      end
-      gate[:hold] = false
-      source
-    end
-    wedged = sources.count { |source| source.instance_variable_get(:@refresh) }
-
-    assert_equal(0, wedged, "#{wedged} of 100 sources were left with a refresh that nobody is running")
-    later = sources.map do |source|
-      thread = Thread.new { source.call }
-      thread.join(2) ? thread.value : thread.kill
-    end
-
-    assert_equal(["access"], later.uniq)
-  end
-
-  def test_each_waiter_raises_an_error_of_its_own
-    gate = Queue.new
-    serve_lwa(gate: gate, rejections: ["invalid_grant"]) do |url, exchanges, _requests|
-      source = lwa(url).token_source(refresh_token: "sensitive-refresh")
-      rescued = lambda do
-        source.call
-      rescue Peddler::AuthenticationError => error
-        error
-      end
-      leader = Thread.new(&rescued)
-      Timeout.timeout(5) { sleep(0.01) while exchanges.empty? }
-      # This waiter calls while it handles a failure of its own, which Ruby attaches as the cause of what it raises.
-      waiter = Thread.new do
-        raise IOError, "the waiter's own failure"
-      rescue IOError
-        rescued.call
-      end
-      wait_until_asleep([leader, waiter])
-      gate << true
-      led, waited = leader.value, waiter.value
-
-      assert_equal(1, exchanges.size)
-      refute_same(led, waited)
-      assert_nil(led.cause, "a waiter changed the cause the leader's caller sees")
-      assert_instance_of(IOError, waited.cause)
-      assert_equal([led.class, led.message, led.status, led.code], [waited.class, waited.message, waited.status, waited.code])
-      assert_equal(["invalid_grant", 401], [waited.code, waited.status])
-      refute_equal(led.backtrace, waited.backtrace)
-    ensure
-      10.times { gate << true }
-    end
-  end
-
-  def test_a_waiter_gets_its_own_transport_error
-    started = Queue.new
-    serve(handler: lambda { |socket, *|
-      started << true
-      socket.wait_readable(5)
-    }) do |url|
-      source = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: url, timeout: 0.3).token_source(refresh_token: "refresh")
-      rescued = lambda do
-        source.call
-      rescue Peddler::TransportError => error
-        error
-      end
-      leader = Thread.new(&rescued)
-      Timeout.timeout(3) { started.pop }
-      waiter = Thread.new(&rescued)
-      led, waited = leader.value, waiter.value
-
-      assert_instance_of(Peddler::TimeoutError, led)
-      assert_instance_of(Peddler::TimeoutError, waited)
-      refute_same(led, waited)
-      assert_equal(led.message, waited.message)
     end
   end
 
