@@ -51,6 +51,7 @@ class SharedTest < NativeTest
           -> { instance.wait_for_report("r") },
           -> { instance.create_and_upload_feed_document("x", content_type: "text/xml") },
           -> { document.closed? },
+          -> { document.close },
           -> { lwa.refresh(refresh_token: "refresh") },
           -> { lwa.exchange_authorization_code(code: "code") },
           -> { lwa.client_credentials(scope: "scope") },
@@ -75,7 +76,7 @@ class SharedTest < NativeTest
       writer.close
 
       assert(reader.wait_readable(10), "fork deadline")
-      assert_equal(["guarded"] * 11 + [200, 200, "from-lwa"], JSON.parse(reader.read))
+      assert_equal(["guarded"] * 12 + [200, 200, "from-lwa"], JSON.parse(reader.read))
       Process.wait(pid)
 
       assert_predicate($?, :success?)

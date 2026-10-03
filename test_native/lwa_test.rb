@@ -82,6 +82,7 @@ class LwaTest < NativeTest
   end
 
   def test_interruption_closes_socket_and_client_recovers
+    interruption = Interrupt.new("caller interruption")
     started = Queue.new
     calls = Queue.new
     serve(count: 2, handler: lambda { |socket, *|
@@ -102,10 +103,10 @@ class LwaTest < NativeTest
         error
       end
       Timeout.timeout(3) { started.pop }
-      worker.raise(Interrupt, "caller interruption")
+      worker.raise(interruption)
 
       assert(worker.join(2))
-      assert_instance_of(Interrupt, worker.value)
+      assert_same(interruption, worker.value)
       assert_equal("onboard-refresh", instance.exchange_authorization_code(code: "new-code").refresh_token)
     ensure
       worker&.kill
