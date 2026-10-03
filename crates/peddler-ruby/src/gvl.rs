@@ -55,12 +55,10 @@ where
         .map_err(|()| native_error(ruby, failure_class, "native work cancelled or failed"))
 }
 /// Polls `future` once, with the GVL held, and returns its output if it is ready, so a
-/// row the stream has buffered doesn't wait for the GVL again. The work is Rust only
-/// and lasts until the stream yields or has nothing ready. Chunks yield every chunk,
-/// and JSONL gives way after a chunk without a record, so each decodes and frames at
-/// most one chunk and parses at most one record. TSV doesn't give way: csv-core skips
-/// blank lines without a row, so a run of them is framed in one poll. A panic maps to
-/// the error `wait` gives.
+/// row the stream has buffered doesn't wait for the GVL again. The work is Rust only:
+/// chunks yield every chunk and JSONL and TSV yield a row or give way after every
+/// chunk, so one poll decodes and frames at most one chunk and parses at most one
+/// row. A panic maps to the error `wait` gives.
 pub(super) fn now<F: Future>(
     ruby: &Ruby,
     failure_class: &str,

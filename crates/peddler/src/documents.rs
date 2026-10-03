@@ -307,7 +307,8 @@ impl Download {
                 let eof = chunk.is_none();
                 decode_into(&mut decoder, chunk.as_deref().unwrap_or_default(), eof, &mut text)?;
                 // csv-core reads empty input as EOF; a split character decodes to none.
-                if text.is_empty() && !eof { continue; }
+                if text.is_empty() && !eof { give_way().await; continue; }
+                let mut yielded = false;
                 let mut input = &text[..];
                 loop {
                     check_deadline(self.deadline)?;
@@ -330,6 +331,7 @@ impl Download {
                                 let row = std::mem::take(&mut fields);
                                 check_deadline(self.deadline)?;
                                 yield row;
+                                yielded = true;
                                 raw_bytes = 0; materialized = 0;
                             }
                         }
@@ -340,6 +342,9 @@ impl Download {
                     if input.is_empty() && !eof { break; }
                 }
                 if eof { break; }
+                // csv-core skips blank lines without a row, so a run of them would otherwise
+                // be framed in one poll for as long as the body stays ready.
+                if !yielded { give_way().await; }
             }
         })
     }
@@ -767,6 +772,28 @@ mod tests {
         assert_eq!(
             rows.collect::<Vec<_>>().await,
             [Ok(serde_json::json!({"a": 1}))]
+        );
+    }
+
+    #[tokio::test]
+    async fn a_tsv_chunk_without_a_row_ends_the_poll() {
+        let download = Download {
+            status: 200,
+            headers: HeaderMap::new(),
+            body: Box::pin(futures_util::stream::iter([
+                Ok(Bytes::from_static(b"\n\n\n")),
+                Ok(Bytes::from_static(b"a\tb\n")),
+            ])),
+            error_body: None,
+            error_body_truncated: false,
+            options: TransferOptions::default(),
+            deadline: Instant::now() + Duration::from_secs(30),
+        };
+        let mut rows = download.into_tsv(false);
+        assert!(rows.next().now_or_never().is_none());
+        assert_eq!(
+            rows.collect::<Vec<_>>().await,
+            [Ok(vec!["a".to_owned(), "b".to_owned()])]
         );
     }
 }
