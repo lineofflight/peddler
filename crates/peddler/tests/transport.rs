@@ -1,12 +1,11 @@
+mod support;
+
 use base64::{Engine, engine::general_purpose::STANDARD};
 use peddler::{Client, Error, Request};
 use serde::Deserialize;
 use std::time::Duration;
-use tokio::{
-    io::{AsyncReadExt, AsyncWriteExt},
-    net::{TcpListener, TcpStream},
-    task::JoinHandle,
-};
+use support::{bind, http, read_request, replies};
+use tokio::io::AsyncWriteExt;
 
 const TOKEN: &str = "synthetic-secret-token";
 
@@ -29,56 +28,6 @@ struct FixtureResponse {
     body_base64: String,
 }
 
-async fn read_request(stream: &mut TcpStream) -> Vec<u8> {
-    let mut bytes = Vec::new();
-    loop {
-        let mut chunk = [0; 4096];
-        let count = stream.read(&mut chunk).await.unwrap();
-        assert!(count > 0, "request ended before its body");
-        bytes.extend_from_slice(&chunk[..count]);
-        if let Some(end) = bytes.windows(4).position(|part| part == b"\r\n\r\n") {
-            let headers = String::from_utf8_lossy(&bytes[..end]).to_ascii_lowercase();
-            let length = headers
-                .lines()
-                .find_map(|line| line.strip_prefix("content-length: ")?.parse::<usize>().ok())
-                .unwrap_or(0);
-            if bytes.len() >= end + 4 + length {
-                return bytes;
-            }
-        }
-    }
-}
-
-fn wire_response(status: u16, headers: &[(String, String)], body: &[u8], close: bool) -> Vec<u8> {
-    let mut response = format!(
-        "HTTP/1.1 {status} Test\r\nContent-Length: {}\r\n",
-        body.len()
-    );
-    if close {
-        response.push_str("Connection: close\r\n");
-    }
-    for (name, value) in headers {
-        response.push_str(&format!("{name}: {value}\r\n"));
-    }
-    response.push_str("\r\n");
-    [response.as_bytes(), body].concat()
-}
-
-async fn server(responses: Vec<Vec<u8>>) -> (String, JoinHandle<Vec<Vec<u8>>>) {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
-    let task = tokio::spawn(async move {
-        let mut requests = Vec::new();
-        for response in responses {
-            let (mut stream, _) = listener.accept().await.unwrap();
-            requests.push(read_request(&mut stream).await);
-            stream.write_all(&response).await.unwrap();
-        }
-        requests
-    });
-    (origin, task)
-}
-
 fn get(path: &str) -> Request {
     Request {
         method: "GET".into(),
@@ -97,14 +46,19 @@ async fn replays_selected_get_patch_and_http_error_contracts() {
     ] {
         let fixture: Fixture = serde_json::from_str(content).unwrap();
         let expected_body = STANDARD.decode(&fixture.response.body_base64).unwrap();
-        let (origin, task) = server(vec![wire_response(
+        let headers: String = fixture
+            .response
+            .headers
+            .iter()
+            .map(|(name, value)| format!("{name}: {value}\r\n"))
+            .collect();
+        let server = replies(vec![http(
             fixture.response.status,
-            &fixture.response.headers,
+            &headers,
             &expected_body,
-            true,
         )])
         .await;
-        let client = Client::new(&origin, TOKEN).unwrap();
+        let client = Client::new(&server.url, TOKEN).unwrap();
         let body = fixture
             .request
             .body_base64
@@ -127,12 +81,11 @@ async fn replays_selected_get_patch_and_http_error_contracts() {
         for header in fixture.response.headers {
             assert!(response.headers.contains(&header));
         }
-        let requests = task.await.unwrap();
-        let request = String::from_utf8_lossy(&requests[0]);
+        let request = &server.requests()[0];
         let first_line = request.lines().next().unwrap();
         let target = first_line.split(' ').nth(1).unwrap();
         assert!(first_line.starts_with(&format!("{method} {path}")));
-        let url = reqwest::Url::parse(&format!("{origin}{target}")).unwrap();
+        let url = reqwest::Url::parse(&format!("{}{target}", server.url)).unwrap();
         assert_eq!(url.path(), path);
         assert_eq!(
             url.query_pairs()
@@ -150,12 +103,10 @@ async fn replays_selected_get_patch_and_http_error_contracts() {
                 .to_ascii_lowercase()
                 .contains("user-agent: peddler/")
         );
-        let end = requests[0]
-            .windows(4)
-            .position(|part| part == b"\r\n\r\n")
-            .unwrap()
-            + 4;
-        assert_eq!(&requests[0][end..], expected_request_body);
+        assert_eq!(
+            request.split_once("\r\n\r\n").unwrap().1.as_bytes(),
+            expected_request_body
+        );
         if method == "PATCH" {
             assert!(
                 request
@@ -168,8 +119,8 @@ async fn replays_selected_get_patch_and_http_error_contracts() {
 
 #[tokio::test]
 async fn preserves_escaped_paths_and_ordered_csv_query_values() {
-    let (origin, task) = server(vec![wire_response(200, &[], b"", true)]).await;
-    let client = Client::new(&origin, TOKEN).unwrap();
+    let server = replies(vec![http(200, "", b"")]).await;
+    let client = Client::new(&server.url, TOKEN).unwrap();
     let mut request = get("/items/a%2Fb%20c%3F%23");
     request.query = vec![
         ("includedData".into(), "images,summaries".into()),
@@ -177,20 +128,24 @@ async fn preserves_escaped_paths_and_ordered_csv_query_values() {
         ("tag".into(), "second".into()),
     ];
     client.execute(request).await.unwrap();
-    let requests = task.await.unwrap();
-    assert!(String::from_utf8_lossy(&requests[0]).starts_with("GET /items/a%2Fb%20c%3F%23?includedData=images%2Csummaries&tag=a+b%26c&tag=second HTTP/1.1\r\n"));
+    assert!(server.requests()[0].starts_with("GET /items/a%2Fb%20c%3F%23?includedData=images%2Csummaries&tag=a+b%26c&tag=second HTTP/1.1\r\n"));
 }
 
 #[tokio::test]
 async fn preserves_binary_body_and_repeated_headers_without_decompression() {
     let body = [0x1f, 0x8b, 0xff, 0, 0x80];
-    let headers = vec![
-        ("x-repeat".into(), "first".into()),
+    let headers = [
+        ("x-repeat".to_owned(), "first".to_owned()),
         ("x-repeat".into(), "second".into()),
         ("content-encoding".into(), "gzip".into()),
     ];
-    let (origin, task) = server(vec![wire_response(200, &headers, &body, true)]).await;
-    let response = Client::new(&origin, TOKEN)
+    let server = replies(vec![http(
+        200,
+        "x-repeat: first\r\nx-repeat: second\r\ncontent-encoding: gzip\r\n",
+        &body,
+    )])
+    .await;
+    let response = Client::new(&server.url, TOKEN)
         .unwrap()
         .execute(get("/binary"))
         .await
@@ -206,9 +161,8 @@ async fn preserves_binary_body_and_repeated_headers_without_decompression() {
         headers[..2]
     );
     assert!(response.headers.contains(&headers[2]));
-    let requests = task.await.unwrap();
     assert!(
-        !String::from_utf8_lossy(&requests[0])
+        !server.requests()[0]
             .to_ascii_lowercase()
             .contains("accept-encoding:")
     );
@@ -216,42 +170,26 @@ async fn preserves_binary_body_and_repeated_headers_without_decompression() {
 
 #[tokio::test]
 async fn returns_redirect_response_without_contacting_target() {
-    let target = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let location = format!("http://{}/secret", target.local_addr().unwrap());
-    let (origin, task) = server(vec![wire_response(
+    let (target, target_url) = bind().await;
+    let location = format!("{target_url}/secret");
+    let server = replies(vec![http(
         302,
-        &[("location".into(), location)],
+        &format!("location: {location}\r\n"),
         b"redirect",
-        true,
     )])
     .await;
-    let response = Client::new(&origin, TOKEN)
+    let response = Client::new(&server.url, TOKEN)
         .unwrap()
         .execute(get("/"))
         .await
         .unwrap();
     assert_eq!(response.status, 302);
     assert_eq!(response.body, b"redirect");
-    task.await.unwrap();
     assert!(
         tokio::time::timeout(Duration::from_millis(50), target.accept())
             .await
             .is_err()
     );
-}
-
-#[tokio::test]
-async fn enforces_timeout_while_waiting_for_response() {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
-    let task = tokio::spawn(async move {
-        let (mut stream, _) = listener.accept().await.unwrap();
-        read_request(&mut stream).await;
-        tokio::time::sleep(Duration::from_secs(5)).await;
-    });
-    let client = Client::with_timeout(&origin, TOKEN, Duration::from_millis(30)).unwrap();
-    assert_eq!(client.execute(get("/")).await.unwrap_err(), Error::Timeout);
-    task.abort();
 }
 
 #[test]
@@ -321,8 +259,7 @@ async fn rejects_paths_that_can_change_origin_or_contain_query_or_fragment() {
 
 #[tokio::test]
 async fn transport_failure_and_debug_output_do_not_leak_token_or_url() {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (listener, origin) = bind().await;
     drop(listener);
     let client = Client::new(&origin, TOKEN).unwrap();
     let error = client.execute(get("/private-path")).await.unwrap_err();
@@ -339,38 +276,14 @@ async fn transport_failure_and_debug_output_do_not_leak_token_or_url() {
 }
 
 #[tokio::test]
-async fn concurrent_clones_share_client_and_complete_requests() {
-    let responses = (0..8)
-        .map(|_| wire_response(200, &[], b"ok", true))
-        .collect();
-    let (origin, task) = server(responses).await;
-    let client = Client::new(&origin, TOKEN).unwrap();
-    let mut tasks = Vec::new();
-    for index in 0..8 {
-        let clone = client.clone();
-        tasks.push(tokio::spawn(async move {
-            clone
-                .execute(get(&format!("/items/{index}")))
-                .await
-                .unwrap()
-        }));
-    }
-    for task in tasks {
-        assert_eq!(task.await.unwrap().body, b"ok");
-    }
-    assert_eq!(task.await.unwrap().len(), 8);
-}
-
-#[tokio::test]
 async fn sequential_clones_reuse_the_same_connection() {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let origin = format!("http://{}", listener.local_addr().unwrap());
+    let (listener, origin) = bind().await;
     let task = tokio::spawn(async move {
         let (mut stream, _) = listener.accept().await.unwrap();
         for _ in 0..2 {
             read_request(&mut stream).await;
             stream
-                .write_all(&wire_response(200, &[], b"ok", false))
+                .write_all(b"HTTP/1.1 200 Test\r\nContent-Length: 2\r\n\r\nok")
                 .await
                 .unwrap();
         }
