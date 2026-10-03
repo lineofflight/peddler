@@ -65,6 +65,7 @@ class NativeTest < Minitest::Test
   end
 
   # Serves any number of requests on each connection, so a test can count the connections a client opens.
+  # The responder returns [status, body] or [status, body, headers].
   # Yields the URL, the accepted sockets and the requests as [method, target, headers, body].
   def serve_keep_alive(responder: ->(*) { [200, "{}"] })
     server = TCPServer.new("127.0.0.1", 0)
@@ -83,10 +84,12 @@ class NativeTest < Minitest::Test
               key, value = line.split(":", 2)
               headers[key.downcase] = value.strip
             end
-            body = connection.read(headers.fetch("content-length", "0").to_i)
+            body = read_body(connection, headers)
             requests << [method, target, headers, body]
-            status, reply = responder.call(method, target, headers, body)
-            connection.write("HTTP/1.1 #{status} Test\r\nContent-Length: #{reply.bytesize}\r\n\r\n#{reply}")
+            status, reply, extra = responder.call(method, target, headers, body)
+            extra = extra.to_a.map { |key, value| "#{key}: #{value}\r\n" }.join
+            connection.write("HTTP/1.1 #{status} Test\r\nContent-Length: #{reply.bytesize}\r\n#{extra}\r\n")
+            connection.write(reply)
           end
         rescue IOError, SystemCallError
           nil
@@ -109,6 +112,19 @@ class NativeTest < Minitest::Test
       socket.close
     end
     server&.close
+  end
+
+  # A request body by its length, or chunk by chunk, so the next request on the connection starts clean
+  def read_body(connection, headers)
+    return connection.read(headers.fetch("content-length", "0").to_i) unless headers["transfer-encoding"] == "chunked"
+
+    body = +"".b
+    while (line = connection.gets("\r\n")) && (size = line.to_i(16)).positive?
+      body << connection.read(size).to_s
+      connection.read(2)
+    end
+    connection.read(2)
+    body
   end
 
   # How the gem identifies itself to the Selling Partner API, in the form v5 sent
