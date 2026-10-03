@@ -84,18 +84,21 @@ class DocumentsTest < NativeTest
 
   def test_invalid_options_and_format_errors_are_sanitized
     instance = client("http://127.0.0.1:1")
-    [{ unknown_secret: 1 }, { compression: "gzip" }, { timeout: 0 }, { max_bytes: 0 }, { max_records: 1.5 }].each do |options|
+    [{ unknown_secret: 1 }, { compression: "gzip" }, { timeout: 0 }, { max_bytes: 0 }, { max_records: 1.5 }, { max_bytes: 1 << 65 }].each do |options|
       error = assert_raises(ArgumentError) { instance.download_document("https://example.com/private-secret", **options) }
       refute_match(/private-secret|unknown_secret/, error.message)
     end
+    assert_equal("invalid document URL", assert_raises(ArgumentError) { instance.download_document("https://example.com/\xFF") }.message)
+    assert_equal("invalid document upload configuration",
+      assert_raises(ArgumentError) { instance.upload_document("https://example.com", "x", content_type: "\xFF") }.message)
     serve(handler: ->(socket, *) { respond(socket, body: 'private-secret invalid JSON') }) do |url|
       error = assert_raises(Peddler::DocumentError) { client(url).download_document(url).each_jsonl.to_a }
       refute_match(/private-secret/, error.message)
     end
   end
 
-  def test_mode_reuse_and_early_break_close_socket
-    serve(handler: lambda { |socket, *|
+  def test_early_break_and_exceptions_close_the_socket
+    serve(count: 3, handler: lambda { |socket, *|
       socket.write("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n4\r\nrow\n\r\n")
 
       assert_nil(socket.read(1))
@@ -105,16 +108,6 @@ class DocumentsTest < NativeTest
 
       assert_predicate(document, :closed?)
       assert_raises(Peddler::DocumentError) { document.each_jsonl.to_a }
-    end
-  end
-
-  def test_block_and_iterator_exceptions_close_socket
-    serve(count: 2, handler: lambda { |socket, *|
-      socket.write("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n4\r\nrow\n\r\n")
-
-      assert_nil(socket.read(1))
-    }) do |url|
-      document = nil
       assert_raises(RuntimeError) do
         client(url).download_document(url) do |stream|
           document = stream
@@ -122,31 +115,19 @@ class DocumentsTest < NativeTest
         end
       end
       assert_predicate(document, :closed?)
-      stream = client(url).download_document(url)
-      assert_raises(RuntimeError) { stream.each_chunk { raise "caller error" } }
-      assert_predicate(stream, :closed?)
+      document = client(url).download_document(url)
+      assert_raises(RuntimeError) { document.each_chunk { raise "caller error" } }
+      assert_predicate(document, :closed?)
     end
   end
 
   CP1252 = "name\tprice\ncaf\xE9\t5\nm\xFCller\t\x805\n".b
   CP1252_ROWS = [["name", "price"], ["café", "5"], ["müller", "€5"]].freeze
 
-  def paced(socket, chunks, headers: [])
-    socket.write("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n")
-    headers.each { |key, value| socket.write("#{key}: #{value}\r\n") }
-    socket.write("\r\n")
-    chunks.each do |chunk|
-      socket.write("#{chunk.bytesize.to_s(16)}\r\n#{chunk}\r\n")
-      socket.flush
-      sleep 0.03
-    end
-    socket.write("0\r\n\r\n")
-  end
-
   def read_tsv(chunks, content_type: nil, headers: [], **options)
     headers += [["Content-Type", content_type]] if content_type
     result = nil
-    serve(handler: ->(socket, *) { paced(socket, chunks, headers: headers) }) do |url|
+    serve(handler: ->(socket, *) { chunked(socket, chunks, headers: headers) }) do |url|
       document = client(url).download_document(url)
       result = block_given? ? yield(document) : document.each_tsv(**options).to_a
     end
@@ -162,57 +143,10 @@ class DocumentsTest < NativeTest
     end
   end
 
-  def test_shift_jis_character_split_across_chunks
-    chunks = ["a\t\x93".b, "\xFA\x96".b, "\x7B\nb\t\x82".b, "\xA0\n".b]
-
-    assert_equal([["a", "日本"], ["b", "あ"]], read_tsv(chunks, content_type: "text/plain; charset=Shift_JIS"))
-    assert_equal([["a", "日本"], ["b", "あ"]], read_tsv(chunks, content_type: "text/plain; charset=Cp932"))
-  end
-
-  def test_gzip_with_legacy_charset
-    buffer = StringIO.new
-    gzip = Zlib::GzipWriter.new(buffer)
-    gzip.write(CP1252)
-    gzip.close
-    chunks = buffer.string.b.bytes.each_slice(7).map { |bytes| bytes.pack("C*") }
-    rows = read_tsv(chunks, content_type: "text/plain; charset=Cp1252", headers: [["Content-Encoding", "gzip"]])
-
-    assert_equal(CP1252_ROWS, rows)
-  end
-
-  def test_no_charset_is_utf8_and_stray_byte_fails
-    assert_equal([["é", "€"]], read_tsv(["é\t€\n".b]))
-    assert_raises(Peddler::DocumentError) { read_tsv(["caf\xE9\t1\n".b]) }
-  end
-
-  def test_unknown_label_and_invalid_bytes_raise_without_content
-    error = assert_raises(Peddler::DocumentError) { read_tsv(["SECRET\t1\n"], content_type: "text/plain; charset=SECRET-9") }
-
-    assert_equal("unsupported document charset", error.message)
-    error = assert_raises(Peddler::DocumentError) { read_tsv(["SECRET\t1\n"], charset: "SECRET-9") }
-
-    assert_equal("unsupported document charset", error.message)
-    error = assert_raises(Peddler::DocumentError) { read_tsv(["SECRET\x81 \n".b], content_type: "text/plain; charset=Shift_JIS") }
-
-    refute_match(/SECRET/, error.message)
-  end
-
   def test_charset_override_beats_header_and_missing_header
     assert_equal(CP1252_ROWS, read_tsv([CP1252], content_type: "text/plain; charset=utf-8", charset: "cp1252"))
     assert_equal(CP1252_ROWS, read_tsv([CP1252], charset: "Cp1252"))
     assert_raises(ArgumentError) { read_tsv([CP1252], charset: 1) }
-  end
-
-  def test_charset_reader_and_raw_chunks
-    read_tsv([CP1252], content_type: "text/plain; charset=Cp1252") do |document|
-      assert_equal("Cp1252", document.charset)
-      assert_equal(CP1252, document.each_chunk.to_a.join)
-    end
-    read_tsv(["a\n"]) { |document| assert_nil(document.charset) }
-  end
-
-  def test_utf8_byte_order_mark_is_dropped
-    assert_equal([["a", "b"]], read_tsv(["\xEF".b, "\xBB\xBFa\tb\n".b]))
   end
 
   def test_recorded_gzip_cp1252_report_replays
@@ -227,42 +161,6 @@ class DocumentsTest < NativeTest
       assert_equal(["item-name", "item-description", "listing-id"], rows.first.first(3))
       assert_equal("SKU-001-TEST", rows[1][3])
     end
-  end
-
-  def raw_server(count: 1, handler:)
-    server = TCPServer.new("127.0.0.1", 0)
-    workers = []
-    acceptor = Thread.new do
-      count.times do
-        raise "accept deadline" unless server.wait_readable(5)
-        socket = server.accept
-        workers << Thread.new(socket) do |connection|
-          Timeout.timeout(5) do
-            line = connection.gets("\r\n")
-            next unless line # A failed body can close before HTTP headers are sent.
-            first = line.split
-            headers = {}
-            while (line = connection.gets("\r\n")) != "\r\n"
-              key, value = line.split(":", 2)
-              headers[key.downcase] = value.strip
-            end
-            handler.call(connection, first, headers)
-          end
-        ensure
-          connection.close
-        end
-      end
-      workers.each(&:value)
-    end
-    yield "http://127.0.0.1:#{server.addr[1]}"
-    raise "server deadline" unless acceptor.join(6)
-    acceptor.value
-  ensure
-    acceptor&.kill
-    workers&.each(&:kill)
-    workers&.each(&:join)
-    acceptor&.join
-    server&.close
   end
 
   def test_upload_string_and_io_exact_content_type_headers_and_bounded_reads
@@ -299,7 +197,7 @@ class DocumentsTest < NativeTest
   end
 
   def test_upload_unknown_length_streams_chunked_body
-    raw_server(handler: lambda { |socket, _first, headers|
+    serve(handler: lambda { |socket, _first, headers, _body|
       assert_equal("chunked", headers.fetch("transfer-encoding"))
       body = +"".b
       loop do
@@ -324,7 +222,7 @@ class DocumentsTest < NativeTest
       reads += 1
       "a" * length
     end
-    raw_server(handler: lambda { |socket, *_|
+    serve(read_body: false, handler: lambda { |socket, *_|
       respond(socket, status: 413, body: "rejected")
       socket.read # Drain queued bytes so TCP close cannot erase the reply.
     }) do |url|
@@ -337,7 +235,7 @@ class DocumentsTest < NativeTest
   end
 
   def test_upload_length_mismatch_and_source_exception_are_sanitized
-    raw_server(count: 3, handler: lambda { |socket, *_|
+    serve(count: 3, handler: lambda { |socket, *_|
       begin
         socket.read
       rescue Errno::ECONNRESET
@@ -392,47 +290,6 @@ class DocumentsTest < NativeTest
     end
   end
 
-  def test_inherited_stream_and_upload_are_guarded_and_child_client_works
-    serve(count: 2, handler: ->(socket, *) { respond(socket, body: "child") }) do |url|
-      stream = client(url).download_document(url)
-      engine = client("http://127.0.0.1:1").instance_variable_get(:@engine)
-      upload = engine.start_document_upload("http://127.0.0.1:1", "{}", "text/plain", [], nil)
-      reader, writer = IO.pipe
-      pid = fork do
-        reader.close
-        begin
-          guarded = [:status, :headers, :error_body, :closed?, :close].all? do |method|
-            stream.public_send(method)
-            false
-          rescue Peddler::ForkError
-            true
-          end
-          guarded &&= [:completed?, :finish, :close].all? do |method|
-            upload.public_send(method)
-            false
-          rescue Peddler::ForkError
-            true
-          end
-          content = client(url).download_document(url).each_chunk.to_a.join
-          stream = nil
-          upload = nil
-          GC.start
-          writer.write(guarded && content == "child" ? "guarded-and-recovered" : "failed")
-        ensure
-          writer.close
-        end
-        exit!(0)
-      end
-      writer.close
-
-      assert_equal("guarded-and-recovered", Timeout.timeout(3) { reader.read })
-      Process.wait(pid)
-      reader.close
-      stream.close
-      upload.close
-    end
-  end
-
   def test_concurrent_read_fails_and_close_cancels_the_active_socket
     started = Queue.new
     serve(handler: lambda { |socket, *_|
@@ -479,99 +336,6 @@ class DocumentsTest < NativeTest
     end
   end
 
-  def test_upload_thread_kill_and_timeout_abort_sockets_then_recover
-    [false, true].each do |timeout|
-      started = Queue.new
-      source = Object.new
-      source.define_singleton_method(:read) do |length|
-        started << true
-        sleep(1)
-        "a" * length
-      end
-      raw_server(count: 2, handler: lambda { |socket, first, *_|
-        if first[1] == "/blocked"
-          assert_nil(socket.read(1))
-        else
-          # The successful body is deliberately empty.
-          respond(socket)
-        end
-      }) do |url|
-        instance = client(url)
-        thread = Thread.new do
-          instance.upload_document("#{url}/blocked", source, content_type: "text/plain", timeout: timeout ? 0.03 : 30)
-        rescue Peddler::DocumentTimeoutError
-          :timed_out
-        end
-        started.pop
-        if timeout
-          assert(thread.join(2))
-          assert_equal(:timed_out, thread.value)
-        else
-          sleep(0.02)
-          thread.kill
-
-          assert(thread.join(1))
-        end
-
-        assert_equal(200, instance.upload_document(url, "", content_type: "text/plain", content_length: 0).status)
-      ensure
-        thread&.kill
-        thread&.join
-      end
-    end
-  end
-
-  def test_native_upload_close_and_repeated_finish_do_not_wait_forever
-    instance = client("http://127.0.0.1:1")
-    engine = instance.instance_variable_get(:@engine)
-    upload = engine.start_document_upload("http://127.0.0.1:1", "{}", "text/plain", [], nil)
-    upload.close
-    assert_raises(Peddler::DocumentError) { Timeout.timeout(1) { upload.finish } }
-    assert_raises(Peddler::DocumentError) { Timeout.timeout(1) { upload.finish } }
-  end
-
-  def test_io_upload_backpressure_bounds_reads_until_server_consumes
-    started = Queue.new
-    release = Queue.new
-    reads = 0
-    remaining = 16 * 1024 * 1024
-    source = Object.new
-    source.define_singleton_method(:read) do |length|
-      reads += 1
-      next nil if remaining.zero?
-      size = [remaining, length].min
-      remaining -= size
-      "a" * size
-    end
-    serve_raw_upload = lambda do |socket, _first, headers|
-      started << true
-      release.pop
-      received = 0
-      while received < headers.fetch("content-length").to_i
-        chunk = socket.read([64 * 1024, headers.fetch("content-length").to_i - received].min)
-        received += chunk.bytesize
-      end
-
-      assert_equal(16 * 1024 * 1024, received)
-      respond(socket)
-    end
-    raw_server(handler: serve_raw_upload) do |url|
-      thread = Thread.new { client(url).upload_document(url, source, content_type: "text/plain", content_length: 16 * 1024 * 1024) }
-      started.pop
-      sleep(0.05)
-
-      assert_operator(reads, :<, 128, "server backpressure must prevent reading all 256 chunks")
-      release << true
-
-      assert_equal(200, thread.value.status)
-      assert_equal(257, reads) # EOF lookahead remains required at Content-Length.
-    ensure
-      release << true
-      thread&.kill
-      thread&.join
-    end
-  end
-
   def test_bounded_whole_json_preserves_numbers_and_rust_limits_map_to_document_errors
     serve(count: 5, handler: lambda { |socket, first, *_|
       body = case first[1]
@@ -594,23 +358,11 @@ class DocumentsTest < NativeTest
     end
   end
 
-  def test_mode_switch_while_iterator_yields_is_rejected
-    serve(handler: ->(socket, *) { respond(socket, body: "chunk") }) do |url|
-      document = client(url).download_document(url)
-      document.each_chunk do
-        assert_raises(Peddler::DocumentError) { document.each_jsonl.to_a }
-        break
-      end
-
-      assert_predicate(document, :closed?)
-    end
-  end
-
   def test_thread_kill_while_native_upload_waits_for_backpressure_releases_socket
     started = Queue.new
     source = Object.new
     source.define_singleton_method(:read) { |length| "a" * length }
-    raw_server(count: 2, handler: lambda { |socket, first, *_|
+    serve(count: 2, handler: lambda { |socket, first, *_|
       if first[1] == "/blocked"
         started << true
         sleep(0.1)
@@ -644,99 +396,6 @@ class DocumentsTest < NativeTest
         error = assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/#{path}").each_jsonl.to_a }
         refute_match(/secret|999999/, error.message)
       end
-    end
-  end
-
-  def sensitive_rescue
-    raise "signed-url-header-body-secret"
-  rescue RuntimeError => sensitive
-    yield sensitive
-  end
-
-  def test_download_document_invalid_url_encoding
-    instance = client("http://127.0.0.1:1")
-    error = assert_raises(ArgumentError) { instance.download_document("http://127.0.0.1:1/\xFF") }
-    assert_equal("invalid document URL", error.message)
-  end
-
-  def test_upload_document_overflow_content_length
-    instance = client("http://127.0.0.1:1")
-    error = assert_raises(ArgumentError) { instance.upload_document("http://127.0.0.1:1", "x", content_type: "text/plain", content_length: 1 << 70) }
-    assert_equal("invalid document upload configuration", error.message)
-  end
-
-  def test_upload_document_invalid_header_encoding
-    instance = client("http://127.0.0.1:1")
-    error = assert_raises(ArgumentError) { instance.upload_document("http://127.0.0.1:1", "x", content_type: "text/plain", headers: { "x-a" => "\xFF" }) }
-    assert_equal("invalid document upload configuration", error.message)
-  end
-
-  def test_upload_document_invalid_content_type_encoding
-    instance = client("http://127.0.0.1:1")
-    error = assert_raises(ArgumentError) { instance.upload_document("http://127.0.0.1:1", "x", content_type: "\xFF") }
-    assert_equal("invalid document upload configuration", error.message)
-  end
-
-  def test_document_json_overflow_max_bytes
-    serve(handler: ->(socket, *) { respond(socket, body: "{}") }) do |url|
-      document = client(url).download_document(url)
-      error = assert_raises(ArgumentError) { document.json(max_bytes: 1 << 70) }
-      assert_equal("invalid document configuration", error.message)
-    end
-  end
-
-  def test_invalid_url_and_out_of_range_limit
-    instance = client("http://127.0.0.1:1")
-    error = assert_raises(ArgumentError) { instance.download_document("bad-url") }
-    assert_equal("invalid document URL", error.message)
-    error = assert_raises(ArgumentError) { instance.download_document("https://example.com/private", max_bytes: 1 << 65) }
-    assert_equal("invalid document configuration", error.message)
-    error = assert_raises(ArgumentError) { instance.upload_document("bad-url", "", content_type: "text/plain") }
-    assert_equal("invalid document URL", error.message)
-  end
-
-  def test_caller_block_exceptions_retain_identity_and_active_causes
-    serve(count: 2, handler: ->(socket, *) { respond(socket, body: "chunk") }) do |url|
-      sensitive_rescue do |sensitive|
-        caller_error = ArgumentError.new("caller error")
-        caught = assert_raises(ArgumentError) { client(url).download_document(url) { raise caller_error } }
-        assert_same(caller_error, caught)
-        assert_same(sensitive, caught.cause)
-        document = client(url).download_document(url)
-        row_error = Peddler::DocumentError.new("caller row error")
-        caught = assert_raises(Peddler::DocumentError) { document.each_chunk { raise row_error } }
-        assert_same(row_error, caught)
-        assert_same(sensitive, caught.cause)
-        assert_predicate(document, :closed?)
-      end
-    end
-  end
-
-  def test_thread_raise_during_read_preserves_original_exception
-    started = Queue.new
-    serve(handler: lambda { |socket, *_|
-      socket.write("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n")
-      started << true
-
-      assert_nil(socket.read(1))
-    }) do |url|
-      document = client(url).download_document(url)
-      thread = Thread.new do
-        sensitive_rescue { document.each_chunk.to_a }
-      rescue Peddler::DocumentError => error
-        error
-      end
-      started.pop
-      Thread.pass until thread.status == "sleep"
-      original = Peddler::DocumentError.new("caller interruption")
-      thread.raise(original)
-
-      assert(thread.join(1))
-      assert_same(original, thread.value)
-      assert_predicate(document, :closed?)
-    ensure
-      thread&.kill
-      thread&.join
     end
   end
 

@@ -10,7 +10,8 @@ require "uri"
 require "peddler"
 
 class NativeTest < Minitest::Test
-  def with_server(count: 1, &handler)
+  # Without the body, a handler can answer before the client has sent it.
+  def with_server(count: 1, read_body: true, &handler)
     server = TCPServer.new("127.0.0.1", 0)
     workers = []
     acceptor = Thread.new do
@@ -20,13 +21,16 @@ class NativeTest < Minitest::Test
         socket = server.accept
         workers << Thread.new(socket) do |connection|
           Timeout.timeout(5) do
-            first = connection.gets("\r\n").split
+            line = connection.gets("\r\n")
+            next unless line # A failed upload can close before its head.
+
+            first = line.split
             headers = {}
             while (line = connection.gets("\r\n")) != "\r\n"
               key, value = line.split(":", 2)
               headers[key.downcase] = value.strip
             end
-            body = connection.read(headers.fetch("content-length", "0").to_i)
+            body = read_body ? connection.read(headers.fetch("content-length", "0").to_i) : nil
             yield(connection, first, headers, body)
           end
         ensure
@@ -39,8 +43,8 @@ class NativeTest < Minitest::Test
     [yield_url, acceptor, server, workers]
   end
 
-  def serve(count: 1, handler:)
-    url, acceptor, server, workers = with_server(count: count, &handler)
+  def serve(count: 1, read_body: true, handler:)
+    url, acceptor, server, workers = with_server(count: count, read_body: read_body, &handler)
     yield url
     raise "server deadline" unless acceptor.join(6)
 
