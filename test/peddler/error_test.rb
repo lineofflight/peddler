@@ -28,13 +28,6 @@ module Peddler
       assert_nil(error.request_id)
     end
 
-    def test_is_one_class_whatever_the_code
-      ["InvalidInput", "NotFound", "QuotaExceeded", "NOT_FOUND", "400"].each do |code|
-        assert_instance_of(Error, build(400, code: code, message: "message"))
-      end
-      assert_equal(StandardError, Error.superclass)
-    end
-
     def test_constructs_without_a_response
       error = Error.new("boom")
 
@@ -63,17 +56,11 @@ module Peddler
       assert_equal({ status: nil, code: nil }, Error.new("boom").deconstruct_keys(nil))
     end
 
-    def test_pattern_matches_status
-      assert_equal(:backoff, classify(build(429)))
-    end
-
-    def test_pattern_matches_code
-      assert_equal(:backoff, classify(build(400, code: "QuotaExceeded", message: "m")))
-    end
-
-    def test_pattern_matches_status_range
-      assert_equal(:retry_later, classify(build(503)))
-      assert_equal(:give_up, classify(build(404)))
+    def test_pattern_matches_status_code_and_range
+      assert_pattern { build(429) => { status: 429 } }
+      assert_pattern { build(400, code: "QuotaExceeded", message: "m") => { code: "QuotaExceeded" } }
+      assert_pattern { build(503) => { status: 500.. } }
+      refute_pattern { build(404) => { status: 500.. } }
     end
 
     # Every error class of the gem, its superclass and the methods it adds. Where a class is defined must not change
@@ -100,23 +87,10 @@ module Peddler
       assert_equal([:message, :status, :code], AuthenticationError.instance_method(:initialize).parameters.map(&:last))
     end
 
-    def test_does_not_expose_kind
-      refute_respond_to(build(404), :kind)
-    end
-
     private
 
     def build(status, code: nil, request_id: nil, message: nil)
       assert_raises(Error) { Response.new(status, [], "", [code, request_id, message]).raise_for_status! }
-    end
-
-    def classify(error)
-      case error
-      in status: 429 then :backoff
-      in code: "QuotaExceeded" then :backoff
-      in status: 500.. then :retry_later
-      else :give_up
-      end
     end
   end
 

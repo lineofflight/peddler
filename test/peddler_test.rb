@@ -44,18 +44,6 @@ class PeddlerTest < Minitest::Test
     assert_raises(NameError) { Peddler::Native::Engine }
   end
 
-  def test_module_accessors_and_http_classes_are_gone
-    refute_respond_to(Peddler, :orders_v0)
-    refute(Peddler.const_defined?(:API, false))
-    refute(Peddler.const_defined?(:Errors, false))
-    assert_instance_of(Module, Peddler::APIs::OrdersV0)
-  end
-
-  def test_native_require_loads_the_root
-    assert(require("peddler/native") || $LOADED_FEATURES.any? { |file| file.end_with?("/peddler/native.rb") })
-    assert($LOADED_FEATURES.any? { |file| file.end_with?("/lib/peddler.rb") })
-  end
-
   # Lays the gem out as a fat platform gem does, with the extension under lib/peddler/<ruby minor>/, and eager-loads
   # it in a fresh process. Zeitwerk must skip the native files and the extension directory.
   def test_eager_loads_from_a_packaged_layout

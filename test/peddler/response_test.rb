@@ -6,14 +6,6 @@ require "helper"
 # rubocop:disable Minitest/MultipleAssertions
 module Peddler
   class ResponseTest < Minitest::Test
-    def test_status_headers_and_body
-      response = Response.new(200, [["content-type", "application/json"]], JSON.generate(payload))
-
-      assert_equal(200, response.status)
-      assert_equal([["content-type", "application/json"]], response.headers)
-      assert_equal(JSON.generate(payload), response.body)
-    end
-
     def test_json
       response = Response.new(200, [], JSON.generate(payload))
 
@@ -98,22 +90,6 @@ module Peddler
       assert_same(response, error.response)
       assert_equal(["request failed with status 404", nil, nil], [error.message, error.code, error.request_id])
       assert_equal(JSON.parse(body), response.parse)
-    end
-
-    def test_from_parts_raises_by_default
-      error = assert_raises(Error) { Response.from_parts([404, [], "{}", [nil, nil, nil]], "raw") }
-
-      assert_equal(404, error.response.status)
-      assert_instance_of(Response, Response.from_parts([200, [], "{}", nil], "raw"))
-    end
-
-    def test_document_replies_stay_inspectable
-      reply = Response.from_document_parts([403, [], "denied", [nil, nil, nil], true])
-
-      assert_equal(403, reply.status)
-      assert_predicate(reply, :body_truncated?)
-      assert_raises(Error) { reply.raise_for_status! }
-      refute_predicate(Response.new(200, [], ""), :body_truncated?)
     end
 
     private

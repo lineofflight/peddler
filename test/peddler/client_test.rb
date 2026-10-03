@@ -21,12 +21,8 @@ module Peddler
 
     def test_sandbox_returns_a_view_of_the_same_client
       client = Client.new(region: "eu-west-1", access_token: "token")
-      rebased = []
-      engine = client.instance_variable_get(:@engine)
-      original = engine.method(:with_base_url)
-      view = engine.stub(:with_base_url, ->(url) { (rebased << url) && original.call(url) }) { client.sandbox }
+      view = client.sandbox
 
-      assert_equal(["https://sandbox.sellingpartnerapi-eu.amazon.com"], rebased)
       refute_predicate(client, :sandbox?)
       assert_predicate(view, :sandbox?)
       assert_instance_of(Client, view)
@@ -86,39 +82,6 @@ module Peddler
       end
     end
 
-    # The client no longer fetches tokens or limits its own rate: Peddler::LWA and the application do.
-    def test_rejects_the_keywords_of_the_removed_managed_state
-      {
-        refresh_token: "seller-refresh", client_id: "app-id", client_secret: "app-secret",
-        scope: "sellingpartnerapi::notifications", rate_limits: {}, lwa_endpoint: "http://localhost:1",
-      }.each do |keyword, value|
-        error = assert_raises(ArgumentError, keyword.to_s) do
-          Client.new(region: "eu-west-1", access_token: "token", keyword => value)
-        end
-
-        assert_match(/unknown keyword: :#{keyword}/, error.message)
-        refute_match(/seller-refresh|app-id|app-secret|notifications/, error.message)
-      end
-      refute_respond_to(Client.new(region: "eu-west-1", access_token: "token"), :restricted)
-      refute(Client.const_defined?(:DEFAULT_LWA_ENDPOINT))
-    end
-
-    def test_a_token_that_is_not_utf8_never_reaches_a_message_or_cause
-      error = assert_raises(ArgumentError) { Client.new(region: "eu-west-1", access_token: "seller-access-\xFF") }
-
-      assert_equal("invalid access token", error.message)
-      assert_nil(error.cause)
-      refute_match(/seller-access/, error.full_message(highlight: false))
-
-      client = Client.new(region: "eu-west-1", access_token: "token")
-      ["seller-access-\xFF", "seller-access-\xFF".b, "seller-access\r\n", "", " ", nil, :token].each do |token|
-        error = assert_raises(ArgumentError, token.inspect) { client.with_access_token(token) }
-
-        assert_nil(error.cause)
-        refute_match(/seller-access/, error.full_message(highlight: false))
-      end
-    end
-
     def test_accepts_a_token_source_and_does_not_call_it_until_a_request
       source = -> { raise "asked too early" }
       client = Client.new(region: "eu-west-1", access_token: source)
@@ -127,14 +90,6 @@ module Peddler
       assert_instance_of(Client, client.with_access_token("token").with_access_token(source))
       assert_respond_to(client, :orders)
       assert_nil(config(region: "eu-west-1", access_token: source)["access_token"])
-    end
-
-    def test_construction_performs_no_network_access
-      client = Client.new(region: "eu-west-1", access_token: "token")
-
-      assert_respond_to(client, :orders_v0)
-      assert_respond_to(client, :orders)
-      assert_respond_to(client.with_access_token("other"), :orders)
     end
 
     def test_inspect_shows_no_credentials

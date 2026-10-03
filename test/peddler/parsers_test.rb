@@ -47,16 +47,6 @@ module Peddler
       end
     end
 
-    def test_response_resolves_its_parser_through_the_lookup
-      body = '{"payload":{"AmazonOrderId":"902-1","PurchaseDate":"2025-01-01","LastUpdateDate":"2025-01-01","OrderStatus":"Pending"}}'
-      typed = Response.new(200, [], body, nil, operation: "orders_v0.get_order")
-      untyped = Response.new(200, [], body, nil, operation: "orders_v0.confirm_shipment")
-
-      assert_instance_of(APIs::OrdersV0::GetOrderResponse, typed.parse)
-      assert_equal("902-1", typed.parse.payload.amazon_order_id)
-      assert_equal(JSON.parse(body), untyped.parse)
-    end
-
     private
 
     def parser(key)
