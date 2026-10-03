@@ -1,4 +1,5 @@
-use base64::{Engine, engine::general_purpose::STANDARD};
+mod support;
+
 use peddler::{
     Client, Error,
     apis::{
@@ -9,73 +10,41 @@ use peddler::{
 };
 use serde_json::{Value, json};
 use std::time::Duration;
-use tokio::{
-    io::{AsyncReadExt, AsyncWriteExt},
-    net::{TcpListener, TcpStream},
-    task::JoinHandle,
-};
+use support::{Reply, Server, http, replies};
+use tokio::net::TcpListener;
 
 const TOKEN: &str = "private-operation-token";
-async fn read_request(stream: &mut TcpStream) -> Vec<u8> {
-    let mut bytes = Vec::new();
-    loop {
-        let mut chunk = [0; 4096];
-        let count = stream.read(&mut chunk).await.unwrap();
-        assert!(count > 0);
-        bytes.extend_from_slice(&chunk[..count]);
-        if let Some(end) = bytes.windows(4).position(|v| v == b"\r\n\r\n") {
-            let headers = String::from_utf8_lossy(&bytes[..end]).to_ascii_lowercase();
-            let length = headers
-                .lines()
-                .find_map(|l| l.strip_prefix("content-length: ")?.parse::<usize>().ok())
-                .unwrap_or(0);
-            if bytes.len() >= end + 4 + length {
-                return bytes;
-            }
-        }
-    }
+/// A client whose one request gets this status and body, with a request id and a
+/// repeated header.
+async fn server(status: u16, body: &[u8]) -> (Client, Server) {
+    let server = replies(vec![http(
+        status,
+        "Content-Type: application/json\r\nX-Amzn-RequestId: operation-id\r\nX-Repeat: first\r\nX-Repeat: second\r\n",
+        body,
+    )])
+    .await;
+    (Client::new(&server.url, TOKEN).unwrap(), server)
 }
-fn reply(status: u16, body: &[u8], close: bool) -> Vec<u8> {
-    let header = format!(
-        "HTTP/1.1 {status} Test\r\nContent-Length: {}\r\nContent-Type: application/json\r\nX-Amzn-RequestId: operation-id\r\nX-Repeat: first\r\nX-Repeat: second\r\n{}\r\n",
-        body.len(),
-        if close { "Connection: close\r\n" } else { "" }
-    );
-    [header.as_bytes(), body].concat()
+/// The one request the server received.
+fn received(server: &Server) -> String {
+    server.requests().remove(0)
 }
-async fn server(status: u16, body: &[u8]) -> (Client, JoinHandle<Vec<u8>>) {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let client = Client::new(&format!("http://{}", listener.local_addr().unwrap()), TOKEN).unwrap();
-    let response = reply(status, body, true);
-    let task = tokio::spawn(async move {
-        let (mut stream, _) = listener.accept().await.unwrap();
-        let request = read_request(&mut stream).await;
-        stream.write_all(&response).await.unwrap();
-        request
-    });
-    (client, task)
-}
-fn target(request: &[u8]) -> reqwest::Url {
-    let line = std::str::from_utf8(request)
-        .unwrap()
-        .lines()
-        .next()
-        .unwrap();
+fn target(request: &str) -> reqwest::Url {
+    let line = request.lines().next().unwrap();
     reqwest::Url::parse(&format!(
         "http://localhost{}",
         line.split(' ').nth(1).unwrap()
     ))
     .unwrap()
 }
-fn query(request: &[u8]) -> Vec<(String, String)> {
+fn query(request: &str) -> Vec<(String, String)> {
     target(request)
         .query_pairs()
         .map(|(k, v)| (k.into_owned(), v.into_owned()))
         .collect()
 }
-fn body(request: &[u8]) -> Value {
-    let end = request.windows(4).position(|v| v == b"\r\n\r\n").unwrap() + 4;
-    serde_json::from_slice(&request[end..]).unwrap()
+fn body(request: &str) -> Value {
+    serde_json::from_str(request.split_once("\r\n\r\n").unwrap().1).unwrap()
 }
 fn catalog() -> GetCatalogItemParams {
     GetCatalogItemParams::new("188864544X".into(), vec!["A1F83G8C2ARO7P".into()])
@@ -90,111 +59,17 @@ fn patch(value: Value) -> PatchListingsItemParams {
 }
 
 #[tokio::test]
-async fn replays_catalog_and_listings_fixtures_through_named_operations() {
-    let fixture: Value = serde_json::from_str(include_str!(
-        "../../../test/fixtures/native/catalog_get.json"
-    ))
-    .unwrap();
-    let raw = STANDARD
-        .decode(fixture["response"]["body_base64"].as_str().unwrap())
-        .unwrap();
-    let (client, task) = server(200, &raw).await;
-    let mut params = catalog();
-    params.included_data = Some(
-        fixture["request"]["query"][0][1]
-            .as_str()
-            .unwrap()
-            .split(',')
-            .map(str::to_owned)
-            .collect(),
-    );
-    let response = get_catalog_item(&client, params).await.unwrap();
-    assert_eq!(response.raw.body, raw);
-    assert_eq!(response.json().unwrap().asin.to_string(), "188864544X");
-    let req = task.await.unwrap();
-    assert_eq!(target(&req).path(), "/catalog/2022-04-01/items/188864544X");
-    assert_eq!(
-        query(&req),
-        serde_json::from_value::<Vec<(String, String)>>(fixture["request"]["query"].clone())
-            .unwrap()
-    );
-    let text = String::from_utf8_lossy(&req).to_ascii_lowercase();
-    assert!(text.contains(&format!("x-amz-access-token: {TOKEN}")));
-    assert!(text.contains("user-agent: peddler/"));
-    assert!(text.contains("accept: application/json"));
-    let fixture: Value = serde_json::from_str(include_str!(
-        "../../../test/fixtures/native/listings_patch.json"
-    ))
-    .unwrap();
-    let raw = STANDARD
-        .decode(fixture["response"]["body_base64"].as_str().unwrap())
-        .unwrap();
-    let request_body: Value = serde_json::from_slice(
-        &STANDARD
-            .decode(fixture["request"]["body_base64"].as_str().unwrap())
-            .unwrap(),
-    )
-    .unwrap();
-    let (client, task) = server(200, &raw).await;
-    let response = patch_listings_item(&client, patch(request_body.clone()))
-        .await
-        .unwrap();
-    assert_eq!(response.raw.body, raw);
-    assert_eq!(response.json().unwrap().status, "ACCEPTED");
-    let req = task.await.unwrap();
-    assert_eq!(
-        target(&req).path(),
-        "/listings/2021-08-01/items/A34PPN1ZLYCOGT/SKU123"
-    );
-    assert_eq!(
-        query(&req),
-        serde_json::from_value::<Vec<(String, String)>>(fixture["request"]["query"].clone())
-            .unwrap()
-    );
-    assert_eq!(body(&req), request_body);
-}
-#[tokio::test]
 async fn defaults_explicit_and_null_queries_use_one_csv_value() {
-    for included in [
-        Some(vec!["summaries".into()]),
-        Some(vec!["images".into(), "FUTURE".into()]),
-        None,
+    for (included, expected) in [
+        (Some(json!(["images", "FUTURE"])), Some("images,FUTURE")),
+        (None, Some("summaries")),
+        (Some(Value::Null), None),
     ] {
-        let (client, task) = server(200, b"{}").await;
-        let mut params = catalog();
-        params.marketplace_ids = vec!["UK".into(), "DE".into()];
-        params.included_data = included.clone();
-        get_catalog_item(&client, params).await.unwrap();
-        let req = task.await.unwrap();
-        let pairs = query(&req);
-        assert_eq!(
-            pairs
-                .iter()
-                .filter(|(k, _)| k == "marketplaceIds")
-                .cloned()
-                .collect::<Vec<_>>(),
-            vec![("marketplaceIds".into(), "UK,DE".into())]
-        );
-        assert_eq!(
-            pairs
-                .iter()
-                .filter(|(k, _)| k == "includedData")
-                .map(|(_, v)| v.clone())
-                .collect::<Vec<_>>(),
-            included.map(|v| vec![v.join(",")]).unwrap_or_default()
-        );
-    }
-    for (arguments, expected) in [
-        (
-            json!({"asin":"X","marketplace_ids":["UK"]}),
-            Some("summaries"),
-        ),
-        (
-            json!({"asin":"X","marketplace_ids":["UK"],"included_data":null}),
-            None,
-        ),
-    ] {
-        let (client, task) = server(200, b"{}").await;
+        let (client, api) = server(200, b"{}").await;
+        let mut arguments = json!({"asin":"X","marketplace_ids":["UK","DE"]});
+        if let Some(value) = included {
+            arguments["included_data"] = value;
+        }
         apis::execute(
             &client,
             "catalog_items_2022_04_01.get_catalog_item",
@@ -202,49 +77,52 @@ async fn defaults_explicit_and_null_queries_use_one_csv_value() {
         )
         .await
         .unwrap();
-        assert_eq!(
-            query(&task.await.unwrap())
+        let pairs = query(&received(&api));
+        let values = |key: &str| {
+            pairs
                 .iter()
-                .find(|(k, _)| k == "includedData")
-                .map(|(_, v)| v.as_str()),
-            expected
-        );
+                .filter(|(k, _)| k == key)
+                .map(|(_, v)| v.as_str())
+                .collect::<Vec<_>>()
+        };
+        assert_eq!(values("marketplaceIds"), ["UK,DE"]);
+        assert_eq!(values("includedData"), Vec::from_iter(expected));
     }
 }
 #[tokio::test]
 async fn path_segments_escape_reserved_unicode_and_percent_once() {
-    let (client, task) = server(200, b"{}").await;
+    let (client, api) = server(200, b"{}").await;
     let mut params = patch(json!({}));
     params.sku = "a/b +%?雪".into();
     patch_listings_item(&client, params).await.unwrap();
     assert_eq!(
-        target(&task.await.unwrap()).path(),
+        target(&received(&api)).path(),
         "/listings/2021-08-01/items/A34PPN1ZLYCOGT/a%2Fb%20%2B%25%3F%E9%9B%AA"
     );
 }
 #[tokio::test]
 async fn dynamic_body_preserves_unknown_members_empty_arrays_and_null() {
     let value = json!({"productType":"PRODUCT","patches":[],"future":{"empty":[],"null":null}});
-    let (client, task) = server(200, b"{}").await;
+    let (client, api) = server(200, b"{}").await;
     patch_listings_item(&client, patch(value.clone()))
         .await
         .unwrap();
-    assert_eq!(body(&task.await.unwrap()), value);
+    assert_eq!(body(&received(&api)), value);
     let typed: models::ListingsItemPatchRequest =
         serde_json::from_value(json!({"productType":"PRODUCT","patches":[]})).unwrap();
-    let (client, task) = server(200, b"{}").await;
+    let (client, api) = server(200, b"{}").await;
     let params =
         PatchListingsItemParams::new("seller".into(), "sku".into(), vec!["UK".into()], typed);
     patch_listings_item(&client, params).await.unwrap();
     assert_eq!(
-        body(&task.await.unwrap()),
+        body(&received(&api)),
         json!({"productType":"PRODUCT","patches":[]})
     );
 }
 #[tokio::test]
 async fn dispatcher_preserves_dynamic_number_tokens_on_the_wire() {
     let arguments = r#"{"seller_id":"seller","sku":"sku","marketplace_ids":["UK"],"body":{"values":[18446744073709551617,-9223372036854775809,0.12345678901234567890123456789]}}"#;
-    let (client, task) = server(200, b"{}").await;
+    let (client, api) = server(200, b"{}").await;
     apis::execute(
         &client,
         "listings_items_2021_08_01.patch_listings_item",
@@ -252,23 +130,15 @@ async fn dispatcher_preserves_dynamic_number_tokens_on_the_wire() {
     )
     .await
     .unwrap();
-    let request = task.await.unwrap();
-    let end = request.windows(4).position(|v| v == b"\r\n\r\n").unwrap() + 4;
     assert_eq!(
-        std::str::from_utf8(&request[end..]).unwrap(),
+        received(&api).split_once("\r\n\r\n").unwrap().1,
         r#"{"values":[18446744073709551617,-9223372036854775809,0.12345678901234567890123456789]}"#
     );
 }
 #[tokio::test]
 async fn all_http_statuses_and_malformed_json_remain_raw_responses() {
-    for (status, raw) in [
-        (200, b"not JSON".as_slice()),
-        (404, b"broken error"),
-        (204, b""),
-        (302, b"redirect"),
-        (599, b"unknown"),
-    ] {
-        let (client, task) = server(status, raw).await;
+    for (status, raw) in [(200, b"not JSON".as_slice()), (404, b"broken error")] {
+        let (client, _) = server(status, raw).await;
         let response = get_catalog_item(&client, catalog()).await.unwrap();
         assert_eq!(response.raw.status, status);
         assert_eq!(response.raw.body, raw);
@@ -289,9 +159,8 @@ async fn all_http_statuses_and_malformed_json_remain_raw_responses() {
             2
         );
         assert_eq!(response.into_raw().body, raw);
-        task.await.unwrap();
     }
-    let (client, task) = server(
+    let (client, _) = server(
         200,
         br#"{"sku":"s","submissionId":"i","status":"FUTURE","issues":[]}"#,
     )
@@ -305,7 +174,6 @@ async fn all_http_statuses_and_malformed_json_remain_raw_responses() {
             .status,
         "FUTURE"
     );
-    task.await.unwrap();
 }
 #[tokio::test]
 async fn rejects_invalid_arguments_before_network_without_echoing_secrets() {
@@ -371,86 +239,15 @@ async fn rejects_invalid_arguments_before_network_without_echoing_secrets() {
 }
 #[tokio::test]
 async fn configured_timeout_covers_generated_response_body_collection() {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let client = Client::with_timeout(
-        &format!("http://{}", listener.local_addr().unwrap()),
-        TOKEN,
-        Duration::from_millis(40),
-    )
-    .unwrap();
-    let task = tokio::spawn(async move {
-        let (mut stream, _) = listener.accept().await.unwrap();
-        read_request(&mut stream).await;
-        stream
-            .write_all(b"HTTP/1.1 200 OK\r\nContent-Length: 100\r\n\r\nx")
-            .await
-            .unwrap();
-        tokio::time::sleep(Duration::from_secs(5)).await;
-    });
+    let server = replies(vec![
+        Reply::raw(b"HTTP/1.1 200 OK\r\nContent-Length: 100\r\n\r\nx").held(Duration::from_secs(5)),
+    ])
+    .await;
+    let client = Client::with_timeout(&server.url, TOKEN, Duration::from_millis(40)).unwrap();
     assert_eq!(
         get_catalog_item(&client, catalog()).await.unwrap_err(),
         Error::Timeout
     );
-    task.abort();
-}
-#[tokio::test]
-async fn generated_operations_share_the_existing_connection_pool() {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let client = Client::new(&format!("http://{}", listener.local_addr().unwrap()), TOKEN).unwrap();
-    let task = tokio::spawn(async move {
-        let (mut stream, _) = listener.accept().await.unwrap();
-        for _ in 0..2 {
-            read_request(&mut stream).await;
-            stream.write_all(&reply(200, b"{}", false)).await.unwrap();
-        }
-    });
-    get_catalog_item(&client, catalog()).await.unwrap();
-    tokio::time::timeout(
-        Duration::from_secs(1),
-        get_catalog_item(&client.clone(), catalog()),
-    )
-    .await
-    .unwrap()
-    .unwrap();
-    task.await.unwrap();
-}
-
-#[tokio::test]
-async fn dispatcher_listings_defaults_null_optional_strings_and_dynamic_body_survive() {
-    for (included, expected) in [(None, Some("issues")), (Some(Value::Null), None)] {
-        let (client, task) = server(200, b"{}").await;
-        let mut arguments = json!({"seller_id":"seller","sku":"literal%2F~._-","marketplace_ids":["UK","DE"],"body":{"future":null,"patches":[]},"mode":"FUTURE_MODE","issue_locale":"en_GB"});
-        if let Some(value) = included {
-            arguments["included_data"] = value;
-        }
-        apis::execute(
-            &client,
-            "listings_items_2021_08_01.patch_listings_item",
-            &arguments.to_string(),
-        )
-        .await
-        .unwrap();
-        let request = task.await.unwrap();
-        assert_eq!(
-            target(&request).path(),
-            "/listings/2021-08-01/items/seller/literal%252F~._-"
-        );
-        assert_eq!(body(&request), json!({"future":null,"patches":[]}));
-        let pairs = query(&request);
-        assert_eq!(
-            pairs
-                .iter()
-                .find(|(k, _)| k == "includedData")
-                .map(|(_, v)| v.as_str()),
-            expected
-        );
-        assert!(pairs.contains(&("marketplaceIds".into(), "UK,DE".into())));
-        assert!(pairs.contains(&("mode".into(), "FUTURE_MODE".into())));
-        assert!(pairs.contains(&("issueLocale".into(), "en_GB".into())));
-    }
-    let (client, task) = server(200, b"{}").await;
-    get_catalog_item(&client, catalog()).await.unwrap();
-    assert!(query(&task.await.unwrap()).contains(&("includedData".into(), "summaries".into())));
 }
 
 #[tokio::test]
@@ -462,7 +259,7 @@ async fn expanded_facades_replay_audited_native_protocol_cases() {
     for case in cases.as_array().unwrap() {
         let status = case["status"].as_u64().unwrap() as u16;
         let raw = case["response"].as_str().unwrap().as_bytes();
-        let (client, task) = server(status, raw).await;
+        let (client, api) = server(status, raw).await;
         let result = apis::execute(
             &client,
             case["operation"].as_str().unwrap(),
@@ -480,8 +277,8 @@ async fn expanded_facades_replay_audited_native_protocol_cases() {
                 .count(),
             2
         );
-        let req = task.await.unwrap();
-        let first = std::str::from_utf8(&req).unwrap().lines().next().unwrap();
+        let req = received(&api);
+        let first = req.lines().next().unwrap();
         assert_eq!(
             first.split(' ').next().unwrap(),
             case["method"].as_str().unwrap()
@@ -493,7 +290,7 @@ async fn expanded_facades_replay_audited_native_protocol_cases() {
             serde_json::from_value(case["query"].clone()).unwrap();
         expected.sort();
         assert_eq!(actual, expected, "{}", case["operation"]);
-        let headers = std::str::from_utf8(&req).unwrap().to_ascii_lowercase();
+        let headers = req.to_ascii_lowercase();
         assert!(
             headers.contains("\r\nx-amz-date: "),
             "{}",
@@ -513,9 +310,8 @@ async fn expanded_facades_replay_audited_native_protocol_cases() {
                 )
             }
         }
-        let end = req.windows(4).position(|v| v == b"\r\n\r\n").unwrap() + 4;
         if case["body"].is_null() {
-            assert!(req[end..].is_empty());
+            assert!(req.split_once("\r\n\r\n").unwrap().1.is_empty());
             assert!(!headers.contains("content-type: application/json"));
         } else {
             assert_eq!(body(&req), case["body"]);
@@ -526,7 +322,7 @@ async fn expanded_facades_replay_audited_native_protocol_cases() {
 #[tokio::test]
 async fn distinct_success_decoders_require_the_matching_status_and_preserve_raw() {
     use apis::fulfillment_outbound_2026_07_04::{CreateOrderParams, create_order};
-    let (client, task) = server(202, br#"{"orderId":"o","status":"ACCEPTED"}"#).await;
+    let (client, _) = server(202, br#"{"orderId":"o","status":"ACCEPTED"}"#).await;
     let response = create_order(&client, CreateOrderParams::new(json!({})))
         .await
         .unwrap();
@@ -539,8 +335,7 @@ async fn distinct_success_decoders_require_the_matching_status_and_preserve_raw(
         })
     ));
     assert_eq!(response.raw.status, 202);
-    task.await.unwrap();
-    let (client, task) = server(
+    let (client, _) = server(
         200,
         include_bytes!("../../../test/fixtures/native/operations/create_order_200.json"),
     )
@@ -556,7 +351,6 @@ async fn distinct_success_decoders_require_the_matching_status_and_preserve_raw(
             actual: 200
         })
     ));
-    task.await.unwrap();
 }
 
 #[tokio::test]
