@@ -80,19 +80,31 @@ async fn signed_query_duplicate_headers_and_no_token() {
     assert!(!request.contains("private-host"));
 }
 #[tokio::test]
-async fn redirect_is_raw_and_format_readers_reject_non_success() {
-    let url = once(Reply::raw(b"HTTP/1.1 302 Found\r\nLocation: http://127.0.0.1:1/secret\r\nContent-Length: 3\r\n\r\nBAD")).await;
-    let doc = client(&url)
-        .documents()
-        .download(&url, TransferOptions::default())
-        .await
-        .unwrap();
-    assert_eq!(doc.status(), 302);
-    assert_eq!(doc.error_body(), Some(&b"BAD"[..]));
-    assert_eq!(
-        doc.into_jsonl().next().await.unwrap().unwrap_err(),
-        Error::Status
-    );
+async fn a_rejected_download_is_an_error_with_the_raw_bounded_reply() {
+    // A redirect is not followed, and a gzip header does not decode the body of a rejection.
+    let body = vec![b's'; (64 << 10) + 1];
+    for (status, headers) in [
+        (302, "Location: http://127.0.0.1:1/elsewhere\r\n"),
+        (403, "Content-Encoding: gzip\r\n"),
+    ] {
+        let url = once(http(status, headers, &body)).await;
+        let error = client(&url)
+            .documents()
+            .download(&url, TransferOptions::default())
+            .await
+            .unwrap_err();
+        let Error::Rejected(rejection) = &error else {
+            panic!("{error:?}");
+        };
+        assert_eq!(rejection.status, status);
+        assert_eq!(rejection.body, &body[..64 << 10]);
+        assert_eq!(rejection.headers.len(), 3);
+        let text = format!("{error} {error:?}");
+        assert!(
+            !text.contains("sss") && !text.contains("127.0.0.1"),
+            "{text}"
+        );
+    }
 }
 
 #[tokio::test]
@@ -479,29 +491,6 @@ async fn tsv_field_count_is_optional_and_all_record_limits_apply() {
 }
 
 #[tokio::test]
-async fn bounded_error_body_is_raw_even_with_gzip_header() {
-    let url = once(Reply::raw(
-        b"HTTP/1.1 403 Forbidden\r\nContent-Encoding: gzip\r\nContent-Length: 6\r\n\r\nsecret",
-    ))
-    .await;
-    let doc = client(&url)
-        .documents()
-        .download(
-            &url,
-            TransferOptions {
-                max_response_bytes: 3,
-                ..Default::default()
-            },
-        )
-        .await
-        .unwrap();
-    assert_eq!(doc.status(), 403);
-    assert_eq!(doc.error_body(), Some(&b"sec"[..]));
-    assert!(doc.error_body_truncated());
-    assert!(!format!("{doc:?}").contains("sec"));
-}
-
-#[tokio::test]
 async fn drop_releases_socket_and_pool_remains_reusable() {
     let (listener, url) = bind().await;
     let task = tokio::spawn(async move {
@@ -661,7 +650,8 @@ async fn upload_zero_length_is_checked_and_reply_is_bounded() {
         .unwrap_err(),
         Error::LengthMismatch
     );
-    let url = once(http(200, "", b"secret")).await;
+    let body = vec![b's'; (64 << 10) + 1];
+    let url = once(http(200, "", &body)).await;
     let result = client(&url)
         .documents()
         .upload(
@@ -669,18 +659,13 @@ async fn upload_zero_length_is_checked_and_reply_is_bounded() {
             stream::empty::<Result<Bytes, io::Error>>(),
             UploadOptions {
                 content_length: Some(0),
-                transfer: TransferOptions {
-                    max_response_bytes: 3,
-                    ..Default::default()
-                },
                 ..Default::default()
             },
         )
         .await
         .unwrap();
-    assert_eq!(result.body, b"sec");
-    assert!(result.body_truncated);
-    assert!(!format!("{result:?}").contains("sec"));
+    assert_eq!(result.body, &body[..64 << 10]);
+    assert!(!format!("{result:?}").contains("sss"));
 }
 
 #[tokio::test]
@@ -761,7 +746,7 @@ async fn gzip_truncated_trailing_member_is_rejected() {
 }
 
 #[tokio::test]
-async fn early_upload_rejection_preserves_raw_response_with_declared_length() {
+async fn an_early_upload_rejection_is_the_error_with_its_reply() {
     // Answers after the head, while the body is still coming.
     let (listener, url) = bind().await;
     tokio::spawn(async move {
@@ -778,7 +763,7 @@ async fn early_upload_rejection_preserves_raw_response_with_declared_length() {
         b"first",
     ))))
     .chain(stream::pending());
-    let response = client(&url)
+    let error = client(&url)
         .documents()
         .upload(
             &url,
@@ -789,9 +774,12 @@ async fn early_upload_rejection_preserves_raw_response_with_declared_length() {
             },
         )
         .await
-        .unwrap();
-    assert_eq!(response.status, 413);
-    assert_eq!(response.body, b"BAD");
+        .unwrap_err();
+    let Error::Rejected(rejection) = error else {
+        panic!("{error:?}");
+    };
+    assert_eq!(rejection.status, 413);
+    assert_eq!(rejection.body, b"BAD");
 }
 
 // Charset decoding.

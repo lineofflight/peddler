@@ -133,6 +133,17 @@ fn native_error(ruby: &Ruby, name: &str, message: &str) -> Error {
     }
 }
 
+/// The `Peddler::Error` a response outside 2xx raises, as a failed API call does. None
+/// for a response inside 2xx.
+fn api_error(ruby: &Ruby, response: Response) -> Option<Error> {
+    let completed = Completed::new(response);
+    completed.metadata.as_ref()?;
+    let parts = completed.into_parts(ruby);
+    peddler_const::<magnus::RClass>(ruby, "Response")
+        .and_then(|class| class.funcall::<_, _, Value>("from_parts", (parts,)))
+        .err()
+}
+
 fn transport_error(ruby: &Ruby, error: peddler::Error) -> Error {
     match error {
         peddler::Error::InvalidRequest => Error::new(ruby.exception_arg_error(), "invalid request"),

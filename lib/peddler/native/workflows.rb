@@ -1,18 +1,6 @@
 # frozen_string_literal: true
 
 module Peddler
-  # Outcome of create_and_upload_feed_document. The upload response may be a rejection.
-  class FeedDocumentUpload
-    attr_reader :document_id, :response
-
-    def initialize(document_id, response)
-      @document_id = document_id
-      @response = response
-    end
-
-    def inspect = "#<Peddler::FeedDocumentUpload document_id=#{document_id.inspect}>"
-  end
-
   module Native
     # The operation each wait polls, by kind, so its response parses to the typed model
     WAIT_OPERATIONS = {
@@ -53,6 +41,10 @@ module Peddler
       workflow_wait("query", query_id, interval, timeout)
     end
 
+    # Creates a feed document and uploads the source to it. Neither request is retried and no feed is created.
+    #
+    # @return [String] the feed document ID
+    # @raise [Peddler::Error] if Amazon rejects the document or its signed URL rejects the upload
     def create_and_upload_feed_document(source, content_type:, content_length: nil, **transfer_options)
       unless Native.valid_identifier?(content_type) && Native::Uploads.valid?(source, content_length)
         raise ArgumentError, "invalid document upload configuration"
@@ -61,7 +53,8 @@ module Peddler
       begin
         document_id = upload.document_id || raise(WorkflowError, "feed document unavailable")
         Native::Uploads.drain(upload, source)
-        FeedDocumentUpload.new(document_id, Response.from_document_parts(upload.finish))
+        upload.finish
+        document_id
       rescue DocumentError => error
         error.with_document_id(document_id) if document_id
         raise

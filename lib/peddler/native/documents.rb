@@ -95,11 +95,8 @@ module Peddler
       @handle = handle
     end
 
-    def status = @handle.status
     def headers = @handle.headers
     def charset = @handle.charset
-    def error_body = @handle.error_body
-    def error_body_truncated? = @handle.error_body_truncated?
     def closed? = @handle.closed?
     def close = @handle.close
     def inspect = "#<Peddler::Document>"
@@ -150,12 +147,19 @@ module Peddler
   end
 
   class Client
+    # Opens the document at a signed URL
+    #
+    # @raise [Peddler::Error] if the URL answers outside 2xx
     def download_document(url, **transfer_options, &block)
       raise ArgumentError, "invalid document URL" unless Native.valid_utf8_string?(url)
 
       open_document(@engine.download_document(url, Native::TransferConfig.json(transfer_options)), &block)
     end
 
+    # Uploads a String or a `read(length)` source to a signed URL
+    #
+    # @return [Peddler::Response]
+    # @raise [Peddler::Error] if the URL answers outside 2xx
     def upload_document(url, source, content_type:, headers: {}, content_length: nil, **transfer_options)
       unless Native.valid_utf8_string?(url) && Native.valid_utf8_string?(content_type) && headers.is_a?(Hash) &&
           headers.all? { |key, value| Native.valid_utf8_string?(key) && Native.valid_utf8_string?(value) } &&
@@ -165,7 +169,7 @@ module Peddler
       upload = @engine.start_document_upload(url, Native::TransferConfig.json(transfer_options), content_type, headers.to_a, content_length)
       begin
         Native::Uploads.drain(upload, source)
-        Response.from_document_parts(upload.finish)
+        Response.from_parts(upload.finish)
       ensure
         upload.close
       end

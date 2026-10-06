@@ -116,14 +116,14 @@ class WorkflowsTest < NativeTest
     assert_raises(ArgumentError) { instance.wait_for_query("") }
   end
 
-  def test_transfer_non_success_keeps_download_semantics_and_limits
+  def test_rejected_signed_url_raises_the_error_with_its_response
     handler = ->(path, base) { path.start_with?("/signed") ? [403, "signed denial"] : [200, report_document(base)] }
     route_server(handler) do |url, _|
-      document = client(url).open_report_document("d1", max_response_bytes: 6)
+      error = assert_raises(Peddler::Error) { client(url).open_report_document("d1") }
 
-      assert_equal(403, document.status)
-      assert_equal("signed", document.error_body)
-      assert_predicate(document, :error_body_truncated?)
+      assert_equal(403, error.status)
+      assert_equal("signed denial", error.response.body)
+      refute_match(/SIGNED_SECRET|127\.0\.0\.1/, error.message)
     end
   end
 
@@ -227,8 +227,7 @@ class WorkflowsTest < NativeTest
       type = "text/tab-separated-values; charset=UTF-8"
       uploaded = client(url).create_and_upload_feed_document(io, content_type: type, content_length: payload.bytesize)
 
-      assert_equal("fd/1", uploaded.document_id)
-      assert_equal(200, uploaded.response.status)
+      assert_equal("fd/1", uploaded)
       create, put = requests.call
 
       assert_equal(["POST", "/feeds/2021-06-30/documents"], [create[3], create[0]])
@@ -245,7 +244,7 @@ class WorkflowsTest < NativeTest
 
   def test_string_source_and_invalid_metadata_never_read_the_source
     route_server(feed_handler) do |url, _|
-      assert_equal(200, client(url).create_and_upload_feed_document("<x/>", content_type: "text/xml").response.status)
+      assert_equal("fd/1", client(url).create_and_upload_feed_document("<x/>", content_type: "text/xml"))
     end
     bodies = [
       { create_body: '{"feedDocumentId":"fd1","url":""}' },
@@ -284,14 +283,13 @@ class WorkflowsTest < NativeTest
     assert_raises(ArgumentError) { instance.create_and_upload_feed_document("x", content_type: "text/xml", bogus: 1) }
   end
 
-  def test_upload_rejection_is_returned_and_failure_retains_the_document_id
+  def test_upload_rejection_raises_and_failure_retains_the_document_id
     route_server(feed_handler(upload_status: 403, upload_body: "upload denied")) do |url, requests|
-      uploaded = client(url).create_and_upload_feed_document("x", content_type: "text/xml", max_response_bytes: 6)
+      error = assert_raises(Peddler::Error) { client(url).create_and_upload_feed_document("x", content_type: "text/xml") }
 
-      assert_equal("fd/1", uploaded.document_id)
-      assert_equal(403, uploaded.response.status)
-      assert_equal("upload", uploaded.response.body)
-      assert_predicate(uploaded.response, :body_truncated?)
+      assert_equal(403, error.status)
+      assert_equal("upload denied", error.response.body)
+      refute_match(/SIGNED_SECRET/, error.full_message(highlight: false))
       assert_equal(2, requests.call.size, "neither mutation retried")
     end
     route_server(feed_handler) do |url, _|

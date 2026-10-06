@@ -17,7 +17,7 @@ class PeddlerTest < Minitest::Test
 
   def test_public_classes_live_at_the_root
     [
-      :Client, :Response, :Error, :LWA, :Document, :Pagination, :Continuation, :FeedDocumentUpload, :TransportError,
+      :Client, :Response, :Error, :LWA, :Document, :Pagination, :Continuation, :TransportError,
       :TimeoutError, :AuthenticationError, :ForkError, :DocumentError, :DocumentTimeoutError, :PaginationError,
       :WorkflowError, :WorkflowTimeoutError,
     ].each { |name| assert(Peddler.const_defined?(name, false), "Peddler::#{name} is missing") }

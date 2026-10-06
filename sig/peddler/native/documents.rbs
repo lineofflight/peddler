@@ -2,11 +2,8 @@ module Peddler
   class Document
     @handle: Native::DocumentHandle
     def initialize: (Native::DocumentHandle handle) -> void
-    def status: () -> Integer
     def headers: () -> Array[[String, String]]
     def charset: () -> String?
-    def error_body: () -> String?
-    def error_body_truncated?: () -> bool
     def close: () -> void
     def closed?: () -> bool
     def inspect: () -> String
@@ -27,8 +24,6 @@ module Peddler
     UINT64_MAX: Integer
     def self.valid_utf8_string?: (untyped value) -> bool
 
-    type document_parts = [Integer, Array[[String, String]], String, error_metadata?, bool]
-
     module TransferConfig
       def self.json: (Hash[Symbol, untyped] options) -> String
     end
@@ -42,8 +37,6 @@ module Peddler
       def status: () -> Integer
       def headers: () -> Array[[String, String]]
       def charset: () -> String?
-      def error_body: () -> String?
-      def error_body_truncated?: () -> bool
       def close: () -> void
       def closed?: () -> bool
       def next_row: (String mode, bool consistent_fields, String? charset) -> untyped
@@ -53,7 +46,7 @@ module Peddler
     class UploadHandle
       def completed?: () -> bool
       def push: (String chunk) -> bool
-      def finish: () -> document_parts
+      def finish: () -> response_parts
       def close: () -> void
     end
 

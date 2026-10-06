@@ -49,14 +49,6 @@ impl Default for WaitOptions {
     }
 }
 
-/// A created feed document and the raw reply to its upload. The upload reply may
-/// be a non-success status; inspect it. `createFeed` is never called.
-#[derive(Debug)]
-pub struct FeedDocumentUpload {
-    pub document_id: String,
-    pub response: UploadResponse,
-}
-
 /// A created feed document awaiting its upload. Debug hides the signed URL.
 pub struct FeedDocumentTarget {
     client: documents::DocumentClient,
@@ -75,13 +67,13 @@ impl fmt::Debug for FeedDocumentTarget {
 impl FeedDocumentTarget {
     /// Upload to the signed URL with the Content-Type given at creation, within
     /// the time left of the deadline that began at creation. The source is first
-    /// polled here, never before valid metadata exists. Not retried. A non-success
-    /// reply is returned as the raw response, not as an error.
+    /// polled here, never before valid metadata exists. Not retried. A reply outside
+    /// 2xx is [`documents::Error::Rejected`] in [`WorkflowError::Upload`].
     pub async fn upload<S, E>(
         self,
         source: S,
         mut options: UploadOptions,
-    ) -> Result<FeedDocumentUpload, WorkflowError>
+    ) -> Result<UploadResponse, WorkflowError>
     where
         S: Stream<Item = Result<Bytes, E>> + Send + 'static,
         E: Send + 'static,
@@ -100,11 +92,7 @@ impl FeedDocumentTarget {
         options.content_type = content_type;
         options.transfer.timeout =
             remaining(deadline).map_err(|_| failed(documents::Error::Timeout))?;
-        let response = client.upload(&url, source, options).await.map_err(failed)?;
-        Ok(FeedDocumentUpload {
-            document_id,
-            response,
-        })
+        client.upload(&url, source, options).await.map_err(failed)
     }
 }
 
@@ -124,7 +112,7 @@ pub enum WorkflowError {
     /// Caller compression contradicts what the metadata declares.
     CompressionConflict,
     Timeout,
-    /// Download failed to start.
+    /// Download failed to start, or its signed URL answered outside 2xx.
     Document(documents::Error),
     /// Upload failed after the feed document was created.
     Upload {
@@ -416,21 +404,22 @@ impl Workflows {
     }
 
     /// Create a feed document with exactly `content_type`, then upload the source
-    /// to its signed URL with the same Content-Type. See [`Self::create_feed_document`].
+    /// to its signed URL with the same Content-Type, and return the feed document
+    /// ID. `createFeed` is never called. See [`Self::create_feed_document`].
     pub async fn create_and_upload_feed_document<S, E>(
         &self,
         content_type: &str,
         source: S,
         options: UploadOptions,
-    ) -> Result<FeedDocumentUpload, WorkflowError>
+    ) -> Result<String, WorkflowError>
     where
         S: Stream<Item = Result<Bytes, E>> + Send + 'static,
         E: Send + 'static,
     {
-        self.create_feed_document(content_type, &options)
-            .await?
-            .upload(source, options)
-            .await
+        let target = self.create_feed_document(content_type, &options).await?;
+        let document_id = target.document_id.clone();
+        target.upload(source, options).await?;
+        Ok(document_id)
     }
 
     /// Only create the feed document. `options` are validated and their transfer

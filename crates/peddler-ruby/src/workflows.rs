@@ -1,6 +1,6 @@
 //! Document ID lifecycle helpers. Metadata, polling and transfer start run in Rust
 //! under one deadline; Ruby wraps the owned outputs and feeds upload chunks.
-use super::{Completed, Engine, ResponseParts, documents, gvl, native_error, peddler_const};
+use super::{Completed, Engine, ResponseParts, documents, gvl, native_error};
 use documents::{Config, Document, Upload};
 use magnus::{Error, RClass, Ruby, method, prelude::*, typed_data::Obj};
 use peddler::{
@@ -14,20 +14,9 @@ fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
     match error {
         WorkflowError::InvalidConfig => Error::new(ruby.exception_arg_error(), message),
         WorkflowError::Request(error) => super::transport_error(ruby, error),
-        WorkflowError::Http(response) => {
-            let completed = Completed::new(response);
-            if completed.metadata.is_none() {
-                return native_error(ruby, "WorkflowError", &message);
-            }
-            // An HTTP error from a metadata lookup raises as any failed API response does.
-            let parts = completed.into_parts(ruby);
-            let raised = peddler_const::<RClass>(ruby, "Response")
-                .and_then(|class| class.funcall::<_, _, magnus::Value>("from_parts", (parts,)));
-            match raised {
-                Ok(_) => native_error(ruby, "WorkflowError", &message),
-                Err(error) => error,
-            }
-        }
+        // An HTTP error from a metadata lookup raises as any failed API response does.
+        WorkflowError::Http(response) => super::api_error(ruby, response)
+            .unwrap_or_else(|| native_error(ruby, "WorkflowError", &message)),
         WorkflowError::Timeout => native_error(ruby, "WorkflowTimeoutError", &message),
         WorkflowError::Document(error) | WorkflowError::Upload { error, .. } => {
             documents::error(ruby, error)
@@ -115,7 +104,7 @@ fn start_feed_upload(
     let id = target.document_id.clone();
     Upload::spawn(shared, Some(id), move |source| async move {
         match target.upload(source, options).await {
-            Ok(uploaded) => Ok(uploaded.response),
+            Ok(response) => Ok(response),
             Err(WorkflowError::Upload { error, .. }) => Err(error),
             Err(_) => Err(DocumentError::Transport),
         }

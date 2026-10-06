@@ -1,5 +1,5 @@
 //! Native document handles: owned streams, shared runtime and bounded uploads.
-use super::{Completed, Engine, ForkOwned, Response, Shared, gvl, native_error};
+use super::{Completed, Engine, ForkOwned, Response, ResponseParts, Shared, gvl, native_error};
 use bytes::Bytes;
 use futures_util::{FutureExt, StreamExt};
 use magnus::{Error, IntoValue, RClass, RModule, RString, Ruby, method, prelude::*};
@@ -24,6 +24,16 @@ pub(super) fn error(ruby: &Ruby, error: DocumentError) -> Error {
             Error::new(ruby.exception_arg_error(), message)
         }
         DocumentError::Timeout => native_error(ruby, "DocumentTimeoutError", &message),
+        // A rejected transfer raises as any failed API response does.
+        DocumentError::Rejected(rejection) => {
+            let response = Response {
+                status: rejection.status,
+                headers: headers(&rejection.headers),
+                body: rejection.body,
+            };
+            super::api_error(ruby, response)
+                .unwrap_or_else(|| native_error(ruby, "DocumentError", &message))
+        }
         _ => native_error(ruby, "DocumentError", &message),
     }
 }
@@ -104,8 +114,6 @@ struct DocumentOwner {
     status: u16,
     headers: Vec<(String, String)>,
     charset: Option<String>,
-    error_body: Option<Vec<u8>>,
-    truncated: bool,
 }
 #[magnus::wrap(class = "Peddler::Native::DocumentHandle", free_immediately)]
 pub(super) struct Document(ForkOwned<DocumentOwner>);
@@ -160,8 +168,6 @@ impl Document {
             status: download.status(),
             headers: headers(download.headers()),
             charset: download.charset(),
-            error_body: download.error_body().map(<[u8]>::to_vec),
-            truncated: download.error_body_truncated(),
             shared,
             stream: Arc::new(Mutex::new(StreamState::Fresh(Box::new(download)))),
             close_signal: Arc::new(Notify::new()),
@@ -186,16 +192,6 @@ impl Document {
     }
     fn charset(ruby: &Ruby, document: &Self) -> Result<Option<String>, Error> {
         Ok(document.0.get(ruby)?.charset.clone())
-    }
-    fn error_body(ruby: &Ruby, document: &Self) -> Result<Option<RString>, Error> {
-        let owner = document.0.get(ruby)?;
-        Ok(owner
-            .error_body
-            .as_ref()
-            .map(|bytes| ruby.str_from_slice(bytes)))
-    }
-    fn truncated(ruby: &Ruby, document: &Self) -> Result<bool, Error> {
-        Ok(document.0.get(ruby)?.truncated)
     }
     fn take(ruby: &Ruby, owner: &DocumentOwner) -> Result<(ReadLease, StreamState), Error> {
         let mut state = owner.stream.lock().unwrap();
@@ -343,13 +339,6 @@ impl Completion {
 }
 pub(super) type UploadSource =
     std::pin::Pin<Box<dyn futures_util::Stream<Item = Result<Bytes, ()>> + Send + 'static>>;
-type UploadParts = (
-    u16,
-    Vec<(String, String)>,
-    RString,
-    Option<super::ErrorMetadata>,
-    bool,
-);
 struct UploadOwner {
     shared: &'static Shared,
     document_id: Option<String>,
@@ -470,7 +459,7 @@ impl Upload {
             }
         })
     }
-    fn finish(ruby: &Ruby, upload: &Self) -> Result<UploadParts, Error> {
+    fn finish(ruby: &Ruby, upload: &Self) -> Result<ResponseParts, Error> {
         let owner = upload.0.get(ruby)?;
         let sender = owner.sender.lock().unwrap().take();
         drop(sender);
@@ -483,14 +472,12 @@ impl Upload {
             }
         })?
         .map_err(|e| error(ruby, e))?;
-        let truncated = response.body_truncated;
         let completed = Completed::new(Response {
             status: response.status,
             headers: headers(&response.headers),
             body: response.body,
         });
-        let (status, headers, body, metadata) = completed.into_parts(ruby);
-        Ok((status, headers, body, metadata, truncated))
+        Ok(completed.into_parts(ruby))
     }
     fn close(ruby: &Ruby, upload: &Self) -> Result<(), Error> {
         let owner = upload.0.get(ruby)?;
@@ -510,8 +497,6 @@ pub(super) fn init(ruby: &Ruby, native: RModule, engine: RClass) -> Result<(), E
     document.define_method("status", method!(Document::status, 0))?;
     document.define_method("headers", method!(Document::headers, 0))?;
     document.define_method("charset", method!(Document::charset, 0))?;
-    document.define_method("error_body", method!(Document::error_body, 0))?;
-    document.define_method("error_body_truncated?", method!(Document::truncated, 0))?;
     document.define_method("next_row", method!(Document::next, 3))?;
     document.define_method("json", method!(Document::json, 1))?;
     let upload = native.define_class("UploadHandle", ruby.class_object())?;

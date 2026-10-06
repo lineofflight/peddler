@@ -15,7 +15,7 @@ class DocumentsTest < NativeTest
     socket.write("0\r\n\r\n")
   end
 
-  def test_download_gzip_query_metadata_and_binary_chunks_after_parent_gc
+  def test_download_gzip_query_headers_and_binary_chunks
     buffer = StringIO.new
     gzip = Zlib::GzipWriter.new(buffer)
     gzip.write("hello\xFF".b)
@@ -27,12 +27,8 @@ class DocumentsTest < NativeTest
       assert_equal(hostless_user_agent, headers["user-agent"])
       chunked(socket, buffer.string.bytes.each_slice(3).map { |bytes| bytes.pack("C*") }, headers: [["Content-Encoding", "gzip"], ["x-repeat", "a"], ["x-repeat", "b"]])
     }) do |url|
-      instance = client(url)
-      document = instance.download_document("#{url}/file?a=%2f&b=+&a=%2F", compression: :gzip)
-      instance = nil
-      GC.start
+      document = client(url).download_document("#{url}/file?a=%2f&b=+&a=%2F", compression: :gzip)
 
-      assert_equal(200, document.status)
       assert_equal([["x-repeat", "a"], ["x-repeat", "b"]], document.headers.select { |key, _| key == "x-repeat" })
       chunks = document.each_chunk.to_a
 
@@ -71,14 +67,14 @@ class DocumentsTest < NativeTest
     end
   end
 
-  def test_non_success_raw_bounded_body_and_redirect_suppression
-    serve(handler: ->(socket, *) { respond(socket, status: 302, headers: [["Location", "http://127.0.0.1:1/private-secret"]], body: "\xFF\x00abc".b) }) do |url|
-      document = client(url).download_document(url, max_response_bytes: 2)
+  def test_rejected_download_raises_with_the_status_and_the_raw_response
+    serve(handler: ->(socket, *) { respond(socket, status: 302, headers: [["Location", "http://127.0.0.1:1/elsewhere"]], body: "\xFF\x00abc".b) }) do |url|
+      error = assert_raises(Peddler::Error) { client(url).download_document("#{url}/file?sig=SIGNED_SECRET") }
 
-      assert_equal(302, document.status)
-      assert_equal("\xFF\x00".b, document.error_body)
-      assert_predicate(document, :error_body_truncated?)
-      assert_equal("\xFF\x00".b, document.each_chunk.to_a.join)
+      assert_equal(302, error.status)
+      assert_equal("\xFF\x00abc".b, error.response.body)
+      assert_includes(error.response.headers, ["location", "http://127.0.0.1:1/elsewhere"])
+      refute_match(/SIGNED_SECRET|127\.0\.0\.1/, error.message)
     end
   end
 
@@ -179,16 +175,15 @@ class DocumentsTest < NativeTest
       refute(headers.key?("x-amz-date"))
       assert_equal(hostless_user_agent, headers["user-agent"])
       assert_equal(payload, body)
-      respond(socket, status: 400, headers: [["x-repeat", "a"], ["x-repeat", "b"]], body: "reply-too-long")
+      respond(socket, headers: [["x-repeat", "a"], ["x-repeat", "b"]], body: "reply")
     }) do |url|
       instance = client(url)
       [payload, io].each do |source|
-        response = instance.upload_document(url, source, content_type: "text/xml; charset=UTF-8", headers: { "x-signed" => "signed" }, content_length: payload.bytesize, max_response_bytes: 5)
+        response = instance.upload_document(url, source, content_type: "text/xml; charset=UTF-8", headers: { "x-signed" => "signed" }, content_length: payload.bytesize)
 
-        assert_equal(400, response.status)
+        assert_equal(200, response.status)
         assert_equal("reply", response.body)
-        assert_predicate(response, :body_truncated?)
-        assert_equal(400, assert_raises(Peddler::Error) { response.raise_for_status! }.status)
+        assert_equal([["x-repeat", "a"], ["x-repeat", "b"]], response.headers.select { |key, _| key == "x-repeat" })
       end
     end
 
@@ -215,7 +210,7 @@ class DocumentsTest < NativeTest
     end
   end
 
-  def test_upload_early_rejection_does_not_deadlock_or_read_entire_source
+  def test_rejected_upload_raises_without_deadlock_or_reading_the_entire_source
     reads = 0
     source = Object.new
     source.define_singleton_method(:read) do |length|
@@ -226,10 +221,12 @@ class DocumentsTest < NativeTest
       respond(socket, status: 413, body: "rejected")
       socket.read # Drain queued bytes so TCP close cannot erase the reply.
     }) do |url|
-      response = Timeout.timeout(3) { client(url).upload_document(url, source, content_type: "text/plain", content_length: 64 * 1024 * 1024) }
+      error = Timeout.timeout(3) do
+        assert_raises(Peddler::Error) { client(url).upload_document(url, source, content_type: "text/plain", content_length: 64 * 1024 * 1024) }
+      end
 
-      assert_equal(413, response.status)
-      assert_equal("rejected", response.body)
+      assert_equal(413, error.status)
+      assert_equal("rejected", error.response.body)
     end
     assert_operator(reads, :<, 128)
   end

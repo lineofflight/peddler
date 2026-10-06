@@ -224,7 +224,7 @@ async fn invalid_transfer_options_fail_before_any_request() {
 }
 
 #[tokio::test]
-async fn transfer_non_success_and_limits_keep_download_semantics() {
+async fn a_rejected_signed_url_is_the_document_error_with_its_reply() {
     let server = serve(|_, request, base| {
         if request.starts_with("GET /signed") {
             http(403, "", b"signed denial")
@@ -233,20 +233,21 @@ async fn transfer_non_success_and_limits_keep_download_semantics() {
         }
     })
     .await;
-    let download = client(&server.url)
+    let error = client(&server.url)
         .workflows()
-        .download_report_document(
-            "d1",
-            TransferOptions {
-                max_response_bytes: 6,
-                ..Default::default()
-            },
-        )
+        .download_report_document("d1", TransferOptions::default())
         .await
-        .unwrap();
-    assert_eq!(download.status(), 403);
-    assert_eq!(download.error_body(), Some(&b"signed"[..]));
-    assert!(download.error_body_truncated());
+        .unwrap_err();
+    let text = format!("{error} {error:?}");
+    assert!(
+        !text.contains("SIGNED_SECRET") && !text.contains("signed denial"),
+        "{text}"
+    );
+    let WorkflowError::Document(DocumentError::Rejected(rejection)) = error else {
+        panic!("{text}");
+    };
+    assert_eq!(rejection.status, 403);
+    assert_eq!(rejection.body, b"signed denial");
 }
 
 #[tokio::test]
@@ -540,8 +541,7 @@ async fn feed_document_is_created_then_uploaded_with_the_exact_type_and_bytes() 
         )
         .await
         .unwrap();
-    assert_eq!(uploaded.document_id, "fd/1");
-    assert_eq!(uploaded.response.status, 200);
+    assert_eq!(uploaded, "fd/1");
     let requests = server.requests();
     assert_eq!(requests.len(), 2);
     let lower = requests[0].to_lowercase();
@@ -634,14 +634,21 @@ async fn upload_rejection_and_failure_retain_the_document_id() {
         }
     })
     .await;
-    let uploaded = client(&server.url)
+    let error = client(&server.url)
         .workflows()
         .create_and_upload_feed_document("text/xml", chunks(&[b"x"]), UploadOptions::default())
         .await
-        .unwrap();
-    assert_eq!(uploaded.document_id, "fd9");
-    assert_eq!(uploaded.response.status, 403);
-    assert_eq!(uploaded.response.body, b"upload denied");
+        .unwrap_err();
+    assert_eq!(error.document_id(), Some("fd9"));
+    let WorkflowError::Upload {
+        error: DocumentError::Rejected(rejection),
+        ..
+    } = error
+    else {
+        panic!("{error:?}");
+    };
+    assert_eq!(rejection.status, 403);
+    assert_eq!(rejection.body, b"upload denied");
     assert_eq!(server.count("PUT /signed"), 1, "no retry");
     assert_eq!(server.count("POST /feeds"), 1, "no retry");
 
@@ -757,7 +764,7 @@ async fn create_and_upload_can_be_split_without_hiding_the_signed_url() {
     assert!(!format!("{target:?}").contains("SIGNED_SECRET"));
     assert_eq!(server.requests().len(), 1);
     let uploaded = target.upload(chunks(&[b"<x/>"]), options).await.unwrap();
-    assert_eq!(uploaded.response.status, 200);
+    assert_eq!(uploaded.status, 200);
     assert!(
         server.requests()[1]
             .to_lowercase()

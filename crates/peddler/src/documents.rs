@@ -34,8 +34,9 @@ use tokio_util::io::StreamReader;
 
 pub type DocumentStream<T> = Pin<Box<dyn Stream<Item = Result<T, Error>> + Send + 'static>>;
 
-/// Errors never retain caller errors, URLs, headers, or document contents.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+/// Errors never retain caller errors, URLs or document contents. A rejection keeps
+/// the reply of the signed URL.
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Error {
     InvalidConfig,
     InvalidUrl,
@@ -49,7 +50,8 @@ pub enum Error {
     RecordLimit,
     RowLimit,
     Format,
-    Status,
+    /// The signed URL answered outside 2xx.
+    Rejected(Box<Rejection>),
     UploadSource,
     LengthMismatch,
 }
@@ -68,13 +70,29 @@ impl fmt::Display for Error {
             Self::RecordLimit => "document record limit exceeded",
             Self::RowLimit => "document row limit exceeded",
             Self::Format => "invalid document format",
-            Self::Status => "document response was not successful",
+            Self::Rejected(_) => "document response was not successful",
             Self::UploadSource => "document upload source failed",
             Self::LengthMismatch => "document upload length mismatch",
         })
     }
 }
 impl std::error::Error for Error {}
+
+/// What a signed URL answered outside 2xx. The body is raw and cut at
+/// `TransferOptions::max_response_bytes`. Debug shows the status only.
+#[derive(Clone, PartialEq, Eq)]
+pub struct Rejection {
+    pub status: u16,
+    pub headers: HeaderMap,
+    pub body: Vec<u8>,
+}
+impl fmt::Debug for Rejection {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("Rejection")
+            .field("status", &self.status)
+            .finish_non_exhaustive()
+    }
+}
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum Compression {
@@ -94,7 +112,7 @@ pub struct TransferOptions {
     pub max_bytes: u64,
     pub max_record_bytes: usize,
     pub max_records: u64,
-    /// Non-success responses are raw, bounded, and may be truncated.
+    /// Ceiling on the body kept of an upload reply or of a rejection.
     pub max_response_bytes: usize,
 }
 impl Default for TransferOptions {
@@ -164,12 +182,11 @@ impl crate::Client {
     }
 }
 
+/// A document whose signed URL answered inside 2xx.
 pub struct Download {
     status: u16,
     headers: HeaderMap,
     body: DocumentStream<Bytes>,
-    error_body: Option<Bytes>,
-    error_body_truncated: bool,
     options: TransferOptions,
     deadline: Instant,
 }
@@ -187,12 +204,6 @@ impl Download {
     pub fn headers(&self) -> &HeaderMap {
         &self.headers
     }
-    pub fn error_body(&self) -> Option<&[u8]> {
-        self.error_body.as_deref()
-    }
-    pub fn error_body_truncated(&self) -> bool {
-        self.error_body_truncated
-    }
     /// The `charset` parameter of the response `Content-Type`, as sent.
     pub fn charset(&self) -> Option<String> {
         header_charset(&self.headers)
@@ -200,17 +211,9 @@ impl Download {
     pub fn into_chunks(self) -> DocumentStream<Bytes> {
         self.body
     }
-    fn success(&self) -> Result<(), Error> {
-        if (200..300).contains(&self.status) {
-            Ok(())
-        } else {
-            Err(Error::Status)
-        }
-    }
 
     /// Buffered whole JSON, distinct from streaming JSONL. `max_bytes` is required.
     pub async fn json(mut self, max_bytes: usize) -> Result<serde_json::Value, Error> {
-        self.success()?;
         if max_bytes == 0 {
             return Err(Error::InvalidConfig);
         }
@@ -227,7 +230,6 @@ impl Download {
     /// Whitespace-only JSONL lines are skipped and don't count toward max_records.
     pub fn into_jsonl(mut self) -> DocumentStream<serde_json::Value> {
         Box::pin(async_stream::try_stream! {
-            self.success()?;
             let mut record = Vec::new();
             let mut rows = 0;
             while let Some(chunk) = self.body.next().await {
@@ -288,7 +290,6 @@ impl Download {
         charset: Option<String>,
     ) -> DocumentStream<Vec<String>> {
         Box::pin(async_stream::try_stream! {
-            self.success()?;
             let mut decoder = match charset.as_deref() {
                 Some(label) => resolve_charset(label)?.new_decoder_with_bom_removal(),
                 None => encoding_rs::UTF_8.new_decoder_with_bom_removal(),
@@ -350,12 +351,12 @@ impl Download {
     }
 }
 
-/// Upload replies are always bounded raw bytes, including non-success statuses.
+/// The reply to an upload the signed URL accepted. The body is raw and cut at
+/// `TransferOptions::max_response_bytes`.
 pub struct UploadResponse {
     pub status: u16,
     pub headers: HeaderMap,
     pub body: Vec<u8>,
-    pub body_truncated: bool,
 }
 impl fmt::Debug for UploadResponse {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -366,6 +367,7 @@ impl fmt::Debug for UploadResponse {
 }
 
 impl DocumentClient {
+    /// A status outside 2xx is [`Error::Rejected`].
     pub async fn download(&self, url: &str, options: TransferOptions) -> Result<Download, Error> {
         let deadline = options.deadline()?;
         let url = signed_url(url)?;
@@ -373,24 +375,9 @@ impl DocumentClient {
             .await
             .map_err(|_| Error::Timeout)?
             .map_err(transport)?;
+        let response = accepted(response, deadline, options.max_response_bytes).await?;
         let status = response.status().as_u16();
         let headers = response.headers().clone();
-        if !(200..300).contains(&status) {
-            let (body, truncated) =
-                bounded_response(response, deadline, options.max_response_bytes).await?;
-            let body = Bytes::from(body);
-            return Ok(Download {
-                status,
-                headers,
-                body: Box::pin(futures_util::stream::once(std::future::ready(Ok(
-                    body.clone()
-                )))),
-                error_body: Some(body),
-                error_body_truncated: truncated,
-                options,
-                deadline,
-            });
-        }
         let gzip = encoding(&headers, options.compression)?;
         let source = response
             .bytes_stream()
@@ -408,14 +395,13 @@ impl DocumentClient {
             status,
             headers,
             body,
-            error_body: None,
-            error_body_truncated: false,
             options,
             deadline,
         })
     }
 
     /// PUT a caller-owned byte stream. Caller errors are discarded, never chained.
+    /// A status outside 2xx is [`Error::Rejected`].
     pub async fn upload<S, E>(
         &self,
         url: &str,
@@ -450,7 +436,7 @@ impl DocumentClient {
         let length = options.content_length;
         let max_bytes = options.transfer.max_bytes;
         let body = async_stream::stream! {
-            let fail = |error| -> Result<Bytes, Error> { let _ = failed.set(error); Err(error) };
+            let fail = |error: Error| -> Result<Bytes, Error> { let _ = failed.set(error.clone()); Err(error) };
             loop {
                 let next = match timeout_at(deadline, source.next()).await {
                     Ok(next) => next,
@@ -503,23 +489,20 @@ impl DocumentClient {
             .await
             .map_err(|_| Error::Timeout)?;
         if let Some(error) = failure.get() {
-            return Err(*error);
+            return Err(error.clone());
         }
-        let response = result.map_err(transport)?;
-        if response.status().is_success()
-            && length.is_some_and(|length| count.load(Ordering::SeqCst) != length)
-        {
+        let ceiling = options.transfer.max_response_bytes;
+        let response = accepted(result.map_err(transport)?, deadline, ceiling).await?;
+        if length.is_some_and(|length| count.load(Ordering::SeqCst) != length) {
             return Err(Error::LengthMismatch);
         }
         let status = response.status().as_u16();
         let headers = response.headers().clone();
-        let (body, body_truncated) =
-            bounded_response(response, deadline, options.transfer.max_response_bytes).await?;
+        let body = bounded_response(response, deadline, ceiling).await?;
         Ok(UploadResponse {
             status,
             headers,
             body,
-            body_truncated,
         })
     }
 }
@@ -644,7 +627,7 @@ fn read_chunks(
             let available = (ceiling.saturating_sub(total)).saturating_add(1).min(buffer.len() as u64) as usize;
             let result = timeout_at(deadline, reader.read(&mut buffer[..available])).await.map_err(|_| Error::Timeout)?;
             let read = result.map_err(|error| {
-                error.get_ref().and_then(|inner| inner.downcast_ref::<Error>()).copied().unwrap_or(if gzip { Error::Compression } else { Error::Transport })
+                error.get_ref().and_then(|inner| inner.downcast_ref::<Error>()).cloned().unwrap_or(if gzip { Error::Compression } else { Error::Transport })
             })?;
             check_deadline(deadline)?;
             if read == 0 { break; }
@@ -654,11 +637,31 @@ fn read_chunks(
         }
     })
 }
+/// The response if its status is inside 2xx. Otherwise the rejection, with the body
+/// read up to `ceiling`.
+async fn accepted(
+    response: reqwest::Response,
+    deadline: Instant,
+    ceiling: usize,
+) -> Result<reqwest::Response, Error> {
+    if response.status().is_success() {
+        return Ok(response);
+    }
+    let status = response.status().as_u16();
+    let headers = response.headers().clone();
+    let body = bounded_response(response, deadline, ceiling).await?;
+    Err(Error::Rejected(Box::new(Rejection {
+        status,
+        headers,
+        body,
+    })))
+}
+/// The first `ceiling` bytes of a body, raw.
 async fn bounded_response(
     response: reqwest::Response,
     deadline: Instant,
     ceiling: usize,
-) -> Result<(Vec<u8>, bool), Error> {
+) -> Result<Vec<u8>, Error> {
     let mut stream = response.bytes_stream();
     let mut body = Vec::new();
     loop {
@@ -669,7 +672,7 @@ async fn bounded_response(
             .transpose()
             .map_err(transport)?;
         let Some(chunk) = chunk else {
-            return Ok((body, false));
+            return Ok(body);
         };
         let remaining = ceiling - body.len();
         extend_bounded(
@@ -679,7 +682,7 @@ async fn bounded_response(
             Error::ByteLimit,
         )?;
         if chunk.len() > remaining {
-            return Ok((body, true));
+            return Ok(body);
         }
     }
 }
@@ -689,10 +692,10 @@ fn extend_bounded(
     ceiling: usize,
     error: Error,
 ) -> Result<(), Error> {
-    let length = bytes.len().checked_add(more.len()).ok_or(error)?;
-    if length > ceiling {
+    let length = bytes.len().checked_add(more.len());
+    let Some(length) = length.filter(|length| *length <= ceiling) else {
         return Err(error);
-    }
+    };
     if length > bytes.capacity() {
         let capacity = bytes
             .capacity()
@@ -762,8 +765,6 @@ mod tests {
                 Ok(Bytes::from_static(b"\n \n\t\n")),
                 Ok(Bytes::from_static(b"{\"a\":1}\n")),
             ])),
-            error_body: None,
-            error_body_truncated: false,
             options: TransferOptions::default(),
             deadline: Instant::now() + Duration::from_secs(30),
         };
@@ -784,8 +785,6 @@ mod tests {
                 Ok(Bytes::from_static(b"\n\n\n")),
                 Ok(Bytes::from_static(b"a\tb\n")),
             ])),
-            error_body: None,
-            error_body_truncated: false,
             options: TransferOptions::default(),
             deadline: Instant::now() + Duration::from_secs(30),
         };
