@@ -323,35 +323,6 @@ async fn upload_preserves_content_type_and_signed_headers() {
 }
 
 #[tokio::test]
-async fn upload_rejects_auth_and_framing_headers() {
-    for header in [
-        "x-amz-access-token",
-        "authorization",
-        "content-length",
-        "transfer-encoding",
-        "host",
-        "content-type",
-    ] {
-        let options = UploadOptions {
-            headers: vec![(header.into(), "secret".into())],
-            ..Default::default()
-        };
-        assert_eq!(
-            client("https://example.com")
-                .documents()
-                .upload(
-                    "https://example.com/secret",
-                    stream::empty::<Result<Bytes, io::Error>>(),
-                    options
-                )
-                .await
-                .unwrap_err(),
-            Error::InvalidHeader
-        );
-    }
-}
-
-#[tokio::test]
 async fn gzip_header_and_metadata_decode_exactly_once_and_enforce_output_limit() {
     for compression in [Compression::Auto, Compression::Gzip] {
         let url = chunked(GZIP.chunks(1), "Content-Encoding: gzip\r\n").await;

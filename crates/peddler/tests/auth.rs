@@ -200,25 +200,14 @@ async fn validates_inputs_and_every_required_response_field() {
         );
     }
     let client = LwaClient::with_config("id", "secret", "http://127.0.0.1:1", second).unwrap();
-    for (code, redirect) in [
-        ("", None),
-        (" ", None),
-        ("code", Some("relative")),
-        ("code", Some("http:127.0.0.1:1")),
-        ("code", Some("http:///127.0.0.1:1")),
-        ("code", Some("https://example.com/#private")),
-        ("code", Some("https://private@example.com/")),
-        ("code", Some("https://example.com/white space")),
-    ] {
+    for blank in ["", " "] {
         assert_eq!(
             client
-                .exchange_authorization_code(code, redirect)
+                .exchange_authorization_code(blank, None)
                 .await
                 .unwrap_err(),
             AuthError::InvalidConfig
         );
-    }
-    for blank in ["", " "] {
         assert_eq!(
             client.refresh(blank).await.unwrap_err(),
             AuthError::InvalidConfig

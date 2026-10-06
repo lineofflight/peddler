@@ -744,23 +744,6 @@ fn upload_headers(options: &UploadOptions) -> Result<HeaderMap, Error> {
     );
     for (name, value) in &options.headers {
         let name = HeaderName::from_bytes(name.as_bytes()).map_err(|_| Error::InvalidHeader)?;
-        if matches!(
-            name.as_str(),
-            "authorization"
-                | "proxy-authorization"
-                | "x-amz-access-token"
-                | "content-length"
-                | "transfer-encoding"
-                | "host"
-                | "content-type"
-                | "connection"
-                | "trailer"
-                | "te"
-                | "upgrade"
-                | "expect"
-        ) {
-            return Err(Error::InvalidHeader);
-        }
         headers.append(
             name,
             HeaderValue::from_str(value).map_err(|_| Error::InvalidHeader)?,

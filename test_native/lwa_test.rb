@@ -58,7 +58,6 @@ class LwaTest < NativeTest
       -> { onboarding("http://127.0.0.1:1", timeout: 0) },
       -> { onboarding("http://127.0.0.1:1", lwa_endpoint: "https://secret@example.com") },
       -> { instance.exchange_authorization_code(code: "") },
-      -> { instance.exchange_authorization_code(code: "code", redirect_uri: "relative") },
       -> { instance.refresh(refresh_token: nil) },
       -> { instance.client_credentials(scope: " ") },
     ].each do |call|

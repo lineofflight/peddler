@@ -12,7 +12,6 @@ if File.exist?("#{__dir__}/generator.rb")
   loader.ignore("#{__dir__}/generator")
 end
 # The native layer loads eagerly below. Compiled extensions ship in lib/peddler/<ruby minor>/.
-loader.ignore("#{__dir__}/peddler/native.rb")
 loader.ignore("#{__dir__}/peddler/native")
 loader.ignore("#{__dir__}/peddler/[0-9]*")
 loader.setup

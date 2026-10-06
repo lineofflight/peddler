@@ -1,6 +1,6 @@
 //! The three Login with Amazon grants, one request each.
 use super::{AuthError, check_lifetime, check_token, endpoint, read_response, transport};
-use crate::{Pool, url};
+use crate::Pool;
 use reqwest::Url;
 use serde::Deserialize;
 use std::{fmt, sync::Arc, time::Duration};
@@ -126,9 +126,6 @@ impl LwaClient {
         if code.trim().is_empty() {
             return Err(AuthError::InvalidConfig);
         }
-        if let Some(uri) = redirect_uri {
-            validate_redirect_uri(uri)?;
-        }
         let mut fields = vec![
             ("grant_type", "authorization_code"),
             ("code", code),
@@ -174,13 +171,5 @@ impl LwaClient {
         })
         .await
         .map_err(|_| AuthError::Timeout)?
-    }
-}
-
-/// HTTP or HTTPS to any host, with a query if it has one.
-fn validate_redirect_uri(value: &str) -> Result<(), AuthError> {
-    match url::parse(value, &[]) {
-        Some(("http" | "https", _)) if url::well_escaped(value) => Ok(()),
-        _ => Err(AuthError::InvalidConfig),
     }
 }
