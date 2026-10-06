@@ -65,6 +65,28 @@ module Peddler
             (source.is_a?(String) || source.respond_to?(:read))
         end
 
+        # The declared length, or a String's own. A body without one goes out chunked.
+        def length(source, content_length)
+          content_length || (source.bytesize if source.is_a?(String))
+        end
+
+        # Uploads the source to a signed URL and returns the response
+        def put(engine, url, source, content_type, headers, content_length, transfer_options)
+          unless Native.valid_utf8_string?(url) && Native.valid_utf8_string?(content_type) && headers.is_a?(Hash) &&
+              headers.all? { |key, value| Native.valid_utf8_string?(key) && Native.valid_utf8_string?(value) } &&
+              valid?(source, content_length)
+            raise ArgumentError, "invalid document upload configuration"
+          end
+          upload = engine.start_document_upload(url, TransferConfig.json(transfer_options), content_type, headers.to_a,
+            length(source, content_length))
+          begin
+            drain(upload, source)
+            Response.from_parts(upload.finish)
+          ensure
+            upload.close
+          end
+        end
+
         # Feed an upload handle from a String or read(length) source until the source ends
         # or the transfer completes early. Source exceptions stay the cause of a fixed error.
         def drain(upload, source)
@@ -161,18 +183,7 @@ module Peddler
     # @return [Peddler::Response]
     # @raise [Peddler::Error] if the URL answers outside 2xx
     def upload_document(url, source, content_type:, headers: {}, content_length: nil, **transfer_options)
-      unless Native.valid_utf8_string?(url) && Native.valid_utf8_string?(content_type) && headers.is_a?(Hash) &&
-          headers.all? { |key, value| Native.valid_utf8_string?(key) && Native.valid_utf8_string?(value) } &&
-          Native::Uploads.valid?(source, content_length)
-        raise ArgumentError, "invalid document upload configuration"
-      end
-      upload = @engine.start_document_upload(url, Native::TransferConfig.json(transfer_options), content_type, headers.to_a, content_length)
-      begin
-        Native::Uploads.drain(upload, source)
-        Response.from_parts(upload.finish)
-      ensure
-        upload.close
-      end
+      Native::Uploads.put(@engine, url, source, content_type, headers, content_length, transfer_options)
     end
 
     private

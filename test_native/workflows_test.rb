@@ -127,6 +127,108 @@ class WorkflowsTest < NativeTest
     end
   end
 
+  # The v5 helpers. The signed paths answer plain, gzipped with the header, gzipped without it, or with a rejection.
+  def signed(path)
+    case path
+    when "/signed?sig=SIGNED_SECRET", "/plain" then [200, "report body"]
+    when "/gzip-header" then [200, GZIP, [["Content-Encoding", "gzip"]]]
+    when "/gzip" then [200, GZIP]
+    when "/denied" then [403, "signed denial"]
+    end
+  end
+
+  def assert_rejected(status)
+    error = assert_raises(Peddler::Error) { yield }
+
+    assert_equal(status, error.status)
+    refute_match(/SIGNED_SECRET|127\.0\.0\.1/, error.message)
+    error
+  end
+
+  def test_download_report_document_takes_an_id_or_a_url_and_returns_the_whole_body
+    handler = lambda do |path, base|
+      signed(path) || case path
+      when %r{/documents/plain\z} then [200, report_document(base)]
+      when %r{/documents/zipped\z} then [200, JSON.generate(reportDocumentId: "d1", url: "#{base}/gzip", compressionAlgorithm: "GZIP")]
+      else [404, '{"errors":[{"code":"NotFound","message":"Amazon says no"}]}']
+      end
+    end
+    route_server(handler) do |url, requests|
+      reports = client(url).reports
+
+      assert_instance_of(Peddler::Native::Reports20210630, client(url).reports_2021_06_30)
+      response = reports.download_report_document("plain")
+
+      assert_instance_of(Peddler::Response, response)
+      assert_equal([200, "report body"], [response.status, response.body])
+      assert_includes(response.headers, ["content-length", "11"])
+      assert_equal("{\"x\":1}\n", reports.download_report_document("zipped").body)
+      metadata, document = requests.call.last(2)
+
+      assert_equal("/reports/2021-06-30/documents/zipped", metadata[0])
+      assert_equal("local-secret", metadata[1]["x-amz-access-token"])
+      refute(document[1].key?("x-amz-access-token"))
+      assert_equal("report body", reports.download_report_document("#{url}/plain").body)
+      assert_equal({ "x" => 1 }, reports.download_report_document("#{url}/gzip-header").to_h)
+      assert_equal("signed denial", assert_rejected(403) { reports.download_report_document("#{url}/denied") }.response.body)
+      assert_equal("NotFound", assert_rejected(404) { reports.download_report_document("missing") }.code)
+    end
+  end
+
+  def test_upload_feed_document_puts_the_content_with_its_type_and_length
+    handler = ->(path, _) { path == "/denied" ? [403, "upload denied"] : [200, ""] }
+    route_server(handler) do |url, requests|
+      feeds = client(url).feeds
+
+      assert_instance_of(Peddler::Native::Feeds20210630, client(url).feeds_2021_06_30)
+      response = feeds.upload_feed_document("#{url}/signed?sig=SIGNED_SECRET", "<x>é</x>", "text/xml; charset=UTF-8")
+
+      assert_instance_of(Peddler::Response, response)
+      assert_equal(200, response.status)
+      path, headers, body, verb = requests.call.first
+
+      assert_equal(["PUT", "/signed?sig=SIGNED_SECRET", "<x>é</x>".b], [verb, path, body])
+      assert_equal(["text/xml; charset=UTF-8", "9"], headers.values_at("content-type", "content-length"))
+      refute(headers.key?("x-amz-access-token"))
+      assert_equal("upload denied", assert_rejected(403) { feeds.upload_feed_document("#{url}/denied", "<x/>", "text/xml") }.response.body)
+    end
+  end
+
+  def test_download_result_feed_document_returns_the_whole_body
+    route_server(->(path, _) { signed(path) }) do |url, requests|
+      feeds = client(url).feeds
+      response = feeds.download_result_feed_document("#{url}/gzip-header")
+
+      assert_instance_of(Peddler::Response, response)
+      assert_equal([200, "{\"x\":1}\n"], [response.status, response.body])
+      assert_equal("report body", feeds.download_result_feed_document("#{url}/plain").body)
+      refute(requests.call.any? { |_, headers, _| headers.key?("x-amz-access-token") })
+      assert_equal("signed denial", assert_rejected(403) { feeds.download_result_feed_document("#{url}/denied") }.response.body)
+    end
+  end
+
+  def test_download_query_document_takes_an_id_or_a_url_and_returns_the_whole_body
+    handler = lambda do |path, base|
+      signed(path) || case path
+      when %r{/documents/k1\z} then [200, JSON.generate(documentId: "k1", documentUrl: "#{base}/gzip-header")]
+      else [404, '{"errors":[{"code":"NotFound","message":"Amazon says no"}]}']
+      end
+    end
+    route_server(handler) do |url, requests|
+      kiosk = client(url).data_kiosk
+
+      assert_instance_of(Peddler::Native::DataKiosk20231115, client(url).data_kiosk_2023_11_15)
+      response = kiosk.download_query_document("k1")
+
+      assert_instance_of(Peddler::Response, response)
+      assert_equal([200, "{\"x\":1}\n"], [response.status, response.body])
+      assert_equal(["/dataKiosk/2023-11-15/documents/k1", "/gzip-header"], requests.call.map(&:first))
+      assert_equal("report body", kiosk.download_query_document("#{url}/plain").body)
+      assert_equal("signed denial", assert_rejected(403) { kiosk.download_query_document("#{url}/denied") }.response.body)
+      assert_equal("NotFound", assert_rejected(404) { kiosk.download_query_document("missing") }.code)
+    end
+  end
+
   def test_wait_polls_until_done_with_integer_and_float_options
     statuses = %w[IN_QUEUE IN_PROGRESS DONE]
     count = 0

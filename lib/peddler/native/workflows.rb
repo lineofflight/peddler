@@ -13,6 +13,73 @@ module Peddler
       def valid_identifier?(value)
         valid_utf8_string?(value) && !value.empty?
       end
+
+      # The whole document as a response, decompressed. A URL is downloaded as it is; an ID of the given kind is
+      # resolved through the API first.
+      def read_document(engine, kind, id_or_url)
+        raise ArgumentError, "invalid document identifier" unless valid_identifier?(id_or_url)
+
+        config = TransferConfig.json({})
+        handle = if kind.nil? || id_or_url.start_with?("http")
+          engine.download_document(id_or_url, config)
+        else
+          engine.download_workflow_document(kind, id_or_url, config)
+        end
+        begin
+          body = +"".b
+          while (chunk = handle.next_row("chunks", false, nil))
+            body << chunk
+          end
+          Response.new(handle.status, handle.headers, body)
+        ensure
+          handle.close
+        end
+      end
+    end
+
+    # The document helpers of v5, on the API views that had them. Each returns the whole body in a response and
+    # raises Peddler::Error when a request is rejected. The client's open_*_document methods stream instead.
+
+    class Reports20210630
+      # Downloads a report by its document ID or URL
+      #
+      # A report Amazon compresses is decompressed, so the body is the report content.
+      #
+      # @param [String] report_document_id_or_url the report document identifier or download URL
+      # @return [Peddler::Response] the response containing the report content
+      def download_report_document(report_document_id_or_url)
+        Native.read_document(@engine, "report", report_document_id_or_url)
+      end
+    end
+
+    class Feeds20210630
+      # Uploads feed content to the signed URL that `create_feed_document` returned
+      #
+      # @param [String] upload_url the signed URL from the `create_feed_document` response
+      # @param [String] feed_content the content to upload
+      # @param [String] content_type the content type requested in `create_feed_document`
+      # @return [Peddler::Response]
+      def upload_feed_document(upload_url, feed_content, content_type)
+        Uploads.put(@engine, upload_url, feed_content, content_type, {}, nil, {})
+      end
+
+      # Downloads the result of a processed feed from the signed URL that `get_feed_document` returned
+      #
+      # @param [String] download_url the signed URL from the `get_feed_document` response
+      # @return [Peddler::Response] the response containing the feed result document
+      def download_result_feed_document(download_url)
+        Native.read_document(@engine, nil, download_url)
+      end
+    end
+
+    class DataKiosk20231115
+      # Downloads a Data Kiosk document by its document ID or URL
+      #
+      # @param [String] document_id_or_url the document identifier or download URL
+      # @return [Peddler::Response] the response containing the document content
+      def download_query_document(document_id_or_url)
+        Native.read_document(@engine, "query", document_id_or_url)
+      end
     end
   end
 
@@ -49,7 +116,8 @@ module Peddler
       unless Native.valid_identifier?(content_type) && Native::Uploads.valid?(source, content_length)
         raise ArgumentError, "invalid document upload configuration"
       end
-      upload = @engine.start_feed_document_upload(content_type, Native::TransferConfig.json(transfer_options), content_length)
+      upload = @engine.start_feed_document_upload(content_type, Native::TransferConfig.json(transfer_options),
+        Native::Uploads.length(source, content_length))
       begin
         document_id = upload.document_id || raise(WorkflowError, "feed document unavailable")
         Native::Uploads.drain(upload, source)
