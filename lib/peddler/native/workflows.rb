@@ -29,15 +29,15 @@ module Peddler
   end
 
   class Client
-    def download_report_document(document_id, **transfer_options, &block)
+    def open_report_document(document_id, **transfer_options, &block)
       workflow_download("report", document_id, transfer_options, &block)
     end
 
-    def download_feed_document(document_id, **transfer_options, &block)
+    def open_feed_document(document_id, **transfer_options, &block)
       workflow_download("feed", document_id, transfer_options, &block)
     end
 
-    def download_query_document(document_id, **transfer_options, &block)
+    def open_query_document(document_id, **transfer_options, &block)
       workflow_download("query", document_id, transfer_options, &block)
     end
 

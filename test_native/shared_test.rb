@@ -47,7 +47,7 @@ class SharedTest < NativeTest
           -> { instance.orders_v0.get_order(order_id: "1") },
           -> { instance.with_access_token("child") },
           -> { instance.upload_document("#{url}/inherited", "x", content_type: "text/plain") },
-          -> { instance.download_report_document("d") },
+          -> { instance.open_report_document("d") },
           -> { instance.wait_for_report("r") },
           -> { instance.create_and_upload_feed_document("x", content_type: "text/xml") },
           -> { document.closed? },

@@ -34,7 +34,7 @@ class WorkflowsTest < NativeTest
   def test_report_document_authenticates_metadata_but_never_the_signed_url
     handler = ->(path, base) { [200, path.start_with?("/signed") ? "report body" : report_document(base)] }
     route_server(handler) do |url, requests|
-      document = client(url).download_report_document("a/b c")
+      document = client(url).open_report_document("a/b c")
 
       assert_equal("report body", document.each_chunk.to_a.join)
       metadata, signed = requests.call
@@ -57,8 +57,8 @@ class WorkflowsTest < NativeTest
     route_server(handler) do |url, requests|
       instance = client(url)
 
-      assert_equal("{\"x\":1}\n", instance.download_feed_document("f1").each_chunk.to_a.join)
-      assert_equal([{ "x" => 1 }], instance.download_query_document("k/1") { |document| document.each_jsonl.to_a })
+      assert_equal("{\"x\":1}\n", instance.open_feed_document("f1").each_chunk.to_a.join)
+      assert_equal([{ "x" => 1 }], instance.open_query_document("k/1") { |document| document.each_jsonl.to_a })
       paths = requests.call.map(&:first)
 
       assert_equal(["/feeds/2021-06-30/documents/f1", "/signed", "/dataKiosk/2023-11-15/documents/k%2F1", "/signed"], paths)
@@ -79,7 +79,7 @@ class WorkflowsTest < NativeTest
         [200, body.gsub("http://x", base)]
       end
       route_server(handler) do |url, requests|
-        error = assert_raises(error_class, name.to_s) { client(url).download_report_document("d1", **options) }
+        error = assert_raises(error_class, name.to_s) { client(url).open_report_document("d1", **options) }
 
         refute_match(/SIGNED_SECRET|127\.0\.0\.1/, error.full_message(highlight: false), name.to_s)
         assert_equal(1, requests.call.size, name.to_s)
@@ -90,7 +90,7 @@ class WorkflowsTest < NativeTest
   def test_metadata_http_error_raises_the_api_error_with_the_raw_response
     handler = ->(*) { [404, '{"errors":[{"code":"NotFound","message":"Amazon says no"}]}', [["x-amzn-requestid", "request-id"]]] }
     route_server(handler) do |url, requests|
-      error = assert_raises(Peddler::Error) { client(url).download_feed_document("d1") }
+      error = assert_raises(Peddler::Error) { client(url).open_feed_document("d1") }
 
       refute_kind_of(Peddler::WorkflowError, error)
       assert_equal(404, error.status)
@@ -105,10 +105,10 @@ class WorkflowsTest < NativeTest
 
   def test_invalid_arguments_fail_before_any_request
     instance = client("http://127.0.0.1:1")
-    assert_raises(ArgumentError) { instance.download_report_document("") }
-    assert_raises(ArgumentError) { instance.download_report_document(nil) }
-    assert_raises(ArgumentError) { instance.download_report_document("d1", max_bytes: 0) }
-    assert_raises(ArgumentError) { instance.download_report_document("d1", bogus: 1) }
+    assert_raises(ArgumentError) { instance.open_report_document("") }
+    assert_raises(ArgumentError) { instance.open_report_document(nil) }
+    assert_raises(ArgumentError) { instance.open_report_document("d1", max_bytes: 0) }
+    assert_raises(ArgumentError) { instance.open_report_document("d1", bogus: 1) }
     [0, -1, Float::NAN, Float::INFINITY, "5", nil].each do |value|
       assert_raises(ArgumentError, value.inspect) { instance.wait_for_report("r1", interval: value) }
       assert_raises(ArgumentError, value.inspect) { instance.wait_for_feed("f1", timeout: value) }
@@ -119,7 +119,7 @@ class WorkflowsTest < NativeTest
   def test_transfer_non_success_keeps_download_semantics_and_limits
     handler = ->(path, base) { path.start_with?("/signed") ? [403, "signed denial"] : [200, report_document(base)] }
     route_server(handler) do |url, _|
-      document = client(url).download_report_document("d1", max_response_bytes: 6)
+      document = client(url).open_report_document("d1", max_response_bytes: 6)
 
       assert_equal(403, document.status)
       assert_equal("signed", document.error_body)

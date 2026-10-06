@@ -31,12 +31,12 @@ module Peddler
   end
 
   class Client
-    def download_report_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
-                                | (String document_id, **untyped transfer_options) -> Document
-    def download_feed_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
-                              | (String document_id, **untyped transfer_options) -> Document
-    def download_query_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
-                               | (String document_id, **untyped transfer_options) -> Document
+    def open_report_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
+                            | (String document_id, **untyped transfer_options) -> Document
+    def open_feed_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
+                          | (String document_id, **untyped transfer_options) -> Document
+    def open_query_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
+                           | (String document_id, **untyped transfer_options) -> Document
     def wait_for_report: (String report_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Response
     def wait_for_feed: (String feed_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Response
     def wait_for_query: (String query_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Response
