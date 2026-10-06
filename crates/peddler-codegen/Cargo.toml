@@ -14,7 +14,6 @@ quote = "1"
 prettyplease = "=0.2.37"
 heck = "0.5"
 tempfile = "3"
-progenitor = { version = "=0.15.0", default-features = false }
 
 [dev-dependencies]
 peddler = { path = "../peddler" }

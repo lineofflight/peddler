@@ -10,8 +10,8 @@ FORBIDDEN = [
   %r{(\A|/)node_modules/}, %r{(\A|/)\.env}, %r{(\A|/)credentials(\.|/|\z)}, %r{test/config\.json\z},
   %r{\A\.superpowers/}, %r{\Atools/}, %r{\Alib/generator}, /\.(pem|key)\z/
 ].freeze
-CLOSURE = ["Cargo.lock", "crates/peddler-ruby/extconf.rb", "third_party/progenitor-impl/LICENSE"].freeze
-RUST = %r{\A(Cargo\.|crates/|third_party/)}
+CLOSURE = ["Cargo.lock", "crates/peddler-ruby/extconf.rb"].freeze
+RUST = %r{\A(Cargo\.|crates/)}
 BINARY = %r{\Alib/peddler/(\d+\.\d+/)?peddler_native\.(bundle|so)\z}
 
 abort("usage: ruby tools/gem_audit.rb pkg/peddler-*.gem") if ARGV.empty?

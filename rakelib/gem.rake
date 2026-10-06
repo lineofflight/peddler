@@ -21,7 +21,7 @@ if cargo
     ext.cross_platform = ["arm64-darwin", "x86_64-darwin", "aarch64-linux", "x86_64-linux"]
     ext.cross_compiling do |spec|
       # Platform gems carry binaries only; drop everything that exists for the Rust build.
-      spec.files.reject! { |file| file.match?(%r{\A(Cargo\.|crates/|third_party/)}) }
+      spec.files.reject! { |file| file.match?(%r{\A(Cargo\.|crates/)}) }
       spec.extensions.clear
       # Only glibc Linux is supported. A plain "-linux" gem would also be picked by musl hosts.
       if spec.platform.os == "linux" && spec.platform.version.nil?

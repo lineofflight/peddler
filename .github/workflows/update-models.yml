@@ -29,13 +29,6 @@ jobs:
           ruby-version: "4.0"
           bundler-cache: true
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: npm
-          cache-dependency-path: tools/openapi/package-lock.json
-
       - name: Set up Rust
         run: |
           rustup toolchain install stable --profile minimal
@@ -43,10 +36,10 @@ jobs:
 
       # Advances selling-partner-api-models.sha, then regenerates the whole corpus: the Ruby
       # models and the Rust crate (models, facades, dispatch, pagination table, Ruby facades
-      # and operation-inventory.json). The Rust step installs the locked converter (npm ci)
-      # and builds with --locked. A pin move that only changes spec content needs no other
-      # edit. Adding or removing a spec file (the manifest) or a new token-like field
-      # (pagination.json) fails this step with the generator's own error and no PR is opened.
+      # and operation-inventory.json). The Rust step builds with --locked. A pin move that
+      # only changes spec content needs no other edit. Adding or removing a spec file (the
+      # manifest) or a new token-like field (pagination.json) fails this step with the
+      # generator's own error and no PR is opened.
       - name: Regenerate Ruby and Rust output at the new pin
         shell: bash
         run: bundle exec rake generate:update 2>&1 | tee "$RUNNER_TEMP/generate.log"

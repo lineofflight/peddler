@@ -26,16 +26,11 @@ jobs:
         with:
           ruby-version: "4.0"
           bundler-cache: true
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: npm
-          cache-dependency-path: tools/openapi/package-lock.json
       - name: Set up Rust
         run: |
           rustup toolchain install stable --profile minimal --component clippy
           rustup default stable
-      - name: Sync pinned specs and install locked converter
+      - name: Sync pinned specs
         run: bundle exec rake generate:rust:setup
       - run: cargo test -p peddler-codegen --locked
       - run: cargo clippy -p peddler-codegen --all-targets --locked -- -D warnings
