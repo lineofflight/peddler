@@ -204,7 +204,21 @@ impl Download {
     }
 
     /// Buffered whole JSON, distinct from streaming JSONL. `max_bytes` is required.
-    pub async fn json(mut self, max_bytes: usize) -> Result<serde_json::Value, Error> {
+    pub async fn json(self, max_bytes: usize) -> Result<serde_json::Value, Error> {
+        self.whole(max_bytes, |json| value(json)).await
+    }
+
+    /// Like `json`, with the document as it is: the same limit and errors, valid UTF-8
+    /// and valid JSON, and the keys in their own order.
+    pub async fn json_text(self, max_bytes: usize) -> Result<String, Error> {
+        self.whole(max_bytes, text).await
+    }
+
+    async fn whole<T>(
+        mut self,
+        max_bytes: usize,
+        read: fn(&mut Vec<u8>) -> Result<T, Error>,
+    ) -> Result<T, Error> {
         if max_bytes == 0 {
             return Err(Error::InvalidConfig);
         }
@@ -213,23 +227,20 @@ impl Download {
             extend_bounded(&mut bytes, &chunk?, max_bytes, Error::ByteLimit)?;
         }
         check_deadline(self.deadline)?;
-        let result = serde_json::from_slice(&bytes).map_err(|_| Error::Format);
+        let result = read(&mut bytes);
         check_deadline(self.deadline)?;
         result
     }
 
     /// Whitespace-only JSONL lines are skipped.
     pub fn into_jsonl(self) -> DocumentStream<serde_json::Value> {
-        self.jsonl(|record| serde_json::from_slice(record).map_err(|_| Error::Format))
+        self.jsonl(|record| value(record))
     }
 
     /// Like `into_jsonl`, with each record as the document has it: the same limits and
     /// errors, valid UTF-8 and valid JSON, and the keys in their own order.
     pub fn into_jsonl_records(self) -> DocumentStream<String> {
-        self.jsonl(|record| {
-            serde_json::from_slice::<Checked>(record).map_err(|_| Error::Format)?;
-            String::from_utf8(std::mem::take(record)).map_err(|_| Error::Format)
-        })
+        self.jsonl(text)
     }
 
     fn jsonl<T: Send + 'static>(
@@ -339,6 +350,14 @@ impl Download {
     }
 }
 
+fn value(json: &[u8]) -> Result<serde_json::Value, Error> {
+    serde_json::from_slice(json).map_err(|_| Error::Format)
+}
+/// The JSON as the document has it, once it reads as a value.
+fn text(json: &mut Vec<u8>) -> Result<String, Error> {
+    serde_json::from_slice::<Checked>(json).map_err(|_| Error::Format)?;
+    String::from_utf8(std::mem::take(json)).map_err(|_| Error::Format)
+}
 /// Reads a JSON value as `serde_json::Value` does, with the same limits, and keeps none
 /// of it.
 struct Checked;

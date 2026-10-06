@@ -566,6 +566,26 @@ async fn bounded_whole_json() {
             .unwrap(),
         serde_json::json!({"x":1})
     );
+    // The text is the document's own, under the limit and the checks of the value.
+    for (body, limit, expected) in [
+        (
+            "{\"b\":1.50,\"a\":[],\"b\":2}\n",
+            64,
+            Ok("{\"b\":1.50,\"a\":[],\"b\":2}\n"),
+        ),
+        ("{\"x\":1}", 4, Err(Error::ByteLimit)),
+        ("{\"x\":1,}", 64, Err(Error::Format)),
+    ] {
+        let url = once(http(200, "", body.as_bytes())).await;
+        let text = client(&url)
+            .documents()
+            .download(&url, TransferOptions::default())
+            .await
+            .unwrap()
+            .json_text(limit)
+            .await;
+        assert_eq!(text, expected.map(String::from));
+    }
 }
 
 #[tokio::test]

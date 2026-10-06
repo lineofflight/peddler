@@ -350,7 +350,7 @@ class DocumentsTest < NativeTest
   def test_bounded_whole_json_preserves_numbers_and_rust_limits_map_to_document_errors
     serve(count: 4, handler: lambda { |socket, first, *_|
       body = case first[1]
-      when "/json" then '{"n":123456789012345678901234567890,"d":0.12345678901234567890123456789}'
+      when "/json" then '{"n":0,"d":0.12345678901234567890123456789,"n":123456789012345678901234567890}'
       when "/utf8" then "\xFF\tx\n".b
       else "abcd"
       end
@@ -359,6 +359,8 @@ class DocumentsTest < NativeTest
       instance = client(url)
       value = instance.download_document("#{url}/json").json(max_bytes: 100)
 
+      # The keys come in the document's order, and a repeated key keeps its last value, as in a JSONL row.
+      assert_equal(["n", "d"], value.keys)
       assert_equal(123456789012345678901234567890, value.fetch("n"))
       assert_equal(BigDecimal("0.12345678901234567890123456789"), value.fetch("d"))
       assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/bytes", max_bytes: 3).each_chunk.to_a }

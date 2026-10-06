@@ -256,13 +256,11 @@ impl Document {
         let signal = Arc::clone(&owner.close_signal);
         let result = gvl::wait(ruby, "DocumentError", owner.shared, async move {
             tokio::select! {
-                result = (*value).json(limit) => result,
+                result = (*value).json_text(limit) => result,
                 () = wait_closed(closed, signal) => Err(DocumentError::Transport),
             }
         })?;
-        result
-            .map(|value| value.to_string())
-            .map_err(|e| error(ruby, e))
+        result.map_err(|e| error(ruby, e))
     }
 }
 
