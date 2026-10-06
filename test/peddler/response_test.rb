@@ -20,6 +20,61 @@ module Peddler
       assert_nil(response.dig("summaries", 1, "itemName"))
     end
 
+    # The readers v5 code used, when a response delegated to the http gem's.
+
+    def test_to_s_is_the_body_in_the_charset_of_the_content_type
+      report = Response.new(200, [["content-type", "text/plain; charset=Cp1252"]], "caf\xE9\t\x805".b)
+
+      assert_equal("café\t€5", report.to_s.encode("UTF-8"))
+      assert_equal(Encoding::BINARY, report.body.encoding)
+      assert_equal(payload, JSON.parse(Response.new(200, [], JSON.generate(payload)).to_s))
+      # JSON without a charset read as UTF-8, and an unknown or missing charset as binary.
+      assert_equal(Encoding::UTF_8, Response.new(200, [["content-type", "application/json"]], "{}".b).to_s.encoding)
+      assert_equal(Encoding::BINARY, Response.new(200, [["content-type", "text/plain; charset=bogus"]], "x").to_s.encoding)
+      assert_equal(Encoding::BINARY, Response.new(200, [], "x").to_s.encoding)
+    end
+
+    def test_charset_is_the_charset_of_the_content_type
+      assert_equal("Cp1252", Response.new(200, [["content-type", "text/plain; charset=Cp1252"]], "").charset)
+      assert_equal("utf-8", Response.new(200, [["content-type", 'application/json; Charset="utf-8"']], "").charset)
+      assert_nil(Response.new(200, [["content-type", "text/plain"]], "").charset)
+      assert_nil(Response.new(200, [], "").charset)
+    end
+
+    def test_code_is_the_integer_status
+      assert_same(404, Response.new(404, [], "").code)
+    end
+
+    def test_status_answers_the_predicates_and_behaves_as_the_integer
+      status = Response.new(200, [], "").status
+
+      assert_predicate(status, :success?)
+      refute_predicate(status, :client_error?)
+      # Equal from either side: 200 == status, then status == 200.
+      assert_equal(200, status)
+      assert_includes([status], 200)
+      assert_operator(status, :<, 300)
+      assert_equal(0, status <=> 200)
+      assert_includes(200..299, status)
+      assert_equal(:ok, case status when 200..299 then :ok end)
+      assert_equal([200, "OK", 200, "200"], [status.code, status.reason, status.to_i, status.inspect])
+      { 100 => :informational?, 302 => :redirect?, 404 => :client_error?, 503 => :server_error? }.each do |code, predicate|
+        assert_predicate(Response.new(code, [], "").status, predicate)
+      end
+      assert_equal("Not Found", Response.new(404, [], "").status.reason)
+    end
+
+    def test_headers_look_up_a_name_in_any_case
+      pairs = [["content-type", "text/plain"], ["x-repeat", "a"], ["x-repeat", "b"]]
+      headers = Response.new(200, pairs, "").headers
+
+      assert_equal("text/plain", headers["Content-Type"])
+      assert_equal(["a", "b"], headers["X-Repeat"])
+      assert_nil(headers["Missing"])
+      assert_equal({ "content-type" => "text/plain", "x-repeat" => ["a", "b"] }, headers.to_h)
+      assert_equal(pairs, headers.each.to_a)
+    end
+
     def test_to_h_raises_on_a_body_that_is_not_json
       assert_raises(JSON::ParserError) { Response.new(204, [], "").to_h }
     end

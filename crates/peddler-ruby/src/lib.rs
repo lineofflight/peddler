@@ -144,6 +144,11 @@ fn api_error(ruby: &Ruby, response: Response) -> Option<Error> {
         .err()
 }
 
+/// The standard reason phrase of a status code, if it has one.
+fn status_reason(code: u16) -> Option<&'static str> {
+    http::StatusCode::from_u16(code).ok()?.canonical_reason()
+}
+
 fn transport_error(ruby: &Ruby, error: peddler::Error) -> Error {
     match error {
         peddler::Error::InvalidRequest => Error::new(ruby.exception_arg_error(), "invalid request"),
@@ -292,6 +297,7 @@ enum Work {
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let peddler = ruby.define_module("Peddler")?;
     let native = peddler.define_module("Native")?;
+    native.define_singleton_method("status_reason", function!(status_reason, 1))?;
     let engine = native.define_class("Engine", ruby.class_object())?;
     engine.define_singleton_method("from_config", function!(Engine::from_config, 1))?;
     engine.define_method("with_base_url", method!(Engine::with_base_url, 1))?;

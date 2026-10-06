@@ -131,6 +131,7 @@ class WorkflowsTest < NativeTest
     when "/signed?sig=SIGNED_SECRET", "/plain" then [200, "report body"]
     when "/gzip-header" then [200, GZIP, [["Content-Encoding", "gzip"]]]
     when "/gzip" then [200, GZIP]
+    when "/cp1252" then [200, "caf\xE9".b, [["Content-Type", "text/plain; charset=Cp1252"]]]
     when "/denied" then [403, "signed denial"]
     end
   end
@@ -168,6 +169,11 @@ class WorkflowsTest < NativeTest
       refute(document[1].key?("x-amz-access-token"))
       assert_equal("report body", reports.download_report_document("#{url}/plain").body)
       assert_equal({ "x" => 1 }, reports.download_report_document("#{url}/gzip-header").to_h)
+      # Read as v5 code read it.
+      report = reports.download_report_document("#{url}/cp1252")
+
+      assert_predicate(report.status, :success?)
+      assert_equal(["Cp1252", "café"], [report.charset, report.to_s.encode("UTF-8")])
       assert_equal("signed denial", assert_rejected(403) { reports.download_report_document("#{url}/denied") }.response.body)
       assert_equal("NotFound", assert_rejected(404) { reports.download_report_document("missing") }.code)
     end

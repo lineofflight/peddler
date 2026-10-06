@@ -45,6 +45,7 @@ module Peddler
 
       assert_same(response, error.response)
       assert_equal([404, "NotFound", "abc"], [error.status, error.code, error.request_id])
+      assert_instance_of(Integer, error.status)
     end
 
     def test_deconstruct_keys_exposes_status_and_code_only

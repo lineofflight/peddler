@@ -4,19 +4,47 @@ module Peddler
     @metadata: Native::error_metadata?
     @operation: String?
 
-    attr_reader status: Integer
-    attr_reader headers: Array[[String, String]]
+    class Status < SimpleDelegator
+      def initialize: (Integer code) -> void
+      def code: () -> Integer
+      def reason: () -> String?
+      def informational?: () -> bool
+      def success?: () -> bool
+      def redirect?: () -> bool
+      def client_error?: () -> bool
+      def server_error?: () -> bool
+    end
+
+    class Headers
+      include Enumerable[[String, String]]
+
+      @pairs: Array[[String, String]]
+
+      def initialize: (Array[[String, String]] pairs) -> void
+      def []: (String name) -> (String | Array[String] | nil)
+      def each: () { ([String, String] pair) -> void } -> self
+              | () -> Enumerator[[String, String], self]
+      def to_h: () -> Hash[String, String | Array[String] | nil]
+    end
+
+    attr_reader status: Status
+    attr_reader headers: Headers
     attr_reader body: String
 
     def self.from_parts: (Native::response_parts parts, ?String? operation) -> Response
     def initialize: (Integer status, Array[[String, String]] headers, String body, ?Native::error_metadata? metadata, ?operation: String?) -> void
     def raise_for_status!: () -> self
+    def code: () -> Integer
+    def charset: () -> String?
+    def to_s: () -> String
     def to_h: () -> untyped
     def dig: (*untyped keys) -> untyped
     def parse: () -> untyped
 
     private
 
+    def content_type: () -> String
+    def encoding: () -> Encoding
     def parser: () -> untyped
   end
 end

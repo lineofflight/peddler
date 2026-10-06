@@ -9,6 +9,7 @@ module Peddler
     def self.positive_seconds?: (untyped value) -> bool
     def self.generate: (untyped value) -> String?
     def self.user_agent: () -> String
+    def self.status_reason: (Integer code) -> String?
 
     type tokens = [String, String?, String, Integer]
 

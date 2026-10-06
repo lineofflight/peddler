@@ -24,7 +24,7 @@ module Peddler
 
     # @return [Integer, nil]
     def status
-      response&.status
+      response&.code
     end
 
     # Supports pattern matching on status and code
