@@ -17,10 +17,11 @@ class PeddlerTest < Minitest::Test
 
   def test_public_classes_live_at_the_root
     [
-      :Client, :Response, :Error, :LWA, :Document, :Pagination, :Continuation, :TransportError,
+      :Client, :Response, :Error, :LWA, :Document, :TransportError,
       :TimeoutError, :AuthenticationError, :ForkError, :DocumentError, :DocumentTimeoutError, :PaginationError,
       :WorkflowError, :WorkflowTimeoutError,
     ].each { |name| assert(Peddler.const_defined?(name, false), "Peddler::#{name} is missing") }
+    [:Pagination, :Continuation].each { |name| refute(Peddler.const_defined?(name, false), "Peddler::#{name} is internal") }
   end
 
   def test_transport_level_errors_keep_their_hierarchy_and_are_not_api_errors

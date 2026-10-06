@@ -101,11 +101,6 @@ module Peddler
       Response.from_parts(@engine.request(method, path, query.to_a, payload), operation)
     end
 
-    # Lazily enumerates raw pages for an explicit Pagination mapping.
-    def pages(pagination, arguments)
-      pagination.pages(@engine, arguments)
-    end
-
     private
 
     def view(engine, sandbox: @sandbox)

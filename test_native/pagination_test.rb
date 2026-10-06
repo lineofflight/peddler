@@ -29,8 +29,8 @@ class PaginationTest < NativeTest
     return Peddler::Native::PAGINATIONS.fetch(spec) if spec.is_a?(String)
 
     continuation = spec.fetch("continuation", {})
-    Peddler::Pagination.new(operation: spec["operation"], input: spec["input"], output: spec["output"],
-      continuation: Peddler::Continuation.new(
+    Peddler::Native::Pagination.new(operation: spec["operation"], input: spec["input"], output: spec["output"],
+      continuation: Peddler::Native::Continuation.new(
         operation: continuation["operation"], keep: continuation["keep"], drop: continuation.fetch("drop", []),
         set: continuation.fetch("set", {}),
       ))
@@ -132,16 +132,6 @@ class PaginationTest < NativeTest
     end
   end
 
-  def test_client_pages_runs_explicit_mapping
-    script([[200, '{"next":"1"}'], [200, "{}"]]) do |server|
-      pagination = Peddler::Pagination.new(operation: "sellers_v1.get_marketplace_participations", input: "/x",
-        output: "/next")
-
-      assert_equal(1, client(server.url).pages(pagination, {}).first(1).size)
-      assert_equal(1, server.requests.size)
-    end
-  end
-
   def test_argument_and_mapping_validation_fails_before_any_request
     script([]) do |server|
       engine = client(server.url).instance_variable_get(:@engine)
@@ -152,7 +142,7 @@ class PaginationTest < NativeTest
       assert_raises(ArgumentError) { pagination.pages(engine, { "a" => 1, a: 2 }) }
       assert_raises(ArgumentError) { pagination.pages(engine, { x: Float::NAN }) }
       assert_raises(ArgumentError) do
-        Peddler::Pagination.new(operation: ORDERS, input: "next_token", output: "/x")
+        Peddler::Native::Pagination.new(operation: ORDERS, input: "next_token", output: "/x")
       end
       assert_empty(server.requests)
     end
