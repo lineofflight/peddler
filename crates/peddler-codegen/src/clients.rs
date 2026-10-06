@@ -23,7 +23,6 @@ pub struct Parameter {
     pub required: bool,
     pub schema: Value,
     pub csv: bool,
-    pub body_type: Option<String>,
 }
 impl Operation {
     pub fn body(&self) -> Option<&Parameter> {
@@ -43,28 +42,9 @@ pub(crate) fn pascal(name: &str) -> String {
 }
 
 const METHODS: [&str; 7] = ["get", "post", "put", "patch", "delete", "head", "options"];
-/// What Swagger 2 keeps on a parameter itself and JSON Schema keeps in a schema.
-const SCHEMA_KEYS: [&str; 19] = [
-    "type",
-    "format",
-    "items",
-    "enum",
-    "default",
-    "pattern",
-    "minimum",
-    "maximum",
-    "exclusiveMinimum",
-    "exclusiveMaximum",
-    "multipleOf",
-    "minLength",
-    "maxLength",
-    "minItems",
-    "maxItems",
-    "uniqueItems",
-    "minProperties",
-    "maxProperties",
-    "additionalProperties",
-];
+/// What the generator reads of a parameter. Swagger 2 keeps these on the parameter
+/// itself. Its constraints are left out: Amazon checks them.
+const SCHEMA_KEYS: [&str; 4] = ["type", "format", "enum", "default"];
 
 pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, GenerationError> {
     let paths = spec["paths"]
@@ -151,7 +131,6 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                         wire_name: "body".into(),
                         location,
                         required,
-                        body_type: resolve(&schema, spec)?["type"].as_str().map(str::to_owned),
                         schema,
                         csv: false,
                     });
@@ -174,6 +153,9 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                 }
                 let mut schema = Value::Object(schema);
                 let array = schema["type"] == "array";
+                if array {
+                    schema["items"] = json!({"type": value["items"]["type"]});
+                }
                 // Swagger 2 joins an array with commas unless it says otherwise.
                 let csv = array && value["collectionFormat"] != "multi";
                 if csv && schema["default"].is_string() {
@@ -212,7 +194,6 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                     required,
                     schema,
                     csv,
-                    body_type: None,
                 };
                 rust_type(&param)?;
                 validate_default(&param)?;
