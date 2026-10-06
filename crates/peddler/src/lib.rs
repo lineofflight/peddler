@@ -166,8 +166,9 @@ pub struct Request {
     pub method: String,
     pub path: String,
     pub query: Vec<(String, String)>,
-    /// Sent as given. The access token, the date and a wrapper's User-Agent are set
-    /// afterwards and can't be replaced here.
+    /// Sent as given. A header the client or the transport sets is refused: `host`,
+    /// `content-length`, `transfer-encoding`, `connection`, `content-type`, `accept`,
+    /// `user-agent` and any `x-amz-*`.
     pub headers: Vec<(String, String)>,
     pub body: Option<Vec<u8>>,
 }
@@ -360,6 +361,9 @@ impl Client {
         }
         // An invalid name or value fails the build below.
         for (name, value) in &request.headers {
+            if reserved(name) {
+                return Err(Error::InvalidRequest);
+            }
             builder = builder.header(name, value);
         }
         let buffered = builder.build().map_err(|_| Error::InvalidRequest)?;
@@ -377,6 +381,22 @@ impl Client {
         })
         .await
     }
+}
+
+/// Whether the client or the transport sets this header itself.
+fn reserved(name: &str) -> bool {
+    let name = name.to_ascii_lowercase();
+    name.starts_with("x-amz-")
+        || matches!(
+            name.as_str(),
+            "host"
+                | "content-length"
+                | "transfer-encoding"
+                | "connection"
+                | "content-type"
+                | "accept"
+                | "user-agent"
+        )
 }
 
 /// A timeout or a transport failure. The reqwest error itself is never kept: its

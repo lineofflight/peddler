@@ -134,25 +134,38 @@ async fn preserves_escaped_paths_and_ordered_csv_query_values() {
 }
 
 #[tokio::test]
-async fn sends_request_headers_but_never_lets_them_replace_the_token() {
+async fn sends_request_headers_and_refuses_reserved_and_invalid_ones() {
     let server = replies(vec![http(200, "", b"")]).await;
     let client = Client::new(&server.url, TOKEN).unwrap();
     let mut request = get("/");
     request.headers = vec![
         ("X-Amzn-Idempotency-Token".into(), "one".into()),
-        ("x-amz-access-token".into(), "forged".into()),
+        ("Accept-Language".into(), "en-GB".into()),
     ];
     client.execute(request).await.unwrap();
     let sent = server.requests()[0].to_ascii_lowercase();
     assert!(sent.contains("\r\nx-amzn-idempotency-token: one\r\n"));
-    assert!(sent.contains(&format!("\r\nx-amz-access-token: {TOKEN}\r\n")));
-    assert!(!sent.contains("forged"));
-    for header in [("bad name", "value"), ("x-test", "secret\r\ninjected: yes")] {
+    assert!(sent.contains("\r\naccept-language: en-gb\r\n"));
+    for (name, value) in [
+        ("Host", "forged.example"),
+        ("content-length", "0"),
+        ("Transfer-Encoding", "chunked"),
+        ("connection", "close"),
+        ("Content-Type", "text/plain"),
+        ("ACCEPT", "text/plain"),
+        ("User-Agent", "forged"),
+        ("x-amz-access-token", "forged"),
+        ("X-Amz-Date", "20260101T000000Z"),
+        ("x-amz-anything", "forged"),
+        ("bad name", "value"),
+        ("x-test", "secret\r\ninjected: yes"),
+    ] {
         let mut request = get("/");
-        request.headers = vec![(header.0.into(), header.1.into())];
+        request.headers = vec![(name.into(), value.into())];
         assert_eq!(
             client.execute(request).await.unwrap_err(),
-            Error::InvalidRequest
+            Error::InvalidRequest,
+            "{name}"
         );
     }
     assert_eq!(server.requests().len(), 1);
