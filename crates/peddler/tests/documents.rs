@@ -127,6 +127,50 @@ async fn jsonl_split_utf8_precision_blank_lines_and_final_record() {
 }
 
 #[tokio::test]
+async fn jsonl_records_are_the_document_text_under_the_same_checks() {
+    let body = "{\"b\":1,\"a\":{\"z\":1.50,\"y\":null}}\n \t\n[1,\"é\"]";
+    let url = once(http(200, "", body.as_bytes())).await;
+    let rows = client(&url)
+        .documents()
+        .download(&url, TransferOptions::default())
+        .await
+        .unwrap()
+        .into_jsonl_records()
+        .try_collect::<Vec<_>>()
+        .await
+        .unwrap();
+    assert_eq!(
+        rows,
+        ["{\"b\":1,\"a\":{\"z\":1.50,\"y\":null}}", "[1,\"é\"]"]
+    );
+
+    // What the value stream rejects, the record stream rejects, and nothing else.
+    let nested =
+        |depth: usize| format!("{}{}\n", "[".repeat(depth), "]".repeat(depth)).into_bytes();
+    for (body, valid) in [
+        (nested(100), true),
+        (nested(200), false),
+        (b"{\"a\":1,}\n".to_vec(), false),
+        (b"\"\xff\"\n".to_vec(), false),
+        (b"\"\\ud800\"\n".to_vec(), false),
+        (b"1 2\n".to_vec(), false),
+    ] {
+        let url = replies(vec![http(200, "", &body), http(200, "", &body)])
+            .await
+            .url;
+        let documents = client(&url).documents();
+        let download = documents.download(&url, TransferOptions::default());
+        let values = download.await.unwrap().into_jsonl();
+        let download = documents.download(&url, TransferOptions::default());
+        let records = download.await.unwrap().into_jsonl_records();
+        let values = values.try_collect::<Vec<_>>().await.map(|rows| rows.len());
+        let records = records.try_collect::<Vec<_>>().await.map(|rows| rows.len());
+        assert_eq!(values, records, "{body:?}");
+        assert_eq!(records, if valid { Ok(1) } else { Err(Error::Format) });
+    }
+}
+
+#[tokio::test]
 async fn tsv_quoted_newlines_tabs_quotes_empty_fields_and_final_row() {
     let body = b"a\t\"b\tc\"\t\"d\r\ne\"\t\"f\"\"g\"\t\r\n\tlast\t\t\t";
     let url = once(http(200, "", body)).await;

@@ -102,7 +102,7 @@ impl Config {
 enum StreamState {
     Fresh(Box<Download>),
     Chunks(DocumentStream<Bytes>),
-    Jsonl(DocumentStream<serde_json::Value>),
+    Jsonl(DocumentStream<String>),
     Tsv(DocumentStream<Vec<String>>),
     Busy,
     Closed,
@@ -219,7 +219,9 @@ impl Document {
         let (mut lease, state) = Self::take(ruby, owner)?;
         let mut state = match (mode.as_str(), state) {
             ("chunks", StreamState::Fresh(value)) => StreamState::Chunks((*value).into_chunks()),
-            ("jsonl", StreamState::Fresh(value)) => StreamState::Jsonl((*value).into_jsonl()),
+            ("jsonl", StreamState::Fresh(value)) => {
+                StreamState::Jsonl((*value).into_jsonl_records())
+            }
             ("tsv", StreamState::Fresh(value)) => StreamState::Tsv(match charset {
                 Some(label) => (*value).into_tsv_with_charset(consistent, &label),
                 None => (*value).into_tsv(consistent),
@@ -287,7 +289,7 @@ async fn read_row(state: &mut StreamState) -> Result<Option<Row>, DocumentError>
             .next()
             .await
             .transpose()
-            .map(|row| row.map(|value| Row::Json(value.to_string()))),
+            .map(|row| row.map(Row::Json)),
         StreamState::Tsv(stream) => stream.next().await.transpose().map(|row| row.map(Row::Tsv)),
         _ => unreachable!(),
     }

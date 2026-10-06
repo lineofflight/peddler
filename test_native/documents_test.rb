@@ -50,6 +50,17 @@ class DocumentsTest < NativeTest
     end
   end
 
+  def test_jsonl_rows_keep_the_key_order_of_the_document
+    serve(handler: ->(socket, *) { respond(socket, body: %({"b":1,"a":{"z":1.50,"y":null},"A":[]}\r\n{"z":0,"a":0})) }) do |url|
+      rows = client(url).download_document(url).each_jsonl.to_a
+
+      assert_equal([["b", "a", "A"], ["z", "a"]], rows.map(&:keys))
+      assert_equal(["z", "y"], rows[0].fetch("a").keys)
+      assert_equal(BigDecimal("1.5"), rows[0].dig("a", "z"))
+      assert_equal(Encoding::UTF_8, rows[0].keys.first.encoding)
+    end
+  end
+
   def test_quoted_tsv_and_bounded_json
     serve(count: 2, handler: lambda { |socket, first, *_|
       if first[1] == "/tsv"

@@ -228,7 +228,23 @@ impl Download {
     }
 
     /// Whitespace-only JSONL lines are skipped and don't count toward max_records.
-    pub fn into_jsonl(mut self) -> DocumentStream<serde_json::Value> {
+    pub fn into_jsonl(self) -> DocumentStream<serde_json::Value> {
+        self.jsonl(|record| serde_json::from_slice(record).map_err(|_| Error::Format))
+    }
+
+    /// Like `into_jsonl`, with each record as the document has it: the same limits and
+    /// errors, valid UTF-8 and valid JSON, and the keys in their own order.
+    pub fn into_jsonl_records(self) -> DocumentStream<String> {
+        self.jsonl(|record| {
+            serde_json::from_slice::<Checked>(record).map_err(|_| Error::Format)?;
+            String::from_utf8(std::mem::take(record)).map_err(|_| Error::Format)
+        })
+    }
+
+    fn jsonl<T: Send + 'static>(
+        mut self,
+        row: fn(&mut Vec<u8>) -> Result<T, Error>,
+    ) -> DocumentStream<T> {
         Box::pin(async_stream::try_stream! {
             let mut record = Vec::new();
             let mut rows = 0;
@@ -245,7 +261,7 @@ impl Download {
                         check_deadline(self.deadline)?;
                         rows += 1;
                         if rows > self.options.max_records { Err(Error::RowLimit)?; }
-                        let result = serde_json::from_slice(&record).map_err(|_| Error::Format);
+                        let result = row(&mut record);
                         check_deadline(self.deadline)?;
                         yield result?;
                         yielded = true;
@@ -260,7 +276,7 @@ impl Download {
             if !record.iter().all(u8::is_ascii_whitespace) {
                 check_deadline(self.deadline)?;
                 if rows >= self.options.max_records { Err(Error::RowLimit)?; }
-                let result = serde_json::from_slice(&record).map_err(|_| Error::Format);
+                let result = row(&mut record);
                 check_deadline(self.deadline)?;
                 yield result?;
             }
@@ -348,6 +364,47 @@ impl Download {
                 if !yielded { give_way().await; }
             }
         })
+    }
+}
+
+/// Reads a JSON value as `serde_json::Value` does, with the same limits, and keeps none
+/// of it.
+struct Checked;
+impl<'de> serde::Deserialize<'de> for Checked {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        deserializer.deserialize_any(Checked)
+    }
+}
+impl<'de> serde::de::Visitor<'de> for Checked {
+    type Value = Self;
+    fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str("a JSON value")
+    }
+    fn visit_bool<E>(self, _: bool) -> Result<Self, E> {
+        Ok(self)
+    }
+    fn visit_i64<E>(self, _: i64) -> Result<Self, E> {
+        Ok(self)
+    }
+    fn visit_u64<E>(self, _: u64) -> Result<Self, E> {
+        Ok(self)
+    }
+    fn visit_f64<E>(self, _: f64) -> Result<Self, E> {
+        Ok(self)
+    }
+    fn visit_str<E>(self, _: &str) -> Result<Self, E> {
+        Ok(self)
+    }
+    fn visit_unit<E>(self) -> Result<Self, E> {
+        Ok(self)
+    }
+    fn visit_seq<A: serde::de::SeqAccess<'de>>(self, mut seq: A) -> Result<Self, A::Error> {
+        while seq.next_element::<Self>()?.is_some() {}
+        Ok(self)
+    }
+    fn visit_map<A: serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self, A::Error> {
+        while map.next_entry::<Self, Self>()?.is_some() {}
+        Ok(self)
     }
 }
 
