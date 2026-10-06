@@ -74,7 +74,7 @@ module Peddler
       @sandbox
     end
 
-    def request(method, path, params: {}, body: nil, operation: "raw")
+    def request(method, path, params: {}, body: nil)
       raise TypeError, "method and path must be strings" unless method.is_a?(String) && path.is_a?(String)
       raise ArgumentError, "params must be a hash" unless params.is_a?(Hash)
 
@@ -96,9 +96,8 @@ module Peddler
       when Hash, Array then JSON.generate(body)
       else raise ArgumentError, "body must be a string, hash, array or nil"
       end
-      raise TypeError, "operation must be a string" unless operation.is_a?(String)
 
-      Response.from_parts(@engine.request(method, path, query.to_a, payload), operation)
+      Response.from_parts(@engine.request(method, path, query.to_a, payload))
     end
 
     private

@@ -92,7 +92,6 @@ module Peddler
       body = JSON.generate(payload)
 
       assert_equal(payload, Response.new(200, [], body).parse)
-      assert_equal(payload, Response.new(200, [], body, nil, operation: "raw").parse)
       assert_equal(payload, Response.new(200, [], body, nil, operation: "orders_v0.confirm_shipment").parse)
       assert_equal(payload, Response.new(200, [], body, nil, operation: "unknown_api.unknown").parse)
     end
