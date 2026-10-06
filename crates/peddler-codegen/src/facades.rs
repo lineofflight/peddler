@@ -325,12 +325,16 @@ fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(),
     Ok(())
 }
 pub(crate) fn pagination_table(resolved: &[Resolved]) -> Result<String, GenerationError> {
-    let entries = resolved
+    let keys = resolved
         .iter()
-        .map(|r| format!("{},", pagination::rust_expression(r)))
+        .map(|r| format!("{:?},", r.key))
+        .collect::<String>();
+    let arms = resolved
+        .iter()
+        .map(|r| format!("{:?} => {},", r.key, pagination::rust_expression(r)))
         .collect::<String>();
     format(format!(
-        "/// Every explicit pagination mapping, from `pagination.json`.\npub fn mappings() -> Vec<crate::pagination::Pagination> {{ vec![{entries}] }}\npub fn mapping(operation: &str) -> Option<crate::pagination::Pagination> {{ mappings().into_iter().find(|p| p.operation == operation) }}\n"
+        "const OPERATIONS: &[&str] = &[{keys}];\n/// Every explicit pagination mapping, from `pagination.json`.\npub fn mappings() -> Vec<crate::pagination::Pagination> {{ OPERATIONS.iter().filter_map(|operation| mapping(operation)).collect() }}\n/// The mapping of one operation, if it has one.\npub fn mapping(operation: &str) -> Option<crate::pagination::Pagination> {{ Some(match operation {{ {arms} _ => return None }}) }}\n"
     ))
 }
 pub(crate) fn dispatch(
