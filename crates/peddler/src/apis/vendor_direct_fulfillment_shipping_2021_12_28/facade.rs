@@ -139,7 +139,6 @@ pub async fn get_customer_invoices(
 pub fn get_customer_invoices_pages<'a>(
     client: &'a Client,
     params: GetCustomerInvoicesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -156,7 +155,6 @@ pub fn get_customer_invoices_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -239,7 +237,6 @@ pub async fn get_packing_slips(
 pub fn get_packing_slips_pages<'a>(
     client: &'a Client,
     params: GetPackingSlipsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -256,7 +253,6 @@ pub fn get_packing_slips_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -339,7 +335,6 @@ pub async fn get_shipping_labels(
 pub fn get_shipping_labels_pages<'a>(
     client: &'a Client,
     params: GetShippingLabelsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -356,7 +351,6 @@ pub fn get_shipping_labels_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

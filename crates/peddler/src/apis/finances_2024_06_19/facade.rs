@@ -54,7 +54,6 @@ pub async fn list_balances(
 pub fn list_balances_pages<'a>(
     client: &'a Client,
     params: ListBalancesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -70,7 +69,6 @@ pub fn list_balances_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -137,7 +135,6 @@ pub async fn list_summary(
 pub fn list_summary_pages<'a>(
     client: &'a Client,
     params: ListSummaryParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -153,7 +150,6 @@ pub fn list_summary_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -219,7 +215,6 @@ pub async fn list_transactions(
 pub fn list_transactions_pages<'a>(
     client: &'a Client,
     params: ListTransactionsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -235,6 +230,5 @@ pub fn list_transactions_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

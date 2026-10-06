@@ -121,7 +121,6 @@ pub async fn search_catalog_items(
 pub fn search_catalog_items_pages<'a>(
     client: &'a Client,
     params: SearchCatalogItemsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -137,6 +136,5 @@ pub fn search_catalog_items_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

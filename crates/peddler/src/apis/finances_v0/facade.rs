@@ -66,7 +66,6 @@ pub async fn list_financial_event_groups(
 pub fn list_financial_event_groups_pages<'a>(
     client: &'a Client,
     params: ListFinancialEventGroupsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -82,7 +81,6 @@ pub fn list_financial_event_groups_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_financial_events_max_results_per_page_default() -> Option<i32> {
@@ -139,7 +137,6 @@ pub async fn list_financial_events(
 pub fn list_financial_events_pages<'a>(
     client: &'a Client,
     params: ListFinancialEventsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -155,7 +152,6 @@ pub fn list_financial_events_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_financial_events_by_group_id_max_results_per_page_default() -> Option<i32> {
@@ -214,7 +210,6 @@ pub async fn list_financial_events_by_group_id(
 pub fn list_financial_events_by_group_id_pages<'a>(
     client: &'a Client,
     params: ListFinancialEventsByGroupIdParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -230,7 +225,6 @@ pub fn list_financial_events_by_group_id_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_financial_events_by_order_id_max_results_per_page_default() -> Option<i32> {
@@ -283,7 +277,6 @@ pub async fn list_financial_events_by_order_id(
 pub fn list_financial_events_by_order_id_pages<'a>(
     client: &'a Client,
     params: ListFinancialEventsByOrderIdParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -299,6 +292,5 @@ pub fn list_financial_events_by_order_id_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

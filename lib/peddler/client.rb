@@ -102,8 +102,8 @@ module Peddler
     end
 
     # Lazily enumerates raw pages for an explicit Pagination mapping.
-    def pages(pagination, arguments, max_pages: nil)
-      pagination.pages(@engine, arguments, max_pages: max_pages)
+    def pages(pagination, arguments)
+      pagination.pages(@engine, arguments)
     end
 
     private

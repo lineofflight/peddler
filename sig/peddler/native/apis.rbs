@@ -21,13 +21,13 @@ module Peddler
       def get_outbound: (String order_id) -> Response
       def get_replenishment_order: (String order_id) -> Response
       def list_inbound_shipments: (?sort_by: String?, ?sort_order: String?, ?shipment_status: String?, ?updated_after: String?, ?updated_before: String?, ?max_results: Integer?, ?next_token: String?) -> Response
-      def list_inbound_shipments_pages: (?sort_by: String?, ?sort_order: String?, ?shipment_status: String?, ?updated_after: String?, ?updated_before: String?, ?max_results: Integer?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_inbound_shipments_pages: (?sort_by: String?, ?sort_order: String?, ?shipment_status: String?, ?updated_after: String?, ?updated_before: String?, ?max_results: Integer?, ?next_token: String?) -> Enumerator[Response, void]
       def list_inventory: (?sku: String?, ?sort_order: String?, ?details: String?, ?next_token: String?, ?max_results: Integer?) -> Response
-      def list_inventory_pages: (?sku: String?, ?sort_order: String?, ?details: String?, ?next_token: String?, ?max_results: Integer?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_inventory_pages: (?sku: String?, ?sort_order: String?, ?details: String?, ?next_token: String?, ?max_results: Integer?) -> Enumerator[Response, void]
       def list_outbounds: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?) -> Response
-      def list_outbounds_pages: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_outbounds_pages: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?) -> Enumerator[Response, void]
       def list_replenishment_orders: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?) -> Response
-      def list_replenishment_orders_pages: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_replenishment_orders_pages: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?) -> Enumerator[Response, void]
       def update_inbound: (String order_id, untyped body) -> Response
       def update_inbound_shipment_transport_details: (String shipment_id, untyped body) -> Response
       def update_outbound: (String order_id, untyped body) -> Response
@@ -41,14 +41,14 @@ module Peddler
       def get_content_document: (String content_reference_key, String marketplace_id, Array[String] included_data_set) -> Response
       def get_media: (String media_id, ?associated_media_id: String?) -> Response
       def list_content_document_asin_relations: (String content_reference_key, String marketplace_id, ?included_data_set: Array[String]?, ?asin_set: Array[String]?, ?page_token: String?) -> Response
-      def list_content_document_asin_relations_pages: (String content_reference_key, String marketplace_id, ?included_data_set: Array[String]?, ?asin_set: Array[String]?, ?page_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_content_document_asin_relations_pages: (String content_reference_key, String marketplace_id, ?included_data_set: Array[String]?, ?asin_set: Array[String]?, ?page_token: String?) -> Enumerator[Response, void]
       def post_content_document_approval_submission: (String content_reference_key, String marketplace_id) -> Response
       def post_content_document_asin_relations: (String content_reference_key, String marketplace_id, untyped post_content_document_asin_relations_request) -> Response
       def post_content_document_suspend_submission: (String content_reference_key, String marketplace_id) -> Response
       def search_content_documents: (String marketplace_id, ?page_token: String?) -> Response
-      def search_content_documents_pages: (String marketplace_id, ?page_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def search_content_documents_pages: (String marketplace_id, ?page_token: String?) -> Enumerator[Response, void]
       def search_content_publish_records: (String marketplace_id, String asin, ?page_token: String?) -> Response
-      def search_content_publish_records_pages: (String marketplace_id, String asin, ?page_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def search_content_publish_records_pages: (String marketplace_id, String asin, ?page_token: String?) -> Enumerator[Response, void]
       def update_content_document: (String content_reference_key, String marketplace_id, untyped post_content_document_request) -> Response
       def update_media: (String media_id, untyped update_media_request, ?associated_media_id: String?) -> Response
       def validate_content_document_asin_relations: (String marketplace_id, untyped post_content_document_request, ?asin_set: Array[String]?) -> Response
@@ -79,7 +79,7 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_catalog_item: (String asin, Array[String] marketplace_ids, ?included_data: Array[String]?, ?locale: String?) -> Response
       def search_catalog_items: (Array[String] keywords, Array[String] marketplace_ids, ?included_data: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?locale: String?) -> Response
-      def search_catalog_items_pages: (Array[String] keywords, Array[String] marketplace_ids, ?included_data: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?locale: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def search_catalog_items_pages: (Array[String] keywords, Array[String] marketplace_ids, ?included_data: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?locale: String?) -> Enumerator[Response, void]
     end
 
     class CatalogItems20220401
@@ -87,7 +87,7 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_catalog_item: (String asin, Array[String] marketplace_ids, ?included_data: Array[String]?, ?locale: String?) -> Response
       def search_catalog_items: (Array[String] marketplace_ids, ?identifiers: Array[String]?, ?identifiers_type: String?, ?included_data: Array[String]?, ?locale: String?, ?seller_id: String?, ?keywords: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?) -> Response
-      def search_catalog_items_pages: (Array[String] marketplace_ids, ?identifiers: Array[String]?, ?identifiers_type: String?, ?included_data: Array[String]?, ?locale: String?, ?seller_id: String?, ?keywords: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def search_catalog_items_pages: (Array[String] marketplace_ids, ?identifiers: Array[String]?, ?identifiers_type: String?, ?included_data: Array[String]?, ?locale: String?, ?seller_id: String?, ?keywords: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?) -> Enumerator[Response, void]
     end
 
     class CustomerFeedback20240601
@@ -109,7 +109,7 @@ module Peddler
       def create_query: (untyped body) -> Response
       def get_document: (String document_id) -> Response
       def get_queries: (?processing_statuses: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?pagination_token: String?) -> Response
-      def get_queries_pages: (?processing_statuses: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_queries_pages: (?processing_statuses: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?pagination_token: String?) -> Enumerator[Response, void]
       def get_query: (String query_id) -> Response
     end
 
@@ -147,7 +147,7 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_return: (String return_id) -> Response
       def list_returns: (?return_location_id: String?, ?rma_id: String?, ?status: String?, ?reverse_tracking_id: String?, ?created_since: String?, ?created_until: String?, ?last_updated_since: String?, ?last_updated_until: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?next_token: String?) -> Response
-      def list_returns_pages: (?return_location_id: String?, ?rma_id: String?, ?status: String?, ?reverse_tracking_id: String?, ?created_since: String?, ?created_until: String?, ?last_updated_since: String?, ?last_updated_until: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_returns_pages: (?return_location_id: String?, ?rma_id: String?, ?status: String?, ?reverse_tracking_id: String?, ?created_since: String?, ?created_until: String?, ?last_updated_since: String?, ?last_updated_until: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class ExternalFulfillmentShipments20240911
@@ -159,7 +159,7 @@ module Peddler
       def generate_ship_labels: (String shipment_id, String operation, ?shipping_option_id: String?, ?body: untyped?) -> Response
       def get_shipment: (String shipment_id) -> Response
       def get_shipments: (String status, ?location_id: String?, ?marketplace_id: String?, ?channel_name: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?pagination_token: String?) -> Response
-      def get_shipments_pages: (String status, ?location_id: String?, ?marketplace_id: String?, ?channel_name: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_shipments_pages: (String status, ?location_id: String?, ?marketplace_id: String?, ?channel_name: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def process_shipment: (String shipment_id, String operation, ?body: untyped?) -> Response
       def retrieve_invoice: (String shipment_id) -> Response
       def retrieve_shipping_options: (String shipment_id, String package_id) -> Response
@@ -181,7 +181,7 @@ module Peddler
       def create_inventory_item: (untyped create_inventory_item_request_body) -> Response
       def delete_inventory_item: (String seller_sku, String marketplace_id) -> Response
       def get_inventory_summaries: (String granularity_type, String granularity_id, Array[String] marketplace_ids, ?details: bool?, ?start_date_time: String?, ?seller_skus: Array[String]?, ?seller_sku: String?, ?next_token: String?) -> Response
-      def get_inventory_summaries_pages: (String granularity_type, String granularity_id, Array[String] marketplace_ids, ?details: bool?, ?start_date_time: String?, ?seller_skus: Array[String]?, ?seller_sku: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_inventory_summaries_pages: (String granularity_type, String granularity_id, Array[String] marketplace_ids, ?details: bool?, ?start_date_time: String?, ?seller_skus: Array[String]?, ?seller_sku: String?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class Feeds20210630
@@ -193,49 +193,49 @@ module Peddler
       def get_feed: (String feed_id) -> Response
       def get_feed_document: (String feed_document_id, ?enable_content_encoding_url_header: bool?) -> Response
       def get_feeds: (?feed_types: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?processing_statuses: Array[String]?, ?created_since: String?, ?created_until: String?, ?next_token: String?) -> Response
-      def get_feeds_pages: (?feed_types: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?processing_statuses: Array[String]?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_feeds_pages: (?feed_types: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?processing_statuses: Array[String]?, ?created_since: String?, ?created_until: String?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class FinanceRemittance20260317
       @engine: engine
       def initialize: (engine engine) -> void
       def get_remittance: (String unique_payment_id, String marketplace_id, ?next_token_for_line_items: String?) -> Response
-      def get_remittance_pages: (String unique_payment_id, String marketplace_id, ?next_token_for_line_items: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_remittance_pages: (String unique_payment_id, String marketplace_id, ?next_token_for_line_items: String?) -> Enumerator[Response, void]
       def get_remittance_headers: (String marketplace_id, ?start_date: String?, ?end_date: String?, ?next_token: String?) -> Response
-      def get_remittance_headers_pages: (String marketplace_id, ?start_date: String?, ?end_date: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_remittance_headers_pages: (String marketplace_id, ?start_date: String?, ?end_date: String?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class FinancesInvoices20260625
       @engine: engine
       def initialize: (engine engine) -> void
       def get_invoice: (String marketplace_id, String invoice_identifier, ?next_token_for_line_items: String?) -> Response
-      def get_invoice_pages: (String marketplace_id, String invoice_identifier, ?next_token_for_line_items: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_invoice_pages: (String marketplace_id, String invoice_identifier, ?next_token_for_line_items: String?) -> Enumerator[Response, void]
       def get_invoice_headers: (String marketplace_id, ?next_token: String?, ?from_issue_date: String?, ?to_issue_date: String?, ?invoices_modified_after: String?) -> Response
-      def get_invoice_headers_pages: (String marketplace_id, ?next_token: String?, ?from_issue_date: String?, ?to_issue_date: String?, ?invoices_modified_after: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_invoice_headers_pages: (String marketplace_id, ?next_token: String?, ?from_issue_date: String?, ?to_issue_date: String?, ?invoices_modified_after: String?) -> Enumerator[Response, void]
     end
 
     class FinancesV0
       @engine: engine
       def initialize: (engine engine) -> void
       def list_financial_event_groups: (?max_results_per_page: Integer?, ?financial_event_group_started_before: String?, ?financial_event_group_started_after: String?, ?next_token: String?) -> Response
-      def list_financial_event_groups_pages: (?max_results_per_page: Integer?, ?financial_event_group_started_before: String?, ?financial_event_group_started_after: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_financial_event_groups_pages: (?max_results_per_page: Integer?, ?financial_event_group_started_before: String?, ?financial_event_group_started_after: String?, ?next_token: String?) -> Enumerator[Response, void]
       def list_financial_events: (?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?) -> Response
-      def list_financial_events_pages: (?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_financial_events_pages: (?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?) -> Enumerator[Response, void]
       def list_financial_events_by_group_id: (String event_group_id, ?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?) -> Response
-      def list_financial_events_by_group_id_pages: (String event_group_id, ?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_financial_events_by_group_id_pages: (String event_group_id, ?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?) -> Enumerator[Response, void]
       def list_financial_events_by_order_id: (String order_id, ?max_results_per_page: Integer?, ?next_token: String?) -> Response
-      def list_financial_events_by_order_id_pages: (String order_id, ?max_results_per_page: Integer?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_financial_events_by_order_id_pages: (String order_id, ?max_results_per_page: Integer?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class Finances20240619
       @engine: engine
       def initialize: (engine engine) -> void
       def list_balances: (?marketplace_ids: Array[String]?, ?balance_type: String?, ?account_type: String?, ?as_of_date: String?, ?next_token: String?) -> Response
-      def list_balances_pages: (?marketplace_ids: Array[String]?, ?balance_type: String?, ?account_type: String?, ?as_of_date: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_balances_pages: (?marketplace_ids: Array[String]?, ?balance_type: String?, ?account_type: String?, ?as_of_date: String?, ?next_token: String?) -> Enumerator[Response, void]
       def list_summary: (?marketplace_ids: Array[String]?, ?account_type: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?period_start: String?, ?period_end: String?, ?next_token: String?) -> Response
-      def list_summary_pages: (?marketplace_ids: Array[String]?, ?account_type: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?period_start: String?, ?period_end: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_summary_pages: (?marketplace_ids: Array[String]?, ?account_type: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?period_start: String?, ?period_end: String?, ?next_token: String?) -> Enumerator[Response, void]
       def list_transactions: (?posted_after: String?, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?next_token: String?) -> Response
-      def list_transactions_pages: (?posted_after: String?, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_transactions_pages: (?posted_after: String?, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class Transfers20240601
@@ -244,9 +244,9 @@ module Peddler
       def get_payment_methods: (String marketplace_id, ?payment_method_types: Array[String]?) -> Response
       def initiate_payout: (untyped body) -> Response
       def list_expected_payouts: (?marketplace_ids: Array[String]?, ?account_type: String?, ?next_token: String?) -> Response
-      def list_expected_payouts_pages: (?marketplace_ids: Array[String]?, ?account_type: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_expected_payouts_pages: (?marketplace_ids: Array[String]?, ?account_type: String?, ?next_token: String?) -> Enumerator[Response, void]
       def list_payouts: (?marketplace_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?payout_id: String?, ?account_type: String?, ?next_token: String?) -> Response
-      def list_payouts_pages: (?marketplace_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?payout_id: String?, ?account_type: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_payouts_pages: (?marketplace_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?payout_id: String?, ?account_type: String?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class FulfillmentInboundV0
@@ -256,10 +256,10 @@ module Peddler
       def get_labels: (String shipment_id, String page_type, String label_type, ?number_of_packages: Integer?, ?package_labels_to_print: Array[String]?, ?number_of_pallets: Integer?, ?page_size: Integer?, ?page_start_index: Integer?) -> Response
       def get_prep_instructions: (String ship_to_country_code, ?seller_sku_list: Array[String]?, ?asin_list: Array[String]?) -> Response
       def get_shipment_items: (String query_type, String marketplace_id, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?) -> Response
-      def get_shipment_items_pages: (String query_type, String marketplace_id, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_shipment_items_pages: (String query_type, String marketplace_id, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?) -> Enumerator[Response, void]
       def get_shipment_items_by_shipment_id: (String shipment_id, ?marketplace_id: String?) -> Response
       def get_shipments: (String query_type, String marketplace_id, ?shipment_status_list: Array[String]?, ?shipment_id_list: Array[String]?, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?) -> Response
-      def get_shipments_pages: (String query_type, String marketplace_id, ?shipment_status_list: Array[String]?, ?shipment_id_list: Array[String]?, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_shipments_pages: (String query_type, String marketplace_id, ?shipment_status_list: Array[String]?, ?shipment_id_list: Array[String]?, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class FulfillmentInbound20240320
@@ -284,39 +284,39 @@ module Peddler
       def get_inbound_operation_status: (String operation_id) -> Response
       def get_inbound_plan: (String inbound_plan_id) -> Response
       def get_self_ship_appointment_slots: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def get_self_ship_appointment_slots_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_self_ship_appointment_slots_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def get_shipment: (String inbound_plan_id, String shipment_id) -> Response
       def get_shipment_content_update_preview: (String inbound_plan_id, String shipment_id, String content_update_preview_id) -> Response
       def list_delivery_window_options: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_delivery_window_options_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_delivery_window_options_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_inbound_plan_boxes: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_inbound_plan_boxes_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_inbound_plan_boxes_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_inbound_plan_items: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_inbound_plan_items_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_inbound_plan_items_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_inbound_plan_pallets: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_inbound_plan_pallets_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_inbound_plan_pallets_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_inbound_plans: (?page_size: Integer?, ?pagination_token: String?, ?status: String?, ?sort_by: String?, ?sort_order: String?) -> Response
-      def list_inbound_plans_pages: (?page_size: Integer?, ?pagination_token: String?, ?status: String?, ?sort_by: String?, ?sort_order: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_inbound_plans_pages: (?page_size: Integer?, ?pagination_token: String?, ?status: String?, ?sort_by: String?, ?sort_order: String?) -> Enumerator[Response, void]
       def list_item_compliance_details: (Array[String] mskus, String marketplace_id) -> Response
       def list_packing_group_boxes: (String inbound_plan_id, String packing_group_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_packing_group_boxes_pages: (String inbound_plan_id, String packing_group_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_packing_group_boxes_pages: (String inbound_plan_id, String packing_group_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_packing_group_items: (String inbound_plan_id, String packing_group_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_packing_group_items_pages: (String inbound_plan_id, String packing_group_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_packing_group_items_pages: (String inbound_plan_id, String packing_group_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_packing_options: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_packing_options_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_packing_options_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_placement_options: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_placement_options_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_placement_options_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_prep_details: (String marketplace_id, Array[String] mskus) -> Response
       def list_shipment_boxes: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_shipment_boxes_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_shipment_boxes_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_shipment_content_update_previews: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_shipment_content_update_previews_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_shipment_content_update_previews_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_shipment_items: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_shipment_items_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_shipment_items_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_shipment_pallets: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Response
-      def list_shipment_pallets_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_shipment_pallets_pages: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?) -> Enumerator[Response, void]
       def list_transportation_options: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?placement_option_id: String?, ?shipment_id: String?) -> Response
-      def list_transportation_options_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?placement_option_id: String?, ?shipment_id: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_transportation_options_pages: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?placement_option_id: String?, ?shipment_id: String?) -> Enumerator[Response, void]
       def schedule_self_ship_appointment: (String inbound_plan_id, String shipment_id, String slot_id, untyped body) -> Response
       def set_packing_information: (String inbound_plan_id, untyped body) -> Response
       def set_prep_details: (untyped body) -> Response
@@ -335,14 +335,14 @@ module Peddler
       def create_fulfillment_return: (untyped body, String seller_fulfillment_order_id) -> Response
       def delivery_offers: (untyped body) -> Response
       def get_feature_inventory: (String marketplace_id, String feature_name, ?next_token: String?, ?query_start_date: String?) -> Response
-      def get_feature_inventory_pages: (String marketplace_id, String feature_name, ?next_token: String?, ?query_start_date: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_feature_inventory_pages: (String marketplace_id, String feature_name, ?next_token: String?, ?query_start_date: String?) -> Enumerator[Response, void]
       def get_feature_sku: (String marketplace_id, String feature_name, String seller_sku) -> Response
       def get_features: (String marketplace_id) -> Response
       def get_fulfillment_order: (String seller_fulfillment_order_id) -> Response
       def get_fulfillment_preview: (untyped body) -> Response
       def get_package_tracking_details: (Integer package_number) -> Response
       def list_all_fulfillment_orders: (?query_start_date: String?, ?next_token: String?) -> Response
-      def list_all_fulfillment_orders_pages: (?query_start_date: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_all_fulfillment_orders_pages: (?query_start_date: String?, ?next_token: String?) -> Enumerator[Response, void]
       def list_return_reason_codes: (String seller_sku, ?marketplace_id: String?, ?seller_fulfillment_order_id: String?, ?language: String?) -> Response
       def submit_fulfillment_order_status_update: (String seller_fulfillment_order_id, untyped body) -> Response
       def update_fulfillment_order: (untyped body, String seller_fulfillment_order_id) -> Response
@@ -357,7 +357,7 @@ module Peddler
       def get_order: (String order_id, ?x_amzn_fulfillment_service_id: String?, ?shipments: String?) -> Response
       def get_order_preview: (untyped body, ?x_amzn_fulfillment_service_id: String?) -> Response
       def list_orders: (?x_amzn_fulfillment_service_id: String?, ?updated_after: String?, ?page_token: String?, ?shipments: String?) -> Response
-      def list_orders_pages: (?x_amzn_fulfillment_service_id: String?, ?updated_after: String?, ?page_token: String?, ?shipments: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_orders_pages: (?x_amzn_fulfillment_service_id: String?, ?updated_after: String?, ?page_token: String?, ?shipments: String?) -> Enumerator[Response, void]
       def update_order: (String order_id, untyped body, ?x_amzn_fulfillment_service_id: String?) -> Response
       def update_order_status: (String order_id, untyped body, ?x_amzn_fulfillment_service_id: String?) -> Response
       def update_package: (String order_id, String package_id, untyped body, ?x_amzn_fulfillment_service_id: String?) -> Response
@@ -372,12 +372,12 @@ module Peddler
       def get_government_invoice_status: (String marketplace_id, String transaction_type, String shipment_id, String invoice_type, ?inbound_plan_id: String?) -> Response
       def get_invoice: (String marketplace_id, String invoice_id, ?warehouse_code: String?) -> Response
       def get_invoices: (String marketplace_id, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?, ?warehouse_code: String?) -> Response
-      def get_invoices_pages: (String marketplace_id, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?, ?warehouse_code: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_invoices_pages: (String marketplace_id, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?, ?warehouse_code: String?) -> Enumerator[Response, void]
       def get_invoices_attributes: (String marketplace_id, ?warehouse_code: String?) -> Response
       def get_invoices_document: (String invoices_document_id, ?warehouse_code: String?) -> Response
       def get_invoices_export: (String export_id, ?warehouse_code: String?) -> Response
       def get_invoices_exports: (String marketplace_id, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?, ?warehouse_code: String?) -> Response
-      def get_invoices_exports_pages: (String marketplace_id, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?, ?warehouse_code: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_invoices_exports_pages: (String marketplace_id, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?, ?warehouse_code: String?) -> Enumerator[Response, void]
     end
 
     class ListingsItems20200901
@@ -396,7 +396,7 @@ module Peddler
       def patch_listings_item: (String seller_id, String sku, Array[String] marketplace_ids, untyped body, ?included_data: Array[String]?, ?mode: String?, ?issue_locale: String?) -> Response
       def put_listings_item: (String seller_id, String sku, Array[String] marketplace_ids, untyped body, ?included_data: Array[String]?, ?mode: String?, ?issue_locale: String?) -> Response
       def search_listings_items: (String seller_id, Array[String] marketplace_ids, ?issue_locale: String?, ?included_data: Array[String]?, ?identifiers: Array[String]?, ?identifiers_type: String?, ?variation_parent_sku: String?, ?package_hierarchy_sku: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?with_issue_severity: Array[String]?, ?with_status: Array[String]?, ?without_status: Array[String]?, ?sort_by: String?, ?sort_order: String?, ?page_size: Integer?, ?page_token: String?) -> Response
-      def search_listings_items_pages: (String seller_id, Array[String] marketplace_ids, ?issue_locale: String?, ?included_data: Array[String]?, ?identifiers: Array[String]?, ?identifiers_type: String?, ?variation_parent_sku: String?, ?package_hierarchy_sku: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?with_issue_severity: Array[String]?, ?with_status: Array[String]?, ?without_status: Array[String]?, ?sort_by: String?, ?sort_order: String?, ?page_size: Integer?, ?page_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def search_listings_items_pages: (String seller_id, Array[String] marketplace_ids, ?issue_locale: String?, ?included_data: Array[String]?, ?identifiers: Array[String]?, ?identifiers_type: String?, ?variation_parent_sku: String?, ?package_hierarchy_sku: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?with_issue_severity: Array[String]?, ?with_status: Array[String]?, ?without_status: Array[String]?, ?sort_by: String?, ?sort_order: String?, ?page_size: Integer?, ?page_token: String?) -> Enumerator[Response, void]
     end
 
     class ListingsRestrictions20210801
@@ -443,7 +443,7 @@ module Peddler
       def get_subscription: (String notification_type, ?payload_version: String?) -> Response
       def get_subscription_by_id: (String subscription_id, String notification_type) -> Response
       def get_subscriptions: (Array[String] notification_types, ?payload_version: String?, ?page_size: Integer?, ?next_token: String?) -> Response
-      def get_subscriptions_pages: (Array[String] notification_types, ?payload_version: String?, ?page_size: Integer?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_subscriptions_pages: (Array[String] notification_types, ?payload_version: String?, ?page_size: Integer?, ?next_token: String?) -> Enumerator[Response, void]
       def send_test_notification: (untyped body, String notification_type) -> Response
     end
 
@@ -455,12 +455,12 @@ module Peddler
       def get_order_address: (String order_id) -> Response
       def get_order_buyer_info: (String order_id) -> Response
       def get_order_items: (String order_id, ?next_token: String?) -> Response
-      def get_order_items_pages: (String order_id, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_order_items_pages: (String order_id, ?next_token: String?) -> Enumerator[Response, void]
       def get_order_items_buyer_info: (String order_id, ?next_token: String?) -> Response
-      def get_order_items_buyer_info_pages: (String order_id, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_order_items_buyer_info_pages: (String order_id, ?next_token: String?) -> Enumerator[Response, void]
       def get_order_regulated_info: (String order_id) -> Response
       def get_orders: (Array[String] marketplace_ids, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?order_statuses: Array[String]?, ?fulfillment_channels: Array[String]?, ?payment_methods: Array[String]?, ?buyer_email: String?, ?seller_order_id: String?, ?max_results_per_page: Integer?, ?easy_ship_shipment_statuses: Array[String]?, ?electronic_invoice_statuses: Array[String]?, ?next_token: String?, ?amazon_order_ids: Array[String]?, ?actual_fulfillment_supply_source_id: String?, ?is_ispu: bool?, ?store_chain_store_id: String?, ?earliest_delivery_date_before: String?, ?earliest_delivery_date_after: String?, ?latest_delivery_date_before: String?, ?latest_delivery_date_after: String?) -> Response
-      def get_orders_pages: (Array[String] marketplace_ids, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?order_statuses: Array[String]?, ?fulfillment_channels: Array[String]?, ?payment_methods: Array[String]?, ?buyer_email: String?, ?seller_order_id: String?, ?max_results_per_page: Integer?, ?easy_ship_shipment_statuses: Array[String]?, ?electronic_invoice_statuses: Array[String]?, ?next_token: String?, ?amazon_order_ids: Array[String]?, ?actual_fulfillment_supply_source_id: String?, ?is_ispu: bool?, ?store_chain_store_id: String?, ?earliest_delivery_date_before: String?, ?earliest_delivery_date_after: String?, ?latest_delivery_date_before: String?, ?latest_delivery_date_after: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_orders_pages: (Array[String] marketplace_ids, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?order_statuses: Array[String]?, ?fulfillment_channels: Array[String]?, ?payment_methods: Array[String]?, ?buyer_email: String?, ?seller_order_id: String?, ?max_results_per_page: Integer?, ?easy_ship_shipment_statuses: Array[String]?, ?electronic_invoice_statuses: Array[String]?, ?next_token: String?, ?amazon_order_ids: Array[String]?, ?actual_fulfillment_supply_source_id: String?, ?is_ispu: bool?, ?store_chain_store_id: String?, ?earliest_delivery_date_before: String?, ?earliest_delivery_date_after: String?, ?latest_delivery_date_before: String?, ?latest_delivery_date_after: String?) -> Enumerator[Response, void]
       def update_shipment_status: (String order_id, untyped payload) -> Response
       def update_verification_status: (String order_id, untyped payload) -> Response
     end
@@ -470,7 +470,7 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_order: (String order_id, ?included_data: Array[String]?) -> Response
       def search_orders: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?) -> Response
-      def search_orders_pages: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def search_orders_pages: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?) -> Enumerator[Response, void]
     end
 
     class ProductFeesV0
@@ -511,9 +511,9 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_promotion: (String promotion_id, ?included_data: Array[String]?, ?locale: String?) -> Response
       def get_selection: (String promotion_id, String selection_id, Integer revision_id, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?) -> Response
-      def get_selection_pages: (String promotion_id, String selection_id, Integer revision_id, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_selection_pages: (String promotion_id, String selection_id, Integer revision_id, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?) -> Enumerator[Response, void]
       def search_promotions: (Array[String] marketplace_ids, ?locale: String?, ?statuses: Array[String]?, ?asins: Array[String]?, ?skus: Array[String]?, ?promotion_types: Array[String]?, ?start_date_before: String?, ?start_date_after: String?, ?end_date_before: String?, ?end_date_after: String?, ?update_date_after: String?, ?update_date_before: String?, ?pagination_token: String?, ?revision: String?, ?limit: Integer?, ?included_data: Array[String]?) -> Response
-      def search_promotions_pages: (Array[String] marketplace_ids, ?locale: String?, ?statuses: Array[String]?, ?asins: Array[String]?, ?skus: Array[String]?, ?promotion_types: Array[String]?, ?start_date_before: String?, ?start_date_after: String?, ?end_date_before: String?, ?end_date_after: String?, ?update_date_after: String?, ?update_date_before: String?, ?pagination_token: String?, ?revision: String?, ?limit: Integer?, ?included_data: Array[String]?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def search_promotions_pages: (Array[String] marketplace_ids, ?locale: String?, ?statuses: Array[String]?, ?asins: Array[String]?, ?skus: Array[String]?, ?promotion_types: Array[String]?, ?start_date_before: String?, ?start_date_after: String?, ?end_date_before: String?, ?end_date_after: String?, ?update_date_after: String?, ?update_date_before: String?, ?pagination_token: String?, ?revision: String?, ?limit: Integer?, ?included_data: Array[String]?) -> Enumerator[Response, void]
     end
 
     class Replenishment20221107
@@ -536,7 +536,7 @@ module Peddler
       def get_report_schedule: (String report_schedule_id) -> Response
       def get_report_schedules: (Array[String] report_types) -> Response
       def get_reports: (?report_types: Array[String]?, ?processing_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?next_token: String?) -> Response
-      def get_reports_pages: (?report_types: Array[String]?, ?processing_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_reports_pages: (?report_types: Array[String]?, ?processing_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?next_token: String?) -> Enumerator[Response, void]
     end
 
     class SalesV1
@@ -557,10 +557,10 @@ module Peddler
       def get_transfer_schedule: (String transfer_schedule_id, String marketplace_id) -> Response
       def list_account_balances: (String account_id, String marketplace_id) -> Response
       def list_account_transactions: (String account_id, String marketplace_id, ?next_page_token: String?) -> Response
-      def list_account_transactions_pages: (String account_id, String marketplace_id, ?next_page_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_account_transactions_pages: (String account_id, String marketplace_id, ?next_page_token: String?) -> Enumerator[Response, void]
       def list_accounts: (String marketplace_id) -> Response
       def list_transfer_schedules: (String account_id, String marketplace_id, ?next_page_token: String?) -> Response
-      def list_transfer_schedules_pages: (String account_id, String marketplace_id, ?next_page_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_transfer_schedules_pages: (String account_id, String marketplace_id, ?next_page_token: String?) -> Enumerator[Response, void]
       def update_transfer_schedule: (untyped body, String dest_account_digital_signature, String amount_digital_signature, String marketplace_id) -> Response
     end
 
@@ -584,12 +584,12 @@ module Peddler
       def get_appointment_slots: (String asin, String store_id, Array[String] marketplace_ids, ?start_time: String?, ?end_time: String?) -> Response
       def get_appointmment_slots_by_job_id: (String service_job_id, Array[String] marketplace_ids, ?start_time: String?, ?end_time: String?) -> Response
       def get_fixed_slot_capacity: (String resource_id, untyped body, Array[String] marketplace_ids, ?next_page_token: String?) -> Response
-      def get_fixed_slot_capacity_pages: (String resource_id, untyped body, Array[String] marketplace_ids, ?next_page_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_fixed_slot_capacity_pages: (String resource_id, untyped body, Array[String] marketplace_ids, ?next_page_token: String?) -> Enumerator[Response, void]
       def get_range_slot_capacity: (String resource_id, untyped body, Array[String] marketplace_ids, ?next_page_token: String?) -> Response
-      def get_range_slot_capacity_pages: (String resource_id, untyped body, Array[String] marketplace_ids, ?next_page_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_range_slot_capacity_pages: (String resource_id, untyped body, Array[String] marketplace_ids, ?next_page_token: String?) -> Enumerator[Response, void]
       def get_service_job_by_service_job_id: (String service_job_id) -> Response
       def get_service_jobs: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?) -> Response
-      def get_service_jobs_pages: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_service_jobs_pages: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?) -> Enumerator[Response, void]
       def reschedule_appointment_for_service_job_by_service_job_id: (String service_job_id, String appointment_id, untyped body) -> Response
       def set_appointment_fulfillment_data: (String service_job_id, String appointment_id, untyped body) -> Response
       def update_reservation: (String reservation_id, untyped body, Array[String] marketplace_ids) -> Response
@@ -657,7 +657,7 @@ module Peddler
       def create_supply_source: (untyped payload) -> Response
       def get_supply_source: (String supply_source_id) -> Response
       def get_supply_sources: (?next_page_token: String?, ?page_size: (Float | Integer)?) -> Response
-      def get_supply_sources_pages: (?next_page_token: String?, ?page_size: (Float | Integer)?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_supply_sources_pages: (?next_page_token: String?, ?page_size: (Float | Integer)?) -> Enumerator[Response, void]
       def update_supply_source: (String supply_source_id, ?payload: untyped?) -> Response
       def update_supply_source_status: (String supply_source_id, ?payload: untyped?) -> Response
     end
@@ -667,9 +667,9 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_case: (String case_id) -> Response
       def list_cases: (untyped body) -> Response
-      def list_cases_pages: (untyped body, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_cases_pages: (untyped body) -> Enumerator[Response, void]
       def list_contacts: (String case_id, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?) -> Response
-      def list_contacts_pages: (String case_id, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def list_contacts_pages: (String case_id, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?) -> Enumerator[Response, void]
     end
 
     class Tokens20210301
@@ -694,7 +694,7 @@ module Peddler
       @engine: engine
       def initialize: (engine engine) -> void
       def get_vehicles: (String marketplace_id, String vehicle_type, ?page_token: String?, ?updated_after: String?) -> Response
-      def get_vehicles_pages: (String marketplace_id, String vehicle_type, ?page_token: String?, ?updated_after: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_vehicles_pages: (String marketplace_id, String vehicle_type, ?page_token: String?, ?updated_after: String?) -> Enumerator[Response, void]
     end
 
     class VendorDirectFulfillmentInventoryV1
@@ -708,7 +708,7 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_order: (String purchase_order_number) -> Response
       def get_orders: (String created_after, String created_before, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?) -> Response
-      def get_orders_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_orders_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?) -> Enumerator[Response, void]
       def submit_acknowledgement: (untyped body) -> Response
     end
 
@@ -717,7 +717,7 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_order: (String purchase_order_number) -> Response
       def get_orders: (String created_after, String created_before, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?) -> Response
-      def get_orders_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_orders_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?) -> Enumerator[Response, void]
       def submit_acknowledgement: (untyped body) -> Response
     end
 
@@ -739,13 +739,13 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_customer_invoice: (String purchase_order_number) -> Response
       def get_customer_invoices: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Response
-      def get_customer_invoices_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_customer_invoices_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Enumerator[Response, void]
       def get_packing_slip: (String purchase_order_number) -> Response
       def get_packing_slips: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Response
-      def get_packing_slips_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_packing_slips_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Enumerator[Response, void]
       def get_shipping_label: (String purchase_order_number) -> Response
       def get_shipping_labels: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Response
-      def get_shipping_labels_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_shipping_labels_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Enumerator[Response, void]
       def submit_shipment_confirmations: (untyped body) -> Response
       def submit_shipment_status_updates: (untyped body) -> Response
       def submit_shipping_label_request: (untyped body) -> Response
@@ -758,13 +758,13 @@ module Peddler
       def create_shipping_labels: (String purchase_order_number, untyped body) -> Response
       def get_customer_invoice: (String purchase_order_number) -> Response
       def get_customer_invoices: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Response
-      def get_customer_invoices_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_customer_invoices_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Enumerator[Response, void]
       def get_packing_slip: (String purchase_order_number) -> Response
       def get_packing_slips: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Response
-      def get_packing_slips_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_packing_slips_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Enumerator[Response, void]
       def get_shipping_label: (String purchase_order_number) -> Response
       def get_shipping_labels: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Response
-      def get_shipping_labels_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_shipping_labels_pages: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?) -> Enumerator[Response, void]
       def submit_shipment_confirmations: (untyped body) -> Response
       def submit_shipment_status_updates: (untyped body) -> Response
       def submit_shipping_label_request: (untyped body) -> Response
@@ -793,9 +793,9 @@ module Peddler
       def initialize: (engine engine) -> void
       def get_purchase_order: (String purchase_order_number) -> Response
       def get_purchase_orders: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: bool?, ?purchase_order_state: String?, ?ordering_vendor_code: String?) -> Response
-      def get_purchase_orders_pages: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: bool?, ?purchase_order_state: String?, ?ordering_vendor_code: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_purchase_orders_pages: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: bool?, ?purchase_order_state: String?, ?ordering_vendor_code: String?) -> Enumerator[Response, void]
       def get_purchase_orders_status: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?updated_after: String?, ?updated_before: String?, ?purchase_order_number: String?, ?purchase_order_status: String?, ?item_confirmation_status: String?, ?item_receive_status: String?, ?ordering_vendor_code: String?, ?ship_to_party_id: String?) -> Response
-      def get_purchase_orders_status_pages: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?updated_after: String?, ?updated_before: String?, ?purchase_order_number: String?, ?purchase_order_status: String?, ?item_confirmation_status: String?, ?item_receive_status: String?, ?ordering_vendor_code: String?, ?ship_to_party_id: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_purchase_orders_status_pages: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?updated_after: String?, ?updated_before: String?, ?purchase_order_number: String?, ?purchase_order_status: String?, ?item_confirmation_status: String?, ?item_receive_status: String?, ?ordering_vendor_code: String?, ?ship_to_party_id: String?) -> Enumerator[Response, void]
       def submit_acknowledgement: (untyped body) -> Response
     end
 
@@ -803,9 +803,9 @@ module Peddler
       @engine: engine
       def initialize: (engine engine) -> void
       def get_shipment_details: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?shipment_confirmed_before: String?, ?shipment_confirmed_after: String?, ?package_label_created_before: String?, ?package_label_created_after: String?, ?shipped_before: String?, ?shipped_after: String?, ?estimated_delivery_before: String?, ?estimated_delivery_after: String?, ?shipment_delivery_before: String?, ?shipment_delivery_after: String?, ?requested_pick_up_before: String?, ?requested_pick_up_after: String?, ?scheduled_pick_up_before: String?, ?scheduled_pick_up_after: String?, ?current_shipment_status: String?, ?vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?buyer_warehouse_code: String?, ?seller_warehouse_code: String?) -> Response
-      def get_shipment_details_pages: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?shipment_confirmed_before: String?, ?shipment_confirmed_after: String?, ?package_label_created_before: String?, ?package_label_created_after: String?, ?shipped_before: String?, ?shipped_after: String?, ?estimated_delivery_before: String?, ?estimated_delivery_after: String?, ?shipment_delivery_before: String?, ?shipment_delivery_after: String?, ?requested_pick_up_before: String?, ?requested_pick_up_after: String?, ?scheduled_pick_up_before: String?, ?scheduled_pick_up_after: String?, ?current_shipment_status: String?, ?vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?buyer_warehouse_code: String?, ?seller_warehouse_code: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_shipment_details_pages: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?shipment_confirmed_before: String?, ?shipment_confirmed_after: String?, ?package_label_created_before: String?, ?package_label_created_after: String?, ?shipped_before: String?, ?shipped_after: String?, ?estimated_delivery_before: String?, ?estimated_delivery_after: String?, ?shipment_delivery_before: String?, ?shipment_delivery_after: String?, ?requested_pick_up_before: String?, ?requested_pick_up_after: String?, ?scheduled_pick_up_before: String?, ?scheduled_pick_up_after: String?, ?current_shipment_status: String?, ?vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?buyer_warehouse_code: String?, ?seller_warehouse_code: String?) -> Enumerator[Response, void]
       def get_shipment_labels: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?label_created_after: String?, ?label_created_before: String?, ?buyer_reference_number: String?, ?vendor_shipment_identifier: String?, ?seller_warehouse_code: String?) -> Response
-      def get_shipment_labels_pages: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?label_created_after: String?, ?label_created_before: String?, ?buyer_reference_number: String?, ?vendor_shipment_identifier: String?, ?seller_warehouse_code: String?, ?max_pages: Integer?) -> Enumerator[Response, void]
+      def get_shipment_labels_pages: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?label_created_after: String?, ?label_created_before: String?, ?buyer_reference_number: String?, ?vendor_shipment_identifier: String?, ?seller_warehouse_code: String?) -> Enumerator[Response, void]
       def submit_shipment_confirmations: (untyped body) -> Response
       def submit_shipments: (untyped body) -> Response
     end

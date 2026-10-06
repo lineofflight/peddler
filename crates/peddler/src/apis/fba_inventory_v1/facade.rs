@@ -159,7 +159,6 @@ pub async fn get_inventory_summaries(
 pub fn get_inventory_summaries_pages<'a>(
     client: &'a Client,
     params: GetInventorySummariesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -175,6 +174,5 @@ pub fn get_inventory_summaries_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

@@ -124,7 +124,6 @@ pub async fn search_orders(
 pub fn search_orders_pages<'a>(
     client: &'a Client,
     params: SearchOrdersParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -140,6 +139,5 @@ pub fn search_orders_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

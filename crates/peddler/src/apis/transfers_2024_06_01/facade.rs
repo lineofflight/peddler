@@ -114,7 +114,6 @@ pub async fn list_expected_payouts(
 pub fn list_expected_payouts_pages<'a>(
     client: &'a Client,
     params: ListExpectedPayoutsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -130,7 +129,6 @@ pub fn list_expected_payouts_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -186,7 +184,6 @@ pub async fn list_payouts(
 pub fn list_payouts_pages<'a>(
     client: &'a Client,
     params: ListPayoutsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -202,6 +199,5 @@ pub fn list_payouts_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

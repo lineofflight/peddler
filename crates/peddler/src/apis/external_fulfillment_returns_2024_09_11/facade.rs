@@ -111,7 +111,6 @@ pub async fn list_returns(
 pub fn list_returns_pages<'a>(
     client: &'a Client,
     params: ListReturnsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -127,6 +126,5 @@ pub fn list_returns_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

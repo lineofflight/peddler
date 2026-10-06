@@ -108,21 +108,17 @@ struct State<'a> {
     input: Vec<String>,
     output: Vec<String>,
     seen: HashSet<String>,
-    fetched: usize,
-    max_pages: Option<usize>,
     step: Step,
 }
 
 /// Streams raw pages of `pagination.operation`.
 ///
-/// `arguments` are serialized once, now, and never mutated. `max_pages` caps
-/// the number of requests; `Some(0)` makes none. Nothing is requested until
-/// the stream is polled, and pages are fetched one at a time.
+/// `arguments` are serialized once, now, and never mutated. Nothing is
+/// requested until the stream is polled, and pages are fetched one at a time.
 pub fn pages<'a, T: serde::Serialize>(
     client: &'a Client,
     pagination: Pagination,
     arguments: &T,
-    max_pages: Option<usize>,
 ) -> PageStream<'a> {
     let mut state = State {
         client,
@@ -130,8 +126,6 @@ pub fn pages<'a, T: serde::Serialize>(
         input: Vec::new(),
         output: Vec::new(),
         seen: HashSet::new(),
-        fetched: 0,
-        max_pages,
         step: Step::Fetch(None),
         pagination,
     };
@@ -228,9 +222,6 @@ async fn next_page(mut state: State<'_>) -> Option<(Result<Response, PaginationE
         Step::Fail(error) => return Some((Err(error), state)),
         Step::Fetch(token) => token,
     };
-    if state.max_pages.is_some_and(|max| state.fetched >= max) {
-        return None;
-    }
     let (operation, arguments) = match &token {
         None => (
             state.pagination.operation.clone(),
@@ -256,10 +247,8 @@ async fn next_page(mut state: State<'_>) -> Option<(Result<Response, PaginationE
         Ok(response) => response,
         Err(error) => return Some((Err(PaginationError::Request(error)), state)),
     };
-    state.fetched += 1;
-    let capped = state.max_pages.is_some_and(|max| state.fetched >= max);
     // An HTTP error page is yielded once and ends the stream.
-    if !capped && (200..300).contains(&response.status) {
+    if (200..300).contains(&response.status) {
         state.step = match extract(&state.output, &response.body) {
             Ok(None) => Step::Done,
             Ok(Some(token)) if state.seen.insert(token.clone()) => Step::Fetch(Some(token)),

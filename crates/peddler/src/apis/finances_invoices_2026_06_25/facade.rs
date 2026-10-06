@@ -49,7 +49,6 @@ pub async fn get_invoice(
 pub fn get_invoice_pages<'a>(
     client: &'a Client,
     params: GetInvoiceParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -65,7 +64,6 @@ pub fn get_invoice_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -116,7 +114,6 @@ pub async fn get_invoice_headers(
 pub fn get_invoice_headers_pages<'a>(
     client: &'a Client,
     params: GetInvoiceHeadersParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -132,6 +129,5 @@ pub fn get_invoice_headers_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

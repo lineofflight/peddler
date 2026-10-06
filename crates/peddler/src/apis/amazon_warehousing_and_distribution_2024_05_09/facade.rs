@@ -474,7 +474,6 @@ pub async fn list_inbound_shipments(
 pub fn list_inbound_shipments_pages<'a>(
     client: &'a Client,
     params: ListInboundShipmentsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -491,7 +490,6 @@ pub fn list_inbound_shipments_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_inventory_max_results_default() -> Option<i32> {
@@ -547,7 +545,6 @@ pub async fn list_inventory(
 pub fn list_inventory_pages<'a>(
     client: &'a Client,
     params: ListInventoryParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -564,7 +561,6 @@ pub fn list_inventory_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_outbounds_max_results_default() -> Option<i32> {
@@ -620,7 +616,6 @@ pub async fn list_outbounds(
 pub fn list_outbounds_pages<'a>(
     client: &'a Client,
     params: ListOutboundsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -637,7 +632,6 @@ pub fn list_outbounds_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_replenishment_orders_max_results_default() -> Option<i32> {
@@ -693,7 +687,6 @@ pub async fn list_replenishment_orders(
 pub fn list_replenishment_orders_pages<'a>(
     client: &'a Client,
     params: ListReplenishmentOrdersParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -710,7 +703,6 @@ pub fn list_replenishment_orders_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

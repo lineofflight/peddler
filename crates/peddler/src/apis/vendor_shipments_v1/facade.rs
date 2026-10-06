@@ -178,7 +178,6 @@ pub async fn get_shipment_details(
 pub fn get_shipment_details_pages<'a>(
     client: &'a Client,
     params: GetShipmentDetailsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -194,7 +193,6 @@ pub fn get_shipment_details_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -275,7 +273,6 @@ pub async fn get_shipment_labels(
 pub fn get_shipment_labels_pages<'a>(
     client: &'a Client,
     params: GetShipmentLabelsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -291,7 +288,6 @@ pub fn get_shipment_labels_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

@@ -61,7 +61,6 @@ pub async fn list_cases<B: serde::Serialize>(
 pub fn list_cases_pages<'a, B: serde::Serialize>(
     client: &'a Client,
     params: ListCasesParams<B>,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -77,7 +76,6 @@ pub fn list_cases_pages<'a, B: serde::Serialize>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_contacts_max_results_default() -> Option<i32> {
@@ -133,7 +131,6 @@ pub async fn list_contacts(
 pub fn list_contacts_pages<'a>(
     client: &'a Client,
     params: ListContactsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -149,6 +146,5 @@ pub fn list_contacts_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

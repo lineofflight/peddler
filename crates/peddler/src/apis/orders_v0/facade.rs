@@ -157,7 +157,6 @@ pub async fn get_order_items(
 pub fn get_order_items_pages<'a>(
     client: &'a Client,
     params: GetOrderItemsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -173,7 +172,6 @@ pub fn get_order_items_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -212,7 +210,6 @@ pub async fn get_order_items_buyer_info(
 pub fn get_order_items_buyer_info_pages<'a>(
     client: &'a Client,
     params: GetOrderItemsBuyerInfoParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -228,7 +225,6 @@ pub fn get_order_items_buyer_info_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -419,7 +415,6 @@ pub async fn get_orders(
 pub fn get_orders_pages<'a>(
     client: &'a Client,
     params: GetOrdersParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -435,7 +430,6 @@ pub fn get_orders_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

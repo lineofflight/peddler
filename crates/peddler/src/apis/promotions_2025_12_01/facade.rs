@@ -110,7 +110,6 @@ pub async fn get_selection(
 pub fn get_selection_pages<'a>(
     client: &'a Client,
     params: GetSelectionParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -126,7 +125,6 @@ pub fn get_selection_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn search_promotions_locale_default() -> Option<String> {
@@ -224,7 +222,6 @@ pub async fn search_promotions(
 pub fn search_promotions_pages<'a>(
     client: &'a Client,
     params: SearchPromotionsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -240,6 +237,5 @@ pub fn search_promotions_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }

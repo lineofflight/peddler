@@ -58,7 +58,7 @@ class PaginationTest < NativeTest
         pages = []
         error = failed = nil
         begin
-          pagination_for(fixture["pagination"]).pages(engine, arguments, max_pages: fixture["max_pages"]).each do |page|
+          pagination_for(fixture["pagination"]).pages(engine, arguments).each do |page|
             pages << page
           end
         rescue Peddler::PaginationError => e
@@ -103,7 +103,8 @@ class PaginationTest < NativeTest
   end
 
   def test_generated_method_returns_a_lazy_rewindable_enumerable_of_native_responses
-    script([[200, '{"payload":{"NextToken":"A"}}'], [200, "{}"], [200, '{"payload":{"NextToken":"A"}}'], [200, "{}"]]) do |server|
+    first_page = [200, '{"payload":{"NextToken":"A"}}']
+    script([first_page, [200, "{}"], first_page, first_page, [200, '{"payload":{"NextToken":"B"}}']]) do |server|
       enum = client(server.url).orders_v0.get_orders_pages(["ATVPDKIKX0DER"])
 
       assert_kind_of(Enumerable, enum)
@@ -112,6 +113,8 @@ class PaginationTest < NativeTest
       assert_equal([200, 200], enum.map { |page| page.tap { _1.dig("payload", "NextToken")&.replace("changed") }.status })
       assert_instance_of(Peddler::Response, enum.first)
       assert_equal(3, server.requests.size, "first restarts from the first page and stops")
+      assert_equal(2, enum.first(2).size)
+      assert_equal(5, server.requests.size, "first(2) fetches 2 pages")
       assert_equal(["NextToken", "A"], URI.decode_www_form(server.requests[1][:target].split("?", 2)[1]).assoc("NextToken"))
     end
   end
@@ -134,7 +137,7 @@ class PaginationTest < NativeTest
       pagination = Peddler::Pagination.new(operation: "sellers_v1.get_marketplace_participations", input: "/x",
         output: "/next")
 
-      assert_equal(1, client(server.url).pages(pagination, {}, max_pages: 1).to_a.size)
+      assert_equal(1, client(server.url).pages(pagination, {}).first(1).size)
       assert_equal(1, server.requests.size)
     end
   end
@@ -147,7 +150,6 @@ class PaginationTest < NativeTest
       assert_raises(ArgumentError) { pagination.pages(engine, []) }
       assert_raises(ArgumentError) { pagination.pages(engine, { next_token: 5 }) }
       assert_raises(ArgumentError) { pagination.pages(engine, { "a" => 1, a: 2 }) }
-      assert_raises(ArgumentError) { pagination.pages(engine, {}, max_pages: -1) }
       assert_raises(ArgumentError) { pagination.pages(engine, { x: Float::NAN }) }
       assert_raises(ArgumentError) do
         Peddler::Pagination.new(operation: ORDERS, input: "next_token", output: "/x")

@@ -155,7 +155,7 @@ pub fn rust(operations: &[Operation], pagination: &[&Resolved]) -> Result<String
             } else {
                 "<'a>"
             };
-            writeln!(source,"pub fn {}_pages{generics}(client:&'a Client, params:{params_ty}, max_pages: Option<usize>)->crate::pagination::PageStream<'a> {{ crate::pagination::pages(client, {}, &params, max_pages) }}",op.name,pagination::rust_expression(mapped)).unwrap();
+            writeln!(source,"pub fn {}_pages{generics}(client:&'a Client, params:{params_ty})->crate::pagination::PageStream<'a> {{ crate::pagination::pages(client, {}, &params) }}",op.name,pagination::rust_expression(mapped)).unwrap();
             if mapped.mapping.continuation.adapter {
                 adapter(&mut source, op, mapped)?;
             }
@@ -486,7 +486,12 @@ pub(crate) fn ruby(
             };
             let key = format!("{}.{}", api.module, op.name);
             // The response carries its operation key so Ruby can resolve the typed model.
-            writeln!(ruby,"      def {}{}\n{annotation}        arguments = {arguments}\n        Response.from_parts(@engine.operation({key:?}, JSON.generate(arguments)), {key:?})\n      end\n",op.name,if keywords.is_empty(){String::new()}else{format!("({keywords})")}).unwrap();
+            let signature = if keywords.is_empty() {
+                String::new()
+            } else {
+                format!("({keywords})")
+            };
+            writeln!(ruby,"      def {}{signature}\n{annotation}        arguments = {arguments}\n        Response.from_parts(@engine.operation({key:?}, JSON.generate(arguments)), {key:?})\n      end\n",op.name).unwrap();
             let sig = ordered
                 .iter()
                 .map(|p| {
@@ -512,17 +517,7 @@ pub(crate) fn ruby(
                 .iter()
                 .find(|r| r.module == api.module && r.name == op.name)
             {
-                let signature = if keywords.is_empty() {
-                    "max_pages: nil".to_owned()
-                } else {
-                    format!("{keywords}, max_pages: nil")
-                };
-                writeln!(ruby,"      def {}_pages({signature})\n{annotation}        arguments = {arguments}\n        PAGINATIONS.fetch({:?}).pages(@engine, arguments, max_pages: max_pages)\n      end\n",op.name,mapped.key).unwrap();
-                let sig = if sig.is_empty() {
-                    "?max_pages: Integer?".to_owned()
-                } else {
-                    format!("{sig}, ?max_pages: Integer?")
-                };
+                writeln!(ruby,"      def {}_pages{signature}\n{annotation}        arguments = {arguments}\n        PAGINATIONS.fetch({:?}).pages(@engine, arguments)\n      end\n",op.name,mapped.key).unwrap();
                 writeln!(
                     rbs,
                     "      def {}_pages: ({sig}) -> Enumerator[Response, void]",

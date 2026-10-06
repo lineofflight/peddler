@@ -164,7 +164,6 @@ pub async fn get_feature_inventory(
 pub fn get_feature_inventory_pages<'a>(
     client: &'a Client,
     params: GetFeatureInventoryParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -181,7 +180,6 @@ pub fn get_feature_inventory_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -377,7 +375,6 @@ pub async fn list_all_fulfillment_orders(
 pub fn list_all_fulfillment_orders_pages<'a>(
     client: &'a Client,
     params: ListAllFulfillmentOrdersParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -394,7 +391,6 @@ pub fn list_all_fulfillment_orders_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

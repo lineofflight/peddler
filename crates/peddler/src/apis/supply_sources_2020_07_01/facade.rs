@@ -131,7 +131,6 @@ pub async fn get_supply_sources(
 pub fn get_supply_sources_pages<'a>(
     client: &'a Client,
     params: GetSupplySourcesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -147,7 +146,6 @@ pub fn get_supply_sources_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

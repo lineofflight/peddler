@@ -296,7 +296,6 @@ pub async fn get_subscriptions(
 pub fn get_subscriptions_pages<'a>(
     client: &'a Client,
     params: GetSubscriptionsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -312,7 +311,6 @@ pub fn get_subscriptions_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

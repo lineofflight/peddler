@@ -9,7 +9,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -97,7 +96,6 @@
     "shoes"
    ]
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -175,7 +173,6 @@
     "sortOrder": "ASC"
    }
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -238,7 +235,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -277,7 +273,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -316,7 +311,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -355,7 +349,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -394,7 +387,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -458,7 +450,6 @@
    "created_after": "2026-01-01T00:00:00Z",
    "next_token": "T"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -501,7 +492,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -588,7 +578,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -627,7 +616,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -657,89 +645,6 @@
   "error": "malformed_response"
  },
  {
-  "name": "explicit zero pages makes no request",
-  "pagination": "orders_v0.get_orders",
-  "arguments": {
-   "marketplace_ids": [
-    "ATVPDKIKX0DER",
-    "A1F83G8C2ARO7P"
-   ],
-   "created_after": "2026-01-01T00:00:00Z"
-  },
-  "max_pages": 0,
-  "responses": [],
-  "requests": [],
-  "statuses": [],
-  "error": null
- },
- {
-  "name": "positive cap limits fetches",
-  "pagination": "orders_v0.get_orders",
-  "arguments": {
-   "marketplace_ids": [
-    "ATVPDKIKX0DER",
-    "A1F83G8C2ARO7P"
-   ],
-   "created_after": "2026-01-01T00:00:00Z"
-  },
-  "max_pages": 2,
-  "responses": [
-   {
-    "status": 200,
-    "body": "{\"payload\": {\"NextToken\": \"A\"}}"
-   },
-   {
-    "status": 200,
-    "body": "{\"payload\": {\"NextToken\": \"B\"}}"
-   },
-   {
-    "status": 200,
-    "body": "{\"payload\": {\"NextToken\": \"C\"}}"
-   }
-  ],
-  "requests": [
-   {
-    "method": "GET",
-    "path": "/orders/v0/orders",
-    "query": [
-     [
-      "CreatedAfter",
-      "2026-01-01T00:00:00Z"
-     ],
-     [
-      "MarketplaceIds",
-      "ATVPDKIKX0DER,A1F83G8C2ARO7P"
-     ]
-    ],
-    "body": null
-   },
-   {
-    "method": "GET",
-    "path": "/orders/v0/orders",
-    "query": [
-     [
-      "CreatedAfter",
-      "2026-01-01T00:00:00Z"
-     ],
-     [
-      "MarketplaceIds",
-      "ATVPDKIKX0DER,A1F83G8C2ARO7P"
-     ],
-     [
-      "NextToken",
-      "A"
-     ]
-    ],
-    "body": null
-   }
-  ],
-  "statuses": [
-   200,
-   200
-  ],
-  "error": null
- },
- {
   "name": "HTTP error page yields once without decoding",
   "pagination": "orders_v0.get_orders",
   "arguments": {
@@ -749,7 +654,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 429,
@@ -788,7 +692,6 @@
    ],
    "created_after": "2026-01-01T00:00:00Z"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -847,7 +750,6 @@
   "arguments": {
    "marketplace_id": "ATVPDKIKX0DER"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -902,7 +804,6 @@
     "CONTENTS"
    ]
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -958,7 +859,6 @@
    "marketplace_id": "ATVPDKIKX0DER",
    "asin": "B000TEST01"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -1020,7 +920,6 @@
    ],
    "page_size": 10
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -1075,7 +974,6 @@
     "WORKING"
    ]
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,
@@ -1150,7 +1048,6 @@
   "arguments": {
    "shipment_id": "FBA1"
   },
-  "max_pages": null,
   "responses": [
    {
     "status": 200,

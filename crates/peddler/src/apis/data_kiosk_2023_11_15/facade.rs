@@ -149,7 +149,6 @@ pub async fn get_queries(
 pub fn get_queries_pages<'a>(
     client: &'a Client,
     params: GetQueriesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -165,7 +164,6 @@ pub fn get_queries_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

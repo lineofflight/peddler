@@ -36,11 +36,7 @@ module Peddler
     # Lazily yields one Response per page, requesting the next page only once
     # the consumer asks for it. A page that is an HTTP error raises
     # Peddler::Error. Arguments are never mutated.
-    def pages(engine, arguments, max_pages: nil)
-      unless max_pages.nil? || (max_pages.is_a?(Integer) && max_pages >= 0)
-        raise ArgumentError, "max_pages must be nil or a non-negative integer"
-      end
-
+    def pages(engine, arguments)
       initial = normalize(arguments)
       initial_token = token_in(initial)
       generate(initial)
@@ -49,16 +45,13 @@ module Peddler
       Enumerator.new do |yielder|
         # @type var seen: Array[String]
         seen = initial_token ? [initial_token] : []
-        fetched = 0
         # @type var token: String?
         token = nil
-        until max_pages && fetched >= max_pages
+        loop do
           operation = (token && @continuation.operation) || @operation
           page = token.nil? ? initial : follow(initial, token)
           response = Response.from_parts(engine.operation(operation, generate(page)), @operation)
-          fetched += 1
-          following = failure = nil
-          following, failure = next_token(response, seen) if fetched != max_pages
+          following, failure = next_token(response, seen)
           yielder << response
           raise PaginationError, failure if failure
           break unless following

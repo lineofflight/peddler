@@ -372,7 +372,6 @@ pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
 pub fn get_fixed_slot_capacity_pages<'a, B: serde::Serialize>(
     client: &'a Client,
     params: GetFixedSlotCapacityParams<B>,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -388,7 +387,6 @@ pub fn get_fixed_slot_capacity_pages<'a, B: serde::Serialize>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -436,7 +434,6 @@ pub async fn get_range_slot_capacity<B: serde::Serialize>(
 pub fn get_range_slot_capacity_pages<'a, B: serde::Serialize>(
     client: &'a Client,
     params: GetRangeSlotCapacityParams<B>,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -452,7 +449,6 @@ pub fn get_range_slot_capacity_pages<'a, B: serde::Serialize>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -587,7 +583,6 @@ pub async fn get_service_jobs(
 pub fn get_service_jobs_pages<'a>(
     client: &'a Client,
     params: GetServiceJobsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -603,7 +598,6 @@ pub fn get_service_jobs_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

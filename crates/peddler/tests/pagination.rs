@@ -181,12 +181,7 @@ async fn shared_cases_replay_through_the_generated_dispatcher() {
         let arguments = case["arguments"].clone();
         let before = arguments.clone();
         let http = client(&server.url);
-        let stream = pages(
-            &http,
-            mapping(&case["pagination"]),
-            &arguments,
-            case["max_pages"].as_u64().map(|n| n as usize),
-        );
+        let stream = pages(&http, mapping(&case["pagination"]), &arguments);
         let items: Vec<_> = stream.collect().await;
         let mut statuses = Vec::new();
         let mut error = None;
@@ -258,7 +253,6 @@ async fn raw_status_headers_and_binary_body_survive_each_page() {
         &http,
         apis::pagination::mapping("orders_v0.get_orders").unwrap(),
         &json!({"marketplace_ids": ["ATVPDKIKX0DER"]}),
-        None,
     );
     let first: Response = stream.next().await.unwrap().unwrap();
     assert_eq!(first.status, 200);
@@ -281,7 +275,7 @@ async fn typed_convenience_serializes_params_and_stays_lazy() {
     let mut params = orders_v0::GetOrdersParams::new(vec!["ATVPDKIKX0DER".into()]);
     params.created_after = Some("2026-01-01T00:00:00Z".into());
     let http = client(&server.url);
-    let mut stream = orders_v0::get_orders_pages(&http, params, None);
+    let mut stream = orders_v0::get_orders_pages(&http, params);
     tokio::time::sleep(Duration::from_millis(50)).await;
     assert!(server.recorded().is_empty(), "no network until polled");
     let statuses: Vec<u16> = stream.by_ref().map(|p| p.unwrap().status).collect().await;
@@ -317,7 +311,6 @@ async fn dropping_the_stream_never_fetches_another_page() {
         &http,
         apis::pagination::mapping("orders_v0.get_orders").unwrap(),
         &json!({"marketplace_ids": ["ATVPDKIKX0DER"]}),
-        None,
     );
     stream.next().await.unwrap().unwrap();
     drop(stream);
@@ -330,20 +323,20 @@ async fn invalid_arguments_and_mappings_fail_without_a_request() {
     let server = serve(vec![]).await;
     let client = client(&server.url);
     let orders = apis::pagination::mapping("orders_v0.get_orders").unwrap();
-    let mut s = pages(&client, orders.clone(), &json!([1]), None);
+    let mut s = pages(&client, orders.clone(), &json!([1]));
     assert_eq!(
         s.next().await.unwrap().unwrap_err(),
         PaginationError::InvalidArguments
     );
     assert!(s.next().await.is_none());
-    let mut s = pages(&client, orders.clone(), &json!({"next_token": 5}), None);
+    let mut s = pages(&client, orders.clone(), &json!({"next_token": 5}));
     assert_eq!(
         s.next().await.unwrap().unwrap_err(),
         PaginationError::InvalidArguments
     );
     let mut bad = orders;
     bad.output = "payload".into();
-    let mut s = pages(&client, bad, &json!({}), None);
+    let mut s = pages(&client, bad, &json!({}));
     assert_eq!(
         s.next().await.unwrap().unwrap_err(),
         PaginationError::InvalidMapping
@@ -358,7 +351,6 @@ async fn transport_failure_is_a_sanitized_request_error_and_ends_the_stream() {
         &http,
         apis::pagination::mapping("orders_v0.get_orders").unwrap(),
         &json!({"marketplace_ids": ["ATVPDKIKX0DER"]}),
-        None,
     );
     let error = stream.next().await.unwrap().unwrap_err();
     assert!(matches!(error, PaginationError::Request(_)));
@@ -382,7 +374,6 @@ async fn the_token_and_retries_apply_to_every_page() {
         &client,
         apis::pagination::mapping("orders_v0.get_orders").unwrap(),
         &json!({"marketplace_ids": ["ATVPDKIKX0DER"]}),
-        None,
     )
     .map(|p| p.unwrap().status)
     .collect()
@@ -409,7 +400,6 @@ async fn timeout_applies_per_page() {
         &client,
         apis::pagination::mapping("orders_v0.get_orders").unwrap(),
         &json!({"marketplace_ids": ["ATVPDKIKX0DER"]}),
-        None,
     )
     .count()
     .await;

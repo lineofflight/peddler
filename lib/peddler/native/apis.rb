@@ -165,9 +165,9 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments")
       end
 
-      def list_inbound_shipments_pages(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil, max_pages: nil)
+      def list_inbound_shipments_pages(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil)
         arguments = { sort_by: sort_by, sort_order: sort_order, shipment_status: shipment_status, updated_after: updated_after, updated_before: updated_before, max_results: max_results, next_token: next_token }
-        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments").pages(@engine, arguments)
       end
 
       def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25)
@@ -175,9 +175,9 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inventory")
       end
 
-      def list_inventory_pages(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, max_pages: nil)
+      def list_inventory_pages(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25)
         arguments = { sku: sku, sort_order: sort_order, details: details, next_token: next_token, max_results: max_results }
-        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inventory").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inventory").pages(@engine, arguments)
       end
 
       def list_outbounds(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
@@ -185,9 +185,9 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_outbounds")
       end
 
-      def list_outbounds_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, max_pages: nil)
+      def list_outbounds_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
         arguments = { updated_after: updated_after, updated_before: updated_before, sort_order: sort_order, max_results: max_results, next_token: next_token }
-        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_outbounds").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_outbounds").pages(@engine, arguments)
       end
 
       def list_replenishment_orders(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
@@ -195,9 +195,9 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders")
       end
 
-      def list_replenishment_orders_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, max_pages: nil)
+      def list_replenishment_orders_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
         arguments = { updated_after: updated_after, updated_before: updated_before, sort_order: sort_order, max_results: max_results, next_token: next_token }
-        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders").pages(@engine, arguments)
       end
 
       def update_inbound(order_id, body)
@@ -246,9 +246,9 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.list_content_document_asin_relations")
       end
 
-      def list_content_document_asin_relations_pages(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil, max_pages: nil)
+      def list_content_document_asin_relations_pages(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil)
         arguments = { content_reference_key: content_reference_key, marketplace_id: marketplace_id, included_data_set: included_data_set, asin_set: asin_set, page_token: page_token }
-        PAGINATIONS.fetch("aplus_content_2020_11_01.list_content_document_asin_relations").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("aplus_content_2020_11_01.list_content_document_asin_relations").pages(@engine, arguments)
       end
 
       def post_content_document_approval_submission(content_reference_key, marketplace_id)
@@ -271,9 +271,9 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", JSON.generate(arguments)), "aplus_content_2020_11_01.search_content_documents")
       end
 
-      def search_content_documents_pages(marketplace_id, page_token: nil, max_pages: nil)
+      def search_content_documents_pages(marketplace_id, page_token: nil)
         arguments = { marketplace_id: marketplace_id, page_token: page_token }
-        PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_documents").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_documents").pages(@engine, arguments)
       end
 
       def search_content_publish_records(marketplace_id, asin, page_token: nil)
@@ -281,9 +281,9 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", JSON.generate(arguments)), "aplus_content_2020_11_01.search_content_publish_records")
       end
 
-      def search_content_publish_records_pages(marketplace_id, asin, page_token: nil, max_pages: nil)
+      def search_content_publish_records_pages(marketplace_id, asin, page_token: nil)
         arguments = { marketplace_id: marketplace_id, asin: asin, page_token: page_token }
-        PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_publish_records").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_publish_records").pages(@engine, arguments)
       end
 
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request)
@@ -361,9 +361,9 @@ module Peddler
         Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", JSON.generate(arguments)), "catalog_items_2020_12_01.search_catalog_items")
       end
 
-      def search_catalog_items_pages(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil, max_pages: nil)
+      def search_catalog_items_pages(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil)
         arguments = { keywords: keywords, marketplace_ids: marketplace_ids, included_data: included_data, brand_names: brand_names, classification_ids: classification_ids, page_size: page_size, page_token: page_token, keywords_locale: keywords_locale, locale: locale }
-        PAGINATIONS.fetch("catalog_items_2020_12_01.search_catalog_items").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("catalog_items_2020_12_01.search_catalog_items").pages(@engine, arguments)
       end
     end
 
@@ -382,9 +382,9 @@ module Peddler
         Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", JSON.generate(arguments)), "catalog_items_2022_04_01.search_catalog_items")
       end
 
-      def search_catalog_items_pages(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, max_pages: nil)
+      def search_catalog_items_pages(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil)
         arguments = { identifiers: identifiers, identifiers_type: identifiers_type, marketplace_ids: marketplace_ids, included_data: included_data, locale: locale, seller_id: seller_id, keywords: keywords, brand_names: brand_names, classification_ids: classification_ids, page_size: page_size, page_token: page_token, keywords_locale: keywords_locale }
-        PAGINATIONS.fetch("catalog_items_2022_04_01.search_catalog_items").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("catalog_items_2022_04_01.search_catalog_items").pages(@engine, arguments)
       end
     end
 
@@ -454,9 +454,9 @@ module Peddler
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_queries")
       end
 
-      def get_queries_pages(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil, max_pages: nil)
+      def get_queries_pages(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil)
         arguments = { processing_statuses: processing_statuses, page_size: page_size, created_since: created_since, created_until: created_until, pagination_token: pagination_token }
-        PAGINATIONS.fetch("data_kiosk_2023_11_15.get_queries").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("data_kiosk_2023_11_15.get_queries").pages(@engine, arguments)
       end
 
       def get_query(query_id)
@@ -549,9 +549,9 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", JSON.generate(arguments)), "external_fulfillment_returns_2024_09_11.list_returns")
       end
 
-      def list_returns_pages(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil, max_pages: nil)
+      def list_returns_pages(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil)
         arguments = { return_location_id: return_location_id, rma_id: rma_id, status: status, reverse_tracking_id: reverse_tracking_id, created_since: created_since, created_until: created_until, last_updated_since: last_updated_since, last_updated_until: last_updated_until, last_updated_after: last_updated_after, last_updated_before: last_updated_before, max_results: max_results, next_token: next_token }
-        PAGINATIONS.fetch("external_fulfillment_returns_2024_09_11.list_returns").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("external_fulfillment_returns_2024_09_11.list_returns").pages(@engine, arguments)
       end
     end
 
@@ -590,9 +590,9 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipments")
       end
 
-      def get_shipments_pages(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil, max_pages: nil)
+      def get_shipments_pages(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil)
         arguments = { location_id: location_id, marketplace_id: marketplace_id, channel_name: channel_name, status: status, last_updated_after: last_updated_after, last_updated_before: last_updated_before, max_results: max_results, pagination_token: pagination_token }
-        PAGINATIONS.fetch("external_fulfillment_shipments_2024_09_11.get_shipments").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("external_fulfillment_shipments_2024_09_11.get_shipments").pages(@engine, arguments)
       end
 
       def process_shipment(shipment_id, operation, body: nil)
@@ -662,9 +662,9 @@ module Peddler
         Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", JSON.generate(arguments)), "fba_inventory_v1.get_inventory_summaries")
       end
 
-      def get_inventory_summaries_pages(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil, max_pages: nil)
+      def get_inventory_summaries_pages(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil)
         arguments = { details: details, granularity_type: granularity_type, granularity_id: granularity_id, start_date_time: start_date_time, seller_skus: seller_skus, seller_sku: seller_sku, next_token: next_token, marketplace_ids: marketplace_ids }
-        PAGINATIONS.fetch("fba_inventory_v1.get_inventory_summaries").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fba_inventory_v1.get_inventory_summaries").pages(@engine, arguments)
       end
     end
 
@@ -703,9 +703,9 @@ module Peddler
         Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", JSON.generate(arguments)), "feeds_2021_06_30.get_feeds")
       end
 
-      def get_feeds_pages(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil, max_pages: nil)
+      def get_feeds_pages(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil)
         arguments = { feed_types: feed_types, marketplace_ids: marketplace_ids, page_size: page_size, processing_statuses: processing_statuses, created_since: created_since, created_until: created_until, next_token: next_token }
-        PAGINATIONS.fetch("feeds_2021_06_30.get_feeds").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("feeds_2021_06_30.get_feeds").pages(@engine, arguments)
       end
     end
 
@@ -719,9 +719,9 @@ module Peddler
         Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", JSON.generate(arguments)), "finance_remittance_2026_03_17.get_remittance")
       end
 
-      def get_remittance_pages(unique_payment_id, marketplace_id, next_token_for_line_items: nil, max_pages: nil)
+      def get_remittance_pages(unique_payment_id, marketplace_id, next_token_for_line_items: nil)
         arguments = { unique_payment_id: unique_payment_id, marketplace_id: marketplace_id, next_token_for_line_items: next_token_for_line_items }
-        PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance").pages(@engine, arguments)
       end
 
       def get_remittance_headers(marketplace_id, start_date: nil, end_date: nil, next_token: nil)
@@ -729,9 +729,9 @@ module Peddler
         Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", JSON.generate(arguments)), "finance_remittance_2026_03_17.get_remittance_headers")
       end
 
-      def get_remittance_headers_pages(marketplace_id, start_date: nil, end_date: nil, next_token: nil, max_pages: nil)
+      def get_remittance_headers_pages(marketplace_id, start_date: nil, end_date: nil, next_token: nil)
         arguments = { marketplace_id: marketplace_id, start_date: start_date, end_date: end_date, next_token: next_token }
-        PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance_headers").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance_headers").pages(@engine, arguments)
       end
     end
 
@@ -745,9 +745,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice")
       end
 
-      def get_invoice_pages(marketplace_id, invoice_identifier, next_token_for_line_items: nil, max_pages: nil)
+      def get_invoice_pages(marketplace_id, invoice_identifier, next_token_for_line_items: nil)
         arguments = { marketplace_id: marketplace_id, invoice_identifier: invoice_identifier, next_token_for_line_items: next_token_for_line_items }
-        PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice").pages(@engine, arguments)
       end
 
       def get_invoice_headers(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil)
@@ -755,9 +755,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice_headers")
       end
 
-      def get_invoice_headers_pages(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil, max_pages: nil)
+      def get_invoice_headers_pages(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil)
         arguments = { next_token: next_token, marketplace_id: marketplace_id, from_issue_date: from_issue_date, to_issue_date: to_issue_date, invoices_modified_after: invoices_modified_after }
-        PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice_headers").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice_headers").pages(@engine, arguments)
       end
     end
 
@@ -771,9 +771,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", JSON.generate(arguments)), "finances_v0.list_financial_event_groups")
       end
 
-      def list_financial_event_groups_pages(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil, max_pages: nil)
+      def list_financial_event_groups_pages(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil)
         arguments = { max_results_per_page: max_results_per_page, financial_event_group_started_before: financial_event_group_started_before, financial_event_group_started_after: financial_event_group_started_after, next_token: next_token }
-        PAGINATIONS.fetch("finances_v0.list_financial_event_groups").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_v0.list_financial_event_groups").pages(@engine, arguments)
       end
 
       def list_financial_events(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
@@ -781,9 +781,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events", JSON.generate(arguments)), "finances_v0.list_financial_events")
       end
 
-      def list_financial_events_pages(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, max_pages: nil)
+      def list_financial_events_pages(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
         arguments = { max_results_per_page: max_results_per_page, posted_after: posted_after, posted_before: posted_before, next_token: next_token }
-        PAGINATIONS.fetch("finances_v0.list_financial_events").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_v0.list_financial_events").pages(@engine, arguments)
       end
 
       def list_financial_events_by_group_id(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
@@ -791,9 +791,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_group_id")
       end
 
-      def list_financial_events_by_group_id_pages(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, max_pages: nil)
+      def list_financial_events_by_group_id_pages(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
         arguments = { max_results_per_page: max_results_per_page, posted_after: posted_after, posted_before: posted_before, event_group_id: event_group_id, next_token: next_token }
-        PAGINATIONS.fetch("finances_v0.list_financial_events_by_group_id").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_v0.list_financial_events_by_group_id").pages(@engine, arguments)
       end
 
       def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil)
@@ -801,9 +801,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_order_id")
       end
 
-      def list_financial_events_by_order_id_pages(order_id, max_results_per_page: 100, next_token: nil, max_pages: nil)
+      def list_financial_events_by_order_id_pages(order_id, max_results_per_page: 100, next_token: nil)
         arguments = { order_id: order_id, max_results_per_page: max_results_per_page, next_token: next_token }
-        PAGINATIONS.fetch("finances_v0.list_financial_events_by_order_id").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_v0.list_financial_events_by_order_id").pages(@engine, arguments)
       end
     end
 
@@ -817,9 +817,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", JSON.generate(arguments)), "finances_2024_06_19.list_balances")
       end
 
-      def list_balances_pages(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil, max_pages: nil)
+      def list_balances_pages(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil)
         arguments = { marketplace_ids: marketplace_ids, balance_type: balance_type, account_type: account_type, as_of_date: as_of_date, next_token: next_token }
-        PAGINATIONS.fetch("finances_2024_06_19.list_balances").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_2024_06_19.list_balances").pages(@engine, arguments)
       end
 
       def list_summary(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil)
@@ -827,9 +827,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", JSON.generate(arguments)), "finances_2024_06_19.list_summary")
       end
 
-      def list_summary_pages(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil, max_pages: nil)
+      def list_summary_pages(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil)
         arguments = { marketplace_ids: marketplace_ids, account_type: account_type, related_identifier_name: related_identifier_name, related_identifier_value: related_identifier_value, period_start: period_start, period_end: period_end, next_token: next_token }
-        PAGINATIONS.fetch("finances_2024_06_19.list_summary").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_2024_06_19.list_summary").pages(@engine, arguments)
       end
 
       def list_transactions(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil)
@@ -837,9 +837,9 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", JSON.generate(arguments)), "finances_2024_06_19.list_transactions")
       end
 
-      def list_transactions_pages(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil, max_pages: nil)
+      def list_transactions_pages(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil)
         arguments = { posted_after: posted_after, posted_before: posted_before, marketplace_id: marketplace_id, transaction_status: transaction_status, related_identifier_name: related_identifier_name, related_identifier_value: related_identifier_value, next_token: next_token }
-        PAGINATIONS.fetch("finances_2024_06_19.list_transactions").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("finances_2024_06_19.list_transactions").pages(@engine, arguments)
       end
     end
 
@@ -863,9 +863,9 @@ module Peddler
         Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", JSON.generate(arguments)), "transfers_2024_06_01.list_expected_payouts")
       end
 
-      def list_expected_payouts_pages(marketplace_ids: nil, account_type: nil, next_token: nil, max_pages: nil)
+      def list_expected_payouts_pages(marketplace_ids: nil, account_type: nil, next_token: nil)
         arguments = { marketplace_ids: marketplace_ids, account_type: account_type, next_token: next_token }
-        PAGINATIONS.fetch("transfers_2024_06_01.list_expected_payouts").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("transfers_2024_06_01.list_expected_payouts").pages(@engine, arguments)
       end
 
       def list_payouts(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil)
@@ -873,9 +873,9 @@ module Peddler
         Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", JSON.generate(arguments)), "transfers_2024_06_01.list_payouts")
       end
 
-      def list_payouts_pages(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil, max_pages: nil)
+      def list_payouts_pages(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil)
         arguments = { marketplace_ids: marketplace_ids, created_after: created_after, created_before: created_before, payout_id: payout_id, account_type: account_type, next_token: next_token }
-        PAGINATIONS.fetch("transfers_2024_06_01.list_payouts").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("transfers_2024_06_01.list_payouts").pages(@engine, arguments)
       end
     end
 
@@ -904,9 +904,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipment_items")
       end
 
-      def get_shipment_items_pages(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil, max_pages: nil)
+      def get_shipment_items_pages(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil)
         arguments = { last_updated_after: last_updated_after, last_updated_before: last_updated_before, query_type: query_type, next_token: next_token, marketplace_id: marketplace_id }
-        PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipment_items").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipment_items").pages(@engine, arguments)
       end
 
       def get_shipment_items_by_shipment_id(shipment_id, marketplace_id: nil)
@@ -919,9 +919,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipments")
       end
 
-      def get_shipments_pages(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil, max_pages: nil)
+      def get_shipments_pages(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil)
         arguments = { shipment_status_list: shipment_status_list, shipment_id_list: shipment_id_list, last_updated_after: last_updated_after, last_updated_before: last_updated_before, query_type: query_type, next_token: next_token, marketplace_id: marketplace_id }
-        PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipments").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipments").pages(@engine, arguments)
       end
     end
 
@@ -1025,9 +1025,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots")
       end
 
-      def get_self_ship_appointment_slots_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def get_self_ship_appointment_slots_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots").pages(@engine, arguments)
       end
 
       def get_shipment(inbound_plan_id, shipment_id)
@@ -1045,9 +1045,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_delivery_window_options")
       end
 
-      def list_delivery_window_options_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_delivery_window_options_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_delivery_window_options").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_delivery_window_options").pages(@engine, arguments)
       end
 
       def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil)
@@ -1055,9 +1055,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes")
       end
 
-      def list_inbound_plan_boxes_pages(inbound_plan_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_inbound_plan_boxes_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes").pages(@engine, arguments)
       end
 
       def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil)
@@ -1065,9 +1065,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_items")
       end
 
-      def list_inbound_plan_items_pages(inbound_plan_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_inbound_plan_items_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_items").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_items").pages(@engine, arguments)
       end
 
       def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil)
@@ -1075,9 +1075,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets")
       end
 
-      def list_inbound_plan_pallets_pages(inbound_plan_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_inbound_plan_pallets_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets").pages(@engine, arguments)
       end
 
       def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
@@ -1085,9 +1085,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plans")
       end
 
-      def list_inbound_plans_pages(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil, max_pages: nil)
+      def list_inbound_plans_pages(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
         arguments = { page_size: page_size, pagination_token: pagination_token, status: status, sort_by: sort_by, sort_order: sort_order }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plans").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plans").pages(@engine, arguments)
       end
 
       def list_item_compliance_details(mskus, marketplace_id)
@@ -1100,9 +1100,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_boxes")
       end
 
-      def list_packing_group_boxes_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_packing_group_boxes_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, packing_group_id: packing_group_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_boxes").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_boxes").pages(@engine, arguments)
       end
 
       def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
@@ -1110,9 +1110,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_items")
       end
 
-      def list_packing_group_items_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_packing_group_items_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, packing_group_id: packing_group_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_items").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_items").pages(@engine, arguments)
       end
 
       def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil)
@@ -1120,9 +1120,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_options")
       end
 
-      def list_packing_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_packing_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_options").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_options").pages(@engine, arguments)
       end
 
       def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil)
@@ -1130,9 +1130,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_placement_options")
       end
 
-      def list_placement_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_placement_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_placement_options").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_placement_options").pages(@engine, arguments)
       end
 
       def list_prep_details(marketplace_id, mskus)
@@ -1145,9 +1145,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_boxes")
       end
 
-      def list_shipment_boxes_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_shipment_boxes_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_boxes").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_boxes").pages(@engine, arguments)
       end
 
       def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
@@ -1155,9 +1155,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews")
       end
 
-      def list_shipment_content_update_previews_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_shipment_content_update_previews_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews").pages(@engine, arguments)
       end
 
       def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
@@ -1165,9 +1165,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_items")
       end
 
-      def list_shipment_items_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_shipment_items_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_items").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_items").pages(@engine, arguments)
       end
 
       def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
@@ -1175,9 +1175,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_pallets")
       end
 
-      def list_shipment_pallets_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, max_pages: nil)
+      def list_shipment_pallets_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = { inbound_plan_id: inbound_plan_id, shipment_id: shipment_id, page_size: page_size, pagination_token: pagination_token }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_pallets").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_pallets").pages(@engine, arguments)
       end
 
       def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
@@ -1185,9 +1185,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_transportation_options")
       end
 
-      def list_transportation_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil, max_pages: nil)
+      def list_transportation_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
         arguments = { inbound_plan_id: inbound_plan_id, page_size: page_size, pagination_token: pagination_token, placement_option_id: placement_option_id, shipment_id: shipment_id }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_transportation_options").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_transportation_options").pages(@engine, arguments)
       end
 
       def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body)
@@ -1261,9 +1261,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_feature_inventory")
       end
 
-      def get_feature_inventory_pages(marketplace_id, feature_name, next_token: nil, query_start_date: nil, max_pages: nil)
+      def get_feature_inventory_pages(marketplace_id, feature_name, next_token: nil, query_start_date: nil)
         arguments = { marketplace_id: marketplace_id, feature_name: feature_name, next_token: next_token, query_start_date: query_start_date }
-        PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.get_feature_inventory").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.get_feature_inventory").pages(@engine, arguments)
       end
 
       def get_feature_sku(marketplace_id, feature_name, seller_sku)
@@ -1296,9 +1296,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders")
       end
 
-      def list_all_fulfillment_orders_pages(query_start_date: nil, next_token: nil, max_pages: nil)
+      def list_all_fulfillment_orders_pages(query_start_date: nil, next_token: nil)
         arguments = { query_start_date: query_start_date, next_token: next_token }
-        PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders").pages(@engine, arguments)
       end
 
       def list_return_reason_codes(seller_sku, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil)
@@ -1352,9 +1352,9 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.list_orders")
       end
 
-      def list_orders_pages(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil, max_pages: nil)
+      def list_orders_pages(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil)
         arguments = { x_amzn_fulfillment_service_id: x_amzn_fulfillment_service_id, updated_after: updated_after, page_token: page_token, shipments: shipments }
-        PAGINATIONS.fetch("fulfillment_outbound_2026_07_04.list_orders").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("fulfillment_outbound_2026_07_04.list_orders").pages(@engine, arguments)
       end
 
       def update_order(order_id, body, x_amzn_fulfillment_service_id: nil)
@@ -1408,9 +1408,9 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices")
       end
 
-      def get_invoices_pages(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil, max_pages: nil)
+      def get_invoices_pages(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil)
         arguments = { transaction_identifier_name: transaction_identifier_name, page_size: page_size, date_end: date_end, marketplace_id: marketplace_id, transaction_type: transaction_type, transaction_identifier_id: transaction_identifier_id, date_start: date_start, series: series, next_token: next_token, sort_order: sort_order, invoice_type: invoice_type, statuses: statuses, external_invoice_id: external_invoice_id, sort_by: sort_by, warehouse_code: warehouse_code }
-        PAGINATIONS.fetch("invoices_2024_06_19.get_invoices").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("invoices_2024_06_19.get_invoices").pages(@engine, arguments)
       end
 
       def get_invoices_attributes(marketplace_id, warehouse_code: nil)
@@ -1433,9 +1433,9 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_exports")
       end
 
-      def get_invoices_exports_pages(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil, max_pages: nil)
+      def get_invoices_exports_pages(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil)
         arguments = { marketplace_id: marketplace_id, date_start: date_start, next_token: next_token, page_size: page_size, date_end: date_end, status: status, warehouse_code: warehouse_code }
-        PAGINATIONS.fetch("invoices_2024_06_19.get_invoices_exports").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("invoices_2024_06_19.get_invoices_exports").pages(@engine, arguments)
       end
     end
 
@@ -1490,9 +1490,9 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", JSON.generate(arguments)), "listings_items_2021_08_01.search_listings_items")
       end
 
-      def search_listings_items_pages(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil, max_pages: nil)
+      def search_listings_items_pages(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil)
         arguments = { seller_id: seller_id, marketplace_ids: marketplace_ids, issue_locale: issue_locale, included_data: included_data, identifiers: identifiers, identifiers_type: identifiers_type, variation_parent_sku: variation_parent_sku, package_hierarchy_sku: package_hierarchy_sku, created_after: created_after, created_before: created_before, last_updated_after: last_updated_after, last_updated_before: last_updated_before, with_issue_severity: with_issue_severity, with_status: with_status, without_status: without_status, sort_by: sort_by, sort_order: sort_order, page_size: page_size, page_token: page_token }
-        PAGINATIONS.fetch("listings_items_2021_08_01.search_listings_items").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("listings_items_2021_08_01.search_listings_items").pages(@engine, arguments)
       end
     end
 
@@ -1650,9 +1650,9 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", JSON.generate(arguments)), "notifications_v1.get_subscriptions")
       end
 
-      def get_subscriptions_pages(notification_types, payload_version: nil, page_size: 30, next_token: nil, max_pages: nil)
+      def get_subscriptions_pages(notification_types, payload_version: nil, page_size: 30, next_token: nil)
         arguments = { notification_types: notification_types, payload_version: payload_version, page_size: page_size, next_token: next_token }
-        PAGINATIONS.fetch("notifications_v1.get_subscriptions").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("notifications_v1.get_subscriptions").pages(@engine, arguments)
       end
 
       def send_test_notification(body, notification_type)
@@ -1691,9 +1691,9 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_items", JSON.generate(arguments)), "orders_v0.get_order_items")
       end
 
-      def get_order_items_pages(order_id, next_token: nil, max_pages: nil)
+      def get_order_items_pages(order_id, next_token: nil)
         arguments = { order_id: order_id, next_token: next_token }
-        PAGINATIONS.fetch("orders_v0.get_order_items").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("orders_v0.get_order_items").pages(@engine, arguments)
       end
 
       def get_order_items_buyer_info(order_id, next_token: nil)
@@ -1701,9 +1701,9 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_items_buyer_info")
       end
 
-      def get_order_items_buyer_info_pages(order_id, next_token: nil, max_pages: nil)
+      def get_order_items_buyer_info_pages(order_id, next_token: nil)
         arguments = { order_id: order_id, next_token: next_token }
-        PAGINATIONS.fetch("orders_v0.get_order_items_buyer_info").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("orders_v0.get_order_items_buyer_info").pages(@engine, arguments)
       end
 
       def get_order_regulated_info(order_id)
@@ -1716,9 +1716,9 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_orders", JSON.generate(arguments)), "orders_v0.get_orders")
       end
 
-      def get_orders_pages(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil, max_pages: nil)
+      def get_orders_pages(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil)
         arguments = { created_after: created_after, created_before: created_before, last_updated_after: last_updated_after, last_updated_before: last_updated_before, order_statuses: order_statuses, marketplace_ids: marketplace_ids, fulfillment_channels: fulfillment_channels, payment_methods: payment_methods, buyer_email: buyer_email, seller_order_id: seller_order_id, max_results_per_page: max_results_per_page, easy_ship_shipment_statuses: easy_ship_shipment_statuses, electronic_invoice_statuses: electronic_invoice_statuses, next_token: next_token, amazon_order_ids: amazon_order_ids, actual_fulfillment_supply_source_id: actual_fulfillment_supply_source_id, is_ispu: is_ispu, store_chain_store_id: store_chain_store_id, earliest_delivery_date_before: earliest_delivery_date_before, earliest_delivery_date_after: earliest_delivery_date_after, latest_delivery_date_before: latest_delivery_date_before, latest_delivery_date_after: latest_delivery_date_after }
-        PAGINATIONS.fetch("orders_v0.get_orders").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("orders_v0.get_orders").pages(@engine, arguments)
       end
 
       def update_shipment_status(order_id, payload)
@@ -1747,9 +1747,9 @@ module Peddler
         Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", JSON.generate(arguments)), "orders_2026_01_01.search_orders")
       end
 
-      def search_orders_pages(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil, max_pages: nil)
+      def search_orders_pages(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil)
         arguments = { created_after: created_after, created_before: created_before, last_updated_after: last_updated_after, last_updated_before: last_updated_before, fulfillment_statuses: fulfillment_statuses, marketplace_ids: marketplace_ids, fulfilled_by: fulfilled_by, max_results_per_page: max_results_per_page, pagination_token: pagination_token, included_data: included_data }
-        PAGINATIONS.fetch("orders_2026_01_01.search_orders").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("orders_2026_01_01.search_orders").pages(@engine, arguments)
       end
     end
 
@@ -1857,9 +1857,9 @@ module Peddler
         Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", JSON.generate(arguments)), "promotions_2025_12_01.get_selection")
       end
 
-      def get_selection_pages(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil, max_pages: nil)
+      def get_selection_pages(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil)
         arguments = { promotion_id: promotion_id, selection_id: selection_id, revision_id: revision_id, locale: locale, pagination_token: pagination_token, limit: limit, included_data: included_data }
-        PAGINATIONS.fetch("promotions_2025_12_01.get_selection").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("promotions_2025_12_01.get_selection").pages(@engine, arguments)
       end
 
       def search_promotions(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil)
@@ -1867,9 +1867,9 @@ module Peddler
         Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", JSON.generate(arguments)), "promotions_2025_12_01.search_promotions")
       end
 
-      def search_promotions_pages(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil, max_pages: nil)
+      def search_promotions_pages(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil)
         arguments = { marketplace_ids: marketplace_ids, locale: locale, statuses: statuses, asins: asins, skus: skus, promotion_types: promotion_types, start_date_before: start_date_before, start_date_after: start_date_after, end_date_before: end_date_before, end_date_after: end_date_after, update_date_after: update_date_after, update_date_before: update_date_before, pagination_token: pagination_token, revision: revision, limit: limit, included_data: included_data }
-        PAGINATIONS.fetch("promotions_2025_12_01.search_promotions").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("promotions_2025_12_01.search_promotions").pages(@engine, arguments)
       end
     end
 
@@ -1944,9 +1944,9 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", JSON.generate(arguments)), "reports_2021_06_30.get_reports")
       end
 
-      def get_reports_pages(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil, max_pages: nil)
+      def get_reports_pages(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil)
         arguments = { report_types: report_types, processing_statuses: processing_statuses, marketplace_ids: marketplace_ids, page_size: page_size, created_since: created_since, created_until: created_until, next_token: next_token }
-        PAGINATIONS.fetch("reports_2021_06_30.get_reports").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("reports_2021_06_30.get_reports").pages(@engine, arguments)
       end
     end
 
@@ -2011,9 +2011,9 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_account_transactions")
       end
 
-      def list_account_transactions_pages(account_id, marketplace_id, next_page_token: nil, max_pages: nil)
+      def list_account_transactions_pages(account_id, marketplace_id, next_page_token: nil)
         arguments = { account_id: account_id, next_page_token: next_page_token, marketplace_id: marketplace_id }
-        PAGINATIONS.fetch("seller_wallet_2024_03_01.list_account_transactions").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("seller_wallet_2024_03_01.list_account_transactions").pages(@engine, arguments)
       end
 
       def list_accounts(marketplace_id)
@@ -2026,9 +2026,9 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_transfer_schedules")
       end
 
-      def list_transfer_schedules_pages(account_id, marketplace_id, next_page_token: nil, max_pages: nil)
+      def list_transfer_schedules_pages(account_id, marketplace_id, next_page_token: nil)
         arguments = { account_id: account_id, marketplace_id: marketplace_id, next_page_token: next_page_token }
-        PAGINATIONS.fetch("seller_wallet_2024_03_01.list_transfer_schedules").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("seller_wallet_2024_03_01.list_transfer_schedules").pages(@engine, arguments)
       end
 
       def update_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
@@ -2110,9 +2110,9 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", JSON.generate(arguments)), "services_v1.get_fixed_slot_capacity")
       end
 
-      def get_fixed_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil, max_pages: nil)
+      def get_fixed_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = { resource_id: resource_id, marketplace_ids: marketplace_ids, next_page_token: next_page_token, body: body }
-        PAGINATIONS.fetch("services_v1.get_fixed_slot_capacity").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("services_v1.get_fixed_slot_capacity").pages(@engine, arguments)
       end
 
       def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
@@ -2120,9 +2120,9 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", JSON.generate(arguments)), "services_v1.get_range_slot_capacity")
       end
 
-      def get_range_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil, max_pages: nil)
+      def get_range_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = { resource_id: resource_id, marketplace_ids: marketplace_ids, next_page_token: next_page_token, body: body }
-        PAGINATIONS.fetch("services_v1.get_range_slot_capacity").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("services_v1.get_range_slot_capacity").pages(@engine, arguments)
       end
 
       def get_service_job_by_service_job_id(service_job_id)
@@ -2135,9 +2135,9 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_service_jobs", JSON.generate(arguments)), "services_v1.get_service_jobs")
       end
 
-      def get_service_jobs_pages(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, max_pages: nil)
+      def get_service_jobs_pages(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil)
         arguments = { service_order_ids: service_order_ids, product_order_ids: product_order_ids, tracking_ids: tracking_ids, service_job_status: service_job_status, page_token: page_token, page_size: page_size, sort_field: sort_field, sort_order: sort_order, created_after: created_after, created_before: created_before, last_updated_after: last_updated_after, last_updated_before: last_updated_before, schedule_start_date: schedule_start_date, schedule_end_date: schedule_end_date, marketplace_ids: marketplace_ids, asins: asins, required_skills: required_skills, store_ids: store_ids }
-        PAGINATIONS.fetch("services_v1.get_service_jobs").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("services_v1.get_service_jobs").pages(@engine, arguments)
       end
 
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body)
@@ -2381,9 +2381,9 @@ module Peddler
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", JSON.generate(arguments)), "supply_sources_2020_07_01.get_supply_sources")
       end
 
-      def get_supply_sources_pages(next_page_token: nil, page_size: 10, max_pages: nil)
+      def get_supply_sources_pages(next_page_token: nil, page_size: 10)
         arguments = { next_page_token: next_page_token, page_size: page_size }
-        PAGINATIONS.fetch("supply_sources_2020_07_01.get_supply_sources").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("supply_sources_2020_07_01.get_supply_sources").pages(@engine, arguments)
       end
 
       def update_supply_source(supply_source_id, payload: nil)
@@ -2412,9 +2412,9 @@ module Peddler
         Response.from_parts(@engine.operation("support_2025_02_01.list_cases", JSON.generate(arguments)), "support_2025_02_01.list_cases")
       end
 
-      def list_cases_pages(body, max_pages: nil)
+      def list_cases_pages(body)
         arguments = { body: body }
-        PAGINATIONS.fetch("support_2025_02_01.list_cases").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("support_2025_02_01.list_cases").pages(@engine, arguments)
       end
 
       def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
@@ -2422,9 +2422,9 @@ module Peddler
         Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", JSON.generate(arguments)), "support_2025_02_01.list_contacts")
       end
 
-      def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC", max_pages: nil)
+      def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
         arguments = { case_id: case_id, max_results: max_results, next_token: next_token, sort_order: sort_order }
-        PAGINATIONS.fetch("support_2025_02_01.list_contacts").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("support_2025_02_01.list_contacts").pages(@engine, arguments)
       end
     end
 
@@ -2471,9 +2471,9 @@ module Peddler
         Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", JSON.generate(arguments)), "vehicles_2024_11_01.get_vehicles")
       end
 
-      def get_vehicles_pages(marketplace_id, vehicle_type, page_token: nil, updated_after: nil, max_pages: nil)
+      def get_vehicles_pages(marketplace_id, vehicle_type, page_token: nil, updated_after: nil)
         arguments = { page_token: page_token, marketplace_id: marketplace_id, vehicle_type: vehicle_type, updated_after: updated_after }
-        PAGINATIONS.fetch("vehicles_2024_11_01.get_vehicles").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vehicles_2024_11_01.get_vehicles").pages(@engine, arguments)
       end
     end
 
@@ -2503,9 +2503,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.get_orders")
       end
 
-      def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true, max_pages: nil)
+      def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
         arguments = { ship_from_party_id: ship_from_party_id, status: status, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token, include_details: include_details }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_orders_v1.get_orders").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_orders_v1.get_orders").pages(@engine, arguments)
       end
 
       def submit_acknowledgement(body)
@@ -2529,9 +2529,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_orders")
       end
 
-      def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true, max_pages: nil)
+      def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
         arguments = { ship_from_party_id: ship_from_party_id, status: status, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token, include_details: include_details }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_orders_2021_12_28.get_orders").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_orders_2021_12_28.get_orders").pages(@engine, arguments)
       end
 
       def submit_acknowledgement(body)
@@ -2582,9 +2582,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoices")
       end
 
-      def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil, max_pages: nil)
+      def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_customer_invoices").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_customer_invoices").pages(@engine, arguments)
       end
 
       def get_packing_slip(purchase_order_number)
@@ -2597,9 +2597,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slips")
       end
 
-      def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, max_pages: nil)
+      def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_packing_slips").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_packing_slips").pages(@engine, arguments)
       end
 
       def get_shipping_label(purchase_order_number)
@@ -2612,9 +2612,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_labels")
       end
 
-      def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, max_pages: nil)
+      def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_shipping_labels").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_shipping_labels").pages(@engine, arguments)
       end
 
       def submit_shipment_confirmations(body)
@@ -2658,9 +2658,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices")
       end
 
-      def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil, max_pages: nil)
+      def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices").pages(@engine, arguments)
       end
 
       def get_packing_slip(purchase_order_number)
@@ -2673,9 +2673,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips")
       end
 
-      def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, max_pages: nil)
+      def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips").pages(@engine, arguments)
       end
 
       def get_shipping_label(purchase_order_number)
@@ -2688,9 +2688,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels")
       end
 
-      def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, max_pages: nil)
+      def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = { ship_from_party_id: ship_from_party_id, limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels").pages(@engine, arguments)
       end
 
       def submit_shipment_confirmations(body)
@@ -2757,9 +2757,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_orders")
       end
 
-      def get_purchase_orders_pages(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil, max_pages: nil)
+      def get_purchase_orders_pages(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil)
         arguments = { limit: limit, created_after: created_after, created_before: created_before, sort_order: sort_order, next_token: next_token, include_details: include_details, changed_after: changed_after, changed_before: changed_before, po_item_state: po_item_state, is_po_changed: is_po_changed, purchase_order_state: purchase_order_state, ordering_vendor_code: ordering_vendor_code }
-        PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders").pages(@engine, arguments)
       end
 
       def get_purchase_orders_status(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil)
@@ -2767,9 +2767,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_orders_status")
       end
 
-      def get_purchase_orders_status_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil, max_pages: nil)
+      def get_purchase_orders_status_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil)
         arguments = { limit: limit, sort_order: sort_order, next_token: next_token, created_after: created_after, created_before: created_before, updated_after: updated_after, updated_before: updated_before, purchase_order_number: purchase_order_number, purchase_order_status: purchase_order_status, item_confirmation_status: item_confirmation_status, item_receive_status: item_receive_status, ordering_vendor_code: ordering_vendor_code, ship_to_party_id: ship_to_party_id }
-        PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders_status").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders_status").pages(@engine, arguments)
       end
 
       def submit_acknowledgement(body)
@@ -2788,9 +2788,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", JSON.generate(arguments)), "vendor_shipments_v1.get_shipment_details")
       end
 
-      def get_shipment_details_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, max_pages: nil)
+      def get_shipment_details_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil)
         arguments = { limit: limit, sort_order: sort_order, next_token: next_token, created_after: created_after, created_before: created_before, shipment_confirmed_before: shipment_confirmed_before, shipment_confirmed_after: shipment_confirmed_after, package_label_created_before: package_label_created_before, package_label_created_after: package_label_created_after, shipped_before: shipped_before, shipped_after: shipped_after, estimated_delivery_before: estimated_delivery_before, estimated_delivery_after: estimated_delivery_after, shipment_delivery_before: shipment_delivery_before, shipment_delivery_after: shipment_delivery_after, requested_pick_up_before: requested_pick_up_before, requested_pick_up_after: requested_pick_up_after, scheduled_pick_up_before: scheduled_pick_up_before, scheduled_pick_up_after: scheduled_pick_up_after, current_shipment_status: current_shipment_status, vendor_shipment_identifier: vendor_shipment_identifier, buyer_reference_number: buyer_reference_number, buyer_warehouse_code: buyer_warehouse_code, seller_warehouse_code: seller_warehouse_code }
-        PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_details").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_details").pages(@engine, arguments)
       end
 
       def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil)
@@ -2798,9 +2798,9 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", JSON.generate(arguments)), "vendor_shipments_v1.get_shipment_labels")
       end
 
-      def get_shipment_labels_pages(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil, max_pages: nil)
+      def get_shipment_labels_pages(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil)
         arguments = { limit: limit, sort_order: sort_order, next_token: next_token, label_created_after: label_created_after, label_created_before: label_created_before, buyer_reference_number: buyer_reference_number, vendor_shipment_identifier: vendor_shipment_identifier, seller_warehouse_code: seller_warehouse_code }
-        PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_labels").pages(@engine, arguments, max_pages: max_pages)
+        PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_labels").pages(@engine, arguments)
       end
 
       def submit_shipment_confirmations(body)

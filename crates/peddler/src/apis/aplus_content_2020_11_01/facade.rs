@@ -192,7 +192,6 @@ pub async fn list_content_document_asin_relations(
 pub fn list_content_document_asin_relations_pages<'a>(
     client: &'a Client,
     params: ListContentDocumentAsinRelationsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -211,7 +210,6 @@ pub fn list_content_document_asin_relations_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -368,7 +366,6 @@ pub async fn search_content_documents(
 pub fn search_content_documents_pages<'a>(
     client: &'a Client,
     params: SearchContentDocumentsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -384,7 +381,6 @@ pub fn search_content_documents_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -425,7 +421,6 @@ pub async fn search_content_publish_records(
 pub fn search_content_publish_records_pages<'a>(
     client: &'a Client,
     params: SearchContentPublishRecordsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -442,7 +437,6 @@ pub fn search_content_publish_records_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

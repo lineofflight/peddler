@@ -260,7 +260,6 @@ pub async fn list_orders(
 pub fn list_orders_pages<'a>(
     client: &'a Client,
     params: ListOrdersParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -276,7 +275,6 @@ pub fn list_orders_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

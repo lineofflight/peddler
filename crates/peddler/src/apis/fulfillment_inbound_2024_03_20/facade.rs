@@ -670,7 +670,6 @@ pub async fn get_self_ship_appointment_slots(
 pub fn get_self_ship_appointment_slots_pages<'a>(
     client: &'a Client,
     params: GetSelfShipAppointmentSlotsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -687,7 +686,6 @@ pub fn get_self_ship_appointment_slots_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -818,7 +816,6 @@ pub async fn list_delivery_window_options(
 pub fn list_delivery_window_options_pages<'a>(
     client: &'a Client,
     params: ListDeliveryWindowOptionsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -835,7 +832,6 @@ pub fn list_delivery_window_options_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_inbound_plan_boxes_page_size_default() -> Option<i64> {
@@ -884,7 +880,6 @@ pub async fn list_inbound_plan_boxes(
 pub fn list_inbound_plan_boxes_pages<'a>(
     client: &'a Client,
     params: ListInboundPlanBoxesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -901,7 +896,6 @@ pub fn list_inbound_plan_boxes_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_inbound_plan_items_page_size_default() -> Option<i64> {
@@ -950,7 +944,6 @@ pub async fn list_inbound_plan_items(
 pub fn list_inbound_plan_items_pages<'a>(
     client: &'a Client,
     params: ListInboundPlanItemsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -967,7 +960,6 @@ pub fn list_inbound_plan_items_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_inbound_plan_pallets_page_size_default() -> Option<i64> {
@@ -1016,7 +1008,6 @@ pub async fn list_inbound_plan_pallets(
 pub fn list_inbound_plan_pallets_pages<'a>(
     client: &'a Client,
     params: ListInboundPlanPalletsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1033,7 +1024,6 @@ pub fn list_inbound_plan_pallets_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_inbound_plans_page_size_default() -> Option<i64> {
@@ -1089,7 +1079,6 @@ pub async fn list_inbound_plans(
 pub fn list_inbound_plans_pages<'a>(
     client: &'a Client,
     params: ListInboundPlansParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1105,7 +1094,6 @@ pub fn list_inbound_plans_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -1188,7 +1176,6 @@ pub async fn list_packing_group_boxes(
 pub fn list_packing_group_boxes_pages<'a>(
     client: &'a Client,
     params: ListPackingGroupBoxesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1205,7 +1192,6 @@ pub fn list_packing_group_boxes_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_packing_group_items_page_size_default() -> Option<i64> {
@@ -1258,7 +1244,6 @@ pub async fn list_packing_group_items(
 pub fn list_packing_group_items_pages<'a>(
     client: &'a Client,
     params: ListPackingGroupItemsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1275,7 +1260,6 @@ pub fn list_packing_group_items_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_packing_options_page_size_default() -> Option<i64> {
@@ -1324,7 +1308,6 @@ pub async fn list_packing_options(
 pub fn list_packing_options_pages<'a>(
     client: &'a Client,
     params: ListPackingOptionsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1340,7 +1323,6 @@ pub fn list_packing_options_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_placement_options_page_size_default() -> Option<i64> {
@@ -1389,7 +1371,6 @@ pub async fn list_placement_options(
 pub fn list_placement_options_pages<'a>(
     client: &'a Client,
     params: ListPlacementOptionsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1406,7 +1387,6 @@ pub fn list_placement_options_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
@@ -1489,7 +1469,6 @@ pub async fn list_shipment_boxes(
 pub fn list_shipment_boxes_pages<'a>(
     client: &'a Client,
     params: ListShipmentBoxesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1505,7 +1484,6 @@ pub fn list_shipment_boxes_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_shipment_content_update_previews_page_size_default() -> Option<i64> {
@@ -1561,7 +1539,6 @@ pub async fn list_shipment_content_update_previews(
 pub fn list_shipment_content_update_previews_pages<'a>(
     client: &'a Client,
     params: ListShipmentContentUpdatePreviewsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1578,7 +1555,6 @@ pub fn list_shipment_content_update_previews_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_shipment_items_page_size_default() -> Option<i64> {
@@ -1631,7 +1607,6 @@ pub async fn list_shipment_items(
 pub fn list_shipment_items_pages<'a>(
     client: &'a Client,
     params: ListShipmentItemsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1647,7 +1622,6 @@ pub fn list_shipment_items_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_shipment_pallets_page_size_default() -> Option<i64> {
@@ -1700,7 +1674,6 @@ pub async fn list_shipment_pallets(
 pub fn list_shipment_pallets_pages<'a>(
     client: &'a Client,
     params: ListShipmentPalletsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1716,7 +1689,6 @@ pub fn list_shipment_pallets_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 fn list_transportation_options_page_size_default() -> Option<i64> {
@@ -1775,7 +1747,6 @@ pub async fn list_transportation_options(
 pub fn list_transportation_options_pages<'a>(
     client: &'a Client,
     params: ListTransportationOptionsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -1792,7 +1763,6 @@ pub fn list_transportation_options_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]

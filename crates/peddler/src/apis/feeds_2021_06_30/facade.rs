@@ -221,7 +221,6 @@ pub async fn get_feeds(
 pub fn get_feeds_pages<'a>(
     client: &'a Client,
     params: GetFeedsParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -237,7 +236,6 @@ pub fn get_feeds_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
 #[derive(serde::Deserialize)]

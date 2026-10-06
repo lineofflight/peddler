@@ -45,7 +45,6 @@ pub async fn get_vehicles(
 pub fn get_vehicles_pages<'a>(
     client: &'a Client,
     params: GetVehiclesParams,
-    max_pages: Option<usize>,
 ) -> crate::pagination::PageStream<'a> {
     crate::pagination::pages(
         client,
@@ -61,6 +60,5 @@ pub fn get_vehicles_pages<'a>(
             },
         },
         &params,
-        max_pages,
     )
 }
