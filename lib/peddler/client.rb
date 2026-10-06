@@ -25,17 +25,15 @@ module Peddler
     # @param [String, #call] access_token a Login with Amazon access token or a restricted data token, or its source
     # @param [String] region the AWS region of the selling region, unless base_url is given
     # @param [String] base_url a custom destination instead of Amazon's endpoint for a region
-    # @param [Boolean] sandbox whether to call Amazon's sandbox for the region
     # @param [Numeric] timeout seconds for a whole call, including retries
     # @param [Integer] retries how often to retry a throttled or failed GET
-    def initialize(access_token:, region: nil, base_url: nil, sandbox: false, timeout: 30, retries: 0)
+    def initialize(access_token:, region: nil, base_url: nil, timeout: 30, retries: 0)
       raise ArgumentError, "provide either region or base_url" unless region.nil? ^ base_url.nil?
-      raise ArgumentError, "cannot use sandbox with a custom base_url" if base_url && sandbox
 
-      @sandbox = sandbox ? true : false
+      @sandbox = false
       if region
         @endpoint = endpoint = Endpoint.find(region)
-        base_url = (@sandbox ? endpoint.sandbox : endpoint.production).to_s
+        base_url = endpoint.production.to_s
       end
       source = Native.token_source(access_token)
       config = { base_url: base_url, access_token: source ? nil : Native.access_token(access_token),

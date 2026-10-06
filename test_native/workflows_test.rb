@@ -237,8 +237,8 @@ class WorkflowsTest < NativeTest
     route_server(handler) do |url, requests|
       response = client(url).wait_for_report("r/1", interval: 0.05, timeout: 5)
 
-      assert_equal("DONE", response.json.fetch("processingStatus"))
-      assert_equal("d9", response.json.fetch("reportDocumentId"))
+      assert_equal("DONE", response.to_h.fetch("processingStatus"))
+      assert_equal("d9", response.to_h.fetch("reportDocumentId"))
       assert_equal(200, response.status)
       assert_equal(["/reports/2021-06-30/reports/r%2F1"] * 3, requests.call.map(&:first))
     end
@@ -255,8 +255,8 @@ class WorkflowsTest < NativeTest
     route_server(handler) do |url, requests|
       instance = client(url)
 
-      assert_equal("rf", instance.wait_for_feed("f1", interval: 0.01, timeout: 2).json.fetch("resultFeedDocumentId"))
-      query = instance.wait_for_query("q1", interval: 0.01, timeout: 2).json
+      assert_equal("rf", instance.wait_for_feed("f1", interval: 0.01, timeout: 2).to_h.fetch("resultFeedDocumentId"))
+      query = instance.wait_for_query("q1", interval: 0.01, timeout: 2).to_h
 
       assert_equal(["dd", "ed"], [query.fetch("dataDocumentId"), query.fetch("errorDocumentId")])
       assert_equal("/dataKiosk/2023-11-15/queries/q1", requests.call.last.first)
@@ -301,7 +301,7 @@ class WorkflowsTest < NativeTest
       assert(thread.join(1), "interrupted wait must return")
       status = "DONE"
 
-      assert_equal("DONE", instance.wait_for_report("r1", interval: 0.01, timeout: 2).json.fetch("processingStatus"))
+      assert_equal("DONE", instance.wait_for_report("r1", interval: 0.01, timeout: 2).to_h.fetch("processingStatus"))
     end
   end
 

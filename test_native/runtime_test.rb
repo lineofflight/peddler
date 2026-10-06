@@ -124,8 +124,8 @@ class RuntimeTest < NativeTest
       end
 
       assert_same(instance.sandbox, instance.sandbox)
-      2.times { assert_equal("sandbox-token", instance.sandbox.request("GET", "/").json["token"]) }
-      assert_equal("rotated", instance.with_access_token("rotated").sandbox.request("GET", "/").json["token"])
+      2.times { assert_equal("sandbox-token", instance.sandbox.request("GET", "/").to_h["token"]) }
+      assert_equal("rotated", instance.with_access_token("rotated").sandbox.request("GET", "/").to_h["token"])
     end
   end
 

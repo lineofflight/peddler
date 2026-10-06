@@ -44,12 +44,11 @@ module Peddler
     end
 
     # @return [Hash]
-    def json
-      return @json if defined?(@json)
+    def to_h
+      return @to_h if defined?(@to_h)
 
-      @json = JSON.parse(body)
+      @to_h = JSON.parse(body)
     end
-    alias_method :to_h, :json
 
     # Extracts a nested value from the parsed body
     def dig(*keys)

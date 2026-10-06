@@ -90,7 +90,7 @@ serve(->(socket) { reply(socket, body: '{"asin":"B000TEST"}') }) do |url, reques
   client = Peddler::Client.new(base_url: url, access_token: "smoke-token")
   response = client.catalog_items_2022_04_01.get_catalog_item(asin: "B000TEST", marketplace_ids: ["ATVPDKIKX0DER"])
   path, query = requests.first[:target].split("?", 2)
-  check(response.status == 200 && response.json == { "asin" => "B000TEST" }, "generated operation returns the response")
+  check(response.status == 200 && response.to_h == { "asin" => "B000TEST" }, "generated operation returns the response")
   check(path == "/catalog/2022-04-01/items/B000TEST" && URI.decode_www_form(query).to_h["marketplaceIds"] == "ATVPDKIKX0DER",
     "generated operation builds the documented path and query")
   check(requests.first[:headers]["x-amz-access-token"] == "smoke-token", "access token header is sent")

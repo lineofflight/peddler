@@ -16,7 +16,7 @@ class ClientTest < NativeTest
 
       assert_equal("\xFF\x00".b, result.body)
       assert_equal([["x-repeat", "a"], ["x-repeat", "b"]], result.headers.select { |key, _| key == "x-repeat" })
-      assert_raises(JSON::ParserError) { result.json }
+      assert_raises(JSON::ParserError) { result.to_h }
     end
   end
 

@@ -79,7 +79,7 @@ class TokenSourceTest < NativeTest
       source, calls = counting_source
       instance = Peddler::Client.new(base_url: url, access_token: source)
 
-      assert_equal("DONE", instance.wait_for_report("r1", interval: 0.01, timeout: 5).json.fetch("processingStatus"))
+      assert_equal("DONE", instance.wait_for_report("r1", interval: 0.01, timeout: 5).to_h.fetch("processingStatus"))
       assert_equal(["token-1"] * 3, tokens(requests, 3))
       assert_equal(1, calls.call)
       assert_equal("signed body", instance.download_document("#{url}/signed?sig=1") { |document| document.each_chunk.to_a.join })

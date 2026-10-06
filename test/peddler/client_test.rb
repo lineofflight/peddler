@@ -12,13 +12,6 @@ module Peddler
       assert_equal("https://sellingpartnerapi-fe.amazon.com", config(region: "us-west-2", access_token: "token")["base_url"])
     end
 
-    def test_sandbox_option_resolves_to_the_sandbox_endpoint
-      options = { region: "eu-west-1", access_token: "token", sandbox: true }
-
-      assert_equal("https://sandbox.sellingpartnerapi-eu.amazon.com", config(**options)["base_url"])
-      assert_predicate(Client.new(**options), :sandbox?)
-    end
-
     def test_sandbox_returns_a_view_of_the_same_client
       client = Client.new(region: "eu-west-1", access_token: "token")
       view = client.sandbox
@@ -32,7 +25,7 @@ module Peddler
     end
 
     def test_token_views_keep_the_region_and_the_sandbox_setting
-      client = Client.new(region: "eu-west-1", access_token: "token", sandbox: true)
+      client = Client.new(region: "eu-west-1", access_token: "token").sandbox
       view = client.with_access_token("other")
 
       assert_instance_of(Client, view)
@@ -56,8 +49,7 @@ module Peddler
       assert_raises(ArgumentError) { Client.new(access_token: "token") }
     end
 
-    def test_sandbox_and_base_url_are_mutually_exclusive
-      assert_raises(ArgumentError) { Client.new(base_url: "http://localhost:9001", access_token: "token", sandbox: true) }
+    def test_a_custom_base_url_has_no_sandbox
       assert_raises(ArgumentError) { Client.new(base_url: "http://localhost:9001", access_token: "token").sandbox }
     end
 

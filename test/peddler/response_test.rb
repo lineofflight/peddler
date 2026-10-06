@@ -6,15 +6,11 @@ require "helper"
 # rubocop:disable Minitest/MultipleAssertions
 module Peddler
   class ResponseTest < Minitest::Test
-    def test_json
+    def test_to_h
       response = Response.new(200, [], JSON.generate(payload))
 
-      assert_equal(payload, response.json)
-      assert_same(response.json, response.json)
-    end
-
-    def test_to_h
-      assert_equal(payload, Response.new(200, [], JSON.generate(payload)).to_h)
+      assert_equal(payload, response.to_h)
+      assert_same(response.to_h, response.to_h)
     end
 
     def test_dig
@@ -24,8 +20,8 @@ module Peddler
       assert_nil(response.dig("summaries", 1, "itemName"))
     end
 
-    def test_json_raises_on_a_body_that_is_not_json
-      assert_raises(JSON::ParserError) { Response.new(204, [], "").json }
+    def test_to_h_raises_on_a_body_that_is_not_json
+      assert_raises(JSON::ParserError) { Response.new(204, [], "").to_h }
     end
 
     def test_parse_returns_the_typed_model_of_the_operation

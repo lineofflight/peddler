@@ -130,7 +130,7 @@ module Peddler
     # parser error, which can quote the body, becomes a cause.
     def next_token(response, seen)
       parsed = begin
-        response.json
+        response.to_h
       rescue JSON::ParserError, EncodingError
         NONE
       end
