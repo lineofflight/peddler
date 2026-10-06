@@ -141,6 +141,8 @@ class PaginationTest < NativeTest
       assert_raises(ArgumentError) { pagination.pages(engine, { next_token: 5 }) }
       assert_raises(ArgumentError) { pagination.pages(engine, { "a" => 1, a: 2 }) }
       assert_raises(ArgumentError) { pagination.pages(engine, { x: Float::NAN }) }
+      # A body that can't take the token
+      assert_raises(ArgumentError) { Peddler::Native::PAGINATIONS.fetch("support_2025_02_01.list_cases").pages(engine, { body: "text" }) }
       assert_raises(ArgumentError) do
         Peddler::Native::Pagination.new(operation: ORDERS, input: "next_token", output: "/x")
       end

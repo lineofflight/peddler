@@ -41,18 +41,17 @@ module Peddler
         initial = normalize(arguments)
         initial_token = token_in(initial)
         generate(initial)
+        # Arguments that have no place for a token fail here, not after the first page.
         generate(follow(initial, "probe"))
 
         Enumerator.new do |yielder|
-          # @type var seen: Array[String]
-          seen = initial_token ? [initial_token] : []
           # @type var token: String?
           token = nil
           loop do
             operation = (token && @continuation.operation) || @operation
             page = token.nil? ? initial : follow(initial, token)
             response = Response.from_parts(engine.operation(operation, generate(page)), @operation)
-            following, failure = next_token(response, seen)
+            following, failure = next_token(response, token || initial_token)
             yielder << response
             raise PaginationError, failure if failure
             break unless following
@@ -120,9 +119,10 @@ module Peddler
         copy
       end
 
-      # Returns [token, failure]. Parsing happens outside any rescue so no
-      # parser error, which can quote the body, becomes a cause.
-      def next_token(response, seen)
+      # Returns [token, failure]. A page that returns the token it was requested with would
+      # repeat forever. Parsing happens outside any rescue so no parser error, which can quote
+      # the body, becomes a cause.
+      def next_token(response, previous)
         parsed = begin
           response.to_h
         rescue JSON::ParserError, EncodingError
@@ -141,13 +141,11 @@ module Peddler
         when String
           if node.empty?
             [nil, nil]
-          elsif seen.include?(node)
+          elsif node == previous
             [nil, :repeated_token]
           else
             # A frozen copy: the String in the parsed body is the caller's to change.
-            token = -node
-            seen << token
-            [token, nil]
+            [-node, nil]
           end
         else [nil, :invalid_token]
         end

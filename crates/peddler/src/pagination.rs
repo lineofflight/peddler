@@ -7,7 +7,7 @@
 use crate::{Client, Error, Response};
 use futures_util::{Stream, stream};
 use serde_json::{Map, Value};
-use std::{collections::HashSet, pin::Pin};
+use std::pin::Pin;
 
 /// A lazy stream of raw pages. Dropping it never fetches another page.
 pub type PageStream<'a> =
@@ -69,7 +69,7 @@ pub enum PaginationError {
     MalformedResponse,
     /// The response token was neither absent, null nor a string.
     InvalidToken,
-    /// The response token was already seen, including the initial one.
+    /// A page returned the token it was requested with.
     RepeatedToken,
 }
 
@@ -107,7 +107,8 @@ struct State<'a> {
     arguments: Value,
     input: Vec<String>,
     output: Vec<String>,
-    seen: HashSet<String>,
+    /// The token the last page was requested with, to tell a repeat.
+    previous: Option<String>,
     step: Step,
 }
 
@@ -125,7 +126,7 @@ pub fn pages<'a, T: serde::Serialize>(
         arguments: Value::Null,
         input: Vec::new(),
         output: Vec::new(),
-        seen: HashSet::new(),
+        previous: None,
         step: Step::Fetch(None),
         pagination,
     };
@@ -149,9 +150,7 @@ fn prepare<T: serde::Serialize>(
     match state.arguments.pointer(&state.pagination.input) {
         None | Some(Value::Null) => {}
         Some(Value::String(token)) if token.is_empty() => {}
-        Some(Value::String(token)) => {
-            state.seen.insert(token.clone());
-        }
+        Some(Value::String(token)) => state.previous = Some(token.clone()),
         Some(_) => return Err(PaginationError::InvalidArguments),
     }
     Ok(())
@@ -251,8 +250,13 @@ async fn next_page(mut state: State<'_>) -> Option<(Result<Response, PaginationE
     if (200..300).contains(&response.status) {
         state.step = match extract(&state.output, &response.body) {
             Ok(None) => Step::Done,
-            Ok(Some(token)) if state.seen.insert(token.clone()) => Step::Fetch(Some(token)),
-            Ok(Some(_)) => Step::Fail(PaginationError::RepeatedToken),
+            Ok(Some(token)) if state.previous.as_ref() == Some(&token) => {
+                Step::Fail(PaginationError::RepeatedToken)
+            }
+            Ok(Some(token)) => {
+                state.previous = Some(token.clone());
+                Step::Fetch(Some(token))
+            }
             Err(error) => Step::Fail(error),
         };
     }

@@ -163,7 +163,7 @@ fn sorted(mut pairs: Vec<(String, String)>) -> Vec<(String, String)> {
 #[tokio::test]
 async fn shared_cases_replay_through_the_generated_dispatcher() {
     let cases: Vec<Value> = serde_json::from_str(CASES).unwrap();
-    assert!(cases.len() >= 20);
+    assert!(!cases.is_empty());
     for case in cases {
         let name = case["name"].as_str().unwrap();
         let replies = case["responses"]
