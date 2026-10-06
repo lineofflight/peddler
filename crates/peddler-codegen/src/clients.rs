@@ -268,11 +268,14 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
     operations.sort_by(|a, b| a.name.cmp(&b.name));
     Ok(RenderedClient { operations })
 }
-/// The media types an operation consumes or produces: its own and the API's.
+/// The media types an operation consumes or produces: its own list, or else the API's.
 fn media_types<'a>(spec: &'a Value, operation: &'a Value, key: &str) -> Vec<&'a str> {
-    [&operation[key], &spec[key]]
+    operation
+        .get(key)
+        .or_else(|| spec.get(key))
+        .and_then(Value::as_array)
         .into_iter()
-        .flat_map(|types| types.as_array().into_iter().flatten())
+        .flatten()
         .filter_map(Value::as_str)
         .collect()
 }

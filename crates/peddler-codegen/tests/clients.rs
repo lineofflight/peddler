@@ -145,6 +145,23 @@ fn malformed_scalar_defaults_fail_generation_before_runtime_construction() {
     assert!(clients::render(&value, &ALL_APIS[0]).is_err());
 }
 #[test]
+fn an_operation_media_type_replaces_the_api_one() {
+    let successes = |value: &Value| {
+        let rendered = clients::render(value, &ALL_APIS[0]).unwrap();
+        let item = rendered.operations.iter().find(|op| op.name == "get_item");
+        item.unwrap().successes.clone()
+    };
+    let mut value = spec();
+    value["paths"]["/items/{asin}"]["get"]["produces"] = json!(["application/pdf"]);
+    assert_eq!(successes(&value), vec![(200, None), (204, None)]);
+    value["produces"] = json!(["application/pdf"]);
+    value["paths"]["/items/{asin}"]["get"]["produces"] = json!(["application/json"]);
+    assert_eq!(
+        successes(&value),
+        vec![(200, Some("super::models::Item".into())), (204, None)]
+    );
+}
+#[test]
 fn bodyless_success_status_does_not_offer_json_even_with_an_upstream_schema() {
     let mut value = spec();
     value["paths"]["/empty"]["post"]["responses"] =
