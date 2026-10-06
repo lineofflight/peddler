@@ -151,7 +151,7 @@ jobs:
         with:
           name: gem-${{ matrix.platform }}
           path: gems
-      - name: Install the platform gem and smoke test it without Rust or Node
+      - name: Install the platform gem and smoke test it without Rust
         run: |
           ruby_dir="$(dirname "$(command -v ruby)")"
           export GEM_HOME="$RUNNER_TEMP/gems" GEM_PATH="$RUNNER_TEMP/gems"

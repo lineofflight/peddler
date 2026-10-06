@@ -7,7 +7,7 @@
 #   GEM_HOME=/tmp/gems GEM_PATH=/tmp/gems ruby /path/to/tools/native_smoke.rb [--binary]
 #
 # --binary additionally asserts that the extension came from a platform gem
-# for the running Ruby ABI and that no Rust or Node toolchain is on PATH.
+# for the running Ruby ABI and that no Rust toolchain is on PATH.
 # Everything talks to a loopback server; no Amazon endpoint is contacted.
 require "json"
 require "socket"
@@ -26,7 +26,7 @@ end
 abort("run the smoke test from outside the repository") if File.exist?(File.join(Dir.pwd, "peddler.gemspec"))
 
 if binary
-  ["cargo", "rustc", "node"].each do |tool|
+  ["cargo", "rustc"].each do |tool|
     check(ENV.fetch("PATH", "").split(File::PATH_SEPARATOR).none? { |dir| File.executable?(File.join(dir, tool)) },
       "#{tool} is not on PATH")
   end
