@@ -9,6 +9,9 @@ module Peddler
       "query" => "data_kiosk_2023_11_15.get_query",
     }.freeze
 
+    # Seconds v5's document helpers allow for a whole call. They take no options.
+    HELPER_TIMEOUT = 600
+
     class << self
       def valid_identifier?(value)
         valid_utf8_string?(value) && !value.empty?
@@ -19,7 +22,7 @@ module Peddler
       def read_document(engine, kind, id_or_url)
         raise ArgumentError, "invalid document identifier" unless valid_identifier?(id_or_url)
 
-        config = TransferConfig.json({})
+        config = TransferConfig.json(timeout: HELPER_TIMEOUT)
         handle = if kind.nil? || id_or_url.start_with?("http")
           engine.download_document(id_or_url, config)
         else
@@ -37,13 +40,15 @@ module Peddler
       end
     end
 
-    # The document helpers of v5, on the API views that had them. Each returns the whole body in a response and
-    # raises Peddler::Error when a request is rejected. The client's open_*_document methods stream instead.
+    # The document helpers of v5, on the API views that had them. Each returns the whole body in a response,
+    # raises Peddler::Error when a request is rejected, and allows 600 seconds for the whole call. The client's
+    # open_*_document methods stream instead and take a timeout.
 
     class Reports20210630
       # Downloads a report by its document ID or URL
       #
-      # A report Amazon compresses is decompressed, so the body is the report content.
+      # A report Amazon compresses is decompressed, so the body is the report content. For a report that takes more
+      # than 600 seconds, use `client.open_report_document(id, timeout:)`.
       #
       # @param [String] report_document_id_or_url the report document identifier or download URL
       # @return [Peddler::Response] the response containing the report content
@@ -55,15 +60,19 @@ module Peddler
     class Feeds20210630
       # Uploads feed content to the signed URL that `create_feed_document` returned
       #
+      # For a feed that takes more than 600 seconds, use `client.upload_document(url, source, content_type:, timeout:)`.
+      #
       # @param [String] upload_url the signed URL from the `create_feed_document` response
       # @param [String] feed_content the content to upload
       # @param [String] content_type the content type requested in `create_feed_document`
       # @return [Peddler::Response]
       def upload_feed_document(upload_url, feed_content, content_type)
-        Uploads.put(@engine, upload_url, feed_content, content_type, {}, nil, {})
+        Uploads.put(@engine, upload_url, feed_content, content_type, {}, nil, { timeout: HELPER_TIMEOUT })
       end
 
       # Downloads the result of a processed feed from the signed URL that `get_feed_document` returned
+      #
+      # For a result that takes more than 600 seconds, use `client.open_feed_document(id, timeout:)`.
       #
       # @param [String] download_url the signed URL from the `get_feed_document` response
       # @return [Peddler::Response] the response containing the feed result document
@@ -74,6 +83,8 @@ module Peddler
 
     class DataKiosk20231115
       # Downloads a Data Kiosk document by its document ID or URL
+      #
+      # For a document that takes more than 600 seconds, use `client.open_query_document(id, timeout:)`.
       #
       # @param [String] document_id_or_url the document identifier or download URL
       # @return [Peddler::Response] the response containing the document content

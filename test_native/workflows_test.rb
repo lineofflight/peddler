@@ -233,6 +233,29 @@ class WorkflowsTest < NativeTest
     end
   end
 
+  def test_helpers_allow_600_seconds_for_the_whole_call
+    seen = []
+    config = Peddler::Native::TransferConfig.method(:json)
+    handler = lambda do |path, base|
+      signed(path) || [200, path.include?("dataKiosk") ? JSON.generate(documentId: "k1", documentUrl: "#{base}/plain") : report_document(base)]
+    end
+    route_server(handler) do |url, _|
+      instance = client(url)
+      recording = lambda do |options|
+        seen << options
+        config.call(options)
+      end
+      Peddler::Native::TransferConfig.stub(:json, recording) do
+        instance.reports.download_report_document("d1")
+        instance.feeds.download_result_feed_document("#{url}/plain")
+        instance.feeds.upload_feed_document("#{url}/plain", "x", "text/plain")
+        instance.data_kiosk.download_query_document("k1")
+      end
+    end
+
+    assert_equal([{ timeout: 600 }] * 4, seen)
+  end
+
   def test_wait_polls_until_done_with_integer_and_float_options
     statuses = %w[IN_QUEUE IN_PROGRESS DONE]
     count = 0

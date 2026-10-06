@@ -1,6 +1,7 @@
 module Peddler
   module Native
     WAIT_OPERATIONS: Hash[String, String]
+    HELPER_TIMEOUT: Integer
 
     module Uploads
       CHUNK_BYTES: Integer
