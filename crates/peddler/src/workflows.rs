@@ -8,9 +8,10 @@
 //! deducted before the transfer starts, so the transfer receives the remainder.
 //! The deadline also covers reading the downloaded body.
 //!
-//! No helper retries a mutation or submits a feed. Errors never contain signed
-//! URLs, response bodies or tokens; failed metadata responses are available only
-//! through [`WorkflowError::response`].
+//! No helper retries a mutation or submits a feed. Error messages never contain
+//! signed URLs, response bodies or tokens. A failed metadata response is available
+//! through [`WorkflowError::response`], and the reply of a signed URL that rejects
+//! a transfer through [`documents::Error::Rejected`].
 
 use crate::{
     Client, Error as ClientError, Response, TypedResponse,

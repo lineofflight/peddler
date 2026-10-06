@@ -1,4 +1,5 @@
-//! Signed document transfers. No API credentials, retries, or redirects.
+//! Signed document transfers. No API credentials, retries, or redirects. A status
+//! outside 2xx is an error that keeps the reply.
 //!
 //! Download bodies are streamed, including incremental GZIP decoding. JSONL skips
 //! whitespace-only lines; TSV uses the csv-core grammar with tab delimiters.
