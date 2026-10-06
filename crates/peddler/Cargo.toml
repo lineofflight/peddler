@@ -13,7 +13,7 @@ categories = ["api-bindings", "web-programming::http-client"]
 include = ["/src/**", "/README.md", "/LICENSE", "/Cargo.toml"]
 
 [dependencies]
-reqwest = { version = "0.13.5", default-features = false, features = ["rustls", "http2", "form", "json", "stream"] }
+reqwest = { version = "0.13.5", default-features = false, features = ["rustls", "http2", "form", "stream"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["arbitrary_precision"] }
 chrono = { version = "0.4", default-features = false, features = ["serde", "std"] }
