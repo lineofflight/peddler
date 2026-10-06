@@ -107,7 +107,7 @@ module Peddler
     end
 
     def test_operation_raises_not_found
-      error = assert_raises(Error) { client.reports_2021_06_30.get_report(report_id: "1234567") }
+      error = assert_raises(Error) { client.reports_2021_06_30.get_report("1234567") }
 
       assert_equal(404, error.status)
       assert_equal("NotFound", error.code)
@@ -119,7 +119,7 @@ module Peddler
 
     def test_operation_raises_quota_exceeded
       error = assert_raises(Error) do
-        client.product_pricing_v0.get_pricing(marketplace_id: "A1F83G8C2ARO7P", item_type: "Asin", asins: ["188864544X"])
+        client.product_pricing_v0.get_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
       end
 
       assert_equal(429, error.status)
@@ -143,7 +143,7 @@ module Peddler
     def test_retries_exhausted_raise_the_last_response
       retrying = Client.new(base_url: @replay.url, access_token: "FILTERED", retries: 1)
       error = assert_raises(Error) do
-        retrying.product_pricing_v0.get_pricing(marketplace_id: "A1F83G8C2ARO7P", item_type: "Asin", asins: ["188864544X"])
+        retrying.product_pricing_v0.get_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
       end
 
       assert_equal([429, "QuotaExceeded"], [error.status, error.code])

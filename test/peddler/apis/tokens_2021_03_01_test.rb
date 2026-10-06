@@ -8,7 +8,7 @@ module Peddler
       include FeatureHelpers
 
       def test_create_restricted_data_token
-        res = api.create_restricted_data_token(body: {
+        res = api.create_restricted_data_token({
           "value" => {
             "targetApplication" => "amzn1.sellerapps.app.target-application",
             "restrictedResources" => [{ "method" => "GET", "path" => "/orders/v0/orders/{orderId}/address" }],

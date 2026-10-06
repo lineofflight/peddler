@@ -40,7 +40,7 @@ module Peddler
             },
           ],
         }
-        res = api.get_featured_offer_expected_price_batch(body: payload)
+        res = api.get_featured_offer_expected_price_batch(payload)
 
         assert_success(res)
       end
@@ -68,7 +68,7 @@ module Peddler
             },
           ],
         }
-        res = api.get_competitive_summary(body: payload)
+        res = api.get_competitive_summary(payload)
 
         assert_success(res, typed: false)
       end

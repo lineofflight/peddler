@@ -53,7 +53,7 @@ module Peddler
           },
         }
 
-        res = api.put_listings_item(seller_id: "A34PPN1ZLYCOGT", sku: "SKU123", marketplace_ids: Marketplace.ids("UK"), body: body)
+        res = api.put_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.ids("UK"), body)
 
         assert_equal(200, res.status)
         assert_success(res)
@@ -78,7 +78,7 @@ module Peddler
           ],
         }
 
-        res = api.patch_listings_item(seller_id: "A34PPN1ZLYCOGT", sku: "SKU123", marketplace_ids: Marketplace.ids("UK"), body: body)
+        res = api.patch_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.ids("UK"), body)
 
         assert_equal(200, res.status)
         assert_success(res)
@@ -86,9 +86,9 @@ module Peddler
 
       def test_get_listings_item
         res = api.get_listings_item(
-          seller_id: "A34PPN1ZLYCOGT",
-          sku: "SKU123",
-          marketplace_ids: Marketplace.ids("UK"),
+          "A34PPN1ZLYCOGT",
+          "SKU123",
+          Marketplace.ids("UK"),
           included_data: ["attributes", "issues"],
         )
 
@@ -97,7 +97,7 @@ module Peddler
       end
 
       def test_delete_listings_item
-        res = api.delete_listings_item(seller_id: "A34PPN1ZLYCOGT", sku: "SKU123", marketplace_ids: Marketplace.ids("UK"))
+        res = api.delete_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.ids("UK"))
 
         assert_equal(200, res.status)
         assert_success(res)

@@ -92,7 +92,7 @@ class PaginationTest < NativeTest
     script(replies) do |server|
       pages = []
       error = assert_raises(Peddler::Error) do
-        client(server.url).orders_v0.get_orders_pages(marketplace_ids: ["ATVPDKIKX0DER"]).each { |page| pages << page }
+        client(server.url).orders_v0.get_orders_pages(["ATVPDKIKX0DER"]).each { |page| pages << page }
       end
 
       assert_equal([200], pages.map(&:status))
@@ -104,7 +104,7 @@ class PaginationTest < NativeTest
 
   def test_generated_method_returns_a_lazy_rewindable_enumerable_of_native_responses
     script([[200, '{"payload":{"NextToken":"A"}}'], [200, "{}"], [200, '{"payload":{"NextToken":"A"}}'], [200, "{}"]]) do |server|
-      enum = client(server.url).orders_v0.get_orders_pages(marketplace_ids: ["ATVPDKIKX0DER"])
+      enum = client(server.url).orders_v0.get_orders_pages(["ATVPDKIKX0DER"])
 
       assert_kind_of(Enumerable, enum)
       assert_empty(server.requests, "no network before enumeration")

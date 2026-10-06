@@ -18,7 +18,7 @@ class RuntimeTest < NativeTest
           if index.even?
             instance.request("GET", "/")
           else
-            instance.catalog_items_2022_04_01.get_catalog_item(asin: "ASIN", marketplace_ids: ["UK"])
+            instance.catalog_items_2022_04_01.get_catalog_item("ASIN", ["UK"])
           end
         end
       end
@@ -40,7 +40,7 @@ class RuntimeTest < NativeTest
       end
     }) do |url|
       instance = client(url)
-      token = instance.tokens.create_restricted_data_token(body: { restrictedResources: [{ method: "GET", path: "/private" }] })
+      token = instance.tokens.create_restricted_data_token({ restrictedResources: [{ method: "GET", path: "/private" }] })
         .parse.restricted_data_token
       view = instance.with_access_token(token)
 

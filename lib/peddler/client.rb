@@ -10,7 +10,7 @@ module Peddler
   #
   # @example
   #   client = Peddler::Client.new(region: "eu-west-1", access_token: token)
-  #   client.orders_v0.get_orders(marketplace_ids: Peddler::Marketplace.ids("UK"))
+  #   client.orders_v0.get_orders(Peddler::Marketplace.ids("UK"))
   # @example A token source, asked before every request
   #   client = Peddler::Client.new(region: "eu-west-1", access_token: -> {
   #     Rails.cache.fetch(key, expires_in: 55.minutes) { lwa.refresh(refresh_token: token).access_token }
@@ -47,8 +47,8 @@ module Peddler
     # Use it for another seller, a rotated token, or a restricted data token for a few calls.
     #
     # @example
-    #   rdt = client.tokens.create_restricted_data_token(body: { restrictedResources: resources }).parse
-    #   client.with_access_token(rdt.restricted_data_token).orders_v0.get_order_address(order_id: id)
+    #   rdt = client.tokens.create_restricted_data_token({ restrictedResources: resources }).parse
+    #   client.with_access_token(rdt.restricted_data_token).orders_v0.get_order_address(id)
     # @param [String, #call] access_token a token or its source, as in {#initialize}
     # @return [Peddler::Client]
     def with_access_token(access_token)

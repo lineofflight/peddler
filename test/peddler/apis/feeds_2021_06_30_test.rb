@@ -18,19 +18,19 @@ module Peddler
       end
 
       def test_get_feed
-        res = api.get_feed(feed_id: "feedId1")
+        res = api.get_feed("feedId1")
 
         assert_success(res)
       end
 
       def test_create_feed_document
-        res = api.create_feed_document(body: { "contentType" => "text/tab-separated-values; charset=UTF-8" })
+        res = api.create_feed_document({ "contentType" => "text/tab-separated-values; charset=UTF-8" })
 
         assert_success(res)
       end
 
       def test_get_feed_document
-        res = api.get_feed_document(feed_document_id: "0356cf79-b8b0-4226-b4b9-0ee058ea5760")
+        res = api.get_feed_document("0356cf79-b8b0-4226-b4b9-0ee058ea5760")
 
         assert_success(res)
       end

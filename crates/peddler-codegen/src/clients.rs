@@ -16,6 +16,8 @@ pub struct Operation {
 pub struct Parameter {
     pub name: String,
     pub wire_name: String,
+    /// Its place among the spec's parameters. `Operation::parameters` puts a body last.
+    pub position: usize,
     pub location: String,
     pub required: bool,
     pub schema: Value,
@@ -104,7 +106,7 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
             }
             let mut params = Vec::new();
             let mut body = None;
-            for value in &parameters {
+            for (position, value) in parameters.iter().enumerate() {
                 let value = resolve(value, spec)?;
                 let wire_name = value["name"]
                     .as_str()
@@ -125,7 +127,8 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
                     };
                     body = Some(Parameter {
                         name: "body".into(),
-                        wire_name: "body".into(),
+                        wire_name,
+                        position,
                         location,
                         required,
                         schema,
@@ -187,6 +190,7 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
                 let param = Parameter {
                     name: snake(&wire_name),
                     wire_name,
+                    position,
                     location,
                     required,
                     schema,

@@ -13,8 +13,8 @@ fn spec(operation: &str) -> Value {
         json!({"in":"query","name":"includedData","type":"array","items":{"type":"string"},"collectionFormat":"csv","default":[if catalog {"summaries"} else {"issues"}]}),
     ];
     if !catalog {
+        parameters.push(json!({"in":"body","name":"patchRequest","required":true,"schema":{"$ref":"#/definitions/ListingsItemPatchRequest"}}));
         parameters.push(json!({"in":"path","name":"sku","type":"string","required":true}));
-        parameters.push(json!({"in":"body","name":"body","required":true,"schema":{"$ref":"#/definitions/ListingsItemPatchRequest"}}));
     }
     json!({"swagger":"2.0","info":{"title":"Synthetic","version":"1"},"produces":["application/json"],"consumes":["application/json"],"paths":{if catalog {"/items/{asin}"} else {"/items/{sellerId}/{sku}"}:{if catalog {"get"} else {"patch"}:{"operationId":operation,"parameters":parameters,"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}}}},"definitions":{"Item":{"type":"object","required":["sku"],"properties":{"sku":{"type":"string"}}},"ListingsItemPatchRequest":{"type":"object","required":["patches"],"properties":{"patches":{"type":"array","items":{"type":"string"}}}}}})
 }
@@ -93,6 +93,16 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     )
     .unwrap();
     assert_eq!(rendered.len(), 275);
+    // v5's signature: required arguments positional in the spec's order, the body under
+    // the spec's name, optional ones as keywords.
+    let ruby = &rendered[Path::new("lib/peddler/native/apis.rb")];
+    assert!(ruby.contains(
+        "def patch_listings_item(seller_id, marketplace_ids, patch_request, sku, included_data: [\"issues\"])\n        arguments = { seller_id: seller_id, marketplace_ids: marketplace_ids, included_data: included_data, sku: sku, body: patch_request }"
+    ));
+    let rbs = &rendered[Path::new("sig/peddler/native/apis.rbs")];
+    assert!(rbs.contains(
+        "def patch_listings_item: (String seller_id, Array[String] marketplace_ids, untyped patch_request, String sku, ?included_data: Array[String]?) -> Response"
+    ));
     for (path, content) in &rendered {
         if path.extension().is_some_and(|ext| ext == "rs") {
             syn::parse_file(content).unwrap();

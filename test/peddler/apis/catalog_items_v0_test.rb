@@ -8,7 +8,7 @@ module Peddler
       include FeatureHelpers
 
       def test_list_catalog_categories
-        res = api.list_catalog_categories(marketplace_id: "TEST_CASE_200", asin: "asin_200")
+        res = api.list_catalog_categories("TEST_CASE_200", asin: "asin_200")
 
         assert_success(res)
       end

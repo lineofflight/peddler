@@ -5,6 +5,9 @@ require_relative "test_helper"
 # Protocol and lifecycle tests assert several parts of one interaction.
 # rubocop:disable Minitest/MultipleAssertions
 class OperationsTest < NativeTest
+  INVENTORY = JSON.parse(File.read(File.expand_path("../crates/peddler-codegen/operation-inventory.json", __dir__)))
+    .fetch("apis").flat_map { |api| api.fetch("operations") }.to_h { |operation| [operation.fetch("key"), operation.fetch("parameters")] }
+
   def test_explicit_null_omits_optional_array_and_catalog_locale_is_encoded
     serve(handler: lambda { |socket, first, *|
       assert_equal("/catalog/2022-04-01/items/%252F", first[1].split("?", 2)[0])
@@ -12,26 +15,41 @@ class OperationsTest < NativeTest
       respond(socket)
     }) do |url|
       assert_equal(200, client(url).catalog_items_2022_04_01
-        .get_catalog_item(asin: "%2F", marketplace_ids: ["UK"], included_data: nil, locale: "en&GB").status)
+        .get_catalog_item("%2F", ["UK"], included_data: nil, locale: "en&GB").status)
     end
   end
 
   # An empty argument is refused only where it ends the path, since it would reach the parent collection.
   def test_named_methods_reject_bad_path_segments_and_wrong_types
     instance = client("http://127.0.0.1:1")
-    catalog_arguments = { asin: "X", marketplace_ids: ["UK"] }
-    listings_arguments = { seller_id: "S", sku: "X", marketplace_ids: ["UK"], body: {} }
-    [{ asin: "." }, { asin: ".." }, { asin: "" }, { marketplace_ids: [1] }, { marketplace_ids: "private" }].each do |invalid|
+    [[".", ["UK"]], ["..", ["UK"]], ["", ["UK"]], ["X", [1]], ["X", "private"]].each do |asin, marketplace_ids|
+      error = assert_raises(ArgumentError) { instance.catalog_items_2022_04_01.get_catalog_item(asin, marketplace_ids) }
+
+      assert_equal("invalid request", error.message)
+    end
+    [["..", "X"], ["S", "."], ["S", ""]].each do |seller_id, sku|
       error = assert_raises(ArgumentError) do
-        instance.catalog_items_2022_04_01.get_catalog_item(**catalog_arguments.merge(invalid))
+        instance.listings_items_2021_08_01.patch_listings_item(seller_id, sku, ["UK"], {})
       end
-      refute_match(/private/, error.message)
+
+      assert_equal("invalid request", error.message)
     end
-    [{ seller_id: ".." }, { sku: "." }, { sku: "" }].each do |invalid|
-      assert_raises(ArgumentError) do
-        instance.listings_items_2021_08_01.patch_listings_item(**listings_arguments.merge(invalid))
-      end
+  end
+
+  # The shared cases name arguments as the Rust core does. A method takes the required ones in the spec's order
+  # and a body under the name the spec gives it.
+  def call(api, key, arguments)
+    method = api.method(key.split(".", 2).last)
+    named = INVENTORY.fetch(key).reject { |parameter| parameter["in"] == "body" }.map { |parameter| parameter["name"] }
+    positional = []
+    keywords = {}
+    method.parameters.each do |kind, name|
+      argument = named.include?(name.to_s) ? name.to_s : "body"
+      next unless arguments.key?(argument)
+
+      kind == :req ? positional << arguments[argument] : keywords[name] = arguments[argument]
     end
+    method.call(*positional, **keywords)
   end
 
   def test_all_generated_facades_replay_shared_protocol_cases
@@ -52,10 +70,8 @@ class OperationsTest < NativeTest
         respond(socket, status: example.fetch("status"), headers: [["x-repeat", "first"], ["x-repeat", "second"]],
           body: example.fetch("response"))
       }) do |url|
-        accessor, method = example.fetch("operation").split(".", 2)
-        api = client(url).public_send(accessor)
-        arguments = example.fetch("arguments").transform_keys(&:to_sym)
-        call = -> { api.public_send(method, **arguments) }
+        key = example.fetch("operation")
+        call = -> { call(client(url).public_send(key.split(".", 2).first), key, example.fetch("arguments")) }
         response = example.fetch("status") < 400 ? call.call : assert_raises(Peddler::Error, &call).response
 
         assert_equal(example.fetch("status"), response.status)

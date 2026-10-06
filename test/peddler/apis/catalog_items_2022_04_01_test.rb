@@ -9,7 +9,7 @@ module Peddler
 
       def test_search_catalog_items
         res = api.search_catalog_items(
-          marketplace_ids: Marketplace.ids("UK"),
+          Marketplace.ids("UK"),
           identifiers: ["188864544X"],
           identifiers_type: "ASIN",
         )
@@ -19,8 +19,8 @@ module Peddler
 
       def test_get_catalog_item
         res = api.get_catalog_item(
-          asin: "188864544X",
-          marketplace_ids: Marketplace.ids("UK"),
+          "188864544X",
+          Marketplace.ids("UK"),
           included_data: [
             "classifications",
             "dimensions",

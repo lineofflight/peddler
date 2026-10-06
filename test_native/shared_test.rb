@@ -13,7 +13,7 @@ class SharedTest < NativeTest
       second = Peddler::Client.new(base_url: url, access_token: "seller-b", timeout: 5, retries: 1)
 
       assert_equal(200, first.request("GET", "/").status)
-      assert_equal(200, second.orders_v0.get_order(order_id: "1").status)
+      assert_equal(200, second.orders_v0.get_order("1").status)
       fresh = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "#{url}/auth").refresh(refresh_token: "refresh")
 
       assert_equal(200, first.with_access_token(fresh.access_token).request("GET", "/").status)
@@ -44,7 +44,7 @@ class SharedTest < NativeTest
         reader.close
         results = [
           -> { instance.request("GET", "/inherited") },
-          -> { instance.orders_v0.get_order(order_id: "1") },
+          -> { instance.orders_v0.get_order("1") },
           -> { instance.with_access_token("child") },
           -> { instance.upload_document("#{url}/inherited", "x", content_type: "text/plain") },
           -> { instance.open_report_document("d") },

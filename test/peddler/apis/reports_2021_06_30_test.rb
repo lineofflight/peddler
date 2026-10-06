@@ -25,25 +25,25 @@ module Peddler
             "ATVPDKIKX0DER",
           ],
         }
-        res = api.create_report(body: payload)
+        res = api.create_report(payload)
 
         assert_success(res)
       end
 
       def test_get_report
-        res = api.get_report(report_id: "ID323")
+        res = api.get_report("ID323")
 
         assert_success(res)
       end
 
       def test_get_report_schedules
-        res = api.get_report_schedules(report_types: ["FEE_DISCOUNTS_REPORT", "GET_FBA_FULFILLMENT_CUSTOMER_TAXES_DATA"])
+        res = api.get_report_schedules(["FEE_DISCOUNTS_REPORT", "GET_FBA_FULFILLMENT_CUSTOMER_TAXES_DATA"])
 
         assert_success(res)
       end
 
       def test_create_report_schedule
-        res = api.create_report_schedule(body: {
+        res = api.create_report_schedule({
           "reportType" => "FEE_DISCOUNTS_REPORT",
           "period" => "PT5M",
           "nextReportCreationTime" => "2024-03-10T20:11:24.000Z",
@@ -54,13 +54,13 @@ module Peddler
       end
 
       def test_get_report_schedule
-        res = api.get_report_schedule(report_schedule_id: "ID323")
+        res = api.get_report_schedule("ID323")
 
         assert_success(res)
       end
 
       def test_get_report_document
-        res = api.get_report_document(report_document_id: "0356cf79-b8b0-4226-b4b9-0ee058ea5760")
+        res = api.get_report_document("0356cf79-b8b0-4226-b4b9-0ee058ea5760")
 
         assert_success(res)
       end

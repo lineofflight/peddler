@@ -9,8 +9,8 @@ module Peddler
 
       def test_get_definitions_product_type
         res = api.get_definitions_product_type(
-          product_type: "PRODUCT",
-          marketplace_ids: Marketplace.ids("UK"),
+          "PRODUCT",
+          Marketplace.ids("UK"),
           requirements: "LISTING_OFFER_ONLY",
         )
 

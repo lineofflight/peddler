@@ -401,7 +401,8 @@ fn ruby_type(p: &Parameter) -> String {
 }
 fn ruby_default(value: &Value) -> String {
     match value {
-        Value::Null => "nil".into(),
+        // v5 left a default of false out, so Amazon's own default applied.
+        Value::Null | Value::Bool(false) => "nil".into(),
         Value::Array(values) => format!(
             "[{}]",
             values
@@ -444,16 +445,20 @@ pub(crate) fn ruby(
         .unwrap();
         writeln!(rbs,"    class {class}\n      @engine: engine\n      def initialize: (engine engine) -> void").unwrap();
         for op in operations {
-            let keywords = op
-                .parameters
+            // v5's signature: required arguments are positional and optional ones keywords,
+            // each in the spec's order. A body goes by the name the spec gives it.
+            let ruby_name = |p: &Parameter| crate::clients::snake(&p.wire_name);
+            let mut ordered: Vec<&Parameter> = op.parameters.iter().collect();
+            ordered.sort_by_key(|p| (!p.required, p.position));
+            let keywords = ordered
                 .iter()
                 .map(|p| {
                     if p.required {
-                        format!("{}:", p.name)
+                        ruby_name(p)
                     } else {
                         format!(
                             "{}: {}",
-                            p.name,
+                            ruby_name(p),
                             p.schema
                                 .get("default")
                                 .map(ruby_default)
@@ -466,7 +471,7 @@ pub(crate) fn ruby(
             let args = op
                 .parameters
                 .iter()
-                .map(|p| format!("{}: {}", p.name, p.name))
+                .map(|p| format!("{}: {}", p.name, ruby_name(p)))
                 .collect::<Vec<_>>()
                 .join(", ");
             let arguments = if args.is_empty() {
@@ -482,17 +487,16 @@ pub(crate) fn ruby(
             let key = format!("{}.{}", api.module, op.name);
             // The response carries its operation key so Ruby can resolve the typed model.
             writeln!(ruby,"      def {}{}\n{annotation}        arguments = {arguments}\n        Response.from_parts(@engine.operation({key:?}, JSON.generate(arguments)), {key:?})\n      end\n",op.name,if keywords.is_empty(){String::new()}else{format!("({keywords})")}).unwrap();
-            let sig = op
-                .parameters
+            let sig = ordered
                 .iter()
                 .map(|p| {
                     let ty = ruby_type(p);
                     if p.required {
-                        format!("{}: {ty}", p.name)
+                        format!("{ty} {}", ruby_name(p))
                     } else {
                         format!(
                             "?{}: {}?",
-                            p.name,
+                            ruby_name(p),
                             if ty.contains('|') {
                                 format!("({ty})")
                             } else {

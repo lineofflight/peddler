@@ -8,43 +8,43 @@ module Peddler
       include FeatureHelpers
 
       def test_get_item_review_topics
-        res = api.get_item_review_topics(asin: "B08PD3JNPF", marketplace_id: "ATVPDKIKX0DER", sort_by: "MENTIONS")
+        res = api.get_item_review_topics("B08PD3JNPF", "ATVPDKIKX0DER", "MENTIONS")
 
         assert_success(res)
       end
 
       def test_get_item_browse_node
-        res = api.get_item_browse_node(asin: "B08PD3JNPF", marketplace_id: "ATVPDKIKX0DER")
+        res = api.get_item_browse_node("B08PD3JNPF", "ATVPDKIKX0DER")
 
         assert_success(res)
       end
 
       def test_get_browse_node_review_topics
-        res = api.get_browse_node_review_topics(browse_node_id: "123456789", marketplace_id: "ATVPDKIKX0DER", sort_by: "STAR_RATING_IMPACT")
+        res = api.get_browse_node_review_topics("123456789", "ATVPDKIKX0DER", "STAR_RATING_IMPACT")
 
         assert_success(res)
       end
 
       def test_get_item_review_trends
-        res = api.get_item_review_trends(asin: "B08PD3JNPF", marketplace_id: "ATVPDKIKX0DER")
+        res = api.get_item_review_trends("B08PD3JNPF", "ATVPDKIKX0DER")
 
         assert_success(res)
       end
 
       def test_get_browse_node_review_trends
-        res = api.get_browse_node_review_trends(browse_node_id: "123456789", marketplace_id: "ATVPDKIKX0DER")
+        res = api.get_browse_node_review_trends("123456789", "ATVPDKIKX0DER")
 
         assert_success(res)
       end
 
       def test_get_browse_node_return_topics
-        res = api.get_browse_node_return_topics(browse_node_id: "123456789", marketplace_id: "ATVPDKIKX0DER")
+        res = api.get_browse_node_return_topics("123456789", "ATVPDKIKX0DER")
 
         assert_success(res)
       end
 
       def test_get_browse_node_return_trends
-        res = api.get_browse_node_return_trends(browse_node_id: "123456789", marketplace_id: "ATVPDKIKX0DER")
+        res = api.get_browse_node_return_trends("123456789", "ATVPDKIKX0DER")
 
         assert_success(res)
       end

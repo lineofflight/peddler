@@ -14,25 +14,25 @@ module Peddler
       end
 
       def test_create_query
-        res = api.create_query(body: { "query" => "query {sampleQuery(startDate:\"2023-03-01\" endDate:\"2023-03-31\" marketplaceIds:[\"ATVPDKIKX0DER\"]){sales{date averageSellingPrice{amount currencyCode}}}}" })
+        res = api.create_query({ "query" => "query {sampleQuery(startDate:\"2023-03-01\" endDate:\"2023-03-31\" marketplaceIds:[\"ATVPDKIKX0DER\"]){sales{date averageSellingPrice{amount currencyCode}}}}" })
 
         assert_success(res)
       end
 
       def test_cancel_query
-        res = api.cancel_query(query_id: "QueryId1")
+        res = api.cancel_query("QueryId1")
 
         assert_success(res)
       end
 
       def test_get_query
-        res = api.get_query(query_id: "QueryId1")
+        res = api.get_query("QueryId1")
 
         assert_success(res)
       end
 
       def test_get_document
-        res = api.get_document(document_id: "DocumentId1")
+        res = api.get_document("DocumentId1")
 
         assert_success(res)
       end

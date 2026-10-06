@@ -33,7 +33,7 @@ module Peddler
           },
         }
         # v5 recorded this with an empty SKU
-        res = api.get_my_fees_estimate_for_sku(seller_sku: "", body: payload)
+        res = api.get_my_fees_estimate_for_sku(payload, "")
 
         assert_success(res)
       end
@@ -64,7 +64,7 @@ module Peddler
           },
         }
         # Recorded with an empty ASIN, as above
-        res = api.get_my_fees_estimate_for_asin(asin: "", body: payload)
+        res = api.get_my_fees_estimate_for_asin(payload, "")
 
         assert_success(res)
       end

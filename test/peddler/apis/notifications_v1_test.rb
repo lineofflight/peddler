@@ -23,28 +23,28 @@ module Peddler
           },
           name: "Test Destination",
         }
-        res = api.create_destination(body: body)
+        res = api.create_destination(body)
 
         assert_equal(200, res.status)
         assert_success(res)
       end
 
       def test_get_destination
-        res = api.get_destination(destination_id: "TEST_DESTINATION_ID")
+        res = api.get_destination("TEST_DESTINATION_ID")
 
         assert_equal(200, res.status)
         assert_success(res)
       end
 
       def test_delete_destination
-        res = api.delete_destination(destination_id: "TEST_DESTINATION_ID")
+        res = api.delete_destination("TEST_DESTINATION_ID")
 
         assert_equal(200, res.status)
         assert_success(res)
       end
 
       def test_get_subscription
-        res = api.get_subscription(notification_type: "LISTINGS_ITEM_ISSUES_CHANGE")
+        res = api.get_subscription("LISTINGS_ITEM_ISSUES_CHANGE")
 
         assert_equal(200, res.status)
         assert_success(res)
@@ -55,7 +55,7 @@ module Peddler
           destinationId: "TEST_DESTINATION_ID",
           payloadVersion: "1.0",
         }
-        res = api.create_subscription(body: body, notification_type: "ORDER_CHANGE")
+        res = api.create_subscription(body, "ORDER_CHANGE")
 
         assert_equal(200, res.status)
         assert_success(res)

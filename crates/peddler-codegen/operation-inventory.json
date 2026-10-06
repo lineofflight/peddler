@@ -923,7 +923,7 @@
               "schema": {
                 "$ref": "#/definitions/PostContentDocumentRequest"
               },
-              "wire_name": "body"
+              "wire_name": "postContentDocumentRequest"
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments",
@@ -949,7 +949,7 @@
               "schema": {
                 "$ref": "#/definitions/CreateMediaRequest"
               },
-              "wire_name": "body"
+              "wire_name": "createMediaRequest"
             }
           ],
           "path": "/aplus/2020-11-01/media",
@@ -1205,7 +1205,7 @@
               "schema": {
                 "$ref": "#/definitions/PostContentDocumentAsinRelationsRequest"
               },
-              "wire_name": "body"
+              "wire_name": "postContentDocumentAsinRelationsRequest"
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins",
@@ -1394,7 +1394,7 @@
               "schema": {
                 "$ref": "#/definitions/PostContentDocumentRequest"
               },
-              "wire_name": "body"
+              "wire_name": "postContentDocumentRequest"
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}",
@@ -1440,7 +1440,7 @@
               "schema": {
                 "$ref": "#/definitions/UpdateMediaRequest"
               },
-              "wire_name": "body"
+              "wire_name": "updateMediaRequest"
             }
           ],
           "path": "/aplus/2020-11-01/media/{mediaId}",
@@ -1489,7 +1489,7 @@
               "schema": {
                 "$ref": "#/definitions/PostContentDocumentRequest"
               },
-              "wire_name": "body"
+              "wire_name": "postContentDocumentRequest"
             }
           ],
           "path": "/aplus/2020-11-01/contentAsinValidations",
@@ -2813,7 +2813,7 @@
               "schema": {
                 "$ref": "#/definitions/CreateScheduledPackageRequest"
               },
-              "wire_name": "body"
+              "wire_name": "CreateScheduledPackageRequest"
             }
           ],
           "path": "/easyShip/2022-03-23/package",
@@ -2839,7 +2839,7 @@
               "schema": {
                 "$ref": "#/definitions/CreateScheduledPackagesRequest"
               },
-              "wire_name": "body"
+              "wire_name": "CreateScheduledPackagesRequest"
             }
           ],
           "path": "/easyShip/2022-03-23/packages/bulk",
@@ -2901,7 +2901,7 @@
               "schema": {
                 "$ref": "#/definitions/ListHandoverSlotsRequest"
               },
-              "wire_name": "body"
+              "wire_name": "ListHandoverSlotsRequest"
             }
           ],
           "path": "/easyShip/2022-03-23/timeSlot",
@@ -2927,7 +2927,7 @@
               "schema": {
                 "$ref": "#/definitions/UpdateScheduledPackagesRequest"
               },
-              "wire_name": "body"
+              "wire_name": "UpdateScheduledPackagesRequest"
             }
           ],
           "path": "/easyShip/2022-03-23/package",
@@ -3871,7 +3871,7 @@
               "schema": {
                 "$ref": "#/definitions/AddInventoryRequest"
               },
-              "wire_name": "body"
+              "wire_name": "addInventoryRequestBody"
             }
           ],
           "path": "/fba/inventory/v1/items/inventory",
@@ -3897,7 +3897,7 @@
               "schema": {
                 "$ref": "#/definitions/CreateInventoryItemRequest"
               },
-              "wire_name": "body"
+              "wire_name": "createInventoryItemRequestBody"
             }
           ],
           "path": "/fba/inventory/v1/items",
@@ -11534,7 +11534,7 @@
               "schema": {
                 "$ref": "#/definitions/ConfirmShipmentRequest"
               },
-              "wire_name": "body"
+              "wire_name": "payload"
             }
           ],
           "path": "/orders/v0/orders/{orderId}/shipmentConfirmation",
@@ -12033,7 +12033,7 @@
               "schema": {
                 "$ref": "#/definitions/UpdateShipmentStatusRequest"
               },
-              "wire_name": "body"
+              "wire_name": "payload"
             }
           ],
           "path": "/orders/v0/orders/{orderId}/shipment",
@@ -12069,7 +12069,7 @@
               "schema": {
                 "$ref": "#/definitions/UpdateVerificationStatusRequest"
               },
-              "wire_name": "body"
+              "wire_name": "payload"
             }
           ],
           "path": "/orders/v0/orders/{orderId}/regulatedInfo",
@@ -12551,7 +12551,7 @@
               "schema": {
                 "$ref": "#/definitions/GetItemOffersBatchRequest"
               },
-              "wire_name": "body"
+              "wire_name": "getItemOffersBatchRequestBody"
             }
           ],
           "path": "/batches/products/pricing/v0/itemOffers",
@@ -12644,7 +12644,7 @@
               "schema": {
                 "$ref": "#/definitions/GetListingOffersBatchRequest"
               },
-              "wire_name": "body"
+              "wire_name": "getListingOffersBatchRequestBody"
             }
           ],
           "path": "/batches/products/pricing/v0/listingOffers",
@@ -12777,7 +12777,7 @@
               "schema": {
                 "$ref": "#/definitions/CompetitiveSummaryBatchRequest"
               },
-              "wire_name": "body"
+              "wire_name": "requests"
             }
           ],
           "path": "/batches/products/pricing/2022-05-01/items/competitiveSummary",
@@ -12803,7 +12803,7 @@
               "schema": {
                 "$ref": "#/definitions/GetFeaturedOfferExpectedPriceBatchRequest"
               },
-              "wire_name": "body"
+              "wire_name": "getFeaturedOfferExpectedPriceBatchRequestBody"
             }
           ],
           "path": "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice",
@@ -17206,7 +17206,7 @@
               "schema": {
                 "$ref": "#/definitions/CreateSupplySourceRequest"
               },
-              "wire_name": "body"
+              "wire_name": "payload"
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources",
@@ -17315,7 +17315,7 @@
               "schema": {
                 "$ref": "#/definitions/UpdateSupplySourceRequest"
               },
-              "wire_name": "body"
+              "wire_name": "payload"
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources/{supplySourceId}",
@@ -17351,7 +17351,7 @@
               "schema": {
                 "$ref": "#/definitions/UpdateSupplySourceStatusRequest"
               },
-              "wire_name": "body"
+              "wire_name": "payload"
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources/{supplySourceId}/status",

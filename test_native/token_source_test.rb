@@ -25,9 +25,9 @@ class TokenSourceTest < NativeTest
       instance = Peddler::Client.new(base_url: url, access_token: source)
 
       assert_equal(0, calls.call, "construction asks nothing")
-      assert_equal(200, instance.catalog_items_2022_04_01.get_catalog_item(asin: "ASIN", marketplace_ids: ["UK"]).status)
+      assert_equal(200, instance.catalog_items_2022_04_01.get_catalog_item("ASIN", ["UK"]).status)
       assert_equal(200, instance.request("GET", "/").status)
-      enumerator = instance.orders_v0.get_orders_pages(marketplace_ids: ["UK"])
+      enumerator = instance.orders_v0.get_orders_pages(["UK"])
 
       assert_equal(2, calls.call, "a lazy enumerator asks nothing until a page is requested")
       assert_equal(3, enumerator.count)

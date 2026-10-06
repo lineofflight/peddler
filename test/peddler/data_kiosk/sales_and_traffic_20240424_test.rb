@@ -71,15 +71,15 @@ module Peddler
           }
         GRAPHQL
 
-        response = api.create_query(body: { query: })
+        response = api.create_query({ query: })
         query_id = response.parse.query_id
 
-        response = api.get_query(query_id: query_id)
+        response = api.get_query(query_id)
         parsed = response.parse
 
         data_document_id = parsed.data_document_id
 
-        url = api.get_document(document_id: data_document_id).parse.document_url
+        url = api.get_document(data_document_id).parse.document_url
         data = client.download_document(replayed(url)).each_jsonl.map do |payload|
           DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate.parse(payload)
         end

@@ -8,25 +8,25 @@ module Peddler
       include FeatureHelpers
 
       def test_get_pricing
-        res = api.get_pricing(marketplace_id: "ATVPDKIKX0DER", item_type: "Asin")
+        res = api.get_pricing("ATVPDKIKX0DER", "Asin")
 
         assert_success(res)
       end
 
       def test_get_competitive_pricing
-        res = api.get_competitive_pricing(marketplace_id: "ATVPDKIKX0DER", item_type: "Asin")
+        res = api.get_competitive_pricing("ATVPDKIKX0DER", "Asin")
 
         assert_success(res)
       end
 
       def test_get_listing_offers
-        res = api.get_listing_offers(marketplace_id: "ATVPDKIKX0DER", item_condition: "New", seller_sku: "NABetaASINB00V5DG6IQ")
+        res = api.get_listing_offers("ATVPDKIKX0DER", "New", "NABetaASINB00V5DG6IQ")
 
         assert_success(res, typed: false)
       end
 
       def test_get_item_offers
-        res = api.get_item_offers(marketplace_id: "ATVPDKIKX0DER", item_condition: "New", asin: "B00V5DG6IQ")
+        res = api.get_item_offers("ATVPDKIKX0DER", "New", "B00V5DG6IQ")
 
         assert_success(res, typed: false)
       end
@@ -106,7 +106,7 @@ module Peddler
             },
           ],
         }
-        res = api.get_item_offers_batch(body: payload)
+        res = api.get_item_offers_batch(payload)
 
         assert_success(res)
       end
@@ -151,7 +151,7 @@ module Peddler
             },
           ],
         }
-        res = api.get_listing_offers_batch(body: payload)
+        res = api.get_listing_offers_batch(payload)
 
         assert_success(res)
       end
