@@ -28,7 +28,10 @@ pub async fn get_order(
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
-            path: ["/orders/2026-01-01/orders/", &operation::segment(&params.order_id)?]
+            path: [
+                "/orders/2026-01-01/orders/",
+                &operation::last_segment(&params.order_id)?,
+            ]
                 .concat(),
             query,
             headers: Vec::new(),

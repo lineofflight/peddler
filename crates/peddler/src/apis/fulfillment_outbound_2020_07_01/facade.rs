@@ -151,7 +151,7 @@ pub async fn get_feature_inventory(
             method: "GET".into(),
             path: [
                 "/fba/outbound/2020-07-01/features/inventory/",
-                &operation::segment(&params.feature_name)?,
+                &operation::last_segment(&params.feature_name)?,
             ]
                 .concat(),
             query,
@@ -217,7 +217,7 @@ pub async fn get_feature_sku(
                 "/fba/outbound/2020-07-01/features/inventory/",
                 &operation::segment(&params.feature_name)?,
                 "/",
-                &operation::segment(&params.seller_sku)?,
+                &operation::last_segment(&params.seller_sku)?,
             ]
                 .concat(),
             query,
@@ -275,7 +275,7 @@ pub async fn get_fulfillment_order(
             method: "GET".into(),
             path: [
                 "/fba/outbound/2020-07-01/fulfillmentOrders/",
-                &operation::segment(&params.seller_fulfillment_order_id)?,
+                &operation::last_segment(&params.seller_fulfillment_order_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -499,7 +499,7 @@ pub async fn update_fulfillment_order<B: serde::Serialize>(
             method: "PUT".into(),
             path: [
                 "/fba/outbound/2020-07-01/fulfillmentOrders/",
-                &operation::segment(&params.seller_fulfillment_order_id)?,
+                &operation::last_segment(&params.seller_fulfillment_order_id)?,
             ]
                 .concat(),
             query: Vec::new(),

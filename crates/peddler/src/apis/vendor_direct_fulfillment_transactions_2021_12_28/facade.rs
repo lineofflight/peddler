@@ -23,7 +23,7 @@ pub async fn get_transaction_status(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/transactions/2021-12-28/transactions/",
-                &operation::segment(&params.transaction_id)?,
+                &operation::last_segment(&params.transaction_id)?,
             ]
                 .concat(),
             query: Vec::new(),

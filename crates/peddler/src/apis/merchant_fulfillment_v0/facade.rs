@@ -21,7 +21,7 @@ pub async fn cancel_shipment(
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
-            path: ["/mfn/v0/shipments/", &operation::segment(&params.shipment_id)?]
+            path: ["/mfn/v0/shipments/", &operation::last_segment(&params.shipment_id)?]
                 .concat(),
             query: Vec::new(),
             headers: Vec::new(),
@@ -122,7 +122,7 @@ pub async fn get_shipment(
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
-            path: ["/mfn/v0/shipments/", &operation::segment(&params.shipment_id)?]
+            path: ["/mfn/v0/shipments/", &operation::last_segment(&params.shipment_id)?]
                 .concat(),
             query: Vec::new(),
             headers: Vec::new(),

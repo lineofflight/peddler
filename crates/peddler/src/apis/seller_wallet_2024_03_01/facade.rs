@@ -131,7 +131,7 @@ pub async fn delete_schedule_transaction(
             method: "DELETE".into(),
             path: [
                 "/finances/transfers/wallet/2024-03-01/transferSchedules/",
-                &operation::segment(&params.transfer_schedule_id)?,
+                &operation::last_segment(&params.transfer_schedule_id)?,
             ]
                 .concat(),
             query,
@@ -163,7 +163,7 @@ pub async fn get_account(
             method: "GET".into(),
             path: [
                 "/finances/transfers/wallet/2024-03-01/accounts/",
-                &operation::segment(&params.account_id)?,
+                &operation::last_segment(&params.account_id)?,
             ]
                 .concat(),
             query,
@@ -198,7 +198,7 @@ pub async fn get_transaction(
             method: "GET".into(),
             path: [
                 "/finances/transfers/wallet/2024-03-01/transactions/",
-                &operation::segment(&params.transaction_id)?,
+                &operation::last_segment(&params.transaction_id)?,
             ]
                 .concat(),
             query,
@@ -296,7 +296,7 @@ pub async fn get_transfer_schedule(
             method: "GET".into(),
             path: [
                 "/finances/transfers/wallet/2024-03-01/transferSchedules/",
-                &operation::segment(&params.transfer_schedule_id)?,
+                &operation::last_segment(&params.transfer_schedule_id)?,
             ]
                 .concat(),
             query,

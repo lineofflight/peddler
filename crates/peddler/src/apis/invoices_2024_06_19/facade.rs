@@ -96,7 +96,7 @@ pub async fn get_government_invoice_document(
             method: "GET".into(),
             path: [
                 "/tax/invoices/2024-06-19/governmentInvoiceRequests/",
-                &operation::segment(&params.shipment_id)?,
+                &operation::last_segment(&params.shipment_id)?,
             ]
                 .concat(),
             query,
@@ -180,7 +180,7 @@ pub async fn get_invoice(
             method: "GET".into(),
             path: [
                 "/tax/invoices/2024-06-19/invoices/",
-                &operation::segment(&params.invoice_id)?,
+                &operation::last_segment(&params.invoice_id)?,
             ]
                 .concat(),
             query,
@@ -353,7 +353,7 @@ pub async fn get_invoices_document(
             method: "GET".into(),
             path: [
                 "/tax/invoices/2024-06-19/documents/",
-                &operation::segment(&params.invoices_document_id)?,
+                &operation::last_segment(&params.invoices_document_id)?,
             ]
                 .concat(),
             query,
@@ -388,7 +388,7 @@ pub async fn get_invoices_export(
             method: "GET".into(),
             path: [
                 "/tax/invoices/2024-06-19/exports/",
-                &operation::segment(&params.export_id)?,
+                &operation::last_segment(&params.export_id)?,
             ]
                 .concat(),
             query,

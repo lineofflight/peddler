@@ -23,7 +23,7 @@ pub async fn get_customer_invoice(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/shipping/v1/customerInvoices/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -119,7 +119,7 @@ pub async fn get_packing_slip(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/shipping/v1/packingSlips/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -219,7 +219,7 @@ pub async fn get_shipping_label(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/shipping/v1/shippingLabels/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),

@@ -53,7 +53,7 @@ pub async fn get_shipment_details(
             method: "GET".into(),
             path: [
                 "/fba/outbound/brazil/v0/shipments/",
-                &operation::segment(&params.shipment_id)?,
+                &operation::last_segment(&params.shipment_id)?,
             ]
                 .concat(),
             query: Vec::new(),

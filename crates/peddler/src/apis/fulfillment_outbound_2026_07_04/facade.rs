@@ -164,7 +164,7 @@ pub async fn get_order(
             method: "GET".into(),
             path: [
                 "/fulfillment/outbound/2026-07-04/orders/",
-                &operation::segment(&params.order_id)?,
+                &operation::last_segment(&params.order_id)?,
             ]
                 .concat(),
             query,
@@ -310,7 +310,7 @@ pub async fn update_order<B: serde::Serialize>(
             method: "PUT".into(),
             path: [
                 "/fulfillment/outbound/2026-07-04/orders/",
-                &operation::segment(&params.order_id)?,
+                &operation::last_segment(&params.order_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -397,7 +397,7 @@ pub async fn update_package<B: serde::Serialize>(
                 "/fulfillment/outbound/2026-07-04/orders/",
                 &operation::segment(&params.order_id)?,
                 "/packages/",
-                &operation::segment(&params.package_id)?,
+                &operation::last_segment(&params.package_id)?,
             ]
                 .concat(),
             query: Vec::new(),

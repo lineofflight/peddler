@@ -48,7 +48,7 @@ pub async fn get_order_scenarios(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/sandbox/2021-10-28/transactions/",
-                &operation::segment(&params.transaction_id)?,
+                &operation::last_segment(&params.transaction_id)?,
             ]
                 .concat(),
             query: Vec::new(),

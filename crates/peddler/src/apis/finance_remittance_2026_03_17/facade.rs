@@ -36,7 +36,7 @@ pub async fn get_remittance(
             method: "GET".into(),
             path: [
                 "/finances/remittances/2026-03-17/remittances/",
-                &operation::segment(&params.unique_payment_id)?,
+                &operation::last_segment(&params.unique_payment_id)?,
             ]
                 .concat(),
             query,

@@ -16,17 +16,18 @@ class OperationsTest < NativeTest
     end
   end
 
-  def test_named_methods_reject_dot_path_segments_and_wrong_types
+  # An empty argument is refused only where it ends the path, since it would reach the parent collection.
+  def test_named_methods_reject_bad_path_segments_and_wrong_types
     instance = client("http://127.0.0.1:1")
     catalog_arguments = { asin: "X", marketplace_ids: ["UK"] }
     listings_arguments = { seller_id: "S", sku: "X", marketplace_ids: ["UK"], body: {} }
-    [{ asin: "." }, { asin: ".." }, { marketplace_ids: [1] }, { marketplace_ids: "private" }].each do |invalid|
+    [{ asin: "." }, { asin: ".." }, { asin: "" }, { marketplace_ids: [1] }, { marketplace_ids: "private" }].each do |invalid|
       error = assert_raises(ArgumentError) do
         instance.catalog_items_2022_04_01.get_catalog_item(**catalog_arguments.merge(invalid))
       end
       refute_match(/private/, error.message)
     end
-    [{ seller_id: ".." }, { sku: "." }].each do |invalid|
+    [{ seller_id: ".." }, { sku: "." }, { sku: "" }].each do |invalid|
       assert_raises(ArgumentError) do
         instance.listings_items_2021_08_01.patch_listings_item(**listings_arguments.merge(invalid))
       end

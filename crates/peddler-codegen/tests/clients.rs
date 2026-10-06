@@ -56,7 +56,9 @@ fn all_operations_keep_per_operation_shapes_and_build_their_own_request() {
             r#"pair(&mut headers, "x-test", params.x_test.as_ref());"#,
         ]
     );
-    assert!(facade.contains(r#"path: ["/items/", &operation::segment(&params.asin)?].concat()"#));
+    assert!(
+        facade.contains(r#"path: ["/items/", &operation::last_segment(&params.asin)?].concat()"#)
+    );
     assert!(facade.contains(r#"path: "/empty".into()"#));
 }
 #[test]

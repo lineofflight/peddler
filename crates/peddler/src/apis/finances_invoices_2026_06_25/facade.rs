@@ -36,7 +36,7 @@ pub async fn get_invoice(
             method: "GET".into(),
             path: [
                 "/finances/invoices/2026-06-25/invoices/",
-                &operation::segment(&params.invoice_identifier)?,
+                &operation::last_segment(&params.invoice_identifier)?,
             ]
                 .concat(),
             query,

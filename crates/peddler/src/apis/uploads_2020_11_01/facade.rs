@@ -40,7 +40,7 @@ pub async fn create_upload_destination_for_resource(
             method: "POST".into(),
             path: [
                 "/uploads/2020-11-01/uploadDestinations/",
-                &operation::segment(&params.resource)?,
+                &operation::last_segment(&params.resource)?,
             ]
                 .concat(),
             query,

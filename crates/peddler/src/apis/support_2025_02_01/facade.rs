@@ -21,7 +21,10 @@ pub async fn get_case(
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
-            path: ["/support/2025-02-01/cases/", &operation::segment(&params.case_id)?]
+            path: [
+                "/support/2025-02-01/cases/",
+                &operation::last_segment(&params.case_id)?,
+            ]
                 .concat(),
             query: Vec::new(),
             headers: Vec::new(),

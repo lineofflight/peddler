@@ -23,7 +23,7 @@ pub async fn cancel_query(
             method: "DELETE".into(),
             path: [
                 "/dataKiosk/2023-11-15/queries/",
-                &operation::segment(&params.query_id)?,
+                &operation::last_segment(&params.query_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -77,7 +77,7 @@ pub async fn get_document(
             method: "GET".into(),
             path: [
                 "/dataKiosk/2023-11-15/documents/",
-                &operation::segment(&params.document_id)?,
+                &operation::last_segment(&params.document_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -187,7 +187,7 @@ pub async fn get_query(
             method: "GET".into(),
             path: [
                 "/dataKiosk/2023-11-15/queries/",
-                &operation::segment(&params.query_id)?,
+                &operation::last_segment(&params.query_id)?,
             ]
                 .concat(),
             query: Vec::new(),

@@ -99,7 +99,7 @@ pub async fn cancel_reservation(
             method: "DELETE".into(),
             path: [
                 "/service/v1/reservation/",
-                &operation::segment(&params.reservation_id)?,
+                &operation::last_segment(&params.reservation_id)?,
             ]
                 .concat(),
             query,
@@ -474,7 +474,7 @@ pub async fn get_service_job_by_service_job_id(
             method: "GET".into(),
             path: [
                 "/service/v1/serviceJobs/",
-                &operation::segment(&params.service_job_id)?,
+                &operation::last_segment(&params.service_job_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -637,7 +637,7 @@ pub async fn reschedule_appointment_for_service_job_by_service_job_id<
                 "/service/v1/serviceJobs/",
                 &operation::segment(&params.service_job_id)?,
                 "/appointments/",
-                &operation::segment(&params.appointment_id)?,
+                &operation::last_segment(&params.appointment_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -713,7 +713,7 @@ pub async fn update_reservation<B: serde::Serialize>(
             method: "PUT".into(),
             path: [
                 "/service/v1/reservation/",
-                &operation::segment(&params.reservation_id)?,
+                &operation::last_segment(&params.reservation_id)?,
             ]
                 .concat(),
             query,

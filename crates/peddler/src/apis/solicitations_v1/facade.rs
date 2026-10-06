@@ -67,7 +67,7 @@ pub async fn get_solicitation_actions_for_order(
             method: "GET".into(),
             path: [
                 "/solicitations/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
+                &operation::last_segment(&params.amazon_order_id)?,
             ]
                 .concat(),
             query,

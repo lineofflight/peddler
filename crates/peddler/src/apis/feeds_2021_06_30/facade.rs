@@ -21,7 +21,10 @@ pub async fn cancel_feed(
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
-            path: ["/feeds/2021-06-30/feeds/", &operation::segment(&params.feed_id)?]
+            path: [
+                "/feeds/2021-06-30/feeds/",
+                &operation::last_segment(&params.feed_id)?,
+            ]
                 .concat(),
             query: Vec::new(),
             headers: Vec::new(),
@@ -97,7 +100,10 @@ pub async fn get_feed(
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
-            path: ["/feeds/2021-06-30/feeds/", &operation::segment(&params.feed_id)?]
+            path: [
+                "/feeds/2021-06-30/feeds/",
+                &operation::last_segment(&params.feed_id)?,
+            ]
                 .concat(),
             query: Vec::new(),
             headers: Vec::new(),
@@ -135,7 +141,7 @@ pub async fn get_feed_document(
             method: "GET".into(),
             path: [
                 "/feeds/2021-06-30/documents/",
-                &operation::segment(&params.feed_document_id)?,
+                &operation::last_segment(&params.feed_document_id)?,
             ]
                 .concat(),
             query,

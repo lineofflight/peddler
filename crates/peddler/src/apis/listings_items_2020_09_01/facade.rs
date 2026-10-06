@@ -37,7 +37,7 @@ pub async fn delete_listings_item(
                 "/listings/2020-09-01/items/",
                 &operation::segment(&params.seller_id)?,
                 "/",
-                &operation::segment(&params.sku)?,
+                &operation::last_segment(&params.sku)?,
             ]
                 .concat(),
             query,
@@ -87,7 +87,7 @@ pub async fn patch_listings_item<B: serde::Serialize>(
                 "/listings/2020-09-01/items/",
                 &operation::segment(&params.seller_id)?,
                 "/",
-                &operation::segment(&params.sku)?,
+                &operation::last_segment(&params.sku)?,
             ]
                 .concat(),
             query,
@@ -137,7 +137,7 @@ pub async fn put_listings_item<B: serde::Serialize>(
                 "/listings/2020-09-01/items/",
                 &operation::segment(&params.seller_id)?,
                 "/",
-                &operation::segment(&params.sku)?,
+                &operation::last_segment(&params.sku)?,
             ]
                 .concat(),
             query,

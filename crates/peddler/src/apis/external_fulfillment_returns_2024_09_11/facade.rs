@@ -23,7 +23,7 @@ pub async fn get_return(
             method: "GET".into(),
             path: [
                 "/externalFulfillment/2024-09-11/returns/",
-                &operation::segment(&params.return_id)?,
+                &operation::last_segment(&params.return_id)?,
             ]
                 .concat(),
             query: Vec::new(),

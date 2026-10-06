@@ -84,7 +84,10 @@ pub async fn delete_inventory_item(
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
-            path: ["/fba/inventory/v1/items/", &operation::segment(&params.seller_sku)?]
+            path: [
+                "/fba/inventory/v1/items/",
+                &operation::last_segment(&params.seller_sku)?,
+            ]
                 .concat(),
             query,
             headers: Vec::new(),

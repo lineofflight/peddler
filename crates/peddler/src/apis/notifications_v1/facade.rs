@@ -49,7 +49,7 @@ pub async fn create_subscription<B: serde::Serialize>(
             method: "POST".into(),
             path: [
                 "/notifications/v1/subscriptions/",
-                &operation::segment(&params.notification_type)?,
+                &operation::last_segment(&params.notification_type)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -78,7 +78,7 @@ pub async fn delete_destination(
             method: "DELETE".into(),
             path: [
                 "/notifications/v1/destinations/",
-                &operation::segment(&params.destination_id)?,
+                &operation::last_segment(&params.destination_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -113,7 +113,7 @@ pub async fn delete_subscription_by_id(
                 "/notifications/v1/subscriptions/",
                 &operation::segment(&params.notification_type)?,
                 "/",
-                &operation::segment(&params.subscription_id)?,
+                &operation::last_segment(&params.subscription_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -142,7 +142,7 @@ pub async fn get_destination(
             method: "GET".into(),
             path: [
                 "/notifications/v1/destinations/",
-                &operation::segment(&params.destination_id)?,
+                &operation::last_segment(&params.destination_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -205,7 +205,7 @@ pub async fn get_subscription(
             method: "GET".into(),
             path: [
                 "/notifications/v1/subscriptions/",
-                &operation::segment(&params.notification_type)?,
+                &operation::last_segment(&params.notification_type)?,
             ]
                 .concat(),
             query,
@@ -240,7 +240,7 @@ pub async fn get_subscription_by_id(
                 "/notifications/v1/subscriptions/",
                 &operation::segment(&params.notification_type)?,
                 "/",
-                &operation::segment(&params.subscription_id)?,
+                &operation::last_segment(&params.subscription_id)?,
             ]
                 .concat(),
             query: Vec::new(),

@@ -356,7 +356,7 @@ pub async fn get_collection_form(
             method: "GET".into(),
             path: [
                 "/shipping/v2/collectionForms/",
-                &operation::segment(&params.collection_form_id)?,
+                &operation::last_segment(&params.collection_form_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -596,7 +596,7 @@ pub async fn link_carrier_account<B: serde::Serialize>(
             method: "POST".into(),
             path: [
                 "/shipping/v2/carrierAccounts/",
-                &operation::segment(&params.carrier_id)?,
+                &operation::last_segment(&params.carrier_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -637,7 +637,7 @@ pub async fn link_carrier_account_put<B: serde::Serialize>(
             method: "PUT".into(),
             path: [
                 "/shipping/v2/carrierAccounts/",
-                &operation::segment(&params.carrier_id)?,
+                &operation::last_segment(&params.carrier_id)?,
             ]
                 .concat(),
             query: Vec::new(),

@@ -200,6 +200,19 @@ async fn refuses_what_it_cannot_send_before_network_without_echoing_secrets() {
             Error::InvalidRequest
         );
     }
+    // An empty last segment would reach the parent collection.
+    let mut p = catalog();
+    p.asin = "".into();
+    assert_eq!(
+        get_catalog_item(&client, p).await.unwrap_err(),
+        Error::InvalidRequest
+    );
+    let mut p = patch(json!({}));
+    p.sku = "".into();
+    assert_eq!(
+        patch_listings_item(&client, p).await.unwrap_err(),
+        Error::InvalidRequest
+    );
     for (operation, args) in [
         ("unknown", "private-secret"),
         ("catalog_items_2022_04_01.get_catalog_item", "not JSON"),

@@ -129,7 +129,10 @@ pub async fn get_shipment(
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
-            path: ["/shipping/v1/shipments/", &operation::segment(&params.shipment_id)?]
+            path: [
+                "/shipping/v1/shipments/",
+                &operation::last_segment(&params.shipment_id)?,
+            ]
                 .concat(),
             query: Vec::new(),
             headers: Vec::new(),
@@ -155,7 +158,10 @@ pub async fn get_tracking_information(
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
-            path: ["/shipping/v1/tracking/", &operation::segment(&params.tracking_id)?]
+            path: [
+                "/shipping/v1/tracking/",
+                &operation::last_segment(&params.tracking_id)?,
+            ]
                 .concat(),
             query: Vec::new(),
             headers: Vec::new(),

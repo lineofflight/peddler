@@ -23,7 +23,7 @@ pub async fn get_order(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),

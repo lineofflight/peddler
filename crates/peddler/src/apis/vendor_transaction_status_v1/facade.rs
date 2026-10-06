@@ -23,7 +23,7 @@ pub async fn get_transaction(
             method: "GET".into(),
             path: [
                 "/vendor/transactions/v1/transactions/",
-                &operation::segment(&params.transaction_id)?,
+                &operation::last_segment(&params.transaction_id)?,
             ]
                 .concat(),
             query: Vec::new(),

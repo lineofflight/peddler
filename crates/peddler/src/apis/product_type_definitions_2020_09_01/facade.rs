@@ -72,7 +72,7 @@ pub async fn get_definitions_product_type(
             method: "GET".into(),
             path: [
                 "/definitions/2020-09-01/productTypes/",
-                &operation::segment(&params.product_type)?,
+                &operation::last_segment(&params.product_type)?,
             ]
                 .concat(),
             query,

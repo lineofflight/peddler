@@ -23,7 +23,7 @@ pub async fn archive_supply_source(
             method: "DELETE".into(),
             path: [
                 "/supplySources/2020-07-01/supplySources/",
-                &operation::segment(&params.supply_source_id)?,
+                &operation::last_segment(&params.supply_source_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -77,7 +77,7 @@ pub async fn get_supply_source(
             method: "GET".into(),
             path: [
                 "/supplySources/2020-07-01/supplySources/",
-                &operation::segment(&params.supply_source_id)?,
+                &operation::last_segment(&params.supply_source_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -173,7 +173,7 @@ pub async fn update_supply_source<B: serde::Serialize>(
             method: "PUT".into(),
             path: [
                 "/supplySources/2020-07-01/supplySources/",
-                &operation::segment(&params.supply_source_id)?,
+                &operation::last_segment(&params.supply_source_id)?,
             ]
                 .concat(),
             query: Vec::new(),

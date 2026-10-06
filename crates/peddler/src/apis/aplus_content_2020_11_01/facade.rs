@@ -90,7 +90,7 @@ pub async fn get_content_document(
             method: "GET".into(),
             path: [
                 "/aplus/2020-11-01/contentDocuments/",
-                &operation::segment(&params.content_reference_key)?,
+                &operation::last_segment(&params.content_reference_key)?,
             ]
                 .concat(),
             query,
@@ -127,7 +127,10 @@ pub async fn get_media(
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
-            path: ["/aplus/2020-11-01/media/", &operation::segment(&params.media_id)?]
+            path: [
+                "/aplus/2020-11-01/media/",
+                &operation::last_segment(&params.media_id)?,
+            ]
                 .concat(),
             query,
             headers: Vec::new(),
@@ -469,7 +472,7 @@ pub async fn update_content_document<B: serde::Serialize>(
             method: "POST".into(),
             path: [
                 "/aplus/2020-11-01/contentDocuments/",
-                &operation::segment(&params.content_reference_key)?,
+                &operation::last_segment(&params.content_reference_key)?,
             ]
                 .concat(),
             query,
@@ -508,7 +511,10 @@ pub async fn update_media<B: serde::Serialize>(
     let raw = client
         .execute_json(Request {
             method: "PATCH".into(),
-            path: ["/aplus/2020-11-01/media/", &operation::segment(&params.media_id)?]
+            path: [
+                "/aplus/2020-11-01/media/",
+                &operation::last_segment(&params.media_id)?,
+            ]
                 .concat(),
             query,
             headers: Vec::new(),

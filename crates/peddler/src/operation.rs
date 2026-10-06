@@ -65,6 +65,15 @@ pub(crate) fn segment(value: &str) -> Result<String, Error> {
     Ok(percent_encoding::utf8_percent_encode(value, crate::url::SEGMENT).to_string())
 }
 
+/// The segment that ends a path. An empty one is refused too: the request would
+/// reach the parent collection, where an update can be a create.
+pub(crate) fn last_segment(value: &str) -> Result<String, Error> {
+    if value.is_empty() {
+        return Err(Error::InvalidRequest);
+    }
+    segment(value)
+}
+
 /// Adds a header or a scalar query parameter that was given.
 pub(crate) fn pair(pairs: &mut Pairs, name: &str, value: Option<&impl ToString>) {
     if let Some(value) = value {

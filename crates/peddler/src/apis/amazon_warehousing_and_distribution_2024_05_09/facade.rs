@@ -243,7 +243,7 @@ pub async fn get_inbound(
             method: "GET".into(),
             path: [
                 "/awd/2024-05-09/inboundOrders/",
-                &operation::segment(&params.order_id)?,
+                &operation::last_segment(&params.order_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -278,7 +278,7 @@ pub async fn get_inbound_shipment(
             method: "GET".into(),
             path: [
                 "/awd/2024-05-09/inboundShipments/",
-                &operation::segment(&params.shipment_id)?,
+                &operation::last_segment(&params.shipment_id)?,
             ]
                 .concat(),
             query,
@@ -376,7 +376,7 @@ pub async fn get_outbound(
             method: "GET".into(),
             path: [
                 "/awd/2024-05-09/outboundOrders/",
-                &operation::segment(&params.order_id)?,
+                &operation::last_segment(&params.order_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -405,7 +405,7 @@ pub async fn get_replenishment_order(
             method: "GET".into(),
             path: [
                 "/awd/2024-05-09/replenishmentOrders/",
-                &operation::segment(&params.order_id)?,
+                &operation::last_segment(&params.order_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -733,7 +733,7 @@ pub async fn update_inbound<B: serde::Serialize>(
             method: "PUT".into(),
             path: [
                 "/awd/2024-05-09/inboundOrders/",
-                &operation::segment(&params.order_id)?,
+                &operation::last_segment(&params.order_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -794,7 +794,7 @@ pub async fn update_outbound<B: serde::Serialize>(
             method: "PUT".into(),
             path: [
                 "/awd/2024-05-09/outboundOrders/",
-                &operation::segment(&params.order_id)?,
+                &operation::last_segment(&params.order_id)?,
             ]
                 .concat(),
             query: Vec::new(),

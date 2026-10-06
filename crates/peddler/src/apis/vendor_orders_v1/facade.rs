@@ -23,7 +23,7 @@ pub async fn get_purchase_order(
             method: "GET".into(),
             path: [
                 "/vendor/orders/v1/purchaseOrders/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),

@@ -253,8 +253,13 @@ fn path(op: &Operation) -> Result<String, GenerationError> {
             .iter()
             .find(|p| p.location == "path" && p.wire_name == name)
             .ok_or_else(|| GenerationError(format!("{}: unknown path parameter", op.name)))?;
+        let segment = if tail.is_empty() {
+            "last_segment"
+        } else {
+            "segment"
+        };
         parts.push(format!("{before:?}"));
-        parts.push(format!("&operation::segment(&params.{})?", p.name));
+        parts.push(format!("&operation::{segment}(&params.{})?", p.name));
         arguments += 1;
         rest = tail;
     }

@@ -52,7 +52,7 @@ pub async fn create_shipping_labels<B: serde::Serialize>(
             method: "POST".into(),
             path: [
                 "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -81,7 +81,7 @@ pub async fn get_customer_invoice(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -178,7 +178,7 @@ pub async fn get_packing_slip(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/shipping/2021-12-28/packingSlips/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -278,7 +278,7 @@ pub async fn get_shipping_label(
             method: "GET".into(),
             path: [
                 "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/",
-                &operation::segment(&params.purchase_order_number)?,
+                &operation::last_segment(&params.purchase_order_number)?,
             ]
                 .concat(),
             query: Vec::new(),

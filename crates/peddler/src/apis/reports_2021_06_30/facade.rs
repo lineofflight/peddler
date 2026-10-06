@@ -23,7 +23,7 @@ pub async fn cancel_report(
             method: "DELETE".into(),
             path: [
                 "/reports/2021-06-30/reports/",
-                &operation::segment(&params.report_id)?,
+                &operation::last_segment(&params.report_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -52,7 +52,7 @@ pub async fn cancel_report_schedule(
             method: "DELETE".into(),
             path: [
                 "/reports/2021-06-30/schedules/",
-                &operation::segment(&params.report_schedule_id)?,
+                &operation::last_segment(&params.report_schedule_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -131,7 +131,7 @@ pub async fn get_report(
             method: "GET".into(),
             path: [
                 "/reports/2021-06-30/reports/",
-                &operation::segment(&params.report_id)?,
+                &operation::last_segment(&params.report_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -170,7 +170,7 @@ pub async fn get_report_document(
             method: "GET".into(),
             path: [
                 "/reports/2021-06-30/documents/",
-                &operation::segment(&params.report_document_id)?,
+                &operation::last_segment(&params.report_document_id)?,
             ]
                 .concat(),
             query,
@@ -199,7 +199,7 @@ pub async fn get_report_schedule(
             method: "GET".into(),
             path: [
                 "/reports/2021-06-30/schedules/",
-                &operation::segment(&params.report_schedule_id)?,
+                &operation::last_segment(&params.report_schedule_id)?,
             ]
                 .concat(),
             query: Vec::new(),

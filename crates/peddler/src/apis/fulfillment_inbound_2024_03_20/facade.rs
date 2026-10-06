@@ -581,7 +581,7 @@ pub async fn get_inbound_operation_status(
             method: "GET".into(),
             path: [
                 "/inbound/fba/2024-03-20/operations/",
-                &operation::segment(&params.operation_id)?,
+                &operation::last_segment(&params.operation_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -610,7 +610,7 @@ pub async fn get_inbound_plan(
             method: "GET".into(),
             path: [
                 "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
+                &operation::last_segment(&params.inbound_plan_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -715,7 +715,7 @@ pub async fn get_shipment(
                 "/inbound/fba/2024-03-20/inboundPlans/",
                 &operation::segment(&params.inbound_plan_id)?,
                 "/shipments/",
-                &operation::segment(&params.shipment_id)?,
+                &operation::last_segment(&params.shipment_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -758,7 +758,7 @@ pub async fn get_shipment_content_update_preview(
                 "/shipments/",
                 &operation::segment(&params.shipment_id)?,
                 "/contentUpdatePreviews/",
-                &operation::segment(&params.content_update_preview_id)?,
+                &operation::last_segment(&params.content_update_preview_id)?,
             ]
                 .concat(),
             query: Vec::new(),

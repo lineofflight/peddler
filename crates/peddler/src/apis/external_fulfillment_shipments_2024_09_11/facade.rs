@@ -150,7 +150,7 @@ pub async fn get_shipment(
             method: "GET".into(),
             path: [
                 "/externalFulfillment/2024-09-11/shipments/",
-                &operation::segment(&params.shipment_id)?,
+                &operation::last_segment(&params.shipment_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -264,7 +264,7 @@ pub async fn process_shipment<B: serde::Serialize>(
             method: "POST".into(),
             path: [
                 "/externalFulfillment/2024-09-11/shipments/",
-                &operation::segment(&params.shipment_id)?,
+                &operation::last_segment(&params.shipment_id)?,
             ]
                 .concat(),
             query,
@@ -364,7 +364,7 @@ pub async fn update_package<B: serde::Serialize>(
                 "/externalFulfillment/2024-09-11/shipments/",
                 &operation::segment(&params.shipment_id)?,
                 "/packages/",
-                &operation::segment(&params.package_id)?,
+                &operation::last_segment(&params.package_id)?,
             ]
                 .concat(),
             query: Vec::new(),
@@ -405,7 +405,7 @@ pub async fn update_package_status<B: serde::Serialize>(
                 "/externalFulfillment/2024-09-11/shipments/",
                 &operation::segment(&params.shipment_id)?,
                 "/packages/",
-                &operation::segment(&params.package_id)?,
+                &operation::last_segment(&params.package_id)?,
             ]
                 .concat(),
             query,
@@ -435,7 +435,7 @@ pub async fn update_sandbox_shipment<B: serde::Serialize>(
             method: "PATCH".into(),
             path: [
                 "/externalFulfillment/2024-09-11/shipments/",
-                &operation::segment(&params.shipment_id)?,
+                &operation::last_segment(&params.shipment_id)?,
             ]
                 .concat(),
             query: Vec::new(),

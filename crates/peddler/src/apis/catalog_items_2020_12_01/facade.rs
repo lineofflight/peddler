@@ -39,7 +39,7 @@ pub async fn get_catalog_item(
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
-            path: ["/catalog/2020-12-01/items/", &operation::segment(&params.asin)?]
+            path: ["/catalog/2020-12-01/items/", &operation::last_segment(&params.asin)?]
                 .concat(),
             query,
             headers: Vec::new(),

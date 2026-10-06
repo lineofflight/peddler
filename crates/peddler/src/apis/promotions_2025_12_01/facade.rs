@@ -37,7 +37,7 @@ pub async fn get_promotion(
             method: "GET".into(),
             path: [
                 "/promotions/2025-12-01/promotions/",
-                &operation::segment(&params.promotion_id)?,
+                &operation::last_segment(&params.promotion_id)?,
             ]
                 .concat(),
             query,
@@ -97,7 +97,7 @@ pub async fn get_selection(
                 "/promotions/2025-12-01/promotions/",
                 &operation::segment(&params.promotion_id)?,
                 "/selections/",
-                &operation::segment(&params.selection_id)?,
+                &operation::last_segment(&params.selection_id)?,
             ]
                 .concat(),
             query,

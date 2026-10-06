@@ -379,7 +379,7 @@ pub async fn get_messaging_actions_for_order(
             method: "GET".into(),
             path: [
                 "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
+                &operation::last_segment(&params.amazon_order_id)?,
             ]
                 .concat(),
             query,
