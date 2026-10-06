@@ -392,19 +392,6 @@ class DocumentsTest < NativeTest
     end
   end
 
-  def test_decimal_exponent_overflow_and_underflow_do_not_silently_lose_precision
-    serve(count: 2, handler: lambda { |socket, first, *_|
-      body = first[1] == "/overflow" ? '{"secret":1e999999999999999999999999999999999}' : '{"secret":1e-999999999999999999999999999999999}'
-      respond(socket, body: body)
-    }) do |url|
-      instance = client(url)
-      ["overflow", "underflow"].each do |path|
-        error = assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/#{path}").each_jsonl.to_a }
-        refute_match(/secret|999999/, error.message)
-      end
-    end
-  end
-
   # A row the stream has buffered is read without releasing the GVL. Released once per row, every row waited for a
   # busy thread's time slice: about 9 rows a second, so about 45 in this window.
   def test_rows_keep_coming_while_another_ruby_thread_runs

@@ -49,10 +49,6 @@ module Peddler
       def finish: () -> response_parts
       def close: () -> void
     end
-
-    module DocumentDecimal
-      def self.try_convert: (String text) -> BigDecimal
-    end
   end
 
   interface _DocumentIO

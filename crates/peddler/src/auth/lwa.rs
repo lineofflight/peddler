@@ -158,7 +158,7 @@ impl LwaClient {
                 .send()
                 .await
                 .map_err(transport)?;
-            let tokens: LwaTokens = read_response(response, deadline).await?;
+            let tokens: LwaTokens = read_response(response).await?;
             if !tokens.token_type.eq_ignore_ascii_case("bearer") {
                 return Err(AuthError::InvalidResponse);
             }

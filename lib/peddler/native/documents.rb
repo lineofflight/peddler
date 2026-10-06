@@ -39,22 +39,6 @@ module Peddler
       end
     end
 
-    # JSON only invokes this on decimal tokens already validated by Rust.
-    module DocumentDecimal
-      class << self
-        def try_convert(text)
-          value = BigDecimal(text)
-          # Only a zero needs its significand: a nonzero one means the value underflowed.
-          if !value.finite? || (value.zero? && (text.split(/[eE]/, 2).first || "").match?(/[1-9]/))
-            raise DocumentError, "document decimal is out of range"
-          end
-          value
-        rescue ArgumentError, RangeError
-          raise DocumentError, "document decimal is out of range", cause: nil
-        end
-      end
-    end
-
     module Uploads
       CHUNK_BYTES = 64 * 1024
 
@@ -132,7 +116,7 @@ module Peddler
     def each_jsonl
       return enum_for(:each_jsonl) unless block_given?
 
-      each_row("jsonl") { |record| yield JSON.parse(record, decimal_class: Native::DocumentDecimal, max_nesting: false) }
+      each_row("jsonl") { |record| yield JSON.parse(record, decimal_class: BigDecimal, max_nesting: false) }
     end
 
     def each_tsv(charset: nil, &block)
@@ -145,7 +129,7 @@ module Peddler
       unless max_bytes.is_a?(Integer) && max_bytes.positive? && max_bytes <= Native::UINT64_MAX
         raise ArgumentError, "invalid document configuration"
       end
-      JSON.parse(@handle.json(max_bytes), decimal_class: Native::DocumentDecimal, max_nesting: false)
+      JSON.parse(@handle.json(max_bytes), decimal_class: BigDecimal, max_nesting: false)
     ensure
       close
     end
