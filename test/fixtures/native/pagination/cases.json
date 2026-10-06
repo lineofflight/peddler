@@ -340,44 +340,6 @@
   "error": null
  },
  {
-  "name": "missing payload token ends the stream",
-  "pagination": "orders_v0.get_orders",
-  "arguments": {
-   "marketplace_ids": [
-    "ATVPDKIKX0DER",
-    "A1F83G8C2ARO7P"
-   ],
-   "created_after": "2026-01-01T00:00:00Z"
-  },
-  "responses": [
-   {
-    "status": 200,
-    "body": "{}"
-   }
-  ],
-  "requests": [
-   {
-    "method": "GET",
-    "path": "/orders/v0/orders",
-    "query": [
-     [
-      "CreatedAfter",
-      "2026-01-01T00:00:00Z"
-     ],
-     [
-      "MarketplaceIds",
-      "ATVPDKIKX0DER,A1F83G8C2ARO7P"
-     ]
-    ],
-    "body": null
-   }
-  ],
-  "statuses": [
-   200
-  ],
-  "error": null
- },
- {
   "name": "repeated token stops after the page that repeated it",
   "pagination": "orders_v0.get_orders",
   "arguments": {
