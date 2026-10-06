@@ -256,6 +256,7 @@ impl Engine {
                 method,
                 path,
                 query,
+                headers: Vec::new(),
                 body,
             }),
         )

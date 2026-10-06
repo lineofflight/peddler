@@ -2,8 +2,5 @@
 // Source: reports-api-model/reports_2021-06-30.json
 
 pub mod models;
-pub(crate) mod metadata;
-#[allow(dead_code, unused_imports, clippy::all)]
-pub(crate) mod wire;
 mod facade;
 pub use facade::*;

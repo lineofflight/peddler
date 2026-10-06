@@ -1,14 +1,9 @@
-//! All pinned Progenitor wire clients and operation metadata.
+//! Every operation of an API and its parameters, read from Amazon's Swagger 2 spec.
 use crate::{GenerationError, manifest::ModelSpec};
 use heck::{ToPascalCase, ToSnakeCase};
-use serde_json::{Value, json};
-use std::{
-    io::Write,
-    process::{Command, Stdio},
-};
+use serde_json::{Map, Value, json};
 
 pub struct RenderedClient {
-    pub wire: String,
     pub operations: Vec<Operation>,
 }
 #[derive(Debug)]
@@ -31,13 +26,6 @@ pub struct Parameter {
     pub body_type: Option<String>,
 }
 impl Operation {
-    pub fn csv_query_names(&self) -> Vec<&str> {
-        self.parameters
-            .iter()
-            .filter(|p| p.csv)
-            .map(|p| p.wire_name.as_str())
-            .collect()
-    }
     pub fn body(&self) -> Option<&Parameter> {
         self.parameters.iter().find(|p| p.location == "body")
     }
@@ -54,17 +42,38 @@ pub(crate) fn pascal(name: &str) -> String {
     name.to_pascal_case()
 }
 
+const METHODS: [&str; 7] = ["get", "post", "put", "patch", "delete", "head", "options"];
+/// What Swagger 2 keeps on a parameter itself and JSON Schema keeps in a schema.
+const SCHEMA_KEYS: [&str; 19] = [
+    "type",
+    "format",
+    "items",
+    "enum",
+    "default",
+    "pattern",
+    "minimum",
+    "maximum",
+    "exclusiveMinimum",
+    "exclusiveMaximum",
+    "multipleOf",
+    "minLength",
+    "maxLength",
+    "minItems",
+    "maxItems",
+    "uniqueItems",
+    "minProperties",
+    "maxProperties",
+    "additionalProperties",
+];
+
 pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, GenerationError> {
-    let mut converted = convert(spec)?;
-    let components = converted["components"].clone();
-    let paths = converted["paths"]
-        .as_object_mut()
+    let paths = spec["paths"]
+        .as_object()
         .ok_or_else(|| GenerationError("missing paths".into()))?;
     let mut counts = std::collections::BTreeMap::new();
     for methods in paths.values() {
         for (method, operation) in methods.as_object().into_iter().flatten() {
-            if ["get", "post", "put", "patch", "delete", "head", "options"]
-                .contains(&method.as_str())
+            if METHODS.contains(&method.as_str())
                 && let Some(id) = operation["operationId"].as_str()
             {
                 *counts.entry(id.to_owned()).or_insert(0usize) += 1;
@@ -79,10 +88,8 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
             .and_then(Value::as_array)
             .cloned()
             .unwrap_or_default();
-        for (method, value) in methods.as_object_mut().into_iter().flatten() {
-            if !["get", "post", "put", "patch", "delete", "head", "options"]
-                .contains(&method.as_str())
-            {
+        for (method, value) in methods.as_object().into_iter().flatten() {
+            if !METHODS.contains(&method.as_str()) {
                 continue;
             }
             let Some(id) = value["operationId"].as_str().map(str::to_owned) else {
@@ -111,36 +118,64 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                     api.module
                 )));
             }
-            value["operationId"] = json!(wire_id);
             let mut parameters = path_parameters.clone();
             for parameter in value["parameters"].as_array().into_iter().flatten() {
-                let resolved = resolve(parameter, &components)?;
+                let resolved = resolve(parameter, spec)?;
                 parameters
                     .retain(|p| !(p["name"] == resolved["name"] && p["in"] == resolved["in"]));
                 parameters.push(resolved.clone());
             }
             let mut params = Vec::new();
-            let mut wire_params = Vec::new();
-            for value in parameters {
-                let mut value = resolve(&value, &components)?.clone();
+            let mut body = None;
+            for value in &parameters {
+                let value = resolve(value, spec)?;
                 let wire_name = value["name"]
                     .as_str()
                     .ok_or_else(|| GenerationError("missing parameter name".into()))?
                     .to_owned();
                 let location = value["in"].as_str().unwrap_or("").to_owned();
                 let required = value["required"] == true;
-                let mut schema = value["schema"].clone();
-                if schema["type"] == "string" && schema["format"] == "boolean" {
-                    schema["type"] = json!("boolean");
-                    if let Some(default) = schema["default"].as_str() {
-                        schema["default"] = json!(
-                            default
-                                .parse::<bool>()
-                                .map_err(|_| GenerationError("invalid boolean default".into()))?
-                        )
+                if location == "body" {
+                    // Swagger 2 bodies are JSON unless the spec says otherwise.
+                    let consumes = media_types(spec, value, "consumes");
+                    if !(consumes.is_empty() || consumes.contains(&"application/json")) {
+                        return Err(GenerationError(format!("{id}: unsupported request media")));
+                    }
+                    // What sits next to a reference is not schema. Shipping v1 keeps examples there.
+                    let schema = match value["schema"].get("$ref") {
+                        Some(reference) => json!({"$ref": reference}),
+                        None => value["schema"].clone(),
+                    };
+                    body = Some(Parameter {
+                        name: "body".into(),
+                        wire_name: "body".into(),
+                        location,
+                        required,
+                        body_type: resolve(&schema, spec)?["type"].as_str().map(str::to_owned),
+                        schema,
+                        csv: false,
+                    });
+                    continue;
+                }
+                let mut schema: Map<String, Value> = SCHEMA_KEYS
+                    .iter()
+                    .filter_map(|key| Some(((*key).to_owned(), value.get(key)?.clone())))
+                    .collect();
+                if schema.get("type") == Some(&json!("string"))
+                    && schema.get("format") == Some(&json!("boolean"))
+                {
+                    schema.insert("type".into(), json!("boolean"));
+                    if let Some(default) = schema.get("default").and_then(Value::as_str) {
+                        let default = default
+                            .parse::<bool>()
+                            .map_err(|_| GenerationError("invalid boolean default".into()))?;
+                        schema.insert("default".into(), json!(default));
                     }
                 }
-                let csv = schema["type"] == "array" && value["explode"] != true;
+                let mut schema = Value::Object(schema);
+                let array = schema["type"] == "array";
+                // Swagger 2 joins an array with commas unless it says otherwise.
+                let csv = array && value["collectionFormat"] != "multi";
                 if csv && schema["default"].is_string() {
                     if api.module == "catalog_items_2020_12_01"
                         && wire_name == "includedData"
@@ -154,15 +189,16 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                     }
                 }
                 if !["path", "query", "header"].contains(&location.as_str())
-                    || (location == "path" && !required)
+                    || (location == "path" && (!required || schema["type"] != "string"))
                 {
                     return Err(GenerationError(format!(
                         "unsupported {location} parameter {wire_name}"
                     )));
                 }
-                if schema["type"] == "array"
+                if array
                     && (location != "query"
-                        || (value.get("style").is_some() && value["style"] != "form")
+                        || !["csv", "multi"]
+                            .contains(&value["collectionFormat"].as_str().unwrap_or("csv"))
                         || schema["items"]["type"] != "string")
                 {
                     return Err(GenerationError(format!(
@@ -174,55 +210,16 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                     wire_name,
                     location,
                     required,
-                    schema: schema.clone(),
+                    schema,
                     csv,
                     body_type: None,
                 };
                 rust_type(&param)?;
                 validate_default(&param)?;
-                // Facade validates constraints before authorization. Keep the wire
-                // builder primitive so Progenitor's parameter wrappers can't defer
-                // validation into the authenticated execution closure.
-                let mut wire_schema = match schema["type"].as_str() {
-                    Some("array") => json!({"type":"array","items":{"type":"string"}}),
-                    Some("integer") => {
-                        json!({"type":"integer","format":if schema["format"] == "int32" {"int32"} else {"int64"}})
-                    }
-                    Some("number") => json!({"type":"string"}),
-                    Some(kind @ ("string" | "boolean")) => json!({"type":kind}),
-                    _ => return Err(GenerationError("unsupported parameter schema".into())),
-                };
-                // Header names are case-insensitive; reqwest requires lowercase
-                // static names. Preserve original spelling in the inventory.
-                if param.location == "header" {
-                    value["name"] = json!(param.wire_name.to_ascii_lowercase());
-                }
-                std::mem::swap(&mut value["schema"], &mut wire_schema);
                 params.push(param);
-                wire_params.push(value);
             }
-            value["parameters"] = json!(wire_params);
-            if !value["requestBody"].is_null() {
-                let mut body = resolve(&value["requestBody"], &components)?.clone();
-                let media = body["content"]["application/json"]
-                    .as_object_mut()
-                    .ok_or_else(|| GenerationError(format!("{id}: unsupported request media")))?;
-                let schema = media.get("schema").cloned().unwrap_or(Value::Null);
-                let required = body["required"] == true;
-                params.push(Parameter {
-                    name: "body".into(),
-                    wire_name: "body".into(),
-                    location: "body".into(),
-                    required,
-                    body_type: resolve(&schema, &components)?["type"]
-                        .as_str()
-                        .map(str::to_owned),
-                    schema,
-                    csv: false,
-                });
-                body["content"]["application/json"]["schema"] = json!({});
-                value["requestBody"] = body;
-            }
+            params.extend(body);
+            let json = media_types(spec, value, "produces").contains(&"application/json");
             let mut successes = Vec::new();
             for (status, response) in value["responses"].as_object().into_iter().flatten() {
                 if !status.starts_with('2') {
@@ -231,15 +228,19 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                 let status = status
                     .parse::<u16>()
                     .map_err(|_| GenerationError("success range unsupported".into()))?;
-                let response = resolve(response, &components)?;
-                let schema = &response["content"]["application/json"]["schema"];
+                // Only a JSON response has a model.
+                let schema = if json {
+                    &resolve(response, spec)?["schema"]
+                } else {
+                    &Value::Null
+                };
                 let model = if matches!(status, 204 | 205) {
                     None
                 } else if let Some(reference) = schema["$ref"].as_str() {
                     let name = reference
-                        .strip_prefix("#/components/schemas/")
+                        .strip_prefix("#/definitions/")
                         .ok_or_else(|| GenerationError("external success schema".into()))?;
-                    if components["schemas"].get(name).is_none() {
+                    if spec["definitions"].get(name).is_none() {
                         return Err(GenerationError(format!("missing success schema {name}")));
                     }
                     Some(format!("super::models::{}", pascal(name)))
@@ -254,7 +255,6 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                 };
                 successes.push((status, model));
             }
-            value["x-peddler-raw-response"] = json!(true);
             operations.push(Operation {
                 name: snake(&wire_id),
                 id,
@@ -264,42 +264,24 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
                 successes,
             });
         }
-        // Already merged into each operation, including overrides.
-        methods.as_object_mut().unwrap().remove("parameters");
     }
     operations.sort_by(|a, b| a.name.cmp(&b.name));
-    let mut settings = progenitor::GenerationSettings::default();
-    settings
-        .with_interface(progenitor::InterfaceStyle::Builder)
-        .with_inner_type(quote::quote!(crate::operation::WireContext));
-    for (name, schema) in converted["components"]["schemas"]
-        .as_object_mut()
-        .into_iter()
-        .flatten()
-    {
-        normalize_schema(schema);
-        settings.with_replacement(
-            name,
-            format!("crate::apis::{}::models::{}", api.module, pascal(name)),
-            std::iter::empty(),
-        );
-    }
-    let parsed = serde_json::from_value(converted)?;
-    let tokens = progenitor::Generator::new(&settings)
-        .generate_tokens(&parsed)
-        .map_err(|e| GenerationError(format!("{}: {e}", api.source)))?;
-    Ok(RenderedClient {
-        wire: crate::format_tokens(tokens)?,
-        operations,
-    })
+    Ok(RenderedClient { operations })
 }
-fn resolve<'a>(value: &'a Value, components: &'a Value) -> Result<&'a Value, GenerationError> {
+/// The media types an operation consumes or produces: its own and the API's.
+fn media_types<'a>(spec: &'a Value, operation: &'a Value, key: &str) -> Vec<&'a str> {
+    [&operation[key], &spec[key]]
+        .into_iter()
+        .flat_map(|types| types.as_array().into_iter().flatten())
+        .filter_map(Value::as_str)
+        .collect()
+}
+fn resolve<'a>(value: &'a Value, spec: &'a Value) -> Result<&'a Value, GenerationError> {
     if let Some(reference) = value["$ref"].as_str() {
         let pointer = reference
-            .strip_prefix("#/components/")
+            .strip_prefix('#')
             .ok_or_else(|| GenerationError("external reference".into()))?;
-        components
-            .pointer(&format!("/{pointer}"))
+        spec.pointer(pointer)
             .ok_or_else(|| GenerationError(format!("missing {reference}")))
     } else {
         Ok(value)
@@ -351,79 +333,9 @@ pub(crate) fn rust_type(p: &Parameter) -> Result<String, GenerationError> {
     }
     .into())
 }
-fn normalize_schema(schema: &mut Value) {
-    let Some(node) = schema.as_object_mut() else {
-        return;
-    };
-    node.remove("default");
-    if node.get("type").and_then(Value::as_str) == Some("string") {
-        node.remove("enum");
-    }
-    for key in [
-        "properties",
-        "additionalProperties",
-        "items",
-        "allOf",
-        "anyOf",
-        "oneOf",
-        "not",
-    ] {
-        if let Some(value) = node.get_mut(key) {
-            if key == "properties" {
-                for child in value.as_object_mut().into_iter().flatten().map(|(_, v)| v) {
-                    normalize_schema(child)
-                }
-            } else if let Some(children) = value.as_array_mut() {
-                for child in children {
-                    normalize_schema(child)
-                }
-            } else {
-                normalize_schema(value)
-            }
-        }
-    }
-}
-fn convert(spec: &Value) -> Result<Value, GenerationError> {
-    let script =
-        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../tools/openapi/convert.cjs");
-    let mut child = Command::new("node")
-        .arg(script)
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
-        .spawn()
-        .map_err(|e| {
-            GenerationError(format!(
-                "OpenAPI conversion requires Node and npm ci --prefix tools/openapi: {e}"
-            ))
-        })?;
-    child
-        .stdin
-        .take()
-        .unwrap()
-        .write_all(&serde_json::to_vec(spec)?)?;
-    let output = child.wait_with_output()?;
-    if !output.status.success() {
-        return Err(GenerationError(format!(
-            "OpenAPI conversion failed: {}",
-            String::from_utf8_lossy(&output.stderr).trim()
-        )));
-    }
-    Ok(serde_json::from_slice(&output.stdout)?)
-}
 pub fn facade(
     client: &RenderedClient,
     pagination: &[&crate::pagination::Resolved],
 ) -> Result<String, GenerationError> {
     crate::facades::rust(client, pagination)
-}
-pub(crate) fn metadata(client: &RenderedClient) -> Result<String, GenerationError> {
-    let cases = client.operations.iter().map(|op| {
-        let name = &op.name;
-        let names = op.csv_query_names();
-        quote::quote!(#name=>&[#(#names),*],)
-    });
-    crate::format_tokens(
-        quote::quote!(pub(crate) fn csv_query_names(operation:&str)->&'static [&'static str] {match operation {#(#cases)* _=>&[]}}),
-    )
 }

@@ -2,8 +2,5 @@
 // Source: vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
 
 pub mod models;
-pub(crate) mod metadata;
-#[allow(dead_code, unused_imports, clippy::all)]
-pub(crate) mod wire;
 mod facade;
 pub use facade::*;

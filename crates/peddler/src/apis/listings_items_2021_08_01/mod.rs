@@ -2,8 +2,5 @@
 // Source: listings-items-api-model/listingsItems_2021-08-01.json
 
 pub mod models;
-pub(crate) mod metadata;
-#[allow(dead_code, unused_imports, clippy::all)]
-pub(crate) mod wire;
 mod facade;
 pub use facade::*;

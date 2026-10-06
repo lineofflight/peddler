@@ -16,33 +16,48 @@ fn spec() -> Value {
     },"definitions":{"Item":{"type":"object","properties":{"asin":{"type":"string"}}}}})
 }
 #[test]
-fn all_operations_keep_per_operation_shapes_and_builder_forwarding() {
+fn all_operations_keep_per_operation_shapes_and_build_their_own_request() {
     let value = spec();
     let rendered = clients::render(&value, &ALL_APIS[0]).unwrap();
     assert_eq!(rendered.operations.len(), 2);
-    assert!(rendered.wire.contains("pub fn empty"));
-    assert!(rendered.wire.contains("ResponseValue<ByteStream>"));
     let item = rendered
         .operations
         .iter()
         .find(|op| op.name == "get_item")
         .unwrap();
+    let csv: Vec<_> = item.parameters.iter().filter(|p| p.csv).collect();
     assert_eq!(
-        item.csv_query_names(),
-        vec!["marketplaceIds", "includedData"]
+        csv.iter().map(|p| &p.wire_name).collect::<Vec<_>>(),
+        ["marketplaceIds", "includedData"]
     );
     assert_eq!(item.successes.len(), 2);
     let facade = clients::facade(&rendered, &[]).unwrap();
     assert!(facade.contains("pub struct EmptyParams"));
     assert!(facade.contains("pub count: Option<i32>"));
     assert!(facade.contains("pub enabled: Option<bool>"));
-    assert!(facade.contains(".x_test("));
-    assert!(facade.contains(".run("));
     assert!(facade.contains("json_200"));
+    // Values go in name order, then empty arrays in declared order.
+    let sent: Vec<_> = facade
+        .lines()
+        .filter_map(|line| line.trim().strip_prefix("operation::"))
+        .collect();
     assert_eq!(
-        rendered.wire,
-        clients::render(&value, &ALL_APIS[0]).unwrap().wire
+        sent,
+        [
+            r#"pair(&mut query, "at", params.at.as_ref());"#,
+            r#"pair(&mut query, "count", params.count.as_ref());"#,
+            r#"pair(&mut query, "enabled", params.enabled.as_ref());"#,
+            r#"csv(&mut query, "includedData", params.included_data.as_ref());"#,
+            r#"csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));"#,
+            r#"repeated(&mut query, "mskus", params.mskus.as_ref());"#,
+            r#"empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));"#,
+            r#"empty(&mut query, "includedData", params.included_data.as_ref());"#,
+            r#"empty(&mut query, "mskus", params.mskus.as_ref());"#,
+            r#"pair(&mut headers, "x-test", params.x_test.as_ref());"#,
+        ]
     );
+    assert!(facade.contains(r#"path: ["/items/", &operation::segment(&params.asin)?].concat()"#));
+    assert!(facade.contains(r#"path: "/empty".into()"#));
 }
 #[test]
 fn unsupported_parameters_and_invalid_defaults_fail_before_rendering() {
@@ -119,7 +134,6 @@ fn shipping_v2_link_carrier_account_put_is_renamed_to_expose_distinct_operations
             .iter()
             .any(|op| op.name == "link_carrier_account_put")
     );
-    assert!(rendered.wire.contains("pub fn link_carrier_account_put"));
 }
 
 #[test]

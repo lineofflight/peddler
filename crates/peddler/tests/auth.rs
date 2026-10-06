@@ -37,6 +37,7 @@ fn get() -> Request {
         method: "GET".into(),
         path: "/".into(),
         query: vec![],
+        headers: vec![],
         body: None,
     }
 }

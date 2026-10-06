@@ -45,7 +45,7 @@ pub(crate) fn rust(
     pagination: &[&Resolved],
 ) -> Result<String, GenerationError> {
     let mut source = String::from(
-        "use crate::{Client, Error, Response};\nuse crate::operation::{collect, TypedResponse, DecodeError, WireContext, validate_parameter};\nuse super::wire;\n",
+        "use crate::{Client, Error, Request, Response};\nuse crate::operation::{self, DecodeError, TypedResponse, validate_parameter};\n",
     );
     for op in &client.operations {
         let params = format!("{}Params", pascal(&op.name));
@@ -138,7 +138,6 @@ pub(crate) fn rust(
             params
         };
         writeln!(source,"pub async fn {}{generic_fn}(client:&Client, params:{params_ty})->Result<{response},Error> {{",op.name).unwrap();
-        source.push_str("let mut empty_queries = Vec::new();\n");
         for p in &op.parameters {
             if p.location == "body" {
                 continue;
@@ -157,100 +156,24 @@ pub(crate) fn rust(
                     "&"
                 };
                 writeln!(source,"{{ let value = serde_json::to_value({borrow}params.{}).map_err(|_|Error::InvalidRequest)?; {call} }}",p.name).unwrap();
-                if p.schema["type"] == "array" {
-                    writeln!(
-                        source,
-                        "if params.{}.is_empty() {{ empty_queries.push({:?}); }}",
-                        p.name, p.wire_name
-                    )
-                    .unwrap()
-                }
             } else {
-                writeln!(source,"if let Some(parameter) = &params.{} {{ let value=serde_json::to_value(parameter).map_err(|_|Error::InvalidRequest)?; {call}",p.name).unwrap();
-                if p.schema["type"] == "array" {
-                    writeln!(
-                        source,
-                        "if parameter.is_empty() {{empty_queries.push({:?});}}",
-                        p.wire_name
-                    )
-                    .unwrap()
-                }
-                source.push_str("}\n");
+                writeln!(source,"if let Some(parameter) = &params.{} {{ let value=serde_json::to_value(parameter).map_err(|_|Error::InvalidRequest)?; {call} }}",p.name).unwrap();
             }
         }
+        // Keep bodies flexible; reject wrong top-level shape when the API
+        // schema is object/array, without rebuilding nested typed models.
         if let Some(body) = body {
-            let optional = if body.required {
-                "false"
-            } else {
-                "params.body.is_none()"
-            };
-            writeln!(source, "let omit_body = {optional};").unwrap();
-            if body.required {
-                source.push_str("let body = serde_json::to_value(&params.body).map_err(|_|Error::InvalidRequest)?;\n")
-            } else {
-                source.push_str("let body = params.body.as_ref().map(serde_json::to_value).transpose().map_err(|_|Error::InvalidRequest)?.unwrap_or(serde_json::Value::Null);\n")
-            }
-            // Keep bodies flexible; reject wrong top-level shape when the API
-            // schema is object/array, without rebuilding nested typed models.
-            let schema_kind = body.body_type.clone().unwrap_or_else(|| "object".into());
-            if ["object", "array"].contains(&schema_kind.as_str()) {
-                writeln!(
-                    source,
-                    "if !omit_body && !body.is_{}() {{ return Err(Error::InvalidRequest); }}",
-                    schema_kind
-                )
-                .unwrap();
-            }
-        } else {
-            source.push_str("let omit_body = false;\n")
-        }
-        writeln!(source,"let raw = client.run({:?}, |token| {{ let params=&params; let empty_queries=empty_queries.clone();",op.method).unwrap();
-        if body.is_some() {
-            source.push_str("let body=body.clone();\n")
-        }
-        source.push_str("async move { let wire=wire::Client::new_with_client(client.origin.as_str().trim_end_matches('/'), client.http.clone(), WireContext {client:client.clone(),token,empty_queries,omit_body});\n");
-        writeln!(source, "let mut request=wire.{}();", op.name).unwrap();
-        for p in &op.parameters {
-            let method = if p.location == "header" {
-                crate::clients::snake(&p.wire_name.to_ascii_lowercase())
-            } else {
-                p.name.clone()
-            };
-            if p.location == "body" {
-                source.push_str("request=request.body(body);\n")
-            } else if p.schema["type"] == "number" {
-                if p.required {
-                    writeln!(
-                        source,
-                        "request=request.{method}(params.{}.to_string());",
-                        p.name
-                    )
-                    .unwrap()
+            let kind = body.body_type.as_deref().unwrap_or("object");
+            if ["object", "array"].contains(&kind) {
+                let given = if body.required {
+                    "let body = &params.body;\nif"
                 } else {
-                    writeln!(
-                        source,
-                        "if let Some(value)=&params.{} {{ request=request.{method}(value.to_string()); }}",
-                        p.name
-                    )
-                    .unwrap()
-                }
-            } else if p.required {
-                writeln!(
-                    source,
-                    "request=request.{method}(params.{}.clone());",
-                    p.name
-                )
-                .unwrap()
-            } else {
-                writeln!(
-                    source,
-                    "if let Some(value)=params.{}.clone() {{ request=request.{method}(value); }}",
-                    p.name
-                )
-                .unwrap()
+                    "if let Some(body) = &params.body &&"
+                };
+                writeln!(source,"{given} !serde_json::to_value(body).map_err(|_|Error::InvalidRequest)?.is_{kind}() {{ return Err(Error::InvalidRequest); }}").unwrap();
             }
         }
-        source.push_str("collect(request.send().await).await } }).await?;\n");
+        request(&mut source, op)?;
         if response == "Response" {
             source.push_str("Ok(raw)\n")
         } else if response.starts_with("TypedResponse<") {
@@ -276,15 +199,120 @@ pub(crate) fn rust(
             }
         }
     }
-    // Progenitor consumes snake_case OperationInfo, so CSV metadata is looked up
-    // per operation. exec is only entered from the shared retry runner.
-    source.push_str("impl progenitor_client::ClientHooks<WireContext> for wire::Client {\nasync fn pre<E>(&self, request:&mut reqwest::Request, info:&progenitor_client::OperationInfo)->Result<(),progenitor_client::Error<E>> { self.inner.prepare(request,super::metadata::csv_query_names(info.operation_id)).map_err(|_|progenitor_client::Error::InvalidRequest(\"invalid request\".into())) }\nasync fn exec(&self, request:reqwest::Request, _info:&progenitor_client::OperationInfo)->reqwest::Result<reqwest::Response> {self.inner.client.http.execute(request).await}\n}\n");
-    // Generated forwarding uses clones uniformly and some operations have no
-    // optional fields, typed decoders or parameters at all.
+    // Some operations have no typed decoder or no parameter at all.
     Ok(format!(
-        "#![allow(unused_imports, unused_variables, unused_mut, clippy::clone_on_copy, clippy::too_many_arguments)]\n{}",
+        "#![allow(unused_imports, unused_variables, clippy::too_many_arguments)]\n{}",
         format(source)?
     ))
+}
+/// Sends an operation's request, built from `params`, and binds the response to `raw`.
+fn request(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
+    let given = |p: &Parameter| {
+        if p.required {
+            format!("Some(&params.{})", p.name)
+        } else {
+            format!("params.{}.as_ref()", p.name)
+        }
+    };
+    let add = |list: &str, add: &str, p: &Parameter| {
+        format!(
+            "operation::{add}(&mut {list}, {:?}, {});\n",
+            p.wire_name,
+            given(p)
+        )
+    };
+    let mut queries: Vec<&Parameter> = op
+        .parameters
+        .iter()
+        .filter(|p| p.location == "query")
+        .collect();
+    let arrays: Vec<&Parameter> = queries
+        .iter()
+        .copied()
+        .filter(|p| p.schema["type"] == "array")
+        .collect();
+    // The order requests have always had: values by name, then empty arrays as declared.
+    queries.sort_by(|a, b| a.wire_name.cmp(&b.wire_name));
+    let values = queries.iter().map(|p| {
+        let kind = match (p.schema["type"] == "array", p.csv) {
+            (false, _) => "pair",
+            (true, true) => "csv",
+            (true, false) => "repeated",
+        };
+        add("query", kind, p)
+    });
+    let query: String = values
+        .chain(arrays.iter().map(|p| add("query", "empty", p)))
+        .collect();
+    let headers: String = op
+        .parameters
+        .iter()
+        .filter(|p| p.location == "header")
+        .map(|p| add("headers", "pair", p))
+        .collect();
+    let mut fields = Vec::new();
+    for (list, lines) in [("query", query), ("headers", headers)] {
+        if lines.is_empty() {
+            fields.push(format!("{list}: Vec::new()"));
+        } else {
+            writeln!(source, "let mut {list} = Vec::new();\n{lines}").unwrap();
+            fields.push(list.to_owned());
+        }
+    }
+    let body = match op.body() {
+        Some(body) if body.required => "Some(operation::json(&params.body)?)",
+        Some(_) => "params.body.as_ref().map(operation::json).transpose()?",
+        None => "None",
+    };
+    writeln!(
+        source,
+        "let raw = client.execute_json(Request {{ method: {:?}.into(), path: {}, {}, body: {body} }}).await?;",
+        op.method,
+        path(op)?,
+        fields.join(", ")
+    )
+    .unwrap();
+    Ok(())
+}
+/// The expression for an operation's path, with each argument as one escaped segment.
+fn path(op: &Operation) -> Result<String, GenerationError> {
+    let mut parts = Vec::new();
+    let mut arguments = 0;
+    let mut rest = op.path.as_str();
+    while let Some((before, after)) = rest.split_once('{') {
+        let (name, tail) = after
+            .split_once('}')
+            .ok_or_else(|| GenerationError(format!("{}: malformed path", op.name)))?;
+        let p = op
+            .parameters
+            .iter()
+            .find(|p| p.location == "path" && p.wire_name == name)
+            .ok_or_else(|| GenerationError(format!("{}: unknown path parameter", op.name)))?;
+        parts.push(format!("{before:?}"));
+        parts.push(format!("&operation::segment(&params.{})?", p.name));
+        arguments += 1;
+        rest = tail;
+    }
+    if arguments
+        != op
+            .parameters
+            .iter()
+            .filter(|p| p.location == "path")
+            .count()
+    {
+        return Err(GenerationError(format!(
+            "{}: path parameter missing from the path",
+            op.name
+        )));
+    }
+    Ok(if arguments == 0 {
+        format!("{rest:?}.into()")
+    } else {
+        if !rest.is_empty() {
+            parts.push(format!("{rest:?}"));
+        }
+        format!("[{}].concat()", parts.join(", "))
+    })
 }
 /// A private continuation operation for APIs whose token replaces every other
 /// parameter: it sends the token and path parameters only, so the initial
@@ -313,53 +341,23 @@ fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(),
         writeln!(source, "pub {}: String,", p.name).unwrap();
     }
     source.push_str("}\n");
-    writeln!(
-        source,
-        "pub(crate) async fn {}_continue(client:&Client, params:{strukt})->Result<Response,Error> {{",
-        op.name
-    )
-    .unwrap();
-    for p in &kept {
-        let schema = serde_json::to_string(&p.schema)?;
-        writeln!(source,"validate_parameter(serde_json::Value::String(params.{}.clone()), {:?}, {schema:?}, true, false)?;",p.name,p.location).unwrap();
-    }
-    let mut template = String::new();
-    let mut arguments = Vec::new();
-    let mut rest = op.path.as_str();
-    while let Some((before, after)) = rest.split_once('{') {
-        let (name, tail) = after
-            .split_once('}')
-            .ok_or_else(|| GenerationError(format!("{}: malformed path", op.name)))?;
-        let p = op
-            .parameters
-            .iter()
-            .find(|p| p.location == "path" && p.wire_name == name)
-            .ok_or_else(|| GenerationError(format!("{}: unknown path parameter", op.name)))?;
-        template.push_str(before);
-        template.push_str("{}");
-        arguments.push(format!(
-            "crate::operation::encode_segment(&params.{})",
-            p.name
-        ));
-        rest = tail;
-    }
-    template.push_str(rest);
-    let wire = op
+    let wire = &op
         .parameters
         .iter()
         .find(|p| p.name == token)
         .expect("resolved token")
-        .wire_name
-        .clone();
-    let call = if arguments.is_empty() {
-        format!("{template:?}.to_owned()")
-    } else {
-        format!("format!({template:?}, {})", arguments.join(", "))
-    };
+        .wire_name;
+    let mut validation = String::new();
+    for p in &kept {
+        let schema = serde_json::to_string(&p.schema)?;
+        writeln!(validation,"validate_parameter(serde_json::Value::String(params.{}.clone()), {:?}, {schema:?}, true, false)?;",p.name,p.location).unwrap();
+    }
     writeln!(
         source,
-        "let path = {call};\nclient.execute_json(crate::Request {{ method: {:?}.into(), path, query: vec![({wire:?}.into(), params.{token})], body: None }}).await\n}}",
-        op.method
+        "pub(crate) async fn {}_continue(client:&Client, params:{strukt})->Result<Response,Error> {{\n{validation}client.execute_json(Request {{ method: {:?}.into(), path: {}, query: vec![({wire:?}.into(), params.{token})], headers: Vec::new(), body: None }}).await\n}}",
+        op.name,
+        op.method,
+        path(op)?
     )
     .unwrap();
     Ok(())

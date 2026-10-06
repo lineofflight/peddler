@@ -20,6 +20,7 @@ fn request(method: &str) -> Request {
         method: method.into(),
         path: "/test".into(),
         query: vec![],
+        headers: vec![],
         body: None,
     }
 }

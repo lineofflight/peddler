@@ -2,8 +2,5 @@
 // Source: finance-remittance-api-model/financeRemittance-2026-03-17.json
 
 pub mod models;
-pub(crate) mod metadata;
-#[allow(dead_code, unused_imports, clippy::all)]
-pub(crate) mod wire;
 mod facade;
 pub use facade::*;

@@ -166,6 +166,9 @@ pub struct Request {
     pub method: String,
     pub path: String,
     pub query: Vec<(String, String)>,
+    /// Sent as given. The access token, the date and a wrapper's User-Agent are set
+    /// afterwards and can't be replaced here.
+    pub headers: Vec<(String, String)>,
     pub body: Option<Vec<u8>>,
 }
 
@@ -281,7 +284,7 @@ impl Client {
 
     /// Runs `send` once per attempt, with that attempt's token, under one deadline
     /// that also covers asking a token source and the retry delays.
-    pub(crate) async fn run<F, Fut>(&self, method: &str, send: F) -> Result<Response, Error>
+    async fn run<F, Fut>(&self, method: &str, send: F) -> Result<Response, Error>
     where
         F: Fn(HeaderValue) -> Fut,
         Fut: Future<Output = Result<Response, Error>>,
@@ -306,60 +309,6 @@ impl Client {
         })
         .await
         .map_err(|_| Error::Timeout)?
-    }
-
-    pub(crate) fn prepare_generated(
-        &self,
-        request: &mut reqwest::Request,
-        csv_names: &[&str],
-        token: &HeaderValue,
-    ) -> Result<(), Error> {
-        let url = request.url();
-        if url.origin() != self.origin.origin()
-            || !url.username().is_empty()
-            || url.password().is_some()
-            || url.fragment().is_some()
-        {
-            return Err(Error::InvalidRequest);
-        }
-        // Discard per-request overrides so the client's timeout applies.
-        *request.timeout_mut() = Some(self.timeout);
-        // Canonicalize individual segments, never decode the whole path. A raw
-        // caller %2F was already escaped by Progenitor to %252F and stays literal.
-        let path = request
-            .url()
-            .path()
-            .split('/')
-            .map(|segment| {
-                let bytes = percent_encoding::percent_decode_str(segment).collect::<Vec<_>>();
-                percent_encoding::percent_encode(&bytes, url::SEGMENT).to_string()
-            })
-            .collect::<Vec<_>>()
-            .join("/");
-        request.url_mut().set_path(&path);
-        if request.url().query().is_some() {
-            let mut pairs: Vec<(String, String)> = Vec::new();
-            for (key, value) in request.url().query_pairs() {
-                if csv_names.contains(&key.as_ref())
-                    && let Some((_, previous)) = pairs.iter_mut().find(|(name, _)| name == &key)
-                {
-                    previous.push(',');
-                    previous.push_str(&value);
-                    continue;
-                }
-                pairs.push((key.into_owned(), value.into_owned()));
-            }
-            request.url_mut().set_query(None);
-            if !pairs.is_empty() {
-                request.url_mut().query_pairs_mut().extend_pairs(pairs);
-            }
-        }
-        self.authorize(request.headers_mut(), token);
-        request.headers_mut().insert(
-            reqwest::header::ACCEPT,
-            HeaderValue::from_static("application/json"),
-        );
-        Ok(())
     }
 
     /// What only the Selling Partner API receives: the token, the time of this
@@ -409,6 +358,10 @@ impl Client {
                 .header(reqwest::header::CONTENT_TYPE, "application/json")
                 .body(body);
         }
+        // An invalid name or value fails the build below.
+        for (name, value) in &request.headers {
+            builder = builder.header(name, value);
+        }
         let buffered = builder.build().map_err(|_| Error::InvalidRequest)?;
         self.run(&method_name, |token| {
             let mut request = buffered.try_clone().expect("buffered body is repeatable");
@@ -419,7 +372,7 @@ impl Client {
                     .execute(request)
                     .await
                     .map_err(classify_transport)?;
-                operation::collect(Ok(progenitor_client::ResponseValue::stream(response))).await
+                collect(response).await
             }
         })
         .await
@@ -438,6 +391,27 @@ pub(crate) fn classify<E>(error: reqwest::Error, timeout: E, transport: E) -> E 
 
 fn classify_transport(error: reqwest::Error) -> Error {
     classify(error, Error::Timeout, Error::Transport)
+}
+
+/// The whole response, whatever its status.
+async fn collect(response: reqwest::Response) -> Result<Response, Error> {
+    let status = response.status().as_u16();
+    let headers = response
+        .headers()
+        .iter()
+        .map(|(name, value)| {
+            (
+                name.as_str().to_owned(),
+                String::from_utf8_lossy(value.as_bytes()).into_owned(),
+            )
+        })
+        .collect();
+    let body = response.bytes().await.map_err(classify_transport)?.into();
+    Ok(Response {
+        status,
+        headers,
+        body,
+    })
 }
 
 /// The instant `timeout` from now, unless the timeout is zero or too long to represent.

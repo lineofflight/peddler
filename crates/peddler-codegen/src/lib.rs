@@ -84,7 +84,7 @@ fn format_tokens(tokens: impl quote::ToTokens) -> Result<String, GenerationError
     Ok(prettyplease::unparse(&file))
 }
 
-/// Render all pinned models, wire clients, public facades, dispatch and Ruby.
+/// Render all pinned models, public facades, dispatch and Ruby.
 pub fn generate(
     spec_dir: &Path,
     revision: &str,
@@ -111,21 +111,12 @@ pub fn generate(
     for (api, rendered) in &clients {
         let prefix = notice(api.source);
         let mapped: Vec<_> = resolved.iter().filter(|r| r.module == api.module).collect();
-        for (name, content) in [
-            ("wire.rs", rendered.wire.clone()),
-            ("metadata.rs", clients::metadata(rendered)?),
-            ("facade.rs", clients::facade(rendered, &mapped)?),
-        ] {
-            output.insert(
-                base.join(api.module).join(name),
-                format!("{prefix}{content}"),
-            );
-        }
+        output.insert(
+            base.join(api.module).join("facade.rs"),
+            format!("{prefix}{}", clients::facade(rendered, &mapped)?),
+        );
         let module = quote::quote! {
             pub mod models;
-            pub(crate) mod metadata;
-            #[allow(dead_code, unused_imports, clippy::all)]
-            pub(crate) mod wire;
             mod facade;
             pub use facade::*;
         };

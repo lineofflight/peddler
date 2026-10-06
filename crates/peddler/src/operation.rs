@@ -1,7 +1,5 @@
-//! Shared raw response collection and facade validation before any request.
-use crate::{Client, Error, Response, classify_transport};
-use futures_util::StreamExt;
-use progenitor_client::{ByteStream, ResponseValue};
+//! What generated operations share: typed responses and the parts of a request.
+use crate::{Error, Response};
 use serde::de::DeserializeOwned;
 use std::marker::PhantomData;
 
@@ -53,46 +51,6 @@ pub(crate) fn decode_status<T: DeserializeOwned>(
         });
     }
     serde_json::from_slice(&raw.body).map_err(DecodeError::Json)
-}
-
-/// Per-attempt context: the token of this attempt, and what Progenitor 0.15 gets wrong.
-/// It drops empty query arrays and treats all request bodies as required. Adapt only
-/// these omissions in the shared pre hook.
-#[derive(Clone, Debug)]
-pub struct WireContext {
-    pub client: Client,
-    pub token: reqwest::header::HeaderValue,
-    pub empty_queries: Vec<&'static str>,
-    pub omit_body: bool,
-}
-impl WireContext {
-    pub fn prepare(&self, request: &mut reqwest::Request, csv: &[&str]) -> Result<(), Error> {
-        self.client.prepare_generated(request, csv, &self.token)?;
-        if self.omit_body {
-            *request.body_mut() = None;
-            for header in [
-                reqwest::header::CONTENT_TYPE,
-                reqwest::header::CONTENT_LENGTH,
-                reqwest::header::TRANSFER_ENCODING,
-            ] {
-                request.headers_mut().remove(header);
-            }
-        }
-        if !self.empty_queries.is_empty() {
-            request
-                .url_mut()
-                .query_pairs_mut()
-                .extend_pairs(self.empty_queries.iter().map(|name| (*name, "")));
-        }
-        Ok(())
-    }
-}
-
-/// Percent-encodes one path segment the way generated requests canonicalize it.
-// Used by generated continuation adapters that have path arguments; none do today.
-#[allow(dead_code)]
-pub(crate) fn encode_segment(value: &str) -> String {
-    percent_encoding::utf8_percent_encode(value, crate::url::SEGMENT).to_string()
 }
 
 /// Validate schema parameter constraints before any request. String
@@ -199,40 +157,46 @@ fn validate_value(
     Ok(())
 }
 
-pub(crate) async fn collect(
-    result: Result<ResponseValue<ByteStream>, progenitor_client::Error<ByteStream>>,
-) -> Result<Response, Error> {
-    use progenitor_client::Error as WireError;
-    let response = match result {
-        Ok(response) | Err(WireError::ErrorResponse(response)) => response,
-        Err(WireError::UnexpectedResponse(response)) => ResponseValue::stream(response),
-        Err(
-            WireError::CommunicationError(error)
-            | WireError::ResponseBodyError(error)
-            | WireError::InvalidUpgrade(error),
-        ) => return Err(classify_transport(error)),
-        Err(WireError::InvalidRequest(_)) => return Err(Error::InvalidRequest),
-        Err(_) => return Err(Error::Transport),
-    };
-    let status = response.status().as_u16();
-    let headers = response
-        .headers()
-        .iter()
-        .map(|(name, value)| {
-            (
-                name.as_str().to_owned(),
-                String::from_utf8_lossy(value.as_bytes()).into_owned(),
-            )
-        })
-        .collect();
-    let mut stream = response.into_inner_stream();
-    let mut body = Vec::new();
-    while let Some(chunk) = stream.next().await {
-        body.extend_from_slice(&chunk.map_err(classify_transport)?);
+/// Query parameters or headers, in the order they are sent.
+type Pairs = Vec<(String, String)>;
+
+/// Percent-encodes a path argument as one segment. A dot segment is refused: URL
+/// parsing would resolve it away and the request would reach another resource.
+pub(crate) fn segment(value: &str) -> Result<String, Error> {
+    if matches!(value, "." | "..") {
+        return Err(Error::InvalidRequest);
     }
-    Ok(Response {
-        status,
-        headers,
-        body,
-    })
+    Ok(percent_encoding::utf8_percent_encode(value, crate::url::SEGMENT).to_string())
+}
+
+/// Adds a header or a scalar query parameter that was given.
+pub(crate) fn pair(pairs: &mut Pairs, name: &str, value: Option<&impl ToString>) {
+    if let Some(value) = value {
+        pairs.push((name.to_owned(), value.to_string()));
+    }
+}
+
+/// Adds an array as one comma-separated value. `empty` adds an empty one.
+pub(crate) fn csv(query: &mut Pairs, name: &str, values: Option<&Vec<String>>) {
+    if let Some(values) = values.filter(|values| !values.is_empty()) {
+        query.push((name.to_owned(), values.join(",")));
+    }
+}
+
+/// Adds an array as one parameter per value.
+pub(crate) fn repeated(query: &mut Pairs, name: &str, values: Option<&Vec<String>>) {
+    for value in values.into_iter().flatten() {
+        query.push((name.to_owned(), value.clone()));
+    }
+}
+
+/// Adds an empty array as `name=`, so that it is sent and not dropped.
+pub(crate) fn empty(query: &mut Pairs, name: &str, values: Option<&Vec<String>>) {
+    if values.is_some_and(Vec::is_empty) {
+        query.push((name.to_owned(), String::new()));
+    }
+}
+
+pub(crate) fn json(body: &impl serde::Serialize) -> Result<Vec<u8>, Error> {
+    serde_json::to_vec(body).map_err(|_| Error::InvalidRequest)
 }

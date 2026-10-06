@@ -2,8 +2,5 @@
 // Source: fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
 
 pub mod models;
-pub(crate) mod metadata;
-#[allow(dead_code, unused_imports, clippy::all)]
-pub(crate) mod wire;
 mod facade;
 pub use facade::*;

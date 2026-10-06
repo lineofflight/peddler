@@ -2,8 +2,5 @@
 // Source: finances-api-model/transfers_2024-06-01.json
 
 pub mod models;
-pub(crate) mod metadata;
-#[allow(dead_code, unused_imports, clippy::all)]
-pub(crate) mod wire;
 mod facade;
 pub use facade::*;

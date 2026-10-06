@@ -33,6 +33,7 @@ fn get(path: &str) -> Request {
         method: "GET".into(),
         path: path.into(),
         query: vec![],
+        headers: vec![],
         body: None,
     }
 }
@@ -72,6 +73,7 @@ async fn replays_selected_get_patch_and_http_error_contracts() {
                 method: method.clone(),
                 path: path.clone(),
                 query: query.clone(),
+                headers: vec![],
                 body,
             })
             .await
@@ -129,6 +131,31 @@ async fn preserves_escaped_paths_and_ordered_csv_query_values() {
     ];
     client.execute(request).await.unwrap();
     assert!(server.requests()[0].starts_with("GET /items/a%2Fb%20c%3F%23?includedData=images%2Csummaries&tag=a+b%26c&tag=second HTTP/1.1\r\n"));
+}
+
+#[tokio::test]
+async fn sends_request_headers_but_never_lets_them_replace_the_token() {
+    let server = replies(vec![http(200, "", b"")]).await;
+    let client = Client::new(&server.url, TOKEN).unwrap();
+    let mut request = get("/");
+    request.headers = vec![
+        ("X-Amzn-Idempotency-Token".into(), "one".into()),
+        ("x-amz-access-token".into(), "forged".into()),
+    ];
+    client.execute(request).await.unwrap();
+    let sent = server.requests()[0].to_ascii_lowercase();
+    assert!(sent.contains("\r\nx-amzn-idempotency-token: one\r\n"));
+    assert!(sent.contains(&format!("\r\nx-amz-access-token: {TOKEN}\r\n")));
+    assert!(!sent.contains("forged"));
+    for header in [("bad name", "value"), ("x-test", "secret\r\ninjected: yes")] {
+        let mut request = get("/");
+        request.headers = vec![(header.0.into(), header.1.into())];
+        assert_eq!(
+            client.execute(request).await.unwrap_err(),
+            Error::InvalidRequest
+        );
+    }
+    assert_eq!(server.requests().len(), 1);
 }
 
 #[tokio::test]
