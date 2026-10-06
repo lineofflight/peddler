@@ -194,6 +194,8 @@ async fn tsv_quoted_newlines_tabs_quotes_empty_fields_and_final_row() {
 
 #[tokio::test]
 async fn byte_and_record_limits_are_independent() {
+    // A download has no byte limit of its own.
+    assert_eq!(TransferOptions::default().max_bytes, u64::MAX);
     for (options, expected) in [
         (
             TransferOptions {

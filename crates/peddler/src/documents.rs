@@ -104,7 +104,8 @@ pub enum Compression {
 pub struct TransferOptions {
     pub timeout: Duration,
     pub compression: Compression,
-    /// Ceiling on decompressed bytes, independently of Content-Length.
+    /// Ceiling on decompressed bytes, independently of Content-Length. There is none
+    /// unless the caller sets one.
     pub max_bytes: u64,
     pub max_record_bytes: usize,
 }
@@ -115,7 +116,7 @@ impl Default for TransferOptions {
         Self {
             timeout: Duration::from_secs(30),
             compression: Compression::Auto,
-            max_bytes: 1 << 30,
+            max_bytes: u64::MAX,
             max_record_bytes: 1 << 20,
         }
     }
