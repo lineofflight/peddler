@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderParams {
@@ -22,21 +22,6 @@ pub async fn get_order(
     client: &Client,
     params: GetOrderParams,
 ) -> Result<TypedResponse<super::models::GetOrderResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"BUYER\",\"RECIPIENT\",\"PROCEEDS\",\"EXPENSE\",\"PROMOTION\",\"CANCELLATION\",\"FULFILLMENT\",\"PACKAGES\",\"TAX\",\"PAYMENT\",\"FULFILLMENT_ORDERS\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Information about the buyer who purchased the order.\",\"value\":\"BUYER\"},{\"description\":\"Information about the recipient to whom the order is delivered.\",\"value\":\"RECIPIENT\"},{\"description\":\"The revenue and financial breakdown for the order and order items.\",\"value\":\"PROCEEDS\"},{\"description\":\"The cost information about the order and order items.\",\"value\":\"EXPENSE\"},{\"description\":\"The discount and promotional offer details applied to the order and order items.\",\"value\":\"PROMOTION\"},{\"description\":\"Cancellation information applied to the order and order items.\",\"value\":\"CANCELLATION\"},{\"description\":\"Information about how the order and order items are processed and shipped.\",\"value\":\"FULFILLMENT\"},{\"description\":\"Information about shipping packages and tracking.\",\"value\":\"PACKAGES\"},{\"description\":\"The tax information associated with the order.\",\"value\":\"TAX\"},{\"description\":\"The payment information associated with the order.\",\"value\":\"PAYMENT\"},{\"description\":\"The fulfillment orders associated with this order.\",\"value\":\"FULFILLMENT_ORDERS\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "includedData", params.included_data.as_ref());
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
@@ -91,94 +76,6 @@ pub async fn search_orders(
     client: &Client,
     params: SearchOrdersParams,
 ) -> Result<TypedResponse<super::models::SearchOrdersResponse>, Error> {
-    if let Some(parameter) = &params.created_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.last_updated_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.last_updated_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.fulfillment_statuses {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"PENDING_AVAILABILITY\",\"PENDING\",\"UNSHIPPED\",\"PARTIALLY_SHIPPED\",\"SHIPPED\",\"CANCELLED\",\"UNFULFILLABLE\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"This status is available for pre-orders only. The order has been placed, payment has not been authorized, and the release date of the item is in the future. The order is not ready for shipment.\",\"value\":\"PENDING_AVAILABILITY\"},{\"description\":\"The order has been placed but is not ready for shipment. For standard orders, the initial order status is `PENDING`. For pre-orders, the initial order status is `PENDING_AVAILABILITY`, and the order passes into the `PENDING` status when payment authorization begins.\",\"value\":\"PENDING\"},{\"description\":\"The order is ready for shipment, but no items in the order have been shipped.\",\"value\":\"UNSHIPPED\"},{\"description\":\"At least one, but not all, items in the order have been shipped.\",\"value\":\"PARTIALLY_SHIPPED\"},{\"description\":\"All items have been shipped to the customer.\",\"value\":\"SHIPPED\"},{\"description\":\"The order has been canceled and will not be fulfilled.\",\"value\":\"CANCELLED\"},{\"description\":\"The order cannot be fulfilled. This state only applies to Amazon-fulfilled orders that were not placed on Amazon's retail website.\",\"value\":\"UNFULFILLABLE\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.marketplace_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":50,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.fulfilled_by {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"MERCHANT\",\"AMAZON\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Fulfilled by the merchant\",\"value\":\"MERCHANT\"},{\"description\":\"Fulfilled by Amazon\",\"value\":\"AMAZON\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.max_results_per_page {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"integer\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"BUYER\",\"RECIPIENT\",\"PROCEEDS\",\"EXPENSE\",\"PROMOTION\",\"CANCELLATION\",\"FULFILLMENT\",\"PACKAGES\",\"TAX\",\"PAYMENT\",\"FULFILLMENT_ORDERS\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Information about the buyer who purchased the order.\",\"value\":\"BUYER\"},{\"description\":\"Information about the recipient to whom the order is delivered.\",\"value\":\"RECIPIENT\"},{\"description\":\"The revenue and financial breakdown for the order and order items.\",\"value\":\"PROCEEDS\"},{\"description\":\"The cost information about the order and order items.\",\"value\":\"EXPENSE\"},{\"description\":\"The discount and promotional offer details applied to the order and order items.\",\"value\":\"PROMOTION\"},{\"description\":\"Cancellation information applied to the order and order items.\",\"value\":\"CANCELLATION\"},{\"description\":\"Information about how the order and order items are processed and shipped.\",\"value\":\"FULFILLMENT\"},{\"description\":\"Information about shipping packages and tracking.\",\"value\":\"PACKAGES\"},{\"description\":\"The tax information associated with the order.\",\"value\":\"TAX\"},{\"description\":\"The payment information associated with the order.\",\"value\":\"PAYMENT\"},{\"description\":\"The fulfillment orders associated with this order.\",\"value\":\"FULFILLMENT_ORDERS\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdAfter", params.created_after.as_ref());
     operation::pair(&mut query, "createdBefore", params.created_before.as_ref());

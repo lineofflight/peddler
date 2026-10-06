@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 fn get_promotion_locale_default() -> Option<String> {
     Some(serde_json::from_str("\"en_US\"").expect("validated schema default"))
 }
@@ -28,31 +28,6 @@ pub async fn get_promotion(
     client: &Client,
     params: GetPromotionParams,
 ) -> Result<TypedResponse<super::models::GetPromotionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.promotion_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"ISSUES\",\"SELECTION\",\"CUSTOMER_SEGMENTS\"],\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"en_US\",\"pattern\":\"^[a-z]{2}_[A-Z]{2}$\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "includedData", params.included_data.as_ref());
     operation::pair(&mut query, "locale", params.locale.as_ref());
@@ -108,61 +83,6 @@ pub async fn get_selection(
     client: &Client,
     params: GetSelectionParams,
 ) -> Result<TypedResponse<super::models::GetSelectionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.promotion_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.selection_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(params.revision_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minimum\":1,\"type\":\"integer\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"en_US\",\"pattern\":\"^[a-z]{2}_[A-Z]{2}$\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.limit {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":20,\"format\":\"int64\",\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"ISSUES\"],\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "includedData", params.included_data.as_ref());
     operation::pair(&mut query, "limit", params.limit.as_ref());
@@ -267,161 +187,6 @@ pub async fn search_promotions(
     client: &Client,
     params: SearchPromotionsParams,
 ) -> Result<TypedResponse<super::models::SearchPromotionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"en_US\",\"pattern\":\"^[a-z]{2}_[A-Z]{2}$\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.statuses {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"PROCESSING\",\"UPCOMING\",\"RUNNING\",\"EXPIRED\",\"FAILED\",\"CANCELLING\",\"CANCELLED\"],\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.asins {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":10,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.skus {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":10,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.promotion_types {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"BASKET_BUILDING\",\"DEAL\",\"PRICE_DISCOUNT\",\"COUPON\"],\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.start_date_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.start_date_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.end_date_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.end_date_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.update_date_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.update_date_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.revision {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"PUBLISHED\",\"enum\":[\"LATEST\",\"PUBLISHED\",\"ANY\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.limit {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":20,\"format\":\"int64\",\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"ISSUES\",\"CUSTOMER_SEGMENTS\"],\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "asins", params.asins.as_ref());
     operation::pair(&mut query, "endDateAfter", params.end_date_after.as_ref());

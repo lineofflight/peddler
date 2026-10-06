@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteListingsItemParams {
@@ -26,31 +26,6 @@ pub async fn delete_listings_item(
     client: &Client,
     params: DeleteListingsItemParams,
 ) -> Result<TypedResponse<super::models::ListingsItemSubmissionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.issue_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "issueLocale", params.issue_locale.as_ref());
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -100,41 +75,6 @@ pub async fn get_listings_item(
     client: &Client,
     params: GetListingsItemParams,
 ) -> Result<TypedResponse<super::models::Item>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.issue_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":[\"summaries\"],\"items\":{\"enum\":[\"summaries\",\"attributes\",\"issues\",\"offers\",\"fulfillmentAvailability\",\"procurement\",\"relationships\",\"productTypes\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Summary details of the listing item.\",\"value\":\"summaries\"},{\"description\":\"JSON object containing structured listing item attribute data keyed by attribute name.\",\"value\":\"attributes\"},{\"description\":\"Issues associated with the listing item.\",\"value\":\"issues\"},{\"description\":\"Current offers for the listing item.\",\"value\":\"offers\"},{\"description\":\"Fulfillment availability details for the listing item.\",\"value\":\"fulfillmentAvailability\"},{\"description\":\"Vendor procurement details for the listing item.\",\"value\":\"procurement\"},{\"description\":\"Relationship details for a listing item (for example, variations).\",\"value\":\"relationships\"},{\"description\":\"Product types that are associated with a listing item.\",\"value\":\"productTypes\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "includedData", params.included_data.as_ref());
     operation::pair(&mut query, "issueLocale", params.issue_locale.as_ref());
@@ -195,55 +135,6 @@ pub async fn patch_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PatchListingsItemParams<B>,
 ) -> Result<TypedResponse<super::models::ListingsItemSubmissionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":[\"issues\"],\"items\":{\"enum\":[\"identifiers\",\"issues\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Identifiers associated with the item in the Amazon catalog, such as the Amazon Standard Identification Number (ASIN). Can only be requested when `mode` is `VALIDATION_PREVIEW`.\",\"value\":\"identifiers\"},{\"description\":\"Issues associated with the listing item.\",\"value\":\"issues\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.mode {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"VALIDATION_PREVIEW\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.issue_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "includedData", params.included_data.as_ref());
     operation::pair(&mut query, "issueLocale", params.issue_locale.as_ref());
@@ -305,55 +196,6 @@ pub async fn put_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PutListingsItemParams<B>,
 ) -> Result<TypedResponse<super::models::ListingsItemSubmissionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":[\"issues\"],\"items\":{\"enum\":[\"identifiers\",\"issues\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Identifiers associated with the item in the Amazon catalog, such as the Amazon Standard Identification Number (ASIN). Can only be requested when `mode` is `VALIDATION_PREVIEW`.\",\"value\":\"identifiers\"},{\"description\":\"Issues associated with the listing item.\",\"value\":\"issues\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.mode {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"VALIDATION_PREVIEW\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.issue_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "includedData", params.included_data.as_ref());
     operation::pair(&mut query, "issueLocale", params.issue_locale.as_ref());
@@ -446,168 +288,6 @@ pub async fn search_listings_items(
     client: &Client,
     params: SearchListingsItemsParams,
 ) -> Result<TypedResponse<super::models::ItemSearchResults>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.issue_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":[\"summaries\"],\"items\":{\"enum\":[\"summaries\",\"attributes\",\"issues\",\"offers\",\"fulfillmentAvailability\",\"procurement\",\"relationships\",\"productTypes\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Summary details for the listing item.\",\"value\":\"summaries\"},{\"description\":\"A JSON object that contains structured listing item attribute data, keyed by attribute name.\",\"value\":\"attributes\"},{\"description\":\"Issues that are associated with the listing item.\",\"value\":\"issues\"},{\"description\":\"Current offers for the listing item.\",\"value\":\"offers\"},{\"description\":\"Fulfillment availability details for the listing item.\",\"value\":\"fulfillmentAvailability\"},{\"description\":\"Vendor procurement details for the listing item.\",\"value\":\"procurement\"},{\"description\":\"Relationship details for a listing item (for example, variations).\",\"value\":\"relationships\"},{\"description\":\"Product types associated with a listing item.\",\"value\":\"productTypes\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.identifiers {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":20,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.identifiers_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"ASIN\",\"EAN\",\"FNSKU\",\"GTIN\",\"ISBN\",\"JAN\",\"MINSAN\",\"SKU\",\"UPC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.variation_parent_sku {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.package_hierarchy_sku {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.created_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.last_updated_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.last_updated_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.with_issue_severity {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"WARNING\",\"ERROR\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Indicates that an issue has occurred, which prevented the submission from processing. For example, a validation error.\",\"value\":\"ERROR\"},{\"description\":\"Indicates an issue has occurred that should be reviewed, but it has not prevented the submission from processing.\",\"value\":\"WARNING\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.with_status {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"BUYABLE\",\"DISCOVERABLE\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The listings item that shoppers can purchase. This status does not apply to vendor listings.\",\"value\":\"BUYABLE\"},{\"description\":\"The listings item is visible to shoppers.\",\"value\":\"DISCOVERABLE\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.without_status {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"BUYABLE\",\"DISCOVERABLE\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The listings item can be purchased by shoppers. This status does not apply to vendor listings.\",\"value\":\"BUYABLE\"},{\"description\":\"The listings item is visible to shoppers.\",\"value\":\"DISCOVERABLE\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_by {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"lastUpdatedDate\",\"enum\":[\"sku\",\"createdDate\",\"lastUpdatedDate\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"DESC\",\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":20,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdAfter", params.created_after.as_ref());
     operation::pair(&mut query, "createdBefore", params.created_before.as_ref());

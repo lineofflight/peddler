@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteListingsItemParams {
@@ -26,31 +26,6 @@ pub async fn delete_listings_item(
     client: &Client,
     params: DeleteListingsItemParams,
 ) -> Result<TypedResponse<super::models::ListingsItemSubmissionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.issue_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "issueLocale", params.issue_locale.as_ref());
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -101,35 +76,6 @@ pub async fn patch_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PatchListingsItemParams<B>,
 ) -> Result<TypedResponse<super::models::ListingsItemSubmissionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.issue_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "issueLocale", params.issue_locale.as_ref());
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -180,35 +126,6 @@ pub async fn put_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PutListingsItemParams<B>,
 ) -> Result<TypedResponse<super::models::ListingsItemSubmissionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.issue_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "issueLocale", params.issue_locale.as_ref());
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));

@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCompetitiveSummaryParams<B = serde_json::Value> {
@@ -18,10 +18,6 @@ pub async fn get_competitive_summary<B: serde::Serialize>(
     client: &Client,
     params: GetCompetitiveSummaryParams<B>,
 ) -> Result<TypedResponse<super::models::CompetitiveSummaryBatchResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -50,10 +46,6 @@ pub async fn get_featured_offer_expected_price_batch<B: serde::Serialize>(
     TypedResponse<super::models::GetFeaturedOfferExpectedPriceBatchResponse>,
     Error,
 > {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),

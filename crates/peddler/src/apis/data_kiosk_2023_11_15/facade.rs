@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelQueryParams {
@@ -18,11 +18,6 @@ pub async fn cancel_query(
     client: &Client,
     params: CancelQueryParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.query_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
@@ -52,10 +47,6 @@ pub async fn create_query<B: serde::Serialize>(
     client: &Client,
     params: CreateQueryParams<B>,
 ) -> Result<TypedResponse<super::models::CreateQueryResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -81,11 +72,6 @@ pub async fn get_document(
     client: &Client,
     params: GetDocumentParams,
 ) -> Result<TypedResponse<super::models::GetDocumentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.document_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -134,50 +120,6 @@ pub async fn get_queries(
     client: &Client,
     params: GetQueriesParams,
 ) -> Result<TypedResponse<super::models::GetQueriesResponse>, Error> {
-    if let Some(parameter) = &params.processing_statuses {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"CANCELLED\",\"DONE\",\"FATAL\",\"IN_PROGRESS\",\"IN_QUEUE\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The query was cancelled before it began processing.\",\"value\":\"CANCELLED\"},{\"description\":\"The query has completed processing.\",\"value\":\"DONE\"},{\"description\":\"The query was aborted due to a fatal error.\",\"value\":\"FATAL\"},{\"description\":\"The query is being processed.\",\"value\":\"IN_PROGRESS\"},{\"description\":\"The query has not yet started processing. It may be waiting for another `IN_PROGRESS` query.\",\"value\":\"IN_QUEUE\"}]},\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_since {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_until {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdSince", params.created_since.as_ref());
     operation::pair(&mut query, "createdUntil", params.created_until.as_ref());
@@ -240,11 +182,6 @@ pub async fn get_query(
     client: &Client,
     params: GetQueryParams,
 ) -> Result<TypedResponse<super::models::Query>, Error> {
-    {
-        let value = serde_json::to_value(&params.query_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),

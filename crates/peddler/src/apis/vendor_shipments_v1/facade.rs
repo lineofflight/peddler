@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentDetailsParams {
@@ -71,210 +71,6 @@ pub async fn get_shipment_details(
     client: &Client,
     params: GetShipmentDetailsParams,
 ) -> Result<TypedResponse<super::models::GetShipmentDetailsResponse>, Error> {
-    if let Some(parameter) = &params.limit {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"int64\",\"maximum\":50,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.created_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.shipment_confirmed_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.shipment_confirmed_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.package_label_created_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.package_label_created_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.shipped_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.shipped_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.estimated_delivery_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.estimated_delivery_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.shipment_delivery_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.shipment_delivery_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.requested_pick_up_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.requested_pick_up_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.scheduled_pick_up_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.scheduled_pick_up_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.current_shipment_status {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.vendor_shipment_identifier {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.buyer_reference_number {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.buyer_warehouse_code {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.seller_warehouse_code {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(
         &mut query,
@@ -436,62 +232,6 @@ pub async fn get_shipment_labels(
     client: &Client,
     params: GetShipmentLabelsParams,
 ) -> Result<TypedResponse<super::models::GetShipmentLabels>, Error> {
-    if let Some(parameter) = &params.limit {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"int64\",\"maximum\":50,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.label_created_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.label_created_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.buyer_reference_number {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.vendor_shipment_identifier {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.seller_warehouse_code {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(
         &mut query,
@@ -568,10 +308,6 @@ pub async fn submit_shipment_confirmations<B: serde::Serialize>(
     client: &Client,
     params: SubmitShipmentConfirmationsParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitShipmentConfirmationsResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -597,10 +333,6 @@ pub async fn submit_shipments<B: serde::Serialize>(
     client: &Client,
     params: SubmitShipmentsParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitShipmentConfirmationsResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),

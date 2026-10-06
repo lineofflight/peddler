@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetListingsRestrictionsParams {
@@ -30,45 +30,6 @@ pub async fn get_listings_restrictions(
     client: &Client,
     params: GetListingsRestrictionsParams,
 ) -> Result<TypedResponse<super::models::RestrictionList>, Error> {
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.condition_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"new_new\",\"new_open_box\",\"new_oem\",\"refurbished_refurbished\",\"used_like_new\",\"used_very_good\",\"used_good\",\"used_acceptable\",\"collectible_like_new\",\"collectible_very_good\",\"collectible_good\",\"collectible_acceptable\",\"club_club\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.seller_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.reason_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.product_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "asin", Some(&params.asin));
     operation::pair(&mut query, "conditionType", params.condition_type.as_ref());

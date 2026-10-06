@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelInboundPlanParams {
@@ -18,17 +18,6 @@ pub async fn cancel_inbound_plan(
     client: &Client,
     params: CancelInboundPlanParams,
 ) -> Result<TypedResponse<super::models::CancelInboundPlanResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -65,32 +54,6 @@ pub async fn cancel_self_ship_appointment<B: serde::Serialize>(
     client: &Client,
     params: CancelSelfShipAppointmentParams<B>,
 ) -> Result<TypedResponse<super::models::CancelSelfShipAppointmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -133,39 +96,6 @@ pub async fn confirm_delivery_window_options(
     client: &Client,
     params: ConfirmDeliveryWindowOptionsParams,
 ) -> Result<TypedResponse<super::models::ConfirmDeliveryWindowOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.delivery_window_option_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":36,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -204,28 +134,6 @@ pub async fn confirm_packing_option(
     client: &Client,
     params: ConfirmPackingOptionParams,
 ) -> Result<TypedResponse<super::models::ConfirmPackingOptionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.packing_option_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -262,28 +170,6 @@ pub async fn confirm_placement_option(
     client: &Client,
     params: ConfirmPlacementOptionParams,
 ) -> Result<TypedResponse<super::models::ConfirmPlacementOptionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.placement_option_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -329,39 +215,6 @@ pub async fn confirm_shipment_content_update_preview(
     TypedResponse<super::models::ConfirmShipmentContentUpdatePreviewResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.content_update_preview_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -397,21 +250,6 @@ pub async fn confirm_transportation_options<B: serde::Serialize>(
     client: &Client,
     params: ConfirmTransportationOptionsParams<B>,
 ) -> Result<TypedResponse<super::models::ConfirmTransportationOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -442,10 +280,6 @@ pub async fn create_inbound_plan<B: serde::Serialize>(
     client: &Client,
     params: CreateInboundPlanParams<B>,
 ) -> Result<TypedResponse<super::models::CreateInboundPlanResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -471,10 +305,6 @@ pub async fn create_marketplace_item_labels<B: serde::Serialize>(
     client: &Client,
     params: CreateMarketplaceItemLabelsParams<B>,
 ) -> Result<TypedResponse<super::models::CreateMarketplaceItemLabelsResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -504,28 +334,6 @@ pub async fn generate_delivery_window_options(
     client: &Client,
     params: GenerateDeliveryWindowOptionsParams,
 ) -> Result<TypedResponse<super::models::GenerateDeliveryWindowOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -558,17 +366,6 @@ pub async fn generate_packing_options(
     client: &Client,
     params: GeneratePackingOptionsParams,
 ) -> Result<TypedResponse<super::models::GeneratePackingOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -600,21 +397,6 @@ pub async fn generate_placement_options<B: serde::Serialize>(
     client: &Client,
     params: GeneratePlacementOptionsParams<B>,
 ) -> Result<TypedResponse<super::models::GeneratePlacementOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -654,32 +436,6 @@ pub async fn generate_self_ship_appointment_slots<B: serde::Serialize>(
     TypedResponse<super::models::GenerateSelfShipAppointmentSlotsResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -721,32 +477,6 @@ pub async fn generate_shipment_content_update_previews<B: serde::Serialize>(
     TypedResponse<super::models::GenerateShipmentContentUpdatePreviewsResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -780,21 +510,6 @@ pub async fn generate_transportation_options<B: serde::Serialize>(
     client: &Client,
     params: GenerateTransportationOptionsParams<B>,
 ) -> Result<TypedResponse<super::models::GenerateTransportationOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -829,28 +544,6 @@ pub async fn get_delivery_challan_document(
     client: &Client,
     params: GetDeliveryChallanDocumentParams,
 ) -> Result<TypedResponse<super::models::GetDeliveryChallanDocumentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -883,17 +576,6 @@ pub async fn get_inbound_operation_status(
     client: &Client,
     params: GetInboundOperationStatusParams,
 ) -> Result<TypedResponse<super::models::InboundOperationStatus>, Error> {
-    {
-        let value = serde_json::to_value(&params.operation_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":36,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -923,17 +605,6 @@ pub async fn get_inbound_plan(
     client: &Client,
     params: GetInboundPlanParams,
 ) -> Result<TypedResponse<super::models::InboundPlan>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -975,48 +646,6 @@ pub async fn get_self_ship_appointment_slots(
     client: &Client,
     params: GetSelfShipAppointmentSlotsParams,
 ) -> Result<TypedResponse<super::models::GetSelfShipAppointmentSlotsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -1079,28 +708,6 @@ pub async fn get_shipment(
     client: &Client,
     params: GetShipmentParams,
 ) -> Result<TypedResponse<super::models::Shipment>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -1142,39 +749,6 @@ pub async fn get_shipment_content_update_preview(
     client: &Client,
     params: GetShipmentContentUpdatePreviewParams,
 ) -> Result<TypedResponse<super::models::ContentUpdatePreview>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.content_update_preview_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -1220,48 +794,6 @@ pub async fn list_delivery_window_options(
     client: &Client,
     params: ListDeliveryWindowOptionsParams,
 ) -> Result<TypedResponse<super::models::ListDeliveryWindowOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -1330,37 +862,6 @@ pub async fn list_inbound_plan_boxes(
     client: &Client,
     params: ListInboundPlanBoxesParams,
 ) -> Result<TypedResponse<super::models::ListInboundPlanBoxesResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -1427,37 +928,6 @@ pub async fn list_inbound_plan_items(
     client: &Client,
     params: ListInboundPlanItemsParams,
 ) -> Result<TypedResponse<super::models::ListInboundPlanItemsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -1524,37 +994,6 @@ pub async fn list_inbound_plan_pallets(
     client: &Client,
     params: ListInboundPlanPalletsParams,
 ) -> Result<TypedResponse<super::models::ListInboundPlanPalletsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -1630,56 +1069,6 @@ pub async fn list_inbound_plans(
     client: &Client,
     params: ListInboundPlansParams,
 ) -> Result<TypedResponse<super::models::ListInboundPlansResponse>, Error> {
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":30,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.status {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"ACTIVE\",\"VOIDED\",\"SHIPPED\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_by {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"LAST_UPDATED_TIME\",\"CREATION_TIME\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -1734,28 +1123,6 @@ pub async fn list_item_compliance_details(
     client: &Client,
     params: ListItemComplianceDetailsParams,
 ) -> Result<TypedResponse<super::models::ListItemComplianceDetailsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.mskus)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"maxLength\":255,\"minLength\":1,\"type\":\"string\"},\"maxItems\":100,\"minItems\":1,\"type\":\"array\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":20,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::repeated(&mut query, "mskus", Some(&params.mskus));
@@ -1797,48 +1164,6 @@ pub async fn list_packing_group_boxes(
     client: &Client,
     params: ListPackingGroupBoxesParams,
 ) -> Result<TypedResponse<super::models::ListPackingGroupBoxesResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.packing_group_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -1909,48 +1234,6 @@ pub async fn list_packing_group_items(
     client: &Client,
     params: ListPackingGroupItemsParams,
 ) -> Result<TypedResponse<super::models::ListPackingGroupItemsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.packing_group_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -2019,37 +1302,6 @@ pub async fn list_packing_options(
     client: &Client,
     params: ListPackingOptionsParams,
 ) -> Result<TypedResponse<super::models::ListPackingOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":20,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -2115,37 +1367,6 @@ pub async fn list_placement_options(
     client: &Client,
     params: ListPlacementOptionsParams,
 ) -> Result<TypedResponse<super::models::ListPlacementOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":20,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -2203,28 +1424,6 @@ pub async fn list_prep_details(
     client: &Client,
     params: ListPrepDetailsParams,
 ) -> Result<TypedResponse<super::models::ListPrepDetailsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":20,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.mskus)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"maxLength\":255,\"minLength\":1,\"type\":\"string\"},\"maxItems\":100,\"minItems\":1,\"type\":\"array\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::repeated(&mut query, "mskus", Some(&params.mskus));
@@ -2266,48 +1465,6 @@ pub async fn list_shipment_boxes(
     client: &Client,
     params: ListShipmentBoxesParams,
 ) -> Result<TypedResponse<super::models::ListShipmentBoxesResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -2380,48 +1537,6 @@ pub async fn list_shipment_content_update_previews(
     TypedResponse<super::models::ListShipmentContentUpdatePreviewsResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":20,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -2492,48 +1607,6 @@ pub async fn list_shipment_items(
     client: &Client,
     params: ListShipmentItemsParams,
 ) -> Result<TypedResponse<super::models::ListShipmentItemsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -2603,48 +1676,6 @@ pub async fn list_shipment_pallets(
     client: &Client,
     params: ListShipmentPalletsParams,
 ) -> Result<TypedResponse<super::models::ListShipmentPalletsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -2716,57 +1747,6 @@ pub async fn list_transportation_options(
     client: &Client,
     params: ListTransportationOptionsParams,
 ) -> Result<TypedResponse<super::models::ListTransportationOptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":20,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.pagination_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":1024,\"minLength\":0,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.placement_option_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.shipment_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
@@ -2842,43 +1822,6 @@ pub async fn schedule_self_ship_appointment<B: serde::Serialize>(
     client: &Client,
     params: ScheduleSelfShipAppointmentParams<B>,
 ) -> Result<TypedResponse<super::models::ScheduleSelfShipAppointmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.slot_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -2914,21 +1857,6 @@ pub async fn set_packing_information<B: serde::Serialize>(
     client: &Client,
     params: SetPackingInformationParams<B>,
 ) -> Result<TypedResponse<super::models::SetPackingInformationResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -2959,10 +1887,6 @@ pub async fn set_prep_details<B: serde::Serialize>(
     client: &Client,
     params: SetPrepDetailsParams<B>,
 ) -> Result<TypedResponse<super::models::SetPrepDetailsResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -2989,21 +1913,6 @@ pub async fn update_inbound_plan_name<B: serde::Serialize>(
     client: &Client,
     params: UpdateInboundPlanNameParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -3035,21 +1944,6 @@ pub async fn update_item_compliance_details<B: serde::Serialize>(
     client: &Client,
     params: UpdateItemComplianceDetailsParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateItemComplianceDetailsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":20,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -3083,32 +1977,6 @@ pub async fn update_shipment_name<B: serde::Serialize>(
     client: &Client,
     params: UpdateShipmentNameParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -3147,32 +2015,6 @@ pub async fn update_shipment_source_address<B: serde::Serialize>(
     client: &Client,
     params: UpdateShipmentSourceAddressParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateShipmentSourceAddressResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -3211,32 +2053,6 @@ pub async fn update_shipment_tracking_details<B: serde::Serialize>(
     client: &Client,
     params: UpdateShipmentTrackingDetailsParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateShipmentTrackingDetailsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.inbound_plan_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":38,\"minLength\":38,\"pattern\":\"^[a-zA-Z0-9-]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),

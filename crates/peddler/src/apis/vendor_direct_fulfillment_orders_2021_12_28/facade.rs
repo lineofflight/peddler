@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderParams {
@@ -18,11 +18,6 @@ pub async fn get_order(
     client: &Client,
     params: GetOrderParams,
 ) -> Result<TypedResponse<super::models::Order>, Error> {
-    {
-        let value = serde_json::to_value(&params.purchase_order_number)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -72,76 +67,6 @@ pub async fn get_orders(
     client: &Client,
     params: GetOrdersParams,
 ) -> Result<TypedResponse<super::models::OrderList>, Error> {
-    if let Some(parameter) = &params.ship_from_party_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.status {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"NEW\",\"SHIPPED\",\"ACCEPTED\",\"CANCELLED\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.limit {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"int64\",\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.created_after)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.created_before)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.include_details {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":true,\"format\":\"boolean\",\"type\":\"boolean\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdAfter", Some(&params.created_after));
     operation::pair(&mut query, "createdBefore", Some(&params.created_before));
@@ -199,10 +124,6 @@ pub async fn submit_acknowledgement<B: serde::Serialize>(
     client: &Client,
     params: SubmitAcknowledgementParams<B>,
 ) -> Result<TypedResponse<super::models::TransactionId>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),

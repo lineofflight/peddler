@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetItemEligibilityPreviewParams {
@@ -24,32 +24,6 @@ pub async fn get_item_eligibility_preview(
     client: &Client,
     params: GetItemEligibilityPreviewParams,
 ) -> Result<TypedResponse<super::models::GetItemEligibilityPreviewResponse>, Error> {
-    if let Some(parameter) = &params.marketplace_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.program)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"INBOUND\",\"COMMINGLING\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "asin", Some(&params.asin));
     operation::csv(&mut query, "marketplaceIds", params.marketplace_ids.as_ref());

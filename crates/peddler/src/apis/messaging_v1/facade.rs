@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmCustomizationDetailsParams<B = serde_json::Value> {
@@ -24,26 +24,6 @@ pub async fn confirm_customization_details<B: serde::Serialize>(
     client: &Client,
     params: ConfirmCustomizationDetailsParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -83,26 +63,6 @@ pub async fn create_confirm_delivery_details<B: serde::Serialize>(
     client: &Client,
     params: CreateConfirmDeliveryDetailsParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -142,26 +102,6 @@ pub async fn create_confirm_order_details<B: serde::Serialize>(
     client: &Client,
     params: CreateConfirmOrderDetailsParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -201,26 +141,6 @@ pub async fn create_confirm_service_details<B: serde::Serialize>(
     client: &Client,
     params: CreateConfirmServiceDetailsParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -260,26 +180,6 @@ pub async fn create_digital_access_key<B: serde::Serialize>(
     client: &Client,
     params: CreateDigitalAccessKeyParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -319,26 +219,6 @@ pub async fn create_legal_disclosure<B: serde::Serialize>(
     client: &Client,
     params: CreateLegalDisclosureParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -378,26 +258,6 @@ pub async fn create_unexpected_problem<B: serde::Serialize>(
     client: &Client,
     params: CreateUnexpectedProblemParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -437,26 +297,6 @@ pub async fn create_warranty<B: serde::Serialize>(
     client: &Client,
     params: CreateWarrantyParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -494,22 +334,6 @@ pub async fn get_attributes(
     client: &Client,
     params: GetAttributesParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -547,22 +371,6 @@ pub async fn get_messaging_actions_for_order(
     client: &Client,
     params: GetMessagingActionsForOrderParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -601,26 +409,6 @@ pub async fn send_invoice<B: serde::Serialize>(
     client: &Client,
     params: SendInvoiceParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));

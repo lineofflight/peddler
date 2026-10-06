@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelShipmentParams {
@@ -22,21 +22,6 @@ pub async fn cancel_shipment(
     client: &Client,
     params: CancelShipmentParams,
 ) -> Result<TypedResponse<super::models::CancelShipmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -77,20 +62,6 @@ pub async fn create_claim<B: serde::Serialize>(
     client: &Client,
     params: CreateClaimParams<B>,
 ) -> Result<TypedResponse<super::models::CreateClaimResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -130,28 +101,6 @@ pub async fn direct_purchase_shipment<B: serde::Serialize>(
     client: &Client,
     params: DirectPurchaseShipmentParams<B>,
 ) -> Result<TypedResponse<super::models::DirectPurchaseResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_idempotency_key {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -195,24 +144,6 @@ pub async fn generate_collection_form<B: serde::Serialize>(
     client: &Client,
     params: GenerateCollectionFormParams<B>,
 ) -> Result<TypedResponse<super::models::GenerateCollectionFormResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_idempotency_key {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -261,37 +192,6 @@ pub async fn get_access_points(
     client: &Client,
     params: GetAccessPointsParams,
 ) -> Result<TypedResponse<super::models::GetAccessPointsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.access_point_types)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"HELIX\",\"CAMPUS_LOCKER\",\"OMNI_LOCKER\",\"ODIN_LOCKER\",\"DOBBY_LOCKER\",\"CORE_LOCKER\",\"3P\",\"CAMPUS_ROOM\"],\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.country_code)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.postal_code)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "accessPointTypes", Some(&params.access_point_types));
     operation::pair(&mut query, "countryCode", Some(&params.country_code));
@@ -334,26 +234,6 @@ pub async fn get_additional_inputs(
     client: &Client,
     params: GetAdditionalInputsParams,
 ) -> Result<TypedResponse<super::models::GetAdditionalInputsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.request_token)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.rate_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "rateId", Some(&params.rate_id));
     operation::pair(&mut query, "requestToken", Some(&params.request_token));
@@ -395,16 +275,6 @@ pub async fn get_carrier_account_form_inputs(
     client: &Client,
     params: GetCarrierAccountFormInputsParams,
 ) -> Result<TypedResponse<super::models::GetCarrierAccountFormInputsResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -440,20 +310,6 @@ pub async fn get_carrier_accounts<B: serde::Serialize>(
     client: &Client,
     params: GetCarrierAccountsParams<B>,
 ) -> Result<TypedResponse<super::models::GetCarrierAccountsResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -489,21 +345,6 @@ pub async fn get_collection_form(
     client: &Client,
     params: GetCollectionFormParams,
 ) -> Result<TypedResponse<super::models::GetCollectionFormResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.collection_form_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -543,20 +384,6 @@ pub async fn get_collection_form_history<B: serde::Serialize>(
     client: &Client,
     params: GetCollectionFormHistoryParams<B>,
 ) -> Result<TypedResponse<super::models::GetCollectionFormHistoryResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -592,20 +419,6 @@ pub async fn get_rates<B: serde::Serialize>(
     client: &Client,
     params: GetRatesParams<B>,
 ) -> Result<TypedResponse<super::models::GetRatesResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -647,34 +460,6 @@ pub async fn get_shipment_documents(
     client: &Client,
     params: GetShipmentDocumentsParams,
 ) -> Result<TypedResponse<super::models::GetShipmentDocumentsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.package_client_reference_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.format {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.dpi {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"number\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "dpi", params.dpi.as_ref());
     operation::pair(&mut query, "format", params.format.as_ref());
@@ -725,26 +510,6 @@ pub async fn get_tracking(
     client: &Client,
     params: GetTrackingParams,
 ) -> Result<TypedResponse<super::models::GetTrackingResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.tracking_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.carrier_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "carrierId", Some(&params.carrier_id));
     operation::pair(&mut query, "trackingId", Some(&params.tracking_id));
@@ -783,20 +548,6 @@ pub async fn get_unmanifested_shipments<B: serde::Serialize>(
     client: &Client,
     params: GetUnmanifestedShipmentsParams<B>,
 ) -> Result<TypedResponse<super::models::GetUnmanifestedShipmentsResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -834,25 +585,6 @@ pub async fn link_carrier_account<B: serde::Serialize>(
     client: &Client,
     params: LinkCarrierAccountParams<B>,
 ) -> Result<TypedResponse<super::models::LinkCarrierAccountResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.carrier_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -894,25 +626,6 @@ pub async fn link_carrier_account_put<B: serde::Serialize>(
     client: &Client,
     params: LinkCarrierAccountPutParams<B>,
 ) -> Result<TypedResponse<super::models::LinkCarrierAccountResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.carrier_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -952,20 +665,6 @@ pub async fn one_click_shipment<B: serde::Serialize>(
     client: &Client,
     params: OneClickShipmentParams<B>,
 ) -> Result<TypedResponse<super::models::OneClickShipmentResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -1003,24 +702,6 @@ pub async fn purchase_shipment<B: serde::Serialize>(
     client: &Client,
     params: PurchaseShipmentParams<B>,
 ) -> Result<TypedResponse<super::models::PurchaseShipmentResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_idempotency_key {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -1061,20 +742,6 @@ pub async fn submit_ndr_feedback<B: serde::Serialize>(
     client: &Client,
     params: SubmitNdrFeedbackParams<B>,
 ) -> Result<Response, Error> {
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -1112,25 +779,6 @@ pub async fn unlink_carrier_account<B: serde::Serialize>(
     client: &Client,
     params: UnlinkCarrierAccountParams<B>,
 ) -> Result<TypedResponse<super::models::UnlinkCarrierAccountResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.carrier_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.x_amzn_shipping_business_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"enum\":[\"AmazonShipping_US\",\"AmazonShipping_IN\",\"AmazonShipping_UK\",\"AmazonShipping_UAE\",\"AmazonShipping_SA\",\"AmazonShipping_EG\",\"AmazonShipping_IT\",\"AmazonShipping_ES\",\"AmazonShipping_FR\",\"AmazonShipping_JP\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,

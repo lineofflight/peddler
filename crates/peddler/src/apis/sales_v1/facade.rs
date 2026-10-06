@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 fn get_order_metrics_buyer_type_default() -> Option<String> {
     Some(serde_json::from_str("\"All\"").expect("validated schema default"))
 }
@@ -50,79 +50,6 @@ pub async fn get_order_metrics(
     client: &Client,
     params: GetOrderMetricsParams,
 ) -> Result<TypedResponse<super::models::GetOrderMetricsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.interval)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.granularity_time_zone {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.granularity)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"Hour\",\"Day\",\"Week\",\"Month\",\"Year\",\"Total\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.buyer_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"All\",\"enum\":[\"B2B\",\"B2C\",\"All\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.fulfillment_network {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.first_day_of_week {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"Monday\",\"enum\":[\"Monday\",\"Sunday\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.asin {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.sku {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.amazon_program {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"AmazonHaul\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "amazonProgram", params.amazon_program.as_ref());
     operation::pair(&mut query, "asin", params.asin.as_ref());

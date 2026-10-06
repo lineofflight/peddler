@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateScheduledPackageParams<B = serde_json::Value> {
@@ -18,10 +18,6 @@ pub async fn create_scheduled_package<B: serde::Serialize>(
     client: &Client,
     params: CreateScheduledPackageParams<B>,
 ) -> Result<TypedResponse<super::models::Package>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -47,10 +43,6 @@ pub async fn create_scheduled_package_bulk<B: serde::Serialize>(
     client: &Client,
     params: CreateScheduledPackageBulkParams<B>,
 ) -> Result<TypedResponse<super::models::CreateScheduledPackagesResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -80,28 +72,6 @@ pub async fn get_scheduled_package(
     client: &Client,
     params: GetScheduledPackageParams,
 ) -> Result<TypedResponse<super::models::Package>, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":255,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":255,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "amazonOrderId", Some(&params.amazon_order_id));
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
@@ -135,11 +105,6 @@ pub async fn list_handover_slots<B: serde::Serialize>(
     client: &Client,
     params: ListHandoverSlotsParams<B>,
 ) -> Result<TypedResponse<super::models::ListHandoverSlotsResponse>, Error> {
-    if let Some(body) = &params.body
-        && !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object()
-    {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -170,11 +135,6 @@ pub async fn update_scheduled_packages<B: serde::Serialize>(
     client: &Client,
     params: UpdateScheduledPackagesParams<B>,
 ) -> Result<TypedResponse<super::models::Packages>, Error> {
-    if let Some(body) = &params.body
-        && !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object()
-    {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PATCH".into(),

@@ -32,11 +32,8 @@ module Peddler
       end
 
       def test_retrieve_shipping_label
-        # v5 recorded this with an empty tracking ID. The generated method rejects one before any request, so the
-        # recording is replayed through a raw request under the same operation.
-        assert_raises(ArgumentError) { api.retrieve_shipping_label(shipment_id: "TEST_CASE_200", tracking_id: "", body: {}) }
-        res = client.request("POST", "/shipping/v1/shipments/TEST_CASE_200/containers//label", body: {},
-          operation: "shipping_v1.retrieve_shipping_label")
+        # v5 recorded this with an empty tracking ID
+        res = api.retrieve_shipping_label(shipment_id: "TEST_CASE_200", tracking_id: "", body: {})
 
         assert_success(res)
       end

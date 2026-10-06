@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ArchiveSupplySourceParams {
@@ -18,11 +18,6 @@ pub async fn archive_supply_source(
     client: &Client,
     params: ArchiveSupplySourceParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.supply_source_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
@@ -52,10 +47,6 @@ pub async fn create_supply_source<B: serde::Serialize>(
     client: &Client,
     params: CreateSupplySourceParams<B>,
 ) -> Result<TypedResponse<super::models::CreateSupplySourceResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -81,11 +72,6 @@ pub async fn get_supply_source(
     client: &Client,
     params: GetSupplySourceParams,
 ) -> Result<TypedResponse<super::models::SupplySource>, Error> {
-    {
-        let value = serde_json::to_value(&params.supply_source_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -128,20 +114,6 @@ pub async fn get_supply_sources(
     client: &Client,
     params: GetSupplySourcesParams,
 ) -> Result<TypedResponse<super::models::GetSupplySourcesResponse>, Error> {
-    if let Some(parameter) = &params.next_page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"type\":\"number\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "nextPageToken", params.next_page_token.as_ref());
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
@@ -196,16 +168,6 @@ pub async fn update_supply_source<B: serde::Serialize>(
     client: &Client,
     params: UpdateSupplySourceParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.supply_source_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(body) = &params.body
-        && !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object()
-    {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -239,16 +201,6 @@ pub async fn update_supply_source_status<B: serde::Serialize>(
     client: &Client,
     params: UpdateSupplySourceStatusParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.supply_source_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(body) = &params.body
-        && !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object()
-    {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),

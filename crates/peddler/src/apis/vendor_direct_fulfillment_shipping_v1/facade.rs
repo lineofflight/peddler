@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCustomerInvoiceParams {
@@ -18,17 +18,6 @@ pub async fn get_customer_invoice(
     client: &Client,
     params: GetCustomerInvoiceParams,
 ) -> Result<TypedResponse<super::models::GetCustomerInvoiceResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.purchase_order_number)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"pattern\":\"^[a-zA-Z0-9]+$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -70,56 +59,6 @@ pub async fn get_customer_invoices(
     client: &Client,
     params: GetCustomerInvoicesParams,
 ) -> Result<TypedResponse<super::models::GetCustomerInvoicesResponse>, Error> {
-    if let Some(parameter) = &params.ship_from_party_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.limit {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.created_after)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.created_before)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdAfter", Some(&params.created_after));
     operation::pair(&mut query, "createdBefore", Some(&params.created_before));
@@ -175,17 +114,6 @@ pub async fn get_packing_slip(
     client: &Client,
     params: GetPackingSlipParams,
 ) -> Result<TypedResponse<super::models::GetPackingSlipResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.purchase_order_number)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"pattern\":\"^[a-zA-Z0-9]+$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -231,56 +159,6 @@ pub async fn get_packing_slips(
     client: &Client,
     params: GetPackingSlipsParams,
 ) -> Result<TypedResponse<super::models::GetPackingSlipListResponse>, Error> {
-    if let Some(parameter) = &params.ship_from_party_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.limit {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.created_after)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.created_before)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"ASC\",\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdAfter", Some(&params.created_after));
     operation::pair(&mut query, "createdBefore", Some(&params.created_before));
@@ -336,17 +214,6 @@ pub async fn get_shipping_label(
     client: &Client,
     params: GetShippingLabelParams,
 ) -> Result<TypedResponse<super::models::GetShippingLabelResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.purchase_order_number)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"pattern\":\"^[a-zA-Z0-9]+$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -392,56 +259,6 @@ pub async fn get_shipping_labels(
     client: &Client,
     params: GetShippingLabelsParams,
 ) -> Result<TypedResponse<super::models::GetShippingLabelListResponse>, Error> {
-    if let Some(parameter) = &params.ship_from_party_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.limit {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.created_after)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.created_before)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"ASC\",\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdAfter", Some(&params.created_after));
     operation::pair(&mut query, "createdBefore", Some(&params.created_before));
@@ -497,10 +314,6 @@ pub async fn submit_shipment_confirmations<B: serde::Serialize>(
     client: &Client,
     params: SubmitShipmentConfirmationsParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitShipmentConfirmationsResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -526,10 +339,6 @@ pub async fn submit_shipment_status_updates<B: serde::Serialize>(
     client: &Client,
     params: SubmitShipmentStatusUpdatesParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitShipmentStatusUpdatesResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -555,10 +364,6 @@ pub async fn submit_shipping_label_request<B: serde::Serialize>(
     client: &Client,
     params: SubmitShippingLabelRequestParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitShippingLabelsResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),

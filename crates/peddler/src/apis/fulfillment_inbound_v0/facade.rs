@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetBillOfLadingParams {
@@ -18,11 +18,6 @@ pub async fn get_bill_of_lading(
     client: &Client,
     params: GetBillOfLadingParams,
 ) -> Result<TypedResponse<super::models::GetBillOfLadingResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -69,59 +64,6 @@ pub async fn get_labels(
     client: &Client,
     params: GetLabelsParams,
 ) -> Result<TypedResponse<super::models::GetLabelsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.page_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"PackageLabel_Letter_2\",\"PackageLabel_Letter_4\",\"PackageLabel_Letter_6\",\"PackageLabel_Letter_6_CarrierLeft\",\"PackageLabel_A4_2\",\"PackageLabel_A4_4\",\"PackageLabel_Plain_Paper\",\"PackageLabel_Plain_Paper_CarrierBottom\",\"PackageLabel_Thermal\",\"PackageLabel_Thermal_Unified\",\"PackageLabel_Thermal_NonPCP\",\"PackageLabel_Thermal_No_Carrier_Rotation\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.label_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"BARCODE_2D\",\"UNIQUE\",\"PALLET\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.number_of_packages {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"integer\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.package_labels_to_print {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.number_of_pallets {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"integer\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"integer\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.page_start_index {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"integer\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "LabelType", Some(&params.label_type));
     operation::pair(&mut query, "NumberOfPackages", params.number_of_packages.as_ref());
@@ -175,37 +117,6 @@ pub async fn get_prep_instructions(
     client: &Client,
     params: GetPrepInstructionsParams,
 ) -> Result<TypedResponse<super::models::GetPrepInstructionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.ship_to_country_code)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"[A-Z]{2}\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.seller_sku_list {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":50,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.asin_list {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":50,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "ASINList", params.asin_list.as_ref());
     operation::csv(&mut query, "SellerSKUList", params.seller_sku_list.as_ref());
@@ -247,46 +158,6 @@ pub async fn get_shipment_items(
     client: &Client,
     params: GetShipmentItemsParams,
 ) -> Result<TypedResponse<super::models::GetShipmentItemsResponse>, Error> {
-    if let Some(parameter) = &params.last_updated_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.last_updated_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.query_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"DATE_RANGE\",\"NEXT_TOKEN\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "LastUpdatedAfter", params.last_updated_after.as_ref());
     operation::pair(
@@ -350,15 +221,6 @@ pub async fn get_shipment_items_by_shipment_id(
     client: &Client,
     params: GetShipmentItemsByShipmentIdParams,
 ) -> Result<TypedResponse<super::models::GetShipmentItemsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.marketplace_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "MarketplaceId", params.marketplace_id.as_ref());
     let raw = client
@@ -405,66 +267,6 @@ pub async fn get_shipments(
     client: &Client,
     params: GetShipmentsParams,
 ) -> Result<TypedResponse<super::models::GetShipmentsResponse>, Error> {
-    if let Some(parameter) = &params.shipment_status_list {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"WORKING\",\"READY_TO_SHIP\",\"SHIPPED\",\"RECEIVING\",\"CANCELLED\",\"DELETED\",\"CLOSED\",\"ERROR\",\"IN_TRANSIT\",\"DELIVERED\",\"CHECKED_IN\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The shipment was created by the seller, but has not yet shipped.\",\"value\":\"WORKING\"},{\"description\":\"The seller has printed box labels (for Small parcel shipments) or pallet labels (for Less Than Truckload shipments).\",\"value\":\"READY_TO_SHIP\"},{\"description\":\"The shipment was picked up by the carrier.\",\"value\":\"SHIPPED\"},{\"description\":\"The shipment has arrived at the fulfillment center, but not all items have been marked as received.\",\"value\":\"RECEIVING\"},{\"description\":\"The shipment was cancelled by the seller after the shipment was sent to the fulfillment center.\",\"value\":\"CANCELLED\"},{\"description\":\"The shipment was cancelled by the seller before the shipment was sent to the  fulfillment center.\",\"value\":\"DELETED\"},{\"description\":\"The shipment has arrived at the fulfillment center and all items have been marked as received.\",\"value\":\"CLOSED\"},{\"description\":\"There was an error with the shipment and it was not processed by Amazon.\",\"value\":\"ERROR\"},{\"description\":\"The carrier has notified the fulfillment center that it is aware of the shipment.\",\"value\":\"IN_TRANSIT\"},{\"description\":\"The shipment was delivered by the carrier to the fulfillment center.\",\"value\":\"DELIVERED\"},{\"description\":\"The shipment was checked-in at the receiving dock of the fulfillment center.\",\"value\":\"CHECKED_IN\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.shipment_id_list {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":999,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.last_updated_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.last_updated_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.query_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"SHIPMENT\",\"DATE_RANGE\",\"NEXT_TOKEN\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "LastUpdatedAfter", params.last_updated_after.as_ref());
     operation::pair(

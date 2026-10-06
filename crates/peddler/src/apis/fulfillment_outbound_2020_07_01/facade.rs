@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelFulfillmentOrderParams {
@@ -20,17 +20,6 @@ pub async fn cancel_fulfillment_order(
     client: &Client,
     params: CancelFulfillmentOrderParams,
 ) -> Result<TypedResponse<super::models::CancelFulfillmentOrderResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_fulfillment_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -61,10 +50,6 @@ pub async fn create_fulfillment_order<B: serde::Serialize>(
     client: &Client,
     params: CreateFulfillmentOrderParams<B>,
 ) -> Result<TypedResponse<super::models::CreateFulfillmentOrderResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -94,15 +79,6 @@ pub async fn create_fulfillment_return<B: serde::Serialize>(
     client: &Client,
     params: CreateFulfillmentReturnParams<B>,
 ) -> Result<TypedResponse<super::models::CreateFulfillmentReturnResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_fulfillment_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -133,10 +109,6 @@ pub async fn delivery_offers<B: serde::Serialize>(
     client: &Client,
     params: DeliveryOffersParams<B>,
 ) -> Result<TypedResponse<super::models::GetDeliveryOffersResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -170,30 +142,6 @@ pub async fn get_feature_inventory(
     client: &Client,
     params: GetFeatureInventoryParams,
 ) -> Result<TypedResponse<super::models::GetFeatureInventoryResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.feature_name)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.query_start_date {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
@@ -260,21 +208,6 @@ pub async fn get_feature_sku(
     client: &Client,
     params: GetFeatureSkuParams,
 ) -> Result<TypedResponse<super::models::GetFeatureSkuResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.feature_name)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.seller_sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -308,11 +241,6 @@ pub async fn get_features(
     client: &Client,
     params: GetFeaturesParams,
 ) -> Result<TypedResponse<super::models::GetFeaturesResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -342,17 +270,6 @@ pub async fn get_fulfillment_order(
     client: &Client,
     params: GetFulfillmentOrderParams,
 ) -> Result<TypedResponse<super::models::GetFulfillmentOrderResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_fulfillment_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -382,10 +299,6 @@ pub async fn get_fulfillment_preview<B: serde::Serialize>(
     client: &Client,
     params: GetFulfillmentPreviewParams<B>,
 ) -> Result<TypedResponse<super::models::GetFulfillmentPreviewResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -411,17 +324,6 @@ pub async fn get_package_tracking_details(
     client: &Client,
     params: GetPackageTrackingDetailsParams,
 ) -> Result<TypedResponse<super::models::GetPackageTrackingDetailsResponse>, Error> {
-    {
-        let value = serde_json::to_value(params.package_number)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"int32\",\"type\":\"integer\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "packageNumber", Some(&params.package_number));
     let raw = client
@@ -458,20 +360,6 @@ pub async fn list_all_fulfillment_orders(
     client: &Client,
     params: ListAllFulfillmentOrdersParams,
 ) -> Result<TypedResponse<super::models::ListAllFulfillmentOrdersResponse>, Error> {
-    if let Some(parameter) = &params.query_start_date {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::pair(&mut query, "queryStartDate", params.query_start_date.as_ref());
@@ -531,23 +419,6 @@ pub async fn list_return_reason_codes(
     client: &Client,
     params: ListReturnReasonCodesParams,
 ) -> Result<TypedResponse<super::models::ListReturnReasonCodesResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.marketplace_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.seller_fulfillment_order_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.language {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "language", params.language.as_ref());
     operation::pair(&mut query, "marketplaceId", params.marketplace_id.as_ref());
@@ -589,21 +460,6 @@ pub async fn submit_fulfillment_order_status_update<B: serde::Serialize>(
     TypedResponse<super::models::SubmitFulfillmentOrderStatusUpdateResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.seller_fulfillment_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -638,21 +494,6 @@ pub async fn update_fulfillment_order<B: serde::Serialize>(
     client: &Client,
     params: UpdateFulfillmentOrderParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateFulfillmentOrderResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_fulfillment_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),

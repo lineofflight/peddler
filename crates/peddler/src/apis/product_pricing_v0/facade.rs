@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCompetitivePricingParams {
@@ -28,52 +28,6 @@ pub async fn get_competitive_pricing(
     client: &Client,
     params: GetCompetitivePricingParams,
 ) -> Result<TypedResponse<super::models::GetPricingResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.asins {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":20,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.skus {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":20,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.item_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"Asin\",\"Sku\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.customer_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"Consumer\",\"Business\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "Asins", params.asins.as_ref());
     operation::pair(&mut query, "CustomerType", params.customer_type.as_ref());
@@ -115,37 +69,6 @@ pub async fn get_item_offers(
     client: &Client,
     params: GetItemOffersParams,
 ) -> Result<TypedResponse<super::models::GetOffersResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.item_condition)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"New\",\"Used\",\"Collectible\",\"Refurbished\",\"Club\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.customer_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"Consumer\",\"Business\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "CustomerType", params.customer_type.as_ref());
     operation::pair(&mut query, "ItemCondition", Some(&params.item_condition));
@@ -180,10 +103,6 @@ pub async fn get_item_offers_batch<B: serde::Serialize>(
     client: &Client,
     params: GetItemOffersBatchParams<B>,
 ) -> Result<TypedResponse<super::models::GetItemOffersBatchResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -221,37 +140,6 @@ pub async fn get_listing_offers(
     client: &Client,
     params: GetListingOffersParams,
 ) -> Result<TypedResponse<super::models::GetOffersResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.item_condition)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"New\",\"Used\",\"Collectible\",\"Refurbished\",\"Club\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.seller_sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.customer_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"Consumer\",\"Business\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "CustomerType", params.customer_type.as_ref());
     operation::pair(&mut query, "ItemCondition", Some(&params.item_condition));
@@ -286,10 +174,6 @@ pub async fn get_listing_offers_batch<B: serde::Serialize>(
     client: &Client,
     params: GetListingOffersBatchParams<B>,
 ) -> Result<TypedResponse<super::models::GetListingOffersBatchResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -327,62 +211,6 @@ pub async fn get_pricing(
     client: &Client,
     params: GetPricingParams,
 ) -> Result<TypedResponse<super::models::GetPricingResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.asins {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":20,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.skus {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":20,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.item_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"Asin\",\"Sku\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.item_condition {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"New\",\"Used\",\"Collectible\",\"Refurbished\",\"Club\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.offer_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"B2C\",\"B2B\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "Asins", params.asins.as_ref());
     operation::pair(&mut query, "ItemCondition", params.item_condition.as_ref());

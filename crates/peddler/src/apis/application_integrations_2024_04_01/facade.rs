@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateNotificationParams<B = serde_json::Value> {
@@ -18,10 +18,6 @@ pub async fn create_notification<B: serde::Serialize>(
     client: &Client,
     params: CreateNotificationParams<B>,
 ) -> Result<TypedResponse<super::models::CreateNotificationResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -47,10 +43,6 @@ pub async fn delete_notifications<B: serde::Serialize>(
     client: &Client,
     params: DeleteNotificationsParams<B>,
 ) -> Result<Response, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -77,15 +69,6 @@ pub async fn record_action_feedback<B: serde::Serialize>(
     client: &Client,
     params: RecordActionFeedbackParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.notification_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),

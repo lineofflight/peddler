@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPaymentMethodsParams {
@@ -22,21 +22,6 @@ pub async fn get_payment_methods(
     client: &Client,
     params: GetPaymentMethodsParams,
 ) -> Result<TypedResponse<super::models::GetPaymentMethodsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.payment_method_types {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"BANK_ACCOUNT\",\"CARD\",\"SELLER_WALLET\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The payment is from a bank account.\",\"value\":\"BANK_ACCOUNT\"},{\"description\":\"The payment is from a card.\",\"value\":\"CARD\"},{\"description\":\"The payment is from a [Seller Wallet](https://sell.amazon.com/tools/seller-wallet) virtual bank account.\",\"value\":\"SELLER_WALLET\"}]},\"minItems\":1,\"type\":\"array\",\"uniqueItems\":true}",
-            false,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::csv(
@@ -74,10 +59,6 @@ pub async fn initiate_payout<B: serde::Serialize>(
     client: &Client,
     params: InitiatePayoutParams<B>,
 ) -> Result<TypedResponse<super::models::InitiatePayoutResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -114,24 +95,6 @@ pub async fn list_expected_payouts(
     client: &Client,
     params: ListExpectedPayoutsParams,
 ) -> Result<TypedResponse<super::models::ListExpectedPayoutsResponse>, Error> {
-    if let Some(parameter) = &params.marketplace_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.account_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "accountType", params.account_type.as_ref());
     operation::csv(&mut query, "marketplaceIds", params.marketplace_ids.as_ref());
@@ -201,48 +164,6 @@ pub async fn list_payouts(
     client: &Client,
     params: ListPayoutsParams,
 ) -> Result<TypedResponse<super::models::ListPayoutsResponse>, Error> {
-    if let Some(parameter) = &params.marketplace_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.created_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.payout_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.account_type {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "accountType", params.account_type.as_ref());
     operation::pair(&mut query, "createdAfter", params.created_after.as_ref());

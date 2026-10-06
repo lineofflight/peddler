@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSellingPartnerMetricsParams<B = serde_json::Value> {
@@ -23,11 +23,6 @@ pub async fn get_selling_partner_metrics<B: serde::Serialize>(
     client: &Client,
     params: GetSellingPartnerMetricsParams<B>,
 ) -> Result<TypedResponse<super::models::GetSellingPartnerMetricsResponse>, Error> {
-    if let Some(body) = &params.body
-        && !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object()
-    {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -58,11 +53,6 @@ pub async fn list_offer_metrics<B: serde::Serialize>(
     client: &Client,
     params: ListOfferMetricsParams<B>,
 ) -> Result<TypedResponse<super::models::ListOfferMetricsResponse>, Error> {
-    if let Some(body) = &params.body
-        && !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object()
-    {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -93,11 +83,6 @@ pub async fn list_offers<B: serde::Serialize>(
     client: &Client,
     params: ListOffersParams<B>,
 ) -> Result<TypedResponse<super::models::ListOffersResponse>, Error> {
-    if let Some(body) = &params.body
-        && !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object()
-    {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),

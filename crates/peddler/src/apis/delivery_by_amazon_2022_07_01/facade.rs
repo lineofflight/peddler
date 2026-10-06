@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoiceStatusParams {
@@ -34,45 +34,6 @@ pub async fn get_invoice_status(
     client: &Client,
     params: GetInvoiceStatusParams,
 ) -> Result<TypedResponse<super::models::GetInvoiceStatusResponse>, Error> {
-    if let Some(parameter) = &params.order_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.shipment_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.invoice_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.invoice_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"Outbound\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.program_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"EasyShip\",\"FbaOnSite\",\"SelfShip\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "invoiceId", params.invoice_id.as_ref());
     operation::pair(&mut query, "invoiceType", Some(&params.invoice_type));
@@ -111,18 +72,6 @@ pub async fn submit_invoice<B: serde::Serialize>(
     client: &Client,
     params: SubmitInvoiceParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitInvoiceResponse>, Error> {
-    if let Some(parameter) = &params.order_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.shipment_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "orderId", params.order_id.as_ref());
     operation::pair(&mut query, "shipmentId", params.shipment_id.as_ref());

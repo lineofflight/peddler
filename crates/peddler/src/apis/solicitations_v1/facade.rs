@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateProductReviewAndSellerFeedbackSolicitationParams {
@@ -22,22 +22,6 @@ pub async fn create_product_review_and_seller_feedback_solicitation(
     client: &Client,
     params: CreateProductReviewAndSellerFeedbackSolicitationParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -75,22 +59,6 @@ pub async fn get_solicitation_actions_for_order(
     client: &Client,
     params: GetSolicitationActionsForOrderParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.amazon_order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));

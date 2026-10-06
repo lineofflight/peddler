@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelFeedParams {
@@ -18,11 +18,6 @@ pub async fn cancel_feed(
     client: &Client,
     params: CancelFeedParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.feed_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
@@ -49,10 +44,6 @@ pub async fn create_feed<B: serde::Serialize>(
     client: &Client,
     params: CreateFeedParams<B>,
 ) -> Result<TypedResponse<super::models::CreateFeedResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -78,10 +69,6 @@ pub async fn create_feed_document<B: serde::Serialize>(
     client: &Client,
     params: CreateFeedDocumentParams<B>,
 ) -> Result<TypedResponse<super::models::CreateFeedDocumentResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -107,11 +94,6 @@ pub async fn get_feed(
     client: &Client,
     params: GetFeedParams,
 ) -> Result<TypedResponse<super::models::Feed>, Error> {
-    {
-        let value = serde_json::to_value(&params.feed_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -142,15 +124,6 @@ pub async fn get_feed_document(
     client: &Client,
     params: GetFeedDocumentParams,
 ) -> Result<TypedResponse<super::models::FeedDocument>, Error> {
-    {
-        let value = serde_json::to_value(&params.feed_document_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.enable_content_encoding_url_header {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"boolean\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(
         &mut query,
@@ -209,70 +182,6 @@ pub async fn get_feeds(
     client: &Client,
     params: GetFeedsParams,
 ) -> Result<TypedResponse<super::models::GetFeedsResponse>, Error> {
-    if let Some(parameter) = &params.feed_types {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":10,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.marketplace_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":10,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.processing_statuses {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"CANCELLED\",\"DONE\",\"FATAL\",\"IN_PROGRESS\",\"IN_QUEUE\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The feed was cancelled before it started processing.\",\"value\":\"CANCELLED\"},{\"description\":\"The feed has completed processing. Examine the contents of the result document to determine if there were any errors during processing.\",\"value\":\"DONE\"},{\"description\":\"The feed was aborted due to a fatal error. Some, none, or all of the operations within the feed may have completed successfully.\",\"value\":\"FATAL\"},{\"description\":\"The feed is being processed.\",\"value\":\"IN_PROGRESS\"},{\"description\":\"The feed has not yet started processing. It may be waiting for another IN_PROGRESS feed.\",\"value\":\"IN_QUEUE\"}]},\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.created_since {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_until {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdSince", params.created_since.as_ref());
     operation::pair(&mut query, "createdUntil", params.created_until.as_ref());
@@ -334,13 +243,6 @@ pub(crate) async fn get_feeds_continue(
     client: &Client,
     params: GetFeedsContinueParams,
 ) -> Result<Response, Error> {
-    validate_parameter(
-        serde_json::Value::String(params.next_token.clone()),
-        "query",
-        "{\"type\":\"string\"}",
-        true,
-        false,
-    )?;
     client
         .execute_json(Request {
             method: "GET".into(),

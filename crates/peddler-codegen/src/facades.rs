@@ -45,7 +45,7 @@ pub(crate) fn rust(
     pagination: &[&Resolved],
 ) -> Result<String, GenerationError> {
     let mut source = String::from(
-        "use crate::{Client, Error, Request, Response};\nuse crate::operation::{self, DecodeError, TypedResponse, validate_parameter};\n",
+        "use crate::{Client, Error, Request, Response};\nuse crate::operation::{self, DecodeError, TypedResponse};\n",
     );
     for op in &client.operations {
         let params = format!("{}Params", pascal(&op.name));
@@ -138,41 +138,6 @@ pub(crate) fn rust(
             params
         };
         writeln!(source,"pub async fn {}{generic_fn}(client:&Client, params:{params_ty})->Result<{response},Error> {{",op.name).unwrap();
-        for p in &op.parameters {
-            if p.location == "body" {
-                continue;
-            }
-            let schema = serde_json::to_string(&p.schema)?;
-            let call = format!(
-                "validate_parameter(value, {:?}, {schema:?}, {}, {})?;",
-                p.location, p.required, p.csv
-            );
-            // Validate serialized primitive values to keep one shared validator
-            // for scalar formats, bounds, patterns, headers and array rules.
-            if p.required {
-                let borrow = if matches!(p.schema["type"].as_str(), Some("boolean" | "integer")) {
-                    ""
-                } else {
-                    "&"
-                };
-                writeln!(source,"{{ let value = serde_json::to_value({borrow}params.{}).map_err(|_|Error::InvalidRequest)?; {call} }}",p.name).unwrap();
-            } else {
-                writeln!(source,"if let Some(parameter) = &params.{} {{ let value=serde_json::to_value(parameter).map_err(|_|Error::InvalidRequest)?; {call} }}",p.name).unwrap();
-            }
-        }
-        // Keep bodies flexible; reject wrong top-level shape when the API
-        // schema is object/array, without rebuilding nested typed models.
-        if let Some(body) = body {
-            let kind = body.body_type.as_deref().unwrap_or("object");
-            if ["object", "array"].contains(&kind) {
-                let given = if body.required {
-                    "let body = &params.body;\nif"
-                } else {
-                    "if let Some(body) = &params.body &&"
-                };
-                writeln!(source,"{given} !serde_json::to_value(body).map_err(|_|Error::InvalidRequest)?.is_{kind}() {{ return Err(Error::InvalidRequest); }}").unwrap();
-            }
-        }
         request(&mut source, op)?;
         if response == "Response" {
             source.push_str("Ok(raw)\n")
@@ -347,14 +312,9 @@ fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(),
         .find(|p| p.name == token)
         .expect("resolved token")
         .wire_name;
-    let mut validation = String::new();
-    for p in &kept {
-        let schema = serde_json::to_string(&p.schema)?;
-        writeln!(validation,"validate_parameter(serde_json::Value::String(params.{}.clone()), {:?}, {schema:?}, true, false)?;",p.name,p.location).unwrap();
-    }
     writeln!(
         source,
-        "pub(crate) async fn {}_continue(client:&Client, params:{strukt})->Result<Response,Error> {{\n{validation}client.execute_json(Request {{ method: {:?}.into(), path: {}, query: vec![({wire:?}.into(), params.{token})], headers: Vec::new(), body: None }}).await\n}}",
+        "pub(crate) async fn {}_continue(client:&Client, params:{strukt})->Result<Response,Error> {{\nclient.execute_json(Request {{ method: {:?}.into(), path: {}, query: vec![({wire:?}.into(), params.{token})], headers: Vec::new(), body: None }}).await\n}}",
         op.name,
         op.method,
         path(op)?

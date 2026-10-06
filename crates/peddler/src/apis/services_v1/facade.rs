@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct AddAppointmentForServiceJobByServiceJobIdParams<B = serde_json::Value> {
@@ -19,21 +19,6 @@ pub async fn add_appointment_for_service_job_by_service_job_id<B: serde::Seriali
     client: &Client,
     params: AddAppointmentForServiceJobByServiceJobIdParams<B>,
 ) -> Result<TypedResponse<super::models::SetAppointmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.service_job_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -70,32 +55,6 @@ pub async fn assign_appointment_resources<B: serde::Serialize>(
     client: &Client,
     params: AssignAppointmentResourcesParams<B>,
 ) -> Result<TypedResponse<super::models::AssignAppointmentResourcesResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.service_job_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.appointment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -132,28 +91,6 @@ pub async fn cancel_reservation(
     client: &Client,
     params: CancelReservationParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.reservation_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -193,28 +130,6 @@ pub async fn cancel_service_job_by_service_job_id(
     TypedResponse<super::models::CancelServiceJobByServiceJobIdResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.service_job_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.cancellation_reason_code)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":100,\"minLength\":1,\"pattern\":\"^[A-Z0-9_]*$\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(
         &mut query,
@@ -254,17 +169,6 @@ pub async fn complete_service_job_by_service_job_id(
     TypedResponse<super::models::CompleteServiceJobByServiceJobIdResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.service_job_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -296,21 +200,6 @@ pub async fn create_reservation<B: serde::Serialize>(
     client: &Client,
     params: CreateReservationParams<B>,
 ) -> Result<TypedResponse<super::models::CreateReservationResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -342,10 +231,6 @@ pub async fn create_service_document_upload_destination<B: serde::Serialize>(
     TypedResponse<super::models::CreateServiceDocumentUploadDestination>,
     Error,
 > {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -381,41 +266,6 @@ pub async fn get_appointment_slots(
     client: &Client,
     params: GetAppointmentSlotsParams,
 ) -> Result<TypedResponse<super::models::GetAppointmentSlotsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.store_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.start_time {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.end_time {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "asin", Some(&params.asin));
     operation::pair(&mut query, "endTime", params.end_time.as_ref());
@@ -456,36 +306,6 @@ pub async fn get_appointmment_slots_by_job_id(
     client: &Client,
     params: GetAppointmmentSlotsByJobIdParams,
 ) -> Result<TypedResponse<super::models::GetAppointmentSlotsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.service_job_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.start_time {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.end_time {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "endTime", params.end_time.as_ref());
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -529,36 +349,6 @@ pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
     client: &Client,
     params: GetFixedSlotCapacityParams<B>,
 ) -> Result<TypedResponse<super::models::FixedSlotCapacity>, Error> {
-    {
-        let value = serde_json::to_value(&params.resource_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.next_page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::pair(&mut query, "nextPageToken", params.next_page_token.as_ref());
@@ -623,36 +413,6 @@ pub async fn get_range_slot_capacity<B: serde::Serialize>(
     client: &Client,
     params: GetRangeSlotCapacityParams<B>,
 ) -> Result<TypedResponse<super::models::RangeSlotCapacity>, Error> {
-    {
-        let value = serde_json::to_value(&params.resource_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.next_page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::pair(&mut query, "nextPageToken", params.next_page_token.as_ref());
@@ -709,17 +469,6 @@ pub async fn get_service_job_by_service_job_id(
     client: &Client,
     params: GetServiceJobByServiceJobIdParams,
 ) -> Result<TypedResponse<super::models::GetServiceJobByServiceJobIdResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.service_job_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -789,145 +538,6 @@ pub async fn get_service_jobs(
     client: &Client,
     params: GetServiceJobsParams,
 ) -> Result<TypedResponse<super::models::GetServiceJobsResponse>, Error> {
-    if let Some(parameter) = &params.service_order_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"pattern\":\"^[0-9\\\\-]+$\",\"type\":\"string\"},\"maxItems\":20,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.product_order_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"pattern\":\"^[0-9\\\\-]+$\",\"type\":\"string\"},\"maxItems\":20,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.tracking_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"pattern\":\"^[A-Za-z0-9\\\\-]+$\",\"type\":\"string\"},\"maxItems\":20,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.service_job_status {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"NOT_SERVICED\",\"CANCELLED\",\"COMPLETED\",\"PENDING_SCHEDULE\",\"NOT_FULFILLABLE\",\"HOLD\",\"PAYMENT_DECLINED\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Jobs which are not serviced.\",\"value\":\"NOT_SERVICED\"},{\"description\":\"Jobs which are cancelled.\",\"value\":\"CANCELLED\"},{\"description\":\"Jobs successfully completed.\",\"value\":\"COMPLETED\"},{\"description\":\"Jobs which are pending schedule.\",\"value\":\"PENDING_SCHEDULE\"},{\"description\":\"Jobs which are not fulfillable.\",\"value\":\"NOT_FULFILLABLE\"},{\"description\":\"Jobs which are on hold.\",\"value\":\"HOLD\"},{\"description\":\"Jobs for which payment was declined.\",\"value\":\"PAYMENT_DECLINED\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":20,\"maximum\":20,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_field {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"JOB_DATE\",\"JOB_STATUS\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.sort_order {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.created_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.last_updated_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.last_updated_before {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.schedule_start_date {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.schedule_end_date {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.asins {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"maxLength\":10,\"minLength\":10,\"type\":\"string\"},\"maxItems\":20,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.required_skills {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"maxLength\":50,\"minLength\":1,\"type\":\"string\"},\"maxItems\":20,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.store_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"},\"maxItems\":50,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "asins", params.asins.as_ref());
     operation::pair(&mut query, "createdAfter", params.created_after.as_ref());
@@ -1020,32 +630,6 @@ pub async fn reschedule_appointment_for_service_job_by_service_job_id<
     client: &Client,
     params: RescheduleAppointmentForServiceJobByServiceJobIdParams<B>,
 ) -> Result<TypedResponse<super::models::SetAppointmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.service_job_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.appointment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -1083,32 +667,6 @@ pub async fn set_appointment_fulfillment_data<B: serde::Serialize>(
     client: &Client,
     params: SetAppointmentFulfillmentDataParams<B>,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.service_job_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.appointment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "PUT".into(),
@@ -1147,32 +705,6 @@ pub async fn update_reservation<B: serde::Serialize>(
     client: &Client,
     params: UpdateReservationParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateReservationResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.reservation_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -1211,32 +743,6 @@ pub async fn update_schedule<B: serde::Serialize>(
     client: &Client,
     params: UpdateScheduleParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateScheduleResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.resource_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":100,\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));

@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelShipmentParams {
@@ -18,17 +18,6 @@ pub async fn cancel_shipment(
     client: &Client,
     params: CancelShipmentParams,
 ) -> Result<TypedResponse<super::models::CancelShipmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"pattern\":\"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
@@ -55,10 +44,6 @@ pub async fn create_shipment<B: serde::Serialize>(
     client: &Client,
     params: CreateShipmentParams<B>,
 ) -> Result<TypedResponse<super::models::CreateShipmentResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -84,10 +69,6 @@ pub async fn get_additional_seller_inputs<B: serde::Serialize>(
     client: &Client,
     params: GetAdditionalSellerInputsParams<B>,
 ) -> Result<TypedResponse<super::models::GetAdditionalSellerInputsResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -113,10 +94,6 @@ pub async fn get_eligible_shipment_services<B: serde::Serialize>(
     client: &Client,
     params: GetEligibleShipmentServicesParams<B>,
 ) -> Result<TypedResponse<super::models::GetEligibleShipmentServicesResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -142,17 +119,6 @@ pub async fn get_shipment(
     client: &Client,
     params: GetShipmentParams,
 ) -> Result<TypedResponse<super::models::GetShipmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"pattern\":\"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\",\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),

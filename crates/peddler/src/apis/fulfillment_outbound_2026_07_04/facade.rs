@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelOrderParams {
@@ -22,27 +22,6 @@ pub async fn cancel_order(
     client: &Client,
     params: CancelOrderParams,
 ) -> Result<TypedResponse<super::models::CancelOrderResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -100,20 +79,6 @@ pub async fn create_order<B: serde::Serialize>(
     client: &Client,
     params: CreateOrderParams<B>,
 ) -> Result<CreateOrderResponse, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -149,20 +114,6 @@ pub async fn get_offers<B: serde::Serialize>(
     client: &Client,
     params: GetOffersParams<B>,
 ) -> Result<TypedResponse<super::models::GetOffersResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -200,37 +151,6 @@ pub async fn get_order(
     client: &Client,
     params: GetOrderParams,
 ) -> Result<TypedResponse<super::models::GetOrderResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.shipments {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"INCLUDE\",\"EXCLUDE\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "shipments", params.shipments.as_ref());
     let mut headers = Vec::new();
@@ -272,20 +192,6 @@ pub async fn get_order_preview<B: serde::Serialize>(
     client: &Client,
     params: GetOrderPreviewParams<B>,
 ) -> Result<TypedResponse<super::models::GetOrderPreviewResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -330,40 +236,6 @@ pub async fn list_orders(
     client: &Client,
     params: ListOrdersParams,
 ) -> Result<TypedResponse<super::models::ListOrdersResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.updated_after {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.shipments {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"INCLUDE\",\"EXCLUDE\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "pageToken", params.page_token.as_ref());
     operation::pair(&mut query, "shipments", params.shipments.as_ref());
@@ -427,31 +299,6 @@ pub async fn update_order<B: serde::Serialize>(
     client: &Client,
     params: UpdateOrderParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateOrderResponse>, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -493,31 +340,6 @@ pub async fn update_order_status<B: serde::Serialize>(
     client: &Client,
     params: UpdateOrderStatusParams<B>,
 ) -> Result<Response, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -562,36 +384,6 @@ pub async fn update_package<B: serde::Serialize>(
     client: &Client,
     params: UpdatePackageParams<B>,
 ) -> Result<Response, Error> {
-    if let Some(parameter) = &params.x_amzn_fulfillment_service_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "header",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.order_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"maxLength\":40,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.package_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,

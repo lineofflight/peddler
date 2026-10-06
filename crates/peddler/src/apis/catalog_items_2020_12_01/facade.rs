@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 fn get_catalog_item_included_data_default() -> Option<Vec<String>> {
     Some(serde_json::from_str("[\"summaries\"]").expect("validated schema default"))
 }
@@ -30,36 +30,6 @@ pub async fn get_catalog_item(
     client: &Client,
     params: GetCatalogItemParams,
 ) -> Result<TypedResponse<super::models::Item>, Error> {
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":[\"summaries\"],\"items\":{\"enum\":[\"attributes\",\"identifiers\",\"images\",\"productTypes\",\"salesRanks\",\"summaries\",\"variations\",\"vendorDetails\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"A JSON object containing structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related Amazon product type definitions available in the Selling Partner API for Product Type Definitions.\",\"value\":\"attributes\"},{\"description\":\"Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.\",\"value\":\"identifiers\"},{\"description\":\"Images for an item in the Amazon catalog. All image variants are provided to brand owners. Otherwise, a thumbnail of the \\\"MAIN\\\" image variant is provided.\",\"value\":\"images\"},{\"description\":\"Product types associated with the Amazon catalog item.\",\"value\":\"productTypes\"},{\"description\":\"Sales ranks of an Amazon catalog item.\",\"value\":\"salesRanks\"},{\"description\":\"Summary details of an Amazon catalog item.\",\"value\":\"summaries\"},{\"description\":\"Variation details of an Amazon catalog item (variation relationships).\",\"value\":\"variations\"},{\"description\":\"Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only.\",\"value\":\"vendorDetails\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "includedData", params.included_data.as_ref());
     operation::pair(&mut query, "locale", params.locale.as_ref());
@@ -118,80 +88,6 @@ pub async fn search_catalog_items(
     client: &Client,
     params: SearchCatalogItemsParams,
 ) -> Result<TypedResponse<super::models::ItemSearchResults>, Error> {
-    {
-        let value = serde_json::to_value(&params.keywords)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.included_data {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":[\"summaries\"],\"items\":{\"enum\":[\"identifiers\",\"images\",\"productTypes\",\"salesRanks\",\"summaries\",\"variations\",\"vendorDetails\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.\",\"value\":\"identifiers\"},{\"description\":\"Images for an item in the Amazon catalog. All image variants are provided to brand owners; a thumbnail of the \\\"MAIN\\\" image variant is provided otherwise.\",\"value\":\"images\"},{\"description\":\"Product types associated with the Amazon catalog item.\",\"value\":\"productTypes\"},{\"description\":\"Sales ranks of an Amazon catalog item.\",\"value\":\"salesRanks\"},{\"description\":\"Summary details of an Amazon catalog item.\",\"value\":\"summaries\"},{\"description\":\"Variation details of an Amazon catalog item (variation relationships).\",\"value\":\"variations\"},{\"description\":\"Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only.\",\"value\":\"vendorDetails\"}]},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.brand_names {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.classification_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":20,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.keywords_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "brandNames", params.brand_names.as_ref());
     operation::csv(&mut query, "classificationIds", params.classification_ids.as_ref());

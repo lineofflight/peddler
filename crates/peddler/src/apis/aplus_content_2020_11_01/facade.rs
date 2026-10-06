@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateContentDocumentParams<B = serde_json::Value> {
@@ -19,21 +19,6 @@ pub async fn create_content_document<B: serde::Serialize>(
     client: &Client,
     params: CreateContentDocumentParams<B>,
 ) -> Result<TypedResponse<super::models::PostContentDocumentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -61,10 +46,6 @@ pub async fn create_media<B: serde::Serialize>(
     client: &Client,
     params: CreateMediaParams<B>,
 ) -> Result<TypedResponse<super::models::CreateMediaResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -100,39 +81,6 @@ pub async fn get_content_document(
     client: &Client,
     params: GetContentDocumentParams,
 ) -> Result<TypedResponse<super::models::GetContentDocumentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.content_reference_key)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.included_data_set)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"CONTENTS\",\"METADATA\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The contents of the content document.\",\"value\":\"CONTENTS\"},{\"description\":\"The metadata of the content document.\",\"value\":\"METADATA\"}]},\"minItems\":1,\"type\":\"array\",\"uniqueItems\":true}",
-            true,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "includedDataSet", Some(&params.included_data_set));
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
@@ -170,15 +118,6 @@ pub async fn get_media(
     client: &Client,
     params: GetMediaParams,
 ) -> Result<TypedResponse<super::models::GetMediaResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.media_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.associated_media_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(
         &mut query,
@@ -224,58 +163,6 @@ pub async fn list_content_document_asin_relations(
     TypedResponse<super::models::ListContentDocumentAsinRelationsResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.content_reference_key)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.included_data_set {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"METADATA\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The metadata of the content document.\",\"value\":\"METADATA\"}]},\"minItems\":0,\"type\":\"array\",\"uniqueItems\":true}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.asin_set {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"minLength\":10,\"type\":\"string\"},\"type\":\"array\",\"uniqueItems\":true}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "asinSet", params.asin_set.as_ref());
     operation::csv(&mut query, "includedDataSet", params.included_data_set.as_ref());
@@ -345,28 +232,6 @@ pub async fn post_content_document_approval_submission(
     TypedResponse<super::models::PostContentDocumentApprovalSubmissionResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.content_reference_key)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -408,32 +273,6 @@ pub async fn post_content_document_asin_relations<B: serde::Serialize>(
     TypedResponse<super::models::PostContentDocumentAsinRelationsResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.content_reference_key)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -473,28 +312,6 @@ pub async fn post_content_document_suspend_submission(
     TypedResponse<super::models::PostContentDocumentSuspendSubmissionResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.content_reference_key)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -531,27 +348,6 @@ pub async fn search_content_documents(
     client: &Client,
     params: SearchContentDocumentsParams,
 ) -> Result<TypedResponse<super::models::SearchContentDocumentsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "pageToken", params.page_token.as_ref());
@@ -608,38 +404,6 @@ pub async fn search_content_publish_records(
     client: &Client,
     params: SearchContentPublishRecordsParams,
 ) -> Result<TypedResponse<super::models::SearchContentPublishRecordsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":10,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "asin", Some(&params.asin));
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
@@ -698,32 +462,6 @@ pub async fn update_content_document<B: serde::Serialize>(
     client: &Client,
     params: UpdateContentDocumentParams<B>,
 ) -> Result<TypedResponse<super::models::PostContentDocumentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.content_reference_key)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "path",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -761,19 +499,6 @@ pub async fn update_media<B: serde::Serialize>(
     client: &Client,
     params: UpdateMediaParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateMediaResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.media_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.associated_media_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(
         &mut query,
@@ -815,31 +540,6 @@ pub async fn validate_content_document_asin_relations<B: serde::Serialize>(
     TypedResponse<super::models::ValidateContentDocumentAsinRelationsResponse>,
     Error,
 > {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"minLength\":1,\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.asin_set {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"minLength\":10,\"type\":\"string\"},\"type\":\"array\",\"uniqueItems\":true}",
-            false,
-            true,
-        )?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "asinSet", params.asin_set.as_ref());
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));

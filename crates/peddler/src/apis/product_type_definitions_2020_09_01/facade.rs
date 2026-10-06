@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 fn get_definitions_product_type_product_type_version_default() -> Option<String> {
     Some(serde_json::from_str("\"LATEST\"").expect("validated schema default"))
 }
@@ -50,76 +50,6 @@ pub async fn get_definitions_product_type(
     client: &Client,
     params: GetDefinitionsProductTypeParams,
 ) -> Result<TypedResponse<super::models::ProductTypeDefinition>, Error> {
-    {
-        let value = serde_json::to_value(&params.product_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.seller_id {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.product_type_version {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"LATEST\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.requirements {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"LISTING\",\"enum\":[\"LISTING\",\"LISTING_PRODUCT_ONLY\",\"LISTING_OFFER_ONLY\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.requirements_enforced {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"ENFORCED\",\"enum\":[\"ENFORCED\",\"NOT_ENFORCED\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":\"DEFAULT\",\"enum\":[\"DEFAULT\",\"ar\",\"ar_AE\",\"de\",\"de_DE\",\"en\",\"en_AE\",\"en_AU\",\"en_CA\",\"en_GB\",\"en_IN\",\"en_SG\",\"en_US\",\"es\",\"es_ES\",\"es_MX\",\"es_US\",\"fr\",\"fr_CA\",\"fr_FR\",\"it\",\"it_IT\",\"ja\",\"ja_JP\",\"nl\",\"nl_NL\",\"pl\",\"pl_PL\",\"pt\",\"pt_BR\",\"pt_PT\",\"sv\",\"sv_SE\",\"tr\",\"tr_TR\",\"zh\",\"zh_CN\",\"zh_TW\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.parentage_level {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"NONE\",\"CHILD\",\"PARENT\"],\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "locale", params.locale.as_ref());
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
@@ -176,39 +106,6 @@ pub async fn search_definitions_product_types(
     client: &Client,
     params: SearchDefinitionsProductTypesParams,
 ) -> Result<TypedResponse<super::models::ProductTypeList>, Error> {
-    if let Some(parameter) = &params.keywords {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.item_name {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.search_locale {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "itemName", params.item_name.as_ref());
     operation::csv(&mut query, "keywords", params.keywords.as_ref());

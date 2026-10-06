@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetBrowseNodeReturnTopicsParams {
@@ -36,16 +36,6 @@ pub async fn get_browse_node_return_topics(
     client: &Client,
     params: GetBrowseNodeReturnTopicsParams,
 ) -> Result<GetBrowseNodeReturnTopicsResponse, Error> {
-    {
-        let value = serde_json::to_value(&params.browse_node_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -98,16 +88,6 @@ pub async fn get_browse_node_return_trends(
     client: &Client,
     params: GetBrowseNodeReturnTrendsParams,
 ) -> Result<GetBrowseNodeReturnTrendsResponse, Error> {
-    {
-        let value = serde_json::to_value(&params.browse_node_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -162,27 +142,6 @@ pub async fn get_browse_node_review_topics(
     client: &Client,
     params: GetBrowseNodeReviewTopicsParams,
 ) -> Result<GetBrowseNodeReviewTopicsResponse, Error> {
-    {
-        let value = serde_json::to_value(&params.browse_node_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sort_by)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"MENTIONS\",\"STAR_RATING_IMPACT\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The top positive and negative topics calculated by their occurrence percentage in customers reviews of the ASINs under the requested BrowseNode.\",\"value\":\"MENTIONS\"},{\"description\":\"The top positive and negative topics calculated by their impact towards the star rating of the products under the requested BrowseNode.\",\"value\":\"STAR_RATING_IMPACT\"}]},\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "sortBy", Some(&params.sort_by));
@@ -236,16 +195,6 @@ pub async fn get_browse_node_review_trends(
     client: &Client,
     params: GetBrowseNodeReviewTrendsParams,
 ) -> Result<GetBrowseNodeReviewTrendsResponse, Error> {
-    {
-        let value = serde_json::to_value(&params.browse_node_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -293,16 +242,6 @@ pub async fn get_item_browse_node(
     client: &Client,
     params: GetItemBrowseNodeParams,
 ) -> Result<GetItemBrowseNodeResponse, Error> {
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -355,27 +294,6 @@ pub async fn get_item_review_topics(
     client: &Client,
     params: GetItemReviewTopicsParams,
 ) -> Result<GetItemReviewTopicsResponse, Error> {
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.sort_by)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"MENTIONS\",\"STAR_RATING_IMPACT\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The top positive and negative topics calculated by their mentions in customers reviews of the ASIN.\",\"value\":\"MENTIONS\"},{\"description\":\"The top positive and negative topics calculated by their impact towards the star rating of the ASIN.\",\"value\":\"STAR_RATING_IMPACT\"}]},\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "sortBy", Some(&params.sort_by));
@@ -424,16 +342,6 @@ pub async fn get_item_review_trends(
     client: &Client,
     params: GetItemReviewTrendsParams,
 ) -> Result<GetItemReviewTrendsResponse, Error> {
-    {
-        let value = serde_json::to_value(&params.asin)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client

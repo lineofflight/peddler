@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateOrderScenariosParams<B = serde_json::Value> {
@@ -18,10 +18,6 @@ pub async fn generate_order_scenarios<B: serde::Serialize>(
     client: &Client,
     params: GenerateOrderScenariosParams<B>,
 ) -> Result<TypedResponse<super::models::TransactionReference>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -47,11 +43,6 @@ pub async fn get_order_scenarios(
     client: &Client,
     params: GetOrderScenariosParams,
 ) -> Result<TypedResponse<super::models::TransactionStatus>, Error> {
-    {
-        let value = serde_json::to_value(&params.transaction_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),

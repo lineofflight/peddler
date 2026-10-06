@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct AddInventoryParams<B = serde_json::Value> {
@@ -22,15 +22,6 @@ pub async fn add_inventory<B: serde::Serialize>(
     client: &Client,
     params: AddInventoryParams<B>,
 ) -> Result<TypedResponse<super::models::AddInventoryResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.x_amzn_idempotency_token)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut headers = Vec::new();
     operation::pair(
         &mut headers,
@@ -62,10 +53,6 @@ pub async fn create_inventory_item<B: serde::Serialize>(
     client: &Client,
     params: CreateInventoryItemParams<B>,
 ) -> Result<TypedResponse<super::models::CreateInventoryItemResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -92,16 +79,6 @@ pub async fn delete_inventory_item(
     client: &Client,
     params: DeleteInventoryItemParams,
 ) -> Result<TypedResponse<super::models::DeleteInventoryItemResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.seller_sku)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -154,71 +131,6 @@ pub async fn get_inventory_summaries(
     client: &Client,
     params: GetInventorySummariesParams,
 ) -> Result<TypedResponse<super::models::GetInventorySummariesResponse>, Error> {
-    if let Some(parameter) = &params.details {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":false,\"type\":\"boolean\"}",
-            false,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.granularity_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"enum\":[\"Marketplace\"],\"type\":\"string\"}",
-            true,
-            false,
-        )?;
-    }
-    {
-        let value = serde_json::to_value(&params.granularity_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.start_date_time {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.seller_skus {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":50,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.seller_sku {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_ids)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "details", params.details.as_ref());
     operation::pair(&mut query, "granularityId", Some(&params.granularity_id));

@@ -32,11 +32,8 @@ module Peddler
             "Identifier": "UmaS1",
           },
         }
-        # v5 recorded this with an empty SKU. The generated method rejects one before any request, so the
-        # recording is replayed through a raw request under the same operation.
-        assert_raises(ArgumentError) { api.get_my_fees_estimate_for_sku(seller_sku: "", body: payload) }
-        res = client.request("POST", "/products/fees/v0/listings//feesEstimate", body: payload,
-          operation: "product_fees_v0.get_my_fees_estimate_for_sku")
+        # v5 recorded this with an empty SKU
+        res = api.get_my_fees_estimate_for_sku(seller_sku: "", body: payload)
 
         assert_success(res)
       end
@@ -67,9 +64,7 @@ module Peddler
           },
         }
         # Recorded with an empty ASIN, as above
-        assert_raises(ArgumentError) { api.get_my_fees_estimate_for_asin(asin: "", body: payload) }
-        res = client.request("POST", "/products/fees/v0/items//feesEstimate", body: payload,
-          operation: "product_fees_v0.get_my_fees_estimate_for_asin")
+        res = api.get_my_fees_estimate_for_asin(asin: "", body: payload)
 
         assert_success(res)
       end

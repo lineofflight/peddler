@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateDestinationParams<B = serde_json::Value> {
@@ -18,10 +18,6 @@ pub async fn create_destination<B: serde::Serialize>(
     client: &Client,
     params: CreateDestinationParams<B>,
 ) -> Result<TypedResponse<super::models::CreateDestinationResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -48,15 +44,6 @@ pub async fn create_subscription<B: serde::Serialize>(
     client: &Client,
     params: CreateSubscriptionParams<B>,
 ) -> Result<TypedResponse<super::models::CreateSubscriptionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.notification_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -86,11 +73,6 @@ pub async fn delete_destination(
     client: &Client,
     params: DeleteDestinationParams,
 ) -> Result<TypedResponse<super::models::DeleteDestinationResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.destination_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
@@ -124,16 +106,6 @@ pub async fn delete_subscription_by_id(
     client: &Client,
     params: DeleteSubscriptionByIdParams,
 ) -> Result<TypedResponse<super::models::DeleteSubscriptionByIdResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.subscription_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.notification_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
@@ -165,11 +137,6 @@ pub async fn get_destination(
     client: &Client,
     params: GetDestinationParams,
 ) -> Result<TypedResponse<super::models::GetDestinationResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.destination_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -231,15 +198,6 @@ pub async fn get_subscription(
     client: &Client,
     params: GetSubscriptionParams,
 ) -> Result<TypedResponse<super::models::GetSubscriptionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.notification_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.payload_version {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "payloadVersion", params.payload_version.as_ref());
     let raw = client
@@ -275,16 +233,6 @@ pub async fn get_subscription_by_id(
     client: &Client,
     params: GetSubscriptionByIdParams,
 ) -> Result<TypedResponse<super::models::GetSubscriptionByIdResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.subscription_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.notification_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -328,35 +276,6 @@ pub async fn get_subscriptions(
     client: &Client,
     params: GetSubscriptionsParams,
 ) -> Result<TypedResponse<super::models::GetSubscriptionsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.notification_types)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":1,\"minItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.payload_version {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":30,\"maximum\":100,\"minimum\":30,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::csv(&mut query, "notificationTypes", Some(&params.notification_types));
@@ -411,15 +330,6 @@ pub async fn send_test_notification<B: serde::Serialize>(
     client: &Client,
     params: SendTestNotificationParams<B>,
 ) -> Result<TypedResponse<super::models::SendTestNotificationResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.notification_type)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),

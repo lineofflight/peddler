@@ -176,10 +176,11 @@ async fn all_http_statuses_and_malformed_json_remain_raw_responses() {
     );
 }
 #[tokio::test]
-async fn rejects_invalid_arguments_before_network_without_echoing_secrets() {
+async fn refuses_what_it_cannot_send_before_network_without_echoing_secrets() {
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let client = Client::new(&format!("http://{}", listener.local_addr().unwrap()), TOKEN).unwrap();
-    for value in ["", ".", ".."] {
+    // A dot segment would be resolved away and reach another resource.
+    for value in [".", ".."] {
         let mut p = catalog();
         p.asin = value.into();
         assert_eq!(
@@ -199,32 +200,21 @@ async fn rejects_invalid_arguments_before_network_without_echoing_secrets() {
             Error::InvalidRequest
         );
     }
-    for values in [vec!["".into()], vec!["UK,DE".into()]] {
-        let mut p = catalog();
-        p.marketplace_ids = values.clone();
-        assert_eq!(
-            get_catalog_item(&client, p).await.unwrap_err(),
-            Error::InvalidRequest
-        );
-        let mut p = patch(json!({}));
-        p.included_data = Some(values);
-        assert_eq!(
-            patch_listings_item(&client, p).await.unwrap_err(),
-            Error::InvalidRequest
-        );
-    }
-    for bad in [Value::Null, json!([]), json!("secret")] {
-        assert_eq!(
-            patch_listings_item(&client, patch(bad)).await.unwrap_err(),
-            Error::InvalidRequest
-        );
-    }
     for (operation, args) in [
         ("unknown", "private-secret"),
         ("catalog_items_2022_04_01.get_catalog_item", "not JSON"),
         (
             "catalog_items_2022_04_01.get_catalog_item",
             r#"{"asin":"private-secret","marketplace_ids":["UK"],"typo":true}"#,
+        ),
+        // A value of the wrong type, and a header value with a line break
+        (
+            "shipping_v2.get_shipment_documents",
+            r#"{"shipment_id":"s","package_client_reference_id":"p","dpi":"private-secret"}"#,
+        ),
+        (
+            "shipping_v2.link_carrier_account",
+            r#"{"carrier_id":"c","body":{},"x_amzn_shipping_business_id":"private-secret\r\nbad"}"#,
         ),
     ] {
         let error = apis::execute(&client, operation, args).await.unwrap_err();
@@ -236,6 +226,32 @@ async fn rejects_invalid_arguments_before_network_without_echoing_secrets() {
             .await
             .is_err()
     );
+}
+#[tokio::test]
+async fn sends_what_only_amazon_can_judge() {
+    for (operation, arguments, expected) in [
+        (
+            "shipping_v1.retrieve_shipping_label",
+            json!({"shipment_id":"s","tracking_id":"","body":{}}),
+            "POST /shipping/v1/shipments/s/containers//label HTTP/1.1",
+        ),
+        (
+            "fulfillment_inbound_2024_03_20.list_item_compliance_details",
+            json!({"mskus":[],"marketplace_id":"UK"}),
+            "GET /inbound/fba/2024-03-20/items/compliance?marketplaceId=UK&mskus= HTTP/1.1",
+        ),
+        (
+            "fulfillment_inbound_v0.get_prep_instructions",
+            json!({"ship_to_country_code":"gb","asin_list":["a,b",""]}),
+            "GET /fba/inbound/v0/prepInstructions?ASINList=a%2Cb%2C&ShipToCountryCode=gb HTTP/1.1",
+        ),
+    ] {
+        let (client, api) = server(200, b"{}").await;
+        apis::execute(&client, operation, &arguments.to_string())
+            .await
+            .unwrap();
+        assert_eq!(received(&api).lines().next().unwrap(), expected);
+    }
 }
 #[tokio::test]
 async fn configured_timeout_covers_generated_response_body_collection() {
@@ -351,45 +367,4 @@ async fn distinct_success_decoders_require_the_matching_status_and_preserve_raw(
             actual: 200
         })
     ));
-}
-
-#[tokio::test]
-async fn expanded_parameters_validate_before_any_request() {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let base = format!("http://{}", listener.local_addr().unwrap());
-    let client = Client::new(&base, "token").unwrap();
-    for (operation, args) in [
-        (
-            "vendor_direct_fulfillment_orders_2021_12_28.get_orders",
-            json!({"created_after":"bad","created_before":"2026-10-02T00:00:00Z"}),
-        ),
-        (
-            "fulfillment_inbound_2024_03_20.list_item_compliance_details",
-            json!({"mskus":[],"marketplace_id":"UK"}),
-        ),
-        (
-            "shipping_v2.link_carrier_account",
-            json!({"carrier_id":"c","body":{},"x_amzn_shipping_business_id":"secret\r\nbad"}),
-        ),
-        (
-            "fulfillment_inbound_v0.get_prep_instructions",
-            json!({"ship_to_country_code":"gb"}),
-        ),
-        (
-            "shipping_v2.get_shipment_documents",
-            json!({"shipment_id":"s","package_client_reference_id":"p","dpi":"wrong"}),
-        ),
-    ] {
-        assert_eq!(
-            apis::execute(&client, operation, &args.to_string())
-                .await
-                .unwrap_err(),
-            Error::InvalidRequest
-        );
-    }
-    assert!(
-        tokio::time::timeout(Duration::from_millis(30), listener.accept())
-            .await
-            .is_err()
-    );
 }

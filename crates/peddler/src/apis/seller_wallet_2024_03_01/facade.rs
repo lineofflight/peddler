@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateTransactionParams<B = serde_json::Value> {
@@ -31,25 +31,6 @@ pub async fn create_transaction<B: serde::Serialize>(
     client: &Client,
     params: CreateTransactionParams<B>,
 ) -> Result<TypedResponse<super::models::CreateTransactionResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.dest_account_digital_signature)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.amount_digital_signature)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let mut headers = Vec::new();
@@ -101,25 +82,6 @@ pub async fn create_transfer_schedule<B: serde::Serialize>(
     client: &Client,
     params: CreateTransferScheduleParams<B>,
 ) -> Result<TypedResponse<super::models::TransferSchedule>, Error> {
-    {
-        let value = serde_json::to_value(&params.dest_account_digital_signature)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.amount_digital_signature)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let mut headers = Vec::new();
@@ -162,16 +124,6 @@ pub async fn delete_schedule_transaction(
     client: &Client,
     params: DeleteScheduleTransactionParams,
 ) -> Result<TypedResponse<super::models::DeleteTransferSchedule>, Error> {
-    {
-        let value = serde_json::to_value(&params.transfer_schedule_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -204,16 +156,6 @@ pub async fn get_account(
     client: &Client,
     params: GetAccountParams,
 ) -> Result<TypedResponse<super::models::BankAccount>, Error> {
-    {
-        let value = serde_json::to_value(&params.account_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -249,16 +191,6 @@ pub async fn get_transaction(
     client: &Client,
     params: GetTransactionParams,
 ) -> Result<TypedResponse<super::models::Transaction>, Error> {
-    {
-        let value = serde_json::to_value(&params.transaction_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -309,36 +241,6 @@ pub async fn get_transfer_preview(
     client: &Client,
     params: GetTransferPreviewParams,
 ) -> Result<TypedResponse<super::models::TransferRatePreview>, Error> {
-    {
-        let value = serde_json::to_value(&params.source_country_code)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.source_currency_code)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.destination_country_code)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.destination_currency_code)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.base_amount)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"number\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "baseAmount", Some(&params.base_amount));
     operation::pair(
@@ -387,16 +289,6 @@ pub async fn get_transfer_schedule(
     client: &Client,
     params: GetTransferScheduleParams,
 ) -> Result<TypedResponse<super::models::TransferSchedule>, Error> {
-    {
-        let value = serde_json::to_value(&params.transfer_schedule_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -429,16 +321,6 @@ pub async fn list_account_balances(
     client: &Client,
     params: ListAccountBalancesParams,
 ) -> Result<TypedResponse<super::models::BalanceListing>, Error> {
-    {
-        let value = serde_json::to_value(&params.account_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -477,20 +359,6 @@ pub async fn list_account_transactions(
     client: &Client,
     params: ListAccountTransactionsParams,
 ) -> Result<TypedResponse<super::models::TransactionListing>, Error> {
-    {
-        let value = serde_json::to_value(&params.account_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.next_page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "accountId", Some(&params.account_id));
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
@@ -542,11 +410,6 @@ pub async fn list_accounts(
     client: &Client,
     params: ListAccountsParams,
 ) -> Result<TypedResponse<super::models::BankAccountListing>, Error> {
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
@@ -580,20 +443,6 @@ pub async fn list_transfer_schedules(
     client: &Client,
     params: ListTransferSchedulesParams,
 ) -> Result<TypedResponse<super::models::TransferScheduleListing>, Error> {
-    {
-        let value = serde_json::to_value(&params.account_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.next_page_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "accountId", Some(&params.account_id));
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
@@ -658,25 +507,6 @@ pub async fn update_transfer_schedule<B: serde::Serialize>(
     client: &Client,
     params: UpdateTransferScheduleParams<B>,
 ) -> Result<TypedResponse<super::models::TransferSchedule>, Error> {
-    {
-        let value = serde_json::to_value(&params.dest_account_digital_signature)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.amount_digital_signature)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "header", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.marketplace_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let mut headers = Vec::new();

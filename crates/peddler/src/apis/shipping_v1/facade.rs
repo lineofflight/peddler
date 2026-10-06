@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelShipmentParams {
@@ -18,11 +18,6 @@ pub async fn cancel_shipment(
     client: &Client,
     params: CancelShipmentParams,
 ) -> Result<TypedResponse<super::models::CancelShipmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -53,10 +48,6 @@ pub async fn create_shipment<B: serde::Serialize>(
     client: &Client,
     params: CreateShipmentParams<B>,
 ) -> Result<TypedResponse<super::models::CreateShipmentResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -110,10 +101,6 @@ pub async fn get_rates<B: serde::Serialize>(
     client: &Client,
     params: GetRatesParams<B>,
 ) -> Result<TypedResponse<super::models::GetRatesResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -139,11 +126,6 @@ pub async fn get_shipment(
     client: &Client,
     params: GetShipmentParams,
 ) -> Result<TypedResponse<super::models::GetShipmentResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -170,11 +152,6 @@ pub async fn get_tracking_information(
     client: &Client,
     params: GetTrackingInformationParams,
 ) -> Result<TypedResponse<super::models::GetTrackingInformationResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.tracking_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -202,15 +179,6 @@ pub async fn purchase_labels<B: serde::Serialize>(
     client: &Client,
     params: PurchaseLabelsParams<B>,
 ) -> Result<TypedResponse<super::models::PurchaseLabelsResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -241,10 +209,6 @@ pub async fn purchase_shipment<B: serde::Serialize>(
     client: &Client,
     params: PurchaseShipmentParams<B>,
 ) -> Result<TypedResponse<super::models::PurchaseShipmentResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -276,20 +240,6 @@ pub async fn retrieve_shipping_label<B: serde::Serialize>(
     client: &Client,
     params: RetrieveShippingLabelParams<B>,
 ) -> Result<TypedResponse<super::models::RetrieveShippingLabelResponse>, Error> {
-    {
-        let value = serde_json::to_value(&params.shipment_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    {
-        let value = serde_json::to_value(&params.tracking_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),

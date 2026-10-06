@@ -3,7 +3,7 @@
 
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
-use crate::operation::{self, DecodeError, TypedResponse, validate_parameter};
+use crate::operation::{self, DecodeError, TypedResponse};
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelReportParams {
@@ -18,11 +18,6 @@ pub async fn cancel_report(
     client: &Client,
     params: CancelReportParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.report_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
@@ -52,11 +47,6 @@ pub async fn cancel_report_schedule(
     client: &Client,
     params: CancelReportScheduleParams,
 ) -> Result<Response, Error> {
-    {
-        let value = serde_json::to_value(&params.report_schedule_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "DELETE".into(),
@@ -86,10 +76,6 @@ pub async fn create_report<B: serde::Serialize>(
     client: &Client,
     params: CreateReportParams<B>,
 ) -> Result<TypedResponse<super::models::CreateReportResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -115,10 +101,6 @@ pub async fn create_report_schedule<B: serde::Serialize>(
     client: &Client,
     params: CreateReportScheduleParams<B>,
 ) -> Result<TypedResponse<super::models::CreateReportScheduleResponse>, Error> {
-    let body = &params.body;
-    if !serde_json::to_value(body).map_err(|_| Error::InvalidRequest)?.is_object() {
-        return Err(Error::InvalidRequest);
-    }
     let raw = client
         .execute_json(Request {
             method: "POST".into(),
@@ -144,11 +126,6 @@ pub async fn get_report(
     client: &Client,
     params: GetReportParams,
 ) -> Result<TypedResponse<super::models::Report>, Error> {
-    {
-        let value = serde_json::to_value(&params.report_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -182,15 +159,6 @@ pub async fn get_report_document(
     client: &Client,
     params: GetReportDocumentParams,
 ) -> Result<TypedResponse<super::models::ReportDocument>, Error> {
-    {
-        let value = serde_json::to_value(&params.report_document_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
-    if let Some(parameter) = &params.enable_content_encoding_url_header {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"boolean\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(
         &mut query,
@@ -226,11 +194,6 @@ pub async fn get_report_schedule(
     client: &Client,
     params: GetReportScheduleParams,
 ) -> Result<TypedResponse<super::models::ReportSchedule>, Error> {
-    {
-        let value = serde_json::to_value(&params.report_schedule_id)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "path", "{\"type\":\"string\"}", true, false)?;
-    }
     let raw = client
         .execute_json(Request {
             method: "GET".into(),
@@ -260,17 +223,6 @@ pub async fn get_report_schedules(
     client: &Client,
     params: GetReportSchedulesParams,
 ) -> Result<TypedResponse<super::models::ReportScheduleList>, Error> {
-    {
-        let value = serde_json::to_value(&params.report_types)
-            .map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":10,\"minItems\":1,\"type\":\"array\"}",
-            true,
-            true,
-        )?;
-    }
     let mut query = Vec::new();
     operation::csv(&mut query, "reportTypes", Some(&params.report_types));
     operation::empty(&mut query, "reportTypes", Some(&params.report_types));
@@ -322,70 +274,6 @@ pub async fn get_reports(
     client: &Client,
     params: GetReportsParams,
 ) -> Result<TypedResponse<super::models::GetReportsResponse>, Error> {
-    if let Some(parameter) = &params.report_types {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":10,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.processing_statuses {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"enum\":[\"CANCELLED\",\"DONE\",\"FATAL\",\"IN_PROGRESS\",\"IN_QUEUE\"],\"type\":\"string\",\"x-docgen-enum-table-extension\":[{\"description\":\"The report was cancelled. There are two ways a report can be cancelled: an explicit cancellation request before the report starts processing, or an automatic cancellation if there is no data to return.\",\"value\":\"CANCELLED\"},{\"description\":\"The report has completed processing.\",\"value\":\"DONE\"},{\"description\":\"The report was aborted due to a fatal error.\",\"value\":\"FATAL\"},{\"description\":\"The report is being processed.\",\"value\":\"IN_PROGRESS\"},{\"description\":\"The report has not yet started processing. It may be waiting for another `IN_PROGRESS` report.\",\"value\":\"IN_QUEUE\"}]},\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.marketplace_ids {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"items\":{\"type\":\"string\"},\"maxItems\":10,\"minItems\":1,\"type\":\"array\"}",
-            false,
-            true,
-        )?;
-    }
-    if let Some(parameter) = &params.page_size {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_since {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.created_until {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(
-            value,
-            "query",
-            "{\"format\":\"date-time\",\"type\":\"string\"}",
-            false,
-            false,
-        )?;
-    }
-    if let Some(parameter) = &params.next_token {
-        let value = serde_json::to_value(parameter).map_err(|_| Error::InvalidRequest)?;
-        validate_parameter(value, "query", "{\"type\":\"string\"}", false, false)?;
-    }
     let mut query = Vec::new();
     operation::pair(&mut query, "createdSince", params.created_since.as_ref());
     operation::pair(&mut query, "createdUntil", params.created_until.as_ref());
@@ -447,13 +335,6 @@ pub(crate) async fn get_reports_continue(
     client: &Client,
     params: GetReportsContinueParams,
 ) -> Result<Response, Error> {
-    validate_parameter(
-        serde_json::Value::String(params.next_token.clone()),
-        "query",
-        "{\"type\":\"string\"}",
-        true,
-        false,
-    )?;
     client
         .execute_json(Request {
             method: "GET".into(),
