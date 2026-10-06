@@ -28,8 +28,7 @@ module Peddler
     # @param [Boolean] sandbox whether to call Amazon's sandbox for the region
     # @param [Numeric] timeout seconds for a whole call, including retries
     # @param [Integer] retries how often to retry a throttled or failed GET
-    def initialize(access_token:, region: nil, base_url: nil, sandbox: false, timeout: 30, retries: 0,
-      retry_delay: 0.2, max_retry_delay: 30)
+    def initialize(access_token:, region: nil, base_url: nil, sandbox: false, timeout: 30, retries: 0)
       raise ArgumentError, "provide either region or base_url" unless region.nil? ^ base_url.nil?
       raise ArgumentError, "cannot use sandbox with a custom base_url" if base_url && sandbox
 
@@ -40,8 +39,7 @@ module Peddler
       end
       source = Native.token_source(access_token)
       config = { base_url: base_url, access_token: source ? nil : Native.access_token(access_token),
-        timeout: timeout, retries: retries, retry_delay: retry_delay, max_retry_delay: max_retry_delay,
-        user_agent: Native.user_agent }
+        timeout: timeout, retries: retries, user_agent: Native.user_agent }
       engine = Native.engine(Native.generate(config) || raise(ArgumentError, "invalid configuration"))
       @engine = source ? engine.with_token_source(source) : engine
     end

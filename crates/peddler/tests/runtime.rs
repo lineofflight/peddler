@@ -62,7 +62,7 @@ async fn one_deadline_covers_every_attempt_and_the_retry_delay() {
         let mut buf = [0; 4096];
         let (mut socket, _) = listener.accept().await.unwrap();
         assert!(socket.read(&mut buf).await.unwrap() > 0);
-        tokio::time::sleep(Duration::from_millis(300)).await;
+        tokio::time::sleep(Duration::from_millis(200)).await;
         socket
             .write_all(b"HTTP/1.1 503 Test\r\nContent-Length: 0\r\nConnection: close\r\n\r\n")
             .await
@@ -72,18 +72,18 @@ async fn one_deadline_covers_every_attempt_and_the_retry_delay() {
         assert!(socket.read(&mut buf).await.unwrap() > 0);
         assert_eq!(socket.read(&mut buf).await.unwrap(), 0);
     });
+    // The first retry waits 200 milliseconds at most, which leaves time for the attempt.
     let mut c = retrying(base, 3);
-    c.timeout = Duration::from_millis(500);
-    c.retry.base_delay = Duration::from_millis(1);
+    c.timeout = Duration::from_millis(600);
     let client = Client::with_config(c).unwrap();
     let started = Instant::now();
     assert_eq!(
         client.execute(request("GET")).await.unwrap_err(),
         Error::Timeout
     );
-    // A deadline per attempt would have allowed 300 + 500 milliseconds.
+    // A deadline per attempt would have allowed 200 + 600 milliseconds.
     assert!(
-        started.elapsed() < Duration::from_millis(700),
+        started.elapsed() < Duration::from_millis(800),
         "{:?}",
         started.elapsed()
     );

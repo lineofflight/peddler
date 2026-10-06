@@ -179,7 +179,7 @@ async fn tsv_quoted_newlines_tabs_quotes_empty_fields_and_final_row() {
         .download(&url, TransferOptions::default())
         .await
         .unwrap()
-        .into_tsv(false)
+        .into_tsv()
         .try_collect::<Vec<_>>()
         .await
         .unwrap();
@@ -193,7 +193,7 @@ async fn tsv_quoted_newlines_tabs_quotes_empty_fields_and_final_row() {
 }
 
 #[tokio::test]
-async fn byte_record_and_row_limits_are_independent() {
+async fn byte_and_record_limits_are_independent() {
     for (options, expected) in [
         (
             TransferOptions {
@@ -208,13 +208,6 @@ async fn byte_record_and_row_limits_are_independent() {
                 ..Default::default()
             },
             Error::RecordLimit,
-        ),
-        (
-            TransferOptions {
-                max_records: 1,
-                ..Default::default()
-            },
-            Error::RowLimit,
         ),
     ] {
         let url = once(http(200, "", b"{\"x\":1}\n{\"x\":2}\n")).await;
@@ -433,7 +426,7 @@ async fn split_jsonl_and_tsv_keep_utf8_and_quoted_grammar() {
             assert_eq!(rows.len(), 2);
         } else {
             assert_eq!(
-                doc.into_tsv(false).try_collect::<Vec<_>>().await.unwrap(),
+                doc.into_tsv().try_collect::<Vec<_>>().await.unwrap(),
                 vec![vec!["é\tmore", "line\n2"], vec!["last", ""]]
             );
         }
@@ -500,37 +493,30 @@ async fn upload_actual_length_and_source_errors_are_sanitized() {
 }
 
 #[tokio::test]
-async fn tsv_field_count_is_optional_and_all_record_limits_apply() {
-    for (options, consistent, expected) in [
-        (TransferOptions::default(), true, Error::Format),
-        (
-            TransferOptions {
-                max_record_bytes: 28,
-                ..Default::default()
-            },
-            false,
-            Error::RecordLimit,
-        ),
-        (
-            TransferOptions {
-                max_records: 1,
-                ..Default::default()
-            },
-            false,
-            Error::RowLimit,
-        ),
+async fn tsv_rows_may_differ_in_length_and_the_record_limit_counts_field_storage() {
+    for (max_record_bytes, expected) in [
+        (1 << 20, Ok(vec![vec!["a", "b"], vec!["c"]])),
+        (28, Err(Error::RecordLimit)),
     ] {
         let url = once(http(200, "", b"a\tb\nc\n")).await;
-        let error = client(&url)
+        let options = TransferOptions {
+            max_record_bytes,
+            ..Default::default()
+        };
+        let rows = client(&url)
             .documents()
             .download(&url, options)
             .await
             .unwrap()
-            .into_tsv(consistent)
+            .into_tsv()
             .try_collect::<Vec<_>>()
-            .await
-            .unwrap_err();
-        assert_eq!(error, expected);
+            .await;
+        let expected = expected.map(|rows| {
+            rows.into_iter()
+                .map(|row| row.into_iter().map(String::from).collect::<Vec<_>>())
+                .collect::<Vec<_>>()
+        });
+        assert_eq!(rows, expected);
     }
 }
 
@@ -635,27 +621,7 @@ async fn document_deadline_overrides_shorter_api_timeout() {
 }
 
 #[tokio::test]
-async fn raw_compression_none_and_metadata_only_are_explicit() {
-    let url = once(http(200, "Content-Encoding: gzip\r\n", &GZIP)).await;
-    assert_eq!(
-        client(&url)
-            .documents()
-            .download(
-                &url,
-                TransferOptions {
-                    compression: Compression::None,
-                    ..Default::default()
-                }
-            )
-            .await
-            .unwrap()
-            .into_chunks()
-            .try_collect::<Vec<_>>()
-            .await
-            .unwrap()
-            .concat(),
-        GZIP
-    );
+async fn gzip_named_by_the_caller_decodes_without_the_header() {
     let url = chunked(GZIP.chunks(1), "").await;
     assert_eq!(
         client(&url)
@@ -840,8 +806,8 @@ async fn tsv(
         .await
         .unwrap();
     match charset {
-        Some(label) => doc.into_tsv_with_charset(false, label),
-        None => doc.into_tsv(false),
+        Some(label) => doc.into_tsv_with_charset(label),
+        None => doc.into_tsv(),
     }
     .try_collect::<Vec<_>>()
     .await
@@ -1039,7 +1005,7 @@ async fn limits_count_bytes_after_decoding_for_records() {
         )
         .await
         .unwrap()
-        .into_tsv(false)
+        .into_tsv()
         .try_collect::<Vec<_>>()
         .await
         .unwrap_err();
@@ -1065,7 +1031,7 @@ async fn recorded_gzip_cp1252_report_replays() {
         .download(&url, TransferOptions::default())
         .await
         .unwrap()
-        .into_tsv(true)
+        .into_tsv()
         .try_collect::<Vec<_>>()
         .await
         .unwrap();

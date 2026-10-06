@@ -101,14 +101,10 @@ module Peddler
     end
 
     def test_keeps_policy_options_and_nothing_else
-      policy = config(region: "eu-west-1", access_token: "token", timeout: 5, retries: 2, retry_delay: 0.5,
-        max_retry_delay: 10)
+      policy = config(region: "eu-west-1", access_token: "token", timeout: 5, retries: 2)
 
-      assert_equal([5, 2, 0.5, 10], policy.values_at("timeout", "retries", "retry_delay", "max_retry_delay"))
-      assert_equal(
-        ["access_token", "base_url", "max_retry_delay", "retries", "retry_delay", "timeout", "user_agent"],
-        policy.keys.sort,
-      )
+      assert_equal([5, 2], policy.values_at("timeout", "retries"))
+      assert_equal(["access_token", "base_url", "retries", "timeout", "user_agent"], policy.keys.sort)
     end
 
     def test_lwa_defaults_the_application_credentials_from_the_environment

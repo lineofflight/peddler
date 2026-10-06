@@ -3,7 +3,7 @@
 //! Download bodies are streamed, including incremental GZIP decoding. JSONL skips
 //! whitespace-only lines; TSV uses the csv-core grammar with tab delimiters.
 //! TSV text is decoded from the `Content-Type` charset (or a caller override) to UTF-8.
-//! Record limits bound raw record buffers and TSV materialized field storage.
+//! The record limit bounds raw record buffers and TSV materialized field storage.
 //! Whole JSON decoding is explicitly buffered and requires its own byte limit.
 //! Synchronous parsing checks deadline expiry after completion; it cannot preempt
 //! CPU work. GZIP consumes every member and validates trailing input.
@@ -48,7 +48,6 @@ pub enum Error {
     Compression,
     ByteLimit,
     RecordLimit,
-    RowLimit,
     Format,
     /// The signed URL answered outside 2xx.
     Rejected(Box<Rejection>),
@@ -68,7 +67,6 @@ impl fmt::Display for Error {
             Self::Compression => "invalid compressed document",
             Self::ByteLimit => "document byte limit exceeded",
             Self::RecordLimit => "document record limit exceeded",
-            Self::RowLimit => "document row limit exceeded",
             Self::Format => "invalid document format",
             Self::Rejected(_) => "document response was not successful",
             Self::UploadSource => "document upload source failed",
@@ -79,7 +77,7 @@ impl fmt::Display for Error {
 impl std::error::Error for Error {}
 
 /// What a signed URL answered outside 2xx. The body is raw and cut at
-/// `TransferOptions::max_response_bytes`. Debug shows the status only.
+/// [`MAX_RESPONSE_BYTES`]. Debug shows the status only.
 #[derive(Clone, PartialEq, Eq)]
 pub struct Rejection {
     pub status: u16,
@@ -99,8 +97,6 @@ pub enum Compression {
     /// Decode a single gzip Content-Encoding. Supply Gzip for SP-API metadata.
     #[default]
     Auto,
-    /// Leave bytes encoded, but still reject unsupported/multiple encodings.
-    None,
     /// GZIP metadata. Also a gzip header means the same single layer.
     Gzip,
 }
@@ -111,10 +107,9 @@ pub struct TransferOptions {
     /// Ceiling on decompressed bytes, independently of Content-Length.
     pub max_bytes: u64,
     pub max_record_bytes: usize,
-    pub max_records: u64,
-    /// Ceiling on the body kept of an upload reply or of a rejection.
-    pub max_response_bytes: usize,
 }
+/// How much is kept of the body of an upload reply or of a rejection.
+pub const MAX_RESPONSE_BYTES: usize = 64 << 10;
 impl Default for TransferOptions {
     fn default() -> Self {
         Self {
@@ -122,18 +117,12 @@ impl Default for TransferOptions {
             compression: Compression::Auto,
             max_bytes: 1 << 30,
             max_record_bytes: 1 << 20,
-            max_records: u64::MAX,
-            max_response_bytes: 64 << 10,
         }
     }
 }
 impl TransferOptions {
     pub(crate) fn deadline(&self) -> Result<Instant, Error> {
-        if self.max_bytes == 0
-            || self.max_record_bytes == 0
-            || self.max_records == 0
-            || self.max_response_bytes == 0
-        {
+        if self.max_bytes == 0 || self.max_record_bytes == 0 {
             return Err(Error::InvalidConfig);
         }
         crate::deadline(self.timeout).ok_or(Error::InvalidConfig)
@@ -227,7 +216,7 @@ impl Download {
         result
     }
 
-    /// Whitespace-only JSONL lines are skipped and don't count toward max_records.
+    /// Whitespace-only JSONL lines are skipped.
     pub fn into_jsonl(self) -> DocumentStream<serde_json::Value> {
         self.jsonl(|record| serde_json::from_slice(record).map_err(|_| Error::Format))
     }
@@ -247,7 +236,6 @@ impl Download {
     ) -> DocumentStream<T> {
         Box::pin(async_stream::try_stream! {
             let mut record = Vec::new();
-            let mut rows = 0;
             while let Some(chunk) = self.body.next().await {
                 let chunk = chunk?;
                 // The deadline is checked per chunk and per record, not per byte.
@@ -259,8 +247,6 @@ impl Download {
                     rest = &rest[end + 1..];
                     if !record.iter().all(u8::is_ascii_whitespace) {
                         check_deadline(self.deadline)?;
-                        rows += 1;
-                        if rows > self.options.max_records { Err(Error::RowLimit)?; }
                         let result = row(&mut record);
                         check_deadline(self.deadline)?;
                         yield result?;
@@ -275,7 +261,6 @@ impl Download {
             }
             if !record.iter().all(u8::is_ascii_whitespace) {
                 check_deadline(self.deadline)?;
-                if rows >= self.options.max_records { Err(Error::RowLimit)?; }
                 let result = row(&mut record);
                 check_deadline(self.deadline)?;
                 yield result?;
@@ -285,26 +270,17 @@ impl Download {
 
     /// RFC-style quoted TSV. Blank lines are ignored by csv-core. Text is decoded
     /// with the `Content-Type` charset, UTF-8 when there is none. Rows are UTF-8.
-    /// Set `consistent_fields` to require the first row's field count thereafter.
-    pub fn into_tsv(self, consistent_fields: bool) -> DocumentStream<Vec<String>> {
+    pub fn into_tsv(self) -> DocumentStream<Vec<String>> {
         let charset = self.charset();
-        self.tsv(consistent_fields, charset)
+        self.tsv(charset)
     }
 
     /// Like `into_tsv`, with `charset` taking precedence over the header.
-    pub fn into_tsv_with_charset(
-        self,
-        consistent_fields: bool,
-        charset: &str,
-    ) -> DocumentStream<Vec<String>> {
-        self.tsv(consistent_fields, Some(charset.to_owned()))
+    pub fn into_tsv_with_charset(self, charset: &str) -> DocumentStream<Vec<String>> {
+        self.tsv(Some(charset.to_owned()))
     }
 
-    fn tsv(
-        mut self,
-        consistent_fields: bool,
-        charset: Option<String>,
-    ) -> DocumentStream<Vec<String>> {
+    fn tsv(mut self, charset: Option<String>) -> DocumentStream<Vec<String>> {
         Box::pin(async_stream::try_stream! {
             let mut decoder = match charset.as_deref() {
                 Some(label) => resolve_charset(label)?.new_decoder_with_bom_removal(),
@@ -316,8 +292,6 @@ impl Download {
             let mut fields = Vec::new();
             let mut raw_bytes = 0usize;
             let mut materialized = 0usize;
-            let mut rows = 0u64;
-            let mut expected = None;
             let mut output = [0u8; 4096];
             loop {
                 let chunk = self.body.next().await.transpose()?;
@@ -341,10 +315,6 @@ impl Download {
                             fields.reserve_exact(1);
                             fields.push(String::from_utf8(std::mem::take(&mut field)).map_err(|_| Error::Format)?);
                             if record_end {
-                                rows += 1;
-                                if rows > self.options.max_records { Err(Error::RowLimit)?; }
-                                if consistent_fields && expected.is_some_and(|count| count != fields.len()) { Err(Error::Format)?; }
-                                expected = Some(fields.len());
                                 let row = std::mem::take(&mut fields);
                                 check_deadline(self.deadline)?;
                                 yield row;
@@ -409,7 +379,7 @@ impl<'de> serde::de::Visitor<'de> for Checked {
 }
 
 /// The reply to an upload the signed URL accepted. The body is raw and cut at
-/// `TransferOptions::max_response_bytes`.
+/// [`MAX_RESPONSE_BYTES`].
 pub struct UploadResponse {
     pub status: u16,
     pub headers: HeaderMap,
@@ -432,7 +402,7 @@ impl DocumentClient {
             .await
             .map_err(|_| Error::Timeout)?
             .map_err(transport)?;
-        let response = accepted(response, deadline, options.max_response_bytes).await?;
+        let response = accepted(response, deadline).await?;
         let status = response.status().as_u16();
         let headers = response.headers().clone();
         let gzip = encoding(&headers, options.compression)?;
@@ -548,14 +518,13 @@ impl DocumentClient {
         if let Some(error) = failure.get() {
             return Err(error.clone());
         }
-        let ceiling = options.transfer.max_response_bytes;
-        let response = accepted(result.map_err(transport)?, deadline, ceiling).await?;
+        let response = accepted(result.map_err(transport)?, deadline).await?;
         if length.is_some_and(|length| count.load(Ordering::SeqCst) != length) {
             return Err(Error::LengthMismatch);
         }
         let status = response.status().as_u16();
         let headers = response.headers().clone();
-        let body = bounded_response(response, deadline, ceiling).await?;
+        let body = bounded_response(response, deadline).await?;
         Ok(UploadResponse {
             status,
             headers,
@@ -644,7 +613,7 @@ fn encoding(headers: &HeaderMap, compression: Compression) -> Result<bool, Error
         Some(value) if value.eq_ignore_ascii_case("gzip") => true,
         _ => return Err(Error::UnsupportedEncoding),
     };
-    Ok(compression == Compression::Gzip || compression == Compression::Auto && gzip)
+    Ok(compression == Compression::Gzip || gzip)
 }
 fn transport(error: reqwest::Error) -> Error {
     crate::classify(error, Error::Timeout, Error::Transport)
@@ -694,30 +663,27 @@ fn read_chunks(
         }
     })
 }
-/// The response if its status is inside 2xx. Otherwise the rejection, with the body
-/// read up to `ceiling`.
+/// The response if its status is inside 2xx. Otherwise the rejection.
 async fn accepted(
     response: reqwest::Response,
     deadline: Instant,
-    ceiling: usize,
 ) -> Result<reqwest::Response, Error> {
     if response.status().is_success() {
         return Ok(response);
     }
     let status = response.status().as_u16();
     let headers = response.headers().clone();
-    let body = bounded_response(response, deadline, ceiling).await?;
+    let body = bounded_response(response, deadline).await?;
     Err(Error::Rejected(Box::new(Rejection {
         status,
         headers,
         body,
     })))
 }
-/// The first `ceiling` bytes of a body, raw.
+/// The first `MAX_RESPONSE_BYTES` of a body, raw.
 async fn bounded_response(
     response: reqwest::Response,
     deadline: Instant,
-    ceiling: usize,
 ) -> Result<Vec<u8>, Error> {
     let mut stream = response.bytes_stream();
     let mut body = Vec::new();
@@ -731,11 +697,11 @@ async fn bounded_response(
         let Some(chunk) = chunk else {
             return Ok(body);
         };
-        let remaining = ceiling - body.len();
+        let remaining = MAX_RESPONSE_BYTES - body.len();
         extend_bounded(
             &mut body,
             &chunk[..chunk.len().min(remaining)],
-            ceiling,
+            MAX_RESPONSE_BYTES,
             Error::ByteLimit,
         )?;
         if chunk.len() > remaining {
@@ -845,7 +811,7 @@ mod tests {
             options: TransferOptions::default(),
             deadline: Instant::now() + Duration::from_secs(30),
         };
-        let mut rows = download.into_tsv(false);
+        let mut rows = download.into_tsv();
         assert!(rows.next().now_or_never().is_none());
         assert_eq!(
             rows.collect::<Vec<_>>().await,

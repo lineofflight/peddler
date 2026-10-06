@@ -24,15 +24,7 @@ module Peddler
     end
   end
 
-  class DocumentError < StandardError
-    # Set when an upload fails after its feed document was created.
-    attr_reader :document_id
-
-    def with_document_id(document_id)
-      @document_id = document_id
-      self
-    end
-  end
+  class DocumentError < StandardError; end
 
   class DocumentTimeoutError < DocumentError; end
 

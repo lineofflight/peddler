@@ -377,7 +377,6 @@ async fn the_token_and_retries_apply_to_every_page() {
     .await;
     let mut config = ClientConfig::new(api.url.clone(), "supplied-token");
     config.retry.max_retries = 1;
-    config.retry.base_delay = Duration::from_millis(1);
     let client = Client::with_config(config).unwrap();
     let statuses: Vec<u16> = pages(
         &client,

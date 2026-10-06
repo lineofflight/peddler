@@ -27,7 +27,7 @@ module Peddler
         end
         begin
           body = +"".b
-          while (chunk = handle.next_row("chunks", false, nil))
+          while (chunk = handle.next_row("chunks", nil))
             body << chunk
           end
           Response.new(handle.status, handle.headers, body)
@@ -123,9 +123,6 @@ module Peddler
         Native::Uploads.drain(upload, source)
         upload.finish
         document_id
-      rescue DocumentError => error
-        error.with_document_id(document_id) if document_id
-        raise
       ensure
         upload.close
       end

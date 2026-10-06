@@ -114,7 +114,7 @@ end
 # Request policy: retry on a throttled response.
 serve(->(socket) { reply(socket, status: 429, body: '{"errors":[]}', headers: { "Retry-After" => "0" }) },
   ->(socket) { reply(socket, body: '{"ok":true}') }) do |url, requests|
-  client = Peddler::Client.new(base_url: url, access_token: "smoke-token", retries: 1, retry_delay: 0.01)
+  client = Peddler::Client.new(base_url: url, access_token: "smoke-token", retries: 1)
   response = client.request("GET", "/retry")
   check(response.status == 200 && requests.length == 2, "throttled request is retried by the Rust policy layer")
 end

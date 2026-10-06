@@ -313,27 +313,22 @@ struct Config {
     access_token: Option<String>,
     timeout: f64,
     retries: u32,
-    retry_delay: f64,
-    max_retry_delay: f64,
     /// How the gem identifies itself to the Selling Partner API. Without one, requests
     /// carry the pool's.
     user_agent: Option<String>,
 }
 impl Config {
     fn client(&self, pool: &Pool) -> Result<Client, peddler::Error> {
-        let seconds =
-            |value| Duration::try_from_secs_f64(value).map_err(|_| peddler::Error::InvalidRequest);
         let token = match &self.access_token {
             Some(token) => AccessToken::Static(token.clone()),
             // A request on the template itself has no token to send and fails closed.
             None => TokenSource::new(|| async { Err(AuthError::InvalidConfig) }).into(),
         };
         let mut config = ClientConfig::new(self.base_url.clone(), token);
-        config.timeout = seconds(self.timeout)?;
+        config.timeout = Duration::try_from_secs_f64(self.timeout)
+            .map_err(|_| peddler::Error::InvalidRequest)?;
         config.retry = RetryPolicy {
             max_retries: self.retries,
-            base_delay: seconds(self.retry_delay)?,
-            max_delay: seconds(self.max_retry_delay)?,
         };
         config.user_agent = self.user_agent.clone();
         config.pool = Some(pool.clone());

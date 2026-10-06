@@ -11,13 +11,13 @@ module Peddler
                   | () -> Enumerator[String, Document]
     def each_jsonl: () { (untyped row) -> void } -> Document
                   | () -> Enumerator[untyped, Document]
-    def each_tsv: (?consistent_fields: bool, ?charset: String?) { (Array[String] row) -> void } -> Document
-                | (?consistent_fields: bool, ?charset: String?) -> Enumerator[Array[String], Document]
+    def each_tsv: (?charset: String?) { (Array[String] row) -> void } -> Document
+                | (?charset: String?) -> Enumerator[Array[String], Document]
     def json: (max_bytes: Integer) -> untyped
 
     private
 
-    def each_row: (String mode, ?bool consistent_fields, ?String? charset) { (untyped row) -> void } -> self
+    def each_row: (String mode, ?String? charset) { (untyped row) -> void } -> self
   end
 
   module Native
@@ -39,7 +39,7 @@ module Peddler
       def charset: () -> String?
       def close: () -> void
       def closed?: () -> bool
-      def next_row: (String mode, bool consistent_fields, String? charset) -> untyped
+      def next_row: (String mode, String? charset) -> untyped
       def json: (Integer max_bytes) -> String
     end
 

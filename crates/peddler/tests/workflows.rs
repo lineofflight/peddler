@@ -4,7 +4,7 @@ use bytes::Bytes;
 use futures_util::{StreamExt, TryStreamExt, stream};
 use peddler::{
     Client,
-    documents::{Compression, Error as DocumentError, TransferOptions, UploadOptions},
+    documents::{Error as DocumentError, TransferOptions, UploadOptions},
     workflows::{WaitOptions, WorkflowError},
 };
 use std::{
@@ -126,14 +126,11 @@ async fn feed_documents_use_their_own_operation_and_compression_header() {
 }
 
 #[tokio::test]
-async fn unknown_or_conflicting_compression_and_bad_metadata_never_download() {
-    let cases: Vec<(&str, Option<&str>, Compression, bool)> = vec![
-        ("unknown", Some("BROTLI"), Compression::Auto, false),
-        ("conflict", Some("GZIP"), Compression::None, false),
-        ("absent-gzip", None, Compression::Gzip, false),
-        ("empty-url", None, Compression::Auto, true),
-    ];
-    for (name, algorithm, compression, empty_url) in cases {
+async fn unknown_compression_and_bad_metadata_never_download() {
+    for (name, algorithm, empty_url) in [
+        ("unknown", Some("BROTLI"), false),
+        ("empty-url", None, true),
+    ] {
         let server = serve(move |_, request, base| {
             assert!(!request.starts_with("GET /signed"), "downloaded");
             if empty_url {
@@ -145,19 +142,12 @@ async fn unknown_or_conflicting_compression_and_bad_metadata_never_download() {
         .await;
         let error = client(&server.url)
             .workflows()
-            .download_report_document(
-                "d1",
-                TransferOptions {
-                    compression,
-                    ..Default::default()
-                },
-            )
+            .download_report_document("d1", TransferOptions::default())
             .await
             .unwrap_err();
         let expected = match name {
             "unknown" => matches!(error, WorkflowError::UnsupportedCompression),
-            "empty-url" => matches!(error, WorkflowError::Metadata),
-            _ => matches!(error, WorkflowError::CompressionConflict),
+            _ => matches!(error, WorkflowError::Metadata),
         };
         assert!(expected, "{name}: {error:?}");
         assert_eq!(server.count("GET /signed"), 0, "{name}");
@@ -274,30 +264,6 @@ async fn data_kiosk_streams_jsonl_with_header_only_encoding() {
         .unwrap();
     assert_eq!(rows, vec![serde_json::json!({"x": 1})]);
     assert!(server.requests()[0].starts_with("GET /dataKiosk/2023-11-15/documents/k%2F1 "));
-
-    let server = serve(|_, _, base| {
-        json(
-            200,
-            &format!("{{\"documentId\":\"k1\",\"documentUrl\":\"{base}/signed\"}}"),
-        )
-    })
-    .await;
-    let error = client(&server.url)
-        .workflows()
-        .download_query_document(
-            "k1",
-            TransferOptions {
-                compression: Compression::Gzip,
-                ..Default::default()
-            },
-        )
-        .await
-        .unwrap_err();
-    assert!(matches!(error, WorkflowError::CompressionConflict));
-    assert!(
-        server.requests().is_empty(),
-        "conflict known without metadata"
-    );
 }
 
 #[tokio::test]

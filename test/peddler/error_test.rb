@@ -72,7 +72,7 @@ module Peddler
       end
       expected = [
         [:AuthenticationError, StandardError, [:code, :status]],
-        [:DocumentError, StandardError, [:document_id, :with_document_id]],
+        [:DocumentError, StandardError, []],
         [:DocumentTimeoutError, DocumentError, []],
         [:Error, StandardError, [:code, :deconstruct_keys, :request_id, :response, :status]],
         [:ForkError, StandardError, []],
@@ -140,7 +140,7 @@ module Peddler
     end
 
     def test_retries_exhausted_raise_the_last_response
-      retrying = Client.new(base_url: @replay.url, access_token: "FILTERED", retries: 1, retry_delay: 0.01)
+      retrying = Client.new(base_url: @replay.url, access_token: "FILTERED", retries: 1)
       error = assert_raises(Error) do
         retrying.product_pricing_v0.get_pricing(marketplace_id: "A1F83G8C2ARO7P", item_type: "Asin", asins: ["188864544X"])
       end

@@ -71,7 +71,7 @@ class DocumentsTest < NativeTest
     }) do |url|
       instance = client(url)
 
-      assert_equal([["a\tb", "line\nnext"], ["é", "x"]], instance.download_document("#{url}/tsv").each_tsv(consistent_fields: true).to_a)
+      assert_equal([["a\tb", "line\nnext"], ["é", "x"]], instance.download_document("#{url}/tsv").each_tsv.to_a)
       document = instance.download_document("#{url}/json")
       assert_raises(Peddler::DocumentError) { document.json(max_bytes: 3) }
       assert_predicate(document, :closed?)
@@ -91,7 +91,7 @@ class DocumentsTest < NativeTest
 
   def test_invalid_options_and_format_errors_are_sanitized
     instance = client("http://127.0.0.1:1")
-    [{ unknown_secret: 1 }, { compression: "gzip" }, { timeout: 0 }, { max_bytes: 0 }, { max_records: 1.5 }, { max_bytes: 1 << 65 }].each do |options|
+    [{ unknown_secret: 1 }, { compression: "gzip" }, { timeout: 0 }, { max_bytes: 0 }, { max_record_bytes: 1.5 }, { max_bytes: 1 << 65 }].each do |options|
       error = assert_raises(ArgumentError) { instance.download_document("https://example.com/private-secret", **options) }
       refute_match(/private-secret|unknown_secret/, error.message)
     end
@@ -162,7 +162,7 @@ class DocumentsTest < NativeTest
     serve(handler: lambda { |socket, *|
       respond(socket, headers: [["Content-Type", "text/plain; charset=Cp1252"], ["Content-Encoding", "gzip"]], body: body)
     }) do |url|
-      rows = client(url).download_document(url).each_tsv(consistent_fields: true).to_a
+      rows = client(url).download_document(url).each_tsv.to_a
 
       assert_equal(11, rows.size)
       assert_equal(["item-name", "item-description", "listing-id"], rows.first.first(3))
@@ -345,10 +345,9 @@ class DocumentsTest < NativeTest
   end
 
   def test_bounded_whole_json_preserves_numbers_and_rust_limits_map_to_document_errors
-    serve(count: 5, handler: lambda { |socket, first, *_|
+    serve(count: 4, handler: lambda { |socket, first, *_|
       body = case first[1]
       when "/json" then '{"n":123456789012345678901234567890,"d":0.12345678901234567890123456789}'
-      when "/rows" then "null\nnull\n"
       when "/utf8" then "\xFF\tx\n".b
       else "abcd"
       end
@@ -361,7 +360,6 @@ class DocumentsTest < NativeTest
       assert_equal(BigDecimal("0.12345678901234567890123456789"), value.fetch("d"))
       assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/bytes", max_bytes: 3).each_chunk.to_a }
       assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/record", max_record_bytes: 3).each_jsonl.to_a }
-      assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/rows", max_records: 1).each_jsonl.to_a }
       assert_raises(Peddler::DocumentError) { instance.download_document("#{url}/utf8").each_tsv.to_a }
     end
   end

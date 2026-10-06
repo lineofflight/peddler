@@ -1,28 +1,21 @@
 //! Conservative HTTP retry decisions.
 //!
 //! Callers own HTTP execution and the logical deadline covering all waits.
-//! Configuration permits at most 10 retries, positive delays and max >= base.
+//! Configuration permits at most 10 retries. The delays are fixed.
 
 use std::{
     fmt,
     time::{Duration, SystemTime},
 };
 
-#[derive(Clone, Debug)]
+/// The most the first retry waits. Each later one may wait twice as long.
+const BASE_DELAY: Duration = Duration::from_millis(200);
+/// The most any retry waits, and the longest `Retry-After` that is followed.
+const MAX_DELAY: Duration = Duration::from_secs(30);
+
+#[derive(Clone, Debug, Default)]
 pub struct RetryPolicy {
     pub max_retries: u32,
-    pub base_delay: Duration,
-    pub max_delay: Duration,
-}
-
-impl Default for RetryPolicy {
-    fn default() -> Self {
-        Self {
-            max_retries: 0,
-            base_delay: Duration::from_millis(200),
-            max_delay: Duration::from_secs(30),
-        }
-    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -38,11 +31,7 @@ impl std::error::Error for PolicyError {}
 
 impl RetryPolicy {
     pub fn validate(&self) -> Result<(), PolicyError> {
-        if self.max_retries > 10
-            || self.base_delay.is_zero()
-            || self.max_delay.is_zero()
-            || self.max_delay < self.base_delay
-        {
+        if self.max_retries > 10 {
             return Err(PolicyError);
         }
         Ok(())
@@ -81,9 +70,9 @@ impl RetryPolicy {
         }
         Some(
             1u32.checked_shl(index)
-                .and_then(|factor| self.base_delay.checked_mul(factor))
-                .unwrap_or(self.max_delay)
-                .min(self.max_delay),
+                .and_then(|factor| BASE_DELAY.checked_mul(factor))
+                .unwrap_or(MAX_DELAY)
+                .min(MAX_DELAY),
         )
     }
 
@@ -114,7 +103,7 @@ impl RetryPolicy {
                         .map(|date| date.duration_since(now).unwrap_or(Duration::ZERO))
                 };
             if let Some(server_delay) = server_delay {
-                if server_delay > self.max_delay {
+                if server_delay > MAX_DELAY {
                     return None;
                 }
                 delay = delay.max(server_delay);
@@ -129,18 +118,21 @@ mod tests {
     use super::*;
     use std::time::{Duration, SystemTime};
 
-    fn retry(base: Duration, max: Duration) -> RetryPolicy {
-        RetryPolicy {
-            max_retries: 10,
-            base_delay: base,
-            max_delay: max,
-        }
+    fn retry() -> RetryPolicy {
+        RetryPolicy { max_retries: 10 }
     }
 
     #[test]
     fn fixed_jitter_is_capped_by_exponential_bound() {
-        let policy = retry(Duration::from_millis(200), Duration::from_secs(1));
-        for (index, millis) in [(0, 200), (1, 400), (2, 800), (3, 1000), (9, 1000)] {
+        let policy = retry();
+        for (index, millis) in [
+            (0, 200),
+            (1, 400),
+            (2, 800),
+            (7, 25_600),
+            (8, 30_000),
+            (9, 30_000),
+        ] {
             assert_eq!(
                 policy.retry_delay_at(
                     "GET",
@@ -148,7 +140,7 @@ mod tests {
                     &[],
                     index,
                     SystemTime::UNIX_EPOCH,
-                    Duration::from_secs(2)
+                    Duration::from_secs(60)
                 ),
                 Some(Duration::from_millis(millis))
             );
@@ -172,7 +164,7 @@ mod tests {
 
     #[test]
     fn retry_after_dates_are_relative_to_fixed_now_and_never_early() {
-        let policy = retry(Duration::from_millis(200), Duration::from_secs(30));
+        let policy = retry();
         let now = httpdate::parse_http_date("Wed, 21 Oct 2015 07:28:00 GMT").unwrap();
         for (date, expected) in [
             (

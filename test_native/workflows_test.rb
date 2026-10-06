@@ -65,21 +65,19 @@ class WorkflowsTest < NativeTest
     end
   end
 
-  def test_bad_compression_conflicts_and_metadata_never_download
+  def test_unknown_compression_and_bad_metadata_never_download
     cases = {
-      unknown: [report_document("http://x", algorithm: "BROTLI"), {}, Peddler::WorkflowError],
-      conflict: [report_document("http://x", algorithm: "GZIP"), { compression: :none }, Peddler::WorkflowError],
-      absent_gzip: [report_document("http://x"), { compression: :gzip }, Peddler::WorkflowError],
-      empty_url: ['{"reportDocumentId":"d1","url":""}', {}, Peddler::WorkflowError],
-      malformed: ['{"url":3}', {}, Peddler::WorkflowError],
+      unknown: report_document("http://x", algorithm: "BROTLI"),
+      empty_url: '{"reportDocumentId":"d1","url":""}',
+      malformed: '{"url":3}',
     }
-    cases.each do |name, (body, options, error_class)|
+    cases.each do |name, body|
       handler = lambda do |path, base|
         flunk("downloaded") if path.start_with?("/signed")
         [200, body.gsub("http://x", base)]
       end
       route_server(handler) do |url, requests|
-        error = assert_raises(error_class, name.to_s) { client(url).open_report_document("d1", **options) }
+        error = assert_raises(Peddler::WorkflowError, name.to_s) { client(url).open_report_document("d1") }
 
         refute_match(/SIGNED_SECRET|127\.0\.0\.1/, error.full_message(highlight: false), name.to_s)
         assert_equal(1, requests.call.size, name.to_s)
@@ -385,7 +383,7 @@ class WorkflowsTest < NativeTest
     assert_raises(ArgumentError) { instance.create_and_upload_feed_document("x", content_type: "text/xml", bogus: 1) }
   end
 
-  def test_upload_rejection_raises_and_failure_retains_the_document_id
+  def test_upload_rejection_raises_and_failures_are_sanitized
     route_server(feed_handler(upload_status: 403, upload_body: "upload denied")) do |url, requests|
       error = assert_raises(Peddler::Error) { client(url).create_and_upload_feed_document("x", content_type: "text/xml") }
 
@@ -397,14 +395,12 @@ class WorkflowsTest < NativeTest
     route_server(feed_handler) do |url, _|
       error = assert_raises(Peddler::DocumentError) { client(url).create_and_upload_feed_document("abc", content_type: "text/xml", content_length: 5) }
 
-      assert_equal("fd/1", error.document_id)
       refute_match(/SIGNED_SECRET/, error.full_message(highlight: false))
       source_error = RuntimeError.new("private-secret")
       source = Object.new
       source.define_singleton_method(:read) { |_| raise source_error }
       error = assert_raises(Peddler::DocumentError) { client(url).create_and_upload_feed_document(source, content_type: "text/xml") }
 
-      assert_equal("fd/1", error.document_id)
       assert_same(source_error, error.cause)
       refute_match(/private-secret/, error.message)
     end

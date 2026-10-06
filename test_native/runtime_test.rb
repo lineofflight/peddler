@@ -75,8 +75,7 @@ class RuntimeTest < NativeTest
   def test_configuration_rejection_is_sanitized_and_performs_no_http
     [{}, { access_token: nil }, { access_token: "" }, { access_token: "dummy\n" },
       { access_token: "dummy", retries: -1 }, { access_token: "dummy", retries: 11 },
-      { access_token: "dummy", retry_delay: 0 }, { access_token: "dummy", retry_delay: 31 },
-      { access_token: "dummy", max_retry_delay: 0 }, { access_token: "dummy", timeout: 0 }].each do |options|
+      { access_token: "dummy", timeout: 0 }].each do |options|
       error = assert_raises(ArgumentError, options.inspect) { Peddler::Client.new(base_url: "http://127.0.0.1:1", **options) }
       refute_match(/dummy/, error.message)
     end
@@ -92,7 +91,7 @@ class RuntimeTest < NativeTest
       status, body = replies.shift
       respond(socket, status: status, headers: [["Retry-After", "0"]], body: body)
     }) do |url|
-      instance = client(url, retries: 2, retry_delay: 0.01)
+      instance = client(url, retries: 2)
 
       assert_equal(200, instance.request("GET", "/").status)
       assert_equal("write-throttled", assert_raises(Peddler::Error) { instance.request("POST", "/", body: {}) }.response.body)

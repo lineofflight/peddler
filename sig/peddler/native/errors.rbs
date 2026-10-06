@@ -17,9 +17,6 @@ module Peddler
   end
 
   class DocumentError < StandardError
-    @document_id: String?
-    attr_reader document_id: String?
-    def with_document_id: (String document_id) -> self
   end
 
   class DocumentTimeoutError < DocumentError

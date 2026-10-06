@@ -21,8 +21,8 @@ module Peddler
     module TransferConfig
       class << self
         def json(options)
-          compressions = [:auto, :none, :gzip]
-          limits = [:max_bytes, :max_record_bytes, :max_records, :max_response_bytes]
+          compressions = [:auto, :gzip]
+          limits = [:max_bytes, :max_record_bytes]
           unless (options.keys - (limits + [:timeout, :compression])).empty?
             raise ArgumentError, "invalid document configuration"
           end
@@ -135,10 +135,10 @@ module Peddler
       each_row("jsonl") { |record| yield JSON.parse(record, decimal_class: Native::DocumentDecimal, max_nesting: false) }
     end
 
-    def each_tsv(consistent_fields: false, charset: nil, &block)
-      return enum_for(:each_tsv, consistent_fields: consistent_fields, charset: charset) unless block
+    def each_tsv(charset: nil, &block)
+      return enum_for(:each_tsv, charset: charset) unless block
 
-      each_row("tsv", consistent_fields, charset, &block)
+      each_row("tsv", charset, &block)
     end
 
     def json(max_bytes:)
@@ -153,13 +153,10 @@ module Peddler
     private
 
     # Yields each row, then closes the document, also when the arguments are invalid or the block breaks or raises
-    def each_row(mode, consistent_fields = false, charset = nil)
-      unless (consistent_fields == true || consistent_fields == false) &&
-          (charset.nil? || Native.valid_utf8_string?(charset))
-        raise ArgumentError, "invalid document configuration"
-      end
+    def each_row(mode, charset = nil)
+      raise ArgumentError, "invalid document configuration" unless charset.nil? || Native.valid_utf8_string?(charset)
 
-      while (row = @handle.next_row(mode, consistent_fields, charset))
+      while (row = @handle.next_row(mode, charset))
         yield row
       end
       self

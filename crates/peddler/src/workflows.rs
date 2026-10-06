@@ -109,8 +109,6 @@ pub enum WorkflowError {
     Status,
     /// Metadata names a compression algorithm other than GZIP.
     UnsupportedCompression,
-    /// Caller compression contradicts what the metadata declares.
-    CompressionConflict,
     Timeout,
     /// Download failed to start, or its signed URL answered outside 2xx.
     Document(documents::Error),
@@ -147,9 +145,6 @@ impl fmt::Display for WorkflowError {
             Self::Metadata => f.write_str("invalid document metadata"),
             Self::Status => f.write_str("unknown processing status"),
             Self::UnsupportedCompression => f.write_str("unsupported document compression"),
-            Self::CompressionConflict => {
-                f.write_str("compression conflicts with document metadata")
-            }
             Self::Timeout => f.write_str("workflow timed out"),
             Self::Document(error) => write!(f, "{error}"),
             Self::Upload { error, .. } => write!(f, "feed document upload failed: {error}"),
@@ -174,7 +169,6 @@ impl fmt::Debug for WorkflowError {
             Self::Metadata => f.write_str("Metadata"),
             Self::Status => f.write_str("Status"),
             Self::UnsupportedCompression => f.write_str("UnsupportedCompression"),
-            Self::CompressionConflict => f.write_str("CompressionConflict"),
             Self::Timeout => f.write_str("Timeout"),
         }
     }
@@ -194,27 +188,13 @@ impl Client {
     }
 }
 
-/// Where the document's compression is declared.
-#[derive(Clone, Copy)]
-enum Declared {
-    /// Only the HTTP Content-Encoding header (Data Kiosk, or no metadata field).
-    Header,
-    /// Metadata `compressionAlgorithm` is "GZIP".
-    Gzip,
-}
-
-fn declared(algorithm: Option<&str>) -> Result<Declared, WorkflowError> {
+/// The compression the metadata declares: GZIP, or none, which leaves it to the
+/// caller's option and the HTTP Content-Encoding header.
+fn declared(algorithm: Option<&str>) -> Result<Option<Compression>, WorkflowError> {
     match algorithm {
-        None => Ok(Declared::Header),
-        Some("GZIP") => Ok(Declared::Gzip),
+        None => Ok(None),
+        Some("GZIP") => Ok(Some(Compression::Gzip)),
         Some(_) => Err(WorkflowError::UnsupportedCompression),
-    }
-}
-fn resolve(requested: Compression, declared: Declared) -> Result<Compression, WorkflowError> {
-    match (declared, requested) {
-        (Declared::Gzip, Compression::Auto | Compression::Gzip) => Ok(Compression::Gzip),
-        (Declared::Header, Compression::Auto | Compression::None) => Ok(requested),
-        _ => Err(WorkflowError::CompressionConflict),
     }
 }
 fn request_error(error: ClientError) -> WorkflowError {
@@ -299,14 +279,13 @@ impl Workflows {
                 (document.url, declared)
             }
             DocumentKind::Query => {
-                resolve(options.compression, Declared::Header)?;
                 let (document, _) = metadata(
                     deadline,
                     200,
                     kiosk::get_document(&self.client, kiosk::GetDocumentParams::new(id)),
                 )
                 .await?;
-                (document.document_url, Declared::Header)
+                (document.document_url, None)
             }
         };
         self.transfer(deadline, options, &url, declared).await
@@ -468,12 +447,14 @@ impl Workflows {
         deadline: Instant,
         mut options: TransferOptions,
         url: &str,
-        declared: Declared,
+        declared: Option<Compression>,
     ) -> Result<Download, WorkflowError> {
         if url.is_empty() {
             return Err(WorkflowError::Metadata);
         }
-        options.compression = resolve(options.compression, declared)?;
+        if let Some(compression) = declared {
+            options.compression = compression;
+        }
         documents::check_url(url).map_err(|_| WorkflowError::Metadata)?;
         options.timeout = remaining(deadline)?;
         self.client

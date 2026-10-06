@@ -6,32 +6,14 @@ use std::time::Duration;
 
 #[test]
 fn invalid_configuration_is_rejected() {
-    for retry in [
-        RetryPolicy {
-            max_retries: 11,
-            ..RetryPolicy::default()
-        },
-        RetryPolicy {
-            base_delay: Duration::ZERO,
-            ..RetryPolicy::default()
-        },
-        RetryPolicy {
-            max_delay: Duration::ZERO,
-            ..RetryPolicy::default()
-        },
-        RetryPolicy {
-            base_delay: Duration::from_secs(31),
-            ..RetryPolicy::default()
-        },
-    ] {
-        assert_eq!(retry.validate(), Err(PolicyError));
-        let mut config = ClientConfig::new("https://example.com", "token");
-        config.retry = retry;
-        assert_eq!(
-            Client::with_config(config).unwrap_err(),
-            Error::InvalidRequest
-        );
-    }
+    let retry = RetryPolicy { max_retries: 11 };
+    assert_eq!(retry.validate(), Err(PolicyError));
+    let mut config = ClientConfig::new("https://example.com", "token");
+    config.retry = retry;
+    assert_eq!(
+        Client::with_config(config).unwrap_err(),
+        Error::InvalidRequest
+    );
 }
 
 #[test]
@@ -43,10 +25,7 @@ fn default_disables_retries() {
 
 #[test]
 fn retries_only_safe_methods_and_selected_statuses_within_budget() {
-    let policy = RetryPolicy {
-        max_retries: 2,
-        ..RetryPolicy::default()
-    };
+    let policy = RetryPolicy { max_retries: 2 };
     for method in ["GET", "HEAD", "OPTIONS"] {
         for status in [429, 500, 502, 503, 504] {
             for (index, cap) in [(0, 200), (1, 400)] {
@@ -67,10 +46,7 @@ fn retries_only_safe_methods_and_selected_statuses_within_budget() {
 
 #[test]
 fn retry_after_seconds_never_retries_early_and_respects_maximum() {
-    let policy = RetryPolicy {
-        max_retries: 10,
-        ..RetryPolicy::default()
-    };
+    let policy = RetryPolicy { max_retries: 10 };
     for seconds in ["1", "30", " 1 "] {
         let delay = policy
             .retry_delay("GET", 429, &[("rEtRy-AfTeR".into(), seconds.into())], 0)

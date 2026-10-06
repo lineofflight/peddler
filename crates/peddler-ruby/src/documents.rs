@@ -63,8 +63,6 @@ pub(super) struct Config {
     compression: Option<String>,
     max_bytes: Option<u64>,
     max_record_bytes: Option<usize>,
-    max_records: Option<u64>,
-    max_response_bytes: Option<usize>,
 }
 impl Config {
     pub(super) fn parse(ruby: &Ruby, json: &str) -> Result<TransferOptions, Error> {
@@ -78,7 +76,6 @@ impl Config {
         if let Some(compression) = value.compression {
             options.compression = match compression.as_str() {
                 "auto" => Compression::Auto,
-                "none" => Compression::None,
                 "gzip" => Compression::Gzip,
                 _ => return Err(error(ruby, DocumentError::InvalidConfig)),
             };
@@ -88,12 +85,6 @@ impl Config {
         }
         if let Some(value) = value.max_record_bytes {
             options.max_record_bytes = value;
-        }
-        if let Some(value) = value.max_records {
-            options.max_records = value;
-        }
-        if let Some(value) = value.max_response_bytes {
-            options.max_response_bytes = value;
         }
         Ok(options)
     }
@@ -212,7 +203,6 @@ impl Document {
         ruby: &Ruby,
         document: &Self,
         mode: String,
-        consistent: bool,
         charset: Option<String>,
     ) -> Result<Option<magnus::Value>, Error> {
         let owner = document.0.get(ruby)?;
@@ -223,8 +213,8 @@ impl Document {
                 StreamState::Jsonl((*value).into_jsonl_records())
             }
             ("tsv", StreamState::Fresh(value)) => StreamState::Tsv(match charset {
-                Some(label) => (*value).into_tsv_with_charset(consistent, &label),
-                None => (*value).into_tsv(consistent),
+                Some(label) => (*value).into_tsv_with_charset(&label),
+                None => (*value).into_tsv(),
             }),
             ("chunks", state @ StreamState::Chunks(_))
             | ("jsonl", state @ StreamState::Jsonl(_))
@@ -499,7 +489,7 @@ pub(super) fn init(ruby: &Ruby, native: RModule, engine: RClass) -> Result<(), E
     document.define_method("status", method!(Document::status, 0))?;
     document.define_method("headers", method!(Document::headers, 0))?;
     document.define_method("charset", method!(Document::charset, 0))?;
-    document.define_method("next_row", method!(Document::next, 3))?;
+    document.define_method("next_row", method!(Document::next, 2))?;
     document.define_method("json", method!(Document::json, 1))?;
     let upload = native.define_class("UploadHandle", ruby.class_object())?;
     upload.define_method("completed?", method!(Upload::completed, 0))?;
