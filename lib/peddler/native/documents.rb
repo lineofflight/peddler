@@ -97,6 +97,10 @@ module Peddler
   end
 
   class Document
+    # How a document's JSON is read: exact decimals, any depth, and the last value of a repeated key
+    JSON_OPTIONS = { decimal_class: BigDecimal, max_nesting: false, allow_duplicate_key: true }.freeze
+    private_constant :JSON_OPTIONS
+
     def initialize(handle)
       @handle = handle
     end
@@ -116,7 +120,7 @@ module Peddler
     def each_jsonl
       return enum_for(:each_jsonl) unless block_given?
 
-      each_row("jsonl") { |record| yield JSON.parse(record, decimal_class: BigDecimal, max_nesting: false) }
+      each_row("jsonl") { |record| yield JSON.parse(record, **JSON_OPTIONS) }
     end
 
     def each_tsv(charset: nil, &block)
@@ -129,7 +133,7 @@ module Peddler
       unless max_bytes.is_a?(Integer) && max_bytes.positive? && max_bytes <= Native::UINT64_MAX
         raise ArgumentError, "invalid document configuration"
       end
-      JSON.parse(@handle.json(max_bytes), decimal_class: BigDecimal, max_nesting: false)
+      JSON.parse(@handle.json(max_bytes), **JSON_OPTIONS)
     ensure
       close
     end

@@ -51,13 +51,16 @@ class DocumentsTest < NativeTest
   end
 
   def test_jsonl_rows_keep_the_key_order_of_the_document
-    serve(handler: ->(socket, *) { respond(socket, body: %({"b":1,"a":{"z":1.50,"y":null},"A":[]}\r\n{"z":0,"a":0})) }) do |url|
+    body = %({"b":1,"a":{"z":1.50,"y":null},"A":[]}\r\n{"z":0,"a":0}\n{"k":1,"j":0,"k":2})
+    serve(handler: ->(socket, *) { respond(socket, body: body) }) do |url|
       rows = client(url).download_document(url).each_jsonl.to_a
 
-      assert_equal([["b", "a", "A"], ["z", "a"]], rows.map(&:keys))
+      assert_equal([["b", "a", "A"], ["z", "a"], ["k", "j"]], rows.map(&:keys))
       assert_equal(["z", "y"], rows[0].fetch("a").keys)
       assert_equal(BigDecimal("1.5"), rows[0].dig("a", "z"))
       assert_equal(Encoding::UTF_8, rows[0].keys.first.encoding)
+      # A repeated key keeps its last value, as it did when the core parsed the row.
+      assert_equal(2, rows[2].fetch("k"))
     end
   end
 

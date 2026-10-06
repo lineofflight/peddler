@@ -1,5 +1,7 @@
 module Peddler
   class Document
+    JSON_OPTIONS: Hash[Symbol, untyped]
+
     @handle: Native::DocumentHandle
     def initialize: (Native::DocumentHandle handle) -> void
     def headers: () -> Array[[String, String]]
