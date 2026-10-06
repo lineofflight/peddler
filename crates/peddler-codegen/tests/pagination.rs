@@ -42,8 +42,8 @@ fn spec() -> Value {
 fn run(source: Value, value: Value) -> Result<Vec<String>, String> {
     let source: Source = serde_json::from_value(source).map_err(|e| e.to_string())?;
     let api = &ALL_APIS[0];
-    let rendered = clients::render(&value, api).map_err(|e| e.to_string())?;
-    let clients = vec![(api, rendered)];
+    let operations = clients::render(&value, api).map_err(|e| e.to_string())?;
+    let clients = vec![(api, operations)];
     let specs = BTreeMap::from([(api.module, value)]);
     resolve(&source, &clients, &specs)
         .map(|r| r.into_iter().map(|r| r.key).collect())

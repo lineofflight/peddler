@@ -198,9 +198,9 @@ fn success_model_reference_controls_the_generated_facade_type() {
         json!({"type":"object","properties":{"future":{"type":"string"}}});
     changed["paths"]["/items/{asin}"]["get"]["responses"]["200"]["schema"]["$ref"] =
         json!("#/definitions/FutureItem");
-    let rendered = peddler_codegen::clients::render(&changed, &ALL_APIS[0]).unwrap();
+    let operations = peddler_codegen::clients::render(&changed, &ALL_APIS[0]).unwrap();
     assert_eq!(
-        rendered.operations[0].successes[0].1.as_deref(),
+        operations[0].successes[0].1.as_deref(),
         Some("super::models::FutureItem")
     );
 }

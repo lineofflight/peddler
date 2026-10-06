@@ -5,7 +5,7 @@ use std::{
 };
 
 pub mod clients;
-mod facades;
+pub mod facades;
 pub mod manifest;
 pub mod models;
 pub mod pagination;
@@ -108,12 +108,12 @@ pub fn generate(
         None => pagination::Source::default(),
     };
     let resolved = pagination::resolve(&source, &clients, &specs)?;
-    for (api, rendered) in &clients {
+    for (api, operations) in &clients {
         let prefix = notice(api.source);
         let mapped: Vec<_> = resolved.iter().filter(|r| r.module == api.module).collect();
         output.insert(
             base.join(api.module).join("facade.rs"),
-            format!("{prefix}{}", clients::facade(rendered, &mapped)?),
+            format!("{prefix}{}", facades::rust(operations, &mapped)?),
         );
         let module = quote::quote! {
             pub mod models;

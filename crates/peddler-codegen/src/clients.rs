@@ -3,9 +3,6 @@ use crate::{GenerationError, manifest::ModelSpec};
 use heck::{ToPascalCase, ToSnakeCase};
 use serde_json::{Map, Value, json};
 
-pub struct RenderedClient {
-    pub operations: Vec<Operation>,
-}
 #[derive(Debug)]
 pub struct Operation {
     pub id: String,
@@ -46,7 +43,7 @@ const METHODS: [&str; 7] = ["get", "post", "put", "patch", "delete", "head", "op
 /// itself. Its constraints are left out: Amazon checks them.
 const SCHEMA_KEYS: [&str; 4] = ["type", "format", "enum", "default"];
 
-pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, GenerationError> {
+pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, GenerationError> {
     let paths = spec["paths"]
         .as_object()
         .ok_or_else(|| GenerationError("missing paths".into()))?;
@@ -247,7 +244,7 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<RenderedClient, Generatio
         }
     }
     operations.sort_by(|a, b| a.name.cmp(&b.name));
-    Ok(RenderedClient { operations })
+    Ok(operations)
 }
 /// The media types an operation consumes or produces: its own list, or else the API's.
 fn media_types<'a>(spec: &'a Value, operation: &'a Value, key: &str) -> Vec<&'a str> {
@@ -316,10 +313,4 @@ pub(crate) fn rust_type(p: &Parameter) -> Result<String, GenerationError> {
         }
     }
     .into())
-}
-pub fn facade(
-    client: &RenderedClient,
-    pagination: &[&crate::pagination::Resolved],
-) -> Result<String, GenerationError> {
-    crate::facades::rust(client, pagination)
 }

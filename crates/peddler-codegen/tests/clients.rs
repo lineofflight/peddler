@@ -1,4 +1,4 @@
-use peddler_codegen::{clients, manifest::ALL_APIS};
+use peddler_codegen::{clients, facades, manifest::ALL_APIS};
 use serde_json::{Value, json};
 fn spec() -> Value {
     json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
@@ -18,20 +18,16 @@ fn spec() -> Value {
 #[test]
 fn all_operations_keep_per_operation_shapes_and_build_their_own_request() {
     let value = spec();
-    let rendered = clients::render(&value, &ALL_APIS[0]).unwrap();
-    assert_eq!(rendered.operations.len(), 2);
-    let item = rendered
-        .operations
-        .iter()
-        .find(|op| op.name == "get_item")
-        .unwrap();
+    let operations = clients::render(&value, &ALL_APIS[0]).unwrap();
+    assert_eq!(operations.len(), 2);
+    let item = operations.iter().find(|op| op.name == "get_item").unwrap();
     let csv: Vec<_> = item.parameters.iter().filter(|p| p.csv).collect();
     assert_eq!(
         csv.iter().map(|p| &p.wire_name).collect::<Vec<_>>(),
         ["marketplaceIds", "includedData"]
     );
     assert_eq!(item.successes.len(), 2);
-    let facade = clients::facade(&rendered, &[]).unwrap();
+    let facade = facades::rust(&operations, &[]).unwrap();
     assert!(facade.contains("pub struct EmptyParams"));
     assert!(facade.contains("pub count: Option<i32>"));
     assert!(facade.contains("pub enabled: Option<bool>"));
@@ -79,12 +75,8 @@ fn scalar_csv_default_is_normalized_to_its_declared_array_type() {
         .find(|api| api.module == "catalog_items_2020_12_01")
         .unwrap();
     assert!(clients::render(&value, &ALL_APIS[0]).is_err());
-    let rendered = clients::render(&value, api).unwrap();
-    let item = rendered
-        .operations
-        .iter()
-        .find(|op| op.name == "get_item")
-        .unwrap();
+    let operations = clients::render(&value, api).unwrap();
+    let item = operations.iter().find(|op| op.name == "get_item").unwrap();
     assert_eq!(item.parameters[2].schema["default"], json!(["summaries"]));
 }
 #[test]
@@ -123,16 +115,14 @@ fn shipping_v2_link_carrier_account_put_is_renamed_to_expose_distinct_operations
         "post": post_op,
         "put": put_op,
     });
-    let rendered = clients::render(&value, api).unwrap();
+    let operations = clients::render(&value, api).unwrap();
     assert!(
-        rendered
-            .operations
+        operations
             .iter()
             .any(|op| op.name == "link_carrier_account")
     );
     assert!(
-        rendered
-            .operations
+        operations
             .iter()
             .any(|op| op.name == "link_carrier_account_put")
     );
@@ -147,8 +137,8 @@ fn malformed_scalar_defaults_fail_generation_before_runtime_construction() {
 #[test]
 fn an_operation_media_type_replaces_the_api_one() {
     let successes = |value: &Value| {
-        let rendered = clients::render(value, &ALL_APIS[0]).unwrap();
-        let item = rendered.operations.iter().find(|op| op.name == "get_item");
+        let operations = clients::render(value, &ALL_APIS[0]).unwrap();
+        let item = operations.iter().find(|op| op.name == "get_item");
         item.unwrap().successes.clone()
     };
     let mut value = spec();
@@ -166,6 +156,6 @@ fn bodyless_success_status_does_not_offer_json_even_with_an_upstream_schema() {
     let mut value = spec();
     value["paths"]["/empty"]["post"]["responses"] =
         json!({"204":{"description":"bodyless","schema":{"type":"string"}}});
-    let rendered = clients::render(&value, &ALL_APIS[0]).unwrap();
-    assert_eq!(rendered.operations[0].successes, vec![(204, None)]);
+    let operations = clients::render(&value, &ALL_APIS[0]).unwrap();
+    assert_eq!(operations[0].successes, vec![(204, None)]);
 }

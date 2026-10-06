@@ -5,7 +5,7 @@
 //! with continuation-like fields must be mapped or excluded with a reason.
 use crate::{
     GenerationError,
-    clients::{Operation, Parameter, RenderedClient},
+    clients::{Operation, Parameter},
     manifest::ModelSpec,
 };
 use serde::Deserialize;
@@ -82,7 +82,7 @@ pub fn load(root: &Path) -> Result<Source, GenerationError> {
     }
 }
 
-type Clients<'a> = [(&'a ModelSpec, RenderedClient)];
+type Clients<'a> = [(&'a ModelSpec, Vec<Operation>)];
 
 fn fail<T>(message: String) -> Result<T, GenerationError> {
     Err(GenerationError(format!("pagination: {message}")))
@@ -171,13 +171,13 @@ fn locate<'a>(
     key: &str,
 ) -> Result<(&'a ModelSpec, &'a Operation), GenerationError> {
     let found = key.split_once('.').and_then(|(module, name)| {
-        let (api, client) = clients.iter().find(|(api, _)| api.module == module)?;
-        Some((*api, client.operations.iter().find(|op| op.name == name)?))
+        let (api, operations) = clients.iter().find(|(api, _)| api.module == module)?;
+        Some((*api, operations.iter().find(|op| op.name == name)?))
     });
     found.ok_or_else(|| GenerationError(format!("pagination: unknown operation {key}")))
 }
 
-/// Resolves every mapping against specs and rendered operations and audits
+/// Resolves every mapping against specs and operations and audits
 /// that no continuation-like operation is left undecided.
 pub fn resolve(
     source: &Source,
@@ -332,9 +332,9 @@ pub fn resolve(
             ));
         }
     }
-    for (api, client) in clients {
+    for (api, operations) in clients {
         let spec = &specs[api.module];
-        for op in &client.operations {
+        for op in operations {
             let key = format!("{}.{}", api.module, op.name);
             if !decided.contains(&key)
                 && let Some(hit) = undecided(spec, op)?

@@ -1,7 +1,7 @@
 //! Thin public Rust/Ruby facades derived from operation metadata.
 use crate::{
     GenerationError,
-    clients::{Operation, Parameter, RenderedClient, pascal, rust_type},
+    clients::{Operation, Parameter, pascal, rust_type},
     manifest::ModelSpec,
     pagination::{self, Resolved},
 };
@@ -40,14 +40,11 @@ fn response_type(op: &Operation) -> String {
         "Response".into()
     }
 }
-pub(crate) fn rust(
-    client: &RenderedClient,
-    pagination: &[&Resolved],
-) -> Result<String, GenerationError> {
+pub fn rust(operations: &[Operation], pagination: &[&Resolved]) -> Result<String, GenerationError> {
     let mut source = String::from(
         "use crate::{Client, Error, Request, Response};\nuse crate::operation::{self, DecodeError, TypedResponse};\n",
     );
-    for op in &client.operations {
+    for op in operations {
         let params = format!("{}Params", pascal(&op.name));
         let body = op.body();
         let generic = if body.is_some() {
@@ -337,14 +334,14 @@ pub(crate) fn pagination_table(resolved: &[Resolved]) -> Result<String, Generati
     ))
 }
 pub(crate) fn dispatch(
-    clients: &[(&ModelSpec, RenderedClient)],
+    clients: &[(&ModelSpec, Vec<Operation>)],
     resolved: &[Resolved],
 ) -> Result<String, GenerationError> {
     let mut source = String::from(
         "type OperationFuture<'a> = std::pin::Pin<Box<dyn std::future::Future<Output=Result<crate::Response,crate::Error>> + Send + 'a>>;\ntype Handler = for<'a> fn(&'a crate::Client, &'a str)->OperationFuture<'a>;\npub fn execute<'a>(client:&'a crate::Client, operation:&str, arguments:&'a str)->OperationFuture<'a> { let handler: Handler = match operation {\n",
     );
-    for (api, client) in clients {
-        for op in &client.operations {
+    for (api, operations) in clients {
+        for op in operations {
             writeln!(
                 source,
                 "{:?} => {}_{},",
@@ -364,8 +361,8 @@ pub(crate) fn dispatch(
     for r in resolved.iter().filter(|r| r.adapter_key().is_some()) {
         writeln!(source,"fn {m}_{n}_continue<'a>(client:&'a crate::Client,arguments:&'a str)->OperationFuture<'a> {{ Box::pin(async move {{ let params:crate::apis::{m}::{p}ContinueParams=serde_json::from_str(arguments).map_err(|_|crate::Error::InvalidRequest)?; crate::apis::{m}::{n}_continue(client,params).await }}) }}",m=r.module,n=r.name,p=pascal(&r.name)).unwrap();
     }
-    for (api, client) in clients {
-        for op in &client.operations {
+    for (api, operations) in clients {
+        for op in operations {
             let params = pascal(&op.name) + "Params";
             let annotation = if op.body().is_some() {
                 format!("crate::apis::{}::{params}<serde_json::Value>", api.module)
@@ -417,7 +414,7 @@ fn ruby_default(value: &Value) -> String {
     }
 }
 pub(crate) fn ruby(
-    clients: &[(&ModelSpec, RenderedClient)],
+    clients: &[(&ModelSpec, Vec<Operation>)],
     resolved: &[Resolved],
 ) -> (String, String) {
     let mut ruby = String::from(
@@ -438,7 +435,7 @@ pub(crate) fn ruby(
     }
     ruby.push_str("    }.freeze\n\n");
     rbs.push_str("    PAGINATIONS: Hash[String, Pagination]\n\n");
-    for (api, client) in clients {
+    for (api, operations) in clients {
         let class = pascal(api.module);
         writeln!(
             ruby,
@@ -446,7 +443,7 @@ pub(crate) fn ruby(
         )
         .unwrap();
         writeln!(rbs,"    class {class}\n      @engine: engine\n      def initialize: (engine engine) -> void").unwrap();
-        for op in &client.operations {
+        for op in operations {
             let keywords = op
                 .parameters
                 .iter()
@@ -558,11 +555,11 @@ pub(crate) fn ruby(
     (ruby, rbs)
 }
 pub(crate) fn inventory(
-    clients: &[(&ModelSpec, RenderedClient)],
+    clients: &[(&ModelSpec, Vec<Operation>)],
     revision: &str,
     resolved: &[Resolved],
     source: &pagination::Source,
 ) -> Result<String, GenerationError> {
-    let apis=clients.iter().map(|(api,client)|json!({"source":api.source,"module":api.module,"family":api.family,"version":api.version,"latest":api.latest,"ruby_class":pascal(api.module),"operations":client.operations.iter().map(|op|json!({"id":op.id,"key":format!("{}.{}",api.module,op.name),"method":op.method,"path":op.path,"parameters":op.parameters.iter().map(|p|json!({"name":p.name,"wire_name":p.wire_name,"in":p.location,"required":p.required,"csv":p.csv,"schema":p.schema})).collect::<Vec<_>>(),"successes":op.successes.iter().map(|(status,model)|json!({"status":status,"model":model})).collect::<Vec<_>>(),"pagination":resolved.iter().find(|r|r.module==api.module&&r.name==op.name).map(|r|json!({"input":r.mapping.input,"output":r.mapping.output,"continuation":{"operation":r.continuation_operation,"keep":r.mapping.continuation.keep,"drop":r.mapping.continuation.drop,"set":r.mapping.continuation.set,"adapter":r.mapping.continuation.adapter}})),"pagination_exclusion":source.exclusions.iter().find(|e|e.operation==format!("{}.{}",api.module,op.name)).map(|e|e.reason.clone())})).collect::<Vec<_>>()})).collect::<Vec<_>>();
+    let apis=clients.iter().map(|(api,operations)|json!({"source":api.source,"module":api.module,"family":api.family,"version":api.version,"latest":api.latest,"ruby_class":pascal(api.module),"operations":operations.iter().map(|op|json!({"id":op.id,"key":format!("{}.{}",api.module,op.name),"method":op.method,"path":op.path,"parameters":op.parameters.iter().map(|p|json!({"name":p.name,"wire_name":p.wire_name,"in":p.location,"required":p.required,"csv":p.csv,"schema":p.schema})).collect::<Vec<_>>(),"successes":op.successes.iter().map(|(status,model)|json!({"status":status,"model":model})).collect::<Vec<_>>(),"pagination":resolved.iter().find(|r|r.module==api.module&&r.name==op.name).map(|r|json!({"input":r.mapping.input,"output":r.mapping.output,"continuation":{"operation":r.continuation_operation,"keep":r.mapping.continuation.keep,"drop":r.mapping.continuation.drop,"set":r.mapping.continuation.set,"adapter":r.mapping.continuation.adapter}})),"pagination_exclusion":source.exclusions.iter().find(|e|e.operation==format!("{}.{}",api.module,op.name)).map(|e|e.reason.clone())})).collect::<Vec<_>>()})).collect::<Vec<_>>();
     Ok(serde_json::to_string_pretty(&json!({"revision":revision,"apis":apis}))? + "\n")
 }
