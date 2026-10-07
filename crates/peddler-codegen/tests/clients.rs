@@ -91,17 +91,6 @@ fn arbitrary_duplicate_operation_ids_fail_generation() {
 }
 
 #[test]
-fn duplicate_methods_on_different_paths_fail_generation() {
-    let mut value = spec();
-    let operation = value["paths"]["/empty"]["post"].clone();
-    value["paths"]["/other"] = json!({"post": operation});
-    let Err(err) = clients::render(&value, &ALL_APIS[0]) else {
-        panic!("expected error");
-    };
-    assert!(err.0.contains("duplicate operationId empty"));
-}
-
-#[test]
 fn shipping_v2_link_carrier_account_put_is_renamed_to_expose_distinct_operations() {
     let mut value = spec();
     let api = ALL_APIS

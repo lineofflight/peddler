@@ -5,15 +5,14 @@ pub fn write_supplemental(root: &Path) {
     for source in peddler_codegen::supplemental::sources() {
         let path = checkout.join(&source.path);
         fs::create_dir_all(path.parent().unwrap()).unwrap();
-        let fixture = Path::new(env!("CARGO_MANIFEST_DIR"))
-            .join("../peddler/tests/fixtures/supplemental")
-            .join(path.file_name().unwrap());
-        if fixture.exists()
-            && peddler_codegen::supplemental::PATCHES
-                .iter()
-                .any(|(name, _)| *name == source.module)
+        // A patch only applies to the schema it was written for.
+        if peddler_codegen::supplemental::PATCHES
+            .iter()
+            .any(|(name, _)| *name == source.module)
         {
-            fs::copy(fixture, &path).unwrap();
+            let pinned =
+                Path::new(env!("CARGO_MANIFEST_DIR")).join("../../selling-partner-api-models");
+            fs::copy(pinned.join(&source.path), &path).unwrap();
         } else if source.family == "data_kiosk" {
             fs::write(
                 &path,

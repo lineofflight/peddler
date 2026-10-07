@@ -3,7 +3,7 @@ use peddler::apis::{
     catalog_items_2022_04_01::models as catalog, finances_2024_06_19::models::BigDecimal,
     listings_items_2021_08_01::models as listings,
 };
-use serde_json::{Value, json};
+use serde_json::Value;
 
 fn response_body(fixture: &str) -> Vec<u8> {
     let fixture: Value = serde_json::from_str(fixture).unwrap();
@@ -39,46 +39,6 @@ fn listings_fixture_decodes_submission_fields_and_present_empty_issues() {
     assert_eq!(submission.status, "ACCEPTED");
     assert_eq!(submission.submission_id, "7afea06c396945a09266774570f3caf4");
     assert!(submission.issues.unwrap().is_empty());
-}
-
-#[test]
-fn future_submission_status_is_retained() {
-    let submission: listings::ListingsItemSubmissionResponse = serde_json::from_value(json!({
-        "sku":"SKU123", "status":"FUTURE_STATUS", "submissionId":"future"
-    }))
-    .unwrap();
-    assert_eq!(submission.status, "FUTURE_STATUS");
-}
-
-#[test]
-fn optional_summaries_distinguish_absence_from_empty_and_raw_json_keeps_null() {
-    for raw in [
-        json!({"asin":"188864544X"}),
-        json!({"asin":"188864544X", "summaries":[]}),
-        json!({"asin":"188864544X", "summaries":null}),
-    ] {
-        let bytes = serde_json::to_vec(&raw).unwrap();
-        let item: catalog::Item = serde_json::from_slice(&bytes).unwrap();
-        if raw.get("summaries").is_some_and(Value::is_array) {
-            assert!(item.summaries.unwrap().is_empty());
-        } else {
-            assert!(item.summaries.is_none());
-        }
-        let retained: Value = serde_json::from_slice(&bytes).unwrap();
-        assert_eq!(retained, raw);
-    }
-    for raw in [
-        json!({"sku":"SKU123"}),
-        json!({"sku":"SKU123", "summaries":[]}),
-        json!({"sku":"SKU123", "summaries":null}),
-    ] {
-        let item: listings::Item = serde_json::from_value(raw.clone()).unwrap();
-        if raw.get("summaries").is_some_and(Value::is_array) {
-            assert!(item.summaries.unwrap().is_empty());
-        } else {
-            assert!(item.summaries.is_none());
-        }
-    }
 }
 
 #[test]

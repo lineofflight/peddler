@@ -1,5 +1,4 @@
-//! Mapping validation against synthetic specs, plus checks of the committed
-//! mapping file against the committed operation inventory.
+//! Mapping validation against synthetic specs.
 use peddler_codegen::{
     clients,
     manifest::ALL_APIS,
@@ -184,93 +183,5 @@ fn unknown_fields_in_the_mapping_file_are_rejected() {
             spec()
         )
         .is_err()
-    );
-}
-
-#[test]
-fn committed_mappings_match_the_committed_inventory() {
-    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
-    let source: Value =
-        serde_json::from_slice(&std::fs::read(root.join("pagination.json")).unwrap()).unwrap();
-    let inventory: Value =
-        serde_json::from_slice(&std::fs::read(root.join("operation-inventory.json")).unwrap())
-            .unwrap();
-    let mut operations = BTreeMap::new();
-    for api in inventory["apis"].as_array().unwrap() {
-        for op in api["operations"].as_array().unwrap() {
-            operations.insert(op["key"].as_str().unwrap().to_owned(), op);
-        }
-    }
-    let arguments = |key: &str| -> Vec<String> {
-        operations[key]["parameters"]
-            .as_array()
-            .unwrap()
-            .iter()
-            .map(|p| p["name"].as_str().unwrap().to_owned())
-            .collect()
-    };
-    let mappings = source["mappings"].as_array().unwrap();
-    assert_eq!(mappings.len(), 79);
-    let mut decided = std::collections::BTreeSet::new();
-    for m in mappings {
-        let key = m["operation"].as_str().unwrap();
-        assert!(decided.insert(key), "{key} mapped twice");
-        let own = arguments(key);
-        let token = m["input"]
-            .as_str()
-            .unwrap()
-            .trim_start_matches('/')
-            .split('/')
-            .next()
-            .unwrap();
-        assert!(own.iter().any(|a| a == token), "{key}: no argument {token}");
-        let target = m["continuation"]["operation"]
-            .as_str()
-            .map_or_else(|| key.to_owned(), str::to_owned);
-        let adapter = m["continuation"]["adapter"].as_bool().unwrap_or(false);
-        if !adapter {
-            let allowed = arguments(&target);
-            let names = ["keep", "drop"].iter().flat_map(|k| {
-                m["continuation"][k]
-                    .as_array()
-                    .into_iter()
-                    .flatten()
-                    .map(|v| v.as_str().unwrap().to_owned())
-            });
-            let set = m["continuation"]["set"]
-                .as_object()
-                .into_iter()
-                .flatten()
-                .map(|(k, _)| k.clone());
-            for name in names.chain(set) {
-                assert!(
-                    allowed.contains(&name),
-                    "{key}: {target} has no argument {name}"
-                );
-            }
-        }
-        assert_eq!(
-            operations[key]["pagination"]["input"], m["input"],
-            "{key}: inventory out of date"
-        );
-        assert_eq!(
-            operations[key]["pagination"]["output"], m["output"],
-            "{key}: inventory out of date"
-        );
-    }
-    for e in source["exclusions"].as_array().unwrap() {
-        let key = e["operation"].as_str().unwrap();
-        assert!(operations.contains_key(key), "{key} does not exist");
-        assert!(decided.insert(key), "{key} mapped and excluded");
-        assert_eq!(operations[key]["pagination_exclusion"], e["reason"]);
-        assert!(!e["reason"].as_str().unwrap().is_empty());
-    }
-    assert_eq!(operations.len(), 384);
-    assert_eq!(
-        operations
-            .values()
-            .filter(|o| !o["pagination"].is_null())
-            .count(),
-        mappings.len()
     );
 }

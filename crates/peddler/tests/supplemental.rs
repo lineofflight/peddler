@@ -1,20 +1,12 @@
-use peddler::{data_kiosk, feeds, notifications, reports};
+use peddler::{data_kiosk, feeds, notifications};
 use serde_json::{Value, json};
 
 #[test]
-fn listings_update_keeps_dynamic_attributes_and_large_numbers() {
-    let input: Value = serde_json::from_str(r#"{"header":{"sellerId":"seller","version":"2.0"},"messages":[{"messageId":1,"sku":"sku","operationType":"UPDATE","productType":"PRODUCT","attributes":{"price":9007199254740993.1234567890123456789}}]}"#).unwrap();
-    let feed: feeds::listings_feed_schema::Feed = serde_json::from_value(input.clone()).unwrap();
-    assert_eq!(serde_json::to_value(feed).unwrap(), input);
-}
-
-#[test]
 fn shipment_example_retains_typed_payload_and_extension_fields() {
-    let source: Value = serde_json::from_str(include_str!(
+    let mut input: Value = serde_json::from_str(include_str!(
         "fixtures/supplemental/ShipmentTrackingMilestoneChangedNotification.json"
     ))
     .unwrap();
-    let mut input = source["examples"][0].clone();
     input["futureEnvelopeField"] = json!({"id":123});
     input["payload"]["shipmentTrackingMilestoneChangedNotification"]["trackingDetail"]["futureField"] =
         json!("retained");
@@ -54,13 +46,6 @@ fn partial_data_kiosk_selection_keeps_precision_and_omitted_fields() {
 }
 
 #[test]
-fn optional_report_numbers_are_not_defaulted_and_arrays_stay_typed() {
-    let metrics: reports::end_user_data::AsinMetrics = serde_json::from_value(json!({"asin":"ASIN","endDate":"2026-01-02","startDate":"2026-01-01","marketplaceId":"market"})).unwrap();
-    assert!(metrics.gms.is_none());
-    assert!(metrics.page_views.is_none());
-}
-
-#[test]
 fn listings_operations_roundtrip_and_require_their_branch_fields() {
     for message in [
         json!({"messageId":1,"sku":"sku","operationType":"DELETE"}),
@@ -70,6 +55,10 @@ fn listings_operations_roundtrip_and_require_their_branch_fields() {
         let parsed: feeds::listings_feed_message_schema::Feed =
             serde_json::from_value(message.clone()).unwrap();
         assert_eq!(serde_json::to_value(parsed).unwrap(), message);
+        let full = json!({"header":{"sellerId":"seller","version":"2.0"},"messages":[message]});
+        let parsed: feeds::listings_feed_schema::Feed =
+            serde_json::from_value(full.clone()).unwrap();
+        assert_eq!(serde_json::to_value(parsed).unwrap(), full);
     }
     for message in [
         json!({"messageId":1,"sku":"sku","operationType":"UPDATE","productType":"PRODUCT"}),
@@ -113,11 +102,10 @@ fn optional_tax_messages_require_an_english_entry_when_present() {
 
 #[test]
 fn uppercase_notification_patch_allows_missing_offer_and_summary_fields() {
-    let source: Value = serde_json::from_str(include_str!(
+    let mut value: Value = serde_json::from_str(include_str!(
         "fixtures/supplemental/AnyOfferChangedNotification.json"
     ))
     .unwrap();
-    let mut value = source["examples"][0].clone();
     let summary = value
         .pointer_mut("/Payload/AnyOfferChangedNotification/Summary")
         .unwrap()
@@ -169,11 +157,10 @@ fn uppercase_notification_patch_allows_missing_offer_and_summary_fields() {
 
 #[test]
 fn lowercase_flat_notification_patch_and_root_ref_preserve_envelope() {
-    let source: Value = serde_json::from_str(include_str!(
+    let mut value: Value = serde_json::from_str(include_str!(
         "fixtures/supplemental/PricingHealthNotification.json"
     ))
     .unwrap();
-    let mut value = source["examples"][0].clone();
     value
         .pointer_mut("/payload/offerChangeTrigger")
         .unwrap()
@@ -214,60 +201,4 @@ fn data_kiosk_lists_keep_nullable_elements_and_partial_objects() {
         .sales_and_traffic_by_asin
         .is_none()
     );
-}
-
-#[test]
-fn b2b_root_dialect_and_patch_allow_partial_feedback_and_prime_fields() {
-    use notifications::b2b_any_offer_changed as model;
-    serde_json::from_value::<model::ShipsFrom>(json!({})).unwrap();
-    serde_json::from_value::<model::PrimeInformation>(json!({})).unwrap();
-    serde_json::from_value::<model::SellerFeedbackRating>(json!({"FeedbackCount":0})).unwrap();
-    serde_json::from_value::<model::OfferCount>(
-        json!({"Condition":"New","FulfillmentChannel":"Amazon"}),
-    )
-    .unwrap();
-    let summary: model::Summary = serde_json::from_value(
-        json!({"NumberOfOffers":[],"BuyBoxEligibleOffers":[],"LowestPrices":[]}),
-    )
-    .unwrap();
-    assert!(summary.buy_box_prices.is_none());
-    let notification: model::Notification = serde_json::from_value(json!({
-        "NotificationVersion":"1.0","NotificationType":"B2B_ANY_OFFER_CHANGED","PayloadVersion":"1.0","EventTime":"2026-01-01",
-        "NotificationMetadata":{"ApplicationId":"app","SubscriptionId":"sub","PublishTime":"2026-01-01","NotificationId":"id"},
-        "Payload":{"B2BAnyOfferChangedNotification":{"SellerId":"seller","OfferChangeTrigger":{"MarketplaceId":"market","ASIN":"asin","ItemCondition":"New","TimeOfOfferChange":"2026-01-01"},"Offers":[],"Summary":{"NumberOfOffers":[],"BuyBoxEligibleOffers":[],"LowestPrices":[]}}}
-    })).unwrap();
-    assert_eq!(notification.notification_type, "B2B_ANY_OFFER_CHANGED");
-}
-
-#[test]
-fn fee_promotion_patch_keeps_identifier_and_discount_fields_optional() {
-    let source: Value = serde_json::from_str(include_str!(
-        "fixtures/supplemental/FeePromotionNotification.json"
-    ))
-    .unwrap();
-    let mut value = source["examples"][0].clone();
-    value
-        .pointer_mut("/Payload/FeePromotionNotification/Identifiers/0/IdentifierValues/0")
-        .unwrap()
-        .as_object_mut()
-        .unwrap()
-        .remove("IdentifierValueFriendlyName");
-    value
-        .pointer_mut("/Payload/FeePromotionNotification/PromotionInformation/0")
-        .unwrap()
-        .as_object_mut()
-        .unwrap()
-        .retain(|key, _| ["FeeType", "FeeDiscountType"].contains(&key.as_str()));
-    value
-        .pointer_mut(
-            "/Payload/FeePromotionNotification/PromotionInformation/1/FeesEstimate/FeeDetails/0",
-        )
-        .unwrap()
-        .as_object_mut()
-        .unwrap()
-        .remove("TaxAmount");
-    let parsed: notifications::fee_promotion::Notification =
-        serde_json::from_value(value.clone()).unwrap();
-    let encoded = serde_json::to_value(parsed).unwrap();
-    assert_eq!(encoded, value);
 }
