@@ -173,6 +173,7 @@ module Peddler
       # @return [String] the feed document ID
       # @raise [ArgumentError] if an argument or an option breaks its rule. The message names it.
       # @raise [Peddler::Error] if Amazon rejects the document or its signed URL rejects the upload
+      # @raise [Peddler::DocumentError] if the source is larger than `max_bytes:`, before a document is created
       def create_and_upload_feed_document(source, content_type:, content_length: nil, **transfer_options)
         unless Native.valid_identifier?(content_type)
           raise ArgumentError, "content_type must be a UTF-8 String that is not empty"
@@ -180,7 +181,7 @@ module Peddler
 
         Uploads.check(source, content_length)
         upload = @engine.start_feed_document_upload(content_type, TransferConfig.json(transfer_options),
-          Uploads.length(source, content_length))
+          Uploads.length(source, content_length), !content_length.nil?)
         begin
           document_id = upload.document_id || raise(WorkflowError, "feed document unavailable")
           Uploads.drain(upload, source)

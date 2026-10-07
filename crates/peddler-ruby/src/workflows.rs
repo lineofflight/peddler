@@ -89,12 +89,14 @@ fn wait(
 
 /// Creates the feed document, then starts the bounded upload task. The Ruby source
 /// is only read after this returns, so invalid metadata never consumes it.
+/// `declared` says whether the caller gave the length or the source answered it.
 fn start_feed_upload(
     ruby: &Ruby,
     engine: Obj<Engine>,
     content_type: String,
     config: String,
     content_length: Option<u64>,
+    declared: bool,
 ) -> Result<Upload, Error> {
     let (client, shared) = Engine::client(ruby, engine)?;
     let options = UploadOptions {
@@ -103,8 +105,14 @@ fn start_feed_upload(
         headers: Vec::new(),
         content_length,
     };
+    // Refused before a feed document exists. A length the caller gave is named. One
+    // the source answered is refused as an upload to a signed URL refuses it.
     if content_length.is_some_and(|length| length > options.transfer.max_bytes) {
-        return Err(argument_error(ruby, CONTENT_LENGTH));
+        return Err(if declared {
+            argument_error(ruby, CONTENT_LENGTH)
+        } else {
+            documents::error(ruby, DocumentError::ByteLimit)
+        });
     }
     let workflows = client.workflows();
     let create = options.clone();
@@ -129,6 +137,6 @@ fn start_feed_upload(
 pub(super) fn init(engine: RClass) -> Result<(), Error> {
     engine.define_method("download_workflow_document", method!(download, 3))?;
     engine.define_method("wait_for", method!(wait, 4))?;
-    engine.define_method("start_feed_document_upload", method!(start_feed_upload, 3))?;
+    engine.define_method("start_feed_document_upload", method!(start_feed_upload, 4))?;
     Ok(())
 }

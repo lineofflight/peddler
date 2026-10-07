@@ -583,6 +583,31 @@ class WorkflowsTest < NativeTest
     end
   end
 
+  # A source larger than max_bytes is refused as upload_document refuses it, before a feed document is created.
+  # The caller gave no content_length:, so the error doesn't name one.
+  def test_a_source_larger_than_max_bytes_is_refused_as_an_upload_to_a_signed_url_is
+    route_server(feed_handler) do |url, requests|
+      instance = client(url)
+      Tempfile.create("feed") do |file|
+        file.write("0123456789")
+        ["0123456789", file, StringIO.new("0123456789"), sized_source("0123456789")].each do |source|
+          calls = [
+            -> { instance.feeds.create_and_upload_feed_document(source, content_type: "text/xml", max_bytes: 5) },
+            -> { instance.upload_document("#{url}/signed", source, content_type: "text/xml", max_bytes: 5) },
+          ]
+          calls.each do |call|
+            source.rewind if source.respond_to?(:rewind)
+            error = assert_raises(Peddler::DocumentError, &call)
+
+            assert_equal([Peddler::DocumentError, "document byte limit exceeded"], [error.class, error.message])
+          end
+        end
+      end
+
+      assert_empty(requests.call)
+    end
+  end
+
   def test_upload_rejection_raises_and_failures_are_sanitized
     route_server(feed_handler(upload_status: 403, upload_body: "upload denied")) do |url, requests|
       error = assert_raises(Peddler::Error) { client(url).feeds.create_and_upload_feed_document("x", content_type: "text/xml") }
