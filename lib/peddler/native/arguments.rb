@@ -93,18 +93,29 @@ module Peddler
           raise ArgumentError, "#{name} is required" if required
         end
 
+        # What an object converts itself to with `to_str`. Without one it is itself, and so it is when its `to_str`
+        # raises or returns no String. That error is not raised: it is the caller's own and may hold anything.
         def plain(value)
-          String.try_convert(value) || value
+          return value unless value.respond_to?(:to_str)
+
+          converted = begin
+            value.to_str
+          rescue StandardError
+            nil
+          end
+          converted.is_a?(String) ? converted : value
         end
 
         # An argument as text, or nil if it has none. A String is itself. nil, a boolean, a Hash and an Array have
-        # none. Anything else is its `to_s`, as v5 sent it, unless that is an inspect form such as "#<Object>" or
-        # "#<data Point x=1>", which is nobody's argument.
+        # none, nor has an object whose `to_str` fails. Anything else is its `to_s`, as v5 sent it, unless that is an
+        # inspect form such as "#<Object>" or "#<data Point x=1>", which is nobody's argument.
         def text(value)
           case value = plain(value)
           when String then value
           when nil, true, false, Hash, Array then nil
           else
+            return if value.respond_to?(:to_str)
+
             text = value.to_s
             text unless text.start_with?("#<")
           end

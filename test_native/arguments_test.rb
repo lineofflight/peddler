@@ -87,6 +87,26 @@ class ArgumentsTest < NativeTest
     assert_equal(["GET /orders/v0/orders?CreatedAfter=2026-01-02&MarketplaceIds=UK&SellerOrderId=own"], requests)
   end
 
+  def test_a_to_str_that_fails_is_refused_by_name
+    wrong = Class.new { def to_str = 1 }.new
+    raising = Class.new do
+      def to_str = raise("private")
+      def to_s = "private"
+    end.new
+    messages = refused(
+      ->(client) { client.orders_v0.get_order(wrong) },
+      ->(client) { client.orders_v0.get_order(raising) },
+      ->(client) { client.orders_v0.get_orders(["UK"], seller_order_id: wrong) },
+      ->(client) { client.catalog_items_2022_04_01.get_catalog_item("B0X", [raising]) },
+      ->(client) { client.feeds_2021_06_30.get_feeds(page_size: wrong) },
+    )
+
+    assert_equal(
+      ["order_id must be a String"] * 2 + ["seller_order_id must be a String", "marketplace_ids must be an Array of Strings", "page_size must be an Integer"],
+      messages,
+    )
+  end
+
   def test_nil_for_an_optional_keyword_is_left_out
     requests = sent { |client| client.catalog_items_2022_04_01.get_catalog_item("B0X", ["UK"], included_data: nil, locale: nil) }
 
