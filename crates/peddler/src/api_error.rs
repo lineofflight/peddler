@@ -3,9 +3,14 @@
 use crate::Response;
 use std::fmt;
 
+/// A response outside 2xx and what Amazon said of it. [`Response::error_for_status`]
+/// builds it. Debug and Display show the status only.
 pub struct ApiError {
+    /// The whole response, as it arrived.
     pub response: Response,
+    /// The `code` of the first entry in `errors`.
     pub code: Option<String>,
+    /// The `x-amzn-RequestId` header.
     pub request_id: Option<String>,
     /// The `message` of the first entry in `errors`, as Amazon sent it.
     pub message: Option<String>,
@@ -28,6 +33,7 @@ impl fmt::Display for ApiError {
 impl std::error::Error for ApiError {}
 
 impl Response {
+    /// The response when its status is 2xx, and an [`ApiError`] that keeps it otherwise.
     // The error carries the whole response, which is the point of it.
     #[allow(clippy::result_large_err)]
     pub fn error_for_status(self) -> Result<Self, ApiError> {

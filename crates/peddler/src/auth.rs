@@ -24,6 +24,7 @@ type TokenFuture = Pin<Box<dyn Future<Output = Result<String, AuthError>> + Send
 pub struct TokenSource(Arc<dyn Fn() -> TokenFuture + Send + Sync>);
 
 impl TokenSource {
+    /// A source from a function that returns a token every time it is called.
     pub fn new<F, Fut>(source: F) -> Self
     where
         F: Fn() -> Fut + Send + Sync + 'static,
@@ -46,17 +47,28 @@ impl fmt::Debug for TokenSource {
 
 const BODY_LIMIT: usize = 64 * 1024;
 
+/// Why a token request or a token source failed. It keeps nothing of a credential,
+/// a token or a response body.
 #[derive(Clone, Debug, PartialEq, Eq)]
+#[non_exhaustive]
 pub enum AuthError {
+    /// A credential, an argument, the endpoint or the timeout was refused before any
+    /// request.
     InvalidConfig,
+    /// LWA answered inside 2xx without a token that can be used, or a source returned
+    /// one that can't be sent.
     InvalidResponse,
     /// LWA answered outside 2xx. `code` is the `error` field of its reply, such as
     /// `invalid_client` or `invalid_grant`, when it is a short lowercase identifier.
     Rejected {
+        /// The HTTP status of the reply.
         status: u16,
+        /// What LWA names as the problem.
         code: Option<String>,
     },
+    /// The request took longer than the timeout.
     Timeout,
+    /// The request couldn't be sent or its reply couldn't be read.
     Transport,
 }
 

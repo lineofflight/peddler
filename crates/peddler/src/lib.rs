@@ -1,13 +1,49 @@
-//! Shared asynchronous SP-API transport. HTTP error statuses remain responses.
+//! A client for Amazon's Selling Partner API (SP-API).
+//!
+//! A [`Client`] sends the access token it is given over a connection pool that its
+//! clones share. It never requests, refreshes or caches a token:
+//! [`auth::LwaClient`] requests them. Each operation is an async function in a module
+//! of [`apis`], with its parameters in a struct. The function returns once Amazon has
+//! answered, whatever the status: an HTTP error status is a response, not an `Err`,
+//! until [`Response::error_for_status`] is asked.
+//!
+//! ```no_run
+//! use peddler::{Client, apis::orders_v0};
+//!
+//! # async fn run() -> Result<(), Box<dyn std::error::Error>> {
+//! let client = Client::new("https://sellingpartnerapi-eu.amazon.com", "Atza|...")?;
+//! let params = orders_v0::GetOrdersParams::new(vec!["A1F83G8C2ARO7P".into()]);
+//! let response = orders_v0::get_orders(&client, params).await?;
+//! if response.raw.status == 200 {
+//!     if let Some(payload) = response.json()?.payload {
+//!         for order in payload.orders.iter() {
+//!             println!("{} {:?}", order.amazon_order_id, order.order_status);
+//!         }
+//!     }
+//! }
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Beside the operations: [`pagination`] streams the pages of one, [`documents`]
+//! transfers the documents of reports and feeds, and [`workflows`] waits for a report,
+//! feed or query and fetches its document. [`reports`], [`feeds`], [`notifications`] and
+//! [`data_kiosk`] hold the models of what those carry.
+#![warn(missing_docs)]
 
+#[allow(missing_docs)]
 #[rustfmt::skip]
 pub mod apis;
+#[allow(missing_docs)]
 #[rustfmt::skip]
 pub mod reports;
+#[allow(missing_docs)]
 #[rustfmt::skip]
 pub mod feeds;
+#[allow(missing_docs)]
 #[rustfmt::skip]
 pub mod notifications;
+#[allow(missing_docs)]
 #[rustfmt::skip]
 pub mod data_kiosk;
 
@@ -27,6 +63,7 @@ use policy::RetryPolicy;
 use reqwest::{Method, Url, header::HeaderValue};
 use std::{future::Future, time::Duration};
 
+/// Amazon's Login with Amazon token endpoint.
 pub const DEFAULT_LWA_ENDPOINT: &str = "https://api.amazon.com/auth/o2/token";
 
 /// One HTTP connection pool. Clones share it, and so do the clients built on it.
@@ -42,6 +79,7 @@ impl std::fmt::Debug for Pool {
 }
 
 impl Pool {
+    /// A pool that sends the crate's own User-Agent.
     pub fn new() -> Result<Self, Error> {
         Self::build(concat!(
             "Peddler/",
@@ -75,7 +113,9 @@ impl Pool {
 /// The access token a client sends: a value, or a source it asks before every attempt.
 #[derive(Clone)]
 pub enum AccessToken {
+    /// A token, sent as it is until the client is replaced.
     Static(String),
+    /// A source of tokens, which owns caching and refreshing.
     Source(TokenSource),
 }
 
@@ -112,12 +152,16 @@ impl From<TokenSource> for AccessToken {
     }
 }
 
-/// Construction performs no HTTP.
+/// What a client is built from. Construction performs no HTTP.
 pub struct ClientConfig {
+    /// The origin of the selling region, without a path: HTTPS, or HTTP on a loopback
+    /// host.
     pub base_url: String,
+    /// The token to send, or its source.
     pub access_token: AccessToken,
     /// One deadline for a call: every attempt, the body and the retry delays.
     pub timeout: Duration,
+    /// How often a throttled or failed call is retried. The default is never.
     pub retry: RetryPolicy,
     /// Sent to the Selling Partner API in place of the pool's User-Agent.
     pub user_agent: Option<String>,
@@ -125,6 +169,7 @@ pub struct ClientConfig {
     pub pool: Option<Pool>,
 }
 impl ClientConfig {
+    /// A configuration with a timeout of 30 seconds, no retries and a pool of its own.
     pub fn new(base_url: impl Into<String>, access_token: impl Into<AccessToken>) -> Self {
         Self {
             base_url: base_url.into(),
@@ -161,29 +206,45 @@ enum Token {
     Source(TokenSource),
 }
 
+/// A call the crate has no function for, sent with [`Client::execute`].
 #[derive(Debug)]
 pub struct Request {
+    /// The HTTP method, such as `GET`.
     pub method: String,
+    /// The absolute path, percent-encoded, without a query or a fragment.
     pub path: String,
+    /// The query parameters, encoded when they are sent.
     pub query: Vec<(String, String)>,
     /// Sent as given. A header the client or the transport sets is refused: `host`,
     /// `content-length`, `transfer-encoding`, `connection`, `content-type`, `accept`,
     /// `user-agent` and any `x-amz-*`.
     pub headers: Vec<(String, String)>,
+    /// A JSON body, sent as it is with `Content-Type: application/json`.
     pub body: Option<Vec<u8>>,
 }
 
+/// What Amazon answered, whatever the status.
 #[derive(Debug)]
 pub struct Response {
+    /// The HTTP status.
     pub status: u16,
+    /// The headers, their names in lowercase. A header that repeats has a pair for
+    /// each value.
     pub headers: Vec<(String, String)>,
+    /// The body as it arrived.
     pub body: Vec<u8>,
 }
 
+/// Why a call got no response. It keeps no URL, token or body.
 #[derive(Debug, PartialEq, Eq)]
+#[non_exhaustive]
 pub enum Error {
+    /// The client was given something it can't use or send: a base URL, a token, a
+    /// timeout, a path, a header or an argument.
     InvalidRequest,
+    /// The call took longer than the client's timeout.
     Timeout,
+    /// The request couldn't be sent or the response couldn't be read.
     Transport,
     /// A token source failed or returned something that can't be sent.
     Authentication(AuthError),
@@ -203,10 +264,13 @@ impl std::fmt::Display for Error {
 impl std::error::Error for Error {}
 
 impl Client {
+    /// A client for the endpoint of a selling region that sends this access token,
+    /// allows a call 30 seconds and never retries.
     pub fn new(base_url: &str, access_token: &str) -> Result<Self, Error> {
         Self::with_config(ClientConfig::new(base_url, access_token))
     }
 
+    /// Like `new`, with another timeout for a whole call.
     pub fn with_timeout(
         base_url: &str,
         access_token: &str,
@@ -217,6 +281,9 @@ impl Client {
         Self::with_config(config)
     }
 
+    /// A client from a configuration. It refuses a base URL that isn't an origin, a
+    /// token or User-Agent that can't be a header, a timeout no deadline can be set
+    /// by and more than 10 retries.
     pub fn with_config(config: ClientConfig) -> Result<Self, Error> {
         let ClientConfig {
             base_url,
@@ -323,6 +390,8 @@ impl Client {
         }
     }
 
+    /// Sends a request with the client's access token, timeout and retries, and
+    /// returns the response whatever its status.
     pub async fn execute(&self, request: Request) -> Result<Response, Error> {
         self.execute_inner(request, false).await
     }

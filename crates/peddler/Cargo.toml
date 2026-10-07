@@ -2,6 +2,7 @@
 name = "peddler"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.88"
 description = "Rust client for Amazon's Selling Partner API (SP-API) with typed operations, retries and document transfers"
 license = "MIT"
 readme = "README.md"

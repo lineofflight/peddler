@@ -3,12 +3,15 @@ use crate::{Error, Response};
 use serde::de::DeserializeOwned;
 use std::marker::PhantomData;
 
+/// The response of an operation that has a model. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct TypedResponse<T> {
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
     model: PhantomData<T>,
 }
 impl<T: DeserializeOwned> TypedResponse<T> {
+    /// Parses the body into the model of the operation.
     pub fn json(&self) -> Result<T, serde_json::Error> {
         serde_json::from_slice(&self.raw.body)
     }
@@ -20,13 +23,23 @@ impl<T> TypedResponse<T> {
             model: PhantomData,
         }
     }
+    /// The response without its model.
     pub fn into_raw(self) -> Response {
         self.raw
     }
 }
+/// Why a response didn't decode into a model.
 #[derive(Debug)]
+#[non_exhaustive]
 pub enum DecodeError {
-    UnexpectedStatus { expected: u16, actual: u16 },
+    /// The response has another status than the one the model is for.
+    UnexpectedStatus {
+        /// The status the model is for.
+        expected: u16,
+        /// The status of the response.
+        actual: u16,
+    },
+    /// The body isn't the JSON of the model.
     Json(serde_json::Error),
 }
 impl std::fmt::Display for DecodeError {

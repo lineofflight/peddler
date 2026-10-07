@@ -33,26 +33,42 @@ use tokio::{
 };
 use tokio_util::io::StreamReader;
 
+/// The chunks, records or rows of a document, as they arrive.
 pub type DocumentStream<T> = Pin<Box<dyn Stream<Item = Result<T, Error>> + Send + 'static>>;
 
 /// Errors never retain caller errors, URLs or document contents. A rejection keeps
 /// the reply of the signed URL.
 #[derive(Clone, Debug, PartialEq, Eq)]
+#[non_exhaustive]
 pub enum Error {
+    /// An option was refused before any request: a timeout no deadline can be set by,
+    /// or a limit of zero.
     InvalidConfig,
+    /// The URL isn't HTTPS, or HTTP on a loopback host, or isn't percent-encoded.
     InvalidUrl,
+    /// The content type or a header of an upload can't be sent as a header.
     InvalidHeader,
+    /// The `Content-Encoding` of a download is something other than one `gzip`.
     UnsupportedEncoding,
+    /// The charset of a TSV document, or the one the caller named, isn't known.
     UnsupportedCharset,
+    /// The transfer ran past its timeout.
     Timeout,
+    /// The request couldn't be sent or the body couldn't be read.
     Transport,
+    /// The GZIP data is invalid or ends early.
     Compression,
+    /// The document is larger than `max_bytes`.
     ByteLimit,
+    /// A record or a row is larger than `max_record_bytes`.
     RecordLimit,
+    /// The content isn't valid JSON, or text in its charset.
     Format,
     /// The signed URL answered outside 2xx.
     Rejected(Box<Rejection>),
+    /// The source of an upload returned an error.
     UploadSource,
+    /// The source of an upload gave more or fewer bytes than `content_length`.
     LengthMismatch,
 }
 impl fmt::Display for Error {
@@ -81,8 +97,11 @@ impl std::error::Error for Error {}
 /// [`MAX_RESPONSE_BYTES`]. Debug shows the status only.
 #[derive(Clone, PartialEq, Eq)]
 pub struct Rejection {
+    /// The HTTP status of the reply.
     pub status: u16,
+    /// The headers of the reply.
     pub headers: HeaderMap,
+    /// The start of the body, as it arrived.
     pub body: Vec<u8>,
 }
 impl fmt::Debug for Rejection {
@@ -93,7 +112,9 @@ impl fmt::Debug for Rejection {
     }
 }
 
+/// How a download is decompressed.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[non_exhaustive]
 pub enum Compression {
     /// Decode a single gzip Content-Encoding. Supply Gzip for SP-API metadata.
     #[default]
@@ -101,13 +122,18 @@ pub enum Compression {
     /// GZIP metadata. Also a gzip header means the same single layer.
     Gzip,
 }
+/// The timeout and limits of a transfer. The default allows 30 seconds, any size, and
+/// 1 MiB a record.
 #[derive(Clone, Debug)]
 pub struct TransferOptions {
+    /// One deadline for the whole transfer, the body included.
     pub timeout: Duration,
+    /// How a download is decompressed.
     pub compression: Compression,
     /// Ceiling on decompressed bytes, independently of Content-Length. There is none
     /// unless the caller sets one.
     pub max_bytes: u64,
+    /// Ceiling on one JSON Lines record or one TSV row.
     pub max_record_bytes: usize,
 }
 /// How much is kept of the body of an upload reply or of a rejection.
@@ -134,9 +160,14 @@ impl TransferOptions {
 /// Debug hides signed header values and the content type.
 #[derive(Clone)]
 pub struct UploadOptions {
+    /// The timeout of the upload, and `max_bytes` as a ceiling on what is sent.
     pub transfer: TransferOptions,
+    /// The `Content-Type` to send. A signed URL is signed for one.
     pub content_type: String,
+    /// More headers to send, when the URL was signed with them.
     pub headers: Vec<(String, String)>,
+    /// The length of the source. With one the upload sends `Content-Length`, and a
+    /// source of another length fails. Without one the body goes out chunked.
     pub content_length: Option<u64>,
 }
 impl Default for UploadOptions {
@@ -155,6 +186,8 @@ impl fmt::Debug for UploadOptions {
     }
 }
 
+/// Downloads from and uploads to signed URLs. [`Client::documents`](crate::Client::documents)
+/// builds it on the client's pool, without its access token.
 #[derive(Clone)]
 pub struct DocumentClient {
     http: reqwest::Client,
@@ -189,9 +222,11 @@ impl fmt::Debug for Download {
     }
 }
 impl Download {
+    /// The HTTP status of the reply, inside 2xx.
     pub fn status(&self) -> u16 {
         self.status
     }
+    /// The headers of the reply.
     pub fn headers(&self) -> &HeaderMap {
         &self.headers
     }
@@ -199,6 +234,7 @@ impl Download {
     pub fn charset(&self) -> Option<String> {
         header_charset(&self.headers)
     }
+    /// The bytes of the document, decompressed, as they arrive.
     pub fn into_chunks(self) -> DocumentStream<Bytes> {
         self.body
     }
@@ -402,8 +438,11 @@ impl<'de> serde::de::Visitor<'de> for Checked {
 /// The reply to an upload the signed URL accepted. The body is raw and cut at
 /// [`MAX_RESPONSE_BYTES`].
 pub struct UploadResponse {
+    /// The HTTP status of the reply, inside 2xx.
     pub status: u16,
+    /// The headers of the reply.
     pub headers: HeaderMap,
+    /// The start of the body, as it arrived.
     pub body: Vec<u8>,
 }
 impl fmt::Debug for UploadResponse {

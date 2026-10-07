@@ -28,8 +28,11 @@ use tokio::time::{Instant, sleep_until, timeout_at};
 
 /// What a workflow helper fetches or waits for.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[non_exhaustive]
 pub enum DocumentKind {
+    /// A report and its document.
     Report,
+    /// A feed, and the document of its result.
     Feed,
     /// A Data Kiosk query and its document.
     Query,
@@ -38,7 +41,9 @@ pub enum DocumentKind {
 /// Polling interval and total timeout. Both must be positive.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct WaitOptions {
+    /// The time between the end of one poll and the start of the next.
     pub interval: Duration,
+    /// One deadline for the whole wait.
     pub timeout: Duration,
 }
 impl Default for WaitOptions {
@@ -53,6 +58,7 @@ impl Default for WaitOptions {
 /// A created feed document awaiting its upload. Debug hides the signed URL.
 pub struct FeedDocumentTarget {
     client: documents::DocumentClient,
+    /// The ID to pass to `createFeed` once the upload is done.
     pub document_id: String,
     url: String,
     content_type: String,
@@ -97,6 +103,8 @@ impl FeedDocumentTarget {
     }
 }
 
+/// Why a helper failed. Debug and Display show no URL, body or token.
+#[non_exhaustive]
 pub enum WorkflowError {
     /// Invalid identifier, content type, interval, timeout or transfer limits.
     InvalidConfig,
@@ -120,7 +128,9 @@ pub enum WorkflowError {
     Document(documents::Error),
     /// Upload failed or ran out of time after the feed document was created.
     Upload {
+        /// The feed document that was created.
         document_id: String,
+        /// Why the upload failed.
         error: documents::Error,
     },
 }
@@ -187,6 +197,7 @@ pub struct Workflows {
     client: Client,
 }
 impl Client {
+    /// The helpers that wait for a report, feed or query and transfer its document.
     pub fn workflows(&self) -> Workflows {
         Workflows {
             client: self.clone(),
@@ -299,6 +310,8 @@ impl Workflows {
         self.transfer(deadline, options, &url, declared).await
     }
 
+    /// Download a report by its document ID. A document whose metadata says `GZIP`
+    /// is decompressed.
     pub async fn download_report_document(
         &self,
         document_id: &str,
@@ -308,6 +321,7 @@ impl Workflows {
             .await
     }
 
+    /// Download the result of a feed by its document ID, decompressed as a report is.
     pub async fn download_feed_document(
         &self,
         document_id: &str,
@@ -317,6 +331,7 @@ impl Workflows {
             .await
     }
 
+    /// Download a Data Kiosk document by its ID.
     pub async fn download_query_document(
         &self,
         document_id: &str,
@@ -360,6 +375,7 @@ impl Workflows {
         }
     }
 
+    /// Poll `getReport` until the report is DONE, CANCELLED or FATAL.
     pub async fn wait_for_report(
         &self,
         report_id: &str,
@@ -370,6 +386,7 @@ impl Workflows {
             .map(TypedResponse::new)
     }
 
+    /// Poll `getFeed` until the feed is DONE, CANCELLED or FATAL.
     pub async fn wait_for_feed(
         &self,
         feed_id: &str,
@@ -380,6 +397,7 @@ impl Workflows {
             .map(TypedResponse::new)
     }
 
+    /// Poll `getQuery` until the query is DONE, CANCELLED or FATAL.
     pub async fn wait_for_query(
         &self,
         query_id: &str,

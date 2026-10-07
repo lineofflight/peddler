@@ -174,8 +174,9 @@ fn transport_error(ruby: &Ruby, error: peddler::Error) -> Error {
     match error {
         peddler::Error::InvalidRequest => Error::new(ruby.exception_arg_error(), "invalid request"),
         peddler::Error::Timeout => native_error(ruby, "TimeoutError", "request timed out"),
-        peddler::Error::Transport => native_error(ruby, "TransportError", "transport failed"),
         peddler::Error::Authentication(error) => lwa::error(ruby, error),
+        // A transport failure, and whatever the core names later.
+        _ => native_error(ruby, "TransportError", "transport failed"),
     }
 }
 

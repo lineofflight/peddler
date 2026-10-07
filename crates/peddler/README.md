@@ -16,7 +16,7 @@ The client is thin. It sends the access token it is given over a shared connecti
 
 ## Installation
 
-Calls are async and run on [Tokio](https://tokio.rs).
+Calls are async and run on [Tokio](https://tokio.rs). The crate needs Rust 1.88 or later.
 
 ```toml
 [dependencies]

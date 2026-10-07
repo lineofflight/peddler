@@ -24,6 +24,7 @@ pub struct Pagination {
     pub input: String,
     /// JSON pointer into the JSON response body, e.g. `/payload/NextToken`.
     pub output: String,
+    /// How the arguments change after the first page.
     pub continuation: Continuation,
 }
 
@@ -42,6 +43,7 @@ pub struct Continuation {
 }
 
 impl Pagination {
+    /// A mapping that carries every argument over to the next page.
     pub fn new(
         operation: impl Into<String>,
         input: impl Into<String>,
@@ -58,6 +60,7 @@ impl Pagination {
 
 /// Sanitized: never carries tokens, bodies or arguments.
 #[derive(Debug, PartialEq, Eq)]
+#[non_exhaustive]
 pub enum PaginationError {
     /// The request failed before a response was received.
     Request(Error),

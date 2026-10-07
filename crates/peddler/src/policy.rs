@@ -13,11 +13,14 @@ const BASE_DELAY: Duration = Duration::from_millis(200);
 /// The most any retry waits, and the longest `Retry-After` that is followed.
 const MAX_DELAY: Duration = Duration::from_secs(30);
 
+/// How often a client retries. The default is never.
 #[derive(Clone, Debug, Default)]
 pub struct RetryPolicy {
+    /// The retries of one call, from 0 to 10.
     pub max_retries: u32,
 }
 
+/// A policy with more than 10 retries.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct PolicyError;
 
@@ -30,6 +33,7 @@ impl fmt::Display for PolicyError {
 impl std::error::Error for PolicyError {}
 
 impl RetryPolicy {
+    /// Refuses more than 10 retries. A client checks its policy when it is built.
     pub fn validate(&self) -> Result<(), PolicyError> {
         if self.max_retries > 10 {
             return Err(PolicyError);

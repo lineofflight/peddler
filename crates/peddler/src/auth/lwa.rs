@@ -30,10 +30,15 @@ impl fmt::Debug for LwaClient {
 /// token for grantless operations.
 #[derive(Clone, Deserialize)]
 pub struct LwaTokens {
+    /// The token a client sends to the Selling Partner API.
     pub access_token: String,
+    /// The seller's refresh token, when LWA sends one.
     pub refresh_token: Option<String>,
+    /// `bearer`, in any case. A reply with another type is refused.
     pub token_type: String,
+    /// The seconds the access token lasts, from the start of the request.
     pub expires_in: u64,
+    /// The scope granted, when LWA sends one.
     pub scope: Option<String>,
 }
 impl fmt::Debug for LwaTokens {
@@ -46,6 +51,7 @@ impl fmt::Debug for LwaTokens {
 }
 
 impl LwaClient {
+    /// A client of Amazon's token endpoint that allows a request 30 seconds.
     pub fn new(client_id: &str, client_secret: &str) -> Result<Self, AuthError> {
         Self::with_config(
             client_id,
@@ -55,6 +61,9 @@ impl LwaClient {
         )
     }
 
+    /// A client of another token endpoint, such as a proxy or a test server, or with
+    /// another timeout for a request. The endpoint is HTTPS, or HTTP on a loopback
+    /// host.
     pub fn with_config(
         client_id: &str,
         client_secret: &str,
