@@ -18,7 +18,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Add streaming downloads: `open_report_document`, `open_feed_document`, `open_query_document` and `download_document` yield a `Peddler::Document`, read with `each_tsv`, `each_jsonl`, `each_chunk` or `json(max_bytes:)`. `each_tsv` decodes the charset of the `Content-Type` (such as Cp1252 or Shift_JIS) to UTF-8 and takes a `charset:` override
 - Add `create_and_upload_feed_document` and `upload_document`, which upload a String or an IO
 - Add `status`, `code` and `request_id` to `Peddler::Error`, and pattern matching on `status` and `code`, e.g. `case error in {status: 500..599}`
-- Add `Client#request`, the call for an endpoint Peddler has no method for yet: `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: id })`
+- Add `Client#request`, the call for an endpoint Peddler has no method for yet: `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: ids })`. A parameter value takes what an operation's argument takes, a `Peddler::Marketplace` and an Array among them
 - Add a `timeout:` option to the client: the seconds a whole call may take, retries included. The default is 30
 - Add a `base_url:` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
 - Add `Peddler::TransportError` and `Peddler::TimeoutError` for requests that get no response, `Peddler::AuthenticationError` (with `status` and `code`) for rejected token requests, and `Peddler::PaginationError`, `Peddler::DocumentError`, `Peddler::DocumentTimeoutError`, `Peddler::WorkflowError`, `Peddler::WorkflowTimeoutError` and `Peddler::ForkError`
@@ -38,8 +38,9 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Raise `Peddler::Error` when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`
 - Allow 30 seconds for a call by default. 5.x had no timeout
 - Raise `ArgumentError` that names the argument when a required argument is `nil` or an argument has the wrong type, before anything is sent, such as `order_id is required`. An object whose `to_s` is an inspect form, such as `#<Object>`, counts as the wrong type. See the [argument forms](UPGRADING.md#argument-forms) that are still sent as 5.x sent them
-- Refuse `.` and `..` for an argument anywhere in a path, and an empty String for one that ends a path, with an `ArgumentError` that names the argument
-- Raise `ArgumentError` that names the option or argument and its rule when `Peddler::Client.new`, `Peddler::LWA.new` or a grant gets a bad one, such as `retries must be an Integer between 0 and 10`
+- Refuse `.` and `..` for an argument anywhere in a path, and an empty String for one that ends a path, with an `ArgumentError` that names the argument. The same goes for the ID a document helper takes
+- Refuse a String that is not valid UTF-8 with an `ArgumentError` that names the argument, such as `order_id must be valid UTF-8`. 5.x sent its bytes
+- Raise `ArgumentError` that names the option or argument and its rule when `Peddler::Client.new`, `Peddler::LWA.new`, a grant, a document transfer or a wait gets a bad one, such as `retries must be an Integer between 0 and 10`. An unknown option of a transfer raises one that lists the options
 - Return decompressed content from `download_report_document` for GZIP reports. If you were wrapping the result in `Zlib::GzipReader`, remove it
 - Allow the document helpers 600 seconds for a call. 5.x had no limit
 - Make `Peddler::Response` a class of its own. `status` (with `success?` and its siblings), `code`, `headers[]`, `charset`, `to_s`, `parse`, `to_h` and `dig` read as before. The other readers of the `http` gem's response are gone
