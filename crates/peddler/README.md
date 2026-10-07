@@ -4,7 +4,7 @@ A Rust client for Amazon's [Selling Partner API (SP-API)][api-docs]. It is the c
 
 The crate provides:
 
-- all 384 SP-API operations in 70 API versions, each an async function with typed parameters and a typed response
+- all 384 SP-API operations in 70 API versions, each an async function with typed parameters, and a typed response where Amazon's model defines one
 - typed models for reports, feeds, notifications and Data Kiosk schemas
 - Login with Amazon (LWA) token requests and an optional in-process token source
 - retries for throttled and failed requests, off by default
@@ -24,7 +24,10 @@ peddler = "0.1"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 futures-util = "0.3"
 serde_json = "1"
+bytes = "1"
 ```
+
+`futures-util` reads the streams of pages and documents, `serde_json` builds request bodies, and `bytes` holds the chunks of an upload. Leave out what you don't use.
 
 The examples below run inside an async function that returns `Result<(), Box<dyn std::error::Error>>`.
 
@@ -125,7 +128,7 @@ let report_id = response.json()?.report_id;
 
 Parameters are sent as given. The crate doesn't check them against Amazon's schemas: Amazon does, and answers 400. With `Error::InvalidRequest`, it refuses what it can't send as the request you mean: `.` or `..` as a path parameter, an empty parameter at the end of a path, and a header value that HTTP doesn't allow.
 
-An operation with more than 1 successful response has a decoder for each status, such as `json_200` and `json_202` on Fulfillment Outbound's `create_order`.
+An operation with more than 1 successful response has a decoder for each status, such as `json_200` and `json_202` on Fulfillment Outbound's `create_order`. An operation whose response Amazon doesn't model returns the `Response` itself.
 
 For a call the crate has no function for, send a `Request` with `client.execute`.
 
@@ -163,7 +166,7 @@ let client = peddler::Client::new("https://sellingpartnerapi-eu.amazon.com", &to
 let grantless = lwa.client_credentials("sellingpartnerapi::notifications").await?;
 ```
 
-A rejection is `AuthError::Rejected { status, code }`, where `code` is what Amazon names, such as `invalid_grant`. `LwaTokens` hides its tokens in `Debug`.
+`LwaTokens` has `access_token`, `refresh_token`, `token_type`, `expires_in` and `scope`, and hides its tokens in `Debug`. A rejection is `AuthError::Rejected { status, code }`, where `code` is what Amazon names, such as `invalid_grant`.
 
 An access token lasts 1 hour. In place of a fixed token, give the client a `TokenSource`: an async closure that returns the token. The client asks it before every attempt and keeps nothing it returns, so the closure decides where tokens live. Read them from a cache that your processes share.
 
@@ -210,9 +213,13 @@ let address = orders_v0::get_order_address(&restricted, params).await?;
 
 A client makes 1 attempt and allows 30 seconds for a call, unless `ClientConfig` says otherwise.
 
-With `RetryPolicy { max_retries }`, the client retries a GET that Amazon answers with 429, 500, 502, 503 or 504. It waits as long as `Retry-After` asks, up to 30 seconds, and otherwise backs off exponentially with jitter. It never retries a request that changes data, nor a failed connection. `max_retries` is at most 10.
+With `RetryPolicy { max_retries }`, the client retries a GET, a HEAD or an OPTIONS that Amazon answers with 429, 500, 502, 503 or 504. The generated operations use GET of these. It never retries another method, since that may change data twice, nor a failed connection. `max_retries` is at most 10.
 
-The timeout is 1 deadline for the whole call: asking a token source, every attempt, every wait and reading the body. When retries or time run out before a retry would start, the call returns the last response. A call that is cut off by the deadline is `Error::Timeout`.
+Before each retry it waits a random time: up to 0.2 seconds before the first, up to 0.4 before the second, up to 0.8 before the third, and so on, doubling up to 30 seconds. With 3 retries, the waits add up to 1.4 seconds at most.
+
+If the response has a `Retry-After` header, the client waits at least as long as it asks. If it asks for more than 30 seconds, it doesn't retry.
+
+The timeout is 1 deadline for the whole call: asking a token source, every attempt, every wait and reading the body. When retries run out, or the next wait doesn't fit in the time left, the call returns the last response. A call that is cut off by the deadline is `Error::Timeout`.
 
 Amazon limits each operation for each seller. The crate doesn't count your calls against those limits. Space them in your application.
 
