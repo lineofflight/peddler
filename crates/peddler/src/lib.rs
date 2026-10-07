@@ -237,7 +237,8 @@ impl Client {
                 .is_some_and(|path| !path.is_empty())
             || origin.path() != "/"
             || (scheme == "http" && !url::is_loopback(&origin))
-            || timeout.is_zero()
+            // Zero, or too long for a deadline to be set by.
+            || deadline(timeout).is_none()
         {
             return Err(Error::InvalidRequest);
         }

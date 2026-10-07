@@ -261,10 +261,19 @@ fn rejects_invalid_origins_tokens_and_zero_timeout() {
             Error::InvalidRequest
         );
     }
-    assert_eq!(
-        Client::with_timeout("https://example.com", TOKEN, Duration::ZERO).unwrap_err(),
-        Error::InvalidRequest
-    );
+    // Zero, and one too long for a deadline to be set by: every call would fail.
+    for timeout in [Duration::ZERO, Duration::MAX] {
+        assert_eq!(
+            Client::with_timeout("https://example.com", TOKEN, timeout).unwrap_err(),
+            Error::InvalidRequest
+        );
+        let mut config = peddler::ClientConfig::new("https://example.com", TOKEN);
+        config.timeout = timeout;
+        assert_eq!(
+            Client::with_config(config).unwrap_err(),
+            Error::InvalidRequest
+        );
+    }
 }
 
 #[tokio::test]
