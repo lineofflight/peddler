@@ -1,6 +1,6 @@
 //! Document ID lifecycle helpers. Metadata, polling and transfer start run in Rust
 //! under one deadline; Ruby wraps the owned outputs and feeds upload chunks.
-use super::{Completed, Engine, ResponseParts, argument_error, documents, gvl, native_error};
+use super::{Completed, Engine, ResponseParts, argument_error, documents, fork, gvl, native_error};
 use documents::{Config, Document, Upload};
 use magnus::{Error, RClass, Ruby, method, prelude::*, typed_data::Obj};
 use peddler::{
@@ -53,7 +53,7 @@ fn download(
     let kind = kind(ruby, &kind_name)?;
     let options = Config::parse(ruby, &config)?;
     let workflows = client.workflows();
-    let download = gvl::wait(ruby, "WorkflowError", shared, async move {
+    let download = gvl::wait(ruby, "WorkflowError", fork::CLIENT, shared, async move {
         workflows.download(kind, &id, options).await
     })?
     .map_err(|error| workflow_error(ruby, error))?;
@@ -80,7 +80,7 @@ fn wait(
         timeout: super::timeout(timeout).map_err(|message| argument_error(ruby, message))?,
     };
     let workflows = client.workflows();
-    let result = gvl::wait(ruby, "WorkflowError", shared, async move {
+    let result = gvl::wait(ruby, "WorkflowError", fork::CLIENT, shared, async move {
         workflows.wait(kind, &id, options).await.map(Completed::new)
     })?;
     let completed = result.map_err(|error| workflow_error(ruby, error))?;
@@ -108,7 +108,7 @@ fn start_feed_upload(
     }
     let workflows = client.workflows();
     let create = options.clone();
-    let target = gvl::wait(ruby, "WorkflowError", shared, async move {
+    let target = gvl::wait(ruby, "WorkflowError", fork::CLIENT, shared, async move {
         workflows.create_feed_document(&content_type, &create).await
     })?
     .map_err(|error| match error {

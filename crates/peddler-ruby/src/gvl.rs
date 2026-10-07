@@ -1,5 +1,5 @@
 //! Protected, owned-work GVL release shared by requests and document transfers.
-use super::{Shared, native_error};
+use super::{Shared, fork, native_error};
 use futures_util::FutureExt;
 use magnus::{Error, Ruby, rb_sys::AsRawValue};
 use std::{
@@ -24,9 +24,13 @@ struct Invocation<F: Future> {
 /// what Ruby then raises ends the work: the future is dropped and the exception goes
 /// on. After a wake-up with nothing to raise (a trap that returns, a wakeup, an
 /// exception the caller has masked) the same work goes on.
+///
+/// A trap handler may fork, and then it returns in the child too, inside this call.
+/// The child raises `Peddler::ForkError`, which tells it to create `rebuild` again.
 pub(super) fn wait<F>(
     ruby: &Ruby,
     failure_class: &str,
+    rebuild: &'static str,
     shared: &'static Shared,
     future: F,
 ) -> Result<F::Output, Error>
@@ -43,6 +47,7 @@ where
         result: None,
     });
     let nil = ruby.qnil().as_raw();
+    let pid = std::process::id();
     let outcome = loop {
         let pass = magnus::rb_sys::protect(|| {
             // SAFETY: callback and unblock share only a separate Notify allocation;
@@ -58,6 +63,13 @@ where
             }
             nil
         });
+        // Ruby ran a trap handler that forked, and this is the child. The work belongs
+        // to the parent's runtime, which has no threads here: it is neither polled nor
+        // dropped. What Ruby raised, if anything, goes on.
+        if std::process::id() != pid {
+            std::mem::forget(invocation);
+            return Err(pass.err().unwrap_or_else(|| fork::error(ruby, rebuild)));
+        }
         if let Err(error) = pass {
             break Err(error);
         }

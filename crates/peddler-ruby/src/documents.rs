@@ -149,7 +149,7 @@ impl Document {
         let options = Config::parse(ruby, &json)?;
         let client = state.client.documents();
         let shared = state.shared;
-        let download = gvl::wait(ruby, "DocumentError", shared, async move {
+        let download = gvl::wait(ruby, "DocumentError", fork::CLIENT, shared, async move {
             client.download(&url, options).await
         })?
         .map_err(|e| error(ruby, e))?;
@@ -232,13 +232,19 @@ impl Document {
             None => {
                 let closed = Arc::clone(&owner.stream);
                 let signal = Arc::clone(&owner.close_signal);
-                gvl::wait(ruby, "DocumentError", owner.shared, async move {
-                    let row = tokio::select! {
-                        row = read_row(&mut state) => row,
-                        () = wait_closed(closed, signal) => Err(DocumentError::Transport),
-                    };
-                    (state, row)
-                })?
+                gvl::wait(
+                    ruby,
+                    "DocumentError",
+                    fork::CLIENT,
+                    owner.shared,
+                    async move {
+                        let row = tokio::select! {
+                            row = read_row(&mut state) => row,
+                            () = wait_closed(closed, signal) => Err(DocumentError::Transport),
+                        };
+                        (state, row)
+                    },
+                )?
             }
         };
         let row = row.map_err(|e| error(ruby, e))?;
@@ -259,12 +265,18 @@ impl Document {
         };
         let closed = Arc::clone(&owner.stream);
         let signal = Arc::clone(&owner.close_signal);
-        let result = gvl::wait(ruby, "DocumentError", owner.shared, async move {
-            tokio::select! {
-                result = (*value).json_text(limit) => result,
-                () = wait_closed(closed, signal) => Err(DocumentError::Transport),
-            }
-        })?;
+        let result = gvl::wait(
+            ruby,
+            "DocumentError",
+            fork::CLIENT,
+            owner.shared,
+            async move {
+                tokio::select! {
+                    result = (*value).json_text(limit) => result,
+                    () = wait_closed(closed, signal) => Err(DocumentError::Transport),
+                }
+            },
+        )?;
         result.map_err(|e| error(ruby, e))
     }
 }
@@ -450,25 +462,38 @@ impl Upload {
             Err(mpsc::error::TrySendError::Closed(())) => return Ok(false),
             Err(mpsc::error::TrySendError::Full(())) => data,
         };
-        gvl::wait(ruby, "DocumentError", owner.shared, async move {
-            tokio::select! { biased;
-                () = completion.ready() => false,
-                permit = sender.reserve() => match permit { Ok(permit) => { permit.send(data); true }, Err(_) => false },
-            }
-        })
+        gvl::wait(
+            ruby,
+            "DocumentError",
+            fork::CLIENT,
+            owner.shared,
+            async move {
+                tokio::select! { biased;
+                    () = completion.ready() => false,
+                    permit = sender.reserve() => match permit { Ok(permit) => { permit.send(data); true }, Err(_) => false },
+                }
+            },
+        )
     }
     fn finish(ruby: &Ruby, upload: &Self) -> Result<ResponseParts, Error> {
         let owner = upload.0.get(ruby)?;
         let sender = owner.sender.lock().unwrap().take();
         drop(sender);
         let completion = Arc::clone(&owner.completion);
-        let response = gvl::wait(ruby, "DocumentError", owner.shared, async move {
-            completion.ready().await;
-            match std::mem::replace(&mut *completion.result.lock().unwrap(), UploadState::Taken) {
-                UploadState::Ready(result) => result,
-                _ => Err(DocumentError::UploadSource),
-            }
-        })?
+        let response = gvl::wait(
+            ruby,
+            "DocumentError",
+            fork::CLIENT,
+            owner.shared,
+            async move {
+                completion.ready().await;
+                match std::mem::replace(&mut *completion.result.lock().unwrap(), UploadState::Taken)
+                {
+                    UploadState::Ready(result) => result,
+                    _ => Err(DocumentError::UploadSource),
+                }
+            },
+        )?
         .map_err(|e| error(ruby, e))?;
         let completed = Completed::new(Response {
             status: response.status,

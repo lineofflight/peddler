@@ -301,7 +301,7 @@ impl Engine {
         let (client, shared) = Self::client(ruby, rb_self)?;
         // Its method was checked, so what the core refuses of a raw request is its path.
         let raw = matches!(work, Work::Raw(_));
-        let result = gvl::wait(ruby, "TransportError", shared, async move {
+        let result = gvl::wait(ruby, "TransportError", fork::CLIENT, shared, async move {
             match work {
                 Work::Raw(request) => client.execute(request).await,
                 Work::Operation { name, arguments } => {

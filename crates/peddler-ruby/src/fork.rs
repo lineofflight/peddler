@@ -29,11 +29,16 @@ impl<T> ForkOwned<T> {
     /// The value, once the fork guard has passed. There is no other way to it.
     pub(super) fn get(&self, ruby: &Ruby) -> Result<&T, Error> {
         if self.pid != std::process::id() {
-            let message = format!("create a new {} after fork", self.rebuild);
-            return Err(native_error(ruby, "ForkError", &message));
+            return Err(error(ruby, self.rebuild));
         }
         Ok(&self.value)
     }
+}
+
+/// What a child is told of something its parent created: `rebuild` is `CLIENT` or `LWA`.
+pub(super) fn error(ruby: &Ruby, rebuild: &str) -> Error {
+    let message = format!("create a new {rebuild} after fork");
+    native_error(ruby, "ForkError", &message)
 }
 
 impl<T> Drop for ForkOwned<T> {

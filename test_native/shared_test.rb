@@ -105,5 +105,85 @@ class SharedTest < NativeTest
       end
     end
   end
+
+  # Ruby runs a trap handler between the passes of a call. One that forks returns in the child too, inside the
+  # call it interrupted, where the work belongs to a runtime the child has no threads of.
+  def test_a_fork_inside_a_call_raises_fork_error_in_the_child_and_the_parent_completes
+    skip "fork unavailable" unless Process.respond_to?(:fork)
+
+    tokens = JSON.generate(access_token: "from-lwa", token_type: "bearer", expires_in: 3600)
+    grant = lambda do |url|
+      Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "#{url}/auth").refresh(refresh_token: "r").access_token
+    end
+    {
+      "create a new client after fork" => [->(url) { client(url, timeout: 5).request("GET", "/").status }, 200],
+      "create a new Peddler::LWA after fork" => [grant, "from-lwa"],
+    }.each do |message, (call, result)|
+      in_parent, in_child, seconds = fork_inside_a_call(tokens, &call)
+
+      assert_equal(result, in_parent)
+      assert_equal(message, in_child)
+      assert_operator(seconds, :<, 2)
+    end
+  end
+
+  private
+
+  # Runs the call against a server that answers once a trap handler has forked. Returns what the call returned
+  # in the parent, and what it raised in the child with the seconds that took.
+  def fork_inside_a_call(body)
+    parent = Process.pid
+    reader, writer = IO.pipe
+    arrived = Queue.new
+    forked = Queue.new
+    child = nil
+    previous = trap("USR1") do
+      child = fork
+      forked << true if child
+    end
+    handler = lambda do |socket, *|
+      arrived << true
+      Timeout.timeout(3) { forked.pop }
+      respond(socket, body: body)
+    end
+    result = nil
+    serve(handler: handler) do |url|
+      signaller = Thread.new do
+        Timeout.timeout(3) { arrived.pop }
+        Process.kill("USR1", parent)
+      end
+      started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      outcome = begin
+        yield(url)
+      rescue Peddler::ForkError => error
+        error.message
+      end
+      unless Process.pid == parent
+        writer.write(JSON.generate([outcome, Process.clock_gettime(Process::CLOCK_MONOTONIC) - started]))
+        writer.close
+        exit!(0)
+      end
+      signaller.join
+      writer.close
+
+      assert(reader.wait_readable(3), "the child hangs in the call it inherited")
+      result = [outcome, *JSON.parse(reader.read)]
+    end
+    result
+  ensure
+    # The child never returns into the suite.
+    exit!(1) unless Process.pid == parent
+    trap("USR1", previous || "DEFAULT")
+    reader&.close
+    writer&.close unless writer&.closed?
+    if child
+      begin
+        Process.kill("KILL", child)
+      rescue Errno::ESRCH
+        nil
+      end
+      Process.wait(child)
+    end
+  end
 end
 # rubocop:enable Minitest/MultipleAssertions

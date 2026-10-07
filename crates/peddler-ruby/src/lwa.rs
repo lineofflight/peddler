@@ -66,7 +66,7 @@ impl LwaEngine {
     fn grant(ruby: &Ruby, engine: &Self, grant: Grant) -> Result<Tokens, Error> {
         let (shared, client) = engine.0.get(ruby)?;
         let client = client.clone();
-        let result = gvl::wait(ruby, "TransportError", shared, async move {
+        let result = gvl::wait(ruby, "TransportError", fork::LWA, shared, async move {
             match grant {
                 Grant::Code(code, redirect_uri) => {
                     client
