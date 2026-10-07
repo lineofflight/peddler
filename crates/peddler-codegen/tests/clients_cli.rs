@@ -110,7 +110,8 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     )
     .unwrap();
     // v5's signature: required arguments positional in the spec's order, the body under
-    // the spec's name, optional ones as keywords. Each goes through its coercion.
+    // the spec's name, optional ones as keywords. Each goes through its coercion, and a
+    // path argument through the check of a segment, the one that ends the path as such.
     // Above it, v5's comment: the description up to its usage plan, links as YARD's, a
     // note in a paragraph of its own, and lines of at most 120 columns.
     let ruby = &rendered[Path::new("lib/peddler/native/apis.rb")];
@@ -131,10 +132,10 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "      # @return [Peddler::Response] The API response\n",
         "      def patch_listings_item(seller_id, marketplace_ids, patch_request, sku, included_data: [\"issues\"])\n",
         "        arguments = {\n",
-        "          seller_id: Arguments.string(\"seller_id\", seller_id, required: true),\n",
+        "          seller_id: Arguments.segment(\"seller_id\", seller_id),\n",
         "          marketplace_ids: Arguments.array(\"marketplace_ids\", marketplace_ids, required: true),\n",
         "          included_data: Arguments.array(\"included_data\", included_data),\n",
-        "          sku: Arguments.string(\"sku\", sku, required: true),\n",
+        "          sku: Arguments.segment(\"sku\", sku, last: true),\n",
         "          body: Arguments.body(\"patch_request\", patch_request, required: true),\n",
         "        }\n",
     )));

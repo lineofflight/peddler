@@ -4,13 +4,13 @@ use magnus::{
     Error, RModule, RString, Ruby, TryConvert, Value, function, method, prelude::*, typed_data::Obj,
 };
 use peddler::{
-    AccessToken, Client, ClientConfig, Pool, Request, Response,
+    Client, ClientConfig, Pool, Request, Response,
     auth::{AuthError, TokenSource},
     policy::RetryPolicy,
 };
 use std::{
     sync::{Arc, Mutex},
-    time::Duration,
+    time::{Duration, Instant},
 };
 
 mod documents;
@@ -149,6 +149,27 @@ fn status_reason(code: u16) -> Option<&'static str> {
     http::StatusCode::from_u16(code).ok()?.canonical_reason()
 }
 
+/// What a caller is told of an option or an argument the core refuses. The core says
+/// only that it refuses, so each is checked apart from the rest. A message names the
+/// option and the rule, never the value.
+const TIMEOUT: &str = "timeout must be a positive number of seconds";
+const BASE_URL: &str = "base_url must be an origin (https, or http on a loopback host) without credentials, a path or a query";
+const ACCESS_TOKEN: &str = "invalid access token";
+const METHOD: &str = "method must be an HTTP method";
+const PATH: &str = "path must be an absolute path, percent-encoded, without a query or fragment";
+
+fn argument_error(ruby: &Ruby, message: &'static str) -> Error {
+    Error::new(ruby.exception_arg_error(), message)
+}
+
+/// A timeout in seconds as the core takes it: one a deadline can be set by.
+fn timeout(seconds: f64) -> Result<Duration, &'static str> {
+    Duration::try_from_secs_f64(seconds)
+        .ok()
+        .filter(|timeout| !timeout.is_zero() && Instant::now().checked_add(*timeout).is_some())
+        .ok_or(TIMEOUT)
+}
+
 fn transport_error(ruby: &Ruby, error: peddler::Error) -> Error {
     match error {
         peddler::Error::InvalidRequest => Error::new(ruby.exception_arg_error(), "invalid request"),
@@ -162,7 +183,7 @@ impl Engine {
     fn build(ruby: &Ruby, shared: &'static Shared, config: Config) -> Result<Self, Error> {
         let client = config
             .client(&shared.pool)
-            .map_err(|error| transport_error(ruby, error))?;
+            .map_err(|message| argument_error(ruby, message))?;
         Ok(Self(ForkOwned::new(Arc::new(State {
             client,
             shared,
@@ -235,7 +256,7 @@ impl Engine {
         let client = state
             .client
             .with_access_token(&token)
-            .map_err(|error| transport_error(ruby, error))?;
+            .map_err(|_| argument_error(ruby, ACCESS_TOKEN))?;
         Ok((client, state.shared))
     }
 
@@ -247,6 +268,9 @@ impl Engine {
         query: Vec<(String, String)>,
         body: Option<RString>,
     ) -> Result<ResponseParts, Error> {
+        if http::Method::from_bytes(method.as_bytes()).is_err() {
+            return Err(argument_error(ruby, METHOD));
+        }
         // SAFETY: the GVL is held; copy bytes before any Ruby call or GVL release.
         let body = body.map(|value| unsafe { value.as_slice().to_vec() });
         Self::execute(
@@ -273,6 +297,8 @@ impl Engine {
 
     fn execute(ruby: &Ruby, rb_self: Obj<Self>, work: Work) -> Result<ResponseParts, Error> {
         let (client, shared) = Self::client(ruby, rb_self)?;
+        // Its method was checked, so what the core refuses of a raw request is its path.
+        let raw = matches!(work, Work::Raw(_));
         let result = gvl::wait(ruby, "TransportError", shared, async move {
             match work {
                 Work::Raw(request) => client.execute(request).await,
@@ -284,6 +310,7 @@ impl Engine {
         })?;
         match result {
             Ok(completed) => Ok(completed.into_parts(ruby)),
+            Err(peddler::Error::InvalidRequest) if raw => Err(argument_error(ruby, PATH)),
             Err(error) => Err(transport_error(ruby, error)),
         }
     }
@@ -325,20 +352,22 @@ struct Config {
     user_agent: Option<String>,
 }
 impl Config {
-    fn client(&self, pool: &Pool) -> Result<Client, peddler::Error> {
-        let token = match &self.access_token {
-            Some(token) => AccessToken::Static(token.clone()),
-            // A request on the template itself has no token to send and fails closed.
-            None => TokenSource::new(|| async { Err(AuthError::InvalidConfig) }).into(),
-        };
-        let mut config = ClientConfig::new(self.base_url.clone(), token);
-        config.timeout = Duration::try_from_secs_f64(self.timeout)
-            .map_err(|_| peddler::Error::InvalidRequest)?;
+    /// The client, or what to tell the caller of the option the core refuses.
+    fn client(&self, pool: &Pool) -> Result<Client, &'static str> {
+        // A request on the template itself has no token to send and fails closed.
+        let template = TokenSource::new(|| async { Err(AuthError::InvalidConfig) });
+        let mut config = ClientConfig::new(self.base_url.clone(), template);
+        config.timeout = timeout(self.timeout)?;
         config.retry = RetryPolicy {
             max_retries: self.retries,
         };
         config.user_agent = self.user_agent.clone();
         config.pool = Some(pool.clone());
-        Client::with_config(config)
+        // Ruby checked the retries, and a token is checked below, which leaves the base URL.
+        let client = Client::with_config(config).map_err(|_| BASE_URL)?;
+        match &self.access_token {
+            Some(token) => client.with_access_token(token).map_err(|_| ACCESS_TOKEN),
+            None => Ok(client),
+        }
     }
 }

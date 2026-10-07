@@ -429,8 +429,10 @@ fn ruby_type(p: &Parameter) -> String {
 }
 /// The method of `Peddler::Native::Arguments` that an argument goes through.
 fn ruby_coercion(p: &Parameter) -> &'static str {
-    if p.location == "body" {
-        return "body";
+    match p.location.as_str() {
+        "body" => return "body",
+        "path" => return "segment",
+        _ => {}
     }
     match p.schema["type"].as_str() {
         Some("array") => "array",
@@ -494,9 +496,15 @@ impl RubyMethod {
             .parameters
             .iter()
             .map(|p| {
-                let required = if p.required { ", required: true" } else { "" };
+                let options = match p.location.as_str() {
+                    // As `path` picks `last_segment` for the Rust.
+                    "path" if op.path.ends_with(&format!("{{{}}}", p.wire_name)) => ", last: true",
+                    "path" => "",
+                    _ if p.required => ", required: true",
+                    _ => "",
+                };
                 format!(
-                    "          {}: Arguments.{}({:?}, {}{required}),\n",
+                    "          {}: Arguments.{}({:?}, {}{options}),\n",
                     p.name,
                     ruby_coercion(p),
                     name(p),

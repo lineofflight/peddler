@@ -38,18 +38,23 @@ module Peddler
 
     # @param [String] client_id defaults to LWA_CLIENT_ID in the environment
     # @param [String] client_secret defaults to LWA_CLIENT_SECRET in the environment
+    # @param [Numeric] timeout seconds for one request
+    # @param [String] lwa_endpoint the token endpoint, for a proxy or a test
+    # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
     def initialize(client_id: ENV["LWA_CLIENT_ID"], client_secret: ENV["LWA_CLIENT_SECRET"], timeout: 30,
       lwa_endpoint: DEFAULT_ENDPOINT)
       raise ArgumentError, "missing client_id: pass client_id: or set LWA_CLIENT_ID" unless client_id && client_id != ""
       unless client_secret && client_secret != ""
         raise ArgumentError, "missing client_secret: pass client_secret: or set LWA_CLIENT_SECRET"
       end
-      unless Native.utf8_text?(client_id) && Native.utf8_text?(client_secret) && Native.utf8_text?(lwa_endpoint) &&
-          Native.positive_seconds?(timeout)
-        raise ArgumentError, "invalid authentication configuration"
+      raise ArgumentError, "client_id must be a UTF-8 String that is not blank" unless Native.present_text?(client_id)
+      unless Native.present_text?(client_secret)
+        raise ArgumentError, "client_secret must be a UTF-8 String that is not blank"
       end
+      raise ArgumentError, "lwa_endpoint must be a UTF-8 String" unless Native.utf8_text?(lwa_endpoint)
 
-      @engine = Native.lwa_engine(client_id, client_secret, timeout, lwa_endpoint)
+      # The native layer checks the endpoint and names it in what it raises.
+      @engine = Native.lwa_engine(client_id, client_secret, Native.timeout(timeout), lwa_endpoint)
     end
 
     # Requests an access token for a seller

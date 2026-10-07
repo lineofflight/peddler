@@ -1,8 +1,10 @@
 //! Login with Amazon grants on the shared runtime and pool, one request each.
-use super::{ForkOwned, Shared, gvl, native_error, peddler_const, shared};
+use super::{ForkOwned, Shared, argument_error, gvl, native_error, peddler_const, shared};
 use magnus::{Error, RModule, Ruby, function, method, prelude::*};
 use peddler::auth::{AuthError, LwaClient};
-use std::time::Duration;
+
+const LWA_ENDPOINT: &str =
+    "lwa_endpoint must be a URL (https, or http on a loopback host) without credentials or a query";
 
 /// Access token, refresh token when LWA sends one, token type and lifetime in seconds.
 type Tokens = (String, Option<String>, String, u64);
@@ -47,12 +49,16 @@ impl LwaEngine {
         timeout: f64,
         endpoint: String,
     ) -> Result<Self, Error> {
-        let timeout = Duration::try_from_secs_f64(timeout)
-            .map_err(|_| error(ruby, AuthError::InvalidConfig))?;
+        let timeout = super::timeout(timeout).map_err(|message| argument_error(ruby, message))?;
         let shared = shared(ruby)?;
+        // Ruby checked the credentials, and the timeout is checked above, which leaves the
+        // endpoint.
         let client =
             LwaClient::with_pool(&shared.pool, &client_id, &client_secret, &endpoint, timeout)
-                .map_err(|e| error(ruby, e))?;
+                .map_err(|e| match e {
+                    AuthError::InvalidConfig => argument_error(ruby, LWA_ENDPOINT),
+                    e => error(ruby, e),
+                })?;
         Ok(Self(ForkOwned::new((shared, client))))
     }
 

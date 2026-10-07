@@ -7,6 +7,8 @@ module Peddler
     def self.lwa_engine: (String client_id, String client_secret, Numeric timeout, String endpoint) -> LwaEngine
     def self.utf8_text?: (untyped value) -> bool
     def self.positive_seconds?: (untyped value) -> bool
+    def self.timeout: (untyped value) -> Numeric
+    def self.present_text?: (untyped value) -> bool
     def self.generate: (untyped value) -> String?
     def self.user_agent: () -> String
     def self.status_reason: (Integer code) -> String?

@@ -26,19 +26,27 @@ module Peddler
     # @param [String] region the AWS region of the selling region, unless base_url is given
     # @param [String] base_url a custom destination instead of Amazon's endpoint for a region
     # @param [Numeric] timeout seconds for a whole call, including retries
-    # @param [Integer] retries how often to retry a throttled or failed GET
+    # @param [Integer] retries how often to retry a throttled or failed GET, from 0 to 10
+    # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
     def initialize(access_token:, region: nil, base_url: nil, timeout: 30, retries: 0)
       raise ArgumentError, "provide either region or base_url" unless region.nil? ^ base_url.nil?
+      unless retries.is_a?(Integer) && retries.between?(0, 10)
+        raise ArgumentError, "retries must be an Integer between 0 and 10"
+      end
 
       @sandbox = false
       if region
+        regions = Endpoint::REGIONS.keys
+        raise ArgumentError, "region must be one of #{regions.join(", ")}" unless regions.include?(region)
+
         @endpoint = endpoint = Endpoint.find(region)
         base_url = endpoint.production.to_s
       end
       source = Native.token_source(access_token)
-      config = { base_url: base_url, access_token: source ? nil : Native.access_token(access_token),
-        timeout: timeout, retries: retries, user_agent: Native.user_agent }
-      engine = Native.engine(Native.generate(config) || raise(ArgumentError, "invalid configuration"))
+      # The native layer checks the base URL and names it in what it raises.
+      config = { base_url: base_url.to_s, access_token: source ? nil : Native.access_token(access_token),
+        timeout: Native.timeout(timeout), retries: retries, user_agent: Native.user_agent }
+      engine = Native.engine(Native.generate(config) || raise(ArgumentError, "base_url must be valid UTF-8"))
       @engine = source ? engine.with_token_source(source) : engine
     end
 

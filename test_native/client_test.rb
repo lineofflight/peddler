@@ -38,10 +38,16 @@ class ClientTest < NativeTest
     [false, 1, Object.new].each do |body|
       assert_raises(ArgumentError) { instance.request("POST", "/", body: body) }
     end
-    ["//elsewhere", "/bad%", "/?secret=value", "relative"].each do |path|
-      assert_raises(ArgumentError) { instance.request("GET", path) }
+    ["//elsewhere", "/bad%", "/?secret=value", "/secret#value", "/a b", "relative"].each do |path|
+      error = assert_raises(ArgumentError) { instance.request("GET", path) }
+
+      assert_equal("path must be an absolute path, percent-encoded, without a query or fragment", error.message)
     end
-    assert_raises(ArgumentError) { instance.request("bad method", "/") }
+    ["bad method", ""].each do |method|
+      error = assert_raises(ArgumentError) { instance.request(method, "/") }
+
+      assert_equal("method must be an HTTP method", error.message)
+    end
     assert_raises(TypeError) { instance.request(:get, "/") }
     assert_raises(TypeError) { instance.request("GET", nil) }
     [0, -1, Float::INFINITY, Float::NAN].each do |timeout|

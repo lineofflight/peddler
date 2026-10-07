@@ -20,6 +20,16 @@ module Peddler
           text(value) || raise(ArgumentError, "#{name} must be a String")
         end
 
+        # An argument that is 1 segment of the path. What the core refuses is refused here by name: `.` and `..`
+        # would address another resource, and so would nothing at the end of a path, which is the collection above.
+        def segment(name, value, last: false)
+          segment = string(name, value, required: true).to_s
+          raise ArgumentError, "#{name} must not be . or .." if segment == "." || segment == ".."
+          raise ArgumentError, "#{name} must not be empty" if last && segment.empty?
+
+          segment
+        end
+
         # A String is a list of 1, which is how v5 sent it
         def array(name, value, required: false)
           return missing(name, required) if value.nil?

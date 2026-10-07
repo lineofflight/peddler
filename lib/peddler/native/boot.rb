@@ -43,6 +43,19 @@ module Peddler
         (value.is_a?(Integer) || value.is_a?(Float)) && value.finite? && value > 0
       end
 
+      # A timeout as it is, or the error that names it. The native layer refuses what is left: one too short or
+      # too long to keep.
+      def timeout(value)
+        raise ArgumentError, "timeout must be a positive number of seconds" unless positive_seconds?(value)
+
+        value
+      end
+
+      # Whether the value is a String of valid UTF-8 with more than whitespace in it, as the core measures blank
+      def present_text?(value)
+        utf8_text?(value) && !value.match?(/\A[[:space:]]*\z/)
+      end
+
       # Returns nil when the value can't be encoded. The generator's error quotes the value, which may be a
       # credential, so callers raise their own error outside this rescue, where it can't become the cause.
       def generate(value)

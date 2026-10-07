@@ -6,6 +6,7 @@ module Peddler
       NOT_JSON: Object
 
       def self.string: (String name, untyped value, ?required: bool) -> String?
+      def self.segment: (String name, untyped value, ?last: bool) -> String
       def self.array: (String name, untyped value, ?required: bool) -> Array[String]?
       def self.integer: (String name, untyped value, ?required: bool) -> Integer?
       def self.number: (String name, untyped value, ?required: bool) -> (Integer | Float)?

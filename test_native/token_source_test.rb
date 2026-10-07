@@ -90,10 +90,11 @@ class TokenSourceTest < NativeTest
 
   def test_what_a_source_returns_is_validated_and_never_shown
     serve_keep_alive do |url, accepted, _requests|
-      [nil, "seller-secret-\xFF", "seller-secret\r\nx: y"].each do |value|
+      [nil, " ", "seller-secret-\xFF", "seller-secret\r\nx: y"].each do |value|
         instance = Peddler::Client.new(base_url: url, access_token: -> { value })
         error = assert_raises(ArgumentError, value.inspect) { instance.request("GET", "/") }
 
+        assert_equal("invalid access token", error.message)
         refute_match(/seller-secret/, error.full_message(highlight: false))
         assert_nil(error.cause)
       end
@@ -101,7 +102,7 @@ class TokenSourceTest < NativeTest
       assert_equal(0, accepted.size, "no request reaches the server")
     end
     # A value that is neither a String nor callable is refused at once, as is a bad String.
-    [nil, 123, :symbol, "", "seller-secret-\xFF"].each do |value|
+    [nil, 123, :symbol, "", " ", "seller-secret-\xFF", "seller-secret\r\nx: y"].each do |value|
       [
         -> { Peddler::Client.new(base_url: "http://127.0.0.1:1", access_token: value) },
         -> { client("http://127.0.0.1:1").with_access_token(value) },

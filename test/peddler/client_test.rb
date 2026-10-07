@@ -56,13 +56,41 @@ module Peddler
     def test_unknown_region
       error = assert_raises(ArgumentError) { Client.new(region: "mars-north-1", access_token: "token") }
 
-      assert_match(/not found/, error.message)
+      assert_equal("region must be one of us-east-1, us-west-2, eu-west-1", error.message)
     end
 
     def test_rejects_invalid_base_urls
-      ["localhost:9001", "not a url", "http://", "https://example.com/path", "https://user:secret@example.com"].each do |url|
-        assert_raises(ArgumentError, url) { Client.new(base_url: url, access_token: "token") }
+      [
+        "localhost:9001",
+        "not a url",
+        "http://",
+        "http://example.com",
+        "https://example.com/path",
+        "https://example.com?key=secret",
+        "https://user:secret@example.com",
+        123,
+      ].each do |url|
+        error = assert_raises(ArgumentError, url.inspect) { Client.new(base_url: url, access_token: "token") }
+
+        assert_equal(
+          "base_url must be an origin (https, or http on a loopback host) without credentials, a path or a query",
+          error.message,
+        )
       end
+    end
+
+    def test_a_bad_timeout_or_retries_is_named_with_its_rule
+      [0, -1, "30", nil, Float::NAN, Float::INFINITY, 1e-12, 1e30].each do |timeout|
+        error = assert_raises(ArgumentError, timeout.inspect) { Client.new(region: "eu-west-1", access_token: "token", timeout: timeout) }
+
+        assert_equal("timeout must be a positive number of seconds", error.message)
+      end
+      [11, -1, 1.5, "3", nil].each do |retries|
+        error = assert_raises(ArgumentError, retries.inspect) { Client.new(region: "eu-west-1", access_token: "token", retries: retries) }
+
+        assert_equal("retries must be an Integer between 0 and 10", error.message)
+      end
+      assert_instance_of(Client, Client.new(region: "eu-west-1", access_token: "token", timeout: 0.5, retries: 10))
     end
 
     def test_requires_an_access_token
@@ -124,6 +152,24 @@ module Peddler
         assert_match(/LWA_CLIENT_ID/, error.message)
         refute_match(/env-secret/, error.message)
       end
+    end
+
+    def test_lwa_names_the_option_it_refuses_with_its_rule
+      {
+        { client_id: " " } => "client_id must be a UTF-8 String that is not blank",
+        { client_secret: 123 } => "client_secret must be a UTF-8 String that is not blank",
+        { timeout: 0 } => "timeout must be a positive number of seconds",
+        { timeout: 1e30 } => "timeout must be a positive number of seconds",
+        { lwa_endpoint: 123 } => "lwa_endpoint must be a UTF-8 String",
+        { lwa_endpoint: "http://example.com/token" } => "lwa_endpoint must be a URL (https, or http on a loopback host) without credentials or a query",
+        { lwa_endpoint: "https://user:secret@example.com/token" } => "lwa_endpoint must be a URL (https, or http on a loopback host) without credentials or a query",
+        { lwa_endpoint: "https://example.com/token?key=secret" } => "lwa_endpoint must be a URL (https, or http on a loopback host) without credentials or a query",
+      }.each do |options, message|
+        error = assert_raises(ArgumentError, options.inspect) { LWA.new(client_id: "id", client_secret: "secret", **options) }
+
+        assert_equal(message, error.message)
+      end
+      assert_instance_of(LWA, LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "http://localhost:9001/token"))
     end
 
     private

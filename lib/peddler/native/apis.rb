@@ -97,7 +97,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_inbound(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.cancel_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound")
       end
@@ -122,7 +122,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_inbound(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_inbound")
       end
@@ -135,7 +135,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_outbound(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_outbound")
       end
@@ -148,7 +148,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_replenishment_order(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order")
       end
@@ -202,7 +202,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_inbound(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound")
       end
@@ -216,7 +216,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_inbound_shipment(shipment_id, sku_quantities: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           sku_quantities: Arguments.string("sku_quantities", sku_quantities),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment")
@@ -233,7 +233,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_inbound_shipment_labels(shipment_id, page_type: nil, format_type: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_type: Arguments.string("page_type", page_type),
           format_type: Arguments.string("format_type", format_type),
         }
@@ -248,7 +248,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_label_page_types(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_label_page_types", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_label_page_types")
       end
@@ -263,7 +263,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_outbound(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_outbound")
       end
@@ -276,7 +276,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_replenishment_order(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order")
       end
@@ -452,7 +452,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_inbound(order_id, body)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound")
@@ -466,7 +466,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_inbound_shipment_transport_details(shipment_id, body)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details")
@@ -482,7 +482,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_outbound(order_id, body)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_outbound")
@@ -537,7 +537,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_content_document(content_reference_key, marketplace_id, included_data_set)
         arguments = {
-          content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
+          content_reference_key: Arguments.segment("content_reference_key", content_reference_key, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           included_data_set: Arguments.array("included_data_set", included_data_set, required: true),
         }
@@ -557,7 +557,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_media(media_id, associated_media_id: nil)
         arguments = {
-          media_id: Arguments.string("media_id", media_id, required: true),
+          media_id: Arguments.segment("media_id", media_id, last: true),
           associated_media_id: Arguments.string("associated_media_id", associated_media_id),
         }
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_media", JSON.generate(arguments)), "aplus_content_2020_11_01.get_media")
@@ -581,7 +581,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil)
         arguments = {
-          content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
+          content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           included_data_set: Arguments.array("included_data_set", included_data_set),
           asin_set: Arguments.array("asin_set", asin_set),
@@ -593,7 +593,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_content_document_asin_relations}
       def list_content_document_asin_relations_pages(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil)
         arguments = {
-          content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
+          content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           included_data_set: Arguments.array("included_data_set", included_data_set),
           asin_set: Arguments.array("asin_set", asin_set),
@@ -611,7 +611,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def post_content_document_approval_submission(content_reference_key, marketplace_id)
         arguments = {
-          content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
+          content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_approval_submission", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_approval_submission")
@@ -630,7 +630,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id, post_content_document_asin_relations_request)
         arguments = {
-          content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
+          content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("post_content_document_asin_relations_request", post_content_document_asin_relations_request, required: true),
         }
@@ -647,7 +647,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def post_content_document_suspend_submission(content_reference_key, marketplace_id)
         arguments = {
-          content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
+          content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_suspend_submission", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_suspend_submission")
@@ -720,7 +720,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request)
         arguments = {
-          content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
+          content_reference_key: Arguments.segment("content_reference_key", content_reference_key, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("post_content_document_request", post_content_document_request, required: true),
         }
@@ -746,7 +746,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_media(media_id, update_media_request, associated_media_id: nil)
         arguments = {
-          media_id: Arguments.string("media_id", media_id, required: true),
+          media_id: Arguments.segment("media_id", media_id, last: true),
           associated_media_id: Arguments.string("associated_media_id", associated_media_id),
           body: Arguments.body("update_media_request", update_media_request, required: true),
         }
@@ -806,7 +806,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def record_action_feedback(notification_id, body)
         arguments = {
-          notification_id: Arguments.string("notification_id", notification_id, required: true),
+          notification_id: Arguments.segment("notification_id", notification_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("application_integrations_2024_04_01.record_action_feedback", JSON.generate(arguments)), "application_integrations_2024_04_01.record_action_feedback")
@@ -872,7 +872,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil)
         arguments = {
-          asin: Arguments.string("asin", asin, required: true),
+          asin: Arguments.segment("asin", asin, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
@@ -948,7 +948,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil)
         arguments = {
-          asin: Arguments.string("asin", asin, required: true),
+          asin: Arguments.segment("asin", asin, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
@@ -1037,7 +1037,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_browse_node_return_topics(browse_node_id, marketplace_id)
         arguments = {
-          browse_node_id: Arguments.string("browse_node_id", browse_node_id, required: true),
+          browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_topics")
@@ -1053,7 +1053,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_browse_node_return_trends(browse_node_id, marketplace_id)
         arguments = {
-          browse_node_id: Arguments.string("browse_node_id", browse_node_id, required: true),
+          browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_trends")
@@ -1070,7 +1070,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_browse_node_review_topics(browse_node_id, marketplace_id, sort_by)
         arguments = {
-          browse_node_id: Arguments.string("browse_node_id", browse_node_id, required: true),
+          browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           sort_by: Arguments.string("sort_by", sort_by, required: true),
         }
@@ -1087,7 +1087,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_browse_node_review_trends(browse_node_id, marketplace_id)
         arguments = {
-          browse_node_id: Arguments.string("browse_node_id", browse_node_id, required: true),
+          browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_trends")
@@ -1104,7 +1104,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_item_browse_node(asin, marketplace_id)
         arguments = {
-          asin: Arguments.string("asin", asin, required: true),
+          asin: Arguments.segment("asin", asin),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_browse_node", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_browse_node")
@@ -1121,7 +1121,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_item_review_topics(asin, marketplace_id, sort_by)
         arguments = {
-          asin: Arguments.string("asin", asin, required: true),
+          asin: Arguments.segment("asin", asin),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           sort_by: Arguments.string("sort_by", sort_by, required: true),
         }
@@ -1138,7 +1138,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_item_review_trends(asin, marketplace_id)
         arguments = {
-          asin: Arguments.string("asin", asin, required: true),
+          asin: Arguments.segment("asin", asin),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_review_trends")
@@ -1161,7 +1161,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_query(query_id)
         arguments = {
-          query_id: Arguments.string("query_id", query_id, required: true),
+          query_id: Arguments.segment("query_id", query_id, last: true),
         }
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.cancel_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.cancel_query")
       end
@@ -1191,7 +1191,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_document(document_id)
         arguments = {
-          document_id: Arguments.string("document_id", document_id, required: true),
+          document_id: Arguments.segment("document_id", document_id, last: true),
         }
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_document", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_document")
       end
@@ -1243,7 +1243,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_query(query_id)
         arguments = {
-          query_id: Arguments.string("query_id", query_id, required: true),
+          query_id: Arguments.segment("query_id", query_id, last: true),
         }
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_query")
       end
@@ -1476,7 +1476,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_return(return_id)
         arguments = {
-          return_id: Arguments.string("return_id", return_id, required: true),
+          return_id: Arguments.segment("return_id", return_id, last: true),
         }
         Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.get_return", JSON.generate(arguments)), "external_fulfillment_returns_2024_09_11.get_return")
       end
@@ -1560,7 +1560,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_packages(shipment_id, body)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_packages", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.create_packages")
@@ -1587,7 +1587,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_invoice(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_invoice", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.generate_invoice")
       end
@@ -1602,7 +1602,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_ship_labels(shipment_id, operation, shipping_option_id: nil, body: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           shipping_option_id: Arguments.string("shipping_option_id", shipping_option_id),
           operation: Arguments.string("operation", operation, required: true),
           body: Arguments.body("body", body),
@@ -1617,7 +1617,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipment")
       end
@@ -1680,7 +1680,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def process_shipment(shipment_id, operation, body: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           operation: Arguments.string("operation", operation, required: true),
           body: Arguments.body("body", body),
         }
@@ -1694,7 +1694,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def retrieve_invoice(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_invoice", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_invoice")
       end
@@ -1708,7 +1708,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def retrieve_shipping_options(shipment_id, package_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           package_id: Arguments.string("package_id", package_id, required: true),
         }
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_shipping_options", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options")
@@ -1723,8 +1723,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_package(shipment_id, package_id, body)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
-          package_id: Arguments.string("package_id", package_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
+          package_id: Arguments.segment("package_id", package_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_package")
@@ -1741,8 +1741,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_package_status(shipment_id, package_id, status: nil, body: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
-          package_id: Arguments.string("package_id", package_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
+          package_id: Arguments.segment("package_id", package_id, last: true),
           status: Arguments.string("status", status),
           body: Arguments.body("body", body),
         }
@@ -1758,7 +1758,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_sandbox_shipment(shipment_id, body)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_sandbox_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_sandbox_shipment")
@@ -1836,7 +1836,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_inventory_item(seller_sku, marketplace_id)
         arguments = {
-          seller_sku: Arguments.string("seller_sku", seller_sku, required: true),
+          seller_sku: Arguments.segment("seller_sku", seller_sku, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("fba_inventory_v1.delete_inventory_item", JSON.generate(arguments)), "fba_inventory_v1.delete_inventory_item")
@@ -1922,7 +1922,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_feed(feed_id)
         arguments = {
-          feed_id: Arguments.string("feed_id", feed_id, required: true),
+          feed_id: Arguments.segment("feed_id", feed_id, last: true),
         }
         Response.from_parts(@engine.operation("feeds_2021_06_30.cancel_feed", JSON.generate(arguments)), "feeds_2021_06_30.cancel_feed")
       end
@@ -1961,7 +1961,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_feed(feed_id)
         arguments = {
-          feed_id: Arguments.string("feed_id", feed_id, required: true),
+          feed_id: Arguments.segment("feed_id", feed_id, last: true),
         }
         Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed", JSON.generate(arguments)), "feeds_2021_06_30.get_feed")
       end
@@ -1976,7 +1976,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_feed_document(feed_document_id, enable_content_encoding_url_header: nil)
         arguments = {
-          feed_document_id: Arguments.string("feed_document_id", feed_document_id, required: true),
+          feed_document_id: Arguments.segment("feed_document_id", feed_document_id, last: true),
           enable_content_encoding_url_header: Arguments.boolean("enable_content_encoding_url_header", enable_content_encoding_url_header),
         }
         Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed_document", JSON.generate(arguments)), "feeds_2021_06_30.get_feed_document")
@@ -2046,7 +2046,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_remittance(unique_payment_id, marketplace_id, next_token_for_line_items: nil)
         arguments = {
-          unique_payment_id: Arguments.string("unique_payment_id", unique_payment_id, required: true),
+          unique_payment_id: Arguments.segment("unique_payment_id", unique_payment_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
@@ -2056,7 +2056,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#get_remittance}
       def get_remittance_pages(unique_payment_id, marketplace_id, next_token_for_line_items: nil)
         arguments = {
-          unique_payment_id: Arguments.string("unique_payment_id", unique_payment_id, required: true),
+          unique_payment_id: Arguments.segment("unique_payment_id", unique_payment_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
@@ -2122,7 +2122,7 @@ module Peddler
       def get_invoice(marketplace_id, invoice_identifier, next_token_for_line_items: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
-          invoice_identifier: Arguments.string("invoice_identifier", invoice_identifier, required: true),
+          invoice_identifier: Arguments.segment("invoice_identifier", invoice_identifier, last: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
         Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice")
@@ -2132,7 +2132,7 @@ module Peddler
       def get_invoice_pages(marketplace_id, invoice_identifier, next_token_for_line_items: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
-          invoice_identifier: Arguments.string("invoice_identifier", invoice_identifier, required: true),
+          invoice_identifier: Arguments.segment("invoice_identifier", invoice_identifier, last: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
         PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice").pages(@engine, arguments)
@@ -2304,7 +2304,7 @@ module Peddler
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           posted_after: Arguments.string("posted_after", posted_after),
           posted_before: Arguments.string("posted_before", posted_before),
-          event_group_id: Arguments.string("event_group_id", event_group_id, required: true),
+          event_group_id: Arguments.segment("event_group_id", event_group_id),
           next_token: Arguments.string("next_token", next_token),
         }
         Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_group_id")
@@ -2316,7 +2316,7 @@ module Peddler
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           posted_after: Arguments.string("posted_after", posted_after),
           posted_before: Arguments.string("posted_before", posted_before),
-          event_group_id: Arguments.string("event_group_id", event_group_id, required: true),
+          event_group_id: Arguments.segment("event_group_id", event_group_id),
           next_token: Arguments.string("next_token", next_token),
         }
         PAGINATIONS.fetch("finances_v0.list_financial_events_by_group_id").pages(@engine, arguments)
@@ -2338,7 +2338,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           next_token: Arguments.string("next_token", next_token),
         }
@@ -2348,7 +2348,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events_by_order_id}
       def list_financial_events_by_order_id_pages(order_id, max_results_per_page: 100, next_token: nil)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           next_token: Arguments.string("next_token", next_token),
         }
@@ -2646,7 +2646,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_bill_of_lading(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_bill_of_lading", JSON.generate(arguments)), "fulfillment_inbound_v0.get_bill_of_lading")
       end
@@ -2678,7 +2678,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_labels(shipment_id, page_type, label_type, number_of_packages: nil, package_labels_to_print: nil, number_of_pallets: nil, page_size: nil, page_start_index: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_type: Arguments.string("page_type", page_type, required: true),
           label_type: Arguments.string("label_type", label_type, required: true),
           number_of_packages: Arguments.integer("number_of_packages", number_of_packages),
@@ -2764,7 +2764,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment_items_by_shipment_id(shipment_id, marketplace_id: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items_by_shipment_id", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipment_items_by_shipment_id")
@@ -2832,7 +2832,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_inbound_plan(inbound_plan_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.cancel_inbound_plan")
       end
@@ -2847,8 +2847,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_self_ship_appointment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment")
@@ -2868,9 +2868,9 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
-          delivery_window_option_id: Arguments.string("delivery_window_option_id", delivery_window_option_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
+          delivery_window_option_id: Arguments.segment("delivery_window_option_id", delivery_window_option_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_delivery_window_options")
       end
@@ -2883,8 +2883,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_packing_option(inbound_plan_id, packing_option_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          packing_option_id: Arguments.string("packing_option_id", packing_option_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          packing_option_id: Arguments.segment("packing_option_id", packing_option_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_packing_option", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_packing_option")
       end
@@ -2898,8 +2898,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_placement_option(inbound_plan_id, placement_option_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          placement_option_id: Arguments.string("placement_option_id", placement_option_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          placement_option_id: Arguments.segment("placement_option_id", placement_option_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_placement_option", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_placement_option")
       end
@@ -2913,9 +2913,9 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
-          content_update_preview_id: Arguments.string("content_update_preview_id", content_update_preview_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
+          content_update_preview_id: Arguments.segment("content_update_preview_id", content_update_preview_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview")
       end
@@ -2929,7 +2929,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_transportation_options(inbound_plan_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_transportation_options")
@@ -2968,8 +2968,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_delivery_window_options(inbound_plan_id, shipment_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_delivery_window_options")
       end
@@ -2981,7 +2981,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_packing_options(inbound_plan_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_packing_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_packing_options")
       end
@@ -2994,7 +2994,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_placement_options(inbound_plan_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_placement_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_placement_options")
@@ -3010,8 +3010,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots")
@@ -3028,8 +3028,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews")
@@ -3043,7 +3043,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_transportation_options(inbound_plan_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_transportation_options")
@@ -3057,8 +3057,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_delivery_challan_document(inbound_plan_id, shipment_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_delivery_challan_document", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_delivery_challan_document")
       end
@@ -3070,7 +3070,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_inbound_operation_status(operation_id)
         arguments = {
-          operation_id: Arguments.string("operation_id", operation_id, required: true),
+          operation_id: Arguments.segment("operation_id", operation_id, last: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_operation_status", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_operation_status")
       end
@@ -3082,7 +3082,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_inbound_plan(inbound_plan_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id, last: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_plan")
       end
@@ -3102,8 +3102,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3113,8 +3113,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#get_self_ship_appointment_slots}
       def get_self_ship_appointment_slots_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3130,8 +3130,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(inbound_plan_id, shipment_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_shipment")
       end
@@ -3147,9 +3147,9 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
-          content_update_preview_id: Arguments.string("content_update_preview_id", content_update_preview_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
+          content_update_preview_id: Arguments.segment("content_update_preview_id", content_update_preview_id, last: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment_content_update_preview", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_shipment_content_update_preview")
       end
@@ -3168,8 +3168,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3179,8 +3179,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_delivery_window_options}
       def list_delivery_window_options_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3198,7 +3198,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3208,7 +3208,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_boxes}
       def list_inbound_plan_boxes_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3226,7 +3226,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3236,7 +3236,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_items}
       def list_inbound_plan_items_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3255,7 +3255,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3265,7 +3265,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_pallets}
       def list_inbound_plan_pallets_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3345,8 +3345,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          packing_group_id: Arguments.string("packing_group_id", packing_group_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          packing_group_id: Arguments.segment("packing_group_id", packing_group_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3356,8 +3356,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_group_boxes}
       def list_packing_group_boxes_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          packing_group_id: Arguments.string("packing_group_id", packing_group_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          packing_group_id: Arguments.segment("packing_group_id", packing_group_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3377,8 +3377,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          packing_group_id: Arguments.string("packing_group_id", packing_group_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          packing_group_id: Arguments.segment("packing_group_id", packing_group_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3388,8 +3388,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_group_items}
       def list_packing_group_items_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          packing_group_id: Arguments.string("packing_group_id", packing_group_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          packing_group_id: Arguments.segment("packing_group_id", packing_group_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3408,7 +3408,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3418,7 +3418,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_options}
       def list_packing_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3437,7 +3437,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3447,7 +3447,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_placement_options}
       def list_placement_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3491,8 +3491,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3502,8 +3502,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_boxes}
       def list_shipment_boxes_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3524,8 +3524,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3535,8 +3535,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_content_update_previews}
       def list_shipment_content_update_previews_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3555,8 +3555,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3566,8 +3566,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_items}
       def list_shipment_items_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3587,8 +3587,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3598,8 +3598,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_pallets}
       def list_shipment_pallets_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
@@ -3623,7 +3623,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
           placement_option_id: Arguments.string("placement_option_id", placement_option_id),
@@ -3635,7 +3635,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_transportation_options}
       def list_transportation_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
           placement_option_id: Arguments.string("placement_option_id", placement_option_id),
@@ -3655,9 +3655,9 @@ module Peddler
       # @return [Peddler::Response] The API response
       def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
-          slot_id: Arguments.string("slot_id", slot_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
+          slot_id: Arguments.segment("slot_id", slot_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.schedule_self_ship_appointment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.schedule_self_ship_appointment")
@@ -3672,7 +3672,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def set_packing_information(inbound_plan_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_packing_information", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.set_packing_information")
@@ -3698,7 +3698,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_inbound_plan_name(inbound_plan_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_inbound_plan_name", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_inbound_plan_name")
@@ -3729,8 +3729,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_shipment_name(inbound_plan_id, shipment_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_name", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_name")
@@ -3748,8 +3748,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_shipment_source_address(inbound_plan_id, shipment_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_source_address", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_source_address")
@@ -3764,8 +3764,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_shipment_tracking_details(inbound_plan_id, shipment_id, body)
         arguments = {
-          inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_tracking_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_tracking_details")
@@ -3786,7 +3786,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_fulfillment_order(seller_fulfillment_order_id)
         arguments = {
-          seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
+          seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.cancel_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.cancel_fulfillment_order")
       end
@@ -3814,7 +3814,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id)
         arguments = {
-          seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
+          seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_return", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.create_fulfillment_return")
@@ -3848,7 +3848,7 @@ module Peddler
       def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
-          feature_name: Arguments.string("feature_name", feature_name, required: true),
+          feature_name: Arguments.segment("feature_name", feature_name, last: true),
           next_token: Arguments.string("next_token", next_token),
           query_start_date: Arguments.string("query_start_date", query_start_date),
         }
@@ -3859,7 +3859,7 @@ module Peddler
       def get_feature_inventory_pages(marketplace_id, feature_name, next_token: nil, query_start_date: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
-          feature_name: Arguments.string("feature_name", feature_name, required: true),
+          feature_name: Arguments.segment("feature_name", feature_name, last: true),
           next_token: Arguments.string("next_token", next_token),
           query_start_date: Arguments.string("query_start_date", query_start_date),
         }
@@ -3880,8 +3880,8 @@ module Peddler
       def get_feature_sku(marketplace_id, feature_name, seller_sku)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
-          feature_name: Arguments.string("feature_name", feature_name, required: true),
-          seller_sku: Arguments.string("seller_sku", seller_sku, required: true),
+          feature_name: Arguments.segment("feature_name", feature_name),
+          seller_sku: Arguments.segment("seller_sku", seller_sku, last: true),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_sku", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_feature_sku")
       end
@@ -3907,7 +3907,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_fulfillment_order(seller_fulfillment_order_id)
         arguments = {
-          seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
+          seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id, last: true),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_order")
       end
@@ -4001,7 +4001,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
         arguments = {
-          seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
+          seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update")
@@ -4016,7 +4016,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id)
         arguments = {
-          seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
+          seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.update_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.update_fulfillment_order")
@@ -4037,7 +4037,7 @@ module Peddler
       def cancel_order(order_id, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.cancel_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.cancel_order")
       end
@@ -4082,7 +4082,7 @@ module Peddler
       def get_order(order_id, x_amzn_fulfillment_service_id: nil, shipments: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
           shipments: Arguments.string("shipments", shipments),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_order")
@@ -4145,7 +4145,7 @@ module Peddler
       def update_order(order_id, body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_order")
@@ -4165,7 +4165,7 @@ module Peddler
       def update_order_status(order_id, body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order_status", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_order_status")
@@ -4186,8 +4186,8 @@ module Peddler
       def update_package(order_id, package_id, body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
-          order_id: Arguments.string("order_id", order_id, required: true),
-          package_id: Arguments.string("package_id", package_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
+          package_id: Arguments.segment("package_id", package_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_package", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_package")
@@ -4240,7 +4240,7 @@ module Peddler
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           transaction_type: Arguments.string("transaction_type", transaction_type, required: true),
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           invoice_type: Arguments.string("invoice_type", invoice_type, required: true),
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id),
           file_format: Arguments.string("file_format", file_format),
@@ -4284,7 +4284,7 @@ module Peddler
       def get_invoice(marketplace_id, invoice_id, warehouse_code: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
-          invoice_id: Arguments.string("invoice_id", invoice_id, required: true),
+          invoice_id: Arguments.segment("invoice_id", invoice_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoice", JSON.generate(arguments)), "invoices_2024_06_19.get_invoice")
@@ -4393,7 +4393,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoices_document(invoices_document_id, warehouse_code: nil)
         arguments = {
-          invoices_document_id: Arguments.string("invoices_document_id", invoices_document_id, required: true),
+          invoices_document_id: Arguments.segment("invoices_document_id", invoices_document_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_document", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_document")
@@ -4408,7 +4408,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoices_export(export_id, warehouse_code: nil)
         arguments = {
-          export_id: Arguments.string("export_id", export_id, required: true),
+          export_id: Arguments.segment("export_id", export_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_export", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_export")
@@ -4482,8 +4482,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil)
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
-          sku: Arguments.string("sku", sku, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id),
+          sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
         }
@@ -4508,8 +4508,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil)
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
-          sku: Arguments.string("sku", sku, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id),
+          sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
@@ -4534,8 +4534,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil)
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
-          sku: Arguments.string("sku", sku, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id),
+          sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
@@ -4561,8 +4561,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil)
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
-          sku: Arguments.string("sku", sku, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id),
+          sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
         }
@@ -4583,8 +4583,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"])
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
-          sku: Arguments.string("sku", sku, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id),
+          sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
           included_data: Arguments.array("included_data", included_data),
@@ -4609,8 +4609,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil, issue_locale: nil)
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
-          sku: Arguments.string("sku", sku, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id),
+          sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           included_data: Arguments.array("included_data", included_data),
           mode: Arguments.string("mode", mode),
@@ -4636,8 +4636,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil, issue_locale: nil)
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
-          sku: Arguments.string("sku", sku, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id),
+          sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           included_data: Arguments.array("included_data", included_data),
           mode: Arguments.string("mode", mode),
@@ -4693,7 +4693,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def search_listings_items(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil)
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
           included_data: Arguments.array("included_data", included_data),
@@ -4719,7 +4719,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#search_listings_items}
       def search_listings_items_pages(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil)
         arguments = {
-          seller_id: Arguments.string("seller_id", seller_id, required: true),
+          seller_id: Arguments.segment("seller_id", seller_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
           included_data: Arguments.array("included_data", included_data),
@@ -4786,7 +4786,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
         Response.from_parts(@engine.operation("merchant_fulfillment_v0.cancel_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.cancel_shipment")
       end
@@ -4835,7 +4835,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
         Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.get_shipment")
       end
@@ -4858,7 +4858,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_customization_details(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -4876,7 +4876,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -4894,7 +4894,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_confirm_order_details(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -4913,7 +4913,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_confirm_service_details(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -4932,7 +4932,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_digital_access_key(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -4951,7 +4951,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_legal_disclosure(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -4970,7 +4970,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_unexpected_problem(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -4988,7 +4988,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_warranty(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -5005,7 +5005,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_attributes(amazon_order_id, marketplace_ids)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
         Response.from_parts(@engine.operation("messaging_v1.get_attributes", JSON.generate(arguments)), "messaging_v1.get_attributes")
@@ -5023,7 +5023,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_messaging_actions_for_order(amazon_order_id, marketplace_ids)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
         Response.from_parts(@engine.operation("messaging_v1.get_messaging_actions_for_order", JSON.generate(arguments)), "messaging_v1.get_messaging_actions_for_order")
@@ -5040,7 +5040,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def send_invoice(amazon_order_id, marketplace_ids, body)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -5081,7 +5081,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_subscription(body, notification_type)
         arguments = {
-          notification_type: Arguments.string("notification_type", notification_type, required: true),
+          notification_type: Arguments.segment("notification_type", notification_type, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("notifications_v1.create_subscription", JSON.generate(arguments)), "notifications_v1.create_subscription")
@@ -5096,7 +5096,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_destination(destination_id)
         arguments = {
-          destination_id: Arguments.string("destination_id", destination_id, required: true),
+          destination_id: Arguments.segment("destination_id", destination_id, last: true),
         }
         Response.from_parts(@engine.operation("notifications_v1.delete_destination", JSON.generate(arguments)), "notifications_v1.delete_destination")
       end
@@ -5116,8 +5116,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_subscription_by_id(subscription_id, notification_type)
         arguments = {
-          subscription_id: Arguments.string("subscription_id", subscription_id, required: true),
-          notification_type: Arguments.string("notification_type", notification_type, required: true),
+          subscription_id: Arguments.segment("subscription_id", subscription_id, last: true),
+          notification_type: Arguments.segment("notification_type", notification_type),
         }
         Response.from_parts(@engine.operation("notifications_v1.delete_subscription_by_id", JSON.generate(arguments)), "notifications_v1.delete_subscription_by_id")
       end
@@ -5132,7 +5132,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_destination(destination_id)
         arguments = {
-          destination_id: Arguments.string("destination_id", destination_id, required: true),
+          destination_id: Arguments.segment("destination_id", destination_id, last: true),
         }
         Response.from_parts(@engine.operation("notifications_v1.get_destination", JSON.generate(arguments)), "notifications_v1.get_destination")
       end
@@ -5162,7 +5162,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_subscription(notification_type, payload_version: nil)
         arguments = {
-          notification_type: Arguments.string("notification_type", notification_type, required: true),
+          notification_type: Arguments.segment("notification_type", notification_type, last: true),
           payload_version: Arguments.string("payload_version", payload_version),
         }
         Response.from_parts(@engine.operation("notifications_v1.get_subscription", JSON.generate(arguments)), "notifications_v1.get_subscription")
@@ -5181,8 +5181,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_subscription_by_id(subscription_id, notification_type)
         arguments = {
-          subscription_id: Arguments.string("subscription_id", subscription_id, required: true),
-          notification_type: Arguments.string("notification_type", notification_type, required: true),
+          subscription_id: Arguments.segment("subscription_id", subscription_id, last: true),
+          notification_type: Arguments.segment("notification_type", notification_type),
         }
         Response.from_parts(@engine.operation("notifications_v1.get_subscription_by_id", JSON.generate(arguments)), "notifications_v1.get_subscription_by_id")
       end
@@ -5239,7 +5239,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def send_test_notification(body, notification_type)
         arguments = {
-          notification_type: Arguments.string("notification_type", notification_type, required: true),
+          notification_type: Arguments.segment("notification_type", notification_type),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("notifications_v1.send_test_notification", JSON.generate(arguments)), "notifications_v1.send_test_notification")
@@ -5259,7 +5259,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_shipment(order_id, payload)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
         Response.from_parts(@engine.operation("orders_v0.confirm_shipment", JSON.generate(arguments)), "orders_v0.confirm_shipment")
@@ -5272,7 +5272,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
         }
         Response.from_parts(@engine.operation("orders_v0.get_order", JSON.generate(arguments)), "orders_v0.get_order")
       end
@@ -5284,7 +5284,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_address(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
         }
         Response.from_parts(@engine.operation("orders_v0.get_order_address", JSON.generate(arguments)), "orders_v0.get_order_address")
       end
@@ -5296,7 +5296,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_buyer_info(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
         }
         Response.from_parts(@engine.operation("orders_v0.get_order_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_buyer_info")
       end
@@ -5317,7 +5317,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_items(order_id, next_token: nil)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
         Response.from_parts(@engine.operation("orders_v0.get_order_items", JSON.generate(arguments)), "orders_v0.get_order_items")
@@ -5326,7 +5326,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#get_order_items}
       def get_order_items_pages(order_id, next_token: nil)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
         PAGINATIONS.fetch("orders_v0.get_order_items").pages(@engine, arguments)
@@ -5340,7 +5340,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_items_buyer_info(order_id, next_token: nil)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
         Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_items_buyer_info")
@@ -5349,7 +5349,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#get_order_items_buyer_info}
       def get_order_items_buyer_info_pages(order_id, next_token: nil)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
         PAGINATIONS.fetch("orders_v0.get_order_items_buyer_info").pages(@engine, arguments)
@@ -5362,7 +5362,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_regulated_info(order_id)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
         }
         Response.from_parts(@engine.operation("orders_v0.get_order_regulated_info", JSON.generate(arguments)), "orders_v0.get_order_regulated_info")
       end
@@ -5525,7 +5525,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_shipment_status(order_id, payload)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
         Response.from_parts(@engine.operation("orders_v0.update_shipment_status", JSON.generate(arguments)), "orders_v0.update_shipment_status")
@@ -5539,7 +5539,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_verification_status(order_id, payload)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
         Response.from_parts(@engine.operation("orders_v0.update_verification_status", JSON.generate(arguments)), "orders_v0.update_verification_status")
@@ -5559,7 +5559,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order(order_id, included_data: nil)
         arguments = {
-          order_id: Arguments.string("order_id", order_id, required: true),
+          order_id: Arguments.segment("order_id", order_id, last: true),
           included_data: Arguments.array("included_data", included_data),
         }
         Response.from_parts(@engine.operation("orders_2026_01_01.get_order", JSON.generate(arguments)), "orders_2026_01_01.get_order")
@@ -5665,7 +5665,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_asin(body, asin)
         arguments = {
-          asin: Arguments.string("asin", asin, required: true),
+          asin: Arguments.segment("asin", asin),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_asin", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimate_for_asin")
@@ -5697,7 +5697,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku)
         arguments = {
-          seller_sku: Arguments.string("seller_sku", seller_sku, required: true),
+          seller_sku: Arguments.segment("seller_sku", seller_sku),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_sku", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimate_for_sku")
@@ -5766,7 +5766,7 @@ module Peddler
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           item_condition: Arguments.string("item_condition", item_condition, required: true),
-          asin: Arguments.string("asin", asin, required: true),
+          asin: Arguments.segment("asin", asin),
           customer_type: Arguments.string("customer_type", customer_type),
         }
         Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers", JSON.generate(arguments)), "product_pricing_v0.get_item_offers")
@@ -5804,7 +5804,7 @@ module Peddler
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           item_condition: Arguments.string("item_condition", item_condition, required: true),
-          seller_sku: Arguments.string("seller_sku", seller_sku, required: true),
+          seller_sku: Arguments.segment("seller_sku", seller_sku),
           customer_type: Arguments.string("customer_type", customer_type),
         }
         Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers", JSON.generate(arguments)), "product_pricing_v0.get_listing_offers")
@@ -5924,7 +5924,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST", requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil)
         arguments = {
-          product_type: Arguments.string("product_type", product_type, required: true),
+          product_type: Arguments.segment("product_type", product_type, last: true),
           seller_id: Arguments.string("seller_id", seller_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           product_type_version: Arguments.string("product_type_version", product_type_version),
@@ -5975,7 +5975,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_promotion(promotion_id, included_data: nil, locale: "en_US")
         arguments = {
-          promotion_id: Arguments.string("promotion_id", promotion_id, required: true),
+          promotion_id: Arguments.segment("promotion_id", promotion_id, last: true),
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
         }
@@ -6004,8 +6004,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_selection(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil)
         arguments = {
-          promotion_id: Arguments.string("promotion_id", promotion_id, required: true),
-          selection_id: Arguments.string("selection_id", selection_id, required: true),
+          promotion_id: Arguments.segment("promotion_id", promotion_id),
+          selection_id: Arguments.segment("selection_id", selection_id, last: true),
           revision_id: Arguments.integer("revision_id", revision_id, required: true),
           locale: Arguments.string("locale", locale),
           pagination_token: Arguments.string("pagination_token", pagination_token),
@@ -6018,8 +6018,8 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#get_selection}
       def get_selection_pages(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil)
         arguments = {
-          promotion_id: Arguments.string("promotion_id", promotion_id, required: true),
-          selection_id: Arguments.string("selection_id", selection_id, required: true),
+          promotion_id: Arguments.segment("promotion_id", promotion_id),
+          selection_id: Arguments.segment("selection_id", selection_id, last: true),
           revision_id: Arguments.integer("revision_id", revision_id, required: true),
           locale: Arguments.string("locale", locale),
           pagination_token: Arguments.string("pagination_token", pagination_token),
@@ -6167,7 +6167,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_report(report_id)
         arguments = {
-          report_id: Arguments.string("report_id", report_id, required: true),
+          report_id: Arguments.segment("report_id", report_id, last: true),
         }
         Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report", JSON.generate(arguments)), "reports_2021_06_30.cancel_report")
       end
@@ -6180,7 +6180,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_report_schedule(report_schedule_id)
         arguments = {
-          report_schedule_id: Arguments.string("report_schedule_id", report_schedule_id, required: true),
+          report_schedule_id: Arguments.segment("report_schedule_id", report_schedule_id, last: true),
         }
         Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.cancel_report_schedule")
       end
@@ -6218,7 +6218,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report(report_id)
         arguments = {
-          report_id: Arguments.string("report_id", report_id, required: true),
+          report_id: Arguments.segment("report_id", report_id, last: true),
         }
         Response.from_parts(@engine.operation("reports_2021_06_30.get_report", JSON.generate(arguments)), "reports_2021_06_30.get_report")
       end
@@ -6233,7 +6233,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report_document(report_document_id, enable_content_encoding_url_header: nil)
         arguments = {
-          report_document_id: Arguments.string("report_document_id", report_document_id, required: true),
+          report_document_id: Arguments.segment("report_document_id", report_document_id, last: true),
           enable_content_encoding_url_header: Arguments.boolean("enable_content_encoding_url_header", enable_content_encoding_url_header),
         }
         Response.from_parts(@engine.operation("reports_2021_06_30.get_report_document", JSON.generate(arguments)), "reports_2021_06_30.get_report_document")
@@ -6247,7 +6247,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report_schedule(report_schedule_id)
         arguments = {
-          report_schedule_id: Arguments.string("report_schedule_id", report_schedule_id, required: true),
+          report_schedule_id: Arguments.segment("report_schedule_id", report_schedule_id, last: true),
         }
         Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.get_report_schedule")
       end
@@ -6440,7 +6440,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_schedule_transaction(transfer_schedule_id, marketplace_id)
         arguments = {
-          transfer_schedule_id: Arguments.string("transfer_schedule_id", transfer_schedule_id, required: true),
+          transfer_schedule_id: Arguments.segment("transfer_schedule_id", transfer_schedule_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.delete_schedule_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.delete_schedule_transaction")
@@ -6456,7 +6456,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_account(account_id, marketplace_id)
         arguments = {
-          account_id: Arguments.string("account_id", account_id, required: true),
+          account_id: Arguments.segment("account_id", account_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_account", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_account")
@@ -6472,7 +6472,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_transaction(transaction_id, marketplace_id)
         arguments = {
-          transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
+          transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transaction")
@@ -6513,7 +6513,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_transfer_schedule(transfer_schedule_id, marketplace_id)
         arguments = {
-          transfer_schedule_id: Arguments.string("transfer_schedule_id", transfer_schedule_id, required: true),
+          transfer_schedule_id: Arguments.segment("transfer_schedule_id", transfer_schedule_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transfer_schedule")
@@ -6529,7 +6529,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_account_balances(account_id, marketplace_id)
         arguments = {
-          account_id: Arguments.string("account_id", account_id, required: true),
+          account_id: Arguments.segment("account_id", account_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_balances", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_account_balances")
@@ -6673,7 +6673,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body)
         arguments = {
-          service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
+          service_job_id: Arguments.segment("service_job_id", service_job_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("services_v1.add_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.add_appointment_for_service_job_by_service_job_id")
@@ -6689,8 +6689,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body)
         arguments = {
-          service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
-          appointment_id: Arguments.string("appointment_id", appointment_id, required: true),
+          service_job_id: Arguments.segment("service_job_id", service_job_id),
+          appointment_id: Arguments.segment("appointment_id", appointment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("services_v1.assign_appointment_resources", JSON.generate(arguments)), "services_v1.assign_appointment_resources")
@@ -6704,7 +6704,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_reservation(reservation_id, marketplace_ids)
         arguments = {
-          reservation_id: Arguments.string("reservation_id", reservation_id, required: true),
+          reservation_id: Arguments.segment("reservation_id", reservation_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
         Response.from_parts(@engine.operation("services_v1.cancel_reservation", JSON.generate(arguments)), "services_v1.cancel_reservation")
@@ -6719,7 +6719,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code)
         arguments = {
-          service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
+          service_job_id: Arguments.segment("service_job_id", service_job_id),
           cancellation_reason_code: Arguments.string("cancellation_reason_code", cancellation_reason_code, required: true),
         }
         Response.from_parts(@engine.operation("services_v1.cancel_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.cancel_service_job_by_service_job_id")
@@ -6732,7 +6732,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def complete_service_job_by_service_job_id(service_job_id)
         arguments = {
-          service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
+          service_job_id: Arguments.segment("service_job_id", service_job_id),
         }
         Response.from_parts(@engine.operation("services_v1.complete_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.complete_service_job_by_service_job_id")
       end
@@ -6801,7 +6801,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil)
         arguments = {
-          service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
+          service_job_id: Arguments.segment("service_job_id", service_job_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           start_time: Arguments.string("start_time", start_time),
           end_time: Arguments.string("end_time", end_time),
@@ -6819,7 +6819,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = {
-          resource_id: Arguments.string("resource_id", resource_id, required: true),
+          resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
@@ -6830,7 +6830,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#get_fixed_slot_capacity}
       def get_fixed_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = {
-          resource_id: Arguments.string("resource_id", resource_id, required: true),
+          resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
@@ -6848,7 +6848,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = {
-          resource_id: Arguments.string("resource_id", resource_id, required: true),
+          resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
@@ -6859,7 +6859,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#get_range_slot_capacity}
       def get_range_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = {
-          resource_id: Arguments.string("resource_id", resource_id, required: true),
+          resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
@@ -6874,7 +6874,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_service_job_by_service_job_id(service_job_id)
         arguments = {
-          service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
+          service_job_id: Arguments.segment("service_job_id", service_job_id, last: true),
         }
         Response.from_parts(@engine.operation("services_v1.get_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.get_service_job_by_service_job_id")
       end
@@ -6975,8 +6975,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body)
         arguments = {
-          service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
-          appointment_id: Arguments.string("appointment_id", appointment_id, required: true),
+          service_job_id: Arguments.segment("service_job_id", service_job_id),
+          appointment_id: Arguments.segment("appointment_id", appointment_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("services_v1.reschedule_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.reschedule_appointment_for_service_job_by_service_job_id")
@@ -6992,8 +6992,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def set_appointment_fulfillment_data(service_job_id, appointment_id, body)
         arguments = {
-          service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
-          appointment_id: Arguments.string("appointment_id", appointment_id, required: true),
+          service_job_id: Arguments.segment("service_job_id", service_job_id),
+          appointment_id: Arguments.segment("appointment_id", appointment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("services_v1.set_appointment_fulfillment_data", JSON.generate(arguments)), "services_v1.set_appointment_fulfillment_data")
@@ -7008,7 +7008,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_reservation(reservation_id, body, marketplace_ids)
         arguments = {
-          reservation_id: Arguments.string("reservation_id", reservation_id, required: true),
+          reservation_id: Arguments.segment("reservation_id", reservation_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -7024,7 +7024,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_schedule(resource_id, body, marketplace_ids)
         arguments = {
-          resource_id: Arguments.string("resource_id", resource_id, required: true),
+          resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
@@ -7044,7 +7044,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoice_status(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
         Response.from_parts(@engine.operation("shipment_invoicing_v0.get_invoice_status", JSON.generate(arguments)), "shipment_invoicing_v0.get_invoice_status")
       end
@@ -7059,7 +7059,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment_details(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
         Response.from_parts(@engine.operation("shipment_invoicing_v0.get_shipment_details", JSON.generate(arguments)), "shipment_invoicing_v0.get_shipment_details")
       end
@@ -7072,7 +7072,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_invoice(shipment_id, body)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("shipment_invoicing_v0.submit_invoice", JSON.generate(arguments)), "shipment_invoicing_v0.submit_invoice")
@@ -7091,7 +7091,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
         Response.from_parts(@engine.operation("shipping_v1.cancel_shipment", JSON.generate(arguments)), "shipping_v1.cancel_shipment")
       end
@@ -7137,7 +7137,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
         Response.from_parts(@engine.operation("shipping_v1.get_shipment", JSON.generate(arguments)), "shipping_v1.get_shipment")
       end
@@ -7149,7 +7149,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_tracking_information(tracking_id)
         arguments = {
-          tracking_id: Arguments.string("tracking_id", tracking_id, required: true),
+          tracking_id: Arguments.segment("tracking_id", tracking_id, last: true),
         }
         Response.from_parts(@engine.operation("shipping_v1.get_tracking_information", JSON.generate(arguments)), "shipping_v1.get_tracking_information")
       end
@@ -7162,7 +7162,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def purchase_labels(shipment_id, body)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("shipping_v1.purchase_labels", JSON.generate(arguments)), "shipping_v1.purchase_labels")
@@ -7189,8 +7189,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def retrieve_shipping_label(shipment_id, tracking_id, body)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
-          tracking_id: Arguments.string("tracking_id", tracking_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
+          tracking_id: Arguments.segment("tracking_id", tracking_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("shipping_v1.retrieve_shipping_label", JSON.generate(arguments)), "shipping_v1.retrieve_shipping_label")
@@ -7211,7 +7211,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
         Response.from_parts(@engine.operation("shipping_v2.cancel_shipment", JSON.generate(arguments)), "shipping_v2.cancel_shipment")
@@ -7345,7 +7345,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil)
         arguments = {
-          collection_form_id: Arguments.string("collection_form_id", collection_form_id, required: true),
+          collection_form_id: Arguments.segment("collection_form_id", collection_form_id, last: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
         Response.from_parts(@engine.operation("shipping_v2.get_collection_form", JSON.generate(arguments)), "shipping_v2.get_collection_form")
@@ -7395,7 +7395,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil, x_amzn_shipping_business_id: nil)
         arguments = {
-          shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
+          shipment_id: Arguments.segment("shipment_id", shipment_id),
           package_client_reference_id: Arguments.string("package_client_reference_id", package_client_reference_id, required: true),
           format: Arguments.string("format", format),
           dpi: Arguments.number("dpi", dpi),
@@ -7448,7 +7448,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
         arguments = {
-          carrier_id: Arguments.string("carrier_id", carrier_id, required: true),
+          carrier_id: Arguments.segment("carrier_id", carrier_id, last: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
@@ -7464,7 +7464,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def link_carrier_account_put(carrier_id, body, x_amzn_shipping_business_id: nil)
         arguments = {
-          carrier_id: Arguments.string("carrier_id", carrier_id, required: true),
+          carrier_id: Arguments.segment("carrier_id", carrier_id, last: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
@@ -7532,7 +7532,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
         arguments = {
-          carrier_id: Arguments.string("carrier_id", carrier_id, required: true),
+          carrier_id: Arguments.segment("carrier_id", carrier_id),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
@@ -7556,7 +7556,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
         Response.from_parts(@engine.operation("solicitations_v1.create_product_review_and_seller_feedback_solicitation", JSON.generate(arguments)), "solicitations_v1.create_product_review_and_seller_feedback_solicitation")
@@ -7575,7 +7575,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids)
         arguments = {
-          amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
+          amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
         Response.from_parts(@engine.operation("solicitations_v1.get_solicitation_actions_for_order", JSON.generate(arguments)), "solicitations_v1.get_solicitation_actions_for_order")
@@ -7594,7 +7594,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def archive_supply_source(supply_source_id)
         arguments = {
-          supply_source_id: Arguments.string("supply_source_id", supply_source_id, required: true),
+          supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
         }
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.archive_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.archive_supply_source")
       end
@@ -7618,7 +7618,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_supply_source(supply_source_id)
         arguments = {
-          supply_source_id: Arguments.string("supply_source_id", supply_source_id, required: true),
+          supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
         }
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.get_supply_source")
       end
@@ -7654,7 +7654,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_supply_source(supply_source_id, payload: nil)
         arguments = {
-          supply_source_id: Arguments.string("supply_source_id", supply_source_id, required: true),
+          supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
           body: Arguments.body("payload", payload),
         }
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.update_supply_source")
@@ -7668,7 +7668,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_supply_source_status(supply_source_id, payload: nil)
         arguments = {
-          supply_source_id: Arguments.string("supply_source_id", supply_source_id, required: true),
+          supply_source_id: Arguments.segment("supply_source_id", supply_source_id),
           body: Arguments.body("payload", payload),
         }
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source_status", JSON.generate(arguments)), "supply_sources_2020_07_01.update_supply_source_status")
@@ -7687,7 +7687,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_case(case_id)
         arguments = {
-          case_id: Arguments.string("case_id", case_id, required: true),
+          case_id: Arguments.segment("case_id", case_id, last: true),
         }
         Response.from_parts(@engine.operation("support_2025_02_01.get_case", JSON.generate(arguments)), "support_2025_02_01.get_case")
       end
@@ -7725,7 +7725,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
         arguments = {
-          case_id: Arguments.string("case_id", case_id, required: true),
+          case_id: Arguments.segment("case_id", case_id),
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -7736,7 +7736,7 @@ module Peddler
       # @return [Enumerator<Peddler::Response>] each page of {#list_contacts}
       def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
         arguments = {
-          case_id: Arguments.string("case_id", case_id, required: true),
+          case_id: Arguments.segment("case_id", case_id),
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -7828,7 +7828,7 @@ module Peddler
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           content_md5: Arguments.string("content_md5", content_md5, required: true),
-          resource: Arguments.string("resource", resource, required: true),
+          resource: Arguments.segment("resource", resource, last: true),
           content_type: Arguments.string("content_type", content_type),
         }
         Response.from_parts(@engine.operation("uploads_2020_11_01.create_upload_destination_for_resource", JSON.generate(arguments)), "uploads_2020_11_01.create_upload_destination_for_resource")
@@ -7884,7 +7884,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_inventory_update(body, warehouse_id)
         arguments = {
-          warehouse_id: Arguments.string("warehouse_id", warehouse_id, required: true),
+          warehouse_id: Arguments.segment("warehouse_id", warehouse_id),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_inventory_v1.submit_inventory_update", JSON.generate(arguments)), "vendor_direct_fulfillment_inventory_v1.submit_inventory_update")
@@ -7904,7 +7904,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_order", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.get_order")
       end
@@ -7986,7 +7986,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_order", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_order")
       end
@@ -8100,7 +8100,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_scenarios(transaction_id)
         arguments = {
-          transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
+          transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios", JSON.generate(arguments)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios")
       end
@@ -8118,7 +8118,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoice")
       end
@@ -8171,7 +8171,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slip", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slip")
       end
@@ -8224,7 +8224,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_label")
       end
@@ -8335,7 +8335,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_shipping_labels(purchase_order_number, body)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels")
@@ -8348,7 +8348,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice")
       end
@@ -8401,7 +8401,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip")
       end
@@ -8454,7 +8454,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label")
       end
@@ -8554,7 +8554,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id)
         arguments = {
-          transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
+          transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_v1.get_transaction_status", JSON.generate(arguments)), "vendor_direct_fulfillment_transactions_v1.get_transaction_status")
       end
@@ -8573,7 +8573,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id)
         arguments = {
-          transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
+          transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status", JSON.generate(arguments)), "vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status")
       end
@@ -8610,7 +8610,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_purchase_order(purchase_order_number)
         arguments = {
-          purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
+          purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
         Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_order", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_order")
       end
@@ -8968,7 +8968,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_transaction(transaction_id)
         arguments = {
-          transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
+          transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
         Response.from_parts(@engine.operation("vendor_transaction_status_v1.get_transaction", JSON.generate(arguments)), "vendor_transaction_status_v1.get_transaction")
       end

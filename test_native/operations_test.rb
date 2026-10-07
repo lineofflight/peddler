@@ -20,20 +20,27 @@ class OperationsTest < NativeTest
   end
 
   # An empty argument is refused only where it ends the path, since it would reach the parent collection.
-  def test_named_methods_reject_dot_and_empty_last_path_segments
+  def test_named_methods_reject_dot_and_empty_last_path_segments_by_name
     instance = client("http://127.0.0.1:1")
-    [".", "..", ""].each do |asin|
+    { "." => "asin must not be . or ..", ".." => "asin must not be . or ..", "" => "asin must not be empty" }.each do |asin, message|
       error = assert_raises(ArgumentError) { instance.catalog_items_2022_04_01.get_catalog_item(asin, ["UK"]) }
 
-      assert_equal("invalid request", error.message)
+      assert_equal(message, error.message)
     end
-    [["..", "X"], ["S", "."], ["S", ""]].each do |seller_id, sku|
+    {
+      ["..", "X"] => "seller_id must not be . or ..",
+      ["S", "."] => "sku must not be . or ..",
+      ["S", ""] => "sku must not be empty",
+    }.each do |(seller_id, sku), message|
       error = assert_raises(ArgumentError) do
         instance.listings_items_2021_08_01.patch_listings_item(seller_id, sku, ["UK"], {})
       end
 
-      assert_equal("invalid request", error.message)
+      assert_equal(message, error.message)
     end
+    error = assert_raises(ArgumentError) { instance.finances_v0.list_financial_events_by_group_id_pages("..").first }
+
+    assert_equal("event_group_id must not be . or ..", error.message)
   end
 
   # The shared cases name arguments as the Rust core does. A method takes the required ones in the spec's order
