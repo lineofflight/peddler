@@ -2,7 +2,7 @@
 use crate::{
     GenerationError,
     checkout::{git, verify_pinned},
-    models,
+    models::{self, visit_schema},
 };
 use serde::Deserialize;
 use serde_json::{Value, json};
@@ -828,39 +828,6 @@ fn disambiguate_titles(definitions: &mut Value) {
                 node.remove("title");
             }
         });
-    }
-}
-
-fn visit_schema(schema: &mut Value, action: &mut impl FnMut(&mut serde_json::Map<String, Value>)) {
-    let Some(node) = schema.as_object_mut() else {
-        return;
-    };
-    action(node);
-    for key in ["properties", "patternProperties", "definitions"] {
-        if let Some(children) = node.get_mut(key).and_then(Value::as_object_mut) {
-            for child in children.values_mut() {
-                visit_schema(child, action);
-            }
-        }
-    }
-    for key in [
-        "items",
-        "additionalProperties",
-        "not",
-        "contains",
-        "allOf",
-        "anyOf",
-        "oneOf",
-    ] {
-        if let Some(child) = node.get_mut(key) {
-            if let Some(children) = child.as_array_mut() {
-                for child in children {
-                    visit_schema(child, action);
-                }
-            } else {
-                visit_schema(child, action);
-            }
-        }
     }
 }
 

@@ -154,14 +154,32 @@ fn is_array(schema: &Value, definitions: &Map<String, Value>, seen: &mut BTreeSe
         .is_some_and(|schema| is_array(schema, definitions, seen))
 }
 
-pub(crate) fn render(definitions: Value) -> Result<String, GenerationError> {
-    let mut settings = typify::TypeSpaceSettings::default();
+pub(crate) fn render(mut definitions: Value) -> Result<String, GenerationError> {
+    // Register each concrete number schema without dropping bounds or formats.
+    // Typify matches conversions excluding documentation, and retains named wrappers.
+    let mut numbers = Vec::new();
     for schema in definitions
-        .as_object()
+        .as_object_mut()
         .expect("normalized definitions")
-        .values()
+        .values_mut()
     {
-        number_conversions(schema, &mut settings)?;
+        visit_schema(schema, &mut |node| {
+            if node.get("type").and_then(Value::as_str) == Some("number") {
+                numbers.push(Value::Object(node.clone()));
+            }
+        });
+    }
+    let mut settings = typify::TypeSpaceSettings::default();
+    for number in numbers {
+        settings.with_conversion(
+            serde_json::from_value(number)?,
+            "::serde_json::Number",
+            [
+                typify::TypeSpaceImpl::Display,
+                typify::TypeSpaceImpl::FromStr,
+            ]
+            .into_iter(),
+        );
     }
     let schemas: BTreeMap<String, schemars::schema::Schema> = serde_json::from_value(definitions)?;
     let mut types = typify::TypeSpace::new(&settings);
@@ -175,50 +193,36 @@ pub(crate) fn render(definitions: Value) -> Result<String, GenerationError> {
     ))
 }
 
-// Register each concrete number schema without dropping bounds or formats.
-// Typify matches conversions excluding documentation, and retains named wrappers.
-fn number_conversions(
-    schema: &Value,
-    settings: &mut typify::TypeSpaceSettings,
-) -> Result<(), GenerationError> {
-    let Some(node) = schema.as_object() else {
-        return Ok(());
+/// Calls `action` on a schema and on every schema nested in it.
+pub(crate) fn visit_schema(schema: &mut Value, action: &mut impl FnMut(&mut Map<String, Value>)) {
+    let Some(node) = schema.as_object_mut() else {
+        return;
     };
-    if node.get("type").and_then(Value::as_str) == Some("number") {
-        settings.with_conversion(
-            serde_json::from_value(schema.clone())?,
-            "::serde_json::Number",
-            [
-                typify::TypeSpaceImpl::Display,
-                typify::TypeSpaceImpl::FromStr,
-            ]
-            .into_iter(),
-        );
-    }
-    for key in ["properties", "definitions", "patternProperties"] {
-        if let Some(children) = node.get(key).and_then(Value::as_object) {
-            for child in children.values() {
-                number_conversions(child, settings)?;
+    action(node);
+    for key in ["properties", "patternProperties", "definitions"] {
+        if let Some(children) = node.get_mut(key).and_then(Value::as_object_mut) {
+            for child in children.values_mut() {
+                visit_schema(child, action);
             }
         }
     }
     for key in [
-        "additionalProperties",
         "items",
+        "additionalProperties",
         "not",
+        "contains",
         "allOf",
         "anyOf",
         "oneOf",
     ] {
-        if let Some(child) = node.get(key) {
-            if let Some(children) = child.as_array() {
+        if let Some(child) = node.get_mut(key) {
+            if let Some(children) = child.as_array_mut() {
                 for child in children {
-                    number_conversions(child, settings)?;
+                    visit_schema(child, action);
                 }
             } else {
-                number_conversions(child, settings)?;
+                visit_schema(child, action);
             }
         }
     }
-    Ok(())
 }
