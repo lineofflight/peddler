@@ -35,6 +35,7 @@ module Peddler
     def initialize: (Integer status, Array[[String, String]] headers, String body, ?Native::error_metadata? metadata, ?operation: String?) -> void
     def raise_for_status!: () -> self
     def code: () -> Integer
+    def inspect: () -> String
     def charset: () -> String?
     def to_s: () -> String
     def to_h: () -> untyped

@@ -41,6 +41,14 @@ module Peddler
       assert_nil(Response.new(200, [], "").charset)
     end
 
+    # A body can hold a token, as the response of create_restricted_data_token does.
+    def test_inspect_shows_the_class_and_the_status_only
+      response = Response.new(200, [["x-amzn-requestid", "dummy-header"]], '{"restrictedDataToken":"dummy-token"}')
+
+      assert_equal("#<Peddler::Response 200>", response.inspect)
+      assert_equal("#<Peddler::Response 200>", Error.new("no", response).response.inspect)
+    end
+
     def test_code_is_the_integer_status
       assert_same(404, Response.new(404, [], "").code)
     end

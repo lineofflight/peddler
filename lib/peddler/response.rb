@@ -91,6 +91,11 @@ module Peddler
     # @return [Integer] the status code
     def code = status.code
 
+    # The class and the status. Headers and a body can hold a token, so neither is shown.
+    #
+    # @return [String]
+    def inspect = "#<#{self.class} #{code}>"
+
     # @return [String, nil] the charset parameter of the Content-Type
     def charset
       content_type[/;\s*charset=([^;]+)/i, 1]&.strip&.delete('"')
