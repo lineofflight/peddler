@@ -9,7 +9,7 @@ module Peddler
     def with_access_token: (String | Native::_TokenSource access_token) -> Client
     def sandbox: () -> Client
     def sandbox?: () -> bool
-    def request: (String method, String path, ?params: Hash[String | Symbol, String | Integer | Float | bool], ?body: String | Hash[untyped, untyped] | Array[untyped] | nil) -> Response
+    def request: (String method, String path, ?params: Hash[String | Symbol, untyped], ?body: String | Hash[untyped, untyped] | Array[untyped] | nil) -> Response
 
     private
 

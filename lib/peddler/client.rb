@@ -91,7 +91,8 @@ module Peddler
     #   client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: "ATVPDKIKX0DER" }).to_h
     # @param [String] method the HTTP method, such as "GET"
     # @param [String] path the absolute path, percent-encoded, without a query
-    # @param [Hash{String, Symbol => String, Integer, Float, Boolean}] params the query. A value is sent as its text.
+    # @param [Hash{String, Symbol => String, Numeric, Boolean, Array}] params the query. A value is sent as an
+    #   operation's argument is: a {Peddler::Marketplace} as its ID, an Array joined with commas.
     # @param [Hash, Array, String, nil] body sent as JSON. A String holds the JSON already.
     # @return [Peddler::Response]
     # @raise [ArgumentError] if an argument breaks its rule. The message names the argument.
@@ -112,12 +113,10 @@ module Peddler
         raise ArgumentError, "parameter names must be strings or symbols" unless key.is_a?(String) || key.is_a?(Symbol)
 
         name = key.to_s
+        raise ArgumentError, "parameter names must be valid UTF-8" unless Native.valid_utf8_string?(name)
         raise ArgumentError, "duplicate parameter name" if query.key?(name)
-        unless value.is_a?(String) || value.is_a?(Integer) || value == true || value == false || (value.is_a?(Float) && value.finite?)
-          raise ArgumentError, "parameter values must be strings, finite numbers or booleans"
-        end
 
-        query[name] = value.to_s
+        query[name] = Native::Arguments.parameter(name, value)
       end
       payload = case body
       when nil, String then body

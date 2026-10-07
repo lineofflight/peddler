@@ -90,6 +90,12 @@ module Peddler
           parsed
         end
 
+        # A value of a raw request's query: what an operation's argument is as text, a boolean, or an Array of them,
+        # joined with commas as v5 joined it
+        def parameter(name, value)
+          value.is_a?(Array) ? value.map { |item| scalar(name, item) }.join(",") : scalar(name, value)
+        end
+
         # The arguments as the JSON the core takes. Each was checked but the inside of a body, so what can't be
         # encoded is there. The encoder's error quotes the value, so the error is raised here, outside its rescue,
         # where it can't become the cause.
@@ -135,6 +141,15 @@ module Peddler
           raise ArgumentError, "#{name} must be valid UTF-8" unless Native.valid_utf8_string?(text)
 
           text
+        end
+
+        def scalar(name, value)
+          scalar = case value
+          when true, false then value.to_s
+          when Float then value.to_s if value.finite?
+          else text(name, value)
+          end
+          scalar || raise(ArgumentError, "#{name} must be a String, a finite number, a boolean or an Array of them")
         end
 
         # Whether the value is a String that spells a number. One that is not valid UTF-8 can't be matched.

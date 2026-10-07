@@ -14,7 +14,9 @@ module Peddler
       def self.boolean: (String name, untyped value, ?required: bool) -> bool?
       def self.body: (String name, untyped value, ?required: bool) -> untyped
       def self.missing: (String name, bool required) -> nil
+      def self.parameter: (String name, untyped value) -> String
       def self.encode: (Hash[Symbol, untyped] arguments, ?String? body) -> String
+      def self.scalar: (String name, untyped value) -> String
       def self.plain: (untyped value) -> untyped
       def self.text: (String name, untyped value) -> String?
       def self.numeral?: (untyped value, Regexp pattern) -> bool

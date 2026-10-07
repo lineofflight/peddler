@@ -29,10 +29,37 @@ class ClientTest < NativeTest
     end
   end
 
+  def test_a_parameter_value_is_sent_as_an_argument_of_an_operation_is
+    uk = Peddler::Marketplace.find("UK")
+    serve_keep_alive do |url, _accepted, requests|
+      instance = client(url)
+      instance.request("GET", "/x", params: { MarketplaceIds: uk, ids: ["a b", uk, 3, true], none: [], "n" => 1.5, s: :sym })
+
+      assert_equal("/x?MarketplaceIds=A1F83G8C2ARO7P&ids=a+b%2CA1F83G8C2ARO7P%2C3%2Ctrue&none=&n=1.5&s=sym", requests.pop[1])
+      rule = "must be a String, a finite number, a boolean or an Array of them"
+      {
+        { key: nil } => "key #{rule}",
+        { key: Object.new } => "key #{rule}",
+        { key: Float::INFINITY } => "key #{rule}",
+        { key: { private: 1 } } => "key #{rule}",
+        { key: [["private"]] } => "key #{rule}",
+        { key: "private\xFF" } => "key must be valid UTF-8",
+        { "private\xFF" => "value" } => "parameter names must be valid UTF-8",
+      }.each do |params, message|
+        error = assert_raises(ArgumentError) { instance.request("GET", "/x", params: params) }
+
+        assert_equal(message, error.message)
+        assert_nil(error.cause)
+        refute_match(/private/, error.full_message(highlight: false).b)
+      end
+      assert_empty(requests)
+    end
+  end
+
   def test_rejects_unsupported_or_ambiguous_inputs
     instance = client("http://127.0.0.1:1")
 
-    [nil, [], { key: nil }, { key: [] }, { key: {} }, { 1 => "value" }, { key: "a", "key" => "b" }, { key: Float::NAN }].each do |params|
+    [nil, [], { key: nil }, { key: {} }, { 1 => "value" }, { key: "a", "key" => "b" }, { key: Float::NAN }].each do |params|
       assert_raises(ArgumentError) { instance.request("GET", "/", params: params) }
     end
     [false, 1, Object.new].each do |body|
