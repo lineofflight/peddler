@@ -53,7 +53,7 @@ client = Peddler::Client.new(
 
 In a single process, `lwa.token_source(refresh_token: seller.refresh_token)` is a ready-made callable that keeps 1 token in memory. It is not shared between processes.
 
-Create clients when you need them, in the job or the request. Creating one is cheap, and a client created before `fork` raises `Peddler::ForkError` in the child.
+Create clients when you need them, in the job or the request. Creating one is cheap, and a client or a `Peddler::LWA` created before `fork` raises `Peddler::ForkError` in the child.
 
 For PII (buyer name, shipping address, tax info in Orders), request an RDT and batch multiple resource paths in 1 call rather than requesting an RDT per order.
 
@@ -126,8 +126,10 @@ Don't write a token loop where a `_pages` method exists.
 Reports and Data Kiosk queries are asynchronous 3-step operations:
 
 1. Request: Call `create_report` or `create_query`.
-2. Await completion: Listen for `REPORT_PROCESSING_FINISHED` notifications. Without notifications, `client.wait_for_report(report_id)` and `client.wait_for_query(query_id)` poll in a background job.
-3. Retrieve: Stream the document by its ID with `client.open_report_document` or `client.open_query_document`.
+2. Await completion: Listen for `REPORT_PROCESSING_FINISHED` notifications. Without notifications, `client.reports.wait_for_report(report_id)` and `client.data_kiosk.wait_for_query(query_id)` poll in a background job.
+3. Retrieve: Stream the document by its ID with `client.reports.open_report_document` or `client.data_kiosk.open_query_document`.
+
+These helpers are on the API they belong to, beside its operations: `client.reports`, `client.feeds` and `client.data_kiosk`.
 
 ```ruby
 report_id = client.reports.create_report({
@@ -135,17 +137,19 @@ report_id = client.reports.create_report({
   "marketplaceIds" => marketplace_ids,
 }).parse.report_id
 
-report = client.wait_for_report(report_id, timeout: 900).parse
+report = client.reports.wait_for_report(report_id, timeout: 900).parse
 raise "report #{report.processing_status}" unless report.processing_status == "DONE"
 
-client.open_report_document(report.report_document_id) do |document|
+client.reports.open_report_document(report.report_document_id) do |document|
   document.each_tsv { |row| process(row) }
 end
 ```
 
 `each_tsv` yields each row as an Array of UTF-8 Strings, the column names first. `each_jsonl` yields each parsed line of a Data Kiosk document. For a small document, `client.reports.download_report_document(id).to_s` returns it whole.
 
-To submit a feed, upload its content with `client.create_and_upload_feed_document(io, content_type:)`, pass the returned ID to `client.feeds.create_feed` as `inputFeedDocumentId`, then `client.wait_for_feed(feed_id)`.
+A wait that runs past its `timeout:` raises `Peddler::WorkflowTimeoutError`: reschedule the job and wait again. A download that runs past its own raises `Peddler::DocumentTimeoutError`. A single request that takes too long, such as 1 poll or looking a document up, raises `Peddler::TimeoutError`.
+
+To submit a feed, upload its content with `client.feeds.create_and_upload_feed_document(io, content_type:)`, pass the returned ID to `client.feeds.create_feed` as `inputFeedDocumentId`, then `client.feeds.wait_for_feed(feed_id)`. A String, a File and a StringIO are sent with their length. For another source, pass `content_length:`.
 
 Prefer reports or Data Kiosk over deep endpoint pagination for historical or bulk data.
 
@@ -155,4 +159,4 @@ Prefer reports or Data Kiosk over deep endpoint pagination for historical or bul
 - Notifications: Subscribe to notifications (`ORDER_CHANGE`, `FEED_PROCESSING_FINISHED`, `REPORT_PROCESSING_FINISHED`) rather than polling endpoints on a timer.
 - Caching: Cache slow-changing metadata aggressively (`get_marketplace_participations`, catalog item definitions).
 - Modern APIs: Default to unversioned methods (`client.orders`, `client.finances`) to use current SP-API specs.
-- Sandbox testing: Use `client.sandbox` in test environments, and keep its return value: it leaves `client` on production. To test against a local server, create the client with `base_url: "http://localhost:9001"` in place of `region:`.
+- Sandbox testing: Use `client.sandbox` in test environments, and keep its return value: it leaves `client` on production. To test against a local server, create the client with `base_url: "http://localhost:9001"` in place of `region:`. WebMock and VCR don't see Peddler's requests, so don't stub them there.
