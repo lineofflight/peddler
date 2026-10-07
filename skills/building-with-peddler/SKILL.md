@@ -30,8 +30,8 @@ This describes Peddler 6. Peddler 5 had a class per API (`Peddler.orders.new(aws
   `Peddler::LWA.new.refresh(refresh_token: token).access_token`
 - Restricted Data Token (RDT):
   `client.tokens.create_restricted_data_token(body)`, then `client.with_access_token(rdt)`
-- Call an endpoint that has no method yet:
-  `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: id })`
+- Call an endpoint that has no method yet, with parameter values as an operation takes them:
+  `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: marketplace_ids })`
 - Operation documentation and signatures:
   YARD comments in `lib/peddler/native/apis.rb` and `sig/peddler/native/apis.rbs` in the gem
 
