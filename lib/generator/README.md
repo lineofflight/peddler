@@ -22,9 +22,9 @@ Entry point: `lib/generator.rb`
 | `lib/peddler/{notifications,reports,feeds,data_kiosk}/` | the types of the other schemas |
 | `sig/peddler.rbs` and `sig/peddler/{apis,notifications,reports,feeds,data_kiosk}/` | their RBS signatures |
 
-Every Ruby file it writes carries the line `# This file is generated. Do not edit.`
+Every Ruby file it writes carries a comment that starts `# This file is generated.`
 
-It doesn't write the operation methods, `lib/peddler/native/apis.rb`, or their signatures. Those come from the Rust generator.
+It doesn't write the operation methods, `lib/peddler/native/apis.rb`, their documentation or their signatures. Those come from the Rust generator.
 
 ## Running it
 
@@ -65,7 +65,7 @@ Peddler generates its types with a generator of its own, not with [openapi-gener
 
 What this generator does that a general one won't:
 
-- It turns Amazon's many money shapes into one `Peddler::Money`.
+- It turns Amazon's many money shapes into a single `Peddler::Money`.
 - It breaks cycles between types, and only those, by naming a class lazily.
 - It applies JSON patches for known mistakes in Amazon's schemas.
 - It writes RBS by loading the classes it generated and asking the `structure` gem for their attributes.
