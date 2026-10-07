@@ -134,7 +134,7 @@ module Peddler
     end
 
     def test_lifecycle_metadata_lookup_raises
-      error = assert_raises(Error) { client.wait_for_report("1234567", interval: 0.01, timeout: 2) }
+      error = assert_raises(Error) { client.reports.wait_for_report("1234567", interval: 0.01, timeout: 2) }
 
       assert_equal([404, "NotFound"], [error.status, error.code])
       refute_kind_of(WorkflowError, error)

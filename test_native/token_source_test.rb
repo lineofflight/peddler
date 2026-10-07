@@ -79,7 +79,7 @@ class TokenSourceTest < NativeTest
       source, calls = counting_source
       instance = Peddler::Client.new(base_url: url, access_token: source)
 
-      assert_equal("DONE", instance.wait_for_report("r1", interval: 0.01, timeout: 5).to_h.fetch("processingStatus"))
+      assert_equal("DONE", instance.reports.wait_for_report("r1", interval: 0.01, timeout: 5).to_h.fetch("processingStatus"))
       assert_equal(["token-1"] * 3, tokens(requests, 3))
       assert_equal(1, calls.call)
       assert_equal("signed body", instance.download_document("#{url}/signed?sig=1") { |document| document.each_chunk.to_a.join })
@@ -119,7 +119,7 @@ class TokenSourceTest < NativeTest
     failure = Class.new(StandardError).new("cache is down")
     serve_keep_alive do |url, accepted, _requests|
       instance = Peddler::Client.new(base_url: url, access_token: -> { raise failure })
-      [-> { instance.request("GET", "/") }, -> { instance.wait_for_report("r1") }].each do |call|
+      [-> { instance.request("GET", "/") }, -> { instance.reports.wait_for_report("r1") }].each do |call|
         raised = assert_raises(failure.class, &call)
 
         assert_same(failure, raised)

@@ -50,6 +50,20 @@ module Peddler
       end
     end
 
+    class << self
+      # The document, or what the block returns with the document closed after it
+      def open_document(handle)
+        document = Document.new(handle)
+        return document unless block_given?
+
+        begin
+          yield document
+        ensure
+          document.close
+        end
+      end
+    end
+
     module Uploads
       CHUNK_BYTES = 64 * 1024
 
@@ -185,7 +199,7 @@ module Peddler
     def download_document(url, **transfer_options, &block)
       raise ArgumentError, "invalid document URL" unless Native.valid_utf8_string?(url)
 
-      open_document(@engine.download_document(url, Native::TransferConfig.json(transfer_options)), &block)
+      Native.open_document(@engine.download_document(url, Native::TransferConfig.json(transfer_options)), &block)
     end
 
     # Uploads a String or a `read(length)` source to a signed URL
@@ -194,20 +208,6 @@ module Peddler
     # @raise [Peddler::Error] if the URL answers outside 2xx
     def upload_document(url, source, content_type:, headers: {}, content_length: nil, **transfer_options)
       Native::Uploads.put(@engine, url, source, content_type, headers, content_length, transfer_options)
-    end
-
-    private
-
-    # The document, or what the block returns with the document closed after it
-    def open_document(handle)
-      document = Document.new(handle)
-      return document unless block_given?
-
-      begin
-        yield document
-      ensure
-        document.close
-      end
     end
   end
 end

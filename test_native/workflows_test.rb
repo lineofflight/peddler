@@ -32,10 +32,28 @@ class WorkflowsTest < NativeTest
     JSON.generate(reportId: "r1", reportType: "T", processingStatus: status, createdTime: "2024-01-01T00:00:00Z", reportDocumentId: "d9")
   end
 
+  # As in v5, what belongs to an API is on its view, under both of its names. A signed URL belongs to none.
+  def test_helpers_are_on_the_api_views_and_not_on_the_client
+    instance = client("http://127.0.0.1:1")
+    helpers = {
+      [:reports, :reports_2021_06_30] => [:download_report_document, :open_report_document, :wait_for_report],
+      [:feeds, :feeds_2021_06_30] => [:upload_feed_document, :download_result_feed_document, :open_feed_document, :wait_for_feed, :create_and_upload_feed_document],
+      [:data_kiosk, :data_kiosk_2023_11_15] => [:download_query_document, :open_query_document, :wait_for_query],
+    }
+    helpers.each do |apis, names|
+      names.each do |name|
+        apis.each { |api| assert_respond_to(instance.public_send(api), name) }
+        refute_respond_to(instance, name)
+      end
+    end
+
+    [:download_document, :upload_document].each { |name| assert_respond_to(instance, name) }
+  end
+
   def test_report_document_authenticates_metadata_but_never_the_signed_url
     handler = ->(path, base) { [200, path.start_with?("/signed") ? "report body" : report_document(base)] }
     route_server(handler) do |url, requests|
-      document = client(url).open_report_document("a/b c")
+      document = client(url).reports.open_report_document("a/b c")
 
       assert_equal("report body", document.each_chunk.to_a.join)
       metadata, signed = requests.call
@@ -58,8 +76,8 @@ class WorkflowsTest < NativeTest
     route_server(handler) do |url, requests|
       instance = client(url)
 
-      assert_equal("{\"x\":1}\n", instance.open_feed_document("f1").each_chunk.to_a.join)
-      assert_equal([{ "x" => 1 }], instance.open_query_document("k/1") { |document| document.each_jsonl.to_a })
+      assert_equal("{\"x\":1}\n", instance.feeds.open_feed_document("f1").each_chunk.to_a.join)
+      assert_equal([{ "x" => 1 }], instance.data_kiosk.open_query_document("k/1") { |document| document.each_jsonl.to_a })
       paths = requests.call.map(&:first)
 
       assert_equal(["/feeds/2021-06-30/documents/f1", "/signed", "/dataKiosk/2023-11-15/documents/k%2F1", "/signed"], paths)
@@ -78,7 +96,7 @@ class WorkflowsTest < NativeTest
         [200, body.gsub("http://x", base)]
       end
       route_server(handler) do |url, requests|
-        error = assert_raises(Peddler::WorkflowError, name.to_s) { client(url).open_report_document("d1") }
+        error = assert_raises(Peddler::WorkflowError, name.to_s) { client(url).reports.open_report_document("d1") }
 
         refute_match(/SIGNED_SECRET|127\.0\.0\.1/, error.full_message(highlight: false), name.to_s)
         assert_equal(1, requests.call.size, name.to_s)
@@ -89,7 +107,7 @@ class WorkflowsTest < NativeTest
   def test_metadata_http_error_raises_the_api_error_with_the_raw_response
     handler = ->(*) { [404, '{"errors":[{"code":"NotFound","message":"Amazon says no"}]}', [["x-amzn-requestid", "request-id"]]] }
     route_server(handler) do |url, requests|
-      error = assert_raises(Peddler::Error) { client(url).open_feed_document("d1") }
+      error = assert_raises(Peddler::Error) { client(url).feeds.open_feed_document("d1") }
 
       refute_kind_of(Peddler::WorkflowError, error)
       assert_equal(404, error.status)
@@ -106,25 +124,25 @@ class WorkflowsTest < NativeTest
     instance = client("http://127.0.0.1:1")
     # An ID ends a path, so it is refused as a path argument is. An option is named with its rule.
     {
-      -> { instance.open_report_document("") } => "document_id must not be empty",
-      -> { instance.open_report_document(nil) } => "document_id is required",
-      -> { instance.open_feed_document("..") } => "document_id must not be . or ..",
-      -> { instance.open_report_document("d1", max_bytes: 0) } => "max_bytes must be a positive Integer that fits in 64 bits",
-      -> { instance.open_query_document("d1", bogus: 1) } => "unknown option: the options are timeout, compression, max_bytes and max_record_bytes",
-      -> { instance.open_report_document("d1", timeout: 0) } => "timeout must be a positive number of seconds",
-      -> { instance.wait_for_query("") } => "query_id must not be empty",
-      -> { instance.wait_for_report("..") } => "report_id must not be . or ..",
-      -> { instance.wait_for_feed(nil) } => "feed_id is required",
+      -> { instance.reports.open_report_document("") } => "document_id must not be empty",
+      -> { instance.reports.open_report_document(nil) } => "document_id is required",
+      -> { instance.feeds.open_feed_document("..") } => "document_id must not be . or ..",
+      -> { instance.reports.open_report_document("d1", max_bytes: 0) } => "max_bytes must be a positive Integer that fits in 64 bits",
+      -> { instance.data_kiosk.open_query_document("d1", bogus: 1) } => "unknown option: the options are timeout, compression, max_bytes and max_record_bytes",
+      -> { instance.reports.open_report_document("d1", timeout: 0) } => "timeout must be a positive number of seconds",
+      -> { instance.data_kiosk.wait_for_query("") } => "query_id must not be empty",
+      -> { instance.reports.wait_for_report("..") } => "report_id must not be . or ..",
+      -> { instance.feeds.wait_for_feed(nil) } => "feed_id is required",
       -> { instance.reports_2021_06_30.download_report_document("..") } => "report_document_id_or_url must not be . or ..",
       -> { instance.data_kiosk_2023_11_15.download_query_document("") } => "document_id_or_url must be a UTF-8 String that is not empty",
     }.each do |call, message|
       assert_equal(message, assert_raises(ArgumentError, &call).message)
     end
     [0, -1, 1e-12, Float::NAN, Float::INFINITY, "5", nil].each do |value|
-      error = assert_raises(ArgumentError, value.inspect) { instance.wait_for_report("r1", interval: value) }
+      error = assert_raises(ArgumentError, value.inspect) { instance.reports.wait_for_report("r1", interval: value) }
 
       assert_equal("interval must be a positive number of seconds", error.message)
-      error = assert_raises(ArgumentError, value.inspect) { instance.wait_for_feed("f1", timeout: value) }
+      error = assert_raises(ArgumentError, value.inspect) { instance.feeds.wait_for_feed("f1", timeout: value) }
 
       assert_equal("timeout must be a positive number of seconds", error.message)
     end
@@ -133,7 +151,7 @@ class WorkflowsTest < NativeTest
   def test_rejected_signed_url_raises_the_error_with_its_response
     handler = ->(path, base) { path.start_with?("/signed") ? [403, "signed denial"] : [200, report_document(base)] }
     route_server(handler) do |url, _|
-      error = assert_raises(Peddler::Error) { client(url).open_report_document("d1") }
+      error = assert_raises(Peddler::Error) { client(url).reports.open_report_document("d1") }
 
       assert_equal(403, error.status)
       assert_equal("signed denial", error.response.body)
@@ -224,7 +242,7 @@ class WorkflowsTest < NativeTest
           instance.feeds.upload_feed_document("#{url}/signed", source, "text/xml")
           source.rewind
 
-          assert_equal("fd/1", instance.create_and_upload_feed_document(source, content_type: "text/xml"))
+          assert_equal("fd/1", instance.feeds.create_and_upload_feed_document(source, content_type: "text/xml"))
         end
         puts = requests.call.select { |_path, _headers, _body, verb| verb == "PUT" }
 
@@ -299,7 +317,7 @@ class WorkflowsTest < NativeTest
       [200, report(statuses[[count - 1, 2].min])]
     end
     route_server(handler) do |url, requests|
-      response = client(url).wait_for_report("r/1", interval: 0.05, timeout: 5)
+      response = client(url).reports.wait_for_report("r/1", interval: 0.05, timeout: 5)
 
       assert_equal("DONE", response.to_h.fetch("processingStatus"))
       assert_equal("d9", response.to_h.fetch("reportDocumentId"))
@@ -319,8 +337,8 @@ class WorkflowsTest < NativeTest
     route_server(handler) do |url, requests|
       instance = client(url)
 
-      assert_equal("rf", instance.wait_for_feed("f1", interval: 0.01, timeout: 2).to_h.fetch("resultFeedDocumentId"))
-      query = instance.wait_for_query("q1", interval: 0.01, timeout: 2).to_h
+      assert_equal("rf", instance.feeds.wait_for_feed("f1", interval: 0.01, timeout: 2).to_h.fetch("resultFeedDocumentId"))
+      query = instance.data_kiosk.wait_for_query("q1", interval: 0.01, timeout: 2).to_h
 
       assert_equal(["dd", "ed"], [query.fetch("dataDocumentId"), query.fetch("errorDocumentId")])
       assert_equal("/dataKiosk/2023-11-15/queries/q1", requests.call.last.first)
@@ -329,23 +347,23 @@ class WorkflowsTest < NativeTest
 
   def test_wait_rejects_unknown_status_stops_on_http_errors_and_malformed_json
     route_server(->(*) { [200, report("SOMETHING_NEW")] }) do |url, requests|
-      error = assert_raises(Peddler::WorkflowError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
+      error = assert_raises(Peddler::WorkflowError) { client(url).reports.wait_for_report("r1", interval: 0.01, timeout: 2) }
 
       refute_match(/SOMETHING_NEW/, error.message)
       assert_equal(1, requests.call.size)
     end
     route_server(->(*) { [429, '{"errors":[]}'] }) do |url, requests|
-      error = assert_raises(Peddler::Error) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
+      error = assert_raises(Peddler::Error) { client(url).reports.wait_for_report("r1", interval: 0.01, timeout: 2) }
 
       assert_equal(429, error.status)
       assert_equal(429, error.response.status)
       assert_equal(1, requests.call.size)
     end
     route_server(->(*) { [200, '{"processingStatus":1}'] }) do |url, _|
-      assert_raises(Peddler::WorkflowError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 2) }
+      assert_raises(Peddler::WorkflowError) { client(url).reports.wait_for_report("r1", interval: 0.01, timeout: 2) }
     end
     route_server(->(*) { [200, report("IN_QUEUE")] }) do |url, _|
-      assert_raises(Peddler::WorkflowTimeoutError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 0.05) }
+      assert_raises(Peddler::WorkflowTimeoutError) { client(url).reports.wait_for_report("r1", interval: 0.01, timeout: 0.05) }
     end
   end
 
@@ -373,11 +391,11 @@ class WorkflowsTest < NativeTest
       hasty = client(url, timeout: 0.1)
 
       [
-        -> { instance.open_report_document("d1", timeout: 0.1) },
-        -> { instance.open_feed_document("d1", timeout: 0.1) },
-        -> { instance.open_query_document("d1", timeout: 0.1) },
-        -> { instance.create_and_upload_feed_document("content", content_type: "text/xml", timeout: 0.1) },
-        -> { hasty.open_report_document("d1") },
+        -> { instance.reports.open_report_document("d1", timeout: 0.1) },
+        -> { instance.feeds.open_feed_document("d1", timeout: 0.1) },
+        -> { instance.data_kiosk.open_query_document("d1", timeout: 0.1) },
+        -> { instance.feeds.create_and_upload_feed_document("content", content_type: "text/xml", timeout: 0.1) },
+        -> { hasty.reports.open_report_document("d1") },
         -> { hasty.reports.download_report_document("d1") },
         -> { hasty.data_kiosk.download_query_document("d1") },
       ].each { |call| assert_raises(Peddler::TimeoutError, &call) }
@@ -389,10 +407,10 @@ class WorkflowsTest < NativeTest
       instance = client(url)
 
       [
-        -> { instance.open_report_document("d1", timeout: 0.1) },
-        -> { instance.open_feed_document("d1", timeout: 0.1) },
-        -> { instance.open_query_document("d1", timeout: 0.1) },
-        -> { instance.create_and_upload_feed_document("content", content_type: "text/xml", timeout: 0.1) },
+        -> { instance.reports.open_report_document("d1", timeout: 0.1) },
+        -> { instance.feeds.open_feed_document("d1", timeout: 0.1) },
+        -> { instance.data_kiosk.open_query_document("d1", timeout: 0.1) },
+        -> { instance.feeds.create_and_upload_feed_document("content", content_type: "text/xml", timeout: 0.1) },
         -> { instance.download_document("#{url}/signed", timeout: 0.1) },
         -> { instance.upload_document("#{url}/signed", "content", content_type: "text/xml", timeout: 0.1) },
       ].each { |call| assert_raises(Peddler::DocumentTimeoutError, &call) }
@@ -402,8 +420,8 @@ class WorkflowsTest < NativeTest
   def test_only_a_wait_past_its_own_timeout_raises_the_timeout_of_a_workflow
     slow_server(%r{/reports/r1}) do |url, _|
       # One poll took longer than the client allows a request, with most of the wait's time left.
-      assert_raises(Peddler::TimeoutError) { client(url, timeout: 0.1).wait_for_report("r1", interval: 0.01, timeout: 5) }
-      assert_raises(Peddler::WorkflowTimeoutError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 0.1) }
+      assert_raises(Peddler::TimeoutError) { client(url, timeout: 0.1).reports.wait_for_report("r1", interval: 0.01, timeout: 5) }
+      assert_raises(Peddler::WorkflowTimeoutError) { client(url).reports.wait_for_report("r1", interval: 0.01, timeout: 0.1) }
     end
   end
 
@@ -416,14 +434,14 @@ class WorkflowsTest < NativeTest
     end
     route_server(handler) do |url, _|
       instance = client(url)
-      thread = Thread.new { instance.wait_for_report("r1", interval: 0.02, timeout: 30) }
+      thread = Thread.new { instance.reports.wait_for_report("r1", interval: 0.02, timeout: 30) }
       Timeout.timeout(5) { polls.pop }
       thread.kill
 
       assert(thread.join(1), "interrupted wait must return")
       status = "DONE"
 
-      assert_equal("DONE", instance.wait_for_report("r1", interval: 0.01, timeout: 2).to_h.fetch("processingStatus"))
+      assert_equal("DONE", instance.reports.wait_for_report("r1", interval: 0.01, timeout: 2).to_h.fetch("processingStatus"))
     end
   end
 
@@ -436,7 +454,7 @@ class WorkflowsTest < NativeTest
     end
     route_server(handler) do |url, _|
       instance = client(url)
-      thread = Thread.new { instance.wait_for_report("r1", interval: 0.02, timeout: 5) }
+      thread = Thread.new { instance.reports.wait_for_report("r1", interval: 0.02, timeout: 5) }
       2.times do
         Timeout.timeout(3) { polls.pop }
         thread.wakeup
@@ -471,7 +489,7 @@ class WorkflowsTest < NativeTest
     end
     route_server(feed_handler) do |url, requests|
       type = "text/tab-separated-values; charset=UTF-8"
-      uploaded = client(url).create_and_upload_feed_document(io, content_type: type, content_length: payload.bytesize)
+      uploaded = client(url).feeds.create_and_upload_feed_document(io, content_type: type, content_length: payload.bytesize)
 
       assert_equal("fd/1", uploaded)
       create, put = requests.call
@@ -490,7 +508,7 @@ class WorkflowsTest < NativeTest
 
   def test_string_source_and_invalid_metadata_never_read_the_source
     route_server(feed_handler) do |url, _|
-      assert_equal("fd/1", client(url).create_and_upload_feed_document("<x/>", content_type: "text/xml"))
+      assert_equal("fd/1", client(url).feeds.create_and_upload_feed_document("<x/>", content_type: "text/xml"))
     end
     bodies = [
       { create_body: '{"feedDocumentId":"fd1","url":""}' },
@@ -508,7 +526,7 @@ class WorkflowsTest < NativeTest
       route_server(feed_handler(**options)) do |url, requests|
         # A failed create is the API error; anything else wrong with the metadata is a workflow error.
         expected = options[:create_status] ? Peddler::Error : Peddler::WorkflowError
-        error = assert_raises(expected) { client(url).create_and_upload_feed_document(source, content_type: "text/xml") }
+        error = assert_raises(expected) { client(url).feeds.create_and_upload_feed_document(source, content_type: "text/xml") }
 
         refute(touched, options.inspect)
         refute_match(/127\.0\.0\.1|SIGNED_SECRET/, error.full_message(highlight: false))
@@ -523,7 +541,7 @@ class WorkflowsTest < NativeTest
   def test_invalid_arguments_are_rejected_before_creating_a_document
     instance = client("http://127.0.0.1:1")
 
-    upload = ->(source = "x", **options) { instance.create_and_upload_feed_document(source, **{ content_type: "text/xml" }.merge(options)) }
+    upload = ->(source = "x", **options) { instance.feeds.create_and_upload_feed_document(source, **{ content_type: "text/xml" }.merge(options)) }
 
     {
       -> { upload.call(content_type: "") } => "content_type must be a UTF-8 String that is not empty",
@@ -541,7 +559,7 @@ class WorkflowsTest < NativeTest
 
   def test_upload_rejection_raises_and_failures_are_sanitized
     route_server(feed_handler(upload_status: 403, upload_body: "upload denied")) do |url, requests|
-      error = assert_raises(Peddler::Error) { client(url).create_and_upload_feed_document("x", content_type: "text/xml") }
+      error = assert_raises(Peddler::Error) { client(url).feeds.create_and_upload_feed_document("x", content_type: "text/xml") }
 
       assert_equal(403, error.status)
       assert_equal("upload denied", error.response.body)
@@ -549,13 +567,13 @@ class WorkflowsTest < NativeTest
       assert_equal(2, requests.call.size, "neither mutation retried")
     end
     route_server(feed_handler) do |url, _|
-      error = assert_raises(Peddler::DocumentError) { client(url).create_and_upload_feed_document("abc", content_type: "text/xml", content_length: 5) }
+      error = assert_raises(Peddler::DocumentError) { client(url).feeds.create_and_upload_feed_document("abc", content_type: "text/xml", content_length: 5) }
 
       refute_match(/SIGNED_SECRET/, error.full_message(highlight: false))
       source_error = RuntimeError.new("private-secret")
       source = Object.new
       source.define_singleton_method(:read) { |_| raise source_error }
-      error = assert_raises(Peddler::DocumentError) { client(url).create_and_upload_feed_document(source, content_type: "text/xml") }
+      error = assert_raises(Peddler::DocumentError) { client(url).feeds.create_and_upload_feed_document(source, content_type: "text/xml") }
 
       assert_same(source_error, error.cause)
       refute_match(/private-secret/, error.message)

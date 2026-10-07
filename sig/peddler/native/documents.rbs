@@ -25,6 +25,7 @@ module Peddler
   module Native
     UINT64_MAX: Integer
     def self.valid_utf8_string?: (untyped value) -> bool
+    def self.open_document: [T] (DocumentHandle handle) ?{ (Document document) -> T } -> (T | Document)
 
     module TransferConfig
       COMPRESSIONS: Array[Symbol]
@@ -66,9 +67,5 @@ module Peddler
     def download_document: [T] (String url, **untyped transfer_options) { (Document document) -> T } -> T
                          | (String url, **untyped transfer_options) -> Document
     def upload_document: (String url, String | (_DocumentIO & Object) source, content_type: String, ?headers: Hash[String, String], ?content_length: Integer?, **untyped transfer_options) -> Response
-
-    private
-
-    def open_document: [T] (Native::DocumentHandle handle) ?{ (Document document) -> T } -> (T | Document)
   end
 end
