@@ -10,7 +10,7 @@ fn spec(operation: &str) -> Value {
     let mut parameters = vec![
         json!({"in":"path","name":if catalog {"asin"} else {"sellerId"},"type":"string","required":true}),
         json!({"in":"query","name":"marketplaceIds","type":"array","items":{"type":"string"},"collectionFormat":"csv","required":true}),
-        json!({"in":"query","name":"includedData","type":"array","items":{"type":"string"},"collectionFormat":"csv","default":[if catalog {"summaries"} else {"issues"}]}),
+        json!({"in":"query","name":"includedData","type":"array","items":{"type":"string"},"collectionFormat":"csv","default":[if catalog {"#{exit}"} else {"issues"}]}),
     ];
     if !catalog {
         parameters.push(json!({"in":"body","name":"patchRequest","required":true,"schema":{"$ref":"#/definitions/ListingsItemPatchRequest"}}));
@@ -152,6 +152,10 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "    # @return [Peddler::Native::ListingsItems20210801] Synthetic API, version 1\n",
         "    def listings_items_2021_08_01\n",
     )));
+    // A default is text, never code: Ruby would interpolate "#{exit}".
+    assert!(ruby.contains(
+        "      def get_catalog_item(asin, marketplace_ids, included_data: [\"\\#{exit}\"])\n"
+    ));
     let rbs = &rendered[Path::new("sig/peddler/native/apis.rbs")];
     assert!(rbs.contains(
         "def patch_listings_item: (String seller_id, Array[String] marketplace_ids, untyped patch_request, String sku, ?included_data: Array[String]?) -> Response"

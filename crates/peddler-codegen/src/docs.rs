@@ -74,18 +74,25 @@ pub(crate) fn class(api: &ModelSpec, info: &Value) -> String {
 /// The comment above the method of `Client` that returns an API: the class, the
 /// spec's title and its version.
 pub(crate) fn accessor(class: &str, info: &Value) -> String {
-    let text = |key: &str| info[key].as_str().unwrap_or_default();
-    let title = strip(text("title")).trim_end_matches('.');
+    let words = |key: &str| {
+        let text = info[key].as_str().unwrap_or_default();
+        text.split_whitespace().collect::<Vec<_>>().join(" ")
+    };
     let line = format!(
-        "# @return [Peddler::Native::{class}] {title}, version {}",
-        text("version")
+        "# @return [Peddler::Native::{class}] {}, version {}",
+        words("title").trim_end_matches('.'),
+        words("version")
     );
     indent(&[line], CLASS)
 }
 
+/// Comment lines as Ruby source. A spec is data: whatever it holds, a line break in it
+/// must not end a comment and start code, so none gets through here.
 fn indent(lines: &[String], depth: usize) -> String {
     let margin = " ".repeat(depth);
-    let lines = lines.iter().map(|line| format!("{margin}{line}\n"));
+    let lines = lines
+        .iter()
+        .map(|line| format!("{margin}{}\n", line.replace(['\n', '\r'], " ")));
     lines.collect()
 }
 
@@ -209,4 +216,52 @@ fn wrap(text: &str, depth: usize, hanging: usize) -> Vec<String> {
         lines.push("#".into());
     }
     lines
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn a_line_break_in_a_spec_never_ends_a_comment() {
+        let hostile = "A title.\nexit 1\r\nexit 2\rexit 3\n\n**Note:** x\n# exit 4";
+        let info = json!({"title": hostile, "description": hostile, "version": hostile});
+        let parameter = Parameter {
+            name: "id".into(),
+            wire_name: "id".into(),
+            position: 0,
+            location: "query".into(),
+            description: Some(hostile.into()),
+            required: true,
+            schema: json!({"type": "string"}),
+            csv: false,
+        };
+        let op = Operation {
+            id: "getThing".into(),
+            name: "get_thing\nexit 5".into(),
+            method: "GET".into(),
+            path: "/things".into(),
+            description: hostile.into(),
+            sandbox: Some("static"),
+            parameters: vec![parameter],
+            successes: Vec::new(),
+        };
+        let api = &crate::manifest::ALL_APIS[0];
+        let comments = [
+            class(api, &info),
+            accessor("Thing", &info),
+            operation(&op),
+            pages(&op),
+        ];
+        for comment in comments {
+            assert!(comment.ends_with('\n') && !comment.contains('\r'));
+            for line in comment.lines() {
+                assert!(
+                    line.trim_start().starts_with('#'),
+                    "{line:?} in {comment:?}"
+                );
+            }
+        }
+    }
 }

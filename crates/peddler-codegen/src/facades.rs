@@ -454,6 +454,8 @@ fn ruby_default(value: &Value) -> String {
                 .collect::<Vec<_>>()
                 .join(", ")
         ),
+        // JSON's quoting is Ruby's too, but for `#`, which would interpolate.
+        Value::String(_) => value.to_string().replace('#', "\\#"),
         _ => value.to_string(),
     }
 }
