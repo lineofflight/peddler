@@ -6,6 +6,7 @@
 use crate::{
     GenerationError,
     clients::{Operation, Parameter},
+    escape_pointer,
     manifest::ModelSpec,
 };
 use serde::Deserialize;
@@ -111,10 +112,7 @@ fn property<'a>(spec: &'a Value, schema: &'a Value, name: &str, depth: usize) ->
     }
     let schema = definition(spec, schema);
     schema
-        .pointer(&format!(
-            "/properties/{}",
-            name.replace('~', "~0").replace('/', "~1")
-        ))
+        .pointer(&format!("/properties/{}", escape_pointer(name)))
         .or_else(|| {
             schema
                 .get("allOf")?
@@ -133,7 +131,7 @@ fn walk<'a>(spec: &'a Value, schema: &'a Value, path: &[&str]) -> Option<&'a Val
 fn raw_operation<'a>(spec: &'a Value, op: &Operation) -> Result<&'a Value, GenerationError> {
     spec.pointer(&format!(
         "/paths/{}/{}",
-        op.path.replace('~', "~0").replace('/', "~1"),
+        escape_pointer(&op.path),
         op.method.to_ascii_lowercase()
     ))
     .ok_or_else(|| GenerationError(format!("pagination: {} missing in spec", op.id)))

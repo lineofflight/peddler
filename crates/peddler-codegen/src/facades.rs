@@ -2,17 +2,13 @@
 use crate::{
     GenerationError,
     clients::{Operation, Parameter, pascal, rust_type},
+    format_source,
     manifest::ModelSpec,
     pagination::{self, Resolved},
 };
 use serde_json::{Value, json};
 use std::fmt::Write;
 
-fn format(source: String) -> Result<String, GenerationError> {
-    let file =
-        syn::parse_file(&source).map_err(|e| GenerationError(format!("facade syntax: {e}")))?;
-    Ok(prettyplease::unparse(&file))
-}
 fn field_type(p: &Parameter) -> Result<String, GenerationError> {
     let ty = if p.location == "body" {
         "B".into()
@@ -164,7 +160,7 @@ pub fn rust(operations: &[Operation], pagination: &[&Resolved]) -> Result<String
     // Some operations have no typed decoder or no parameter at all.
     Ok(format!(
         "#![allow(unused_imports, unused_variables, clippy::too_many_arguments)]\n{}",
-        format(source)?
+        format_source(&source)?
     ))
 }
 /// Sends an operation's request, built from `params`, and binds the response to `raw`.
@@ -329,7 +325,7 @@ pub(crate) fn pagination_table(resolved: &[Resolved]) -> Result<String, Generati
         .iter()
         .map(|r| format!("{:?} => {},", r.key, pagination::rust_expression(r)))
         .collect::<String>();
-    format(format!(
+    format_source(&format!(
         "/// The explicit pagination mapping of an operation, from `pagination.json`.\npub fn mapping(operation: &str) -> Option<crate::pagination::Pagination> {{ Some(match operation {{ {arms} _ => return None }}) }}\n"
     ))
 }
@@ -383,7 +379,7 @@ pub(crate) fn dispatch(
             writeln!(source,"fn {}_{}<'a>(client:&'a crate::Client,arguments:&'a str)->OperationFuture<'a> {{ Box::pin(async move {{ let params:{annotation}=serde_json::from_str(arguments).map_err(|_|crate::Error::InvalidRequest)?; {expression} }}) }}",api.module,op.name).unwrap();
         }
     }
-    format(source)
+    format_source(&source)
 }
 fn ruby_type(p: &Parameter) -> String {
     if p.location == "body" {

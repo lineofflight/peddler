@@ -2,7 +2,9 @@
 use crate::{
     GenerationError,
     checkout::{git, verify_pinned},
+    escape_pointer,
     models::{self, visit_schema},
+    unescape_pointer,
 };
 use serde::Deserialize;
 use serde_json::{Value, json};
@@ -113,7 +115,7 @@ pub fn generate_supplemental(
             format!(
                 "{}{}",
                 crate::notice(&format!("all {family} schemas")),
-                crate::format_tokens(quote::quote!(#(pub mod #names;)*))?
+                crate::format_source(&quote::quote!(#(pub mod #names;)*).to_string())?
             ),
         );
     }
@@ -213,10 +215,6 @@ pub fn json_definitions(
     Ok(definitions)
 }
 
-fn escape_pointer(value: &str) -> String {
-    value.replace('~', "~0").replace('/', "~1")
-}
-
 fn safe_source(checkout: &Path, source: &Path) -> Result<PathBuf, GenerationError> {
     let root = checkout.canonicalize()?;
     let path = checkout.join(source).canonicalize()?;
@@ -277,7 +275,7 @@ impl Resolver<'_> {
         let preferred = pointer
             .strip_prefix("/definitions/")
             .filter(|name| !name.contains('/'))
-            .map(|name| name.replace("~1", "/").replace("~0", "~"))
+            .map(unescape_pointer)
             .unwrap_or_else(|| format!("Referenced{}", self.names.len()));
         let name = if self.names.values().any(|name| *name == preferred) {
             format!("Referenced{}", self.names.len())
@@ -387,7 +385,7 @@ fn apply_patch(doc: &mut Value, patch: &Value) -> Result<(), GenerationError> {
                     .and_then(Value::as_object_mut)
                     .ok_or_else(|| GenerationError(format!("patch parent missing: {path}")))?;
                 parent.insert(
-                    key.replace("~1", "/").replace("~0", "~"),
+                    unescape_pointer(key),
                     operation
                         .get("value")
                         .cloned()

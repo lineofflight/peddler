@@ -189,7 +189,7 @@ pub(crate) fn render(mut definitions: Value) -> Result<String, GenerationError> 
     // Amazon descriptions include unindented Markdown lists. Preserve their text.
     Ok(format!(
         "#![allow(clippy::doc_lazy_continuation)]\n{}",
-        super::format_tokens(types.to_stream())?
+        super::format_source(&types.to_stream().to_string())?
     ))
 }
 
