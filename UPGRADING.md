@@ -274,7 +274,7 @@ end
 - `parse`, `to_h` and `dig` on a response, and the typed models under `Peddler::APIs`.
 - `status.success?`, `code`, `headers["Name"]`, `charset` and `to_s` on a response.
 - Raising `Peddler::Error` on 4xx and 5xx, with `message` and `response`.
-- The 4 document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`.
+- The 4 document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`. An ID of `"."` or `".."`, or an empty one, raises `ArgumentError` that names the argument, before any request.
 - `Peddler::Marketplace`, `Peddler::Endpoint` and `Peddler::Money`.
 - The typed parsers under `Peddler::Notifications`, `Peddler::Reports`, `Peddler::Feeds` and `Peddler::DataKiosk`.
 
@@ -314,6 +314,8 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 | A Hash for a String: `get_order({ a: 1 })` | its inspect text | `order_id must be a String` |
 | An Array inside a list: `[["ATVPDKIKX0DER"]]` | the items, flattened | `marketplace_ids must be an Array of Strings` |
 | An object whose `to_s` is an inspect form, such as `#<Object>` or `#<struct ...>` | that text | `order_id must be a String`, or `marketplace_ids must be an Array of Strings` in a list |
+| A String that is not valid UTF-8: `get_order("caf\xE9")` | its bytes, `/orders/v0/orders/caf%E9` | `order_id must be valid UTF-8` |
+| A body that holds such a String, or a number that is not finite | `JSON::GeneratorError` | `body must be JSON: Strings of valid UTF-8 and finite numbers` |
 
 ### Edge differences
 
@@ -347,6 +349,7 @@ These need no change to existing code. The [README](README.md#usage) describes e
 - `lwa.token_source`, a token source that refreshes in the process
 - `base_url:` in place of `region:`, to point a client at a local mock or a proxy
 - Pattern matching on errors, by `status` and `code`
+- `client.request`, the call for an endpoint Peddler has no method for yet
 
 ## From v4.x to v5.0
 
