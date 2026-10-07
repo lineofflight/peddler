@@ -51,6 +51,7 @@ module Peddler
     def inspect: () -> String
     def charset: () -> String?
     def to_s: () -> String
+    alias to_str to_s
     def to_h: () -> untyped
     def dig: (*untyped keys) -> untyped
     def parse: () -> untyped

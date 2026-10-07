@@ -12,6 +12,9 @@ module Peddler
       attr_reader scope: String?
       def initialize: (String access_token, String? refresh_token, String token_type, Integer expires_in, ?String? scope) -> void
       def to_h: () -> { access_token: String, refresh_token: String?, token_type: String, expires_in: Integer, scope: String? }
+      def ==: (untyped other) -> bool
+      alias eql? ==
+      def hash: () -> Integer
       def inspect: () -> String
       def to_s: () -> String
     end

@@ -138,6 +138,21 @@ module Peddler
       refute_respond_to(LWA, :request)
     end
 
+    # As v5's LWAToken compared.
+    def test_lwa_tokens_with_the_same_values_are_equal
+      tokens = LWA::Tokens.new("access", "refresh", "bearer", 3600)
+      same = LWA::Tokens.new("access", "refresh", "bearer", 3600)
+      other = LWA::Tokens.new("another", "refresh", "bearer", 3600)
+
+      assert_equal(tokens, same)
+      assert(tokens.eql?(same))
+      assert_equal(tokens.hash, same.hash)
+      assert_equal(1, [tokens, same].uniq.size)
+      refute_equal(tokens, other)
+      refute_equal(tokens, tokens.to_h)
+      refute_equal(tokens, LWA::Tokens.new("access", "refresh", "bearer", 3600, "scope"))
+    end
+
     def test_lwa_names_the_missing_application_credential
       with_env("LWA_CLIENT_ID" => nil, "LWA_CLIENT_SECRET" => nil) do
         error = assert_raises(ArgumentError) { LWA.new }

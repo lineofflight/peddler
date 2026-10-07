@@ -117,6 +117,9 @@ module Peddler
       body.dup.force_encoding(encoding)
     end
 
+    # A response is its text wherever a String is taken, as in `JSON.parse(response)`
+    alias_method :to_str, :to_s
+
     # @return [Hash]
     def to_h
       return @to_h if defined?(@to_h)

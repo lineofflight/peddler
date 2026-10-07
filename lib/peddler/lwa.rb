@@ -18,7 +18,7 @@ module Peddler
 
     # What a grant returns
     #
-    # Nothing of a token shows when one is inspected.
+    # Two with the same values are equal. Nothing of a token shows when one is inspected.
     #
     # @example
     #   tokens = lwa.refresh(refresh_token: seller.refresh_token)
@@ -52,6 +52,15 @@ module Peddler
         { access_token: access_token, refresh_token: refresh_token, token_type: token_type, expires_in: expires_in,
           scope: scope, }
       end
+
+      # @return [Boolean] whether the other holds the same values
+      def ==(other)
+        other.class == self.class && other.to_h == to_h
+      end
+      alias_method :eql?, :==
+
+      # @return [Integer]
+      def hash = [self.class, to_h].hash
 
       def inspect = "#<Peddler::LWA::Tokens [redacted]>"
       alias_method :to_s, :inspect

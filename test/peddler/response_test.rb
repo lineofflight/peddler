@@ -34,6 +34,15 @@ module Peddler
       assert_equal(Encoding::BINARY, Response.new(200, [], "x").to_s.encoding)
     end
 
+    # A response is its body wherever a String is taken, as in JSON.parse(response).
+    def test_to_str_is_to_s
+      response = Response.new(200, [["content-type", "application/json"]], JSON.generate(payload).b)
+
+      assert_equal(payload, JSON.parse(response))
+      assert_equal([response.to_s, Encoding::UTF_8], [response.to_str, response.to_str.encoding])
+      assert_equal("body: {}", "body: " + Response.new(200, [], "{}"))
+    end
+
     def test_charset_is_the_charset_of_the_content_type
       assert_equal("Cp1252", Response.new(200, [["content-type", "text/plain; charset=Cp1252"]], "").charset)
       assert_equal("utf-8", Response.new(200, [["content-type", 'application/json; Charset="utf-8"']], "").charset)
