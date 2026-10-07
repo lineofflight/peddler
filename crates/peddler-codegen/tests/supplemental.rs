@@ -1,33 +1,4 @@
-use std::{path::Path, process::Command};
-
-#[test]
-fn models_only_export_includes_every_supplemental_family() {
-    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
-    let dest = tempfile::tempdir().unwrap();
-    let output = Command::new(env!("CARGO_BIN_EXE_peddler-codegen"))
-        .arg("--root")
-        .arg(&root)
-        .arg("--models-only")
-        .arg("--output-root")
-        .arg(dest.path())
-        .output()
-        .unwrap();
-    assert!(
-        output.status.success(),
-        "{}",
-        String::from_utf8_lossy(&output.stderr)
-    );
-    for family in ["reports", "feeds", "notifications", "data_kiosk"] {
-        assert!(
-            dest.path()
-                .join("crates/peddler/src")
-                .join(family)
-                .join("mod.rs")
-                .exists(),
-            "missing {family} models"
-        );
-    }
-}
+use std::path::Path;
 
 #[test]
 fn amazon_single_schema_items_dialect_becomes_a_typed_list() {

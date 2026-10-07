@@ -37,7 +37,7 @@ impl From<serde_json::Error> for GenerationError {
 
 /// Render all pinned API models without reading Git metadata or writing files.
 /// `spec_dir` is the checkout's `models` directory; output paths are repository-relative.
-pub fn generate_models(
+fn generate_models(
     spec_dir: &Path,
     revision: &str,
 ) -> Result<BTreeMap<PathBuf, String>, GenerationError> {

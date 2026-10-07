@@ -1,4 +1,4 @@
-use peddler_codegen::{GenerationError, generate, generate_models, manifest::ALL_APIS};
+use peddler_codegen::{GenerationError, generate, manifest::ALL_APIS};
 use std::{
     fs,
     io::Write,
@@ -17,7 +17,6 @@ fn run() -> Result<(), GenerationError> {
     let mut root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
     let mut output_root = None;
     let mut check = false;
-    let mut models_only = false;
     let mut args = std::env::args_os().skip(1);
     while let Some(arg) = args.next() {
         if arg == "--root" || arg == "--output-root" {
@@ -32,8 +31,6 @@ fn run() -> Result<(), GenerationError> {
             } else {
                 output_root = Some(PathBuf::from(path));
             }
-        } else if arg == "--models-only" {
-            models_only = true;
         } else if arg == "--check" {
             check = true;
         } else {
@@ -42,14 +39,6 @@ fn run() -> Result<(), GenerationError> {
                 arg.to_string_lossy()
             )));
         }
-    }
-    if models_only
-        && (output_root.is_none()
-            || checked_output_path(output_root.as_ref().unwrap())? == root.canonicalize()?)
-    {
-        return Err(GenerationError(
-            "--models-only requires --output-root distinct from --root".into(),
-        ));
     }
     let revision = fs::read_to_string(root.join("selling-partner-api-models.sha"))?;
     let revision = revision.trim();
@@ -97,14 +86,7 @@ fn run() -> Result<(), GenerationError> {
     git(&checkout, &tracked_args)
         .map_err(|_| GenerationError("API spec files are untracked or missing".into()))?;
     peddler_codegen::supplemental::verify_sources(&checkout, revision)?;
-    let mut output = if models_only {
-        generate_models(&checkout.join("models"), revision)?
-    } else {
-        generate(&checkout.join("models"), revision)?
-    };
-    if models_only {
-        output.extend(peddler_codegen::generate_supplemental(&checkout, revision)?);
-    }
+    let output = generate(&checkout.join("models"), revision)?;
     let dest = output_root.unwrap_or(root);
     if check {
         let mut drifted: Vec<_> = output
@@ -114,12 +96,10 @@ fn run() -> Result<(), GenerationError> {
             })
             .map(|(path, _)| path.display().to_string())
             .collect();
-        if !models_only {
-            let base = Path::new("crates/peddler/src/apis");
-            for path in generated_rust_files(&dest, base)? {
-                if !output.contains_key(&path) {
-                    drifted.push(path.display().to_string());
-                }
+        let base = Path::new("crates/peddler/src/apis");
+        for path in generated_rust_files(&dest, base)? {
+            if !output.contains_key(&path) {
+                drifted.push(path.display().to_string());
             }
         }
         if !drifted.is_empty() {
@@ -164,28 +144,6 @@ fn git(checkout: &Path, args: &[&str]) -> Result<String, GenerationError> {
         )));
     }
     String::from_utf8(output.stdout).map_err(|error| GenerationError(error.to_string()))
-}
-
-// Resolve existing destinations through the filesystem. Reject parent traversal
-// when a missing component prevents resolution: lexical removal of .. can give
-// a different destination from traversal through a symlink during file writes.
-fn checked_output_path(path: &Path) -> Result<PathBuf, GenerationError> {
-    if let Ok(canonical) = path.canonicalize() {
-        return Ok(canonical);
-    }
-    if path
-        .components()
-        .any(|component| component == std::path::Component::ParentDir)
-    {
-        return Err(GenerationError(
-            "--models-only requires --output-root distinct from --root; unresolved parent traversal is not allowed".into(),
-        ));
-    }
-    Ok(if path.is_absolute() {
-        path.to_path_buf()
-    } else {
-        std::env::current_dir()?.join(path)
-    })
 }
 
 fn generated_rust_files(root: &Path, relative: &Path) -> Result<Vec<PathBuf>, GenerationError> {

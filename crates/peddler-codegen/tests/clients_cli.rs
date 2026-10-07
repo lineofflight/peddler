@@ -51,6 +51,12 @@ fn repository() -> tempfile::TempDir {
     }
     support::write_supplemental(root.path());
     git(&checkout, &["init", "--quiet"]);
+    commit(root.path());
+    root
+}
+/// Commits the checkout as it is and pins that revision.
+fn commit(root: &Path) {
+    let checkout = root.join("selling-partner-api-models");
     git(&checkout, &["add", "."]);
     git(
         &checkout,
@@ -64,11 +70,10 @@ fn repository() -> tempfile::TempDir {
         ],
     );
     fs::write(
-        root.path().join("selling-partner-api-models.sha"),
+        root.join("selling-partner-api-models.sha"),
         git(&checkout, &["rev-parse", "HEAD"]) + "\n",
     )
     .unwrap();
-    root
 }
 fn cli(root: &Path, dest: &Path, check: bool) -> std::process::Output {
     let mut command = Command::new(env!("CARGO_BIN_EXE_peddler-codegen"));
@@ -112,6 +117,8 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     ));
     for (path, content) in &rendered {
         if path.extension().is_some_and(|ext| ext == "rs") {
+            // No source carries the revision, so a pin move changes only what the specs changed.
+            assert!(!content.contains(revision.trim()), "{}", path.display());
             syn::parse_file(content).unwrap();
         }
     }
@@ -184,28 +191,79 @@ fn invalid_second_client_leaves_no_partial_outputs() {
         invalid.to_string(),
     )
     .unwrap();
-    git(&checkout, &["add", "."]);
-    git(
-        &checkout,
-        &[
-            "-c",
-            "commit.gpgsign=false",
-            "commit",
-            "--quiet",
-            "-m",
-            "invalid",
-        ],
-    );
-    fs::write(
-        root.path().join("selling-partner-api-models.sha"),
-        git(&checkout, &["rev-parse", "HEAD"]) + "\n",
-    )
-    .unwrap();
+    commit(root.path());
     let dest = tempfile::tempdir().unwrap();
     let output = cli(root.path(), dest.path(), false);
     assert!(!output.status.success());
     assert!(String::from_utf8_lossy(&output.stderr).contains("unsupported array parameter"));
     assert!(!dest.path().join("crates").exists());
+}
+
+/// A run that must fail before it writes anything. Returns what it printed.
+fn refused(root: &Path) -> String {
+    let dest = tempfile::tempdir().unwrap();
+    let output = cli(root, dest.path(), false);
+    assert!(!output.status.success());
+    assert!(!dest.path().join("crates").exists());
+    String::from_utf8_lossy(&output.stderr).into_owned()
+}
+
+#[test]
+fn mismatched_revision_is_rejected_before_writing() {
+    let root = repository();
+    fs::write(
+        root.path().join("selling-partner-api-models.sha"),
+        "0000000000000000000000000000000000000000\n",
+    )
+    .unwrap();
+    assert!(refused(root.path()).contains("revision"));
+}
+
+#[test]
+fn modified_and_untracked_sources_are_rejected() {
+    let root = repository();
+    let checkout = root.path().join("selling-partner-api-models");
+    let source = format!("models/{}", ALL_APIS[0].source);
+    fs::write(checkout.join(&source), "{}\n").unwrap();
+    assert!(refused(root.path()).contains("modified"));
+    git(&checkout, &["checkout", "--", "models"]);
+    git(&checkout, &["rm", "--cached", &source]);
+    refused(root.path());
+}
+
+#[test]
+fn pinned_inventory_rejects_missing_and_extra_api_specs() {
+    for extra in [false, true] {
+        let root = repository();
+        let checkout = root.path().join("selling-partner-api-models");
+        if extra {
+            fs::write(checkout.join("models/unlisted.json"), "{}").unwrap();
+        } else {
+            let last = format!("models/{}", ALL_APIS.last().unwrap().source);
+            git(&checkout, &["rm", "--quiet", &last]);
+        }
+        commit(root.path());
+        assert!(refused(root.path()).contains("pinned API inventory mismatch"));
+    }
+}
+
+#[test]
+fn supplemental_sources_and_patch_inputs_are_verified_before_export() {
+    for (changed, error) in [
+        (
+            "lib/generator/patches/any_offer_changed.json",
+            "notification patch modified",
+        ),
+        (
+            "selling-partner-api-models/schemas/feeds/listings-feed-schema-v2.json",
+            "supplemental schema files are modified",
+        ),
+    ] {
+        let root = repository();
+        fs::write(root.path().join(changed), "{}\n").unwrap();
+        let printed = refused(root.path());
+        assert!(printed.contains(error), "{printed}");
+    }
 }
 
 #[test]
