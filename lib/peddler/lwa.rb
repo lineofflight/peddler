@@ -86,7 +86,7 @@ module Peddler
     def token_source(refresh_token: nil, scope: nil)
       raise ArgumentError, "provide either refresh_token or scope" unless refresh_token.nil? ^ scope.nil?
 
-      if refresh_token
+      if scope.nil?
         token = present("refresh_token", refresh_token)
         TokenSource.new { refresh(refresh_token: token) }
       else

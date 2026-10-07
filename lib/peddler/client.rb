@@ -35,7 +35,7 @@ module Peddler
       end
 
       @sandbox = false
-      if region
+      unless region.nil?
         regions = Endpoint::REGIONS.keys
         raise ArgumentError, "region must be one of #{regions.join(", ")}" unless regions.include?(region)
 

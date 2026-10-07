@@ -81,7 +81,9 @@ class LwaTest < NativeTest
       -> { instance.exchange_authorization_code(code: " ") } => "code #{blank}",
       -> { instance.exchange_authorization_code(code: "secret+&", redirect_uri: 123) } => "redirect_uri must be a UTF-8 String",
       -> { instance.token_source(refresh_token: " ") } => "refresh_token #{blank}",
+      -> { instance.token_source(refresh_token: false) } => "refresh_token #{blank}",
       -> { instance.token_source(scope: 123) } => "scope #{blank}",
+      -> { instance.token_source(scope: false) } => "scope #{blank}",
       -> { instance.token_source } => "provide either refresh_token or scope",
     }.each do |call, message|
       error = assert_raises(ArgumentError, &call)

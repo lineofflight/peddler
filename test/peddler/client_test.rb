@@ -54,9 +54,11 @@ module Peddler
     end
 
     def test_unknown_region
-      error = assert_raises(ArgumentError) { Client.new(region: "mars-north-1", access_token: "token") }
+      ["mars-north-1", :"eu-west-1", false].each do |region|
+        error = assert_raises(ArgumentError, region.inspect) { Client.new(region: region, access_token: "token") }
 
-      assert_equal("region must be one of us-east-1, us-west-2, eu-west-1", error.message)
+        assert_equal("region must be one of us-east-1, us-west-2, eu-west-1", error.message)
+      end
     end
 
     def test_rejects_invalid_base_urls
