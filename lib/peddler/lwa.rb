@@ -19,17 +19,22 @@ module Peddler
       # @return [String, nil] nil when LWA sends none, as for a grantless token
       attr_reader :refresh_token
 
+      # @return [String, nil] the scope granted, which LWA sends with a grantless token
+      attr_reader :scope
+
       attr_reader :access_token, :token_type, :expires_in
 
-      def initialize(access_token, refresh_token, token_type, expires_in)
+      def initialize(access_token, refresh_token, token_type, expires_in, scope = nil)
         @access_token = access_token
         @refresh_token = refresh_token
         @token_type = token_type
         @expires_in = expires_in
+        @scope = scope
       end
 
       def to_h
-        { access_token: access_token, refresh_token: refresh_token, token_type: token_type, expires_in: expires_in }
+        { access_token: access_token, refresh_token: refresh_token, token_type: token_type, expires_in: expires_in,
+          scope: scope, }
       end
 
       def inspect = "#<Peddler::LWA::Tokens [redacted]>"
@@ -111,8 +116,8 @@ module Peddler
     private
 
     def tokens(parts)
-      access_token, refresh_token, token_type, expires_in = parts
-      Tokens.new(access_token, refresh_token, token_type, expires_in)
+      access_token, refresh_token, token_type, expires_in, scope = parts
+      Tokens.new(access_token, refresh_token, token_type, expires_in, scope)
     end
   end
 end

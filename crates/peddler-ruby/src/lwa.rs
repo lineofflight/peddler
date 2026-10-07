@@ -6,8 +6,9 @@ use peddler::auth::{AuthError, LwaClient};
 const LWA_ENDPOINT: &str =
     "lwa_endpoint must be a URL (https, or http on a loopback host) without credentials or a query";
 
-/// Access token, refresh token when LWA sends one, token type and lifetime in seconds.
-type Tokens = (String, Option<String>, String, u64);
+/// Access token, refresh token when LWA sends one, token type, lifetime in seconds and
+/// scope when LWA sends one.
+type Tokens = (String, Option<String>, String, u64, Option<String>);
 
 #[magnus::wrap(class = "Peddler::Native::LwaEngine", free_immediately)]
 struct LwaEngine(ForkOwned<(&'static Shared, LwaClient)>);
@@ -82,6 +83,7 @@ impl LwaEngine {
             tokens.refresh_token,
             tokens.token_type,
             tokens.expires_in,
+            tokens.scope,
         ))
     }
 

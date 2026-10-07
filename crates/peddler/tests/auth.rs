@@ -108,7 +108,7 @@ async fn refresh_form_is_encoded_and_nothing_is_cached() {
 
 #[tokio::test]
 async fn client_credentials_form_uses_scope() {
-    let grantless = json!({"access_token":"grantless","token_type":"bearer","expires_in":2});
+    let grantless = json!({"access_token":"grantless","token_type":"bearer","expires_in":2,"scope":"sellingpartnerapi::notifications"});
     let server = answers(vec![(200, grantless.to_string())]).await;
     let client = LwaClient::with_config(
         "id",
@@ -124,6 +124,10 @@ async fn client_credentials_form_uses_scope() {
     assert_eq!(tokens.access_token, "grantless");
     assert_eq!(tokens.refresh_token, None);
     assert_eq!(tokens.expires_in, 2);
+    assert_eq!(
+        tokens.scope.as_deref(),
+        Some("sellingpartnerapi::notifications")
+    );
     assert_eq!(
         server.requests()[0].split_once("\r\n\r\n").unwrap().1,
         "grant_type=client_credentials&client_id=id&client_secret=secret&scope=sellingpartnerapi%3A%3Anotifications"

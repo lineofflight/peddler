@@ -22,7 +22,7 @@ class LwaTest < NativeTest
       tokens = onboarding(url).exchange_authorization_code(code: "code+&λ", redirect_uri: "https://app.example/callback?state=a+b&x=雪")
 
       assert_equal(["onboard-access", "onboard-refresh", "bearer", 3600], [tokens.access_token, tokens.refresh_token, tokens.token_type, tokens.expires_in])
-      assert_equal({ access_token: "onboard-access", refresh_token: "onboard-refresh", token_type: "bearer", expires_in: 3600 }, tokens.to_h)
+      assert_equal({ access_token: "onboard-access", refresh_token: "onboard-refresh", token_type: "bearer", expires_in: 3600, scope: nil }, tokens.to_h)
       refute_match(/onboard-access|onboard-refresh/, "#{tokens.inspect} #{tokens}")
     end
 
@@ -30,11 +30,14 @@ class LwaTest < NativeTest
   end
 
   def test_client_credentials_token
-    serve(handler: ->(socket, *) { respond(socket, body: JSON.generate(access_token: "grantless", token_type: "bearer", expires_in: 3600)) }) do |url|
+    reply = { access_token: "grantless", token_type: "bearer", expires_in: 3600, scope: "sellingpartnerapi::notifications" }
+    serve(handler: ->(socket, *) { respond(socket, body: JSON.generate(reply)) }) do |url|
       tokens = onboarding(url).client_credentials(scope: "sellingpartnerapi::notifications")
 
       assert_equal("grantless", tokens.access_token)
       assert_nil(tokens.refresh_token)
+      assert_equal("sellingpartnerapi::notifications", tokens.scope)
+      assert_equal("sellingpartnerapi::notifications", tokens.to_h.fetch(:scope))
     end
   end
 

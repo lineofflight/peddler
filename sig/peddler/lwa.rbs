@@ -9,8 +9,9 @@ module Peddler
       attr_reader refresh_token: String?
       attr_reader token_type: String
       attr_reader expires_in: Integer
-      def initialize: (String access_token, String? refresh_token, String token_type, Integer expires_in) -> void
-      def to_h: () -> { access_token: String, refresh_token: String?, token_type: String, expires_in: Integer }
+      attr_reader scope: String?
+      def initialize: (String access_token, String? refresh_token, String token_type, Integer expires_in, ?String? scope) -> void
+      def to_h: () -> { access_token: String, refresh_token: String?, token_type: String, expires_in: Integer, scope: String? }
       def inspect: () -> String
       def to_s: () -> String
     end

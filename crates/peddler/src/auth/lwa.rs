@@ -26,13 +26,15 @@ impl fmt::Debug for LwaClient {
 }
 
 /// Explicit fields expose credentials; formatting always redacts both tokens.
-/// `refresh_token` is present when LWA sends one.
+/// `refresh_token` and `scope` are present when LWA sends them: a scope comes with a
+/// token for grantless operations.
 #[derive(Clone, Deserialize)]
 pub struct LwaTokens {
     pub access_token: String,
     pub refresh_token: Option<String>,
     pub token_type: String,
     pub expires_in: u64,
+    pub scope: Option<String>,
 }
 impl fmt::Debug for LwaTokens {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

@@ -13,7 +13,7 @@ module Peddler
     def self.user_agent: () -> String
     def self.status_reason: (Integer code) -> String?
 
-    type tokens = [String, String?, String, Integer]
+    type tokens = [String, String?, String, Integer, String?]
 
     # What the generated facades take
     type engine = Engine
