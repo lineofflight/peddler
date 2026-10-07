@@ -1,6 +1,7 @@
 use base64::{Engine, engine::general_purpose::STANDARD};
 use peddler::apis::{
-    catalog_items_2022_04_01::models as catalog, listings_items_2021_08_01::models as listings,
+    catalog_items_2022_04_01::models as catalog, finances_2024_06_19::models::BigDecimal,
+    listings_items_2021_08_01::models as listings,
 };
 use serde_json::{Value, json};
 
@@ -77,5 +78,19 @@ fn optional_summaries_distinguish_absence_from_empty_and_raw_json_keeps_null() {
         } else {
             assert!(item.summaries.is_none());
         }
+    }
+}
+
+#[test]
+fn generated_number_fields_and_named_numbers_preserve_json_precision() {
+    for number in [
+        "0.123456789012345678901234567890123456789",
+        "9007199254740993",
+    ] {
+        let input = format!("{{\"value\":{number}}}");
+        let dimension: catalog::Dimension = serde_json::from_str(&input).unwrap();
+        assert_eq!(serde_json::to_string(&dimension).unwrap(), input);
+        let decimal: BigDecimal = serde_json::from_str(number).unwrap();
+        assert_eq!(serde_json::to_string(&decimal).unwrap(), number);
     }
 }

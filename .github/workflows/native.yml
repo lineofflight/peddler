@@ -28,16 +28,18 @@ jobs:
           bundler-cache: true
       - name: Set up Rust
         run: |
-          rustup toolchain install stable --profile minimal --component clippy
+          rustup toolchain install stable --profile minimal --component rustfmt --component clippy
           rustup default stable
       - name: Sync pinned specs
         run: bundle exec rake generate:rust:setup
-      - run: cargo test -p peddler-codegen --locked
-      - run: cargo clippy -p peddler-codegen --all-targets --locked -- -D warnings
+      # The generator is its own workspace: every cargo command names its manifest.
+      - run: cargo fmt --manifest-path crates/peddler-codegen/Cargo.toml --all --check
+      - run: cargo test --manifest-path crates/peddler-codegen/Cargo.toml --locked
+      - run: cargo clippy --manifest-path crates/peddler-codegen/Cargo.toml --all-targets --locked -- -D warnings
       - name: Check deterministic committed output
         run: |
-          cargo run -p peddler-codegen --locked -- --root . --check
-          cargo run -p peddler-codegen --locked -- --root . --check
+          cargo run --manifest-path crates/peddler-codegen/Cargo.toml --locked -- --root . --check
+          cargo run --manifest-path crates/peddler-codegen/Cargo.toml --locked -- --root . --check
 
   binding:
     # ci.yml builds the extension and runs the whole suite for each Ruby. This job

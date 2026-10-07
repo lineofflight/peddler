@@ -12,6 +12,9 @@ RUST_GENERATED_PATHS = [
   "crates/peddler-codegen/operation-inventory.json",
 ].freeze
 
+# The generator is its own Cargo workspace, so the gem and the crate ship without it
+CODEGEN_MANIFEST = "crates/peddler-codegen/Cargo.toml"
+
 namespace :generate do
   namespace :rust do
     desc "Sync pinned specs and verify Ruby/GraphQL generation dependencies"
@@ -23,12 +26,12 @@ namespace :generate do
 
     desc "Check pinned Rust output without rewriting generated files"
     task verify: :setup do
-      sh "cargo", "run", "-p", "peddler-codegen", "--locked", "--", "--root", ".", "--check"
+      sh "cargo", "run", "--manifest-path", CODEGEN_MANIFEST, "--locked", "--", "--root", ".", "--check"
     end
   end
 
   desc "Generate Rust models and operations from pinned specs"
   task rust: "rust:setup" do
-    sh "cargo", "run", "-p", "peddler-codegen", "--locked", "--", "--root", "."
+    sh "cargo", "run", "--manifest-path", CODEGEN_MANIFEST, "--locked", "--", "--root", "."
   end
 end

@@ -20,8 +20,8 @@ Gem::Specification.new do |gem|
   # The Cargo workspace closure the extension needs to resolve and build with --locked.
   rust_files = ["Cargo.toml", "Cargo.lock"] +
     ["crates/peddler/Cargo.toml", "crates/peddler/README.md", "crates/peddler-ruby/Cargo.toml",
-      "crates/peddler-ruby/build.rs", "crates/peddler-ruby/extconf.rb", "crates/peddler-codegen/Cargo.toml"] +
-    Dir["crates/{peddler,peddler-ruby,peddler-codegen}/src/**/*.rs"]
+      "crates/peddler-ruby/build.rs", "crates/peddler-ruby/extconf.rb"] +
+    Dir["crates/{peddler,peddler-ruby}/src/**/*.rs"]
   gem.files = ruby_files + rust_files
   gem.extensions = ["crates/peddler-ruby/extconf.rb"]
 

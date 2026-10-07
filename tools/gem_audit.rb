@@ -8,7 +8,7 @@ require "rubygems/package"
 FORBIDDEN = [
   %r{(\A|/)\.git(/|\z)}, %r{(\A|/)target/}, %r{(\A|/)tmp/}, /selling-partner-api-models/, %r{(\A|/)cassettes?/},
   %r{(\A|/)node_modules/}, %r{(\A|/)\.env}, %r{(\A|/)credentials(\.|/|\z)}, %r{test/config\.json\z},
-  %r{\A\.superpowers/}, %r{\Atools/}, %r{\Alib/generator}, /\.(pem|key)\z/
+  %r{\A\.superpowers/}, %r{\Atools/}, %r{\Alib/generator}, %r{\Acrates/peddler-codegen/}, /\.(pem|key)\z/
 ].freeze
 CLOSURE = ["Cargo.lock", "crates/peddler-ruby/extconf.rb"].freeze
 RUST = %r{\A(Cargo\.|crates/)}

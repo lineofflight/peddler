@@ -15,5 +15,5 @@ prettyplease = "=0.2.37"
 heck = "0.5"
 tempfile = "3"
 
-[dev-dependencies]
-peddler = { path = "../peddler" }
+# Development only: its own workspace and lockfile, so the gem and the crate ship without it.
+[workspace]
