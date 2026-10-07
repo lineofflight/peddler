@@ -17,7 +17,7 @@ fn amazon_single_schema_items_dialect_becomes_a_typed_list() {
     )
     .unwrap();
     assert_eq!(
-        definitions["Report"]["items"],
+        definitions.schemas["Report"]["items"],
         serde_json::json!({"type":"string"})
     );
 }
@@ -33,16 +33,16 @@ fn broken_shipment_schema_reuses_canonical_pinned_tracking_types() {
     )
     .unwrap();
     assert_eq!(
-        definitions["TrackingDetail"]["properties"]["identifier"]["$ref"],
+        definitions.schemas["TrackingDetail"]["properties"]["identifier"]["$ref"],
         "#/definitions/TrackingIdentifier"
     );
     assert!(
-        definitions["Notification"]["properties"]
+        definitions.schemas["Notification"]["properties"]
             .get("notificationMetadata")
             .is_some()
     );
     assert_eq!(
-        definitions["Notification"]["additionalProperties"],
+        definitions.schemas["Notification"]["additionalProperties"],
         serde_json::json!({})
     );
 }

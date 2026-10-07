@@ -2,6 +2,7 @@
 use crate::{
     GenerationError,
     checkout::{git, verify_pinned},
+    clients::pascal,
     escape_pointer,
     models::{self, visit_schema},
     unescape_pointer,
@@ -58,7 +59,7 @@ pub fn generate_supplemental(
     let mut errors = Vec::new();
     let mut families: BTreeMap<String, Vec<String>> = BTreeMap::new();
     for source in sources() {
-        let result = match (|| {
+        let result = (|| {
             let definitions = if source.family == "data_kiosk" {
                 graphql_definitions(&checkout_root.join(&source.path))?
             } else {
@@ -73,32 +74,21 @@ pub fn generate_supplemental(
                     notification_patch(&source)?,
                 )?
             };
-            let rendered = render(definitions, &source.module)?;
-            Ok::<_, GenerationError>(rendered)
-        })() {
+            let notice = format!("{}{}", crate::notice(&source.path), definitions.notice);
+            Ok::<_, GenerationError>(format!("{notice}{}", render(definitions)?))
+        })();
+        let result = match result {
             Ok(result) => result,
             Err(error) => {
                 errors.push(format!("{}: {error}", source.path));
                 continue;
             }
         };
-        let mut notice = crate::notice(&source.path);
-        if source.family == "notifications"
-            && PATCHES.iter().any(|(name, _)| *name == source.module)
-        {
-            notice.push_str(&format!(
-                "// Patch: lib/generator/patches/{}.json\n\n",
-                source.module
-            ));
-        }
-        if source.module == "shipment_tracking_milestone_changed" {
-            notice.push_str("// Missing upstream definitions repaired with pinned tracking_2026-01-30.json\n// and the established notification envelope. Envelope requiredness is conservative;\n// unknown object fields are retained. See tools/graphql/README.md.\n\n");
-        }
         output.insert(
             Path::new("crates/peddler/src")
                 .join(&source.family)
                 .join(format!("{}.rs", source.module)),
-            format!("{notice}{result}"),
+            result,
         );
         families
             .entry(source.family)
@@ -122,18 +112,33 @@ pub fn generate_supplemental(
     Ok(output)
 }
 
-fn notification_patch(source: &Source) -> Result<Option<Value>, GenerationError> {
+/// A notification's patch, with its name.
+fn notification_patch(source: &Source) -> Result<Option<(&'static str, Value)>, GenerationError> {
     if source.family != "notifications" {
         return Ok(None);
     }
     PATCHES
         .iter()
         .find(|(name, _)| *name == source.module)
-        .map(|(_, bytes)| serde_json::from_slice(bytes).map_err(GenerationError::from))
+        .map(|(name, bytes)| Ok((*name, serde_json::from_slice(bytes)?)))
         .transpose()
 }
 
-pub fn graphql_definitions(source: &Path) -> Result<Value, GenerationError> {
+/// A source's schemas and what rendering them needs besides.
+#[derive(Default)]
+pub struct Definitions {
+    pub schemas: Value,
+    /// Lines for the generated file's header on how the source was repaired
+    notice: String,
+    /// Typify can't generate the tax eligibility payload's `contains`: its messages
+    /// must have an en-US entry.
+    contains_en_us: bool,
+    /// The enums that must refuse the fields their feed operation forbids, each with
+    /// those fields by operation
+    feed_guards: Vec<(String, Value)>,
+}
+
+pub fn graphql_definitions(source: &Path) -> Result<Definitions, GenerationError> {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
     let output = Command::new("bundle")
         .current_dir(&root)
@@ -147,7 +152,10 @@ pub fn graphql_definitions(source: &Path) -> Result<Value, GenerationError> {
             String::from_utf8_lossy(&output.stderr).trim()
         )));
     }
-    models::normalize_definitions(&serde_json::from_slice(&output.stdout)?)
+    Ok(Definitions {
+        schemas: models::normalize_definitions(&serde_json::from_slice(&output.stdout)?)?,
+        ..Definitions::default()
+    })
 }
 
 /// Resolve schemas before Typify sees them, retaining typed local reference targets.
@@ -156,12 +164,15 @@ pub fn json_definitions(
     checkout: &Path,
     source: &str,
     root_type: &str,
-    patch: Option<Value>,
-) -> Result<Value, GenerationError> {
+    patch: Option<(&str, Value)>,
+) -> Result<Definitions, GenerationError> {
     let path = safe_source(checkout, Path::new(source))?;
     let mut doc: Value = serde_json::from_slice(&fs::read(&path)?)?;
-    repair_shipment_schema(checkout, source, &mut doc)?;
-    let contains = take_eligibility_contains(source, &mut doc)?;
+    let mut notice = String::new();
+    if repair_shipment_schema(checkout, source, &mut doc)? {
+        notice.push_str("// Missing upstream definitions repaired with pinned tracking_2026-01-30.json\n// and the established notification envelope. Envelope requiredness is conservative;\n// unknown object fields are retained. See tools/graphql/README.md.\n\n");
+    }
+    let contains_en_us = take_eligibility_contains(source, &mut doc)?;
     if let Some(reference) = doc
         .get("$ref")
         .or_else(|| doc.get("#ref"))
@@ -177,14 +188,16 @@ pub fn json_definitions(
         }
         doc = root;
     }
-    if let Some(patch) = patch {
+    if let Some((name, patch)) = patch {
         apply_patch(&mut doc, &patch)?;
+        notice.push_str(&format!("// Patch: lib/generator/patches/{name}.json\n\n"));
     }
     let mut resolver = Resolver {
         checkout,
         docs: BTreeMap::from([(path.clone(), doc.clone())]),
         definitions: BTreeMap::new(),
         names: BTreeMap::new(),
+        feed_guards: Vec::new(),
     };
     // Pre-register all declared definitions so unreferenced definitions survive.
     if let Some(definitions) = doc.get("definitions").and_then(Value::as_object) {
@@ -205,14 +218,19 @@ pub fn json_definitions(
     } else {
         resolver.definitions.insert(root_type.into(), doc);
     }
-    let mut definitions =
-        models::normalize_definitions(&json!({"definitions":resolver.definitions}))?;
-    disambiguate_titles(&mut definitions);
-    if contains {
-        definitions["Payload"]["properties"]["message"]["x-peddler-contains-en-us"] =
-            Value::Bool(true);
-    }
-    Ok(definitions)
+    let mut schemas = models::normalize_definitions(&json!({"definitions":resolver.definitions}))?;
+    disambiguate_titles(&mut schemas);
+    // Typify names an enum after its schema's title. The root has none and gets the root type.
+    let feed_guards = resolver.feed_guards.into_iter().map(|(title, forbidden)| {
+        let name = title.map_or_else(|| root_type.to_owned(), |title| pascal(&title));
+        (name, forbidden)
+    });
+    Ok(Definitions {
+        schemas,
+        notice,
+        contains_en_us,
+        feed_guards: feed_guards.collect(),
+    })
 }
 
 fn safe_source(checkout: &Path, source: &Path) -> Result<PathBuf, GenerationError> {
@@ -231,6 +249,9 @@ struct Resolver<'a> {
     docs: BTreeMap<PathBuf, Value>,
     definitions: BTreeMap<String, Value>,
     names: BTreeMap<(PathBuf, String), String>,
+    /// The title of each schema whose feed branches were expanded, with the fields
+    /// each operation forbids
+    feed_guards: Vec<(Option<String>, Value)>,
 }
 
 impl Resolver<'_> {
@@ -296,7 +317,10 @@ impl Resolver<'_> {
         let Some(node) = schema.as_object_mut() else {
             return Ok(());
         };
-        expand_feed_branches(node)?;
+        if let Some(forbidden) = expand_feed_branches(node)? {
+            let title = node.get("title").and_then(Value::as_str);
+            self.feed_guards.push((title.map(str::to_owned), forbidden));
+        }
         if node.get("additionalProperties") == Some(&Value::Bool(true)) {
             node.insert("additionalProperties".into(), json!({}));
         }
@@ -446,16 +470,17 @@ const SHIPMENT_SOURCE: &str =
     "schemas/notifications/ShipmentTrackingMilestoneChangedNotification.json";
 const TRACKING_SOURCE: &str = "models/tracking-api-model/tracking_2026-01-30.json";
 
+/// Returns whether the schema needed the repair.
 fn repair_shipment_schema(
     checkout: &Path,
     source: &str,
     doc: &mut Value,
-) -> Result<(), GenerationError> {
+) -> Result<bool, GenerationError> {
     if source != SHIPMENT_SOURCE
         || doc.get("$ref").and_then(Value::as_str) != Some("#/definitions/Notification")
         || doc.get("definitions") != Some(&json!({}))
     {
-        return Ok(());
+        return Ok(false);
     }
     let tracking: Value = serde_json::from_slice(&fs::read(checkout.join(TRACKING_SOURCE))?)?;
     let tracking_definitions = tracking["definitions"]
@@ -492,7 +517,7 @@ fn repair_shipment_schema(
         }}
     }}));
     doc["definitions"] = Value::Object(definitions);
-    Ok(())
+    Ok(true)
 }
 
 fn tracking_references(schema: &Value, pending: &mut Vec<String>) {
@@ -560,34 +585,22 @@ fn take_eligibility_contains(source: &str, doc: &mut Value) -> Result<bool, Gene
     Ok(true)
 }
 
-fn render(mut definitions: Value, module: &str) -> Result<String, GenerationError> {
-    let feed_guard = match module {
-        "listings_feed_schema" => definitions
-            .pointer("/Feed/properties/messages/items/x-peddler-feed-constraints")
-            .cloned()
-            .map(|guard| ("FeedMessage", guard)),
-        "listings_feed_message_schema" => definitions
-            .pointer("/Feed/x-peddler-feed-constraints")
-            .cloned()
-            .map(|guard| ("Feed", guard)),
-        _ => None,
-    };
-    let contains = definitions
-        .pointer_mut("/Payload/properties/message")
-        .and_then(Value::as_object_mut)
-        .and_then(|node| node.remove("x-peddler-contains-en-us"))
-        == Some(Value::Bool(true));
-    let source = models::render(definitions)?;
-    if !contains && feed_guard.is_none() {
+fn render(definitions: Definitions) -> Result<String, GenerationError> {
+    let source = models::render(definitions.schemas)?;
+    if !definitions.contains_en_us && definitions.feed_guards.is_empty() {
         return Ok(source);
     }
     let mut file = syn::parse_file(&source).map_err(|error| GenerationError(error.to_string()))?;
-    if let Some((name, guard)) = feed_guard {
-        add_feed_validation(&mut file, name, &guard)?;
+    for (name, forbidden) in &definitions.feed_guards {
+        add_feed_validation(&mut file, name, forbidden)?;
     }
-    if !contains {
-        return Ok(prettyplease::unparse(&file));
+    if definitions.contains_en_us {
+        add_en_us_validation(&mut file)?;
     }
+    Ok(prettyplease::unparse(&file))
+}
+
+fn add_en_us_validation(file: &mut syn::File) -> Result<(), GenerationError> {
     let payload = file
         .items
         .iter_mut()
@@ -616,12 +629,16 @@ fn render(mut definitions: Value, module: &str) -> Result<String, GenerationErro
         }
     };
     file.items.push(validator);
-    Ok(prettyplease::unparse(&file))
+    Ok(())
 }
 
-fn expand_feed_branches(node: &mut serde_json::Map<String, Value>) -> Result<(), GenerationError> {
+/// Turns a schema whose `oneOf` refines it by `operationType` into one schema per
+/// operation. Returns the fields each operation forbids, if it did.
+fn expand_feed_branches(
+    node: &mut serde_json::Map<String, Value>,
+) -> Result<Option<Value>, GenerationError> {
     let Some(branches) = node.get("oneOf").and_then(Value::as_array) else {
-        return Ok(());
+        return Ok(None);
     };
     if !branches.iter().all(|branch| {
         branch
@@ -629,13 +646,13 @@ fn expand_feed_branches(node: &mut serde_json::Map<String, Value>) -> Result<(),
             .and_then(Value::as_str)
             .is_some()
     }) {
-        return Ok(());
+        return Ok(None);
     }
     let Some(properties) = node.get("properties").and_then(Value::as_object) else {
-        return Ok(());
+        return Ok(None);
     };
     if node.get("type").and_then(Value::as_str) != Some("object") {
-        return Ok(());
+        return Ok(None);
     }
     let base_properties = properties.clone();
     let base_required = node
@@ -707,11 +724,7 @@ fn expand_feed_branches(node: &mut serde_json::Map<String, Value>) -> Result<(),
     node.remove("required");
     node.remove("type");
     node.insert("oneOf".into(), Value::Array(expanded));
-    node.insert(
-        "x-peddler-feed-constraints".into(),
-        Value::Object(constraints),
-    );
-    Ok(())
+    Ok(Some(Value::Object(constraints)))
 }
 
 fn add_feed_validation(
@@ -846,29 +859,19 @@ mod tests {
         fs::create_dir(&src).unwrap();
         fs::write(
             src.join("array.rs"),
-            render(
-                json_definitions(temp.path(), "schemas/array.json", "Report", None).unwrap(),
-                "array",
-            )
-            .unwrap(),
+            render(json_definitions(temp.path(), "schemas/array.json", "Report", None).unwrap())
+                .unwrap(),
         )
         .unwrap();
         fs::write(
             src.join("map.rs"),
-            render(
-                json_definitions(temp.path(), "schemas/map.json", "Feed", None).unwrap(),
-                "map",
-            )
-            .unwrap(),
+            render(json_definitions(temp.path(), "schemas/map.json", "Feed", None).unwrap())
+                .unwrap(),
         )
         .unwrap();
         fs::write(
             src.join("selection.rs"),
-            render(
-                graphql_definitions(&schemas.join("selection.graphql")).unwrap(),
-                "selection",
-            )
-            .unwrap(),
+            render(graphql_definitions(&schemas.join("selection.graphql")).unwrap()).unwrap(),
         )
         .unwrap();
         fs::write(
