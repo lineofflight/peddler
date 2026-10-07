@@ -48,8 +48,18 @@ class ClientTest < NativeTest
 
       assert_equal("method must be an HTTP method", error.message)
     end
-    assert_raises(TypeError) { instance.request(:get, "/") }
-    assert_raises(TypeError) { instance.request("GET", nil) }
+    {
+      -> { instance.request(:get, "/") } => "method must be a String",
+      -> { instance.request("GET", nil) } => "path must be a String",
+      -> { instance.request("private\xFF", "/") } => "method must be an HTTP method",
+      -> { instance.request("GET", "/private\xFF") } => "path must be valid UTF-8",
+    }.each do |call, message|
+      error = assert_raises(ArgumentError, &call)
+
+      assert_equal(message, error.message)
+      assert_nil(error.cause)
+      refute_match(/private/, error.full_message(highlight: false).b)
+    end
     [0, -1, Float::INFINITY, Float::NAN].each do |timeout|
       assert_raises(ArgumentError) { client("http://127.0.0.1:1", timeout: timeout) }
     end

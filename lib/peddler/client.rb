@@ -94,10 +94,16 @@ module Peddler
     # @param [Hash{String, Symbol => String, Integer, Float, Boolean}] params the query. A value is sent as its text.
     # @param [Hash, Array, String, nil] body sent as JSON. A String holds the JSON already.
     # @return [Peddler::Response]
-    # @raise [Peddler::Error] if the response is outside 2xx
     # @raise [ArgumentError] if an argument breaks its rule. The message names the argument.
+    # @raise [Peddler::Error] if the response is outside 2xx
+    # @raise [Peddler::TimeoutError] if the call takes longer than the client's timeout
+    # @raise [Peddler::TransportError] if the request can't be sent or the response can't be read
+    # @raise [Peddler::ForkError] if the client was built before the process forked
     def request(method, path, params: {}, body: nil)
-      raise TypeError, "method and path must be strings" unless method.is_a?(String) && path.is_a?(String)
+      raise ArgumentError, "method must be a String" unless method.is_a?(String)
+      raise ArgumentError, "path must be a String" unless path.is_a?(String)
+      raise ArgumentError, "method must be an HTTP method" unless Native.valid_utf8_string?(method)
+      raise ArgumentError, "path must be valid UTF-8" unless Native.valid_utf8_string?(path)
       raise ArgumentError, "params must be a hash" unless params.is_a?(Hash)
 
       # @type var query: Hash[String, String]
