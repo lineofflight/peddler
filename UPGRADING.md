@@ -10,7 +10,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 
 #### 1. Creating a client
 
-One `Peddler::Client` replaces the API classes. Create it once and reach each API through a method.
+A single `Peddler::Client` replaces the API classes. Create it once and reach each API through a method.
 
 **Before (v5):**
 ```ruby
@@ -26,9 +26,13 @@ response = client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-
 
 `client.orders` is the latest version of an API, as `Peddler.orders` was, and `client.orders_v0` a pinned one.
 
+1 of them moved since 5.5.0. `fulfillment_outbound` is now Fulfillment Outbound 2026-07-04, which has `create_order` where 2020-07-01 had `create_fulfillment_order`. To stay on the older version, call `client.fulfillment_outbound_2020_07_01`.
+
 `Peddler.<api>` and `Peddler::APIs::OrdersV0.new` are gone. `Peddler::APIs::OrdersV0` is now a module that holds the typed models, so `Peddler::APIs::OrdersV0::Order` still works.
 
 The `http:` option is gone, with the `http` gem. A client takes `timeout:`, the seconds a whole call may take. The default is 30, where v5 had none.
+
+An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10` or `region must be one of us-east-1, us-west-2, eu-west-1`.
 
 To send another token, v5 created another API object. v6 takes a view of the client, which shares its connections.
 
@@ -64,16 +68,18 @@ refresh_token = lwa.exchange_authorization_code(code: code).refresh_token
 access_token = lwa.client_credentials(scope: "sellingpartnerapi::notifications").access_token
 ```
 
-`Peddler::LWA.new` reads `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET` from the environment, or takes `client_id:` and `client_secret:`, as before. `Peddler::LWAToken` is now `Peddler::LWA::Tokens`, with the same `access_token`, `refresh_token`, `token_type` and `expires_in`.
+`Peddler::LWA.new` reads `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET` from the environment, or takes `client_id:` and `client_secret:`, as before. `Peddler::LWAToken` is now `Peddler::LWA::Tokens`, with the same `access_token`, `refresh_token`, `token_type`, `expires_in` and `scope`.
 
-A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`. It has `status` and `code`, such as `"invalid_grant"`.
+The readers `client_id`, `client_secret`, `options` and `grant_type` of a `Peddler::LWA`, and `Peddler::LWA::URL`, are gone. A grant with a blank argument raises `ArgumentError` that names it, such as `refresh_token must be a UTF-8 String that is not blank`, and sends nothing.
+
+A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`. It has `status` and `code`, such as `"invalid_grant"`. Its message is `authentication rejected (400)`, with the status: the description Amazon sends, which was v5's message, is not kept.
 
 **Before (v5):**
 ```ruby
 begin
   Peddler::LWA.request(refresh_token: refresh_token)
-rescue Peddler::Error => e
-  reconnect_seller if e.message.include?("invalid_grant")
+rescue Peddler::Errors::InvalidGrant
+  reconnect_seller
 end
 ```
 
@@ -113,6 +119,8 @@ Passing the String, as in v5, still works.
 #### 3. Errors
 
 `Peddler::Errors` and its class per Amazon error code are gone. Every HTTP error raises `Peddler::Error`. Match on its `code` where you rescued a class.
+
+If you defined such a class ahead of time, as the v5 README suggested for a new error code (`module Peddler; module Errors; class NewAmazonErrorCode < Error`), delete it. It still loads, and a `rescue` of it never matches.
 
 **Before (v5):**
 ```ruby
@@ -239,12 +247,30 @@ api.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z", rate_limi
 client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
 ```
 
-`retries:` stays, with 2 differences. Peddler retries only a GET, where v5 also retried requests that change data. And it retries a response of 429, 500, 502, 503 or 504, not a failed connection. It waits as long as `Retry-After` asks and otherwise backs off with jitter. The most is 10 retries.
+`retries:` stays, and differs in 3 ways.
+
+- **What it retries.** v6 retries a GET, when Amazon answers 429, 500, 502, 503 or 504. v5 retried every method, also a request that changes data, and also a failed connection.
+- **How long it waits.** After a 429, v5 waited 1 / rate limit seconds, doubling each time: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second, and 60, 120 and 240 for one limited to 1 a minute. After a 5xx it waited up to 1 second, then up to 2, then up to 4. v6 waits a random time after either: up to 0.2 seconds before the first retry, up to 0.4 before the second, up to 0.8 before the third, and so on, doubling up to 30 seconds. So `retries: 3` waits 1.4 seconds at most, where v5 waited 14 seconds or 7 minutes on those 2 throttled operations.
+- **`Retry-After`.** If the response has the header, both wait as long as it asks. But if it asks for more than 30 seconds, or for more time than the call has left, v6 doesn't retry. v5 waited whatever it asked.
+
+`retries:` takes 0 to 10, and a single `timeout:` covers every attempt and every wait.
+
+If you relied on `retries:` to wait out a throttled operation, it no longer does that. Rescue the error and run the work again later.
+
+```ruby
+begin
+  client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
+rescue Peddler::Error => e
+  e.status == 429 ? retry_later : raise
+end
+```
 
 ### What keeps working
 
 - Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names.
-- The forms an argument may take: a String for a list, a String that holds JSON for a body, a number where a String is expected and a numeric String where a number is.
+- The forms an argument may take, listed under [Argument forms](#argument-forms): a String for a list, a String that holds JSON for a body, a number where a String is expected and a numeric String where a number is.
+- A `Peddler::Marketplace` wherever its ID goes, alone or in a list, and any other object that converts itself with `to_str`.
+- The documentation of every operation and API class, as YARD comments.
 - `parse`, `to_h` and `dig` on a response, and the typed models under `Peddler::APIs`.
 - `status.success?`, `code`, `headers["Name"]`, `charset` and `to_s` on a response.
 - Raising `Peddler::Error` on 4xx and 5xx, with `message` and `response`.
@@ -264,15 +290,39 @@ report = client.reports.download_report_document(report_document_id)
 report.to_s
 ```
 
+### Argument forms
+
+v5 sent whatever it was given. v6 sends the same request for every form that made sense, and raises `ArgumentError` for the rest, before anything is sent. The error names the argument and never shows its value.
+
+| What you pass | v5 sent | v6 |
+| --- | --- | --- |
+| A String for a list: `get_catalog_item("B0X", "ATVPDKIKX0DER")` | `marketplaceIds=ATVPDKIKX0DER` | the same |
+| A String of several items: `included_data: "attributes,issues"` | `includedData=attributes%2Cissues` | the same |
+| A list of `Peddler::Marketplace` objects | their IDs | the same |
+| `nil` for an optional argument | nothing | the same |
+| A Hash or an Array for a body | its JSON | the same |
+| A String that holds JSON for a body | the String | the same JSON, once |
+| A number, a Symbol or a Date for a String: `get_order(12345)` | its text, `/orders/v0/orders/12345` | the same |
+| A numeric String for a number: `page_size: "20"` | `pageSize=20` | the same |
+| `"true"` or `"false"` for a boolean: `details: "true"` | `details=true` | the same |
+| `nil` for a required argument: `get_order(nil)` | a request without it | `order_id is required` |
+| An empty String at the end of a path: `get_order("")` | `/orders/v0/orders/` | `order_id must not be empty` |
+| `"."` or `".."` anywhere in a path: `get_order("..")` | `/orders/v0/orders/..` | `order_id must not be . or ..` |
+| A String that is not JSON for a body | the String | `body must be JSON` |
+| Other text, or a Float, for an integer: `page_size: "many"` | `pageSize=many` | `page_size must be an Integer` |
+| Other text for a boolean: `details: "yes"` | `details=yes` | `details must be true or false` |
+| A Hash for a String: `get_order({ a: 1 })` | its inspect text | `order_id must be a String` |
+| An Array inside a list: `[["ATVPDKIKX0DER"]]` | the items, flattened | `marketplace_ids must be an Array of Strings` |
+| An object whose `to_s` is an inspect form, such as `#<Object>` or `#<struct ...>` | that text | `order_id must be a String`, or `marketplace_ids must be an Array of Strings` in a list |
+
 ### Edge differences
 
-- A required argument given as `nil` raises `ArgumentError` that names it, such as `order_id is required`. v5 sent the request without it. An empty String, `"."` or `".."` for an argument at the end of a path raises `ArgumentError` too.
-- An argument of the wrong type raises `ArgumentError`, such as `page_size must be an Integer`. v5 sent whatever it was given.
-- A signed URL that answers 3xx raises `Peddler::Error` in the document helpers. v5 returned the response.
+- A required argument given as `nil`, and the other forms in the lower half of the table above, raise `ArgumentError` where v5 sent a request.
+- Any status outside 2xx raises `Peddler::Error`, from an API call and from a signed URL in the document helpers. v5 raised from 400 up and returned a 3xx as a response.
 - The document helpers allow 600 seconds for a call and then raise `Peddler::DocumentTimeoutError`. v5 had no limit. For a longer transfer, use `client.open_report_document(id, timeout:)` and its siblings, described in the [README](README.md#documents-and-workflows).
 - `download_report_document` returns the report decompressed when Amazon compressed it. Remove your own `Zlib::GzipReader`.
 - `response.status` behaves as the Integer it wraps (`status == 200`, `status >= 400`, `case status when 200..299`), but it is not an instance of `Integer`. Use `response.code` where you need one. `status.to_s` is `"200"`, not `"200 OK"`, and `status.to_sym`, `status.ok?` and the other named predicates are gone.
-- `response.headers.to_h` and `headers.each` give header names in lowercase. `headers["Name"]` finds a header whatever its case. `headers.get`, `headers.keys` and `headers.include?(name)` are gone.
+- `response.headers.to_h` and `headers.each` give header names in lowercase. `headers["Name"]` finds a header whatever its case. `headers.get` and `headers.keys` are gone. `headers.include?(name)` no longer looks a name up and returns `false`: use `headers[name]`.
 - `response.body` is a String. The other readers of the `http` gem's response, such as `content_type`, `mime_type`, `uri` and `request`, are gone. `Response#parsable?` is gone too.
 - `error.response` is a `Peddler::Response`. It was the `http` gem's response.
 - An HTTP error whose body carries no message has the message `request failed with status 500`, with its status. v5 used the status line.
