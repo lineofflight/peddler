@@ -4,70 +4,53 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. See [UPGRADING.md](UPGRADING.md#from-v5x-to-v60) for what to change in an application.
+
 ### Added
 
-- Decode TSV documents from the `Content-Type` charset (such as Cp1252 or Shift_JIS) to UTF-8 in `each_tsv` and the Rust reader, with a `charset:` override and a `Document#charset` reader
-
-- Add explicit pagination to the Rust/native preview: a lazy Rust `Stream` of raw pages and a Ruby `Enumerator` per mapped operation (`*_pages`), with `max_pages`, repeated-token detection and an opt-in generic `Pagination` mapping; 79 operations are mapped and 12 candidates are excluded with reasons in `pagination.json`
-
-- Add Rust and native Ruby document ID helpers: download report, feed and Data Kiosk documents by ID, wait for reports, feeds and queries, and create and upload feed documents, all under one deadline
-
-- Expose all 384 SP-API operations across 70 versions in Rust and native Ruby, with schema defaults, keyword methods, 58 latest aliases, raw responses and lazy typed decoding
-
-- Add the three Login with Amazon grants to `Peddler::LWA` and the Rust `LwaClient`: `refresh`, `client_credentials` and `exchange_authorization_code`. Each makes one bounded, cancellable request, keeps nothing and returns tokens that redact themselves in `inspect`
-- Add `Peddler::Client#with_access_token` and the Rust `Client::with_access_token`: a view that sends another token on the same connection pool, for another seller, a rotated token or a restricted data token
-- Accept a token source as `access_token:`: anything that responds to `call` and returns the token, such as a lambda around your cache. The client calls it before each request it starts, including each page of a `*_pages` enumerator, and keeps nothing it returns. `wait_for_*` and the document ID helpers call it once. The Rust client takes a `TokenSource` and asks it before every attempt
-- Add `Peddler::LWA#token_source(refresh_token:)` (or `scope:`), an optional token source that keeps 1 access token in the process, refreshes it 60 seconds before it expires (a tenth of the lifetime when that is shorter) and makes 1 refresh however many threads ask. It is in-process only: pass your own source when several processes should share a token. The Rust `LwaClient` has `source_for_refresh_token` and `source_for_scope`
-- Add `Peddler::AuthenticationError#code`: what Login with Amazon names as the problem (`invalid_client`, `invalid_grant`, `invalid_scope` and so on), next to `status`. The Rust `AuthError::Rejected` carries the same code
-
-- Prepare native packaging: a source gem that compiles the Rust extension at install time and fat platform gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu` (Ruby 3.3, 3.4 and 4.0), built with `rb_sys` and rake-compiler; nothing is published yet. The loader selects the build for the running Ruby or fails clearly; see [native extension](README.md#native-extension)
-- Prepare the `peddler` Rust crate (0.1.0) for crates.io with MIT metadata and an explicit package list; it builds offline from the extracted package without Node, Ruby or the spec checkout
-
-- Add native signed-URL document streaming with Rust GZIP/JSONL/TSV parsing, bounded whole JSON and IO uploads with backpressure, cancellation and fork guards
-
-- Add safe status retries, off by default: `retries:` replays only GET, HEAD and OPTIONS on 429, 500, 502, 503 and 504, honors `Retry-After`, backs off with jitter and never replays a write. One deadline (`timeout:`) covers every attempt, the body and the waits
-- Add opt-in native `Response#raise_for_status!` with Rust API-error classification and preserved raw response bytes
-
-- Add typed Rust models for all pinned report, feed, notification and Data Kiosk schemas, retaining Ruby parsing and introspection resources
-- Add deterministic Rust model and Progenitor wire-client generation, with typed Rust and native Ruby facades for Catalog Items `getCatalogItem` and Listings Items `patchListingsItem`; regenerate with `rake generate:rust` and check without rewriting with `rake generate:rust:verify`
-- Add a local-development Rust transport and opt-in `peddler/native` Ruby client for the next major release; see [preview usage and roadmap](crates/peddler/README.md)
-- Add `base_url` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
-- Support pattern matching on errors by HTTP status, e.g. `case error in {status: 500..599}`
+- Add `Peddler::Client`, a single client for every API: `Peddler::Client.new(region: "eu-west-1", access_token: token)`, then `client.orders_v0.get_orders(...)`, or `client.orders` for the latest version
+- Accept a callable as `access_token:`, such as a lambda around your cache. The client calls it before each request, including each page of a `*_pages` enumerator, and keeps nothing it returns
+- Add `Client#with_access_token`, a view of a client that sends another token over the same connections, for another seller or a restricted data token
+- Add `Peddler::LWA#refresh`, `#client_credentials` and `#exchange_authorization_code`, which return `Peddler::LWA::Tokens`
+- Add `Peddler::LWA#token_source`, an optional token source for 1 process: it keeps 1 access token, requests the next one 60 seconds before the old one expires and makes 1 request at a time, however many threads ask
+- Add a `*_pages` method next to each of 79 paginated operations. It takes the operation's arguments and returns a lazy `Enumerator` of responses that requests a page only when asked
+- Add `wait_for_report`, `wait_for_feed` and `wait_for_query`, which poll until a job is `DONE`, `CANCELLED` or `FATAL`
+- Add streaming downloads: `open_report_document`, `open_feed_document`, `open_query_document` and `download_document` yield a `Peddler::Document`, read with `each_tsv`, `each_jsonl`, `each_chunk` or `json(max_bytes:)`. `each_tsv` decodes the charset of the `Content-Type` (such as Cp1252 or Shift_JIS) to UTF-8 and takes a `charset:` override
+- Add `create_and_upload_feed_document` and `upload_document`, which upload a String or an IO
+- Add `status`, `code` and `request_id` to `Peddler::Error`, and pattern matching on `status` and `code`, e.g. `case error in {status: 500..599}`
+- Add a `timeout:` option to the client: the seconds a whole call may take, retries included. The default is 30
+- Add a `base_url:` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
+- Add `Peddler::TransportError` and `Peddler::TimeoutError` for requests that get no response, `Peddler::AuthenticationError` (with `status` and `code`) for rejected token requests, and `Peddler::PaginationError`, `Peddler::DocumentError`, `Peddler::DocumentTimeoutError`, `Peddler::WorkflowError`, `Peddler::WorkflowTimeoutError` and `Peddler::ForkError`
+- Ship precompiled gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu`, each with builds for Ruby 3.3, 3.4 and 4.0. Other platforms compile the extension during installation and need a Rust toolchain; see [native extension](README.md#native-extension)
+- Publish the core as the [`peddler` Rust crate](crates/peddler/README.md)
 
 ### Changed
 
-- Make the native layer the root of the gem. `require "peddler"` loads the Rust extension, and `Peddler::Client` is the only entry point: `Peddler::Client.new(region: "eu-west-1", access_token: token)`, then `client.orders_v0.get_orders(...)`, `client.orders` for the latest version and `client.sandbox` for a sandbox view
-- Keep the client thin, as in v5: it sends the `access_token:` it is given and never requests, refreshes or caches a token, and it has no client-side rate limits. Get tokens from `Peddler::LWA` and store them where your processes can share them; get a restricted data token from `client.tokens.create_restricted_data_token` and pass it to `client.with_access_token`
-- Share one connection pool and one native runtime among all clients in a process, so building a client per job is cheap and reuses connections. After `fork`, build a new client in the child; one built in the parent raises `Peddler::ForkError`
-- Send the host name in the `User-Agent` only to the Selling Partner API, as v5 did; LWA and signed-URL requests send `Peddler/<version> (Language=Ruby)`
-- Take keyword arguments in every operation method; required arguments are no longer positional
-- Raise `Peddler::Error` on every API response outside 2xx, from operations, `client.request`, paginated enumerators and the document ID helpers, also after retries are exhausted. `Peddler::Error` is one generic class with `status`, `code`, `request_id` and `response`; match on `status` and `code`. `Response#raise_for_status!` stays and returns the response on 2xx
-- Return the native `Peddler::Response` everywhere: `status` is an Integer, `headers` an array of pairs and `body` a String. `json`, `to_h`, `dig` and typed `parse` work on it
-- Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models and the lookup `parse` uses
-- Make `Peddler::LWA` a stateless helper: `Peddler::LWA.new` takes `client_id:` and `client_secret:`, which default to `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET`, and `refresh(refresh_token:)`, `client_credentials(scope:)` and `exchange_authorization_code(code:, redirect_uri:)` return `Peddler::LWA::Tokens`
-- Move the native classes to the root namespace: `Peddler::TransportError`, `Peddler::TimeoutError`, `Peddler::AuthenticationError`, `Peddler::ForkError`, `Peddler::DocumentError`, `Peddler::DocumentTimeoutError`, `Peddler::PaginationError`, `Peddler::WorkflowError`, `Peddler::WorkflowTimeoutError`, `Peddler::Document`, `Peddler::Pagination`, `Peddler::Continuation` and `Peddler::FeedDocumentUpload`. None of them descends from `Peddler::Error`
-- Bump the gem to 6.0.0. Add a runtime dependency on `bigdecimal` (no longer a default gem since Ruby 3.4), which native document parsing requires
-
-- Improve error messages for degraded responses: keep Amazon's message when the code cannot become a class name, and fall back to the status line (e.g. `"429 Too Many Requests"`) when the body cannot be parsed
+- Send requests through the native extension in place of the `http` gem. All clients in a process share 1 connection pool. After `fork`, create clients in the child: one created before the fork raises `Peddler::ForkError` there
+- Raise the same `Peddler::Error` for every HTTP error. Tell errors apart by `code`, which replaces the class per Amazon error code. A body without a message gives `request failed with status 500`, with its status
+- Return a new client from `sandbox` and leave the one it is called on in production
+- Request tokens through an instance of `Peddler::LWA`: `Peddler::LWA.new.refresh(refresh_token:)`. A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`
+- Retry only a GET, when Amazon answers 429, 500, 502, 503 or 504. Honor `Retry-After` up to 30 seconds, and otherwise back off with jitter. A request that changes data and a failed connection are no longer retried. `retries:` takes at most 10
+- Raise `Peddler::Error` when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`
+- Allow 30 seconds for a call by default. 5.x had no timeout
+- Raise `ArgumentError` that names the argument when a required argument is `nil` or an argument has the wrong type, before anything is sent. An empty String, `.` or `..` for an argument that ends a path is refused too
+- Return decompressed content from `download_report_document` for GZIP reports. If you were wrapping the result in `Zlib::GzipReader`, remove it
+- Raise `Peddler::Error` from the document helpers when a signed URL answers 3xx, and allow them 600 seconds for a call
+- Make `Peddler::Response` a class of its own. `status` (with `success?` and its siblings), `code`, `headers[]`, `charset`, `to_s`, `parse`, `to_h` and `dig` read as before. `body` is a String, `headers.to_h` gives names in lowercase, `status` is no longer an instance of `Integer`, and the other readers of the `http` gem's response are gone
+- Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models
+- Send `mskus` as a repeated parameter in Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details`, as Amazon specifies. 5.x joined the values with commas
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279))
-- Fall back to the base `Peddler::Error` when a dynamic error class cannot be defined inside a non-main Ractor, instead of leaking `Ractor::IsolationError` ([#279](https://github.com/lineofflight/peddler/issues/279))
+- Add runtime dependencies on `bigdecimal` and `rb_sys`
 
 ### Removed
 
-- Remove the HTTP runtime: `Peddler::API`, the generated client classes (`Peddler::APIs::OrdersV0.new(aws_region, access_token)`), the `Peddler.orders_v0`-style accessors, `Peddler::LWA.request` and `Peddler::LWAToken`
-- Remove the HTTP document helpers (`upload_feed_document`, `download_result_feed_document`, and `download_report_document` and `download_query_document` given a URL); use `client.upload_document`, `client.download_document` and the document ID helpers
-- Remove `Peddler::Errors` and the error classes minted from Amazon's codes; rescue `Peddler::Error` and match on `code`
-- Remove `kind` from API errors and `WorkflowHTTPError`; a failed metadata lookup raises `Peddler::Error`
-- Remove the sandbox guards (`cannot_sandbox!`, `must_sandbox!`, `Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox`); Amazon rejects those calls itself
+- Remove the API classes and their accessors: `Peddler.orders_v0.new(aws_region, access_token)`, `Peddler::APIs::OrdersV0.new` and `Peddler::API`, with its `http:` option and its `access_token`, `retries`, `endpoint` and `endpoint_uri` readers. Use `Peddler::Client`
+- Remove `Peddler::LWA.request` and `Peddler::LWAToken`
+- Remove `Peddler::Errors` and the error classes named after Amazon's codes; rescue `Peddler::Error` and match on `code`
+- Remove the `rate_limit:` argument of operation methods. Pacing calls is left to the application
+- Remove the sandbox guards (`Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox`); Amazon rejects those calls itself
 - Remove `Response#parsable?`; `parse` returns the Hash when the operation has no typed model
-- Remove the `rate_limit:` argument of operation methods. The client waits only when Amazon throttles a retried request; pacing calls is left to the application
 - Remove the `http` and `nokogiri` dependencies
-
-### Fixed
-
-- Return decompressed content from `download_report_document` for GZIP reports. Given a document ID, the helper now requests the URL with Amazon's `enableContentEncodingUrlHeader` option and inflates the body transparently, as `download_query_document` already did for Data Kiosk; `download_result_feed_document` inflates too when the URL was fetched with that option. If you were wrapping the result in `Zlib::GzipReader`, remove it
-- Raise the same `Peddler::Error` as unretried requests when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`; the original error remains available via `cause`
-- Sanitize API parameter names that are not valid Ruby identifiers (for example Amazon's dotted query parameters, `carrierTracking.trackingNumber`), which broke code generation; the query string still sends Amazon's original name
 
 ### Models
 
