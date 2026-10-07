@@ -76,11 +76,10 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
                     id.to_owned()
                 };
             if !seen.insert(wire_id.clone()) {
-                return Err(GenerationError(format!(
-                    "{}: duplicate operationId {id}",
-                    api.module
-                )));
+                return Err(GenerationError(format!("duplicate operationId {id}")));
             }
+            // What is refused of an operation names it. The caller names the file.
+            let named = |error: GenerationError| GenerationError(format!("{id}: {error}"));
             operations.push(Operation {
                 name: snake(&wire_id),
                 id: id.to_owned(),
@@ -91,8 +90,8 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
                     .unwrap_or_default()
                     .to_owned(),
                 sandbox: sandbox(methods, operation),
-                parameters: parameters(spec, api, &shared, operation, id)?,
-                successes: successes(spec, operation, id)?,
+                parameters: parameters(spec, api, &shared, operation).map_err(named)?,
+                successes: successes(spec, operation).map_err(named)?,
             });
         }
     }
@@ -122,7 +121,6 @@ fn parameters(
     api: &ModelSpec,
     shared: &[Value],
     operation: &Value,
-    id: &str,
 ) -> Result<Vec<Parameter>, GenerationError> {
     let mut declared = shared.to_vec();
     for parameter in operation["parameters"].as_array().into_iter().flatten() {
@@ -135,7 +133,7 @@ fn parameters(
     for (position, value) in declared.iter().enumerate() {
         let value = resolve(value, spec)?;
         if value["in"] == "body" {
-            body = Some(body_parameter(spec, value, position, id)?);
+            body = Some(body_parameter(spec, value, position)?);
         } else {
             parameters.push(parameter(api, value, position)?);
         }
@@ -156,12 +154,11 @@ fn body_parameter(
     spec: &Value,
     value: &Value,
     position: usize,
-    id: &str,
 ) -> Result<Parameter, GenerationError> {
     // Swagger 2 bodies are JSON unless the spec says otherwise.
     let consumes = media_types(spec, value, "consumes");
     if !(consumes.is_empty() || consumes.contains(&"application/json")) {
-        return Err(GenerationError(format!("{id}: unsupported request media")));
+        return Err(GenerationError("unsupported request media".into()));
     }
     // What sits next to a reference is not schema. Shipping v1 keeps examples there.
     let schema = match value["schema"].get("$ref") {
@@ -171,9 +168,7 @@ fn body_parameter(
     // A parameter's default is written into the Ruby method. A body's could be any
     // JSON, which is not checked as the others are, and no spec has one.
     if schema.get("default").is_some() {
-        return Err(GenerationError(format!(
-            "{id}: unsupported default for a body"
-        )));
+        return Err(GenerationError("unsupported default for a body".into()));
     }
     Ok(Parameter {
         name: "body".into(),
@@ -263,7 +258,6 @@ fn parameter(
 fn successes(
     spec: &Value,
     operation: &Value,
-    id: &str,
 ) -> Result<Vec<(u16, Option<String>)>, GenerationError> {
     let json = media_types(spec, operation, "produces").contains(&"application/json");
     let mut successes = Vec::new();
@@ -295,9 +289,7 @@ fn successes(
         } else if schema.is_null() {
             None
         } else {
-            return Err(GenerationError(format!(
-                "{id}: unsupported inline success schema"
-            )));
+            return Err(GenerationError("unsupported inline success schema".into()));
         };
         successes.push((status, model));
     }

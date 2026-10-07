@@ -72,16 +72,21 @@ pub fn generate(
     let mut clients = Vec::new();
     let mut specs = BTreeMap::new();
     for api in manifest::ALL_APIS {
-        let spec: serde_json::Value =
-            serde_json::from_slice(&fs::read(spec_dir.join(api.source))?)?;
+        // What is refused of a spec names its file: a file that is gone or is not
+        // JSON, a model or an operation.
+        let located = |error: GenerationError| GenerationError(format!("{}: {error}", api.source));
+        let spec: serde_json::Value = fs::read(spec_dir.join(api.source))
+            .map_err(GenerationError::from)
+            .and_then(|bytes| Ok(serde_json::from_slice(&bytes)?))
+            .map_err(located)?;
         let models = models::normalize_definitions(&spec)
             .and_then(models::render)
-            .map_err(|error| GenerationError(format!("{}: {error}", api.source)))?;
+            .map_err(located)?;
         output.insert(
             base.join(api.module).join("models.rs"),
             format!("{}{models}", notice(api.source)),
         );
-        clients.push((api, clients::render(&spec, api)?));
+        clients.push((api, clients::render(&spec, api).map_err(located)?));
         specs.insert(api.module, spec);
     }
     let modules = manifest::ALL_APIS
@@ -105,7 +110,11 @@ pub fn generate(
         let mapped: Vec<_> = resolved.iter().filter(|r| r.module == api.module).collect();
         output.insert(
             base.join(api.module).join("facade.rs"),
-            format!("{prefix}{}", facades::rust(operations, &mapped)?),
+            format!(
+                "{prefix}{}",
+                facades::rust(operations, &mapped)
+                    .map_err(|error| GenerationError(format!("{}: {error}", api.source)))?
+            ),
         );
         output.insert(
             base.join(api.module).join("mod.rs"),

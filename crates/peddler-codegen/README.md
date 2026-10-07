@@ -66,6 +66,7 @@ The tests read the pinned checkout, so run the setup task first. `cargo test --w
 - It reads exactly the files it lists. If Amazon adds or removes an API model or a schema, generation fails and names the file, until `src/manifest.rs` or `supplemental-sources.json` is updated. A new API is a deliberate edit.
 - The same input gives the same bytes.
 - It writes all or nothing. Every file is generated before any is replaced.
+- It refuses what it has no rule for, and says where. A refusal names the spec file and the operation, such as `catalog-items-api-model/catalogItems_2022-04-01.json: searchCatalogItems: unsupported default for a body`.
 
 ## Operations
 

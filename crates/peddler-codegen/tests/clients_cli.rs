@@ -233,7 +233,13 @@ fn invalid_second_client_leaves_no_partial_outputs() {
     let dest = tempfile::tempdir().unwrap();
     let output = cli(root.path(), dest.path(), false);
     assert!(!output.status.success());
-    assert!(String::from_utf8_lossy(&output.stderr).contains("unsupported array parameter"));
+    // The refusal says where: the spec file, then the operation.
+    let refusal = format!(
+        "{}: patchListingsItem: unsupported array parameter",
+        api.source
+    );
+    let stderr = String::from_utf8_lossy(&output.stderr);
+    assert!(stderr.contains(&refusal), "{stderr}");
     assert!(!dest.path().join("crates").exists());
 }
 

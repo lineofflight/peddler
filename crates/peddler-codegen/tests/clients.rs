@@ -66,6 +66,35 @@ fn unsupported_parameters_and_invalid_defaults_fail_before_rendering() {
     value["paths"]["/items/{asin}"]["get"]["parameters"][2]["default"] = json!(["bad,value"]);
     assert!(clients::render(&value, &ALL_APIS[0]).is_err());
 }
+/// 31 operation IDs and many parameter names are shared between APIs, so a refusal
+/// says which operation it is in. The caller adds the file.
+#[test]
+fn a_refusal_names_its_operation() {
+    let refusal = |value: &Value| match clients::render(value, &ALL_APIS[0]) {
+        Err(error) => error.0,
+        Ok(_) => panic!("expected an error"),
+    };
+    let mut value = spec();
+    value["paths"]["/items/{asin}"]["get"]["parameters"][1]["collectionFormat"] = json!("ssv");
+    assert_eq!(
+        refusal(&value),
+        "getItem: unsupported array parameter marketplaceIds"
+    );
+    let mut value = spec();
+    value["paths"]["/empty"]["post"]["parameters"] =
+        json!([{"name":"payload","in":"body","schema":{"type":"object","default":{}}}]);
+    assert_eq!(refusal(&value), "empty: unsupported default for a body");
+    let mut value = spec();
+    value["paths"]["/empty"]["post"]["responses"]["200"]["schema"] = json!({"type":"object"});
+    assert_eq!(refusal(&value), "empty: unsupported inline success schema");
+    let mut value = spec();
+    value["paths"]["/empty"]["post"]["parameters"] = json!([{"$ref":"#/parameters/gone"}]);
+    assert_eq!(refusal(&value), "empty: missing #/parameters/gone");
+    let mut value = spec();
+    let operation = value["paths"]["/empty"]["post"].clone();
+    value["paths"]["/empty"]["put"] = operation;
+    assert_eq!(refusal(&value), "duplicate operationId empty");
+}
 #[test]
 fn scalar_csv_default_is_normalized_to_its_declared_array_type() {
     let mut value = spec();
