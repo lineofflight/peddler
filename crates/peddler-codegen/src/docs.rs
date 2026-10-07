@@ -225,7 +225,14 @@ mod tests {
 
     #[test]
     fn a_line_break_in_a_spec_never_ends_a_comment() {
-        let hostile = "A title.\nexit 1\r\nexit 2\rexit 3\n\n**Note:** x\n# exit 4";
+        // Line breaks of every kind, the bytes Ruby ends a script at, and what starts a
+        // block comment, the data section or a comment of its own.
+        let hostile = concat!(
+            "A title.\nexit 1\r\nexit 2\rexit 3\n\n**Note:** x\n# exit 4\n",
+            "a\u{2028}exit 5\u{2029}exit 6\u{85}exit 7\u{b}exit 8\u{c}exit 9\n",
+            "b\0exit 10\u{4}exit 11\u{1a}exit 12\n__END__\n=begin\nexit 13\n=end\n",
+            "c\\nexit 14"
+        );
         let info = json!({"title": hostile, "description": hostile, "version": hostile});
         let parameter = Parameter {
             name: "id".into(),
@@ -239,7 +246,7 @@ mod tests {
         };
         let op = Operation {
             id: "getThing".into(),
-            name: "get_thing\nexit 5".into(),
+            name: "get_thing\nexit 15".into(),
             method: "GET".into(),
             path: "/things".into(),
             description: hostile.into(),

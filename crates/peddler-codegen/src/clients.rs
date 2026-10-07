@@ -168,6 +168,13 @@ fn body_parameter(
         Some(reference) => json!({"$ref": reference}),
         None => value["schema"].clone(),
     };
+    // A parameter's default is written into the Ruby method. A body's could be any
+    // JSON, which is not checked as the others are, and no spec has one.
+    if schema.get("default").is_some() {
+        return Err(GenerationError(format!(
+            "{id}: unsupported default for a body"
+        )));
+    }
     Ok(Parameter {
         name: "body".into(),
         wire_name: wire_name(value)?,

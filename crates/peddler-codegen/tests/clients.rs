@@ -148,3 +148,26 @@ fn bodyless_success_status_does_not_offer_json_even_with_an_upstream_schema() {
     let operations = clients::render(&value, &ALL_APIS[0]).unwrap();
     assert_eq!(operations[0].successes, vec![(204, None)]);
 }
+
+#[test]
+fn a_default_on_a_body_fails_generation() {
+    for default in [
+        json!({"k": "#{exit}"}),
+        json!({"#{exit}": 1}),
+        json!([{"k": "#{exit}"}]),
+        json!(["#{exit}"]),
+        json!("#{exit}"),
+    ] {
+        let mut value = spec();
+        value["paths"]["/empty"]["post"]["parameters"] =
+            json!([{"name":"payload","in":"body","schema":{"type":"object","default":default}}]);
+        let Err(err) = clients::render(&value, &ALL_APIS[0]) else {
+            panic!("expected an error for {default}");
+        };
+        assert!(
+            err.0.contains("unsupported default for a body"),
+            "{}",
+            err.0
+        );
+    }
+}
