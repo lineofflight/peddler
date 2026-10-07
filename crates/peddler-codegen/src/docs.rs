@@ -1,13 +1,19 @@
 //! The YARD comment of a generated Ruby method, from the spec fields v5 read and
 //! wrapped as v5 wrapped it. `lib/generator` on `main` has the Ruby this follows.
-use crate::clients::{Operation, Parameter, snake};
+use crate::{
+    clients::{Operation, Parameter, snake},
+    manifest::ModelSpec,
+};
 use regress::Regex;
+use serde_json::Value;
 use std::sync::LazyLock;
 
 /// How wide a line of generated Ruby may be
 const WIDTH: usize = 120;
-/// How deep a generated method sits
-const INDENT: usize = 6;
+/// How deep an API's class sits, and an accessor of `Client`
+const CLASS: usize = 4;
+/// How deep an operation's method sits
+const METHOD: usize = 6;
 /// What Ruby's `\s` matches, as a character class. A regex's own `\s` matches more.
 const SPACE: &str = r" \t\r\n\f\v";
 
@@ -18,7 +24,7 @@ fn regex(pattern: &str) -> Regex {
 /// The comment above an operation's method: its description, a note on the sandbox,
 /// each argument and what it returns.
 pub(crate) fn operation(op: &Operation) -> String {
-    let mut lines = wrap(&description(&op.description), 0);
+    let mut lines = wrap(&description(&op.description), METHOD, 0);
     lines.push("#".into());
     if let Some(kind) = op.sandbox {
         lines.extend(tag(&format!(
@@ -38,19 +44,47 @@ pub(crate) fn operation(op: &Operation) -> String {
         )));
     }
     lines.extend(tag("@return [Peddler::Response] The API response"));
-    indent(&lines)
+    indent(&lines, METHOD)
 }
 
 /// The comment above the method that enumerates an operation's pages.
 pub(crate) fn pages(op: &Operation) -> String {
-    indent(&[format!(
+    let line = format!(
         "# @return [Enumerator<Peddler::Response>] each page of {{#{}}}",
         op.name
-    )])
+    );
+    indent(&[line], METHOD)
 }
 
-fn indent(lines: &[String]) -> String {
-    let margin = " ".repeat(INDENT);
+/// The comment above an API's class, as v5 wrote it: the spec's title, its description
+/// and a link to the spec.
+pub(crate) fn class(api: &ModelSpec, info: &Value) -> String {
+    let text = |key: &str| info[key].as_str().unwrap_or_default();
+    let mut lines = wrap(text("title"), CLASS, 0);
+    lines.push("#".into());
+    lines.extend(wrap(&links(text("description")), CLASS, 0));
+    lines.push("#".into());
+    lines.push(format!(
+        "# @see https://github.com/amzn/selling-partner-api-models/blob/main/models/{}",
+        api.source
+    ));
+    indent(&lines, CLASS)
+}
+
+/// The comment above the method of `Client` that returns an API: the class, the
+/// spec's title and its version.
+pub(crate) fn accessor(class: &str, info: &Value) -> String {
+    let text = |key: &str| info[key].as_str().unwrap_or_default();
+    let title = strip(text("title")).trim_end_matches('.');
+    let line = format!(
+        "# @return [Peddler::Native::{class}] {title}, version {}",
+        text("version")
+    );
+    indent(&[line], CLASS)
+}
+
+fn indent(lines: &[String], depth: usize) -> String {
+    let margin = " ".repeat(depth);
     let lines = lines.iter().map(|line| format!("{margin}{line}\n"));
     lines.collect()
 }
@@ -104,14 +138,14 @@ fn strip(text: &str) -> &str {
     text.trim_matches(|c: char| c.is_ascii_whitespace() || matches!(c, '\x0B' | '\0'))
 }
 
-/// A tag's lines. Those after the first are indented under it.
+/// A tag's lines above a method. Those after the first are indented under it.
 fn tag(text: &str) -> Vec<String> {
-    wrap(text, 2)
+    wrap(text, METHOD, 2)
 }
 
 /// Text as comment lines no wider than a line of Ruby may be. A blank line stays a
 /// break, a line that ends a sentence ends its paragraph, and a note starts its own.
-fn wrap(text: &str, hanging: usize) -> Vec<String> {
+fn wrap(text: &str, depth: usize, hanging: usize) -> Vec<String> {
     const SECTIONS: [&str; 5] = ["**Note", "**Warning", "**Important", "**Example", "**Usage"];
     let mut paragraphs: Vec<String> = Vec::new();
     let mut current: Vec<&str> = Vec::new();
@@ -141,7 +175,7 @@ fn wrap(text: &str, hanging: usize) -> Vec<String> {
     if !current.is_empty() {
         paragraphs.push(current.join(" "));
     }
-    let width = WIDTH - INDENT - 2;
+    let width = WIDTH - depth - 2;
     let mut lines = Vec::new();
     for paragraph in &paragraphs {
         let mut words: Vec<&str> = Vec::new();

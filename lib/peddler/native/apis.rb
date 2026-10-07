@@ -85,6 +85,12 @@ module Peddler
       "vendor_shipments_v1.get_shipment_labels" => Pagination.new(operation: "vendor_shipments_v1.get_shipment_labels", input: "/next_token", output: "/payload/pagination/nextToken"),
     }.freeze
 
+    # The Selling Partner API for Amazon Warehousing and Distribution
+    #
+    # The Selling Partner API for Amazon Warehousing and Distribution (AWD) provides programmatic access to information
+    # about AWD shipments and inventory.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
     class AmazonWarehousingAndDistribution20240509
       def initialize(engine)
         @engine = engine
@@ -489,6 +495,14 @@ module Peddler
       end
     end
 
+    # Selling Partner API for A+ Content Management
+    #
+    # With the A+ Content API, you can build applications that help selling partners add rich marketing content to their
+    # Amazon product detail pages. A+ Content helps selling partners share their brand and product story, which helps
+    # buyers make informed purchasing decisions. Selling partners assemble content by choosing from content modules and
+    # adding images and text.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/aplus-content-api-model/aplusContent_2020-11-01.json
     class AplusContent20201101
       def initialize(engine)
         @engine = engine
@@ -769,6 +783,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for third party application integrations.
+    #
+    # With the AppIntegrations API v2024-04-01, you can send notifications to Amazon Selling Partners and display the
+    # notifications in Seller Central.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-integrations-api-model/appIntegrations-2024-04-01.json
     class ApplicationIntegrations20240401
       def initialize(engine)
         @engine = engine
@@ -813,6 +833,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Application Management
+    #
+    # The Selling Partner API for Application Management lets you programmatically update the client secret on
+    # registered applications.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-management-api-model/application_2023-11-30.json
     class ApplicationManagement20231130
       def initialize(engine)
         @engine = engine
@@ -831,6 +857,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Catalog Items
+    #
+    # The Selling Partner API for Catalog Items helps you programmatically retrieve item details for items in the
+    # catalog.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
     class CatalogItemsV0
       def initialize(engine)
         @engine = engine
@@ -854,6 +886,16 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Catalog Items
+    #
+    # The Selling Partner API for Catalog Items provides programmatic access to information about items in the Amazon
+    # catalog.
+    #
+    # For more information, see the
+    # {https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide Catalog Items API Use
+    # Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2020-12-01.json
     class CatalogItems20201201
       def initialize(engine)
         @engine = engine
@@ -930,6 +972,14 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Catalog Items
+    #
+    # Use the Selling Partner API for Catalog Items to retrieve information about items in the Amazon catalog.
+    #
+    # For more information, refer to the [Catalog Items API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/:catalog-items-api-v2022-04-01-use-case-guide).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2022-04-01.json
     class CatalogItems20220401
       def initialize(engine)
         @engine = engine
@@ -1022,6 +1072,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for CustomerFeedback
+    #
+    # The Selling Partner API for Customer Feedback (Customer Feedback API) provides information about customer reviews
+    # and returns at both the item and browse node level.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/customer-feedback-api-model/customerFeedback_2024-06-01.json
     class CustomerFeedback20240601
       def initialize(engine)
         @engine = engine
@@ -1145,6 +1201,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Data Kiosk
+    #
+    # The Selling Partner API for Data Kiosk lets you submit GraphQL queries from a variety of schemas to help selling
+    # partners manage their businesses.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/data-kiosk-api-model/dataKiosk_2023-11-15.json
     class DataKiosk20231115
       def initialize(engine)
         @engine = engine
@@ -1249,6 +1311,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Delivery Shipment Invoicing
+    #
+    # The Selling Partner API for Delivery Shipment Invoicing helps you programmatically retrieve shipment invoice
+    # information in the Brazil Amazon store for a selling partner’s orders.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/delivery-by-amazon/deliveryShipmentInvoiceV2022-07-01.json
     class DeliveryByAmazon20220701
       def initialize(engine)
         @engine = engine
@@ -1297,6 +1365,15 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Easy Ship
+    #
+    # Use the Selling Partner API for Easy Ship to build applications for sellers to manage and ship Amazon Easy Ship
+    # orders. With this API, you can get available time slots, schedule and reschedule Easy Ship orders, and print
+    # shipping labels, invoices, and warranties. To review the differences in Easy Ship operations by marketplace, refer
+    # to [Marketplace
+    # support](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/easy-ship-model/easyShip_2022-03-23.json
     class EasyShip20220323
       def initialize(engine)
         @engine = engine
@@ -1425,6 +1502,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for External Fulfillment Inventory Management
+    #
+    # You can use the Amazon External Fulfillment Inventory API to manage inventory operations in Amazon's External
+    # Fulfillment network, including batch inventory updates and retrievals.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentInventory_2024-09-11.json
     class ExternalFulfillmentInventory20240911
       def initialize(engine)
         @engine = engine
@@ -1445,6 +1528,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Amazon External Fulfillment Location Management
+    #
+    # You can use the External Fulfillment Location API to manage locations in the sandbox environment for end-to-end
+    # testing. This API is available only in the sandbox environment.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentLocation_2026-07-30.json
     class ExternalFulfillmentLocation20260730
       def initialize(engine)
         @engine = engine
@@ -1464,6 +1553,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Amazon External Fulfillment Return Item Processing
+    #
+    # You can use the Amazon External Fulfillment Return Item Processing API to retrieve, track, and process return
+    # items through Amazon's External Fulfillment returns management system.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentReturns_2024-09-11.json
     class ExternalFulfillmentReturns20240911
       def initialize(engine)
         @engine = engine
@@ -1547,6 +1642,13 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Amazon External Fulfillment Shipments Processing
+    #
+    # You can use the External Fulfillment Shipments API to retrieve, manage, and track shipments processed through
+    # Amazon's external fulfillment network. Use this API to get shipment details, monitor status changes, and access
+    # fulfillment requirements.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentShipments_2024-09-11.json
     class ExternalFulfillmentShipments20240911
       def initialize(engine)
         @engine = engine
@@ -1765,6 +1867,15 @@ module Peddler
       end
     end
 
+    # Selling Partner API for FBA Inbound Eligibilty
+    #
+    # With the FBA Inbound Eligibility API, you can build applications that let sellers get eligibility previews for
+    # items before shipping them to Amazon's fulfillment centers. With this API you can find out if an item is eligible
+    # for inbound shipment to Amazon's fulfillment centers in a specific marketplace. You can also find out if an item
+    # is eligible for using the manufacturer barcode for FBA inventory tracking. Sellers can use this information to
+    # inform their decisions about which items to ship Amazon's fulfillment centers.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
     class FbaInboundEligibilityV1
       def initialize(engine)
         @engine = engine
@@ -1790,6 +1901,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for FBA Inventory
+    #
+    # The Selling Partner API for FBA Inventory lets you programmatically retrieve information about inventory in
+    # Amazon's fulfillment network.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inventory-api-model/fbaInventory.json
     class FbaInventoryV1
       def initialize(engine)
         @engine = engine
@@ -1907,6 +2024,11 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Feeds
+    #
+    # The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/feeds-api-model/feeds_2021-06-30.json
     class Feeds20210630
       def initialize(engine)
         @engine = engine
@@ -2029,6 +2151,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Finance Remittance
+    #
+    # The Selling Partner API for Finance Remittance provides programmatic access to selling partner payment remittance
+    # data, including remittance summaries and detailed line items.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finance-remittance-api-model/financeRemittance-2026-03-17.json
     class FinanceRemittance20260317
       def initialize(engine)
         @engine = engine
@@ -2101,6 +2229,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Invoices
+    #
+    # The Selling Partner API for Invoices enables you to retrieve invoice data and streamline your bookkeeping
+    # processes.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesInvoices_2026-06-25.json
     class FinancesInvoices20260625
       def initialize(engine)
         @engine = engine
@@ -2184,6 +2318,13 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Finances
+    #
+    # The Selling Partner API for Finances provides financial information that is relevant to a seller's business. You
+    # can obtain financial events for a given order, financial event group, or date range without having to wait until a
+    # statement period closes. You can also obtain financial event groups for a given date range.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesV0.json
     class FinancesV0
       def initialize(engine)
         @engine = engine
@@ -2356,6 +2497,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Finances
+    #
+    # The Selling Partner API for Finances provides financial information relevant to a seller's business. You can
+    # obtain financial events for a given order or date range without having to wait until a statement period closes.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/finances_2024-06-19.json
     class Finances20240619
       def initialize(engine)
         @engine = engine
@@ -2512,6 +2659,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Transfers.
+    #
+    # The Selling Partner API for Transfers enables selling partners to retrieve payment methods and initiate payouts
+    # for their seller accounts. This API supports the following marketplaces: DE, FR, IT, ES, SE, NL, PL, and BE.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/transfers_2024-06-01.json
     class Transfers20240601
       def initialize(engine)
         @engine = engine
@@ -2631,6 +2784,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Fulfillment Inbound
+    #
+    # The Selling Partner API for Fulfillment Inbound lets you create applications that create and update inbound
+    # shipments of inventory to Amazon's fulfillment network.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json
     class FulfillmentInboundV0
       def initialize(engine)
         @engine = engine
@@ -2818,6 +2977,13 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for FBA inbound operations.
+    #
+    # The Selling Partner API for Fulfillment By Amazon (FBA) Inbound. The FBA Inbound API enables building inbound
+    # workflows to create, manage, and send shipments into Amazon's fulfillment network. The API has interoperability
+    # with the Send-to-Amazon user interface.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
     class FulfillmentInbound20240320
       def initialize(engine)
         @engine = engine
@@ -3772,6 +3938,13 @@ module Peddler
       end
     end
 
+    # Selling Partner APIs for Fulfillment Outbound
+    #
+    # The Selling Partner API for Fulfillment Outbound lets you create applications that help a seller fulfill
+    # Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on
+    # both potential and existing fulfillment orders.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json
     class FulfillmentOutbound20200701
       def initialize(engine)
         @engine = engine
@@ -4023,6 +4196,13 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Fulfillment Outbound
+    #
+    # The Selling Partner API for Fulfillment Outbound lets you create applications that help a seller fulfill
+    # Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on
+    # both potential and existing fulfillment orders.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2026-07-04.json
     class FulfillmentOutbound20260704
       def initialize(engine)
         @engine = engine
@@ -4194,6 +4374,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Invoices.
+    #
+    # Use the Selling Partner API for Invoices to retrieve and manage invoice-related operations, which can help selling
+    # partners manage their bookkeeping processes.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
     class Invoices20240619
       def initialize(engine)
         @engine = engine
@@ -4461,6 +4647,17 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Listings Items
+    #
+    # The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner
+    # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
+    # you use to retrieve the information about Amazon product types needed to use the Listings Items API.
+    #
+    # For more information, see the
+    # {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide Listing Items API Use
+    # Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2020-09-01.json
     class ListingsItems20200901
       def initialize(engine)
         @engine = engine
@@ -4544,6 +4741,16 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Listings Items
+    #
+    # The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner
+    # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
+    # you can use to retrieve the information about Amazon product types needed to use the Listings Items API.
+    #
+    # For more information, refer to the [Listings Items API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2021-08-01-use-case-guide).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json
     class ListingsItems20210801
       def initialize(engine)
         @engine = engine
@@ -4743,6 +4950,16 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Listings Restrictions
+    #
+    # The Selling Partner API for Listings Restrictions provides programmatic access to restrictions on Amazon catalog
+    # listings.
+    #
+    # For more information, see the
+    # {https://developer-docs.amazon.com/sp-api/docs/listings-restrictions-api-v2021-08-01-use-case-guide Listings
+    # Restrictions API Use Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-restrictions-api-model/listingsRestrictions_2021-08-01.json
     class ListingsRestrictions20210801
       def initialize(engine)
         @engine = engine
@@ -4774,6 +4991,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Merchant Fulfillment
+    #
+    # With the Selling Partner API for Merchant Fulfillment, you can build applications that sellers can use to purchase
+    # shipping for non-Prime and Prime orders using Amazon's Buy Shipping Services.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
     class MerchantFulfillmentV0
       def initialize(engine)
         @engine = engine
@@ -4841,6 +5064,14 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Messaging
+    #
+    # With the Messaging API you can build applications that send messages to buyers. You can get a list of message
+    # types that are available for an order that you specify, then call an operation that sends a message to the buyer
+    # for that order. The Messaging API returns responses that are formed according to the
+    # {https://tools.ietf.org/html/draft-kelly-json-hal-08 JSON Hypertext Application Language} (HAL) standard.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/messaging-api-model/messaging.json
     class MessagingV1
       def initialize(engine)
         @engine = engine
@@ -5048,6 +5279,16 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Notifications
+    #
+    # The Selling Partner API for Notifications lets you subscribe to notifications that are relevant to a selling
+    # partner's business. Using this API you can create a destination to receive notifications, subscribe to
+    # notifications, delete notification subscriptions, and more.
+    #
+    # For more information, refer to the [Notifications Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     class NotificationsV1
       def initialize(engine)
         @engine = engine
@@ -5246,6 +5487,17 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Orders
+    #
+    # Use the Orders Selling Partner API to programmatically retrieve order information. With this API, you can develop
+    # fast, flexible, and custom applications to manage order synchronization, perform order research, and create
+    # demand-based decision support tools.
+    #
+    # _Note:_ For the JP, AU, and SG marketplaces, the Orders API supports orders from 2016 onward. For all other
+    # marketplaces, the Orders API supports orders for the last two years (orders older than this don't show up in the
+    # response).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
     class OrdersV0
       def initialize(engine)
         @engine = engine
@@ -5546,6 +5798,16 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Orders
+    #
+    # The Selling Partner API for Orders returns orders information. This API supports the following types of orders:
+    #
+    # - FBM (Fulfilled by Merchant) - FBA (Fulfilled by Amazon) - read only - Amazon Fresh
+    #
+    # This API does not display order data that is more than two years old, except in the JP, AU, and SG marketplaces,
+    # for which data from 2016 and after is available.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/orders_2026-01-01.json
     class Orders20260101
       def initialize(engine)
         @engine = engine
@@ -5638,6 +5900,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Product Fees
+    #
+    # The Selling Partner API for Product Fees lets you programmatically retrieve estimated fees for a product. You can
+    # then account for those fees in your pricing.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-fees-api-model/productFeesV0.json
     class ProductFeesV0
       def initialize(engine)
         @engine = engine
@@ -5716,6 +5984,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Pricing
+    #
+    # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for
+    # Amazon Marketplace products.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricingV0.json
     class ProductPricingV0
       def initialize(engine)
         @engine = engine
@@ -5858,6 +6132,15 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Pricing
+    #
+    # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer pricing
+    # information for Amazon store products.
+    #
+    # For more information, refer to the [Product Pricing v2022-05-01 Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricing_2022-05-01.json
     class ProductPricing20220501
       def initialize(engine)
         @engine = engine
@@ -5895,6 +6178,17 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Product Type Definitions
+    #
+    # The Selling Partner API for Product Type Definitions provides programmatic access to attribute and data
+    # requirements for product types in the Amazon catalog. Use this API to return the JSON Schema for a product type
+    # that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the
+    # Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds).
+    #
+    # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide
+    # Product Type Definitions API Use Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
     class ProductTypeDefinitions20200901
       def initialize(engine)
         @engine = engine
@@ -5960,6 +6254,11 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Promotions
+    #
+    # The Selling Partner API for Promotions enables selling partners to create and manage promotions.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/promotions-api-model/promotions_2025-12-01.json
     class Promotions20251201
       def initialize(engine)
         @engine = engine
@@ -6111,6 +6410,16 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Replenishment
+    #
+    # The Selling Partner API for Replenishment (Replenishment API) provides programmatic access to replenishment
+    # program metrics and offers. These programs provide recurring delivery of any replenishable item at a frequency
+    # chosen by the customer.
+    #
+    # The Replenishment API is available worldwide wherever Amazon Subscribe & Save is available or is supported. The
+    # API is available to vendors and FBA selling partners.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-api-model/replenishment-2022-11-07.json
     class Replenishment20221107
       def initialize(engine)
         @engine = engine
@@ -6153,6 +6462,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Reports
+    #
+    # The Selling Partner API for Reports lets you retrieve and manage a variety of reports that can help selling
+    # partners manage their businesses.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/reports-api-model/reports_2021-06-30.json
     class Reports20210630
       def initialize(engine)
         @engine = engine
@@ -6314,6 +6629,11 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Sales
+    #
+    # The Selling Partner API for Sales provides APIs related to sales performance.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sales-api-model/sales.json
     class SalesV1
       def initialize(engine)
         @engine = engine
@@ -6379,6 +6699,13 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Amazon Seller Wallet Open Banking API
+    #
+    # The Selling Partner API for Seller Wallet (Seller Wallet API) provides financial information that is relevant to a
+    # seller's Seller Wallet account. You can obtain financial events, balances, and transfer schedules for Seller
+    # Wallet accounts. You can also schedule and initiate transactions.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/seller-wallet-api-model/sellerWallet_2024-03-01.json
     class SellerWallet20240301
       def initialize(engine)
         @engine = engine
@@ -6633,6 +6960,18 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Sellers
+    #
+    # The [Selling Partner API for Sellers](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference)
+    # (Sellers API) provides essential information about seller accounts, such as:
+    #
+    # - The marketplaces a seller can list in - The default language and currency of a marketplace - Whether the seller
+    # has suspended listings
+    #
+    # Refer to the [Sellers API reference](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference) for
+    # details about this API's operations, data types, and schemas.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
     class SellersV1
       def initialize(engine)
         @engine = engine
@@ -6660,6 +6999,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Services
+    #
+    # With the Services API, you can build applications that help service providers get and modify their service orders
+    # and manage their resources.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
     class ServicesV1
       def initialize(engine)
         @engine = engine
@@ -7032,6 +7377,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Shipment Invoicing
+    #
+    # The Selling Partner API for Shipment Invoicing helps you programmatically retrieve shipment invoice information in
+    # the Brazil marketplace for a selling partner’s Fulfillment by Amazon (FBA) orders.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipment-invoicing-api-model/shipmentInvoicingV0.json
     class ShipmentInvoicingV0
       def initialize(engine)
         @engine = engine
@@ -7079,6 +7430,15 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Shipping
+    #
+    # Provides programmatic access to Amazon Shipping APIs.
+    #
+    # **Note:** If you are new to the Amazon Shipping API, refer to the latest version of
+    # {https://developer-docs.amazon.com/amazon-shipping/docs/shipping-api-v2-reference Amazon Shipping API (v2)} on the
+    # {https://developer-docs.amazon.com/amazon-shipping/ Amazon Shipping Developer Documentation} site.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shipping.json
     class ShippingV1
       def initialize(engine)
         @engine = engine
@@ -7197,6 +7557,13 @@ module Peddler
       end
     end
 
+    # Amazon Shipping API
+    #
+    # The Amazon Shipping API is designed to support outbound shipping use cases both for orders originating on
+    # Amazon-owned marketplaces as well as external channels/marketplaces. With these APIs, you can request shipping
+    # rates, create shipments, cancel shipments, and track shipments.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
     class ShippingV2
       def initialize(engine)
         @engine = engine
@@ -7540,6 +7907,16 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Solicitations
+    #
+    # With the Solicitations API you can build applications that send non-critical solicitations to buyers. You can get
+    # a list of solicitation types that are available for an order that you specify, then call an operation that sends a
+    # solicitation to the buyer for that order. Buyers cannot respond to solicitations sent by this API, and these
+    # solicitations do not appear in the Messaging section of Seller Central or in the recipient's Message Center. The
+    # Solicitations API returns responses that are formed according to the
+    # {https://tools.ietf.org/html/draft-kelly-json-hal-08 JSON Hypertext Application Language} (HAL) standard.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
     class SolicitationsV1
       def initialize(engine)
         @engine = engine
@@ -7582,6 +7959,11 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Supply Sources
+    #
+    # Manage configurations and capabilities of seller supply sources.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
     class SupplySources20200701
       def initialize(engine)
         @engine = engine
@@ -7675,6 +8057,11 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Support
+    #
+    # The Selling Partner API for Support provides programmatic access to information about Selling Partner support.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/support-api-model/support_2025-02-01.json
     class Support20250201
       def initialize(engine)
         @engine = engine
@@ -7745,6 +8132,17 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Tokens
+    #
+    # The Selling Partner API for Tokens provides a secure way to access a customer's PII (Personally Identifiable
+    # Information). You can call the Tokens API to get a Restricted Data Token (RDT) for one or more restricted
+    # resources that you specify. The RDT authorizes subsequent calls to restricted operations that correspond to the
+    # restricted resources that you specified.
+    #
+    # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide Tokens API
+    # Use Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens-api-model/tokens_2021-03-01.json
     class Tokens20210301
       def initialize(engine)
         @engine = engine
@@ -7767,6 +8165,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for tracking services provided by Amazon.
+    #
+    # The Tracking Selling Partner API allows users to track shipments to and from Amazon-owned storage warehouses,
+    # fulfillment centers, and external warehouses.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tracking-api-model/tracking_2026-01-30.json
     class Tracking20260130
       def initialize(engine)
         @engine = engine
@@ -7802,6 +8206,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Uploads
+    #
+    # The Uploads API lets you upload files that you can programmatically access using other Selling Partner APIs, such
+    # as the A+ Content API and the Messaging API.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/uploads-api-model/uploads_2020-11-01.json
     class Uploads20201101
       def initialize(engine)
         @engine = engine
@@ -7835,6 +8245,12 @@ module Peddler
       end
     end
 
+    # The Selling Partner API for Automotive.
+    #
+    # The Selling Partner API for Automotive provides programmatic access to information needed by selling partners to
+    # provide compatibility information about their listed products.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vehicles-api-model/vehicles_2024-11-01.json
     class Vehicles20241101
       def initialize(engine)
         @engine = engine
@@ -7871,6 +8287,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Direct Fulfillment Inventory Updates
+    #
+    # The Selling Partner API for Direct Fulfillment Inventory Updates provides programmatic access to a direct
+    # fulfillment vendor's inventory updates.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json
     class VendorDirectFulfillmentInventoryV1
       def initialize(engine)
         @engine = engine
@@ -7891,6 +8313,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Direct Fulfillment Orders
+    #
+    # The Selling Partner API for Direct Fulfillment Orders provides programmatic access to a direct fulfillment
+    # vendor's order data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrdersV1.json
     class VendorDirectFulfillmentOrdersV1
       def initialize(engine)
         @engine = engine
@@ -7973,6 +8401,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Direct Fulfillment Orders
+    #
+    # The Selling Partner API for Direct Fulfillment Orders provides programmatic access to a direct fulfillment
+    # vendor's order data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrders_2021-12-28.json
     class VendorDirectFulfillmentOrders20211228
       def initialize(engine)
         @engine = engine
@@ -8055,6 +8489,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Direct Fulfillment Payments
+    #
+    # The Selling Partner API for Direct Fulfillment Payments provides programmatic access to a direct fulfillment
+    # vendor's invoice data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-payments-api-model/vendorDirectFulfillmentPaymentsV1.json
     class VendorDirectFulfillmentPaymentsV1
       def initialize(engine)
         @engine = engine
@@ -8073,6 +8513,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data
+    #
+    # The Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data provides programmatic access to vendor
+    # direct fulfillment sandbox test data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
     class VendorDirectFulfillmentSandboxTestData20211028
       def initialize(engine)
         @engine = engine
@@ -8106,6 +8552,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Direct Fulfillment Shipping
+    #
+    # The Selling Partner API for Direct Fulfillment Shipping provides programmatic access to a direct fulfillment
+    # vendor's shipping data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json
     class VendorDirectFulfillmentShippingV1
       def initialize(engine)
         @engine = engine
@@ -8309,6 +8761,11 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Direct Fulfillment Shipping
+    #
+    # Use the Selling Partner API for Direct Fulfillment Shipping to access a direct fulfillment vendor's shipping data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShipping_2021-12-28.json
     class VendorDirectFulfillmentShipping20211228
       def initialize(engine)
         @engine = engine
@@ -8541,6 +8998,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Direct Fulfillment Transaction Status
+    #
+    # The Selling Partner API for Direct Fulfillment Transaction Status provides programmatic access to a direct
+    # fulfillment vendor's transaction status.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactionsV1.json
     class VendorDirectFulfillmentTransactionsV1
       def initialize(engine)
         @engine = engine
@@ -8560,6 +9023,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Direct Fulfillment Transaction Status
+    #
+    # The Selling Partner API for Direct Fulfillment Transaction Status provides programmatic access to a direct
+    # fulfillment vendor's transaction status.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactions_2021-12-28.json
     class VendorDirectFulfillmentTransactions20211228
       def initialize(engine)
         @engine = engine
@@ -8579,6 +9048,11 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Retail Procurement Payments
+    #
+    # The Selling Partner API for Retail Procurement Payments provides programmatic access to vendors payments data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-invoices-api-model/vendorInvoices.json
     class VendorInvoicesV1
       def initialize(engine)
         @engine = engine
@@ -8597,6 +9071,11 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Retail Procurement Orders
+    #
+    # The Selling Partner API for Retail Procurement Orders provides programmatic access to vendor orders data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-orders-api-model/vendorOrders.json
     class VendorOrdersV1
       def initialize(engine)
         @engine = engine
@@ -8772,6 +9251,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Retail Procurement Shipments
+    #
+    # The Selling Partner API for Retail Procurement Shipments provides programmatic access to retail shipping data for
+    # vendors.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-shipments-api-model/vendorShipments.json
     class VendorShipmentsV1
       def initialize(engine)
         @engine = engine
@@ -8956,6 +9441,12 @@ module Peddler
       end
     end
 
+    # Selling Partner API for Retail Procurement Transaction Status
+    #
+    # The Selling Partner API for Retail Procurement Transaction Status provides programmatic access to status
+    # information on specific asynchronous POST transactions for vendors.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-transaction-status-api-model/vendorTransactionStatus.json
     class VendorTransactionStatusV1
       def initialize(engine)
         @engine = engine
@@ -8976,396 +9467,466 @@ module Peddler
   end
 
   class Client
+    # @return [Peddler::Native::AmazonWarehousingAndDistribution20240509] The Selling Partner API for Amazon Warehousing and Distribution, version 2024-05-09
     def amazon_warehousing_and_distribution_2024_05_09
       Native::AmazonWarehousingAndDistribution20240509.new(@engine)
     end
 
     alias_method :amazon_warehousing_and_distribution, :amazon_warehousing_and_distribution_2024_05_09
 
+    # @return [Peddler::Native::AplusContent20201101] Selling Partner API for A+ Content Management, version 2020-11-01
     def aplus_content_2020_11_01
       Native::AplusContent20201101.new(@engine)
     end
 
     alias_method :aplus_content, :aplus_content_2020_11_01
 
+    # @return [Peddler::Native::ApplicationIntegrations20240401] The Selling Partner API for third party application integrations, version 2024-04-01
     def application_integrations_2024_04_01
       Native::ApplicationIntegrations20240401.new(@engine)
     end
 
     alias_method :application_integrations, :application_integrations_2024_04_01
 
+    # @return [Peddler::Native::ApplicationManagement20231130] Selling Partner API for Application Management, version 2023-11-30
     def application_management_2023_11_30
       Native::ApplicationManagement20231130.new(@engine)
     end
 
     alias_method :application_management, :application_management_2023_11_30
 
+    # @return [Peddler::Native::CatalogItemsV0] Selling Partner API for Catalog Items, version v0
     def catalog_items_v0
       Native::CatalogItemsV0.new(@engine)
     end
 
+    # @return [Peddler::Native::CatalogItems20201201] Selling Partner API for Catalog Items, version 2020-12-01
     def catalog_items_2020_12_01
       Native::CatalogItems20201201.new(@engine)
     end
 
+    # @return [Peddler::Native::CatalogItems20220401] Selling Partner API for Catalog Items, version 2022-04-01
     def catalog_items_2022_04_01
       Native::CatalogItems20220401.new(@engine)
     end
 
     alias_method :catalog_items, :catalog_items_2022_04_01
 
+    # @return [Peddler::Native::CustomerFeedback20240601] The Selling Partner API for CustomerFeedback, version 2024-06-01
     def customer_feedback_2024_06_01
       Native::CustomerFeedback20240601.new(@engine)
     end
 
     alias_method :customer_feedback, :customer_feedback_2024_06_01
 
+    # @return [Peddler::Native::DataKiosk20231115] Selling Partner API for Data Kiosk, version 2023-11-15
     def data_kiosk_2023_11_15
       Native::DataKiosk20231115.new(@engine)
     end
 
     alias_method :data_kiosk, :data_kiosk_2023_11_15
 
+    # @return [Peddler::Native::DeliveryByAmazon20220701] Selling Partner API for Delivery Shipment Invoicing, version 2022-07-01
     def delivery_by_amazon_2022_07_01
       Native::DeliveryByAmazon20220701.new(@engine)
     end
 
     alias_method :delivery_by_amazon, :delivery_by_amazon_2022_07_01
 
+    # @return [Peddler::Native::EasyShip20220323] Selling Partner API for Easy Ship, version 2022-03-23
     def easy_ship_2022_03_23
       Native::EasyShip20220323.new(@engine)
     end
 
     alias_method :easy_ship, :easy_ship_2022_03_23
 
+    # @return [Peddler::Native::ExternalFulfillmentInventory20240911] The Selling Partner API for External Fulfillment Inventory Management, version 2024-09-11
     def external_fulfillment_inventory_2024_09_11
       Native::ExternalFulfillmentInventory20240911.new(@engine)
     end
 
     alias_method :external_fulfillment_inventory, :external_fulfillment_inventory_2024_09_11
 
+    # @return [Peddler::Native::ExternalFulfillmentLocation20260730] The Selling Partner API for Amazon External Fulfillment Location Management, version 2026-07-30
     def external_fulfillment_location_2026_07_30
       Native::ExternalFulfillmentLocation20260730.new(@engine)
     end
 
     alias_method :external_fulfillment_location, :external_fulfillment_location_2026_07_30
 
+    # @return [Peddler::Native::ExternalFulfillmentReturns20240911] The Selling Partner API for Amazon External Fulfillment Return Item Processing, version 2024-09-11
     def external_fulfillment_returns_2024_09_11
       Native::ExternalFulfillmentReturns20240911.new(@engine)
     end
 
     alias_method :external_fulfillment_returns, :external_fulfillment_returns_2024_09_11
 
+    # @return [Peddler::Native::ExternalFulfillmentShipments20240911] The Selling Partner API for Amazon External Fulfillment Shipments Processing, version 2024-09-11
     def external_fulfillment_shipments_2024_09_11
       Native::ExternalFulfillmentShipments20240911.new(@engine)
     end
 
     alias_method :external_fulfillment_shipments, :external_fulfillment_shipments_2024_09_11
 
+    # @return [Peddler::Native::FbaInboundEligibilityV1] Selling Partner API for FBA Inbound Eligibilty, version v1
     def fba_inbound_eligibility_v1
       Native::FbaInboundEligibilityV1.new(@engine)
     end
 
     alias_method :fba_inbound_eligibility, :fba_inbound_eligibility_v1
 
+    # @return [Peddler::Native::FbaInventoryV1] Selling Partner API for FBA Inventory, version v1
     def fba_inventory_v1
       Native::FbaInventoryV1.new(@engine)
     end
 
     alias_method :fba_inventory, :fba_inventory_v1
 
+    # @return [Peddler::Native::Feeds20210630] Selling Partner API for Feeds, version 2021-06-30
     def feeds_2021_06_30
       Native::Feeds20210630.new(@engine)
     end
 
     alias_method :feeds, :feeds_2021_06_30
 
+    # @return [Peddler::Native::FinanceRemittance20260317] The Selling Partner API for Finance Remittance, version 2026-03-17
     def finance_remittance_2026_03_17
       Native::FinanceRemittance20260317.new(@engine)
     end
 
     alias_method :finance_remittance, :finance_remittance_2026_03_17
 
+    # @return [Peddler::Native::FinancesInvoices20260625] The Selling Partner API for Invoices, version 2026-06-25
     def finances_invoices_2026_06_25
       Native::FinancesInvoices20260625.new(@engine)
     end
 
     alias_method :finances_invoices, :finances_invoices_2026_06_25
 
+    # @return [Peddler::Native::FinancesV0] Selling Partner API for Finances, version v0
     def finances_v0
       Native::FinancesV0.new(@engine)
     end
 
+    # @return [Peddler::Native::Finances20240619] The Selling Partner API for Finances, version 2024-06-19
     def finances_2024_06_19
       Native::Finances20240619.new(@engine)
     end
 
     alias_method :finances, :finances_2024_06_19
 
+    # @return [Peddler::Native::Transfers20240601] The Selling Partner API for Transfers, version 2024-06-01
     def transfers_2024_06_01
       Native::Transfers20240601.new(@engine)
     end
 
     alias_method :transfers, :transfers_2024_06_01
 
+    # @return [Peddler::Native::FulfillmentInboundV0] Selling Partner API for Fulfillment Inbound, version v0
     def fulfillment_inbound_v0
       Native::FulfillmentInboundV0.new(@engine)
     end
 
+    # @return [Peddler::Native::FulfillmentInbound20240320] The Selling Partner API for FBA inbound operations, version 2024-03-20
     def fulfillment_inbound_2024_03_20
       Native::FulfillmentInbound20240320.new(@engine)
     end
 
     alias_method :fulfillment_inbound, :fulfillment_inbound_2024_03_20
 
+    # @return [Peddler::Native::FulfillmentOutbound20200701] Selling Partner APIs for Fulfillment Outbound, version 2020-07-01
     def fulfillment_outbound_2020_07_01
       Native::FulfillmentOutbound20200701.new(@engine)
     end
 
+    # @return [Peddler::Native::FulfillmentOutbound20260704] The Selling Partner API for Fulfillment Outbound, version 2026-07-04
     def fulfillment_outbound_2026_07_04
       Native::FulfillmentOutbound20260704.new(@engine)
     end
 
     alias_method :fulfillment_outbound, :fulfillment_outbound_2026_07_04
 
+    # @return [Peddler::Native::Invoices20240619] The Selling Partner API for Invoices, version 2024-06-19
     def invoices_2024_06_19
       Native::Invoices20240619.new(@engine)
     end
 
     alias_method :invoices, :invoices_2024_06_19
 
+    # @return [Peddler::Native::ListingsItems20200901] Selling Partner API for Listings Items, version 2020-09-01
     def listings_items_2020_09_01
       Native::ListingsItems20200901.new(@engine)
     end
 
+    # @return [Peddler::Native::ListingsItems20210801] Selling Partner API for Listings Items, version 2021-08-01
     def listings_items_2021_08_01
       Native::ListingsItems20210801.new(@engine)
     end
 
     alias_method :listings_items, :listings_items_2021_08_01
 
+    # @return [Peddler::Native::ListingsRestrictions20210801] Selling Partner API for Listings Restrictions, version 2021-08-01
     def listings_restrictions_2021_08_01
       Native::ListingsRestrictions20210801.new(@engine)
     end
 
     alias_method :listings_restrictions, :listings_restrictions_2021_08_01
 
+    # @return [Peddler::Native::MerchantFulfillmentV0] Selling Partner API for Merchant Fulfillment, version v0
     def merchant_fulfillment_v0
       Native::MerchantFulfillmentV0.new(@engine)
     end
 
     alias_method :merchant_fulfillment, :merchant_fulfillment_v0
 
+    # @return [Peddler::Native::MessagingV1] Selling Partner API for Messaging, version v1
     def messaging_v1
       Native::MessagingV1.new(@engine)
     end
 
     alias_method :messaging, :messaging_v1
 
+    # @return [Peddler::Native::NotificationsV1] Selling Partner API for Notifications, version v1
     def notifications_v1
       Native::NotificationsV1.new(@engine)
     end
 
     alias_method :notifications, :notifications_v1
 
+    # @return [Peddler::Native::OrdersV0] Selling Partner API for Orders, version v0
     def orders_v0
       Native::OrdersV0.new(@engine)
     end
 
+    # @return [Peddler::Native::Orders20260101] The Selling Partner API for Orders, version 2026-01-01
     def orders_2026_01_01
       Native::Orders20260101.new(@engine)
     end
 
     alias_method :orders, :orders_2026_01_01
 
+    # @return [Peddler::Native::ProductFeesV0] Selling Partner API for Product Fees, version v0
     def product_fees_v0
       Native::ProductFeesV0.new(@engine)
     end
 
     alias_method :product_fees, :product_fees_v0
 
+    # @return [Peddler::Native::ProductPricingV0] Selling Partner API for Pricing, version v0
     def product_pricing_v0
       Native::ProductPricingV0.new(@engine)
     end
 
+    # @return [Peddler::Native::ProductPricing20220501] Selling Partner API for Pricing, version 2022-05-01
     def product_pricing_2022_05_01
       Native::ProductPricing20220501.new(@engine)
     end
 
     alias_method :product_pricing, :product_pricing_2022_05_01
 
+    # @return [Peddler::Native::ProductTypeDefinitions20200901] Selling Partner API for Product Type Definitions, version 2020-09-01
     def product_type_definitions_2020_09_01
       Native::ProductTypeDefinitions20200901.new(@engine)
     end
 
     alias_method :product_type_definitions, :product_type_definitions_2020_09_01
 
+    # @return [Peddler::Native::Promotions20251201] The Selling Partner API for Promotions, version 2025-12-01
     def promotions_2025_12_01
       Native::Promotions20251201.new(@engine)
     end
 
     alias_method :promotions, :promotions_2025_12_01
 
+    # @return [Peddler::Native::Replenishment20221107] Selling Partner API for Replenishment, version 2022-11-07
     def replenishment_2022_11_07
       Native::Replenishment20221107.new(@engine)
     end
 
     alias_method :replenishment, :replenishment_2022_11_07
 
+    # @return [Peddler::Native::Reports20210630] Selling Partner API for Reports, version 2021-06-30
     def reports_2021_06_30
       Native::Reports20210630.new(@engine)
     end
 
     alias_method :reports, :reports_2021_06_30
 
+    # @return [Peddler::Native::SalesV1] Selling Partner API for Sales, version v1
     def sales_v1
       Native::SalesV1.new(@engine)
     end
 
     alias_method :sales, :sales_v1
 
+    # @return [Peddler::Native::SellerWallet20240301] The Selling Partner API for Amazon Seller Wallet Open Banking API, version 2024-03-01
     def seller_wallet_2024_03_01
       Native::SellerWallet20240301.new(@engine)
     end
 
     alias_method :seller_wallet, :seller_wallet_2024_03_01
 
+    # @return [Peddler::Native::SellersV1] The Selling Partner API for Sellers, version v1
     def sellers_v1
       Native::SellersV1.new(@engine)
     end
 
     alias_method :sellers, :sellers_v1
 
+    # @return [Peddler::Native::ServicesV1] Selling Partner API for Services, version v1
     def services_v1
       Native::ServicesV1.new(@engine)
     end
 
     alias_method :services, :services_v1
 
+    # @return [Peddler::Native::ShipmentInvoicingV0] Selling Partner API for Shipment Invoicing, version v0
     def shipment_invoicing_v0
       Native::ShipmentInvoicingV0.new(@engine)
     end
 
     alias_method :shipment_invoicing, :shipment_invoicing_v0
 
+    # @return [Peddler::Native::ShippingV1] Selling Partner API for Shipping, version v1
     def shipping_v1
       Native::ShippingV1.new(@engine)
     end
 
+    # @return [Peddler::Native::ShippingV2] Amazon Shipping API, version v2
     def shipping_v2
       Native::ShippingV2.new(@engine)
     end
 
     alias_method :shipping, :shipping_v2
 
+    # @return [Peddler::Native::SolicitationsV1] Selling Partner API for Solicitations, version v1
     def solicitations_v1
       Native::SolicitationsV1.new(@engine)
     end
 
     alias_method :solicitations, :solicitations_v1
 
+    # @return [Peddler::Native::SupplySources20200701] Selling Partner API for Supply Sources, version 2020-07-01
     def supply_sources_2020_07_01
       Native::SupplySources20200701.new(@engine)
     end
 
     alias_method :supply_sources, :supply_sources_2020_07_01
 
+    # @return [Peddler::Native::Support20250201] The Selling Partner API for Support, version 2025-02-01
     def support_2025_02_01
       Native::Support20250201.new(@engine)
     end
 
     alias_method :support, :support_2025_02_01
 
+    # @return [Peddler::Native::Tokens20210301] Selling Partner API for Tokens, version 2021-03-01
     def tokens_2021_03_01
       Native::Tokens20210301.new(@engine)
     end
 
     alias_method :tokens, :tokens_2021_03_01
 
+    # @return [Peddler::Native::Tracking20260130] The Selling Partner API for tracking services provided by Amazon, version 2026-01-30
     def tracking_2026_01_30
       Native::Tracking20260130.new(@engine)
     end
 
     alias_method :tracking, :tracking_2026_01_30
 
+    # @return [Peddler::Native::Uploads20201101] Selling Partner API for Uploads, version 2020-11-01
     def uploads_2020_11_01
       Native::Uploads20201101.new(@engine)
     end
 
     alias_method :uploads, :uploads_2020_11_01
 
+    # @return [Peddler::Native::Vehicles20241101] The Selling Partner API for Automotive, version 2024-11-01
     def vehicles_2024_11_01
       Native::Vehicles20241101.new(@engine)
     end
 
     alias_method :vehicles, :vehicles_2024_11_01
 
+    # @return [Peddler::Native::VendorDirectFulfillmentInventoryV1] Selling Partner API for Direct Fulfillment Inventory Updates, version v1
     def vendor_direct_fulfillment_inventory_v1
       Native::VendorDirectFulfillmentInventoryV1.new(@engine)
     end
 
     alias_method :vendor_direct_fulfillment_inventory, :vendor_direct_fulfillment_inventory_v1
 
+    # @return [Peddler::Native::VendorDirectFulfillmentOrdersV1] Selling Partner API for Direct Fulfillment Orders, version v1
     def vendor_direct_fulfillment_orders_v1
       Native::VendorDirectFulfillmentOrdersV1.new(@engine)
     end
 
+    # @return [Peddler::Native::VendorDirectFulfillmentOrders20211228] Selling Partner API for Direct Fulfillment Orders, version 2021-12-28
     def vendor_direct_fulfillment_orders_2021_12_28
       Native::VendorDirectFulfillmentOrders20211228.new(@engine)
     end
 
     alias_method :vendor_direct_fulfillment_orders, :vendor_direct_fulfillment_orders_2021_12_28
 
+    # @return [Peddler::Native::VendorDirectFulfillmentPaymentsV1] Selling Partner API for Direct Fulfillment Payments, version v1
     def vendor_direct_fulfillment_payments_v1
       Native::VendorDirectFulfillmentPaymentsV1.new(@engine)
     end
 
     alias_method :vendor_direct_fulfillment_payments, :vendor_direct_fulfillment_payments_v1
 
+    # @return [Peddler::Native::VendorDirectFulfillmentSandboxTestData20211028] Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data, version 2021-10-28
     def vendor_direct_fulfillment_sandbox_test_data_2021_10_28
       Native::VendorDirectFulfillmentSandboxTestData20211028.new(@engine)
     end
 
     alias_method :vendor_direct_fulfillment_sandbox_test_data, :vendor_direct_fulfillment_sandbox_test_data_2021_10_28
 
+    # @return [Peddler::Native::VendorDirectFulfillmentShippingV1] Selling Partner API for Direct Fulfillment Shipping, version v1
     def vendor_direct_fulfillment_shipping_v1
       Native::VendorDirectFulfillmentShippingV1.new(@engine)
     end
 
+    # @return [Peddler::Native::VendorDirectFulfillmentShipping20211228] Selling Partner API for Direct Fulfillment Shipping, version 2021-12-28
     def vendor_direct_fulfillment_shipping_2021_12_28
       Native::VendorDirectFulfillmentShipping20211228.new(@engine)
     end
 
     alias_method :vendor_direct_fulfillment_shipping, :vendor_direct_fulfillment_shipping_2021_12_28
 
+    # @return [Peddler::Native::VendorDirectFulfillmentTransactionsV1] Selling Partner API for Direct Fulfillment Transaction Status, version v1
     def vendor_direct_fulfillment_transactions_v1
       Native::VendorDirectFulfillmentTransactionsV1.new(@engine)
     end
 
+    # @return [Peddler::Native::VendorDirectFulfillmentTransactions20211228] Selling Partner API for Direct Fulfillment Transaction Status, version 2021-12-28
     def vendor_direct_fulfillment_transactions_2021_12_28
       Native::VendorDirectFulfillmentTransactions20211228.new(@engine)
     end
 
     alias_method :vendor_direct_fulfillment_transactions, :vendor_direct_fulfillment_transactions_2021_12_28
 
+    # @return [Peddler::Native::VendorInvoicesV1] Selling Partner API for Retail Procurement Payments, version v1
     def vendor_invoices_v1
       Native::VendorInvoicesV1.new(@engine)
     end
 
     alias_method :vendor_invoices, :vendor_invoices_v1
 
+    # @return [Peddler::Native::VendorOrdersV1] Selling Partner API for Retail Procurement Orders, version v1
     def vendor_orders_v1
       Native::VendorOrdersV1.new(@engine)
     end
 
     alias_method :vendor_orders, :vendor_orders_v1
 
+    # @return [Peddler::Native::VendorShipmentsV1] Selling Partner API for Retail Procurement Shipments, version v1
     def vendor_shipments_v1
       Native::VendorShipmentsV1.new(@engine)
     end
 
     alias_method :vendor_shipments, :vendor_shipments_v1
 
+    # @return [Peddler::Native::VendorTransactionStatusV1] Selling Partner API for Retail Procurement Transaction Status, version v1
     def vendor_transaction_status_v1
       Native::VendorTransactionStatusV1.new(@engine)
     end

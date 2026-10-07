@@ -21,7 +21,7 @@ fn spec(operation: &str) -> Value {
     } else {
         "Updates part of a listing. Refer to the [Listings Items guide](doc:listings-items-api-v2021-08-01-use-case-guide).\n**Note:** Only the fields that you send change.\n\n**Usage Plan:**\n\n| Rate | Burst |\n| 5 | 10 |"
     };
-    let mut spec = json!({"swagger":"2.0","info":{"title":"Synthetic","version":"1"},"produces":["application/json"],"consumes":["application/json"],"paths":{if catalog {"/items/{asin}"} else {"/items/{sellerId}/{sku}"}:{if catalog {"get"} else {"patch"}:{"operationId":operation,"parameters":parameters,"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}}}},"definitions":{"Item":{"type":"object","required":["sku"],"properties":{"sku":{"type":"string"}}},"ListingsItemPatchRequest":{"type":"object","required":["patches"],"properties":{"patches":{"type":"array","items":{"type":"string"}}}}}});
+    let mut spec = json!({"swagger":"2.0","info":{"title":"Synthetic API.","version":"1","description":"Reads and updates listings. See the <a href=\"https://example.com/guide\">guide</a>."},"produces":["application/json"],"consumes":["application/json"],"paths":{if catalog {"/items/{asin}"} else {"/items/{sellerId}/{sku}"}:{if catalog {"get"} else {"patch"}:{"operationId":operation,"parameters":parameters,"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}}}},"definitions":{"Item":{"type":"object","required":["sku"],"properties":{"sku":{"type":"string"}}},"ListingsItemPatchRequest":{"type":"object","required":["patches"],"properties":{"patches":{"type":"array","items":{"type":"string"}}}}}});
     for (_, methods) in spec["paths"].as_object_mut().unwrap() {
         for (_, operation) in methods.as_object_mut().unwrap() {
             operation["description"] = json!(description);
@@ -138,6 +138,19 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "          sku: Arguments.segment(\"sku\", sku, last: true),\n",
         "          body: Arguments.body(\"patch_request\", patch_request, required: true),\n",
         "        }\n",
+    )));
+    // Its class has v5's comment, and the accessor of `Client` names the API and links it.
+    assert!(ruby.contains(concat!(
+        "    # Synthetic API.\n",
+        "    #\n",
+        "    # Reads and updates listings. See the {https://example.com/guide guide}.\n",
+        "    #\n",
+        "    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json\n",
+        "    class ListingsItems20210801\n",
+    )));
+    assert!(ruby.contains(concat!(
+        "    # @return [Peddler::Native::ListingsItems20210801] Synthetic API, version 1\n",
+        "    def listings_items_2021_08_01\n",
     )));
     let rbs = &rendered[Path::new("sig/peddler/native/apis.rbs")];
     assert!(rbs.contains(
