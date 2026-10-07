@@ -66,6 +66,7 @@ module Peddler
   end
 end
 
+require_relative "arguments"
 require_relative "pagination"
 require_relative "apis"
 require_relative "documents"

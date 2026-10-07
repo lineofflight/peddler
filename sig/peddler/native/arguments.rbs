@@ -1,0 +1,18 @@
+module Peddler
+  module Native
+    module Arguments
+      INTEGER: Regexp
+      DECIMAL: Regexp
+      NOT_JSON: Object
+
+      def self.string: (String name, untyped value, ?required: bool) -> String?
+      def self.array: (String name, untyped value, ?required: bool) -> Array[String]?
+      def self.integer: (String name, untyped value, ?required: bool) -> Integer?
+      def self.number: (String name, untyped value, ?required: bool) -> (Integer | Float)?
+      def self.boolean: (String name, untyped value, ?required: bool) -> bool?
+      def self.body: (String name, untyped value, ?required: bool) -> untyped
+      def self.missing: (String name, bool required) -> nil
+      def self.text: (untyped value) -> String?
+    end
+  end
+end

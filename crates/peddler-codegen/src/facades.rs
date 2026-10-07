@@ -403,6 +403,19 @@ fn ruby_type(p: &Parameter) -> String {
         .into()
     }
 }
+/// The method of `Peddler::Native::Arguments` that an argument goes through.
+fn ruby_coercion(p: &Parameter) -> &'static str {
+    if p.location == "body" {
+        return "body";
+    }
+    match p.schema["type"].as_str() {
+        Some("array") => "array",
+        Some("boolean") => "boolean",
+        Some("integer") => "integer",
+        Some("number") => "number",
+        _ => "string",
+    }
+}
 fn ruby_default(value: &Value) -> String {
     match value {
         // v5 left a default of false out, so Amazon's own default applied.
@@ -472,16 +485,24 @@ pub(crate) fn ruby(
                 })
                 .collect::<Vec<_>>()
                 .join(", ");
+            // The core is strict about types. `Arguments` takes the forms v5 took.
             let args = op
                 .parameters
                 .iter()
-                .map(|p| format!("{}: {}", p.name, ruby_name(p)))
-                .collect::<Vec<_>>()
-                .join(", ");
+                .map(|p| {
+                    let name = ruby_name(p);
+                    let required = if p.required { ", required: true" } else { "" };
+                    format!(
+                        "          {}: Arguments.{}({name:?}, {name}{required}),\n",
+                        p.name,
+                        ruby_coercion(p)
+                    )
+                })
+                .collect::<String>();
             let arguments = if args.is_empty() {
                 "{}".into()
             } else {
-                format!("{{ {args} }}")
+                format!("{{\n{args}        }}")
             };
             let annotation = if args.is_empty() {
                 "        # @type var arguments: Hash[Symbol, untyped]\n"

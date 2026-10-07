@@ -20,10 +20,10 @@ class OperationsTest < NativeTest
   end
 
   # An empty argument is refused only where it ends the path, since it would reach the parent collection.
-  def test_named_methods_reject_bad_path_segments_and_wrong_types
+  def test_named_methods_reject_dot_and_empty_last_path_segments
     instance = client("http://127.0.0.1:1")
-    [[".", ["UK"]], ["..", ["UK"]], ["", ["UK"]], ["X", [1]], ["X", "private"]].each do |asin, marketplace_ids|
-      error = assert_raises(ArgumentError) { instance.catalog_items_2022_04_01.get_catalog_item(asin, marketplace_ids) }
+    [".", "..", ""].each do |asin|
+      error = assert_raises(ArgumentError) { instance.catalog_items_2022_04_01.get_catalog_item(asin, ["UK"]) }
 
       assert_equal("invalid request", error.message)
     end
