@@ -10,6 +10,8 @@ use peddler::{
 use std::time::Duration;
 
 const INTERVAL: &str = "interval must be a positive number of seconds";
+const CONTENT_LENGTH: &str = "content_length must not be more than max_bytes";
+const CONTENT_TYPE: &str = "content_type must be a header value, without control characters";
 
 fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
     let message = error.to_string();
@@ -101,12 +103,19 @@ fn start_feed_upload(
         headers: Vec::new(),
         content_length,
     };
+    if content_length.is_some_and(|length| length > options.transfer.max_bytes) {
+        return Err(argument_error(ruby, CONTENT_LENGTH));
+    }
     let workflows = client.workflows();
     let create = options.clone();
     let target = gvl::wait(ruby, "WorkflowError", shared, async move {
         workflows.create_feed_document(&content_type, &create).await
     })?
-    .map_err(|error| workflow_error(ruby, error))?;
+    .map_err(|error| match error {
+        // The options were checked, which leaves the content type as a header.
+        WorkflowError::InvalidConfig => argument_error(ruby, CONTENT_TYPE),
+        error => workflow_error(ruby, error),
+    })?;
     let id = target.document_id.clone();
     Upload::spawn(shared, Some(id), move |source| async move {
         match target.upload(source, options).await {

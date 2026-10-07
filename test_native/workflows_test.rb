@@ -421,7 +421,6 @@ class WorkflowsTest < NativeTest
   def test_invalid_arguments_are_rejected_before_creating_a_document
     instance = client("http://127.0.0.1:1")
 
-    assert_raises(ArgumentError) { instance.create_and_upload_feed_document("x", content_type: "bad\r\ntype") }
     upload = ->(source = "x", **options) { instance.create_and_upload_feed_document(source, **{ content_type: "text/xml" }.merge(options)) }
 
     {
@@ -430,6 +429,8 @@ class WorkflowsTest < NativeTest
       -> { upload.call(content_type: 1) } => "content_type must be a UTF-8 String that is not empty",
       -> { upload.call(Object.new) } => "source must be a String or respond to read",
       -> { upload.call(content_length: -1) } => "content_length must be an Integer from 0 that fits in 64 bits",
+      -> { upload.call(content_length: 6, max_bytes: 5) } => "content_length must not be more than max_bytes",
+      -> { upload.call(content_type: "bad\r\ntype") } => "content_type must be a header value, without control characters",
       -> { upload.call(bogus: 1) } => "unknown option: the options are timeout, compression, max_bytes and max_record_bytes",
     }.each do |call, message|
       assert_equal(message, assert_raises(ArgumentError, &call).message)
