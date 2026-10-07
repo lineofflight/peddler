@@ -211,7 +211,7 @@ let address = orders_v0::get_order_address(&restricted, params).await?;
 
 ## Retries and timeouts
 
-A client makes 1 attempt and allows 30 seconds for a call, unless `ClientConfig` says otherwise.
+A client makes 1 attempt and allows 30 seconds for a call, unless `ClientConfig` says otherwise. A timeout of zero, or one too long to set a deadline by, is refused with `Error::InvalidRequest` when the client is built.
 
 With `RetryPolicy { max_retries }`, the client retries a GET, a HEAD or an OPTIONS that Amazon answers with 429, 500, 502, 503 or 504. The generated operations use GET of these. It never retries another method, since that may change data twice, nor a failed connection. `max_retries` is at most 10.
 
@@ -326,9 +326,9 @@ if let Some(document_id) = report.report_document_id {
 }
 ```
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`.
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: 1 poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`.
 
-`download_report_document`, `download_feed_document` and `download_query_document` take a document ID and return a `Download`. They decompress a document whose metadata says `GZIP`.
+`download_report_document`, `download_feed_document` and `download_query_document` take a document ID and return a `Download`. They decompress a document whose metadata says `GZIP`. The timeout of `TransferOptions` covers the lookup and the transfer. A lookup that runs past it, or past the client's timeout, is `WorkflowError::Request(Error::Timeout)`. A transfer that does is `WorkflowError::Document(documents::Error::Timeout)`, or `documents::Error::Timeout` from the stream once the download has started.
 
 `create_and_upload_feed_document` creates a feed document, uploads your content to it and returns the feed document ID. It doesn't create the feed. Pass the ID to `create_feed`.
 
@@ -351,7 +351,7 @@ let body = serde_json::json!({
 let feed = feeds::create_feed(&client, feeds::CreateFeedParams::new(body)).await?;
 ```
 
-A workflow never retries a request that changes data. A metadata request that Amazon answers with an error is `WorkflowError::Http`, and `error.response()` returns the response. A failed upload is `WorkflowError::Upload`, which keeps the `document_id`.
+A workflow never retries a request that changes data. A metadata request that Amazon answers with an error is `WorkflowError::Http`, and `error.response()` returns the response. A failed upload is `WorkflowError::Upload`, which keeps the `document_id`, and holds `documents::Error::Timeout` when the upload ran out of time.
 
 ## Typed models
 
@@ -381,6 +381,8 @@ Numbers are `serde_json::Number` with arbitrary precision, so a decimal amount k
 | `workflows::WorkflowError` | a wait or a document lookup that failed |
 
 No error holds a token, a signed URL or the contents of a document, in its message or in `Debug`. `ApiError`, `documents::Rejection` and `WorkflowError::Http` hold the response Amazon sent.
+
+The error enums, `documents::Compression` and `workflows::DocumentKind` are `#[non_exhaustive]`: a `match` on one needs a `_` arm, and a new variant is not a breaking change.
 
 ## Generated code
 
