@@ -43,6 +43,20 @@ class OperationsTest < NativeTest
     assert_equal("event_group_id must not be . or ..", error.message)
   end
 
+  # v5 took rate_limit: on every operation. v6 paces nothing, and says so before any request.
+  def test_rate_limit_is_refused_as_an_argument
+    instance = client("http://127.0.0.1:1")
+
+    {
+      -> { instance.orders_v0.get_orders(["UK"], rate_limit: 0.5) } => "unknown keyword: :rate_limit",
+      -> { instance.orders_v0.get_orders_pages(["UK"], rate_limit: 0.5) } => "unknown keyword: :rate_limit",
+      # A method without keywords takes it as one argument too many.
+      -> { instance.sellers_v1.get_marketplace_participations(rate_limit: 0.5) } => "wrong number of arguments (given 1, expected 0)",
+    }.each do |call, message|
+      assert_equal(message, assert_raises(ArgumentError, &call).message)
+    end
+  end
+
   # The shared cases name arguments as the Rust core does. A method takes the required ones in the spec's order
   # and a body under the name the spec gives it.
   def call(api, key, arguments)

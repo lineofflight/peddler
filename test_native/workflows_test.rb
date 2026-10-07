@@ -345,6 +345,29 @@ class WorkflowsTest < NativeTest
     end
   end
 
+  def test_the_response_of_a_wait_parses_to_the_typed_model_of_its_operation
+    handler = lambda do |path, _|
+      case path
+      when %r{\A/reports/} then [200, report("DONE")]
+      when %r{\A/feeds/} then [200, JSON.generate(feedId: "f1", feedType: "T", processingStatus: "DONE", createdTime: "2024-01-01T00:00:00Z", resultFeedDocumentId: "rf")]
+      else [200, JSON.generate(queryId: "q1", query: "x", processingStatus: "DONE", createdTime: "2024-01-01T00:00:00Z", dataDocumentId: "dd")]
+      end
+    end
+    route_server(handler) do |url, _|
+      instance = client(url)
+      report = instance.reports.wait_for_report("r1").parse
+      feed = instance.feeds.wait_for_feed("f1").parse
+      query = instance.data_kiosk.wait_for_query("q1").parse
+
+      assert_instance_of(Peddler::APIs::Reports20210630::Report, report)
+      assert_equal(["DONE", "d9", Time.utc(2024, 1, 1)], [report.processing_status, report.report_document_id, report.created_time])
+      assert_instance_of(Peddler::APIs::Feeds20210630::Feed, feed)
+      assert_equal(["DONE", "rf"], [feed.processing_status, feed.result_feed_document_id])
+      assert_instance_of(Peddler::APIs::DataKiosk20231115::Query, query)
+      assert_equal(["DONE", "dd"], [query.processing_status, query.data_document_id])
+    end
+  end
+
   def test_wait_rejects_unknown_status_stops_on_http_errors_and_malformed_json
     route_server(->(*) { [200, report("SOMETHING_NEW")] }) do |url, requests|
       error = assert_raises(Peddler::WorkflowError) { client(url).reports.wait_for_report("r1", interval: 0.01, timeout: 2) }
