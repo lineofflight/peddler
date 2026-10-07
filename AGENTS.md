@@ -33,7 +33,7 @@ Run above in background, some commands may takes minutes.
 
 ## Key Concepts
 
-- One `Peddler::Client` reaches every API: `client.orders_v0.get_orders(...)`. The API methods and operations are generated into `lib/peddler/native/apis.rb`
+- A single `Peddler::Client` reaches every API: `client.orders_v0.get_orders(...)`. The API methods and operations are generated into `lib/peddler/native/apis.rb`
 - Types nested by API version (e.g., `Peddler::APIs::CatalogItems20220401::Item`)
 - Consumer usage (auth, responses, errors, sandbox): see [README](README.md#usage)
 
