@@ -244,9 +244,12 @@ class WorkflowsTest < NativeTest
 
           assert_equal("fd/1", instance.feeds.create_and_upload_feed_document(source, content_type: "text/xml"))
         end
+        # upload_feed_document takes no content_length:, so a source with a size and no position needs this.
+        instance.feeds.upload_feed_document("#{url}/signed", sized_source("<x>é</x>"), "text/xml")
+        instance.feeds.create_and_upload_feed_document(sized_source("<x>é</x>"), content_type: "text/xml")
         puts = requests.call.select { |_path, _headers, _body, verb| verb == "PUT" }
 
-        assert_equal([["9", nil, "<x>é</x>".b]] * 4, puts.map { |_path, headers, body| [headers["content-length"], headers["transfer-encoding"], body] })
+        assert_equal([["9", nil, "<x>é</x>".b]] * 6, puts.map { |_path, headers, body| [headers["content-length"], headers["transfer-encoding"], body] })
       end
     end
   end

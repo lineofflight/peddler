@@ -299,7 +299,7 @@ A test that needs no HTTP can stub the method it calls and return a `Peddler::Re
 - `parse`, `to_h` and `dig` on a response, and the typed models under `Peddler::APIs`.
 - `status.success?`, `code`, `headers["Name"]`, `headers.include?("Name")`, `charset` and `to_s` on a response. A response is still its text where a String is taken, as in `JSON.parse(response)`.
 - Raising `Peddler::Error` on 4xx and 5xx, with `message` and `response`.
-- The 4 document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`. `upload_feed_document` still sends the length of a String, a File or a StringIO. An ID of `"."` or `".."`, or an empty one, raises `ArgumentError` that names the argument, before any request.
+- The 4 document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`. `upload_feed_document` still sends the length of a String, and of a source that answers `size`, such as a File or a StringIO. An ID of `"."` or `".."`, or an empty one, raises `ArgumentError` that names the argument, before any request.
 - `Peddler::Marketplace`, `Peddler::Endpoint` and `Peddler::Money`.
 - The typed parsers under `Peddler::Notifications`, `Peddler::Reports`, `Peddler::Feeds` and `Peddler::DataKiosk`.
 

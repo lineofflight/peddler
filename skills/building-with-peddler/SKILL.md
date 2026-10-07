@@ -149,7 +149,7 @@ end
 
 A wait that runs past its `timeout:` raises `Peddler::WorkflowTimeoutError`: reschedule the job and wait again. A download that runs past its own raises `Peddler::DocumentTimeoutError`. A single request that takes too long, such as 1 poll or looking a document up, raises `Peddler::TimeoutError`.
 
-To submit a feed, upload its content with `client.feeds.create_and_upload_feed_document(io, content_type:)`, pass the returned ID to `client.feeds.create_feed` as `inputFeedDocumentId`, then `client.feeds.wait_for_feed(feed_id)`. A String, a File and a StringIO are sent with their length. For another source, pass `content_length:`.
+To submit a feed, upload its content with `client.feeds.create_and_upload_feed_document(io, content_type:)`, pass the returned ID to `client.feeds.create_feed` as `inputFeedDocumentId`, then `client.feeds.wait_for_feed(feed_id)`. A String, and a source that answers `size`, such as a File or a StringIO, are sent with their length. For another source, pass `content_length:`.
 
 Prefer reports or Data Kiosk over deep endpoint pagination for historical or bulk data.
 

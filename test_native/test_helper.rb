@@ -4,6 +4,7 @@ require "minitest/autorun"
 require "minitest/mock"
 require "securerandom"
 require "socket"
+require "stringio"
 require "timeout"
 require "json"
 require "uri"
@@ -129,6 +130,15 @@ class NativeTest < Minitest::Test
     end
     connection.read(2)
     body
+  end
+
+  # An upload source that answers read and size and nothing else, as an uploaded file of a web framework does
+  def sized_source(content)
+    io = StringIO.new(content)
+    source = Object.new
+    source.define_singleton_method(:read) { |length| io.read(length) }
+    source.define_singleton_method(:size) { content.bytesize }
+    source
   end
 
   # How the gem identifies itself to the Selling Partner API, in the form v5 sent

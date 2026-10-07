@@ -268,7 +268,7 @@ class DocumentsTest < NativeTest
       seen << [headers["content-length"], headers["transfer-encoding"], body]
       respond(socket)
     end
-    serve(count: 4, handler: handler) do |url|
+    serve(count: 5, handler: handler) do |url|
       instance = client(url)
       Tempfile.create("upload") do |file|
         file.write("0123456789")
@@ -290,6 +290,10 @@ class DocumentsTest < NativeTest
       wrong = StringIO.new("0123456789")
       wrong.define_singleton_method(:size) { 99 }
       instance.upload_document(url, wrong, content_type: "text/plain", content_length: 10)
+
+      assert_equal(["10", nil, "0123456789"], seen.pop)
+      # A source that answers its size and no position is sent whole, as v5 sent it.
+      instance.upload_document(url, sized_source("0123456789"), content_type: "text/plain")
 
       assert_equal(["10", nil, "0123456789"], seen.pop)
     end

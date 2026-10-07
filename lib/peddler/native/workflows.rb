@@ -159,8 +159,8 @@ module Peddler
 
       # Creates a feed document and uploads the source to it. Neither request is retried and no feed is created.
       #
-      # A String, a File and a StringIO are sent with their length. Give `content_length:` for another source
-      # whose length you know. Without one the body goes out chunked.
+      # A String, and a source that answers `size`, as a File and a StringIO do, are sent with their length. Give
+      # `content_length:` for another source whose length you know. Without one the body goes out chunked.
       #
       # @example
       #   feed_document_id = File.open("feed.json", "rb") do |file|

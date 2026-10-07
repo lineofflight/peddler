@@ -79,14 +79,15 @@ module Peddler
           raise ArgumentError, "content_length must be an Integer from 0 that fits in 64 bits"
         end
 
-        # The declared length, a String's own, or what is left of a source that answers its size and position, as a
-        # File and a StringIO do and v5 sent. A body without one goes out chunked.
+        # The declared length, a String's own, or the size a source answers, as v5 sent it, less its position when
+        # it answers one, as a File and a StringIO do. A body without a length goes out chunked.
         def length(source, content_length)
           return content_length if content_length
           return source.bytesize if source.is_a?(String)
-          return unless source.respond_to?(:size) && source.respond_to?(:pos)
+          return unless source.respond_to?(:size)
 
-          left = source.size - source.pos
+          left = source.size
+          left -= source.pos if source.respond_to?(:pos)
           left if left.is_a?(Integer) && left.between?(0, UINT64_MAX)
         rescue StandardError
           # A source that can't tell, as a File on a pipe can't say where it is
@@ -275,8 +276,9 @@ module Peddler
 
     # Uploads a String or a `read(length)` source to a signed URL
     #
-    # The request carries no access token. A String, a File and a StringIO are sent with their length. Give
-    # `content_length:` for another source whose length you know. Without one the body goes out chunked.
+    # The request carries no access token. A String, and a source that answers `size`, as a File and a StringIO
+    # do, are sent with their length. Give `content_length:` for another source whose length you know. Without one
+    # the body goes out chunked.
     #
     # @example
     #   File.open("feed.json", "rb") do |file|

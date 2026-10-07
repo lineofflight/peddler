@@ -502,7 +502,7 @@ report = Peddler::Feeds::ListingsFeedProcessingReportSchema.parse(result)
 report.summary.messages_accepted # => 2
 ```
 
-An upload declares its length when it can tell it: a String, a File and a StringIO are sent with `Content-Length`. For another source, pass `content_length:` with the number of bytes it holds. Without one, the body is sent chunked. This holds for `upload_feed_document` and `upload_document` too.
+An upload declares its length when it can tell it: a String, and a source that answers `size`, such as a File or a StringIO, are sent with `Content-Length`. For another source, pass `content_length:` with the number of bytes it holds. Without one, the body is sent chunked. This holds for `upload_feed_document` and `upload_document` too.
 
 If creating the feed document takes longer than the upload's `timeout:` (30 seconds), it raises `Peddler::TimeoutError`. If the upload does, it raises `Peddler::DocumentTimeoutError`.
 
