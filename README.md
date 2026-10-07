@@ -165,7 +165,7 @@ response = client.orders_v0.get_orders(
 )
 ```
 
-Where a marketplace ID goes, a `Peddler::Marketplace` works too: `Peddler::Marketplace.find("UK")` in place of its ID.
+An operation takes a `Peddler::Marketplace` where a marketplace ID goes: `Peddler::Marketplace.find("UK")` in place of its ID.
 
 A request body is a Hash with the field names Amazon documents. A String that holds JSON also works.
 
