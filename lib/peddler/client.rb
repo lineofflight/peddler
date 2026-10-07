@@ -82,6 +82,20 @@ module Peddler
       @sandbox
     end
 
+    # Calls an endpoint Peddler has no method for yet
+    #
+    # The request carries the client's access token and keeps its timeout and retries, as an operation's method
+    # does. The response has no typed model, so {Peddler::Response#parse} returns the Hash.
+    #
+    # @example
+    #   client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: "ATVPDKIKX0DER" }).to_h
+    # @param [String] method the HTTP method, such as "GET"
+    # @param [String] path the absolute path, percent-encoded, without a query
+    # @param [Hash{String, Symbol => String, Integer, Float, Boolean}] params the query. A value is sent as its text.
+    # @param [Hash, Array, String, nil] body sent as JSON. A String holds the JSON already.
+    # @return [Peddler::Response]
+    # @raise [Peddler::Error] if the response is outside 2xx
+    # @raise [ArgumentError] if an argument breaks its rule. The message names the argument.
     def request(method, path, params: {}, body: nil)
       raise TypeError, "method and path must be strings" unless method.is_a?(String) && path.is_a?(String)
       raise ArgumentError, "params must be a hash" unless params.is_a?(Hash)
