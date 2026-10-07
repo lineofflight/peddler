@@ -15,12 +15,15 @@ module Peddler
       NOT_JSON = Object.new.freeze
       private_constant :INTEGER, :DECIMAL, :NOT_JSON
 
+      # What is said of a Hash or an Array that can't be encoded as a body
+      JSON_RULE = "must be JSON: Strings of valid UTF-8 and finite numbers"
+
       class << self
         # A String, or what v5 sent as one: see `text`
         def string(name, value, required: false)
           return missing(name, required) if value.nil?
 
-          text(value) || raise(ArgumentError, "#{name} must be a String")
+          text(name, value) || raise(ArgumentError, "#{name} must be a String")
         end
 
         # An argument that is 1 segment of the path. What the core refuses is refused here by name: `.` and `..`
@@ -38,7 +41,7 @@ module Peddler
           return missing(name, required) if value.nil?
 
           (value.is_a?(Array) ? value : [value]).map do |item|
-            text(item) || raise(ArgumentError, "#{name} must be an Array of Strings")
+            text(name, item) || raise(ArgumentError, "#{name} must be an Array of Strings")
           end
         end
 
@@ -46,7 +49,7 @@ module Peddler
           value = plain(value)
           return missing(name, required) if value.nil?
           return value if value.is_a?(Integer)
-          return value.to_i if value.is_a?(String) && value.match?(INTEGER)
+          return value.to_i if numeral?(value, INTEGER)
 
           raise ArgumentError, "#{name} must be an Integer"
         end
@@ -55,8 +58,8 @@ module Peddler
           value = plain(value)
           return missing(name, required) if value.nil?
           return value if value.is_a?(Integer) || (value.is_a?(Float) && value.finite?)
-          return value.to_i if value.is_a?(String) && value.match?(INTEGER)
-          return value.to_f if value.is_a?(String) && value.match?(DECIMAL)
+          return value.to_i if numeral?(value, INTEGER)
+          return value.to_f if numeral?(value, DECIMAL)
 
           raise ArgumentError, "#{name} must be an Integer or a Float"
         end
@@ -87,6 +90,13 @@ module Peddler
           parsed
         end
 
+        # The arguments as the JSON the core takes. Each was checked but the inside of a body, so what can't be
+        # encoded is there. The encoder's error quotes the value, so the error is raised here, outside its rescue,
+        # where it can't become the cause.
+        def encode(arguments, body = nil)
+          Native.generate(arguments) || raise(ArgumentError, body ? "#{body} #{JSON_RULE}" : "invalid arguments")
+        end
+
         private
 
         def missing(name, required)
@@ -109,16 +119,27 @@ module Peddler
         # An argument as text, or nil if it has none. A String is itself. nil, a boolean, a Hash and an Array have
         # none, nor has an object whose `to_str` fails. Anything else is its `to_s`, as v5 sent it, unless that is an
         # inspect form such as "#<Object>" or "#<data Point x=1>", which is nobody's argument.
-        def text(value)
-          case value = plain(value)
+        #
+        # Text that is not valid UTF-8 is refused by the argument's name. The encoder would refuse it too, in an
+        # error that quotes it.
+        def text(name, value)
+          text = case value = plain(value)
           when String then value
-          when nil, true, false, Hash, Array then nil
+          when nil, true, false, Hash, Array then return
           else
             return if value.respond_to?(:to_str)
 
-            text = value.to_s
-            text unless text.start_with?("#<")
+            value.to_s
           end
+          return if !value.is_a?(String) && text.start_with?("#<")
+          raise ArgumentError, "#{name} must be valid UTF-8" unless Native.valid_utf8_string?(text)
+
+          text
+        end
+
+        # Whether the value is a String that spells a number. One that is not valid UTF-8 can't be matched.
+        def numeral?(value, pattern)
+          value.is_a?(String) && value.ascii_only? && value.match?(pattern)
         end
       end
     end

@@ -573,9 +573,12 @@ pub(crate) fn ruby(
                 types,
             } = RubyMethod::of(op)?;
             let key = format!("{}.{}", api.module, op.name);
+            // What can't be encoded is in a body, so the error names it.
+            let body = op.body().map(|p| crate::clients::snake(&p.wire_name));
+            let body = body.map_or(String::new(), |name| format!(", {name:?}"));
             // The response carries its operation key so Ruby can resolve the typed model.
             ruby.push_str(&docs::operation(op));
-            writeln!(ruby,"      def {}{parameters}\n{arguments}        Response.from_parts(@engine.operation({key:?}, JSON.generate(arguments)), {key:?})\n      end\n",op.name).unwrap();
+            writeln!(ruby,"      def {}{parameters}\n{arguments}        Response.from_parts(@engine.operation({key:?}, Arguments.encode(arguments{body})), {key:?})\n      end\n",op.name).unwrap();
             writeln!(rbs, "      def {}: ({types}) -> Response", op.name).unwrap();
             if let Some(mapped) = resolved
                 .iter()

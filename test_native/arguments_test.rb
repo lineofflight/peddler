@@ -13,14 +13,15 @@ class ArgumentsTest < NativeTest
     end
   end
 
-  # The message of the ArgumentError each call raises. Nothing reaches the server and no cause carries the value.
+  # The message of the ArgumentError each call raises. Nothing reaches the server, and neither the message, the full
+  # message nor a cause carries the value.
   def refused(*calls)
     serve_keep_alive do |url, _accepted, requests|
       messages = calls.map do |call|
         error = assert_raises(ArgumentError) { call.call(client(url)) }
 
         assert_nil(error.cause)
-        refute_match(/private/, error.message)
+        refute_match(/private/, "#{error.message} #{error.full_message(highlight: false)} #{error.detailed_message}".b)
         error.message
       end
 
@@ -105,6 +106,40 @@ class ArgumentsTest < NativeTest
       ["order_id must be a String"] * 2 + ["seller_order_id must be a String", "marketplace_ids must be an Array of Strings", "page_size must be an Integer"],
       messages,
     )
+  end
+
+  def test_a_string_that_is_not_utf8_is_refused_by_name_and_never_shown
+    bad = "private\xFF"
+    messages = refused(
+      ->(client) { client.orders_v0.get_order(bad) },
+      ->(client) { client.orders_v0.get_orders(["UK"], seller_order_id: bad) },
+      ->(client) { client.catalog_items_2022_04_01.get_catalog_item("B0X", ["UK", bad]) },
+      ->(client) { client.feeds_2021_06_30.get_feeds(page_size: bad) },
+      # Inside a body, where only the encoder looks
+      ->(client) { client.feeds_2021_06_30.create_feed({ "feedType" => bad }) },
+      ->(client) { client.fba_inventory_v1.create_inventory_item({ "sku" => [bad] }) },
+      ->(client) { client.feeds_2021_06_30.create_feed({ "private" => Float::NAN }) },
+      ->(client) { client.request("POST", "/", body: { "k" => bad }) },
+    )
+    json = "must be JSON: Strings of valid UTF-8 and finite numbers"
+
+    assert_equal(
+      [
+        "order_id must be valid UTF-8",
+        "seller_order_id must be valid UTF-8",
+        "marketplace_ids must be valid UTF-8",
+        "page_size must be an Integer",
+        "body #{json}",
+        "create_inventory_item_request_body #{json}",
+        "body #{json}",
+        "body #{json}",
+      ],
+      messages,
+    )
+    # Text in another encoding is sent as the UTF-8 it converts to.
+    requests = sent { |client| client.orders_v0.get_order((+"caf\xE9").force_encoding("ISO-8859-1")) }
+
+    assert_equal(["GET /orders/v0/orders/caf%C3%A9"], requests)
   end
 
   def test_nil_for_an_optional_keyword_is_left_out

@@ -4,6 +4,7 @@ module Peddler
       INTEGER: Regexp
       DECIMAL: Regexp
       NOT_JSON: Object
+      JSON_RULE: String
 
       def self.string: (String name, untyped value, ?required: bool) -> String?
       def self.segment: (String name, untyped value, ?last: bool) -> String
@@ -13,8 +14,10 @@ module Peddler
       def self.boolean: (String name, untyped value, ?required: bool) -> bool?
       def self.body: (String name, untyped value, ?required: bool) -> untyped
       def self.missing: (String name, bool required) -> nil
+      def self.encode: (Hash[Symbol, untyped] arguments, ?String? body) -> String
       def self.plain: (untyped value) -> untyped
-      def self.text: (untyped value) -> String?
+      def self.text: (String name, untyped value) -> String?
+      def self.numeral?: (untyped value, Regexp pattern) -> bool
     end
   end
 end

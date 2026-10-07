@@ -60,7 +60,7 @@ module Peddler
       # credential, so callers raise their own error outside this rescue, where it can't become the cause.
       def generate(value)
         JSON.generate(value)
-      rescue JSON::GeneratorError, TypeError
+      rescue JSON::GeneratorError, EncodingError, TypeError
         nil
       end
 

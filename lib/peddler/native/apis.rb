@@ -105,7 +105,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.cancel_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.cancel_inbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound")
       end
 
       # Determines if the packages you specify are eligible for an AWD inbound order and contains error details for
@@ -118,7 +118,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility")
       end
 
       # Confirms an AWD inbound order in `DRAFT` status.
@@ -130,7 +130,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_inbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_inbound")
       end
 
       # Confirms an AWD outbound order for a set of shipments that contain items that must be outbound to a destination
@@ -143,7 +143,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_outbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_outbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_outbound")
       end
 
       # Confirms an AWD replenishment order in ELIGIBLE state with a set of shipments containing items that are needed
@@ -156,7 +156,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order")
       end
 
       # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
@@ -169,7 +169,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_inbound", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.create_inbound")
       end
 
       # Creates a draft AWD outbound order with the specified products. The API returns the order ID for the newly
@@ -183,7 +183,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_outbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_outbound", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.create_outbound")
       end
 
       # Creates an AWD replenishment order with given products to replenish.
@@ -198,7 +198,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order")
       end
 
       # Retrieves an AWD inbound order.
@@ -210,7 +210,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound")
       end
 
       # Retrieves an AWD inbound shipment.
@@ -225,7 +225,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           sku_quantities: Arguments.string("sku_quantities", sku_quantities),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment")
       end
 
       # Retrieves the box labels for a shipment ID that you specify. This is an asynchronous operation. If the label
@@ -243,7 +243,7 @@ module Peddler
           page_type: Arguments.string("page_type", page_type),
           format_type: Arguments.string("format_type", format_type),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels")
       end
 
       # Retrieves the available label page types for a shipment ID that you specify. This is an asynchronous operation.
@@ -256,7 +256,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_label_page_types", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_label_page_types")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_label_page_types", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_label_page_types")
       end
 
       # Retrieves an AWD outbound order with a set of shipments that contain items that are outbound into a destination
@@ -271,7 +271,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_outbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_outbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_outbound")
       end
 
       # Retrieves an AWD Replenishment order with a set of shipments containing items that is/was planned to be
@@ -284,7 +284,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order")
       end
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
@@ -316,7 +316,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_shipments}
@@ -355,7 +355,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           max_results: Arguments.integer("max_results", max_results),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inventory")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inventory")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_inventory}
@@ -394,7 +394,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_outbounds")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_outbounds")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_outbounds}
@@ -434,7 +434,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_replenishment_orders}
@@ -461,7 +461,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.update_inbound")
       end
 
       # Updates transport details for an AWD shipment.
@@ -475,7 +475,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details")
       end
 
       # Updates an AWD outbound order that is in `DRAFT`, `ELIGIBLE`, or `INELIGIBLE` status. This API allows updates on
@@ -491,7 +491,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_outbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_outbound", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.update_outbound")
       end
     end
 
@@ -518,7 +518,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("post_content_document_request", post_content_document_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.create_content_document")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_content_document", Arguments.encode(arguments, "post_content_document_request")), "aplus_content_2020_11_01.create_content_document")
       end
 
       # Create a media asset record. The `mediaType` field determines the type of asset to create.
@@ -538,7 +538,7 @@ module Peddler
         arguments = {
           body: Arguments.body("create_media_request", create_media_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_media", JSON.generate(arguments)), "aplus_content_2020_11_01.create_media")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_media", Arguments.encode(arguments, "create_media_request")), "aplus_content_2020_11_01.create_media")
       end
 
       # Retrieve an A+ Content document, if available.
@@ -555,7 +555,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           included_data_set: Arguments.array("included_data_set", included_data_set, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.get_content_document")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_content_document", Arguments.encode(arguments)), "aplus_content_2020_11_01.get_content_document")
       end
 
       # Retrieve media metadata and related media for a given media ID. The response uses the unified Media shape.
@@ -574,7 +574,7 @@ module Peddler
           media_id: Arguments.segment("media_id", media_id, last: true),
           associated_media_id: Arguments.string("associated_media_id", associated_media_id),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_media", JSON.generate(arguments)), "aplus_content_2020_11_01.get_media")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_media", Arguments.encode(arguments)), "aplus_content_2020_11_01.get_media")
       end
 
       # Retrieve a list of ASINs related to the specified A+ Content document, if available. If you do not include the
@@ -601,7 +601,7 @@ module Peddler
           asin_set: Arguments.array("asin_set", asin_set),
           page_token: Arguments.string("page_token", page_token),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.list_content_document_asin_relations")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", Arguments.encode(arguments)), "aplus_content_2020_11_01.list_content_document_asin_relations")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_content_document_asin_relations}
@@ -628,7 +628,7 @@ module Peddler
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_approval_submission", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_approval_submission")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_approval_submission", Arguments.encode(arguments)), "aplus_content_2020_11_01.post_content_document_approval_submission")
       end
 
       # Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs,
@@ -648,7 +648,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("post_content_document_asin_relations_request", post_content_document_asin_relations_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_asin_relations")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_asin_relations", Arguments.encode(arguments, "post_content_document_asin_relations_request")), "aplus_content_2020_11_01.post_content_document_asin_relations")
       end
 
       # Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN
@@ -664,7 +664,7 @@ module Peddler
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_suspend_submission", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_suspend_submission")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_suspend_submission", Arguments.encode(arguments)), "aplus_content_2020_11_01.post_content_document_suspend_submission")
       end
 
       # Retrieve a list of all A+ Content documents assigned to a selling partner. This operation returns only the
@@ -683,7 +683,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           page_token: Arguments.string("page_token", page_token),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", JSON.generate(arguments)), "aplus_content_2020_11_01.search_content_documents")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", Arguments.encode(arguments)), "aplus_content_2020_11_01.search_content_documents")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#search_content_documents}
@@ -711,7 +711,7 @@ module Peddler
           asin: Arguments.string("asin", asin, required: true),
           page_token: Arguments.string("page_token", page_token),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", JSON.generate(arguments)), "aplus_content_2020_11_01.search_content_publish_records")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", Arguments.encode(arguments)), "aplus_content_2020_11_01.search_content_publish_records")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#search_content_publish_records}
@@ -738,7 +738,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("post_content_document_request", post_content_document_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.update_content_document")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_content_document", Arguments.encode(arguments, "post_content_document_request")), "aplus_content_2020_11_01.update_content_document")
       end
 
       # Update metadata on an existing media asset. The `mediaId` path parameter identifies the target asset. For
@@ -764,7 +764,7 @@ module Peddler
           associated_media_id: Arguments.string("associated_media_id", associated_media_id),
           body: Arguments.body("update_media_request", update_media_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_media", JSON.generate(arguments)), "aplus_content_2020_11_01.update_media")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_media", Arguments.encode(arguments, "update_media_request")), "aplus_content_2020_11_01.update_media")
       end
 
       # Checks if the A+ Content document is valid for use on a set of ASINs.
@@ -779,7 +779,7 @@ module Peddler
           asin_set: Arguments.array("asin_set", asin_set),
           body: Arguments.body("post_content_document_request", post_content_document_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.validate_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.validate_content_document_asin_relations")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.validate_content_document_asin_relations", Arguments.encode(arguments, "post_content_document_request")), "aplus_content_2020_11_01.validate_content_document_asin_relations")
       end
     end
 
@@ -803,7 +803,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.create_notification", JSON.generate(arguments)), "application_integrations_2024_04_01.create_notification")
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.create_notification", Arguments.encode(arguments, "body")), "application_integrations_2024_04_01.create_notification")
       end
 
       # Remove your application's notifications from the Appstore notifications dashboard.
@@ -815,7 +815,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.delete_notifications", JSON.generate(arguments)), "application_integrations_2024_04_01.delete_notifications")
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.delete_notifications", Arguments.encode(arguments, "body")), "application_integrations_2024_04_01.delete_notifications")
       end
 
       # Records the seller's response to a notification.
@@ -829,7 +829,7 @@ module Peddler
           notification_id: Arguments.segment("notification_id", notification_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.record_action_feedback", JSON.generate(arguments)), "application_integrations_2024_04_01.record_action_feedback")
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.record_action_feedback", Arguments.encode(arguments, "body")), "application_integrations_2024_04_01.record_action_feedback")
       end
     end
 
@@ -853,7 +853,7 @@ module Peddler
       def rotate_application_client_secret
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("application_management_2023_11_30.rotate_application_client_secret", JSON.generate(arguments)), "application_management_2023_11_30.rotate_application_client_secret")
+        Response.from_parts(@engine.operation("application_management_2023_11_30.rotate_application_client_secret", Arguments.encode(arguments)), "application_management_2023_11_30.rotate_application_client_secret")
       end
     end
 
@@ -882,7 +882,7 @@ module Peddler
           asin: Arguments.string("asin", asin),
           seller_sku: Arguments.string("seller_sku", seller_sku),
         }
-        Response.from_parts(@engine.operation("catalog_items_v0.list_catalog_categories", JSON.generate(arguments)), "catalog_items_v0.list_catalog_categories")
+        Response.from_parts(@engine.operation("catalog_items_v0.list_catalog_categories", Arguments.encode(arguments)), "catalog_items_v0.list_catalog_categories")
       end
     end
 
@@ -919,7 +919,7 @@ module Peddler
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
         }
-        Response.from_parts(@engine.operation("catalog_items_2020_12_01.get_catalog_item", JSON.generate(arguments)), "catalog_items_2020_12_01.get_catalog_item")
+        Response.from_parts(@engine.operation("catalog_items_2020_12_01.get_catalog_item", Arguments.encode(arguments)), "catalog_items_2020_12_01.get_catalog_item")
       end
 
       # Search for and return a list of Amazon catalog items and associated information.
@@ -952,7 +952,7 @@ module Peddler
           keywords_locale: Arguments.string("keywords_locale", keywords_locale),
           locale: Arguments.string("locale", locale),
         }
-        Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", JSON.generate(arguments)), "catalog_items_2020_12_01.search_catalog_items")
+        Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", Arguments.encode(arguments)), "catalog_items_2020_12_01.search_catalog_items")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#search_catalog_items}
@@ -1003,7 +1003,7 @@ module Peddler
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
         }
-        Response.from_parts(@engine.operation("catalog_items_2022_04_01.get_catalog_item", JSON.generate(arguments)), "catalog_items_2022_04_01.get_catalog_item")
+        Response.from_parts(@engine.operation("catalog_items_2022_04_01.get_catalog_item", Arguments.encode(arguments)), "catalog_items_2022_04_01.get_catalog_item")
       end
 
       # Search for a list of Amazon catalog items and item-related information. You can search by identifier or by
@@ -1049,7 +1049,7 @@ module Peddler
           page_token: Arguments.string("page_token", page_token),
           keywords_locale: Arguments.string("keywords_locale", keywords_locale),
         }
-        Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", JSON.generate(arguments)), "catalog_items_2022_04_01.search_catalog_items")
+        Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", Arguments.encode(arguments)), "catalog_items_2022_04_01.search_catalog_items")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#search_catalog_items}
@@ -1096,7 +1096,7 @@ module Peddler
           browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_topics")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_topics", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_topics")
       end
 
       # Retrieve the trends of topics that customers mention when they return items in a browse node.
@@ -1112,7 +1112,7 @@ module Peddler
           browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_trends")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_trends", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_trends")
       end
 
       # Retrieve a browse node's ten most positive and ten most negative review topics.
@@ -1130,7 +1130,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           sort_by: Arguments.string("sort_by", sort_by, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_topics")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_topics", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_topics")
       end
 
       # Retrieve the positive and negative review trends of items in a browse node for the past six months.
@@ -1146,7 +1146,7 @@ module Peddler
           browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_trends")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_trends", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_trends")
       end
 
       # This API returns the associated browse node of the requested ASIN. A browse node is a location in a browse tree
@@ -1163,7 +1163,7 @@ module Peddler
           asin: Arguments.segment("asin", asin),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_browse_node", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_browse_node")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_browse_node", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_item_browse_node")
       end
 
       # Retrieve an item's ten most positive and ten most negative review topics.
@@ -1181,7 +1181,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           sort_by: Arguments.string("sort_by", sort_by, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_review_topics")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_topics", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_item_review_topics")
       end
 
       # Retrieve an item's positive and negative review trends for the past six months.
@@ -1197,7 +1197,7 @@ module Peddler
           asin: Arguments.segment("asin", asin),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_review_trends")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_trends", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_item_review_trends")
       end
     end
 
@@ -1225,7 +1225,7 @@ module Peddler
         arguments = {
           query_id: Arguments.segment("query_id", query_id, last: true),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.cancel_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.cancel_query")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.cancel_query", Arguments.encode(arguments)), "data_kiosk_2023_11_15.cancel_query")
       end
 
       # Creates a Data Kiosk query request.
@@ -1242,7 +1242,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.create_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.create_query")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.create_query", Arguments.encode(arguments, "body")), "data_kiosk_2023_11_15.create_query")
       end
 
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
@@ -1255,7 +1255,7 @@ module Peddler
         arguments = {
           document_id: Arguments.segment("document_id", document_id, last: true),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_document", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_document")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_document", Arguments.encode(arguments)), "data_kiosk_2023_11_15.get_document")
       end
 
       # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
@@ -1282,7 +1282,7 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_queries")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", Arguments.encode(arguments)), "data_kiosk_2023_11_15.get_queries")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_queries}
@@ -1307,7 +1307,7 @@ module Peddler
         arguments = {
           query_id: Arguments.segment("query_id", query_id, last: true),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_query")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_query", Arguments.encode(arguments)), "data_kiosk_2023_11_15.get_query")
       end
     end
 
@@ -1344,7 +1344,7 @@ module Peddler
           invoice_type: Arguments.string("invoice_type", invoice_type, required: true),
           program_type: Arguments.string("program_type", program_type, required: true),
         }
-        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.get_invoice_status", JSON.generate(arguments)), "delivery_by_amazon_2022_07_01.get_invoice_status")
+        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.get_invoice_status", Arguments.encode(arguments)), "delivery_by_amazon_2022_07_01.get_invoice_status")
       end
 
       # Submits a shipment invoice for a given order or shipment. You must specify either an `orderId` or `shipmentId`
@@ -1361,7 +1361,7 @@ module Peddler
           shipment_id: Arguments.string("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.submit_invoice", JSON.generate(arguments)), "delivery_by_amazon_2022_07_01.submit_invoice")
+        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.submit_invoice", Arguments.encode(arguments, "body")), "delivery_by_amazon_2022_07_01.submit_invoice")
       end
     end
 
@@ -1407,7 +1407,7 @@ module Peddler
         arguments = {
           body: Arguments.body("create_scheduled_package_request", create_scheduled_package_request, required: true),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package", JSON.generate(arguments)), "easy_ship_2022_03_23.create_scheduled_package")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package", Arguments.encode(arguments, "create_scheduled_package_request")), "easy_ship_2022_03_23.create_scheduled_package")
       end
 
       # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
@@ -1439,7 +1439,7 @@ module Peddler
         arguments = {
           body: Arguments.body("create_scheduled_packages_request", create_scheduled_packages_request, required: true),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package_bulk", JSON.generate(arguments)), "easy_ship_2022_03_23.create_scheduled_package_bulk")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package_bulk", Arguments.encode(arguments, "create_scheduled_packages_request")), "easy_ship_2022_03_23.create_scheduled_package_bulk")
       end
 
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
@@ -1455,7 +1455,7 @@ module Peddler
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.get_scheduled_package", JSON.generate(arguments)), "easy_ship_2022_03_23.get_scheduled_package")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.get_scheduled_package", Arguments.encode(arguments)), "easy_ship_2022_03_23.get_scheduled_package")
       end
 
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
@@ -1479,7 +1479,7 @@ module Peddler
         arguments = {
           body: Arguments.body("list_handover_slots_request", list_handover_slots_request),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.list_handover_slots", JSON.generate(arguments)), "easy_ship_2022_03_23.list_handover_slots")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.list_handover_slots", Arguments.encode(arguments, "list_handover_slots_request")), "easy_ship_2022_03_23.list_handover_slots")
       end
 
       # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
@@ -1498,7 +1498,7 @@ module Peddler
         arguments = {
           body: Arguments.body("update_scheduled_packages_request", update_scheduled_packages_request),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.update_scheduled_packages", JSON.generate(arguments)), "easy_ship_2022_03_23.update_scheduled_packages")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.update_scheduled_packages", Arguments.encode(arguments, "update_scheduled_packages_request")), "easy_ship_2022_03_23.update_scheduled_packages")
       end
     end
 
@@ -1524,7 +1524,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_inventory_2024_09_11.batch_inventory", JSON.generate(arguments)), "external_fulfillment_inventory_2024_09_11.batch_inventory")
+        Response.from_parts(@engine.operation("external_fulfillment_inventory_2024_09_11.batch_inventory", Arguments.encode(arguments, "body")), "external_fulfillment_inventory_2024_09_11.batch_inventory")
       end
     end
 
@@ -1549,7 +1549,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_location_2026_07_30.create_sandbox_location", JSON.generate(arguments)), "external_fulfillment_location_2026_07_30.create_sandbox_location")
+        Response.from_parts(@engine.operation("external_fulfillment_location_2026_07_30.create_sandbox_location", Arguments.encode(arguments, "body")), "external_fulfillment_location_2026_07_30.create_sandbox_location")
       end
     end
 
@@ -1573,7 +1573,7 @@ module Peddler
         arguments = {
           return_id: Arguments.segment("return_id", return_id, last: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.get_return", JSON.generate(arguments)), "external_fulfillment_returns_2024_09_11.get_return")
+        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.get_return", Arguments.encode(arguments)), "external_fulfillment_returns_2024_09_11.get_return")
       end
 
       # Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
@@ -1619,7 +1619,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", JSON.generate(arguments)), "external_fulfillment_returns_2024_09_11.list_returns")
+        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", Arguments.encode(arguments)), "external_fulfillment_returns_2024_09_11.list_returns")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_returns}
@@ -1665,7 +1665,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_packages", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.create_packages")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_packages", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.create_packages")
       end
 
       # Creates a sandbox shipment to simulate order creation in the test environment. This operation is available only
@@ -1679,7 +1679,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_sandbox_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.create_sandbox_shipment")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_sandbox_shipment", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.create_sandbox_shipment")
       end
 
       # Get invoices for the shipment you specify.
@@ -1691,7 +1691,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_invoice", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.generate_invoice")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_invoice", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.generate_invoice")
       end
 
       # Generate and retrieve all shipping labels for one or more packages in the shipment you specify.
@@ -1709,7 +1709,7 @@ module Peddler
           operation: Arguments.string("operation", operation, required: true),
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_ship_labels", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.generate_ship_labels")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_ship_labels", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.generate_ship_labels")
       end
 
       # Get a single shipment with the ID you specify.
@@ -1721,7 +1721,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipment")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipment", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipment")
       end
 
       # Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered
@@ -1755,7 +1755,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipments")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipments")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipments}
@@ -1786,7 +1786,7 @@ module Peddler
           operation: Arguments.string("operation", operation, required: true),
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.process_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.process_shipment")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.process_shipment", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.process_shipment")
       end
 
       # Retrieve invoices for the shipment you specify.
@@ -1798,7 +1798,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_invoice", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_invoice")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_invoice", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_invoice")
       end
 
       # Get a list of shipping options for a package in a shipment given the shipment's marketplace and channel. If the
@@ -1813,7 +1813,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           package_id: Arguments.string("package_id", package_id, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_shipping_options", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_shipping_options", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options")
       end
 
       # Updates the details about the packages that will be used to fulfill the specified shipment.
@@ -1829,7 +1829,7 @@ module Peddler
           package_id: Arguments.segment("package_id", package_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_package")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.update_package")
       end
 
       # Updates the status of the packages.
@@ -1848,7 +1848,7 @@ module Peddler
           status: Arguments.string("status", status),
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package_status", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_package_status")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package_status", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.update_package_status")
       end
 
       # Updates a sandbox shipment on marketplace behalf. Supports status changes, invoice availability, and transport
@@ -1863,7 +1863,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_sandbox_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_sandbox_shipment")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_sandbox_shipment", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.update_sandbox_shipment")
       end
     end
 
@@ -1897,7 +1897,7 @@ module Peddler
           asin: Arguments.string("asin", asin, required: true),
           program: Arguments.string("program", program, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inbound_eligibility_v1.get_item_eligibility_preview", JSON.generate(arguments)), "fba_inbound_eligibility_v1.get_item_eligibility_preview")
+        Response.from_parts(@engine.operation("fba_inbound_eligibility_v1.get_item_eligibility_preview", Arguments.encode(arguments)), "fba_inbound_eligibility_v1.get_item_eligibility_preview")
       end
     end
 
@@ -1926,7 +1926,7 @@ module Peddler
           x_amzn_idempotency_token: Arguments.string("x_amzn_idempotency_token", x_amzn_idempotency_token, required: true),
           body: Arguments.body("add_inventory_request_body", add_inventory_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inventory_v1.add_inventory", JSON.generate(arguments)), "fba_inventory_v1.add_inventory")
+        Response.from_parts(@engine.operation("fba_inventory_v1.add_inventory", Arguments.encode(arguments, "add_inventory_request_body")), "fba_inventory_v1.add_inventory")
       end
 
       # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a
@@ -1940,7 +1940,7 @@ module Peddler
         arguments = {
           body: Arguments.body("create_inventory_item_request_body", create_inventory_item_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inventory_v1.create_inventory_item", JSON.generate(arguments)), "fba_inventory_v1.create_inventory_item")
+        Response.from_parts(@engine.operation("fba_inventory_v1.create_inventory_item", Arguments.encode(arguments, "create_inventory_item_request_body")), "fba_inventory_v1.create_inventory_item")
       end
 
       # Requests that Amazon Deletes an item from the Sandbox Inventory in the sandbox environment. This is a
@@ -1956,7 +1956,7 @@ module Peddler
           seller_sku: Arguments.segment("seller_sku", seller_sku, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inventory_v1.delete_inventory_item", JSON.generate(arguments)), "fba_inventory_v1.delete_inventory_item")
+        Response.from_parts(@engine.operation("fba_inventory_v1.delete_inventory_item", Arguments.encode(arguments)), "fba_inventory_v1.delete_inventory_item")
       end
 
       # Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the
@@ -2005,7 +2005,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", JSON.generate(arguments)), "fba_inventory_v1.get_inventory_summaries")
+        Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", Arguments.encode(arguments)), "fba_inventory_v1.get_inventory_summaries")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_inventory_summaries}
@@ -2046,7 +2046,7 @@ module Peddler
         arguments = {
           feed_id: Arguments.segment("feed_id", feed_id, last: true),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.cancel_feed", JSON.generate(arguments)), "feeds_2021_06_30.cancel_feed")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.cancel_feed", Arguments.encode(arguments)), "feeds_2021_06_30.cancel_feed")
       end
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
@@ -2058,7 +2058,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed", JSON.generate(arguments)), "feeds_2021_06_30.create_feed")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed", Arguments.encode(arguments, "body")), "feeds_2021_06_30.create_feed")
       end
 
       # Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading
@@ -2072,7 +2072,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed_document", JSON.generate(arguments)), "feeds_2021_06_30.create_feed_document")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed_document", Arguments.encode(arguments, "body")), "feeds_2021_06_30.create_feed_document")
       end
 
       # Returns feed details (including the `feedDocumentId`, if available) for the feed that you specify.
@@ -2085,7 +2085,7 @@ module Peddler
         arguments = {
           feed_id: Arguments.segment("feed_id", feed_id, last: true),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed", JSON.generate(arguments)), "feeds_2021_06_30.get_feed")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed", Arguments.encode(arguments)), "feeds_2021_06_30.get_feed")
       end
 
       # Returns the information required for retrieving a feed document's contents.
@@ -2101,7 +2101,7 @@ module Peddler
           feed_document_id: Arguments.segment("feed_document_id", feed_document_id, last: true),
           enable_content_encoding_url_header: Arguments.boolean("enable_content_encoding_url_header", enable_content_encoding_url_header),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed_document", JSON.generate(arguments)), "feeds_2021_06_30.get_feed_document")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed_document", Arguments.encode(arguments)), "feeds_2021_06_30.get_feed_document")
       end
 
       # Returns feed details for the feeds that match the filters that you specify.
@@ -2133,7 +2133,7 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", JSON.generate(arguments)), "feeds_2021_06_30.get_feeds")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", Arguments.encode(arguments)), "feeds_2021_06_30.get_feeds")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_feeds}
@@ -2178,7 +2178,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
-        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", JSON.generate(arguments)), "finance_remittance_2026_03_17.get_remittance")
+        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", Arguments.encode(arguments)), "finance_remittance_2026_03_17.get_remittance")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_remittance}
@@ -2214,7 +2214,7 @@ module Peddler
           end_date: Arguments.string("end_date", end_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", JSON.generate(arguments)), "finance_remittance_2026_03_17.get_remittance_headers")
+        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", Arguments.encode(arguments)), "finance_remittance_2026_03_17.get_remittance_headers")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_remittance_headers}
@@ -2259,7 +2259,7 @@ module Peddler
           invoice_identifier: Arguments.segment("invoice_identifier", invoice_identifier, last: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
-        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice")
+        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", Arguments.encode(arguments)), "finances_invoices_2026_06_25.get_invoice")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_invoice}
@@ -2302,7 +2302,7 @@ module Peddler
           to_issue_date: Arguments.string("to_issue_date", to_issue_date),
           invoices_modified_after: Arguments.string("invoices_modified_after", invoices_modified_after),
         }
-        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice_headers")
+        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", Arguments.encode(arguments)), "finances_invoices_2026_06_25.get_invoice_headers")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_invoice_headers}
@@ -2357,7 +2357,7 @@ module Peddler
           financial_event_group_started_after: Arguments.string("financial_event_group_started_after", financial_event_group_started_after),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", JSON.generate(arguments)), "finances_v0.list_financial_event_groups")
+        Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", Arguments.encode(arguments)), "finances_v0.list_financial_event_groups")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_event_groups}
@@ -2400,7 +2400,7 @@ module Peddler
           posted_before: Arguments.string("posted_before", posted_before),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events", JSON.generate(arguments)), "finances_v0.list_financial_events")
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events", Arguments.encode(arguments)), "finances_v0.list_financial_events")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events}
@@ -2448,7 +2448,7 @@ module Peddler
           event_group_id: Arguments.segment("event_group_id", event_group_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_group_id")
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", Arguments.encode(arguments)), "finances_v0.list_financial_events_by_group_id")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events_by_group_id}
@@ -2483,7 +2483,7 @@ module Peddler
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_order_id")
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", Arguments.encode(arguments)), "finances_v0.list_financial_events_by_order_id")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events_by_order_id}
@@ -2536,7 +2536,7 @@ module Peddler
           as_of_date: Arguments.string("as_of_date", as_of_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", JSON.generate(arguments)), "finances_2024_06_19.list_balances")
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", Arguments.encode(arguments)), "finances_2024_06_19.list_balances")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_balances}
@@ -2582,7 +2582,7 @@ module Peddler
           period_end: Arguments.string("period_end", period_end),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", JSON.generate(arguments)), "finances_2024_06_19.list_summary")
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", Arguments.encode(arguments)), "finances_2024_06_19.list_summary")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_summary}
@@ -2641,7 +2641,7 @@ module Peddler
           related_identifier_value: Arguments.string("related_identifier_value", related_identifier_value),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", JSON.generate(arguments)), "finances_2024_06_19.list_transactions")
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", Arguments.encode(arguments)), "finances_2024_06_19.list_transactions")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_transactions}
@@ -2684,7 +2684,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           payment_method_types: Arguments.array("payment_method_types", payment_method_types),
         }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.get_payment_methods", JSON.generate(arguments)), "transfers_2024_06_01.get_payment_methods")
+        Response.from_parts(@engine.operation("transfers_2024_06_01.get_payment_methods", Arguments.encode(arguments)), "transfers_2024_06_01.get_payment_methods")
       end
 
       # Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given
@@ -2698,7 +2698,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.initiate_payout", JSON.generate(arguments)), "transfers_2024_06_01.initiate_payout")
+        Response.from_parts(@engine.operation("transfers_2024_06_01.initiate_payout", Arguments.encode(arguments, "body")), "transfers_2024_06_01.initiate_payout")
       end
 
       # Returns the upcoming expected payouts from Amazon associated with a partner's account for the specified
@@ -2721,7 +2721,7 @@ module Peddler
           account_type: Arguments.string("account_type", account_type),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", JSON.generate(arguments)), "transfers_2024_06_01.list_expected_payouts")
+        Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", Arguments.encode(arguments)), "transfers_2024_06_01.list_expected_payouts")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_expected_payouts}
@@ -2767,7 +2767,7 @@ module Peddler
           account_type: Arguments.string("account_type", account_type),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", JSON.generate(arguments)), "transfers_2024_06_01.list_payouts")
+        Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", Arguments.encode(arguments)), "transfers_2024_06_01.list_payouts")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_payouts}
@@ -2807,7 +2807,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_bill_of_lading", JSON.generate(arguments)), "fulfillment_inbound_v0.get_bill_of_lading")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_bill_of_lading", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_bill_of_lading")
       end
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
@@ -2846,7 +2846,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           page_start_index: Arguments.integer("page_start_index", page_start_index),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_labels", JSON.generate(arguments)), "fulfillment_inbound_v0.get_labels")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_labels", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_labels")
       end
 
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
@@ -2874,7 +2874,7 @@ module Peddler
           seller_sku_list: Arguments.array("seller_sku_list", seller_sku_list),
           asin_list: Arguments.array("asin_list", asin_list),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_prep_instructions", JSON.generate(arguments)), "fulfillment_inbound_v0.get_prep_instructions")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_prep_instructions", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_prep_instructions")
       end
 
       # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
@@ -2900,7 +2900,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipment_items")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_shipment_items")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_items}
@@ -2926,7 +2926,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items_by_shipment_id", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipment_items_by_shipment_id")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items_by_shipment_id", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_shipment_items_by_shipment_id")
       end
 
       # Returns a list of inbound shipments based on criteria that you specify.
@@ -2959,7 +2959,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipments")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_shipments")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipments}
@@ -3000,7 +3000,7 @@ module Peddler
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.cancel_inbound_plan")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_inbound_plan", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.cancel_inbound_plan")
       end
 
       # Cancels a self-ship appointment slot against a shipment. Only available in the following
@@ -3017,7 +3017,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_self_ship_appointment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_self_ship_appointment", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment")
       end
 
       # Confirms the delivery window option for chosen shipment within an inbound plan. A placement option must be
@@ -3038,7 +3038,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           delivery_window_option_id: Arguments.segment("delivery_window_option_id", delivery_window_option_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_delivery_window_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_delivery_window_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.confirm_delivery_window_options")
       end
 
       # Confirms the packing option for an inbound plan.
@@ -3052,7 +3052,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           packing_option_id: Arguments.segment("packing_option_id", packing_option_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_packing_option", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_packing_option")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_packing_option", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.confirm_packing_option")
       end
 
       # Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.
@@ -3067,7 +3067,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           placement_option_id: Arguments.segment("placement_option_id", placement_option_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_placement_option", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_placement_option")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_placement_option", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.confirm_placement_option")
       end
 
       # Confirm a shipment content update preview and accept the changes in transportation cost.
@@ -3083,7 +3083,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           content_update_preview_id: Arguments.segment("content_update_preview_id", content_update_preview_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview")
       end
 
       # Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use
@@ -3098,7 +3098,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_transportation_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_transportation_options", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.confirm_transportation_options")
       end
 
       # Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's
@@ -3111,7 +3111,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.create_inbound_plan")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_inbound_plan", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.create_inbound_plan")
       end
 
       # For a given marketplace - creates labels for a list of MSKUs.
@@ -3123,7 +3123,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_marketplace_item_labels", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.create_marketplace_item_labels")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_marketplace_item_labels", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.create_marketplace_item_labels")
       end
 
       # Generates available delivery window options for a given shipment.
@@ -3137,7 +3137,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_delivery_window_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_delivery_window_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.generate_delivery_window_options")
       end
 
       # Generates available packing options for the inbound plan.
@@ -3149,7 +3149,7 @@ module Peddler
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_packing_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_packing_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_packing_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.generate_packing_options")
       end
 
       # Generates placement options for the inbound plan.
@@ -3163,7 +3163,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_placement_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_placement_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_placement_options", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.generate_placement_options")
       end
 
       # Initiates the process of generating the appointment slots list. Only available in the following
@@ -3180,7 +3180,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots")
       end
 
       # Generate a shipment content update preview given a set of intended boxes and/or items for a shipment with a
@@ -3198,7 +3198,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews")
       end
 
       # Generates available transportation options for a given placement option.
@@ -3212,7 +3212,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_transportation_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_transportation_options", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.generate_transportation_options")
       end
 
       # Provide delivery challan document for PCP transportation in IN marketplace.
@@ -3226,7 +3226,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_delivery_challan_document", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_delivery_challan_document")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_delivery_challan_document", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_delivery_challan_document")
       end
 
       # Gets the status of the processing of an asynchronous API call.
@@ -3238,7 +3238,7 @@ module Peddler
         arguments = {
           operation_id: Arguments.segment("operation_id", operation_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_operation_status", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_operation_status")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_operation_status", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_operation_status")
       end
 
       # Fetches the top level information about an inbound plan.
@@ -3250,7 +3250,7 @@ module Peddler
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_plan")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_plan", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_plan")
       end
 
       # Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only
@@ -3273,7 +3273,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_self_ship_appointment_slots}
@@ -3299,7 +3299,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_shipment")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_shipment")
       end
 
       # Retrieve a shipment content update preview which provides a summary of the requested shipment content changes
@@ -3317,7 +3317,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           content_update_preview_id: Arguments.segment("content_update_preview_id", content_update_preview_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment_content_update_preview", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_shipment_content_update_preview")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment_content_update_preview", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_shipment_content_update_preview")
       end
 
       # Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the
@@ -3339,7 +3339,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_delivery_window_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_delivery_window_options")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_delivery_window_options}
@@ -3368,7 +3368,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_boxes}
@@ -3396,7 +3396,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_items")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_items")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_items}
@@ -3425,7 +3425,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_pallets}
@@ -3457,7 +3457,7 @@ module Peddler
           sort_by: Arguments.string("sort_by", sort_by),
           sort_order: Arguments.string("sort_order", sort_order),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plans")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plans")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plans}
@@ -3494,7 +3494,7 @@ module Peddler
           mskus: Arguments.array("mskus", mskus, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_item_compliance_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_item_compliance_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_item_compliance_details", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_item_compliance_details")
       end
 
       # Retrieves a page of boxes from a given packing group. These boxes were previously provided through the
@@ -3516,7 +3516,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_boxes")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_boxes")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_group_boxes}
@@ -3548,7 +3548,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_items")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_items")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_group_items}
@@ -3578,7 +3578,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_packing_options")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_options}
@@ -3607,7 +3607,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_placement_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_placement_options")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_placement_options}
@@ -3642,7 +3642,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           mskus: Arguments.array("mskus", mskus, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_prep_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_prep_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_prep_details", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_prep_details")
       end
 
       # Provides a paginated list of box packages in a shipment.
@@ -3662,7 +3662,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_boxes")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_boxes")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_boxes}
@@ -3695,7 +3695,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_content_update_previews}
@@ -3726,7 +3726,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_items")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_items")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_items}
@@ -3758,7 +3758,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_pallets")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_pallets")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_pallets}
@@ -3795,7 +3795,7 @@ module Peddler
           placement_option_id: Arguments.string("placement_option_id", placement_option_id),
           shipment_id: Arguments.string("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_transportation_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_transportation_options")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_transportation_options}
@@ -3826,7 +3826,7 @@ module Peddler
           slot_id: Arguments.segment("slot_id", slot_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.schedule_self_ship_appointment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.schedule_self_ship_appointment")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.schedule_self_ship_appointment", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.schedule_self_ship_appointment")
       end
 
       # Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate
@@ -3841,7 +3841,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_packing_information", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.set_packing_information")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_packing_information", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.set_packing_information")
       end
 
       # Set the preparation details for a list of MSKUs in a specified marketplace.
@@ -3853,7 +3853,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_prep_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.set_prep_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_prep_details", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.set_prep_details")
       end
 
       # Updates the name of an existing inbound plan.
@@ -3867,7 +3867,7 @@ module Peddler
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_inbound_plan_name", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_inbound_plan_name")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_inbound_plan_name", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_inbound_plan_name")
       end
 
       # Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN -
@@ -3883,7 +3883,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_item_compliance_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_item_compliance_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_item_compliance_details", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_item_compliance_details")
       end
 
       # Updates the name of an existing shipment.
@@ -3899,7 +3899,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_name", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_name")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_name", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_shipment_name")
       end
 
       # Updates the source address of an existing shipment. The shipment source address can only be updated prior to the
@@ -3918,7 +3918,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_source_address", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_source_address")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_source_address", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_shipment_source_address")
       end
 
       # Updates a shipment's tracking details.
@@ -3934,7 +3934,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_tracking_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_tracking_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_tracking_details", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_shipment_tracking_details")
       end
     end
 
@@ -3961,7 +3961,7 @@ module Peddler
         arguments = {
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.cancel_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.cancel_fulfillment_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.cancel_fulfillment_order", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.cancel_fulfillment_order")
       end
 
       # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
@@ -3974,7 +3974,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.create_fulfillment_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_order", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.create_fulfillment_order")
       end
 
       # Creates a fulfillment return.
@@ -3990,7 +3990,7 @@ module Peddler
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_return", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.create_fulfillment_return")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_return", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.create_fulfillment_return")
       end
 
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
@@ -4003,7 +4003,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.delivery_offers", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.delivery_offers")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.delivery_offers", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.delivery_offers")
       end
 
       # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
@@ -4025,7 +4025,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           query_start_date: Arguments.string("query_start_date", query_start_date),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_feature_inventory")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_feature_inventory")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_feature_inventory}
@@ -4056,7 +4056,7 @@ module Peddler
           feature_name: Arguments.segment("feature_name", feature_name),
           seller_sku: Arguments.segment("seller_sku", seller_sku, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_sku", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_feature_sku")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_sku", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_feature_sku")
       end
 
       # Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and
@@ -4069,7 +4069,7 @@ module Peddler
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_features", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_features")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_features", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_features")
       end
 
       # Returns the fulfillment order indicated by the specified order identifier.
@@ -4082,7 +4082,7 @@ module Peddler
         arguments = {
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_order", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_order")
       end
 
       # Returns a list of fulfillment order previews based on shipping criteria that you specify.
@@ -4094,7 +4094,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_preview", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_preview")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_preview", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.get_fulfillment_preview")
       end
 
       # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
@@ -4108,7 +4108,7 @@ module Peddler
         arguments = {
           package_number: Arguments.integer("package_number", package_number, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_package_tracking_details", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_package_tracking_details")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_package_tracking_details", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_package_tracking_details")
       end
 
       # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the
@@ -4125,7 +4125,7 @@ module Peddler
           query_start_date: Arguments.string("query_start_date", query_start_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_all_fulfillment_orders}
@@ -4157,7 +4157,7 @@ module Peddler
           seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id),
           language: Arguments.string("language", language),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_return_reason_codes", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.list_return_reason_codes")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_return_reason_codes", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.list_return_reason_codes")
       end
 
       # Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
@@ -4177,7 +4177,7 @@ module Peddler
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update")
       end
 
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
@@ -4192,7 +4192,7 @@ module Peddler
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.update_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.update_fulfillment_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.update_fulfillment_order", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.update_fulfillment_order")
       end
     end
 
@@ -4219,7 +4219,7 @@ module Peddler
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.cancel_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.cancel_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.cancel_order", Arguments.encode(arguments)), "fulfillment_outbound_2026_07_04.cancel_order")
       end
 
       # Request that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
@@ -4234,7 +4234,7 @@ module Peddler
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.create_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.create_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.create_order", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.create_order")
       end
 
       # Retrieve delivery options that include an estimated delivery date and offer expiration, based on criteria that
@@ -4249,7 +4249,7 @@ module Peddler
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_offers", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_offers")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_offers", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.get_offers")
       end
 
       # Retrieve a fulfillment order.
@@ -4265,7 +4265,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id, last: true),
           shipments: Arguments.string("shipments", shipments),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order", Arguments.encode(arguments)), "fulfillment_outbound_2026_07_04.get_order")
       end
 
       # Retrieve a list of fulfillment order previews based on shipping criteria that you specify.
@@ -4279,7 +4279,7 @@ module Peddler
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order_preview", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_order_preview")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order_preview", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.get_order_preview")
       end
 
       # Retrieve a list of fulfillment orders that match the criteria you specify.
@@ -4301,7 +4301,7 @@ module Peddler
           page_token: Arguments.string("page_token", page_token),
           shipments: Arguments.string("shipments", shipments),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.list_orders")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", Arguments.encode(arguments)), "fulfillment_outbound_2026_07_04.list_orders")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_orders}
@@ -4328,7 +4328,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.update_order")
       end
 
       # Request that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
@@ -4348,7 +4348,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order_status", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_order_status")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order_status", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.update_order_status")
       end
 
       # Update package information for a specific package in a fulfillment order. This is a sandbox-only operation and
@@ -4370,7 +4370,7 @@ module Peddler
           package_id: Arguments.segment("package_id", package_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_package", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_package")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_package", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.update_package")
       end
     end
 
@@ -4394,7 +4394,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.create_government_invoice", JSON.generate(arguments)), "invoices_2024_06_19.create_government_invoice")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.create_government_invoice", Arguments.encode(arguments, "body")), "invoices_2024_06_19.create_government_invoice")
       end
 
       # Creates an invoice export request.
@@ -4406,7 +4406,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.create_invoices_export", JSON.generate(arguments)), "invoices_2024_06_19.create_invoices_export")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.create_invoices_export", Arguments.encode(arguments, "body")), "invoices_2024_06_19.create_invoices_export")
       end
 
       # Retrieve the URL of an invoice document.
@@ -4431,7 +4431,7 @@ module Peddler
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id),
           file_format: Arguments.string("file_format", file_format),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_document", JSON.generate(arguments)), "invoices_2024_06_19.get_government_invoice_document")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_document", Arguments.encode(arguments)), "invoices_2024_06_19.get_government_invoice_document")
       end
 
       # Retrieve the status of an invoice generation request.
@@ -4454,7 +4454,7 @@ module Peddler
           invoice_type: Arguments.string("invoice_type", invoice_type, required: true),
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_status", JSON.generate(arguments)), "invoices_2024_06_19.get_government_invoice_status")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_status", Arguments.encode(arguments)), "invoices_2024_06_19.get_government_invoice_status")
       end
 
       # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
@@ -4473,7 +4473,7 @@ module Peddler
           invoice_id: Arguments.segment("invoice_id", invoice_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoice", JSON.generate(arguments)), "invoices_2024_06_19.get_invoice")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoice", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoice")
       end
 
       # Returns invoice details for the invoices that match the filters that you specify.
@@ -4529,7 +4529,7 @@ module Peddler
           sort_by: Arguments.string("sort_by", sort_by),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_invoices}
@@ -4566,7 +4566,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_attributes", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_attributes")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_attributes", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices_attributes")
       end
 
       # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
@@ -4582,7 +4582,7 @@ module Peddler
           invoices_document_id: Arguments.segment("invoices_document_id", invoices_document_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_document", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_document")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_document", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices_document")
       end
 
       # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
@@ -4597,7 +4597,7 @@ module Peddler
           export_id: Arguments.segment("export_id", export_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_export", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_export")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_export", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices_export")
       end
 
       # Returns invoice exports details for exports that match the filters that you specify.
@@ -4629,7 +4629,7 @@ module Peddler
           status: Arguments.string("status", status),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_exports")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices_exports")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_invoices_exports}
@@ -4684,7 +4684,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
         }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.delete_listings_item", JSON.generate(arguments)), "listings_items_2020_09_01.delete_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.delete_listings_item", Arguments.encode(arguments)), "listings_items_2020_09_01.delete_listings_item")
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -4711,7 +4711,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.patch_listings_item", JSON.generate(arguments)), "listings_items_2020_09_01.patch_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.patch_listings_item", Arguments.encode(arguments, "body")), "listings_items_2020_09_01.patch_listings_item")
       end
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
@@ -4737,7 +4737,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.put_listings_item", JSON.generate(arguments)), "listings_items_2020_09_01.put_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.put_listings_item", Arguments.encode(arguments, "body")), "listings_items_2020_09_01.put_listings_item")
       end
     end
 
@@ -4773,7 +4773,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.delete_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.delete_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.delete_listings_item", Arguments.encode(arguments)), "listings_items_2021_08_01.delete_listings_item")
       end
 
       # Returns details about a listings item for a selling partner.
@@ -4796,7 +4796,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.get_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.get_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.get_listings_item", Arguments.encode(arguments)), "listings_items_2021_08_01.get_listings_item")
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -4824,7 +4824,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.patch_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", Arguments.encode(arguments, "body")), "listings_items_2021_08_01.patch_listings_item")
       end
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
@@ -4851,7 +4851,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.put_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.put_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.put_listings_item", Arguments.encode(arguments, "body")), "listings_items_2021_08_01.put_listings_item")
       end
 
       # Search for and return a list of selling partner listings items and their respective details.
@@ -4920,7 +4920,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           page_token: Arguments.string("page_token", page_token),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", JSON.generate(arguments)), "listings_items_2021_08_01.search_listings_items")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", Arguments.encode(arguments)), "listings_items_2021_08_01.search_listings_items")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#search_listings_items}
@@ -4987,7 +4987,7 @@ module Peddler
           reason_locale: Arguments.string("reason_locale", reason_locale),
           product_type: Arguments.string("product_type", product_type),
         }
-        Response.from_parts(@engine.operation("listings_restrictions_2021_08_01.get_listings_restrictions", JSON.generate(arguments)), "listings_restrictions_2021_08_01.get_listings_restrictions")
+        Response.from_parts(@engine.operation("listings_restrictions_2021_08_01.get_listings_restrictions", Arguments.encode(arguments)), "listings_restrictions_2021_08_01.get_listings_restrictions")
       end
     end
 
@@ -5011,7 +5011,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.cancel_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.cancel_shipment")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.cancel_shipment", Arguments.encode(arguments)), "merchant_fulfillment_v0.cancel_shipment")
       end
 
       # Create a shipment with the information provided.
@@ -5023,7 +5023,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.create_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.create_shipment")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.create_shipment", Arguments.encode(arguments, "body")), "merchant_fulfillment_v0.create_shipment")
       end
 
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
@@ -5036,7 +5036,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_additional_seller_inputs", JSON.generate(arguments)), "merchant_fulfillment_v0.get_additional_seller_inputs")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_additional_seller_inputs", Arguments.encode(arguments, "body")), "merchant_fulfillment_v0.get_additional_seller_inputs")
       end
 
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
@@ -5048,7 +5048,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_eligible_shipment_services", JSON.generate(arguments)), "merchant_fulfillment_v0.get_eligible_shipment_services")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_eligible_shipment_services", Arguments.encode(arguments, "body")), "merchant_fulfillment_v0.get_eligible_shipment_services")
       end
 
       # Returns the shipment information for an existing shipment.
@@ -5060,7 +5060,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.get_shipment")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_shipment", Arguments.encode(arguments)), "merchant_fulfillment_v0.get_shipment")
       end
     end
 
@@ -5093,7 +5093,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.confirm_customization_details", JSON.generate(arguments)), "messaging_v1.confirm_customization_details")
+        Response.from_parts(@engine.operation("messaging_v1.confirm_customization_details", Arguments.encode(arguments, "body")), "messaging_v1.confirm_customization_details")
       end
 
       # Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
@@ -5111,7 +5111,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_delivery_details", JSON.generate(arguments)), "messaging_v1.create_confirm_delivery_details")
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_delivery_details", Arguments.encode(arguments, "body")), "messaging_v1.create_confirm_delivery_details")
       end
 
       # Sends a message to ask a buyer an order-related question prior to shipping their order.
@@ -5129,7 +5129,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_order_details", JSON.generate(arguments)), "messaging_v1.create_confirm_order_details")
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_order_details", Arguments.encode(arguments, "body")), "messaging_v1.create_confirm_order_details")
       end
 
       # Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a
@@ -5148,7 +5148,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_service_details", JSON.generate(arguments)), "messaging_v1.create_confirm_service_details")
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_service_details", Arguments.encode(arguments, "body")), "messaging_v1.create_confirm_service_details")
       end
 
       # Sends a buyer a message to share a digital access key that is required to utilize digital content in their
@@ -5167,7 +5167,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_digital_access_key", JSON.generate(arguments)), "messaging_v1.create_digital_access_key")
+        Response.from_parts(@engine.operation("messaging_v1.create_digital_access_key", Arguments.encode(arguments, "body")), "messaging_v1.create_digital_access_key")
       end
 
       # Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer.
@@ -5186,7 +5186,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_legal_disclosure", JSON.generate(arguments)), "messaging_v1.create_legal_disclosure")
+        Response.from_parts(@engine.operation("messaging_v1.create_legal_disclosure", Arguments.encode(arguments, "body")), "messaging_v1.create_legal_disclosure")
       end
 
       # Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the
@@ -5205,7 +5205,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_unexpected_problem", JSON.generate(arguments)), "messaging_v1.create_unexpected_problem")
+        Response.from_parts(@engine.operation("messaging_v1.create_unexpected_problem", Arguments.encode(arguments, "body")), "messaging_v1.create_unexpected_problem")
       end
 
       # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
@@ -5223,7 +5223,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_warranty", JSON.generate(arguments)), "messaging_v1.create_warranty")
+        Response.from_parts(@engine.operation("messaging_v1.create_warranty", Arguments.encode(arguments, "body")), "messaging_v1.create_warranty")
       end
 
       # Returns a response containing attributes related to an order. This includes buyer preferences.
@@ -5239,7 +5239,7 @@ module Peddler
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.get_attributes", JSON.generate(arguments)), "messaging_v1.get_attributes")
+        Response.from_parts(@engine.operation("messaging_v1.get_attributes", Arguments.encode(arguments)), "messaging_v1.get_attributes")
       end
 
       # Returns a list of message types that are available for an order that you specify. A message type is represented
@@ -5257,7 +5257,7 @@ module Peddler
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.get_messaging_actions_for_order", JSON.generate(arguments)), "messaging_v1.get_messaging_actions_for_order")
+        Response.from_parts(@engine.operation("messaging_v1.get_messaging_actions_for_order", Arguments.encode(arguments)), "messaging_v1.get_messaging_actions_for_order")
       end
 
       # Sends a message providing the buyer an invoice
@@ -5275,7 +5275,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.send_invoice", JSON.generate(arguments)), "messaging_v1.send_invoice")
+        Response.from_parts(@engine.operation("messaging_v1.send_invoice", Arguments.encode(arguments, "body")), "messaging_v1.send_invoice")
       end
     end
 
@@ -5306,7 +5306,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.create_destination", JSON.generate(arguments)), "notifications_v1.create_destination")
+        Response.from_parts(@engine.operation("notifications_v1.create_destination", Arguments.encode(arguments, "body")), "notifications_v1.create_destination")
       end
 
       # Creates a subscription for the specified notification type to be delivered to the specified destination. Before
@@ -5325,7 +5325,7 @@ module Peddler
           notification_type: Arguments.segment("notification_type", notification_type, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.create_subscription", JSON.generate(arguments)), "notifications_v1.create_subscription")
+        Response.from_parts(@engine.operation("notifications_v1.create_subscription", Arguments.encode(arguments, "body")), "notifications_v1.create_subscription")
       end
 
       # Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information,
@@ -5339,7 +5339,7 @@ module Peddler
         arguments = {
           destination_id: Arguments.segment("destination_id", destination_id, last: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.delete_destination", JSON.generate(arguments)), "notifications_v1.delete_destination")
+        Response.from_parts(@engine.operation("notifications_v1.delete_destination", Arguments.encode(arguments)), "notifications_v1.delete_destination")
       end
 
       # Deletes the subscription indicated by the subscription identifier and notification type that you specify. The
@@ -5360,7 +5360,7 @@ module Peddler
           subscription_id: Arguments.segment("subscription_id", subscription_id, last: true),
           notification_type: Arguments.segment("notification_type", notification_type),
         }
-        Response.from_parts(@engine.operation("notifications_v1.delete_subscription_by_id", JSON.generate(arguments)), "notifications_v1.delete_subscription_by_id")
+        Response.from_parts(@engine.operation("notifications_v1.delete_subscription_by_id", Arguments.encode(arguments)), "notifications_v1.delete_subscription_by_id")
       end
 
       # Returns information about the destination that you specify. The `getDestination` operation is grantless. For
@@ -5375,7 +5375,7 @@ module Peddler
         arguments = {
           destination_id: Arguments.segment("destination_id", destination_id, last: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.get_destination", JSON.generate(arguments)), "notifications_v1.get_destination")
+        Response.from_parts(@engine.operation("notifications_v1.get_destination", Arguments.encode(arguments)), "notifications_v1.get_destination")
       end
 
       # Returns information about all destinations. The `getDestinations` operation is grantless. For more information,
@@ -5387,7 +5387,7 @@ module Peddler
       def get_destinations
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("notifications_v1.get_destinations", JSON.generate(arguments)), "notifications_v1.get_destinations")
+        Response.from_parts(@engine.operation("notifications_v1.get_destinations", Arguments.encode(arguments)), "notifications_v1.get_destinations")
       end
 
       # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
@@ -5406,7 +5406,7 @@ module Peddler
           notification_type: Arguments.segment("notification_type", notification_type, last: true),
           payload_version: Arguments.string("payload_version", payload_version),
         }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscription", JSON.generate(arguments)), "notifications_v1.get_subscription")
+        Response.from_parts(@engine.operation("notifications_v1.get_subscription", Arguments.encode(arguments)), "notifications_v1.get_subscription")
       end
 
       # Returns information about a subscription for the specified notification type. The `getSubscriptionById`
@@ -5425,7 +5425,7 @@ module Peddler
           subscription_id: Arguments.segment("subscription_id", subscription_id, last: true),
           notification_type: Arguments.segment("notification_type", notification_type),
         }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscription_by_id", JSON.generate(arguments)), "notifications_v1.get_subscription_by_id")
+        Response.from_parts(@engine.operation("notifications_v1.get_subscription_by_id", Arguments.encode(arguments)), "notifications_v1.get_subscription_by_id")
       end
 
       # Returns information about subscriptions of the specified notification type. You can use this API to retrieve all
@@ -5455,7 +5455,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", JSON.generate(arguments)), "notifications_v1.get_subscriptions")
+        Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", Arguments.encode(arguments)), "notifications_v1.get_subscriptions")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_subscriptions}
@@ -5483,7 +5483,7 @@ module Peddler
           notification_type: Arguments.segment("notification_type", notification_type),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.send_test_notification", JSON.generate(arguments)), "notifications_v1.send_test_notification")
+        Response.from_parts(@engine.operation("notifications_v1.send_test_notification", Arguments.encode(arguments, "body")), "notifications_v1.send_test_notification")
       end
     end
 
@@ -5514,7 +5514,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
-        Response.from_parts(@engine.operation("orders_v0.confirm_shipment", JSON.generate(arguments)), "orders_v0.confirm_shipment")
+        Response.from_parts(@engine.operation("orders_v0.confirm_shipment", Arguments.encode(arguments, "payload")), "orders_v0.confirm_shipment")
       end
 
       # Returns the order that you specify.
@@ -5526,7 +5526,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order", JSON.generate(arguments)), "orders_v0.get_order")
+        Response.from_parts(@engine.operation("orders_v0.get_order", Arguments.encode(arguments)), "orders_v0.get_order")
       end
 
       # Returns the shipping address for the order that you specify.
@@ -5538,7 +5538,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_address", JSON.generate(arguments)), "orders_v0.get_order_address")
+        Response.from_parts(@engine.operation("orders_v0.get_order_address", Arguments.encode(arguments)), "orders_v0.get_order_address")
       end
 
       # Returns buyer information for the order that you specify.
@@ -5550,7 +5550,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_buyer_info")
+        Response.from_parts(@engine.operation("orders_v0.get_order_buyer_info", Arguments.encode(arguments)), "orders_v0.get_order_buyer_info")
       end
 
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
@@ -5572,7 +5572,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_items", JSON.generate(arguments)), "orders_v0.get_order_items")
+        Response.from_parts(@engine.operation("orders_v0.get_order_items", Arguments.encode(arguments)), "orders_v0.get_order_items")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_order_items}
@@ -5595,7 +5595,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_items_buyer_info")
+        Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", Arguments.encode(arguments)), "orders_v0.get_order_items_buyer_info")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_order_items_buyer_info}
@@ -5616,7 +5616,7 @@ module Peddler
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_regulated_info", JSON.generate(arguments)), "orders_v0.get_order_regulated_info")
+        Response.from_parts(@engine.operation("orders_v0.get_order_regulated_info", Arguments.encode(arguments)), "orders_v0.get_order_regulated_info")
       end
 
       # Returns orders that are created or updated during the specified time period. If you want to return specific
@@ -5737,7 +5737,7 @@ module Peddler
           latest_delivery_date_before: Arguments.string("latest_delivery_date_before", latest_delivery_date_before),
           latest_delivery_date_after: Arguments.string("latest_delivery_date_after", latest_delivery_date_after),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_orders", JSON.generate(arguments)), "orders_v0.get_orders")
+        Response.from_parts(@engine.operation("orders_v0.get_orders", Arguments.encode(arguments)), "orders_v0.get_orders")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
@@ -5780,7 +5780,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
-        Response.from_parts(@engine.operation("orders_v0.update_shipment_status", JSON.generate(arguments)), "orders_v0.update_shipment_status")
+        Response.from_parts(@engine.operation("orders_v0.update_shipment_status", Arguments.encode(arguments, "payload")), "orders_v0.update_shipment_status")
       end
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
@@ -5794,7 +5794,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
-        Response.from_parts(@engine.operation("orders_v0.update_verification_status", JSON.generate(arguments)), "orders_v0.update_verification_status")
+        Response.from_parts(@engine.operation("orders_v0.update_verification_status", Arguments.encode(arguments, "payload")), "orders_v0.update_verification_status")
       end
     end
 
@@ -5824,7 +5824,7 @@ module Peddler
           order_id: Arguments.segment("order_id", order_id, last: true),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("orders_2026_01_01.get_order", JSON.generate(arguments)), "orders_2026_01_01.get_order")
+        Response.from_parts(@engine.operation("orders_2026_01_01.get_order", Arguments.encode(arguments)), "orders_2026_01_01.get_order")
       end
 
       # Returns orders created or updated during the time period that you specify. You can filter the response for
@@ -5879,7 +5879,7 @@ module Peddler
           pagination_token: Arguments.string("pagination_token", pagination_token),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", JSON.generate(arguments)), "orders_2026_01_01.search_orders")
+        Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", Arguments.encode(arguments)), "orders_2026_01_01.search_orders")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#search_orders}
@@ -5936,7 +5936,7 @@ module Peddler
           asin: Arguments.segment("asin", asin),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_asin", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimate_for_asin")
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_asin", Arguments.encode(arguments, "body")), "product_fees_v0.get_my_fees_estimate_for_asin")
       end
 
       # Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in
@@ -5968,7 +5968,7 @@ module Peddler
           seller_sku: Arguments.segment("seller_sku", seller_sku),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_sku", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimate_for_sku")
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_sku", Arguments.encode(arguments, "body")), "product_fees_v0.get_my_fees_estimate_for_sku")
       end
 
       # Returns the estimated fees for a list of products.
@@ -5980,7 +5980,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimates", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimates")
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimates", Arguments.encode(arguments, "body")), "product_fees_v0.get_my_fees_estimates")
       end
     end
 
@@ -6023,7 +6023,7 @@ module Peddler
           item_type: Arguments.string("item_type", item_type, required: true),
           customer_type: Arguments.string("customer_type", customer_type),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_competitive_pricing", JSON.generate(arguments)), "product_pricing_v0.get_competitive_pricing")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_competitive_pricing", Arguments.encode(arguments)), "product_pricing_v0.get_competitive_pricing")
       end
 
       # Returns the lowest priced offers for a single item based on ASIN.
@@ -6043,7 +6043,7 @@ module Peddler
           asin: Arguments.segment("asin", asin),
           customer_type: Arguments.string("customer_type", customer_type),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers", JSON.generate(arguments)), "product_pricing_v0.get_item_offers")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers", Arguments.encode(arguments)), "product_pricing_v0.get_item_offers")
       end
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
@@ -6056,7 +6056,7 @@ module Peddler
         arguments = {
           body: Arguments.body("get_item_offers_batch_request_body", get_item_offers_batch_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers_batch", JSON.generate(arguments)), "product_pricing_v0.get_item_offers_batch")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers_batch", Arguments.encode(arguments, "get_item_offers_batch_request_body")), "product_pricing_v0.get_item_offers_batch")
       end
 
       # Returns the lowest priced offers for a single SKU listing.
@@ -6081,7 +6081,7 @@ module Peddler
           seller_sku: Arguments.segment("seller_sku", seller_sku),
           customer_type: Arguments.string("customer_type", customer_type),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers", JSON.generate(arguments)), "product_pricing_v0.get_listing_offers")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers", Arguments.encode(arguments)), "product_pricing_v0.get_listing_offers")
       end
 
       # Returns the lowest priced offers for a batch of listings by SKU.
@@ -6094,7 +6094,7 @@ module Peddler
         arguments = {
           body: Arguments.body("get_listing_offers_batch_request_body", get_listing_offers_batch_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers_batch", JSON.generate(arguments)), "product_pricing_v0.get_listing_offers_batch")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers_batch", Arguments.encode(arguments, "get_listing_offers_batch_request_body")), "product_pricing_v0.get_listing_offers_batch")
       end
 
       # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -6128,7 +6128,7 @@ module Peddler
           item_condition: Arguments.string("item_condition", item_condition),
           offer_type: Arguments.string("offer_type", offer_type),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_pricing", JSON.generate(arguments)), "product_pricing_v0.get_pricing")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_pricing", Arguments.encode(arguments)), "product_pricing_v0.get_pricing")
       end
     end
 
@@ -6156,7 +6156,7 @@ module Peddler
         arguments = {
           body: Arguments.body("requests", requests, required: true),
         }
-        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_competitive_summary", JSON.generate(arguments)), "product_pricing_2022_05_01.get_competitive_summary")
+        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_competitive_summary", Arguments.encode(arguments, "requests")), "product_pricing_2022_05_01.get_competitive_summary")
       end
 
       # Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request
@@ -6174,7 +6174,7 @@ module Peddler
         arguments = {
           body: Arguments.body("get_featured_offer_expected_price_batch_request_body", get_featured_offer_expected_price_batch_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_featured_offer_expected_price_batch", JSON.generate(arguments)), "product_pricing_2022_05_01.get_featured_offer_expected_price_batch")
+        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_featured_offer_expected_price_batch", Arguments.encode(arguments, "get_featured_offer_expected_price_batch_request_body")), "product_pricing_2022_05_01.get_featured_offer_expected_price_batch")
       end
     end
 
@@ -6227,7 +6227,7 @@ module Peddler
           locale: Arguments.string("locale", locale),
           parentage_level: Arguments.string("parentage_level", parentage_level),
         }
-        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.get_definitions_product_type", JSON.generate(arguments)), "product_type_definitions_2020_09_01.get_definitions_product_type")
+        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.get_definitions_product_type", Arguments.encode(arguments)), "product_type_definitions_2020_09_01.get_definitions_product_type")
       end
 
       # Search for and return a list of Amazon product types that have definitions available.
@@ -6250,7 +6250,7 @@ module Peddler
           locale: Arguments.string("locale", locale),
           search_locale: Arguments.string("search_locale", search_locale),
         }
-        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.search_definitions_product_types", JSON.generate(arguments)), "product_type_definitions_2020_09_01.search_definitions_product_types")
+        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.search_definitions_product_types", Arguments.encode(arguments)), "product_type_definitions_2020_09_01.search_definitions_product_types")
       end
     end
 
@@ -6278,7 +6278,7 @@ module Peddler
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
         }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.get_promotion", JSON.generate(arguments)), "promotions_2025_12_01.get_promotion")
+        Response.from_parts(@engine.operation("promotions_2025_12_01.get_promotion", Arguments.encode(arguments)), "promotions_2025_12_01.get_promotion")
       end
 
       # Retrieve up to 100 product items that are associated with a specified promotion. This operation only supports
@@ -6311,7 +6311,7 @@ module Peddler
           limit: Arguments.integer("limit", limit),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", JSON.generate(arguments)), "promotions_2025_12_01.get_selection")
+        Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", Arguments.encode(arguments)), "promotions_2025_12_01.get_selection")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_selection}
@@ -6383,7 +6383,7 @@ module Peddler
           limit: Arguments.integer("limit", limit),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", JSON.generate(arguments)), "promotions_2025_12_01.search_promotions")
+        Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", Arguments.encode(arguments)), "promotions_2025_12_01.search_promotions")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#search_promotions}
@@ -6434,7 +6434,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.get_selling_partner_metrics", JSON.generate(arguments)), "replenishment_2022_11_07.get_selling_partner_metrics")
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.get_selling_partner_metrics", Arguments.encode(arguments, "body")), "replenishment_2022_11_07.get_selling_partner_metrics")
       end
 
       # Returns aggregated replenishment program metrics for a selling partner's offers.
@@ -6446,7 +6446,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offer_metrics", JSON.generate(arguments)), "replenishment_2022_11_07.list_offer_metrics")
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offer_metrics", Arguments.encode(arguments, "body")), "replenishment_2022_11_07.list_offer_metrics")
       end
 
       # Returns the details of a selling partner's replenishment program offers.
@@ -6458,7 +6458,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offers", JSON.generate(arguments)), "replenishment_2022_11_07.list_offers")
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offers", Arguments.encode(arguments, "body")), "replenishment_2022_11_07.list_offers")
       end
     end
 
@@ -6484,7 +6484,7 @@ module Peddler
         arguments = {
           report_id: Arguments.segment("report_id", report_id, last: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report", JSON.generate(arguments)), "reports_2021_06_30.cancel_report")
+        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report", Arguments.encode(arguments)), "reports_2021_06_30.cancel_report")
       end
 
       # Cancels the report schedule that you specify.
@@ -6497,7 +6497,7 @@ module Peddler
         arguments = {
           report_schedule_id: Arguments.segment("report_schedule_id", report_schedule_id, last: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.cancel_report_schedule")
+        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report_schedule", Arguments.encode(arguments)), "reports_2021_06_30.cancel_report_schedule")
       end
 
       # Creates a report.
@@ -6509,7 +6509,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.create_report", JSON.generate(arguments)), "reports_2021_06_30.create_report")
+        Response.from_parts(@engine.operation("reports_2021_06_30.create_report", Arguments.encode(arguments, "body")), "reports_2021_06_30.create_report")
       end
 
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
@@ -6522,7 +6522,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.create_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.create_report_schedule")
+        Response.from_parts(@engine.operation("reports_2021_06_30.create_report_schedule", Arguments.encode(arguments, "body")), "reports_2021_06_30.create_report_schedule")
       end
 
       # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
@@ -6535,7 +6535,7 @@ module Peddler
         arguments = {
           report_id: Arguments.segment("report_id", report_id, last: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report", JSON.generate(arguments)), "reports_2021_06_30.get_report")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report", Arguments.encode(arguments)), "reports_2021_06_30.get_report")
       end
 
       # Returns the information required for retrieving a report document's contents.
@@ -6551,7 +6551,7 @@ module Peddler
           report_document_id: Arguments.segment("report_document_id", report_document_id, last: true),
           enable_content_encoding_url_header: Arguments.boolean("enable_content_encoding_url_header", enable_content_encoding_url_header),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_document", JSON.generate(arguments)), "reports_2021_06_30.get_report_document")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_document", Arguments.encode(arguments)), "reports_2021_06_30.get_report_document")
       end
 
       # Returns report schedule details for the report schedule that you specify.
@@ -6564,7 +6564,7 @@ module Peddler
         arguments = {
           report_schedule_id: Arguments.segment("report_schedule_id", report_schedule_id, last: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.get_report_schedule")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedule", Arguments.encode(arguments)), "reports_2021_06_30.get_report_schedule")
       end
 
       # Returns report schedule details that match the filters that you specify.
@@ -6577,7 +6577,7 @@ module Peddler
         arguments = {
           report_types: Arguments.array("report_types", report_types, required: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedules", JSON.generate(arguments)), "reports_2021_06_30.get_report_schedules")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedules", Arguments.encode(arguments)), "reports_2021_06_30.get_report_schedules")
       end
 
       # Returns report details for the reports that match the filters that you specify.
@@ -6611,7 +6611,7 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", JSON.generate(arguments)), "reports_2021_06_30.get_reports")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", Arguments.encode(arguments)), "reports_2021_06_30.get_reports")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_reports}
@@ -6695,7 +6695,7 @@ module Peddler
           sku: Arguments.string("sku", sku),
           amazon_program: Arguments.string("amazon_program", amazon_program),
         }
-        Response.from_parts(@engine.operation("sales_v1.get_order_metrics", JSON.generate(arguments)), "sales_v1.get_order_metrics")
+        Response.from_parts(@engine.operation("sales_v1.get_order_metrics", Arguments.encode(arguments)), "sales_v1.get_order_metrics")
       end
     end
 
@@ -6733,7 +6733,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.create_transaction")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transaction", Arguments.encode(arguments, "body")), "seller_wallet_2024_03_01.create_transaction")
       end
 
       # Create a transfer schedule request from a Seller Wallet account to another customer-provided account.
@@ -6753,7 +6753,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.create_transfer_schedule")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transfer_schedule", Arguments.encode(arguments, "body")), "seller_wallet_2024_03_01.create_transfer_schedule")
       end
 
       # Delete a transaction request that is scheduled from Amazon Seller Wallet account to another customer-provided
@@ -6770,7 +6770,7 @@ module Peddler
           transfer_schedule_id: Arguments.segment("transfer_schedule_id", transfer_schedule_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.delete_schedule_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.delete_schedule_transaction")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.delete_schedule_transaction", Arguments.encode(arguments)), "seller_wallet_2024_03_01.delete_schedule_transaction")
       end
 
       # Retrieve a Seller Wallet bank account by Amazon account identifier.
@@ -6786,7 +6786,7 @@ module Peddler
           account_id: Arguments.segment("account_id", account_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_account", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_account")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_account", Arguments.encode(arguments)), "seller_wallet_2024_03_01.get_account")
       end
 
       # Find a transaction by the Amazon transaction identifier.
@@ -6802,7 +6802,7 @@ module Peddler
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transaction")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transaction", Arguments.encode(arguments)), "seller_wallet_2024_03_01.get_transaction")
       end
 
       # Retrieve a list of potential fees on a transaction.
@@ -6827,7 +6827,7 @@ module Peddler
           base_amount: Arguments.number("base_amount", base_amount, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_preview", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transfer_preview")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_preview", Arguments.encode(arguments)), "seller_wallet_2024_03_01.get_transfer_preview")
       end
 
       # Find a particular Amazon Seller Wallet account transfer schedule.
@@ -6843,7 +6843,7 @@ module Peddler
           transfer_schedule_id: Arguments.segment("transfer_schedule_id", transfer_schedule_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transfer_schedule")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_schedule", Arguments.encode(arguments)), "seller_wallet_2024_03_01.get_transfer_schedule")
       end
 
       # Retrieve the balance in a given Seller Wallet bank account.
@@ -6859,7 +6859,7 @@ module Peddler
           account_id: Arguments.segment("account_id", account_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_balances", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_account_balances")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_balances", Arguments.encode(arguments)), "seller_wallet_2024_03_01.list_account_balances")
       end
 
       # Retrieve a list of transactions for a given Seller Wallet bank account.
@@ -6880,7 +6880,7 @@ module Peddler
           next_page_token: Arguments.string("next_page_token", next_page_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_account_transactions")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", Arguments.encode(arguments)), "seller_wallet_2024_03_01.list_account_transactions")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_account_transactions}
@@ -6904,7 +6904,7 @@ module Peddler
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_accounts", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_accounts")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_accounts", Arguments.encode(arguments)), "seller_wallet_2024_03_01.list_accounts")
       end
 
       # Retrieve transfer schedules of a Seller Wallet bank account.
@@ -6926,7 +6926,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_transfer_schedules")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", Arguments.encode(arguments)), "seller_wallet_2024_03_01.list_transfer_schedules")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_transfer_schedules}
@@ -6956,7 +6956,7 @@ module Peddler
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.update_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.update_transfer_schedule")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.update_transfer_schedule", Arguments.encode(arguments, "body")), "seller_wallet_2024_03_01.update_transfer_schedule")
       end
     end
 
@@ -6984,7 +6984,7 @@ module Peddler
       def get_account
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("sellers_v1.get_account", JSON.generate(arguments)), "sellers_v1.get_account")
+        Response.from_parts(@engine.operation("sellers_v1.get_account", Arguments.encode(arguments)), "sellers_v1.get_account")
       end
 
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
@@ -6995,7 +6995,7 @@ module Peddler
       def get_marketplace_participations
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("sellers_v1.get_marketplace_participations", JSON.generate(arguments)), "sellers_v1.get_marketplace_participations")
+        Response.from_parts(@engine.operation("sellers_v1.get_marketplace_participations", Arguments.encode(arguments)), "sellers_v1.get_marketplace_participations")
       end
     end
 
@@ -7021,7 +7021,7 @@ module Peddler
           service_job_id: Arguments.segment("service_job_id", service_job_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.add_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.add_appointment_for_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.add_appointment_for_service_job_by_service_job_id", Arguments.encode(arguments, "body")), "services_v1.add_appointment_for_service_job_by_service_job_id")
       end
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
@@ -7038,7 +7038,7 @@ module Peddler
           appointment_id: Arguments.segment("appointment_id", appointment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.assign_appointment_resources", JSON.generate(arguments)), "services_v1.assign_appointment_resources")
+        Response.from_parts(@engine.operation("services_v1.assign_appointment_resources", Arguments.encode(arguments, "body")), "services_v1.assign_appointment_resources")
       end
 
       # Cancel a reservation.
@@ -7052,7 +7052,7 @@ module Peddler
           reservation_id: Arguments.segment("reservation_id", reservation_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.cancel_reservation", JSON.generate(arguments)), "services_v1.cancel_reservation")
+        Response.from_parts(@engine.operation("services_v1.cancel_reservation", Arguments.encode(arguments)), "services_v1.cancel_reservation")
       end
 
       # Cancels the service job indicated by the service job identifier specified.
@@ -7067,7 +7067,7 @@ module Peddler
           service_job_id: Arguments.segment("service_job_id", service_job_id),
           cancellation_reason_code: Arguments.string("cancellation_reason_code", cancellation_reason_code, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.cancel_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.cancel_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.cancel_service_job_by_service_job_id", Arguments.encode(arguments)), "services_v1.cancel_service_job_by_service_job_id")
       end
 
       # Completes the service job indicated by the service job identifier specified.
@@ -7079,7 +7079,7 @@ module Peddler
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id),
         }
-        Response.from_parts(@engine.operation("services_v1.complete_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.complete_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.complete_service_job_by_service_job_id", Arguments.encode(arguments)), "services_v1.complete_service_job_by_service_job_id")
       end
 
       # Create a reservation.
@@ -7093,7 +7093,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.create_reservation", JSON.generate(arguments)), "services_v1.create_reservation")
+        Response.from_parts(@engine.operation("services_v1.create_reservation", Arguments.encode(arguments, "body")), "services_v1.create_reservation")
       end
 
       # Creates an upload destination.
@@ -7105,7 +7105,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.create_service_document_upload_destination", JSON.generate(arguments)), "services_v1.create_service_document_upload_destination")
+        Response.from_parts(@engine.operation("services_v1.create_service_document_upload_destination", Arguments.encode(arguments, "body")), "services_v1.create_service_document_upload_destination")
       end
 
       # Gets appointment slots as per the service context specified.
@@ -7129,7 +7129,7 @@ module Peddler
           start_time: Arguments.string("start_time", start_time),
           end_time: Arguments.string("end_time", end_time),
         }
-        Response.from_parts(@engine.operation("services_v1.get_appointment_slots", JSON.generate(arguments)), "services_v1.get_appointment_slots")
+        Response.from_parts(@engine.operation("services_v1.get_appointment_slots", Arguments.encode(arguments)), "services_v1.get_appointment_slots")
       end
 
       # Gets appointment slots for the service associated with the service job id specified.
@@ -7151,7 +7151,7 @@ module Peddler
           start_time: Arguments.string("start_time", start_time),
           end_time: Arguments.string("end_time", end_time),
         }
-        Response.from_parts(@engine.operation("services_v1.get_appointmment_slots_by_job_id", JSON.generate(arguments)), "services_v1.get_appointmment_slots_by_job_id")
+        Response.from_parts(@engine.operation("services_v1.get_appointmment_slots_by_job_id", Arguments.encode(arguments)), "services_v1.get_appointmment_slots_by_job_id")
       end
 
       # Provides capacity in fixed-size slots.
@@ -7169,7 +7169,7 @@ module Peddler
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", JSON.generate(arguments)), "services_v1.get_fixed_slot_capacity")
+        Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", Arguments.encode(arguments, "body")), "services_v1.get_fixed_slot_capacity")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_fixed_slot_capacity}
@@ -7198,7 +7198,7 @@ module Peddler
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", JSON.generate(arguments)), "services_v1.get_range_slot_capacity")
+        Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", Arguments.encode(arguments, "body")), "services_v1.get_range_slot_capacity")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_range_slot_capacity}
@@ -7221,7 +7221,7 @@ module Peddler
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id, last: true),
         }
-        Response.from_parts(@engine.operation("services_v1.get_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.get_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.get_service_job_by_service_job_id", Arguments.encode(arguments)), "services_v1.get_service_job_by_service_job_id")
       end
 
       # Gets service job details for the specified filter query.
@@ -7283,7 +7283,7 @@ module Peddler
           required_skills: Arguments.array("required_skills", required_skills),
           store_ids: Arguments.array("store_ids", store_ids),
         }
-        Response.from_parts(@engine.operation("services_v1.get_service_jobs", JSON.generate(arguments)), "services_v1.get_service_jobs")
+        Response.from_parts(@engine.operation("services_v1.get_service_jobs", Arguments.encode(arguments)), "services_v1.get_service_jobs")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_service_jobs}
@@ -7324,7 +7324,7 @@ module Peddler
           appointment_id: Arguments.segment("appointment_id", appointment_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.reschedule_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.reschedule_appointment_for_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.reschedule_appointment_for_service_job_by_service_job_id", Arguments.encode(arguments, "body")), "services_v1.reschedule_appointment_for_service_job_by_service_job_id")
       end
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
@@ -7341,7 +7341,7 @@ module Peddler
           appointment_id: Arguments.segment("appointment_id", appointment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.set_appointment_fulfillment_data", JSON.generate(arguments)), "services_v1.set_appointment_fulfillment_data")
+        Response.from_parts(@engine.operation("services_v1.set_appointment_fulfillment_data", Arguments.encode(arguments, "body")), "services_v1.set_appointment_fulfillment_data")
       end
 
       # Update a reservation.
@@ -7357,7 +7357,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.update_reservation", JSON.generate(arguments)), "services_v1.update_reservation")
+        Response.from_parts(@engine.operation("services_v1.update_reservation", Arguments.encode(arguments, "body")), "services_v1.update_reservation")
       end
 
       # Update the schedule of the given resource.
@@ -7373,7 +7373,7 @@ module Peddler
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.update_schedule", JSON.generate(arguments)), "services_v1.update_schedule")
+        Response.from_parts(@engine.operation("services_v1.update_schedule", Arguments.encode(arguments, "body")), "services_v1.update_schedule")
       end
     end
 
@@ -7397,7 +7397,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_invoice_status", JSON.generate(arguments)), "shipment_invoicing_v0.get_invoice_status")
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_invoice_status", Arguments.encode(arguments)), "shipment_invoicing_v0.get_invoice_status")
       end
 
       # Returns the shipment details required to issue an invoice for the specified shipment.
@@ -7412,7 +7412,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_shipment_details", JSON.generate(arguments)), "shipment_invoicing_v0.get_shipment_details")
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_shipment_details", Arguments.encode(arguments)), "shipment_invoicing_v0.get_shipment_details")
       end
 
       # Submits a shipment invoice document for a given shipment.
@@ -7426,7 +7426,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.submit_invoice", JSON.generate(arguments)), "shipment_invoicing_v0.submit_invoice")
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.submit_invoice", Arguments.encode(arguments, "body")), "shipment_invoicing_v0.submit_invoice")
       end
     end
 
@@ -7453,7 +7453,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("shipping_v1.cancel_shipment", JSON.generate(arguments)), "shipping_v1.cancel_shipment")
+        Response.from_parts(@engine.operation("shipping_v1.cancel_shipment", Arguments.encode(arguments)), "shipping_v1.cancel_shipment")
       end
 
       # Create a new shipment.
@@ -7465,7 +7465,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.create_shipment", JSON.generate(arguments)), "shipping_v1.create_shipment")
+        Response.from_parts(@engine.operation("shipping_v1.create_shipment", Arguments.encode(arguments, "body")), "shipping_v1.create_shipment")
       end
 
       # Verify if the current account is valid.
@@ -7475,7 +7475,7 @@ module Peddler
       def get_account
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("shipping_v1.get_account", JSON.generate(arguments)), "shipping_v1.get_account")
+        Response.from_parts(@engine.operation("shipping_v1.get_account", Arguments.encode(arguments)), "shipping_v1.get_account")
       end
 
       # Get service rates.
@@ -7487,7 +7487,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.get_rates", JSON.generate(arguments)), "shipping_v1.get_rates")
+        Response.from_parts(@engine.operation("shipping_v1.get_rates", Arguments.encode(arguments, "body")), "shipping_v1.get_rates")
       end
 
       # Return the entire shipment object for the shipmentId.
@@ -7499,7 +7499,7 @@ module Peddler
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.get_shipment", JSON.generate(arguments)), "shipping_v1.get_shipment")
+        Response.from_parts(@engine.operation("shipping_v1.get_shipment", Arguments.encode(arguments)), "shipping_v1.get_shipment")
       end
 
       # Return the tracking information of a shipment.
@@ -7511,7 +7511,7 @@ module Peddler
         arguments = {
           tracking_id: Arguments.segment("tracking_id", tracking_id, last: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.get_tracking_information", JSON.generate(arguments)), "shipping_v1.get_tracking_information")
+        Response.from_parts(@engine.operation("shipping_v1.get_tracking_information", Arguments.encode(arguments)), "shipping_v1.get_tracking_information")
       end
 
       # Purchase shipping labels based on a given rate.
@@ -7525,7 +7525,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.purchase_labels", JSON.generate(arguments)), "shipping_v1.purchase_labels")
+        Response.from_parts(@engine.operation("shipping_v1.purchase_labels", Arguments.encode(arguments, "body")), "shipping_v1.purchase_labels")
       end
 
       # Purchase shipping labels.
@@ -7537,7 +7537,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.purchase_shipment", JSON.generate(arguments)), "shipping_v1.purchase_shipment")
+        Response.from_parts(@engine.operation("shipping_v1.purchase_shipment", Arguments.encode(arguments, "body")), "shipping_v1.purchase_shipment")
       end
 
       # Retrieve shipping label based on the shipment id and tracking id.
@@ -7553,7 +7553,7 @@ module Peddler
           tracking_id: Arguments.segment("tracking_id", tracking_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.retrieve_shipping_label", JSON.generate(arguments)), "shipping_v1.retrieve_shipping_label")
+        Response.from_parts(@engine.operation("shipping_v1.retrieve_shipping_label", Arguments.encode(arguments, "body")), "shipping_v1.retrieve_shipping_label")
       end
     end
 
@@ -7581,7 +7581,7 @@ module Peddler
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.cancel_shipment", JSON.generate(arguments)), "shipping_v2.cancel_shipment")
+        Response.from_parts(@engine.operation("shipping_v2.cancel_shipment", Arguments.encode(arguments)), "shipping_v2.cancel_shipment")
       end
 
       # This API will be used to create claim for single eligible shipment.
@@ -7596,7 +7596,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.create_claim", JSON.generate(arguments)), "shipping_v2.create_claim")
+        Response.from_parts(@engine.operation("shipping_v2.create_claim", Arguments.encode(arguments, "body")), "shipping_v2.create_claim")
       end
 
       # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
@@ -7619,7 +7619,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.direct_purchase_shipment", JSON.generate(arguments)), "shipping_v2.direct_purchase_shipment")
+        Response.from_parts(@engine.operation("shipping_v2.direct_purchase_shipment", Arguments.encode(arguments, "body")), "shipping_v2.direct_purchase_shipment")
       end
 
       # This API Call to generate the collection form.
@@ -7636,7 +7636,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.generate_collection_form", JSON.generate(arguments)), "shipping_v2.generate_collection_form")
+        Response.from_parts(@engine.operation("shipping_v2.generate_collection_form", Arguments.encode(arguments, "body")), "shipping_v2.generate_collection_form")
       end
 
       # Returns a list of access points in proximity of input postal code.
@@ -7655,7 +7655,7 @@ module Peddler
           postal_code: Arguments.string("postal_code", postal_code, required: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_access_points", JSON.generate(arguments)), "shipping_v2.get_access_points")
+        Response.from_parts(@engine.operation("shipping_v2.get_access_points", Arguments.encode(arguments)), "shipping_v2.get_access_points")
       end
 
       # Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
@@ -7675,7 +7675,7 @@ module Peddler
           rate_id: Arguments.string("rate_id", rate_id, required: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_additional_inputs", JSON.generate(arguments)), "shipping_v2.get_additional_inputs")
+        Response.from_parts(@engine.operation("shipping_v2.get_additional_inputs", Arguments.encode(arguments)), "shipping_v2.get_additional_inputs")
       end
 
       # This API will return a list of input schema required to register a shipper account with the carrier.
@@ -7687,7 +7687,7 @@ module Peddler
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_carrier_account_form_inputs", JSON.generate(arguments)), "shipping_v2.get_carrier_account_form_inputs")
+        Response.from_parts(@engine.operation("shipping_v2.get_carrier_account_form_inputs", Arguments.encode(arguments)), "shipping_v2.get_carrier_account_form_inputs")
       end
 
       # This API will return Get all carrier accounts for a merchant.
@@ -7701,7 +7701,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_carrier_accounts", JSON.generate(arguments)), "shipping_v2.get_carrier_accounts")
+        Response.from_parts(@engine.operation("shipping_v2.get_carrier_accounts", Arguments.encode(arguments, "body")), "shipping_v2.get_carrier_accounts")
       end
 
       # This API reprint a collection form.
@@ -7715,7 +7715,7 @@ module Peddler
           collection_form_id: Arguments.segment("collection_form_id", collection_form_id, last: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_collection_form", JSON.generate(arguments)), "shipping_v2.get_collection_form")
+        Response.from_parts(@engine.operation("shipping_v2.get_collection_form", Arguments.encode(arguments)), "shipping_v2.get_collection_form")
       end
 
       # This API Call to get the history of the previously generated collection forms.
@@ -7729,7 +7729,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_collection_form_history", JSON.generate(arguments)), "shipping_v2.get_collection_form_history")
+        Response.from_parts(@engine.operation("shipping_v2.get_collection_form_history", Arguments.encode(arguments, "body")), "shipping_v2.get_collection_form_history")
       end
 
       # Returns the available shipping service offerings.
@@ -7744,7 +7744,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_rates", JSON.generate(arguments)), "shipping_v2.get_rates")
+        Response.from_parts(@engine.operation("shipping_v2.get_rates", Arguments.encode(arguments, "body")), "shipping_v2.get_rates")
       end
 
       # Returns the shipping documents associated with a package in a shipment.
@@ -7768,7 +7768,7 @@ module Peddler
           dpi: Arguments.number("dpi", dpi),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_shipment_documents", JSON.generate(arguments)), "shipping_v2.get_shipment_documents")
+        Response.from_parts(@engine.operation("shipping_v2.get_shipment_documents", Arguments.encode(arguments)), "shipping_v2.get_shipment_documents")
       end
 
       # Returns tracking information for a purchased shipment.
@@ -7787,7 +7787,7 @@ module Peddler
           carrier_id: Arguments.string("carrier_id", carrier_id, required: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_tracking", JSON.generate(arguments)), "shipping_v2.get_tracking")
+        Response.from_parts(@engine.operation("shipping_v2.get_tracking", Arguments.encode(arguments)), "shipping_v2.get_tracking")
       end
 
       # This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
@@ -7802,7 +7802,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_unmanifested_shipments", JSON.generate(arguments)), "shipping_v2.get_unmanifested_shipments")
+        Response.from_parts(@engine.operation("shipping_v2.get_unmanifested_shipments", Arguments.encode(arguments, "body")), "shipping_v2.get_unmanifested_shipments")
       end
 
       # This API associates/links the specified carrier account with the merchant.
@@ -7819,7 +7819,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account", JSON.generate(arguments)), "shipping_v2.link_carrier_account")
+        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account", Arguments.encode(arguments, "body")), "shipping_v2.link_carrier_account")
       end
 
       # This API associates/links the specified carrier account with the merchant.
@@ -7835,7 +7835,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account_put", JSON.generate(arguments)), "shipping_v2.link_carrier_account_put")
+        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account_put", Arguments.encode(arguments, "body")), "shipping_v2.link_carrier_account_put")
       end
 
       # Purchases a shipping service identifier and returns purchase-related details and documents.
@@ -7850,7 +7850,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.one_click_shipment", JSON.generate(arguments)), "shipping_v2.one_click_shipment")
+        Response.from_parts(@engine.operation("shipping_v2.one_click_shipment", Arguments.encode(arguments, "body")), "shipping_v2.one_click_shipment")
       end
 
       # Purchases a shipping service and returns purchase related details and documents.
@@ -7872,7 +7872,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.purchase_shipment", JSON.generate(arguments)), "shipping_v2.purchase_shipment")
+        Response.from_parts(@engine.operation("shipping_v2.purchase_shipment", Arguments.encode(arguments, "body")), "shipping_v2.purchase_shipment")
       end
 
       # This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
@@ -7887,7 +7887,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.submit_ndr_feedback", JSON.generate(arguments)), "shipping_v2.submit_ndr_feedback")
+        Response.from_parts(@engine.operation("shipping_v2.submit_ndr_feedback", Arguments.encode(arguments, "body")), "shipping_v2.submit_ndr_feedback")
       end
 
       # This API Unlink the specified carrier account with the merchant.
@@ -7903,7 +7903,7 @@ module Peddler
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.unlink_carrier_account", JSON.generate(arguments)), "shipping_v2.unlink_carrier_account")
+        Response.from_parts(@engine.operation("shipping_v2.unlink_carrier_account", Arguments.encode(arguments, "body")), "shipping_v2.unlink_carrier_account")
       end
     end
 
@@ -7936,7 +7936,7 @@ module Peddler
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("solicitations_v1.create_product_review_and_seller_feedback_solicitation", JSON.generate(arguments)), "solicitations_v1.create_product_review_and_seller_feedback_solicitation")
+        Response.from_parts(@engine.operation("solicitations_v1.create_product_review_and_seller_feedback_solicitation", Arguments.encode(arguments)), "solicitations_v1.create_product_review_and_seller_feedback_solicitation")
       end
 
       # Returns a list of solicitation types that are available for an order that you specify. A solicitation type is
@@ -7955,7 +7955,7 @@ module Peddler
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("solicitations_v1.get_solicitation_actions_for_order", JSON.generate(arguments)), "solicitations_v1.get_solicitation_actions_for_order")
+        Response.from_parts(@engine.operation("solicitations_v1.get_solicitation_actions_for_order", Arguments.encode(arguments)), "solicitations_v1.get_solicitation_actions_for_order")
       end
     end
 
@@ -7978,7 +7978,7 @@ module Peddler
         arguments = {
           supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.archive_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.archive_supply_source")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.archive_supply_source", Arguments.encode(arguments)), "supply_sources_2020_07_01.archive_supply_source")
       end
 
       # Create a new supply source.
@@ -7990,7 +7990,7 @@ module Peddler
         arguments = {
           body: Arguments.body("payload", payload, required: true),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.create_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.create_supply_source")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.create_supply_source", Arguments.encode(arguments, "payload")), "supply_sources_2020_07_01.create_supply_source")
       end
 
       # Retrieve a supply source.
@@ -8002,7 +8002,7 @@ module Peddler
         arguments = {
           supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.get_supply_source")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_source", Arguments.encode(arguments)), "supply_sources_2020_07_01.get_supply_source")
       end
 
       # The path to retrieve paginated supply sources.
@@ -8016,7 +8016,7 @@ module Peddler
           next_page_token: Arguments.string("next_page_token", next_page_token),
           page_size: Arguments.number("page_size", page_size),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", JSON.generate(arguments)), "supply_sources_2020_07_01.get_supply_sources")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", Arguments.encode(arguments)), "supply_sources_2020_07_01.get_supply_sources")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_supply_sources}
@@ -8039,7 +8039,7 @@ module Peddler
           supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
           body: Arguments.body("payload", payload),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.update_supply_source")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source", Arguments.encode(arguments, "payload")), "supply_sources_2020_07_01.update_supply_source")
       end
 
       # Update the status of a supply source.
@@ -8053,7 +8053,7 @@ module Peddler
           supply_source_id: Arguments.segment("supply_source_id", supply_source_id),
           body: Arguments.body("payload", payload),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source_status", JSON.generate(arguments)), "supply_sources_2020_07_01.update_supply_source_status")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source_status", Arguments.encode(arguments, "payload")), "supply_sources_2020_07_01.update_supply_source_status")
       end
     end
 
@@ -8076,7 +8076,7 @@ module Peddler
         arguments = {
           case_id: Arguments.segment("case_id", case_id, last: true),
         }
-        Response.from_parts(@engine.operation("support_2025_02_01.get_case", JSON.generate(arguments)), "support_2025_02_01.get_case")
+        Response.from_parts(@engine.operation("support_2025_02_01.get_case", Arguments.encode(arguments)), "support_2025_02_01.get_case")
       end
 
       # Retrieve support cases for a selling partner.
@@ -8088,7 +8088,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("support_2025_02_01.list_cases", JSON.generate(arguments)), "support_2025_02_01.list_cases")
+        Response.from_parts(@engine.operation("support_2025_02_01.list_cases", Arguments.encode(arguments, "body")), "support_2025_02_01.list_cases")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_cases}
@@ -8117,7 +8117,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           sort_order: Arguments.string("sort_order", sort_order),
         }
-        Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", JSON.generate(arguments)), "support_2025_02_01.list_contacts")
+        Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", Arguments.encode(arguments)), "support_2025_02_01.list_contacts")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#list_contacts}
@@ -8161,7 +8161,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("tokens_2021_03_01.create_restricted_data_token", JSON.generate(arguments)), "tokens_2021_03_01.create_restricted_data_token")
+        Response.from_parts(@engine.operation("tokens_2021_03_01.create_restricted_data_token", Arguments.encode(arguments, "body")), "tokens_2021_03_01.create_restricted_data_token")
       end
     end
 
@@ -8202,7 +8202,7 @@ module Peddler
           carrier_tracking_carrier_code: Arguments.string("carrier_tracking_carrier_code", carrier_tracking_carrier_code),
           accept_language: Arguments.string("accept_language", accept_language),
         }
-        Response.from_parts(@engine.operation("tracking_2026_01_30.get_shipment_tracking", JSON.generate(arguments)), "tracking_2026_01_30.get_shipment_tracking")
+        Response.from_parts(@engine.operation("tracking_2026_01_30.get_shipment_tracking", Arguments.encode(arguments)), "tracking_2026_01_30.get_shipment_tracking")
       end
     end
 
@@ -8241,7 +8241,7 @@ module Peddler
           resource: Arguments.segment("resource", resource, last: true),
           content_type: Arguments.string("content_type", content_type),
         }
-        Response.from_parts(@engine.operation("uploads_2020_11_01.create_upload_destination_for_resource", JSON.generate(arguments)), "uploads_2020_11_01.create_upload_destination_for_resource")
+        Response.from_parts(@engine.operation("uploads_2020_11_01.create_upload_destination_for_resource", Arguments.encode(arguments)), "uploads_2020_11_01.create_upload_destination_for_resource")
       end
     end
 
@@ -8272,7 +8272,7 @@ module Peddler
           vehicle_type: Arguments.string("vehicle_type", vehicle_type, required: true),
           updated_after: Arguments.string("updated_after", updated_after),
         }
-        Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", JSON.generate(arguments)), "vehicles_2024_11_01.get_vehicles")
+        Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", Arguments.encode(arguments)), "vehicles_2024_11_01.get_vehicles")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_vehicles}
@@ -8309,7 +8309,7 @@ module Peddler
           warehouse_id: Arguments.segment("warehouse_id", warehouse_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_inventory_v1.submit_inventory_update", JSON.generate(arguments)), "vendor_direct_fulfillment_inventory_v1.submit_inventory_update")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_inventory_v1.submit_inventory_update", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_inventory_v1.submit_inventory_update")
       end
     end
 
@@ -8334,7 +8334,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_order", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.get_order")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_order", Arguments.encode(arguments)), "vendor_direct_fulfillment_orders_v1.get_order")
       end
 
       # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
@@ -8370,7 +8370,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           include_details: Arguments.boolean("include_details", include_details),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.get_orders")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", Arguments.encode(arguments)), "vendor_direct_fulfillment_orders_v1.get_orders")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
@@ -8397,7 +8397,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.submit_acknowledgement", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.submit_acknowledgement")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.submit_acknowledgement", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_orders_v1.submit_acknowledgement")
       end
     end
 
@@ -8422,7 +8422,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_order", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_order")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_order", Arguments.encode(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_order")
       end
 
       # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
@@ -8458,7 +8458,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           include_details: Arguments.boolean("include_details", include_details),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_orders")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", Arguments.encode(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_orders")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
@@ -8485,7 +8485,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement")
       end
     end
 
@@ -8509,7 +8509,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_payments_v1.submit_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_payments_v1.submit_invoice")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_payments_v1.submit_invoice", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_payments_v1.submit_invoice")
       end
     end
 
@@ -8534,7 +8534,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios", JSON.generate(arguments)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios")
       end
 
       # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
@@ -8548,7 +8548,7 @@ module Peddler
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios", JSON.generate(arguments)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios", Arguments.encode(arguments)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios")
       end
     end
 
@@ -8572,7 +8572,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoice")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoice", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoice")
       end
 
       # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
@@ -8600,7 +8600,7 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoices")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoices")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_customer_invoices}
@@ -8625,7 +8625,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slip", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slip")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slip", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slip")
       end
 
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
@@ -8652,7 +8652,7 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slips")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slips")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_packing_slips}
@@ -8678,7 +8678,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_label")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_label", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_label")
       end
 
       # Returns a list of shipping labels created during the time frame that you specify. You define that time frame
@@ -8706,7 +8706,7 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_labels")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_labels")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipping_labels}
@@ -8731,7 +8731,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations")
       end
 
       # This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment
@@ -8745,7 +8745,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates")
       end
 
       # Creates a shipping label for a purchase order and returns a transactionId for reference.
@@ -8757,7 +8757,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request")
       end
     end
 
@@ -8780,7 +8780,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_container_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.create_container_label")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_container_label", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.create_container_label")
       end
 
       # Creates shipping labels for a purchase order and returns the labels.
@@ -8795,7 +8795,7 @@ module Peddler
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels")
       end
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
@@ -8807,7 +8807,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice")
       end
 
       # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
@@ -8835,7 +8835,7 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_customer_invoices}
@@ -8860,7 +8860,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip")
       end
 
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
@@ -8887,7 +8887,7 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_packing_slips}
@@ -8913,7 +8913,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label")
       end
 
       # Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and
@@ -8943,7 +8943,7 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipping_labels}
@@ -8968,7 +8968,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations")
       end
 
       # This operation is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API submits a shipment
@@ -8982,7 +8982,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates")
       end
 
       # Creates a shipping label for a purchase order and returns a `transactionId` for reference.
@@ -8994,7 +8994,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request")
       end
     end
 
@@ -9019,7 +9019,7 @@ module Peddler
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_v1.get_transaction_status", JSON.generate(arguments)), "vendor_direct_fulfillment_transactions_v1.get_transaction_status")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_v1.get_transaction_status", Arguments.encode(arguments)), "vendor_direct_fulfillment_transactions_v1.get_transaction_status")
       end
     end
 
@@ -9044,7 +9044,7 @@ module Peddler
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status", JSON.generate(arguments)), "vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status", Arguments.encode(arguments)), "vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status")
       end
     end
 
@@ -9067,7 +9067,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_invoices_v1.submit_invoices", JSON.generate(arguments)), "vendor_invoices_v1.submit_invoices")
+        Response.from_parts(@engine.operation("vendor_invoices_v1.submit_invoices", Arguments.encode(arguments, "body")), "vendor_invoices_v1.submit_invoices")
       end
     end
 
@@ -9091,7 +9091,7 @@ module Peddler
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_order", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_order")
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_order", Arguments.encode(arguments)), "vendor_orders_v1.get_purchase_order")
       end
 
       # Returns a list of purchase orders created or changed during the time frame that you specify. You define the time
@@ -9142,7 +9142,7 @@ module Peddler
           purchase_order_state: Arguments.string("purchase_order_state", purchase_order_state),
           ordering_vendor_code: Arguments.string("ordering_vendor_code", ordering_vendor_code),
         }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_orders")
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", Arguments.encode(arguments)), "vendor_orders_v1.get_purchase_orders")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_purchase_orders}
@@ -9215,7 +9215,7 @@ module Peddler
           ordering_vendor_code: Arguments.string("ordering_vendor_code", ordering_vendor_code),
           ship_to_party_id: Arguments.string("ship_to_party_id", ship_to_party_id),
         }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_orders_status")
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", Arguments.encode(arguments)), "vendor_orders_v1.get_purchase_orders_status")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_purchase_orders_status}
@@ -9247,7 +9247,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_orders_v1.submit_acknowledgement", JSON.generate(arguments)), "vendor_orders_v1.submit_acknowledgement")
+        Response.from_parts(@engine.operation("vendor_orders_v1.submit_acknowledgement", Arguments.encode(arguments, "body")), "vendor_orders_v1.submit_acknowledgement")
       end
     end
 
@@ -9336,7 +9336,7 @@ module Peddler
           buyer_warehouse_code: Arguments.string("buyer_warehouse_code", buyer_warehouse_code),
           seller_warehouse_code: Arguments.string("seller_warehouse_code", seller_warehouse_code),
         }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", JSON.generate(arguments)), "vendor_shipments_v1.get_shipment_details")
+        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", Arguments.encode(arguments)), "vendor_shipments_v1.get_shipment_details")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_details}
@@ -9399,7 +9399,7 @@ module Peddler
           vendor_shipment_identifier: Arguments.string("vendor_shipment_identifier", vendor_shipment_identifier),
           seller_warehouse_code: Arguments.string("seller_warehouse_code", seller_warehouse_code),
         }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", JSON.generate(arguments)), "vendor_shipments_v1.get_shipment_labels")
+        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", Arguments.encode(arguments)), "vendor_shipments_v1.get_shipment_labels")
       end
 
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_labels}
@@ -9426,7 +9426,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_shipments_v1.submit_shipment_confirmations")
+        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipment_confirmations", Arguments.encode(arguments, "body")), "vendor_shipments_v1.submit_shipment_confirmations")
       end
 
       # Submits one or more shipment request for vendor Orders.
@@ -9437,7 +9437,7 @@ module Peddler
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipments", JSON.generate(arguments)), "vendor_shipments_v1.submit_shipments")
+        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipments", Arguments.encode(arguments, "body")), "vendor_shipments_v1.submit_shipments")
       end
     end
 
@@ -9461,7 +9461,7 @@ module Peddler
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_transaction_status_v1.get_transaction", JSON.generate(arguments)), "vendor_transaction_status_v1.get_transaction")
+        Response.from_parts(@engine.operation("vendor_transaction_status_v1.get_transaction", Arguments.encode(arguments)), "vendor_transaction_status_v1.get_transaction")
       end
     end
   end

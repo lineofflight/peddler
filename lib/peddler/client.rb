@@ -115,7 +115,7 @@ module Peddler
       end
       payload = case body
       when nil, String then body
-      when Hash, Array then JSON.generate(body)
+      when Hash, Array then Native.generate(body) || raise(ArgumentError, "body #{Native::Arguments::JSON_RULE}")
       else raise ArgumentError, "body must be a string, hash, array or nil"
       end
 
