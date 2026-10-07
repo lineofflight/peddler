@@ -256,7 +256,7 @@ fn supplemental_sources_and_patch_inputs_are_verified_before_export() {
         ),
         (
             "selling-partner-api-models/schemas/feeds/listings-feed-schema-v2.json",
-            "supplemental schema files are modified",
+            "supplemental sources are modified",
         ),
     ] {
         let root = repository();

@@ -1,5 +1,9 @@
 //! Development-only generation of pinned report, feed, notification and SDL models.
-use crate::{GenerationError, models};
+use crate::{
+    GenerationError,
+    checkout::{git, verify_pinned},
+    models,
+};
 use serde::Deserialize;
 use serde_json::{Value, json};
 use std::{
@@ -257,18 +261,10 @@ impl Resolver<'_> {
                     .map_err(|error| GenerationError(error.to_string()))?
                     .to_str()
                     .ok_or_else(|| GenerationError("schema path must be UTF-8".into()))?;
+                // `verify_sources` has shown every audited source tracked and unmodified.
                 if !sources().iter().any(|source| source.path == relative) {
                     return Err(GenerationError(format!(
                         "reference outside audited source inventory: {relative}"
-                    )));
-                }
-                git(
-                    self.checkout,
-                    &["ls-files", "--error-unmatch", "--", relative],
-                )?;
-                if !git(self.checkout, &["status", "--porcelain", "--", relative])?.is_empty() {
-                    return Err(GenerationError(format!(
-                        "referenced schema modified: {relative}"
                     )));
                 }
             }
@@ -410,46 +406,21 @@ fn apply_patch(doc: &mut Value, patch: &Value) -> Result<(), GenerationError> {
 
 /// Validate exact pinned source closure and tracked/clean patch inputs before export.
 pub fn verify_sources(checkout: &Path, revision: &str) -> Result<(), GenerationError> {
-    let sources = sources();
-    let inventory = git(
+    verify_pinned(
         checkout,
+        revision,
         &[
-            "ls-tree",
-            "-r",
-            "--name-only",
-            revision,
-            "--",
             "schemas/reports",
             "schemas/feeds",
             "schemas/notifications",
             "schemas/data-kiosk",
         ],
-    )?;
-    let actual: BTreeSet<_> = inventory
-        .lines()
-        .filter(|path| {
+        |path| {
             (path.ends_with(".json") || path.ends_with(".graphql")) && !path.contains(".example.")
-        })
-        .map(str::to_owned)
-        .collect();
-    let expected: BTreeSet<_> = sources.iter().map(|source| source.path.clone()).collect();
-    if actual != expected {
-        return Err(GenerationError(format!(
-            "pinned supplemental inventory mismatch; missing: {:?}; extra: {:?}",
-            expected.difference(&actual).collect::<Vec<_>>(),
-            actual.difference(&expected).collect::<Vec<_>>()
-        )));
-    }
-    let mut args = vec!["status", "--porcelain", "--untracked-files=all", "--"];
-    args.extend(sources.iter().map(|source| source.path.as_str()));
-    if !git(checkout, &args)?.is_empty() {
-        return Err(GenerationError(
-            "supplemental schema files are modified".into(),
-        ));
-    }
-    let mut args = vec!["ls-files", "--error-unmatch", "--"];
-    args.extend(sources.iter().map(|source| source.path.as_str()));
-    git(checkout, &args)?;
+        },
+        &sources().into_iter().map(|source| source.path).collect(),
+        "supplemental",
+    )?;
     let root = checkout
         .parent()
         .ok_or_else(|| GenerationError("checkout requires parent".into()))?;
@@ -471,20 +442,6 @@ pub fn verify_sources(checkout: &Path, revision: &str) -> Result<(), GenerationE
         }
     }
     Ok(())
-}
-
-fn git(root: &Path, args: &[&str]) -> Result<String, GenerationError> {
-    let output = Command::new("git")
-        .arg("-C")
-        .arg(root)
-        .args(args)
-        .output()?;
-    if !output.status.success() {
-        return Err(GenerationError(
-            String::from_utf8_lossy(&output.stderr).trim().into(),
-        ));
-    }
-    String::from_utf8(output.stdout).map_err(|error| GenerationError(error.to_string()))
 }
 
 const SHIPMENT_SOURCE: &str =

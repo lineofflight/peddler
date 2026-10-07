@@ -1,9 +1,8 @@
-use peddler_codegen::{GenerationError, generate, manifest::ALL_APIS};
+use peddler_codegen::{GenerationError, generate};
 use std::{
     fs,
     io::Write,
     path::{Path, PathBuf},
-    process::Command,
 };
 
 fn main() {
@@ -48,44 +47,7 @@ fn run() -> Result<(), GenerationError> {
         ));
     }
     let checkout = root.join("selling-partner-api-models");
-    let actual = git(&checkout, &["rev-parse", "HEAD"])?;
-    if actual.trim() != revision {
-        return Err(GenerationError(format!(
-            "checkout revision {} does not match pin {revision}",
-            actual.trim()
-        )));
-    }
-    let sources: Vec<String> = ALL_APIS
-        .iter()
-        .map(|api| format!("models/{}", api.source))
-        .collect();
-    let inventory = git(
-        &checkout,
-        &["ls-tree", "-r", "--name-only", revision, "--", "models"],
-    )?;
-    let tracked: std::collections::BTreeSet<_> = inventory
-        .lines()
-        .filter(|path| path.ends_with(".json"))
-        .map(str::to_owned)
-        .collect();
-    let expected: std::collections::BTreeSet<_> = sources.iter().cloned().collect();
-    if tracked != expected {
-        return Err(GenerationError(format!(
-            "pinned API inventory mismatch; missing: {:?}; extra: {:?}",
-            expected.difference(&tracked).collect::<Vec<_>>(),
-            tracked.difference(&expected).collect::<Vec<_>>()
-        )));
-    }
-    let mut status_args = vec!["status", "--porcelain", "--untracked-files=all", "--"];
-    status_args.extend(sources.iter().map(String::as_str));
-    if !git(&checkout, &status_args)?.is_empty() {
-        return Err(GenerationError("API spec files are modified".into()));
-    }
-    let mut tracked_args = vec!["ls-files", "--error-unmatch", "--"];
-    tracked_args.extend(sources.iter().map(String::as_str));
-    git(&checkout, &tracked_args)
-        .map_err(|_| GenerationError("API spec files are untracked or missing".into()))?;
-    peddler_codegen::supplemental::verify_sources(&checkout, revision)?;
+    peddler_codegen::checkout::verify(&checkout, revision)?;
     let output = generate(&checkout.join("models"), revision)?;
     let dest = output_root.unwrap_or(root);
     if check {
@@ -129,21 +91,6 @@ fn run() -> Result<(), GenerationError> {
         }
     }
     Ok(())
-}
-
-fn git(checkout: &Path, args: &[&str]) -> Result<String, GenerationError> {
-    let output = Command::new("git")
-        .arg("-C")
-        .arg(checkout)
-        .args(args)
-        .output()?;
-    if !output.status.success() {
-        return Err(GenerationError(format!(
-            "Git checkout verification failed: {}",
-            String::from_utf8_lossy(&output.stderr).trim()
-        )));
-    }
-    String::from_utf8(output.stdout).map_err(|error| GenerationError(error.to_string()))
 }
 
 fn generated_rust_files(root: &Path, relative: &Path) -> Result<Vec<PathBuf>, GenerationError> {

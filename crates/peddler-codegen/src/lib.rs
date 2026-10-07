@@ -4,6 +4,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+pub mod checkout;
 pub mod clients;
 pub mod facades;
 pub mod manifest;
