@@ -92,7 +92,7 @@ impl FeedDocumentTarget {
         };
         options.content_type = content_type;
         options.transfer.timeout =
-            remaining(deadline).map_err(|_| failed(documents::Error::Timeout))?;
+            remaining(deadline).ok_or_else(|| failed(documents::Error::Timeout))?;
         client.upload(&url, source, options).await.map_err(failed)
     }
 }
@@ -100,7 +100,9 @@ impl FeedDocumentTarget {
 pub enum WorkflowError {
     /// Invalid identifier, content type, interval, timeout or transfer limits.
     InvalidConfig,
-    /// Metadata request failed before an HTTP response.
+    /// Metadata request failed before an HTTP response. A lookup that takes longer
+    /// than the client's timeout, or than the deadline of its call, is
+    /// [`ClientError::Timeout`] here.
     Request(ClientError),
     /// Metadata response had an unexpected status. Raw response retained.
     Http(Response),
@@ -110,10 +112,13 @@ pub enum WorkflowError {
     Status,
     /// Metadata names a compression algorithm other than GZIP.
     UnsupportedCompression,
+    /// A wait ran past its own timeout. Nothing else is this: a request that times
+    /// out is [`Self::Request`], a transfer [`Self::Document`] or [`Self::Upload`].
     Timeout,
-    /// Download failed to start, or its signed URL answered outside 2xx.
+    /// Download failed to start, ran out of time, or its signed URL answered outside
+    /// 2xx.
     Document(documents::Error),
-    /// Upload failed after the feed document was created.
+    /// Upload failed or ran out of time after the feed document was created.
     Upload {
         document_id: String,
         error: documents::Error,
@@ -146,7 +151,7 @@ impl fmt::Display for WorkflowError {
             Self::Metadata => f.write_str("invalid document metadata"),
             Self::Status => f.write_str("unknown processing status"),
             Self::UnsupportedCompression => f.write_str("unsupported document compression"),
-            Self::Timeout => f.write_str("workflow timed out"),
+            Self::Timeout => f.write_str("wait timed out"),
             Self::Document(error) => write!(f, "{error}"),
             Self::Upload { error, .. } => write!(f, "feed document upload failed: {error}"),
         }
@@ -200,15 +205,8 @@ fn declared(algorithm: Option<&str>) -> Result<Option<Compression>, WorkflowErro
 }
 fn request_error(error: ClientError) -> WorkflowError {
     match error {
-        ClientError::Timeout => WorkflowError::Timeout,
         ClientError::InvalidRequest => WorkflowError::InvalidConfig,
         error => WorkflowError::Request(error),
-    }
-}
-fn document_error(error: documents::Error) -> WorkflowError {
-    match error {
-        documents::Error::Timeout => WorkflowError::Timeout,
-        error => WorkflowError::Document(error),
     }
 }
 fn id(value: &str) -> Result<String, WorkflowError> {
@@ -218,30 +216,39 @@ fn id(value: &str) -> Result<String, WorkflowError> {
         Ok(value.to_owned())
     }
 }
-fn remaining(deadline: Instant) -> Result<Duration, WorkflowError> {
+/// The time left before the deadline, if any is.
+fn remaining(deadline: Instant) -> Option<Duration> {
     let left = deadline.saturating_duration_since(Instant::now());
-    if left.is_zero() {
-        Err(WorkflowError::Timeout)
-    } else {
-        Ok(left)
-    }
+    (!left.is_zero()).then_some(left)
 }
-/// One metadata request under the deadline. The reply must carry exactly `status`
-/// and decode. The model comes with the response it was read from.
+/// One metadata request under the deadline, or `late` when the deadline comes first.
+/// The reply must carry exactly `status` and decode. The model comes with the
+/// response it was read from.
 async fn metadata<T: DeserializeOwned>(
     deadline: Instant,
+    late: WorkflowError,
     status: u16,
     call: impl Future<Output = Result<TypedResponse<T>, ClientError>>,
 ) -> Result<(T, TypedResponse<T>), WorkflowError> {
     let typed = timeout_at(deadline, call)
         .await
-        .map_err(|_| WorkflowError::Timeout)?
+        .map_err(|_| late)?
         .map_err(request_error)?;
     if typed.raw.status != status {
         return Err(WorkflowError::Http(typed.into_raw()));
     }
     let model = typed.json().map_err(|_| WorkflowError::Metadata)?;
     Ok((model, typed))
+}
+/// The request that looks up or creates a document. Past the deadline of the whole
+/// call it has timed out as a request does.
+async fn lookup<T: DeserializeOwned>(
+    deadline: Instant,
+    status: u16,
+    call: impl Future<Output = Result<TypedResponse<T>, ClientError>>,
+) -> Result<(T, TypedResponse<T>), WorkflowError> {
+    let late = WorkflowError::Request(ClientError::Timeout);
+    metadata(deadline, late, status, call).await
 }
 
 impl Workflows {
@@ -257,7 +264,7 @@ impl Workflows {
         let deadline = Self::start(&options)?;
         let (url, declared) = match kind {
             DocumentKind::Report => {
-                let (document, _) = metadata(
+                let (document, _) = lookup(
                     deadline,
                     200,
                     reports::get_report_document(
@@ -270,7 +277,7 @@ impl Workflows {
                 (document.url, declared)
             }
             DocumentKind::Feed => {
-                let (document, _) = metadata(
+                let (document, _) = lookup(
                     deadline,
                     200,
                     feeds::get_feed_document(&self.client, feeds::GetFeedDocumentParams::new(id)),
@@ -280,7 +287,7 @@ impl Workflows {
                 (document.url, declared)
             }
             DocumentKind::Query => {
-                let (document, _) = metadata(
+                let (document, _) = lookup(
                     deadline,
                     200,
                     kiosk::get_document(&self.client, kiosk::GetDocumentParams::new(id)),
@@ -415,7 +422,7 @@ impl Workflows {
         checked.content_type = content_type.to_owned();
         let deadline =
             documents::check_upload(&checked).map_err(|_| WorkflowError::InvalidConfig)?;
-        let (created, _) = metadata(
+        let (created, _) = lookup(
             deadline,
             201,
             feeds::create_feed_document(
@@ -457,12 +464,13 @@ impl Workflows {
             options.compression = compression;
         }
         documents::check_url(url).map_err(|_| WorkflowError::Metadata)?;
-        options.timeout = remaining(deadline)?;
+        options.timeout =
+            remaining(deadline).ok_or(WorkflowError::Document(documents::Error::Timeout))?;
         self.client
             .documents()
             .download(url, options)
             .await
-            .map_err(document_error)
+            .map_err(WorkflowError::Document)
     }
 }
 
@@ -482,8 +490,8 @@ where
     let deadline = crate::deadline(options.timeout).ok_or(WorkflowError::InvalidConfig)?;
     loop {
         // A late timer wake must not start one more poll after the deadline.
-        remaining(deadline)?;
-        let (value, typed) = metadata(deadline, 200, fetch()).await?;
+        remaining(deadline).ok_or(WorkflowError::Timeout)?;
+        let (value, typed) = metadata(deadline, WorkflowError::Timeout, 200, fetch()).await?;
         match status(&value).as_str() {
             "DONE" | "CANCELLED" | "FATAL" => return Ok(typed),
             "IN_QUEUE" | "IN_PROGRESS" => {}

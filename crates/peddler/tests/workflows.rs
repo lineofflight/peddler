@@ -308,7 +308,84 @@ async fn one_deadline_covers_metadata_and_transfer() {
         )
         .await
         .unwrap_err();
-    assert!(matches!(error, WorkflowError::Timeout), "{error:?}");
+    // The lookup ran out of time: a request's timeout, not a wait's.
+    assert!(
+        matches!(error, WorkflowError::Request(peddler::Error::Timeout)),
+        "{error:?}"
+    );
+}
+
+#[tokio::test]
+async fn each_timeout_names_what_ran_out_of_time() {
+    // The signed URL never answers: the transfer's timeout.
+    let server = serve(|_, request, base| {
+        if request.starts_with("GET /signed") {
+            http(200, "", b"late").delayed(Duration::from_secs(3))
+        } else {
+            json(200, &report_document(base, None))
+        }
+    })
+    .await;
+    let options = TransferOptions {
+        timeout: Duration::from_millis(200),
+        ..Default::default()
+    };
+    let error = client(&server.url)
+        .workflows()
+        .download_report_document("d1", options.clone())
+        .await
+        .unwrap_err();
+    assert!(
+        matches!(error, WorkflowError::Document(DocumentError::Timeout)),
+        "{error:?}"
+    );
+
+    // The lookup never answers within the client's own timeout: the request's.
+    let slow =
+        serve(|_, _, base| json(200, &report_document(base, None)).delayed(Duration::from_secs(3)))
+            .await;
+    let hasty =
+        Client::with_timeout(&slow.url, "SECRET_API_TOKEN", Duration::from_millis(100)).unwrap();
+    let error = hasty
+        .workflows()
+        .download_report_document("d1", TransferOptions::default())
+        .await
+        .unwrap_err();
+    assert!(
+        matches!(error, WorkflowError::Request(peddler::Error::Timeout)),
+        "{error:?}"
+    );
+
+    // So is creating a feed document.
+    let error = client(&slow.url)
+        .workflows()
+        .create_feed_document(
+            "text/xml",
+            &UploadOptions {
+                transfer: options,
+                ..Default::default()
+            },
+        )
+        .await
+        .unwrap_err();
+    assert!(
+        matches!(error, WorkflowError::Request(peddler::Error::Timeout)),
+        "{error:?}"
+    );
+
+    // One poll that takes longer than the client's timeout is a failed request. The
+    // wait's own timeout had 5 seconds left.
+    let started = Instant::now();
+    let error = hasty
+        .workflows()
+        .wait_for_report("r1", fast(10, 5_000))
+        .await
+        .unwrap_err();
+    assert!(
+        matches!(error, WorkflowError::Request(peddler::Error::Timeout)),
+        "{error:?}"
+    );
+    assert!(started.elapsed() < Duration::from_secs(2));
 }
 
 fn report(status: &str) -> String {

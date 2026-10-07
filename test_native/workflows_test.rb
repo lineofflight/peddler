@@ -329,6 +329,64 @@ class WorkflowsTest < NativeTest
     end
   end
 
+  # Answers every lookup, poll and signed URL, but a path that matches `slow` only after 2 seconds.
+  def slow_server(slow, &block)
+    handler = lambda do |path, base|
+      sleep(2) if path.match?(slow)
+      case path
+      when %r{\A/signed} then [200, "body"]
+      when %r{\A/reports/2021-06-30/reports/} then [200, report("IN_QUEUE")]
+      when %r{\A/reports/} then [200, report_document(base)]
+      when %r{\A/feeds/} then [path.end_with?("/documents") ? 201 : 200, JSON.generate(feedDocumentId: "f1", url: "#{base}/signed")]
+      else [200, JSON.generate(documentId: "k1", documentUrl: "#{base}/signed")]
+      end
+    end
+    route_server(handler, &block)
+  end
+
+  # What ran out of time decides the class: a lookup is a request, a transfer is a document, and only a wait is
+  # a workflow.
+
+  def test_a_slow_lookup_raises_the_timeout_of_a_request
+    slow_server(%r{/documents}) do |url, _|
+      instance = client(url)
+      hasty = client(url, timeout: 0.1)
+
+      [
+        -> { instance.open_report_document("d1", timeout: 0.1) },
+        -> { instance.open_feed_document("d1", timeout: 0.1) },
+        -> { instance.open_query_document("d1", timeout: 0.1) },
+        -> { instance.create_and_upload_feed_document("content", content_type: "text/xml", timeout: 0.1) },
+        -> { hasty.open_report_document("d1") },
+        -> { hasty.reports.download_report_document("d1") },
+        -> { hasty.data_kiosk.download_query_document("d1") },
+      ].each { |call| assert_raises(Peddler::TimeoutError, &call) }
+    end
+  end
+
+  def test_a_slow_transfer_raises_the_timeout_of_a_document
+    slow_server(%r{\A/signed}) do |url, _|
+      instance = client(url)
+
+      [
+        -> { instance.open_report_document("d1", timeout: 0.1) },
+        -> { instance.open_feed_document("d1", timeout: 0.1) },
+        -> { instance.open_query_document("d1", timeout: 0.1) },
+        -> { instance.create_and_upload_feed_document("content", content_type: "text/xml", timeout: 0.1) },
+        -> { instance.download_document("#{url}/signed", timeout: 0.1) },
+        -> { instance.upload_document("#{url}/signed", "content", content_type: "text/xml", timeout: 0.1) },
+      ].each { |call| assert_raises(Peddler::DocumentTimeoutError, &call) }
+    end
+  end
+
+  def test_only_a_wait_past_its_own_timeout_raises_the_timeout_of_a_workflow
+    slow_server(%r{/reports/r1}) do |url, _|
+      # One poll took longer than the client allows a request, with most of the wait's time left.
+      assert_raises(Peddler::TimeoutError) { client(url, timeout: 0.1).wait_for_report("r1", interval: 0.01, timeout: 5) }
+      assert_raises(Peddler::WorkflowTimeoutError) { client(url).wait_for_report("r1", interval: 0.01, timeout: 0.1) }
+    end
+  end
+
   def test_thread_kill_ends_a_wait_and_the_client_recovers
     polls = Queue.new
     status = "IN_PROGRESS"
