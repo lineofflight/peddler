@@ -35,7 +35,7 @@ Each carries a build for Ruby 3.3, 3.4 and 4.0 and needs no compiler.
 
 On any other platform, including Alpine and other musl Linux, Bundler installs the source gem and compiles the extension during installation. That needs:
 
-- a current stable Rust toolchain with `cargo` on `PATH` (see [rustup](https://rustup.rs)); Peddler is built and tested with Rust 1.98
+- Rust 1.88 or later with `cargo` on `PATH` (see [rustup](https://rustup.rs)); Peddler is built and tested with the current stable release
 - the Ruby headers (`ruby-dev` or `ruby-devel` on Linux)
 - `clang` and `libclang`
 - network access to crates.io
@@ -193,6 +193,10 @@ A parameter value takes what an operation's argument takes: a String, a number, 
 
 The client takes 2 options. `timeout:` is the number of seconds a whole call may take, 30 by default. `retries:` is described under [Rate limiting](#rate-limiting). An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10`.
 
+A call ends early only when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. Peddler then cancels the request and closes its connection. A signal your program traps and `Thread#wakeup` raise nothing, so the call goes on.
+
+Requests go through the proxy that `HTTPS_PROXY` or `ALL_PROXY` names in the environment, unless `NO_PROXY` lists the host.
+
 To call with another token, for another seller or with a [restricted data token](#restricted-data-tokens-rdt-and-pii), take a view of the client. `with_access_token` accepts what `access_token:` accepts.
 
 ```ruby
@@ -202,7 +206,7 @@ other.sellers.get_marketplace_participations
 
 All clients and views in a process share 1 connection pool, so creating a client for each job or request is cheap.
 
-After `fork`, create your clients in the child process. A client or token source created before the fork raises `Peddler::ForkError` in the child. With a preloading server such as Puma or Unicorn, create clients when you need them, not at boot.
+After `fork`, create your clients in the child process. A client, a `Peddler::LWA` or a token source created before the fork raises `Peddler::ForkError` in the child, and the message says which to create again. With a preloading server such as Puma or Unicorn, create clients when you need them, not at boot.
 
 ### Restricted Data Tokens (RDT) and PII
 
@@ -305,9 +309,13 @@ response.status.success?                 # => true
 response.code                            # => 200
 response.headers["x-amzn-RequestId"]     # => "a1b2c3d4-..."
 response.headers["x-amzn-RateLimit-Limit"] # => "0.0167"
+response.headers.include?("x-amzn-RequestId") # => true
 response.body                            # the bytes as they arrived
 response.to_s                            # the body as text, in the charset Amazon declares
+response.inspect                         # => "#<Peddler::Response 200>"
 ```
+
+A response is its text wherever a String is taken, as in `JSON.parse(response)`. `inspect` shows the class and the status only, since a body can hold a token.
 
 ### Error Handling
 
@@ -337,14 +345,14 @@ A failure that is not an HTTP error response from the API has a class of its own
 | Error | Raised when |
 | --- | --- |
 | `Peddler::TransportError` | A request got no response: DNS, connection or TLS failed. |
-| `Peddler::TimeoutError` | A call ran past its `timeout:`. A `Peddler::TransportError`. |
-| `Peddler::AuthenticationError` | Login with Amazon rejected a token request. Has `status` and `code`. |
+| `Peddler::TimeoutError` | A call ran past its `timeout:`. So did a token request, or the request that looks a document up or creates one. A `Peddler::TransportError`. |
+| `Peddler::AuthenticationError` | Login with Amazon rejected a token request. Has `status` and `code`, and matches patterns on them. |
 | `Peddler::PaginationError` | A `*_pages` enumerator cannot continue. Has `reason`. |
 | `Peddler::DocumentError` | A document transfer failed, or a document is not what the reader expects. |
 | `Peddler::DocumentTimeoutError` | A document transfer ran past its `timeout:`. A `Peddler::DocumentError`. |
 | `Peddler::WorkflowError` | A document's metadata is unusable, or a report, feed or query has a status Peddler doesn't know. |
-| `Peddler::WorkflowTimeoutError` | A `wait_for_*` call ran past its `timeout:`. A `Peddler::WorkflowError`. |
-| `Peddler::ForkError` | A client or token source created before `fork` is used in the child. |
+| `Peddler::WorkflowTimeoutError` | A `wait_for_*` call ran past its own `timeout:`, and nothing else. A `Peddler::WorkflowError`. |
+| `Peddler::ForkError` | A client, a `Peddler::LWA` or a token source created before `fork` is used in the child. |
 | `ArgumentError` | An option or argument breaks its rule. The message names it, such as `order_id is required` or `page_size must be an Integer`. Nothing was sent. |
 
 ### Sandbox and custom endpoints
@@ -365,6 +373,8 @@ local = Peddler::Client.new(base_url: "http://localhost:9001", access_token: "te
 ```
 
 `base_url` is a scheme, a host and an optional port, with no path. Plain `http` is accepted for `localhost` and loopback addresses only, so that a token is never sent unencrypted over a network. A client with a `base_url` has no sandbox: `sandbox` raises `ArgumentError`.
+
+Tests use `base_url:` too. WebMock and VCR don't see Peddler's requests, which leave through the native extension, so a stub is never hit. Point the client at a server the test starts, and `Peddler::LWA` at one with `lwa_endpoint:`.
 
 ### Pagination
 
@@ -387,7 +397,7 @@ Where an operation has no twin, read the token from the response and pass it to 
 
 ### Documents and workflows
 
-Reports, feeds and Data Kiosk queries exchange documents through signed URLs. Peddler waits for a job to finish and downloads or uploads its document.
+Reports, feeds and Data Kiosk queries exchange documents through signed URLs. Peddler waits for a job to finish and downloads or uploads its document. These helpers are on `client.reports`, `client.feeds` and `client.data_kiosk`, beside the operations of each API.
 
 ```ruby
 report_id = client.reports.create_report({
@@ -395,13 +405,19 @@ report_id = client.reports.create_report({
   "marketplaceIds" => Peddler::Marketplace.ids("UK"),
 }).parse.report_id
 
-report = client.wait_for_report(report_id).parse
+report = client.reports.wait_for_report(report_id).parse
 if report.processing_status == "DONE"
   listings = client.reports.download_report_document(report.report_document_id).to_s
 end
 ```
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out.
+| API | Waits | Opens a document to stream | Returns a whole document | Uploads |
+| --- | --- | --- | --- | --- |
+| `client.reports` | `wait_for_report` | `open_report_document` | `download_report_document` | |
+| `client.feeds` | `wait_for_feed` | `open_feed_document` | `download_result_feed_document` | `upload_feed_document`, `create_and_upload_feed_document` |
+| `client.data_kiosk` | `wait_for_query` | `open_query_document` | `download_query_document` | |
+
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out. A single poll that takes longer than the client's `timeout:` raises `Peddler::TimeoutError`, as any request does.
 
 4 helpers return a whole document in a response. They allow 600 seconds for a call.
 
@@ -419,7 +435,7 @@ Given an ID, they decompress a document that Amazon compressed. Given a URL, the
 A large document doesn't need to fit in memory. `open_report_document`, `open_feed_document` and `open_query_document` take a document ID and yield a `Peddler::Document` that reads the download as it arrives.
 
 ```ruby
-client.open_report_document(report.report_document_id) do |document|
+client.reports.open_report_document(report.report_document_id) do |document|
   document.each_tsv do |row|
     puts row.first
   end
@@ -444,12 +460,12 @@ Without a block, the `each_` methods return an Enumerator. Numbers with a fracti
 | `max_record_bytes:` | the memory 1 row may take, its fields included | 1 MiB |
 
 ```ruby
-client.open_report_document(report.report_document_id, timeout: 120) do |document|
+client.reports.open_report_document(report.report_document_id, timeout: 120) do |document|
   document.each_tsv { |row| puts row.first }
 end
 ```
 
-A download that runs past its timeout raises `Peddler::DocumentTimeoutError`.
+The timeout covers the whole call: looking the document up by its ID, then downloading it. A download that runs past it raises `Peddler::DocumentTimeoutError`. If looking the document up takes that long, it raises `Peddler::TimeoutError`, as any request does.
 
 An option that breaks its rule raises `ArgumentError` that names it, such as `max_bytes must be a positive Integer that fits in 64 bits`. An unknown one raises `unknown option: the options are timeout, compression, max_bytes and max_record_bytes`. An upload and a wait name a bad option in the same way.
 
@@ -458,7 +474,7 @@ An ID that is empty, `.` or `..` is refused by name too, before any request: `do
 `each_tsv` decodes text from the charset in the document's `Content-Type`, such as `Cp1252` or `Shift_JIS`, and yields UTF-8. `document.charset` returns that label. If Amazon labels a document wrongly, name the charset yourself.
 
 ```ruby
-client.open_report_document(report.report_document_id) do |document|
+client.reports.open_report_document(report.report_document_id) do |document|
   document.each_tsv(charset: "UTF-8") { |row| puts row.first }
 end
 ```
@@ -469,7 +485,7 @@ end
 
 ```ruby
 feed_document_id = File.open("feed.json", "rb") do |file|
-  client.create_and_upload_feed_document(file, content_type: "application/json; charset=UTF-8")
+  client.feeds.create_and_upload_feed_document(file, content_type: "application/json; charset=UTF-8")
 end
 
 feed_id = client.feeds.create_feed({
@@ -478,17 +494,21 @@ feed_id = client.feeds.create_feed({
   "inputFeedDocumentId" => feed_document_id,
 }).parse.feed_id
 
-feed = client.wait_for_feed(feed_id).parse
-result = client.open_feed_document(feed.result_feed_document_id) do |document|
+feed = client.feeds.wait_for_feed(feed_id).parse
+result = client.feeds.open_feed_document(feed.result_feed_document_id) do |document|
   document.json(max_bytes: 10_000_000)
 end
 report = Peddler::Feeds::ListingsFeedProcessingReportSchema.parse(result)
 report.summary.messages_accepted # => 2
 ```
 
+An upload declares its length when it can tell it: a String, a File and a StringIO are sent with `Content-Length`. For another source, pass `content_length:` with the number of bytes it holds. Without one, the body is sent chunked. This holds for `upload_feed_document` and `upload_document` too.
+
+If creating the feed document takes longer than the upload's `timeout:` (30 seconds), it raises `Peddler::TimeoutError`. If the upload does, it raises `Peddler::DocumentTimeoutError`.
+
 #### Signed URLs
 
-For a signed URL you already hold, use `download_document` and `upload_document`. Neither sends the access token, and both take `timeout:`. Pass `compression: :gzip` to `download_document` when the document's metadata says `GZIP`.
+For a signed URL you already hold, use `download_document` and `upload_document` on the client: a signed URL belongs to no API. Neither sends the access token, and both take `timeout:`. Pass `compression: :gzip` to `download_document` when the document's metadata says `GZIP`.
 
 ```ruby
 client.download_document(download_url) do |document|
@@ -611,9 +631,9 @@ The Data Kiosk API provides access to Amazon's analytical data through GraphQL q
 response = client.data_kiosk.create_query({
   "query" => "query { analytics_salesAndTraffic_2024_04_24 { salesAndTrafficByDate(...) { startDate sales { unitsOrdered } } } }",
 })
-query = client.wait_for_query(response.parse.query_id).parse
+query = client.data_kiosk.wait_for_query(response.parse.query_id).parse
 
-client.open_query_document(query.data_document_id) do |document|
+client.data_kiosk.open_query_document(query.data_document_id) do |document|
   document.each_jsonl do |row|
     by_date = Peddler::DataKiosk::SalesAndTraffic20240424::SalesAndTrafficByDate.parse(row)
     puts by_date.start_date
@@ -698,7 +718,7 @@ bundle exec rake generate
 bundle exec steep check --severity-level=hint
 ```
 
-`rake test` builds the extension first. The generators are described in [lib/generator/README.md](lib/generator/README.md) and [crates/peddler-codegen/README.md](crates/peddler-codegen/README.md).
+`rake test` builds the extension first. The generators are described in [lib/generator/README.md](lib/generator/README.md) and [crates/peddler-codegen/README.md](crates/peddler-codegen/README.md). A release is made by hand: see [RELEASING.md](RELEASING.md).
 
 [api-docs]: https://developer-docs.amazon.com/sp-api/docs/welcome
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
