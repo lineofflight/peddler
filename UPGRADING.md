@@ -4,7 +4,7 @@ This guide covers upgrading from v5.x to v6.0, and from v4.x to v5.0.
 
 ## From v5.x to v6.0
 
-Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. Its Ruby API stays close to v5. You change how you create a client, how you get tokens and how you rescue errors. Your operation calls stay as they are.
+Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. Its Ruby API stays close to v5. You change how you create a client, how you get tokens, how you rescue errors and how your tests stand in for Amazon. Your operation calls stay as they are.
 
 ### What to change
 
@@ -47,7 +47,9 @@ restricted = client.with_access_token(restricted_data_token)
 restricted.orders_v0.get_order_address("123-1234567-1234567")
 ```
 
-After `fork`, create clients in the child process. A client created before the fork raises `Peddler::ForkError` there.
+After `fork`, create clients, and a `Peddler::LWA`, in the child process. One created before the fork raises `Peddler::ForkError` there, and the message says which to create.
+
+Peddler now sends its requests through the proxy that `HTTPS_PROXY` or `ALL_PROXY` names in the environment, unless `NO_PROXY` lists the host. v5 ignored these variables. Unset them if a proxy must not see the calls.
 
 #### 2. Tokens and LWA
 
@@ -68,7 +70,7 @@ refresh_token = lwa.exchange_authorization_code(code: code).refresh_token
 access_token = lwa.client_credentials(scope: "sellingpartnerapi::notifications").access_token
 ```
 
-`Peddler::LWA.new` reads `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET` from the environment, or takes `client_id:` and `client_secret:`, as before. `Peddler::LWAToken` is now `Peddler::LWA::Tokens`, with the same `access_token`, `refresh_token`, `token_type`, `expires_in` and `scope`.
+`Peddler::LWA.new` reads `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET` from the environment, or takes `client_id:` and `client_secret:`, as before. `Peddler::LWAToken` is now `Peddler::LWA::Tokens`, with the same `access_token`, `refresh_token`, `token_type`, `expires_in` and `scope`. Tokens with the same values are equal, as before.
 
 The readers `client_id`, `client_secret`, `options` and `grant_type` of a `Peddler::LWA`, and `Peddler::LWA::URL`, are gone. A grant with a blank argument raises `ArgumentError` that names it, such as `refresh_token must be a UTF-8 String that is not blank`, and sends nothing.
 
@@ -265,16 +267,39 @@ rescue Peddler::Error => e
 end
 ```
 
+#### 6. Tests
+
+WebMock and VCR no longer see Peddler's requests. They patch Ruby's HTTP libraries, and the requests now leave through the native extension. A stub is never hit, a cassette records nothing, and `WebMock.disable_net_connect!` doesn't stop a call: it reaches Amazon.
+
+Start a local server in the test and point the client at it with `base_url:`. `Peddler::LWA` takes `lwa_endpoint:` in the same way.
+
+**Before (v5):**
+```ruby
+stub_request(:get, "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/123-1234567-1234567")
+  .to_return(body: JSON.generate(payload: { AmazonOrderId: "123-1234567-1234567" }))
+api = Peddler.orders_v0.new("eu-west-1", "token")
+```
+
+**After (v6):**
+```ruby
+client = Peddler::Client.new(base_url: "http://127.0.0.1:#{port}", access_token: "token")
+lwa = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "http://127.0.0.1:#{port}/auth/o2/token")
+```
+
+Plain `http` is accepted for `localhost` and loopback addresses only. If the environment sets `HTTP_PROXY` or `ALL_PROXY`, add `NO_PROXY=localhost,127.0.0.1`, or the test's requests go to the proxy.
+
+A test that needs no HTTP can stub the method it calls and return a `Peddler::Response`, which v6 builds from a status, the headers as pairs and a body: `Peddler::Response.new(200, [["content-type", "application/json"]], "{}")`.
+
 ### What keeps working
 
 - Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names.
 - The forms an argument may take, listed under [Argument forms](#argument-forms): a String for a list, a String that holds JSON for a body, a number where a String is expected and a numeric String where a number is.
-- A `Peddler::Marketplace` wherever its ID goes, alone or in a list, and any other object that converts itself with `to_str`.
+- A list of `Peddler::Marketplace` objects where a list of IDs goes, and any other object that converts itself with `to_str`. A single `Peddler::Marketplace` in place of its ID now works too.
 - The documentation of every operation and API class, as YARD comments.
 - `parse`, `to_h` and `dig` on a response, and the typed models under `Peddler::APIs`.
-- `status.success?`, `code`, `headers["Name"]`, `charset` and `to_s` on a response.
+- `status.success?`, `code`, `headers["Name"]`, `headers.include?("Name")`, `charset` and `to_s` on a response. A response is still its text where a String is taken, as in `JSON.parse(response)`.
 - Raising `Peddler::Error` on 4xx and 5xx, with `message` and `response`.
-- The 4 document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`. An ID of `"."` or `".."`, or an empty one, raises `ArgumentError` that names the argument, before any request.
+- The 4 document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`. `upload_feed_document` still sends the length of a String, a File or a StringIO. An ID of `"."` or `".."`, or an empty one, raises `ArgumentError` that names the argument, before any request.
 - `Peddler::Marketplace`, `Peddler::Endpoint` and `Peddler::Money`.
 - The typed parsers under `Peddler::Notifications`, `Peddler::Reports`, `Peddler::Feeds` and `Peddler::DataKiosk`.
 
@@ -299,6 +324,7 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 | A String for a list: `get_catalog_item("B0X", "ATVPDKIKX0DER")` | `marketplaceIds=ATVPDKIKX0DER` | the same |
 | A String of several items: `included_data: "attributes,issues"` | `includedData=attributes%2Cissues` | the same |
 | A list of `Peddler::Marketplace` objects | their IDs | the same |
+| A `Peddler::Marketplace` alone: `get_catalog_item("B0X", marketplace)` | its inspect text | its ID |
 | `nil` for an optional argument | nothing | the same |
 | A Hash or an Array for a body | its JSON | the same |
 | A String that holds JSON for a body | the String | the same JSON, once |
@@ -321,15 +347,19 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 
 - A required argument given as `nil`, and the other forms in the lower half of the table above, raise `ArgumentError` where v5 sent a request.
 - Any status outside 2xx raises `Peddler::Error`, from an API call and from a signed URL in the document helpers. v5 raised from 400 up and returned a 3xx as a response.
-- The document helpers allow 600 seconds for a call and then raise `Peddler::DocumentTimeoutError`. v5 had no limit. For a longer transfer, use `client.open_report_document(id, timeout:)` and its siblings, described in the [README](README.md#documents-and-workflows).
-- `download_report_document` returns the report decompressed when Amazon compressed it. Remove your own `Zlib::GzipReader`.
-- `response.status` behaves as the Integer it wraps (`status == 200`, `status >= 400`, `case status when 200..299`), but it is not an instance of `Integer`. Use `response.code` where you need one. `status.to_s` is `"200"`, not `"200 OK"`, and `status.to_sym`, `status.ok?` and the other named predicates are gone.
-- `response.headers.to_h` and `headers.each` give header names in lowercase. `headers["Name"]` finds a header whatever its case. `headers.get` and `headers.keys` are gone. `headers.include?(name)` no longer looks a name up and returns `false`: use `headers[name]`.
-- `response.body` is a String. The other readers of the `http` gem's response, such as `content_type`, `mime_type`, `uri` and `request`, are gone. `Response#parsable?` is gone too.
+- The document helpers allow 600 seconds for a call. v5 had no limit. Past it, the transfer raises `Peddler::DocumentTimeoutError`. The request that looks a document up by its ID is a request like any other: it raises `Peddler::TimeoutError` when it takes longer than that, or than the client's `timeout:`. For a longer transfer, use `client.reports.open_report_document(id, timeout:)` and its siblings, described in the [README](README.md#documents-and-workflows).
+- Given a document ID, `download_report_document` returns the report decompressed when Amazon compressed it. Remove your own `Zlib::GzipReader`. Given a URL, it decompresses only when the reply says `Content-Encoding: gzip`, so a report whose metadata says `GZIP` still arrives compressed.
+- `response.status` behaves as the Integer it wraps (`status == 200`, `status >= 400`, `case status when 200..299`), but it is not an instance of `Integer`. Use `response.code` where you need one. `status.to_s` is `"200"`, not `"200 OK"`, and `status.to_sym`, `status.ok?` and the other named predicates are gone. In RBS, `status` is a `Peddler::Response::Status` where v5 declared an `Integer`: it compares as one, and `code` is the `Integer`.
+- `response.headers.to_h` and `headers.each` give header names in lowercase. `headers["Name"]`, `headers.include?("Name")` and `headers.key?("Name")` find a header whatever its case. `headers.get` and `headers.keys` are gone.
+- `response.body` is a String. The other readers of the `http` gem's response, such as `content_type`, `mime_type`, `uri` and `request`, are gone. `Response#parsable?` and `Response#parser` are gone too.
+- `response.inspect` is the class and the status, `#<Peddler::Response 200>`. A body can hold a token.
+- `Peddler::Response.new` takes a status, the headers as pairs and a body: `Peddler::Response.new(200, [["content-type", "application/json"]], "{}")`. v5 wrapped a response of the `http` gem with `Response.new(http_response, parser:)` or `Response.wrap`, which is gone.
 - `error.response` is a `Peddler::Response`. It was the `http` gem's response.
 - An HTTP error whose body carries no message has the message `request failed with status 500`, with its status. v5 used the status line.
 - A signed URL that rejects a transfer raises a plain `Peddler::Error` with its `status`. Its `code` is `nil` and its XML reply is in `error.response.body`. v5 raised a class named after the XML code, such as `Peddler::Errors::AccessDenied`.
 - The client has no readers for `access_token`, `retries`, `endpoint` or `base_url`.
+- The modules under `Peddler::Helpers` are gone. Their methods are on the API views, where you called them. `Peddler::API::TRANSIENT_STATUSES` is gone with `Peddler::API`.
+- `Peddler::REGIONS` is now `Peddler::Endpoint::REGIONS`. It and `Peddler::MARKETPLACE_IDS` are frozen.
 - Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details` send `mskus` as a repeated parameter, as Amazon specifies. v5 joined the values with commas.
 
 ### Dependency changes
@@ -343,9 +373,9 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 These need no change to existing code. The [README](README.md#usage) describes each.
 
 - `*_pages` methods that enumerate the pages of an operation
-- `wait_for_report`, `wait_for_feed` and `wait_for_query`
-- Streaming downloads with `open_report_document`, `open_feed_document`, `open_query_document` and `download_document`, read as TSV, JSON Lines, JSON or bytes
-- `create_and_upload_feed_document` and `upload_document`
+- `wait_for_report`, `wait_for_feed` and `wait_for_query`, on `client.reports`, `client.feeds` and `client.data_kiosk`, beside v5's helpers
+- Streaming downloads with `open_report_document`, `open_feed_document` and `open_query_document` on the same 3, and `client.download_document` for a signed URL, read as TSV, JSON Lines, JSON or bytes
+- `client.feeds.create_and_upload_feed_document`, and `client.upload_document` for a signed URL
 - `lwa.token_source`, a token source that refreshes in the process
 - `base_url:` in place of `region:`, to point a client at a local mock or a proxy
 - Pattern matching on errors, by `status` and `code`
