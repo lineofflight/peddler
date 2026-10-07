@@ -165,7 +165,7 @@ response = client.orders_v0.get_orders(
 )
 ```
 
-An operation takes a `Peddler::Marketplace` where a marketplace ID goes: `Peddler::Marketplace.find("UK")` in place of its ID.
+Where a marketplace ID goes, a `Peddler::Marketplace` works too: `Peddler::Marketplace.find("UK")` in place of its ID. A String must be valid UTF-8, or the call raises `ArgumentError` that names the argument, such as `order_id must be valid UTF-8`.
 
 A request body is a Hash with the field names Amazon documents. A String that holds JSON also works.
 
@@ -184,10 +184,12 @@ For an endpoint Peddler has no method for yet, call `request` with the HTTP meth
 response = client.request(
   "GET",
   "/orders/v0/orders",
-  params: { MarketplaceIds: "A1F83G8C2ARO7P", CreatedAfter: "2026-01-01T00:00:00Z" },
+  params: { MarketplaceIds: Peddler::Marketplace.ids("UK", "DE"), CreatedAfter: "2026-01-01T00:00:00Z" },
 )
 orders = response.dig("payload", "Orders")
 ```
+
+A parameter value takes what an operation's argument takes: a String, a number, a boolean, a `Peddler::Marketplace`, or an Array of them, which is joined with commas. A method or a path that is not a String raises `ArgumentError`, such as `path must be a String`.
 
 The client takes 2 options. `timeout:` is the number of seconds a whole call may take, 30 by default. `retries:` is described under [Rate limiting](#rate-limiting). An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10`.
 
@@ -448,6 +450,10 @@ end
 ```
 
 A download that runs past its timeout raises `Peddler::DocumentTimeoutError`.
+
+An option that breaks its rule raises `ArgumentError` that names it, such as `max_bytes must be a positive Integer that fits in 64 bits`. An unknown one raises `unknown option: the options are timeout, compression, max_bytes and max_record_bytes`. An upload and a wait name a bad option in the same way.
+
+An ID that is empty, `.` or `..` is refused by name too, before any request: `document_id must not be empty`.
 
 `each_tsv` decodes text from the charset in the document's `Content-Type`, such as `Cp1252` or `Shift_JIS`, and yields UTF-8. `document.charset` returns that label. If Amazon labels a document wrongly, name the charset yourself.
 
