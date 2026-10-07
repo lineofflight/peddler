@@ -11,3 +11,37 @@ updates:
       - "hakanensari"
     schedule:
       interval: "daily"
+
+  # The crate and the extension. The source gem builds with --locked, so this lock is
+  # what a user compiles: every crate in it is kept current, in 1 pull request a week.
+  - package-ecosystem: "cargo"
+    directory: "/"
+    assignees:
+      - "hakanensari"
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: "all"
+    groups:
+      cargo:
+        patterns:
+          - "*"
+
+  # The generator, a workspace with a lock of its own. typify and prettyplease decide
+  # the bytes it writes and are pinned: moving either is a regeneration, done by hand.
+  - package-ecosystem: "cargo"
+    directory: "/crates/peddler-codegen"
+    assignees:
+      - "hakanensari"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "typify"
+      - dependency-name: "prettyplease"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    assignees:
+      - "hakanensari"
+    schedule:
+      interval: "weekly"

@@ -2,6 +2,7 @@
 
 require "minitest/autorun"
 require "minitest/mock"
+require "securerandom"
 require "socket"
 require "timeout"
 require "json"
@@ -9,6 +10,10 @@ require "uri"
 require "peddler"
 
 class NativeTest < Minitest::Test
+  # A value that must not show in what a call raises. It is random, so that no path in a backtrace can hold it,
+  # as a checkout under /private/tmp holds "private".
+  SENTINEL = "sentinel#{SecureRandom.hex(8)}".freeze
+
   # Without the body, a handler can answer before the client has sent it.
   def with_server(count: 1, read_body: true, &handler)
     server = TCPServer.new("127.0.0.1", 0)

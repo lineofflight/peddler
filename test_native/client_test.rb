@@ -56,16 +56,16 @@ class ClientTest < NativeTest
         { key: nil } => "key #{rule}",
         { key: Object.new } => "key #{rule}",
         { key: Float::INFINITY } => "key #{rule}",
-        { key: { private: 1 } } => "key #{rule}",
-        { key: [["private"]] } => "key #{rule}",
-        { key: "private\xFF" } => "key must be valid UTF-8",
-        { "private\xFF" => "value" } => "parameter names must be valid UTF-8",
+        { key: { SENTINEL.to_sym => 1 } } => "key #{rule}",
+        { key: [[SENTINEL]] } => "key #{rule}",
+        { key: "#{SENTINEL}\xFF" } => "key must be valid UTF-8",
+        { "#{SENTINEL}\xFF" => "value" } => "parameter names must be valid UTF-8",
       }.each do |params, message|
         error = assert_raises(ArgumentError) { instance.request("GET", "/x", params: params) }
 
         assert_equal(message, error.message)
         assert_nil(error.cause)
-        refute_match(/private/, error.full_message(highlight: false).b)
+        refute_includes(error.full_message(highlight: false).b, SENTINEL)
       end
       assert_empty(requests)
     end
@@ -93,14 +93,14 @@ class ClientTest < NativeTest
     {
       -> { instance.request(:get, "/") } => "method must be a String",
       -> { instance.request("GET", nil) } => "path must be a String",
-      -> { instance.request("private\xFF", "/") } => "method must be an HTTP method",
-      -> { instance.request("GET", "/private\xFF") } => "path must be valid UTF-8",
+      -> { instance.request("#{SENTINEL}\xFF", "/") } => "method must be an HTTP method",
+      -> { instance.request("GET", "/#{SENTINEL}\xFF") } => "path must be valid UTF-8",
     }.each do |call, message|
       error = assert_raises(ArgumentError, &call)
 
       assert_equal(message, error.message)
       assert_nil(error.cause)
-      refute_match(/private/, error.full_message(highlight: false).b)
+      refute_includes(error.full_message(highlight: false).b, SENTINEL)
     end
     [0, -1, Float::INFINITY, Float::NAN].each do |timeout|
       assert_raises(ArgumentError) { client("http://127.0.0.1:1", timeout: timeout) }
@@ -113,8 +113,9 @@ class ClientTest < NativeTest
     server = TCPServer.new("127.0.0.1", 0)
     url = "http://127.0.0.1:#{server.addr[1]}"
     server.close
-    error = assert_raises(Peddler::TransportError) { client(url).request("GET", "/secret", params: { token: "private" }) }
-    refute_match(/secret|private|127\.0\.0\.1/, error.message)
+    error = assert_raises(Peddler::TransportError) { client(url).request("GET", "/secret", params: { token: SENTINEL }) }
+    refute_match(/secret|127\.0\.0\.1/, error.message)
+    refute_includes(error.message, SENTINEL)
   end
 
   def test_timeout

@@ -41,17 +41,20 @@ jobs:
         run: cargo package -p peddler --locked
       - name: Build the extracted package as a fresh consumer
         run: |
+          # The crate's name carries its version, which only its manifest states.
+          crate="$(ls target/package/peddler-*.crate)"
+          name="$(basename "$crate" .crate)"
           work="$RUNNER_TEMP/consumer"
           mkdir -p "$work/src"
-          tar -xzf target/package/peddler-0.1.0.crate -C "$work"
-          cat > "$work/Cargo.toml" <<'TOML'
+          tar -xzf "$crate" -C "$work"
+          cat > "$work/Cargo.toml" <<TOML
           [package]
           name = "consumer"
           version = "0.0.0"
           edition = "2024"
 
           [dependencies]
-          peddler = { path = "peddler-0.1.0" }
+          peddler = { path = "$name" }
 
           [workspace]
           TOML
@@ -60,7 +63,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: crate
-          path: target/package/peddler-0.1.0.crate
+          path: target/package/peddler-*.crate
 
   source-gem:
     strategy:

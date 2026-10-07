@@ -21,7 +21,7 @@ class ArgumentsTest < NativeTest
         error = assert_raises(ArgumentError) { call.call(client(url)) }
 
         assert_nil(error.cause)
-        refute_match(/private/, "#{error.message} #{error.full_message(highlight: false)} #{error.detailed_message}".b)
+        refute_includes("#{error.message} #{error.full_message(highlight: false)} #{error.detailed_message}".b, SENTINEL)
         error.message
       end
 
@@ -72,11 +72,11 @@ class ArgumentsTest < NativeTest
   end
 
   def test_an_object_whose_text_is_an_inspect_form_is_refused_by_name
-    point = Data.define(:x).new(x: "private")
+    point = Data.define(:x).new(x: SENTINEL)
     messages = refused(
       ->(client) { client.orders_v0.get_order(Object.new) },
       ->(client) { client.orders_v0.get_order(point) },
-      ->(client) { client.orders_v0.get_order(Struct.new(:x).new("private")) },
+      ->(client) { client.orders_v0.get_order(Struct.new(:x).new(SENTINEL)) },
       ->(client) { client.orders_v0.get_orders(["UK"], seller_order_id: point) },
       ->(client) { client.catalog_items_2022_04_01.get_catalog_item("B0X", [point]) },
     )
@@ -91,8 +91,8 @@ class ArgumentsTest < NativeTest
   def test_a_to_str_that_fails_is_refused_by_name
     wrong = Class.new { def to_str = 1 }.new
     raising = Class.new do
-      def to_str = raise("private")
-      def to_s = "private"
+      def to_str = raise(SENTINEL)
+      def to_s = SENTINEL
     end.new
     messages = refused(
       ->(client) { client.orders_v0.get_order(wrong) },
@@ -109,7 +109,7 @@ class ArgumentsTest < NativeTest
   end
 
   def test_a_string_that_is_not_utf8_is_refused_by_name_and_never_shown
-    bad = "private\xFF"
+    bad = "#{SENTINEL}\xFF"
     messages = refused(
       ->(client) { client.orders_v0.get_order(bad) },
       ->(client) { client.orders_v0.get_orders(["UK"], seller_order_id: bad) },
@@ -118,7 +118,7 @@ class ArgumentsTest < NativeTest
       # Inside a body, where only the encoder looks
       ->(client) { client.feeds_2021_06_30.create_feed({ "feedType" => bad }) },
       ->(client) { client.fba_inventory_v1.create_inventory_item({ "sku" => [bad] }) },
-      ->(client) { client.feeds_2021_06_30.create_feed({ "private" => Float::NAN }) },
+      ->(client) { client.feeds_2021_06_30.create_feed({ SENTINEL => Float::NAN }) },
       ->(client) { client.request("POST", "/", body: { "k" => bad }) },
     )
     json = "must be JSON: Strings of valid UTF-8 and finite numbers"
@@ -167,7 +167,7 @@ class ArgumentsTest < NativeTest
     requests = sent { |client| client.feeds_2021_06_30.create_feed('{"feedType":"X","marketplaceIds":["UK"]}') }
 
     assert_equal(['POST /feeds/2021-06-30/feeds {"feedType":"X","marketplaceIds":["UK"]}'], requests)
-    assert_equal(["body must be JSON"], refused(->(client) { client.feeds_2021_06_30.create_feed("private, and not JSON") }))
+    assert_equal(["body must be JSON"], refused(->(client) { client.feeds_2021_06_30.create_feed("#{SENTINEL}, and not JSON") }))
   end
 
   def test_a_hash_or_an_array_body_is_sent_as_json
@@ -202,8 +202,8 @@ class ArgumentsTest < NativeTest
       requests,
     )
     messages = refused(
-      ->(client) { client.feeds_2021_06_30.get_feeds(page_size: "private") },
-      ->(client) { client.shipping_v2.get_shipment_documents("s", "p", dpi: "private") },
+      ->(client) { client.feeds_2021_06_30.get_feeds(page_size: SENTINEL) },
+      ->(client) { client.shipping_v2.get_shipment_documents("s", "p", dpi: SENTINEL) },
     )
 
     assert_equal(["page_size must be an Integer", "dpi must be an Integer or a Float"], messages)
@@ -227,11 +227,11 @@ class ArgumentsTest < NativeTest
 
   def test_any_other_type_names_the_argument_and_what_it_should_be
     messages = refused(
-      ->(client) { client.orders_v0.get_order({ private: 1 }) },
-      ->(client) { client.catalog_items_2022_04_01.get_catalog_item("B0X", [["private"]]) },
+      ->(client) { client.orders_v0.get_order({ SENTINEL.to_sym => 1 }) },
+      ->(client) { client.catalog_items_2022_04_01.get_catalog_item("B0X", [[SENTINEL]]) },
       ->(client) { client.feeds_2021_06_30.get_feeds(page_size: 1.5) },
-      ->(client) { client.shipping_v2.get_shipment_documents("s", "p", dpi: ["private"]) },
-      ->(client) { client.fba_inventory_v1.get_inventory_summaries("Marketplace", "UK", ["UK"], details: "private") },
+      ->(client) { client.shipping_v2.get_shipment_documents("s", "p", dpi: [SENTINEL]) },
+      ->(client) { client.fba_inventory_v1.get_inventory_summaries("Marketplace", "UK", ["UK"], details: SENTINEL) },
     )
 
     assert_equal(
