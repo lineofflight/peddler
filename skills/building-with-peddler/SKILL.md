@@ -30,8 +30,10 @@ This describes Peddler 6. Peddler 5 had a class per API (`Peddler.orders.new(aws
   `Peddler::LWA.new.refresh(refresh_token: token).access_token`
 - Restricted Data Token (RDT):
   `client.tokens.create_restricted_data_token(body)`, then `client.with_access_token(rdt)`
-- Method signatures:
-  `sig/peddler/native/apis.rbs` in the gem
+- Call an endpoint that has no method yet:
+  `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: id })`
+- Operation documentation and signatures:
+  YARD comments in `lib/peddler/native/apis.rb` and `sig/peddler/native/apis.rbs` in the gem
 
 ## Authorization & token caching
 
@@ -68,17 +70,19 @@ addresses = order_ids.map { |id| restricted.orders_v0.get_order_address(id).pars
 
 Peddler does not pace calls. Spread them out in the application, for example with the job queue's rate limiting. The `x-amzn-RateLimit-Limit` response header carries the limit of an operation.
 
-With `retries:` (default `0`, at most `10`), the client retries a GET on `429` and transient `5xx` statuses, honoring `Retry-After` and backing off with jitter. Never hand-roll sleep loops around a GET.
+With `retries:` (default `0`, at most `10`), the client retries a GET on `429`, `500`, `502`, `503` and `504`. Its waits are short and random: up to 0.2, 0.4 and 0.8 seconds, doubling, so `retries: 3` waits 1.4 seconds at most. It waits for a `Retry-After` of up to 30 seconds, and doesn't retry after a longer one.
 
 ```ruby
 client = Peddler::Client.new(region: "eu-west-1", access_token: access_token, retries: 3)
 ```
 
+Retries cover a brief burst, not an exhausted quota. For a `429` that survives them, reschedule the job. Never sleep in a loop.
+
 A request that changes data is never retried. Reschedule the job instead, and make it safe to run twice.
 
 ## Error handling
 
-Every HTTP error raises `Peddler::Error`, with `status`, Amazon's `code` (such as `"QuotaExceeded"` or `"InvalidInput"`), `message`, `request_id` and `response`. Pattern match on `status` and `code`:
+Every response outside 2xx raises `Peddler::Error`, with `status`, Amazon's `code` (such as `"QuotaExceeded"` or `"InvalidInput"`), `message`, `request_id` and `response`. Pattern match on `status` and `code`:
 
 ```ruby
 begin
@@ -103,7 +107,7 @@ end
 
 Treat 4xx errors as permanent: do not retry without fixing the underlying request parameters or permissions.
 
-Not every failure is a `Peddler::Error`. `Peddler::TransportError` (and its subclass `Peddler::TimeoutError`) means no response arrived. `Peddler::AuthenticationError` means Login with Amazon rejected a token request: its `code` `"invalid_grant"` means the seller must authorize again. `ArgumentError` means a required argument was `nil` or had the wrong type, and nothing was sent.
+Not every failure is a `Peddler::Error`. `Peddler::TransportError` (and its subclass `Peddler::TimeoutError`) means no response arrived. `Peddler::AuthenticationError` means Login with Amazon rejected a token request: its `code` `"invalid_grant"` means the seller must authorize again. `ArgumentError` means an option or argument broke its rule and nothing was sent. Its message names it, such as `order_id is required`.
 
 ## Pagination
 
