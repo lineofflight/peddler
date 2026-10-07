@@ -103,15 +103,30 @@ class WorkflowsTest < NativeTest
 
   def test_invalid_arguments_fail_before_any_request
     instance = client("http://127.0.0.1:1")
-    assert_raises(ArgumentError) { instance.open_report_document("") }
-    assert_raises(ArgumentError) { instance.open_report_document(nil) }
-    assert_raises(ArgumentError) { instance.open_report_document("d1", max_bytes: 0) }
-    assert_raises(ArgumentError) { instance.open_report_document("d1", bogus: 1) }
-    [0, -1, Float::NAN, Float::INFINITY, "5", nil].each do |value|
-      assert_raises(ArgumentError, value.inspect) { instance.wait_for_report("r1", interval: value) }
-      assert_raises(ArgumentError, value.inspect) { instance.wait_for_feed("f1", timeout: value) }
+    # An ID ends a path, so it is refused as a path argument is. An option is named with its rule.
+    {
+      -> { instance.open_report_document("") } => "document_id must not be empty",
+      -> { instance.open_report_document(nil) } => "document_id is required",
+      -> { instance.open_feed_document("..") } => "document_id must not be . or ..",
+      -> { instance.open_report_document("d1", max_bytes: 0) } => "max_bytes must be a positive Integer that fits in 64 bits",
+      -> { instance.open_query_document("d1", bogus: 1) } => "unknown option: the options are timeout, compression, max_bytes and max_record_bytes",
+      -> { instance.open_report_document("d1", timeout: 0) } => "timeout must be a positive number of seconds",
+      -> { instance.wait_for_query("") } => "query_id must not be empty",
+      -> { instance.wait_for_report("..") } => "report_id must not be . or ..",
+      -> { instance.wait_for_feed(nil) } => "feed_id is required",
+      -> { instance.reports_2021_06_30.download_report_document("..") } => "report_document_id_or_url must not be . or ..",
+      -> { instance.data_kiosk_2023_11_15.download_query_document("") } => "document_id_or_url must be a UTF-8 String that is not empty",
+    }.each do |call, message|
+      assert_equal(message, assert_raises(ArgumentError, &call).message)
     end
-    assert_raises(ArgumentError) { instance.wait_for_query("") }
+    [0, -1, 1e-12, Float::NAN, Float::INFINITY, "5", nil].each do |value|
+      error = assert_raises(ArgumentError, value.inspect) { instance.wait_for_report("r1", interval: value) }
+
+      assert_equal("interval must be a positive number of seconds", error.message)
+      error = assert_raises(ArgumentError, value.inspect) { instance.wait_for_feed("f1", timeout: value) }
+
+      assert_equal("timeout must be a positive number of seconds", error.message)
+    end
   end
 
   def test_rejected_signed_url_raises_the_error_with_its_response
@@ -406,10 +421,19 @@ class WorkflowsTest < NativeTest
   def test_invalid_arguments_are_rejected_before_creating_a_document
     instance = client("http://127.0.0.1:1")
 
-    ["", "bad\r\ntype", nil, 1].each { |type| assert_raises(ArgumentError, type.inspect) { instance.create_and_upload_feed_document("x", content_type: type) } }
-    assert_raises(ArgumentError) { instance.create_and_upload_feed_document(Object.new, content_type: "text/xml") }
-    assert_raises(ArgumentError) { instance.create_and_upload_feed_document("x", content_type: "text/xml", content_length: -1) }
-    assert_raises(ArgumentError) { instance.create_and_upload_feed_document("x", content_type: "text/xml", bogus: 1) }
+    assert_raises(ArgumentError) { instance.create_and_upload_feed_document("x", content_type: "bad\r\ntype") }
+    upload = ->(source = "x", **options) { instance.create_and_upload_feed_document(source, **{ content_type: "text/xml" }.merge(options)) }
+
+    {
+      -> { upload.call(content_type: "") } => "content_type must be a UTF-8 String that is not empty",
+      -> { upload.call(content_type: nil) } => "content_type must be a UTF-8 String that is not empty",
+      -> { upload.call(content_type: 1) } => "content_type must be a UTF-8 String that is not empty",
+      -> { upload.call(Object.new) } => "source must be a String or respond to read",
+      -> { upload.call(content_length: -1) } => "content_length must be an Integer from 0 that fits in 64 bits",
+      -> { upload.call(bogus: 1) } => "unknown option: the options are timeout, compression, max_bytes and max_record_bytes",
+    }.each do |call, message|
+      assert_equal(message, assert_raises(ArgumentError, &call).message)
+    end
   end
 
   def test_upload_rejection_raises_and_failures_are_sanitized

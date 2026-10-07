@@ -99,13 +99,35 @@ class DocumentsTest < NativeTest
 
   def test_invalid_options_and_format_errors_are_sanitized
     instance = client("http://127.0.0.1:1")
-    [{ unknown_secret: 1 }, { compression: "gzip" }, { timeout: 0 }, { max_bytes: 0 }, { max_record_bytes: 1.5 }, { max_bytes: 1 << 65 }].each do |options|
+    # An error names the option and its rule. It repeats neither a value nor an option it doesn't know.
+    limit = "must be a positive Integer that fits in 64 bits"
+    {
+      { unknown_secret: 1 } => "unknown option: the options are timeout, compression, max_bytes and max_record_bytes",
+      { compression: "gzip" } => "compression must be :auto or :gzip",
+      { timeout: 0 } => "timeout must be a positive number of seconds",
+      { timeout: 1e-12 } => "timeout must be a positive number of seconds",
+      { max_bytes: 0 } => "max_bytes #{limit}",
+      { max_record_bytes: 1.5 } => "max_record_bytes #{limit}",
+      { max_bytes: 1 << 65 } => "max_bytes #{limit}",
+    }.each do |options, message|
       error = assert_raises(ArgumentError) { instance.download_document("https://example.com/private-secret", **options) }
-      refute_match(/private-secret|unknown_secret/, error.message)
+
+      assert_equal(message, error.message)
+      refute_match(/private-secret|unknown_secret/, error.full_message(highlight: false))
     end
     assert_equal("invalid document URL", assert_raises(ArgumentError) { instance.download_document("https://example.com/\xFF") }.message)
-    assert_equal("invalid document upload configuration",
-      assert_raises(ArgumentError) { instance.upload_document("https://example.com", "x", content_type: "\xFF") }.message)
+    upload = ->(**options) { instance.upload_document("https://example.com", "x", **{ content_type: "text/plain" }.merge(options)) }
+
+    {
+      -> { upload.call(content_type: "\xFF") } => "content_type must be a UTF-8 String",
+      -> { upload.call(headers: 1) } => "headers must be a Hash of UTF-8 Strings",
+      -> { upload.call(headers: { "x" => 1 }) } => "headers must be a Hash of UTF-8 Strings",
+      -> { upload.call(content_length: -1) } => "content_length must be an Integer from 0 that fits in 64 bits",
+      -> { upload.call(timeout: 0) } => "timeout must be a positive number of seconds",
+      -> { instance.upload_document("https://example.com", 1, content_type: "text/plain") } => "source must be a String or respond to read",
+    }.each do |call, message|
+      assert_equal(message, assert_raises(ArgumentError, &call).message)
+    end
     serve(handler: ->(socket, *) { respond(socket, body: 'private-secret invalid JSON') }) do |url|
       error = assert_raises(Peddler::DocumentError) { client(url).download_document(url).each_jsonl.to_a }
       refute_match(/private-secret/, error.message)
@@ -161,7 +183,7 @@ class DocumentsTest < NativeTest
   def test_charset_override_beats_header_and_missing_header
     assert_equal(CP1252_ROWS, read_tsv([CP1252], content_type: "text/plain; charset=utf-8", charset: "cp1252"))
     assert_equal(CP1252_ROWS, read_tsv([CP1252], charset: "Cp1252"))
-    assert_raises(ArgumentError) { read_tsv([CP1252], charset: 1) }
+    assert_equal("charset must be a UTF-8 String", assert_raises(ArgumentError) { read_tsv([CP1252], charset: 1) }.message)
   end
 
   def test_recorded_gzip_cp1252_report_replays

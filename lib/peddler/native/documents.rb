@@ -18,23 +18,34 @@ module Peddler
       end
     end
 
+    # The options of a transfer. An error names the option and its rule, never a value. It doesn't repeat an
+    # option it doesn't know either: that is the caller's own text.
     module TransferConfig
+      COMPRESSIONS = [:auto, :gzip].freeze
+      LIMITS = [:max_bytes, :max_record_bytes].freeze
+      UNKNOWN = "unknown option: the options are timeout, compression, max_bytes and max_record_bytes"
+      private_constant :COMPRESSIONS, :LIMITS, :UNKNOWN
+
       class << self
+        # The options as the JSON the engine takes
         def json(options)
-          compressions = [:auto, :gzip]
-          limits = [:max_bytes, :max_record_bytes]
-          unless (options.keys - (limits + [:timeout, :compression])).empty?
-            raise ArgumentError, "invalid document configuration"
-          end
-          options.each do |key, value|
-            valid = case key
-            when :timeout then Native.positive_seconds?(value)
-            when :compression then compressions.include?(value)
-            else value.is_a?(Integer) && value.positive? && value <= UINT64_MAX
+          options.each do |name, value|
+            case name
+            when :timeout then Native.timeout(value)
+            when :compression
+              raise ArgumentError, "compression must be :auto or :gzip" unless COMPRESSIONS.include?(value)
+            when *LIMITS then limit(name, value)
+            else raise ArgumentError, UNKNOWN
             end
-            raise ArgumentError, "invalid document configuration" unless valid
           end
           Native.generate(options) || raise(ArgumentError, "invalid document configuration")
+        end
+
+        # A limit in bytes as it is, or the error that names it
+        def limit(name, value)
+          return value if value.is_a?(Integer) && value.between?(1, UINT64_MAX)
+
+          raise ArgumentError, "#{name} must be a positive Integer that fits in 64 bits"
         end
       end
     end
@@ -43,10 +54,15 @@ module Peddler
       CHUNK_BYTES = 64 * 1024
 
       class << self
-        # A String or read(length) source, and a length that fits in 64 bits when one is declared
-        def valid?(source, content_length)
-          (content_length.nil? || (content_length.is_a?(Integer) && content_length >= 0 && content_length <= UINT64_MAX)) &&
-            (source.is_a?(String) || source.respond_to?(:read))
+        # Raises unless the source is a String or a read(length) source, and its length, when one is declared, fits in
+        # 64 bits
+        def check(source, content_length)
+          unless source.is_a?(String) || source.respond_to?(:read)
+            raise ArgumentError, "source must be a String or respond to read"
+          end
+          return if content_length.nil? || (content_length.is_a?(Integer) && content_length.between?(0, UINT64_MAX))
+
+          raise ArgumentError, "content_length must be an Integer from 0 that fits in 64 bits"
         end
 
         # The declared length, or a String's own. A body without one goes out chunked.
@@ -56,11 +72,13 @@ module Peddler
 
         # Uploads the source to a signed URL and returns the response
         def put(engine, url, source, content_type, headers, content_length, transfer_options)
-          unless Native.valid_utf8_string?(url) && Native.valid_utf8_string?(content_type) && headers.is_a?(Hash) &&
-              headers.all? { |key, value| Native.valid_utf8_string?(key) && Native.valid_utf8_string?(value) } &&
-              valid?(source, content_length)
-            raise ArgumentError, "invalid document upload configuration"
+          raise ArgumentError, "invalid document URL" unless Native.valid_utf8_string?(url)
+          raise ArgumentError, "content_type must be a UTF-8 String" unless Native.valid_utf8_string?(content_type)
+          unless headers.is_a?(Hash) && headers.all? { |pair| pair.all? { |text| Native.valid_utf8_string?(text) } }
+            raise ArgumentError, "headers must be a Hash of UTF-8 Strings"
           end
+
+          check(source, content_length)
           upload = engine.start_document_upload(url, TransferConfig.json(transfer_options), content_type, headers.to_a,
             length(source, content_length))
           begin
@@ -131,10 +149,7 @@ module Peddler
     end
 
     def json(max_bytes:)
-      unless max_bytes.is_a?(Integer) && max_bytes.positive? && max_bytes <= Native::UINT64_MAX
-        raise ArgumentError, "invalid document configuration"
-      end
-      JSON.parse(@handle.json(max_bytes), **JSON_OPTIONS)
+      JSON.parse(@handle.json(Native::TransferConfig.limit(:max_bytes, max_bytes)), **JSON_OPTIONS)
     ensure
       close
     end
@@ -143,7 +158,7 @@ module Peddler
 
     # Yields each row, then closes the document, also when the arguments are invalid or the block breaks or raises
     def each_row(mode, charset = nil)
-      raise ArgumentError, "invalid document configuration" unless charset.nil? || Native.valid_utf8_string?(charset)
+      raise ArgumentError, "charset must be a UTF-8 String" unless charset.nil? || Native.valid_utf8_string?(charset)
 
       while (row = @handle.next_row(mode, charset))
         yield row

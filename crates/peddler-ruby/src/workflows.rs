@@ -1,6 +1,6 @@
 //! Document ID lifecycle helpers. Metadata, polling and transfer start run in Rust
 //! under one deadline; Ruby wraps the owned outputs and feeds upload chunks.
-use super::{Completed, Engine, ResponseParts, documents, gvl, native_error};
+use super::{Completed, Engine, ResponseParts, argument_error, documents, gvl, native_error};
 use documents::{Config, Document, Upload};
 use magnus::{Error, RClass, Ruby, method, prelude::*, typed_data::Obj};
 use peddler::{
@@ -8,6 +8,8 @@ use peddler::{
     workflows::{DocumentKind, WaitOptions, WorkflowError},
 };
 use std::time::Duration;
+
+const INTERVAL: &str = "interval must be a positive number of seconds";
 
 fn workflow_error(ruby: &Ruby, error: WorkflowError) -> Error {
     let message = error.to_string();
@@ -66,10 +68,14 @@ fn wait(
 ) -> Result<ResponseParts, Error> {
     let (client, shared) = Engine::client(ruby, engine)?;
     let kind = kind(ruby, &kind_name)?;
-    let invalid = || Error::new(ruby.exception_arg_error(), "invalid workflow configuration");
+    // Ruby checked the ID as a path argument. Each option is checked apart here, as the
+    // core takes it, so that an error names the one it refuses.
+    let interval = Duration::try_from_secs_f64(interval).ok();
     let options = WaitOptions {
-        interval: Duration::try_from_secs_f64(interval).map_err(|_| invalid())?,
-        timeout: Duration::try_from_secs_f64(timeout).map_err(|_| invalid())?,
+        interval: interval
+            .filter(|interval| !interval.is_zero())
+            .ok_or_else(|| argument_error(ruby, INTERVAL))?,
+        timeout: super::timeout(timeout).map_err(|message| argument_error(ruby, message))?,
     };
     let workflows = client.workflows();
     let result = gvl::wait(ruby, "WorkflowError", shared, async move {

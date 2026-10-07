@@ -27,7 +27,12 @@ module Peddler
     def self.valid_utf8_string?: (untyped value) -> bool
 
     module TransferConfig
-      def self.json: (Hash[Symbol, untyped] options) -> String
+      COMPRESSIONS: Array[Symbol]
+      LIMITS: Array[Symbol]
+      UNKNOWN: String
+
+      def self.json: (Hash[untyped, untyped] options) -> String
+      def self.limit: (Symbol name, untyped value) -> Integer
     end
 
     class Engine

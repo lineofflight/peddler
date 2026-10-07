@@ -5,7 +5,7 @@ module Peddler
 
     module Uploads
       CHUNK_BYTES: Integer
-      def self.valid?: (untyped source, untyped content_length) -> bool
+      def self.check: (untyped source, untyped content_length) -> void
       def self.length: (String | (_DocumentIO & Object) source, Integer? content_length) -> Integer?
       def self.put: (Engine engine, untyped url, untyped source, untyped content_type, untyped headers, untyped content_length, Hash[Symbol, untyped] transfer_options) -> Response
       def self.drain: (UploadHandle upload, String | (_DocumentIO & Object) source) -> void
@@ -22,7 +22,7 @@ module Peddler
     end
 
     def self.valid_identifier?: (untyped value) -> bool
-    def self.read_document: (Engine engine, String? kind, untyped id_or_url) -> Response
+    def self.read_document: (Engine engine, String? kind, String name, untyped id_or_url) -> Response
 
     class Reports20210630
       def download_report_document: (String report_document_id_or_url) -> Response
@@ -52,7 +52,7 @@ module Peddler
 
     private
 
-    def workflow_download: [T] (String kind, String document_id, Hash[Symbol, untyped] transfer_options) ?{ (Document document) -> T } -> (T | Document)
-    def workflow_wait: (String kind, String id, untyped interval, untyped timeout) -> Response
+    def workflow_download: [T] (String kind, untyped document_id, Hash[Symbol, untyped] transfer_options) ?{ (Document document) -> T } -> (T | Document)
+    def workflow_wait: (String kind, String name, untyped id, untyped interval, untyped timeout) -> Response
   end
 end

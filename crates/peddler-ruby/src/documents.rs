@@ -1,5 +1,8 @@
 //! Native document handles: owned streams, shared runtime and bounded uploads.
-use super::{Completed, Engine, ForkOwned, Response, ResponseParts, Shared, gvl, native_error};
+use super::{
+    Completed, Engine, ForkOwned, Response, ResponseParts, Shared, argument_error, gvl,
+    native_error,
+};
 use bytes::Bytes;
 use futures_util::{FutureExt, StreamExt};
 use magnus::{Error, IntoValue, RClass, RModule, RString, Ruby, method, prelude::*};
@@ -10,7 +13,6 @@ use peddler::documents::{
 use std::{
     panic::AssertUnwindSafe,
     sync::{Arc, Mutex},
-    time::Duration,
 };
 use tokio::{
     sync::{Notify, mpsc},
@@ -70,8 +72,8 @@ impl Config {
             serde_json::from_str(json).map_err(|_| error(ruby, DocumentError::InvalidConfig))?;
         let mut options = TransferOptions::default();
         if let Some(timeout) = value.timeout {
-            options.timeout = Duration::try_from_secs_f64(timeout)
-                .map_err(|_| error(ruby, DocumentError::InvalidConfig))?;
+            options.timeout =
+                super::timeout(timeout).map_err(|message| argument_error(ruby, message))?;
         }
         if let Some(compression) = value.compression {
             options.compression = match compression.as_str() {
