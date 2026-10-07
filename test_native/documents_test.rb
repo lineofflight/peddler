@@ -3,6 +3,7 @@
 require_relative "test_helper"
 require "zlib"
 require "stringio"
+require "tempfile"
 require "bigdecimal"
 
 # rubocop:disable Minitest/MultipleAssertions
@@ -233,7 +234,7 @@ class DocumentsTest < NativeTest
   end
 
   def test_upload_unknown_length_streams_chunked_body
-    serve(handler: lambda { |socket, _first, headers, _body|
+    serve(count: 2, handler: lambda { |socket, _first, headers, _body|
       assert_equal("chunked", headers.fetch("transfer-encoding"))
       body = +"".b
       loop do
@@ -247,7 +248,50 @@ class DocumentsTest < NativeTest
       assert_equal("unknown-length", body)
       respond(socket)
     }) do |url|
-      assert_equal(200, client(url).upload_document(url, StringIO.new("unknown-length"), content_type: "text/plain").status)
+      # A source that only reads, and one that can't tell where it is, as a File on a pipe can't.
+      reader = StringIO.new("unknown-length")
+      source = Object.new
+      source.define_singleton_method(:read) { |length| reader.read(length) }
+      piped = StringIO.new("unknown-length")
+      piped.define_singleton_method(:pos) { raise Errno::ESPIPE }
+
+      [source, piped].each do |unknown|
+        assert_equal(200, client(url).upload_document(url, unknown, content_type: "text/plain").status)
+      end
+    end
+  end
+
+  # As v5 sent it: a signed URL of S3 takes a body with its length.
+  def test_upload_declares_the_length_of_a_source_that_knows_its_size_and_position
+    seen = Queue.new
+    handler = lambda do |socket, _first, headers, body|
+      seen << [headers["content-length"], headers["transfer-encoding"], body]
+      respond(socket)
+    end
+    serve(count: 4, handler: handler) do |url|
+      instance = client(url)
+      Tempfile.create("upload") do |file|
+        file.write("0123456789")
+        file.rewind
+        instance.upload_document(url, file, content_type: "text/plain")
+      end
+
+      assert_equal(["10", nil, "0123456789"], seen.pop)
+      instance.upload_document(url, StringIO.new("0123456789"), content_type: "text/plain")
+
+      assert_equal(["10", nil, "0123456789"], seen.pop)
+      # Only what is left of a source that was read from.
+      partly_read = StringIO.new("0123456789")
+      partly_read.read(3)
+      instance.upload_document(url, partly_read, content_type: "text/plain")
+
+      assert_equal(["7", nil, "3456789"], seen.pop)
+      # A declared length comes before the source's own.
+      wrong = StringIO.new("0123456789")
+      wrong.define_singleton_method(:size) { 99 }
+      instance.upload_document(url, wrong, content_type: "text/plain", content_length: 10)
+
+      assert_equal(["10", nil, "0123456789"], seen.pop)
     end
   end
 

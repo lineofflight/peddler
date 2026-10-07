@@ -65,9 +65,18 @@ module Peddler
           raise ArgumentError, "content_length must be an Integer from 0 that fits in 64 bits"
         end
 
-        # The declared length, or a String's own. A body without one goes out chunked.
+        # The declared length, a String's own, or what is left of a source that answers its size and position, as a
+        # File and a StringIO do and v5 sent. A body without one goes out chunked.
         def length(source, content_length)
-          content_length || (source.bytesize if source.is_a?(String))
+          return content_length if content_length
+          return source.bytesize if source.is_a?(String)
+          return unless source.respond_to?(:size) && source.respond_to?(:pos)
+
+          left = source.size - source.pos
+          left if left.is_a?(Integer) && left.between?(0, UINT64_MAX)
+        rescue StandardError
+          # A source that can't tell, as a File on a pipe can't say where it is
+          nil
         end
 
         # Uploads the source to a signed URL and returns the response

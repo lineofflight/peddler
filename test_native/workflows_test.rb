@@ -2,6 +2,7 @@
 
 require_relative "test_helper"
 require "stringio"
+require "tempfile"
 
 # rubocop:disable Minitest/MultipleAssertions
 class WorkflowsTest < NativeTest
@@ -210,6 +211,25 @@ class WorkflowsTest < NativeTest
       assert_equal(["text/xml; charset=UTF-8", "9"], headers.values_at("content-type", "content-length"))
       refute(headers.key?("x-amz-access-token"))
       assert_equal("upload denied", assert_rejected(403) { feeds.upload_feed_document("#{url}/denied", "<x/>", "text/xml") }.response.body)
+    end
+  end
+
+  def test_feed_uploads_declare_the_length_of_a_file_and_a_string_io
+    Tempfile.create("feed") do |file|
+      file.write("<x>é</x>")
+      route_server(feed_handler) do |url, requests|
+        instance = client(url)
+        [file, StringIO.new("<x>é</x>")].each do |source|
+          source.rewind
+          instance.feeds.upload_feed_document("#{url}/signed", source, "text/xml")
+          source.rewind
+
+          assert_equal("fd/1", instance.create_and_upload_feed_document(source, content_type: "text/xml"))
+        end
+        puts = requests.call.select { |_path, _headers, _body, verb| verb == "PUT" }
+
+        assert_equal([["9", nil, "<x>é</x>".b]] * 4, puts.map { |_path, headers, body| [headers["content-length"], headers["transfer-encoding"], body] })
+      end
     end
   end
 
