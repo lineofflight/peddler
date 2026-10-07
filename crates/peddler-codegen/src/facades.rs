@@ -21,19 +21,56 @@ fn field_type(p: &Parameter) -> Result<String, GenerationError> {
         format!("Option<{ty}>")
     })
 }
-fn default_name(op: &Operation, p: &Parameter) -> String {
-    format!("{}_{}_default", op.name, p.name)
+fn params_name(op: &Operation) -> String {
+    format!("{}Params", pascal(&op.name))
 }
-fn response_type(op: &Operation) -> String {
-    let models: std::collections::BTreeSet<_> = op.successes.iter().map(|(_, m)| m).collect();
-    if models.len() == 1
-        && let Some(Some(model)) = models.first()
-    {
-        format!("TypedResponse<{model}>")
-    } else if models.iter().any(|m| m.is_some()) {
-        format!("{}Response", pascal(&op.name))
-    } else {
-        "Response".into()
+/// How the type of a body appears in an operation's items. Empty when it has none.
+struct BodyType {
+    /// On the parameter struct
+    declared: &'static str,
+    /// Wherever the struct is named
+    named: &'static str,
+    /// On a function that sends it
+    bound: &'static str,
+}
+impl BodyType {
+    fn of(op: &Operation) -> Self {
+        if op.body().is_some() {
+            Self {
+                declared: "<B = serde_json::Value>",
+                named: "<B>",
+                bound: "B: serde::Serialize",
+            }
+        } else {
+            Self {
+                declared: "",
+                named: "",
+                bound: "",
+            }
+        }
+    }
+}
+/// What an operation's function returns.
+enum Returns {
+    /// `Response`: no success status has a model.
+    Raw,
+    /// `TypedResponse` of the one model every success status has.
+    Typed(String),
+    /// A struct of this name, with a decoder for each status that has a model.
+    ByStatus(String),
+}
+impl Returns {
+    fn of(op: &Operation) -> Self {
+        let models: std::collections::BTreeSet<_> = op.successes.iter().map(|(_, m)| m).collect();
+        if models.len() == 1
+            && let Some(Some(model)) = models.first()
+        {
+            Self::Typed(model.clone())
+        } else if models.iter().any(|m| m.is_some()) {
+            Self::ByStatus(format!("{}Response", pascal(&op.name)))
+        } else {
+            Self::Raw
+        }
     }
 }
 pub fn rust(operations: &[Operation], pagination: &[&Resolved]) -> Result<String, GenerationError> {
@@ -41,120 +78,10 @@ pub fn rust(operations: &[Operation], pagination: &[&Resolved]) -> Result<String
         "use crate::{Client, Error, Request, Response};\nuse crate::operation::{self, DecodeError, TypedResponse};\n",
     );
     for op in operations {
-        let params = format!("{}Params", pascal(&op.name));
-        let body = op.body();
-        let generic = if body.is_some() {
-            "<B = serde_json::Value>"
-        } else {
-            ""
-        };
-        for p in &op.parameters {
-            if !p.required
-                && let Some(default) = p.schema.get("default")
-            {
-                let name = default_name(op, p);
-                let ty = field_type(p)?;
-                let serialized = serde_json::to_string(default)?;
-                writeln!(source,"fn {name}() -> {ty} {{ Some(serde_json::from_str({serialized:?}).expect(\"validated schema default\")) }}").unwrap();
-            }
-        }
-        writeln!(source,"#[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]\n#[serde(deny_unknown_fields)]\npub struct {params}{generic} {{").unwrap();
-        for p in &op.parameters {
-            if !p.required && p.schema.get("default").is_some() {
-                writeln!(source, "#[serde(default = {:?})]", default_name(op, p)).unwrap()
-            }
-            let ty = field_type(p)?;
-            writeln!(source, "pub {}: {ty},", p.name).unwrap();
-        }
-        source.push_str("}\n");
-        let implementation = if body.is_some() {
-            format!("impl<B> {params}<B>")
-        } else {
-            format!("impl {params}")
-        };
-        writeln!(
-            source,
-            "{implementation} {{ pub fn new({}) -> Self {{ Self {{",
-            op.parameters
-                .iter()
-                .filter(|p| p.required)
-                .map(|p| Ok(format!("{}: {}", p.name, field_type(p)?)))
-                .collect::<Result<Vec<_>, GenerationError>>()?
-                .join(", ")
-        )
-        .unwrap();
-        for p in &op.parameters {
-            let initial = if p.required {
-                p.name.clone()
-            } else if p.schema.get("default").is_some() {
-                format!("{}()", default_name(op, p))
-            } else {
-                "None".into()
-            };
-            if p.required {
-                writeln!(source, "{},", p.name).unwrap();
-            } else {
-                writeln!(source, "{}: {initial},", p.name).unwrap();
-            }
-        }
-        source.push_str("} } }\n");
-        if op.parameters.iter().all(|p| !p.required) {
-            let default_impl = if body.is_some() {
-                format!("impl<B> Default for {params}<B>")
-            } else {
-                format!("impl Default for {params}")
-            };
-            writeln!(
-                source,
-                "{default_impl} {{ fn default() -> Self {{ Self::new() }} }}"
-            )
-            .unwrap();
-        }
-        let response = response_type(op);
-        if response.ends_with("Response") && response != "Response" {
-            writeln!(source,"#[derive(Debug)] pub struct {response} {{ pub raw: Response }}\nimpl {response} {{ pub fn into_raw(self)->Response {{self.raw}}").unwrap();
-            for (status, model) in &op.successes {
-                if let Some(model) = model {
-                    writeln!(source,"pub fn json_{status}(&self)->Result<{model},DecodeError> {{ crate::operation::decode_status(&self.raw,{status}) }}").unwrap()
-                }
-            }
-            source.push_str("}\n");
-        }
-        let generic_fn = if body.is_some() {
-            "<B: serde::Serialize>"
-        } else {
-            ""
-        };
-        let params_ty = if body.is_some() {
-            format!("{params}<B>")
-        } else {
-            params
-        };
-        writeln!(source,"pub async fn {}{generic_fn}(client:&Client, params:{params_ty})->Result<{response},Error> {{",op.name).unwrap();
-        request(&mut source, op)?;
-        if response == "Response" {
-            source.push_str("Ok(raw)\n")
-        } else if response.starts_with("TypedResponse<") {
-            source.push_str("Ok(TypedResponse::new(raw))\n")
-        } else {
-            writeln!(source, "Ok({response} {{raw}})").unwrap()
-        }
-        source.push_str("}\n");
+        params_struct(&mut source, op)?;
+        call(&mut source, op)?;
         if let Some(mapped) = pagination.iter().find(|r| r.name == op.name) {
-            let params_ty = if body.is_some() {
-                format!("{}Params<B>", pascal(&op.name))
-            } else {
-                format!("{}Params", pascal(&op.name))
-            };
-            let generics = if body.is_some() {
-                "<'a, B: serde::Serialize>"
-            } else {
-                "<'a>"
-            };
-            writeln!(source,"pub fn {}_pages{generics}(client:&'a Client, params:{params_ty})->crate::pagination::PageStream<'a> {{ crate::pagination::pages(client, {}, &params) }}",op.name,pagination::rust_expression(mapped)).unwrap();
-            if mapped.mapping.continuation.adapter {
-                adapter(&mut source, op, mapped)?;
-            }
+            pages(&mut source, op, mapped)?;
         }
     }
     // Some operations have no typed decoder or no parameter at all.
@@ -162,6 +89,111 @@ pub fn rust(operations: &[Operation], pagination: &[&Resolved]) -> Result<String
         "#![allow(unused_imports, unused_variables, clippy::too_many_arguments)]\n{}",
         format_source(&source)?
     ))
+}
+/// An operation's parameter struct, with its defaults and its constructor.
+fn params_struct(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
+    let params = params_name(op);
+    let body = BodyType::of(op);
+    // Each field with its type and, when the spec gives an optional one a default,
+    // the function that returns it.
+    let mut fields = Vec::new();
+    for p in &op.parameters {
+        let default = match p.schema.get("default") {
+            Some(default) if !p.required => Some((
+                format!("{}_{}_default", op.name, p.name),
+                serde_json::to_string(default)?,
+            )),
+            _ => None,
+        };
+        fields.push((p, field_type(p)?, default));
+    }
+    for (_, ty, default) in &fields {
+        if let Some((function, value)) = default {
+            writeln!(source,"fn {function}() -> {ty} {{ Some(serde_json::from_str({value:?}).expect(\"validated schema default\")) }}").unwrap();
+        }
+    }
+    writeln!(source,"#[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]\n#[serde(deny_unknown_fields)]\npub struct {params}{} {{", body.declared).unwrap();
+    for (p, ty, default) in &fields {
+        if let Some((function, _)) = default {
+            writeln!(source, "#[serde(default = {function:?})]").unwrap()
+        }
+        writeln!(source, "pub {}: {ty},", p.name).unwrap();
+    }
+    source.push_str("}\n");
+    let required = fields
+        .iter()
+        .filter(|(p, ..)| p.required)
+        .map(|(p, ty, _)| format!("{}: {ty}", p.name))
+        .collect::<Vec<_>>()
+        .join(", ");
+    writeln!(
+        source,
+        "impl{} {params}{} {{ pub fn new({required}) -> Self {{ Self {{",
+        body.named, body.named
+    )
+    .unwrap();
+    for (p, _, default) in &fields {
+        match default {
+            _ if p.required => writeln!(source, "{},", p.name),
+            Some((function, _)) => writeln!(source, "{}: {function}(),", p.name),
+            None => writeln!(source, "{}: None,", p.name),
+        }
+        .unwrap();
+    }
+    source.push_str("} } }\n");
+    if op.parameters.iter().all(|p| !p.required) {
+        writeln!(
+            source,
+            "impl{} Default for {params}{} {{ fn default() -> Self {{ Self::new() }} }}",
+            body.named, body.named
+        )
+        .unwrap();
+    }
+    Ok(())
+}
+/// The function that sends an operation, after the response struct it returns, if
+/// it has its own.
+fn call(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
+    let body = BodyType::of(op);
+    let (returned, wrapped) = match Returns::of(op) {
+        Returns::Raw => ("Response".to_owned(), "raw".to_owned()),
+        Returns::Typed(model) => (
+            format!("TypedResponse<{model}>"),
+            "TypedResponse::new(raw)".to_owned(),
+        ),
+        Returns::ByStatus(name) => {
+            writeln!(source,"#[derive(Debug)] pub struct {name} {{ pub raw: Response }}\nimpl {name} {{ pub fn into_raw(self)->Response {{self.raw}}").unwrap();
+            for (status, model) in &op.successes {
+                if let Some(model) = model {
+                    writeln!(source,"pub fn json_{status}(&self)->Result<{model},DecodeError> {{ crate::operation::decode_status(&self.raw,{status}) }}").unwrap()
+                }
+            }
+            source.push_str("}\n");
+            (name.clone(), format!("{name} {{raw}}"))
+        }
+    };
+    writeln!(
+        source,
+        "pub async fn {}<{}>(client:&Client, params:{}{})->Result<{returned},Error> {{",
+        op.name,
+        body.bound,
+        params_name(op),
+        body.named
+    )
+    .unwrap();
+    request(source, op)?;
+    writeln!(source, "Ok({wrapped})\n}}").unwrap();
+    Ok(())
+}
+/// The page stream of a mapped operation, and its continuation operation if the
+/// mapping asks for one.
+fn pages(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(), GenerationError> {
+    let body = BodyType::of(op);
+    writeln!(source,"pub fn {}_pages<'a, {}>(client:&'a Client, params:{}{})->crate::pagination::PageStream<'a> {{ crate::pagination::pages(client, {}, &params) }}",op.name,body.bound,params_name(op),body.named,pagination::rust_expression(mapped)).unwrap();
+    if mapped.mapping.continuation.adapter {
+        adapter(source, op, mapped)?;
+    }
+    Ok(())
 }
 /// Sends an operation's request, built from `params`, and binds the response to `raw`.
 fn request(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
@@ -359,13 +391,13 @@ pub(crate) fn dispatch(
     }
     for (api, operations) in clients {
         for op in operations {
-            let params = pascal(&op.name) + "Params";
+            let params = params_name(op);
             let annotation = if op.body().is_some() {
                 format!("crate::apis::{}::{params}<serde_json::Value>", api.module)
             } else {
                 format!("crate::apis::{}::{params}", api.module)
             };
-            let expression = if response_type(op) == "Response" {
+            let expression = if matches!(Returns::of(op), Returns::Raw) {
                 format!(
                     "crate::apis::{}::{}(client,params).await",
                     api.module, op.name
@@ -423,6 +455,71 @@ fn ruby_default(value: &Value) -> String {
         _ => value.to_string(),
     }
 }
+/// The parts of an operation's Ruby method that its `*_pages` twin shares.
+struct RubyMethod {
+    /// Its parameter list, in parentheses, or nothing
+    parameters: String,
+    /// The statement that builds the arguments for the core
+    arguments: String,
+    /// Its parameter list in RBS
+    types: String,
+}
+impl RubyMethod {
+    fn of(op: &Operation) -> Self {
+        // v5's signature: required arguments are positional and optional ones keywords,
+        // each in the spec's order. A body goes by the name the spec gives it.
+        let name = |p: &Parameter| crate::clients::snake(&p.wire_name);
+        let mut ordered: Vec<&Parameter> = op.parameters.iter().collect();
+        ordered.sort_by_key(|p| (!p.required, p.position));
+        let parameters = ordered
+            .iter()
+            .map(|p| match p.schema.get("default") {
+                _ if p.required => name(p),
+                Some(default) => format!("{}: {}", name(p), ruby_default(default)),
+                None => format!("{}: nil", name(p)),
+            })
+            .collect::<Vec<_>>()
+            .join(", ");
+        let types = ordered
+            .iter()
+            .map(|p| match ruby_type(p) {
+                ty if p.required => format!("{ty} {}", name(p)),
+                ty if ty.contains('|') => format!("?{}: ({ty})?", name(p)),
+                ty => format!("?{}: {ty}?", name(p)),
+            })
+            .collect::<Vec<_>>()
+            .join(", ");
+        // The core is strict about types. `Arguments` takes the forms v5 took.
+        let entries = op
+            .parameters
+            .iter()
+            .map(|p| {
+                let required = if p.required { ", required: true" } else { "" };
+                format!(
+                    "          {}: Arguments.{}({:?}, {}{required}),\n",
+                    p.name,
+                    ruby_coercion(p),
+                    name(p),
+                    name(p)
+                )
+            })
+            .collect::<String>();
+        Self {
+            parameters: if parameters.is_empty() {
+                String::new()
+            } else {
+                format!("({parameters})")
+            },
+            arguments: if entries.is_empty() {
+                "        # @type var arguments: Hash[Symbol, untyped]\n        arguments = {}\n"
+                    .into()
+            } else {
+                format!("        arguments = {{\n{entries}        }}\n")
+            },
+            types,
+        }
+    }
+}
 pub(crate) fn ruby(
     clients: &[(&ModelSpec, Vec<Operation>)],
     resolved: &[Resolved],
@@ -454,90 +551,23 @@ pub(crate) fn ruby(
         .unwrap();
         writeln!(rbs,"    class {class}\n      @engine: engine\n      def initialize: (engine engine) -> void").unwrap();
         for op in operations {
-            // v5's signature: required arguments are positional and optional ones keywords,
-            // each in the spec's order. A body goes by the name the spec gives it.
-            let ruby_name = |p: &Parameter| crate::clients::snake(&p.wire_name);
-            let mut ordered: Vec<&Parameter> = op.parameters.iter().collect();
-            ordered.sort_by_key(|p| (!p.required, p.position));
-            let keywords = ordered
-                .iter()
-                .map(|p| {
-                    if p.required {
-                        ruby_name(p)
-                    } else {
-                        format!(
-                            "{}: {}",
-                            ruby_name(p),
-                            p.schema
-                                .get("default")
-                                .map(ruby_default)
-                                .unwrap_or("nil".into())
-                        )
-                    }
-                })
-                .collect::<Vec<_>>()
-                .join(", ");
-            // The core is strict about types. `Arguments` takes the forms v5 took.
-            let args = op
-                .parameters
-                .iter()
-                .map(|p| {
-                    let name = ruby_name(p);
-                    let required = if p.required { ", required: true" } else { "" };
-                    format!(
-                        "          {}: Arguments.{}({name:?}, {name}{required}),\n",
-                        p.name,
-                        ruby_coercion(p)
-                    )
-                })
-                .collect::<String>();
-            let arguments = if args.is_empty() {
-                "{}".into()
-            } else {
-                format!("{{\n{args}        }}")
-            };
-            let annotation = if args.is_empty() {
-                "        # @type var arguments: Hash[Symbol, untyped]\n"
-            } else {
-                ""
-            };
+            let RubyMethod {
+                parameters,
+                arguments,
+                types,
+            } = RubyMethod::of(op);
             let key = format!("{}.{}", api.module, op.name);
             // The response carries its operation key so Ruby can resolve the typed model.
-            let signature = if keywords.is_empty() {
-                String::new()
-            } else {
-                format!("({keywords})")
-            };
-            writeln!(ruby,"      def {}{signature}\n{annotation}        arguments = {arguments}\n        Response.from_parts(@engine.operation({key:?}, JSON.generate(arguments)), {key:?})\n      end\n",op.name).unwrap();
-            let sig = ordered
-                .iter()
-                .map(|p| {
-                    let ty = ruby_type(p);
-                    if p.required {
-                        format!("{ty} {}", ruby_name(p))
-                    } else {
-                        format!(
-                            "?{}: {}?",
-                            ruby_name(p),
-                            if ty.contains('|') {
-                                format!("({ty})")
-                            } else {
-                                ty
-                            }
-                        )
-                    }
-                })
-                .collect::<Vec<_>>()
-                .join(", ");
-            writeln!(rbs, "      def {}: ({sig}) -> Response", op.name).unwrap();
+            writeln!(ruby,"      def {}{parameters}\n{arguments}        Response.from_parts(@engine.operation({key:?}, JSON.generate(arguments)), {key:?})\n      end\n",op.name).unwrap();
+            writeln!(rbs, "      def {}: ({types}) -> Response", op.name).unwrap();
             if let Some(mapped) = resolved
                 .iter()
                 .find(|r| r.module == api.module && r.name == op.name)
             {
-                writeln!(ruby,"      def {}_pages{signature}\n{annotation}        arguments = {arguments}\n        PAGINATIONS.fetch({:?}).pages(@engine, arguments)\n      end\n",op.name,mapped.key).unwrap();
+                writeln!(ruby,"      def {}_pages{parameters}\n{arguments}        PAGINATIONS.fetch({:?}).pages(@engine, arguments)\n      end\n",op.name,mapped.key).unwrap();
                 writeln!(
                     rbs,
-                    "      def {}_pages: ({sig}) -> Enumerator[Response, void]",
+                    "      def {}_pages: ({types}) -> Enumerator[Response, void]",
                     op.name
                 )
                 .unwrap();
@@ -576,6 +606,72 @@ pub(crate) fn inventory(
     resolved: &[Resolved],
     source: &pagination::Source,
 ) -> Result<String, GenerationError> {
-    let apis=clients.iter().map(|(api,operations)|json!({"source":api.source,"module":api.module,"family":api.family,"version":api.version,"latest":api.latest,"ruby_class":pascal(api.module),"operations":operations.iter().map(|op|json!({"id":op.id,"key":format!("{}.{}",api.module,op.name),"method":op.method,"path":op.path,"parameters":op.parameters.iter().map(|p|json!({"name":p.name,"wire_name":p.wire_name,"in":p.location,"required":p.required,"csv":p.csv,"schema":p.schema})).collect::<Vec<_>>(),"successes":op.successes.iter().map(|(status,model)|json!({"status":status,"model":model})).collect::<Vec<_>>(),"pagination":resolved.iter().find(|r|r.module==api.module&&r.name==op.name).map(|r|json!({"input":r.mapping.input,"output":r.mapping.output,"continuation":{"operation":r.continuation_operation,"keep":r.mapping.continuation.keep,"drop":r.mapping.continuation.drop,"set":r.mapping.continuation.set,"adapter":r.mapping.continuation.adapter}})),"pagination_exclusion":source.exclusions.iter().find(|e|e.operation==format!("{}.{}",api.module,op.name)).map(|e|e.reason.clone())})).collect::<Vec<_>>()})).collect::<Vec<_>>();
-    Ok(serde_json::to_string_pretty(&json!({"revision":revision,"apis":apis}))? + "\n")
+    let apis: Vec<Value> = clients
+        .iter()
+        .map(|(api, operations)| {
+            let operations: Vec<Value> = operations
+                .iter()
+                .map(|op| operation_json(api, op, resolved, source))
+                .collect();
+            json!({
+                "source": api.source,
+                "module": api.module,
+                "family": api.family,
+                "version": api.version,
+                "latest": api.latest,
+                "ruby_class": pascal(api.module),
+                "operations": operations,
+            })
+        })
+        .collect();
+    Ok(serde_json::to_string_pretty(&json!({"revision": revision, "apis": apis}))? + "\n")
+}
+fn operation_json(
+    api: &ModelSpec,
+    op: &Operation,
+    resolved: &[Resolved],
+    source: &pagination::Source,
+) -> Value {
+    let key = format!("{}.{}", api.module, op.name);
+    let parameters: Vec<Value> = op.parameters.iter().map(parameter_json).collect();
+    let successes: Vec<Value> = op
+        .successes
+        .iter()
+        .map(|(status, model)| json!({"status": status, "model": model}))
+        .collect();
+    let pagination = resolved.iter().find(|r| r.key == key).map(|r| {
+        let continuation = &r.mapping.continuation;
+        json!({
+            "input": r.mapping.input,
+            "output": r.mapping.output,
+            "continuation": {
+                "operation": r.continuation_operation,
+                "keep": continuation.keep,
+                "drop": continuation.drop,
+                "set": continuation.set,
+                "adapter": continuation.adapter,
+            },
+        })
+    });
+    let exclusion = source.exclusions.iter().find(|e| e.operation == key);
+    json!({
+        "id": op.id,
+        "key": key,
+        "method": op.method,
+        "path": op.path,
+        "parameters": parameters,
+        "successes": successes,
+        "pagination": pagination,
+        "pagination_exclusion": exclusion.map(|e| &e.reason),
+    })
+}
+fn parameter_json(p: &Parameter) -> Value {
+    json!({
+        "name": p.name,
+        "wire_name": p.wire_name,
+        "in": p.location,
+        "required": p.required,
+        "csv": p.csv,
+        "schema": p.schema,
+    })
 }

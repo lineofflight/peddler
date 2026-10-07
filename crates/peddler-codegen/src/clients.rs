@@ -49,206 +49,221 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
     let paths = spec["paths"]
         .as_object()
         .ok_or_else(|| GenerationError("missing paths".into()))?;
-    let mut counts = std::collections::BTreeMap::new();
-    for methods in paths.values() {
-        for (method, operation) in methods.as_object().into_iter().flatten() {
-            if METHODS.contains(&method.as_str())
-                && let Some(id) = operation["operationId"].as_str()
-            {
-                *counts.entry(id.to_owned()).or_insert(0usize) += 1;
-            }
-        }
-    }
     let mut operations = Vec::new();
-    let mut seen_wire_ids = std::collections::BTreeSet::new();
+    let mut seen = std::collections::BTreeSet::new();
     for (path, methods) in paths {
-        let path_parameters = methods
+        let shared = methods
             .get("parameters")
             .and_then(Value::as_array)
             .cloned()
             .unwrap_or_default();
-        for (method, value) in methods.as_object().into_iter().flatten() {
+        for (method, operation) in methods.as_object().into_iter().flatten() {
             if !METHODS.contains(&method.as_str()) {
                 continue;
             }
-            let Some(id) = value["operationId"].as_str().map(str::to_owned) else {
+            let Some(id) = operation["operationId"].as_str() else {
                 continue;
             };
-            let wire_id = if counts.get(&id).copied().unwrap_or(0) > 1 {
+            // Amazon gives Shipping v2's POST and PUT of a carrier account the same ID.
+            let wire_id =
                 if api.module == "shipping_v2" && id == "linkCarrierAccount" && method == "put" {
                     format!("{id}_{method}")
-                } else if api.module == "shipping_v2"
-                    && id == "linkCarrierAccount"
-                    && method == "post"
-                {
-                    id.clone()
                 } else {
-                    return Err(GenerationError(format!(
-                        "{}: duplicate operationId {id}",
-                        api.module
-                    )));
-                }
-            } else {
-                id.clone()
-            };
-            if !seen_wire_ids.insert(wire_id.clone()) {
+                    id.to_owned()
+                };
+            if !seen.insert(wire_id.clone()) {
                 return Err(GenerationError(format!(
                     "{}: duplicate operationId {id}",
                     api.module
                 )));
             }
-            let mut parameters = path_parameters.clone();
-            for parameter in value["parameters"].as_array().into_iter().flatten() {
-                let resolved = resolve(parameter, spec)?;
-                parameters
-                    .retain(|p| !(p["name"] == resolved["name"] && p["in"] == resolved["in"]));
-                parameters.push(resolved.clone());
-            }
-            let mut params = Vec::new();
-            let mut body = None;
-            for (position, value) in parameters.iter().enumerate() {
-                let value = resolve(value, spec)?;
-                let wire_name = value["name"]
-                    .as_str()
-                    .ok_or_else(|| GenerationError("missing parameter name".into()))?
-                    .to_owned();
-                let location = value["in"].as_str().unwrap_or("").to_owned();
-                let required = value["required"] == true;
-                if location == "body" {
-                    // Swagger 2 bodies are JSON unless the spec says otherwise.
-                    let consumes = media_types(spec, value, "consumes");
-                    if !(consumes.is_empty() || consumes.contains(&"application/json")) {
-                        return Err(GenerationError(format!("{id}: unsupported request media")));
-                    }
-                    // What sits next to a reference is not schema. Shipping v1 keeps examples there.
-                    let schema = match value["schema"].get("$ref") {
-                        Some(reference) => json!({"$ref": reference}),
-                        None => value["schema"].clone(),
-                    };
-                    body = Some(Parameter {
-                        name: "body".into(),
-                        wire_name,
-                        position,
-                        location,
-                        required,
-                        schema,
-                        csv: false,
-                    });
-                    continue;
-                }
-                let mut schema: Map<String, Value> = SCHEMA_KEYS
-                    .iter()
-                    .filter_map(|key| Some(((*key).to_owned(), value.get(key)?.clone())))
-                    .collect();
-                if schema.get("type") == Some(&json!("string"))
-                    && schema.get("format") == Some(&json!("boolean"))
-                {
-                    schema.insert("type".into(), json!("boolean"));
-                    if let Some(default) = schema.get("default").and_then(Value::as_str) {
-                        let default = default
-                            .parse::<bool>()
-                            .map_err(|_| GenerationError("invalid boolean default".into()))?;
-                        schema.insert("default".into(), json!(default));
-                    }
-                }
-                let mut schema = Value::Object(schema);
-                let array = schema["type"] == "array";
-                if array {
-                    schema["items"] = json!({"type": value["items"]["type"]});
-                }
-                // Swagger 2 joins an array with commas unless it says otherwise.
-                let csv = array && value["collectionFormat"] != "multi";
-                if csv && schema["default"].is_string() {
-                    if api.module == "catalog_items_2020_12_01"
-                        && wire_name == "includedData"
-                        && schema["default"] == "summaries"
-                    {
-                        schema["default"] = json!(["summaries"]);
-                    } else {
-                        return Err(GenerationError(format!(
-                            "unexplained scalar array default for {wire_name}"
-                        )));
-                    }
-                }
-                if !["path", "query", "header"].contains(&location.as_str())
-                    || (location == "path" && (!required || schema["type"] != "string"))
-                {
-                    return Err(GenerationError(format!(
-                        "unsupported {location} parameter {wire_name}"
-                    )));
-                }
-                if array
-                    && (location != "query"
-                        || !["csv", "multi"]
-                            .contains(&value["collectionFormat"].as_str().unwrap_or("csv"))
-                        || schema["items"]["type"] != "string")
-                {
-                    return Err(GenerationError(format!(
-                        "unsupported array parameter {wire_name}"
-                    )));
-                }
-                let param = Parameter {
-                    name: snake(&wire_name),
-                    wire_name,
-                    position,
-                    location,
-                    required,
-                    schema,
-                    csv,
-                };
-                rust_type(&param)?;
-                validate_default(&param)?;
-                params.push(param);
-            }
-            params.extend(body);
-            let json = media_types(spec, value, "produces").contains(&"application/json");
-            let mut successes = Vec::new();
-            for (status, response) in value["responses"].as_object().into_iter().flatten() {
-                if !status.starts_with('2') {
-                    continue;
-                }
-                let status = status
-                    .parse::<u16>()
-                    .map_err(|_| GenerationError("success range unsupported".into()))?;
-                // Only a JSON response has a model.
-                let schema = if json {
-                    &resolve(response, spec)?["schema"]
-                } else {
-                    &Value::Null
-                };
-                let model = if matches!(status, 204 | 205) {
-                    None
-                } else if let Some(reference) = schema["$ref"].as_str() {
-                    let name = reference
-                        .strip_prefix("#/definitions/")
-                        .ok_or_else(|| GenerationError("external success schema".into()))?;
-                    if spec["definitions"].get(name).is_none() {
-                        return Err(GenerationError(format!("missing success schema {name}")));
-                    }
-                    Some(format!("super::models::{}", pascal(name)))
-                } else if schema["type"] == "string" {
-                    Some("String".into())
-                } else if schema.is_null() {
-                    None
-                } else {
-                    return Err(GenerationError(format!(
-                        "{id}: unsupported inline success schema"
-                    )));
-                };
-                successes.push((status, model));
-            }
             operations.push(Operation {
                 name: snake(&wire_id),
-                id,
+                id: id.to_owned(),
                 method: method.to_ascii_uppercase(),
                 path: path.clone(),
-                parameters: params,
-                successes,
+                parameters: parameters(spec, api, &shared, operation, id)?,
+                successes: successes(spec, operation, id)?,
             });
         }
     }
     operations.sort_by(|a, b| a.name.cmp(&b.name));
     Ok(operations)
+}
+/// An operation's parameters: its path's, then its own, with a body last.
+fn parameters(
+    spec: &Value,
+    api: &ModelSpec,
+    shared: &[Value],
+    operation: &Value,
+    id: &str,
+) -> Result<Vec<Parameter>, GenerationError> {
+    let mut declared = shared.to_vec();
+    for parameter in operation["parameters"].as_array().into_iter().flatten() {
+        let resolved = resolve(parameter, spec)?;
+        declared.retain(|p| !(p["name"] == resolved["name"] && p["in"] == resolved["in"]));
+        declared.push(resolved.clone());
+    }
+    let mut parameters = Vec::new();
+    let mut body = None;
+    for (position, value) in declared.iter().enumerate() {
+        let value = resolve(value, spec)?;
+        if value["in"] == "body" {
+            body = Some(body_parameter(spec, value, position, id)?);
+        } else {
+            parameters.push(parameter(api, value, position)?);
+        }
+    }
+    parameters.extend(body);
+    Ok(parameters)
+}
+fn wire_name(value: &Value) -> Result<String, GenerationError> {
+    let name = value["name"].as_str();
+    Ok(name
+        .ok_or_else(|| GenerationError("missing parameter name".into()))?
+        .to_owned())
+}
+fn body_parameter(
+    spec: &Value,
+    value: &Value,
+    position: usize,
+    id: &str,
+) -> Result<Parameter, GenerationError> {
+    // Swagger 2 bodies are JSON unless the spec says otherwise.
+    let consumes = media_types(spec, value, "consumes");
+    if !(consumes.is_empty() || consumes.contains(&"application/json")) {
+        return Err(GenerationError(format!("{id}: unsupported request media")));
+    }
+    // What sits next to a reference is not schema. Shipping v1 keeps examples there.
+    let schema = match value["schema"].get("$ref") {
+        Some(reference) => json!({"$ref": reference}),
+        None => value["schema"].clone(),
+    };
+    Ok(Parameter {
+        name: "body".into(),
+        wire_name: wire_name(value)?,
+        position,
+        location: "body".into(),
+        required: value["required"] == true,
+        schema,
+        csv: false,
+    })
+}
+/// A path, query or header parameter.
+fn parameter(
+    api: &ModelSpec,
+    value: &Value,
+    position: usize,
+) -> Result<Parameter, GenerationError> {
+    let wire_name = wire_name(value)?;
+    let location = value["in"].as_str().unwrap_or("").to_owned();
+    let required = value["required"] == true;
+    let mut schema: Map<String, Value> = SCHEMA_KEYS
+        .iter()
+        .filter_map(|key| Some(((*key).to_owned(), value.get(key)?.clone())))
+        .collect();
+    if schema.get("type") == Some(&json!("string"))
+        && schema.get("format") == Some(&json!("boolean"))
+    {
+        schema.insert("type".into(), json!("boolean"));
+        if let Some(default) = schema.get("default").and_then(Value::as_str) {
+            let default = default
+                .parse::<bool>()
+                .map_err(|_| GenerationError("invalid boolean default".into()))?;
+            schema.insert("default".into(), json!(default));
+        }
+    }
+    let mut schema = Value::Object(schema);
+    let array = schema["type"] == "array";
+    if array {
+        schema["items"] = json!({"type": value["items"]["type"]});
+    }
+    // Swagger 2 joins an array with commas unless it says otherwise.
+    let csv = array && value["collectionFormat"] != "multi";
+    if csv && schema["default"].is_string() {
+        if api.module == "catalog_items_2020_12_01"
+            && wire_name == "includedData"
+            && schema["default"] == "summaries"
+        {
+            schema["default"] = json!(["summaries"]);
+        } else {
+            return Err(GenerationError(format!(
+                "unexplained scalar array default for {wire_name}"
+            )));
+        }
+    }
+    if !["path", "query", "header"].contains(&location.as_str())
+        || (location == "path" && (!required || schema["type"] != "string"))
+    {
+        return Err(GenerationError(format!(
+            "unsupported {location} parameter {wire_name}"
+        )));
+    }
+    if array
+        && (location != "query"
+            || !["csv", "multi"].contains(&value["collectionFormat"].as_str().unwrap_or("csv"))
+            || schema["items"]["type"] != "string")
+    {
+        return Err(GenerationError(format!(
+            "unsupported array parameter {wire_name}"
+        )));
+    }
+    let parameter = Parameter {
+        name: snake(&wire_name),
+        wire_name,
+        position,
+        location,
+        required,
+        schema,
+        csv,
+    };
+    rust_type(&parameter)?;
+    validate_default(&parameter)?;
+    Ok(parameter)
+}
+/// An operation's success statuses, each with the model it returns, if it has one.
+fn successes(
+    spec: &Value,
+    operation: &Value,
+    id: &str,
+) -> Result<Vec<(u16, Option<String>)>, GenerationError> {
+    let json = media_types(spec, operation, "produces").contains(&"application/json");
+    let mut successes = Vec::new();
+    for (status, response) in operation["responses"].as_object().into_iter().flatten() {
+        if !status.starts_with('2') {
+            continue;
+        }
+        let status = status
+            .parse::<u16>()
+            .map_err(|_| GenerationError("success range unsupported".into()))?;
+        // Only a JSON response has a model.
+        let schema = if json {
+            &resolve(response, spec)?["schema"]
+        } else {
+            &Value::Null
+        };
+        let model = if matches!(status, 204 | 205) {
+            None
+        } else if let Some(reference) = schema["$ref"].as_str() {
+            let name = reference
+                .strip_prefix("#/definitions/")
+                .ok_or_else(|| GenerationError("external success schema".into()))?;
+            if spec["definitions"].get(name).is_none() {
+                return Err(GenerationError(format!("missing success schema {name}")));
+            }
+            Some(format!("super::models::{}", pascal(name)))
+        } else if schema["type"] == "string" {
+            Some("String".into())
+        } else if schema.is_null() {
+            None
+        } else {
+            return Err(GenerationError(format!(
+                "{id}: unsupported inline success schema"
+            )));
+        };
+        successes.push((status, model));
+    }
+    Ok(successes)
 }
 /// The media types an operation consumes or produces: its own list, or else the API's.
 fn media_types<'a>(spec: &'a Value, operation: &'a Value, key: &str) -> Vec<&'a str> {
