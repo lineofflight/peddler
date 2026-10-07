@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "date"
 require_relative "test_helper"
 
 # One test for each form v5 took for an argument: the bytes sent, or the error and nothing sent.
@@ -42,6 +43,48 @@ class ArgumentsTest < NativeTest
       ],
       requests,
     )
+  end
+
+  def test_a_marketplace_is_sent_as_its_id
+    uk = Peddler::Marketplace.find("UK")
+    us = Peddler::Marketplace.find("US")
+    requests = sent do |client|
+      # In a query: alone for a list, in a list, and for a String
+      client.catalog_items_2022_04_01.get_catalog_item("B0X", uk)
+      client.catalog_items_2022_04_01.get_catalog_item("B0X", [uk, us])
+      client.fba_inventory_v1.get_inventory_summaries("Marketplace", uk, [uk])
+      # On a path, in the middle and at the end. No operation has a marketplace there; any `to_str` goes the same way.
+      client.orders_v0.get_order_address(uk)
+      client.orders_v0.get_order(uk)
+    end
+
+    assert_equal(
+      [
+        "GET /catalog/2022-04-01/items/B0X?includedData=summaries&marketplaceIds=A1F83G8C2ARO7P",
+        "GET /catalog/2022-04-01/items/B0X?includedData=summaries&marketplaceIds=A1F83G8C2ARO7P%2CATVPDKIKX0DER",
+        "GET /fba/inventory/v1/summaries?granularityId=A1F83G8C2ARO7P&granularityType=Marketplace&marketplaceIds=A1F83G8C2ARO7P",
+        "GET /orders/v0/orders/A1F83G8C2ARO7P/address",
+        "GET /orders/v0/orders/A1F83G8C2ARO7P",
+      ],
+      requests,
+    )
+  end
+
+  def test_an_object_whose_text_is_an_inspect_form_is_refused_by_name
+    point = Data.define(:x).new(x: "private")
+    messages = refused(
+      ->(client) { client.orders_v0.get_order(Object.new) },
+      ->(client) { client.orders_v0.get_order(point) },
+      ->(client) { client.orders_v0.get_order(Struct.new(:x).new("private")) },
+      ->(client) { client.orders_v0.get_orders(["UK"], seller_order_id: point) },
+      ->(client) { client.catalog_items_2022_04_01.get_catalog_item("B0X", [point]) },
+    )
+
+    assert_equal(["order_id must be a String"] * 3 + ["seller_order_id must be a String", "marketplace_ids must be an Array of Strings"], messages)
+    # Anything with text of its own is still sent as it, as v5 sent it.
+    requests = sent { |client| client.orders_v0.get_orders([:UK], created_after: Date.new(2026, 1, 2), seller_order_id: Class.new { def to_s = "own" }.new) }
+
+    assert_equal(["GET /orders/v0/orders?CreatedAfter=2026-01-02&MarketplaceIds=UK&SellerOrderId=own"], requests)
   end
 
   def test_nil_for_an_optional_keyword_is_left_out

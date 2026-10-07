@@ -13,6 +13,7 @@ module Peddler
       def self.boolean: (String name, untyped value, ?required: bool) -> bool?
       def self.body: (String name, untyped value, ?required: bool) -> untyped
       def self.missing: (String name, bool required) -> nil
+      def self.plain: (untyped value) -> untyped
       def self.text: (untyped value) -> String?
     end
   end

@@ -6,6 +6,9 @@ module Peddler
     #
     # v5 sent whatever it was given and the core is strict about types. Every generated method passes its arguments
     # through here. An error names the argument and what it should be, never its value.
+    #
+    # An object that converts itself to a String with `to_str` is that String wherever a String is taken, as a
+    # {Peddler::Marketplace} is its ID.
     module Arguments
       INTEGER = /\A-?\d+\z/
       DECIMAL = /\A-?\d+\.\d+\z/
@@ -13,7 +16,7 @@ module Peddler
       private_constant :INTEGER, :DECIMAL, :NOT_JSON
 
       class << self
-        # Anything but nil, a boolean, a Hash or an Array, as its `to_s`
+        # A String, or what v5 sent as one: see `text`
         def string(name, value, required: false)
           return missing(name, required) if value.nil?
 
@@ -40,6 +43,7 @@ module Peddler
         end
 
         def integer(name, value, required: false)
+          value = plain(value)
           return missing(name, required) if value.nil?
           return value if value.is_a?(Integer)
           return value.to_i if value.is_a?(String) && value.match?(INTEGER)
@@ -48,6 +52,7 @@ module Peddler
         end
 
         def number(name, value, required: false)
+          value = plain(value)
           return missing(name, required) if value.nil?
           return value if value.is_a?(Integer) || (value.is_a?(Float) && value.finite?)
           return value.to_i if value.is_a?(String) && value.match?(INTEGER)
@@ -57,7 +62,7 @@ module Peddler
         end
 
         def boolean(name, value, required: false)
-          case value
+          case plain(value)
           when nil then missing(name, required)
           when true, "true" then true
           when false, "false" then false
@@ -67,6 +72,7 @@ module Peddler
 
         # A String holds the JSON already, as in v5, so it is parsed and not encoded a second time
         def body(name, value, required: false)
+          value = plain(value)
           return missing(name, required) if value.nil?
           return value unless value.is_a?(String)
 
@@ -87,11 +93,20 @@ module Peddler
           raise ArgumentError, "#{name} is required" if required
         end
 
+        def plain(value)
+          String.try_convert(value) || value
+        end
+
+        # An argument as text, or nil if it has none. A String is itself. nil, a boolean, a Hash and an Array have
+        # none. Anything else is its `to_s`, as v5 sent it, unless that is an inspect form such as "#<Object>" or
+        # "#<data Point x=1>", which is nobody's argument.
         def text(value)
-          case value
+          case value = plain(value)
           when String then value
           when nil, true, false, Hash, Array then nil
-          else value.to_s
+          else
+            text = value.to_s
+            text unless text.start_with?("#<")
           end
         end
       end
