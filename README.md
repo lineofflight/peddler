@@ -141,7 +141,9 @@ lwa = Peddler::LWA.new(
 )
 ```
 
-`Peddler::LWA` makes 1 request per call and keeps nothing. If Amazon rejects a request, it raises `Peddler::AuthenticationError` with the HTTP `status` and Amazon's `code`, such as `"invalid_grant"`.
+`Peddler::LWA` makes 1 request per call and keeps nothing. The tokens it returns have `access_token`, `refresh_token`, `token_type`, `expires_in` and `scope`.
+
+If Amazon rejects a request, it raises `Peddler::AuthenticationError` with the HTTP `status` and Amazon's `code`, such as `"invalid_grant"`. A blank argument raises `ArgumentError` before anything is sent, such as `refresh_token must be a UTF-8 String that is not blank`.
 
 ### The client
 
@@ -163,6 +165,8 @@ response = client.orders_v0.get_orders(
 )
 ```
 
+Where a marketplace ID goes, a `Peddler::Marketplace` works too: `Peddler::Marketplace.find("UK")` in place of its ID.
+
 A request body is a Hash with the field names Amazon documents. A String that holds JSON also works.
 
 ```ruby
@@ -172,7 +176,20 @@ response = client.reports.create_report({
 })
 ```
 
-The client takes 2 options. `timeout:` is the number of seconds a whole call may take, 30 by default. `retries:` is described under [Rate limiting](#rate-limiting).
+Every operation is documented where it is defined, in [lib/peddler/native/apis.rb](lib/peddler/native/apis.rb): what it does, each argument, and whether it can run in the sandbox.
+
+For an endpoint Peddler has no method for yet, call `request` with the HTTP method and the path. It sends the client's token and keeps its timeout and retries. Its response has no typed model, so `parse` returns the Hash.
+
+```ruby
+response = client.request(
+  "GET",
+  "/orders/v0/orders",
+  params: { MarketplaceIds: "A1F83G8C2ARO7P", CreatedAfter: "2026-01-01T00:00:00Z" },
+)
+orders = response.dig("payload", "Orders")
+```
+
+The client takes 2 options. `timeout:` is the number of seconds a whole call may take, 30 by default. `retries:` is described under [Rate limiting](#rate-limiting). An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10`.
 
 To call with another token, for another seller or with a [restricted data token](#restricted-data-tokens-rdt-and-pii), take a view of the client. `with_access_token` accepts what `access_token:` accepts.
 
@@ -236,9 +253,15 @@ client = Peddler::Client.new(region: "eu-west-1", access_token: access_token, re
 client.orders_v0.get_orders(Peddler::Marketplace.ids("UK"), created_after: "2026-01-01T00:00:00Z")
 ```
 
-Peddler retries a GET that Amazon answers with 429, 500, 502, 503 or 504. It waits as long as `Retry-After` asks, up to 30 seconds, and otherwise backs off exponentially with jitter. It never retries a request that changes data.
+Peddler retries a GET that Amazon answers with 429, 500, 502, 503 or 504. Through `request`, it retries a HEAD and an OPTIONS too. It never retries another method, since that may change data twice, and it doesn't retry a failed connection.
 
-`timeout:` covers the whole call: every attempt and every wait between them. When retries run out, or the next wait doesn't fit in the time left, the last response raises `Peddler::Error` like any other.
+Before each retry it waits a random time: up to 0.2 seconds before the first, up to 0.4 before the second, up to 0.8 before the third, and so on, doubling up to 30 seconds. With `retries: 3`, the waits add up to 1.4 seconds at most.
+
+If the response has a `Retry-After` header, Peddler waits at least as long as it asks. If it asks for more than 30 seconds, or for more time than the call has left, Peddler doesn't retry.
+
+`timeout:` covers the whole call: every attempt and every wait. When Peddler stops retrying, the last response raises `Peddler::Error` like any other.
+
+These waits are short. An operation that Amazon limits to 1 request a minute is still throttled 1.4 seconds later. For that, rescue the error and run the work again later.
 
 ### Typed Responses
 
@@ -286,7 +309,7 @@ response.to_s                            # the body as text, in the charset Amaz
 
 ### Error Handling
 
-All HTTP errors (4xx and 5xx) raise `Peddler::Error`. Errors expose Amazon's `message`, the HTTP `status`, Amazon's error `code`, the `request_id` and the underlying `response`, and support pattern matching on `status` and `code`:
+Every response outside 2xx raises `Peddler::Error`: a 4xx, a 5xx, and a 3xx too, since Peddler follows no redirect. Errors expose Amazon's `message`, the HTTP `status`, Amazon's error `code`, the `request_id` and the underlying `response`, and support pattern matching on `status` and `code`:
 
 ```ruby
 begin
@@ -320,7 +343,7 @@ A failure that is not an HTTP error response from the API has a class of its own
 | `Peddler::WorkflowError` | A document's metadata is unusable, or a report, feed or query has a status Peddler doesn't know. |
 | `Peddler::WorkflowTimeoutError` | A `wait_for_*` call ran past its `timeout:`. A `Peddler::WorkflowError`. |
 | `Peddler::ForkError` | A client or token source created before `fork` is used in the child. |
-| `ArgumentError` | An argument is missing or has the wrong type. Nothing was sent. |
+| `ArgumentError` | An option or argument breaks its rule. The message names it, such as `order_id is required` or `page_size must be an Integer`. Nothing was sent. |
 
 ### Sandbox and custom endpoints
 
@@ -408,9 +431,23 @@ A document reads in 1 of 4 ways:
 - `each_chunk` yields the bytes as they arrive.
 - `json(max_bytes:)` returns a whole JSON document, parsed, if it is no larger than `max_bytes`.
 
-Without a block, the `each_` methods return an Enumerator. Numbers with a fraction parse as `BigDecimal`.
+Without a block, the `each_` methods return an Enumerator. Numbers with a fraction parse as `BigDecimal`. `document.headers` reads the headers of the download as `response.headers` does.
 
-These methods take `timeout:`, the seconds the whole download may take (30 by default), `max_bytes:`, the most the document may hold once decompressed (no limit by default), and `max_record_bytes:`, the most a single row may hold (1 MiB by default). Running past the timeout raises `Peddler::DocumentTimeoutError`.
+`open_report_document`, `open_feed_document`, `open_query_document` and `download_document` take 3 options.
+
+| Option | Limits | Default |
+| --- | --- | --- |
+| `timeout:` | the seconds the whole download may take | 30 |
+| `max_bytes:` | the size of the document once decompressed | none |
+| `max_record_bytes:` | the memory 1 row may take, its fields included | 1 MiB |
+
+```ruby
+client.open_report_document(report.report_document_id, timeout: 120) do |document|
+  document.each_tsv { |row| puts row.first }
+end
+```
+
+A download that runs past its timeout raises `Peddler::DocumentTimeoutError`.
 
 `each_tsv` decodes text from the charset in the document's `Content-Type`, such as `Cp1252` or `Shift_JIS`, and yields UTF-8. `document.charset` returns that label. If Amazon labels a document wrongly, name the charset yourself.
 
@@ -445,7 +482,7 @@ report.summary.messages_accepted # => 2
 
 #### Signed URLs
 
-For a signed URL you already hold, use `download_document` and `upload_document`. They take the same options and send no access token. Pass `compression: :gzip` to `download_document` when the document's metadata says `GZIP`.
+For a signed URL you already hold, use `download_document` and `upload_document`. Neither sends the access token, and both take `timeout:`. Pass `compression: :gzip` to `download_document` when the document's metadata says `GZIP`.
 
 ```ruby
 client.download_document(download_url) do |document|
@@ -467,7 +504,7 @@ Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is ava
 client.<api_name>_<version>.<operation>(...)
 ```
 
-You can also simply use the latest version:
+You can also use the latest version:
 
 ```ruby
 client.<api_name>.<operation>(...)
@@ -622,7 +659,7 @@ Tests that replay recorded responses show more:
 - **Reports API**: [test/peddler/apis/reports_2021_06_30_test.rb](test/peddler/apis/reports_2021_06_30_test.rb)
 - **Notifications**: [lib/peddler/notifications/](lib/peddler/notifications/) (type-safe parsing)
 
-For complete method signatures, see [sig/peddler/native/apis.rbs](sig/peddler/native/apis.rbs). The typed models are under [lib/peddler/apis/](lib/peddler/apis/).
+The operations of every API are documented in [lib/peddler/native/apis.rb](lib/peddler/native/apis.rb), and their signatures are in [sig/peddler/native/apis.rbs](sig/peddler/native/apis.rbs). The typed models are under [lib/peddler/apis/](lib/peddler/apis/).
 
 For a complete list of available APIs and their detailed documentation, refer to the [API models repository][openapi-models].
 
