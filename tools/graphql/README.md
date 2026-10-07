@@ -1,63 +1,44 @@
-# Supplemental Rust model generation
+# Rust models for reports, feeds, notifications and Data Kiosk
 
-`generate_supplemental(checkout_root, revision)` emits 55 model modules and 4
-family indexes. The default Rust generator and `--models-only` export include
-these outputs; `--check` validates them without writing. The audited source
-paths, hashes and Ruby-compatible namespace names are in
-`crates/peddler-codegen/supplemental-sources.json`.
+Amazon describes report documents, feed documents and notifications as JSON Schema, and Data Kiosk as GraphQL. [`peddler-codegen`](../../crates/peddler-codegen/README.md) turns the 55 schemas that `crates/peddler-codegen/supplemental-sources.json` lists into Rust models: 1 module for each schema and an index for each of the 4 families, under `crates/peddler/src/{reports,feeds,notifications,data_kiosk}/`.
 
-Generation needs Rust, the pinned Amazon checkout, Ruby/Bundler and the locked
-`graphql` and ActiveSupport gems (`bundle install`). Full generation also needs
-the locked Node Swagger converter. `bundle exec rake generate:rust:setup` checks
-these dependencies. SDK builds and decoding use committed Rust files and require
-neither Ruby, Node, SDL, JSON schemas nor code generation.
+They are generated with the rest of the Rust code, by `bundle exec rake generate:rust`, and checked by `bundle exec rake generate:rust:verify`. Building the crate or the gem needs none of this: the models are committed.
 
-`convert.rb` extends the existing `Generator::GraphqlTypeExtractor`, using the
-GraphQL gem's SDL parser. Every selected response field is optional, including
-non-null SDL fields. Nested list element nullability is retained. `Int`/`Long`
-map to signed 32/64-bit integers, `Float` to precise `serde_json::Number`, and
-String/ID/Date/DateTime to strings. Enum values remain open strings with known
-values documented. `Response` models the root query selection, without a
-GraphQL `data`/`errors` envelope. There is no query builder or selection validator.
-`Option` represents absent/null fields together, so non-null field annotations
-do not prohibit a top-level explicit null; non-null list elements are enforced.
-The existing Ruby parsing models and all 4 introspection resources are retained.
+## Data Kiosk
 
-JSON schemas retain their full root and envelope key casing. References resolve
-locally within the audited schema inventory, including external files and root
-references; unknown or network references fail. The 4 existing notification
-patches run after root resolution. The CLI checks all schema files and patches
-are tracked and clean, the source inventory matches Git at the pin, and SHA256
-matches the audit for the production pin. The pinned Tracking API file consumed
-by the shipment repair is also covered by the existing API integrity checks.
+`convert.rb` in this directory turns a GraphQL schema into JSON Schema definitions, which the generator then treats like any other schema. The generator runs it with `bundle exec ruby`, so generation needs `bundle install` and the `graphql` gem. It builds on the extractor the Ruby generator uses, `lib/generator/parsers/graphql_type_extractor.rb`.
 
-Normalization reuses the API generator's numeric precision, open string enums,
-default removal and optional-array policy. Narrow additional adaptations are:
+```sh
+bundle exec ruby tools/graphql/convert.rb selling-partner-api-models/schemas/data-kiosk/analytics_salesAndTraffic_2024_04_24.graphql
+```
 
-- Explicit `additionalProperties: true` becomes equivalent `{}` so Typify emits
-  extension maps rather than discarding them.
-- Conflicting inline titles are removed only when they describe different schema
-  shapes, preventing unrelated notification types from sharing one Rust name.
-- Amazon's singleton `items` array with `additionalItems: true` is interpreted as
-  the homogeneous list described by B2B/PricingHealth. Real tuples are retained.
-- Feed base properties/required fields are distributed into `oneOf` branches.
-  Operation constants stay closed, and generated Serde checks preserve forbidden
-  fields. UPDATE/PARTIAL_UPDATE/PATCH retain their branch-required fields.
-- The tax invoice eligibility `message.contains` rule is enforced by a generated
-  Serde helper requiring an `en-US` entry when a non-null message list is present.
+| GraphQL | Rust |
+| --- | --- |
+| `String`, `ID`, `Date`, `DateTime` | `String` |
+| `Int` | `i32` |
+| `Long` | `i64` |
+| `Float` | `serde_json::Number`, with every digit |
+| `Boolean` | `bool` |
+| an enum | a string, with the known values in its documentation |
+| a list | `Vec`, whose elements may be null unless the schema says otherwise |
 
-The pinned ShipmentTrackingMilestoneChanged schema has an unresolved root
-reference and empty definitions. Current upstream has the same defect. An exact
-source-specific repair reuses the pinned Tracking API's `TrackingDetail` and its
-reference closure, plus the established notification envelope keys. Envelope and
-payload wrapper fields are conservatively optional; canonical tracking-type
-required fields are retained. Every repaired object preserves extension fields.
-The repair never applies to other unresolved references, and its example
-roundtrip is tested. The sources and existing Ruby outputs are never modified.
+Every field of an object is optional, also one that GraphQL marks non-null, because a query selects only some fields. `Response` models the root of a query's result, without GraphQL's `data` and `errors` envelope. There is no query builder and no check of a query against the schema.
 
-These are data models with Serde decoding, not a complete JSON Schema validator.
-Typify does not enforce every schema constraint, including collection bounds,
-object property counts and arbitrary cross-field rules. The feed and localized
-message guards above cover constraints whose omission changed the audited
-schema's required/forbidden fields. Signed document transfers and lifecycle
-polling belong to the SDK helper/runtime work.
+## JSON schemas
+
+A schema keeps its field names as Amazon spells them. A reference is resolved inside the listed schemas, also one to another file. A reference to anything else, or to a URL, fails generation.
+
+The models follow the rules of the API models: a number keeps every digit, a string enum stays open and a default is removed. A few schemas need more:
+
+- `additionalProperties: true` is kept as a map of the extra fields.
+- Titles that 2 different inline shapes share are dropped, so that unrelated types don't get 1 Rust name.
+- An `items` array with a single schema and `additionalItems: true` is read as a list of that schema, which is what the B2B and Pricing Health notifications mean by it.
+- A feed schema that refines its base by `operationType` becomes 1 type per operation. Each refuses the fields its operation forbids.
+- The tax invoice eligibility notification requires an `en-US` entry among its messages. The generated type checks that when it decodes.
+- The 4 patches in `lib/generator/patches/` are applied to the notification schemas they name, as in the Ruby generator.
+
+The schema of the `SHIPMENT_TRACKING_MILESTONE_CHANGED` notification refers to a definition it doesn't contain. The generator repairs this 1 schema with `TrackingDetail` from the Tracking API model, and says so in the header of the generated file. Its envelope and payload fields are optional, and every repaired object keeps fields the schema doesn't name.
+
+## What the models are not
+
+They decode JSON into types. They are not a JSON Schema validator: array lengths, property counts and most rules that span several fields are not checked.
