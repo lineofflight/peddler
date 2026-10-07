@@ -52,23 +52,19 @@ module Peddler
       unless client_secret && client_secret != ""
         raise ArgumentError, "missing client_secret: pass client_secret: or set LWA_CLIENT_SECRET"
       end
-      raise ArgumentError, "client_id must be a UTF-8 String that is not blank" unless Native.present_text?(client_id)
-      unless Native.present_text?(client_secret)
-        raise ArgumentError, "client_secret must be a UTF-8 String that is not blank"
-      end
       raise ArgumentError, "lwa_endpoint must be a UTF-8 String" unless Native.utf8_text?(lwa_endpoint)
 
       # The native layer checks the endpoint and names it in what it raises.
-      @engine = Native.lwa_engine(client_id, client_secret, Native.timeout(timeout), lwa_endpoint)
+      @engine = Native.lwa_engine(
+        present("client_id", client_id), present("client_secret", client_secret), Native.timeout(timeout), lwa_endpoint
+      )
     end
 
     # Requests an access token for a seller
     #
     # @return [Tokens]
     def refresh(refresh_token:)
-      raise ArgumentError, "invalid authentication configuration" unless Native.utf8_text?(refresh_token)
-
-      tokens(@engine.refresh(refresh_token))
+      tokens(@engine.refresh(present("refresh_token", refresh_token)))
     end
 
     # Requests an access token for grantless operations
@@ -76,9 +72,7 @@ module Peddler
     # @see https://developer-docs.amazon.com/sp-api/docs/grantless-operations
     # @return [Tokens]
     def client_credentials(scope:)
-      raise ArgumentError, "invalid authentication configuration" unless Native.utf8_text?(scope)
-
-      tokens(@engine.client_credentials(scope))
+      tokens(@engine.client_credentials(present("scope", scope)))
     end
 
     # An optional source of access tokens that keeps one in this process and refreshes it shortly before it expires
@@ -92,10 +86,13 @@ module Peddler
     def token_source(refresh_token: nil, scope: nil)
       raise ArgumentError, "provide either refresh_token or scope" unless refresh_token.nil? ^ scope.nil?
 
-      value = refresh_token || scope
-      raise ArgumentError, "invalid authentication configuration" unless value && Native.utf8_text?(value) && !value.strip.empty?
-
-      refresh_token ? TokenSource.new { refresh(refresh_token: value) } : TokenSource.new { client_credentials(scope: value) }
+      if refresh_token
+        token = present("refresh_token", refresh_token)
+        TokenSource.new { refresh(refresh_token: token) }
+      else
+        grantless = present("scope", scope)
+        TokenSource.new { client_credentials(scope: grantless) }
+      end
     end
 
     # Omit redirect_uri only for SDK-originated grants; otherwise provide the
@@ -103,17 +100,24 @@ module Peddler
     #
     # @return [Tokens]
     def exchange_authorization_code(code:, redirect_uri: nil)
-      unless Native.utf8_text?(code) && (redirect_uri.nil? || Native.utf8_text?(redirect_uri))
-        raise ArgumentError, "invalid authentication configuration"
+      unless redirect_uri.nil? || Native.utf8_text?(redirect_uri)
+        raise ArgumentError, "redirect_uri must be a UTF-8 String"
       end
 
-      tokens(@engine.exchange_authorization_code(code, redirect_uri))
+      tokens(@engine.exchange_authorization_code(present("code", code), redirect_uri))
     end
 
     def inspect = "#<Peddler::LWA>"
     alias_method :to_s, :inspect
 
     private
+
+    # The value of an argument that must be text, or the error that names it and never shows it
+    def present(name, value)
+      raise ArgumentError, "#{name} must be a UTF-8 String that is not blank" unless Native.present_text?(value)
+
+      value
+    end
 
     def tokens(parts)
       access_token, refresh_token, token_type, expires_in, scope = parts

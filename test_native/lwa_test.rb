@@ -70,6 +70,27 @@ class LwaTest < NativeTest
     end
   end
 
+  def test_a_bad_argument_of_a_grant_is_named_with_its_rule
+    instance = onboarding("http://127.0.0.1:1")
+    blank = "must be a UTF-8 String that is not blank"
+    {
+      -> { instance.refresh(refresh_token: nil) } => "refresh_token #{blank}",
+      -> { instance.refresh(refresh_token: " ") } => "refresh_token #{blank}",
+      -> { instance.client_credentials(scope: "") } => "scope #{blank}",
+      -> { instance.client_credentials(scope: 123) } => "scope #{blank}",
+      -> { instance.exchange_authorization_code(code: " ") } => "code #{blank}",
+      -> { instance.exchange_authorization_code(code: "secret+&", redirect_uri: 123) } => "redirect_uri must be a UTF-8 String",
+      -> { instance.token_source(refresh_token: " ") } => "refresh_token #{blank}",
+      -> { instance.token_source(scope: 123) } => "scope #{blank}",
+      -> { instance.token_source } => "provide either refresh_token or scope",
+    }.each do |call, message|
+      error = assert_raises(ArgumentError, &call)
+
+      assert_equal(message, error.message)
+    end
+    assert_instance_of(Peddler::LWA::TokenSource, instance.token_source(scope: "sellingpartnerapi::notifications"))
+  end
+
   def test_body_deadline_closes_socket
     serve(handler: lambda { |socket, *|
       socket.write("HTTP/1.1 200 OK\r\nContent-Length: 1000\r\n\r\n{")

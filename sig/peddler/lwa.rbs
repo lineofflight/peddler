@@ -58,6 +58,7 @@ module Peddler
 
     private
 
+    def present: (String name, untyped value) -> String
     def tokens: (Native::tokens parts) -> Tokens
   end
 end
