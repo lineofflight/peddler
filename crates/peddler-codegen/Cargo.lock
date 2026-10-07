@@ -96,6 +96,7 @@ dependencies = [
  "heck",
  "prettyplease",
  "quote",
+ "regress",
  "schemars",
  "serde",
  "serde_json",

@@ -90,6 +90,11 @@ module Peddler
         @engine = engine
       end
 
+      # Cancels an AWD Inbound order and its associated shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The ID of the inbound order you want to cancel.
+      # @return [Peddler::Response] The API response
       def cancel_inbound(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -97,6 +102,12 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.cancel_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound")
       end
 
+      # Determines if the packages you specify are eligible for an AWD inbound order and contains error details for
+      # ineligible packages.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Represents the packages you want to inbound.
+      # @return [Peddler::Response] The API response
       def check_inbound_eligibility(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -104,6 +115,11 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility")
       end
 
+      # Confirms an AWD inbound order in `DRAFT` status.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The ID of the inbound order that you want to confirm.
+      # @return [Peddler::Response] The API response
       def confirm_inbound(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -111,6 +127,12 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_inbound")
       end
 
+      # Confirms an AWD outbound order for a set of shipments that contain items that must be outbound to a destination
+      # node. You can confirm the order only if it's in an`ELIGIBLE` state.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] ID for the outbound order you want to confirm.
+      # @return [Peddler::Response] The API response
       def confirm_outbound(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -118,6 +140,12 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_outbound")
       end
 
+      # Confirms an AWD replenishment order in ELIGIBLE state with a set of shipments containing items that are needed
+      # to be replenished to an FBA node.
+      # Order can only be confirmed in ELIGIBLE state.
+      #
+      # @param order_id [String] ID of the replenishment order to be confirmed.
+      # @return [Peddler::Response] The API response
       def confirm_replenishment_order(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -125,6 +153,12 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order")
       end
 
+      # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
+      # shipment per order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Payload for creating an inbound order.
+      # @return [Peddler::Response] The API response
       def create_inbound(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -132,6 +166,13 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_inbound")
       end
 
+      # Creates a draft AWD outbound order with the specified products. The API returns the order ID for the newly
+      # created order and starts an async validation check on the outbound products. After the validation check, the
+      # order status transitions from `VALIDATING` to `ELIGIBLE/INELIGIBLE`.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Payload for creating an outbound order.
+      # @return [Peddler::Response] The API response
       def create_outbound(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -139,6 +180,14 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_outbound")
       end
 
+      # Creates an AWD replenishment order with given products to replenish.
+      # The API will return the order ID of the newly created order and also start an async validation check on the
+      # products to e.
+      # The order status will transition to ELIGIBLE/INELIGIBLE status from VALIDATING post validation check
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Payload for creating a replenishment order.
+      # @return [Peddler::Response] The API response
       def create_replenishment_order(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -146,6 +195,11 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order")
       end
 
+      # Retrieves an AWD inbound order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The ID of the inbound order that you want to retrieve.
+      # @return [Peddler::Response] The API response
       def get_inbound(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -153,6 +207,13 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound")
       end
 
+      # Retrieves an AWD inbound shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] ID for the shipment. A shipment contains the cases being inbounded.
+      # @param sku_quantities [String] If equal to `SHOW`, the response includes the shipment SKU quantity details.
+      #   Defaults to `HIDE`, in which case the response does not contain SKU quantities
+      # @return [Peddler::Response] The API response
       def get_inbound_shipment(shipment_id, sku_quantities: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -161,6 +222,15 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment")
       end
 
+      # Retrieves the box labels for a shipment ID that you specify. This is an asynchronous operation. If the label
+      # status is `GENERATED`, then the label URL is available.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] ID for the shipment.
+      # @param page_type [String] Page type for the generated labels. The default is `PLAIN_PAPER`.
+      # @param format_type [String] The format type of the output file that contains your labels. The default format
+      #   type is `PDF`.
+      # @return [Peddler::Response] The API response
       def get_inbound_shipment_labels(shipment_id, page_type: nil, format_type: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -170,6 +240,12 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels")
       end
 
+      # Retrieves the available label page types for a shipment ID that you specify. This is an asynchronous operation.
+      # If the label status is `GENERATED`, then the pageTypes are available.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] ID for the shipment.
+      # @return [Peddler::Response] The API response
       def get_label_page_types(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -177,6 +253,14 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_label_page_types", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_label_page_types")
       end
 
+      # Retrieves an AWD outbound order with a set of shipments that contain items that are outbound into a destination
+      # channel. If the order is not eligible, the validation errors field is included in the order response. The API
+      # returns the order ID for the newly created order and starts an async validation check on the outbound products.
+      # After the validation check, the order status transitions from `VALIDATING` to `ELIGIBLE/INELIGIBLE`.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] ID for the outbound order to be retrieved.
+      # @return [Peddler::Response] The API response
       def get_outbound(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -184,6 +268,12 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_outbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_outbound")
       end
 
+      # Retrieves an AWD Replenishment order with a set of shipments containing items that is/was planned to be
+      # replenished into an FBA node.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] ID of the replenishment order to be retrieved.
+      # @return [Peddler::Response] The API response
       def get_replenishment_order(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -191,6 +281,25 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order")
       end
 
+      # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
+      # optional filters.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param sort_by [String] Field to sort results by. By default, the response will be sorted by UPDATED_AT.
+      # @param sort_order [String] Sort the response in ASCENDING or DESCENDING order. By default, the response will be
+      #   sorted in DESCENDING order.
+      # @param shipment_status [String] Filter by inbound shipment status.
+      # @param updated_after [String] List the inbound shipments that were updated after a certain time (inclusive). The
+      #   date must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param updated_before [String] List the inbound shipments that were updated before a certain time (inclusive).
+      #   The date must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param max_results [Integer] Maximum number of results to return.
+      # @param next_token [String] A token that is used to retrieve the next page of results. The response includes
+      #   `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of
+      #   results, call the operation with this token and include the same arguments as the call that produced the
+      #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
+      #   return empty pages.
+      # @return [Peddler::Response] The API response
       def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil)
         arguments = {
           sort_by: Arguments.string("sort_by", sort_by),
@@ -204,6 +313,7 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_shipments}
       def list_inbound_shipments_pages(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil)
         arguments = {
           sort_by: Arguments.string("sort_by", sort_by),
@@ -217,6 +327,20 @@ module Peddler
         PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments").pages(@engine, arguments)
       end
 
+      # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param sku [String] Filter by seller or merchant SKU for the item.
+      # @param sort_order [String] Sort the response in `ASCENDING` or `DESCENDING` order.
+      # @param details [String] Set to `SHOW` to return summaries with additional inventory details. Defaults to `HIDE,`
+      #   which returns only inventory summary totals.
+      # @param next_token [String] A token that is used to retrieve the next page of results. The response includes
+      #   `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of
+      #   results, call the operation with this token and include the same arguments as the call that produced the
+      #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
+      #   return empty pages.
+      # @param max_results [Integer] Maximum number of results to return.
+      # @return [Peddler::Response] The API response
       def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25)
         arguments = {
           sku: Arguments.string("sku", sku),
@@ -228,6 +352,7 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inventory")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_inventory}
       def list_inventory_pages(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25)
         arguments = {
           sku: Arguments.string("sku", sku),
@@ -239,6 +364,22 @@ module Peddler
         PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inventory").pages(@engine, arguments)
       end
 
+      # Retrieves all outbound AWD orders (with optional filters) that pertain to a merchant. By default, orders are
+      # sorted by the `updatedAt` attribute in descending order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param updated_after [String] Get the outbound orders updated after a certain time (inclusive). The date must be
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param updated_before [String] Get the outbound orders updated before a certain time (inclusive). The date must
+      #   be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param sort_order [String] Sort the response in `ASCENDING` or `DESCENDING` order.
+      # @param max_results [Integer] Maximum number of results to return.
+      # @param next_token [String] A token that is used to retrieve the next page of results. The response includes
+      #   `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of
+      #   results, call the operation with this token and include the same arguments as the call that produced the
+      #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
+      #   return empty pages.
+      # @return [Peddler::Response] The API response
       def list_outbounds(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
         arguments = {
           updated_after: Arguments.string("updated_after", updated_after),
@@ -250,6 +391,7 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_outbounds")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_outbounds}
       def list_outbounds_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
         arguments = {
           updated_after: Arguments.string("updated_after", updated_after),
@@ -261,6 +403,23 @@ module Peddler
         PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_outbounds").pages(@engine, arguments)
       end
 
+      # Retrieves all the AWD replenishment orders pertaining to a merchant with optional filters.
+      # API by default will sort orders by updatedAt attribute in descending order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param updated_after [String] Get the replenishment orders updated after certain time (Inclusive) Date should be
+      #   in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.
+      # @param updated_before [String] Get the replenishment orders updated before certain time (Inclusive) Date should
+      #   be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.
+      # @param sort_order [String] Sort the response in ASCENDING or DESCENDING order. The default sort order is
+      #   DESCENDING.
+      # @param max_results [Integer] Maximum results to be returned in a single response.
+      # @param next_token [String] A token that is used to retrieve the next page of results. The response includes
+      #   `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of
+      #   results, call the operation with this token and include the same arguments as the call that produced the
+      #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
+      #   return empty pages.
+      # @return [Peddler::Response] The API response
       def list_replenishment_orders(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
         arguments = {
           updated_after: Arguments.string("updated_after", updated_after),
@@ -272,6 +431,7 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_replenishment_orders}
       def list_replenishment_orders_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
         arguments = {
           updated_after: Arguments.string("updated_after", updated_after),
@@ -283,6 +443,13 @@ module Peddler
         PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders").pages(@engine, arguments)
       end
 
+      # Updates an AWD inbound order that is in `DRAFT` status and not yet confirmed. Use this operation to update the
+      # `packagesToInbound`, `originAddress` and `preferences` attributes.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The ID of the inbound order that you want to update.
+      # @param body [Hash, Array, String] Represents an AWD inbound order.
+      # @return [Peddler::Response] The API response
       def update_inbound(order_id, body)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -291,6 +458,12 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound")
       end
 
+      # Updates transport details for an AWD shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] The shipment ID.
+      # @param body [Hash, Array, String] Transportation details for the shipment.
+      # @return [Peddler::Response] The API response
       def update_inbound_shipment_transport_details(shipment_id, body)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -299,6 +472,14 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details", JSON.generate(arguments)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details")
       end
 
+      # Updates an AWD outbound order that is in `DRAFT`, `ELIGIBLE`, or `INELIGIBLE` status. This API allows updates on
+      # `productsToOutbound` and `orderPreferences` attributes only. Any updates will restart the outbound order
+      # validation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] ID for the outbound order to be updated.
+      # @param body [Hash, Array, String] Represents an AWD outbound order.
+      # @return [Peddler::Response] The API response
       def update_outbound(order_id, body)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -313,6 +494,11 @@ module Peddler
         @engine = engine
       end
 
+      # Create a new A+ Content document.
+      #
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param post_content_document_request [Hash, Array, String] The content document request details.
+      # @return [Peddler::Response] The API response
       def create_content_document(marketplace_id, post_content_document_request)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -321,6 +507,19 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.create_content_document")
       end
 
+      # Create a media asset record. The `mediaType` field determines the type of asset to create.
+      #
+      # This operation is idempotent; if the asset or pairing already exists with identical metadata, this operation
+      # returns a `200` response with existing data. Returns `201` when a new asset or pairing is created. Returns `409`
+      # if the asset or pairing already exists but the metadata fields differ.
+      #
+      # If an `uploadDestinationId` is provided, it is resolved to its `mediaId` before any further processing. A
+      # request that references an asset by `uploadDestinationId` and a subsequent request that uses the resulting
+      # `mediaId` are treated as referring to the same identity.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param create_media_request [Hash, Array, String] The media creation request details.
+      # @return [Peddler::Response] The API response
       def create_media(create_media_request)
         arguments = {
           body: Arguments.body("create_media_request", create_media_request, required: true),
@@ -328,6 +527,14 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_media", JSON.generate(arguments)), "aplus_content_2020_11_01.create_media")
       end
 
+      # Retrieve an A+ Content document, if available.
+      #
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
+      #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response.
+      # @return [Peddler::Response] The API response
       def get_content_document(content_reference_key, marketplace_id, included_data_set)
         arguments = {
           content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
@@ -337,6 +544,17 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.get_content_document")
       end
 
+      # Retrieve media metadata and related media for a given media ID. The response uses the unified Media shape.
+      # Related media associations are also included in the response.
+      #
+      # When `associatedMediaId` is provided, `relatedMedia` is filtered to the specific pairing. When omitted, all
+      # related media are returned.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param media_id [String] The unique identifier for the media asset.
+      # @param associated_media_id [String] When provided, returns only the specific association. When omitted, returns
+      #   all associated media.
+      # @return [Peddler::Response] The API response
       def get_media(media_id, associated_media_id: nil)
         arguments = {
           media_id: Arguments.string("media_id", media_id, required: true),
@@ -345,6 +563,22 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_media", JSON.generate(arguments)), "aplus_content_2020_11_01.get_media")
       end
 
+      # Retrieve a list of ASINs related to the specified A+ Content document, if available. If you do not include the
+      # `asinSet` parameter, the operation returns all ASINs related to the content document.
+      #
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
+      #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response. If you do
+      #   not include this parameter, the operation returns the related ASINs without metadata.
+      # @param asin_set [Array<String>] The set of ASINs.
+      # @param page_token [String] A page token from the `nextPageToken` response element returned by your previous call
+      #   to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get the
+      #   next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken`
+      #   with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are
+      #   no more pages to return. A `pageToken` value is not usable across different operations.
+      # @return [Peddler::Response] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil)
         arguments = {
           content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
@@ -356,6 +590,7 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.list_content_document_asin_relations")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_content_document_asin_relations}
       def list_content_document_asin_relations_pages(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil)
         arguments = {
           content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
@@ -367,6 +602,13 @@ module Peddler
         PAGINATIONS.fetch("aplus_content_2020_11_01.list_content_document_asin_relations").pages(@engine, arguments)
       end
 
+      # Submits an A+ Content document for review, approval, and publishing.
+      #
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
+      #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @return [Peddler::Response] The API response
       def post_content_document_approval_submission(content_reference_key, marketplace_id)
         arguments = {
           content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
@@ -375,6 +617,17 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_approval_submission", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_approval_submission")
       end
 
+      # Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs,
+      # depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content
+      # document from that ASIN.
+      #
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
+      #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param post_content_document_asin_relations_request [Hash, Array, String] The content document ASIN relations
+      #   request details.
+      # @return [Peddler::Response] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id, post_content_document_asin_relations_request)
         arguments = {
           content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
@@ -384,6 +637,14 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_asin_relations", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_asin_relations")
       end
 
+      # Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN
+      # relations.
+      #
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
+      #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @return [Peddler::Response] The API response
       def post_content_document_suspend_submission(content_reference_key, marketplace_id)
         arguments = {
           content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
@@ -392,6 +653,17 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_suspend_submission", JSON.generate(arguments)), "aplus_content_2020_11_01.post_content_document_suspend_submission")
       end
 
+      # Retrieve a list of all A+ Content documents assigned to a selling partner. This operation returns only the
+      # metadata of the A+ Content documents. Call the `getContentDocument` operation to get the actual contents of the
+      # A+ Content documents.
+      #
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param page_token [String] A page token from the `nextPageToken` response element returned by your previous call
+      #   to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get the
+      #   next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken`
+      #   with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are
+      #   no more pages to return. A `pageToken` value is not usable across different operations.
+      # @return [Peddler::Response] The API response
       def search_content_documents(marketplace_id, page_token: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -400,6 +672,7 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", JSON.generate(arguments)), "aplus_content_2020_11_01.search_content_documents")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#search_content_documents}
       def search_content_documents_pages(marketplace_id, page_token: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -408,6 +681,16 @@ module Peddler
         PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_documents").pages(@engine, arguments)
       end
 
+      # Searches for A+ Content publishing records, if available.
+      #
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN).
+      # @param page_token [String] A page token from the `nextPageToken` response element returned by your previous call
+      #   to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get the
+      #   next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken`
+      #   with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are
+      #   no more pages to return. A `pageToken` value is not usable across different operations.
+      # @return [Peddler::Response] The API response
       def search_content_publish_records(marketplace_id, asin, page_token: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -417,6 +700,7 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", JSON.generate(arguments)), "aplus_content_2020_11_01.search_content_publish_records")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#search_content_publish_records}
       def search_content_publish_records_pages(marketplace_id, asin, page_token: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -426,6 +710,14 @@ module Peddler
         PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_publish_records").pages(@engine, arguments)
       end
 
+      # Update an existing A+ Content document.
+      #
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
+      #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
+      #   any A+ Content identifier.
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param post_content_document_request [Hash, Array, String] The content document request details.
+      # @return [Peddler::Response] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request)
         arguments = {
           content_reference_key: Arguments.string("content_reference_key", content_reference_key, required: true),
@@ -435,6 +727,23 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_content_document", JSON.generate(arguments)), "aplus_content_2020_11_01.update_content_document")
       end
 
+      # Update metadata on an existing media asset. The `mediaId` path parameter identifies the target asset. For
+      # video-image pairing title updates, provide `associatedMediaId` as a query parameter. For video-level description
+      # updates or standalone image title updates, omit `associatedMediaId`.
+      #
+      # Each request updates either title or descriptions, but not both. Descriptions are upserted by locale; only
+      # provided locales are modified, and existing locales not in the request are preserved.
+      #
+      # The response contains the full unified Media shape. When `associatedMediaId` is provided, `relatedMedia`
+      # contains only the specified pairing. When `associatedMediaId` is absent, `relatedMedia` contains all affected
+      # pairings.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param media_id [String] The unique identifier for the media asset to update.
+      # @param associated_media_id [String] When provided, identifies the specific video-image pairing for title
+      #   updates. Required when updating a pairing title.
+      # @param update_media_request [Hash, Array, String] The media update request details.
+      # @return [Peddler::Response] The API response
       def update_media(media_id, update_media_request, associated_media_id: nil)
         arguments = {
           media_id: Arguments.string("media_id", media_id, required: true),
@@ -444,6 +753,12 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_media", JSON.generate(arguments)), "aplus_content_2020_11_01.update_media")
       end
 
+      # Checks if the A+ Content document is valid for use on a set of ASINs.
+      #
+      # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param asin_set [Array<String>] The set of ASINs.
+      # @param post_content_document_request [Hash, Array, String] The content document request details.
+      # @return [Peddler::Response] The API response
       def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -459,6 +774,11 @@ module Peddler
         @engine = engine
       end
 
+      # Create a notification for sellers in Seller Central.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body for the `createNotification` operation.
+      # @return [Peddler::Response] The API response
       def create_notification(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -466,6 +786,11 @@ module Peddler
         Response.from_parts(@engine.operation("application_integrations_2024_04_01.create_notification", JSON.generate(arguments)), "application_integrations_2024_04_01.create_notification")
       end
 
+      # Remove your application's notifications from the Appstore notifications dashboard.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body for the `deleteNotifications` operation.
+      # @return [Peddler::Response] The API response
       def delete_notifications(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -473,6 +798,12 @@ module Peddler
         Response.from_parts(@engine.operation("application_integrations_2024_04_01.delete_notifications", JSON.generate(arguments)), "application_integrations_2024_04_01.delete_notifications")
       end
 
+      # Records the seller's response to a notification.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param notification_id [String] A `notificationId` uniquely identifies a notification.
+      # @param body [Hash, Array, String] The request body for the `recordActionFeedback` operation.
+      # @return [Peddler::Response] The API response
       def record_action_feedback(notification_id, body)
         arguments = {
           notification_id: Arguments.string("notification_id", notification_id, required: true),
@@ -487,6 +818,12 @@ module Peddler
         @engine = engine
       end
 
+      # Rotates application client secrets for a developer application. Developers must register a destination queue in
+      # the developer console before calling this operation. When this operation is called a new client secret is
+      # generated and sent to the developer-registered queue. For more information, refer to [Rotate your application's
+      # client secret](https://developer-docs.amazon.com/sp-api/docs/rotate-your-application-client-secret).
+      #
+      # @return [Peddler::Response] The API response
       def rotate_application_client_secret
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
@@ -499,6 +836,14 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for the item.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
+      # @param seller_sku [String] Used to identify items in the given marketplace. SellerSKU is qualified by the
+      #   seller's SellerId, which is included with every operation that you submit.
+      # @return [Peddler::Response] The API response
       def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -514,6 +859,17 @@ module Peddler
         @engine = engine
       end
 
+      # Retrieves details for an item in the Amazon catalog.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers. Data sets in
+      #   the response contain data only for the specified marketplaces.
+      # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
+      #   summaries.
+      # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
+      #   marketplace.
+      # @return [Peddler::Response] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
@@ -524,6 +880,24 @@ module Peddler
         Response.from_parts(@engine.operation("catalog_items_2020_12_01.get_catalog_item", JSON.generate(arguments)), "catalog_items_2020_12_01.get_catalog_item")
       end
 
+      # Search for and return a list of Amazon catalog items and associated information.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param keywords [Array<String>] A comma-delimited list of words or item identifiers to search the Amazon catalog
+      #   for.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
+      #   summaries.
+      # @param brand_names [Array<String>] A comma-delimited list of brand names to limit the search to.
+      # @param classification_ids [Array<String>] A comma-delimited list of classification identifiers to limit the
+      #   search to.
+      # @param page_size [Integer] Number of results to be returned per page.
+      # @param page_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      # @param keywords_locale [String] The language the keywords are provided in. Defaults to the primary locale of the
+      #   marketplace.
+      # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
+      #   marketplace.
+      # @return [Peddler::Response] The API response
       def search_catalog_items(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil)
         arguments = {
           keywords: Arguments.array("keywords", keywords, required: true),
@@ -539,6 +913,7 @@ module Peddler
         Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", JSON.generate(arguments)), "catalog_items_2020_12_01.search_catalog_items")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#search_catalog_items}
       def search_catalog_items_pages(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil)
         arguments = {
           keywords: Arguments.array("keywords", keywords, required: true),
@@ -560,6 +935,17 @@ module Peddler
         @engine = engine
       end
 
+      # Retrieves details for an item in the Amazon catalog.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers. To find the ID
+      #   for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param locale [String] The locale for which you want to retrieve localized summaries. Defaults to the primary
+      #   locale of the marketplace.
+      # @return [Peddler::Response] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
@@ -570,6 +956,34 @@ module Peddler
         Response.from_parts(@engine.operation("catalog_items_2022_04_01.get_catalog_item", JSON.generate(arguments)), "catalog_items_2022_04_01.get_catalog_item")
       end
 
+      # Search for a list of Amazon catalog items and item-related information. You can search by identifier or by
+      # keywords.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param identifiers [Array<String>] A comma-delimited list of product identifiers that you can use to search the
+      #   Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
+      # @param identifiers_type [String] The type of product identifiers that you can use to search the Amazon catalog.
+      #   **Note:** `identifiersType` is required when `identifiers` is in the request.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers. To find the ID
+      #   for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param locale [String] The locale for which you want to retrieve localized summaries. Defaults to the primary
+      #   locale of the marketplace.
+      # @param seller_id [String] A selling partner identifier, such as a seller account or vendor code. **Note:**
+      #   Required when `identifiersType` is `SKU`.
+      # @param keywords [Array<String>] A comma-delimited list of keywords that you can use to search the Amazon
+      #   catalog. **Note:** You cannot include `keywords` and `identifiers` in the same request.
+      # @param brand_names [Array<String>] A comma-delimited list of brand names that you can use to limit the search in
+      #   queries based on `keywords`. **Note:** Cannot be used with `identifiers`.
+      # @param classification_ids [Array<String>] A comma-delimited list of classification identifiers that you can use
+      #   to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`.
+      # @param page_size [Integer] The number of results to include on each page.
+      # @param page_token [String] A token that you can use to fetch a specific page when there are multiple pages of
+      #   results.
+      # @param keywords_locale [String] The language of the keywords that are included in queries based on `keywords`.
+      #   Defaults to the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`.
+      # @return [Peddler::Response] The API response
       def search_catalog_items(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil)
         arguments = {
           identifiers: Arguments.array("identifiers", identifiers),
@@ -588,6 +1002,7 @@ module Peddler
         Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", JSON.generate(arguments)), "catalog_items_2022_04_01.search_catalog_items")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#search_catalog_items}
       def search_catalog_items_pages(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil)
         arguments = {
           identifiers: Arguments.array("identifiers", identifiers),
@@ -612,6 +1027,14 @@ module Peddler
         @engine = engine
       end
 
+      # Retrieve the topics that customers mention when they return items in a browse node.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param browse_node_id [String] A browse node ID is a unique identifier for a browse node. A browse node is a
+      #   named location in a browse tree that is used for navigation, product classification, and website content.
+      # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
+      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @return [Peddler::Response] The API response
       def get_browse_node_return_topics(browse_node_id, marketplace_id)
         arguments = {
           browse_node_id: Arguments.string("browse_node_id", browse_node_id, required: true),
@@ -620,6 +1043,14 @@ module Peddler
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_topics")
       end
 
+      # Retrieve the trends of topics that customers mention when they return items in a browse node.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param browse_node_id [String] A browse node ID is a unique identifier of a browse node. A browse node is a
+      #   named location in a browse tree that is used for navigation, product classification, and website content.
+      # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
+      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @return [Peddler::Response] The API response
       def get_browse_node_return_trends(browse_node_id, marketplace_id)
         arguments = {
           browse_node_id: Arguments.string("browse_node_id", browse_node_id, required: true),
@@ -628,6 +1059,15 @@ module Peddler
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_trends")
       end
 
+      # Retrieve a browse node's ten most positive and ten most negative review topics.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param browse_node_id [String] The ID of a browse node. A browse node is a named location in a browse tree that
+      #   is used for navigation, product classification, and website content.
+      # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
+      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @param sort_by [String] The metric by which to sort the data in the response.
+      # @return [Peddler::Response] The API response
       def get_browse_node_review_topics(browse_node_id, marketplace_id, sort_by)
         arguments = {
           browse_node_id: Arguments.string("browse_node_id", browse_node_id, required: true),
@@ -637,6 +1077,14 @@ module Peddler
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_topics")
       end
 
+      # Retrieve the positive and negative review trends of items in a browse node for the past six months.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param browse_node_id [String] A browse node ID is a unique identifier of a browse node. A browse node is a
+      #   named location in a browse tree that is used for navigation, product classification, and website content.
+      # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. For more
+      #   information, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def get_browse_node_review_trends(browse_node_id, marketplace_id)
         arguments = {
           browse_node_id: Arguments.string("browse_node_id", browse_node_id, required: true),
@@ -645,6 +1093,15 @@ module Peddler
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_trends", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_trends")
       end
 
+      # This API returns the associated browse node of the requested ASIN. A browse node is a location in a browse tree
+      # that is used for navigation, product classification, and website content on the Amazon retail website.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
+      #   within a marketplace.
+      # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
+      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @return [Peddler::Response] The API response
       def get_item_browse_node(asin, marketplace_id)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
@@ -653,6 +1110,15 @@ module Peddler
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_browse_node", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_browse_node")
       end
 
+      # Retrieve an item's ten most positive and ten most negative review topics.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
+      #   within a marketplace. The value must be a child ASIN.
+      # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
+      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @param sort_by [String] The metric by which to sort data in the response.
+      # @return [Peddler::Response] The API response
       def get_item_review_topics(asin, marketplace_id, sort_by)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
@@ -662,6 +1128,14 @@ module Peddler
         Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_topics", JSON.generate(arguments)), "customer_feedback_2024_06_01.get_item_review_topics")
       end
 
+      # Retrieve an item's positive and negative review trends for the past six months.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
+      #   within a marketplace. This API takes child ASIN as an input.
+      # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
+      #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @return [Peddler::Response] The API response
       def get_item_review_trends(asin, marketplace_id)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
@@ -676,6 +1150,15 @@ module Peddler
         @engine = engine
       end
 
+      # Cancels the query specified by the `queryId` parameter. Only queries with a non-terminal `processingStatus`
+      # (`IN_QUEUE`, `IN_PROGRESS`) can be cancelled. Cancelling a query that already has a `processingStatus` of
+      # `CANCELLED` will no-op. Cancelled queries are returned in subsequent calls to the `getQuery` and `getQueries`
+      # operations.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param query_id [String] The identifier for the query. This identifier is unique only in combination with a
+      #   selling partner account ID.
+      # @return [Peddler::Response] The API response
       def cancel_query(query_id)
         arguments = {
           query_id: Arguments.string("query_id", query_id, required: true),
@@ -683,6 +1166,16 @@ module Peddler
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.cancel_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.cancel_query")
       end
 
+      # Creates a Data Kiosk query request.
+      #
+      # **Note:** The retention of a query varies based on the fields requested. Each field within a schema is annotated
+      # with a `@resultRetention` directive that defines how long a query containing that field will be retained. When a
+      # query contains multiple fields with different retentions, the shortest (minimum) retention is applied. The
+      # retention of a query's resulting documents always matches the retention of the query.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The body of the request.
+      # @return [Peddler::Response] The API response
       def create_query(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -690,6 +1183,12 @@ module Peddler
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.create_query", JSON.generate(arguments)), "data_kiosk_2023_11_15.create_query")
       end
 
+      # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
+      # operation for details about document retention.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param document_id [String] The identifier for the Data Kiosk document.
+      # @return [Peddler::Response] The API response
       def get_document(document_id)
         arguments = {
           document_id: Arguments.string("document_id", document_id, required: true),
@@ -697,6 +1196,22 @@ module Peddler
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_document", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_document")
       end
 
+      # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
+      # details about query retention.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param processing_statuses [Array<String>] A list of processing statuses used to filter queries.
+      # @param page_size [Integer] The maximum number of queries to return in a single call.
+      # @param created_since [String] The earliest query creation date and time for queries to include in the response,
+      #   in ISO 8601 date time format. The default is 90 days ago.
+      # @param created_until [String] The latest query creation date and time for queries to include in the response, in
+      #   ISO 8601 date time format. The default is the time of the `getQueries` request.
+      # @param pagination_token [String] A token to fetch a certain page of results when there are multiple pages of
+      #   results available. The value of this token is fetched from the `pagination.nextToken` field returned in the
+      #   `GetQueriesResponse` object. All other parameters must be provided with the same values that were provided
+      #   with the request that generated this token, with the exception of `pageSize` which can be modified between
+      #   calls to `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
+      # @return [Peddler::Response] The API response
       def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil)
         arguments = {
           processing_statuses: Arguments.array("processing_statuses", processing_statuses),
@@ -708,6 +1223,7 @@ module Peddler
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", JSON.generate(arguments)), "data_kiosk_2023_11_15.get_queries")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_queries}
       def get_queries_pages(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil)
         arguments = {
           processing_statuses: Arguments.array("processing_statuses", processing_statuses),
@@ -719,6 +1235,12 @@ module Peddler
         PAGINATIONS.fetch("data_kiosk_2023_11_15.get_queries").pages(@engine, arguments)
       end
 
+      # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
+      # details about query retention.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param query_id [String] The query identifier.
+      # @return [Peddler::Response] The API response
       def get_query(query_id)
         arguments = {
           query_id: Arguments.string("query_id", query_id, required: true),
@@ -732,6 +1254,19 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the invoice status for the order or shipment you specify. You must specify either an `orderId`,
+      # `shipmentId`, or `invoiceId` as a query parameter. If multiple parameters are supplied, `orderId` takes
+      # precedence over `shipmentId`, which takes precedence over `invoiceId`.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The order identifier.
+      # @param shipment_id [String] The shipment identifier.
+      # @param invoice_id [String] The invoice access key (NF-e access key for Brazilian invoices). Use this to retrieve
+      #   the status of a specific invoice.
+      # @param marketplace_id [String] The Amazon store identifier.
+      # @param invoice_type [String] The invoice's type.
+      # @param program_type [String] The Amazon program that seller is currently enrolled.
+      # @return [Peddler::Response] The API response
       def get_invoice_status(marketplace_id, invoice_type, program_type, order_id: nil, shipment_id: nil, invoice_id: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id),
@@ -744,6 +1279,14 @@ module Peddler
         Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.get_invoice_status", JSON.generate(arguments)), "delivery_by_amazon_2022_07_01.get_invoice_status")
       end
 
+      # Submits a shipment invoice for a given order or shipment. You must specify either an `orderId` or `shipmentId`
+      # as query parameter. If both parameters are supplied, `orderId` takes precedence over `shipmentId`.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The identifier for the order.
+      # @param shipment_id [String] The identifier for the shipment.
+      # @param body [Hash, Array, String] The request body that specifies invoice, program and `marketplaceId` values.
+      # @return [Peddler::Response] The API response
       def submit_invoice(body, order_id: nil, shipment_id: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id),
@@ -759,6 +1302,30 @@ module Peddler
         @engine = engine
       end
 
+      # Schedules an Easy Ship order and returns the scheduled package information.
+      #
+      # This operation does the following:
+      #
+      # * Specifies the time slot and handover method for the order to be scheduled for delivery.
+      #
+      # * Updates the Easy Ship order status.
+      #
+      # * Generates a shipping label and an invoice. Calling `createScheduledPackage` also generates a warranty document
+      # if you specify a `SerialNumber` value. To get these documents, see
+      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide How to get invoice,
+      # shipping label, and warranty documents}.
+      #
+      # * Shows the status of Easy Ship orders when you call the `getOrders` operation of the Selling Partner API for
+      # Orders and examine the `EasyShipShipmentStatus` property in the response body.
+      #
+      # See the **Shipping Label**, **Invoice**, and **Warranty** columns in the
+      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
+      # Marketplace Support Table} to see which documents are supported in each marketplace.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param create_scheduled_package_request [Hash, Array, String] The request schema for the
+      #   `createScheduledPackage` operation.
+      # @return [Peddler::Response] The API response
       def create_scheduled_package(create_scheduled_package_request)
         arguments = {
           body: Arguments.body("create_scheduled_package_request", create_scheduled_package_request, required: true),
@@ -766,6 +1333,31 @@ module Peddler
         Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package", JSON.generate(arguments)), "easy_ship_2022_03_23.create_scheduled_package")
       end
 
+      # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
+      # associated shipping labels, along with other compliance documents according to the marketplace (refer to the
+      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
+      # marketplace document support table}).
+      #
+      # Developers calling this operation may optionally assign a `packageDetails` object, allowing them to input a
+      # preferred time slot for each order in ther request. In this case, Amazon will try to schedule the respective
+      # packages using their optional settings. On the other hand, *i.e.*, if the time slot is not provided, Amazon will
+      # then pick the earliest time slot possible.
+      #
+      # Regarding the shipping label's file format, external developers are able to choose between PDF or ZPL, and
+      # Amazon will create the label accordingly.
+      #
+      # This operation returns an array composed of the scheduled packages, and a short-lived URL pointing to a zip file
+      # containing the generated shipping labels and the other documents enabled for your marketplace. If at least an
+      # order couldn't be scheduled, then Amazon adds the `rejectedOrders` list into the response, which contains an
+      # entry for each order we couldn't process. Each entry is composed of an error message describing the reason of
+      # the failure, so that sellers can take action.
+      #
+      # The table below displays the supported request and burst maximum rates:
+      #
+      # @note This operation can make a static sandbox call.
+      # @param create_scheduled_packages_request [Hash, Array, String] The request schema for the
+      #   `createScheduledPackageBulk` operation.
+      # @return [Peddler::Response] The API response
       def create_scheduled_package_bulk(create_scheduled_packages_request)
         arguments = {
           body: Arguments.body("create_scheduled_packages_request", create_scheduled_packages_request, required: true),
@@ -773,6 +1365,14 @@ module Peddler
         Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package_bulk", JSON.generate(arguments)), "easy_ship_2022_03_23.create_scheduled_package_bulk")
       end
 
+      # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
+      # and item information, and status.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon-defined order identifier. Identifies the order that the seller wants
+      #   to deliver using Amazon Easy Ship.
+      # @param marketplace_id [String] An identifier for the marketplace in which the seller is selling.
+      # @return [Peddler::Response] The API response
       def get_scheduled_package(amazon_order_id, marketplace_id)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -781,6 +1381,23 @@ module Peddler
         Response.from_parts(@engine.operation("easy_ship_2022_03_23.get_scheduled_package", JSON.generate(arguments)), "easy_ship_2022_03_23.get_scheduled_package")
       end
 
+      # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
+      # that the seller specifies.
+      #
+      # This operation is available for scheduled and unscheduled orders based on marketplace support. See **Get Time
+      # Slots** in the
+      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
+      # Marketplace Support Table}.
+      #
+      # This operation can return time slots that have either pickup or drop-off handover methods - see **Supported
+      # Handover Methods** in the
+      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
+      # Marketplace Support Table}.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param list_handover_slots_request [Hash, Array, String] The request schema for the `listHandoverSlots`
+      #   operation.
+      # @return [Peddler::Response] The API response
       def list_handover_slots(list_handover_slots_request: nil)
         arguments = {
           body: Arguments.body("list_handover_slots_request", list_handover_slots_request),
@@ -788,6 +1405,18 @@ module Peddler
         Response.from_parts(@engine.operation("easy_ship_2022_03_23.list_handover_slots", JSON.generate(arguments)), "easy_ship_2022_03_23.list_handover_slots")
       end
 
+      # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
+      # the new `slotId` value for the time slot by calling the `listHandoverSlots` operation before making another
+      # `patch` call.
+      #
+      # See the **Update Package** column in the
+      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
+      # Marketplace Support Table} to see which marketplaces this operation is supported in.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param update_scheduled_packages_request [Hash, Array, String] The request schema for the
+      #   `updateScheduledPackages` operation.
+      # @return [Peddler::Response] The API response
       def update_scheduled_packages(update_scheduled_packages_request: nil)
         arguments = {
           body: Arguments.body("update_scheduled_packages_request", update_scheduled_packages_request),
@@ -801,6 +1430,13 @@ module Peddler
         @engine = engine
       end
 
+      # Make up to 10 inventory requests. The response includes the set of responses that correspond to requests. The
+      # response for each successful request in the set includes the inventory count for the provided `sku` and
+      # `locationId` pair.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] A list of inventory requests.
+      # @return [Peddler::Response] The API response
       def batch_inventory(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -814,6 +1450,12 @@ module Peddler
         @engine = engine
       end
 
+      # Creates a sandbox location and merchant in the test environment. This operation is available only in the sandbox
+      # environment and is used for onboarding test locations. Idempotency is ensured on locationName.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] The request body for creating a sandbox location.
+      # @return [Peddler::Response] The API response
       def create_sandbox_location(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -827,6 +1469,11 @@ module Peddler
         @engine = engine
       end
 
+      # Retrieve the return item with the specified ID.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param return_id [String] The ID of the return item you want.
+      # @return [Peddler::Response] The API response
       def get_return(return_id)
         arguments = {
           return_id: Arguments.string("return_id", return_id, required: true),
@@ -834,6 +1481,34 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.get_return", JSON.generate(arguments)), "external_fulfillment_returns_2024_09_11.get_return")
       end
 
+      # Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param return_location_id [String] The SmartConnect location ID of the location from which you want to retrieve
+      #   return items.
+      # @param rma_id [String] The RMA ID of the return items you want to list.
+      # @param status [String] The status of return items you want to list. You can retrieve all new return items with
+      #   the `CREATED` status.
+      # @param reverse_tracking_id [String] The reverse tracking ID of the return items you want to list.
+      # @param created_since [String] Return items created after the specified date are included in the response. In
+      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param created_until [String] Return items created before the specified date are included in the response. In
+      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param last_updated_since [String] Return items updated after the specified date are included in the response.
+      #   In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If you supply this
+      #   parameter, you must also supply `returnLocationId` and `status`.
+      # @param last_updated_until [String] Return items whose most recent update is before the specified date are
+      #   included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
+      #   format. If you supply this parameter, you must also supply `returnLocationId` and `status`.
+      # @param last_updated_after [String] DEPRECATED. Use the `createdSince` parameter.
+      # @param last_updated_before [String] DEPRECATED. Use the `createdUntil` parameter.
+      # @param max_results [Integer] The number of return items you want to include in the response. **Default:** 10
+      #   **Maximum:** 100
+      # @param next_token [String] A token that you use to retrieve the next page of results. The response includes
+      #   `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with
+      #   this token and include the same arguments as the call that produced the token. To get a complete list, call
+      #   this operation until `nextToken` is null. Note that this operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def list_returns(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil)
         arguments = {
           return_location_id: Arguments.string("return_location_id", return_location_id),
@@ -852,6 +1527,7 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", JSON.generate(arguments)), "external_fulfillment_returns_2024_09_11.list_returns")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_returns}
       def list_returns_pages(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil)
         arguments = {
           return_location_id: Arguments.string("return_location_id", return_location_id),
@@ -876,6 +1552,12 @@ module Peddler
         @engine = engine
       end
 
+      # Provide details about the packages in the specified shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment.
+      # @param body [Hash, Array, String] A list of packages in the shipment.
+      # @return [Peddler::Response] The API response
       def create_packages(shipment_id, body)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -884,6 +1566,13 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_packages", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.create_packages")
       end
 
+      # Creates a sandbox shipment to simulate order creation in the test environment. This operation is available only
+      # in the sandbox environment. The shipment is created with the specified configuration including shipping type and
+      # order type.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] The request body for creating a sandbox shipment.
+      # @return [Peddler::Response] The API response
       def create_sandbox_shipment(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -891,6 +1580,11 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_sandbox_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.create_sandbox_shipment")
       end
 
+      # Get invoices for the shipment you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment whose invoice you want.
+      # @return [Peddler::Response] The API response
       def generate_invoice(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -898,6 +1592,14 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_invoice", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.generate_invoice")
       end
 
+      # Generate and retrieve all shipping labels for one or more packages in the shipment you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment whose shipping labels you want to generate and retrieve.
+      # @param shipping_option_id [String] The ID of the shipping option whose shipping labels you want.
+      # @param operation [String] Specify whether you want to generate or regenerate a label.
+      # @param body [Hash, Array, String] Shipping details for when shipping is not done by the marketplace channel.
+      # @return [Peddler::Response] The API response
       def generate_ship_labels(shipment_id, operation, shipping_option_id: nil, body: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -908,6 +1610,11 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_ship_labels", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.generate_ship_labels")
       end
 
+      # Get a single shipment with the ID you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment you want to retrieve.
+      # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -915,6 +1622,26 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipment")
       end
 
+      # Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered
+      # based on the fulfillment node or the time of the shipments' last update.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param location_id [String] The Amazon channel location identifier for the shipments you want to retrieve.
+      # @param marketplace_id [String] The marketplace ID associated with the location. To find the ID for your
+      #   marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param channel_name [String] The channel name associated with the location.
+      # @param status [String] The status of shipment you want to include in the response. To retrieve all new
+      #   shipments, set this value to `CREATED` or `ACCEPTED`.
+      # @param last_updated_after [String] The response includes shipments whose latest update is after the specified
+      #   time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param last_updated_before [String] The response includes shipments whose latest update is before the specified
+      #   time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param max_results [Integer] The maximum number of shipments to include in the response.
+      # @param pagination_token [String] A token that you use to retrieve the next page of results. The response
+      #   includes `nextToken` when there are multiple pages of results. To get the next page of results, call the
+      #   operation with this token and include the same arguments as the call that produced the token. To get a
+      #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def get_shipments(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil)
         arguments = {
           location_id: Arguments.string("location_id", location_id),
@@ -929,6 +1656,7 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipments")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_shipments}
       def get_shipments_pages(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil)
         arguments = {
           location_id: Arguments.string("location_id", location_id),
@@ -943,6 +1671,13 @@ module Peddler
         PAGINATIONS.fetch("external_fulfillment_shipments_2024_09_11.get_shipments").pages(@engine, arguments)
       end
 
+      # Confirm or reject the specified shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment you want to confirm or reject.
+      # @param operation [String] The status of the shipment.
+      # @param body [Hash, Array, String] Information about the shipment and its line items.
+      # @return [Peddler::Response] The API response
       def process_shipment(shipment_id, operation, body: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -952,6 +1687,11 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.process_shipment", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.process_shipment")
       end
 
+      # Retrieve invoices for the shipment you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment whose invoice you want to retrieve.
+      # @return [Peddler::Response] The API response
       def retrieve_invoice(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -959,6 +1699,13 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_invoice", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_invoice")
       end
 
+      # Get a list of shipping options for a package in a shipment given the shipment's marketplace and channel. If the
+      # marketplace and channel have a pre-determined shipping option, then this operation returns an empty response.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment to which the package belongs.
+      # @param package_id [String] The ID of the package for which you want to retrieve shipping options.
+      # @return [Peddler::Response] The API response
       def retrieve_shipping_options(shipment_id, package_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -967,6 +1714,13 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_shipping_options", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options")
       end
 
+      # Updates the details about the packages that will be used to fulfill the specified shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment to which the package belongs.
+      # @param package_id [String] The ID of the package whose information you want to update.
+      # @param body [Hash, Array, String] The body of the request.
+      # @return [Peddler::Response] The API response
       def update_package(shipment_id, package_id, body)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -976,6 +1730,15 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_package")
       end
 
+      # Updates the status of the packages.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The ID of the shipment to which the package belongs.
+      # @param package_id [String] The ID of the package whose status you want to update.
+      # @param status [String] **This field is only used for the Seller Flex program**. For the Self Delivery program,
+      #   package statuses are defined in the body parameter.
+      # @param body [Hash, Array, String] The body of the request.
+      # @return [Peddler::Response] The API response
       def update_package_status(shipment_id, package_id, status: nil, body: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -986,6 +1749,13 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package_status", JSON.generate(arguments)), "external_fulfillment_shipments_2024_09_11.update_package_status")
       end
 
+      # Updates a sandbox shipment on marketplace behalf. Supports status changes, invoice availability, and transport
+      # capacity updates.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The unique identifier of the shipment to update.
+      # @param body [Hash, Array, String] The request body for updating a sandbox shipment.
+      # @return [Peddler::Response] The API response
       def update_sandbox_shipment(shipment_id, body)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -1000,6 +1770,16 @@ module Peddler
         @engine = engine
       end
 
+      # This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility
+      # preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which
+      # you want to determine the item's eligibility.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_ids [Array<String>] The identifier for the marketplace in which you want to determine
+      #   eligibility. Required only when program=INBOUND.
+      # @param asin [String] The ASIN of the item for which you want an eligibility preview.
+      # @param program [String] The program that you want to check eligibility against.
+      # @return [Peddler::Response] The API response
       def get_item_eligibility_preview(asin, program, marketplace_ids: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1015,6 +1795,15 @@ module Peddler
         @engine = engine
       end
 
+      # Requests that Amazon add items to the Sandbox Inventory with desired amount of quantity in the sandbox
+      # environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling
+      # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
+      # information.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_idempotency_token [String] A unique token/requestId provided with each call to ensure idempotency.
+      # @param add_inventory_request_body [Hash, Array, String] List of items to add to Sandbox inventory.
+      # @return [Peddler::Response] The API response
       def add_inventory(x_amzn_idempotency_token, add_inventory_request_body)
         arguments = {
           x_amzn_idempotency_token: Arguments.string("x_amzn_idempotency_token", x_amzn_idempotency_token, required: true),
@@ -1023,6 +1812,13 @@ module Peddler
         Response.from_parts(@engine.operation("fba_inventory_v1.add_inventory", JSON.generate(arguments)), "fba_inventory_v1.add_inventory")
       end
 
+      # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a
+      # sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API
+      # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param create_inventory_item_request_body [Hash, Array, String] CreateInventoryItem Request Body Parameter.
+      # @return [Peddler::Response] The API response
       def create_inventory_item(create_inventory_item_request_body)
         arguments = {
           body: Arguments.body("create_inventory_item_request_body", create_inventory_item_request_body, required: true),
@@ -1030,6 +1826,14 @@ module Peddler
         Response.from_parts(@engine.operation("fba_inventory_v1.create_inventory_item", JSON.generate(arguments)), "fba_inventory_v1.create_inventory_item")
       end
 
+      # Requests that Amazon Deletes an item from the Sandbox Inventory in the sandbox environment. This is a
+      # sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API
+      # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
+      # @param marketplace_id [String] The marketplace ID for the marketplace for which the sellerSku is to be deleted.
+      # @return [Peddler::Response] The API response
       def delete_inventory_item(seller_sku, marketplace_id)
         arguments = {
           seller_sku: Arguments.string("seller_sku", seller_sku, required: true),
@@ -1038,6 +1842,41 @@ module Peddler
         Response.from_parts(@engine.operation("fba_inventory_v1.delete_inventory_item", JSON.generate(arguments)), "fba_inventory_v1.delete_inventory_item")
       end
 
+      # Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the
+      # startDateTime, sellerSkus and sellerSku parameters:
+      #
+      # - All inventory summaries with available details are returned when the startDateTime, sellerSkus and sellerSku
+      # parameters are omitted.
+      # - When startDateTime is provided, the operation returns inventory summaries that have had changes after the date
+      # and time specified. The sellerSkus and sellerSku parameters are ignored. Important: To avoid errors, use both
+      # startDateTime and nextToken to get the next page of inventory summaries that have changed after the date and
+      # time specified.
+      # - When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified
+      # sellerSkus. The sellerSku parameter is ignored.
+      # - When the sellerSku parameter is provided, the operation returns inventory summaries for only the specified
+      # sellerSku.
+      #
+      # Note: The parameters associated with this operation may contain special characters that must be encoded to
+      # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param details [Boolean] true to return inventory summaries with additional summarized inventory details and
+      #   quantities. Otherwise, returns inventory summaries only (default value).
+      # @param granularity_type [String] The granularity type for the inventory aggregation level.
+      # @param granularity_id [String] The granularity ID for the inventory aggregation level.
+      # @param start_date_time [String] A start date and time in ISO8601 format. If specified, all inventory summaries
+      #   that have changed since then are returned. You must specify a date and time that is no earlier than 18 months
+      #   prior to the date and time when you call the API. Note: Changes in inboundWorkingQuantity,
+      #   inboundShippedQuantity and inboundReceivingQuantity are not detected.
+      # @param seller_skus [Array<String>] A list of seller SKUs for which to return inventory summaries. You may
+      #   specify up to 50 SKUs.
+      # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
+      # @param next_token [String] String token returned in the response of your previous request. The string token will
+      #   expire 30 seconds after being created.
+      # @param marketplace_ids [Array<String>] The marketplace ID for the marketplace for which to return inventory
+      #   summaries.
+      # @return [Peddler::Response] The API response
       def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil)
         arguments = {
           details: Arguments.boolean("details", details),
@@ -1052,6 +1891,7 @@ module Peddler
         Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", JSON.generate(arguments)), "fba_inventory_v1.get_inventory_summaries")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_inventory_summaries}
       def get_inventory_summaries_pages(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil)
         arguments = {
           details: Arguments.boolean("details", details),
@@ -1072,6 +1912,14 @@ module Peddler
         @engine = engine
       end
 
+      # Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds
+      # are returned in subsequent calls to the [`getFeed`](https://developer-docs.amazon.com/sp-api/reference/getfeed)
+      # and [`getFeeds`](https://developer-docs.amazon.com/sp-api/reference/getfeeds) operations.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
+      #   ID.
+      # @return [Peddler::Response] The API response
       def cancel_feed(feed_id)
         arguments = {
           feed_id: Arguments.string("feed_id", feed_id, required: true),
@@ -1079,6 +1927,11 @@ module Peddler
         Response.from_parts(@engine.operation("feeds_2021_06_30.cancel_feed", JSON.generate(arguments)), "feeds_2021_06_30.cancel_feed")
       end
 
+      # Creates a feed. Upload the contents of the feed document before calling this operation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Information required to create the feed.
+      # @return [Peddler::Response] The API response
       def create_feed(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -1086,6 +1939,13 @@ module Peddler
         Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed", JSON.generate(arguments)), "feeds_2021_06_30.create_feed")
       end
 
+      # Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading
+      # the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call
+      # to the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Specifies the content type for the createFeedDocument operation.
+      # @return [Peddler::Response] The API response
       def create_feed_document(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -1093,6 +1953,12 @@ module Peddler
         Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed_document", JSON.generate(arguments)), "feeds_2021_06_30.create_feed_document")
       end
 
+      # Returns feed details (including the `feedDocumentId`, if available) for the feed that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
+      #   ID.
+      # @return [Peddler::Response] The API response
       def get_feed(feed_id)
         arguments = {
           feed_id: Arguments.string("feed_id", feed_id, required: true),
@@ -1100,6 +1966,14 @@ module Peddler
         Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed", JSON.generate(arguments)), "feeds_2021_06_30.get_feed")
       end
 
+      # Returns the information required for retrieving a feed document's contents.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param feed_document_id [String] The identifier of the feed document.
+      # @param enable_content_encoding_url_header [Boolean] When `true`, the Content-Encoding header on the returned URL
+      #   is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows
+      #   automatic decompression by HTTP clients.
+      # @return [Peddler::Response] The API response
       def get_feed_document(feed_document_id, enable_content_encoding_url_header: nil)
         arguments = {
           feed_document_id: Arguments.string("feed_document_id", feed_document_id, required: true),
@@ -1108,6 +1982,25 @@ module Peddler
         Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed_document", JSON.generate(arguments)), "feeds_2021_06_30.get_feed_document")
       end
 
+      # Returns feed details for the feeds that match the filters that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param feed_types [Array<String>] A list of feed types used to filter feeds. When feedTypes is provided, the
+      #   other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also
+      #   be provided. Either feedTypes or nextToken is required.
+      # @param marketplace_ids [Array<String>] A list of marketplace identifiers used to filter feeds. The feeds
+      #   returned will match at least one of the marketplaces that you specify.
+      # @param page_size [Integer] The maximum number of feeds to return in a single call.
+      # @param processing_statuses [Array<String>] A list of processing statuses used to filter feeds.
+      # @param created_since [String] The earliest feed creation date and time for feeds included in the response, in
+      #   ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
+      # @param created_until [String] The latest feed creation date and time for feeds included in the response, in ISO
+      #   8601 format. The default is now.
+      # @param next_token [String] A string token returned in the response to your previous request. nextToken is
+      #   returned when the number of results exceeds the specified pageSize value. To get the next page of results,
+      #   call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other
+      #   parameters will cause the request to fail.
+      # @return [Peddler::Response] The API response
       def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil)
         arguments = {
           feed_types: Arguments.array("feed_types", feed_types),
@@ -1121,6 +2014,7 @@ module Peddler
         Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", JSON.generate(arguments)), "feeds_2021_06_30.get_feeds")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_feeds}
       def get_feeds_pages(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil)
         arguments = {
           feed_types: Arguments.array("feed_types", feed_types),
@@ -1140,6 +2034,16 @@ module Peddler
         @engine = engine
       end
 
+      # Returns detailed line items for a specific remittance. Results are paginated.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param unique_payment_id [String] The unique identifier for the payment.
+      # @param marketplace_id [String] The `marketplaceId` is a globally unique identifier used to specify which Amazon
+      #   store a request is targeting. For more information, refer to [Store
+      #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+      # @param next_token_for_line_items [String] A token to fetch the next page of results. Use the value returned in
+      #   the previous response.
+      # @return [Peddler::Response] The API response
       def get_remittance(unique_payment_id, marketplace_id, next_token_for_line_items: nil)
         arguments = {
           unique_payment_id: Arguments.string("unique_payment_id", unique_payment_id, required: true),
@@ -1149,6 +2053,7 @@ module Peddler
         Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", JSON.generate(arguments)), "finance_remittance_2026_03_17.get_remittance")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_remittance}
       def get_remittance_pages(unique_payment_id, marketplace_id, next_token_for_line_items: nil)
         arguments = {
           unique_payment_id: Arguments.string("unique_payment_id", unique_payment_id, required: true),
@@ -1158,6 +2063,22 @@ module Peddler
         PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance").pages(@engine, arguments)
       end
 
+      # Returns a list of remittance summaries for the specified Amazon store, filtered by date range. Results are
+      # paginated.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The `marketplaceId` is a globally unique identifier used to specify which Amazon
+      #   store a request is targeting. For more information, refer to [Store
+      #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+      # @param start_date [String] The earliest payment date for remittances to include in the response. Dates are in
+      #   ISO 8601 date-time format. The default is 30 days prior to the time of the request. The minimum start date is
+      #   one year ago from the current date.
+      # @param end_date [String] The latest payment date for remittances to include in the response. Dates are in ISO
+      #   8601 date-time format. The default is the current date-time. The maximum date range between `startDate` and
+      #   `endDate` is 90 days.
+      # @param next_token [String] A token to fetch the next page of results. Use the value returned in the previous
+      #   response.
+      # @return [Peddler::Response] The API response
       def get_remittance_headers(marketplace_id, start_date: nil, end_date: nil, next_token: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -1168,6 +2089,7 @@ module Peddler
         Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", JSON.generate(arguments)), "finance_remittance_2026_03_17.get_remittance_headers")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_remittance_headers}
       def get_remittance_headers_pages(marketplace_id, start_date: nil, end_date: nil, next_token: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -1184,6 +2106,19 @@ module Peddler
         @engine = engine
       end
 
+      # Returns invoice details, including header and line items, for the specified invoice.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The marketplace ID of the marketplace of the invoice. The marketplace ID is a
+      #   globally unique identifier used to specify an Amazon marketplace. For more information, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param invoice_identifier [String] The unique identifier for an invoice. This field is also returned as part of
+      #   the `InvoiceHeader` element in the response. For AP-Inventory invoices the identifier is formatted as
+      #   `InvoiceNumber~PayeeCode`.
+      # @param next_token_for_line_items [String] The response includes `nextTokenForLineItems` when the number of line
+      #   items exceeds the default page size (600). To get the next page of line items, call the operation with this
+      #   token, including the same request parameters as the call that generated the token.
+      # @return [Peddler::Response] The API response
       def get_invoice(marketplace_id, invoice_identifier, next_token_for_line_items: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -1193,6 +2128,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_invoice}
       def get_invoice_pages(marketplace_id, invoice_identifier, next_token_for_line_items: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -1202,6 +2138,28 @@ module Peddler
         PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice").pages(@engine, arguments)
       end
 
+      # Returns invoice headers for all invoices matching filters that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param next_token [String] The response includes `nextToken` when the number of invoices exceeds the default
+      #   page size value (100). To get the next page of results, call the operation with this token and include the
+      #   same arguments as the call that produced the token. To get a complete list, call this operation until
+      #   `nextToken` is `null`. Note that this operation can return empty pages.
+      # @param marketplace_id [String] The marketplace ID of the marketplace from which you want to retrieve invoice
+      #   headers. The marketplace ID is a globally unique identifier used to specify which Amazon marketplace a request
+      #   is targeting. For more information, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param from_issue_date [String] Retrieve invoice headers issued after this date. The range between
+      #   `fromIssueDate` and `toIssueDate` must not exceed 90 days. Either provide both dates or leave both empty. If
+      #   you do not provide these dates, `fromIssueDate` defaults to 90 days before the date of the request. In [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param to_issue_date [String] Retrieve invoice headers issued before this date. The range between
+      #   `fromIssueDate` and `toIssueDate` must not exceed 90 days. Either provide both dates or leave both empty. If
+      #   you do not provide these dates, `toIssueDate` defaults to the date of the request. In [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param invoices_modified_after [String] Retrieve invoices that were modified after this date-time. In [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @return [Peddler::Response] The API response
       def get_invoice_headers(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil)
         arguments = {
           next_token: Arguments.string("next_token", next_token),
@@ -1213,6 +2171,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", JSON.generate(arguments)), "finances_invoices_2026_06_25.get_invoice_headers")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_invoice_headers}
       def get_invoice_headers_pages(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil)
         arguments = {
           next_token: Arguments.string("next_token", next_token),
@@ -1230,6 +2189,26 @@ module Peddler
         @engine = engine
       end
 
+      # Returns financial event groups for a given date range. Orders from the last 48 hours might not be included in
+      # financial events.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param max_results_per_page [Integer] The maximum number of results per page. If the response exceeds the
+      #   maximum number of transactions or 10 MB, the response is `InvalidInput`.
+      # @param financial_event_group_started_before [String] A date that selects financial event groups that opened
+      #   before (but not at) a specified date and time, in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be after
+      #   `FinancialEventGroupStartedAfter` and more than two minutes before the time of request. If
+      #   `FinancialEventGroupStartedAfter` and `FinancialEventGroupStartedBefore` are more than 180 days apart, no
+      #   financial event groups are returned.
+      # @param financial_event_group_started_after [String] A date that selects financial event groups that opened after
+      #   (or at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
+      #   format. The date-time must be more than two minutes before you submit the request.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def list_financial_event_groups(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
@@ -1240,6 +2219,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", JSON.generate(arguments)), "finances_v0.list_financial_event_groups")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_financial_event_groups}
       def list_financial_event_groups_pages(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
@@ -1250,6 +2230,28 @@ module Peddler
         PAGINATIONS.fetch("finances_v0.list_financial_event_groups").pages(@engine, arguments)
       end
 
+      # Returns financial events for the specified data range. Orders from the last 48 hours might not be included in
+      # financial events.
+      #
+      # **Note:** in `ListFinancialEvents`, deferred events don't show up in responses until they are released.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
+      #   the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+      # @param posted_after [String] The response includes financial events posted after (or on) this date. This date
+      #   must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time
+      #   must be more than two minutes before the time of the request.
+      # @param posted_before [String] The response includes financial events posted before (but not on) this date. This
+      #   date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The
+      #   date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If
+      #   `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the
+      #   `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter. **Default:** Two
+      #   minutes before the time of the request.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def list_financial_events(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
@@ -1260,6 +2262,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events", JSON.generate(arguments)), "finances_v0.list_financial_events")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events}
       def list_financial_events_pages(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
@@ -1270,6 +2273,32 @@ module Peddler
         PAGINATIONS.fetch("finances_v0.list_financial_events").pages(@engine, arguments)
       end
 
+      # Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be
+      # included in financial events.
+      #
+      # **Note:** Deferred events don't appear in the `listFinancialEventsByGroupId` response until they are released.
+      #
+      # **Note:** This operation only retrieves a group's data for the past two years. A request for data spanning more
+      # than two years produces an empty response.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
+      #   the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+      # @param posted_after [String] The response includes financial events posted after (or on) this date. This date
+      #   must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time
+      #   must be more than two minutes before the time of the request.
+      # @param posted_before [String] The response includes financial events posted before (but not on) this date. This
+      #   date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The
+      #   date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If
+      #   `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the
+      #   `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter. **Default:** Two
+      #   minutes before the time of the request.
+      # @param event_group_id [String] The identifier of the financial event group to which the events belong.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def list_financial_events_by_group_id(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
@@ -1281,6 +2310,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_group_id")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events_by_group_id}
       def list_financial_events_by_group_id_pages(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
@@ -1292,6 +2322,20 @@ module Peddler
         PAGINATIONS.fetch("finances_v0.list_financial_events_by_group_id").pages(@engine, arguments)
       end
 
+      # Returns all financial events for the specified order. Orders from the last 48 hours might not be included in
+      # financial events.
+      #
+      # **Note:** Deferred events don't appear in the `listFinancialEventsByOrderId` response until they are released.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
+      #   the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -1301,6 +2345,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", JSON.generate(arguments)), "finances_v0.list_financial_events_by_order_id")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events_by_order_id}
       def list_financial_events_by_order_id_pages(order_id, max_results_per_page: 100, next_token: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -1316,6 +2361,26 @@ module Peddler
         @engine = engine
       end
 
+      # Retrieve a balance. This balance can be a past balances at a specified date, or a current balance. Sub-balances
+      # are listed by account type and marketplace.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_ids [Array<String>] The marketplaces from which to retrieve balances. If omitted, balances
+      #   from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to
+      #   [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param balance_type [String] The type of balance to include in the response. If omitted, all balance types may
+      #   be included in the response. **Possible values:** `AVAILABLE`, `RESERVED`, `TOTAL`, `DEFERRED`,
+      #   `ACCOUNT_LEVEL_RESERVE`
+      # @param account_type [String] The type of account to include in the response.
+      # @param as_of_date [String] The date from which you want to retrieve balances. If provided, the response includes
+      #   historical balances at the specified date. The value must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format. If omitted, the point in time
+      #   balance is provided.
+      # @param next_token [String] A token that you use to retrieve subsequent pages of results. When there are more
+      #   than 500 results available, the response will include a `nextToken` value. To get the next page of results,
+      #   call the operation with this token and include the same arguments as the call that produced the token. Repeat
+      #   this process until the `nextToken` value is null to retrieve all results.
+      # @return [Peddler::Response] The API response
       def list_balances(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1327,6 +2392,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", JSON.generate(arguments)), "finances_2024_06_19.list_balances")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_balances}
       def list_balances_pages(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1338,6 +2404,27 @@ module Peddler
         PAGINATIONS.fetch("finances_2024_06_19.list_balances").pages(@engine, arguments)
       end
 
+      # Retrieve the financial summary for the specified time period or settlement period.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_ids [Array<String>] The marketplaces from which to retrieve summaries. If omitted, summaries
+      #   from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to
+      #   [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param account_type [String] The type of account to include in the response.
+      # @param related_identifier_name [String] The name of the `relatedIdentifier`. The only possible value is
+      #   `SETTLEMENT_ID`, the settlement ID associated with the summary.
+      # @param related_identifier_value [String] The value of the `relatedIdentifier`.
+      # @param period_start [String] The start of the period for which to retrieve summaries. When provided, the
+      #   response will only include summaries with transactions that occurred on or after the specified date. The value
+      #   must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format.
+      # @param period_end [String] The end of the period for which to retrieve summaries. When provided, the response
+      #   will only include summaries with transactions that occurred on or before the specified date. The value must be
+      #   formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format.
+      # @param next_token [String] A token that you use to retrieve subsequent pages of results. When there are more
+      #   results available, the response will include a `nextToken` value. To get the next page of results, call the
+      #   operation with this token and include the same arguments as the call that produced the token. Repeat this
+      #   process until the `nextToken` value is null to retrieve all results.
+      # @return [Peddler::Response] The API response
       def list_summary(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1351,6 +2438,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", JSON.generate(arguments)), "finances_2024_06_19.list_summary")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_summary}
       def list_summary_pages(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1364,6 +2452,38 @@ module Peddler
         PAGINATIONS.fetch("finances_2024_06_19.list_summary").pages(@engine, arguments)
       end
 
+      # Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours.
+      #
+      # **Note:** If you want to retrieve MFN orders in the US store, do not supply the `marketplaceId` parameter.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param posted_after [String] The response includes financial events posted on or after this date. This date must
+      #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must
+      #   be more than two minutes before the time of the request. This field is required if you do not specify a
+      #   related identifier.
+      # @param posted_before [String] The response includes financial events posted before (but not on) this date. This
+      #   date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The
+      #   date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If
+      #   `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. **Default:** Two minutes
+      #   before the time of the request.
+      # @param marketplace_id [String] The identifier of the marketplace from which you want to retrieve transactions.
+      #   The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer
+      #   to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param transaction_status [String] The status of the transaction. **Possible values:** * `DEFERRED`: the
+      #   transaction is currently deferred. * `RELEASED`: the transaction is currently released. * `DEFERRED_RELEASED`:
+      #   the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated
+      #   to `DEFERRED_RELEASED` when the transaction is released.
+      # @param related_identifier_name [String] The name of the `relatedIdentifier`. **Possible values:** *
+      #   `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction. * `ORDER_ID`: the
+      #   order ID associated with the transaction. **Note:** `FINANCIAL_EVENT_GROUP_ID` and `ORDER_ID` are the only
+      #   `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be
+      #   included in the response when available, they cannot be used for filtering purposes.
+      # @param related_identifier_value [String] The value of the `relatedIdentifier`.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def list_transactions(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil)
         arguments = {
           posted_after: Arguments.string("posted_after", posted_after),
@@ -1377,6 +2497,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", JSON.generate(arguments)), "finances_2024_06_19.list_transactions")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_transactions}
       def list_transactions_pages(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil)
         arguments = {
           posted_after: Arguments.string("posted_after", posted_after),
@@ -1396,6 +2517,15 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the list of payment methods for the seller, which can be filtered by method type.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The identifier of the Amazon store from which you want to retrieve payment
+      #   methods. For the list of store identifiers, refer to [Store
+      #   Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param payment_method_types [Array<String>] A comma-separated list of the payment method types you want to
+      #   include in the response.
+      # @return [Peddler::Response] The API response
       def get_payment_methods(marketplace_id, payment_method_types: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -1404,6 +2534,13 @@ module Peddler
         Response.from_parts(@engine.operation("transfers_2024_06_01.get_payment_methods", JSON.generate(arguments)), "transfers_2024_06_01.get_payment_methods")
       end
 
+      # Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given
+      # `marketplaceId` and `accountType`, if eligible. You can only initiate one on-demand payout for each marketplace
+      # and account type within a 24-hour period.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body for the `initiatePayout` operation.
+      # @return [Peddler::Response] The API response
       def initiate_payout(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -1411,6 +2548,20 @@ module Peddler
         Response.from_parts(@engine.operation("transfers_2024_06_01.initiate_payout", JSON.generate(arguments)), "transfers_2024_06_01.initiate_payout")
       end
 
+      # Returns the upcoming expected payouts from Amazon associated with a partner's account for the specified
+      # parameters.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_ids [Array<String>] The Amazon stores from which to retrieve payouts. The Amazon store ID is
+      #   a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all
+      #   applicable stores. To find the Amazon store ID for your region, refer to [Store
+      #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+      # @param account_type [String] The response only includes the accounts of the specified account type.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
+      #   page size. To get the next page of results, call the operation with this token and include the same arguments
+      #   as the call that produced the token. To get a complete list, call this operation until `nextToken` is null.
+      #   Note that this operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def list_expected_payouts(marketplace_ids: nil, account_type: nil, next_token: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1420,6 +2571,7 @@ module Peddler
         Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", JSON.generate(arguments)), "transfers_2024_06_01.list_expected_payouts")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_expected_payouts}
       def list_expected_payouts_pages(marketplace_ids: nil, account_type: nil, next_token: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1429,6 +2581,30 @@ module Peddler
         PAGINATIONS.fetch("transfers_2024_06_01.list_expected_payouts").pages(@engine, arguments)
       end
 
+      # Retrieve a list of payouts for the selling partner's account. You can filter results by `marketplaceIds`,
+      # `accountType`, date range (`createdAfter` and `createdBefore`), or a specific `payoutId`. By default, the
+      # response includes payouts for all available marketplaces and account types. Results are grouped by the seller's
+      # account groups. Within each account group results are sorted by their creation date, with the most recent
+      # appearing first.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_ids [Array<String>] The Amazon stores from which to retrieve payouts. The Amazon store ID is
+      #   a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all
+      #   applicable stores. To find the Amazon store ID for your region, refer to [Store
+      #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+      # @param created_after [String] The response only includes payouts created on or after this date-time. The value
+      #   must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If
+      #   omitted, no start date filter is applied.
+      # @param created_before [String] The response only includes payouts created before this date-time. The value must
+      #   be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If
+      #   omitted, no end date filter is applied.
+      # @param payout_id [String] The response only includes the payout matching the specified identifier.
+      # @param account_type [String] The response only includes payouts associated with the specified account type.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the page size.
+      #   To get the next page of results, call the operation with this token and include the same arguments as the call
+      #   that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this
+      #   operation can return empty pages.
+      # @return [Peddler::Response] The API response
       def list_payouts(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1441,6 +2617,7 @@ module Peddler
         Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", JSON.generate(arguments)), "transfers_2024_06_01.list_payouts")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_payouts}
       def list_payouts_pages(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -1459,6 +2636,14 @@ module Peddler
         @engine = engine
       end
 
+      # Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading
+      # operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than
+      # Truckload/Full Truckload (LTL/FTL) inbound shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
+      #   operation.
+      # @return [Peddler::Response] The API response
       def get_bill_of_lading(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -1466,6 +2651,31 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_bill_of_lading", JSON.generate(arguments)), "fulfillment_inbound_v0.get_bill_of_lading")
       end
 
+      # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
+      #   operation.
+      # @param page_type [String] The page type to use to print the labels. Submitting a PageType value that is not
+      #   supported in your marketplace returns an error.
+      # @param label_type [String] The type of labels requested.
+      # @param number_of_packages [Integer] The number of packages in the shipment.
+      # @param package_labels_to_print [Array<String>] A list of identifiers that specify packages for which you want
+      #   package labels printed. If you provide box content information with the [FBA Inbound Shipment Carton
+      #   Information
+      #   Feed](https://developer-docs.amazon.com/sp-api/docs/fulfillment-by-amazon-feed-type-values#fba-inbound-shipment-carton-information-feed),
+      #   then `PackageLabelsToPrint` must match the `CartonId` values you provide through that feed. If you provide box
+      #   content information with the Fulfillment Inbound API v2024-03-20, then `PackageLabelsToPrint` must match the
+      #   `boxID` values from the
+      #   [`listShipmentBoxes`](https://developer-docs.amazon.com/sp-api/reference/listshipmentboxes) response. If these
+      #   values do not match as required, the operation returns the `IncorrectPackageIdentifier` error code.
+      # @param number_of_pallets [Integer] The number of pallets in the shipment. This returns four identical labels for
+      #   each pallet.
+      # @param page_size [Integer] The page size for paginating through the total packages' labels. This is a required
+      #   parameter for Non-Partnered LTL Shipments. Max value:1000.
+      # @param page_start_index [Integer] The page start index for paginating through the total packages' labels. This
+      #   is a required parameter for Non-Partnered LTL Shipments.
+      # @return [Peddler::Response] The API response
       def get_labels(shipment_id, page_type, label_type, number_of_packages: nil, package_labels_to_print: nil, number_of_pallets: nil, page_size: nil, page_start_index: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -1480,6 +2690,25 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_labels", JSON.generate(arguments)), "fulfillment_inbound_v0.get_labels")
       end
 
+      # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
+      # fulfillment network.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param ship_to_country_code [String] The country code of the country to which the items will be shipped. Note
+      #   that labeling requirements and item preparation instructions can vary by country.
+      # @param seller_sku_list [Array<String>] A list of SellerSKU values. Used to identify items for which you want
+      #   labeling requirements and item preparation instructions for shipment to Amazon's fulfillment network. The
+      #   SellerSKU is qualified by the Seller ID, which is included with every call to the Seller Partner API. Note:
+      #   Include seller SKUs that you have used to list items on Amazon's retail website. If you include a seller SKU
+      #   that you have never used to list an item on Amazon's retail website, the seller SKU is returned in the
+      #   InvalidSKUList property in the response.
+      # @param asin_list [Array<String>] A list of ASIN values. Used to identify items for which you want item
+      #   preparation instructions to help with item sourcing decisions. Note: ASINs must be included in the product
+      #   catalog for at least one of the marketplaces that the seller participates in. Any ASIN that is not included in
+      #   the product catalog for at least one of the marketplaces that the seller participates in is returned in the
+      #   InvalidASINList property in the response. You can find out which marketplaces a seller participates in by
+      #   calling the getMarketplaceParticipations operation in the Selling Partner API for Sellers.
+      # @return [Peddler::Response] The API response
       def get_prep_instructions(ship_to_country_code, seller_sku_list: nil, asin_list: nil)
         arguments = {
           ship_to_country_code: Arguments.string("ship_to_country_code", ship_to_country_code, required: true),
@@ -1489,6 +2718,21 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_prep_instructions", JSON.generate(arguments)), "fulfillment_inbound_v0.get_prep_instructions")
       end
 
+      # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
+      # time frame.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param last_updated_after [String] A date used for selecting inbound shipment items that were last updated after
+      #   (or at) a specified time. The selection includes updates made by Amazon and by the seller.
+      # @param last_updated_before [String] A date used for selecting inbound shipment items that were last updated
+      #   before (or at) a specified time. The selection includes updates made by Amazon and by the seller.
+      # @param query_type [String] Indicates whether items are returned using a date range (by providing the
+      #   LastUpdatedAfter and LastUpdatedBefore parameters), or using NextToken, which continues returning items
+      #   specified in a previous request.
+      # @param next_token [String] A string token returned in the response to your previous request.
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
+      #   stored.
+      # @return [Peddler::Response] The API response
       def get_shipment_items(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil)
         arguments = {
           last_updated_after: Arguments.string("last_updated_after", last_updated_after),
@@ -1500,6 +2744,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipment_items")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_items}
       def get_shipment_items_pages(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil)
         arguments = {
           last_updated_after: Arguments.string("last_updated_after", last_updated_after),
@@ -1511,6 +2756,12 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipment_items").pages(@engine, arguments)
       end
 
+      # Returns a list of items in a specified inbound shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] A shipment identifier used for selecting items in a specific inbound shipment.
+      # @param marketplace_id [String] Deprecated. Do not use.
+      # @return [Peddler::Response] The API response
       def get_shipment_items_by_shipment_id(shipment_id, marketplace_id: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -1519,6 +2770,26 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items_by_shipment_id", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipment_items_by_shipment_id")
       end
 
+      # Returns a list of inbound shipments based on criteria that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_status_list [Array<String>] A list of ShipmentStatus values. Used to select shipments with a
+      #   current status that matches the status values that you specify.
+      # @param shipment_id_list [Array<String>] A list of shipment IDs used to select the shipments that you want. If
+      #   both ShipmentStatusList and ShipmentIdList are specified, only shipments that match both parameters are
+      #   returned.
+      # @param last_updated_after [String] A date used for selecting inbound shipments that were last updated after (or
+      #   at) a specified time. The selection includes updates made by Amazon and by the seller.
+      # @param last_updated_before [String] A date used for selecting inbound shipments that were last updated before
+      #   (or at) a specified time. The selection includes updates made by Amazon and by the seller.
+      # @param query_type [String] Indicates whether shipments are returned using shipment information (by providing the
+      #   ShipmentStatusList or ShipmentIdList parameters), using a date range (by providing the LastUpdatedAfter and
+      #   LastUpdatedBefore parameters), or by using NextToken to continue returning items specified in a previous
+      #   request.
+      # @param next_token [String] A string token returned in the response to your previous request.
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
+      #   stored.
+      # @return [Peddler::Response] The API response
       def get_shipments(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil)
         arguments = {
           shipment_status_list: Arguments.array("shipment_status_list", shipment_status_list),
@@ -1532,6 +2803,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", JSON.generate(arguments)), "fulfillment_inbound_v0.get_shipments")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_shipments}
       def get_shipments_pages(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil)
         arguments = {
           shipment_status_list: Arguments.array("shipment_status_list", shipment_status_list),
@@ -1551,6 +2823,13 @@ module Peddler
         @engine = engine
       end
 
+      # Cancels an Inbound Plan. Charges may apply if the cancellation is performed outside of a void window. The window
+      # for Amazon Partnered Carriers is 24 hours for Small Parcel Delivery (SPD) and one hour for Less-Than-Truckload
+      # (LTL) carrier shipments.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @return [Peddler::Response] The API response
       def cancel_inbound_plan(inbound_plan_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1558,6 +2837,14 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.cancel_inbound_plan")
       end
 
+      # Cancels a self-ship appointment slot against a shipment. Only available in the following
+      # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param body [Hash, Array, String] The body of the request to `cancelSelfShipAppointment`.
+      # @return [Peddler::Response] The API response
       def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1567,6 +2854,18 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_self_ship_appointment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment")
       end
 
+      # Confirms the delivery window option for chosen shipment within an inbound plan. A placement option must be
+      # confirmed prior to use of this API. Once confirmed, new delivery window options cannot be generated, but the
+      # chosen delivery window option can be updated before shipment closure. The window is used to provide the expected
+      # time when a shipment will arrive at the warehouse. All transportation options which have the program
+      # `CONFIRMED_DELIVERY_WINDOW` require a delivery window to be confirmed prior to transportation option
+      # confirmation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] The shipment to confirm the delivery window option for.
+      # @param delivery_window_option_id [String] The id of the delivery window option to be confirmed.
+      # @return [Peddler::Response] The API response
       def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1576,6 +2875,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_delivery_window_options")
       end
 
+      # Confirms the packing option for an inbound plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param packing_option_id [String] Identifier of a packing option.
+      # @return [Peddler::Response] The API response
       def confirm_packing_option(inbound_plan_id, packing_option_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1584,6 +2889,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_packing_option", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_packing_option")
       end
 
+      # Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param placement_option_id [String] The identifier of a placement option. A placement option represents the
+      #   shipment splits and destinations of SKUs.
+      # @return [Peddler::Response] The API response
       def confirm_placement_option(inbound_plan_id, placement_option_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1592,6 +2904,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_placement_option", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_placement_option")
       end
 
+      # Confirm a shipment content update preview and accept the changes in transportation cost.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param content_update_preview_id [String] Identifier of a content update preview.
+      # @return [Peddler::Response] The API response
       def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1601,6 +2920,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview")
       end
 
+      # Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use
+      # of this API. Once confirmed, new transportation options can not be generated or confirmed for the Inbound Plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param body [Hash, Array, String] The body of the request to `confirmTransportationOptions`.
+      # @return [Peddler::Response] The API response
       def confirm_transportation_options(inbound_plan_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1609,6 +2935,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.confirm_transportation_options")
       end
 
+      # Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's
+      # fufillment network.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The body of the request to `createInboundPlan`.
+      # @return [Peddler::Response] The API response
       def create_inbound_plan(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -1616,6 +2948,11 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.create_inbound_plan")
       end
 
+      # For a given marketplace - creates labels for a list of MSKUs.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The body of the request to `createMarketplaceItemLabels`.
+      # @return [Peddler::Response] The API response
       def create_marketplace_item_labels(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -1623,6 +2960,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_marketplace_item_labels", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.create_marketplace_item_labels")
       end
 
+      # Generates available delivery window options for a given shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] The shipment to generate delivery window options for.
+      # @return [Peddler::Response] The API response
       def generate_delivery_window_options(inbound_plan_id, shipment_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1631,6 +2974,11 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_delivery_window_options")
       end
 
+      # Generates available packing options for the inbound plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @return [Peddler::Response] The API response
       def generate_packing_options(inbound_plan_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1638,6 +2986,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_packing_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_packing_options")
       end
 
+      # Generates placement options for the inbound plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param body [Hash, Array, String] The body of the request to `generatePlacementOptions`.
+      # @return [Peddler::Response] The API response
       def generate_placement_options(inbound_plan_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1646,6 +3000,14 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_placement_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_placement_options")
       end
 
+      # Initiates the process of generating the appointment slots list. Only available in the following
+      # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param body [Hash, Array, String] The body of the request to `generateSelfShipAppointmentSlots`.
+      # @return [Peddler::Response] The API response
       def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1655,6 +3017,15 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots")
       end
 
+      # Generate a shipment content update preview given a set of intended boxes and/or items for a shipment with a
+      # confirmed carrier. The shipment content update preview will be viewable with the updated costs and contents
+      # prior to confirmation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param body [Hash, Array, String] The body of the request to `generateShipmentContentUpdatePreviews`.
+      # @return [Peddler::Response] The API response
       def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1664,6 +3035,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews")
       end
 
+      # Generates available transportation options for a given placement option.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param body [Hash, Array, String] The body of the request to `generateTransportationOptions`.
+      # @return [Peddler::Response] The API response
       def generate_transportation_options(inbound_plan_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1672,6 +3049,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.generate_transportation_options")
       end
 
+      # Provide delivery challan document for PCP transportation in IN marketplace.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @return [Peddler::Response] The API response
       def get_delivery_challan_document(inbound_plan_id, shipment_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1680,6 +3063,11 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_delivery_challan_document", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_delivery_challan_document")
       end
 
+      # Gets the status of the processing of an asynchronous API call.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param operation_id [String] Identifier of an asynchronous operation.
+      # @return [Peddler::Response] The API response
       def get_inbound_operation_status(operation_id)
         arguments = {
           operation_id: Arguments.string("operation_id", operation_id, required: true),
@@ -1687,6 +3075,11 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_operation_status", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_operation_status")
       end
 
+      # Fetches the top level information about an inbound plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @return [Peddler::Response] The API response
       def get_inbound_plan(inbound_plan_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1694,6 +3087,19 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_plan", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_plan")
       end
 
+      # Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only
+      # available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX,
+      # BR, EG, SA, AE, IN.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param page_size [Integer] The number of self ship appointment slots to return in the response matching the
+      #   given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1704,6 +3110,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_self_ship_appointment_slots}
       def get_self_ship_appointment_slots_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1714,6 +3121,13 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots").pages(@engine, arguments)
       end
 
+      # Provides the full details for a specific shipment within an inbound plan. The `transportationOptionId` inside
+      # `acceptedTransportationSelection` can be used to retrieve the transportation details for the shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @return [Peddler::Response] The API response
       def get_shipment(inbound_plan_id, shipment_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1722,6 +3136,15 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_shipment")
       end
 
+      # Retrieve a shipment content update preview which provides a summary of the requested shipment content changes
+      # along with the transportation cost implications of the change that can only be confirmed prior to the expiry
+      # date specified.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param content_update_preview_id [String] Identifier of a content update preview.
+      # @return [Peddler::Response] The API response
       def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1731,6 +3154,18 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment_content_update_preview", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.get_shipment_content_update_preview")
       end
 
+      # Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the
+      # `generateDeliveryWindowOptions` operation before becoming available.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] The shipment to get delivery window options for.
+      # @param page_size [Integer] The number of delivery window options to return in the response matching the given
+      #   query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1741,6 +3176,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_delivery_window_options")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_delivery_window_options}
       def list_delivery_window_options_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1751,6 +3187,15 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_delivery_window_options").pages(@engine, arguments)
       end
 
+      # Provides a paginated list of box packages in an inbound plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param page_size [Integer] The number of boxes to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1760,6 +3205,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_boxes}
       def list_inbound_plan_boxes_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1769,6 +3215,15 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes").pages(@engine, arguments)
       end
 
+      # Provides a paginated list of item packages in an inbound plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param page_size [Integer] The number of items to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1778,6 +3233,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_items")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_items}
       def list_inbound_plan_items_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1787,6 +3243,16 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_items").pages(@engine, arguments)
       end
 
+      # Provides a paginated list of pallet packages in an inbound plan. An inbound plan will have pallets when the
+      # related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param page_size [Integer] The number of pallets to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1796,6 +3262,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_pallets}
       def list_inbound_plan_pallets_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1805,6 +3272,17 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets").pages(@engine, arguments)
       end
 
+      # Provides a list of inbound plans with minimal information.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param page_size [Integer] The number of inbound plans to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @param status [String] The status of an inbound plan.
+      # @param sort_by [String] Sort by field.
+      # @param sort_order [String] The sort order.
+      # @return [Peddler::Response] The API response
       def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
         arguments = {
           page_size: Arguments.integer("page_size", page_size),
@@ -1816,6 +3294,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plans")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plans}
       def list_inbound_plans_pages(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
         arguments = {
           page_size: Arguments.integer("page_size", page_size),
@@ -1827,6 +3306,23 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plans").pages(@engine, arguments)
       end
 
+      # List the inbound compliance details for MSKUs in a given marketplace.
+      #
+      # **Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # The following characters must be double percent encoded:
+      #
+      # - `%` - `+` - `,`
+      #
+      # **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is
+      # encoded as `test%252Cmsku`.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
+      # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def list_item_compliance_details(mskus, marketplace_id)
         arguments = {
           mskus: Arguments.array("mskus", mskus, required: true),
@@ -1835,6 +3331,18 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_item_compliance_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_item_compliance_details")
       end
 
+      # Retrieves a page of boxes from a given packing group. These boxes were previously provided through the
+      # `setPackingInformation` operation. This API is used for workflows where boxes are packed before Amazon
+      # determines shipment splits.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param packing_group_id [String] Identifier of a packing group.
+      # @param page_size [Integer] The number of packing group boxes to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1845,6 +3353,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_boxes")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_packing_group_boxes}
       def list_packing_group_boxes_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1855,6 +3364,17 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_boxes").pages(@engine, arguments)
       end
 
+      # Retrieves a page of items in a given packing group. Packing options must first be generated by the corresponding
+      # operation before packing group items can be listed.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param packing_group_id [String] Identifier of a packing group.
+      # @param page_size [Integer] The number of packing group items to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1865,6 +3385,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_items")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_packing_group_items}
       def list_packing_group_items_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1875,6 +3396,16 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_items").pages(@engine, arguments)
       end
 
+      # Retrieves a list of all packing options for an inbound plan. Packing options must first be generated by the
+      # corresponding operation before becoming available.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param page_size [Integer] The number of packing options to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1884,6 +3415,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_packing_options")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_packing_options}
       def list_packing_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1893,6 +3425,16 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_options").pages(@engine, arguments)
       end
 
+      # Provides a list of all placement options for an inbound plan. Placement options must first be generated by the
+      # corresponding operation before becoming available.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param page_size [Integer] The number of placement options to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1902,6 +3444,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_placement_options")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_placement_options}
       def list_placement_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1911,6 +3454,23 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_placement_options").pages(@engine, arguments)
       end
 
+      # Get preparation details for a list of MSKUs in a specified marketplace.
+      #
+      # **Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # The following characters must be double percent encoded:
+      #
+      # - `%` - `+` - `,`
+      #
+      # **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is
+      # encoded as `test%252Cmsku`.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The marketplace ID. For a list of possible values, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
+      # @return [Peddler::Response] The API response
       def list_prep_details(marketplace_id, mskus)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -1919,6 +3479,16 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_prep_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_prep_details")
       end
 
+      # Provides a paginated list of box packages in a shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param page_size [Integer] The number of boxes to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1929,6 +3499,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_boxes")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_boxes}
       def list_shipment_boxes_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1939,6 +3510,18 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_boxes").pages(@engine, arguments)
       end
 
+      # Retrieve a paginated list of shipment content update previews for a given shipment. The shipment content update
+      # preview is a summary of the requested shipment content changes along with the transportation cost implications
+      # of the change that can only be confirmed prior to the expiry date specified.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param page_size [Integer] The number of content update previews to return.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1949,6 +3532,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_content_update_previews}
       def list_shipment_content_update_previews_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1959,6 +3543,16 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews").pages(@engine, arguments)
       end
 
+      # Provides a paginated list of item packages in a shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param page_size [Integer] The number of items to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1969,6 +3563,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_items")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_items}
       def list_shipment_items_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1979,6 +3574,17 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_items").pages(@engine, arguments)
       end
 
+      # Provides a paginated list of pallet packages in a shipment. A palletized shipment will have pallets when the
+      # related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param page_size [Integer] The number of pallets to return in the response matching the given query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @return [Peddler::Response] The API response
       def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1989,6 +3595,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_pallets")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_pallets}
       def list_shipment_pallets_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -1999,6 +3606,21 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_pallets").pages(@engine, arguments)
       end
 
+      # Retrieves all transportation options for a shipment. Transportation options must first be generated by the
+      # `generateTransportationOptions` operation before becoming available.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param page_size [Integer] The number of transportation options to return in the response matching the given
+      #   query.
+      # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
+      #   token value from the query parameter the API returns the first page of the result.
+      # @param placement_option_id [String] The placement option to get transportation options for. Either
+      #   `placementOptionId` or `shipmentId` must be specified.
+      # @param shipment_id [String] The shipment to get transportation options for. Either `placementOptionId` or
+      #   `shipmentId` must be specified.
+      # @return [Peddler::Response] The API response
       def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -2010,6 +3632,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.list_transportation_options")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_transportation_options}
       def list_transportation_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -2021,6 +3644,15 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_transportation_options").pages(@engine, arguments)
       end
 
+      # Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following
+      # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param slot_id [String] An identifier to a self-ship appointment slot.
+      # @param body [Hash, Array, String] The body of the request to `scheduleSelfShipAppointment`.
+      # @return [Peddler::Response] The API response
       def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -2031,6 +3663,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.schedule_self_ship_appointment", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.schedule_self_ship_appointment")
       end
 
+      # Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate
+      # the box level information required for planning and transportation estimates.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param body [Hash, Array, String] The body of the request to `setPackingInformation`.
+      # @return [Peddler::Response] The API response
       def set_packing_information(inbound_plan_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -2039,6 +3678,11 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_packing_information", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.set_packing_information")
       end
 
+      # Set the preparation details for a list of MSKUs in a specified marketplace.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The body of the request to `setPrepDetails`.
+      # @return [Peddler::Response] The API response
       def set_prep_details(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2046,6 +3690,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_prep_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.set_prep_details")
       end
 
+      # Updates the name of an existing inbound plan.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param body [Hash, Array, String] The body of the request to `updateInboundPlanName`.
+      # @return [Peddler::Response] The API response
       def update_inbound_plan_name(inbound_plan_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -2054,6 +3704,14 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_inbound_plan_name", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_inbound_plan_name")
       end
 
+      # Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN -
+      # A21TJRUUN4KGV) marketplace compliance validation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param body [Hash, Array, String] The body of the request to `updateItemComplianceDetails`.
+      # @return [Peddler::Response] The API response
       def update_item_compliance_details(marketplace_id, body)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2062,6 +3720,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_item_compliance_details", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_item_compliance_details")
       end
 
+      # Updates the name of an existing shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param body [Hash, Array, String] The body of the request to `updateShipmentName`.
+      # @return [Peddler::Response] The API response
       def update_shipment_name(inbound_plan_id, shipment_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -2071,6 +3736,16 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_name", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_name")
       end
 
+      # Updates the source address of an existing shipment. The shipment source address can only be updated prior to the
+      # confirmation of the shipment carriers. As a result of the updated source address, existing transportation
+      # options will be invalidated and will need to be regenerated to capture the potential difference in
+      # transportation options and quotes due to the new source address.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param body [Hash, Array, String] The body of the request to `updateShipmentSourceAddress`.
+      # @return [Peddler::Response] The API response
       def update_shipment_source_address(inbound_plan_id, shipment_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -2080,6 +3755,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_source_address", JSON.generate(arguments)), "fulfillment_inbound_2024_03_20.update_shipment_source_address")
       end
 
+      # Updates a shipment's tracking details.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param body [Hash, Array, String] The body of the request to `updateShipmentTrackingDetails`.
+      # @return [Peddler::Response] The API response
       def update_shipment_tracking_details(inbound_plan_id, shipment_id, body)
         arguments = {
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id, required: true),
@@ -2095,6 +3777,13 @@ module Peddler
         @engine = engine
       end
 
+      # Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order
+      # identifier.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
+      #   fulfillment order was created.
+      # @return [Peddler::Response] The API response
       def cancel_fulfillment_order(seller_fulfillment_order_id)
         arguments = {
           seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
@@ -2102,6 +3791,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.cancel_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.cancel_fulfillment_order")
       end
 
+      # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
+      # address.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] CreateFulfillmentOrderRequest parameter
+      # @return [Peddler::Response] The API response
       def create_fulfillment_order(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2109,6 +3804,14 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.create_fulfillment_order")
       end
 
+      # Creates a fulfillment return.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] The request body of the `createFulfillmentReturn` operation.
+      # @param seller_fulfillment_order_id [String] An identifier the seller assigns to the fulfillment order at the
+      #   time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value
+      #   based on the buyer's request to return items.
+      # @return [Peddler::Response] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id)
         arguments = {
           seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
@@ -2117,6 +3820,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_return", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.create_fulfillment_return")
       end
 
+      # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
+      # you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] GetDeliveryOffersRequest parameter
+      # @return [Peddler::Response] The API response
       def delivery_offers(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2124,6 +3833,18 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.delivery_offers", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.delivery_offers")
       end
 
+      # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param marketplace_id [String] The marketplace for which to return a list of the inventory that is eligible for
+      #   the specified feature.
+      # @param feature_name [String] The name of the feature for which to return a list of eligible inventory.
+      # @param next_token [String] A string token returned in the response to your previous request that is used to
+      #   return the next response page. A value of `null` will return the first page.
+      # @param query_start_date [String] A date that you can use to select inventory that has been updated since a
+      #   specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
+      #   in the format `yyyy-MM-ddTHH:mm:ss.sssZ`
+      # @return [Peddler::Response] The API response
       def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2134,6 +3855,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_feature_inventory")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_feature_inventory}
       def get_feature_inventory_pages(marketplace_id, feature_name, next_token: nil, query_start_date: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2144,6 +3866,17 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.get_feature_inventory").pages(@engine, arguments)
       end
 
+      # Returns the number of items with the `sellerSku` you specify that can have orders fulfilled using the specified
+      # feature. Note that if the `sellerSku` isn't eligible, the response will contain an empty `skuInfo` object. The
+      # parameters for this operation may contain special characters that require URL encoding. To avoid errors with
+      # SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param marketplace_id [String] The marketplace for which to return the count.
+      # @param feature_name [String] The name of the feature.
+      # @param seller_sku [String] Used to identify an item in the given marketplace. `sellerSku` is qualified by the
+      #   seller's `sellerId`, which is included with every operation that you submit.
+      # @return [Peddler::Response] The API response
       def get_feature_sku(marketplace_id, feature_name, seller_sku)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2153,6 +3886,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_sku", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_feature_sku")
       end
 
+      # Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and
+      # whether the seller for which you made the call is enrolled for each feature.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param marketplace_id [String] The marketplace for which to return the list of features.
+      # @return [Peddler::Response] The API response
       def get_features(marketplace_id)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2160,6 +3899,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_features", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_features")
       end
 
+      # Returns the fulfillment order indicated by the specified order identifier.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
+      #   fulfillment order was created.
+      # @return [Peddler::Response] The API response
       def get_fulfillment_order(seller_fulfillment_order_id)
         arguments = {
           seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
@@ -2167,6 +3912,11 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_order", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_order")
       end
 
+      # Returns a list of fulfillment order previews based on shipping criteria that you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] GetFulfillmentPreviewRequest parameter
+      # @return [Peddler::Response] The API response
       def get_fulfillment_preview(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2174,6 +3924,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_preview", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_preview")
       end
 
+      # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
+      # order.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param package_number [Integer] The unencrypted package identifier. You can obtain this value from the
+      #   `getFulfillmentOrder` operation.
+      # @return [Peddler::Response] The API response
       def get_package_tracking_details(package_number)
         arguments = {
           package_number: Arguments.integer("package_number", package_number, required: true),
@@ -2181,6 +3938,15 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_package_tracking_details", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.get_package_tracking_details")
       end
 
+      # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the
+      # `nextToken` parameter.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param query_start_date [String] A date used to select fulfillment orders that were last updated after (or at) a
+      #   specified time. An update is defined as any change in fulfillment order status, including the creation of a
+      #   new fulfillment order.
+      # @param next_token [String] A string token returned in the response to your previous request.
+      # @return [Peddler::Response] The API response
       def list_all_fulfillment_orders(query_start_date: nil, next_token: nil)
         arguments = {
           query_start_date: Arguments.string("query_start_date", query_start_date),
@@ -2189,6 +3955,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_all_fulfillment_orders}
       def list_all_fulfillment_orders_pages(query_start_date: nil, next_token: nil)
         arguments = {
           query_start_date: Arguments.string("query_start_date", query_start_date),
@@ -2197,6 +3964,19 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders").pages(@engine, arguments)
       end
 
+      # Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation
+      # may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to
+      # [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param seller_sku [String] The seller SKU for which return reason codes are required.
+      # @param marketplace_id [String] The marketplace for which the seller wants return reason codes.
+      # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
+      #   fulfillment order was created. The service uses this value to determine the marketplace for which the seller
+      #   wants return reason codes.
+      # @param language [String] The language that the `TranslatedDescription` property of the `ReasonCodeDetails`
+      #   response object should be translated into.
+      # @return [Peddler::Response] The API response
       def list_return_reason_codes(seller_sku, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil)
         arguments = {
           seller_sku: Arguments.string("seller_sku", seller_sku, required: true),
@@ -2207,6 +3987,18 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_return_reason_codes", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.list_return_reason_codes")
       end
 
+      # Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
+      # operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox
+      # Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling
+      # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
+      # information.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
+      #   fulfillment order was created.
+      # @param body [Hash, Array, String] The identifier assigned to the item by the seller when the fulfillment order
+      #   was created.
+      # @return [Peddler::Response] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
         arguments = {
           seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
@@ -2215,6 +4007,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update", JSON.generate(arguments)), "fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update")
       end
 
+      # Updates and/or requests shipment for a fulfillment order with an order hold on it.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] The request body of the `updateFulfillmentOrder` operation.
+      # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
+      #   fulfillment order was created.
+      # @return [Peddler::Response] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id)
         arguments = {
           seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id, required: true),
@@ -2229,6 +4028,12 @@ module Peddler
         @engine = engine
       end
 
+      # Request that Amazon stop attempting to fulfill a fulfillment order.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param order_id [String] The ID of the order that you want to cancel.
+      # @return [Peddler::Response] The API response
       def cancel_order(order_id, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2237,6 +4042,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.cancel_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.cancel_order")
       end
 
+      # Request that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
+      # address.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param body [Hash, Array, String] The request body schema for the `createOrder` operation.
+      # @return [Peddler::Response] The API response
       def create_order(body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2245,6 +4057,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.create_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.create_order")
       end
 
+      # Retrieve delivery options that include an estimated delivery date and offer expiration, based on criteria that
+      # you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param body [Hash, Array, String] The request body schema for the `getOffers` operation.
+      # @return [Peddler::Response] The API response
       def get_offers(body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2253,6 +4072,13 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_offers", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_offers")
       end
 
+      # Retrieve a fulfillment order.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param order_id [String] The ID of the order you want to retrieve.
+      # @param shipments [String] Whether to include shipment data in the response. Included by default.
+      # @return [Peddler::Response] The API response
       def get_order(order_id, x_amzn_fulfillment_service_id: nil, shipments: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2262,6 +4088,12 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_order")
       end
 
+      # Retrieve a list of fulfillment order previews based on shipping criteria that you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param body [Hash, Array, String] The request body schema for the `getOrderPreview` operation.
+      # @return [Peddler::Response] The API response
       def get_order_preview(body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2270,6 +4102,18 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order_preview", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.get_order_preview")
       end
 
+      # Retrieve a list of fulfillment orders that match the criteria you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param updated_after [String] The response includes orders updated after this time. Must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+      # @param page_token [String] A token that you use to retrieve the next page of results. The response includes
+      #   `pageToken` when the number of results exceeds the page size. To get the next page of results, call the
+      #   operation with this token and include the same arguments as the call that produced the token. To get a
+      #   complete list, call this operation until `pageToken` is `null`.
+      # @param shipments [String] Whether to include shipment data in the response. Included by default.
+      # @return [Peddler::Response] The API response
       def list_orders(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2280,6 +4124,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.list_orders")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_orders}
       def list_orders_pages(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2290,6 +4135,13 @@ module Peddler
         PAGINATIONS.fetch("fulfillment_outbound_2026_07_04.list_orders").pages(@engine, arguments)
       end
 
+      # Update and/or request shipment for a fulfillment order with an order hold on it.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param order_id [String] The ID of the order that you want to update and/or request shipment of.
+      # @param body [Hash, Array, String] The request body schema for the `updateOrder` operation.
+      # @return [Peddler::Response] The API response
       def update_order(order_id, body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2299,6 +4151,17 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_order")
       end
 
+      # Request that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
+      # operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox
+      # Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling
+      # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
+      # information.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param order_id [String] The ID of the order that you want to update.
+      # @param body [Hash, Array, String] The new status of the fulfillment order.
+      # @return [Peddler::Response] The API response
       def update_order_status(order_id, body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2308,6 +4171,18 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order_status", JSON.generate(arguments)), "fulfillment_outbound_2026_07_04.update_order_status")
       end
 
+      # Update package information for a specific package in a fulfillment order. This is a sandbox-only operation and
+      # must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox
+      # Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling
+      # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
+      # information.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
+      # @param order_id [String] The ID of the order that contains the package that you want to update.
+      # @param package_id [String] The ID of the package that you want to update.
+      # @param body [Hash, Array, String] The new package information.
+      # @return [Peddler::Response] The API response
       def update_package(order_id, package_id, body, x_amzn_fulfillment_service_id: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
@@ -2324,6 +4199,11 @@ module Peddler
         @engine = engine
       end
 
+      # Submit an asynchronous request to create a government invoice.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Information required to create the government invoice.
+      # @return [Peddler::Response] The API response
       def create_government_invoice(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2331,6 +4211,11 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.create_government_invoice", JSON.generate(arguments)), "invoices_2024_06_19.create_government_invoice")
       end
 
+      # Creates an invoice export request.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Information required to create the export request.
+      # @return [Peddler::Response] The API response
       def create_invoices_export(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2338,6 +4223,19 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.create_invoices_export", JSON.generate(arguments)), "invoices_2024_06_19.create_invoices_export")
       end
 
+      # Retrieve the URL of an invoice document.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The marketplace of the invoice.
+      # @param transaction_type [String] The marketplace-specific classification of the transaction type that originated
+      #   the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
+      # @param shipment_id [String] The unique shipment identifier for which to get an invoice.
+      # @param invoice_type [String] The marketplace-specific classification of the invoice type. Check `invoiceType`
+      #   options using the `getInvoicesAttributes` operation.
+      # @param inbound_plan_id [String] The unique inbound plan identifier in which the shipment is contained and for
+      #   which the invoice will be created.
+      # @param file_format [String] The file format of the invoice. The default is XML.
+      # @return [Peddler::Response] The API response
       def get_government_invoice_document(marketplace_id, transaction_type, shipment_id, invoice_type, inbound_plan_id: nil, file_format: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2350,6 +4248,18 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_document", JSON.generate(arguments)), "invoices_2024_06_19.get_government_invoice_document")
       end
 
+      # Retrieve the status of an invoice generation request.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The marketplace of the invoice request.
+      # @param transaction_type [String] The marketplace-specific classification of the transaction type that originated
+      #   the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
+      # @param shipment_id [String] The unique shipment identifier for which to get an invoice.
+      # @param invoice_type [String] The marketplace-specific classification of the invoice type. Check `invoiceType`
+      #   options using the `getInvoicesAttributes` operation.
+      # @param inbound_plan_id [String] The unique inbound plan identifier in which the shipment is contained and for
+      #   which the invoice will be created.
+      # @return [Peddler::Response] The API response
       def get_government_invoice_status(marketplace_id, transaction_type, shipment_id, invoice_type, inbound_plan_id: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2361,6 +4271,16 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_status", JSON.generate(arguments)), "invoices_2024_06_19.get_government_invoice_status")
       end
 
+      # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
+      # to the response definition to get all the possible attributes.
+      # To get the full invoice, use the `createInvoicesExport` operation to start an export request.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The marketplace from which you want the invoice.
+      # @param invoice_id [String] The invoice identifier.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @return [Peddler::Response] The API response
       def get_invoice(marketplace_id, invoice_id, warehouse_code: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2370,6 +4290,41 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoice", JSON.generate(arguments)), "invoices_2024_06_19.get_invoice")
       end
 
+      # Returns invoice details for the invoices that match the filters that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param transaction_identifier_name [String] The name of the transaction identifier filter. If you provide a
+      #   value for this field, you must also provide a value for the `transactionIdentifierId` field.Use the
+      #   `getInvoicesAttributes` operation to check `transactionIdentifierName` options.
+      # @param page_size [Integer] The maximum number of invoices you want to return in a single call. Minimum: 1
+      #   Maximum: 200
+      # @param date_end [String] The latest invoice creation date for invoices that you want to include in the response.
+      #   Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default
+      #   is the current date-time.
+      # @param marketplace_id [String] The response includes only the invoices that match the specified marketplace.
+      # @param transaction_type [String] The marketplace-specific classification of the transaction type for which the
+      #   invoice was created. Use the `getInvoicesAttributes` operation to check `transactionType` options.
+      # @param transaction_identifier_id [String] The ID of the transaction identifier filter. If you provide a value
+      #   for this field, you must also provide a value for the `transactionIdentifierName` field.
+      # @param date_start [String] The earliest invoice creation date for invoices that you want to include in the
+      #   response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      #   The default is 24 hours prior to the time of the request.
+      # @param series [String] Return invoices with the specified series number.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
+      # @param sort_order [String] Sort the invoices in the response in ascending or descending order.
+      # @param invoice_type [String] The marketplace-specific classification of the invoice type. Use the
+      #   `getInvoicesAttributes` operation to check `invoiceType` options.
+      # @param statuses [Array<String>] A list of statuses that you can use to filter invoices. Use the
+      #   `getInvoicesAttributes` operation to check invoice status options. Min count: 1
+      # @param external_invoice_id [String] Return invoices that match this external ID. This is typically the
+      #   Government Invoice ID.
+      # @param sort_by [String] The attribute by which you want to sort the invoices in the response.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @return [Peddler::Response] The API response
       def get_invoices(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil)
         arguments = {
           transaction_identifier_name: Arguments.string("transaction_identifier_name", transaction_identifier_name),
@@ -2391,6 +4346,7 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_invoices}
       def get_invoices_pages(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil)
         arguments = {
           transaction_identifier_name: Arguments.string("transaction_identifier_name", transaction_identifier_name),
@@ -2412,6 +4368,13 @@ module Peddler
         PAGINATIONS.fetch("invoices_2024_06_19.get_invoices").pages(@engine, arguments)
       end
 
+      # Returns marketplace-dependent schemas and their respective set of possible values.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The marketplace identifier.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @return [Peddler::Response] The API response
       def get_invoices_attributes(marketplace_id, warehouse_code: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2420,6 +4383,14 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_attributes", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_attributes")
       end
 
+      # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
+      # from the corresponding `createInvoicesExport` request.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param invoices_document_id [String] The export document identifier.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @return [Peddler::Response] The API response
       def get_invoices_document(invoices_document_id, warehouse_code: nil)
         arguments = {
           invoices_document_id: Arguments.string("invoices_document_id", invoices_document_id, required: true),
@@ -2428,6 +4399,13 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_document", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_document")
       end
 
+      # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param export_id [String] The unique identifier for the export.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @return [Peddler::Response] The API response
       def get_invoices_export(export_id, warehouse_code: nil)
         arguments = {
           export_id: Arguments.string("export_id", export_id, required: true),
@@ -2436,6 +4414,25 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_export", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_export")
       end
 
+      # Returns invoice exports details for exports that match the filters that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The returned exports match the specified marketplace.
+      # @param date_start [String] The earliest export creation date and time for exports that you want to include in
+      #   the response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
+      #   format. The default is 30 days ago.
+      # @param next_token [String] The response includes `nextToken` when the number of results exceeds the specified
+      #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
+      #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
+      #   is null. Note that this operation can return empty pages.
+      # @param page_size [Integer] The maximum number of invoices to return in a single call. Minimum: 1 Maximum: 100
+      # @param date_end [String] The latest export creation date and time for exports that you want to include in the
+      #   response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      #   The default value is the time of the request.
+      # @param status [String] Return exports matching the status specified.
+      # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
+      #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @return [Peddler::Response] The API response
       def get_invoices_exports(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2449,6 +4446,7 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", JSON.generate(arguments)), "invoices_2024_06_19.get_invoices_exports")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_invoices_exports}
       def get_invoices_exports_pages(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2468,6 +4466,20 @@ module Peddler
         @engine = engine
       end
 
+      # Delete a listings item for a selling partner.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that must be encoded to
+      # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param sku [String] A selling partner provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
+      #   when a localization is not available in the specified locale.
+      # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil)
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2478,6 +4490,22 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2020_09_01.delete_listings_item", JSON.generate(arguments)), "listings_items_2020_09_01.delete_listings_item")
       end
 
+      # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
+      # patched. Patching nested attributes is not supported.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that must be encoded to
+      # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param sku [String] A selling partner provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
+      #   when a localization is not available in the specified locale.
+      # @param body [Hash, Array, String] The request body schema for the patchListingsItem operation.
+      # @return [Peddler::Response] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil)
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2489,6 +4517,21 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2020_09_01.patch_listings_item", JSON.generate(arguments)), "listings_items_2020_09_01.patch_listings_item")
       end
 
+      # Creates a new or fully-updates an existing listings item for a selling partner.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that must be encoded to
+      # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param sku [String] A selling partner provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
+      #   when a localization is not available in the specified locale.
+      # @param body [Hash, Array, String] The request body schema for the putListingsItem operation.
+      # @return [Peddler::Response] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil)
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2506,6 +4549,16 @@ module Peddler
         @engine = engine
       end
 
+      # Delete a listings item for a selling partner.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
+      # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil)
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2516,6 +4569,18 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2021_08_01.delete_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.delete_listings_item")
       end
 
+      # Returns details about a listings item for a selling partner.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
+      # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
+      #   `summaries`.
+      # @return [Peddler::Response] The API response
       def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"])
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2527,6 +4592,21 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2021_08_01.get_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.get_listings_item")
       end
 
+      # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
+      # patched. Patching nested attributes is not supported.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
+      # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
+      #   `issues`.
+      # @param mode [String] Describes the mode of operation for the request.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
+      # @param body [Hash, Array, String] The request body schema for the `patchListingsItem` operation.
+      # @return [Peddler::Response] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil, issue_locale: nil)
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2540,6 +4620,20 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.patch_listings_item")
       end
 
+      # Creates a new or fully-updates an existing listings item for a selling partner.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param sku [String] A selling partner-provided identifier for an Amazon listing.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
+      # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
+      #   `issues`.
+      # @param mode [String] Describes the mode of operation for the request.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
+      #   when localization is not available for the specified locale.
+      # @param body [Hash, Array, String] The request body schema for the `putListingsItem` operation.
+      # @return [Peddler::Response] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil, issue_locale: nil)
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2553,6 +4647,50 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2021_08_01.put_listings_item", JSON.generate(arguments)), "listings_items_2021_08_01.put_listings_item")
       end
 
+      # Search for and return a list of selling partner listings items and their respective details.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
+      # @param issue_locale [String] A locale that is used to localize issues. When not provided, the default language
+      #   code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not
+      #   available in the specified locale, localized messages default to "en_US".
+      # @param included_data [Array<String>] A comma-delimited list of data sets that you want to include in the
+      #   response. Default: `summaries`.
+      # @param identifiers [Array<String>] A comma-delimited list of product identifiers that you can use to search for
+      #   listings items. **Note**: 1. This is required when you specify `identifiersType`. 2. You cannot use
+      #   'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
+      # @param identifiers_type [String] A type of product identifiers that you can use to search for listings items.
+      #   **Note**: This is required when `identifiers` is provided.
+      # @param variation_parent_sku [String] Filters results to include listing items that are variation children of the
+      #   specified SKU. **Note**: You cannot use `variationParentSku` if you include `identifiers` or
+      #   `packageHierarchySku` in your request.
+      # @param package_hierarchy_sku [String] Filter results to include listing items that contain or are contained by
+      #   the specified SKU. **Note**: You cannot use `packageHierarchySku` if you include `identifiers` or
+      #   `variationParentSku` in your request.
+      # @param created_after [String] A date-time that is used to filter listing items. The response includes listings
+      #   items that were created at or after this time. Values are in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param created_before [String] A date-time that is used to filter listing items. The response includes listings
+      #   items that were created at or before this time. Values are in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param last_updated_after [String] A date-time that is used to filter listing items. The response includes
+      #   listings items that were last updated at or after this time. Values are in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param last_updated_before [String] A date-time that is used to filter listing items. The response includes
+      #   listings items that were last updated at or before this time. Values are in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param with_issue_severity [Array<String>] Filter results to include only listing items that have issues that
+      #   match one or more of the specified severity levels.
+      # @param with_status [Array<String>] Filter results to include only listing items that have the specified status.
+      # @param without_status [Array<String>] Filter results to include only listing items that don't contain the
+      #   specified statuses.
+      # @param sort_by [String] An attribute by which to sort the returned listing items.
+      # @param sort_order [String] The order in which to sort the result items.
+      # @param page_size [Integer] The number of results that you want to include on each page.
+      # @param page_token [String] A token that you can use to fetch a specific page when there are multiple pages of
+      #   results.
+      # @return [Peddler::Response] The API response
       def search_listings_items(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil)
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2578,6 +4716,7 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", JSON.generate(arguments)), "listings_items_2021_08_01.search_listings_items")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#search_listings_items}
       def search_listings_items_pages(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil)
         arguments = {
           seller_id: Arguments.string("seller_id", seller_id, required: true),
@@ -2609,6 +4748,19 @@ module Peddler
         @engine = engine
       end
 
+      # Returns listing restrictions for an item in the Amazon Catalog.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
+      # @param condition_type [String] The condition used to filter restrictions.
+      # @param seller_id [String] A selling partner identifier, such as a merchant account.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param reason_locale [String] A locale for reason text localization. When not provided, the default language
+      #   code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to
+      #   "en_US" when a localization is not available in the specified locale.
+      # @param product_type [String] The product type of the item. When provided with the brand name, the API evaluates
+      #   GTIN exemption restrictions in addition to brand restrictions for the specified product type.
+      # @return [Peddler::Response] The API response
       def get_listings_restrictions(asin, seller_id, marketplace_ids, condition_type: nil, reason_locale: nil, product_type: nil)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
@@ -2627,6 +4779,11 @@ module Peddler
         @engine = engine
       end
 
+      # Cancel the shipment indicated by the specified shipment identifier.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment to cancel.
+      # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -2634,6 +4791,11 @@ module Peddler
         Response.from_parts(@engine.operation("merchant_fulfillment_v0.cancel_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.cancel_shipment")
       end
 
+      # Create a shipment with the information provided.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request schema for the `CreateShipment` operation.
+      # @return [Peddler::Response] The API response
       def create_shipment(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2641,6 +4803,12 @@ module Peddler
         Response.from_parts(@engine.operation("merchant_fulfillment_v0.create_shipment", JSON.generate(arguments)), "merchant_fulfillment_v0.create_shipment")
       end
 
+      # Gets a list of additional seller inputs required for a ship method. This is generally used for international
+      # shipping.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request schema for the `GetAdditionalSellerInputs` operation.
+      # @return [Peddler::Response] The API response
       def get_additional_seller_inputs(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2648,6 +4816,11 @@ module Peddler
         Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_additional_seller_inputs", JSON.generate(arguments)), "merchant_fulfillment_v0.get_additional_seller_inputs")
       end
 
+      # Returns a list of shipping service offers that satisfy the specified shipment request details.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request schema for the `GetEligibleShipmentServices` operation.
+      # @return [Peddler::Response] The API response
       def get_eligible_shipment_services(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2655,6 +4828,11 @@ module Peddler
         Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_eligible_shipment_services", JSON.generate(arguments)), "merchant_fulfillment_v0.get_eligible_shipment_services")
       end
 
+      # Returns the shipment information for an existing shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment.
+      # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -2668,6 +4846,16 @@ module Peddler
         @engine = engine
       end
 
+      # Sends a message asking a buyer to provide or verify customization details such as name spelling, images,
+      # initials, etc.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def confirm_customization_details(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2677,6 +4865,15 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.confirm_customization_details", JSON.generate(arguments)), "messaging_v1.confirm_customization_details")
       end
 
+      # Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2686,6 +4883,15 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.create_confirm_delivery_details", JSON.generate(arguments)), "messaging_v1.create_confirm_delivery_details")
       end
 
+      # Sends a message to ask a buyer an order-related question prior to shipping their order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def create_confirm_order_details(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2695,6 +4901,16 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.create_confirm_order_details", JSON.generate(arguments)), "messaging_v1.create_confirm_order_details")
       end
 
+      # Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a
+      # service call.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def create_confirm_service_details(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2704,6 +4920,16 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.create_confirm_service_details", JSON.generate(arguments)), "messaging_v1.create_confirm_service_details")
       end
 
+      # Sends a buyer a message to share a digital access key that is required to utilize digital content in their
+      # order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def create_digital_access_key(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2713,6 +4939,16 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.create_digital_access_key", JSON.generate(arguments)), "messaging_v1.create_digital_access_key")
       end
 
+      # Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer.
+      # This message should only be used to deliver documents that are required by law.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def create_legal_disclosure(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2722,6 +4958,16 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.create_legal_disclosure", JSON.generate(arguments)), "messaging_v1.create_legal_disclosure")
       end
 
+      # Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the
+      # order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def create_unexpected_problem(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2731,6 +4977,15 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.create_unexpected_problem", JSON.generate(arguments)), "messaging_v1.create_unexpected_problem")
       end
 
+      # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def create_warranty(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2740,6 +4995,14 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.create_warranty", JSON.generate(arguments)), "messaging_v1.create_warranty")
       end
 
+      # Returns a response containing attributes related to an order. This includes buyer preferences.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @return [Peddler::Response] The API response
       def get_attributes(amazon_order_id, marketplace_ids)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2748,6 +5011,16 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.get_attributes", JSON.generate(arguments)), "messaging_v1.get_attributes")
       end
 
+      # Returns a list of message types that are available for an order that you specify. A message type is represented
+      # by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to
+      # call an operation that sends a message.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which you want a list
+      #   of available message types.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @return [Peddler::Response] The API response
       def get_messaging_actions_for_order(amazon_order_id, marketplace_ids)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2756,6 +5029,15 @@ module Peddler
         Response.from_parts(@engine.operation("messaging_v1.get_messaging_actions_for_order", JSON.generate(arguments)), "messaging_v1.get_messaging_actions_for_order")
       end
 
+      # Sends a message providing the buyer an invoice
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
+      #   order was placed. You can only specify one marketplace.
+      # @param body [Hash, Array, String] This contains the message body for a message.
+      # @return [Peddler::Response] The API response
       def send_invoice(amazon_order_id, marketplace_ids, body)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -2771,6 +5053,14 @@ module Peddler
         @engine = engine
       end
 
+      # Creates a destination resource to receive notifications. The `createDestination` operation is grantless. For
+      # more information, refer to [Grantless
+      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
+      # Developer Guide.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request schema for the `createDestination` operation.
+      # @return [Peddler::Response] The API response
       def create_destination(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -2778,6 +5068,17 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.create_destination", JSON.generate(arguments)), "notifications_v1.create_destination")
       end
 
+      # Creates a subscription for the specified notification type to be delivered to the specified destination. Before
+      # you can subscribe, you must first create the destination by calling the `createDestination` operation. If the
+      # notification type that you specify supports multiple payload versions, you can use this operation to subscribe
+      # to a different payload version if you already have an existing subscription for a different payload version.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request schema for the `createSubscription` operation.
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @return [Peddler::Response] The API response
       def create_subscription(body, notification_type)
         arguments = {
           notification_type: Arguments.string("notification_type", notification_type, required: true),
@@ -2786,6 +5087,13 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.create_subscription", JSON.generate(arguments)), "notifications_v1.create_subscription")
       end
 
+      # Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information,
+      # refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the
+      # Selling Partner API Developer Guide.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param destination_id [String] The identifier for the destination that you want to delete.
+      # @return [Peddler::Response] The API response
       def delete_destination(destination_id)
         arguments = {
           destination_id: Arguments.string("destination_id", destination_id, required: true),
@@ -2793,6 +5101,19 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.delete_destination", JSON.generate(arguments)), "notifications_v1.delete_destination")
       end
 
+      # Deletes the subscription indicated by the subscription identifier and notification type that you specify. The
+      # subscription identifier can be for any subscription associated with your application. After you successfully
+      # call this operation, notifications will stop being sent for the associated subscription. The
+      # `deleteSubscriptionById` operation is grantless. For more information, refer to [Grantless
+      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
+      # Developer Guide.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param subscription_id [String] The identifier for the subscription that you want to delete.
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @return [Peddler::Response] The API response
       def delete_subscription_by_id(subscription_id, notification_type)
         arguments = {
           subscription_id: Arguments.string("subscription_id", subscription_id, required: true),
@@ -2801,6 +5122,14 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.delete_subscription_by_id", JSON.generate(arguments)), "notifications_v1.delete_subscription_by_id")
       end
 
+      # Returns information about the destination that you specify. The `getDestination` operation is grantless. For
+      # more information, refer to [Grantless
+      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
+      # Developer Guide.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param destination_id [String] The identifier generated when you created the destination.
+      # @return [Peddler::Response] The API response
       def get_destination(destination_id)
         arguments = {
           destination_id: Arguments.string("destination_id", destination_id, required: true),
@@ -2808,12 +5137,29 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.get_destination", JSON.generate(arguments)), "notifications_v1.get_destination")
       end
 
+      # Returns information about all destinations. The `getDestinations` operation is grantless. For more information,
+      # refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the
+      # Selling Partner API Developer Guide.
+      #
+      # @note This operation can make a static sandbox call.
+      # @return [Peddler::Response] The API response
       def get_destinations
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
         Response.from_parts(@engine.operation("notifications_v1.get_destinations", JSON.generate(arguments)), "notifications_v1.get_destinations")
       end
 
+      # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
+      # is an optional parameter. When you do not provide `payloadVersion`, the operation returns the latest payload
+      # version subscription's information. You can use this API to get subscription information when you do not have a
+      # subscription identifier.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param payload_version [String] The version of the payload object to be used in the notification.
+      # @return [Peddler::Response] The API response
       def get_subscription(notification_type, payload_version: nil)
         arguments = {
           notification_type: Arguments.string("notification_type", notification_type, required: true),
@@ -2822,6 +5168,17 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.get_subscription", JSON.generate(arguments)), "notifications_v1.get_subscription")
       end
 
+      # Returns information about a subscription for the specified notification type. The `getSubscriptionById`
+      # operation is grantless. For more information, refer to [Grantless
+      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
+      # Developer Guide.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param subscription_id [String] The identifier for the subscription that you want to get.
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @return [Peddler::Response] The API response
       def get_subscription_by_id(subscription_id, notification_type)
         arguments = {
           subscription_id: Arguments.string("subscription_id", subscription_id, required: true),
@@ -2830,6 +5187,26 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.get_subscription_by_id", JSON.generate(arguments)), "notifications_v1.get_subscription_by_id")
       end
 
+      # Returns information about subscriptions of the specified notification type. You can use this API to retrieve all
+      # subscriptions when multiple subscriptions exist for a notification type (for example, when using filter
+      # expressions).
+      #
+      # The operation returns all subscriptions for the caller's party.
+      #
+      # `payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns
+      # subscriptions across all payload versions.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param notification_types [Array<String>] A list of notification types to retrieve subscriptions for. Currently
+      #   limited to a single notification type per request. For more information about notification types, refer to the
+      #   [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param payload_version [String] The version of the payload object to be used in the notification.
+      # @param page_size [Integer] The maximum number of subscriptions to return per page. Minimum value is 30. Maximum
+      #   value is 100. Default is 30.
+      # @param next_token [String] A token to retrieve the next page of results. If this field is not empty in a
+      #   response, pass its value in the next request to retrieve the next page.
+      # @return [Peddler::Response] The API response
       def get_subscriptions(notification_types, payload_version: nil, page_size: 30, next_token: nil)
         arguments = {
           notification_types: Arguments.array("notification_types", notification_types, required: true),
@@ -2840,6 +5217,7 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", JSON.generate(arguments)), "notifications_v1.get_subscriptions")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_subscriptions}
       def get_subscriptions_pages(notification_types, payload_version: nil, page_size: 30, next_token: nil)
         arguments = {
           notification_types: Arguments.array("notification_types", notification_types, required: true),
@@ -2850,6 +5228,15 @@ module Peddler
         PAGINATIONS.fetch("notifications_v1.get_subscriptions").pages(@engine, arguments)
       end
 
+      # Sends a mock notification of the specified type to your SQS. The `sendTestNotification` API is grantless. For
+      # more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] The request schema for the `sendTestNotification` operation.
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
+      #   to the [Notifications API v1 Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @return [Peddler::Response] The API response
       def send_test_notification(body, notification_type)
         arguments = {
           notification_type: Arguments.string("notification_type", notification_type, required: true),
@@ -2864,6 +5251,12 @@ module Peddler
         @engine = engine
       end
 
+      # Updates the shipment confirmation status for a specified order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @param payload [Hash, Array, String] Request body of `confirmShipment`.
+      # @return [Peddler::Response] The API response
       def confirm_shipment(order_id, payload)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2872,6 +5265,11 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.confirm_shipment", JSON.generate(arguments)), "orders_v0.confirm_shipment")
       end
 
+      # Returns the order that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @return [Peddler::Response] The API response
       def get_order(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2879,6 +5277,11 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order", JSON.generate(arguments)), "orders_v0.get_order")
       end
 
+      # Returns the shipping address for the order that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
+      # @return [Peddler::Response] The API response
       def get_order_address(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2886,6 +5289,11 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_address", JSON.generate(arguments)), "orders_v0.get_order_address")
       end
 
+      # Returns buyer information for the order that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
+      # @return [Peddler::Response] The API response
       def get_order_buyer_info(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2893,6 +5301,20 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_buyer_info")
       end
 
+      # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
+      # retrieve the next page of order items.
+      #
+      # **Note**: When an order is in the Pending state (the order has been placed but payment has not been authorized),
+      # the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or
+      # promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment
+      # has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation
+      # returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in
+      # the order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @param next_token [String] A string token returned in the response of your previous request.
+      # @return [Peddler::Response] The API response
       def get_order_items(order_id, next_token: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2901,6 +5323,7 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_items", JSON.generate(arguments)), "orders_v0.get_order_items")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_order_items}
       def get_order_items_pages(order_id, next_token: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2909,6 +5332,12 @@ module Peddler
         PAGINATIONS.fetch("orders_v0.get_order_items").pages(@engine, arguments)
       end
 
+      # Returns buyer information for the order items in the order that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @param next_token [String] A string token returned in the response of your previous request.
+      # @return [Peddler::Response] The API response
       def get_order_items_buyer_info(order_id, next_token: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2917,6 +5346,7 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", JSON.generate(arguments)), "orders_v0.get_order_items_buyer_info")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_order_items_buyer_info}
       def get_order_items_buyer_info_pages(order_id, next_token: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2925,6 +5355,11 @@ module Peddler
         PAGINATIONS.fetch("orders_v0.get_order_items_buyer_info").pages(@engine, arguments)
       end
 
+      # Returns regulated information for the order that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
+      # @return [Peddler::Response] The API response
       def get_order_regulated_info(order_id)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2932,6 +5367,99 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_regulated_info", JSON.generate(arguments)), "orders_v0.get_order_regulated_info")
       end
 
+      # Returns orders that are created or updated during the specified time period. If you want to return specific
+      # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include
+      # in your request; it only impacts the pagination for the filtered orders response.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param created_after [String] Use this date to select orders created after (or at) a specified time. Only orders
+      #   placed after the specified time are returned. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: Either the `CreatedAfter`
+      #   parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `LastUpdatedAfter` and
+      #   `LastUpdatedBefore` cannot be set when `CreatedAfter` is set.
+      # @param created_before [String] Use this date to select orders created before (or at) a specified time. Only
+      #   orders placed before the specified time are returned. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: `CreatedBefore` is optional
+      #   when `CreatedAfter` is set. If specified, `CreatedBefore` must be equal to or after the `CreatedAfter` date
+      #   and at least two minutes before current time.
+      # @param last_updated_after [String] Use this date to select orders that were last updated after (or at) a
+      #   specified time. An update is defined as any change in order status, including the creation of a new order.
+      #   Includes updates made by Amazon and by the seller. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: Either the `CreatedAfter`
+      #   parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `CreatedAfter` or
+      #   `CreatedBefore` cannot be set when `LastUpdatedAfter` is set.
+      # @param last_updated_before [String] Use this date to select orders that were last updated before (or at) a
+      #   specified time. An update is defined as any change in order status, including the creation of a new order.
+      #   Includes updates made by Amazon and by the seller. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: `LastUpdatedBefore` is
+      #   optional when `LastUpdatedAfter` is set. But if specified, `LastUpdatedBefore` must be equal to or after the
+      #   `LastUpdatedAfter` date and at least two minutes before current time.
+      # @param order_statuses [Array<String>] A list of `OrderStatus` values used to filter the results. **Possible
+      #   values:** - `PendingAvailability` (This status is available for pre-orders only. The order has been placed,
+      #   payment has not been authorized, and the release date of the item is in the future.) - `Pending` (The order
+      #   has been placed but payment has not been authorized.) - `Unshipped` (Payment has been authorized and the order
+      #   is ready for shipment, but no items in the order have been shipped.) - `PartiallyShipped` (One or more, but
+      #   not all, items in the order have been shipped.) - `Shipped` (All items in the order have been shipped.) -
+      #   `InvoiceUnconfirmed` (All items in the order have been shipped. The seller has not yet given confirmation to
+      #   Amazon that the invoice has been shipped to the buyer.) - `Canceled` (The order has been canceled.) -
+      #   `Unfulfillable` (The order cannot be fulfilled. This state applies only to Multi-Channel Fulfillment orders.)
+      # @param marketplace_ids [Array<String>] A list of `MarketplaceId` values. Used to select orders that were placed
+      #   in the specified marketplaces. Refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId`
+      #   values.
+      # @param fulfillment_channels [Array<String>] A list that indicates how an order was fulfilled. Filters the
+      #   results by fulfillment channel. **Possible values**: `AFN` (fulfilled by Amazon), `MFN` (fulfilled by seller).
+      # @param payment_methods [Array<String>] A list of payment method values. Use this field to select orders that
+      #   were paid with the specified payment methods. **Possible values**: `COD` (cash on delivery), `CVS`
+      #   (convenience store), `Other` (Any payment method other than COD or CVS).
+      # @param buyer_email [String] The email address of a buyer. Used to select orders that contain the specified email
+      #   address.
+      # @param seller_order_id [String] An order identifier that is specified by the seller. Used to select only the
+      #   orders that match the order identifier. If `SellerOrderId` is specified, then `FulfillmentChannels`,
+      #   `OrderStatuses`, `PaymentMethod`, `LastUpdatedAfter`, `LastUpdatedBefore`, and `BuyerEmail` cannot be
+      #   specified.
+      # @param max_results_per_page [Integer] A number that indicates the maximum number of orders that can be returned
+      #   per page. Value must be 1 - 100. Default 100.
+      # @param easy_ship_shipment_statuses [Array<String>] A list of `EasyShipShipmentStatus` values. Used to select
+      #   Easy Ship orders with statuses that match the specified values. If `EasyShipShipmentStatus` is specified, only
+      #   Amazon Easy Ship orders are returned. **Possible values:** - `PendingSchedule` (The package is awaiting the
+      #   schedule for pick-up.) - `PendingPickUp` (Amazon has not yet picked up the package from the seller.) -
+      #   `PendingDropOff` (The seller will deliver the package to the carrier.) - `LabelCanceled` (The seller canceled
+      #   the pickup.) - `PickedUp` (Amazon has picked up the package from the seller.) - `DroppedOff` (The package is
+      #   delivered to the carrier by the seller.) - `AtOriginFC` (The packaged is at the origin fulfillment center.) -
+      #   `AtDestinationFC` (The package is at the destination fulfillment center.) - `Delivered` (The package has been
+      #   delivered.) - `RejectedByBuyer` (The package has been rejected by the buyer.) - `Undeliverable` (The package
+      #   cannot be delivered.) - `ReturningToSeller` (The package was not delivered and is being returned to the
+      #   seller.) - `ReturnedToSeller` (The package was not delivered and was returned to the seller.) - `Lost` (The
+      #   package is lost.) - `OutForDelivery` (The package is out for delivery.) - `Damaged` (The package was damaged
+      #   by the carrier.)
+      # @param electronic_invoice_statuses [Array<String>] A list of `ElectronicInvoiceStatus` values. Used to select
+      #   orders with electronic invoice statuses that match the specified values. **Possible values:** - `NotRequired`
+      #   (Electronic invoice submission is not required for this order.) - `NotFound` (The electronic invoice was not
+      #   submitted for this order.) - `Processing` (The electronic invoice is being processed for this order.) -
+      #   `Errored` (The last submitted electronic invoice was rejected for this order.) - `Accepted` (The last
+      #   submitted electronic invoice was submitted and accepted.)
+      # @param next_token [String] A string token returned in the response of your previous request.
+      # @param amazon_order_ids [Array<String>] A list of `AmazonOrderId` values. An `AmazonOrderId` is an
+      #   Amazon-defined order identifier, in 3-7-7 format.
+      # @param actual_fulfillment_supply_source_id [String] The `sourceId` of the location from where you want the order
+      #   fulfilled.
+      # @param is_ispu [Boolean] When true, this order is marked to be picked up from a store rather than delivered.
+      # @param store_chain_store_id [String] The store chain store identifier. Linked to a specific store in a store
+      #   chain.
+      # @param earliest_delivery_date_before [String] Use this date to select orders with an earliest delivery date
+      #   before (or at) a specified time. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+      # @param earliest_delivery_date_after [String] Use this date to select orders with an earliest delivery date after
+      #   (or at) a specified time. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+      # @param latest_delivery_date_before [String] Use this date to select orders with a latest delivery date before
+      #   (or at) a specified time. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+      # @param latest_delivery_date_after [String] Use this date to select orders with a latest delivery date after (or
+      #   at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
+      #   format.
+      # @return [Peddler::Response] The API response
       def get_orders(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil)
         arguments = {
           created_after: Arguments.string("created_after", created_after),
@@ -2960,6 +5488,7 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_orders", JSON.generate(arguments)), "orders_v0.get_orders")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
       def get_orders_pages(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil)
         arguments = {
           created_after: Arguments.string("created_after", created_after),
@@ -2988,6 +5517,12 @@ module Peddler
         PAGINATIONS.fetch("orders_v0.get_orders").pages(@engine, arguments)
       end
 
+      # Update the shipment status for an order that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @param payload [Hash, Array, String] The request body for the `updateShipmentStatus` operation.
+      # @return [Peddler::Response] The API response
       def update_shipment_status(order_id, payload)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -2996,6 +5531,12 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.update_shipment_status", JSON.generate(arguments)), "orders_v0.update_shipment_status")
       end
 
+      # Updates (approves or rejects) the verification status of an order containing regulated products.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
+      # @param payload [Hash, Array, String] The request body for the `updateVerificationStatus` operation.
+      # @return [Peddler::Response] The API response
       def update_verification_status(order_id, payload)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -3010,6 +5551,12 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the order that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param order_id [String] An Amazon-defined order identifier.
+      # @param included_data [Array<String>] A list of datasets to include in the response.
+      # @return [Peddler::Response] The API response
       def get_order(order_id, included_data: nil)
         arguments = {
           order_id: Arguments.string("order_id", order_id, required: true),
@@ -3018,6 +5565,45 @@ module Peddler
         Response.from_parts(@engine.operation("orders_2026_01_01.get_order", JSON.generate(arguments)), "orders_2026_01_01.get_order")
       end
 
+      # Returns orders created or updated during the time period that you specify. You can filter the response for
+      # specific types of orders.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param created_after [String] The response includes orders created at or after this time. The date must be in
+      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: You must provide exactly
+      #   one of `createdAfter` and `lastUpdatedAfter` in your request. If `createdAfter` is provided, neither
+      #   `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided.
+      # @param created_before [String] The response includes orders created at or before this time. The date must be in
+      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: If you include
+      #   `createdAfter` in the request, `createdBefore` is optional, and if provided must be equal to or after the
+      #   `createdAfter` date and at least two minutes before the time of the request. If `createdBefore` is provided,
+      #   neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided.
+      # @param last_updated_after [String] The response includes orders updated at or after this time. An update is any
+      #   change made by Amazon or the seller, including changes to order status. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: You must provide exactly one
+      #   of `createdAfter` and `lastUpdatedAfter`. If `lastUpdatedAfter` is provided, neither `createdAfter` nor
+      #   `createdBefore` may be provided.
+      # @param last_updated_before [String] The response includes orders updated at or before this time. An update is
+      #   any change made by Amazon or the seller, including changes to order status. The date must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: If you include
+      #   `lastUpdatedAfter` in the request, `lastUpdatedBefore` is optional, and if provided must be equal to or after
+      #   the `lastUpdatedAfter` date and at least two minutes before the time of the request. If `lastUpdatedBefore` is
+      #   provided, neither `createdAfter` nor `createdBefore` may be provided.
+      # @param fulfillment_statuses [Array<String>] A list of `FulfillmentStatus` values you can use to filter the
+      #   results.
+      # @param marketplace_ids [Array<String>] The response includes orders that were placed in marketplaces you include
+      #   in this list. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a
+      #   complete list of `marketplaceId` values.
+      # @param fulfilled_by [Array<String>] The response includes orders that are fulfilled by the parties that you
+      #   include in this list.
+      # @param max_results_per_page [Integer] The maximum number of orders that can be returned per page. The value must
+      #   be between 1 and 100. **Default:** 100.
+      # @param pagination_token [String] Pagination occurs when a request produces a response that exceeds the
+      #   `maxResultsPerPage`. This means that the response is divided into individual pages. To retrieve the next page,
+      #   you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not
+      #   receive a `nextToken` value on the last page.
+      # @param included_data [Array<String>] A list of datasets to include in the response.
+      # @return [Peddler::Response] The API response
       def search_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil)
         arguments = {
           created_after: Arguments.string("created_after", created_after),
@@ -3034,6 +5620,7 @@ module Peddler
         Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", JSON.generate(arguments)), "orders_2026_01_01.search_orders")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#search_orders}
       def search_orders_pages(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil)
         arguments = {
           created_after: Arguments.string("created_after", created_after),
@@ -3056,6 +5643,26 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the
+      # request body.
+      #
+      # You can call `getMyFeesEstimateForASIN` for an item on behalf of a selling partner before the selling partner
+      # sets the item's price. The selling partner can then take estimated fees into account. Each fees request must
+      # include an original identifier. This identifier is included in the fees estimate so you can correlate a fees
+      # estimate with the original request.
+      #
+      # **Note:** This identifier value is used to identify an estimate. Actual costs may vary. Search "fees" in [Seller
+      # Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date
+      # information.
+      #
+      # **Note:** When using the `getMyFeesEstimateForASIN` operation with an ASIN, the fee estimates might be
+      # different. This is because these estimates use the item's catalog size, which might not always match the actual
+      # size of the item sent to Amazon.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body schema for the getMyFeesEstimates operation
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
+      # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_asin(body, asin)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
@@ -3064,6 +5671,30 @@ module Peddler
         Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_asin", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimate_for_asin")
       end
 
+      # Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in
+      # the request body.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that require URL encoding
+      # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # You can call `getMyFeesEstimateForSKU` for an item on behalf of a selling partner before the selling partner
+      # sets the item's price. The selling partner can then take any estimated fees into account. Each fees estimate
+      # request must include an original identifier. This identifier is included in the fees estimate so that you can
+      # correlate a fees estimate with the original request.
+      #
+      # **Note:** This identifier value is used to identify an estimate. Actual costs may vary. Search "fees" in [Seller
+      # Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date
+      # information.
+      #
+      # **Note:** When sellers use the `getMyFeesEstimateForSKU` operation with their `SellerSKU`, they get accurate
+      # fees based on real item measurements, but only after they've sent their items to Amazon.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body schema for the getMyFeesEstimates operation
+      # @param seller_sku [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the
+      #   seller's SellerId, which is included with every operation that you submit.
+      # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku)
         arguments = {
           seller_sku: Arguments.string("seller_sku", seller_sku, required: true),
@@ -3072,6 +5703,11 @@ module Peddler
         Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_sku", JSON.generate(arguments)), "product_fees_v0.get_my_fees_estimate_for_sku")
       end
 
+      # Returns the estimated fees for a list of products.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body schema for the getMyFeesEstimates operation
+      # @return [Peddler::Response] The API response
       def get_my_fees_estimates(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -3085,6 +5721,26 @@ module Peddler
         @engine = engine
       end
 
+      # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that require URL encoding
+      # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
+      #   returned.
+      # @param asins [Array<String>] A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
+      #   identify items in the given marketplace.
+      # @param skus [Array<String>] A list of up to twenty seller SKU values used to identify items in the given
+      #   marketplace.
+      # @param item_type [String] Indicates whether ASIN values or seller SKU values are used to identify items. If you
+      #   specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins
+      #   parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you
+      #   provide in the Skus parameter. Possible values: Asin, Sku.
+      # @param customer_type [String] Indicates whether to request pricing information from the point of view of
+      #   Consumer or Business buyers. Default is Consumer.
+      # @return [Peddler::Response] The API response
       def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -3096,6 +5752,16 @@ module Peddler
         Response.from_parts(@engine.operation("product_pricing_v0.get_competitive_pricing", JSON.generate(arguments)), "product_pricing_v0.get_competitive_pricing")
       end
 
+      # Returns the lowest priced offers for a single item based on ASIN.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
+      #   returned.
+      # @param item_condition [String] Filters the offer listings to be considered based on item condition. Possible
+      #   values: New, Used, Collectible, Refurbished, Club.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
+      # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
+      # @return [Peddler::Response] The API response
       def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -3106,6 +5772,12 @@ module Peddler
         Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers", JSON.generate(arguments)), "product_pricing_v0.get_item_offers")
       end
 
+      # Returns the lowest priced offers for a batch of items based on ASIN.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param get_item_offers_batch_request_body [Hash, Array, String] The request associated with the
+      #   `getItemOffersBatch` API call.
+      # @return [Peddler::Response] The API response
       def get_item_offers_batch(get_item_offers_batch_request_body)
         arguments = {
           body: Arguments.body("get_item_offers_batch_request_body", get_item_offers_batch_request_body, required: true),
@@ -3113,6 +5785,21 @@ module Peddler
         Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers_batch", JSON.generate(arguments)), "product_pricing_v0.get_item_offers_batch")
       end
 
+      # Returns the lowest priced offers for a single SKU listing.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that require URL encoding
+      # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
+      #   returned.
+      # @param item_condition [String] Filters the offer listings based on item condition. Possible values: New, Used,
+      #   Collectible, Refurbished, Club.
+      # @param seller_sku [String] Identifies an item in the given marketplace. SellerSKU is qualified by the seller's
+      #   SellerId, which is included with every operation that you submit.
+      # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
+      # @return [Peddler::Response] The API response
       def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -3123,6 +5810,12 @@ module Peddler
         Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers", JSON.generate(arguments)), "product_pricing_v0.get_listing_offers")
       end
 
+      # Returns the lowest priced offers for a batch of listings by SKU.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param get_listing_offers_batch_request_body [Hash, Array, String] The request associated with the
+      #   `getListingOffersBatch` API call.
+      # @return [Peddler::Response] The API response
       def get_listing_offers_batch(get_listing_offers_batch_request_body)
         arguments = {
           body: Arguments.body("get_listing_offers_batch_request_body", get_listing_offers_batch_request_body, required: true),
@@ -3130,6 +5823,28 @@ module Peddler
         Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers_batch", JSON.generate(arguments)), "product_pricing_v0.get_listing_offers_batch")
       end
 
+      # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that require URL encoding
+      # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
+      #   returned.
+      # @param asins [Array<String>] A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
+      #   identify items in the given marketplace.
+      # @param skus [Array<String>] A list of up to twenty seller SKU values used to identify items in the given
+      #   marketplace.
+      # @param item_type [String] Indicates whether ASIN values or seller SKU values are used to identify items. If you
+      #   specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins
+      #   parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you
+      #   provide in the Skus parameter.
+      # @param item_condition [String] Filters the offer listings based on item condition. Possible values: New, Used,
+      #   Collectible, Refurbished, Club.
+      # @param offer_type [String] Indicates whether to request pricing information for the seller's B2C or B2B offers.
+      #   Default is B2C.
+      # @return [Peddler::Response] The API response
       def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -3148,6 +5863,12 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the competitive summary response, including featured buying options for the ASIN and `marketplaceId`
+      # combination.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param requests [Hash, Array, String] The batch of `getCompetitiveSummary` requests.
+      # @return [Peddler::Response] The API response
       def get_competitive_summary(requests)
         arguments = {
           body: Arguments.body("requests", requests, required: true),
@@ -3155,6 +5876,17 @@ module Peddler
         Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_competitive_summary", JSON.generate(arguments)), "product_pricing_2022_05_01.get_competitive_summary")
       end
 
+      # Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request
+      # body. The response for each successful (HTTP status code 200) request in the set includes the computed listing
+      # price at or below which a seller can expect to become the featured offer (before applicable promotions). This is
+      # called the featured offer expected price (FOEP). Featured offer is not guaranteed because competing offers might
+      # change. Other offers might be featured based on factors such as fulfillment capabilities to a specific customer.
+      # The response to an unsuccessful request includes the available error text.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param get_featured_offer_expected_price_batch_request_body [Hash, Array, String] The batch of
+      #   `getFeaturedOfferExpectedPrice` requests.
+      # @return [Peddler::Response] The API response
       def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body)
         arguments = {
           body: Arguments.body("get_featured_offer_expected_price_batch_request_body", get_featured_offer_expected_price_batch_request_body, required: true),
@@ -3168,6 +5900,28 @@ module Peddler
         @engine = engine
       end
 
+      # Retrieve an Amazon product type definition.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param product_type [String] The Amazon product type name.
+      # @param seller_id [String] A selling partner identifier. When provided, seller-specific requirements and values
+      #   are populated within the product type definition schema, such as brand names associated with the selling
+      #   partner.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      #   Note: This parameter is limited to one marketplaceId at this time.
+      # @param product_type_version [String] The version of the Amazon product type to retrieve. Defaults to "LATEST".
+      #   Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease
+      #   version is currently available, the "LATEST" live version will be provided.
+      # @param requirements [String] The name of the requirements set to retrieve requirements for.
+      # @param requirements_enforced [String] Identifies if the required attributes for a requirements set are enforced
+      #   by the product type definition schema. Non-enforced requirements enable structural validation of individual
+      #   attributes without all the required attributes being present (such as for partial updates).
+      # @param locale [String] Locale for retrieving display labels and other presentation details. Defaults to the
+      #   default language of the first marketplace in the request.
+      # @param parentage_level [String] The parentage level of the listing to retrieve a schema for. When provided, the
+      #   schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in
+      #   a smaller schema with fewer conditions.
+      # @return [Peddler::Response] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST", requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil)
         arguments = {
           product_type: Arguments.string("product_type", product_type, required: true),
@@ -3182,6 +5936,18 @@ module Peddler
         Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.get_definitions_product_type", JSON.generate(arguments)), "product_type_definitions_2020_09_01.get_definitions_product_type")
       end
 
+      # Search for and return a list of Amazon product types that have definitions available.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param keywords [Array<String>] A comma-delimited list of keywords to search product types. **Note:** Cannot be
+      #   used with `itemName`.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param item_name [String] Title of ASIN to get product type recommendation. **Note:** Cannot be used with
+      #   `keywords`.
+      # @param locale [String] Locale for display names in response. Defaults to primary locale of the marketplace.
+      # @param search_locale [String] Language used for `keywords` or `itemName` parameters. Defaults to primary locale
+      #   of the marketplace.
+      # @return [Peddler::Response] The API response
       def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil, search_locale: nil)
         arguments = {
           keywords: Arguments.array("keywords", keywords),
@@ -3199,6 +5965,14 @@ module Peddler
         @engine = engine
       end
 
+      # Retrieve details of a specified promotion.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param promotion_id [String] The ID of the promotion.
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param locale [String] The locale of the promotion. Formatted as an ISO 639 language code, followed by an
+      #   underscore, followed by an ISO 3166-1 alpha-2 country code.
+      # @return [Peddler::Response] The API response
       def get_promotion(promotion_id, included_data: nil, locale: "en_US")
         arguments = {
           promotion_id: Arguments.string("promotion_id", promotion_id, required: true),
@@ -3208,6 +5982,26 @@ module Peddler
         Response.from_parts(@engine.operation("promotions_2025_12_01.get_promotion", JSON.generate(arguments)), "promotions_2025_12_01.get_promotion")
       end
 
+      # Retrieve up to 100 product items that are associated with a specified promotion. This operation only supports
+      # items found in `SelectionType.ITEMS`. Items found in `SelectionType.CATALOG` are not supported. Selection
+      # objects always include `selectionDetails` with item information.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param promotion_id [String] The ID of the promotion.
+      # @param selection_id [String] The ID of the selection.
+      # @param revision_id [Integer] The revision identifier for the selection. Use the `revisionId` from the
+      #   `getPromotion` response. A promotion may have multiple selection revisions when an update is in progress.
+      #   Passing the correct `revisionId` ensures you retrieve the expected data.
+      # @param locale [String] The locale of the promotion. Formatted as an ISO 639 language code, followed by an
+      #   underscore, followed by an ISO 3166-1 alpha-2 country code.
+      # @param pagination_token [String] A token that you use to retrieve the next page of results. The response
+      #   includes `paginationToken` when the number of results exceeds the specified `limit` value. To get the next
+      #   page of results, call the operation with this token and include the same arguments as the call that produced
+      #   the token. To get a complete list, call this operation until `paginationToken` is null. Note that this
+      #   operation can return empty pages.
+      # @param limit [Integer] The maximum number of response results per page.
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @return [Peddler::Response] The API response
       def get_selection(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil)
         arguments = {
           promotion_id: Arguments.string("promotion_id", promotion_id, required: true),
@@ -3221,6 +6015,7 @@ module Peddler
         Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", JSON.generate(arguments)), "promotions_2025_12_01.get_selection")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_selection}
       def get_selection_pages(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil)
         arguments = {
           promotion_id: Arguments.string("promotion_id", promotion_id, required: true),
@@ -3234,6 +6029,42 @@ module Peddler
         PAGINATIONS.fetch("promotions_2025_12_01.get_selection").pages(@engine, arguments)
       end
 
+      # Search and filter promotions based on various criteria. Returns a paginated list of promotion summaries.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_ids [Array<String>] The Amazon stores from which to retrieve promotions. Refer to [Store
+      #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers) for a list of Amazon store values.
+      # @param locale [String] The locale from which to retrieve promotions. Formatted as an ISO 639 language code,
+      #   followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
+      # @param statuses [Array<String>] The statuses of promotions to retrieve, formatted as a comma-delimited list.
+      # @param asins [Array<String>] The ASINs to which promotions apply, formatted as a comma-delimited list.
+      # @param skus [Array<String>] The SKUs to which promotions apply, formatted as a comma-delimited list.
+      # @param promotion_types [Array<String>] The promotion types to which promotions apply, formatted as a
+      #   comma-delimited list.
+      # @param start_date_before [String] Promotions that start before this date are returned. Formatted in ISO 8601
+      #   format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+      # @param start_date_after [String] Promotions that start after this date are returned. Formatted in ISO 8601
+      #   format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+      # @param end_date_before [String] Promotions that end before this date are returned. Formatted in ISO 8601 format,
+      #   including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+      # @param end_date_after [String] Promotions that end after this date are returned. Formatted in ISO 8601 format,
+      #   including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+      # @param update_date_after [String] Filter promotions that were last modified after this timestamp. Zoned Datetime
+      #   in ISO 8601 format (e.g., 1970-01-01T00:00:00-07:00).
+      # @param update_date_before [String] Filter promotions that were last modified before this timestamp. Zoned
+      #   Datetime in ISO 8601 format (e.g., 1970-01-01T00:00:00-07:00).
+      # @param pagination_token [String] A token that you use to retrieve the next page of results. The response
+      #   includes `paginationToken` when the number of results exceeds the specified `limit` value. To get the next
+      #   page of results, call the operation with this token and include the same arguments as the call that produced
+      #   the token. To get a complete list, call this operation until `paginationToken` is null. Note that this
+      #   operation can return empty pages.
+      # @param revision [String] Specifies which promotion revision or revisions to match against when filtering. This
+      #   controls which promotions are included in search results, not the shape of the response. The response always
+      #   returns the published revision in the main body, with `latestRevision` included when the latest revision
+      #   diverges.
+      # @param limit [Integer] The maximum number of response results per page.
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @return [Peddler::Response] The API response
       def search_promotions(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -3256,6 +6087,7 @@ module Peddler
         Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", JSON.generate(arguments)), "promotions_2025_12_01.search_promotions")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#search_promotions}
       def search_promotions_pages(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -3284,6 +6116,11 @@ module Peddler
         @engine = engine
       end
 
+      # Returns aggregated replenishment program metrics for a selling partner.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body for the `getSellingPartnerMetrics` operation.
+      # @return [Peddler::Response] The API response
       def get_selling_partner_metrics(body: nil)
         arguments = {
           body: Arguments.body("body", body),
@@ -3291,6 +6128,11 @@ module Peddler
         Response.from_parts(@engine.operation("replenishment_2022_11_07.get_selling_partner_metrics", JSON.generate(arguments)), "replenishment_2022_11_07.get_selling_partner_metrics")
       end
 
+      # Returns aggregated replenishment program metrics for a selling partner's offers.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body for the `listOfferMetrics` operation.
+      # @return [Peddler::Response] The API response
       def list_offer_metrics(body: nil)
         arguments = {
           body: Arguments.body("body", body),
@@ -3298,6 +6140,11 @@ module Peddler
         Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offer_metrics", JSON.generate(arguments)), "replenishment_2022_11_07.list_offer_metrics")
       end
 
+      # Returns the details of a selling partner's replenishment program offers.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body for the `listOffers` operation.
+      # @return [Peddler::Response] The API response
       def list_offers(body: nil)
         arguments = {
           body: Arguments.body("body", body),
@@ -3311,6 +6158,13 @@ module Peddler
         @engine = engine
       end
 
+      # Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled
+      # reports are returned in subsequent calls to the `getReport` and `getReports` operations.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
+      #   seller ID.
+      # @return [Peddler::Response] The API response
       def cancel_report(report_id)
         arguments = {
           report_id: Arguments.string("report_id", report_id, required: true),
@@ -3318,6 +6172,12 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report", JSON.generate(arguments)), "reports_2021_06_30.cancel_report")
       end
 
+      # Cancels the report schedule that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
+      #   combination with a seller ID.
+      # @return [Peddler::Response] The API response
       def cancel_report_schedule(report_schedule_id)
         arguments = {
           report_schedule_id: Arguments.string("report_schedule_id", report_schedule_id, required: true),
@@ -3325,6 +6185,11 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.cancel_report_schedule")
       end
 
+      # Creates a report.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Information required to create the report.
+      # @return [Peddler::Response] The API response
       def create_report(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -3332,6 +6197,12 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.create_report", JSON.generate(arguments)), "reports_2021_06_30.create_report")
       end
 
+      # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
+      # will be cancelled and replaced with this one.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Information required to create the report schedule.
+      # @return [Peddler::Response] The API response
       def create_report_schedule(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -3339,6 +6210,12 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.create_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.create_report_schedule")
       end
 
+      # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
+      #   seller ID.
+      # @return [Peddler::Response] The API response
       def get_report(report_id)
         arguments = {
           report_id: Arguments.string("report_id", report_id, required: true),
@@ -3346,6 +6223,14 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.get_report", JSON.generate(arguments)), "reports_2021_06_30.get_report")
       end
 
+      # Returns the information required for retrieving a report document's contents.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param report_document_id [String] The identifier for the report document.
+      # @param enable_content_encoding_url_header [Boolean] When `true`, the Content-Encoding header on the returned URL
+      #   is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows
+      #   automatic decompression by HTTP clients.
+      # @return [Peddler::Response] The API response
       def get_report_document(report_document_id, enable_content_encoding_url_header: nil)
         arguments = {
           report_document_id: Arguments.string("report_document_id", report_document_id, required: true),
@@ -3354,6 +6239,12 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.get_report_document", JSON.generate(arguments)), "reports_2021_06_30.get_report_document")
       end
 
+      # Returns report schedule details for the report schedule that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
+      #   combination with a seller ID.
+      # @return [Peddler::Response] The API response
       def get_report_schedule(report_schedule_id)
         arguments = {
           report_schedule_id: Arguments.string("report_schedule_id", report_schedule_id, required: true),
@@ -3361,6 +6252,12 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedule", JSON.generate(arguments)), "reports_2021_06_30.get_report_schedule")
       end
 
+      # Returns report schedule details that match the filters that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param report_types [Array<String>] A list of report types used to filter report schedules. Refer to [Report
+      #   Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+      # @return [Peddler::Response] The API response
       def get_report_schedules(report_types)
         arguments = {
           report_types: Arguments.array("report_types", report_types, required: true),
@@ -3368,6 +6265,27 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedules", JSON.generate(arguments)), "reports_2021_06_30.get_report_schedules")
       end
 
+      # Returns report details for the reports that match the filters that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param report_types [Array<String>] A list of report types used to filter reports. Refer to [Report Type
+      #   Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When
+      #   reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince,
+      #   createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
+      # @param processing_statuses [Array<String>] A list of processing statuses used to filter reports.
+      # @param marketplace_ids [Array<String>] A list of marketplace identifiers used to filter reports. The reports
+      #   returned will match at least one of the marketplaces that you specify.
+      # @param page_size [Integer] The maximum number of reports to return in a single call.
+      # @param created_since [String] The earliest report creation date and time for reports to include in the response,
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is 90 days
+      #   ago. Reports are retained for a maximum of 90 days.
+      # @param created_until [String] The latest report creation date and time for reports to include in the response,
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is now.
+      # @param next_token [String] A string token returned in the response to your previous request. `nextToken` is
+      #   returned when the number of results exceeds the specified `pageSize` value. To get the next page of results,
+      #   call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any
+      #   other parameters will cause the request to fail.
+      # @return [Peddler::Response] The API response
       def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil)
         arguments = {
           report_types: Arguments.array("report_types", report_types),
@@ -3381,6 +6299,7 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", JSON.generate(arguments)), "reports_2021_06_30.get_reports")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_reports}
       def get_reports_pages(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil)
         arguments = {
           report_types: Arguments.array("report_types", report_types),
@@ -3400,6 +6319,49 @@ module Peddler
         @engine = engine
       end
 
+      # Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
+      #   order was placed. Only one marketplace can be specified. For example, ATVPDKIKX0DER indicates the US
+      #   marketplace.
+      # @param interval [String] A time interval used for selecting order metrics. This takes the form of two dates
+      #   separated by two hyphens (first date is inclusive; second date is exclusive). Dates are in ISO8601 format and
+      #   must represent absolute time (either Z notation or offset notation). Example:
+      #   2018-09-01T00:00:00-07:00--2018-09-04T00:00:00-07:00 requests order metrics for Sept 1st, 2nd and 3rd in the
+      #   -07:00 zone.
+      # @param granularity_time_zone [String] An IANA-compatible time zone for determining the day boundary. Required
+      #   when specifying a granularity value greater than Hour. The granularityTimeZone value must align with the
+      #   offset of the specified interval value. For example, if the interval value uses Z notation, then
+      #   granularityTimeZone must be UTC. If the interval value uses an offset, then granularityTimeZone must be an
+      #   IANA-compatible time zone that matches the offset. Example: US/Pacific to compute day boundaries, accounting
+      #   for daylight time savings, for US/Pacific zone.
+      # @param granularity [String] The granularity of the grouping of order metrics, based on a unit of time.
+      #   Specifying granularity=Hour results in a successful request only if the interval specified is less than or
+      #   equal to 30 days from now. For all other granularities, the interval specified must be less or equal to 2
+      #   years from now. Specifying granularity=Total results in order metrics that are aggregated over the entire
+      #   interval that you specify. If the interval start and end date don’t align with the specified granularity, the
+      #   head and tail end of the response interval will contain partial data. Example: Day to get a daily breakdown of
+      #   the request interval, where the day boundary is defined by the granularityTimeZone.
+      # @param buyer_type [String] Filters the results by the buyer type that you specify, B2B (business to business) or
+      #   B2C (business to customer). Example: B2B, if you want the response to include order metrics for only B2B
+      #   buyers.
+      # @param fulfillment_network [String] Filters the results by the fulfillment network that you specify, MFN
+      #   (merchant fulfillment network) or AFN (Amazon fulfillment network). Do not include this filter if you want the
+      #   response to include order metrics for all fulfillment networks. Example: AFN, if you want the response to
+      #   include order metrics for only Amazon fulfillment network.
+      # @param first_day_of_week [String] Specifies the day that the week starts on when granularity=Week, either Monday
+      #   or Sunday. Default: Monday. Example: Sunday, if you want the week to start on a Sunday.
+      # @param asin [String] Filters the results by the ASIN that you specify. Specifying both ASIN and SKU returns an
+      #   error. Do not include this filter if you want the response to include order metrics for all ASINs. Example:
+      #   B0792R1RSN, if you want the response to include order metrics for only ASIN B0792R1RSN.
+      # @param sku [String] Filters the results by the SKU that you specify. Specifying both ASIN and SKU returns an
+      #   error. Do not include this filter if you want the response to include order metrics for all SKUs. Example:
+      #   TestSKU, if you want the response to include order metrics for only SKU TestSKU.
+      # @param amazon_program [String] Filters the results by the Amazon program that you specify. Do not include this
+      #   filter if you want the response to include order metrics for all programs. **Example:** `AmazonHaul` returns
+      #   order metrics for the Amazon Haul program only.
+      # @return [Peddler::Response] The API response
       def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: "All", fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, amazon_program: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -3422,6 +6384,21 @@ module Peddler
         @engine = engine
       end
 
+      # Create a transaction request from a Seller Wallet account to another customer-provided account.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The payload of the request
+      # @param dest_account_digital_signature [String] Digital signature for the destination bank account details. For
+      #   more information, refer to [Third-Party Provider Signature
+      #   Guidance](https://developer-docs.amazon.com/sp-api/docs/tpp-registration-signature-guidance).
+      # @param amount_digital_signature [String] Digital signature for the source currency transaction amount. Sign in
+      #   the order of the request definitions. You can omit empty or optional fields. For more information, refer to
+      #   [Third-Party Provider Signature
+      #   Guidance](https://developer-docs.amazon.com/sp-api/docs/tpp-registration-signature-guidance).
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def create_transaction(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
         arguments = {
           dest_account_digital_signature: Arguments.string("dest_account_digital_signature", dest_account_digital_signature, required: true),
@@ -3432,6 +6409,16 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.create_transaction")
       end
 
+      # Create a transfer schedule request from a Seller Wallet account to another customer-provided account.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The payload of the request.
+      # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
+      # @param amount_digital_signature [String] Digital signature for the source currency transaction amount.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def create_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
         arguments = {
           dest_account_digital_signature: Arguments.string("dest_account_digital_signature", dest_account_digital_signature, required: true),
@@ -3442,6 +6429,15 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.create_transfer_schedule")
       end
 
+      # Delete a transaction request that is scheduled from Amazon Seller Wallet account to another customer-provided
+      # account.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param transfer_schedule_id [String] A unique reference ID for a scheduled transfer.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def delete_schedule_transaction(transfer_schedule_id, marketplace_id)
         arguments = {
           transfer_schedule_id: Arguments.string("transfer_schedule_id", transfer_schedule_id, required: true),
@@ -3450,6 +6446,14 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.delete_schedule_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.delete_schedule_transaction")
       end
 
+      # Retrieve a Seller Wallet bank account by Amazon account identifier.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param account_id [String] The ID of the Amazon Seller Wallet account.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def get_account(account_id, marketplace_id)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
@@ -3458,6 +6462,14 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_account", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_account")
       end
 
+      # Find a transaction by the Amazon transaction identifier.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param transaction_id [String] The ID of the Amazon Seller Wallet transaction.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def get_transaction(transaction_id, marketplace_id)
         arguments = {
           transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
@@ -3466,6 +6478,19 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transaction", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transaction")
       end
 
+      # Retrieve a list of potential fees on a transaction.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param source_country_code [String] Country code of the source transaction account in ISO 3166 format.
+      # @param source_currency_code [String] Currency code of the source transaction country in ISO 4217 format.
+      # @param destination_country_code [String] Country code of the destination transaction account in ISO 3166 format.
+      # @param destination_currency_code [String] Currency code of the destination transaction country in ISO 4217
+      #   format.
+      # @param base_amount [Integer, Float] The base transaction amount without any markup fees.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def get_transfer_preview(source_country_code, source_currency_code, destination_country_code, destination_currency_code, base_amount, marketplace_id)
         arguments = {
           source_country_code: Arguments.string("source_country_code", source_country_code, required: true),
@@ -3478,6 +6503,14 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_preview", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transfer_preview")
       end
 
+      # Find a particular Amazon Seller Wallet account transfer schedule.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param transfer_schedule_id [String] The schedule ID of the Amazon Seller Wallet transfer.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def get_transfer_schedule(transfer_schedule_id, marketplace_id)
         arguments = {
           transfer_schedule_id: Arguments.string("transfer_schedule_id", transfer_schedule_id, required: true),
@@ -3486,6 +6519,14 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_schedule", JSON.generate(arguments)), "seller_wallet_2024_03_01.get_transfer_schedule")
       end
 
+      # Retrieve the balance in a given Seller Wallet bank account.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param account_id [String] The ID of the Amazon Seller Wallet account.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def list_account_balances(account_id, marketplace_id)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
@@ -3494,6 +6535,18 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_balances", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_account_balances")
       end
 
+      # Retrieve a list of transactions for a given Seller Wallet bank account.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param account_id [String] The ID of the Amazon Seller Wallet account.
+      # @param next_page_token [String] A token that you use to retrieve the next page of results. The response includes
+      #   `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation
+      #   with this token and include the same arguments as the call that produced the token. To get a complete list,
+      #   call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def list_account_transactions(account_id, marketplace_id, next_page_token: nil)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
@@ -3503,6 +6556,7 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_account_transactions")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_account_transactions}
       def list_account_transactions_pages(account_id, marketplace_id, next_page_token: nil)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
@@ -3512,6 +6566,13 @@ module Peddler
         PAGINATIONS.fetch("seller_wallet_2024_03_01.list_account_transactions").pages(@engine, arguments)
       end
 
+      # Get Seller Wallet accounts for a seller.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def list_accounts(marketplace_id)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -3519,6 +6580,19 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_accounts", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_accounts")
       end
 
+      # Retrieve transfer schedules of a Seller Wallet bank account.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param account_id [String] The ID of the Amazon Seller Wallet account.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param next_page_token [String] A token that you use to retrieve the next page of results. The response includes
+      #   `nextPageToken` when the number of results exceeds the specified `pageSize` value. To get the next page of
+      #   results, call the operation with this token and include the same arguments as the call that produced the
+      #   token. To get a complete list, call this operation until `nextPageToken` is null. Note that this operation can
+      #   return empty pages.
+      # @return [Peddler::Response] The API response
       def list_transfer_schedules(account_id, marketplace_id, next_page_token: nil)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
@@ -3528,6 +6602,7 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", JSON.generate(arguments)), "seller_wallet_2024_03_01.list_transfer_schedules")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_transfer_schedules}
       def list_transfer_schedules_pages(account_id, marketplace_id, next_page_token: nil)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
@@ -3537,6 +6612,16 @@ module Peddler
         PAGINATIONS.fetch("seller_wallet_2024_03_01.list_transfer_schedules").pages(@engine, arguments)
       end
 
+      # Update transfer schedule information. Returns a transfer belonging to the updated scheduled transfer request.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The payload of the scheduled transfer request that is to be updated.
+      # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
+      # @param amount_digital_signature [String] Digital signature for the source currency transaction amount.
+      # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
+      #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @return [Peddler::Response] The API response
       def update_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
         arguments = {
           dest_account_digital_signature: Arguments.string("dest_account_digital_signature", dest_account_digital_signature, required: true),
@@ -3553,12 +6638,21 @@ module Peddler
         @engine = engine
       end
 
+      # Returns information about a seller account and its marketplaces.
+      #
+      # @note This operation can make a static sandbox call.
+      # @return [Peddler::Response] The API response
       def get_account
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
         Response.from_parts(@engine.operation("sellers_v1.get_account", JSON.generate(arguments)), "sellers_v1.get_account")
       end
 
+      # Returns a list of marketplaces where the seller can list items and information about the seller's participation
+      # in those marketplaces.
+      #
+      # @note This operation can make a static sandbox call.
+      # @return [Peddler::Response] The API response
       def get_marketplace_participations
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
@@ -3571,6 +6665,12 @@ module Peddler
         @engine = engine
       end
 
+      # Adds an appointment to the service job indicated by the service job identifier specified.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_job_id [String] An Amazon defined service job identifier.
+      # @param body [Hash, Array, String] Add appointment operation input details.
+      # @return [Peddler::Response] The API response
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body)
         arguments = {
           service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
@@ -3579,6 +6679,14 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.add_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.add_appointment_for_service_job_by_service_job_id")
       end
 
+      # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
+      #   `getServiceJobs` operation of the Services API.
+      # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
+      # @param body [Hash, Array, String] Input containing the resource details to be assigned to the appointment.
+      # @return [Peddler::Response] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body)
         arguments = {
           service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
@@ -3588,6 +6696,12 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.assign_appointment_resources", JSON.generate(arguments)), "services_v1.assign_appointment_resources")
       end
 
+      # Cancel a reservation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param reservation_id [String] Reservation Identifier
+      # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @return [Peddler::Response] The API response
       def cancel_reservation(reservation_id, marketplace_ids)
         arguments = {
           reservation_id: Arguments.string("reservation_id", reservation_id, required: true),
@@ -3596,6 +6710,13 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.cancel_reservation", JSON.generate(arguments)), "services_v1.cancel_reservation")
       end
 
+      # Cancels the service job indicated by the service job identifier specified.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_job_id [String] An Amazon defined service job identifier.
+      # @param cancellation_reason_code [String] A cancel reason code that specifies the reason for cancelling a service
+      #   job.
+      # @return [Peddler::Response] The API response
       def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code)
         arguments = {
           service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
@@ -3604,6 +6725,11 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.cancel_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.cancel_service_job_by_service_job_id")
       end
 
+      # Completes the service job indicated by the service job identifier specified.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_job_id [String] An Amazon defined service job identifier.
+      # @return [Peddler::Response] The API response
       def complete_service_job_by_service_job_id(service_job_id)
         arguments = {
           service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
@@ -3611,6 +6737,12 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.complete_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.complete_service_job_by_service_job_id")
       end
 
+      # Create a reservation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Reservation details
+      # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @return [Peddler::Response] The API response
       def create_reservation(body, marketplace_ids)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -3619,6 +6751,11 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.create_reservation", JSON.generate(arguments)), "services_v1.create_reservation")
       end
 
+      # Creates an upload destination.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Upload document operation input details.
+      # @return [Peddler::Response] The API response
       def create_service_document_upload_destination(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -3626,6 +6763,19 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.create_service_document_upload_destination", JSON.generate(arguments)), "services_v1.create_service_document_upload_destination")
       end
 
+      # Gets appointment slots as per the service context specified.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param asin [String] ASIN associated with the service.
+      # @param store_id [String] Store identifier defining the region scope to retrive appointment slots.
+      # @param marketplace_ids [Array<String>] An identifier for the marketplace for which appointment slots are queried
+      # @param start_time [String] A time from which the appointment slots will be retrieved. The specified time must be
+      #   in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
+      #   business configuration.
+      # @param end_time [String] A time up to which the appointment slots will be retrieved. The specified time must be
+      #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
+      #   business configuration. Maximum range of appointment slots can be 90 days.
+      # @return [Peddler::Response] The API response
       def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
@@ -3637,6 +6787,18 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_appointment_slots", JSON.generate(arguments)), "services_v1.get_appointment_slots")
       end
 
+      # Gets appointment slots for the service associated with the service job id specified.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_job_id [String] A service job identifier to retrive appointment slots for associated service.
+      # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @param start_time [String] A time from which the appointment slots will be retrieved. The specified time must be
+      #   in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per
+      #   business configuration.
+      # @param end_time [String] A time up to which the appointment slots will be retrieved. The specified time must be
+      #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
+      #   business configuration. Maximum range of appointment slots can be 90 days.
+      # @return [Peddler::Response] The API response
       def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil)
         arguments = {
           service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
@@ -3647,6 +6809,14 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_appointmment_slots_by_job_id", JSON.generate(arguments)), "services_v1.get_appointmment_slots_by_job_id")
       end
 
+      # Provides capacity in fixed-size slots.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param resource_id [String] Resource Identifier.
+      # @param body [Hash, Array, String] Request body.
+      # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @param next_page_token [String] Next page token returned in the response of your previous request.
+      # @return [Peddler::Response] The API response
       def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = {
           resource_id: Arguments.string("resource_id", resource_id, required: true),
@@ -3657,6 +6827,7 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", JSON.generate(arguments)), "services_v1.get_fixed_slot_capacity")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_fixed_slot_capacity}
       def get_fixed_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = {
           resource_id: Arguments.string("resource_id", resource_id, required: true),
@@ -3667,6 +6838,14 @@ module Peddler
         PAGINATIONS.fetch("services_v1.get_fixed_slot_capacity").pages(@engine, arguments)
       end
 
+      # Provides capacity slots in a format similar to availability records.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param resource_id [String] Resource Identifier.
+      # @param body [Hash, Array, String] Request body.
+      # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @param next_page_token [String] Next page token returned in the response of your previous request.
+      # @return [Peddler::Response] The API response
       def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = {
           resource_id: Arguments.string("resource_id", resource_id, required: true),
@@ -3677,6 +6856,7 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", JSON.generate(arguments)), "services_v1.get_range_slot_capacity")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_range_slot_capacity}
       def get_range_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil)
         arguments = {
           resource_id: Arguments.string("resource_id", resource_id, required: true),
@@ -3687,6 +6867,11 @@ module Peddler
         PAGINATIONS.fetch("services_v1.get_range_slot_capacity").pages(@engine, arguments)
       end
 
+      # Gets details of service job indicated by the provided `serviceJobID`.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_job_id [String] A service job identifier.
+      # @return [Peddler::Response] The API response
       def get_service_job_by_service_job_id(service_job_id)
         arguments = {
           service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
@@ -3694,6 +6879,44 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.get_service_job_by_service_job_id")
       end
 
+      # Gets service job details for the specified filter query.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_order_ids [Array<String>] List of service order ids for the query you want to perform.Max values
+      #   supported 20.
+      # @param product_order_ids [Array<String>] A list of up to 20 associated product order IDs. You can use these IDs
+      #   to query service jobs.
+      # @param tracking_ids [Array<String>] A list of up to 20 associated product tracking IDs. You can use these IDs to
+      #   query service jobs.
+      # @param service_job_status [Array<String>] A list of one or more job status by which to filter the list of jobs.
+      # @param page_token [String] String returned in the response of your previous request.
+      # @param page_size [Integer] A non-negative integer that indicates the maximum number of jobs to return in the
+      #   list, Value must be 1 - 20. Default 20.
+      # @param sort_field [String] Sort fields on which you want to sort the output.
+      # @param sort_order [String] Sort order for the query you want to perform.
+      # @param created_after [String] A date used for selecting jobs created at or after a specified time. Must be in
+      #   ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and
+      #   `LastUpdatedAfter` returns an error.
+      # @param created_before [String] A date used for selecting jobs created at or before a specified time. Must be in
+      #   ISO 8601 format.
+      # @param last_updated_after [String] A date used for selecting jobs updated at or after a specified time. Must be
+      #   in ISO 8601 format. Required if `createdAfter` is not specified. Specifying both `CreatedAfter` and
+      #   `LastUpdatedAfter` returns an error.
+      # @param last_updated_before [String] A date used for selecting jobs updated at or before a specified time. Must
+      #   be in ISO 8601 format.
+      # @param schedule_start_date [String] A date used for filtering jobs schedules at or after a specified time. Must
+      #   be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
+      # @param schedule_end_date [String] A date used for filtering jobs schedules at or before a specified time. Must
+      #   be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
+      # @param marketplace_ids [Array<String>] Used to select jobs that were placed in the specified marketplaces.
+      # @param asins [Array<String>] List of Amazon Standard Identification Numbers (ASIN) of the items. Max values
+      #   supported is 20.
+      # @param required_skills [Array<String>] A defined set of related knowledge, skills, experience, tools, materials,
+      #   and work processes common to service delivery for a set of products and/or service scenarios. Max values
+      #   supported is 20.
+      # @param store_ids [Array<String>] List of Amazon-defined identifiers for the region scope. Max values supported
+      #   is 50.
+      # @return [Peddler::Response] The API response
       def get_service_jobs(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil)
         arguments = {
           service_order_ids: Arguments.array("service_order_ids", service_order_ids),
@@ -3718,6 +6941,7 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_service_jobs", JSON.generate(arguments)), "services_v1.get_service_jobs")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_service_jobs}
       def get_service_jobs_pages(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil)
         arguments = {
           service_order_ids: Arguments.array("service_order_ids", service_order_ids),
@@ -3742,6 +6966,13 @@ module Peddler
         PAGINATIONS.fetch("services_v1.get_service_jobs").pages(@engine, arguments)
       end
 
+      # Reschedules an appointment for the service job indicated by the service job identifier specified.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_job_id [String] An Amazon defined service job identifier.
+      # @param appointment_id [String] An existing appointment identifier for the Service Job.
+      # @param body [Hash, Array, String] Reschedule appointment operation input details.
+      # @return [Peddler::Response] The API response
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body)
         arguments = {
           service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
@@ -3751,6 +6982,14 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.reschedule_appointment_for_service_job_by_service_job_id", JSON.generate(arguments)), "services_v1.reschedule_appointment_for_service_job_by_service_job_id")
       end
 
+      # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
+      #   `getServiceJobs` operation of the Services API.
+      # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
+      # @param body [Hash, Array, String] Appointment fulfillment data collection details.
+      # @return [Peddler::Response] The API response
       def set_appointment_fulfillment_data(service_job_id, appointment_id, body)
         arguments = {
           service_job_id: Arguments.string("service_job_id", service_job_id, required: true),
@@ -3760,6 +6999,13 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.set_appointment_fulfillment_data", JSON.generate(arguments)), "services_v1.set_appointment_fulfillment_data")
       end
 
+      # Update a reservation.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param reservation_id [String] Reservation Identifier
+      # @param body [Hash, Array, String] Reservation details
+      # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @return [Peddler::Response] The API response
       def update_reservation(reservation_id, body, marketplace_ids)
         arguments = {
           reservation_id: Arguments.string("reservation_id", reservation_id, required: true),
@@ -3769,6 +7015,13 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.update_reservation", JSON.generate(arguments)), "services_v1.update_reservation")
       end
 
+      # Update the schedule of the given resource.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param resource_id [String] Resource (store) Identifier
+      # @param body [Hash, Array, String] Schedule details
+      # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @return [Peddler::Response] The API response
       def update_schedule(resource_id, body, marketplace_ids)
         arguments = {
           resource_id: Arguments.string("resource_id", resource_id, required: true),
@@ -3784,6 +7037,11 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the invoice status for the shipment you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] The shipment identifier for the shipment.
+      # @return [Peddler::Response] The API response
       def get_invoice_status(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3791,6 +7049,14 @@ module Peddler
         Response.from_parts(@engine.operation("shipment_invoicing_v0.get_invoice_status", JSON.generate(arguments)), "shipment_invoicing_v0.get_invoice_status")
       end
 
+      # Returns the shipment details required to issue an invoice for the specified shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus
+      #   notification. For information about subscribing to notifications, see the
+      #   {https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide Notifications API Use Case
+      #   Guide}.
+      # @return [Peddler::Response] The API response
       def get_shipment_details(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3798,6 +7064,12 @@ module Peddler
         Response.from_parts(@engine.operation("shipment_invoicing_v0.get_shipment_details", JSON.generate(arguments)), "shipment_invoicing_v0.get_shipment_details")
       end
 
+      # Submits a shipment invoice document for a given shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] The identifier for the shipment.
+      # @param body [Hash, Array, String]
+      # @return [Peddler::Response] The API response
       def submit_invoice(shipment_id, body)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3812,6 +7084,11 @@ module Peddler
         @engine = engine
       end
 
+      # Cancel a shipment by the given shipmentId.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] Shipment Id to cancel a shipment
+      # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3819,6 +7096,11 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v1.cancel_shipment", JSON.generate(arguments)), "shipping_v1.cancel_shipment")
       end
 
+      # Create a new shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] CreateShipmentRequest Body
+      # @return [Peddler::Response] The API response
       def create_shipment(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -3826,12 +7108,21 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v1.create_shipment", JSON.generate(arguments)), "shipping_v1.create_shipment")
       end
 
+      # Verify if the current account is valid.
+      #
+      # @note This operation can make a static sandbox call.
+      # @return [Peddler::Response] The API response
       def get_account
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
         Response.from_parts(@engine.operation("shipping_v1.get_account", JSON.generate(arguments)), "shipping_v1.get_account")
       end
 
+      # Get service rates.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] GetRatesRequest body
+      # @return [Peddler::Response] The API response
       def get_rates(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -3839,6 +7130,11 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v1.get_rates", JSON.generate(arguments)), "shipping_v1.get_rates")
       end
 
+      # Return the entire shipment object for the shipmentId.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] Shipment id to return the entire shipment object
+      # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3846,6 +7142,11 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v1.get_shipment", JSON.generate(arguments)), "shipping_v1.get_shipment")
       end
 
+      # Return the tracking information of a shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param tracking_id [String] Tracking Id
+      # @return [Peddler::Response] The API response
       def get_tracking_information(tracking_id)
         arguments = {
           tracking_id: Arguments.string("tracking_id", tracking_id, required: true),
@@ -3853,6 +7154,12 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v1.get_tracking_information", JSON.generate(arguments)), "shipping_v1.get_tracking_information")
       end
 
+      # Purchase shipping labels based on a given rate.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] Shipment id for purchase shipping label
+      # @param body [Hash, Array, String] PurchaseShippingLabelRequest body
+      # @return [Peddler::Response] The API response
       def purchase_labels(shipment_id, body)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3861,6 +7168,11 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v1.purchase_labels", JSON.generate(arguments)), "shipping_v1.purchase_labels")
       end
 
+      # Purchase shipping labels.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] PurchaseShipmentRequest body
+      # @return [Peddler::Response] The API response
       def purchase_shipment(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -3868,6 +7180,13 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v1.purchase_shipment", JSON.generate(arguments)), "shipping_v1.purchase_shipment")
       end
 
+      # Retrieve shipping label based on the shipment id and tracking id.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param shipment_id [String] Shipment Id to retreive label
+      # @param tracking_id [String] Tracking Id
+      # @param body [Hash, Array, String] RetrieveShippingLabelRequest body
+      # @return [Peddler::Response] The API response
       def retrieve_shipping_label(shipment_id, tracking_id, body)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3883,6 +7202,13 @@ module Peddler
         @engine = engine
       end
 
+      # Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The shipment identifier originally returned by the purchaseShipment operation.
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3891,6 +7217,13 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.cancel_shipment", JSON.generate(arguments)), "shipping_v2.cancel_shipment")
       end
 
+      # This API will be used to create claim for single eligible shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] Request body for the createClaim operation
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def create_claim(body, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
@@ -3899,6 +7232,19 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.create_claim", JSON.generate(arguments)), "shipping_v2.create_claim")
       end
 
+      # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
+      # details and documents.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] DirectPurchaseRequest body
+      # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
+      #   the same request.
+      # @param locale [String] The IETF Language Tag. Note that this only supports the primary language subtag with one
+      #   secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional
+      #   designation. This does not support additional subtags beyond the primary and secondary language subtags.
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_idempotency_key: Arguments.string("x_amzn_idempotency_key", x_amzn_idempotency_key),
@@ -3909,6 +7255,14 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.direct_purchase_shipment", JSON.generate(arguments)), "shipping_v2.direct_purchase_shipment")
       end
 
+      # This API Call to generate the collection form.
+      #
+      # @param body [Hash, Array, String] GenerateCollectionFormRequest body
+      # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
+      #   the same request.
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_idempotency_key: Arguments.string("x_amzn_idempotency_key", x_amzn_idempotency_key),
@@ -3918,6 +7272,15 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.generate_collection_form", JSON.generate(arguments)), "shipping_v2.generate_collection_form")
       end
 
+      # Returns a list of access points in proximity of input postal code.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param access_point_types [Array<String>] Access point types
+      # @param country_code [String] Country code for access point
+      # @param postal_code [String] postal code for access point
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_access_points(access_point_types, country_code, postal_code, x_amzn_shipping_business_id: nil)
         arguments = {
           access_point_types: Arguments.array("access_point_types", access_point_types, required: true),
@@ -3928,6 +7291,17 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_access_points", JSON.generate(arguments)), "shipping_v2.get_access_points")
       end
 
+      # Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
+      # the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that
+      # additional inputs are required for the rate (shipping offering) that you want to purchase.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param request_token [String] The request token returned in the response to the getRates operation.
+      # @param rate_id [String] The rate identifier for the shipping offering (rate) returned in the response to the
+      #   getRates operation.
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil)
         arguments = {
           request_token: Arguments.string("request_token", request_token, required: true),
@@ -3937,6 +7311,11 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_additional_inputs", JSON.generate(arguments)), "shipping_v2.get_additional_inputs")
       end
 
+      # This API will return a list of input schema required to register a shipper account with the carrier.
+      #
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
@@ -3944,6 +7323,12 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_carrier_account_form_inputs", JSON.generate(arguments)), "shipping_v2.get_carrier_account_form_inputs")
       end
 
+      # This API will return Get all carrier accounts for a merchant.
+      #
+      # @param body [Hash, Array, String] GetCarrierAccountsRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
@@ -3952,6 +7337,12 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_carrier_accounts", JSON.generate(arguments)), "shipping_v2.get_carrier_accounts")
       end
 
+      # This API reprint a collection form.
+      #
+      # @param collection_form_id [String] collection form Id to reprint a collection.
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil)
         arguments = {
           collection_form_id: Arguments.string("collection_form_id", collection_form_id, required: true),
@@ -3960,6 +7351,12 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_collection_form", JSON.generate(arguments)), "shipping_v2.get_collection_form")
       end
 
+      # This API Call to get the history of the previously generated collection forms.
+      #
+      # @param body [Hash, Array, String] GetCollectionFormHistoryRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
@@ -3968,6 +7365,13 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_collection_form_history", JSON.generate(arguments)), "shipping_v2.get_collection_form_history")
       end
 
+      # Returns the available shipping service offerings.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] GetRatesRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_rates(body, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
@@ -3976,6 +7380,19 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_rates", JSON.generate(arguments)), "shipping_v2.get_rates")
       end
 
+      # Returns the shipping documents associated with a package in a shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param shipment_id [String] The shipment identifier originally returned by the purchaseShipment operation.
+      # @param package_client_reference_id [String] The package client reference identifier originally provided in the
+      #   request body parameter for the getRates operation.
+      # @param format [String] The file format of the document. Must be one of the supported formats returned by the
+      #   getRates operation.
+      # @param dpi [Integer, Float] The resolution of the document (for example, 300 means 300 dots per inch). Must be
+      #   one of the supported resolutions returned in the response to the getRates operation.
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil, x_amzn_shipping_business_id: nil)
         arguments = {
           shipment_id: Arguments.string("shipment_id", shipment_id, required: true),
@@ -3987,6 +7404,16 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_shipment_documents", JSON.generate(arguments)), "shipping_v2.get_shipment_documents")
       end
 
+      # Returns tracking information for a purchased shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param tracking_id [String] A carrier-generated tracking identifier originally returned by the purchaseShipment
+      #   operation.
+      # @param carrier_id [String] A carrier identifier originally returned by the getRates operation for the selected
+      #   rate.
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_tracking(tracking_id, carrier_id, x_amzn_shipping_business_id: nil)
         arguments = {
           tracking_id: Arguments.string("tracking_id", tracking_id, required: true),
@@ -3996,6 +7423,13 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_tracking", JSON.generate(arguments)), "shipping_v2.get_tracking")
       end
 
+      # This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
+      # with an eligible carrier for manifesting shall be returned.
+      #
+      # @param body [Hash, Array, String] GetUmanifestedShipmentsRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
@@ -4004,6 +7438,14 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.get_unmanifested_shipments", JSON.generate(arguments)), "shipping_v2.get_unmanifested_shipments")
       end
 
+      # This API associates/links the specified carrier account with the merchant.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
+      # @param body [Hash, Array, String] LinkCarrierAccountRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
         arguments = {
           carrier_id: Arguments.string("carrier_id", carrier_id, required: true),
@@ -4013,6 +7455,13 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.link_carrier_account", JSON.generate(arguments)), "shipping_v2.link_carrier_account")
       end
 
+      # This API associates/links the specified carrier account with the merchant.
+      #
+      # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
+      # @param body [Hash, Array, String] LinkCarrierAccountRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def link_carrier_account_put(carrier_id, body, x_amzn_shipping_business_id: nil)
         arguments = {
           carrier_id: Arguments.string("carrier_id", carrier_id, required: true),
@@ -4022,6 +7471,13 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.link_carrier_account_put", JSON.generate(arguments)), "shipping_v2.link_carrier_account_put")
       end
 
+      # Purchases a shipping service identifier and returns purchase-related details and documents.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] OneClickShipmentRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def one_click_shipment(body, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
@@ -4030,6 +7486,19 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.one_click_shipment", JSON.generate(arguments)), "shipping_v2.one_click_shipment")
       end
 
+      # Purchases a shipping service and returns purchase related details and documents.
+      #
+      # Note: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you
+      # make the request after the 10 minutes have expired, you will receive an error response with the error code equal
+      # to "TOKEN_EXPIRED". If you receive this error response, you must get the rates for the shipment again.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] PurchaseShipmentRequest body
+      # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
+      #   the same request.
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_idempotency_key: Arguments.string("x_amzn_idempotency_key", x_amzn_idempotency_key),
@@ -4039,6 +7508,13 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.purchase_shipment", JSON.generate(arguments)), "shipping_v2.purchase_shipment")
       end
 
+      # This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] Request body for ndrFeedback operation
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
@@ -4047,6 +7523,13 @@ module Peddler
         Response.from_parts(@engine.operation("shipping_v2.submit_ndr_feedback", JSON.generate(arguments)), "shipping_v2.submit_ndr_feedback")
       end
 
+      # This API Unlink the specified carrier account with the merchant.
+      #
+      # @param carrier_id [String] carrier Id to unlink with merchant.
+      # @param body [Hash, Array, String] UnlinkCarrierAccountRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @return [Peddler::Response] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
         arguments = {
           carrier_id: Arguments.string("carrier_id", carrier_id, required: true),
@@ -4062,6 +7545,15 @@ module Peddler
         @engine = engine
       end
 
+      # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
+      # only one productReviewAndSellerFeedback or free form proactive message per order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which a solicitation is
+      #   sent.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
+      #   order was placed. Only one marketplace can be specified.
+      # @return [Peddler::Response] The API response
       def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -4070,6 +7562,17 @@ module Peddler
         Response.from_parts(@engine.operation("solicitations_v1.create_product_review_and_seller_feedback_solicitation", JSON.generate(arguments)), "solicitations_v1.create_product_review_and_seller_feedback_solicitation")
       end
 
+      # Returns a list of solicitation types that are available for an order that you specify. A solicitation type is
+      # represented by an actions object, which contains a path and query parameter(s). You can use the path and
+      # parameter(s) to call an operation that sends a solicitation. Currently only the
+      # productReviewAndSellerFeedbackSolicitation solicitation type is available.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which you want a list
+      #   of available solicitation types.
+      # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
+      #   order was placed. Only one marketplace can be specified.
+      # @return [Peddler::Response] The API response
       def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
@@ -4084,6 +7587,11 @@ module Peddler
         @engine = engine
       end
 
+      # Archive a supply source, making it inactive. Cannot be undone.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param supply_source_id [String] The unique identifier of a supply source.
+      # @return [Peddler::Response] The API response
       def archive_supply_source(supply_source_id)
         arguments = {
           supply_source_id: Arguments.string("supply_source_id", supply_source_id, required: true),
@@ -4091,6 +7599,11 @@ module Peddler
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.archive_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.archive_supply_source")
       end
 
+      # Create a new supply source.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param payload [Hash, Array, String] A request to create a supply source.
+      # @return [Peddler::Response] The API response
       def create_supply_source(payload)
         arguments = {
           body: Arguments.body("payload", payload, required: true),
@@ -4098,6 +7611,11 @@ module Peddler
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.create_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.create_supply_source")
       end
 
+      # Retrieve a supply source.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param supply_source_id [String] The unique identifier of a supply source.
+      # @return [Peddler::Response] The API response
       def get_supply_source(supply_source_id)
         arguments = {
           supply_source_id: Arguments.string("supply_source_id", supply_source_id, required: true),
@@ -4105,6 +7623,12 @@ module Peddler
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.get_supply_source")
       end
 
+      # The path to retrieve paginated supply sources.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param next_page_token [String] The pagination token to retrieve a specific page of results.
+      # @param page_size [Integer, Float] The number of supply sources to return per paginated request.
+      # @return [Peddler::Response] The API response
       def get_supply_sources(next_page_token: nil, page_size: 10)
         arguments = {
           next_page_token: Arguments.string("next_page_token", next_page_token),
@@ -4113,6 +7637,7 @@ module Peddler
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", JSON.generate(arguments)), "supply_sources_2020_07_01.get_supply_sources")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_supply_sources}
       def get_supply_sources_pages(next_page_token: nil, page_size: 10)
         arguments = {
           next_page_token: Arguments.string("next_page_token", next_page_token),
@@ -4121,6 +7646,12 @@ module Peddler
         PAGINATIONS.fetch("supply_sources_2020_07_01.get_supply_sources").pages(@engine, arguments)
       end
 
+      # Update the configuration and capabilities of a supply source.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param supply_source_id [String] The unique identitier of a supply source.
+      # @param payload [Hash, Array, String]
+      # @return [Peddler::Response] The API response
       def update_supply_source(supply_source_id, payload: nil)
         arguments = {
           supply_source_id: Arguments.string("supply_source_id", supply_source_id, required: true),
@@ -4129,6 +7660,12 @@ module Peddler
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source", JSON.generate(arguments)), "supply_sources_2020_07_01.update_supply_source")
       end
 
+      # Update the status of a supply source.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param supply_source_id [String] The unique identifier of a supply source.
+      # @param payload [Hash, Array, String]
+      # @return [Peddler::Response] The API response
       def update_supply_source_status(supply_source_id, payload: nil)
         arguments = {
           supply_source_id: Arguments.string("supply_source_id", supply_source_id, required: true),
@@ -4143,6 +7680,11 @@ module Peddler
         @engine = engine
       end
 
+      # Retrieve a specific support case.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param case_id [String] The case identifier.
+      # @return [Peddler::Response] The API response
       def get_case(case_id)
         arguments = {
           case_id: Arguments.string("case_id", case_id, required: true),
@@ -4150,6 +7692,11 @@ module Peddler
         Response.from_parts(@engine.operation("support_2025_02_01.get_case", JSON.generate(arguments)), "support_2025_02_01.get_case")
       end
 
+      # Retrieve support cases for a selling partner.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body for the listCases operation.
+      # @return [Peddler::Response] The API response
       def list_cases(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4157,6 +7704,7 @@ module Peddler
         Response.from_parts(@engine.operation("support_2025_02_01.list_cases", JSON.generate(arguments)), "support_2025_02_01.list_cases")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_cases}
       def list_cases_pages(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4164,6 +7712,17 @@ module Peddler
         PAGINATIONS.fetch("support_2025_02_01.list_cases").pages(@engine, arguments)
       end
 
+      # Retrieve contacts for a specific support case.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param case_id [String] The case identifier.
+      # @param max_results [Integer] The maximum number of results to include in the response.
+      # @param next_token [String] A token to retrieve the next page of results. The response includes `nextToken` when
+      #   the number of results exceeds the specified `maxResults` value. To get the next page of results, call the
+      #   operation with this token and include the same arguments as the call that produced the token. To get a
+      #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+      # @param sort_order [String] Sort the returned contacts by `createdDate` in either ascending or descending order.
+      # @return [Peddler::Response] The API response
       def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
         arguments = {
           case_id: Arguments.string("case_id", case_id, required: true),
@@ -4174,6 +7733,7 @@ module Peddler
         Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", JSON.generate(arguments)), "support_2025_02_01.list_contacts")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#list_contacts}
       def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
         arguments = {
           case_id: Arguments.string("case_id", case_id, required: true),
@@ -4190,6 +7750,15 @@ module Peddler
         @engine = engine
       end
 
+      # Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted
+      # resource is the HTTP method and path from a restricted operation that returns Personally Identifiable
+      # Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use
+      # Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent
+      # calls to the corresponding restricted operations.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The restricted data token request details.
+      # @return [Peddler::Response] The API response
       def create_restricted_data_token(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4203,6 +7772,20 @@ module Peddler
         @engine = engine
       end
 
+      # Returns tracking information for a shipment.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param id [String] The unique tracking request identifier.
+      # @param acsin [String] The Air Cargo Shipment Identification Number.
+      # @param aftn [String] The Amazon Fulfillment Tracking Number.
+      # @param container_number [String] The container number provided by the Logistics Service Provider.
+      # @param house_bill_of_lading_number [String] The House Bill of Lading (HBL) number.
+      # @param pro_number [String] The PRO number assigned by the freight carrier
+      # @param carrier_tracking_tracking_number [String] The tracking number assigned by the carrier.
+      # @param carrier_tracking_carrier_code [String] The carrier code associated with the carrier tracking number.
+      # @param accept_language [String] The preferred natural language and locale of the client, in POSIX locale format.
+      #   Currently supports `en-US` only.
+      # @return [Peddler::Response] The API response
       def get_shipment_tracking(id: nil, acsin: nil, aftn: nil, container_number: nil, house_bill_of_lading_number: nil, pro_number: nil, carrier_tracking_tracking_number: nil, carrier_tracking_carrier_code: nil, accept_language: nil)
         arguments = {
           id: Arguments.string("id", id),
@@ -4224,6 +7807,23 @@ module Peddler
         @engine = engine
       end
 
+      # Creates an upload destination, returning the information required to upload a file to the destination and to
+      # programmatically access the file.
+      #
+      # @param marketplace_ids [Array<String>] The marketplace ID is the globally unique identifier of a marketplace. To
+      #   find the ID for your marketplace, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param content_md5 [String] An MD5 hash of the content to be submitted to the upload destination. This value is
+      #   used to determine if the data has been corrupted or tampered with during transit.
+      # @param resource [String] The upload destination for your resource. For example, if you create an upload
+      #   destination for the `createLegalDisclosure` operation of the Messaging API, the `{resource}` would be
+      #   `/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure`, and the entire path would be
+      #   `/uploads/2020-11-01/uploadDestinations/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure`. If you
+      #   create an upload destination for an Aplus content document, the `{resource}` would be
+      #   `aplus/2020-11-01/contentDocuments` and the path would be
+      #   `/uploads/2020-11-01/uploadDestinations/aplus/2020-11-01/contentDocuments`.
+      # @param content_type [String] The content type of the file you upload. This parameter is required for A+ content.
+      # @return [Peddler::Response] The API response
       def create_upload_destination_for_resource(marketplace_ids, content_md5, resource, content_type: nil)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -4240,6 +7840,15 @@ module Peddler
         @engine = engine
       end
 
+      # Get the latest collection of vehicles
+      #
+      # @note This operation can make a static sandbox call.
+      # @param page_token [String] A token to fetch a certain page when there are multiple pages worth of results.
+      # @param marketplace_id [String] An identifier for the marketplace in which the resource operates.
+      # @param vehicle_type [String] An identifier for vehicle type.
+      # @param updated_after [String] Date in ISO 8601 format, if provided only vehicles which are modified/added to
+      #   Amazon's catalog after this date will be returned.
+      # @return [Peddler::Response] The API response
       def get_vehicles(marketplace_id, vehicle_type, page_token: nil, updated_after: nil)
         arguments = {
           page_token: Arguments.string("page_token", page_token),
@@ -4250,6 +7859,7 @@ module Peddler
         Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", JSON.generate(arguments)), "vehicles_2024_11_01.get_vehicles")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_vehicles}
       def get_vehicles_pages(marketplace_id, vehicle_type, page_token: nil, updated_after: nil)
         arguments = {
           page_token: Arguments.string("page_token", page_token),
@@ -4266,6 +7876,12 @@ module Peddler
         @engine = engine
       end
 
+      # Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body containing the inventory update data to submit.
+      # @param warehouse_id [String] Identifier for the warehouse for which to update inventory.
+      # @return [Peddler::Response] The API response
       def submit_inventory_update(body, warehouse_id)
         arguments = {
           warehouse_id: Arguments.string("warehouse_id", warehouse_id, required: true),
@@ -4280,6 +7896,12 @@ module Peddler
         @engine = engine
       end
 
+      # Returns purchase order information for the purchaseOrderNumber that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param purchase_order_number [String] The order identifier for the purchase order that you want. Formatting
+      #   Notes: alpha-numeric code.
+      # @return [Peddler::Response] The API response
       def get_order(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4287,6 +7909,28 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_order", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.get_order")
       end
 
+      # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
+      # using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only
+      # the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns
+      # a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific
+      # order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param ship_from_party_id [String] The vendor warehouse identifier for the fulfillment warehouse. If not
+      #   specified, the result will contain orders for all warehouses.
+      # @param status [String] Returns only the purchase orders that match the specified status. If not specified, the
+      #   result will contain orders that match any status.
+      # @param limit [Integer] The limit to the number of purchase orders returned.
+      # @param created_after [String] Purchase orders that became available after this date and time will be included in
+      #   the result. Must be in ISO-8601 date/time format.
+      # @param created_before [String] Purchase orders that became available before this date and time will be included
+      #   in the result. Must be in ISO-8601 date/time format.
+      # @param sort_order [String] Sort the list in ascending or descending order by order creation date.
+      # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
+      #   The token value is returned in the previous API call.
+      # @param include_details [Boolean] When true, returns the complete purchase order details. Otherwise, only
+      #   purchase order numbers are returned.
+      # @return [Peddler::Response] The API response
       def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4301,6 +7945,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_v1.get_orders")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
       def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4315,6 +7960,11 @@ module Peddler
         PAGINATIONS.fetch("vendor_direct_fulfillment_orders_v1.get_orders").pages(@engine, arguments)
       end
 
+      # Submits acknowledgements for one or more purchase orders.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body containing the acknowledgement to an order.
+      # @return [Peddler::Response] The API response
       def submit_acknowledgement(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4328,6 +7978,12 @@ module Peddler
         @engine = engine
       end
 
+      # Returns purchase order information for the purchaseOrderNumber that you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param purchase_order_number [String] The order identifier for the purchase order that you want. Formatting
+      #   Notes: alpha-numeric code.
+      # @return [Peddler::Response] The API response
       def get_order(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4335,6 +7991,28 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_order", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_order")
       end
 
+      # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
+      # using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only
+      # the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns
+      # a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific
+      # order.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param ship_from_party_id [String] The vendor warehouse identifier for the fulfillment warehouse. If not
+      #   specified, the result will contain orders for all warehouses.
+      # @param status [String] Returns only the purchase orders that match the specified status. If not specified, the
+      #   result will contain orders that match any status.
+      # @param limit [Integer] The limit to the number of purchase orders returned.
+      # @param created_after [String] Purchase orders that became available after this date and time will be included in
+      #   the result. Must be in ISO-8601 date/time format.
+      # @param created_before [String] Purchase orders that became available before this date and time will be included
+      #   in the result. Must be in ISO-8601 date/time format.
+      # @param sort_order [String] Sort the list in ascending or descending order by order creation date.
+      # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
+      #   The token value is returned in the previous API call.
+      # @param include_details [Boolean] When true, returns the complete purchase order details. Otherwise, only
+      #   purchase order numbers are returned.
+      # @return [Peddler::Response] The API response
       def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4349,6 +8027,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", JSON.generate(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_orders")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
       def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4363,6 +8042,11 @@ module Peddler
         PAGINATIONS.fetch("vendor_direct_fulfillment_orders_2021_12_28.get_orders").pages(@engine, arguments)
       end
 
+      # Submits acknowledgements for one or more purchase orders.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] The request body containing the acknowledgement to an order
+      # @return [Peddler::Response] The API response
       def submit_acknowledgement(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4376,6 +8060,11 @@ module Peddler
         @engine = engine
       end
 
+      # Submits one or more invoices for a vendor's direct fulfillment orders.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body containing one or more invoices for vendor orders.
+      # @return [Peddler::Response] The API response
       def submit_invoice(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4389,6 +8078,12 @@ module Peddler
         @engine = engine
       end
 
+      # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] The request payload containing parameters for generating test order data
+      #   scenarios.
+      # @return [Peddler::Response] The API response
       def generate_order_scenarios(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4396,6 +8091,13 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios", JSON.generate(arguments)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios")
       end
 
+      # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
+      # successful, also returns the requested test order data.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
+      #   operation.
+      # @return [Peddler::Response] The API response
       def get_order_scenarios(transaction_id)
         arguments = {
           transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
@@ -4409,6 +8111,11 @@ module Peddler
         @engine = engine
       end
 
+      # Returns a customer invoice based on the purchaseOrderNumber that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param purchase_order_number [String] Purchase order number of the shipment for which to return the invoice.
+      # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4416,6 +8123,22 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoice")
       end
 
+      # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
+      # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
+      # search must be no more than 7 days.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param ship_from_party_id [String] The vendor warehouseId for order fulfillment. If not specified, the result
+      #   will contain orders for all warehouses.
+      # @param limit [Integer] The limit to the number of records returned
+      # @param created_after [String] Orders that became available after this date and time will be included in the
+      #   result. Must be in ISO-8601 date/time format.
+      # @param created_before [String] Orders that became available before this date and time will be included in the
+      #   result. Must be in ISO-8601 date/time format.
+      # @param sort_order [String] Sort ASC or DESC by order creation date.
+      # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
+      #   The token value is returned in the previous API call.
+      # @return [Peddler::Response] The API response
       def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4428,6 +8151,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoices")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_customer_invoices}
       def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4440,6 +8164,11 @@ module Peddler
         PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_customer_invoices").pages(@engine, arguments)
       end
 
+      # Returns a packing slip based on the purchaseOrderNumber that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param purchase_order_number [String] The purchaseOrderNumber for the packing slip you want.
+      # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4447,6 +8176,21 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slip", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slip")
       end
 
+      # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
+      # must not be more than 7 days.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param ship_from_party_id [String] The vendor warehouseId for order fulfillment. If not specified the result
+      #   will contain orders for all warehouses.
+      # @param limit [Integer] The limit to the number of records returned
+      # @param created_after [String] Packing slips that became available after this date and time will be included in
+      #   the result. Must be in ISO-8601 date/time format.
+      # @param created_before [String] Packing slips that became available before this date and time will be included in
+      #   the result. Must be in ISO-8601 date/time format.
+      # @param sort_order [String] Sort ASC or DESC by packing slip creation date.
+      # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
+      #   limit. The token value is returned in the previous API call.
+      # @return [Peddler::Response] The API response
       def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4459,6 +8203,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slips")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_packing_slips}
       def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4471,6 +8216,12 @@ module Peddler
         PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_packing_slips").pages(@engine, arguments)
       end
 
+      # Returns a shipping label for the purchaseOrderNumber that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
+      #   It should be the same purchaseOrderNumber as received in the order.
+      # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4478,6 +8229,22 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_label")
       end
 
+      # Returns a list of shipping labels created during the time frame that you specify. You define that time frame
+      # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
+      # search must not be more than 7 days.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param ship_from_party_id [String] The vendor warehouseId for order fulfillment. If not specified, the result
+      #   will contain orders for all warehouses.
+      # @param limit [Integer] The limit to the number of records returned.
+      # @param created_after [String] Shipping labels that became available after this date and time will be included in
+      #   the result. Must be in ISO-8601 date/time format.
+      # @param created_before [String] Shipping labels that became available before this date and time will be included
+      #   in the result. Must be in ISO-8601 date/time format.
+      # @param sort_order [String] Sort ASC or DESC by order creation date.
+      # @param next_token [String] Used for pagination when there are more ship labels than the specified result size
+      #   limit. The token value is returned in the previous API call.
+      # @return [Peddler::Response] The API response
       def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4490,6 +8257,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_labels")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_shipping_labels}
       def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4502,6 +8270,11 @@ module Peddler
         PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_shipping_labels").pages(@engine, arguments)
       end
 
+      # Submits one or more shipment confirmations for vendor orders.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Request body containing the shipment confirmations data.
+      # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4509,6 +8282,13 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations")
       end
 
+      # This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment
+      # status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their
+      # order, when the package is outside of Amazon Network visibility.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Request body containing the shipment status update data.
+      # @return [Peddler::Response] The API response
       def submit_shipment_status_updates(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4516,6 +8296,11 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates")
       end
 
+      # Creates a shipping label for a purchase order and returns a transactionId for reference.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Request body containing one or more shipping labels data.
+      # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4529,6 +8314,11 @@ module Peddler
         @engine = engine
       end
 
+      # Creates a container (pallet) label for the associated shipment package.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] Request body containing the container label data.
+      # @return [Peddler::Response] The API response
       def create_container_label(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4536,6 +8326,13 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_container_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.create_container_label")
       end
 
+      # Creates shipping labels for a purchase order and returns the labels.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param purchase_order_number [String] The purchase order number for which you want to return the shipping
+      #   labels. It should be the same number as the `purchaseOrderNumber` in the order.
+      # @param body [Hash, Array, String] The request payload that contains the parameters for creating shipping labels.
+      # @return [Peddler::Response] The API response
       def create_shipping_labels(purchase_order_number, body)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4544,6 +8341,11 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels")
       end
 
+      # Returns a customer invoice based on the purchaseOrderNumber that you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param purchase_order_number [String] Purchase order number of the shipment for which to return the invoice.
+      # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4551,6 +8353,22 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice")
       end
 
+      # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
+      # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
+      # search must be no more than 7 days.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param ship_from_party_id [String] The vendor warehouseId for order fulfillment. If not specified, the result
+      #   will contain orders for all warehouses.
+      # @param limit [Integer] The limit to the number of records returned
+      # @param created_after [String] Orders that became available after this date and time will be included in the
+      #   result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param created_before [String] Orders that became available before this date and time will be included in the
+      #   result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param sort_order [String] Sort ASC or DESC by order creation date.
+      # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
+      #   The token value is returned in the previous API call.
+      # @return [Peddler::Response] The API response
       def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4563,6 +8381,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_customer_invoices}
       def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4575,6 +8394,11 @@ module Peddler
         PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices").pages(@engine, arguments)
       end
 
+      # Returns a packing slip based on the purchaseOrderNumber that you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param purchase_order_number [String] The `purchaseOrderNumber` for the packing slip that you want.
+      # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4582,6 +8406,21 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip")
       end
 
+      # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
+      # must not be more than 7 days.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param ship_from_party_id [String] The vendor `warehouseId` for order fulfillment. If not specified, the result
+      #   contains orders for all warehouses.
+      # @param limit [Integer] The maximum number of records to return.
+      # @param created_after [String] Packing slips that become available after this date and time will be included in
+      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param created_before [String] Packing slips that became available before this date and time will be included in
+      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param sort_order [String] The packing slip creation dates, which are sorted by ascending or descending order.
+      # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
+      #   limit. The token value is returned in the previous API call.
+      # @return [Peddler::Response] The API response
       def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4594,6 +8433,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_packing_slips}
       def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4606,6 +8446,12 @@ module Peddler
         PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips").pages(@engine, arguments)
       end
 
+      # Returns a shipping label for the `purchaseOrderNumber` that you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
+      #   It should be the same `purchaseOrderNumber` that you received in the order.
+      # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4613,6 +8459,24 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label")
       end
 
+      # Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and
+      # `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to
+      # search must not be more than seven days.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param ship_from_party_id [String] The vendor `warehouseId` for order fulfillment. If not specified, the result
+      #   contains orders for all warehouses.
+      # @param limit [Integer] The limit to the number of records returned.
+      # @param created_after [String] Shipping labels that became available after this date and time will be included in
+      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param created_before [String] Shipping labels that became available before this date and time will be included
+      #   in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
+      #   format.
+      # @param sort_order [String] The sort order creation date. You can choose between ascending (`ASC`) or descending
+      #   (`DESC`) sort order.
+      # @param next_token [String] Used for pagination when there are more ship labels than the specified result size
+      #   limit. The token value is returned in the previous API call.
+      # @return [Peddler::Response] The API response
       def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4625,6 +8489,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_shipping_labels}
       def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
@@ -4637,6 +8502,11 @@ module Peddler
         PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels").pages(@engine, arguments)
       end
 
+      # Submits one or more shipment confirmations for vendor orders.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] Request body containing the shipment confirmations data.
+      # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4644,6 +8514,13 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations")
       end
 
+      # This operation is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API submits a shipment
+      # status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their
+      # order, when the package is outside of Amazon Network visibility.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] Request body containing the shipment status update data.
+      # @return [Peddler::Response] The API response
       def submit_shipment_status_updates(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4651,6 +8528,11 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates", JSON.generate(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates")
       end
 
+      # Creates a shipping label for a purchase order and returns a `transactionId` for reference.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash, Array, String] The request body that contains the shipping labels data.
+      # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4664,6 +8546,12 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the status of the transaction indicated by the specified transactionId.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param transaction_id [String] Previously returned in the response to the POST request of a specific
+      #   transaction.
+      # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id)
         arguments = {
           transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
@@ -4677,6 +8565,12 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the status of the transaction indicated by the specified transactionId.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param transaction_id [String] Previously returned in the response to the POST request of a specific
+      #   transaction.
+      # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id)
         arguments = {
           transaction_id: Arguments.string("transaction_id", transaction_id, required: true),
@@ -4690,6 +8584,11 @@ module Peddler
         @engine = engine
       end
 
+      # Submit new invoices to Amazon.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] The request body containing the invoice data to submit.
+      # @return [Peddler::Response] The API response
       def submit_invoices(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4703,6 +8602,12 @@ module Peddler
         @engine = engine
       end
 
+      # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param purchase_order_number [String] The purchase order identifier for the order that you want. Formatting
+      #   Notes: 8-character alpha-numeric code.
+      # @return [Peddler::Response] The API response
       def get_purchase_order(purchase_order_number)
         arguments = {
           purchase_order_number: Arguments.string("purchase_order_number", purchase_order_number, required: true),
@@ -4710,6 +8615,39 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_order", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_order")
       end
 
+      # Returns a list of purchase orders created or changed during the time frame that you specify. You define the time
+      # frame using the `createdAfter`, `createdBefore`, `changedAfter` and `changedBefore` parameters. The date range
+      # must not exceed 7 days and is available to pull data from the past 6 months. You can choose to get only the
+      # purchase order numbers by setting `includeDetails` to false. You can then use the `getPurchaseOrder` operation
+      # to receive details for a specific purchase order.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param limit [Integer] The limit to the number of records returned. Default value is 100 records.
+      # @param created_after [String] Purchase orders that became available after this time will be included in the
+      #   result. Must be in ISO-8601 date/time format.
+      # @param created_before [String] Purchase orders that became available before this time will be included in the
+      #   result. Must be in ISO-8601 date/time format.
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param next_token [String] Used for pagination when there is more purchase orders than the specified result size
+      #   limit. The token value is returned in the previous API call
+      # @param include_details [Boolean] When true, returns purchase orders with complete details. Otherwise, only
+      #   purchase order numbers are returned. Default value is true.
+      # @param changed_after [String] Purchase orders that changed after this timestamp will be included in the result.
+      #   Must be in ISO-8601 date/time format.
+      # @param changed_before [String] Purchase orders that changed before this timestamp will be included in the
+      #   result. Must be in ISO-8601 date/time format.
+      # @param po_item_state [String] Current state of the purchase order item. If this value is Cancelled, this API
+      #   will return purchase orders which have one or more items cancelled by Amazon with updated item quantity as
+      #   zero.
+      # @param is_po_changed [Boolean] When true, returns purchase orders which were modified after the order was
+      #   placed. Vendors are required to pull the changed purchase order and fulfill the updated purchase order and not
+      #   the original one. Default value is false.
+      # @param purchase_order_state [String] Filters purchase orders based on the purchase order state.
+      # @param ordering_vendor_code [String] Filters purchase orders based on the specified ordering vendor code. This
+      #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all
+      #   purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client
+      #   application are returned.
+      # @return [Peddler::Response] The API response
       def get_purchase_orders(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil)
         arguments = {
           limit: Arguments.integer("limit", limit),
@@ -4728,6 +8666,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_orders")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_purchase_orders}
       def get_purchase_orders_pages(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil)
         arguments = {
           limit: Arguments.integer("limit", limit),
@@ -4746,6 +8685,41 @@ module Peddler
         PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders").pages(@engine, arguments)
       end
 
+      # Returns purchase order statuses based on the filters that you specify. Date range to search must not be more
+      # than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase
+      # order status by providing the purchase order number.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param limit [Integer] The limit to the number of records returned. Default value is 100 records.
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param next_token [String] Used for pagination when there are more purchase orders than the specified result
+      #   size limit.
+      # @param created_after [String] Purchase orders that became available after this timestamp will be included in the
+      #   result. Must be in ISO-8601 date/time format.
+      # @param created_before [String] Purchase orders that became available before this timestamp will be included in
+      #   the result. Must be in ISO-8601 date/time format.
+      # @param updated_after [String] Purchase orders for which the last purchase order update happened after this
+      #   timestamp will be included in the result. Must be in ISO-8601 date/time format.
+      # @param updated_before [String] Purchase orders for which the last purchase order update happened before this
+      #   timestamp will be included in the result. Must be in ISO-8601 date/time format.
+      # @param purchase_order_number [String] Provides purchase order status for the specified purchase order number.
+      # @param purchase_order_status [String] Filters purchase orders based on the specified purchase order status. If
+      #   not included in filter, this will return purchase orders for all statuses.
+      # @param item_confirmation_status [String] Filters purchase orders based on their item confirmation status. If the
+      #   item confirmation status is not included in the filter, purchase orders for all confirmation statuses are
+      #   included.
+      # @param item_receive_status [String] Filters purchase orders based on the purchase order's item receive status.
+      #   If the item receive status is not included in the filter, purchase orders for all receive statuses are
+      #   included.
+      # @param ordering_vendor_code [String] Filters purchase orders based on the specified ordering vendor code. This
+      #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in filter, all purchase
+      #   orders for all the vendor codes that exist in the vendor group used to authorize API client application are
+      #   returned.
+      # @param ship_to_party_id [String] Filters purchase orders for a specific buyer's Fulfillment Center/warehouse by
+      #   providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order.
+      #   If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor
+      #   group purchase orders.
+      # @return [Peddler::Response] The API response
       def get_purchase_orders_status(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil)
         arguments = {
           limit: Arguments.integer("limit", limit),
@@ -4765,6 +8739,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", JSON.generate(arguments)), "vendor_orders_v1.get_purchase_orders_status")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_purchase_orders_status}
       def get_purchase_orders_status_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil)
         arguments = {
           limit: Arguments.integer("limit", limit),
@@ -4784,6 +8759,11 @@ module Peddler
         PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders_status").pages(@engine, arguments)
       end
 
+      # Submits acknowledgements for one or more purchase orders.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] Submits acknowledgements for one or more purchase orders from a vendor.
+      # @return [Peddler::Response] The API response
       def submit_acknowledgement(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4797,6 +8777,53 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the Details about Shipment, Carrier Details, status of the shipment, container details and other details
+      # related to shipment based on the filter parameters value that you specify.
+      #
+      # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param next_token [String] Used for pagination when there are more shipments than the specified result size
+      #   limit.
+      # @param created_after [String] Get Shipment Details that became available after this timestamp will be included
+      #   in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param created_before [String] Get Shipment Details that became available before this timestamp will be included
+      #   in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param shipment_confirmed_before [String] Get Shipment Details by passing Shipment confirmed create Date Before.
+      #   Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param shipment_confirmed_after [String] Get Shipment Details by passing Shipment confirmed create Date After.
+      #   Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param package_label_created_before [String] Get Shipment Details by passing Package label create Date by buyer.
+      #   Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param package_label_created_after [String] Get Shipment Details by passing Package label create Date After by
+      #   buyer. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param shipped_before [String] Get Shipment Details by passing Shipped Date Before. Must be in
+      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param shipped_after [String] Get Shipment Details by passing Shipped Date After. Must be in
+      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param estimated_delivery_before [String] Get Shipment Details by passing Estimated Delivery Date Before. Must
+      #   be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param estimated_delivery_after [String] Get Shipment Details by passing Estimated Delivery Date After. Must be
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param shipment_delivery_before [String] Get Shipment Details by passing Shipment Delivery Date Before. Must be
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param shipment_delivery_after [String] Get Shipment Details by passing Shipment Delivery Date After. Must be in
+      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param requested_pick_up_before [String] Get Shipment Details by passing Before Requested pickup date. Must be
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param requested_pick_up_after [String] Get Shipment Details by passing After Requested pickup date. Must be in
+      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param scheduled_pick_up_before [String] Get Shipment Details by passing Before scheduled pickup date. Must be
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param scheduled_pick_up_after [String] Get Shipment Details by passing After Scheduled pickup date. Must be in
+      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      # @param current_shipment_status [String] Get Shipment Details by passing Current shipment status.
+      # @param vendor_shipment_identifier [String] Get Shipment Details by passing Vendor Shipment ID
+      # @param buyer_reference_number [String] Get Shipment Details by passing buyer Reference ID
+      # @param buyer_warehouse_code [String] Get Shipping Details based on buyer warehouse code. This value should be
+      #   same as 'shipToParty.partyId' in the Shipment.
+      # @param seller_warehouse_code [String] Get Shipping Details based on vendor warehouse code. This value should be
+      #   same as 'sellingParty.partyId' in the Shipment.
+      # @return [Peddler::Response] The API response
       def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil)
         arguments = {
           limit: Arguments.integer("limit", limit),
@@ -4827,6 +8854,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", JSON.generate(arguments)), "vendor_shipments_v1.get_shipment_details")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_details}
       def get_shipment_details_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil)
         arguments = {
           limit: Arguments.integer("limit", limit),
@@ -4857,6 +8885,24 @@ module Peddler
         PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_details").pages(@engine, arguments)
       end
 
+      # Returns small parcel shipment labels based on the filters that you specify.
+      #
+      # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
+      # @param sort_order [String] Sort the list by shipment label creation date in ascending or descending order.
+      # @param next_token [String] A token that you use to retrieve the next page of results. The response includes
+      #   `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of
+      #   results, call the operation with this token and include the same arguments as the call that produced the
+      #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
+      #   return empty pages.
+      # @param label_created_after [String] Shipment labels created after this time will be included in the result. This
+      #   field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
+      # @param label_created_before [String] Shipment labels created before this time will be included in the result.
+      #   This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
+      # @param buyer_reference_number [String] Get Shipment labels by passing buyer reference number.
+      # @param vendor_shipment_identifier [String] Get Shipment labels by passing vendor shipment identifier.
+      # @param seller_warehouse_code [String] Get Shipping labels based on vendor warehouse code. This value must be
+      #   same as the `sellingParty.partyId` in the shipment.
+      # @return [Peddler::Response] The API response
       def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil)
         arguments = {
           limit: Arguments.integer("limit", limit),
@@ -4871,6 +8917,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", JSON.generate(arguments)), "vendor_shipments_v1.get_shipment_labels")
       end
 
+      # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_labels}
       def get_shipment_labels_pages(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil)
         arguments = {
           limit: Arguments.integer("limit", limit),
@@ -4885,6 +8932,11 @@ module Peddler
         PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_labels").pages(@engine, arguments)
       end
 
+      # Submits one or more shipment confirmations for vendor orders.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash, Array, String] A request to submit shipment confirmation.
+      # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4892,6 +8944,10 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipment_confirmations", JSON.generate(arguments)), "vendor_shipments_v1.submit_shipment_confirmations")
       end
 
+      # Submits one or more shipment request for vendor Orders.
+      #
+      # @param body [Hash, Array, String] A request to submit shipment request.
+      # @return [Peddler::Response] The API response
       def submit_shipments(body)
         arguments = {
           body: Arguments.body("body", body, required: true),
@@ -4905,6 +8961,11 @@ module Peddler
         @engine = engine
       end
 
+      # Returns the status of the transaction that you specify.
+      #
+      # @param transaction_id [String] The GUID provided by Amazon in the 'transactionId' field in response to the post
+      #   request of a specific transaction.
+      # @return [Peddler::Response] The API response
       def get_transaction(transaction_id)
         arguments = {
           transaction_id: Arguments.string("transaction_id", transaction_id, required: true),

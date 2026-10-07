@@ -2,7 +2,7 @@
 use crate::{
     GenerationError,
     clients::{Operation, Parameter, pascal, rust_type},
-    format_source,
+    docs, format_source,
     manifest::ModelSpec,
     pagination::{self, Resolved},
 };
@@ -558,12 +558,14 @@ pub(crate) fn ruby(
             } = RubyMethod::of(op);
             let key = format!("{}.{}", api.module, op.name);
             // The response carries its operation key so Ruby can resolve the typed model.
+            ruby.push_str(&docs::operation(op));
             writeln!(ruby,"      def {}{parameters}\n{arguments}        Response.from_parts(@engine.operation({key:?}, JSON.generate(arguments)), {key:?})\n      end\n",op.name).unwrap();
             writeln!(rbs, "      def {}: ({types}) -> Response", op.name).unwrap();
             if let Some(mapped) = resolved
                 .iter()
                 .find(|r| r.module == api.module && r.name == op.name)
             {
+                ruby.push_str(&docs::pages(op));
                 writeln!(ruby,"      def {}_pages{parameters}\n{arguments}        PAGINATIONS.fetch({:?}).pages(@engine, arguments)\n      end\n",op.name,mapped.key).unwrap();
                 writeln!(
                     rbs,

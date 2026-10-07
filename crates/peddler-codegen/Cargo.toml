@@ -13,6 +13,7 @@ syn = { version = "2", features = ["full"] }
 quote = "1"
 prettyplease = "=0.2.37"
 heck = "0.5"
+regress = "0.12"
 tempfile = "3"
 
 # Development only: its own workspace and lockfile, so the gem and the crate ship without it.

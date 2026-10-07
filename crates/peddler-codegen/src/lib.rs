@@ -6,6 +6,7 @@ use std::{
 
 pub mod checkout;
 pub mod clients;
+mod docs;
 pub mod facades;
 pub mod manifest;
 pub mod models;

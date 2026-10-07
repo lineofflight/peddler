@@ -9,6 +9,9 @@ pub struct Operation {
     pub name: String,
     pub method: String,
     pub path: String,
+    pub description: String,
+    /// The kind of sandbox call it can make, if any: "static" or "dynamic"
+    pub sandbox: Option<&'static str>,
     pub parameters: Vec<Parameter>,
     pub successes: Vec<(u16, Option<String>)>,
 }
@@ -19,6 +22,7 @@ pub struct Parameter {
     /// Its place among the spec's parameters. `Operation::parameters` puts a body last.
     pub position: usize,
     pub location: String,
+    pub description: Option<String>,
     pub required: bool,
     pub schema: Value,
     pub csv: bool,
@@ -82,6 +86,11 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
                 id: id.to_owned(),
                 method: method.to_ascii_uppercase(),
                 path: path.clone(),
+                description: operation["description"]
+                    .as_str()
+                    .unwrap_or_default()
+                    .to_owned(),
+                sandbox: sandbox(methods, operation),
                 parameters: parameters(spec, api, &shared, operation, id)?,
                 successes: successes(spec, operation, id)?,
             });
@@ -89,6 +98,23 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
     }
     operations.sort_by(|a, b| a.name.cmp(&b.name));
     Ok(operations)
+}
+/// The kind of sandbox call an operation can make, as v5 read it: static if its first
+/// success response has a static sandbox, or else dynamic if it or its path has one.
+fn sandbox(path: &Value, operation: &Value) -> Option<&'static str> {
+    let set = |value: &Value| !matches!(value, Value::Null | Value::Bool(false));
+    let responses = operation["responses"].as_object();
+    let success = responses.and_then(|all| all.iter().find(|(code, _)| code.starts_with('2')));
+    if success.is_some_and(|(_, response)| set(&response["x-amzn-api-sandbox"]["static"])) {
+        Some("static")
+    } else if [path, operation]
+        .iter()
+        .any(|value| set(&value["x-amzn-api-sandbox"]["dynamic"]))
+    {
+        Some("dynamic")
+    } else {
+        None
+    }
 }
 /// An operation's parameters: its path's, then its own, with a body last.
 fn parameters(
@@ -117,6 +143,9 @@ fn parameters(
     parameters.extend(body);
     Ok(parameters)
 }
+fn description(value: &Value) -> Option<String> {
+    value["description"].as_str().map(str::to_owned)
+}
 fn wire_name(value: &Value) -> Result<String, GenerationError> {
     let name = value["name"].as_str();
     Ok(name
@@ -144,6 +173,7 @@ fn body_parameter(
         wire_name: wire_name(value)?,
         position,
         location: "body".into(),
+        description: description(value),
         required: value["required"] == true,
         schema,
         csv: false,
@@ -213,6 +243,7 @@ fn parameter(
         wire_name,
         position,
         location,
+        description: description(value),
         required,
         schema,
         csv,

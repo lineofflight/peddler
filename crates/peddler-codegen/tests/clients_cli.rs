@@ -14,9 +14,21 @@ fn spec(operation: &str) -> Value {
     ];
     if !catalog {
         parameters.push(json!({"in":"body","name":"patchRequest","required":true,"schema":{"$ref":"#/definitions/ListingsItemPatchRequest"}}));
-        parameters.push(json!({"in":"path","name":"sku","type":"string","required":true}));
+        parameters.push(json!({"in":"path","name":"sku","type":"string","required":true,"description":"The  seller's\nidentifier for the listing, which is a <a href='https://example.com/sku'>SKU</a>. It is __unique__ to the seller."}));
     }
-    json!({"swagger":"2.0","info":{"title":"Synthetic","version":"1"},"produces":["application/json"],"consumes":["application/json"],"paths":{if catalog {"/items/{asin}"} else {"/items/{sellerId}/{sku}"}:{if catalog {"get"} else {"patch"}:{"operationId":operation,"parameters":parameters,"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}}}},"definitions":{"Item":{"type":"object","required":["sku"],"properties":{"sku":{"type":"string"}}},"ListingsItemPatchRequest":{"type":"object","required":["patches"],"properties":{"patches":{"type":"array","items":{"type":"string"}}}}}})
+    let description = if catalog {
+        "Returns an item."
+    } else {
+        "Updates part of a listing. Refer to the [Listings Items guide](doc:listings-items-api-v2021-08-01-use-case-guide).\n**Note:** Only the fields that you send change.\n\n**Usage Plan:**\n\n| Rate | Burst |\n| 5 | 10 |"
+    };
+    let mut spec = json!({"swagger":"2.0","info":{"title":"Synthetic","version":"1"},"produces":["application/json"],"consumes":["application/json"],"paths":{if catalog {"/items/{asin}"} else {"/items/{sellerId}/{sku}"}:{if catalog {"get"} else {"patch"}:{"operationId":operation,"parameters":parameters,"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}}}},"definitions":{"Item":{"type":"object","required":["sku"],"properties":{"sku":{"type":"string"}}},"ListingsItemPatchRequest":{"type":"object","required":["patches"],"properties":{"patches":{"type":"array","items":{"type":"string"}}}}}});
+    for (_, methods) in spec["paths"].as_object_mut().unwrap() {
+        for (_, operation) in methods.as_object_mut().unwrap() {
+            operation["description"] = json!(description);
+            operation["responses"]["200"]["x-amzn-api-sandbox"] = json!({"static": [{}]});
+        }
+    }
+    spec
 }
 fn git(root: &Path, args: &[&str]) -> String {
     let output = Command::new("git")
@@ -99,8 +111,24 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     .unwrap();
     // v5's signature: required arguments positional in the spec's order, the body under
     // the spec's name, optional ones as keywords. Each goes through its coercion.
+    // Above it, v5's comment: the description up to its usage plan, links as YARD's, a
+    // note in a paragraph of its own, and lines of at most 120 columns.
     let ruby = &rendered[Path::new("lib/peddler/native/apis.rb")];
     assert!(ruby.contains(concat!(
+        "      # Updates part of a listing. Refer to the\n",
+        "      # {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2021-08-01-use-case-guide Listings Items\n",
+        "      # guide}.\n",
+        "      #\n",
+        "      # **Note:** Only the fields that you send change.\n",
+        "      #\n",
+        "      # @note This operation can make a static sandbox call.\n",
+        "      # @param seller_id [String]\n",
+        "      # @param marketplace_ids [Array<String>]\n",
+        "      # @param included_data [Array<String>]\n",
+        "      # @param patch_request [Hash, Array, String]\n",
+        "      # @param sku [String] The seller's identifier for the listing, which is a {https://example.com/sku SKU}. It is\n",
+        "      #   **unique** to the seller.\n",
+        "      # @return [Peddler::Response] The API response\n",
         "      def patch_listings_item(seller_id, marketplace_ids, patch_request, sku, included_data: [\"issues\"])\n",
         "        arguments = {\n",
         "          seller_id: Arguments.string(\"seller_id\", seller_id, required: true),\n",
