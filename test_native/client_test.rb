@@ -171,6 +171,88 @@ class ClientTest < NativeTest
       worker&.join
     end
   end
+
+  # Ruby wakes a thread for more than an exception. Only an exception ends its call: the server answers each
+  # request below after the wake-up was dealt with.
+
+  def test_a_trapped_signal_does_not_cancel_the_request_in_flight
+    trapped = Queue.new
+    previous = trap("USR1") { trapped << true }
+    arrived = Queue.new
+    handler = lambda do |socket, *|
+      arrived << true
+      Timeout.timeout(3) { trapped.pop }
+      respond(socket)
+    end
+    serve(handler: handler) do |url|
+      signaller = Thread.new do
+        Timeout.timeout(3) { arrived.pop }
+        Process.kill("USR1", Process.pid)
+      end
+
+      # Ruby runs a trap on the main thread, which is the thread of this test.
+      assert_equal(200, client(url).request("POST", "/", body: {}).status)
+      signaller.join
+    end
+  ensure
+    trap("USR1", previous || "DEFAULT")
+  end
+
+  def test_thread_wakeup_does_not_cancel_the_request_in_flight
+    arrived = Queue.new
+    release = Queue.new
+    handler = lambda do |socket, *|
+      arrived << true
+      Timeout.timeout(3) { release.pop }
+      respond(socket)
+    end
+    serve(handler: handler) do |url|
+      instance = client(url)
+      worker = Thread.new { instance.request("GET", "/") }
+      Timeout.timeout(3) { arrived.pop }
+      3.times { worker.wakeup }
+      release << true
+
+      assert(worker.join(3), "request did not finish")
+      assert_equal(200, worker.value.status)
+    ensure
+      worker&.kill
+      worker&.join
+    end
+  end
+
+  def test_a_masked_thread_raise_waits_for_the_request_in_flight
+    arrived = Queue.new
+    release = Queue.new
+    handler = lambda do |socket, *|
+      arrived << true
+      Timeout.timeout(3) { release.pop }
+      respond(socket)
+    end
+    serve(handler: handler) do |url|
+      instance = client(url)
+      worker = Thread.new do
+        response = nil
+        begin
+          Thread.handle_interrupt(RuntimeError => :never) { response = instance.request("GET", "/") }
+        rescue RuntimeError => error
+          [response, error]
+        end
+      end
+      Timeout.timeout(3) { arrived.pop }
+      worker.raise("deferred")
+      release << true
+
+      assert(worker.join(3), "request did not finish")
+      response, error = worker.value
+
+      assert_equal(200, response.status)
+      assert_equal("deferred", error.message)
+    ensure
+      worker&.kill
+      worker&.join
+    end
+  end
 end
 
 # rubocop:enable Minitest/MultipleAssertions

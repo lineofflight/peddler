@@ -328,6 +328,30 @@ class DocumentsTest < NativeTest
     end
   end
 
+  def test_a_wakeup_leaves_the_stream_open_and_in_its_place
+    started = Queue.new
+    release = Queue.new
+    serve(handler: lambda { |socket, *|
+      socket.write("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n\r\n5\r\nfirst\r\n")
+      started << true
+      Timeout.timeout(3) { release.pop }
+      socket.write("6\r\nsecond\r\n0\r\n\r\n")
+    }) do |url|
+      stream = client(url).download_document(url)
+      thread = Thread.new { stream.each_chunk.to_a.join }
+      Timeout.timeout(3) { started.pop }
+      sleep(0.05) # The reader has the first chunk and waits for the next.
+      3.times { thread.wakeup }
+      release << true
+
+      assert(thread.join(3), "read did not finish")
+      assert_equal("firstsecond", thread.value)
+    ensure
+      thread&.kill
+      thread&.join
+    end
+  end
+
   def test_concurrent_read_fails_and_close_cancels_the_active_socket
     started = Queue.new
     serve(handler: lambda { |socket, *_|

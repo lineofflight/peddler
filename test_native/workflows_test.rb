@@ -349,6 +349,30 @@ class WorkflowsTest < NativeTest
     end
   end
 
+  def test_a_wakeup_does_not_end_a_wait
+    polls = Queue.new
+    status = "IN_PROGRESS"
+    handler = lambda do |*|
+      polls << true
+      [200, report(status)]
+    end
+    route_server(handler) do |url, _|
+      instance = client(url)
+      thread = Thread.new { instance.wait_for_report("r1", interval: 0.02, timeout: 5) }
+      2.times do
+        Timeout.timeout(3) { polls.pop }
+        thread.wakeup
+      end
+      status = "DONE"
+
+      assert(thread.join(3), "wait did not finish")
+      assert_equal("DONE", thread.value.to_h.fetch("processingStatus"))
+    ensure
+      thread&.kill
+      thread&.join
+    end
+  end
+
   def feed_handler(upload_status: 200, upload_body: "", **options)
     lambda do |path, base|
       if path.start_with?("/signed")

@@ -6,53 +6,74 @@ use std::{
     ffi::c_void,
     future::Future,
     panic::{AssertUnwindSafe, catch_unwind},
+    pin::Pin,
 };
 use tokio::sync::Notify;
 
-struct Invocation<F, T> {
+struct Invocation<F: Future> {
     shared: &'static Shared,
-    future: Option<F>,
-    cancelled: *const Notify,
-    result: Option<Result<T, ()>>,
+    // Pinned, so a pass that a wake-up ends is followed by another on the same work.
+    future: Pin<Box<F>>,
+    woken: *const Notify,
+    // Empty until the work ends. A panic is `Err`.
+    result: Option<Result<F::Output, ()>>,
 }
 
-pub(super) fn wait<F, T>(
+/// Runs `future` to its end with the GVL released. Ruby wakes the thread for an
+/// exception another thread raises in it, a kill, a signal and `Thread#wakeup`. Only
+/// what Ruby then raises ends the work: the future is dropped and the exception goes
+/// on. After a wake-up with nothing to raise (a trap that returns, a wakeup, an
+/// exception the caller has masked) the same work goes on.
+pub(super) fn wait<F>(
     ruby: &Ruby,
     failure_class: &str,
     shared: &'static Shared,
     future: F,
-) -> Result<T, Error>
+) -> Result<F::Output, Error>
 where
-    F: Future<Output = T> + Send + 'static,
-    T: Send + 'static,
+    F: Future + Send + 'static,
+    F::Output: Send + 'static,
 {
     // Allocations stay outside protect so Ruby longjmp cannot skip their Drop.
-    let cancelled = Box::new(Notify::new());
+    let woken = Box::new(Notify::new());
     let mut invocation = Box::new(Invocation {
         shared,
-        future: Some(future),
-        cancelled: &*cancelled,
+        future: Box::pin(future),
+        woken: &*woken,
         result: None,
     });
     let nil = ruby.qnil().as_raw();
-    magnus::rb_sys::protect(|| {
-        // SAFETY: callback and unblock share only a separate Notify allocation;
-        // all work owns Rust data and no Ruby calls occur under released GVL.
-        unsafe {
-            rb_sys::rb_thread_call_without_gvl(
-                Some(run::<F, T>),
-                (&mut *invocation as *mut Invocation<F, T>).cast(),
-                Some(unblock),
-                (&*cancelled as *const Notify).cast_mut().cast(),
-            );
+    let outcome = loop {
+        let pass = magnus::rb_sys::protect(|| {
+            // SAFETY: callback and unblock share only a separate Notify allocation;
+            // all work owns Rust data and no Ruby calls occur under released GVL.
+            // Ruby checks for interrupts when the callback returns and raises there.
+            unsafe {
+                rb_sys::rb_thread_call_without_gvl(
+                    Some(run::<F>),
+                    (&mut *invocation as *mut Invocation<F>).cast(),
+                    Some(unblock),
+                    (&*woken as *const Notify).cast_mut().cast(),
+                );
+            }
+            nil
+        });
+        if let Err(error) = pass {
+            break Err(error);
         }
-        nil
-    })?;
-    invocation
-        .result
-        .take()
-        .unwrap_or(Err(()))
-        .map_err(|()| native_error(ruby, failure_class, "native work cancelled or failed"))
+        if let Some(result) = invocation.result.take() {
+            break Ok(result);
+        }
+    };
+    // Unfinished work is dropped where it ran, inside the runtime.
+    let dropped = {
+        let _context = shared.runtime.enter();
+        catch_unwind(AssertUnwindSafe(|| drop(invocation)))
+    };
+    if let Err(payload) = dropped {
+        std::mem::forget(payload);
+    }
+    outcome?.map_err(|()| native_error(ruby, failure_class, "native work failed"))
 }
 /// Polls `future` once, with the GVL held, and returns its output if it is ready, so a
 /// row the stream has buffered doesn't wait for the GVL again. The work is Rust only:
@@ -68,7 +89,7 @@ pub(super) fn now<F: Future>(
     let _context = shared.runtime.enter();
     catch_unwind(AssertUnwindSafe(|| future.now_or_never())).map_err(|payload| {
         std::mem::forget(payload);
-        native_error(ruby, failure_class, "native work cancelled or failed")
+        native_error(ruby, failure_class, "native work failed")
     })
 }
 unsafe extern "C" fn unblock(data: *mut c_void) {
@@ -76,28 +97,31 @@ unsafe extern "C" fn unblock(data: *mut c_void) {
     // before the work waits leaves a permit, so it isn't lost.
     unsafe { &*data.cast::<Notify>() }.notify_one();
 }
-unsafe extern "C" fn run<F: Future<Output = T> + Send + 'static, T: Send + 'static>(
-    data: *mut c_void,
-) -> *mut c_void {
+/// One pass: until the work ends or Ruby wakes the thread. The work is polled before
+/// the wake-up, so every pass moves it on however often the thread is woken.
+unsafe extern "C" fn run<F>(data: *mut c_void) -> *mut c_void
+where
+    F: Future + Send + 'static,
+    F::Output: Send + 'static,
+{
     // SAFETY: only this callback mutates Invocation during the synchronous wait.
-    let invocation = unsafe { &mut *data.cast::<Invocation<F, T>>() };
-    let result = catch_unwind(AssertUnwindSafe(|| {
-        let future = invocation.future.take().expect("work runs once");
-        // SAFETY: the separate Notify outlives this callback.
-        let cancelled = unsafe { &*invocation.cancelled };
+    let invocation = unsafe { &mut *data.cast::<Invocation<F>>() };
+    // SAFETY: the separate Notify outlives this callback.
+    let woken = unsafe { &*invocation.woken };
+    let pass = catch_unwind(AssertUnwindSafe(|| {
         invocation.shared.runtime.block_on(async {
             tokio::select! { biased;
-                () = cancelled.notified() => Err(()),
-                result = future => Ok(result),
+                result = invocation.future.as_mut() => Some(result),
+                () = woken.notified() => None,
             }
         })
     }));
-    invocation.result = Some(match result {
-        Ok(value) => value,
+    invocation.result = match pass {
+        Ok(result) => result.map(Ok),
         Err(payload) => {
             std::mem::forget(payload);
-            Err(())
+            Some(Err(()))
         }
-    });
+    };
     std::ptr::null_mut()
 }
