@@ -45,7 +45,9 @@ if binary
   match = extensions.first.match(%r{/lib/peddler/(?:(\d+\.\d+)/)?peddler_native\.(?:bundle|so)\z})
   check(match && (match[1].nil? || match[1] == abi), "binary is the Ruby #{abi} build (#{extensions.first[/lib\/peddler.*/]})")
 end
-check(spec.version.to_s.match?(/\A\d+\.\d+\.\d+\z/), "installed gem version is #{spec.version}")
+# Any version RubyGems takes, a prerelease such as 6.0.0.pre.1 included.
+check(Gem::Version.correct?(Peddler::VERSION) && spec.version == Gem::Version.new(Peddler::VERSION),
+  "installed gem version is #{spec.version}")
 check(!defined?(HTTP), "HTTP.rb is not loaded by peddler")
 
 # Serves each queued handler once, in order, on a loopback port.

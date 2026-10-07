@@ -79,6 +79,12 @@ jobs:
         run: |
           echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           echo "version_number=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          # RubyGems reads a version with a letter in it, such as 6.0.0.pre.1, as a prerelease.
+          if [[ "${GITHUB_REF#refs/tags/v}" =~ [A-Za-z] ]]; then
+            echo "prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "prerelease=false" >> $GITHUB_OUTPUT
+          fi
       - name: Extract changelog entry
         id: changelog
         run: |
@@ -99,4 +105,4 @@ jobs:
           name: ${{ steps.extract_version.outputs.version }}
           body_path: release_notes.md
           draft: false
-          prerelease: false
+          prerelease: ${{ steps.extract_version.outputs.prerelease }}
