@@ -4,8 +4,9 @@ module Peddler
   # Requests Login with Amazon (LWA) tokens
   #
   # Every grant makes one request and keeps nothing. Application code owns consent, state verification, token
-  # storage and when to ask for a new access token; {#token_source} is an optional in-process helper for the last. A rejection raises {Peddler::AuthenticationError}, whose `code`
-  # is what Amazon names as the problem, such as "invalid_client" or "invalid_grant".
+  # storage and when to ask for a new access token; {#token_source} is an optional in-process helper for the last.
+  # A rejection raises {Peddler::AuthenticationError}, whose `code` is what Amazon names as the problem, such as
+  # "invalid_client" or "invalid_grant".
   #
   # @example
   #   lwa = Peddler::LWA.new
@@ -15,14 +16,28 @@ module Peddler
   class LWA
     DEFAULT_ENDPOINT = "https://api.amazon.com/auth/o2/token"
 
+    # What a grant returns
+    #
+    # Nothing of a token shows when one is inspected.
+    #
+    # @example
+    #   tokens = lwa.refresh(refresh_token: seller.refresh_token)
+    #   client = Peddler::Client.new(region: "eu-west-1", access_token: tokens.access_token)
     class Tokens
+      # @return [String] the token a client sends to the Selling Partner API
+      attr_reader :access_token
+
       # @return [String, nil] nil when LWA sends none, as for a grantless token
       attr_reader :refresh_token
 
+      # @return [String] "bearer"
+      attr_reader :token_type
+
+      # @return [Integer] the seconds the access token lasts
+      attr_reader :expires_in
+
       # @return [String, nil] the scope granted, which LWA sends with a grantless token
       attr_reader :scope
-
-      attr_reader :access_token, :token_type, :expires_in
 
       def initialize(access_token, refresh_token, token_type, expires_in, scope = nil)
         @access_token = access_token
@@ -32,6 +47,7 @@ module Peddler
         @scope = scope
       end
 
+      # @return [Hash{Symbol => String, Integer, nil}]
       def to_h
         { access_token: access_token, refresh_token: refresh_token, token_type: token_type, expires_in: expires_in,
           scope: scope, }
@@ -43,7 +59,7 @@ module Peddler
 
     # @param [String] client_id defaults to LWA_CLIENT_ID in the environment
     # @param [String] client_secret defaults to LWA_CLIENT_SECRET in the environment
-    # @param [Numeric] timeout seconds for one request
+    # @param [Integer, Float] timeout seconds for one request
     # @param [String] lwa_endpoint the token endpoint, for a proxy or a test
     # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
     def initialize(client_id: ENV["LWA_CLIENT_ID"], client_secret: ENV["LWA_CLIENT_SECRET"], timeout: 30,

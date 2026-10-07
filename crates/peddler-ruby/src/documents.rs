@@ -1,6 +1,6 @@
 //! Native document handles: owned streams, shared runtime and bounded uploads.
 use super::{
-    Completed, Engine, ForkOwned, Response, ResponseParts, Shared, argument_error, gvl,
+    Completed, Engine, ForkOwned, Response, ResponseParts, Shared, argument_error, fork, gvl,
     native_error,
 };
 use bytes::Bytes;
@@ -157,14 +157,17 @@ impl Document {
     }
     /// Shared by raw URL downloads and the ID-based workflow downloads.
     pub(super) fn from_download(shared: &'static Shared, download: Download) -> Self {
-        Self(ForkOwned::new(DocumentOwner {
-            status: download.status(),
-            headers: headers(download.headers()),
-            charset: download.charset(),
-            shared,
-            stream: Arc::new(Mutex::new(StreamState::Fresh(Box::new(download)))),
-            close_signal: Arc::new(Notify::new()),
-        }))
+        Self(ForkOwned::new(
+            fork::CLIENT,
+            DocumentOwner {
+                status: download.status(),
+                headers: headers(download.headers()),
+                charset: download.charset(),
+                shared,
+                stream: Arc::new(Mutex::new(StreamState::Fresh(Box::new(download)))),
+                close_signal: Arc::new(Notify::new()),
+            },
+        ))
     }
     fn close(ruby: &Ruby, document: &Self) -> Result<(), Error> {
         let owner = document.0.get(ruby)?;
@@ -403,13 +406,16 @@ impl Upload {
         });
         let abort = worker.abort_handle();
         drop(worker);
-        Ok(Self(ForkOwned::new(UploadOwner {
-            shared,
-            document_id,
-            sender: Mutex::new(Some(sender)),
-            completion,
-            abort,
-        })))
+        Ok(Self(ForkOwned::new(
+            fork::CLIENT,
+            UploadOwner {
+                shared,
+                document_id,
+                sender: Mutex::new(Some(sender)),
+                completion,
+                abort,
+            },
+        )))
     }
     fn document_id(ruby: &Ruby, upload: &Self) -> Result<Option<String>, Error> {
         Ok(upload.0.get(ruby)?.document_id.clone())

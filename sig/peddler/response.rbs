@@ -8,6 +8,17 @@ module Peddler
       def initialize: (Integer code) -> void
       def code: () -> Integer
       def reason: () -> String?
+
+      # What the Integer it wraps answers, as v5's status did
+      def <: (Integer | Float other) -> bool
+      def <=: (Integer | Float other) -> bool
+      def >: (Integer | Float other) -> bool
+      def >=: (Integer | Float other) -> bool
+      def <=>: (untyped other) -> Integer?
+      def ==: (untyped other) -> bool
+      def between?: (Integer | Float min, Integer | Float max) -> bool
+      def to_i: () -> Integer
+      def to_s: () -> String
       def informational?: () -> bool
       def success?: () -> bool
       def redirect?: () -> bool
@@ -21,7 +32,9 @@ module Peddler
       @pairs: Array[[String, String]]
 
       def initialize: (Array[[String, String]] pairs) -> void
-      def []: (String name) -> (String | Array[String] | nil)
+      def []: (String | Symbol name) -> (String | Array[String] | nil)
+      def include?: (String | Symbol name) -> bool
+      alias key? include?
       def each: () { ([String, String] pair) -> void } -> self
               | () -> Enumerator[[String, String], self]
       def to_h: () -> Hash[String, String | Array[String] | nil]

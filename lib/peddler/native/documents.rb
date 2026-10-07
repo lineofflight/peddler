@@ -137,40 +137,96 @@ module Peddler
     end
   end
 
+  # A document that is read as it downloads, so that a large one doesn't have to fit in memory
+  #
+  # `open_report_document`, `open_feed_document` and `open_query_document` on the API views open one by its ID,
+  # and {Peddler::Client#download_document} by its signed URL. A document Amazon compressed is decompressed.
+  #
+  # A document is read once, in one way: {#each_tsv}, {#each_jsonl}, {#each_chunk} or {#json}. Reading it closes
+  # it, also when the block breaks or raises. A document that is closed, or already read another way, raises
+  # {Peddler::DocumentError}.
+  #
+  # @example
+  #   client.reports.open_report_document(report.report_document_id) do |document|
+  #     document.each_tsv { |row| puts row.first }
+  #   end
   class Document
     # How a document's JSON is read: exact decimals, any depth, and the last value of a repeated key
     JSON_OPTIONS = { decimal_class: BigDecimal, max_nesting: false, allow_duplicate_key: true }.freeze
     private_constant :JSON_OPTIONS
 
+    # @!visibility private
     def initialize(handle)
       @handle = handle
     end
 
     # @return [Peddler::Response::Headers] the headers of the download, as a response answers them
     def headers = Response::Headers.new(@handle.headers)
+
+    # @return [String, nil] the charset parameter of the document's Content-Type, as Amazon sent it
     def charset = @handle.charset
+
+    # @return [Boolean]
     def closed? = @handle.closed?
+
+    # Ends the download and frees its connection. A document that is closed stays closed.
+    #
+    # @return [void]
     def close = @handle.close
+
+    # @return [String]
     def inspect = "#<Peddler::Document>"
 
+    # Yields the bytes of the document as they arrive
+    #
+    # @yieldparam [String] chunk
+    # @return [self, Enumerator] an Enumerator without a block
+    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
+    # @raise [Peddler::DocumentError] if the transfer breaks or the document is larger than `max_bytes`
     def each_chunk(&block)
       return enum_for(:each_chunk) unless block
 
       each_row("chunks", &block)
     end
 
+    # Yields each line of a JSON Lines document, such as a Data Kiosk result, parsed
+    #
+    # A number with a fraction parses as a BigDecimal. A line of whitespace is skipped.
+    #
+    # @yieldparam [Object] record
+    # @return [self, Enumerator] an Enumerator without a block
+    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
+    # @raise [Peddler::DocumentError] if the transfer breaks, a line is not JSON or one is larger than
+    #   `max_record_bytes`
     def each_jsonl
       return enum_for(:each_jsonl) unless block_given?
 
       each_row("jsonl") { |record| yield JSON.parse(record, **JSON_OPTIONS) }
     end
 
+    # Yields each row of a tab-separated document, such as a report, as Strings of UTF-8
+    #
+    # The first row holds the column names. Text is decoded from the charset of the document's Content-Type.
+    #
+    # @param [String, nil] charset the charset to decode from, when Amazon labels the document wrongly
+    # @yieldparam [Array<String>] row
+    # @return [self, Enumerator] an Enumerator without a block
+    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
+    # @raise [Peddler::DocumentError] if the transfer breaks, the charset is unknown, the text is not in it or a
+    #   row is larger than `max_record_bytes`
     def each_tsv(charset: nil, &block)
       return enum_for(:each_tsv, charset: charset) unless block
 
       each_row("tsv", charset, &block)
     end
 
+    # The whole document as JSON, parsed. A number with a fraction parses as a BigDecimal.
+    #
+    # @param [Integer] max_bytes the most the document may hold, since all of it is kept in memory
+    # @return [Object]
+    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
+    # @raise [Peddler::DocumentError] if the transfer breaks, the document is larger than `max_bytes` or it is
+    #   not JSON
     def json(max_bytes:)
       JSON.parse(@handle.json(Native::TransferConfig.limit(:max_bytes, max_bytes)), **JSON_OPTIONS)
     ensure
@@ -193,9 +249,24 @@ module Peddler
   end
 
   class Client
-    # Opens the document at a signed URL
+    # Opens the document at a signed URL, to read it as it arrives
     #
+    # The request carries no access token. A document is decompressed when the reply says
+    # `Content-Encoding: gzip`, or when `compression: :gzip` is given.
+    #
+    # @example
+    #   client.download_document(url, timeout: 120) do |document|
+    #     document.each_tsv { |row| puts row.first }
+    #   end
+    # @param [String] url the signed URL
+    # @param [Hash] transfer_options `timeout:` in seconds for the whole download (30), `compression:` (`:auto` or
+    #   `:gzip`), `max_bytes:` for the document once decompressed and `max_record_bytes:` for one row (1 MiB)
+    # @yieldparam [Peddler::Document] document closed when the block returns
+    # @return [Peddler::Document, Object] the document, or what the block returns
+    # @raise [ArgumentError] if the URL or an option breaks its rule. The message names it.
     # @raise [Peddler::Error] if the URL answers outside 2xx
+    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
+    # @raise [Peddler::DocumentError] if the request can't be sent
     def download_document(url, **transfer_options, &block)
       raise ArgumentError, "invalid document URL" unless Native.valid_utf8_string?(url)
 
@@ -204,8 +275,26 @@ module Peddler
 
     # Uploads a String or a `read(length)` source to a signed URL
     #
+    # The request carries no access token. A String, a File and a StringIO are sent with their length. Give
+    # `content_length:` for another source whose length you know. Without one the body goes out chunked.
+    #
+    # @example
+    #   File.open("feed.json", "rb") do |file|
+    #     client.upload_document(url, file, content_type: "application/json; charset=UTF-8")
+    #   end
+    # @param [String] url the signed URL
+    # @param [String, #read] source the content, or what returns it from `read(length)`
+    # @param [String] content_type the content type the URL was signed for
+    # @param [Hash{String => String}] headers more headers the URL was signed with
+    # @param [Integer, nil] content_length the bytes the source holds
+    # @param [Hash] transfer_options `timeout:` in seconds for the whole upload (30) and `max_bytes:` for what is
+    #   sent
     # @return [Peddler::Response]
+    # @raise [ArgumentError] if an argument or an option breaks its rule. The message names it.
     # @raise [Peddler::Error] if the URL answers outside 2xx
+    # @raise [Peddler::DocumentTimeoutError] if the upload runs past its timeout
+    # @raise [Peddler::DocumentError] if the upload can't be sent, the source fails or its length is not the one
+    #   declared
     def upload_document(url, source, content_type:, headers: {}, content_length: nil, **transfer_options)
       Native::Uploads.put(@engine, url, source, content_type, headers, content_length, transfer_options)
     end

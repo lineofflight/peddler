@@ -4,7 +4,7 @@ module Peddler
     type response_parts = [Integer, Array[[String, String]], String, error_metadata?]
 
     def self.engine: (String config) -> Engine
-    def self.lwa_engine: (String client_id, String client_secret, Numeric timeout, String endpoint) -> LwaEngine
+    def self.lwa_engine: (String client_id, String client_secret, Integer | Float timeout, String endpoint) -> LwaEngine
     def self.utf8_text?: (untyped value) -> bool
     def self.positive_seconds?: (untyped value) -> bool
     def self.timeout: (untyped value) -> (Integer | Float)
@@ -37,7 +37,7 @@ module Peddler
     end
 
     class LwaEngine
-      def self.new: (String client_id, String client_secret, Numeric timeout, String endpoint) -> LwaEngine
+      def self.new: (String client_id, String client_secret, Integer | Float timeout, String endpoint) -> LwaEngine
       def exchange_authorization_code: (String code, String? redirect_uri) -> tokens
       def refresh: (String refresh_token) -> tokens
       def client_credentials: (String scope) -> tokens

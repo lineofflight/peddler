@@ -83,6 +83,18 @@ module Peddler
       assert_equal(pairs, headers.each.to_a)
     end
 
+    # As v5's headers answered them: by name, not by pair.
+    def test_headers_answer_whether_they_have_a_name_in_any_case
+      headers = Response.new(200, [["content-type", "text/plain"]], "").headers
+
+      ["Content-Type", "content-type", :"CONTENT-TYPE"].each do |name|
+        assert_includes(headers, name)
+        assert(headers.key?(name))
+      end
+      refute_includes(headers, "Missing")
+      refute(headers.key?("text/plain"))
+    end
+
     def test_to_h_raises_on_a_body_that_is_not_json
       assert_raises(JSON::ParserError) { Response.new(204, [], "").to_h }
     end
@@ -137,6 +149,14 @@ module Peddler
 
         assert_same(response, error.response)
         assert_equal(status, error.status)
+      end
+    end
+
+    def test_a_blank_message_from_amazon_falls_back_to_the_status
+      ["", " \n"].each do |blank|
+        error = assert_raises(Error) { Response.new(400, [], "", ["InvalidInput", "request-id", blank]).raise_for_status! }
+
+        assert_equal(["request failed with status 400", "InvalidInput", "request-id"], [error.message, error.code, error.request_id])
       end
     end
 

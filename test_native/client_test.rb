@@ -20,6 +20,21 @@ class ClientTest < NativeTest
     end
   end
 
+  # Amazon's servers, and the retries of a GET, take a method in uppercase.
+  def test_a_method_in_lowercase_is_sent_in_uppercase
+    seen = Queue.new
+    serve(count: 2, handler: lambda { |socket, first, *|
+      seen << first[0]
+      respond(socket)
+    }) do |url|
+      instance = client(url)
+
+      ["get", "Post"].each { |method| assert_equal(200, instance.request(method, "/").status) }
+    end
+
+    assert_equal(["GET", "POST"], Array.new(2) { seen.pop })
+  end
+
   def test_json_body_serialization
     serve(handler: lambda { |socket, _first, _headers, body|
       assert_equal({ "value" => [1, true] }, JSON.parse(body))

@@ -185,11 +185,12 @@ impl Engine {
         let client = config
             .client(&shared.pool)
             .map_err(|message| argument_error(ruby, message))?;
-        Ok(Self(ForkOwned::new(Arc::new(State {
+        let state = Arc::new(State {
             client,
             shared,
             config,
-        }))))
+        });
+        Ok(Self(ForkOwned::new(fork::CLIENT, state)))
     }
 
     fn from_config(ruby: &Ruby, json: String) -> Result<Self, Error> {

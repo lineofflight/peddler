@@ -131,7 +131,8 @@ class RuntimeTest < NativeTest
 
   def test_message_falls_back_when_the_body_has_none
     bodies = { "" => nil, "invalid xml content" => nil, "503" => nil, '{"errors":[]}' => nil,
-               '{"errors":[{"code":"InternalFailure"}]}' => "InternalFailure" }
+               '{"errors":[{"code":"InternalFailure"}]}' => "InternalFailure",
+               '{"errors":[{"code":"InternalFailure","message":""}]}' => "InternalFailure" }
     bodies.each do |body, code|
       serve(handler: ->(socket, *) { respond(socket, status: 503, body: body) }) do |url|
         error = assert_raises(Peddler::Error) { client(url).request("GET", "/") }

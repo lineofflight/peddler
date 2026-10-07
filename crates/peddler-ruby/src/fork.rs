@@ -4,16 +4,24 @@ use super::native_error;
 use magnus::{Error, Ruby};
 use std::mem::ManuallyDrop;
 
+/// What the caller builds again in a child: the client that a request, a document or
+/// an upload came from, or the `Peddler::LWA` that a grant did.
+pub(super) const CLIENT: &str = "client";
+pub(super) const LWA: &str = "Peddler::LWA";
+
 /// What a native handle holds. Only the process that created it may reach it.
 pub(super) struct ForkOwned<T> {
     pid: u32,
+    rebuild: &'static str,
     value: ManuallyDrop<T>,
 }
 
 impl<T> ForkOwned<T> {
-    pub(super) fn new(value: T) -> Self {
+    /// `rebuild` is what the error tells a child to create: `CLIENT` or `LWA`.
+    pub(super) fn new(rebuild: &'static str, value: T) -> Self {
         Self {
             pid: std::process::id(),
+            rebuild,
             value: ManuallyDrop::new(value),
         }
     }
@@ -21,11 +29,8 @@ impl<T> ForkOwned<T> {
     /// The value, once the fork guard has passed. There is no other way to it.
     pub(super) fn get(&self, ruby: &Ruby) -> Result<&T, Error> {
         if self.pid != std::process::id() {
-            return Err(native_error(
-                ruby,
-                "ForkError",
-                "create a new client after fork",
-            ));
+            let message = format!("create a new {} after fork", self.rebuild);
+            return Err(native_error(ruby, "ForkError", &message));
         }
         Ok(&self.value)
     }

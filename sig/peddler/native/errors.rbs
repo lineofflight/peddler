@@ -14,6 +14,7 @@ module Peddler
     attr_reader status: Integer?
     attr_reader code: String?
     def initialize: (String message, ?Integer? status, ?code: String?) -> void
+    def deconstruct_keys: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
   end
 
   class DocumentError < StandardError

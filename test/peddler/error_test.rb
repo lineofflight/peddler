@@ -64,6 +64,16 @@ module Peddler
       refute_pattern { build(404) => { status: 500.. } }
     end
 
+    def test_an_authentication_error_pattern_matches_status_and_code
+      error = AuthenticationError.new("authentication rejected (400)", 400, code: "invalid_grant")
+
+      assert_pattern { error => { code: "invalid_grant" } }
+      assert_pattern { error => { status: 400..499 } }
+      refute_pattern { error => { code: "invalid_client" } }
+      assert_equal({ status: 400 }, error.deconstruct_keys([:status, :message]))
+      assert_equal({ status: nil, code: nil }, AuthenticationError.new("timed out").deconstruct_keys(nil))
+    end
+
     # Every error class of the gem, its superclass and the methods it adds. Where a class is defined must not change
     # any of them.
     def test_error_hierarchy
@@ -72,7 +82,7 @@ module Peddler
         [name, value.superclass, value.instance_methods(false).sort] if value.is_a?(Class) && value < Exception
       end
       expected = [
-        [:AuthenticationError, StandardError, [:code, :status]],
+        [:AuthenticationError, StandardError, [:code, :deconstruct_keys, :status]],
         [:DocumentError, StandardError, []],
         [:DocumentTimeoutError, DocumentError, []],
         [:Error, StandardError, [:code, :deconstruct_keys, :request_id, :response, :status]],

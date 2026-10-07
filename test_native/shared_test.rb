@@ -58,8 +58,8 @@ class SharedTest < NativeTest
         ].map do |call|
           call.call
           "accepted"
-        rescue Peddler::ForkError
-          "guarded"
+        rescue Peddler::ForkError => error
+          error.message
         end
         # A client built here works, on a runtime and a pool of the child's own.
         fresh = Peddler::Client.new(base_url: url, access_token: "child-secret")
@@ -76,7 +76,10 @@ class SharedTest < NativeTest
       writer.close
 
       assert(reader.wait_readable(10), "fork deadline")
-      assert_equal(["guarded"] * 12 + [200, 200, "from-lwa"], JSON.parse(reader.read))
+      # The error names what to build again.
+      guarded = ["create a new client after fork"] * 9 + ["create a new Peddler::LWA after fork"] * 3
+
+      assert_equal(guarded + [200, 200, "from-lwa"], JSON.parse(reader.read))
       Process.wait(pid)
 
       assert_predicate($?, :success?)

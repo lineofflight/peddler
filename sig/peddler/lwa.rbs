@@ -48,7 +48,7 @@ module Peddler
       def now: () -> Float
     end
 
-    def initialize: (?client_id: String?, ?client_secret: String?, ?timeout: Numeric, ?lwa_endpoint: String) -> void
+    def initialize: (?client_id: String?, ?client_secret: String?, ?timeout: Integer | Float, ?lwa_endpoint: String) -> void
     def token_source: (?refresh_token: String?, ?scope: String?) -> TokenSource
     def refresh: (refresh_token: String) -> Tokens
     def client_credentials: (scope: String) -> Tokens

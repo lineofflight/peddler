@@ -35,6 +35,13 @@ module Peddler
         values.size > 1 ? values : values.first
       end
 
+      # @param [String] name the name of a header, in any case
+      # @return [Boolean] whether the response has the header
+      def include?(name)
+        @pairs.any? { |key, _| key.casecmp?(name.to_s) }
+      end
+      alias_method :key?, :include?
+
       # Yields each name and value
       def each(&block)
         return enum_for(:each) unless block
@@ -85,7 +92,8 @@ module Peddler
       return self if status.success?
 
       error_code, request_id, message = @metadata
-      raise Error.new(message || "request failed with status #{code}", self, code: error_code, request_id: request_id)
+      message = "request failed with status #{code}" if message.nil? || message.strip.empty?
+      raise Error.new(message, self, code: error_code, request_id: request_id)
     end
 
     # @return [Integer] the status code

@@ -93,7 +93,7 @@ class DocumentsTest < NativeTest
 
       assert_equal(302, error.status)
       assert_equal("\xFF\x00abc".b, error.response.body)
-      assert_includes(error.response.headers, ["location", "http://127.0.0.1:1/elsewhere"])
+      assert_equal("http://127.0.0.1:1/elsewhere", error.response.headers["Location"])
       refute_match(/SIGNED_SECRET|127\.0\.0\.1/, error.message)
     end
   end

@@ -194,7 +194,7 @@ class WorkflowsTest < NativeTest
 
       assert_instance_of(Peddler::Response, response)
       assert_equal([200, "report body"], [response.status, response.body])
-      assert_includes(response.headers, ["content-length", "11"])
+      assert_equal("11", response.headers["Content-Length"])
       assert_equal("{\"x\":1}\n", reports.download_report_document("zipped").body)
       metadata, document = requests.call.last(2)
 

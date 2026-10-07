@@ -5,7 +5,7 @@ module Peddler
     @sandbox: bool
     @sandbox_view: Client?
 
-    def initialize: (access_token: String | Native::_TokenSource, ?region: String?, ?base_url: String?, ?timeout: Numeric, ?retries: Integer) -> void
+    def initialize: (access_token: String | Native::_TokenSource, ?region: String?, ?base_url: String?, ?timeout: Integer | Float, ?retries: Integer) -> void
     def with_access_token: (String | Native::_TokenSource access_token) -> Client
     def sandbox: () -> Client
     def sandbox?: () -> bool

@@ -25,7 +25,7 @@ module Peddler
     # @param [String, #call] access_token a Login with Amazon access token or a restricted data token, or its source
     # @param [String] region the AWS region of the selling region, unless base_url is given
     # @param [String] base_url a custom destination instead of Amazon's endpoint for a region
-    # @param [Numeric] timeout seconds for a whole call, including retries
+    # @param [Integer, Float] timeout seconds for a whole call, including retries
     # @param [Integer] retries how often to retry a throttled or failed GET, from 0 to 10
     # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
     def initialize(access_token:, region: nil, base_url: nil, timeout: 30, retries: 0)
@@ -89,7 +89,7 @@ module Peddler
     #
     # @example
     #   client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: "ATVPDKIKX0DER" }).to_h
-    # @param [String] method the HTTP method, such as "GET"
+    # @param [String] method the HTTP method, such as "GET", in any case
     # @param [String] path the absolute path, percent-encoded, without a query
     # @param [Hash{String, Symbol => String, Numeric, Boolean, Array}] params the query. A value is sent as an
     #   operation's argument is: a {Peddler::Marketplace} as its ID, an Array joined with commas.
@@ -124,7 +124,7 @@ module Peddler
       else raise ArgumentError, "body must be a string, hash, array or nil"
       end
 
-      Response.from_parts(@engine.request(method, path, query.to_a, payload))
+      Response.from_parts(@engine.request(method.upcase, path, query.to_a, payload))
     end
 
     private

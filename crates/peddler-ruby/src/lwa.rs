@@ -1,5 +1,5 @@
 //! Login with Amazon grants on the shared runtime and pool, one request each.
-use super::{ForkOwned, Shared, argument_error, gvl, native_error, peddler_const, shared};
+use super::{ForkOwned, Shared, argument_error, fork, gvl, native_error, peddler_const, shared};
 use magnus::{Error, RModule, Ruby, function, method, prelude::*};
 use peddler::auth::{AuthError, LwaClient};
 
@@ -60,7 +60,7 @@ impl LwaEngine {
                     AuthError::InvalidConfig => argument_error(ruby, LWA_ENDPOINT),
                     e => error(ruby, e),
                 })?;
-        Ok(Self(ForkOwned::new((shared, client))))
+        Ok(Self(ForkOwned::new(fork::LWA, (shared, client))))
     }
 
     fn grant(ruby: &Ruby, engine: &Self, grant: Grant) -> Result<Tokens, Error> {
