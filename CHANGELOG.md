@@ -18,6 +18,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Add streaming downloads: `open_report_document`, `open_feed_document`, `open_query_document` and `download_document` yield a `Peddler::Document`, read with `each_tsv`, `each_jsonl`, `each_chunk` or `json(max_bytes:)`. `each_tsv` decodes the charset of the `Content-Type` (such as Cp1252 or Shift_JIS) to UTF-8 and takes a `charset:` override
 - Add `create_and_upload_feed_document` and `upload_document`, which upload a String or an IO
 - Add `status`, `code` and `request_id` to `Peddler::Error`, and pattern matching on `status` and `code`, e.g. `case error in {status: 500..599}`
+- Add `Client#request`, the call for an endpoint Peddler has no method for yet: `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: id })`
 - Add a `timeout:` option to the client: the seconds a whole call may take, retries included. The default is 30
 - Add a `base_url:` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
 - Add `Peddler::TransportError` and `Peddler::TimeoutError` for requests that get no response, `Peddler::AuthenticationError` (with `status` and `code`) for rejected token requests, and `Peddler::PaginationError`, `Peddler::DocumentError`, `Peddler::DocumentTimeoutError`, `Peddler::WorkflowError`, `Peddler::WorkflowTimeoutError` and `Peddler::ForkError`
@@ -28,15 +29,23 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 
 - Send requests through the native extension in place of the `http` gem. All clients in a process share 1 connection pool. After `fork`, create clients in the child: one created before the fork raises `Peddler::ForkError` there
 - Raise the same `Peddler::Error` for every HTTP error. Tell errors apart by `code`, which replaces the class per Amazon error code. A body without a message gives `request failed with status 500`, with its status
+- Raise `Peddler::Error` for any status outside 2xx. 5.x raised from 400 up and returned a 3xx as a response
 - Return a new client from `sandbox` and leave the one it is called on in production
 - Request tokens through an instance of `Peddler::LWA`: `Peddler::LWA.new.refresh(refresh_token:)`. A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`
-- Retry only a GET, when Amazon answers 429, 500, 502, 503 or 504. Honor `Retry-After` up to 30 seconds, and otherwise back off with jitter. A request that changes data and a failed connection are no longer retried. `retries:` takes at most 10
+- Retry only a GET, when Amazon answers 429, 500, 502, 503 or 504. A request that changes data and a failed connection are no longer retried. `retries:` takes 0 to 10
+- Wait a random time before a retry: up to 0.2 seconds before the first, up to 0.4 before the second, up to 0.8 before the third, doubling up to 30 seconds. `retries: 3` waits 1.4 seconds at most. 5.x waited 1 / rate limit seconds after a 429, doubling: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second
+- Wait at least as long as `Retry-After` asks, and don't retry when it asks for more than 30 seconds or for more time than the call has left. 5.x waited whatever it asked
 - Raise `Peddler::Error` when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`
 - Allow 30 seconds for a call by default. 5.x had no timeout
-- Raise `ArgumentError` that names the argument when a required argument is `nil` or an argument has the wrong type, before anything is sent. An empty String, `.` or `..` for an argument that ends a path is refused too
+- Raise `ArgumentError` that names the argument when a required argument is `nil` or an argument has the wrong type, before anything is sent, such as `order_id is required`. An object whose `to_s` is an inspect form, such as `#<Object>`, counts as the wrong type. See the [argument forms](UPGRADING.md#argument-forms) that are still sent as 5.x sent them
+- Refuse `.` and `..` for an argument anywhere in a path, and an empty String for one that ends a path, with an `ArgumentError` that names the argument
+- Raise `ArgumentError` that names the option or argument and its rule when `Peddler::Client.new`, `Peddler::LWA.new` or a grant gets a bad one, such as `retries must be an Integer between 0 and 10`
 - Return decompressed content from `download_report_document` for GZIP reports. If you were wrapping the result in `Zlib::GzipReader`, remove it
-- Raise `Peddler::Error` from the document helpers when a signed URL answers 3xx, and allow them 600 seconds for a call
-- Make `Peddler::Response` a class of its own. `status` (with `success?` and its siblings), `code`, `headers[]`, `charset`, `to_s`, `parse`, `to_h` and `dig` read as before. `body` is a String, `headers.to_h` gives names in lowercase, `status` is no longer an instance of `Integer`, and the other readers of the `http` gem's response are gone
+- Allow the document helpers 600 seconds for a call. 5.x had no limit
+- Make `Peddler::Response` a class of its own. `status` (with `success?` and its siblings), `code`, `headers[]`, `charset`, `to_s`, `parse`, `to_h` and `dig` read as before. The other readers of the `http` gem's response are gone
+- Return the body of a response as a String
+- Give header names in lowercase from `headers.to_h` and `headers.each`. `headers[]` still finds a name in any case
+- Wrap the status of a response in a class of Peddler's own. It compares and calculates as the Integer it holds, but is no longer an instance of `Integer`; `code` is one
 - Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models
 - Send `mskus` as a repeated parameter in Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details`, as Amazon specifies. 5.x joined the values with commas
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279))
