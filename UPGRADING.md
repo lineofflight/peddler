@@ -1,6 +1,302 @@
-# Upgrading to Peddler v5.0
+# Upgrading Peddler
 
-This guide provides instructions for upgrading from Peddler v4.x to v5.0.
+This guide covers upgrading from v5.x to v6.0, and from v4.x to v5.0.
+
+## From v5.x to v6.0
+
+Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. Its Ruby API stays close to v5. You change how you create a client, how you get tokens and how you rescue errors. Your operation calls stay as they are.
+
+### What to change
+
+#### 1. Creating a client
+
+One `Peddler::Client` replaces the API classes. Create it once and reach each API through a method.
+
+**Before (v5):**
+```ruby
+api = Peddler.orders_v0.new("eu-west-1", access_token, retries: 3)
+response = api.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
+```
+
+**After (v6):**
+```ruby
+client = Peddler::Client.new(region: "eu-west-1", access_token: access_token, retries: 3)
+response = client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
+```
+
+`client.orders` is the latest version of an API, as `Peddler.orders` was, and `client.orders_v0` a pinned one.
+
+`Peddler.<api>` and `Peddler::APIs::OrdersV0.new` are gone. `Peddler::APIs::OrdersV0` is now a module that holds the typed models, so `Peddler::APIs::OrdersV0::Order` still works.
+
+The `http:` option is gone, with the `http` gem. A client takes `timeout:`, the seconds a whole call may take. The default is 30, where v5 had none.
+
+To send another token, v5 created another API object. v6 takes a view of the client, which shares its connections.
+
+**Before (v5):**
+```ruby
+api = Peddler.orders_v0.new("eu-west-1", restricted_data_token)
+```
+
+**After (v6):**
+```ruby
+restricted = client.with_access_token(restricted_data_token)
+restricted.orders_v0.get_order_address("123-1234567-1234567")
+```
+
+After `fork`, create clients in the child process. A client created before the fork raises `Peddler::ForkError` there.
+
+#### 2. Tokens and LWA
+
+`Peddler::LWA.request` is gone. Create a `Peddler::LWA` and call the grant you need. Each returns the tokens, not a response to parse.
+
+**Before (v5):**
+```ruby
+access_token = Peddler::LWA.request(refresh_token: refresh_token).parse.access_token
+refresh_token = Peddler::LWA.request(code: code).parse.refresh_token
+access_token = Peddler::LWA.request(scope: "sellingpartnerapi::notifications").parse.access_token
+```
+
+**After (v6):**
+```ruby
+lwa = Peddler::LWA.new
+access_token = lwa.refresh(refresh_token: refresh_token).access_token
+refresh_token = lwa.exchange_authorization_code(code: code).refresh_token
+access_token = lwa.client_credentials(scope: "sellingpartnerapi::notifications").access_token
+```
+
+`Peddler::LWA.new` reads `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET` from the environment, or takes `client_id:` and `client_secret:`, as before. `Peddler::LWAToken` is now `Peddler::LWA::Tokens`, with the same `access_token`, `refresh_token`, `token_type` and `expires_in`.
+
+A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`. It has `status` and `code`, such as `"invalid_grant"`.
+
+**Before (v5):**
+```ruby
+begin
+  Peddler::LWA.request(refresh_token: refresh_token)
+rescue Peddler::Error => e
+  reconnect_seller if e.message.include?("invalid_grant")
+end
+```
+
+**After (v6):**
+```ruby
+begin
+  lwa.refresh(refresh_token: refresh_token)
+rescue Peddler::AuthenticationError => e
+  reconnect_seller if e.code == "invalid_grant"
+end
+```
+
+The client still sends the token you give it and requests none itself. What is new is that the token may be a callable. Keep the cache you have, and the client asks it before every request.
+
+**Before (v5):**
+```ruby
+access_token = Rails.cache.fetch("lwa/#{seller.id}", expires_in: 55.minutes) do
+  Peddler::LWA.request(refresh_token: seller.refresh_token).parse.access_token
+end
+api = Peddler.orders_v0.new("eu-west-1", access_token)
+```
+
+**After (v6):**
+```ruby
+client = Peddler::Client.new(
+  region: "eu-west-1",
+  access_token: -> {
+    Rails.cache.fetch("lwa/#{seller.id}", expires_in: 55.minutes) do
+      lwa.refresh(refresh_token: seller.refresh_token).access_token
+    end
+  },
+)
+```
+
+Passing the String, as in v5, still works.
+
+#### 3. Errors
+
+`Peddler::Errors` and its class per Amazon error code are gone. Every HTTP error raises `Peddler::Error`. Match on its `code` where you rescued a class.
+
+**Before (v5):**
+```ruby
+begin
+  api.get_order(order_id)
+rescue Peddler::Errors::QuotaExceeded
+  backoff_and_retry
+rescue Peddler::Errors::InvalidInput => e
+  logger.error(e.message)
+end
+```
+
+**After (v6):**
+```ruby
+begin
+  client.orders_v0.get_order(order_id)
+rescue Peddler::Error => e
+  case e
+  in code: "QuotaExceeded" then backoff_and_retry
+  in code: "InvalidInput" then logger.error(e.message)
+  else raise
+  end
+end
+```
+
+`message` and `response` work as in v5. `status`, `code` and `request_id` are new, and an error matches patterns on `status` and `code`. `e.response.status` still works.
+
+**Before (v5):**
+```ruby
+begin
+  api.get_order(order_id)
+rescue Peddler::Error => e
+  retry_later if e.response.status >= 500
+end
+```
+
+**After (v6):**
+```ruby
+begin
+  client.orders_v0.get_order(order_id)
+rescue Peddler::Error => e
+  retry_later if e.status >= 500
+end
+```
+
+With `retries:` set, a request that still fails after the last retry raises the same `Peddler::Error`. v5 raised `HTTP::OutOfRetriesError`.
+
+**Before (v5):**
+```ruby
+begin
+  api.get_order(order_id)
+rescue HTTP::OutOfRetriesError
+  retry_later
+end
+```
+
+**After (v6):**
+```ruby
+begin
+  client.orders_v0.get_order(order_id)
+rescue Peddler::Error => e
+  retry_later if e.status == 429
+end
+```
+
+A request that gets no response no longer raises the `http` gem's errors.
+
+**Before (v5):**
+```ruby
+begin
+  api.get_order(order_id)
+rescue HTTP::TimeoutError
+  retry_later
+rescue HTTP::ConnectionError
+  retry_later
+end
+```
+
+**After (v6):**
+```ruby
+begin
+  client.orders_v0.get_order(order_id)
+rescue Peddler::TimeoutError
+  retry_later
+rescue Peddler::TransportError
+  retry_later
+end
+```
+
+`Peddler::TimeoutError` is a `Peddler::TransportError`. Neither is a `Peddler::Error`. The [README](README.md#error-handling) lists every error class.
+
+#### 4. Sandbox
+
+In v5, `sandbox` switched the API object to the sandbox for good. In v6, it returns a new client and leaves the one you call it on in production. Use the return value.
+
+**Before (v5):**
+```ruby
+api = Peddler.orders_v0.new("eu-west-1", access_token)
+api.sandbox
+api.get_orders(marketplace_ids, created_after: "TEST_CASE_200") # sandbox
+```
+
+**After (v6):**
+```ruby
+client = Peddler::Client.new(region: "eu-west-1", access_token: access_token)
+sandbox = client.sandbox
+sandbox.orders_v0.get_orders(marketplace_ids, created_after: "TEST_CASE_200") # sandbox
+client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z") # production
+```
+
+`Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox` are gone. Peddler no longer checks whether an operation supports the sandbox. Amazon answers such a call with an error, which raises `Peddler::Error`.
+
+#### 5. `rate_limit:`
+
+Operations no longer take `rate_limit:`. Passing it raises `ArgumentError`. Remove it.
+
+**Before (v5):**
+```ruby
+api.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z", rate_limit: 0.5)
+```
+
+**After (v6):**
+```ruby
+client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
+```
+
+`retries:` stays, with 2 differences. Peddler retries only a GET, where v5 also retried requests that change data. And it retries a response of 429, 500, 502, 503 or 504, not a failed connection. It waits as long as `Retry-After` asks and otherwise backs off with jitter. The most is 10 retries.
+
+### What keeps working
+
+- Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names.
+- The forms an argument may take: a String for a list, a String that holds JSON for a body, a number where a String is expected and a numeric String where a number is.
+- `parse`, `to_h` and `dig` on a response, and the typed models under `Peddler::APIs`.
+- `status.success?`, `code`, `headers["Name"]`, `charset` and `to_s` on a response.
+- Raising `Peddler::Error` on 4xx and 5xx, with `message` and `response`.
+- The 4 document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`.
+- `Peddler::Marketplace`, `Peddler::Endpoint` and `Peddler::Money`.
+- The typed parsers under `Peddler::Notifications`, `Peddler::Reports`, `Peddler::Feeds` and `Peddler::DataKiosk`.
+
+```ruby
+client = Peddler::Client.new(region: "eu-west-1", access_token: access_token)
+
+response = client.catalog_items.get_catalog_item("B08N5WRWNW", Peddler::Marketplace.id("UK"), included_data: "summaries,images")
+response.status.success?  # => true
+response.parse.asin       # => "B08N5WRWNW"
+response.dig("asin")      # => "B08N5WRWNW"
+
+report = client.reports.download_report_document(report_document_id)
+report.to_s
+```
+
+### Edge differences
+
+- A required argument given as `nil` raises `ArgumentError` that names it, such as `order_id is required`. v5 sent the request without it. An empty String, `"."` or `".."` for an argument at the end of a path raises `ArgumentError` too.
+- An argument of the wrong type raises `ArgumentError`, such as `page_size must be an Integer`. v5 sent whatever it was given.
+- A signed URL that answers 3xx raises `Peddler::Error` in the document helpers. v5 returned the response.
+- The document helpers allow 600 seconds for a call and then raise `Peddler::DocumentTimeoutError`. v5 had no limit. For a longer transfer, use `client.open_report_document(id, timeout:)` and its siblings, described in the [README](README.md#documents-and-workflows).
+- `download_report_document` returns the report decompressed when Amazon compressed it. Remove your own `Zlib::GzipReader`.
+- `response.status` behaves as the Integer it wraps (`status == 200`, `status >= 400`, `case status when 200..299`), but it is not an instance of `Integer`. Use `response.code` where you need one. `status.to_s` is `"200"`, not `"200 OK"`, and `status.to_sym`, `status.ok?` and the other named predicates are gone.
+- `response.headers.to_h` and `headers.each` give header names in lowercase. `headers["Name"]` finds a header whatever its case. `headers.get`, `headers.keys` and `headers.include?(name)` are gone.
+- `response.body` is a String. The other readers of the `http` gem's response, such as `content_type`, `mime_type`, `uri` and `request`, are gone. `Response#parsable?` is gone too.
+- `error.response` is a `Peddler::Response`. It was the `http` gem's response.
+- An HTTP error whose body carries no message has the message `request failed with status 500`, with its status. v5 used the status line.
+- A signed URL that rejects a transfer raises a plain `Peddler::Error` with its `status`. Its `code` is `nil` and its XML reply is in `error.response.body`. v5 raised a class named after the XML code, such as `Peddler::Errors::AccessDenied`.
+- The client has no readers for `access_token`, `retries`, `endpoint` or `base_url`.
+- Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details` send `mskus` as a repeated parameter, as Amazon specifies. v5 joined the values with commas.
+
+### Dependency changes
+
+- The `http` and `nokogiri` gems are no longer dependencies. If your application used either through Peddler, add it to your Gemfile.
+- `bigdecimal` and `rb_sys` are new dependencies.
+- Peddler includes a native extension. Precompiled gems cover macOS and glibc Linux on Ruby 3.3, 3.4 and 4.0. Other platforms compile it during installation and need a Rust toolchain. See the [README](README.md#native-extension).
+
+### New in v6
+
+These need no change to existing code. The [README](README.md#usage) describes each.
+
+- `*_pages` methods that enumerate the pages of an operation
+- `wait_for_report`, `wait_for_feed` and `wait_for_query`
+- Streaming downloads with `open_report_document`, `open_feed_document`, `open_query_document` and `download_document`, read as TSV, JSON Lines, JSON or bytes
+- `create_and_upload_feed_document` and `upload_document`
+- `lwa.token_source`, a token source that refreshes in the process
+- `base_url:` in place of `region:`, to point a client at a local mock or a proxy
+- Pattern matching on errors, by `status` and `code`
 
 ## From v4.x to v5.0
 
