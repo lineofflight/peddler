@@ -397,22 +397,23 @@ class DocumentsTest < NativeTest
     end
   end
 
-  # A row the stream has buffered is read without releasing the GVL. Released once per row, every row waited for a
-  # busy thread's time slice: about 9 rows a second, so about 45 in this window.
+  # A row the stream has buffered is read without releasing the GVL, so a busy thread gets no turn between rows.
+  # Released once per row, every row waited for that thread's time slice: about 9 rows a second. No clock: the
+  # test counts the rows before which the busy thread ran and gives up after 50 of them.
   def test_rows_keep_coming_while_another_ruby_thread_runs
     rows = 3_000
     body = Array.new(rows) { |index| "row-#{index}\tvalue\n" }.join
     serve(handler: ->(socket, *) { respond(socket, body: body) }) do |url|
-      spinner = Thread.new do
-        spins = 0
-        loop { spins += 1 }
-      end
-      read = 0
-      start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      spins = 0
+      spinner = Thread.new { loop { spins += 1 } }
+      read = switched = 0
+      seen = nil
       client(url).download_document("#{url}/document") do |document|
         document.each_tsv do
           read += 1
-          break if Process.clock_gettime(Process::CLOCK_MONOTONIC) - start > 5
+          switched += 1 if seen && spins != seen
+          seen = spins
+          break if switched > 50
         end
       end
 
