@@ -82,7 +82,7 @@ module Peddler
     end
 
     def test_a_bad_timeout_or_retries_is_named_with_its_rule
-      [0, -1, "30", nil, Float::NAN, Float::INFINITY, 1e-12, 1e30].each do |timeout|
+      [0, -1, "30", nil, Float::NAN, Float::INFINITY, 1e-12, 1e30, 10**400].each do |timeout|
         error = assert_raises(ArgumentError, timeout.inspect) { Client.new(region: "eu-west-1", access_token: "token", timeout: timeout) }
 
         assert_equal("timeout must be a positive number of seconds", error.message)
@@ -162,6 +162,7 @@ module Peddler
         { client_secret: 123 } => "client_secret must be a UTF-8 String that is not blank",
         { timeout: 0 } => "timeout must be a positive number of seconds",
         { timeout: 1e30 } => "timeout must be a positive number of seconds",
+        { timeout: 10**400 } => "timeout must be a positive number of seconds",
         { lwa_endpoint: 123 } => "lwa_endpoint must be a UTF-8 String",
         { lwa_endpoint: "http://example.com/token" } => "lwa_endpoint must be a URL (https, or http on a loopback host) without credentials or a query",
         { lwa_endpoint: "https://user:secret@example.com/token" } => "lwa_endpoint must be a URL (https, or http on a loopback host) without credentials or a query",

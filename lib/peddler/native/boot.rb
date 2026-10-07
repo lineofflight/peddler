@@ -39,8 +39,9 @@ module Peddler
         value.is_a?(String) && value.valid_encoding? && (value.encoding == Encoding::UTF_8 || value.ascii_only?)
       end
 
+      # An Integer too large for a Float is refused here, since the core takes seconds as one.
       def positive_seconds?(value)
-        (value.is_a?(Integer) || value.is_a?(Float)) && value.finite? && value > 0
+        (value.is_a?(Integer) || value.is_a?(Float)) && value.finite? && value > 0 && value <= Float::MAX
       end
 
       # A timeout as it is, or the error that names it. The native layer refuses what is left: one too short or
