@@ -29,7 +29,12 @@ class DocumentsTest < NativeTest
     }) do |url|
       document = client(url).download_document("#{url}/file?a=%2f&b=+&a=%2F", compression: :gzip)
 
+      # The same Headers a response has: any case, every value of a repeated header, pairs in the order sent
+      assert_equal("gzip", document.headers["Content-Encoding"])
+      assert_equal(["a", "b"], document.headers["X-Repeat"])
       assert_equal([["x-repeat", "a"], ["x-repeat", "b"]], document.headers.select { |key, _| key == "x-repeat" })
+      assert_equal(["a", "b"], document.headers.to_h.fetch("x-repeat"))
+      assert_instance_of(Peddler::Response::Headers, document.headers)
       chunks = document.each_chunk.to_a
 
       assert_equal("hello\xFF".b, chunks.join)

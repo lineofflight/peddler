@@ -4,7 +4,7 @@ module Peddler
 
     @handle: Native::DocumentHandle
     def initialize: (Native::DocumentHandle handle) -> void
-    def headers: () -> Array[[String, String]]
+    def headers: () -> Response::Headers
     def charset: () -> String?
     def close: () -> void
     def closed?: () -> bool

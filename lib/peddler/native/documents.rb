@@ -105,7 +105,8 @@ module Peddler
       @handle = handle
     end
 
-    def headers = @handle.headers
+    # @return [Peddler::Response::Headers] the headers of the download, as a response answers them
+    def headers = Response::Headers.new(@handle.headers)
     def charset = @handle.charset
     def closed? = @handle.closed?
     def close = @handle.close
