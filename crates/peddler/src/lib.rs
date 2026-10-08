@@ -618,6 +618,13 @@ mod tests {
         )
     }
 
+    /// Whether a call took from `least` to `most` seconds. The paused clock ends each
+    /// wait on a whole millisecond, so a call may take a few more than its waits add
+    /// up to.
+    fn took(elapsed: f64, least: f64, most: f64) -> bool {
+        (least..=most + 0.01).contains(&elapsed)
+    }
+
     #[tokio::test(start_paused = true)]
     async fn a_wait_between_attempts_is_not_counted_against_the_timeout() {
         // The first wait alone, a minute, is twice the timeout of 30 seconds.
@@ -625,7 +632,7 @@ mod tests {
         let (result, attempts, elapsed) = run(&client(2), "GET", Some(0.0167), &script).await;
         assert_eq!((result, attempts), (Ok(200), 3));
         let waits = 3.0 / 0.0167;
-        assert!((waits..waits + 0.2).contains(&elapsed), "{elapsed}");
+        assert!(took(elapsed, waits, waits + 0.2), "{elapsed}");
     }
 
     #[tokio::test(start_paused = true)]
@@ -634,15 +641,15 @@ mod tests {
             run(&client(2), "GET", None, &[Hangs, Hangs, Status(200)]).await;
         assert_eq!((result, attempts), (Ok(200), 3));
         // 2 attempts of 30 seconds, a wait of up to 1 second and one of 1 to 2.
-        assert!((61.0..63.0).contains(&elapsed), "{elapsed}");
+        assert!(took(elapsed, 61.0, 63.0), "{elapsed}");
         let (result, attempts, elapsed) = run(&client(2), "GET", None, &[Hangs; 3]).await;
         assert_eq!((result, attempts), (Err(Error::Timeout), 3));
-        assert!((91.0..93.0).contains(&elapsed), "{elapsed}");
+        assert!(took(elapsed, 91.0, 93.0), "{elapsed}");
         // A write that got no answer may have been processed.
         for method in ["POST", "PUT", "PATCH", "DELETE"] {
             let (result, attempts, elapsed) = run(&client(2), method, Some(5.0), &[Hangs]).await;
             assert_eq!((result, attempts), (Err(Error::Timeout), 1), "{method}");
-            assert!((30.0..30.1).contains(&elapsed), "{elapsed}");
+            assert!(took(elapsed, 30.0, 30.1), "{elapsed}");
         }
     }
 
@@ -652,7 +659,7 @@ mod tests {
             let (result, attempts, elapsed) = run(&client(3), method, Some(5.0), &[Fails; 4]).await;
             assert_eq!((result, attempts), (Err(Error::Transport), 4), "{method}");
             // Up to 1 second, then 1 to 2, then 3 to 4.
-            assert!((4.0..7.0).contains(&elapsed), "{elapsed}");
+            assert!(took(elapsed, 4.0, 7.0), "{elapsed}");
         }
         let (result, attempts, _) = run(&client(3), "GET", None, &[Fails, Status(200)]).await;
         assert_eq!((result, attempts), (Ok(200), 2));
@@ -670,7 +677,7 @@ mod tests {
             let (result, attempts, elapsed) = run(&client(2), method, Some(5.0), &script).await;
             assert_eq!((result, attempts), (Ok(201), 3), "{method}");
             // A fifth of a second, then 2 fifths, and up to a tenth more each.
-            assert!((0.6..0.8).contains(&elapsed), "{elapsed}");
+            assert!(took(elapsed, 0.6, 0.8), "{elapsed}");
             for status in [500, 502, 503, 504] {
                 let (result, attempts, elapsed) =
                     run(&client(2), method, Some(5.0), &[Status(status)]).await;
@@ -689,7 +696,7 @@ mod tests {
             let script = [Status(status), Status(status), Status(status), Status(200)];
             let (result, attempts, elapsed) = run(&client(3), "GET", None, &script).await;
             assert_eq!((result, attempts), (Ok(200), 4), "{status}");
-            assert!((4.0..7.0).contains(&elapsed), "{status} {elapsed}");
+            assert!(took(elapsed, 4.0, 7.0), "{status} {elapsed}");
         }
     }
 
@@ -712,6 +719,24 @@ mod tests {
     }
 
     #[tokio::test(start_paused = true)]
+    async fn a_retry_after_longer_than_any_clock_is_waited_for_and_ends_when_the_call_is_dropped() {
+        let client = client(1);
+        let attempts = AtomicUsize::new(0);
+        let call = client.run("GET", Some(80.0), |_token| {
+            attempts.fetch_add(1, Ordering::SeqCst);
+            std::future::ready(Ok(Response {
+                status: 429,
+                headers: vec![("retry-after".into(), u64::MAX.to_string())],
+                body: Vec::new(),
+            }))
+        });
+        // Nothing but the caller ends such a wait. A day later it still goes on.
+        let day = Duration::from_secs(86_400);
+        assert!(tokio::time::timeout(day, call).await.is_err());
+        assert_eq!(attempts.into_inner(), 1);
+    }
+
+    #[tokio::test(start_paused = true)]
     async fn the_sandbox_is_known_by_its_host_and_waits_a_fifth_of_a_second() {
         let mut config = ClientConfig::new("https://sandbox.sellingpartnerapi-na.amazon.com", "t");
         config.retry.max_retries = 1;
@@ -719,11 +744,11 @@ mod tests {
         let script = [Status(429), Status(200)];
         let (result, _, elapsed) = run(&sandbox, "GET", Some(0.0167), &script).await;
         assert_eq!(result, Ok(200));
-        assert!((0.2..0.3).contains(&elapsed), "{elapsed}");
+        assert!(took(elapsed, 0.2, 0.3), "{elapsed}");
         // A view with another token calls the same host.
         let view = sandbox.with_access_token("other").unwrap();
         let (_, _, elapsed) = run(&view, "GET", Some(0.0167), &script).await;
-        assert!((0.2..0.3).contains(&elapsed), "{elapsed}");
+        assert!(took(elapsed, 0.2, 0.3), "{elapsed}");
         for production in [
             "https://sellingpartnerapi-na.amazon.com",
             "http://localhost:1",
