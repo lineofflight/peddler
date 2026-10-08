@@ -37,7 +37,7 @@ This describes Peddler 6. Peddler 5 had a class per API (`Peddler.orders.new(aws
 
 ## Authorization & token caching
 
-The client sends the token it is given and never requests one. LWA access tokens and Restricted Data Tokens (RDTs) have a 1-hour lifetime. Cache and reuse them: pass the client a callable around your cache, which it calls before every request.
+The client sends the token it is given and never requests one. LWA access tokens and Restricted Data Tokens (RDTs) have a 1-hour lifetime. Cache and reuse them: pass the client a callable around your cache, which it calls once before every call. A call that is retried sends that token on every attempt, so a token must outlive the retries of its call.
 
 ```ruby
 lwa = Peddler::LWA.new # reads LWA_CLIENT_ID and LWA_CLIENT_SECRET

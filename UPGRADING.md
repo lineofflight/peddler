@@ -94,7 +94,7 @@ rescue Peddler::AuthenticationError => e
 end
 ```
 
-The client still sends the token you give it and requests none itself. What is new is that the token may be a callable. Keep the cache you have, and the client asks it before every request.
+The client still sends the token you give it and requests none itself. What is new is that the token may be a callable. Keep the cache you have, and the client asks it once before every call.
 
 **Before (v5):**
 ```ruby

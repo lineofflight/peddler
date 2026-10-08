@@ -245,7 +245,9 @@ impl Engine {
     /// The client for one call. The fork guard runs first: a source is the caller's code
     /// and may use a socket the child inherited. Then the source, if the engine has one,
     /// is asked on this thread with the GVL held, and its token goes into a view of the
-    /// client that the call drops.
+    /// client that the call drops. So a source is asked once for a call, outside the
+    /// timeout of an attempt, and every retry of the call sends that token. Only the
+    /// crate's own `TokenSource` is asked before each attempt.
     fn client(ruby: &Ruby, rb_self: Obj<Self>) -> Result<(Client, &'static Shared), Error> {
         let state = rb_self.0.get(ruby)?;
         let Some(source) = rb_self.ivar_get::<_, Option<Value>>(TOKEN_SOURCE)? else {

@@ -107,7 +107,7 @@ client = Peddler::Client.new(
 )
 ```
 
-The client calls it before every request, on the thread that makes the request. Keep it thread-safe.
+The client calls it once before every call, on the thread that makes the call: each operation and each page of a `*_pages` enumerator. Keep it thread-safe. `timeout:` doesn't limit it, and a call that is [retried](#rate-limiting) sends that token again on every attempt.
 
 In a single process, `token_source` does the same without a cache of your own. It keeps 1 access token in memory, requests the next one 60 seconds before the old one expires and makes 1 request at a time, however many threads ask.
 
@@ -286,6 +286,8 @@ A wait is 600 seconds at most. When the rate or `Retry-After` asks for a longer 
 52 operations are limited to less than 1 request a second, so none of them can use `retries: 10`. With `retries: 3`, only `search_orders` of Orders 2026-01-01 loses a retry: its third wait would be 714 seconds.
 
 `timeout:` limits each attempt. The waits between attempts are not counted, so a call can take far longer than `timeout:`: 17 minutes for 9 retries at 0.5 requests a second, and 100 minutes if `Retry-After` asks for 600 seconds 10 times. Choose `retries:` by how long a call may take, or wrap the call in `Timeout.timeout`, which ends a wait too.
+
+A token source is asked once for a call, before its first attempt, so every retry sends the same token. Give a call that may retry for minutes a token that outlives it. `token_source` hands out a token with 60 seconds or more left, and the second retry of an operation limited to 1 request a minute goes out 3 minutes in.
 
 When Peddler stops retrying, the last response raises `Peddler::Error` like any other. If the last attempt got no response, it raises `Peddler::TransportError` or `Peddler::TimeoutError`.
 

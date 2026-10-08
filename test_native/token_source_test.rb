@@ -2,7 +2,7 @@
 
 require_relative "test_helper"
 
-# The access token may be a source the client asks before each request it starts.
+# The access token may be a source the client asks once before each call it starts.
 # rubocop:disable Minitest/MultipleAssertions
 class TokenSourceTest < NativeTest
   PAGES = ['{"payload":{"NextToken":"A"}}', '{"payload":{"NextToken":"B"}}', '{"payload":{}}'].freeze
@@ -35,6 +35,32 @@ class TokenSourceTest < NativeTest
       assert_equal(5, calls.call)
       # A token per call costs no connection: every request went through the shared pool.
       assert_equal(1, accepted.size)
+    end
+  end
+
+  # The source is Ruby and the retries are the core's, which holds the token for the whole call.
+  def test_source_is_asked_once_for_a_call_and_every_retry_sends_that_token
+    statuses = [429, 503, 200, 200]
+    responder = ->(*) { [statuses.shift, "{}", [["Retry-After", "0"]]] }
+    serve_keep_alive(responder: responder) do |url, _accepted, requests|
+      source, calls = counting_source
+      instance = Peddler::Client.new(base_url: url, access_token: source, retries: 2)
+
+      assert_equal(200, instance.request("GET", "/").status)
+      assert_equal(1, calls.call)
+      assert_equal(200, instance.request("GET", "/").status)
+      assert_equal(["token-1", "token-1", "token-1", "token-2"], tokens(requests, 4))
+    end
+  end
+
+  def test_timeout_does_not_limit_the_source
+    serve_keep_alive do |url, *|
+      slow = lambda do
+        sleep(0.15)
+        "token"
+      end
+
+      assert_equal(200, Peddler::Client.new(base_url: url, access_token: slow, timeout: 0.05).request("GET", "/").status)
     end
   end
 

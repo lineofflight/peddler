@@ -11,7 +11,7 @@ module Peddler
   # @example
   #   client = Peddler::Client.new(region: "eu-west-1", access_token: token)
   #   client.orders_v0.get_orders(Peddler::Marketplace.ids("UK"))
-  # @example A token source, asked before every request
+  # @example A token source, asked before every call
   #   client = Peddler::Client.new(region: "eu-west-1", access_token: -> {
   #     Rails.cache.fetch(key, expires_in: 55.minutes) { lwa.refresh(refresh_token: token).access_token }
   #   })
@@ -19,8 +19,11 @@ module Peddler
     # Every client in a process shares one connection pool, so building one per job is cheap.
     #
     # The token may be a String or a source: anything that responds to `call` and returns the token. A source is
-    # called before each request the client starts (every operation, every page of a `*_pages` enumerator), from
-    # whichever thread makes the call, so it must be thread-safe. `wait_for_*` and the document helpers call it once.
+    # called once before each call (every operation, every page of a `*_pages` enumerator), from whichever thread
+    # makes the call, so it must be thread-safe. `wait_for_*` and the document helpers call it once.
+    #
+    # `timeout:` doesn't limit the source. A call that is retried sends the token it got on every attempt, so give
+    # a call that may retry for minutes a token that outlives it.
     #
     # @param [String, #call] access_token a Login with Amazon access token or a restricted data token, or its source
     # @param [String] region the AWS region of the selling region, unless base_url is given
