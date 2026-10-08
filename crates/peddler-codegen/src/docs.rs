@@ -17,7 +17,7 @@ const METHOD: usize = 6;
 /// What Ruby's `\s` matches, as a character class. A regex's own `\s` matches more.
 const SPACE: &str = r" \t\r\n\f\v";
 
-pub(crate) fn regex(pattern: &str) -> Regex {
+fn regex(pattern: &str) -> Regex {
     Regex::with_flags(&pattern.replace("\\s", SPACE), "u").expect("valid pattern")
 }
 

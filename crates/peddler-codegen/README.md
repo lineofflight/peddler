@@ -76,7 +76,9 @@ A generated function builds its request itself. It escapes each path parameter a
 
 It doesn't check a value against the model's constraints, such as a pattern or a maximum: Amazon does. It keeps the defaults the model declares.
 
-The rate is the requests per second in the usage plan table of an operation's description, the only place a model has it. The generator reads it as Peddler 5 did, and a generated function hands it to the client with its request. The client waits by it before it retries a 429. An operation without a usage plan, or with a rate of `n`, which varies by seller, has none. A usage plan the generator can't read a number from fails generation, so a change in how Amazon writes the table can't go unnoticed.
+The rate is the requests per second in the usage plan table of an operation's description, the only place a model has it. The generator reads the first row of the table whose header ends with `Rate (requests per second)` and `Burst`, and takes the cell under the first. Every rate it reads is the one Peddler 5 read. A generated function hands the rate to the client with its request, and the client waits by it before it retries a 429. An operation without a usage plan, or with a rate of `n`, which varies by seller, has none.
+
+A description that mentions a usage plan or a burst without such a table fails generation, and so does a rate that is not a positive number. So a change in how Amazon writes the table can't go unnoticed, and neither a rate in another unit nor the burst is taken for the rate.
 
 An operation with 1 successful response returns `TypedResponse<T>`. One with several returns a type with a decoder for each status, such as `json_200` and `json_202`. One without a model returns the raw `Response`.
 

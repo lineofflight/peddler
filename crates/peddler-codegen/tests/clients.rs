@@ -217,7 +217,7 @@ fn rated(description: &str) -> Result<Option<f64>, String> {
 }
 
 #[test]
-fn the_rate_is_read_from_the_usage_plan_table_as_v5_read_it() {
+fn the_rate_is_the_first_cell_under_its_header_in_the_usage_plan_table() {
     assert_eq!(rated(TWO_COLUMNS), Ok(Some(0.0167)));
     assert_eq!(rated(THREE_COLUMNS), Ok(Some(5.0)));
     // Some specs spell a line break as a backslash and an n.
@@ -267,6 +267,70 @@ fn a_usage_plan_whose_rate_cannot_be_read_fails_generation() {
     ] {
         assert_eq!(rated(&description), Err(error.to_owned()), "{description}");
     }
+}
+
+/// Ways Amazon could rewrite a usage plan. None may pass for a rate in requests per
+/// second, or for no rate at all.
+#[test]
+fn a_usage_plan_in_another_form_fails_generation_and_is_never_misread() {
+    let unread = "empty: usage plan without a rate table";
+    let table = "| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |";
+    for (description, error) in [
+        // Another unit: 5 a minute must not be read as 5 a second.
+        (
+            TWO_COLUMNS.replace("requests per second", "requests per minute"),
+            unread,
+        ),
+        // The heading and the header change together.
+        (
+            "**Limits:**\n\n| Requests a second | Burst |\n| ---- | ---- |\n| 5 | 10 |".to_owned(),
+            unread,
+        ),
+        // A unit in the cell, and another table later: the burst must not be the rate.
+        (
+            format!(
+                "{}\n\n| a | b |",
+                TWO_COLUMNS.replace("0.0167", "5 per second")
+            ),
+            "empty: unsupported rate \"5 per second\"",
+        ),
+        // The columns change places, or another comes between or after them.
+        (
+            table.replace(
+                "Rate (requests per second) | Burst",
+                "Burst | Rate (requests per second)",
+            ),
+            unread,
+        ),
+        (
+            table
+                .replace("| Burst |", "| Unit | Burst |")
+                .replace("| ---- |\n", "| ---- | ---- |\n")
+                .replace("| 5 |", "| 5 | second |"),
+            unread,
+        ),
+        (
+            THREE_COLUMNS
+                .replace("| Plan type |", "| Plan type | Region |")
+                .replace("| ---- | ---- | ---- |", "| ---- | ---- | ---- | ---- |")
+                .replace("|Default|", "|Default| EU |"),
+            unread,
+        ),
+        // A row that isn't the header's width, and a rule that isn't one of dashes.
+        (table.replace("| 5 | 10 |", "| 5 |"), unread),
+        (table.replace("| ---- | ---- |", "| :--- | :--- |"), unread),
+        (
+            table.replace("| ---- | ---- |\n", "\n| ---- | ---- |\n"),
+            unread,
+        ),
+        // No table at all, with either word in the text.
+        ("Allows a burst of 10 requests.".to_owned(), unread),
+        ("See the usage plan of your account.".to_owned(), unread),
+        ("USAGE PLANS vary.".to_owned(), unread),
+    ] {
+        assert_eq!(rated(&description), Err(error.to_owned()), "{description}");
+    }
+    assert_eq!(rated(table), Ok(Some(5.0)));
 }
 
 #[test]

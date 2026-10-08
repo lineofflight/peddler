@@ -1,9 +1,7 @@
 //! Every operation of an API and its parameters, read from Amazon's Swagger 2 spec.
-use crate::{GenerationError, docs::regex, manifest::ModelSpec};
+use crate::{GenerationError, manifest::ModelSpec};
 use heck::{ToPascalCase, ToSnakeCase};
-use regress::Regex;
 use serde_json::{Map, Value, json};
-use std::sync::LazyLock;
 
 #[derive(Debug)]
 pub struct Operation {
@@ -101,37 +99,53 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
     operations.sort_by(|a, b| a.name.cmp(&b.name));
     Ok(operations)
 }
+/// The header cells of a usage plan table that this reads a rate under.
+const RATE_HEADER: [&str; 2] = ["Rate (requests per second)", "Burst"];
+
+/// The cells of a line that is a row of a table.
+fn row(line: &str) -> Option<Vec<&str>> {
+    let cells = line.trim().strip_prefix('|')?.strip_suffix('|')?;
+    Some(cells.split('|').map(str::trim).collect())
+}
 /// The rate of an operation, in requests per second, from the usage plan table of its
-/// description, which is the only place a spec has it. v5 read it with this pattern: the
-/// cell before the burst, in the row after the header's. The table has 2 columns, or 3
-/// when it starts with the plan's name. A line break may be spelled as a backslash and
-/// an n. A rate of `n` varies by seller, so the operation has none.
+/// description, which is the only place a spec has it: the cell under
+/// `Rate (requests per second)` in the first row. The header ends with that cell and
+/// `Burst`, after the name of the plan at most, and a rule of dashes follows it. A line
+/// break may be spelled as a backslash and an n. A rate of `n` varies by seller, so the
+/// operation has none.
 ///
-/// Amazon may change how it writes the table. A description that names a usage plan
-/// without a table this reads, or with a rate that is no positive number, is refused.
+/// Amazon may change how it writes the table. A description that mentions a usage plan
+/// or a burst without a table this reads, or with a rate that is no positive number, is
+/// refused: a rate in another unit, or the burst, must not be taken for the rate.
 fn rate(description: &str) -> Result<Option<f64>, GenerationError> {
-    static TABLE: LazyLock<Regex> = LazyLock::new(|| {
-        regex(concat!(
-            r"Burst[\s]*\|(?:\\n|\n)",
-            r"\|(?:[\s]*-+[\s]*\|){2,3}(?:\\n|\n)",
-            r"(?:\|[^|]*){0,1}\|[\s]*([^\s]+)[\s]*\|[^|]*\|",
-        ))
+    let text = description.replace("\\n", "\n");
+    let rows: Vec<_> = text.lines().map(row).collect();
+    let cell = rows.windows(3).find_map(|table| {
+        let [Some(header), Some(rule), Some(first)] = table else {
+            return None;
+        };
+        let column = header.len().checked_sub(2).filter(|column| *column <= 1)?;
+        let dashes = |cell: &&str| !cell.is_empty() && cell.bytes().all(|byte| byte == b'-');
+        let reads = header[column..] == RATE_HEADER
+            && rule.len() == header.len()
+            && rule.iter().all(dashes)
+            && first.len() == header.len();
+        reads.then(|| first[column])
     });
-    static USAGE_PLAN: LazyLock<Regex> = LazyLock::new(|| regex(r"Usage[\s]+[Pp]lans?:"));
-    let Some(found) = TABLE.find(description) else {
-        return if USAGE_PLAN.find(description).is_some() {
+    let Some(cell) = cell else {
+        let text = description.to_lowercase();
+        return if text.contains("usage plan") || text.contains("burst") {
             Err(GenerationError("usage plan without a rate table".into()))
         } else {
             Ok(None)
         };
     };
-    let value = &description[found.group(1).expect("the rate is captured")];
-    if value.eq_ignore_ascii_case("n") {
+    if cell.eq_ignore_ascii_case("n") {
         return Ok(None);
     }
-    match value.parse::<f64>() {
+    match cell.parse::<f64>() {
         Ok(rate) if rate.is_finite() && rate > 0.0 => Ok(Some(rate)),
-        _ => Err(GenerationError(format!("unsupported rate {value:?}"))),
+        _ => Err(GenerationError(format!("unsupported rate {cell:?}"))),
     }
 }
 /// The kind of sandbox call an operation can make, as v5 read it: static if its first
