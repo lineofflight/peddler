@@ -11,7 +11,7 @@
 //!   `2^(retry - 1) - 1` seconds plus up to 1 second, so up to 1, then 1 to 2, then
 //!   3 to 4. A 429 of an operation without a documented rate waits like this too.
 //! - A `Retry-After` header replaces the wait of its response.
-//! - A wait is 600 seconds at most. When the rate or `Retry-After` asks for a longer
+//! - A wait is 900 seconds at most. When the rate or `Retry-After` asks for a longer
 //!   one, retrying ends and the call returns that response, as when the retries run
 //!   out. So a 429 of an operation limited to 1 request a minute is retried 4 times at
 //!   most, after 60, 120, 240 and 480 seconds, and one limited to 0.5 a second 9
@@ -27,7 +27,7 @@ const SANDBOX_WAIT: f64 = 0.2;
 /// The most that chance adds to the wait after a 429, in seconds.
 const THROTTLE_JITTER: f64 = 0.1;
 /// The longest wait before a retry. A longer one ends retrying.
-const MAX_WAIT: Duration = Duration::from_secs(600);
+const MAX_WAIT: Duration = Duration::from_secs(900);
 
 /// How often a client retries. The default is never. Nothing else about a retry is
 /// configurable: the [module](self) says what is retried and how long each wait is.
@@ -220,16 +220,16 @@ mod tests {
     }
 
     /// Every rate Amazon documents today, with the retries of a 429 that fit under
-    /// the ceiling of 600 seconds.
+    /// the ceiling of 900 seconds.
     const RETRIES_BY_RATE: [(f64, u32); 17] = [
-        (0.0056, 2),
+        (0.0056, 3),
         (0.0083, 3),
         (0.016, 4),
         (0.0167, 4),
         (0.017, 4),
-        (0.0222, 4),
+        (0.0222, 5),
         (0.033, 5),
-        (0.1, 6),
+        (0.1, 7),
         (0.5, 9),
         (1.0, 10),
         (1.133, 10),
@@ -242,7 +242,7 @@ mod tests {
     ];
 
     #[test]
-    fn a_wait_longer_than_600_seconds_ends_retrying() {
+    fn a_wait_longer_than_900_seconds_ends_retrying() {
         let policy = policy(10);
         for (rate, retries) in RETRIES_BY_RATE {
             // Chance never decides: no rate's wait comes within its tenth of a second
@@ -256,6 +256,13 @@ mod tests {
                 }
             }
         }
+        // Every operation can use 3 retries, as v5's examples had it. The slowest waits
+        // 179, 357 and 714 seconds.
+        assert!(RETRIES_BY_RATE.iter().all(|(_, retries)| *retries >= 3));
+        let slowest = call("GET", Some(0.0056));
+        let third = policy.wait_at(slowest, status(429), 3, EPOCH, 0.0);
+        assert!(close(seconds(third), 4.0 / 0.0056));
+        assert_eq!(policy.wait_at(slowest, status(429), 4, EPOCH, 0.0), None);
         // 1 request a minute: 60, 120, 240 and 480 seconds, and no fifth retry.
         let minute = call("GET", Some(0.0167));
         let fourth = policy.wait_at(minute, status(429), 4, EPOCH, 0.0);
@@ -414,7 +421,7 @@ mod tests {
     fn retry_after_replaces_the_wait_of_its_response() {
         let policy = policy(10);
         let slow = call("GET", Some(0.0167));
-        for (value, expected) in [("0", 0), ("1", 1), (" 7 ", 7), ("120", 120), ("600", 600)] {
+        for (value, expected) in [("0", 0), ("1", 1), (" 7 ", 7), ("120", 120), ("900", 900)] {
             for (call, code) in [(slow, 429), (slow, 503), (call("POST", None), 429)] {
                 for retry in [1, 5] {
                     let headers = header(value);
@@ -423,10 +430,10 @@ mod tests {
                 }
             }
         }
-        // More than 600 seconds ends retrying, and so does more than a number holds.
+        // More than 900 seconds ends retrying, and so does more than a number holds.
         // Neither is grounds to retry early.
         for value in [
-            "601",
+            "901",
             "86400",
             "18446744073709551615",
             "18446744073709551616",
@@ -458,8 +465,8 @@ mod tests {
         for (date, expected) in [
             ("Wed, 21 Oct 2015 07:28:05 GMT", Some(5)),
             ("Wed, 21 Oct 2015 07:30:00 GMT", Some(120)),
-            ("Wed, 21 Oct 2015 07:38:00 GMT", Some(600)),
-            ("Wed, 21 Oct 2015 07:38:01 GMT", None),
+            ("Wed, 21 Oct 2015 07:43:00 GMT", Some(900)),
+            ("Wed, 21 Oct 2015 07:43:01 GMT", None),
             ("Wed, 21 Oct 2015 07:27:59 GMT", Some(0)),
         ] {
             let headers = header(date);

@@ -122,8 +122,8 @@ class RetriesTest < NativeTest
     assert_equal(["GET", "GET"], requests)
   end
 
-  def test_a_wait_longer_than_600_seconds_ends_retrying_and_the_last_response_raises
-    requests = replying([429, [["Retry-After", "601"]]]) do |url|
+  def test_a_wait_longer_than_900_seconds_ends_retrying_and_the_last_response_raises
+    requests = replying([429, [["Retry-After", "901"]]]) do |url|
       elapsed = seconds do
         error = assert_raises(Peddler::Error) { client(url, retries: 3).shipping_v2.get_tracking("tracking", "carrier") }
 
@@ -136,9 +136,9 @@ class RetriesTest < NativeTest
     assert_equal(["GET"], requests)
   end
 
-  def test_600_seconds_is_the_longest_wait_and_no_number_of_retries_makes_it_longer
+  def test_900_seconds_is_the_longest_wait_and_no_number_of_retries_makes_it_longer
     # A second request would mean the wait was followed. None comes: the 429 raises at once.
-    ["601", "86400", "18446744073709551616"].each do |asked|
+    ["901", "86400", "18446744073709551616"].each do |asked|
       requests = replying([429, [["Retry-After", asked]]]) do |url|
         Timeout.timeout(5) { assert_raises(Peddler::Error) { client(url, retries: 10).request("POST", "/", body: {}) } }
       end
@@ -281,8 +281,8 @@ class RetriesTest < NativeTest
   end
 
   # The 429 is the error, not the timeout of the wait, which has 5 seconds left.
-  def test_a_poll_told_to_wait_longer_than_600_seconds_raises_its_429_at_once
-    requests = replying([429, [["Retry-After", "601"]]]) do |url|
+  def test_a_poll_told_to_wait_longer_than_900_seconds_raises_its_429_at_once
+    requests = replying([429, [["Retry-After", "901"]]]) do |url|
       elapsed = seconds do
         error = assert_raises(Peddler::Error) do
           client(url, retries: 3).reports.wait_for_report("r1", interval: 0.01, timeout: 5)

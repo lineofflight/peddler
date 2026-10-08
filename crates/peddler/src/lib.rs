@@ -726,11 +726,11 @@ mod tests {
     }
 
     #[tokio::test(start_paused = true)]
-    async fn a_wait_of_600_seconds_is_waited_and_a_longer_one_ends_retrying() {
+    async fn a_wait_of_900_seconds_is_waited_and_a_longer_one_ends_retrying() {
         // What `Retry-After` asks for.
         for (asked, waited) in [
-            (600, true),
-            (601, false),
+            (900, true),
+            (901, false),
             (86_400, false),
             (u64::MAX, false),
         ] {
@@ -738,7 +738,7 @@ mod tests {
             let (result, attempts, elapsed) = run(&client(10), "GET", Some(80.0), &script).await;
             if waited {
                 assert_eq!((result, attempts), (Ok(200), 2), "{asked}");
-                assert!(took(elapsed, 600.0, 600.0), "{elapsed}");
+                assert!(took(elapsed, 900.0, 900.0), "{elapsed}");
             } else {
                 // The last response is returned at once, as when the retries run out.
                 assert_eq!((result, attempts, elapsed), (Ok(429), 1, 0.0), "{asked}");
@@ -753,6 +753,12 @@ mod tests {
             took(elapsed, 15.0 / 0.0167, 15.0 / 0.0167 + 0.4),
             "{elapsed}"
         );
+        // The slowest operation, at 0.0056 a second, still has the 3 retries of v5's
+        // examples: 179, 357 and 714 seconds.
+        let script = [Status(429), Status(429), Status(429), Status(200)];
+        let (result, attempts, elapsed) = run(&client(3), "GET", Some(0.0056), &script).await;
+        assert_eq!((result, attempts), (Ok(200), 4));
+        assert!(took(elapsed, 7.0 / 0.0056, 7.0 / 0.0056 + 0.3), "{elapsed}");
         // A failure never waits that long: 10 retries, the last after 511 to 512 seconds.
         let (result, attempts, elapsed) = run(&client(10), "GET", None, &[Fails; 11]).await;
         assert_eq!((result, attempts), (Err(Error::Transport), 11));

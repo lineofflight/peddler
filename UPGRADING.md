@@ -257,7 +257,7 @@ It differs in 3 ways.
 
 - **What it retries after a failure.** After a 500, 502, 503 or 504, a failed connection or a timeout, v6 retries a GET only. v5 retried every method, which could submit a feed or an order twice. After a 429 both retry every method, since a throttled request was not processed.
 - **`timeout:`.** It limits each attempt, and v5 had no limit by default. The waits between attempts are not counted, so a throttled call takes as long as it did in v5.
-- **A wait of more than 10 minutes.** When the rate or `Retry-After` asks for a wait of more than 600 seconds, v6 stops retrying and the last response raises. v5 waited however long that was. With `retries: 3` only `search_orders` of Orders 2026-01-01 loses a retry, since its third wait would be 714 seconds. With more retries, an operation limited to 1 request a minute is retried 4 times at most. The [README](README.md#rate-limiting) has the number for each rate.
+- **A wait of more than 15 minutes.** When the rate or `Retry-After` asks for a wait of more than 900 seconds, v6 stops retrying and the last response raises. v5 waited however long that was. With `retries: 3` every operation waits as it did: the slowest waits 179, 357 and 714 seconds. With more retries, an operation limited to 1 request a minute is retried 4 times at most. The [README](README.md#rate-limiting) has the number for each rate.
 
 `retries:` takes 0 to 10.
 

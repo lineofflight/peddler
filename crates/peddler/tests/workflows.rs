@@ -858,9 +858,9 @@ async fn a_poll_is_retried_as_the_client_retries_and_no_wait_outlasts_the_timeou
     assert!(elapsed < Duration::from_millis(450), "{elapsed:?}");
     assert_eq!(server.requests().len(), 1);
 
-    // A poll told to wait longer than 600 seconds is not retried. Its 429 is the
+    // A poll told to wait longer than 900 seconds is not retried. Its 429 is the
     // error, at once, and not the timeout of the wait.
-    let server = serve(|_, _, _| http(429, "Retry-After: 601\r\n", b"{\"errors\":[]}")).await;
+    let server = serve(|_, _, _| http(429, "Retry-After: 901\r\n", b"{\"errors\":[]}")).await;
     let started = Instant::now();
     let error = retrying(&server.url)
         .workflows()

@@ -38,7 +38,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Return a new client from `sandbox` and leave the one it is called on in production
 - Request tokens through an instance of `Peddler::LWA`: `Peddler::LWA.new.refresh(refresh_token:)`. A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`
 - Retry only a GET after a 500, 502, 503 or 504, a failed connection or a timeout. 5.x sent a request that changes data again after these, which could submit a feed or an order twice. A 429 is still retried whatever the method, and the waits before a retry are those of 5.x. `retries:` takes 0 to 10
-- End retrying when a wait would be longer than 600 seconds, by the operation's rate or by `Retry-After`: the last response raises `Peddler::Error`. 5.x waited however long that was. An operation limited to 1 request a minute is retried 4 times at most
+- End retrying when a wait would be longer than 900 seconds, by the operation's rate or by `Retry-After`: the last response raises `Peddler::Error`. 5.x waited however long that was. An operation limited to 1 request a minute is retried 4 times at most
 - Ignore a `Retry-After` header that is neither a number of seconds nor a date. 5.x retried at once
 - Raise `Peddler::Error` when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`
 - Allow each attempt of a call 30 seconds by default. 5.x had no timeout

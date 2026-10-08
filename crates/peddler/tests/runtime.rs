@@ -141,8 +141,8 @@ async fn retry_after_replaces_the_wait_of_an_operation_limited_to_one_request_a_
     assert_eq!(api.requests().len(), 2);
 }
 #[tokio::test]
-async fn a_wait_longer_than_600_seconds_ends_retrying_with_the_last_response() {
-    let api = replies(vec![http(429, "Retry-After: 601\r\n", b"too long")]).await;
+async fn a_wait_longer_than_900_seconds_ends_retrying_with_the_last_response() {
+    let api = replies(vec![http(429, "Retry-After: 901\r\n", b"too long")]).await;
     let client = Client::with_config(retrying(api.url.clone(), 3)).unwrap();
     let started = Instant::now();
     let last = get_tracking(&client, tracking()).await.unwrap().into_raw();

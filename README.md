@@ -271,21 +271,20 @@ After a 5xx, a failed connection or a timeout, Peddler waits up to 1 second, the
 
 If the response has a `Retry-After` header, Peddler waits as long as it asks instead.
 
-A wait is 600 seconds at most. When the rate or `Retry-After` asks for a longer one, Peddler stops retrying and the last response raises `Peddler::Error`, as when the retries run out. So the rate of an operation sets how many retries its 429 can use. One limited to 1 request a minute waits 60, 120, 240 and 480 seconds and is not retried a fifth time.
+A wait is 900 seconds at most. When the rate or `Retry-After` asks for a longer one, Peddler stops retrying and the last response raises `Peddler::Error`, as when the retries run out. So the rate of an operation sets how many retries its 429 can use. One limited to 1 request a minute waits 60, 120, 240 and 480 seconds and is not retried a fifth time.
 
 | Requests a second | Retries of a 429 |
 | --- | --- |
-| 0.0056 | 2 |
-| 0.0083 | 3 |
-| 0.016 to 0.0222 | 4 |
-| 0.033 | 5 |
-| 0.1 | 6 |
+| 0.0056 to 0.0083 | 3 |
+| 0.016 to 0.017 | 4 |
+| 0.0222 to 0.033 | 5 |
+| 0.1 | 7 |
 | 0.5 | 9 |
 | 1 or more | 10 |
 
-52 operations are limited to less than 1 request a second, so none of them can use `retries: 10`. With `retries: 3`, only `search_orders` of Orders 2026-01-01 loses a retry: its third wait would be 714 seconds.
+52 operations are limited to less than 1 request a second, so none of them can use `retries: 10`. Every operation can use `retries: 3`: the slowest, `search_orders` of Orders 2026-01-01, waits 179, 357 and 714 seconds.
 
-`timeout:` limits each attempt. The waits between attempts are not counted, so a call can take far longer than `timeout:`: 17 minutes for 9 retries at 0.5 requests a second, and 100 minutes if `Retry-After` asks for 600 seconds 10 times. Choose `retries:` by how long a call may take, or wrap the call in `Timeout.timeout`, which ends a wait too.
+`timeout:` limits each attempt. The waits between attempts are not counted, so a call can take far longer than `timeout:`: 23 minutes for 5 retries at 0.0222 requests a second, and 150 minutes if `Retry-After` asks for 900 seconds 10 times. Choose `retries:` by how long a call may take, or wrap the call in `Timeout.timeout`, which ends a wait too.
 
 A token source is asked once for a call, before its first attempt, so every retry sends the same token. Give a call that may retry for minutes a token that outlives it. `token_source` hands out a token with 60 seconds or more left, and the second retry of an operation limited to 1 request a minute goes out 3 minutes in.
 
@@ -439,7 +438,7 @@ end
 | `client.feeds` | `wait_for_feed` | `open_feed_document` | `download_result_feed_document` | `upload_feed_document`, `create_and_upload_feed_document` |
 | `client.data_kiosk` | `wait_for_query` | `open_query_document` | `download_query_document` | |
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out. A single poll that takes longer than the client's `timeout:` raises `Peddler::TimeoutError`, as any request does. A poll is retried as the client's `retries:` says, and a wait before a retry ends when the time of the whole wait runs out. A poll that is told to wait more than 600 seconds is not retried: its 429 raises `Peddler::Error` at once.
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out. A single poll that takes longer than the client's `timeout:` raises `Peddler::TimeoutError`, as any request does. A poll is retried as the client's `retries:` says, and a wait before a retry ends when the time of the whole wait runs out. A poll that is told to wait more than 900 seconds is not retried: its 429 raises `Peddler::Error` at once.
 
 4 helpers return a whole document in a response. They allow 600 seconds for a call.
 
