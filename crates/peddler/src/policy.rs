@@ -15,7 +15,8 @@
 //!   one, retrying ends and the call returns that response, as when the retries run
 //!   out. So a 429 of an operation limited to 1 request a minute is retried 4 times at
 //!   most, after 60, 120, 240 and 480 seconds, and one limited to 0.5 a second 9
-//!   times. Only an operation limited to 1 a second or more can use 10 retries.
+//!   times. An operation limited to 1 a second or more can use 10 retries, and so can
+//!   one without a documented rate, whose waits end at 512 seconds.
 
 use std::{
     fmt,
